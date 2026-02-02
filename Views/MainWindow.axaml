@@ -1,0 +1,101 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.MainWindow"
+        Width="1400" Height="900"
+        Background="#FF111111"
+        Title="CBETA Translator">
+
+	<Grid RowDefinitions="Auto,*,Auto">
+
+		<!-- Top bar -->
+		<Border Grid.Row="0" Background="#FF1E1E1E" Padding="10">
+			<DockPanel LastChildFill="True">
+
+				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
+					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰" Background="#33FFFFFF"/>
+					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root" Background="#33FFFFFF"/>
+					<Button Name="BtnSave" Width="120" Height="32" Content="Save" Background="#33FFFFFF"/>
+					<TextBlock Name="TxtRoot"
+							   VerticalAlignment="Center"
+							   Margin="10,0,0,0"
+							   Foreground="#FFCCCCCC"/>
+				</StackPanel>
+
+				<TextBlock Name="TxtCurrentFile"
+						   DockPanel.Dock="Right"
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Right"
+						   Foreground="#FFCCCCCC"/>
+			</DockPanel>
+		</Border>
+
+		<!-- Main content -->
+		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
+
+			<!-- Nav panel -->
+			<Border Name="NavPanel" Background="#FF1A1A1A" Width="320">
+				<Grid Margin="8" RowDefinitions="Auto,*">
+					<TextBlock Text="Files" FontWeight="Bold" Margin="4" Foreground="#FFCCCCCC"/>
+					<ListBox Name="FilesList"
+							 Grid.Row="1"
+							 Background="#FF2B2B2B"
+							 Foreground="#FFEAEAEA"
+							 BorderBrush="#FF444444"
+							 BorderThickness="1"/>
+				</Grid>
+			</Border>
+
+			<GridSplitter Grid.Column="1" Width="6" Background="#FF444444"/>
+
+			<!-- Editors area -->
+			<!-- Make Original smaller, Translated larger: 1* : 2* -->
+			<Grid Grid.Column="2" Margin="8" ColumnDefinitions="1*,Auto,2*">
+
+				<!-- Original -->
+				<Border Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
+					<Grid RowDefinitions="Auto,*">
+						<Border Background="#FF202020" Padding="8">
+							<TextBlock Text="Original (read-only)" Foreground="#FFCCCCCC"/>
+						</Border>
+
+						<TextBox Name="EditorOriginal"
+								 Grid.Row="1"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Consolas"
+								 ScrollViewer.VerticalScrollBarVisibility="Visible"
+								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+					</Grid>
+				</Border>
+
+				<GridSplitter Grid.Column="1" Width="6" Background="#FF444444"/>
+
+				<!-- Translated -->
+				<Border Grid.Column="2" Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
+					<Grid RowDefinitions="Auto,*">
+						<Border Background="#FF202020" Padding="8">
+							<TextBlock Text="Translated (read-only for now)" Foreground="#FFCCCCCC"/>
+						</Border>
+
+						<TextBox Name="EditorTranslated"
+								 Grid.Row="1"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Consolas"
+								 ScrollViewer.VerticalScrollBarVisibility="Visible"
+								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+					</Grid>
+				</Border>
+
+			</Grid>
+		</Grid>
+
+		<!-- Status bar -->
+		<Border Grid.Row="2" Background="#FF1E1E1E" Padding="8">
+			<TextBlock Name="TxtStatus" Foreground="#FFCCCCCC"/>
+		</Border>
+
+	</Grid>
+</Window>
