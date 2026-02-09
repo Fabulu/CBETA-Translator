@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
+        xmlns:models="clr-namespace:CbetaTranslator.App.Models"
         x:Class="CbetaTranslator.App.Views.MainWindow"
         Width="1400" Height="900"
         Background="#FF111111"
@@ -33,20 +34,50 @@
     <!-- Main content -->
     <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
 
-      <!-- Nav panel -->
       <Border Name="NavPanel" Background="#FF1A1A1A" Width="320">
-        <Grid Margin="8" RowDefinitions="Auto,*">
+        <Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
+
           <TextBlock Text="Files" FontWeight="Bold" Margin="4" Foreground="#FFCCCCCC"/>
-          <ListBox Name="FilesList"
+
+          <!-- Search -->
+          <TextBox Name="NavSearch"
                    Grid.Row="1"
+                   Watermark="Search (filename or title)…"
                    Background="#FF2B2B2B"
                    Foreground="#FFEAEAEA"
                    BorderBrush="#FF444444"
                    BorderThickness="1"/>
+
+          <!-- Toggle -->
+          <CheckBox Name="ChkShowFilenames"
+                    Grid.Row="2"
+                    Content="Show filenames"
+                    Foreground="#FFCCCCCC"
+                    IsChecked="False"/>
+
+          <ListBox Name="FilesList"
+                   Grid.Row="3"
+                   Background="#FF2B2B2B"
+                   Foreground="#FFEAEAEA"
+                   BorderBrush="#FF444444"
+                   BorderThickness="1">
+
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="models:FileNavItem">
+                <Border CornerRadius="6"
+                        Padding="6"
+                        Margin="4"
+                        Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
+                  <TextBlock Text="{Binding DisplayShort}"
+                             ToolTip.Tip="{Binding Tooltip}"
+                             TextWrapping="NoWrap"/>
+                </Border>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+
+          </ListBox>
         </Grid>
       </Border>
-
-      <GridSplitter Grid.Column="1" Width="6" Background="#FF444444"/>
 
       <!-- Right side: Tabs -->
       <Border Grid.Column="2" Margin="8" Background="#00000000">

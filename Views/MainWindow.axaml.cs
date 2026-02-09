@@ -24,6 +24,8 @@ public partial class MainWindow : Window
 
     private Border? _navPanel;
     private ListBox? _filesList;
+    private TextBox? _navSearch;
+    private CheckBox? _chkShowFilenames;
 
     private TextBlock? _txtRoot;
     private TextBlock? _txtCurrentFile;
@@ -45,7 +47,12 @@ public partial class MainWindow : Window
     private string? _originalDir;
     private string? _translatedDir;
 
-    private List<string> _relativeFiles = new();
+    // This is the canonical list loaded from cache/build — NEVER mutate items inside it.
+    private List<FileNavItem> _allItems = new();
+
+    // This is what the ListBox shows (projected items with DisplayShort depending on toggle)
+    private List<FileNavItem> _filteredItems = new();
+
     private string? _currentRelPath;
 
     // Raw XML
@@ -62,10 +69,8 @@ public partial class MainWindow : Window
         WireEvents();
 
         SetStatus("Ready.");
-
         UpdateSaveButtonState();
 
-        // ✅ Phase 0: auto-load last root (no UI blocking)
         _ = TryAutoLoadRootFromConfigAsync();
     }
 
@@ -79,6 +84,8 @@ public partial class MainWindow : Window
 
         _navPanel = this.FindControl<Border>("NavPanel");
         _filesList = this.FindControl<ListBox>("FilesList");
+        _navSearch = this.FindControl<TextBox>("NavSearch");
+        _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
 
         _txtRoot = this.FindControl<TextBlock>("TxtRoot");
         _txtCurrentFile = this.FindControl<TextBlock>("TxtCurrentFile");
@@ -105,6 +112,12 @@ public partial class MainWindow : Window
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
 
         if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
+
+        if (_navSearch != null)
+            _navSearch.TextChanged += (_, _) => ApplyFilter();
+
+        if (_chkShowFilenames != null)
+            _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
     }
 
     private void ToggleNav_Click(object? sender, RoutedEventArgs e)
@@ -151,8 +164,6 @@ public partial class MainWindow : Window
 
             SetStatus("Auto-loading last root…");
             await LoadRootAsync(cfg.TextRootPath, saveToConfig: false);
-
-            // optionally restore last selected file later (not part of phase 0)
         }
         catch
         {
@@ -187,53 +198,111 @@ public partial class MainWindow : Window
         await LoadFileListFromCacheOrBuildAsync();
     }
 
-    // ✅ Phase 0: cache file list in <root>/index.cache.json
     private async Task LoadFileListFromCacheOrBuildAsync()
     {
-        if (_root == null || _originalDir == null || _filesList == null)
+        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
             return;
 
         ClearViews();
 
-        // Try cache
         var cache = await _indexCacheService.TryLoadAsync(_root);
-        if (cache != null && cache.RelativePaths.Count > 0)
+        if (cache != null && cache.Entries.Count > 0)
         {
-            _relativeFiles = cache.RelativePaths;
-            _filesList.ItemsSource = _relativeFiles;
-            SetStatus($"Loaded index cache: {_relativeFiles.Count:n0} files.");
+            _allItems = cache.Entries ?? new List<FileNavItem>();
+            ApplyFilter();
+            SetStatus($"Loaded index cache: {_allItems.Count:n0} files.");
             return;
         }
 
-        // Build cache with progress (async; UI responsive)
         SetStatus("Building index cache… (first run will take a moment)");
 
         var progress = new Progress<(int done, int total)>(p =>
         {
+            // progress callback is marshalled to captured context (UI) because created on UI thread
             SetStatus($"Indexing files… {p.done:n0}/{p.total:n0}");
         });
 
         IndexCache built;
         try
         {
-            built = await _indexCacheService.BuildAsync(_originalDir, _root, progress);
+            built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _root, progress);
         }
         catch (Exception ex)
         {
             SetStatus("Index build failed: " + ex.Message);
-            // fallback to old behavior
-            _relativeFiles = await _fileService.EnumerateXmlRelativePathsAsync(_originalDir);
-            _filesList.ItemsSource = _relativeFiles;
-            SetStatus($"Fallback scan done: {_relativeFiles.Count:n0} files.");
             return;
         }
 
         await _indexCacheService.SaveAsync(_root, built);
 
-        _relativeFiles = built.RelativePaths;
-        _filesList.ItemsSource = _relativeFiles;
+        _allItems = built.Entries ?? new List<FileNavItem>();
+        ApplyFilter();
 
-        SetStatus($"Index cache created: {_relativeFiles.Count:n0} files.");
+        SetStatus($"Index cache created: {_allItems.Count:n0} files.");
+    }
+
+    private void ApplyFilter()
+    {
+        if (_filesList == null)
+            return;
+
+        string q = (_navSearch?.Text ?? "").Trim();
+        bool showFilenames = _chkShowFilenames?.IsChecked == true;
+
+        // preserve selection by relpath
+        string? selectedRel =
+            (_filesList.SelectedItem as FileNavItem)?.RelPath
+            ?? _currentRelPath;
+
+        IEnumerable<FileNavItem> seq = _allItems;
+
+        if (q.Length > 0)
+        {
+            var qLower = q.ToLowerInvariant();
+
+            seq = seq.Where(it =>
+            {
+                // exact “contains” behavior (case-insensitive)
+                if (!string.IsNullOrEmpty(it.RelPath) && it.RelPath.ToLowerInvariant().Contains(qLower)) return true;
+                if (!string.IsNullOrEmpty(it.FileName) && it.FileName.ToLowerInvariant().Contains(qLower)) return true;
+                if (!string.IsNullOrEmpty(it.DisplayShort) && it.DisplayShort.ToLowerInvariant().Contains(qLower)) return true;
+                if (!string.IsNullOrEmpty(it.Tooltip) && it.Tooltip.ToLowerInvariant().Contains(qLower)) return true;
+                return false;
+            });
+        }
+
+        // IMPORTANT: do not mutate the cache items.
+        // Project items for UI with DisplayShort computed from toggle.
+        _filteredItems = seq.Select(it =>
+        {
+            var label =
+                showFilenames
+                    ? (string.IsNullOrWhiteSpace(it.FileName) ? it.RelPath : it.FileName)
+                    : (string.IsNullOrWhiteSpace(it.DisplayShort)
+                        ? (string.IsNullOrWhiteSpace(it.FileName) ? it.RelPath : it.FileName)
+                        : it.DisplayShort);
+
+            return new FileNavItem
+            {
+                RelPath = it.RelPath,
+                FileName = it.FileName,
+                DisplayShort = label,
+                Tooltip = it.Tooltip,
+                Status = it.Status
+            };
+        }).ToList();
+
+        _filesList.ItemsSource = _filteredItems;
+
+        // restore selection if possible
+        if (!string.IsNullOrWhiteSpace(selectedRel))
+        {
+            var match = _filteredItems.FirstOrDefault(x =>
+                string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
+
+            if (match != null)
+                _filesList.SelectedItem = match;
+        }
     }
 
     private void ClearViews()
@@ -255,10 +324,13 @@ public partial class MainWindow : Window
 
     private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        if (_filesList?.SelectedItem is not string rel)
+        if (_filesList?.SelectedItem is not FileNavItem item)
             return;
 
-        await LoadPairAsync(rel);
+        if (string.IsNullOrWhiteSpace(item.RelPath))
+            return;
+
+        await LoadPairAsync(item.RelPath);
     }
 
     private async Task LoadPairAsync(string relPath)
@@ -266,7 +338,6 @@ public partial class MainWindow : Window
         if (_originalDir == null || _translatedDir == null)
             return;
 
-        // cancel previous render task if any
         _renderCts?.Cancel();
         _renderCts = new CancellationTokenSource();
         var ct = _renderCts.Token;
@@ -283,11 +354,9 @@ public partial class MainWindow : Window
         _rawOrigXml = orig ?? "";
         _rawTranXml = tran ?? "";
 
-        // ✅ Immediately populate XML tab (fast)
         _translationView?.SetXml(_rawOrigXml, _rawTranXml);
         UpdateSaveButtonState();
 
-        // ✅ Render readable view in background (no UI freeze)
         SetStatus("Rendering readable view…");
 
         try
@@ -312,10 +381,7 @@ public partial class MainWindow : Window
                 SetStatus($"Loaded. Readable segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}.");
             });
         }
-        catch (OperationCanceledException)
-        {
-            // user clicked another file; ignore
-        }
+        catch (OperationCanceledException) { }
         catch (Exception ex)
         {
             SetStatus("Render failed: " + ex.Message);
@@ -348,7 +414,6 @@ public partial class MainWindow : Window
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
             SetStatus("Saved translated XML: " + _currentRelPath);
 
-            // Re-render translated readable in background (don’t freeze)
             _rawTranXml = xml ?? "";
 
             _renderCts?.Cancel();
@@ -376,11 +441,11 @@ public partial class MainWindow : Window
                     SetStatus("Saved + readable view updated.");
                 });
             }
+
+            // optional: if status coloring depends on file contents, you can refresh cache entry later
+            // and re-ApplyFilter() to update red/yellow/green. (We’ll do that in Phase 2.2)
         }
-        catch (OperationCanceledException)
-        {
-            // ignore
-        }
+        catch (OperationCanceledException) { }
         catch (Exception ex)
         {
             SetStatus("Save failed: " + ex.Message);

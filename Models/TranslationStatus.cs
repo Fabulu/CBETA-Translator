@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace CbetaTranslator.App.Models;
 
-namespace CbetaTranslator.App.Models
+public enum TranslationStatus
 {
-    internal class TranslationStatus
-    {
-    }
+    Red = 0,
+    Yellow = 1,
+    Green = 2
 }
