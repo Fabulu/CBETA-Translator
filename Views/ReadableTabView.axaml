@@ -1,47 +1,100 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="clr-namespace:CbetaTranslator.App.Views"
              x:Class="CbetaTranslator.App.Views.ReadableTabView">
 
-  <!-- Make Original smaller, Translated larger: 1* : 2* -->
-  <Grid ColumnDefinitions="1*,Auto,2*" Margin="0">
+	<Grid RowDefinitions="Auto,*">
 
-    <!-- Original -->
-    <Border Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
-      <Grid RowDefinitions="Auto,*">
-        <Border Background="#FF202020" Padding="8">
-          <TextBlock Text="Original (read-only)" Foreground="#FFCCCCCC"/>
-        </Border>
+		<!-- Ctrl+F Search Bar -->
+		<Border Name="FindBar"
+				Grid.Row="0"
+				Background="#CC1E1E1E"
+				Padding="8"
+				CornerRadius="8"
+				Margin="0,0,0,8"
+				IsVisible="False">
+			<DockPanel LastChildFill="True">
+				<TextBlock Name="FindScope"
+						   DockPanel.Dock="Left"
+						   Foreground="#FFCCCCCC"
+						   VerticalAlignment="Center"
+						   Margin="0,0,10,0"
+						   Text="Find:" />
 
-        <TextBox Name="EditorOriginal"
-                 Grid.Row="1"
-                 IsReadOnly="True"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap"
-                 FontFamily="Consolas"
-                 ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-      </Grid>
-    </Border>
+				<TextBox Name="FindQuery"
+						 Watermark="Find…"
+						 Background="#FF2B2B2B"
+						 Foreground="#FFEAEAEA"
+						 BorderBrush="#FF444444"
+						 BorderThickness="1"
+						 MinWidth="260"
+						 VerticalAlignment="Center"/>
 
-    <GridSplitter Grid.Column="1" Width="6" Background="#FF444444"/>
+				<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8" Margin="10,0,0,0">
+					<TextBlock Name="FindCount"
+							   Foreground="#FFCCCCCC"
+							   VerticalAlignment="Center"
+							   Text="0/0" />
 
-    <!-- Translated -->
-    <Border Grid.Column="2" Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
-      <Grid RowDefinitions="Auto,*">
-        <Border Background="#FF202020" Padding="8">
-          <TextBlock Text="Translated (readable view)" Foreground="#FFCCCCCC"/>
-        </Border>
+					<Button Name="BtnPrev" Content="Prev" Background="#33FFFFFF" />
+					<Button Name="BtnNext" Content="Next" Background="#33FFFFFF" />
+					<Button Name="BtnCloseFind" Content="✕" Background="#33FFFFFF" />
+				</StackPanel>
+			</DockPanel>
+		</Border>
 
-        <TextBox Name="EditorTranslated"
-                 Grid.Row="1"
-                 IsReadOnly="True"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap"
-                 FontFamily="Consolas"
-                 ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-      </Grid>
-    </Border>
+		<!-- Main content -->
+		<!-- Make Original smaller, Translated larger: 1* : 2* -->
+		<Grid Grid.Row="1" ColumnDefinitions="1*,Auto,2*" Margin="0">
 
-  </Grid>
+			<!-- Original -->
+			<Border Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
+				<Grid RowDefinitions="Auto,*">
+					<Border Background="#FF202020" Padding="8">
+						<TextBlock Text="Original (read-only)" Foreground="#FFCCCCCC"/>
+					</Border>
+
+					<!-- Wrap TextBox + overlay -->
+					<Grid Grid.Row="1">
+						<TextBox Name="EditorOriginal"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Consolas"
+								 ScrollViewer.VerticalScrollBarVisibility="Visible"
+								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+
+						<views:SearchHighlightOverlay Name="HlOriginal"
+													  IsHitTestVisible="False"/>
+					</Grid>
+				</Grid>
+			</Border>
+
+			<GridSplitter Grid.Column="1" Width="6" Background="#FF444444"/>
+
+			<!-- Translated -->
+			<Border Grid.Column="2" Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
+				<Grid RowDefinitions="Auto,*">
+					<Border Background="#FF202020" Padding="8">
+						<TextBlock Text="Translated (readable view)" Foreground="#FFCCCCCC"/>
+					</Border>
+
+					<!-- Wrap TextBox + overlay -->
+					<Grid Grid.Row="1">
+						<TextBox Name="EditorTranslated"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Consolas"
+								 ScrollViewer.VerticalScrollBarVisibility="Visible"
+								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+
+						<views:SearchHighlightOverlay Name="HlTranslated"
+													  IsHitTestVisible="False"/>
+					</Grid>
+				</Grid>
+			</Border>
+
+		</Grid>
+	</Grid>
 </UserControl>

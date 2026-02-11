@@ -160,7 +160,7 @@ public partial class MainWindow : Window
 
         try
         {
-            if (!System.IO.Directory.Exists(cfg.TextRootPath))
+            if (!Directory.Exists(cfg.TextRootPath))
                 return;
 
             SetStatus("Auto-loading last root…");
@@ -180,7 +180,7 @@ public partial class MainWindow : Window
 
         if (_txtRoot != null) _txtRoot.Text = _root;
 
-        if (!System.IO.Directory.Exists(_originalDir))
+        if (!Directory.Exists(_originalDir))
         {
             SetStatus($"Original folder missing: {_originalDir}");
             return;
@@ -219,7 +219,6 @@ public partial class MainWindow : Window
 
         var progress = new Progress<(int done, int total)>(p =>
         {
-            // progress callback is marshalled to captured context (UI) because created on UI thread
             SetStatus($"Indexing files… {p.done:n0}/{p.total:n0}");
         });
 
@@ -263,7 +262,6 @@ public partial class MainWindow : Window
 
             seq = seq.Where(it =>
             {
-                // exact “contains” behavior (case-insensitive)
                 if (!string.IsNullOrEmpty(it.RelPath) && it.RelPath.ToLowerInvariant().Contains(qLower)) return true;
                 if (!string.IsNullOrEmpty(it.FileName) && it.FileName.ToLowerInvariant().Contains(qLower)) return true;
                 if (!string.IsNullOrEmpty(it.DisplayShort) && it.DisplayShort.ToLowerInvariant().Contains(qLower)) return true;
@@ -454,9 +452,6 @@ public partial class MainWindow : Window
                 // ignore
             }
 
-
-
-
             _rawTranXml = xml ?? "";
 
             _renderCts?.Cancel();
@@ -484,9 +479,6 @@ public partial class MainWindow : Window
                     SetStatus("Saved + readable view updated.");
                 });
             }
-
-            // optional: if status coloring depends on file contents, you can refresh cache entry later
-            // and re-ApplyFilter() to update red/yellow/green. (We’ll do that in Phase 2.2)
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
@@ -512,6 +504,5 @@ public partial class MainWindow : Window
     }
 
     private static string NormalizeRelForLogs(string p)
-    => (p ?? "").Replace('\\', '/').TrimStart('/');
-
+        => (p ?? "").Replace('\\', '/').TrimStart('/');
 }
