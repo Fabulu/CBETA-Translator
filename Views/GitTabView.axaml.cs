@@ -239,6 +239,7 @@ public partial class GitTabView : UserControl
                     return;
                 }
 
+                // IMPORTANT: Pull is now "safe" even if dirty (service auto-stashes and restores).
                 SetProgress("Pulling…");
                 var pullProg = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
                 var pull = await _git.PullFfOnlyAsync(repoDir, pullProg, ct);
@@ -247,7 +248,7 @@ public partial class GitTabView : UserControl
                 {
                     SetProgress("Pull failed.");
                     AppendLog("[error] " + (pull.Error ?? "unknown error"));
-                    AppendLog("If this says 'not possible to fast-forward', delete the folder and re-clone.");
+                    AppendLog("If this mentions stash conflicts: resolve them, then run 'git stash pop' manually.");
                     Status?.Invoke(this, "Pull failed: " + (pull.Error ?? "unknown error"));
                     return;
                 }

@@ -13,6 +13,14 @@ public sealed class GitRepoService : IGitRepoService
 {
     private Process? _running;
 
+    // Local app noise. We never want this to block update/commit UX.
+    private static readonly string[] LocalNoise =
+    {
+        "index.cache.json",
+        "search.index.manifest.json",
+        "index.debug.log",
+    };
+
     public void TryCancelRunningProcess()
     {
         try
@@ -46,21 +54,73 @@ public sealed class GitRepoService : IGitRepoService
         var args = $"clone --progress \"{repoUrl}\" \"{targetDir}\"";
         var r = await RunGitAsync(repoDir: null, args: args, progress: progress, ct: ct);
 
-        return r.ExitCode == 0
-            ? new GitOpResult(true)
-            : new GitOpResult(false, r.AllText);
+        if (r.ExitCode != 0)
+            return new GitOpResult(false, r.AllText);
+
+        // After clone, apply local ignore/skip-worktree for app noise.
+        await EnsureLocalNoiseSuppressedAsync(targetDir, progress, ct);
+
+        return new GitOpResult(true);
     }
 
     public async Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         var r = await RunGitAsync(repoDir, "fetch --all --prune", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> PullFfOnlyAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, "pull --ff-only", progress, ct);
-        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
+        // If dirty, auto-stash, pull, then restore.
+        var status = await GetStatusPorcelainAsync(repoDir, ct);
+        bool dirty = status.Length > 0;
+
+        bool didStash = false;
+
+        if (dirty)
+        {
+            progress.Report("[block] working tree is dirty");
+            progress.Report("[info] auto-stashing to allow update");
+            var stash = await RunGitAsync(repoDir, "stash push -u -m \"cbeta-update-stash\"", progress, ct);
+            if (stash.ExitCode != 0)
+                return new GitOpResult(false, stash.AllText);
+
+            // If there were no changes, git prints "No local changes to save" and exit 0.
+            didStash = !(stash.StdOut ?? "").Contains("No local changes to save", StringComparison.OrdinalIgnoreCase);
+        }
+
+        var pull = await RunGitAsync(repoDir, "pull --ff-only", progress, ct);
+        if (pull.ExitCode != 0)
+        {
+            // Best effort restore if we created a stash
+            if (didStash)
+            {
+                progress.Report("[restore] stash pop (after failed pull)");
+                await RunGitAsync(repoDir, "stash pop", progress, CancellationToken.None);
+            }
+
+            return new GitOpResult(false, pull.AllText);
+        }
+
+        if (didStash)
+        {
+            progress.Report("[restore] stash pop");
+            var pop = await RunGitAsync(repoDir, "stash pop", progress, ct);
+            if (pop.ExitCode != 0)
+            {
+                // Conflicts: stash stays, user can resolve manually.
+                return new GitOpResult(false, "Update succeeded, but stash restore had conflicts. Resolve conflicts and run: git stash pop");
+            }
+        }
+
+        // Re-apply after pop (files may re-appear)
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
+        return new GitOpResult(true);
     }
 
     public async Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
@@ -90,6 +150,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         string name = await GetConfigAsync(repoDir, "user.name", ct);
         string email = await GetConfigAsync(repoDir, "user.email", ct);
 
@@ -115,6 +177,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         // Stage exactly that file path
         var r = await RunGitAsync(repoDir, $"add -- \"{relPath}\"", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
@@ -122,6 +186,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         // Note: If nothing to stash, git returns exit code 0 and prints "No local changes to save"
         var r = await RunGitAsync(repoDir, $"stash push -u -k -m \"{message}\"", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
@@ -129,6 +195,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> SwitchCreateBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         // Use switch if available; on older Git, checkout -b works too, but switch exists for years.
         var r = await RunGitAsync(repoDir, $"switch -c \"{branchName}\"", progress, ct);
         if (r.ExitCode == 0) return new GitOpResult(true);
@@ -140,6 +208,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> CommitAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         // Commit staged changes only.
         var r = await RunGitAsync(repoDir, $"commit -m \"{EscapeCommitMessage(message)}\"", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
@@ -147,6 +217,8 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> SwitchBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         var r = await RunGitAsync(repoDir, $"switch \"{branchName}\"", progress, ct);
         if (r.ExitCode == 0) return new GitOpResult(true);
 
@@ -157,8 +229,76 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> StashPopAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
+        await EnsureLocalNoiseSuppressedAsync(repoDir, progress, ct);
+
         var r = await RunGitAsync(repoDir, "stash pop", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    // -------------------------
+    // Local ignore helpers
+    // -------------------------
+
+    private async Task EnsureLocalNoiseSuppressedAsync(string repoDir, IProgress<string>? progress, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(repoDir))
+            return;
+
+        var gitDir = Path.Combine(repoDir, ".git");
+        if (!Directory.Exists(gitDir))
+            return;
+
+        // 1) Add to .git/info/exclude so untracked noise doesn't show
+        try
+        {
+            var infoDir = Path.Combine(gitDir, "info");
+            Directory.CreateDirectory(infoDir);
+
+            var excludePath = Path.Combine(infoDir, "exclude");
+            var existing = File.Exists(excludePath) ? await File.ReadAllTextAsync(excludePath, ct) : "";
+
+            var toAdd = new List<string>();
+            foreach (var p in LocalNoise)
+            {
+                var pat = p.Replace('\\', '/');
+                if (!existing.Contains(pat, StringComparison.Ordinal))
+                    toAdd.Add(pat);
+            }
+
+            if (toAdd.Count > 0)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("# CbetaTranslator local excludes");
+                foreach (var a in toAdd) sb.AppendLine(a);
+
+                await File.AppendAllTextAsync(excludePath, sb.ToString(), ct);
+                progress?.Report("[git] updated .git/info/exclude (local)");
+            }
+        }
+        catch
+        {
+            // ignore, this is best-effort
+        }
+
+        // 2) If any noise file is tracked, mark skip-worktree locally so it won't show dirty.
+        foreach (var p in LocalNoise)
+        {
+            if (ct.IsCancellationRequested) return;
+
+            var rel = p.Replace('\\', '/');
+            var tracked = await IsTrackedAsync(repoDir, rel, ct);
+            if (!tracked) continue;
+
+            // local only
+            await RunGitAsync(repoDir, $"update-index --skip-worktree -- \"{rel}\"", progress, ct);
+        }
+    }
+
+    private async Task<bool> IsTrackedAsync(string repoDir, string relPath, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, $"ls-files --error-unmatch -- \"{relPath}\"", progress: null, ct: ct);
+        return r.ExitCode == 0;
     }
 
     // -------------------------
