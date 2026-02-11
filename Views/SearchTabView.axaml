@@ -3,7 +3,7 @@
              xmlns:models="clr-namespace:CbetaTranslator.App.Models"
              x:Class="CbetaTranslator.App.Views.SearchTabView">
 
-	<Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
 
 		<!-- Controls -->
 		<Border Grid.Row="0"
@@ -90,8 +90,83 @@
 			</DockPanel>
 		</Border>
 
-		<!-- Results -->
+		<!-- Metrics vessel (dropdown is back inside the expander header) -->
 		<Border Grid.Row="2"
+        Background="#FF202020"
+        BorderBrush="#FF303030"
+        BorderThickness="1"
+        CornerRadius="8"
+        Padding="8">
+
+			<Expander Name="ExpCooc" IsExpanded="False">
+
+				<Expander.Header>
+					<DockPanel LastChildFill="True">
+						<TextBlock Text="" DockPanel.Dock="Left" />
+						<ComboBox Name="CmbCoocMetric"
+								  DockPanel.Dock="Right"
+								  Width="320"
+								  Background="#FF2B2B2B"
+								  Foreground="#FFEAEAEA"
+								  BorderBrush="#FF444444"
+								  BorderThickness="1"/>
+					</DockPanel>
+				</Expander.Header>
+
+				<!-- NO outer ScrollViewer. We constrain the guide view so it can scroll. -->
+				<Grid MaxHeight="360">
+
+					<!-- MAIN METRIC VIEW -->
+					<Grid Name="GridMetricView"
+						  ColumnDefinitions="*,*"
+						  RowDefinitions="Auto,*"
+						  ColumnSpacing="10"
+						  RowSpacing="8">
+
+						<StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="12">
+							<TextBlock Name="TxtCoocSummary" Foreground="#FFAAAAAA" Text="No data yet."/>
+						</StackPanel>
+
+						<Border Grid.Row="1" Grid.Column="0" Background="#FF1A1A1A" CornerRadius="6" Padding="8">
+							<StackPanel Spacing="6">
+								<TextBlock Name="TxtLeftTitle" Text="Left" Foreground="#FFCCCCCC"/>
+								<ListBox Name="LstCoocChars" Height="220"/>
+							</StackPanel>
+						</Border>
+
+						<Border Grid.Row="1" Grid.Column="1" Background="#FF1A1A1A" CornerRadius="6" Padding="8">
+							<StackPanel Spacing="6">
+								<TextBlock Name="TxtRightTitle" Text="Right" Foreground="#FFCCCCCC"/>
+								<ListBox Name="LstCoocNgrams" Height="220"/>
+								<TextBlock Name="TxtZipf" Foreground="#FF888888" TextWrapping="Wrap"/>
+							</StackPanel>
+						</Border>
+
+					</Grid>
+
+					<!-- METRIC GUIDE VIEW (scrollable because constrained) -->
+					<ScrollViewer Name="ScrollMetricGuide"
+								  IsVisible="False"
+								  MaxHeight="360"
+								  VerticalScrollBarVisibility="Auto"
+								  HorizontalScrollBarVisibility="Disabled">
+
+						<Border Background="#FF1A1A1A" CornerRadius="6" Padding="10">
+							<TextBlock Name="TxtMetricGuide"
+									   Foreground="#FFDDDDDD"
+									   TextWrapping="Wrap"/>
+						</Border>
+
+					</ScrollViewer>
+
+				</Grid>
+
+			</Expander>
+
+		</Border>
+
+		<!-- Results -->
+		<Border Grid.Row="3"
 				Background="#FF202020"
 				BorderBrush="#FF303030"
 				BorderThickness="1"

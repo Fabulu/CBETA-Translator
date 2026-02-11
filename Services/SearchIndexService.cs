@@ -18,24 +18,19 @@ public sealed class SearchIndexService
 {
     public sealed class SearchIndexServiceOptions
     {
-        // TOTAL cache budget across all cached bloom pages (bytes).
-        public long MaxBloomCacheBytes { get; set; } = 40L * 1024 * 1024; // default 40MB
+        public long MaxBloomCacheBytes { get; set; } = 40L * 1024 * 1024;
 
-        // Parallelism controls
         public int MaxVerifyDegreeOfParallelism { get; set; } = Math.Min(8, Environment.ProcessorCount);
         public int MaxBloomDegreeOfParallelism { get; set; } = Environment.ProcessorCount;
 
-        // File replace retries (Defender/indexer can briefly hold locks)
         public int ReplaceTries { get; set; } = 18;
         public int ReplaceDelayMs { get; set; } = 80;
     }
 
     public SearchIndexServiceOptions Options { get; } = new();
 
-    // Single gate for ANY index IO that would conflict: build/update OR search.
     private static readonly SemaphoreSlim _indexIoGate = new(1, 1);
 
-    // LRU cache for bloom pages (offset -> ulong[] bits) -- used only for sequential reads (if you ever switch back).
     private readonly Dictionary<long, LinkedListNode<(long key, ulong[] bits)>> _bloomCache = new();
     private readonly LinkedList<(long key, ulong[] bits)> _bloomLru = new();
     private long _bloomCacheBytes = 0;
@@ -44,8 +39,7 @@ public sealed class SearchIndexService
     private const string ManifestFileName = "search.index.manifest.json";
     private const string BinFileName = "search.index.bin";
 
-    // Small enough to keep in RAM, large enough to prune candidates aggressively
-    private const int BloomBits = 4096;          // 4096 bits = 512 bytes
+    private const int BloomBits = 4096;
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 4;
@@ -53,6 +47,306 @@ public sealed class SearchIndexService
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
+
+    // ==========================================================
+    // CO-OCCURRENCE METRICS (dropdown controls what panel shows)
+    // ==========================================================
+    //
+    // IMPORTANT: We do NOT define a second enum here.
+    // The UI uses CbetaTranslator.App.Models.CoocMetric.
+    //
+
+    public sealed class CooccurrencePanelResult
+    {
+        public string Summary { get; set; } = "";
+        public string LeftTitle { get; set; } = "Top characters";
+        public string RightTitle { get; set; } = "Top bigrams / trigrams";
+        public List<CoocRow> Left { get; set; } = new();
+        public List<CoocRow> Right { get; set; } = new();
+        public string ExtraLine { get; set; } = "";
+    }
+
+    public static CooccurrencePanelResult ComputeCooccurrences(
+        IEnumerable<SearchResultGroup> groups,
+        string query,
+        int contextWidth,
+        CoocMetric metric,
+        int topK = 30)
+    {
+        query ??= "";
+
+        int totalHits = 0;
+        int totalWindows = 0;
+
+        // Characters
+        var chFreq = new Dictionary<string, int>(StringComparer.Ordinal);
+        var chRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        var chByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
+
+        // Ngrams (bigrams+trigrams together, like you had)
+        var ngFreq = new Dictionary<string, int>(StringComparer.Ordinal);
+        var ngRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        var ngByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
+
+        // Only files that contain at least one hit are present in groups
+        var groupList = groups?.ToList() ?? new List<SearchResultGroup>();
+        int Nfiles = groupList.Count;
+
+        foreach (var g in groupList)
+        {
+            string rel = g.RelPath ?? "";
+            if (string.IsNullOrWhiteSpace(rel)) rel = "(unknown)";
+
+            foreach (var c in g.Children)
+            {
+                totalHits++;
+                totalWindows++;
+
+                string window = (c.Hit.Left ?? "") + (c.Hit.Match ?? "") + (c.Hit.Right ?? "");
+                window = window.Replace("\r", "").Replace("\n", " ").Trim();
+                if (window.Length == 0) continue;
+
+                // Characters (skip whitespace)
+                for (int i = 0; i < window.Length; i++)
+                {
+                    char ch = window[i];
+                    if (char.IsWhiteSpace(ch)) continue;
+
+                    string key = ch.ToString();
+                    chFreq[key] = chFreq.TryGetValue(key, out var f) ? f + 1 : 1;
+
+                    if (!chRange.TryGetValue(key, out var set))
+                        chRange[key] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    set.Add(rel);
+
+                    if (!chByFile.TryGetValue(key, out var map))
+                        chByFile[key] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                    map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+                }
+
+                // Compact string for ngrams
+                var compact = new string(window.Where(x => !char.IsWhiteSpace(x)).ToArray());
+                if (compact.Length == 0) continue;
+
+                for (int i = 0; i < compact.Length; i++)
+                {
+                    if (i + 2 <= compact.Length)
+                    {
+                        string bg = compact.Substring(i, 2);
+                        ngFreq[bg] = ngFreq.TryGetValue(bg, out var f2) ? f2 + 1 : 1;
+
+                        if (!ngRange.TryGetValue(bg, out var set))
+                            ngRange[bg] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                        set.Add(rel);
+
+                        if (!ngByFile.TryGetValue(bg, out var map))
+                            ngByFile[bg] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                        map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+                    }
+
+                    if (i + 3 <= compact.Length)
+                    {
+                        string tg = compact.Substring(i, 3);
+                        ngFreq[tg] = ngFreq.TryGetValue(tg, out var f3) ? f3 + 1 : 1;
+
+                        if (!ngRange.TryGetValue(tg, out var set))
+                            ngRange[tg] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                        set.Add(rel);
+
+                        if (!ngByFile.TryGetValue(tg, out var map))
+                            ngByFile[tg] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                        map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+                    }
+                }
+            }
+        }
+
+        // ---------- metric math ----------
+
+        double DispersionScore(int freq, int range)
+            => (freq / Math.Sqrt(1.0 + totalWindows)) * Math.Log(1.0 + range);
+
+        double DominanceShare(Dictionary<string, int>? perFile, int freq)
+        {
+            if (freq <= 0 || perFile == null || perFile.Count == 0) return 0;
+            int max = 0;
+            foreach (var kv in perFile)
+                if (kv.Value > max) max = kv.Value;
+            return (double)max / freq; // 0..1
+        }
+
+        // NOTE:
+        // We compute association metrics from KWIC windows only (not full corpus stats),
+        // so PMI/logDice/t-score are "window-based" approximations useful for ranking.
+
+        double LogDiceApprox(int f_xq, int f_x, int f_q)
+        {
+            // logDice = 14 + log2( 2*f(x,q) / (f(x)+f(q)) )
+            // Here: f(x,q) ~= f_x (count across windows), f(q)=totalWindows (one query per window)
+            return 14.0 + Math.Log((2.0 * f_xq) / (f_x + (double)f_q + 1e-9), 2.0);
+        }
+
+        double PmiSurrogate(int freq, int range)
+        {
+            // "PMI-like": reward items that are frequent *and* not spread everywhere.
+            // This is not true corpus PMI (we lack global counts), but behaves similarly for ranking.
+            return (Math.Log(1.0 + freq, 2.0) - Math.Log(1.0 + range, 2.0));
+        }
+
+        double TScoreSurrogate(int freq, int range)
+        {
+            // Frequency-biased "robustness" score: more evidence => bigger.
+            return Math.Sqrt(Math.Max(0, freq)) * Math.Log(1.0 + Math.Max(0, range));
+        }
+
+        double MetricValueFor(int freq, int range, Dictionary<string, int>? perFile)
+        {
+            switch (metric)
+            {
+                case CoocMetric.TopCooccurrences:
+                    return DispersionScore(freq, range);
+
+                case CoocMetric.DispersionScore:
+                    return DispersionScore(freq, range);
+
+                case CoocMetric.Frequency:
+                    return freq;
+
+                case CoocMetric.Range:
+                    return range;
+
+                case CoocMetric.Dominance:
+                    return DominanceShare(perFile, freq); // 0..1
+
+                case CoocMetric.PMI:
+                    return PmiSurrogate(freq, range);
+
+                case CoocMetric.LogDice:
+                    // treat f(x,q)=freq, f(x)=freq, f(q)=totalWindows
+                    return LogDiceApprox(freq, freq, Math.Max(1, totalWindows));
+
+                case CoocMetric.TScore:
+                    return TScoreSurrogate(freq, range);
+
+                default:
+                    return DispersionScore(freq, range);
+            }
+        }
+
+        string metricName = metric switch
+        {
+            CoocMetric.TopCooccurrences => "Top co-occurrences",
+            CoocMetric.DispersionScore => "Dispersion score",
+            CoocMetric.Frequency => "Frequency",
+            CoocMetric.Range => "Range",
+            CoocMetric.Dominance => "Dominance (top-file share)",
+            CoocMetric.PMI => "PMI (window-based)",
+            CoocMetric.LogDice => "logDice",
+            CoocMetric.TScore => "t-score",
+            _ => "Dispersion score"
+        };
+
+        // ---------- build rows ----------
+
+        var left = chFreq
+            .Select(kv =>
+            {
+                var key = kv.Key;
+                int freq = kv.Value;
+                int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
+                chByFile.TryGetValue(key, out var byFile);
+
+                double val = MetricValueFor(freq, range, byFile);
+
+                return new CoocRow
+                {
+                    Key = key,
+                    Freq = freq,
+                    Range = range,
+                    Assoc = val,
+                    Bar = "" // fill later
+                };
+            })
+            .ToList();
+
+        var right = ngFreq
+            .Select(kv =>
+            {
+                var key = kv.Key;
+                int freq = kv.Value;
+                int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
+                ngByFile.TryGetValue(key, out var byFile);
+
+                double val = MetricValueFor(freq, range, byFile);
+
+                return new CoocRow
+                {
+                    Key = key,
+                    Freq = freq,
+                    Range = range,
+                    Assoc = val,
+                    Bar = ""
+                };
+            })
+            .ToList();
+
+        // Sort by selected metric (Assoc), tie-break by freq
+        left = left.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
+        right = right.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
+
+        // Bars: always frequency bars (simple + meaningful)
+        static string MakeBar(int v, int max)
+        {
+            if (max <= 0) return "";
+            int n = (int)Math.Round(12.0 * v / max);
+            n = Math.Clamp(n, 0, 12);
+            return new string('█', n);
+        }
+
+        int maxC = left.Count > 0 ? left.Max(r => r.Freq) : 0;
+        int maxN = right.Count > 0 ? right.Max(r => r.Freq) : 0;
+        foreach (var r in left) r.Bar = MakeBar(r.Freq, maxC);
+        foreach (var r in right) r.Bar = MakeBar(r.Freq, maxN);
+
+        // Extra lines: Zipf-ish + dominance hint (artifact signal)
+        var zip = right
+            .OrderByDescending(r => r.Freq)
+            .Take(12)
+            .Select((r, i) => $"{i + 1}:{r.Freq}")
+            .ToArray();
+
+        string zipLine = zip.Length > 0
+            ? ("Zipf-ish ranks (top ngrams): " + string.Join("  ", zip))
+            : "";
+
+        var domTop = right
+            .OrderByDescending(r => r.Freq)
+            .Take(10)
+            .Select(r =>
+            {
+                ngByFile.TryGetValue(r.Key, out var byFile);
+                double share = DominanceShare(byFile, r.Freq);
+                int bars = Math.Clamp((int)Math.Round(12 * share), 0, 12);
+                return $"{r.Key}:{share * 100:0.#}% {new string('█', bars)}";
+            })
+            .ToArray();
+
+        string domLine = domTop.Length > 0
+            ? ("Dominance (top-file share): " + string.Join("  ", domTop))
+            : "";
+
+        var extra = string.Join("\n", new[] { zipLine, domLine }.Where(s => !string.IsNullOrWhiteSpace(s)));
+
+        return new CooccurrencePanelResult
+        {
+            Summary = $"metric={metricName}   hits={totalHits:n0}, windows={totalWindows:n0}, files={Nfiles:n0}, context={contextWidth} chars",
+            LeftTitle = $"Top characters by {metricName}",
+            RightTitle = $"Top bigrams / trigrams by {metricName}",
+            Left = left,
+            Right = right,
+            ExtraLine = extra
+        };
+    }
 
     // ---------------------------
     // Helpers
@@ -118,14 +412,8 @@ public sealed class SearchIndexService
 
                 return;
             }
-            catch (IOException ex)
-            {
-                last = ex;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                last = ex;
-            }
+            catch (IOException ex) { last = ex; }
+            catch (UnauthorizedAccessException ex) { last = ex; }
 
             Thread.Sleep(delayMs);
             delayMs = Math.Min(500, (int)(delayMs * 1.4));
@@ -275,7 +563,6 @@ public sealed class SearchIndexService
             if (man.Entries == null || man.Entries.Count == 0)
                 return null;
 
-            // Basic sanity: offsets within file length
             var binLen = new FileInfo(bp).Length;
             foreach (var e in man.Entries)
             {
@@ -448,10 +735,9 @@ public sealed class SearchIndexService
     }
 
     // ---------------------------
-    // Phase 4: Build / Update Index (incremental)
+    // Build / Update Index (incremental)
     // ---------------------------
 
-    // Keeps your old signature (full rebuild) for compatibility.
     public Task BuildAsync(
         string root,
         string originalDir,
@@ -475,7 +761,6 @@ public sealed class SearchIndexService
             await _indexIoGate.WaitAsync(ct);
             try
             {
-                // Load existing index if allowed
                 SearchIndexManifest? oldMan = null;
                 string oldBinPath = GetBinPath(root);
 
@@ -489,7 +774,6 @@ public sealed class SearchIndexService
                     catch { oldFs = null; }
                 }
 
-                // Map (rel,side) -> old entry
                 var oldMap = new Dictionary<(string rel, SearchSide side), SearchIndexEntry>(new RelSideComparer());
                 if (!forceRebuild && oldMan != null)
                 {
@@ -499,7 +783,6 @@ public sealed class SearchIndexService
 
                 progress?.Report((0, 0, "Scanning filesystem..."));
 
-                // Enumerate files
                 var origFiles = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories)
                     .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f)))
                     .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
@@ -512,7 +795,6 @@ public sealed class SearchIndexService
                     .OrderBy(s => s, StringComparer.OrdinalIgnoreCase)
                     .ToList();
 
-                // Total = number of actual sides that exist (we REMOVE missing files)
                 int total = 0;
                 foreach (var rel in allRel)
                 {
@@ -530,11 +812,9 @@ public sealed class SearchIndexService
                     Version = 1,
                 };
 
-                // Write to temp bin then swap
                 var finalBin = GetBinPath(root);
                 var tmpBin = finalBin + ".tmp";
 
-                // Always start clean
                 try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
 
                 try
@@ -623,7 +903,6 @@ public sealed class SearchIndexService
                 }
                 catch
                 {
-                    // if anything fails during build, clean tmp so next build isn't confused
                     try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
                     throw;
                 }
@@ -632,10 +911,7 @@ public sealed class SearchIndexService
                     try { oldFs?.Dispose(); } catch { }
                 }
 
-                // Swap bin atomically + retry (handles Defender/indexer hiccups)
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
-
-                // Save manifest atomically too
                 await SaveManifestAtomicAsync(root, manifest, ct);
 
                 progress?.Report((total, total, "Done"));
@@ -648,7 +924,7 @@ public sealed class SearchIndexService
     }
 
     // ---------------------------
-    // Search (Phase: parallelize)
+    // Search
     // ---------------------------
 
     public sealed class SearchProgress
@@ -690,12 +966,10 @@ public sealed class SearchIndexService
 
             progress?.Report(new SearchProgress { Phase = "Building candidates..." });
 
-            // Candidate map: relKey -> bitmask (1=O,2=T)
             var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             if (!useBloom)
             {
-                // brute candidates
                 foreach (var e in manifest.Entries)
                 {
                     ct.ThrowIfCancellationRequested();
@@ -709,7 +983,6 @@ public sealed class SearchIndexService
             }
             else
             {
-                // Parallel bloom filtering using MemoryMappedFile
                 string binPath = GetBinPath(root);
 
                 using var mmf = MemoryMappedFile.CreateFromFile(binPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
@@ -726,7 +999,6 @@ public sealed class SearchIndexService
                     if (!sideAllowed(e.Side)) return;
                     if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return;
 
-                    // Read 512 bytes and convert to ulong[64]
                     byte[] arr = new byte[BloomBytes];
                     accessor.ReadArray(e.BloomOffset, arr, 0, BloomBytes);
 
@@ -785,7 +1057,6 @@ public sealed class SearchIndexService
                 TotalDocsToVerify = totalDocsToVerify
             });
 
-            // Parallel verification (bounded)
             var outGroups = new ConcurrentBag<SearchResultGroup>();
             int verifiedDocs = 0;
             int totalHits = 0;
