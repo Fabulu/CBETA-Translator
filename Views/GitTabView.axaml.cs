@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,10 +20,23 @@ public partial class GitTabView : UserControl
     private const string RepoFolderName = "CbetaZenTexts";
 
     private const string RepoTranslatedRoot = "xml-p5t"; // where translated files live inside the repo
+    private const string UpstreamOwner = "Fabulu";
+    private const string UpstreamRepo = "CbetaZenTexts";
+
+    private static readonly string[] LocalIgnorePatterns =
+    {
+        "index.cache.json",
+        "search.index.manifest.json",
+        "index.debug.log",
+        "*.log"
+    };
 
     private Button? _btnPickDest;
     private Button? _btnGetFiles;
     private Button? _btnCancel;
+
+    private Button? _btnAuth;
+    private Button? _btnPushPr;
 
     private TextBlock? _txtDest;
     private TextBlock? _txtProgress;
@@ -34,12 +49,17 @@ public partial class GitTabView : UserControl
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
 
-    // This is the CBETA logical relpath e.g. "T/T47/T47n1987A.xml"
     private string? _selectedRelPath;
-
     private CancellationTokenSource? _cts;
 
     private readonly IGitRepoService _git = new GitRepoService();
+    private readonly IGitHubAuthService _auth = new GitHubAuthService();
+    private readonly IGitHubApiService _api = new GitHubApiService();
+
+    private string? _githubAccessToken;
+    private string? _githubLogin;
+
+    private string? _lastContribBranch;
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
@@ -53,6 +73,9 @@ public partial class GitTabView : UserControl
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
         UpdateSelectedLabel();
+
+        TryRestoreLastBranchFromDisk();
+
         SetProgress("Ready.");
     }
 
@@ -63,6 +86,9 @@ public partial class GitTabView : UserControl
         _btnPickDest = this.FindControl<Button>("BtnPickDest");
         _btnGetFiles = this.FindControl<Button>("BtnGetFiles");
         _btnCancel = this.FindControl<Button>("BtnCancel");
+
+        _btnAuth = this.FindControl<Button>("BtnAuth");
+        _btnPushPr = this.FindControl<Button>("BtnPushPr");
 
         _txtDest = this.FindControl<TextBlock>("TxtDest");
         _txtProgress = this.FindControl<TextBlock>("TxtProgress");
@@ -81,10 +107,14 @@ public partial class GitTabView : UserControl
 
         if (_btnSend != null) _btnSend.Click += async (_, _) => await SendContributionLocalAsync();
 
+        if (_btnAuth != null) _btnAuth.Click += async (_, _) => await AuthorizeAsync();
+        if (_btnPushPr != null) _btnPushPr.Click += async (_, _) => await PushAndCreatePrAsync();
+
         AttachedToVisualTree += (_, _) =>
         {
             UpdateDestLabel();
             UpdateSelectedLabel();
+            TryRestoreLastBranchFromDisk();
         };
     }
 
@@ -100,6 +130,7 @@ public partial class GitTabView : UserControl
             _currentRepoRoot = root;
             _baseDestFolder = Path.GetDirectoryName(root);
             UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
             return;
         }
 
@@ -111,9 +142,6 @@ public partial class GitTabView : UserControl
         }
     }
 
-    /// <summary>
-    /// The main window should pass the CBETA logical relpath like "T/T47/T47n1987A.xml"
-    /// </summary>
     public void SetSelectedRelPath(string? relPath)
     {
         _selectedRelPath = string.IsNullOrWhiteSpace(relPath) ? null : NormalizeRel(relPath);
@@ -124,10 +152,9 @@ public partial class GitTabView : UserControl
     {
         if (_txtSelected == null) return;
 
-        if (string.IsNullOrWhiteSpace(_selectedRelPath))
-            _txtSelected.Text = "Selected: (none)";
-        else
-            _txtSelected.Text = "Selected: " + _selectedRelPath;
+        _txtSelected.Text = string.IsNullOrWhiteSpace(_selectedRelPath)
+            ? "Selected: (none)"
+            : "Selected: " + _selectedRelPath;
     }
 
     private static string GetDefaultBaseFolder()
@@ -188,6 +215,7 @@ public partial class GitTabView : UserControl
             _baseDestFolder = folder.Path.LocalPath;
             _currentRepoRoot = null;
             UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
 
             Status?.Invoke(this, "Location updated.");
         }
@@ -225,32 +253,80 @@ public partial class GitTabView : UserControl
                 return;
             }
 
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            // -------------------------
+            // Repo exists -> UPDATE NO MATTER WHAT
+            // -------------------------
             if (Directory.Exists(repoDir) && Directory.Exists(Path.Combine(repoDir, ".git")))
             {
-                SetProgress("Fetching…");
-                var fetchProg = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
-                var fetch = await _git.FetchAsync(repoDir, fetchProg, ct);
+                await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
 
+                // If dirty, stash EVERYTHING so update never blocks.
+                var statusBefore = await _git.GetStatusPorcelainAsync(repoDir, ct);
+                bool hadLocalNoise = statusBefore.Length > 0;
+
+                if (hadLocalNoise)
+                {
+                    SetProgress("Saving your local changes…");
+                    AppendLog("[step] stash (update safety)");
+                    var stashAll = await _git.StashAllAsync(repoDir, "cbeta-update-autostash", prog, ct);
+                    if (!stashAll.Success)
+                    {
+                        SetProgress("Update failed (could not stash).");
+                        AppendLog("[error] " + (stashAll.Error ?? "unknown error"));
+                        Status?.Invoke(this, "Update failed (could not stash).");
+                        return;
+                    }
+                }
+
+                SetProgress("Fetching…");
+                var fetch = await _git.FetchAsync(repoDir, prog, ct);
                 if (!fetch.Success)
                 {
                     SetProgress("Fetch failed.");
                     AppendLog("[error] " + (fetch.Error ?? "unknown error"));
-                    Status?.Invoke(this, "Fetch failed: " + (fetch.Error ?? "unknown error"));
+                    Status?.Invoke(this, "Fetch failed.");
                     return;
                 }
 
-                // IMPORTANT: Pull is now "safe" even if dirty (service auto-stashes and restores).
-                SetProgress("Pulling…");
-                var pullProg = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
-                var pull = await _git.PullFfOnlyAsync(repoDir, pullProg, ct);
-
-                if (!pull.Success)
+                // No merge, no ff-only. Force to origin/main.
+                SetProgress("Updating files…");
+                AppendLog("[step] reset --hard origin/main");
+                var reset = await _git.HardResetToRemoteMainAsync(repoDir, "origin", "main", prog, ct);
+                if (!reset.Success)
                 {
-                    SetProgress("Pull failed.");
-                    AppendLog("[error] " + (pull.Error ?? "unknown error"));
-                    AppendLog("If this mentions stash conflicts: resolve them, then run 'git stash pop' manually.");
-                    Status?.Invoke(this, "Pull failed: " + (pull.Error ?? "unknown error"));
+                    SetProgress("Update failed (reset).");
+                    AppendLog("[error] " + (reset.Error ?? "unknown error"));
+                    Status?.Invoke(this, "Update failed (reset).");
                     return;
+                }
+
+                // Remove untracked (only after we stashed with -u).
+                AppendLog("[step] clean -fd");
+                var clean = await _git.CleanUntrackedAsync(repoDir, prog, ct);
+                if (!clean.Success)
+                {
+                    SetProgress("Update failed (clean).");
+                    AppendLog("[error] " + (clean.Error ?? "unknown error"));
+                    Status?.Invoke(this, "Update failed (clean).");
+                    return;
+                }
+
+                if (hadLocalNoise)
+                {
+                    SetProgress("Restoring your local changes…");
+                    AppendLog("[step] stash pop");
+                    var pop = await _git.StashPopAsync(repoDir, prog, ct);
+                    if (!pop.Success)
+                    {
+                        // Do NOT pretend everything is perfect.
+                        SetProgress("Updated, but your local changes conflicted.");
+                        AppendLog("[warn] stash pop failed (likely conflicts).");
+                        AppendLog("[warn] Your stash should still exist. Run: git stash list");
+                        AppendLog("[warn] Then resolve conflicts and run: git stash pop");
+                        Status?.Invoke(this, "Updated, but local changes conflicted.");
+                    }
                 }
 
                 SetProgress("Up to date.");
@@ -259,11 +335,16 @@ public partial class GitTabView : UserControl
                 _currentRepoRoot = repoDir;
                 _baseDestFolder = Path.GetDirectoryName(repoDir);
                 UpdateDestLabel();
+                TryRestoreLastBranchFromDisk();
 
                 RootCloned?.Invoke(this, repoDir);
                 Status?.Invoke(this, "Repo updated.");
                 return;
             }
+
+            // -------------------------
+            // Repo missing -> CLONE
+            // -------------------------
 
             if (!Directory.Exists(baseDir))
                 Directory.CreateDirectory(baseDir);
@@ -278,16 +359,16 @@ public partial class GitTabView : UserControl
             }
 
             SetProgress("Cloning…");
-            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
             var clone = await _git.CloneAsync(RepoUrl, repoDir, prog, ct);
-
             if (!clone.Success)
             {
                 SetProgress("Clone failed.");
                 AppendLog("[error] " + (clone.Error ?? "unknown error"));
-                Status?.Invoke(this, "Clone failed: " + (clone.Error ?? "unknown error"));
+                Status?.Invoke(this, "Clone failed.");
                 return;
             }
+
+            await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
 
             SetProgress("Done. Repo is ready.");
             AppendLog("[ok] clone complete: " + repoDir);
@@ -295,6 +376,7 @@ public partial class GitTabView : UserControl
             _currentRepoRoot = repoDir;
             _baseDestFolder = Path.GetDirectoryName(repoDir);
             UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
 
             RootCloned?.Invoke(this, repoDir);
             Status?.Invoke(this, "Repo cloned.");
@@ -317,8 +399,9 @@ public partial class GitTabView : UserControl
         }
     }
 
+
     // -------------------------
-    // SEND CONTRIBUTION (LOCAL COMMIT ONLY)
+    // 1) LOCAL COMMIT ONLY
     // -------------------------
 
     private async Task SendContributionLocalAsync()
@@ -347,10 +430,8 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // Map CBETA relpath -> repo relpath under xml-p5t/
             var cbetaRel = NormalizeRel(_selectedRelPath);
-            var repoRel = $"{RepoTranslatedRoot}/{cbetaRel}";
-            repoRel = NormalizeRel(repoRel);
+            var repoRel = NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
 
             AppendLog("[map] cbeta: " + cbetaRel);
             AppendLog("[map] repo : " + repoRel);
@@ -375,6 +456,7 @@ public partial class GitTabView : UserControl
 
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
+            await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
             await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
@@ -401,7 +483,6 @@ public partial class GitTabView : UserControl
 
             string branchName = MakeBranchName(cbetaRel);
 
-            // 1) Stage ONLY target (repo path)
             SetProgress("Staging selected file…");
             AppendLog("[step] git add -- " + repoRel);
             var stage = await _git.StagePathAsync(repoDir, repoRel, prog, ct);
@@ -412,7 +493,6 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // 2) Stash everything else
             SetProgress("Stashing other work…");
             AppendLog("[step] git stash push -u -k");
             var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-autostash", prog, ct);
@@ -423,7 +503,6 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // 3) Create branch
             SetProgress("Creating branch…");
             AppendLog("[step] new branch: " + branchName);
             var br = await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
@@ -435,7 +514,6 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // 4) Commit staged only
             SetProgress("Committing…");
             AppendLog("[step] commit message: " + msg);
             var commit = await _git.CommitAsync(repoDir, msg, prog, ct);
@@ -447,11 +525,13 @@ public partial class GitTabView : UserControl
                 return;
             }
 
+            _lastContribBranch = branchName;
+            PersistLastBranchToDisk(repoDir, branchName);
+
             SetProgress("Local commit created.");
             AppendLog("[ok] created single-file commit on branch: " + branchName);
-            AppendLog("[next] OAuth + fork + push + PR comes next.");
+            AppendLog("[next] 2) Authorize GitHub, then 3) Push + Create PR");
 
-            // 5) Switch back + restore stash
             SetProgress("Restoring your other work…");
             await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
 
@@ -461,17 +541,289 @@ public partial class GitTabView : UserControl
         {
             SetProgress("Canceled.");
             AppendLog("[cancel] canceled");
-            Status?.Invoke(this, "Canceled.");
         }
         catch (Exception ex)
         {
             SetProgress("Failed: " + ex.Message);
             AppendLog("[error] " + ex);
-            Status?.Invoke(this, "Failed: " + ex.Message);
         }
         finally
         {
             SetButtonsBusy(false);
+        }
+    }
+
+    // -------------------------
+    // 2) AUTH
+    // -------------------------
+
+    private async Task AuthorizeAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            SetProgress("Authorizing…");
+            var token = await _auth.AuthorizeDeviceFlowAsync(prog, ct);
+            if (token == null)
+            {
+                SetProgress("Auth failed.");
+                return;
+            }
+
+            _githubAccessToken = token.access_token;
+
+            var me = await _api.GetMeAsync(_githubAccessToken, ct);
+            _githubLogin = me?.login;
+
+            AppendLog("[auth] user: " + (_githubLogin ?? "(unknown)"));
+            SetProgress("Authorized.");
+            Status?.Invoke(this, "GitHub authorized.");
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Auth failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    // -------------------------
+    // 3) PUSH + PR
+    // -------------------------
+
+    private async Task PushAndCreatePrAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                SetProgress("Repo not ready. Click Update Files first.");
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(_lastContribBranch))
+                TryRestoreLastBranchFromDisk();
+
+            if (string.IsNullOrWhiteSpace(_lastContribBranch))
+            {
+                SetProgress("Step 1 not done yet.");
+                AppendLog("[error] no prepared branch found");
+                AppendLog("Do: 1) Create local commit (single file) first.");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            // Ensure OAuth for API calls (fork + PR)
+            if (string.IsNullOrWhiteSpace(_githubAccessToken) || string.IsNullOrWhiteSpace(_githubLogin))
+            {
+                SetProgress("Need GitHub auth first…");
+                AppendLog("[step] authorize");
+                var token = await _auth.AuthorizeDeviceFlowAsync(prog, ct);
+                if (token == null)
+                {
+                    SetProgress("Auth failed.");
+                    return;
+                }
+
+                _githubAccessToken = token.access_token;
+
+                var me = await _api.GetMeAsync(_githubAccessToken, ct);
+                _githubLogin = me?.login;
+
+                AppendLog("[auth] user: " + (_githubLogin ?? "(unknown)"));
+
+                if (string.IsNullOrWhiteSpace(_githubLogin))
+                {
+                    SetProgress("Auth ok but could not read username.");
+                    AppendLog("[error] GET /user failed");
+                    return;
+                }
+            }
+
+            bool isUpstreamOwner = string.Equals(_githubLogin, UpstreamOwner, StringComparison.OrdinalIgnoreCase);
+
+            // SECURITY: remove any previously-created token remote URL (from old builds)
+            await ScrubTokenizedForkRemoteIfAny(repoDir, prog, ct);
+
+            string remoteName;
+            string remoteUrlClean;
+            string prHeadOwner;
+
+            if (isUpstreamOwner)
+            {
+                // Maintainer mode: push to origin, PR from same repo.
+                AppendLog("[mode] upstream owner detected -> no fork");
+                remoteName = "origin";
+                remoteUrlClean = RepoUrl;
+                prHeadOwner = UpstreamOwner;
+            }
+            else
+            {
+                // Contributor mode: ensure fork exists; push to fork remote.
+                SetProgress("Ensuring fork…");
+
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                if (!forkExists)
+                {
+                    AppendLog("[step] create fork");
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    if (!okFork)
+                    {
+                        SetProgress("Fork failed.");
+                        AppendLog("[error] fork creation failed");
+                        return;
+                    }
+
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    if (!ready)
+                    {
+                        SetProgress("Fork not ready yet.");
+                        AppendLog("[error] fork did not appear within timeout");
+                        return;
+                    }
+                }
+
+                remoteName = "fork";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                prHeadOwner = _githubLogin!;
+            }
+
+            // Ensure remote uses CLEAN url (no token embedded)
+            SetProgress("Configuring remote…");
+            AppendLog("[step] remote " + remoteName + " -> " + remoteUrlClean);
+
+            var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
+            if (!rem.Success)
+            {
+                SetProgress("Remote failed.");
+                AppendLog("[error] " + rem.Error);
+                return;
+            }
+
+            // Push branch (this will prompt via Git Credential Manager)
+            SetProgress("Pushing branch…");
+            AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
+            AppendLog("[hint] if a browser/login pops up, complete it once. then retry.");
+            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastContribBranch!, prog, ct);
+            if (!push.Success)
+            {
+                SetProgress("Push failed.");
+                AppendLog("[error] " + push.Error);
+                AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential popup.");
+                return;
+            }
+
+            // Create PR (API)
+            SetProgress("Creating PR…");
+
+            string head = $"{prHeadOwner}:{_lastContribBranch}";
+            string baseBranch = "main";
+
+            string title = (_txtCommitMessage?.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(title))
+                title = "Translation update";
+
+            string body =
+                "Created by CbetaTranslator.\n\n" +
+                $"Branch: `{_lastContribBranch}`";
+
+            var prUrl = await _api.CreatePullRequestAsync(
+                _githubAccessToken!,
+                UpstreamOwner,
+                UpstreamRepo,
+                head,
+                baseBranch,
+                title,
+                body,
+                ct);
+
+            if (string.IsNullOrWhiteSpace(prUrl))
+            {
+                SetProgress("PR failed.");
+                AppendLog("[error] create PR failed (API returned null)");
+                return;
+            }
+
+            AppendLog("[ok] PR created: " + prUrl);
+            SetProgress("PR created.");
+
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = prUrl,
+                    UseShellExecute = true
+                });
+            }
+            catch { }
+
+            Status?.Invoke(this, "PR created: " + prUrl);
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    private async Task ScrubTokenizedForkRemoteIfAny(string repoDir, IProgress<string> prog, CancellationToken ct)
+    {
+        try
+        {
+            var url = await _git.GetRemoteUrlAsync(repoDir, "fork", ct);
+            if (string.IsNullOrWhiteSpace(url)) return;
+
+            // detect token/credential in URL
+            // examples:
+            //  - https://x-access-token:....@github.com/user/repo.git
+            //  - https://user:pass@github.com/...
+            bool hasCreds = url.Contains("x-access-token:", StringComparison.OrdinalIgnoreCase) ||
+                            Regex.IsMatch(url, @"https://[^/]+@github\.com/", RegexOptions.IgnoreCase);
+
+            if (hasCreds)
+            {
+                prog.Report("[security] removing tokenized 'fork' remote");
+                await _git.RemoveRemoteAsync(repoDir, "fork", prog, ct);
+            }
+        }
+        catch
+        {
+            // never block on cleanup
         }
     }
 
@@ -512,10 +864,6 @@ public partial class GitTabView : UserControl
     private static string NormalizeRel(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
 
-    // -------------------------
-    // Common controls/helpers
-    // -------------------------
-
     private void Cancel()
     {
         try { _cts?.Cancel(); } catch { }
@@ -532,6 +880,9 @@ public partial class GitTabView : UserControl
         if (_btnGetFiles != null) _btnGetFiles.IsEnabled = !busy;
         if (_btnPickDest != null) _btnPickDest.IsEnabled = !busy;
         if (_btnSend != null) _btnSend.IsEnabled = !busy;
+
+        if (_btnAuth != null) _btnAuth.IsEnabled = !busy;
+        if (_btnPushPr != null) _btnPushPr.IsEnabled = !busy;
     }
 
     private void SetProgress(string msg)
@@ -556,5 +907,78 @@ public partial class GitTabView : UserControl
         _txtLog.Text += line + Environment.NewLine;
 
         try { _txtLog.CaretIndex = _txtLog.Text.Length; } catch { }
+    }
+
+    // -------------------------
+    // Persist last contrib branch
+    // -------------------------
+
+    private sealed record GitTabState(string RepoDir, string LastContribBranch, DateTimeOffset SavedAt);
+
+    private static string GetStateFilePath()
+    {
+        try
+        {
+            var dir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "CbetaTranslator");
+
+            Directory.CreateDirectory(dir);
+            return Path.Combine(dir, "git-tab-state.json");
+        }
+        catch
+        {
+            return Path.Combine(AppContext.BaseDirectory, "git-tab-state.json");
+        }
+    }
+
+    private void PersistLastBranchToDisk(string repoDir, string branch)
+    {
+        try
+        {
+            var path = GetStateFilePath();
+            var state = new GitTabState(repoDir, branch, DateTimeOffset.Now);
+
+            var json = JsonSerializer.Serialize(state, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(path, json);
+        }
+        catch
+        {
+            // ignore
+        }
+    }
+
+    private void TryRestoreLastBranchFromDisk()
+    {
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            var path = GetStateFilePath();
+            if (!File.Exists(path)) return;
+
+            var json = File.ReadAllText(path);
+            var state = JsonSerializer.Deserialize<GitTabState>(json);
+            if (state == null) return;
+
+            if (!string.Equals(NormalizePath(state.RepoDir), NormalizePath(repoDir), StringComparison.OrdinalIgnoreCase))
+                return;
+
+            if (!string.IsNullOrWhiteSpace(state.LastContribBranch))
+                _lastContribBranch = state.LastContribBranch;
+        }
+        catch
+        {
+            // ignore
+        }
+    }
+
+    private static string NormalizePath(string p)
+    {
+        try { return Path.GetFullPath(p).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
+        catch { return (p ?? "").Trim(); }
     }
 }

@@ -14,39 +14,45 @@ public interface IGitRepoService
 
     Task<GitOpResult> CloneAsync(string repoUrl, string targetDir, IProgress<string> progress, CancellationToken ct);
     Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
-    Task<GitOpResult> PullFfOnlyAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
 
     /// <summary>
     /// Returns git status porcelain output (raw lines). Includes untracked.
     /// </summary>
     Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct);
 
-    /// <summary>
-    /// Get current branch name (or HEAD if detached).
-    /// </summary>
     Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct);
 
-    /// <summary>
-    /// Ensure local repo has user.name and user.email set (repo-local config).
-    /// </summary>
     Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
 
     Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct);
 
     /// <summary>
     /// Stash all changes EXCEPT staged/index (keep-index), include untracked (-u).
-    /// If nothing to stash, returns Success=true and logs that fact.
     /// </summary>
     Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct);
 
+    /// <summary>
+    /// Stash EVERYTHING (including staged), include untracked (-u).
+    /// Used for "Update no matter what".
+    /// </summary>
+    Task<GitOpResult> StashAllAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct);
+
     Task<GitOpResult> SwitchCreateBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct);
-
     Task<GitOpResult> CommitAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct);
-
     Task<GitOpResult> SwitchBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct);
 
-    /// <summary>
-    /// Pop latest stash. If conflicts happen, git will keep the stash; we return Success=false with error text.
-    /// </summary>
     Task<GitOpResult> StashPopAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
+
+    // Force update helpers
+    Task<GitOpResult> HardResetToRemoteMainAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct);
+    Task<GitOpResult> CleanUntrackedAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
+
+    // remotes / push / local exclude
+    Task<string?> GetRemoteUrlAsync(string repoDir, string remoteName, CancellationToken ct);
+    Task<GitOpResult> RemoveRemoteAsync(string repoDir, string remoteName, IProgress<string> progress, CancellationToken ct);
+    Task<GitOpResult> EnsureRemoteUrlAsync(string repoDir, string remoteName, string cleanRemoteUrl, IProgress<string> progress, CancellationToken ct);
+
+    Task<GitOpResult> PushSetUpstreamAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct);
+
+    Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct);
 }

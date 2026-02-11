@@ -2,115 +2,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="CbetaTranslator.App.Views.GitTabView">
 
-	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto"
+		  ColumnDefinitions="*,Auto"
+		  Margin="12"
+		  RowSpacing="8"
+		  ColumnSpacing="8">
+
+		<!-- Location -->
+		<TextBlock Grid.Row="0" Grid.Column="0" Name="TxtDest" Text="Location:" VerticalAlignment="Center"/>
+		<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="8">
+			<Button Name="BtnPickDest" Content="Pick Location" />
+			<Button Name="BtnGetFiles" Content="Update Files" />
+			<Button Name="BtnCancel" Content="Cancel" IsEnabled="False"/>
+		</StackPanel>
+
+		<!-- Selected -->
+		<TextBlock Grid.Row="1" Grid.ColumnSpan="2" Name="TxtSelected" Text="Selected: (none)" />
+
+		<!-- Commit message -->
+		<StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" Spacing="4">
+			<TextBlock Text="Commit message"/>
+			<TextBox Name="TxtCommitMessage" Watermark="What did you change?" />
+		</StackPanel>
 
 		<!-- Actions -->
-		<Border Grid.Row="0"
-				Background="#FF1E1E1E"
-				Padding="10"
-				CornerRadius="8">
-			<Grid ColumnDefinitions="Auto,Auto,Auto,*"
-				  ColumnSpacing="10"
-				  RowDefinitions="Auto,Auto,Auto"
-				  RowSpacing="8">
-
-				<Button Name="BtnPickDest"
-						Grid.Row="0" Grid.Column="0"
-						Content="Pick Location"
-						Background="#33FFFFFF"/>
-
-				<Button Name="BtnGetFiles"
-						Grid.Row="0" Grid.Column="1"
-						Content="Update Files"
-						Background="#33FFFFFF"/>
-
-				<Button Name="BtnCancel"
-						Grid.Row="0" Grid.Column="2"
-						Content="Cancel"
-						Background="#33FFFFFF"
-						IsEnabled="False"/>
-
-				<TextBlock Name="TxtDest"
-						   Grid.Row="1" Grid.Column="0"
-						   Grid.ColumnSpan="4"
-						   Foreground="#FFCCCCCC"
-						   TextWrapping="Wrap"
-						   Text="Location: (not set)"/>
-
-				<TextBlock Name="TxtSelected"
-						   Grid.Row="2" Grid.Column="0"
-						   Grid.ColumnSpan="4"
-						   Foreground="#FFAAAAAA"
-						   TextWrapping="Wrap"
-						   Text="Selected (CBETA): (none)"/>
-			</Grid>
-		</Border>
-
-		<!-- Commit message + send -->
-		<Border Grid.Row="1"
-				Background="#FF202020"
-				BorderBrush="#FF303030"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="10">
-			<Grid ColumnDefinitions="*,Auto"
-				  RowDefinitions="Auto,Auto"
-				  ColumnSpacing="10"
-				  RowSpacing="8">
-
-				<TextBox Name="TxtCommitMessage"
-						 Grid.Row="0" Grid.Column="0"
-						 Watermark="Describe what you changed (short, human)"
-						 Background="#FF2B2B2B"
-						 Foreground="#FFEAEAEA"
-						 BorderBrush="#FF444444"
-						 BorderThickness="1"/>
-
-				<Button Name="BtnSendContribution"
-						Grid.Row="0" Grid.Column="1"
-						Content="Send Contribution"
-						Background="#33FFFFFF"/>
-
-				<TextBlock Grid.Row="1"
-						   Grid.ColumnSpan="2"
-						   Foreground="#FF888888"
-						   TextWrapping="Wrap"
-						   Text="This will commit ONLY xml-p5t/&lt;Selected&gt;. Everything else is auto-stashed and restored."/>
-			</Grid>
-		</Border>
-
-		<!-- Progress -->
-		<Border Grid.Row="2"
-				Background="#FF202020"
-				BorderBrush="#FF303030"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="8">
-			<TextBlock Name="TxtProgress"
-					   Foreground="#FFCCCCCC"
-					   TextWrapping="Wrap"
-					   Text="Ready."/>
-		</Border>
+		<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
+			<Button Name="BtnSendContribution" Content="1) Create local commit (single file)" />
+			<Button Name="BtnAuth" Content="2) Authorize GitHub" />
+			<Button Name="BtnPushPr" Content="3) Push + Create PR" />
+		</StackPanel>
 
 		<!-- Log -->
-		<Border Grid.Row="3"
-				Background="#FF202020"
-				BorderBrush="#FF303030"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="8">
-			<TextBox Name="TxtLog"
-					 IsReadOnly="True"
-					 AcceptsReturn="True"
-					 TextWrapping="NoWrap"
-					 FontFamily="Consolas"
-					 Background="#FF1A1A1A"
-					 Foreground="#FFEAEAEA"
-					 BorderBrush="#FF444444"
-					 BorderThickness="1"
-					 ScrollViewer.VerticalScrollBarVisibility="Auto"
-					 ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+		<Border Grid.Row="4" Grid.ColumnSpan="2" CornerRadius="6" BorderThickness="1" BorderBrush="#333">
+			<ScrollViewer HorizontalScrollBarVisibility="Auto"
+						  VerticalScrollBarVisibility="Auto">
+				<TextBox Name="TxtLog"
+						 AcceptsReturn="True"
+						 IsReadOnly="True"
+						 TextWrapping="NoWrap"
+						 MinHeight="220"
+						 Padding="8"/>
+			</ScrollViewer>
 		</Border>
+
+		<!-- Status -->
+		<TextBlock Grid.Row="5" Grid.ColumnSpan="2" Name="TxtProgress" Text="Ready." Opacity="0.8"/>
 
 	</Grid>
 </UserControl>
