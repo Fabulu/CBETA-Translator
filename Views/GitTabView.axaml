@@ -2,14 +2,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="CbetaTranslator.App.Views.GitTabView">
 
-	<Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
 
-		<!-- Top controls -->
+		<!-- Actions -->
 		<Border Grid.Row="0"
 				Background="#FF1E1E1E"
 				Padding="10"
 				CornerRadius="8">
-			<Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="10" RowDefinitions="Auto,Auto" RowSpacing="8">
+			<Grid ColumnDefinitions="Auto,Auto,Auto,*"
+				  ColumnSpacing="10"
+				  RowDefinitions="Auto,Auto,Auto"
+				  RowSpacing="8">
 
 				<Button Name="BtnPickDest"
 						Grid.Row="0" Grid.Column="0"
@@ -18,28 +21,66 @@
 
 				<Button Name="BtnGetFiles"
 						Grid.Row="0" Grid.Column="1"
-						Content="Get / Update Files"
+						Content="Update Files"
 						Background="#33FFFFFF"/>
 
 				<Button Name="BtnCancel"
 						Grid.Row="0" Grid.Column="2"
-						HorizontalAlignment="Left"
 						Content="Cancel"
 						Background="#33FFFFFF"
 						IsEnabled="False"/>
 
 				<TextBlock Name="TxtDest"
 						   Grid.Row="1" Grid.Column="0"
-						   Grid.ColumnSpan="3"
+						   Grid.ColumnSpan="4"
 						   Foreground="#FFCCCCCC"
 						   TextWrapping="Wrap"
 						   Text="Location: (not set)"/>
 
+				<TextBlock Name="TxtSelected"
+						   Grid.Row="2" Grid.Column="0"
+						   Grid.ColumnSpan="4"
+						   Foreground="#FFAAAAAA"
+						   TextWrapping="Wrap"
+						   Text="Selected (CBETA): (none)"/>
+			</Grid>
+		</Border>
+
+		<!-- Commit message + send -->
+		<Border Grid.Row="1"
+				Background="#FF202020"
+				BorderBrush="#FF303030"
+				BorderThickness="1"
+				CornerRadius="8"
+				Padding="10">
+			<Grid ColumnDefinitions="*,Auto"
+				  RowDefinitions="Auto,Auto"
+				  ColumnSpacing="10"
+				  RowSpacing="8">
+
+				<TextBox Name="TxtCommitMessage"
+						 Grid.Row="0" Grid.Column="0"
+						 Watermark="Describe what you changed (short, human)"
+						 Background="#FF2B2B2B"
+						 Foreground="#FFEAEAEA"
+						 BorderBrush="#FF444444"
+						 BorderThickness="1"/>
+
+				<Button Name="BtnSendContribution"
+						Grid.Row="0" Grid.Column="1"
+						Content="Send Contribution"
+						Background="#33FFFFFF"/>
+
+				<TextBlock Grid.Row="1"
+						   Grid.ColumnSpan="2"
+						   Foreground="#FF888888"
+						   TextWrapping="Wrap"
+						   Text="This will commit ONLY xml-p5t/&lt;Selected&gt;. Everything else is auto-stashed and restored."/>
 			</Grid>
 		</Border>
 
 		<!-- Progress -->
-		<Border Grid.Row="1"
+		<Border Grid.Row="2"
 				Background="#FF202020"
 				BorderBrush="#FF303030"
 				BorderThickness="1"
@@ -52,7 +93,7 @@
 		</Border>
 
 		<!-- Log -->
-		<Border Grid.Row="2"
+		<Border Grid.Row="3"
 				Background="#FF202020"
 				BorderBrush="#FF303030"
 				BorderThickness="1"

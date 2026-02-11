@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,491 +13,250 @@ public sealed class GitRepoService : IGitRepoService
 {
     private Process? _running;
 
-    // App-generated artifacts we are allowed to throw away to make update possible.
-    // These MUST remain conservative.
-    private static readonly HashSet<string> SafeTrackedReset = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "index.cache.json",
-        "search.index.manifest.json",
-    };
-
-    private static readonly HashSet<string> SafeUntrackedDelete = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "index.debug.log",
-    };
-
-    // This one is *not* safe to delete automatically; it's too big / too risky.
-    private static readonly HashSet<string> DangerousUntrackedDirs = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "CbetaZenTexts"
-    };
-
-    public async Task<bool> CheckGitAvailableAsync(CancellationToken ct)
-    {
-        var r = await RunAsync("git", "--version", workingDir: null,
-            progress: new Progress<string>(_ => { }), ct: ct);
-
-        return r.Success;
-    }
-
-    public async Task<GitCommandResult> CloneAsync(
-        string repoUrl,
-        string targetDir,
-        IProgress<string> progress,
-        CancellationToken ct)
-    {
-        var parent = Path.GetDirectoryName(targetDir);
-        if (!string.IsNullOrWhiteSpace(parent) && !Directory.Exists(parent))
-            Directory.CreateDirectory(parent);
-
-        // git clone --progress writes to stderr; capture both.
-        string args = $"clone --progress \"{repoUrl}\" \"{targetDir}\"";
-        return await RunAsync("git", args, workingDir: parent, progress: progress, ct: ct);
-    }
-
-    public async Task<GitCleanCheckResult> EnsureCleanForUpdateAsync(
-        string repoDir,
-        IProgress<string> progress,
-        CancellationToken ct)
-    {
-        // Get porcelain status
-        var lines = await GetStatusPorcelainAsync(repoDir, ct);
-        if (lines.Count == 0)
-            return new GitCleanCheckResult(true, null, Array.Empty<string>());
-
-        // Categorize
-        var unsafeLines = new List<string>();
-        var evidence = new List<string>();
-        var trackedToReset = new List<string>();
-        var untrackedToDelete = new List<string>();
-        var dangerousDirs = new List<string>();
-
-        foreach (var raw in lines)
-        {
-            var line = raw.TrimEnd();
-            if (string.IsNullOrWhiteSpace(line))
-                continue;
-
-            evidence.Add(line);
-
-            // Formats:
-            // " M file"
-            // "M  file"
-            // "?? file"
-            // We just look at prefix and path.
-            if (line.StartsWith("?? "))
-            {
-                var path = line.Substring(3).Trim();
-                var norm = NormalizeRel(path);
-
-                // directory?
-                if (norm.EndsWith("/"))
-                {
-                    var dir = norm.TrimEnd('/');
-                    if (DangerousUntrackedDirs.Contains(dir))
-                    {
-                        dangerousDirs.Add(dir);
-                        continue;
-                    }
-
-                    // unknown directory => unsafe
-                    unsafeLines.Add(line);
-                    continue;
-                }
-
-                if (SafeUntrackedDelete.Contains(norm))
-                {
-                    untrackedToDelete.Add(norm);
-                    continue;
-                }
-
-                // unknown untracked file => unsafe
-                unsafeLines.Add(line);
-                continue;
-            }
-            else
-            {
-                // tracked change (index + path starts at position 3)
-                // porcelain can be " M path" or "M  path"
-                if (line.Length < 4)
-                {
-                    unsafeLines.Add(line);
-                    continue;
-                }
-
-                var path = line.Substring(3).Trim();
-                var norm = NormalizeRel(path);
-
-                if (SafeTrackedReset.Contains(norm))
-                {
-                    trackedToReset.Add(norm);
-                    continue;
-                }
-
-                unsafeLines.Add(line);
-            }
-        }
-
-        // Block immediately on dangerous dirs (repo-in-repo / wrong output path)
-        if (dangerousDirs.Count > 0)
-        {
-            progress.Report("[block] found a suspicious folder inside the repo:");
-            foreach (var d in dangerousDirs)
-                progress.Report("  ?? " + d + "/");
-
-            var reason =
-                "There is an untracked folder named 'CbetaZenTexts' inside the repo.\n" +
-                "This usually means you accidentally created a repo-in-repo (or picked a wrong folder).\n\n" +
-                "Fix:\n" +
-                "1) Open the repo folder shown in the Git tab.\n" +
-                "2) Delete the inner 'CbetaZenTexts' folder.\n" +
-                "3) Click 'Get / Update files' again.\n\n" +
-                "We refuse to auto-delete that folder because it could contain important data.";
-
-            return new GitCleanCheckResult(false, reason, evidence);
-        }
-
-        // If only safe artifacts are dirty, auto-clean them now.
-        if (unsafeLines.Count == 0)
-        {
-            if (trackedToReset.Count > 0)
-            {
-                progress.Report("[clean] discarding app cache changes (safe)...");
-                foreach (var p in trackedToReset)
-                    progress.Report("  reset: " + p);
-
-                // git checkout -- <files>
-                var r = await RunAsync("git",
-                    $"-C \"{repoDir}\" checkout -- {JoinArgs(trackedToReset)}",
-                    workingDir: repoDir,
-                    progress: progress,
-                    ct: ct);
-
-                if (!r.Success)
-                {
-                    return new GitCleanCheckResult(false,
-                        "Failed to reset app cache files. " + (r.Error ?? "unknown error"),
-                        evidence);
-                }
-            }
-
-            if (untrackedToDelete.Count > 0)
-            {
-                progress.Report("[clean] deleting app debug files (safe)...");
-                foreach (var p in untrackedToDelete)
-                    progress.Report("  delete: " + p);
-
-                foreach (var rel in untrackedToDelete)
-                {
-                    try
-                    {
-                        var abs = Path.Combine(repoDir, rel.Replace('/', Path.DirectorySeparatorChar));
-                        if (File.Exists(abs))
-                            File.Delete(abs);
-                    }
-                    catch
-                    {
-                        // ignore; git clean can catch leftovers
-                    }
-                }
-
-                // Also try git clean for those files (best-effort)
-                await RunAsync("git",
-                    $"-C \"{repoDir}\" clean -f -- {JoinArgs(untrackedToDelete)}",
-                    workingDir: repoDir,
-                    progress: progress,
-                    ct: ct);
-            }
-
-            // Re-check status
-            var after = await GetStatusPorcelainAsync(repoDir, ct);
-            if (after.Count == 0)
-            {
-                progress.Report("[ok] repo is clean after safe cleanup.");
-                return new GitCleanCheckResult(true, null, evidence);
-            }
-
-            // Something else still dirty -> block with those lines
-            var afterEv = new List<string>(after);
-            return new GitCleanCheckResult(false,
-                "Repo still has local changes after safe cleanup. Please resolve them manually.",
-                afterEv);
-        }
-
-        // Unsafe stuff exists -> block and show sample
-        progress.Report("[block] working tree has changes we won't touch:");
-        for (int i = 0; i < Math.Min(12, unsafeLines.Count); i++)
-            progress.Report("  " + unsafeLines[i]);
-        if (unsafeLines.Count > 12)
-            progress.Report($"  ... ({unsafeLines.Count - 12} more)");
-
-        return new GitCleanCheckResult(false,
-            "Update blocked: you have local changes that are not app cache files.",
-            evidence);
-    }
-
-    public async Task<GitCommandResult> FetchAsync(
-        string repoDir,
-        IProgress<string> progress,
-        CancellationToken ct)
-    {
-        string args = $"-C \"{repoDir}\" fetch --prune --progress";
-        return await RunAsync("git", args, workingDir: repoDir, progress: progress, ct: ct);
-    }
-
-    public async Task<GitCommandResult> PullFfOnlyAsync(
-        string repoDir,
-        IProgress<string> progress,
-        CancellationToken ct)
-    {
-        string args = $"-C \"{repoDir}\" pull --ff-only --progress";
-        return await RunAsync("git", args, workingDir: repoDir, progress: progress, ct: ct);
-    }
-
     public void TryCancelRunningProcess()
     {
         try
         {
-            if (_running == null) return;
-
-            try { _running.CloseMainWindow(); } catch { }
-
-            try
-            {
-                if (!_running.HasExited)
-                    _running.Kill(entireProcessTree: true);
-            }
-            catch { /* ignore */ }
+            if (_running != null && !_running.HasExited)
+                _running.Kill(entireProcessTree: true);
         }
+        catch { /* ignore */ }
         finally
         {
             _running = null;
         }
+    }
+
+    public async Task<bool> CheckGitAvailableAsync(CancellationToken ct)
+    {
+        var r = await RunGitAsync(
+            repoDir: null,
+            args: "--version",
+            progress: null,
+            ct: ct);
+
+        return r.ExitCode == 0;
+    }
+
+    public async Task<GitOpResult> CloneAsync(string repoUrl, string targetDir, IProgress<string> progress, CancellationToken ct)
+    {
+        // clone into an empty folder path
+        Directory.CreateDirectory(Path.GetDirectoryName(targetDir) ?? targetDir);
+
+        var args = $"clone --progress \"{repoUrl}\" \"{targetDir}\"";
+        var r = await RunGitAsync(repoDir: null, args: args, progress: progress, ct: ct);
+
+        return r.ExitCode == 0
+            ? new GitOpResult(true)
+            : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, "fetch --all --prune", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<GitOpResult> PullFfOnlyAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, "pull --ff-only", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, "status --porcelain", progress: null, ct: ct);
+        if (r.ExitCode != 0) return Array.Empty<string>();
+
+        var lines = (r.StdOut ?? "")
+            .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(s => s.TrimEnd())
+            .Where(s => !string.IsNullOrWhiteSpace(s))
+            .ToArray();
+
+        return lines;
+    }
+
+    public async Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, "rev-parse --abbrev-ref HEAD", progress: null, ct: ct);
+        var s = (r.StdOut ?? "").Trim();
+
+        if (r.ExitCode != 0 || string.IsNullOrWhiteSpace(s))
+            return "HEAD";
+
+        return s;
+    }
+
+    public async Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        string name = await GetConfigAsync(repoDir, "user.name", ct);
+        string email = await GetConfigAsync(repoDir, "user.email", ct);
+
+        if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(email))
+        {
+            progress.Report("[git] user identity ok");
+            return;
+        }
+
+        // Repo-local defaults (safe + non-confusing)
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            progress.Report("[git] setting local user.name = CbetaTranslator");
+            await RunGitAsync(repoDir, "config user.name \"CbetaTranslator\"", progress, ct);
+        }
+
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            progress.Report("[git] setting local user.email = cbeta-translator@local");
+            await RunGitAsync(repoDir, "config user.email \"cbeta-translator@local\"", progress, ct);
+        }
+    }
+
+    public async Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct)
+    {
+        // Stage exactly that file path
+        var r = await RunGitAsync(repoDir, $"add -- \"{relPath}\"", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
+    {
+        // Note: If nothing to stash, git returns exit code 0 and prints "No local changes to save"
+        var r = await RunGitAsync(repoDir, $"stash push -u -k -m \"{message}\"", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<GitOpResult> SwitchCreateBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
+    {
+        // Use switch if available; on older Git, checkout -b works too, but switch exists for years.
+        var r = await RunGitAsync(repoDir, $"switch -c \"{branchName}\"", progress, ct);
+        if (r.ExitCode == 0) return new GitOpResult(true);
+
+        // fallback
+        var r2 = await RunGitAsync(repoDir, $"checkout -b \"{branchName}\"", progress, ct);
+        return r2.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r2.AllText);
+    }
+
+    public async Task<GitOpResult> CommitAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
+    {
+        // Commit staged changes only.
+        var r = await RunGitAsync(repoDir, $"commit -m \"{EscapeCommitMessage(message)}\"", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    public async Task<GitOpResult> SwitchBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, $"switch \"{branchName}\"", progress, ct);
+        if (r.ExitCode == 0) return new GitOpResult(true);
+
+        // fallback
+        var r2 = await RunGitAsync(repoDir, $"checkout \"{branchName}\"", progress, ct);
+        return r2.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r2.AllText);
+    }
+
+    public async Task<GitOpResult> StashPopAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, "stash pop", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     // -------------------------
     // Helpers
     // -------------------------
 
-    private static string NormalizeRel(string p)
-        => (p ?? "").Replace('\\', '/').TrimStart('/');
-
-    private static string JoinArgs(List<string> relPaths)
+    private static string EscapeCommitMessage(string s)
     {
-        // quote each
-        var sb = new StringBuilder();
-        for (int i = 0; i < relPaths.Count; i++)
-        {
-            if (i > 0) sb.Append(' ');
-            sb.Append('"').Append(relPaths[i].Replace("\"", "\\\"")).Append('"');
-        }
-        return sb.ToString();
+        s ??= "";
+        s = s.Replace("\r", " ").Replace("\n", " ");
+        s = s.Replace("\"", "'"); // simplest safe quoting
+        return s.Trim();
     }
 
-    private async Task<List<string>> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
+    private async Task<string> GetConfigAsync(string repoDir, string key, CancellationToken ct)
     {
-        var lines = new List<string>();
-
-        var r = await RunCaptureAsync("git",
-            $"-C \"{repoDir}\" status --porcelain",
-            workingDir: repoDir,
-            ct: ct,
-            onLine: line =>
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                    lines.Add(line);
-            });
-
-        if (!r.Success)
-        {
-            // if we cannot read status, treat as dirty
-            lines.Add("!! status-check-failed");
-        }
-
-        return lines;
+        var r = await RunGitAsync(repoDir, $"config --get {key}", progress: null, ct: ct);
+        if (r.ExitCode != 0) return "";
+        return (r.StdOut ?? "").Trim();
     }
 
-    private async Task<GitCommandResult> RunAsync(
-        string fileName,
-        string args,
-        string? workingDir,
-        IProgress<string> progress,
-        CancellationToken ct)
+    private sealed record RunResult(int ExitCode, string StdOut, string StdErr)
+    {
+        public string AllText => (StdOut + "\n" + StdErr).Trim();
+    }
+
+    private async Task<RunResult> RunGitAsync(string? repoDir, string args, IProgress<string>? progress, CancellationToken ct)
     {
         var psi = new ProcessStartInfo
         {
-            FileName = fileName,
+            FileName = "git",
             Arguments = args,
-            WorkingDirectory = string.IsNullOrWhiteSpace(workingDir) ? Environment.CurrentDirectory : workingDir,
+            WorkingDirectory = string.IsNullOrWhiteSpace(repoDir) ? Environment.CurrentDirectory : repoDir,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
-            CreateNoWindow = true
+            CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8,
         };
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            psi.CreateNoWindow = true;
-            psi.WindowStyle = ProcessWindowStyle.Hidden;
-        }
-
-        using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
+        var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
         _running = p;
 
-        string? lastErr = null;
-        var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var stdout = new List<string>();
+        var stderr = new List<string>();
 
-        p.Exited += (_, _) =>
+        void OnOut(object sender, DataReceivedEventArgs e)
         {
-            try { tcs.TrySetResult(p.ExitCode); }
-            catch { tcs.TrySetResult(-1); }
-        };
+            if (e.Data == null) return;
+            lock (stdout) stdout.Add(e.Data);
+            progress?.Report(e.Data);
+        }
+
+        void OnErr(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data == null) return;
+            lock (stderr) stderr.Add(e.Data);
+            progress?.Report(e.Data);
+        }
+
+        p.OutputDataReceived += OnOut;
+        p.ErrorDataReceived += OnErr;
 
         try
         {
             if (!p.Start())
-                return new GitCommandResult(false, -1, "Failed to start process.");
+                return new RunResult(-1, "", "Failed to start git process.");
 
-            ct.Register(() => TryCancelRunningProcess());
+            p.BeginOutputReadLine();
+            p.BeginErrorReadLine();
 
-            var stdoutTask = Task.Run(async () =>
-            {
-                while (!p.StandardOutput.EndOfStream && !ct.IsCancellationRequested)
-                {
-                    var line = await p.StandardOutput.ReadLineAsync();
-                    if (line == null) break;
-                    if (line.Length == 0) continue;
-                    progress.Report(line);
-                }
-            }, ct);
+            await p.WaitForExitAsync(ct);
 
-            var stderrTask = Task.Run(async () =>
-            {
-                while (!p.StandardError.EndOfStream && !ct.IsCancellationRequested)
-                {
-                    var line = await p.StandardError.ReadLineAsync();
-                    if (line == null) break;
-                    if (line.Length == 0) continue;
-                    lastErr = line;
-                    progress.Report(line);
-                }
-            }, ct);
+            string so, se;
+            lock (stdout) so = string.Join("\n", stdout);
+            lock (stderr) se = string.Join("\n", stderr);
 
-            int exit = await tcs.Task;
-
-            try { await Task.WhenAll(stdoutTask, stderrTask); } catch { }
-
-            bool ok = exit == 0;
-            return new GitCommandResult(ok, exit, ok ? null : (lastErr ?? $"git exited with code {exit}"));
+            return new RunResult(p.ExitCode, so, se);
         }
         catch (OperationCanceledException)
         {
-            return new GitCommandResult(false, -2, "Canceled.");
+            try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
+            throw;
         }
         catch (Exception ex)
         {
-            return new GitCommandResult(false, -1, ex.Message);
+            try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
+            return new RunResult(-1, "", ex.ToString());
         }
         finally
         {
             try
             {
-                if (!p.HasExited)
-                    p.Kill(entireProcessTree: true);
+                p.OutputDataReceived -= OnOut;
+                p.ErrorDataReceived -= OnErr;
             }
-            catch { /* ignore */ }
-
-            _running = null;
-        }
-    }
-
-    private async Task<GitCommandResult> RunCaptureAsync(
-        string fileName,
-        string args,
-        string? workingDir,
-        CancellationToken ct,
-        Action<string> onLine)
-    {
-        var psi = new ProcessStartInfo
-        {
-            FileName = fileName,
-            Arguments = args,
-            WorkingDirectory = string.IsNullOrWhiteSpace(workingDir) ? Environment.CurrentDirectory : workingDir,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            CreateNoWindow = true
-        };
-
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            psi.CreateNoWindow = true;
-            psi.WindowStyle = ProcessWindowStyle.Hidden;
-        }
-
-        using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
-        _running = p;
-
-        string? lastErr = null;
-        var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-        p.Exited += (_, _) =>
-        {
-            try { tcs.TrySetResult(p.ExitCode); }
-            catch { tcs.TrySetResult(-1); }
-        };
-
-        try
-        {
-            if (!p.Start())
-                return new GitCommandResult(false, -1, "Failed to start process.");
-
-            ct.Register(() => TryCancelRunningProcess());
-
-            var stdoutTask = Task.Run(async () =>
-            {
-                while (!p.StandardOutput.EndOfStream && !ct.IsCancellationRequested)
-                {
-                    var line = await p.StandardOutput.ReadLineAsync();
-                    if (line == null) break;
-                    onLine(line);
-                }
-            }, ct);
-
-            var stderrTask = Task.Run(async () =>
-            {
-                while (!p.StandardError.EndOfStream && !ct.IsCancellationRequested)
-                {
-                    var line = await p.StandardError.ReadLineAsync();
-                    if (line == null) break;
-                    if (line.Length == 0) continue;
-                    lastErr = line;
-                }
-            }, ct);
-
-            int exit = await tcs.Task;
-
-            try { await Task.WhenAll(stdoutTask, stderrTask); } catch { }
-
-            bool ok = exit == 0;
-            return new GitCommandResult(ok, exit, ok ? null : (lastErr ?? $"git exited with code {exit}"));
-        }
-        catch (OperationCanceledException)
-        {
-            return new GitCommandResult(false, -2, "Canceled.");
-        }
-        catch (Exception ex)
-        {
-            return new GitCommandResult(false, -1, ex.Message);
-        }
-        finally
-        {
-            try
-            {
-                if (!p.HasExited)
-                    p.Kill(entireProcessTree: true);
-            }
-            catch { /* ignore */ }
+            catch { }
 
             _running = null;
         }

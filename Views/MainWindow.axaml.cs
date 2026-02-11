@@ -18,7 +18,6 @@ namespace CbetaTranslator.App.Views;
 
 public partial class MainWindow : Window
 {
-    // Named controls
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
     private Button? _btnSave;
@@ -34,35 +33,27 @@ public partial class MainWindow : Window
 
     private TabControl? _tabs;
 
-    // Child views
     private ReadableTabView? _readableView;
     private TranslationTabView? _translationView;
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
 
-    // Services
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new AppConfigService();
     private readonly IndexCacheService _indexCacheService = new IndexCacheService();
 
-    // State
     private string? _root;
     private string? _originalDir;
     private string? _translatedDir;
 
-    // This is the canonical list loaded from cache/build — NEVER mutate items inside it.
     private List<FileNavItem> _allItems = new();
-
-    // This is what the ListBox shows (projected items with DisplayShort depending on toggle)
     private List<FileNavItem> _filteredItems = new();
 
     private string? _currentRelPath;
 
-    // Raw XML
     private string _rawOrigXml = "";
     private string _rawTranXml = "";
 
-    // Cancel background work when user switches files quickly
     private CancellationTokenSource? _renderCts;
     private bool _suppressNavSelectionChanged;
 
@@ -117,7 +108,7 @@ public partial class MainWindow : Window
                 await LoadPairAsync(rel);
 
                 if (_tabs != null)
-                    _tabs.SelectedIndex = 0; // Readable tab
+                    _tabs.SelectedIndex = 0;
             };
         }
 
@@ -125,7 +116,6 @@ public partial class MainWindow : Window
         {
             _gitView.Status += (_, msg) => SetStatus(msg);
 
-            // When Git tab clones/updates, it emits the repo root. Load it immediately.
             _gitView.RootCloned += async (_, repoRoot) =>
             {
                 try
@@ -133,7 +123,7 @@ public partial class MainWindow : Window
                     await LoadRootAsync(repoRoot, saveToConfig: true);
 
                     if (_tabs != null)
-                        _tabs.SelectedIndex = 0; // bounce user back to Readable
+                        _tabs.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -207,7 +197,7 @@ public partial class MainWindow : Window
         }
         catch
         {
-            // ignore on startup
+            // ignore
         }
     }
 
@@ -227,15 +217,13 @@ public partial class MainWindow : Window
 
         AppPaths.EnsureTranslatedDirExists(_root);
 
-        // IMPORTANT: tell Git tab to default to this repo/root from now on
+        // Tell Git tab: this is the current repo/root
         _gitView?.SetCurrentRepoRoot(_root);
 
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
 
         if (saveToConfig)
-        {
             await _configService.SaveAsync(new AppConfig { TextRootPath = _root });
-        }
 
         await LoadFileListFromCacheOrBuildAsync();
     }
@@ -276,9 +264,7 @@ public partial class MainWindow : Window
         {
             _allItems = cache.Entries;
             ApplyFilter();
-
             WireSearchTab();
-
             SetStatus($"Loaded index cache: {_allItems.Count:n0} files.");
             return;
         }
@@ -305,7 +291,6 @@ public partial class MainWindow : Window
 
         _allItems = built.Entries ?? new List<FileNavItem>();
         ApplyFilter();
-
         WireSearchTab();
 
         SetStatus($"Index cache created: {_allItems.Count:n0} files.");
@@ -421,6 +406,9 @@ public partial class MainWindow : Window
         _searchView?.Clear();
 
         UpdateSaveButtonState();
+
+        // keep git tab selection cleared
+        _gitView?.SetSelectedRelPath(null);
     }
 
     private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -450,6 +438,9 @@ public partial class MainWindow : Window
 
         if (_txtCurrentFile != null)
             _txtCurrentFile.Text = relPath;
+
+        // Tell Git tab which file is selected
+        _gitView?.SetSelectedRelPath(_currentRelPath);
 
         SetStatus("Loading: " + relPath);
 
@@ -518,6 +509,7 @@ public partial class MainWindow : Window
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
             SetStatus("Saved translated XML: " + _currentRelPath);
 
+            // Status refresh (best-effort)
             try
             {
                 if (_root != null && _originalDir != null && _translatedDir != null && _currentRelPath != null)
@@ -550,10 +542,7 @@ public partial class MainWindow : Window
                     await _indexCacheService.SaveAsync(_root, cache);
                 }
             }
-            catch
-            {
-                // ignore
-            }
+            catch { /* ignore */ }
 
             _rawTranXml = xml ?? "";
 
