@@ -1,16 +1,21 @@
-﻿using System;
+﻿// Views/ReadableTabView.axaml.cs
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.TextFormatting;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
-using CbetaTranslator.App.Infrastructure;
 
 namespace CbetaTranslator.App.Views;
 
@@ -24,6 +29,12 @@ public partial class ReadableTabView : UserControl
 
     private ScrollViewer? _svOriginal;
     private ScrollViewer? _svTranslated;
+
+    // Cached template parts for better scroll/geometry (like HoverDictionaryBehavior)
+    private Visual? _presOriginal;
+    private Visual? _presTranslated;
+    private ScrollContentPresenter? _scpOriginal;
+    private ScrollContentPresenter? _scpTranslated;
 
     private readonly ISelectionSyncService _selectionSync = new SelectionSyncService();
 
@@ -47,7 +58,9 @@ public partial class ReadableTabView : UserControl
     private TextBox? _lastUserInputEditor;
     private const int UserInputPriorityWindowMs = 250;
 
-    private const int JumpFallbackExtraLines = 8;
+    // Coalesced mirroring: last request wins
+    private bool _mirrorQueued;
+    private bool _mirrorSourceIsTranslated;
 
     // -------------------------
     // Find (Ctrl+F) state
@@ -63,7 +76,7 @@ public partial class ReadableTabView : UserControl
     private SearchHighlightOverlay? _hlOriginal;
     private SearchHighlightOverlay? _hlTranslated;
 
-    private TextBox? _findTarget; // which pane we are searching in
+    private TextBox? _findTarget;
     private List<int> _matchStarts = new();
     private int _matchLen = 0;
     private int _matchIndex = -1;
@@ -71,7 +84,6 @@ public partial class ReadableTabView : UserControl
     private static readonly TimeSpan FindRecomputeDebounce = TimeSpan.FromMilliseconds(140);
     private DispatcherTimer? _findDebounceTimer;
 
-    // Find vs. mirroring guards (critical)
     private bool _findIsApplyingSelection;
     private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
     private const int SuppressMirrorAfterFindMs = 900;
@@ -87,8 +99,11 @@ public partial class ReadableTabView : UserControl
             _svOriginal = FindScrollViewer(_editorOriginal);
             _svTranslated = FindScrollViewer(_editorTranslated);
 
+            RefreshPresenterCache(_editorOriginal, isOriginal: true);
+            RefreshPresenterCache(_editorTranslated, isOriginal: false);
+
             SetupHoverDictionary();
-            StartSelectionTimer();
+            StartSelectionTimer(); // slow safety-net polling
         };
 
         DetachedFromVisualTree += (_, _) =>
@@ -108,7 +123,10 @@ public partial class ReadableTabView : UserControl
         if (_editorOriginal != null) _editorOriginal.IsReadOnly = true;
         if (_editorTranslated != null) _editorTranslated.IsReadOnly = true;
 
-        // Find UI
+        // Cache template parts like your HoverDictionaryBehavior
+        if (_editorOriginal != null) _editorOriginal.TemplateApplied += (_, _) => RefreshPresenterCache(_editorOriginal, isOriginal: true);
+        if (_editorTranslated != null) _editorTranslated.TemplateApplied += (_, _) => RefreshPresenterCache(_editorTranslated, isOriginal: false);
+
         _findBar = this.FindControl<Border>("FindBar");
         _findQuery = this.FindControl<TextBox>("FindQuery");
         _findCount = this.FindControl<TextBlock>("FindCount");
@@ -117,7 +135,6 @@ public partial class ReadableTabView : UserControl
         _btnNext = this.FindControl<Button>("BtnNext");
         _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
 
-        // Highlight overlays (single current match only)
         _hlOriginal = this.FindControl<SearchHighlightOverlay>("HlOriginal");
         _hlTranslated = this.FindControl<SearchHighlightOverlay>("HlTranslated");
 
@@ -130,7 +147,6 @@ public partial class ReadableTabView : UserControl
         HookUserInputTracking(_editorOriginal);
         HookUserInputTracking(_editorTranslated);
 
-        // Ctrl+F / Escape handling at control level
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
         if (_findQuery != null)
@@ -148,9 +164,39 @@ public partial class ReadableTabView : UserControl
         if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
     }
 
+    private void RefreshPresenterCache(TextBox? tb, bool isOriginal)
+    {
+        if (tb == null) return;
+
+        var sv = FindScrollViewer(tb);
+        var scp = sv != null ? FindScrollContentPresenter(sv) : null;
+
+        var presenter = tb
+            .GetVisualDescendants()
+            .OfType<Visual>()
+            .LastOrDefault(v => string.Equals(v.GetType().Name, "TextPresenter", StringComparison.Ordinal));
+
+        presenter ??= tb
+            .GetVisualDescendants()
+            .OfType<Visual>()
+            .LastOrDefault(v => (v.GetType().Name?.Contains("Text", StringComparison.OrdinalIgnoreCase) ?? false));
+
+        if (isOriginal)
+        {
+            _svOriginal = sv ?? _svOriginal;
+            _scpOriginal = scp;
+            _presOriginal = presenter;
+        }
+        else
+        {
+            _svTranslated = sv ?? _svTranslated;
+            _scpTranslated = scp;
+            _presTranslated = presenter;
+        }
+    }
+
     private void SetupHoverDictionary()
     {
-        // Only on original pane
         if (_editorOriginal == null) return;
 
         _hoverDict?.Dispose();
@@ -180,8 +226,6 @@ public partial class ReadableTabView : UserControl
 
         ClearFindState();
         CloseFind();
-
-        // keep behavior alive, just clear tooltip implicitly by leaving area
     }
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
@@ -191,6 +235,22 @@ public partial class ReadableTabView : UserControl
 
         if (_editorOriginal != null) _editorOriginal.Text = _renderOrig.Text;
         if (_editorTranslated != null) _editorTranslated.Text = _renderTran.Text;
+
+        // after text set, layout/template settles later — refresh caches now + later
+        RefreshPresenterCache(_editorOriginal, isOriginal: true);
+        RefreshPresenterCache(_editorTranslated, isOriginal: false);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            RefreshPresenterCache(_editorOriginal, isOriginal: true);
+            RefreshPresenterCache(_editorTranslated, isOriginal: false);
+        }, DispatcherPriority.Loaded);
+
+        DispatcherTimer.RunOnce(() =>
+        {
+            RefreshPresenterCache(_editorOriginal, isOriginal: true);
+            RefreshPresenterCache(_editorTranslated, isOriginal: false);
+        }, TimeSpan.FromMilliseconds(90));
 
         ResetScroll(_svOriginal);
         ResetScroll(_svTranslated);
@@ -265,7 +325,7 @@ public partial class ReadableTabView : UserControl
     {
         if (_selTimer != null) return;
 
-        _selTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(80) };
+        _selTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(240) };
         _selTimer.Tick += (_, _) => PollSelectionChanges();
         _selTimer.Start();
     }
@@ -283,12 +343,17 @@ public partial class ReadableTabView : UserControl
         if (_syncingSelection) return;
         if (DateTime.UtcNow <= _ignoreProgrammaticUntilUtc) return;
 
-        // Find must NEVER trigger mirroring
         if (_findIsApplyingSelection) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
         if (_editorOriginal == null || _editorTranslated == null) return;
         if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+
+        bool anyFocused =
+            _editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin ||
+            _editorTranslated.IsFocused || _editorTranslated.IsKeyboardFocusWithin;
+
+        if (!anyFocused) return;
 
         int oS = _editorOriginal.SelectionStart;
         int oE = _editorOriginal.SelectionEnd;
@@ -313,7 +378,7 @@ public partial class ReadableTabView : UserControl
         _lastTranCaret = tC;
 
         bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
-        MirrorSelectionOneWay(sourceIsTranslated);
+        RequestMirrorFromUserAction(sourceIsTranslated);
     }
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)
@@ -357,13 +422,11 @@ public partial class ReadableTabView : UserControl
         if (!_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg))
             return;
 
-        bool destinationIsChinese = ReferenceEquals(dstEditor, _editorOriginal);
-
         try
         {
             _syncingSelection = true;
 
-            ApplyDestinationSelection(dstEditor, dstSeg.Start, dstSeg.EndExclusive, center: true, destinationIsChinese);
+            ApplyDestinationSelection(dstEditor, dstSeg.Start, dstSeg.EndExclusive, center: true);
 
             if (ReferenceEquals(dstEditor, _editorOriginal))
             {
@@ -386,7 +449,7 @@ public partial class ReadableTabView : UserControl
         }
     }
 
-    private void ApplyDestinationSelection(TextBox dst, int start, int endExclusive, bool center, bool destinationIsChinese)
+    private void ApplyDestinationSelection(TextBox dst, int start, int endExclusive, bool center)
     {
         int len = dst.Text?.Length ?? 0;
         start = Math.Max(0, Math.Min(start, len));
@@ -396,29 +459,32 @@ public partial class ReadableTabView : UserControl
         dst.SelectionStart = start;
         dst.SelectionEnd = endExclusive;
 
-        try { dst.CaretIndex = start; } catch { /* ignore */ }
+        try { dst.CaretIndex = start; } catch { }
 
         if (!center) return;
 
-        DispatcherTimer.RunOnce(() =>
-        {
-            try
-            {
-                if (destinationIsChinese) CenterByNewlines(dst, start);
-                else CenterByCaretRect(dst, start);
-            }
-            catch { /* ignore */ }
-        }, TimeSpan.FromMilliseconds(20));
+        int anchor = start + Math.Max(0, (endExclusive - start) / 2);
+        CenterByTextLayoutReliable(dst, anchor);
+    }
 
-        DispatcherTimer.RunOnce(() =>
+    private void RequestMirrorFromUserAction(bool sourceIsTranslated)
+    {
+        if (_findIsApplyingSelection) return;
+        if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
+
+        _mirrorSourceIsTranslated = sourceIsTranslated;
+        if (_mirrorQueued) return;
+        _mirrorQueued = true;
+
+        Dispatcher.UIThread.Post(() =>
         {
-            try
-            {
-                if (destinationIsChinese) CenterByNewlines(dst, start);
-                else CenterByCaretRect(dst, start);
-            }
-            catch { /* ignore */ }
-        }, TimeSpan.FromMilliseconds(55));
+            _mirrorQueued = false;
+
+            if (_syncingSelection) return;
+            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+
+            MirrorSelectionOneWay(_mirrorSourceIsTranslated);
+        }, DispatcherPriority.Background);
     }
 
     // -------------------------
@@ -654,40 +720,16 @@ public partial class ReadableTabView : UserControl
         {
             _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
             _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
+            _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterFindMs);
 
             _findTarget.Focus();
             _findTarget.CaretIndex = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
 
-            bool targetIsChinese = ReferenceEquals(_findTarget, _editorOriginal);
+            CenterByTextLayoutReliable(_findTarget, start);
 
-            DispatcherTimer.RunOnce(() =>
-            {
-                try
-                {
-                    if (targetIsChinese) CenterByNewlines(_findTarget, start);
-                    else CenterByCaretRect(_findTarget, start);
-                }
-                catch { }
-
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(25));
-
-            DispatcherTimer.RunOnce(() =>
-            {
-                try
-                {
-                    if (targetIsChinese) CenterByNewlines(_findTarget, start);
-                    else CenterByCaretRect(_findTarget, start);
-                }
-                catch { }
-
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(85));
+            ApplyHighlight(_findTarget, start, len);
         }
-        catch
-        {
-            // ignore
-        }
+        catch { }
     }
 
     private void ApplyHighlight(TextBox target, int start, int len)
@@ -722,7 +764,7 @@ public partial class ReadableTabView : UserControl
     }
 
     // -------------------------
-    // Scroll helpers
+    // Scroll helpers (Avalonia 11.3.11)
     // -------------------------
 
     private static void ResetScroll(ScrollViewer? sv)
@@ -735,6 +777,12 @@ public partial class ReadableTabView : UserControl
     {
         if (c == null) return null;
         return c.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+    }
+
+    private static ScrollContentPresenter? FindScrollContentPresenter(ScrollViewer? sv)
+    {
+        if (sv == null) return null;
+        return sv.GetVisualDescendants().OfType<ScrollContentPresenter>().FirstOrDefault();
     }
 
     private static bool IsFinitePositive(double v)
@@ -750,141 +798,134 @@ public partial class ReadableTabView : UserControl
         return Math.Max(0, y);
     }
 
-    private static void CenterByNewlines(TextBox tb, int caretIndex)
+    // Key fix: use TextLayout geometry (works with wrapping; no drift late in file)
+    private void CenterByTextLayoutReliable(TextBox tb, int charIndex)
     {
-        var sv = FindScrollViewer(tb);
-        if (sv == null) return;
+        ScrollViewer? sv;
+        ScrollContentPresenter? scp;
+        Visual? presenter;
 
-        double viewportH = sv.Viewport.Height;
-        double extentH = sv.Extent.Height;
-
-        double lineH = Math.Max(12.0, tb.FontSize * 1.35);
-
-        string text = tb.Text ?? "";
-        int lineIndex = CountNewlinesUpTo(text, caretIndex);
-
-        if (!IsFinitePositive(viewportH))
+        if (ReferenceEquals(tb, _editorOriginal))
         {
-            double y = Math.Max(0, (lineIndex - JumpFallbackExtraLines) * lineH);
-            sv.Offset = new Vector(sv.Offset.X, y);
-            return;
+            sv = _svOriginal ?? FindScrollViewer(tb);
+            scp = _scpOriginal ?? FindScrollContentPresenter(sv);
+            presenter = _presOriginal;
+        }
+        else
+        {
+            sv = _svTranslated ?? FindScrollViewer(tb);
+            scp = _scpTranslated ?? FindScrollContentPresenter(sv);
+            presenter = _presTranslated;
         }
 
-        double visibleLines = viewportH / lineH;
-        double topLine = Math.Max(0, lineIndex - (visibleLines / 2.0));
-        double desiredY = topLine * lineH;
-
-        desiredY = ClampY(extentH, viewportH, desiredY);
-        sv.Offset = new Vector(sv.Offset.X, desiredY);
-    }
-
-    private static void CenterByCaretRect(TextBox tb, int caretIndex)
-    {
-        var sv = FindScrollViewer(tb);
         if (sv == null) return;
-
-        double viewportH = sv.Viewport.Height;
-        double extentH = sv.Extent.Height;
-
-        if (!IsFinitePositive(viewportH))
-            return;
-
-        if (!TryGetCaretYInScrollViewer(tb, sv, caretIndex, out double caretY))
-            return;
-
-        double targetY = viewportH / 2.0;
-        double delta = caretY - targetY;
-
-        if (Math.Abs(delta) <= Math.Max(6.0, viewportH * 0.03))
-            return;
-
-        double desiredY = sv.Offset.Y + delta;
-        desiredY = ClampY(extentH, viewportH, desiredY);
-
-        sv.Offset = new Vector(sv.Offset.X, desiredY);
-    }
-
-    private static int CountNewlinesUpTo(string text, int index)
-    {
-        if (string.IsNullOrEmpty(text) || index <= 0) return 0;
-        if (index > text.Length) index = text.Length;
-
-        int count = 0;
-        for (int i = 0; i < index; i++)
-        {
-            if (text[i] == '\n')
-                count++;
-        }
-        return count;
-    }
-
-    private static bool TryGetCaretYInScrollViewer(TextBox tb, ScrollViewer sv, int charIndex, out double caretY)
-    {
-        caretY = 0;
 
         int len = tb.Text?.Length ?? 0;
-        if (len <= 0) return false;
+        if (len <= 0) return;
         charIndex = Math.Clamp(charIndex, 0, len);
 
+        // layout settles over multiple render ticks in huge docs
+        Dispatcher.UIThread.Post(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), DispatcherPriority.Render);
+        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(28));
+        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(60));
+        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(110));
+    }
+
+    private static void TryCenterOnce_TextLayout(TextBox tb, ScrollViewer sv, ScrollContentPresenter? scp, Visual? presenter, int charIndex)
+    {
+        double viewportH = sv.Viewport.Height;
+        double extentH = sv.Extent.Height;
+        if (!IsFinitePositive(viewportH) || !IsFinitePositive(extentH))
+            return;
+
+        // target visual for TranslatePoint: prefer ScrollContentPresenter if present, else ScrollViewer
+        Visual target = (Visual?)scp ?? (Visual)sv;
+
+        presenter ??= tb
+            .GetVisualDescendants()
+            .OfType<Visual>()
+            .LastOrDefault(v => string.Equals(v.GetType().Name, "TextPresenter", StringComparison.Ordinal));
+
+        if (presenter == null) return;
+
+        // get TextLayout from presenter (same pattern as HoverDictionaryBehavior)
+        TextLayout? tl = null;
         try
         {
-            var presenter = tb.GetVisualDescendants().FirstOrDefault(v => v.GetType().Name == "TextPresenter");
-            if (presenter != null)
-            {
-                var mPr = presenter.GetType().GetMethod("GetRectFromCharacterIndex", new[] { typeof(int) });
-                if (mPr != null)
-                {
-                    var val = mPr.Invoke(presenter, new object[] { charIndex });
-                    if (val is Rect r2)
-                    {
-                        var p = presenter.TranslatePoint(new Point(r2.X, r2.Y), sv);
-                        if (p != null)
-                        {
-                            caretY = p.Value.Y;
-                            return true;
-                        }
-                    }
-                }
-            }
+            var prop = presenter.GetType().GetProperty("TextLayout", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (prop?.GetValue(presenter) is TextLayout got)
+                tl = got;
         }
         catch { }
 
-        var mTb = tb.GetType().GetMethod("GetRectFromCharacterIndex", new[] { typeof(int) });
-        if (mTb != null)
+        if (tl == null) return;
+
+        Rect r;
+        try { r = tl.HitTestTextPosition(charIndex); }
+        catch { return; }
+
+        var p = presenter.TranslatePoint(new Point(r.X, r.Y), target);
+        if (p == null) return;
+
+        double yInViewport = p.Value.Y;
+
+        // slightly above center feels better for reading and avoids "just barely at bottom"
+        double targetY = viewportH * 0.40;
+        double topBand = viewportH * 0.15;
+        double bottomBand = viewportH * 0.85;
+
+        if (yInViewport >= topBand && yInViewport <= bottomBand)
+            return;
+
+        double desiredY = sv.Offset.Y + (yInViewport - targetY);
+
+        desiredY = ClampY(extentH, viewportH, desiredY);
+        sv.Offset = new Vector(sv.Offset.X, desiredY);
+    }
+
+    // Wrapper for old call sites
+    private void CenterByCharacterRectReliable(TextBox tb, int charIndex)
+        => CenterByTextLayoutReliable(tb, charIndex);
+
+    private static bool TryInvokeRectFromIndex(object target, int charIndex, out Rect rect)
+    {
+        rect = default;
+
+        // (kept for compatibility / fallback use if you ever want it)
+        string[] names =
         {
+            "GetRectFromCharacterIndex",
+            "GetRectangleFromCharacterIndex",
+            "GetCursorRectangle",
+            "GetCaretRectangle",
+            "GetCaretRect",
+        };
+
+        var t = target.GetType();
+
+        foreach (var name in names)
+        {
+            var mi = t.GetMethod(
+                name,
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+                binder: null,
+                types: new[] { typeof(int) },
+                modifiers: null);
+
+            if (mi == null) continue;
+
             try
             {
-                var val = mTb.Invoke(tb, new object[] { charIndex });
+                var val = mi.Invoke(target, new object[] { charIndex });
                 if (val is Rect r)
                 {
-                    var p = tb.TranslatePoint(new Point(r.X, r.Y), sv);
-                    if (p != null)
-                    {
-                        caretY = p.Value.Y;
-                        return true;
-                    }
+                    rect = r;
+                    return true;
                 }
             }
             catch { }
         }
 
         return false;
-    }
-
-    private void RequestMirrorFromUserAction(bool sourceIsTranslated)
-    {
-        Dispatcher.UIThread.Post(() =>
-        {
-            if (_syncingSelection) return;
-            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
-            MirrorSelectionOneWay(sourceIsTranslated);
-        }, DispatcherPriority.Background);
-
-        DispatcherTimer.RunOnce(() =>
-        {
-            if (_syncingSelection) return;
-            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
-            MirrorSelectionOneWay(sourceIsTranslated);
-        }, TimeSpan.FromMilliseconds(25));
     }
 }

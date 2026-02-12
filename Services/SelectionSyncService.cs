@@ -1,4 +1,5 @@
-﻿using CbetaTranslator.App.Models;
+﻿// Services/SelectionSyncService.cs
+using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
