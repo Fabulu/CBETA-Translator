@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
 using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Text;
@@ -13,20 +11,17 @@ namespace CbetaTranslator.App.Text;
 /// Fine-grained segmentation (preferred):
 /// - Start new segment on sync-tags: lb, pb, p(xml:id), anchor, cb:juan
 /// - Render lb as newline, pb/p/head as paragraph break
-/// Not a full XML parser; tokenizes tags vs text.
+/// Not a full XML parser; fast tag/text scanner.
+///
+/// "To the moon" changes:
+/// - No WebUtility.HtmlDecode (fast tiny entity decoder only when '&' appears)
+/// - No per-chunk allocations (no raw.ToString / normalized strings)
+/// - Normalize whitespace while appending (trim + collapse)
+/// - Remove segments.Sort (segments are produced in-order)
+/// - Cache attribute-name spans to reduce tiny overhead
 /// </summary>
 public static class CbetaTeiRenderer
 {
-    private static readonly Regex TokenRegex = new Regex(@"(<[^>]+>)", RegexOptions.Compiled);
-
-    private static readonly Regex StartTagRegex = new Regex(
-        @"^<(?<tagName>(?:cb:)?[A-Za-z]+)\b(?<attrs>[^<>]*?)(?<self>/?)>$",
-        RegexOptions.Compiled);
-
-    private static readonly Regex EndTagRegex = new Regex(
-        @"^</(?<tagName>(?:cb:)?[A-Za-z]+)\s*>$",
-        RegexOptions.Compiled);
-
     public static RenderedDocument Render(string xml)
     {
         if (string.IsNullOrWhiteSpace(xml))
@@ -53,96 +48,77 @@ public static class CbetaTeiRenderer
 
         StartNewSegment("START");
 
-        foreach (var token in Tokenize(xml))
+        ReadOnlySpan<char> s = xml.AsSpan();
+        int i = 0;
+
+        while (i < s.Length)
         {
-            if (token.IsTag)
+            int relLt = s.Slice(i).IndexOf('<');
+            if (relLt < 0)
             {
-                var t = token.Value;
+                if (teiHeaderDepth == 0)
+                    AppendText(sb, s.Slice(i), ref lastWasNewline);
+                break;
+            }
 
-                // End tag
-                var endMatch = EndTagRegex.Match(t);
-                if (endMatch.Success)
+            int lt = i + relLt;
+
+            // text before tag
+            if (lt > i && teiHeaderDepth == 0)
+                AppendText(sb, s.Slice(i, lt - i), ref lastWasNewline);
+
+            // find end of tag
+            int relGt = s.Slice(lt).IndexOf('>');
+            if (relGt < 0)
+            {
+                if (teiHeaderDepth == 0)
+                    AppendText(sb, s.Slice(lt), ref lastWasNewline);
+                break;
+            }
+
+            int gt = lt + relGt;
+            var tagSpan = s.Slice(lt, gt - lt + 1);
+
+            // process tag
+            if (TryParseTag(tagSpan, out var isEndTag, out var tagName, out var attrs))
+            {
+                if (isEndTag)
                 {
-                    var tagNameEnd = endMatch.Groups["tagName"].Value;
-
-                    if (tagNameEnd.Equals("teiHeader", StringComparison.OrdinalIgnoreCase))
+                    if (EqualsIgnoreCase(tagName, "teiHeader"))
                         teiHeaderDepth = Math.Max(0, teiHeaderDepth - 1);
 
                     // Paragraph end spacing (outside header)
-                    if (teiHeaderDepth == 0 && tagNameEnd.Equals("p", StringComparison.OrdinalIgnoreCase))
+                    if (teiHeaderDepth == 0 && EqualsIgnoreCase(tagName, "p"))
                         EnsureParagraphBreak(sb, ref lastWasNewline);
-
-                    continue;
                 }
-
-                // Start or self-closing tag
-                var startMatch = StartTagRegex.Match(t);
-                if (!startMatch.Success)
-                    continue;
-
-                var tagName = startMatch.Groups["tagName"].Value;
-                var attrs = startMatch.Groups["attrs"].Value;
-
-                if (tagName.Equals("teiHeader", StringComparison.OrdinalIgnoreCase))
+                else
                 {
-                    teiHeaderDepth++;
-                    continue;
+                    if (EqualsIgnoreCase(tagName, "teiHeader"))
+                    {
+                        teiHeaderDepth++;
+                    }
+                    else if (teiHeaderDepth == 0)
+                    {
+                        // Segment boundary keys
+                        if (TryMakeSyncKey(tagName, attrs, out var key))
+                            StartNewSegment(key);
+
+                        // Rendering structural breaks
+                        if (EqualsIgnoreCase(tagName, "lb"))
+                        {
+                            AppendNewline(sb, ref lastWasNewline);
+                        }
+                        else if (EqualsIgnoreCase(tagName, "pb") ||
+                                 EqualsIgnoreCase(tagName, "p") ||
+                                 EqualsIgnoreCase(tagName, "head"))
+                        {
+                            EnsureParagraphBreak(sb, ref lastWasNewline);
+                        }
+                    }
                 }
-
-                if (teiHeaderDepth > 0)
-                    continue;
-
-                // Segment boundary keys (fine-grained)
-                if (TryMakeSyncKey(tagName, attrs, out var key))
-                    StartNewSegment(key);
-
-                // Rendering structural breaks
-                if (tagName.Equals("lb", StringComparison.OrdinalIgnoreCase))
-                {
-                    AppendNewline(sb, ref lastWasNewline);
-                    continue;
-                }
-
-                if (tagName.Equals("pb", StringComparison.OrdinalIgnoreCase))
-                {
-                    EnsureParagraphBreak(sb, ref lastWasNewline);
-                    continue;
-                }
-
-                if (tagName.Equals("p", StringComparison.OrdinalIgnoreCase))
-                {
-                    EnsureParagraphBreak(sb, ref lastWasNewline);
-                    continue;
-                }
-
-                if (tagName.Equals("head", StringComparison.OrdinalIgnoreCase))
-                {
-                    EnsureParagraphBreak(sb, ref lastWasNewline);
-                    continue;
-                }
-
-                continue;
             }
-            else
-            {
-                if (teiHeaderDepth > 0)
-                    continue;
 
-                var text = WebUtility.HtmlDecode(token.Value);
-                text = NormalizeTextNode(text);
-                if (text.Length == 0)
-                    continue;
-
-                if (sb.Length > 0)
-                {
-                    char prev = sb[sb.Length - 1];
-                    if (!char.IsWhiteSpace(prev) && !char.IsWhiteSpace(text[0]))
-                        sb.Append(' ');
-                }
-
-                sb.Append(text);
-                lastWasNewline = sb.Length > 0 && sb[sb.Length - 1] == '\n';
-            }
+            i = gt + 1;
         }
 
         // Close last segment
@@ -150,27 +126,164 @@ public static class CbetaTeiRenderer
         if (finalEnd > segStart)
             segments.Add(new RenderSegment(currentKey, segStart, finalEnd));
 
-        // IMPORTANT: do not post-normalize in a way that changes length; offsets must stay valid.
-        var renderedText = sb.ToString();
-
-        segments.Sort((a, b) => a.Start.CompareTo(b.Start));
-        return new RenderedDocument(renderedText, segments);
+        // segments are already in order; no sort needed
+        return new RenderedDocument(sb.ToString(), segments);
     }
 
-    private static IEnumerable<(bool IsTag, string Value)> Tokenize(string xml)
-    {
-        int last = 0;
-        foreach (Match m in TokenRegex.Matches(xml))
-        {
-            if (m.Index > last)
-                yield return (false, xml.Substring(last, m.Index - last));
+    // ------------------------------------------------------------
+    // Fast tag parsing (no regex, minimal allocations)
+    // ------------------------------------------------------------
 
-            yield return (true, m.Value);
-            last = m.Index + m.Length;
+    private static bool TryParseTag(ReadOnlySpan<char> tag, out bool isEndTag, out ReadOnlySpan<char> tagName, out ReadOnlySpan<char> attrs)
+    {
+        isEndTag = false;
+        tagName = default;
+        attrs = default;
+
+        // must start with < and end with >
+        if (tag.Length < 3 || tag[0] != '<' || tag[^1] != '>')
+            return false;
+
+        int p = 1;
+
+        // comments / PI / doctype etc => ignore
+        char c1 = tag[p];
+        if (c1 == '!' || c1 == '?')
+            return false;
+
+        if (c1 == '/')
+        {
+            isEndTag = true;
+            p++;
         }
 
-        if (last < xml.Length)
-            yield return (false, xml.Substring(last));
+        // skip whitespace
+        while (p < tag.Length && char.IsWhiteSpace(tag[p])) p++;
+        if (p >= tag.Length - 1) return false;
+
+        int nameStart = p;
+
+        // tag name: letters + optional colon, e.g. cb:juan
+        while (p < tag.Length - 1)
+        {
+            char ch = tag[p];
+            if (char.IsLetter(ch) || ch == ':')
+            {
+                p++;
+                continue;
+            }
+            break;
+        }
+
+        if (p == nameStart) return false;
+
+        tagName = tag.Slice(nameStart, p - nameStart);
+
+        // attrs start at current p, end before closing '>' (and before trailing '/')
+        int attrStart = p;
+
+        int attrEnd = tag.Length - 1; // index of '>'
+        int q = attrEnd - 1;
+        while (q > attrStart && char.IsWhiteSpace(tag[q])) q--;
+        if (!isEndTag && q > attrStart && tag[q] == '/')
+            attrEnd = q;
+
+        attrs = tag.Slice(attrStart, attrEnd - attrStart);
+        return true;
+    }
+
+    private static bool EqualsIgnoreCase(ReadOnlySpan<char> a, string b)
+        => a.Equals(b.AsSpan(), StringComparison.OrdinalIgnoreCase);
+
+    // ------------------------------------------------------------
+    // Text handling (normalize + optional entity decode, zero per-chunk strings)
+    // ------------------------------------------------------------
+
+    private static void AppendText(StringBuilder outSb, ReadOnlySpan<char> raw, ref bool lastWasNewline)
+    {
+        if (raw.Length == 0) return;
+
+        int before = outSb.Length;
+
+        bool wroteAny = false;
+        bool pendingSpace = false;
+
+        // emit char with whitespace collapsing + trim-start semantics
+        void EmitChar(char c)
+        {
+            if (c == '\r') return;
+
+            if (c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\v')
+            {
+                pendingSpace = true;
+                return;
+            }
+
+            if (pendingSpace)
+            {
+                if (wroteAny)
+                {
+                    if (outSb.Length > 0 && !char.IsWhiteSpace(outSb[outSb.Length - 1]))
+                        outSb.Append(' ');
+                }
+                pendingSpace = false;
+            }
+
+            outSb.Append(c);
+            wroteAny = true;
+        }
+
+        bool hadOutputBefore = before > 0;
+        char prevChar = hadOutputBefore ? outSb[before - 1] : '\0';
+        bool prevIsWs = hadOutputBefore && char.IsWhiteSpace(prevChar);
+
+        // Scan raw span. Decode entities only if we see '&'.
+        int i = 0;
+        while (i < raw.Length)
+        {
+            char c = raw[i];
+
+            if (c == '&')
+            {
+                if (TryDecodeEntity(raw, ref i, out var decodedChar, out var decodedString))
+                {
+                    if (decodedString != null)
+                    {
+                        for (int k = 0; k < decodedString.Length; k++)
+                            EmitChar(decodedString[k]);
+                    }
+                    else
+                    {
+                        EmitChar(decodedChar);
+                    }
+                    continue;
+                }
+
+                // failed decode -> literal '&'
+                EmitChar('&');
+                i++;
+                continue;
+            }
+
+            EmitChar(c);
+            i++;
+        }
+
+        if (!wroteAny)
+            return;
+
+        // Old behavior: if previous output ends with non-ws and this appended chunk starts with non-ws, insert a space.
+        if (hadOutputBefore && !prevIsWs)
+        {
+            int first = before;
+            while (first < outSb.Length && char.IsWhiteSpace(outSb[first]))
+                first++;
+
+            if (first < outSb.Length && !char.IsWhiteSpace(outSb[first]))
+                outSb.Insert(before, ' ');
+        }
+
+        lastWasNewline = outSb.Length > 0 && outSb[outSb.Length - 1] == '\n';
     }
 
     private static void AppendNewline(StringBuilder sb, ref bool lastWasNewline)
@@ -201,83 +314,155 @@ public static class CbetaTeiRenderer
         lastWasNewline = true;
     }
 
-    private static string NormalizeTextNode(string s)
+    /// <summary>
+    /// Decodes &amp; &lt; &gt; &quot; &apos; plus numeric: &#123; and hex: &#x1F600;
+    /// Advances i to the character after ';' on success.
+    /// On failure, leaves i unchanged and returns false.
+    /// </summary>
+    private static bool TryDecodeEntity(ReadOnlySpan<char> s, ref int i, out char ch, out string? str)
     {
-        if (string.IsNullOrEmpty(s)) return "";
+        ch = default;
+        str = null;
 
-        // remove \r and collapse whitespace
-        var sb = new StringBuilder(s.Length);
-        bool inWs = false;
+        int start = i;
+        if (i >= s.Length || s[i] != '&') return false;
 
-        for (int i = 0; i < s.Length; i++)
+        int semiRel = s.Slice(i).IndexOf(';');
+        if (semiRel < 0) return false;
+        int semi = i + semiRel;
+
+        var ent = s.Slice(i + 1, semi - (i + 1));
+
+        // named
+        if (ent.SequenceEqual("amp".AsSpan())) { ch = '&'; i = semi + 1; return true; }
+        if (ent.SequenceEqual("lt".AsSpan())) { ch = '<'; i = semi + 1; return true; }
+        if (ent.SequenceEqual("gt".AsSpan())) { ch = '>'; i = semi + 1; return true; }
+        if (ent.SequenceEqual("quot".AsSpan())) { ch = '"'; i = semi + 1; return true; }
+        if (ent.SequenceEqual("apos".AsSpan())) { ch = '\''; i = semi + 1; return true; }
+
+        // numeric: &#...; or &#x...;
+        if (ent.Length >= 2 && ent[0] == '#')
         {
-            char c = s[i];
-            if (c == '\r') continue;
+            bool hex = ent.Length >= 3 && (ent[1] == 'x' || ent[1] == 'X');
+            int value = 0;
 
-            if (c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\v')
+            try
             {
-                inWs = true;
-                continue;
+                if (hex)
+                {
+                    for (int k = 2; k < ent.Length; k++)
+                    {
+                        int d = HexVal(ent[k]);
+                        if (d < 0) { i = start; return false; }
+                        value = checked(value * 16 + d);
+                    }
+                }
+                else
+                {
+                    for (int k = 1; k < ent.Length; k++)
+                    {
+                        char c = ent[k];
+                        if (c < '0' || c > '9') { i = start; return false; }
+                        value = checked(value * 10 + (c - '0'));
+                    }
+                }
+            }
+            catch (OverflowException)
+            {
+                i = start;
+                return false;
             }
 
-            if (inWs)
+            if (value <= 0) { i = start; return false; }
+
+            if (value <= 0xFFFF)
             {
-                // emit single space between runs
-                if (sb.Length > 0) sb.Append(' ');
-                inWs = false;
+                ch = (char)value;
+                i = semi + 1;
+                return true;
             }
 
-            sb.Append(c);
+            if (value <= 0x10FFFF)
+            {
+                value -= 0x10000;
+                char high = (char)((value >> 10) + 0xD800);
+                char low = (char)((value & 0x3FF) + 0xDC00);
+                str = new string(new[] { high, low });
+                i = semi + 1;
+                return true;
+            }
+
+            i = start;
+            return false;
         }
 
-        return sb.ToString().Trim();
+        i = start;
+        return false;
     }
 
+    private static int HexVal(char c)
+    {
+        if (c >= '0' && c <= '9') return c - '0';
+        if (c >= 'a' && c <= 'f') return 10 + (c - 'a');
+        if (c >= 'A' && c <= 'F') return 10 + (c - 'A');
+        return -1;
+    }
 
-    private static bool TryMakeSyncKey(string tagName, string attrs, out string key)
+    // ------------------------------------------------------------
+    // Segment keys + attribute parsing (no regex)
+    // ------------------------------------------------------------
+
+    // NOTE: const string is safest/fastest here (no illegal readonly properties, no static span lifetime concerns)
+    private const string AttrN = "n";
+    private const string AttrEd = "ed";
+    private const string AttrXmlId = "xml:id";
+    private const string AttrFun = "fun";
+
+    private static bool TryMakeSyncKey(ReadOnlySpan<char> tagName, ReadOnlySpan<char> attrs, out string key)
     {
         key = "";
 
-        switch (tagName)
+        if (EqualsIgnoreCase(tagName, "lb"))
         {
-            case "lb":
-                {
-                    var n = Attr(attrs, "n");
-                    var ed = Attr(attrs, "ed");
-                    key = MakeKey("lb", n, ed);
-                    return true;
-                }
-            case "pb":
-                {
-                    var id = Attr(attrs, "xml:id") ?? Attr(attrs, "n");
-                    var ed = Attr(attrs, "ed");
-                    key = MakeKey("pb", id, ed);
-                    return true;
-                }
-            case "p":
-                {
-                    var id = Attr(attrs, "xml:id");
-                    if (string.IsNullOrWhiteSpace(id)) return false; // only meaningful when xml:id present
-                    key = MakeKey("p", id);
-                    return true;
-                }
-            case "anchor":
-                {
-                    var id = Attr(attrs, "xml:id") ?? Attr(attrs, "n");
-                    if (string.IsNullOrWhiteSpace(id)) return false;
-                    key = MakeKey("anchor", id);
-                    return true;
-                }
-            case "cb:juan":
-                {
-                    var n = Attr(attrs, "n");
-                    var fun = Attr(attrs, "fun");
-                    key = MakeKey("cb:juan", n, fun);
-                    return true;
-                }
-            default:
-                return false;
+            var n = Attr(attrs, AttrN);
+            var ed = Attr(attrs, AttrEd);
+            key = MakeKey("lb", n, ed);
+            return true;
         }
+
+        if (EqualsIgnoreCase(tagName, "pb"))
+        {
+            var id = Attr(attrs, AttrXmlId) ?? Attr(attrs, AttrN);
+            var ed = Attr(attrs, AttrEd);
+            key = MakeKey("pb", id, ed);
+            return true;
+        }
+
+        if (EqualsIgnoreCase(tagName, "p"))
+        {
+            var id = Attr(attrs, AttrXmlId);
+            if (string.IsNullOrWhiteSpace(id)) return false;
+            key = MakeKey("p", id);
+            return true;
+        }
+
+        if (EqualsIgnoreCase(tagName, "anchor"))
+        {
+            var id = Attr(attrs, AttrXmlId) ?? Attr(attrs, AttrN);
+            if (string.IsNullOrWhiteSpace(id)) return false;
+            key = MakeKey("anchor", id);
+            return true;
+        }
+
+        if (EqualsIgnoreCase(tagName, "cb:juan"))
+        {
+            var n = Attr(attrs, AttrN);
+            var fun = Attr(attrs, AttrFun);
+            key = MakeKey("cb:juan", n, fun);
+            return true;
+        }
+
+        return false;
     }
 
     private static string MakeKey(string baseName, params string?[] parts)
@@ -287,55 +472,54 @@ public static class CbetaTeiRenderer
         return $"{baseName}|{string.Join("|", filtered)}";
     }
 
-    private static string? Attr(string attrs, string attrName)
+    /// <summary>
+    /// Extract attribute value from an attribute span.
+    /// Supports double quotes only (which matches CBETA TEI).
+    /// Returns null if not found.
+    /// </summary>
+    private static string? Attr(ReadOnlySpan<char> attrs, string attrName)
     {
-        if (string.IsNullOrEmpty(attrs) || string.IsNullOrEmpty(attrName))
+        if (attrs.Length == 0 || string.IsNullOrEmpty(attrName))
             return null;
 
-        // Look for: <space or start> attrName = "..."
-        // We keep it simple: search for attrName, then verify it's a real attribute boundary.
+        ReadOnlySpan<char> needle = attrName.AsSpan();
+
         int i = 0;
-        while (true)
+        while (i < attrs.Length)
         {
-            i = attrs.IndexOf(attrName, i, StringComparison.Ordinal);
-            if (i < 0) return null;
+            while (i < attrs.Length && char.IsWhiteSpace(attrs[i])) i++;
+            if (i >= attrs.Length) break;
 
-            // must be boundary before name
-            if (i > 0 && (char.IsLetterOrDigit(attrs[i - 1]) || attrs[i - 1] == ':' || attrs[i - 1] == '_' || attrs[i - 1] == '-'))
-            {
-                i += attrName.Length;
-                continue;
-            }
+            int eqRel = attrs.Slice(i).IndexOf('=');
+            if (eqRel < 0) break;
+            int eq = i + eqRel;
 
-            int j = i + attrName.Length;
+            int nameEnd = eq - 1;
+            while (nameEnd >= i && char.IsWhiteSpace(attrs[nameEnd])) nameEnd--;
+            if (nameEnd < i) { i = eq + 1; continue; }
 
-            // skip whitespace
+            var candName = attrs.Slice(i, nameEnd - i + 1);
+
+            int j = eq + 1;
             while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
-
-            // must have '='
-            if (j >= attrs.Length || attrs[j] != '=')
-            {
-                i += attrName.Length;
-                continue;
-            }
-            j++;
-
-            while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
-
-            // must start quote
             if (j >= attrs.Length || attrs[j] != '"')
             {
-                i += attrName.Length;
+                i = eq + 1;
                 continue;
             }
+
             j++;
-
             int start = j;
-            int end = attrs.IndexOf('"', start);
-            if (end < 0) return null;
+            int endRel = attrs.Slice(start).IndexOf('"');
+            if (endRel < 0) return null;
+            int end = start + endRel;
 
-            return attrs.Substring(start, end - start);
+            if (candName.Equals(needle, StringComparison.Ordinal))
+                return attrs.Slice(start, end - start).ToString();
+
+            i = end + 1;
         }
-    }
 
+        return null;
+    }
 }
