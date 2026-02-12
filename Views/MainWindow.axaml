@@ -7,7 +7,10 @@
         Background="{DynamicResource AppBg}"
         Title="CBETA Translator">
 
-	<!-- THEME SOURCE VALUES (REAL brushes) -->
+	<!-- ========================================================= -->
+	<!-- RESOURCES (Night + Light + Tokens)                       -->
+	<!-- ========================================================= -->
+
 	<Window.Resources>
 
 		<!-- NIGHT -->
@@ -19,8 +22,8 @@
 		<SolidColorBrush x:Key="Night_TextMutedFg" Color="#FFBDBDBD"/>
 
 		<SolidColorBrush x:Key="Night_ControlBg" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF303030"/>
-		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF343434"/>
+		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF2B2B2B"/>
+		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF2B2B2B"/>
 
 		<SolidColorBrush x:Key="Night_BorderBrush" Color="#FF444444"/>
 
@@ -37,6 +40,9 @@
 		<SolidColorBrush x:Key="Night_TooltipBorder" Color="#FF3A3A3A"/>
 		<SolidColorBrush x:Key="Night_TooltipFg" Color="#FFEAEAEA"/>
 
+		<SolidColorBrush x:Key="Night_SelectionBg" Color="#FF2E5A9E"/>
+		<SolidColorBrush x:Key="Night_SelectionFg" Color="#FFFFFFFF"/>
+
 		<!-- LIGHT -->
 		<SolidColorBrush x:Key="Light_AppBg" Color="#FFF4F4F4"/>
 		<SolidColorBrush x:Key="Light_BarBg" Color="#FFEDEDED"/>
@@ -46,9 +52,8 @@
 		<SolidColorBrush x:Key="Light_TextMutedFg" Color="#FF5A5A5A"/>
 
 		<SolidColorBrush x:Key="Light_ControlBg" Color="#FFFFFFFF"/>
-		<!-- hover/focus must NOT jump dark -->
-		<SolidColorBrush x:Key="Light_ControlBgHover" Color="#FFF6F6F6"/>
-		<SolidColorBrush x:Key="Light_ControlBgFocus" Color="#FFF1F1F1"/>
+		<SolidColorBrush x:Key="Light_ControlBgHover" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_ControlBgFocus" Color="#FFFFFFFF"/>
 
 		<SolidColorBrush x:Key="Light_BorderBrush" Color="#FFB8B8B8"/>
 
@@ -65,7 +70,10 @@
 		<SolidColorBrush x:Key="Light_TooltipBorder" Color="#FF333333"/>
 		<SolidColorBrush x:Key="Light_TooltipFg" Color="#FFF2F2F2"/>
 
-		<!-- TOKENS (REAL VALUES). Default = Night. Code-behind overwrites on toggle. -->
+		<SolidColorBrush x:Key="Light_SelectionBg" Color="#FFB7D7FF"/>
+		<SolidColorBrush x:Key="Light_SelectionFg" Color="#FF000000"/>
+
+		<!-- TOKENS (default = Night) -->
 		<SolidColorBrush x:Key="AppBg" Color="#FF111111"/>
 		<SolidColorBrush x:Key="BarBg" Color="#FF1E1E1E"/>
 		<SolidColorBrush x:Key="NavBg" Color="#FF1A1A1A"/>
@@ -74,9 +82,6 @@
 		<SolidColorBrush x:Key="TextMutedFg" Color="#FFBDBDBD"/>
 
 		<SolidColorBrush x:Key="ControlBg" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="ControlBgHover" Color="#FF303030"/>
-		<SolidColorBrush x:Key="ControlBgFocus" Color="#FF343434"/>
-
 		<SolidColorBrush x:Key="BorderBrush" Color="#FF444444"/>
 
 		<SolidColorBrush x:Key="BtnBg" Color="#FF2A2A2A"/>
@@ -92,12 +97,18 @@
 		<SolidColorBrush x:Key="TooltipBorder" Color="#FF3A3A3A"/>
 		<SolidColorBrush x:Key="TooltipFg" Color="#FFEAEAEA"/>
 
+		<SolidColorBrush x:Key="SelectionBg" Color="#FF2E5A9E"/>
+		<SolidColorBrush x:Key="SelectionFg" Color="#FFFFFFFF"/>
+
 	</Window.Resources>
 
-	<!-- GLOBAL STYLES -->
+	<!-- ========================================================= -->
+	<!-- GLOBAL STYLES                                             -->
+	<!-- ========================================================= -->
+
 	<Window.Styles>
 
-		<!-- Default text -->
+		<!-- Text -->
 		<Style Selector="TextBlock">
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
@@ -106,75 +117,51 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
-		<!-- ToolTip fix: black bg + readable text -->
+		<!-- Tooltip -->
 		<Style Selector="ToolTip">
 			<Setter Property="Background" Value="{DynamicResource TooltipBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TooltipFg}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource TooltipBorder}"/>
 			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="Foreground" Value="{DynamicResource TooltipFg}"/>
-			<Setter Property="Padding" Value="8,6"/>
-		</Style>
-		<Style Selector="ToolTip TextBlock">
-			<Setter Property="Foreground" Value="{DynamicResource TooltipFg}"/>
 		</Style>
 
-		<!-- Buttons: lock foreground across states (prevents white-on-white) -->
+		<!-- Buttons -->
 		<Style Selector="Button">
 			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="Padding" Value="10,4"/>
-		</Style>
-		<Style Selector="Button:pointerover">
-			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
-			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
-		</Style>
-		<Style Selector="Button:pressed">
-			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
-			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
-		</Style>
-		<Style Selector="Button:disabled">
-			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
-		<!-- TextBoxes: no dark jump on hover/focus -->
+		<Style Selector="Button:pointerover">
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+		</Style>
+
+		<Style Selector="Button:pressed">
+			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+		</Style>
+
+		<!-- TextBox (no dark jump EVER) -->
 		<Style Selector="TextBox">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
+			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="SelectionForegroundBrush" Value="{DynamicResource SelectionFg}"/>
 		</Style>
+
 		<Style Selector="TextBox:pointerover">
-			<Setter Property="Background" Value="{DynamicResource ControlBgHover}"/>
-		</Style>
-		<Style Selector="TextBox:focus">
-			<Setter Property="Background" Value="{DynamicResource ControlBgFocus}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<!-- CheckBox -->
-		<Style Selector="CheckBox">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<!-- ComboBox -->
-		<Style Selector="ComboBox">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
-		<!-- Tabs: stop selected header turning white (override header presenter too) -->
-		<Style Selector="TabControl">
-			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
+		<Style Selector="TextBox:focus">
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 		</Style>
 
+		<!-- Tabs -->
 		<Style Selector="TabItem">
-			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
@@ -183,62 +170,46 @@
 			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
 		</Style>
 
-		<!-- This is the key bit that usually fixes "selected tab text still white": -->
-		<Style Selector="TabItem:selected ContentPresenter">
-			<Setter Property="TextBlock.Foreground" Value="{DynamicResource TabFgSelected}"/>
-		</Style>
-		<Style Selector="TabItem ContentPresenter">
-			<Setter Property="TextBlock.Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<Style Selector="ListBox">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-		<Style Selector="TreeView">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
 	</Window.Styles>
+
+	<!-- ========================================================= -->
+	<!-- LAYOUT                                                    -->
+	<!-- ========================================================= -->
 
 	<Grid RowDefinitions="Auto,*,Auto">
 
-		<!-- Top bar -->
+		<!-- Top Bar -->
 		<Border Grid.Row="0" Background="{DynamicResource BarBg}" Padding="10">
 			<DockPanel LastChildFill="True">
 
 				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
 					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"/>
 					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
-
 					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
-
-					<CheckBox Name="ChkNightMode"
+					<!--<CheckBox Name="ChkNightMode"
 							  Content="Night mode"
 							  VerticalAlignment="Center"
 							  Margin="10,0,0,0"
-							  IsChecked="True"/>
-
-					<TextBlock Name="TxtRoot"
-							   VerticalAlignment="Center"
-							   Margin="10,0,0,0"
-							   Classes="muted"/>
+							  IsChecked="True"/> -->
+					<TextBlock Name="TxtRoot" Margin="10,0,0,0" Classes="muted"/>
 				</StackPanel>
 
 				<TextBlock Name="TxtCurrentFile"
 						   DockPanel.Dock="Right"
-						   VerticalAlignment="Center"
-						   HorizontalAlignment="Right"
 						   Classes="muted"/>
 			</DockPanel>
 		</Border>
 
-		<!-- Main content -->
+		<!-- Main -->
 		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
 
-			<Border Name="NavPanel" Background="{DynamicResource NavBg}" Width="320">
+			<Border Name="NavPanel"
+					Background="{DynamicResource NavBg}"
+					Width="320">
+
 				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
 
-					<TextBlock Text="Files" FontWeight="Bold" Margin="4" Classes="muted"/>
+					<TextBlock Text="Files" FontWeight="Bold" Classes="muted"/>
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
@@ -246,8 +217,7 @@
 
 					<CheckBox Name="ChkShowFilenames"
 							  Grid.Row="2"
-							  Content="Show filenames"
-							  IsChecked="False"/>
+							  Content="Show filenames"/>
 
 					<ListBox Name="FilesList"
 							 Grid.Row="3"
@@ -273,8 +243,7 @@
 				</Grid>
 			</Border>
 
-			<!-- Right side: Tabs -->
-			<Border Grid.Column="2" Margin="8" Background="#00000000">
+			<Border Grid.Column="2" Margin="8">
 				<TabControl Name="MainTabs">
 					<TabItem Header="Readable">
 						<views:ReadableTabView Name="ReadableView"/>
@@ -293,10 +262,13 @@
 
 		</Grid>
 
-		<!-- Status bar -->
-		<Border Grid.Row="2" Background="{DynamicResource BarBg}" Padding="8">
+		<!-- Status -->
+		<Border Grid.Row="2"
+				Background="{DynamicResource BarBg}"
+				Padding="8">
 			<TextBlock Name="TxtStatus" Classes="muted"/>
 		</Border>
 
 	</Grid>
+
 </Window>

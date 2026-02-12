@@ -77,8 +77,8 @@ public partial class MainWindow : Window
         UpdateSaveButtonState();
 
         // Apply theme according to checkbox (defaults to checked in XAML)
-        ApplyTheme(dark: _chkNightMode?.IsChecked == true);
-
+       // ApplyTheme(dark: _chkNightMode?.IsChecked == true);
+        ApplyTheme(dark: true);
         _ = TryAutoLoadRootFromConfigAsync();
     }
 
@@ -182,8 +182,8 @@ public partial class MainWindow : Window
             _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
 
         // NEW: theme checkbox
-        if (_chkNightMode != null)
-            _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
+      //  if (_chkNightMode != null)
+      //      _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
     }
 
     // IMPORTANT: parameter name is "dark" so ApplyTheme(dark: true) compiles.
