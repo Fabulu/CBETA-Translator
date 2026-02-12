@@ -24,6 +24,10 @@ public partial class MainWindow : Window
     private Button? _btnSave;
     private Button? _btnLicenses;
 
+    // NEW: global add note
+    private Button? _btnAddCommunityNote;
+
+
     private Border? _navPanel;
     private ListBox? _filesList;
     private TextBox? _navSearch;
@@ -83,6 +87,10 @@ public partial class MainWindow : Window
         _btnSave = this.FindControl<Button>("BtnSave");
         _btnLicenses = this.FindControl<Button>("BtnLicenses");
 
+        // NEW
+        _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
+
+
         _navPanel = this.FindControl<Border>("NavPanel");
         _filesList = this.FindControl<ListBox>("FilesList");
         _navSearch = this.FindControl<TextBox>("NavSearch");
@@ -99,13 +107,33 @@ public partial class MainWindow : Window
         _searchView = this.FindControl<SearchTabView>("SearchView");
         _gitView = this.FindControl<GitTabView>("GitView");
 
+        if (_readableView != null)
+            _readableView.Status += (_, msg) => SetStatus(msg);
 
+        // -----------------------------
+        // Translation tab wiring
+        // -----------------------------
         if (_translationView != null)
         {
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
+        // -----------------------------
+        // Readable tab wiring (COMMUNITY NOTES)
+        // -----------------------------
+        if (_readableView != null)
+        {
+            _readableView.CommunityNoteInsertRequested += (_, req) =>
+                _ = InsertCommunityNoteAsync(req.XmlIndex, req.NoteText, req.Resp);
+
+            _readableView.CommunityNoteDeleteRequested += (_, req) =>
+                _ = DeleteCommunityNoteAsync(req.XmlStart, req.XmlEndExclusive);
+        }
+
+        // -----------------------------
+        // Search tab wiring
+        // -----------------------------
         if (_searchView != null)
         {
             _searchView.Status += (_, msg) => SetStatus(msg);
@@ -119,6 +147,9 @@ public partial class MainWindow : Window
             };
         }
 
+        // -----------------------------
+        // Git tab wiring
+        // -----------------------------
         if (_gitView != null)
         {
             _gitView.Status += (_, msg) => SetStatus(msg);
@@ -147,6 +178,9 @@ public partial class MainWindow : Window
         if (_btnSave != null) _btnSave.Click += Save_Click;
         if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
 
+        // NEW
+        if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
+
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
 
         if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
@@ -157,6 +191,42 @@ public partial class MainWindow : Window
         if (_chkShowFilenames != null)
             _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
     }
+
+    private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            SetStatus("Add note: clicked.");
+
+            if (_readableView == null)
+            {
+                SetStatus("Add note: Readable view not available.");
+                return;
+            }
+
+            if (_currentRelPath == null)
+            {
+                SetStatus("Add note: Select a file first.");
+                return;
+            }
+
+            // Ensure readable tab is active
+            if (_tabs != null)
+                _tabs.SelectedIndex = 0;
+
+            // Let layout settle
+            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+
+            var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
+            SetStatus(ok ? "Add note: OK (" + reason + ")" : "Add note: FAILED (" + reason + ")");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Add note failed: " + ex.Message);
+        }
+    }
+
+
 
     private void ToggleNav_Click(object? sender, RoutedEventArgs e)
     {
@@ -201,6 +271,31 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             SetStatus("Failed to open licenses: " + ex.Message);
+        }
+    }
+
+    // NEW: global add note (works even when Readable tab not selected)
+    private async void AddNote_Click(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (_currentRelPath == null || _readableView == null)
+            {
+                SetStatus("Cannot add note: no file loaded.");
+                return;
+            }
+
+            // show readable tab so user sees where caret/selection is
+            if (_tabs != null)
+                _tabs.SelectedIndex = 0;
+
+            // Requires ReadableTabView to expose a public method:
+            // public Task AddCommunityNoteAtCaretAsync() => AddCommunityNoteFromCaretAsync();
+            await _readableView.AddCommunityNoteAtCaretAsync();
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Add note failed: " + ex.Message);
         }
     }
 
@@ -653,6 +748,143 @@ public partial class MainWindow : Window
         }
     }
 
+    // -----------------------------
+    // COMMUNITY NOTES: persist to translated XML
+    // -----------------------------
+
+    private async Task InsertCommunityNoteAsync(int xmlIndex, string noteText, string? resp)
+    {
+        try
+        {
+            if (_translationView == null || _translatedDir == null || _currentRelPath == null)
+            {
+                SetStatus("Cannot add note: no file loaded.");
+                return;
+            }
+
+            var tran = _translationView.GetTranslatedXml();
+            if (string.IsNullOrWhiteSpace(tran))
+            {
+                SetStatus("Cannot add note: translated XML is empty.");
+                return;
+            }
+
+            xmlIndex = Math.Clamp(xmlIndex, 0, tran.Length);
+            xmlIndex = NudgeIndexOutOfTag(tran, xmlIndex);
+
+            var noteXml = BuildCommunityNoteXml(noteText, resp);
+
+            var newTran = tran.Insert(xmlIndex, noteXml);
+
+            _rawTranXml = newTran;
+            _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml);
+
+            SetStatus("Community note inserted.");
+
+            await SaveTranslatedFromTabAsync();
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Add note failed: " + ex.Message);
+        }
+    }
+
+    private async Task DeleteCommunityNoteAsync(int xmlStart, int xmlEndExclusive)
+    {
+        try
+        {
+            if (_translationView == null || _translatedDir == null || _currentRelPath == null)
+            {
+                SetStatus("Cannot delete note: no file loaded.");
+                return;
+            }
+
+            var tran = _translationView.GetTranslatedXml();
+            if (string.IsNullOrWhiteSpace(tran))
+            {
+                SetStatus("Cannot delete note: translated XML is empty.");
+                return;
+            }
+
+            int a = Math.Clamp(xmlStart, 0, tran.Length);
+            int b = Math.Clamp(xmlEndExclusive, 0, tran.Length);
+            if (b < a) (a, b) = (b, a);
+
+            if (b <= a)
+            {
+                SetStatus("Delete note failed: invalid range.");
+                return;
+            }
+
+            // Safety: only delete actual community notes
+            if (!IsCommunityNoteSpan(tran, a, b))
+            {
+                SetStatus("Delete blocked: selection is not a community note.");
+                return;
+            }
+
+            var newTran = tran.Remove(a, b - a);
+
+            _rawTranXml = newTran;
+            _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml);
+
+            SetStatus("Community note deleted.");
+
+            await SaveTranslatedFromTabAsync();
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Delete note failed: " + ex.Message);
+        }
+    }
+
+    private static bool IsCommunityNoteSpan(string xml, int start, int endExclusive)
+    {
+        if (string.IsNullOrEmpty(xml)) return false;
+        if (start < 0 || endExclusive > xml.Length || endExclusive <= start) return false;
+
+        var frag = xml.Substring(start, endExclusive - start);
+
+        if (!frag.StartsWith("<note", StringComparison.OrdinalIgnoreCase)) return false;
+        if (frag.IndexOf("type=\"community\"", StringComparison.OrdinalIgnoreCase) < 0) return false;
+        if (!frag.EndsWith("</note>", StringComparison.OrdinalIgnoreCase)) return false;
+
+        return true;
+    }
+
+    private static int NudgeIndexOutOfTag(string xml, int idx)
+    {
+        if (string.IsNullOrEmpty(xml)) return idx;
+        idx = Math.Clamp(idx, 0, xml.Length);
+
+        int scanPos = Math.Min(Math.Max(idx, 0), Math.Max(0, xml.Length - 1));
+        int left = xml.LastIndexOf('<', scanPos);
+        int right = xml.IndexOf('>', scanPos);
+
+        if (left >= 0 && right >= 0 && left < idx && idx < right)
+            return Math.Min(xml.Length, right + 1);
+
+        return idx;
+    }
+
+    private static string BuildCommunityNoteXml(string noteText, string? resp)
+    {
+        string inner = EscapeXmlText((noteText ?? "").Trim());
+        string respAttr = string.IsNullOrWhiteSpace(resp) ? "" : $" resp=\"{EscapeXmlAttr(resp!.Trim())}\"";
+        return $"<note type=\"community\"{respAttr}>{inner}</note>";
+    }
+
+    private static string EscapeXmlText(string s)
+        => (s ?? "")
+            .Replace("&", "&amp;")
+            .Replace("<", "&lt;")
+            .Replace(">", "&gt;");
+
+    private static string EscapeXmlAttr(string s)
+        => EscapeXmlText(s).Replace("\"", "&quot;");
+
+    // -----------------------------
+
     private void UpdateSaveButtonState()
     {
         if (_btnSave == null) return;
@@ -661,6 +893,9 @@ public partial class MainWindow : Window
         bool translationTabSelected = _tabs?.SelectedIndex == 1;
 
         _btnSave.IsEnabled = hasFile && translationTabSelected;
+
+        if (_btnAddCommunityNote != null)
+            _btnAddCommunityNote.IsEnabled = hasFile;
     }
 
     private void SetStatus(string msg)

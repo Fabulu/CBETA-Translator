@@ -3,13 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
@@ -30,7 +33,7 @@ public partial class ReadableTabView : UserControl
     private ScrollViewer? _svOriginal;
     private ScrollViewer? _svTranslated;
 
-    // Cached template parts for better scroll/geometry (like HoverDictionaryBehavior)
+    // Cached template parts for better scroll/geometry
     private Visual? _presOriginal;
     private Visual? _presTranslated;
     private ScrollContentPresenter? _scpOriginal;
@@ -77,14 +80,14 @@ public partial class ReadableTabView : UserControl
     private SearchHighlightOverlay? _hlTranslated;
 
     private TextBox? _findTarget;
-    private List<int> _matchStarts = new();
+    private readonly List<int> _matchStarts = new();
     private int _matchLen = 0;
     private int _matchIndex = -1;
 
     private static readonly TimeSpan FindRecomputeDebounce = TimeSpan.FromMilliseconds(140);
     private DispatcherTimer? _findDebounceTimer;
 
-    private bool _findIsApplyingSelection;
+    // When Find scrolls, never let mirroring/polling fight it
     private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
     private const int SuppressMirrorAfterFindMs = 900;
 
@@ -99,8 +102,21 @@ public partial class ReadableTabView : UserControl
     private TextBox? _notesBody;
     private Button? _btnCloseNotes;
 
-    // optional: bubble to MainWindow status bar if you want
+    // Notes actions
+    private Button? _btnAddCommunityNote;
+    private Button? _btnDeleteCommunityNote;
+
+    // Track what note is currently shown
+    private DocAnnotation? _currentAnn;
+
     public event EventHandler<DocAnnotation>? NoteClicked;
+
+    public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
+    public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
+
+    // NEW: status channel so MainWindow can show what's happening
+    public event EventHandler<string>? Status;
+    private void Say(string msg) => Status?.Invoke(this, msg);
 
     public ReadableTabView()
     {
@@ -118,12 +134,15 @@ public partial class ReadableTabView : UserControl
 
             SetupHoverDictionary(); // hover dict MUST be on ORIGINAL
             StartSelectionTimer();
+
+            Say("ReadableTabView attached.");
         };
 
         DetachedFromVisualTree += (_, _) =>
         {
             StopSelectionTimer();
             DisposeHoverDictionary();
+            Say("ReadableTabView detached.");
         };
     }
 
@@ -164,6 +183,13 @@ public partial class ReadableTabView : UserControl
         _notesHeader = this.FindControl<TextBlock>("NotesHeader");
         _notesBody = this.FindControl<TextBox>("NotesBody");
         _btnCloseNotes = this.FindControl<Button>("BtnCloseNotes");
+
+        _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
+        _btnDeleteCommunityNote = this.FindControl<Button>("BtnDeleteCommunityNote");
+
+        // If XAML forgot to set it, make sure notes panel starts hidden.
+        if (_notesPanel != null)
+            _notesPanel.IsVisible = false;
     }
 
     private void WireEvents()
@@ -173,15 +199,12 @@ public partial class ReadableTabView : UserControl
 
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
-        // IMPORTANT: capture note-clicks at UserControl level in Tunnel phase,
-        // and receive events even if something else already handled them.
+        // Capture note-clicks at UserControl level in Tunnel phase, and receive even if already handled
         AddHandler(
             InputElement.PointerPressedEvent,
             OnPointerPressed_TunnelForNotes,
             RoutingStrategies.Tunnel,
             handledEventsToo: true);
-
-
 
         if (_findQuery != null)
         {
@@ -198,6 +221,46 @@ public partial class ReadableTabView : UserControl
         if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
 
         if (_btnCloseNotes != null) _btnCloseNotes.Click += (_, _) => HideNotes();
+
+        // Notes actions (+ hard status reporting)
+        if (_btnAddCommunityNote != null)
+        {
+            _btnAddCommunityNote.Click += async (_, _) =>
+            {
+                Say("ReadableTabView: Add community note clicked.");
+
+                var (ok, reason) = await TryAddCommunityNoteAtSelectionOrCaretAsync();
+                Say(ok ? "ReadableTabView: " + reason : "ReadableTabView: Add note blocked: " + reason);
+            };
+        }
+
+        if (_btnDeleteCommunityNote != null)
+        {
+            _btnDeleteCommunityNote.Click += (_, _) =>
+            {
+                Say("ReadableTabView: Delete community note clicked.");
+                DeleteCurrentCommunityNote();
+            };
+        }
+
+        // If user focuses a pane while Find is open, switch scope like TranslationTabView
+        if (_editorOriginal != null)
+        {
+            _editorOriginal.GotFocus += (_, _) =>
+            {
+                if (_findBar?.IsVisible == true)
+                    SetFindTarget(_editorOriginal, preserveIndex: true);
+            };
+        }
+
+        if (_editorTranslated != null)
+        {
+            _editorTranslated.GotFocus += (_, _) =>
+            {
+                if (_findBar?.IsVisible == true)
+                    SetFindTarget(_editorTranslated, preserveIndex: true);
+            };
+        }
     }
 
     private void RefreshPresenterCache(TextBox? tb, bool isOriginal)
@@ -258,11 +321,11 @@ public partial class ReadableTabView : UserControl
         if (IsInsideControl(e.Source, _notesPanel))
             return;
 
-        // If popup already open -> do NOT hijack clicks anymore (your 2nd option)
+        // If popup already open -> do NOT hijack clicks anymore
         if (_notesPanel?.IsVisible == true)
             return;
 
-        // Ignore actual scrollbar parts only (Thumb/ScrollBar/RepeatButton)
+        // Ignore scrollbar parts only
         if (IsInsideScrollbarStuff(e.Source))
             return;
 
@@ -275,18 +338,17 @@ public partial class ReadableTabView : UserControl
         var doc = ReferenceEquals(tb, _editorOriginal) ? _renderOrig : _renderTran;
         if (doc == null || doc.IsEmpty) return;
 
-        // ONLY open when the user clicked ON the superscript glyph that belongs to a marker
-        if (!TryResolveAnnotationFromSuperscriptClick(tb, doc, e, out var ann))
+        // Resolve marker from marker spans (robust even when multiple markers are adjacent)
+        if (!TryResolveAnnotationFromMarkerSpans(tb, doc, e, out var ann))
             return;
+
 
         ShowNotes(ann);
         NoteClicked?.Invoke(this, ann);
-
-        // We handled it ONLY in this case (real superscript click)
         e.Handled = true;
     }
 
-    private bool TryResolveAnnotationFromSuperscriptClick(
+    private bool TryResolveAnnotationFromMarkerSpans(
     TextBox tb,
     RenderedDocument doc,
     PointerPressedEventArgs e,
@@ -294,41 +356,78 @@ public partial class ReadableTabView : UserControl
     {
         ann = default!;
 
-        // Get a "best guess" text index from pointer
         int idx = GetCharIndexFromPointer(tb, e);
         if (idx < 0) return false;
 
-        string text = tb.Text ?? "";
-        if (text.Length == 0) return false;
+        var markers = doc.AnnotationMarkers;
+        var anns = doc.Annotations;
 
-        // We will only accept if the clicked glyph is actually a superscript marker char.
-        // Because hit-testing can land one char off, we probe a tiny radius,
-        // but ONLY accept candidates that are superscript characters AND map to an annotation marker.
-        const int R = 2;
+        if (markers == null || markers.Count == 0) return false;
+        if (anns == null || anns.Count == 0) return false;
 
-        for (int d = 0; d <= R; d++)
+        // We’ll consider markers within this radius (in characters).
+        const int radius = 8;
+
+        // Binary search: first marker with Start > idx, so we can inspect neighbors.
+        int lo = 0, hi = markers.Count - 1, firstGreater = markers.Count;
+        while (lo <= hi)
         {
-            // check idx, idx-1, idx+1, idx-2, idx+2...
-            foreach (int cand in new[] { idx, idx - d, idx + d })
+            int mid = lo + ((hi - lo) / 2);
+            if (markers[mid].Start > idx)
             {
-                if (cand < 0 || cand >= text.Length) continue;
+                firstGreater = mid;
+                hi = mid - 1;
+            }
+            else lo = mid + 1;
+        }
 
-                char c = text[cand];
-                if (!IsSuperscriptMarkerChar(c))
-                    continue;
+        // Search around the insertion point for the closest span.
+        int bestMarkerIndex = -1;
+        int bestDist = int.MaxValue;
 
-                if (doc.TryGetAnnotationByMarkerAt(cand, out ann))
-                    return true;
+        // Check a small window around where the marker would be.
+        int startScan = Math.Max(0, firstGreater - 6);
+        int endScan = Math.Min(markers.Count - 1, firstGreater + 6);
+
+        for (int i = startScan; i <= endScan; i++)
+        {
+            var m = markers[i];
+
+            // Quick reject if clearly too far away
+            if (m.Start > idx + radius) break;
+            if (m.EndExclusive < idx - radius) continue;
+
+            // IMPORTANT: treat EndExclusive as clickable (hit-testing often returns it).
+            // So “inside” is [Start, EndExclusive] instead of [Start, EndExclusive).
+            int dist;
+            if (idx < m.Start) dist = m.Start - idx;
+            else if (idx > m.EndExclusive) dist = idx - m.EndExclusive;
+            else dist = 0;
+
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                bestMarkerIndex = i;
+                if (dist == 0) break; // perfect hit
             }
         }
 
-        return false;
+        if (bestMarkerIndex < 0 || bestDist > radius)
+            return false;
+
+        var best = markers[bestMarkerIndex];
+        int annIndex = best.AnnotationIndex;
+
+        if ((uint)annIndex >= (uint)anns.Count)
+            return false;
+
+        ann = anns[annIndex];
+        return true;
     }
+
 
     private static bool IsSuperscriptMarkerChar(char c)
     {
-        // Common superscripts: ¹²³ and U+2070..U+2079
-        // Plus a few “math” superscripts that sometimes sneak in.
         return c switch
         {
             '\u00B9' => true, // ¹
@@ -351,80 +450,27 @@ public partial class ReadableTabView : UserControl
         };
     }
 
-
-    private static bool TryResolveAnnotationNearIndex_Reliable(RenderedDocument doc, int idx, out DocAnnotation ann)
-    {
-        ann = default!;
-
-        if (doc.AnnotationMarkers == null || doc.AnnotationMarkers.Count == 0)
-            return false;
-
-        if (doc.TryGetAnnotationByMarkerAt(idx, out ann)) return true;
-
-        // Common off-by-ones
-        if (idx > 0 && doc.TryGetAnnotationByMarkerAt(idx - 1, out ann)) return true;
-        if (doc.TryGetAnnotationByMarkerAt(idx + 1, out ann)) return true;
-
-        // Wider radius for “works in practice”
-        const int R = 14;
-        for (int d = 2; d <= R; d++)
-        {
-            int left = idx - d;
-            if (left >= 0 && doc.TryGetAnnotationByMarkerAt(left, out ann))
-                return true;
-
-            int right = idx + d;
-            if (doc.TryGetAnnotationByMarkerAt(right, out ann))
-                return true;
-        }
-
-        return false;
-    }
-
-
-
-
-    private static bool TryResolveAnnotationNearIndex(RenderedDocument doc, int idx, out DocAnnotation ann)
-    {
-        ann = default!;
-
-        if (doc.AnnotationMarkers == null || doc.AnnotationMarkers.Count == 0)
-            return false;
-
-        // exact + common off-by-ones
-        if (doc.TryGetAnnotationByMarkerAt(idx, out ann)) return true;
-        if (idx > 0 && doc.TryGetAnnotationByMarkerAt(idx - 1, out ann)) return true;
-        if (doc.TryGetAnnotationByMarkerAt(idx + 1, out ann)) return true;
-
-        // small radius probe (hit-test often lands on neighbor glyphs for superscripts)
-        const int R = 14;
-        for (int d = 2; d <= R; d++)
-        {
-            int left = idx - d;
-            if (left >= 0 && doc.TryGetAnnotationByMarkerAt(left, out ann))
-                return true;
-
-            int right = idx + d;
-            if (doc.TryGetAnnotationByMarkerAt(right, out ann))
-                return true;
-        }
-
-        return false;
-    }
-
     private void ShowNotes(DocAnnotation ann)
     {
         if (_notesPanel == null || _notesBody == null || _notesHeader == null)
             return;
 
-        _notesHeader.Text = string.IsNullOrWhiteSpace(ann.Kind) ? "Note" : ann.Kind!;
+        _currentAnn = ann;
+
+        var kind = string.IsNullOrWhiteSpace(ann.Kind) ? "Note" : ann.Kind!.Trim();
+        var resp = GetAnnotationResp(ann);
+
+        _notesHeader.Text = string.IsNullOrWhiteSpace(resp)
+            ? kind
+            : $"{kind} ({resp})";
+
         _notesBody.Text = ann.Text ?? "";
 
-        // SHOW IT
         _notesPanel.IsVisible = true;
 
-        // DO NOT steal focus — this is what broke mirroring.
-        // Still keep caret sane.
+        UpdateNotesButtonsState();
+
+        // DO NOT steal focus
         try
         {
             _notesBody.SelectionStart = 0;
@@ -433,15 +479,470 @@ public partial class ReadableTabView : UserControl
         catch { }
     }
 
+    private void HideNotes()
+    {
+        if (_notesPanel == null || _notesBody == null) return;
+
+        _notesPanel.IsVisible = false;
+        _notesBody.Text = "";
+        _currentAnn = null;
+
+        UpdateNotesButtonsState();
+    }
+
+    private void UpdateNotesButtonsState()
+    {
+        if (_btnAddCommunityNote != null)
+            _btnAddCommunityNote.IsEnabled = !_renderTran.IsEmpty && _editorTranslated != null;
+
+        if (_btnDeleteCommunityNote != null)
+        {
+            bool canDelete = false;
+            if (_currentAnn != null && IsCommunityAnnotation(_currentAnn, out var xs, out var xe) && xe > xs)
+                canDelete = true;
+
+            _btnDeleteCommunityNote.IsEnabled = canDelete;
+            _btnDeleteCommunityNote.IsVisible = canDelete; // hide unless it's deletable
+        }
+    }
+    private static string? GetAnnotationResp(DocAnnotation ann)
+    {
+        // If your DocAnnotation has a Resp property, prefer that.
+        try
+        {
+            // direct property access (most likely)
+            var pi = ann.GetType().GetProperty("Resp");
+            if (pi?.GetValue(ann) is string s && !string.IsNullOrWhiteSpace(s))
+                return s.Trim();
+        }
+        catch { }
+
+        // fallback: maybe it's called Author / By / Name
+        if (TryGetStringProp(ann, "Author", out var a) && !string.IsNullOrWhiteSpace(a)) return a.Trim();
+        if (TryGetStringProp(ann, "By", out var b) && !string.IsNullOrWhiteSpace(b)) return b.Trim();
+        if (TryGetStringProp(ann, "Name", out var n) && !string.IsNullOrWhiteSpace(n)) return n.Trim();
+
+        return null;
+    }
+
+    private static bool IsCommunityAnnotation(DocAnnotation ann, out int xmlStart, out int xmlEndExclusive)
+    {
+        xmlStart = -1;
+        xmlEndExclusive = -1;
+
+        // Heuristics: Kind/type/source contains "community"
+        var kind = ann.Kind ?? "";
+        var text = kind.ToLowerInvariant();
+        bool looksCommunity = text.Contains("community") || text.Contains("comm");
+
+        // Try to extract XmlStart/XmlEndExclusive from annotation (strong requirement for delete)
+        if (TryGetIntProp(ann, "XmlStart", out var a) || TryGetIntProp(ann, "XmlStartIndex", out a) || TryGetIntProp(ann, "XmlFrom", out a))
+            xmlStart = a;
+
+        if (TryGetIntProp(ann, "XmlEndExclusive", out var b) || TryGetIntProp(ann, "XmlEnd", out b) || TryGetIntProp(ann, "XmlTo", out b))
+            xmlEndExclusive = b;
+
+        // If annotation has a "Type" property, use it
+        if (TryGetStringProp(ann, "Type", out var t) && !string.IsNullOrWhiteSpace(t))
+            looksCommunity = t.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
+
+        // If annotation has a "Source" property, use it
+        if (TryGetStringProp(ann, "Source", out var s) && !string.IsNullOrWhiteSpace(s))
+            looksCommunity = s.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
+
+        return looksCommunity && xmlStart >= 0 && xmlEndExclusive > xmlStart;
+    }
+
+    private async Task AddCommunityNoteFromCaretAsync()
+    {
+        // Community notes MUST be inserted into TRANSLATED XML, so we take caret from translated pane.
+        if (_editorTranslated == null || _renderTran.IsEmpty)
+            return;
+
+        int caret = _editorTranslated.CaretIndex;
+        if (caret < 0) caret = 0;
+
+        if (!TryMapRenderedCaretToXmlIndex(_renderTran, caret, out int xmlIndex))
+        {
+            // If we cannot map, do nothing (can't safely insert).
+            return;
+        }
+
+        await PromptAddCommunityNoteAsync(xmlIndex);
+    }
+
+    public async Task AddCommunityNoteAtCaretAsync()
+    {
+        await AddCommunityNoteFromCaretAsync();
+    }
+
+    // NEW: returns a reason so MainWindow (or your status bar) can show what's wrong.
+    public async Task<(bool ok, string reason)> TryAddCommunityNoteAtSelectionOrCaretAsync()
+    {
+        if (_editorTranslated == null)
+            return (false, "_editorTranslated is null (ReadableTabView not ready / not loaded yet).");
+
+        if (_renderTran.IsEmpty)
+            return (false, "_renderTran.IsEmpty (no rendered translated document set yet).");
+
+        // Prefer selection midpoint
+        int a = _editorTranslated.SelectionStart;
+        int b = _editorTranslated.SelectionEnd;
+
+        int renderedIndex =
+            (a != b)
+                ? Math.Min(a, b) + (Math.Abs(b - a) / 2)
+                : _editorTranslated.CaretIndex;
+
+        if (renderedIndex < 0) renderedIndex = 0;
+
+        if (!TryMapRenderedCaretToXmlIndex(_renderTran, renderedIndex, out int xmlIndex))
+        {
+            var diag = ExplainMappingFailure(_renderTran, renderedIndex);
+            return (false, $"Cannot map display index {renderedIndex} to XML index. BaseToXmlIndex is missing or out of range.");
+        }
+
+        await PromptAddCommunityNoteAsync(xmlIndex);
+        return (true, $"Dialog opened. renderedIndex={renderedIndex} -> xmlIndex={xmlIndex}");
+    }
+
+    private static string ExplainMappingFailure(RenderedDocument doc, int renderedIndex)
+    {
+        try
+        {
+            var segs = doc.Segments;
+
+            if (segs == null)
+                return "doc.Segments is NULL (renderer did not populate segments).";
+
+            if (segs.Count == 0)
+                return "doc.Segments.Count == 0 (renderer produced no segments).";
+
+            int nullCount = segs.Count(s => s == null);
+            var firstNonNull = segs.FirstOrDefault(s => s != null);
+
+            if (firstNonNull == null)
+                return $"doc.Segments.Count == {segs.Count}, but ALL entries are null.";
+
+            var t = firstNonNull.GetType();
+            var props = t.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                         .Select(p => p.Name)
+                         .Distinct()
+                         .OrderBy(n => n)
+                         .ToList();
+
+            var fields = t.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                          .Select(f => f.Name)
+                          .Distinct()
+                          .OrderBy(n => n)
+                          .ToList();
+
+            // Check how many segments we can parse ranges from
+            int parsed = 0;
+            int covers = 0;
+
+            int minStart = int.MaxValue;
+            int maxEnd = int.MinValue;
+
+            for (int i = 0; i < segs.Count; i++)
+            {
+                var seg = segs[i];
+                if (seg == null) continue;
+
+                if (TryGetSegmentRanges(seg, out int rStart, out int rEndEx, out int xStart, out int xEndEx))
+                {
+                    parsed++;
+
+                    if (rStart < minStart) minStart = rStart;
+                    if (rEndEx > maxEnd) maxEnd = rEndEx;
+
+                    // allow caret at endExclusive
+                    if (renderedIndex >= rStart && renderedIndex <= rEndEx)
+                        covers++;
+                }
+            }
+
+            string rangeInfo =
+                (parsed > 0 && minStart != int.MaxValue && maxEnd != int.MinValue)
+                    ? $"ParsedSegments={parsed}/{segs.Count - nullCount} (non-null). RenderedRangeMinStart={minStart}, MaxEnd={maxEnd}. CaretCoveredBy={covers} segments."
+                    : $"ParsedSegments=0/{segs.Count - nullCount} (non-null).";
+
+            // Show “what we expected”
+            string expected =
+                "Expected seg members like: Start/EndExclusive (or End/Length) AND XmlStart/XmlEndExclusive (or XmlEnd).";
+
+            // Don’t spam: only list some names
+            string propPreview = props.Count == 0 ? "(none)" : string.Join(", ", props.Take(24)) + (props.Count > 24 ? ", …" : "");
+            string fieldPreview = fields.Count == 0 ? "(none)" : string.Join(", ", fields.Take(24)) + (fields.Count > 24 ? ", …" : "");
+
+            return $"Segments.Count={segs.Count}, NullEntries={nullCount}. FirstNonNullType={t.FullName}. {rangeInfo} {expected} Props[{props.Count}]: {propPreview}. Fields[{fields.Count}]: {fieldPreview}.";
+        }
+        catch (Exception ex)
+        {
+            return "ExplainMappingFailure threw: " + ex.GetType().Name + " " + ex.Message;
+        }
+    }
+
+
+    private void DeleteCurrentCommunityNote()
+    {
+        if (_currentAnn == null)
+            return;
+
+        if (!IsCommunityAnnotation(_currentAnn, out int xs, out int xe))
+            return;
+
+        CommunityNoteDeleteRequested?.Invoke(this, (xs, xe));
+        HideNotes();
+    }
+
+    private async Task PromptAddCommunityNoteAsync(int xmlIndex)
+    {
+        var owner = TopLevel.GetTopLevel(this) as Window;
+
+        var txt = new TextBox
+        {
+            AcceptsReturn = true,
+            TextWrapping = TextWrapping.Wrap,
+            Height = 140
+        };
+        ScrollViewer.SetVerticalScrollBarVisibility(txt, ScrollBarVisibility.Auto);
+
+        var resp = new TextBox
+        {
+            Watermark = "Optional resp (e.g., your initials)",
+            Height = 32
+        };
+
+        var btnOk = new Button { Content = "Add note", MinWidth = 110 };
+        var btnCancel = new Button { Content = "Cancel", MinWidth = 90 };
+
+        var btnRow = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 10,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        btnRow.Children.Add(btnCancel);
+        btnRow.Children.Add(btnOk);
+
+        var panel = new StackPanel
+        {
+            Margin = new Thickness(16),
+            Spacing = 10
+        };
+
+        panel.Children.Add(new TextBlock { Text = "Community note text:" });
+        panel.Children.Add(txt);
+        panel.Children.Add(new TextBlock { Text = "Resp (optional):" });
+        panel.Children.Add(resp);
+        panel.Children.Add(btnRow);
+
+        var win = new Window
+        {
+            Title = "Add community note",
+            Width = 520,
+            Height = 360,
+            Content = panel,
+            WindowStartupLocation = owner != null
+                ? WindowStartupLocation.CenterOwner
+                : WindowStartupLocation.CenterScreen
+        };
+
+        var tcs = new TaskCompletionSource<bool>();
+
+        void CloseOk(bool ok)
+        {
+            try { win.Close(); } catch { }
+            tcs.TrySetResult(ok);
+        }
+
+        btnCancel.Click += (_, _) => CloseOk(false);
+        btnOk.Click += (_, _) => CloseOk(true);
+
+        if (owner != null)
+            _ = win.ShowDialog(owner);
+        else
+            win.Show();
+
+        bool ok = await tcs.Task;
+        if (!ok) return;
+
+        var noteText = (txt.Text ?? "").Trim();
+        if (noteText.Length == 0) return;
+
+        var respVal = (resp.Text ?? "").Trim();
+        if (respVal.Length == 0) respVal = null;
+
+        CommunityNoteInsertRequested?.Invoke(this, (xmlIndex, noteText, respVal));
+    }
+
+    // Map rendered caret index -> XML index, using segment metadata if available.
+    // Robust against long/int/fields/properties and different segment naming conventions.
+    // Map DISPLAY caret index (with inserted markers) -> absolute XML index.
+    // This MUST use the renderer-provided BaseToXmlIndex mapping.
+    // Returns false if mapping isn't available.
+    private static bool TryMapRenderedCaretToXmlIndex(RenderedDocument doc, int displayIndex, out int xmlIndex)
+    {
+        xmlIndex = -1;
+
+        if (doc == null || doc.IsEmpty)
+            return false;
+
+        // This is the only valid mapping source.
+        int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
+
+        if (mapped < 0)
+            return false;
+
+        xmlIndex = mapped;
+        return true;
+    }
+
+
+    private static bool TryGetSegmentRanges(object seg, out int rStart, out int rEndEx, out int xStart, out int xEndEx)
+    {
+        rStart = rEndEx = xStart = xEndEx = 0;
+
+        // Rendered start
+        if (!TryGetIntProp(seg, "Start", out rStart) &&
+            !TryGetIntProp(seg, "RenderedStart", out rStart) &&
+            !TryGetIntProp(seg, "TextStart", out rStart))
+            return false;
+
+        // Rendered end exclusive (or end/length)
+        if (TryGetIntProp(seg, "EndExclusive", out rEndEx) ||
+            TryGetIntProp(seg, "RenderedEndExclusive", out rEndEx) ||
+            TryGetIntProp(seg, "TextEndExclusive", out rEndEx))
+        {
+            // ok
+        }
+        else if (TryGetIntProp(seg, "End", out int rEnd))
+        {
+            // Some models use End as inclusive; assume it might be exclusive already.
+            // We’ll treat it as exclusive if it looks like a typical exclusive value.
+            // (Either way our containment allows caret==end.)
+            rEndEx = rEnd;
+        }
+        else if (TryGetIntProp(seg, "Length", out int rLen))
+        {
+            rEndEx = rStart + Math.Max(0, rLen);
+        }
+        else
+        {
+            return false;
+        }
+
+        // XML start
+        if (!TryGetIntProp(seg, "XmlStart", out xStart) &&
+            !TryGetIntProp(seg, "XmlStartIndex", out xStart) &&
+            !TryGetIntProp(seg, "XmlFrom", out xStart))
+            return false;
+
+        // XML end exclusive (or end/length)
+        if (TryGetIntProp(seg, "XmlEndExclusive", out xEndEx) ||
+            TryGetIntProp(seg, "XmlEnd", out xEndEx) ||
+            TryGetIntProp(seg, "XmlTo", out xEndEx))
+        {
+            // ok
+        }
+        else if (TryGetIntProp(seg, "XmlLength", out int xLen))
+        {
+            xEndEx = xStart + Math.Max(0, xLen);
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool TryGetIntProp(object obj, string name, out int value)
+    {
+        value = 0;
+        try
+        {
+            var t = obj.GetType();
+
+            // property
+            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi != null)
+            {
+                var raw = pi.GetValue(obj);
+                if (TryConvertNumber(raw, out value))
+                    return true;
+            }
+
+            // field
+            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (fi != null)
+            {
+                var raw = fi.GetValue(obj);
+                if (TryConvertNumber(raw, out value))
+                    return true;
+            }
+        }
+        catch { }
+
+        return false;
+    }
+
+    private static bool TryConvertNumber(object? raw, out int value)
+    {
+        value = 0;
+        if (raw == null) return false;
+
+        try
+        {
+            switch (raw)
+            {
+                case int i: value = i; return true;
+                case long l:
+                    value = l > int.MaxValue ? int.MaxValue : (l < int.MinValue ? int.MinValue : (int)l);
+                    return true;
+                case short s: value = s; return true;
+                case byte b: value = b; return true;
+                case uint ui: value = ui > int.MaxValue ? int.MaxValue : (int)ui; return true;
+                case ulong ul: value = ul > (ulong)int.MaxValue ? int.MaxValue : (int)ul; return true;
+                case float f: value = (int)f; return true;
+                case double d: value = (int)d; return true;
+                case decimal m: value = (int)m; return true;
+                default:
+                    if (raw is IConvertible)
+                    {
+                        value = Convert.ToInt32(raw);
+                        return true;
+                    }
+                    return false;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static bool TryGetStringProp(object obj, string name, out string? value)
+    {
+        value = null;
+        try
+        {
+            var pi = obj.GetType().GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi == null) return false;
+            if (pi.GetValue(obj) is string s) { value = s; return true; }
+        }
+        catch { }
+        return false;
+    }
+
     private static TextBox? FindAncestorTextBox(object? source)
     {
         if (source is TextBox tb0) return tb0;
 
-        // Best path: Visual tree (works for TextPresenter, etc.)
         if (source is Visual v)
             return v.GetVisualAncestors().OfType<TextBox>().FirstOrDefault();
 
-        // Fallback: logical tree
         var cur = source as StyledElement;
         while (cur != null)
         {
@@ -451,7 +952,6 @@ public partial class ReadableTabView : UserControl
 
         return null;
     }
-
 
     private static bool IsInsideScrollbarStuff(object? source)
     {
@@ -466,8 +966,6 @@ public partial class ReadableTabView : UserControl
         return false;
     }
 
-
-
     private static bool IsInsideControl(object? source, Control? root)
     {
         if (root == null) return false;
@@ -479,14 +977,6 @@ public partial class ReadableTabView : UserControl
             cur = cur.Parent as StyledElement;
         }
         return false;
-    }
-
-
-    private void HideNotes()
-    {
-        if (_notesPanel == null || _notesBody == null) return;
-        _notesPanel.IsVisible = false;
-        _notesBody.Text = "";
     }
 
     private int GetCharIndexFromPointer(TextBox tb, PointerEventArgs e)
@@ -591,6 +1081,8 @@ public partial class ReadableTabView : UserControl
 
         ClearFindState();
         CloseFind();
+
+        UpdateNotesButtonsState();
     }
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
@@ -637,10 +1129,15 @@ public partial class ReadableTabView : UserControl
         }
 
         HideNotes();
+        UpdateNotesButtonsState();
 
         if (_findBar?.IsVisible == true)
             RecomputeMatches(resetToFirst: false);
     }
+
+    // -------------------------
+    // User input tracking (for mirroring + Find scope)
+    // -------------------------
 
     private void HookUserInputTracking(TextBox? tb)
     {
@@ -653,8 +1150,8 @@ public partial class ReadableTabView : UserControl
 
         tb.GotFocus += (_, _) =>
         {
-            if (_findBar?.IsVisible == true && !_findIsApplyingSelection)
-                SetFindTarget(tb);
+            if (_findBar?.IsVisible == true)
+                SetFindTarget(tb, preserveIndex: true);
         };
     }
 
@@ -711,8 +1208,6 @@ public partial class ReadableTabView : UserControl
         if (DateTime.UtcNow <= _suppressPollingUntilUtc) return;
         if (_syncingSelection) return;
         if (DateTime.UtcNow <= _ignoreProgrammaticUntilUtc) return;
-
-        if (_findIsApplyingSelection) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
         if (_editorOriginal == null || _editorTranslated == null) return;
@@ -838,7 +1333,6 @@ public partial class ReadableTabView : UserControl
 
     private void RequestMirrorFromUserAction(bool sourceIsTranslated)
     {
-        if (_findIsApplyingSelection) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
         _mirrorSourceIsTranslated = sourceIsTranslated;
@@ -851,13 +1345,14 @@ public partial class ReadableTabView : UserControl
 
             if (_syncingSelection) return;
             if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+            if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
             MirrorSelectionOneWay(_mirrorSourceIsTranslated);
         }, DispatcherPriority.Background);
     }
 
     // -------------------------
-    // Ctrl+F Find UI
+    // Ctrl+F Find UI (MATCH TranslationTabView behavior)
     // -------------------------
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
@@ -912,7 +1407,7 @@ public partial class ReadableTabView : UserControl
         _findBar.IsVisible = true;
 
         var target = DetermineCurrentPaneForFind();
-        SetFindTarget(target);
+        SetFindTarget(target, preserveIndex: false);
 
         _findQuery.Focus();
         _findQuery.SelectionStart = 0;
@@ -927,6 +1422,8 @@ public partial class ReadableTabView : UserControl
             _findBar.IsVisible = false;
 
         ClearHighlight();
+
+        // restore focus without messing with selections
         _findTarget?.Focus();
     }
 
@@ -939,21 +1436,22 @@ public partial class ReadableTabView : UserControl
         if (recentInput && _lastUserInputEditor != null)
             return _lastUserInputEditor;
 
-        if (_editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin) return _editorOriginal;
         if (_editorTranslated.IsFocused || _editorTranslated.IsKeyboardFocusWithin) return _editorTranslated;
+        if (_editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin) return _editorOriginal;
 
         return _editorTranslated;
     }
 
-    private void SetFindTarget(TextBox? tb)
+    private void SetFindTarget(TextBox? tb, bool preserveIndex)
     {
         if (tb == null) return;
+
         _findTarget = tb;
 
         if (_findScope != null)
             _findScope.Text = ReferenceEquals(tb, _editorOriginal) ? "Find (Original):" : "Find (Translated):";
 
-        RecomputeMatches(resetToFirst: false);
+        RecomputeMatches(resetToFirst: !preserveIndex);
     }
 
     private void DebounceRecomputeMatches()
@@ -1025,7 +1523,12 @@ public partial class ReadableTabView : UserControl
             if (oldSelectedStart >= 0)
             {
                 int exact = _matchStarts.IndexOf(oldSelectedStart);
-                _matchIndex = exact >= 0 ? exact : 0;
+                if (exact >= 0) _matchIndex = exact;
+                else
+                {
+                    int nearest = _matchStarts.FindIndex(s => s >= oldSelectedStart);
+                    _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
+                }
             }
             else
             {
@@ -1071,22 +1574,35 @@ public partial class ReadableTabView : UserControl
         int start = _matchStarts[_matchIndex];
         int len = _matchLen;
 
+        // highlight immediately (do NOT touch selection)
         ApplyHighlight(_findTarget, start, len);
 
-        if (!scroll) return;
+        if (!scroll)
+            return;
 
         try
         {
+            // hard suppress so Find never triggers mirroring fights
             _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
             _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
             _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterFindMs);
 
             _findTarget.Focus();
+
+            // scroll via caret only (no selection changes)
             _findTarget.CaretIndex = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
 
-            CenterByTextLayoutReliable(_findTarget, start);
+            DispatcherTimer.RunOnce(() =>
+            {
+                try { CenterByTextLayoutReliable(_findTarget, start); } catch { }
+                ApplyHighlight(_findTarget, start, len);
+            }, TimeSpan.FromMilliseconds(25));
 
-            ApplyHighlight(_findTarget, start, len);
+            DispatcherTimer.RunOnce(() =>
+            {
+                try { CenterByTextLayoutReliable(_findTarget, start); } catch { }
+                ApplyHighlight(_findTarget, start, len);
+            }, TimeSpan.FromMilliseconds(85));
         }
         catch { }
     }

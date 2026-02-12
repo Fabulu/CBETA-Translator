@@ -7,114 +7,128 @@
         Background="#FF111111"
         Title="CBETA Translator">
 
-  <Grid RowDefinitions="Auto,*,Auto">
+	<Grid RowDefinitions="Auto,*,Auto">
 
-    <!-- Top bar -->
-    <Border Grid.Row="0" Background="#FF1E1E1E" Padding="10">
-      <DockPanel LastChildFill="True">
+		<!-- Top bar -->
+		<Border Grid.Row="0" Background="#FF1E1E1E" Padding="10">
+			<DockPanel LastChildFill="True">
 
-        <StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
-          <Button Name="BtnToggleNav" Width="40" Height="32" Content="☰" Background="#33FFFFFF"/>
-          <Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root" Background="#33FFFFFF"/>
+				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
+					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰" Background="#33FFFFFF"/>
+					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root" Background="#33FFFFFF"/>
 
-          <!-- NEW: Licenses button -->
-          <Button Name="BtnLicenses"
-                  Width="110" Height="32"
-                  Content="ⓘ Licenses"
-                  Background="#33FFFFFF"/>
+					<!-- NEW: Add community note (global) -->
+					<Button Name="BtnAddCommunityNote"
+							Width="120" Height="32"
+							Content="+ Note"
+							Background="#33FFFFFF"
+							IsEnabled="False"/>
 
-          <TextBlock Name="TxtRoot"
-                     VerticalAlignment="Center"
-                     Margin="10,0,0,0"
-                     Foreground="#FFCCCCCC"/>
-        </StackPanel>
+					<!-- NEW: Save (top bar) -->
+					<Button Name="BtnSave"
+							Width="80" Height="32"
+							Content="Save"
+							Background="#33FFFFFF"
+							IsEnabled="False"/>
 
-        <TextBlock Name="TxtCurrentFile"
-                   DockPanel.Dock="Right"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"
-                   Foreground="#FFCCCCCC"/>
-      </DockPanel>
-    </Border>
+					<!-- Licenses button -->
+					<Button Name="BtnLicenses"
+							Width="110" Height="32"
+							Content="ⓘ Licenses"
+							Background="#33FFFFFF"/>
 
-    <!-- Main content -->
-    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
+					<TextBlock Name="TxtRoot"
+							   VerticalAlignment="Center"
+							   Margin="10,0,0,0"
+							   Foreground="#FFCCCCCC"/>
+				</StackPanel>
 
-      <Border Name="NavPanel" Background="#FF1A1A1A" Width="320">
-        <Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
+				<TextBlock Name="TxtCurrentFile"
+						   DockPanel.Dock="Right"
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Right"
+						   Foreground="#FFCCCCCC"/>
+			</DockPanel>
+		</Border>
 
-          <TextBlock Text="Files" FontWeight="Bold" Margin="4" Foreground="#FFCCCCCC"/>
+		<!-- Main content -->
+		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
 
-          <!-- Search -->
-          <TextBox Name="NavSearch"
-                   Grid.Row="1"
-                   Watermark="Search (filename or title)…"
-                   Background="#FF2B2B2B"
-                   Foreground="#FFEAEAEA"
-                   BorderBrush="#FF444444"
-                   BorderThickness="1"/>
+			<Border Name="NavPanel" Background="#FF1A1A1A" Width="320">
+				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
 
-          <!-- Toggle -->
-          <CheckBox Name="ChkShowFilenames"
-                    Grid.Row="2"
-                    Content="Show filenames"
-                    Foreground="#FFCCCCCC"
-                    IsChecked="False"/>
+					<TextBlock Text="Files" FontWeight="Bold" Margin="4" Foreground="#FFCCCCCC"/>
 
-          <ListBox Name="FilesList"
-                   Grid.Row="3"
-                   Background="#FF2B2B2B"
-                   Foreground="#FFEAEAEA"
-                   BorderBrush="#FF444444"
-                   BorderThickness="1">
+					<!-- Search -->
+					<TextBox Name="NavSearch"
+							 Grid.Row="1"
+							 Watermark="Search (filename or title)…"
+							 Background="#FF2B2B2B"
+							 Foreground="#FFEAEAEA"
+							 BorderBrush="#FF444444"
+							 BorderThickness="1"/>
 
-            <ListBox.ItemTemplate>
-              <DataTemplate x:DataType="models:FileNavItem">
-                <Border CornerRadius="6"
-                        Padding="6"
-                        Margin="4"
-                        Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
-                  <TextBlock Text="{Binding DisplayShort}"
-                             ToolTip.Tip="{Binding Tooltip}"
-                             TextWrapping="NoWrap"/>
-                </Border>
-              </DataTemplate>
-            </ListBox.ItemTemplate>
+					<!-- Toggle -->
+					<CheckBox Name="ChkShowFilenames"
+							  Grid.Row="2"
+							  Content="Show filenames"
+							  Foreground="#FFCCCCCC"
+							  IsChecked="False"/>
 
-          </ListBox>
-        </Grid>
-      </Border>
+					<ListBox Name="FilesList"
+							 Grid.Row="3"
+							 Background="#FF2B2B2B"
+							 Foreground="#FFEAEAEA"
+							 BorderBrush="#FF444444"
+							 BorderThickness="1">
 
-      <!-- Right side: Tabs -->
-      <Border Grid.Column="2" Margin="8" Background="#00000000">
-        <TabControl Name="MainTabs">
+						<ListBox.ItemTemplate>
+							<DataTemplate x:DataType="models:FileNavItem">
+								<Border CornerRadius="6"
+										Padding="6"
+										Margin="4"
+										Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
+									<TextBlock Text="{Binding DisplayShort}"
+											   ToolTip.Tip="{Binding Tooltip}"
+											   TextWrapping="NoWrap"/>
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
 
-          <TabItem Header="Readable">
-            <views:ReadableTabView Name="ReadableView"/>
-          </TabItem>
+					</ListBox>
+				</Grid>
+			</Border>
 
-          <TabItem Header="Translate XML">
-            <views:TranslationTabView Name="TranslationView"/>
-          </TabItem>
+			<!-- Right side: Tabs -->
+			<Border Grid.Column="2" Margin="8" Background="#00000000">
+				<TabControl Name="MainTabs">
 
-          <TabItem Header="Search">
-            <views:SearchTabView Name="SearchView"/>
-          </TabItem>
+					<TabItem Header="Readable">
+						<views:ReadableTabView Name="ReadableView"/>
+					</TabItem>
 
-          <TabItem Header="Git">
-            <views:GitTabView Name="GitView"/>
-          </TabItem>
+					<TabItem Header="Translate XML">
+						<views:TranslationTabView Name="TranslationView"/>
+					</TabItem>
 
-        </TabControl>
+					<TabItem Header="Search">
+						<views:SearchTabView Name="SearchView"/>
+					</TabItem>
 
-      </Border>
+					<TabItem Header="Git">
+						<views:GitTabView Name="GitView"/>
+					</TabItem>
 
-    </Grid>
+				</TabControl>
 
-    <!-- Status bar -->
-    <Border Grid.Row="2" Background="#FF1E1E1E" Padding="8">
-      <TextBlock Name="TxtStatus" Foreground="#FFCCCCCC"/>
-    </Border>
+			</Border>
 
-  </Grid>
+		</Grid>
+
+		<!-- Status bar -->
+		<Border Grid.Row="2" Background="#FF1E1E1E" Padding="8">
+			<TextBlock Name="TxtStatus" Foreground="#FFCCCCCC"/>
+		</Border>
+
+	</Grid>
 </Window>

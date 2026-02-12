@@ -841,6 +841,22 @@ XML fragment to translate:
     // Hacky XML check (no parser) — SINGLE SOURCE OF TRUTH
     // --------------------------
 
+    // Community note removal for structural comparison.
+    // We allow these notes to exist ONLY in translated XML.
+    private static readonly Regex CommunityNoteBlockRegex = new Regex(
+        @"<note\b(?<attrs>[^>]*)\btype\s*=\s*""community""(?<attrs2>[^>]*)>(?<inner>[\s\S]*?)</note>",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static string StripCommunityNotes(string xml)
+    {
+        if (string.IsNullOrEmpty(xml)) return xml ?? string.Empty;
+
+        // Replace the whole block with nothing.
+        // We don't try to preserve whitespace perfectly; this is only for structural validation.
+        return CommunityNoteBlockRegex.Replace(xml, "");
+    }
+
+
     private static readonly Regex LbTagRegex = new Regex(
         @"<lb\b(?<attrs>[^>]*)\/?>",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -886,11 +902,19 @@ XML fragment to translate:
         if (string.IsNullOrEmpty(orig))
             return (false, "Original XML is empty. Nothing to compare.", 0, 0, 0, 0);
 
+        tran ??= "";
+
+        // IMPORTANT:
+        // For structure comparison, we ignore community notes in translated XML.
+        // Everything else must remain identical.
+        string tranStripped = StripCommunityNotes(tran);
+
         int origTagCount = XmlTagRegex.Matches(orig).Count;
-        int tranTagCount = XmlTagRegex.Matches(tran ?? "").Count;
+        int tranTagCount = XmlTagRegex.Matches(tran).Count;                 // informational (real)
+        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count; // compared
 
         var (origLbTotal, origSigs) = CollectLbSignatures(orig);
-        var (tranLbTotal, tranSigs) = CollectLbSignatures(tran ?? "");
+        var (tranLbTotal, tranSigs) = CollectLbSignatures(tranStripped);
 
         var missing = origSigs.Keys.Where(k => !tranSigs.ContainsKey(k)).ToList();
         var extra = tranSigs.Keys.Where(k => !origSigs.ContainsKey(k)).ToList();
@@ -906,8 +930,13 @@ XML fragment to translate:
 
         var problems = new List<string>();
 
-        if (origTagCount != tranTagCount)
-            problems.Add($"TAG COUNT MISMATCH:\n  original={origTagCount:n0}\n  translated={tranTagCount:n0}");
+        // Compare tag counts AFTER stripping community notes.
+        if (origTagCount != tranTagCountStripped)
+            problems.Add(
+                $"TAG COUNT MISMATCH (ignoring community notes):\n" +
+                $"  original={origTagCount:n0}\n" +
+                $"  translated_stripped={tranTagCountStripped:n0}\n" +
+                $"  translated_raw={tranTagCount:n0}");
 
         if (origLbTotal != tranLbTotal)
             problems.Add($"LB TOTAL MISMATCH:\n  original={origLbTotal:n0}\n  translated={tranLbTotal:n0}");
@@ -923,11 +952,14 @@ XML fragment to translate:
 
         if (problems.Count == 0)
         {
+            int removed = tranTagCount - tranTagCountStripped;
+
             string okMsg =
                 $"OK ✅\n\n" +
-                $"Tag count matches: {tranTagCount:n0}\n" +
+                $"Tag count matches (ignoring community notes): {tranTagCountStripped:n0}\n" +
                 $"<lb> count matches: {tranLbTotal:n0}\n" +
-                $"All <lb n=... ed=...> signatures match.\n\n" +
+                $"All <lb n=... ed=...> signatures match.\n" +
+                (removed > 0 ? $"\nCommunity-note tags ignored during check: {removed:n0}\n" : "\n") +
                 $"(Hacky structural check only; not a full XML validator.)";
 
             return (true, okMsg, origTagCount, tranTagCount, origLbTotal, tranLbTotal);
@@ -935,6 +967,7 @@ XML fragment to translate:
 
         return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
     }
+
 
     private async Task<bool> EnsureXmlOkOrWarnAsync(bool showOkPopup)
     {

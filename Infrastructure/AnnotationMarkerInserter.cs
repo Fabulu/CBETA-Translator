@@ -10,7 +10,8 @@ namespace CbetaTranslator.App.Infrastructure;
 public static class AnnotationMarkerInserter
 {
     // Span in FINAL rendered text that maps to an annotation index
-    public readonly record struct MarkerSpan(int Start, int EndExclusive, int AnnotationIndex);
+    // NEW: IsCommunity flag so overlays/UI can style markers differently
+    public readonly record struct MarkerSpan(int Start, int EndExclusive, int AnnotationIndex, bool IsCommunity);
 
     private readonly record struct InsertEvent(int OriginalPos, int InsertedLen);
 
@@ -43,6 +44,7 @@ public static class AnnotationMarkerInserter
             .ThenBy(x => x.Index)
             .ToList();
 
+        // crude size guess: most markers are 1–3 chars
         var sb = new StringBuilder(text.Length + items.Count * 4);
         var markers = new List<MarkerSpan>(items.Count);
         var inserts = new List<InsertEvent>(items.Count);
@@ -67,7 +69,10 @@ public static class AnnotationMarkerInserter
             sb.Append(marker);
             int markerEndFinal = sb.Length;
 
-            markers.Add(new MarkerSpan(markerStartFinal, markerEndFinal, it.Index));
+            bool isCommunity =
+                string.Equals(it.Ann.Kind, "community", StringComparison.OrdinalIgnoreCase);
+
+            markers.Add(new MarkerSpan(markerStartFinal, markerEndFinal, it.Index, isCommunity));
             inserts.Add(new InsertEvent(insertAt, marker.Length));
         }
 
@@ -77,11 +82,11 @@ public static class AnnotationMarkerInserter
 
         string newText = sb.ToString();
 
-        // shift segments by inserted marker lengths (prefix sums)
+        // shift segments by inserted marker lengths
         var shiftedSegs = ShiftSegments(segs, inserts);
 
         // markers must be sorted by Start for binary search usage
-        markers.Sort((a, b) => a.Start.CompareTo(b.Start));
+        markers.Sort(static (a, b) => a.Start.CompareTo(b.Start));
 
         return (newText, shiftedSegs, markers);
     }
@@ -93,7 +98,7 @@ public static class AnnotationMarkerInserter
 
         // inserts already in ascending original pos because we built in sorted order,
         // but let's ensure:
-        inserts.Sort((a, b) => a.OriginalPos.CompareTo(b.OriginalPos));
+        inserts.Sort(static (a, b) => a.OriginalPos.CompareTo(b.OriginalPos));
 
         int PrefixInsertedLenAtOrBefore(int pos)
         {
@@ -122,7 +127,7 @@ public static class AnnotationMarkerInserter
         }
 
         // ensure sorted by Start (your selection sync assumes this)
-        outSegs.Sort((a, b) => a.Start.CompareTo(b.Start));
+        outSegs.Sort(static (a, b) => a.Start.CompareTo(b.Start));
         return outSegs;
     }
 
