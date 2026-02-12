@@ -4,11 +4,23 @@
              xmlns:views="clr-namespace:CbetaTranslator.App.Views"
              x:Class="CbetaTranslator.App.Views.ReadableTabView">
 
-	<Grid RowDefinitions="Auto,*,Auto">
+	<!-- TopBar, FindBar, Content, NotesPanel -->
+	<Grid RowDefinitions="Auto,Auto,*,Auto">
+
+		<!-- Top bar -->
+		<StackPanel Grid.Row="0"
+					Orientation="Horizontal"
+					Spacing="8"
+					Margin="0,0,0,8">
+			<Button Name="BtnAddCommunityNote"
+					Content="Add community note"
+					Focusable="False"/>
+			<!-- optional: show status/mini help later -->
+		</StackPanel>
 
 		<!-- Ctrl+F Search Bar -->
 		<Border Name="FindBar"
-				Grid.Row="0"
+				Grid.Row="1"
 				Background="#CC1E1E1E"
 				Padding="8"
 				CornerRadius="8"
@@ -45,8 +57,7 @@
 		</Border>
 
 		<!-- Main content -->
-		<Grid Grid.Row="1" ColumnDefinitions="1*,Auto,2*" Margin="0">
-
+		<Grid Grid.Row="2" ColumnDefinitions="1*,Auto,2*" Margin="0">
 			<!-- Original -->
 			<Border Background="#FF202020" BorderBrush="#FF303030" BorderThickness="1" CornerRadius="6">
 				<Grid RowDefinitions="Auto,*">
@@ -89,27 +100,13 @@
 
 						<views:SearchHighlightOverlay Name="HlTranslated"
 													  IsHitTestVisible="False"/>
-
 					</Grid>
 				</Grid>
 			</Border>
-
 		</Grid>
 
-		<!-- Top bar -->
-		<StackPanel Orientation="Horizontal"
-					Spacing="8"
-					Margin="0,0,0,8">
-			<Button Name="BtnAddCommunityNote"
-					Content="Add community note"
-					Focusable="False"/>
-
-			<!-- optional: show status/mini help later -->
-		</StackPanel>
-
-
-		<!-- Notes panel (click marker area to open; no tooltip usage) -->
-		<Border Grid.Row="2"
+		<!-- Notes panel -->
+		<Border Grid.Row="3"
 				Name="NotesPanel"
 				IsVisible="False"
 				Background="#FF1E1E1E"
@@ -118,13 +115,14 @@
 				CornerRadius="8"
 				Margin="0,8,0,0"
 				Padding="10">
+			<!-- (unchanged contents) -->
 			<Grid RowDefinitions="Auto,*" ColumnDefinitions="*,Auto">
 				<TextBlock Name="NotesHeader"
 						   Grid.Row="0" Grid.Column="0"
 						   Foreground="#FFCCCCCC"
 						   FontWeight="SemiBold"
 						   Text="Note" />
-				
+
 				<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="6">
 					<Button Name="BtnDeleteCommunityNote"
 							Content="Delete"
@@ -142,13 +140,13 @@
 							  VerticalScrollBarVisibility="Auto"
 							  HorizontalScrollBarVisibility="Disabled">
 					<TextBox Name="NotesBody"
-						 IsReadOnly="True"
-						 AcceptsReturn="True"
-						 TextWrapping="Wrap"
-						 Background="Transparent"
-						 BorderThickness="0"
-						 CaretBrush="#FFCCCCCC"
-						 Foreground="#FFEAEAEA"/>
+							 IsReadOnly="True"
+							 AcceptsReturn="True"
+							 TextWrapping="Wrap"
+							 Background="Transparent"
+							 BorderThickness="0"
+							 CaretBrush="#FFCCCCCC"
+							 Foreground="#FFEAEAEA"/>
 				</ScrollViewer>
 			</Grid>
 		</Border>
