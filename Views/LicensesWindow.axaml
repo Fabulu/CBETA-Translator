@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.LicensesWindow"
+        Width="860" Height="640"
+        Background="#FF111111"
+        Title="Licenses &amp; Attributions"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="12" RowSpacing="10">
+
+		<StackPanel Spacing="6">
+			<TextBlock Text="Licenses &amp; Attributions"
+					   FontSize="20"
+					   FontWeight="SemiBold"
+					   Foreground="#FFEAEAEA"/>
+
+			<TextBlock Text="Dictionary data attribution is shown below (taken from the shipped dictionary file header)."
+					   Foreground="#FFBDBDBD"
+					   TextWrapping="Wrap"/>
+		</StackPanel>
+
+		<Border Grid.Row="1"
+				Background="#FF1A1A1A"
+				BorderBrush="#FF303030"
+				BorderThickness="1"
+				CornerRadius="8"
+				Padding="10">
+
+			<TextBox Name="TxtLicenses"
+					 IsReadOnly="True"
+					 AcceptsReturn="True"
+					 TextWrapping="Wrap"
+					 Background="#00000000"
+					 Foreground="#FFEAEAEA"
+					 BorderThickness="0"
+					 FontFamily="Consolas"
+					 ScrollViewer.VerticalScrollBarVisibility="Auto"
+					 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+		</Border>
+
+		<DockPanel Grid.Row="2" LastChildFill="False">
+			<TextBlock Name="TxtHint"
+					   DockPanel.Dock="Left"
+					   Foreground="#FF9E9E9E"
+					   VerticalAlignment="Center"/>
+
+			<Button Name="BtnClose"
+					DockPanel.Dock="Right"
+					Width="120"
+					Height="34"
+					Content="Close"
+					Background="#33FFFFFF"/>
+		</DockPanel>
+
+	</Grid>
+</Window>

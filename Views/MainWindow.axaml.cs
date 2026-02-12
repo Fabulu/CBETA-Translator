@@ -21,6 +21,7 @@ public partial class MainWindow : Window
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
     private Button? _btnSave;
+    private Button? _btnLicenses;
 
     private Border? _navPanel;
     private ListBox? _filesList;
@@ -76,6 +77,7 @@ public partial class MainWindow : Window
         _btnToggleNav = this.FindControl<Button>("BtnToggleNav");
         _btnOpenRoot = this.FindControl<Button>("BtnOpenRoot");
         _btnSave = this.FindControl<Button>("BtnSave");
+        _btnLicenses = this.FindControl<Button>("BtnLicenses");
 
         _navPanel = this.FindControl<Border>("NavPanel");
         _filesList = this.FindControl<ListBox>("FilesList");
@@ -138,6 +140,7 @@ public partial class MainWindow : Window
         if (_btnToggleNav != null) _btnToggleNav.Click += ToggleNav_Click;
         if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
         if (_btnSave != null) _btnSave.Click += Save_Click;
+        if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
 
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
 
@@ -182,6 +185,20 @@ public partial class MainWindow : Window
         }
     }
 
+    private async void Licenses_Click(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            // Even if no root is loaded, show the window and let it explain what's missing.
+            var win = new LicensesWindow(_root);
+            await win.ShowDialog(this);
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Failed to open licenses: " + ex.Message);
+        }
+    }
+
     private async Task TryAutoLoadRootFromConfigAsync()
     {
         var cfg = await _configService.TryLoadAsync();
@@ -217,7 +234,6 @@ public partial class MainWindow : Window
 
         AppPaths.EnsureTranslatedDirExists(_root);
 
-        // Tell Git tab: this is the current repo/root
         _gitView?.SetCurrentRepoRoot(_root);
 
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
@@ -407,7 +423,6 @@ public partial class MainWindow : Window
 
         UpdateSaveButtonState();
 
-        // keep git tab selection cleared
         _gitView?.SetSelectedRelPath(null);
     }
 
@@ -439,7 +454,6 @@ public partial class MainWindow : Window
         if (_txtCurrentFile != null)
             _txtCurrentFile.Text = relPath;
 
-        // Tell Git tab which file is selected
         _gitView?.SetSelectedRelPath(_currentRelPath);
 
         SetStatus("Loading: " + relPath);
@@ -509,7 +523,6 @@ public partial class MainWindow : Window
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
             SetStatus("Saved translated XML: " + _currentRelPath);
 
-            // Status refresh (best-effort)
             try
             {
                 if (_root != null && _originalDir != null && _translatedDir != null && _currentRelPath != null)

@@ -17,6 +17,13 @@
           <Button Name="BtnToggleNav" Width="40" Height="32" Content="☰" Background="#33FFFFFF"/>
           <Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root" Background="#33FFFFFF"/>
           <Button Name="BtnSave" Width="120" Height="32" Content="Save" Background="#33FFFFFF"/>
+
+          <!-- NEW: Licenses button -->
+          <Button Name="BtnLicenses"
+                  Width="110" Height="32"
+                  Content="ⓘ Licenses"
+                  Background="#33FFFFFF"/>
+
           <TextBlock Name="TxtRoot"
                      VerticalAlignment="Center"
                      Margin="10,0,0,0"
@@ -82,7 +89,7 @@
       <!-- Right side: Tabs -->
       <Border Grid.Column="2" Margin="8" Background="#00000000">
         <TabControl Name="MainTabs">
-			
+
           <TabItem Header="Readable">
             <views:ReadableTabView Name="ReadableView"/>
           </TabItem>
@@ -94,10 +101,10 @@
           <TabItem Header="Search">
             <views:SearchTabView Name="SearchView"/>
           </TabItem>
-			
-		    <TabItem Header="Git">
-              <views:GitTabView Name="GitView"/>
-            </TabItem>
+
+          <TabItem Header="Git">
+            <views:GitTabView Name="GitView"/>
+          </TabItem>
 
         </TabControl>
 
