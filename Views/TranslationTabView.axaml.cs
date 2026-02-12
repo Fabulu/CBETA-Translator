@@ -15,6 +15,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using CbetaTranslator.App.Infrastructure;
+using CbetaTranslator.App.Services;
 
 namespace CbetaTranslator.App.Views;
 
@@ -29,6 +31,10 @@ public partial class TranslationTabView : UserControl
     private TextBox? _orig;
     private TextBox? _tran;
     private TextBlock? _txtHint;
+
+    // Hover dictionary (same pattern as ReadableTabView)
+    private HoverDictionaryBehavior? _hoverDict;
+    private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
     // Remember last "copy selection" range (so paste can work even if selection got lost)
     private int _lastCopyStart = -1;
@@ -70,6 +76,17 @@ public partial class TranslationTabView : UserControl
         InitializeComponent();
         FindControls();
         WireEvents();
+
+        AttachedToVisualTree += (_, _) =>
+        {
+            SetupHoverDictionary();
+        };
+
+        DetachedFromVisualTree += (_, _) =>
+        {
+            DisposeHoverDictionary();
+        };
+
         UpdateHint("Select XML in Translated XML → Copy selection + prompt.");
     }
 
@@ -108,12 +125,27 @@ public partial class TranslationTabView : UserControl
         if (_hlTran != null) _hlTran.Target = _tran;
     }
 
+    private void SetupHoverDictionary()
+    {
+        // We want it on the ORIGINAL (Chinese) pane, same as ReadableTabView.
+        if (_orig == null) return;
+
+        _hoverDict?.Dispose();
+        _hoverDict = new HoverDictionaryBehavior(_orig, _cedict);
+    }
+
+    private void DisposeHoverDictionary()
+    {
+        _hoverDict?.Dispose();
+        _hoverDict = null;
+    }
+
     private void WireEvents()
     {
         if (_btnCopyPrompt != null) _btnCopyPrompt.Click += async (_, _) => await CopySelectionWithPromptAsync();
         if (_btnPasteReplace != null) _btnPasteReplace.Click += async (_, _) => await PasteReplaceSelectionAsync();
 
-        // ✅ Save is now gated by the SAME hacky XML check used by the Check button.
+        // Save is gated by the SAME hacky XML check used by the Check button.
         if (_btnSaveTranslated != null) _btnSaveTranslated.Click += async (_, _) => await SaveIfValidAsync();
 
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
