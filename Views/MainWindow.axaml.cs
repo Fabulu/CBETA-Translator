@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -42,6 +43,9 @@ public partial class MainWindow : Window
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new AppConfigService();
     private readonly IndexCacheService _indexCacheService = new IndexCacheService();
+
+    // NEW: runtime cache for expensive readable rendering
+    private readonly RenderedDocumentCacheService _renderCache = new RenderedDocumentCacheService(maxEntries: 48);
 
     private string? _root;
     private string? _originalDir;
@@ -223,6 +227,9 @@ public partial class MainWindow : Window
         _root = rootPath;
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
+
+        // NEW: root switch invalidates runtime render cache
+        _renderCache.Clear();
 
         if (_txtRoot != null) _txtRoot.Text = _root;
 
@@ -440,6 +447,40 @@ public partial class MainWindow : Window
         await LoadPairAsync(item.RelPath);
     }
 
+    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(
+        string relPath,
+        CancellationToken ct)
+    {
+        if (_originalDir == null || _translatedDir == null)
+            return (RenderedDocument.Empty, RenderedDocument.Empty);
+
+        var origAbs = Path.Combine(_originalDir, relPath);
+        var tranAbs = Path.Combine(_translatedDir, relPath);
+
+        var stampOrig = FileStamp.FromFile(origAbs);
+        var stampTran = FileStamp.FromFile(tranAbs);
+
+        // ORIGINAL
+        RenderedDocument ro;
+        if (!_renderCache.TryGet(stampOrig, out ro))
+        {
+            ct.ThrowIfCancellationRequested();
+            ro = CbetaTeiRenderer.Render(_rawOrigXml);
+            _renderCache.Put(stampOrig, ro);
+        }
+
+        // TRANSLATED
+        RenderedDocument rt;
+        if (!_renderCache.TryGet(stampTran, out rt))
+        {
+            ct.ThrowIfCancellationRequested();
+            rt = CbetaTeiRenderer.Render(_rawTranXml);
+            _renderCache.Put(stampTran, rt);
+        }
+
+        return (ro, rt);
+    }
+
     private async Task LoadPairAsync(string relPath)
     {
         if (_originalDir == null || _translatedDir == null)
@@ -458,7 +499,12 @@ public partial class MainWindow : Window
 
         SetStatus("Loading: " + relPath);
 
+        var swTotal = Stopwatch.StartNew();
+        var swRead = Stopwatch.StartNew();
+
         var (orig, tran) = await _fileService.ReadPairAsync(_originalDir, _translatedDir, relPath);
+
+        swRead.Stop();
 
         _rawOrigXml = orig ?? "";
         _rawTranXml = tran ?? "";
@@ -470,16 +516,17 @@ public partial class MainWindow : Window
 
         try
         {
-            var renderTask = Task.Run(() =>
+            var swRender = Stopwatch.StartNew();
+
+            var renderTask = Task.Run(async () =>
             {
                 ct.ThrowIfCancellationRequested();
-                var ro = CbetaTeiRenderer.Render(_rawOrigXml);
-                ct.ThrowIfCancellationRequested();
-                var rt = CbetaTeiRenderer.Render(_rawTranXml);
-                return (ro, rt);
+                return await RenderPairCachedAsync(relPath, ct);
             }, ct);
 
             var (renderOrig, renderTran) = await renderTask;
+
+            swRender.Stop();
 
             if (ct.IsCancellationRequested)
                 return;
@@ -487,7 +534,11 @@ public partial class MainWindow : Window
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 _readableView?.SetRendered(renderOrig, renderTran);
-                SetStatus($"Loaded. Readable segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}.");
+
+                swTotal.Stop();
+                SetStatus(
+                    $"Loaded. Segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}. " +
+                    $"Read={swRead.ElapsedMilliseconds:n0}ms Render={swRender.ElapsedMilliseconds:n0}ms Total={swTotal.ElapsedMilliseconds:n0}ms");
             });
         }
         catch (OperationCanceledException) { }
@@ -522,6 +573,14 @@ public partial class MainWindow : Window
 
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
             SetStatus("Saved translated XML: " + _currentRelPath);
+
+            // NEW: invalidate translated rendered cache entry (orig cache stays valid)
+            try
+            {
+                var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+                _renderCache.Invalidate(tranAbs);
+            }
+            catch { /* ignore */ }
 
             try
             {
@@ -565,23 +624,24 @@ public partial class MainWindow : Window
 
             SetStatus("Re-rendering readable view…");
 
-            var renderTask = Task.Run(() =>
+            var sw = Stopwatch.StartNew();
+
+            var renderTask = Task.Run(async () =>
             {
                 ct.ThrowIfCancellationRequested();
-                var ro = CbetaTeiRenderer.Render(_rawOrigXml);
-                ct.ThrowIfCancellationRequested();
-                var rt = CbetaTeiRenderer.Render(_rawTranXml);
-                return (ro, rt);
+                return await RenderPairCachedAsync(_currentRelPath, ct);
             }, ct);
 
             var (renderOrig, renderTran) = await renderTask;
+
+            sw.Stop();
 
             if (!ct.IsCancellationRequested)
             {
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     _readableView?.SetRendered(renderOrig, renderTran);
-                    SetStatus("Saved + readable view updated.");
+                    SetStatus($"Saved + readable view updated. Render={sw.ElapsedMilliseconds:n0}ms");
                 });
             }
         }

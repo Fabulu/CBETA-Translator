@@ -203,10 +203,36 @@ public static class CbetaTeiRenderer
 
     private static string NormalizeTextNode(string s)
     {
-        s = s.Replace("\r", "");
-        s = Regex.Replace(s, @"[ \t\f\v]+", " ");
-        return s.Trim();
+        if (string.IsNullOrEmpty(s)) return "";
+
+        // remove \r and collapse whitespace
+        var sb = new StringBuilder(s.Length);
+        bool inWs = false;
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            char c = s[i];
+            if (c == '\r') continue;
+
+            if (c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\v')
+            {
+                inWs = true;
+                continue;
+            }
+
+            if (inWs)
+            {
+                // emit single space between runs
+                if (sb.Length > 0) sb.Append(' ');
+                inWs = false;
+            }
+
+            sb.Append(c);
+        }
+
+        return sb.ToString().Trim();
     }
+
 
     private static bool TryMakeSyncKey(string tagName, string attrs, out string key)
     {
@@ -263,8 +289,53 @@ public static class CbetaTeiRenderer
 
     private static string? Attr(string attrs, string attrName)
     {
-        var re = new Regex(@"\b" + Regex.Escape(attrName) + @"\s*=\s*""(?<v>[^""]*)""", RegexOptions.Compiled);
-        var m = re.Match(attrs);
-        return m.Success ? m.Groups["v"].Value : null;
+        if (string.IsNullOrEmpty(attrs) || string.IsNullOrEmpty(attrName))
+            return null;
+
+        // Look for: <space or start> attrName = "..."
+        // We keep it simple: search for attrName, then verify it's a real attribute boundary.
+        int i = 0;
+        while (true)
+        {
+            i = attrs.IndexOf(attrName, i, StringComparison.Ordinal);
+            if (i < 0) return null;
+
+            // must be boundary before name
+            if (i > 0 && (char.IsLetterOrDigit(attrs[i - 1]) || attrs[i - 1] == ':' || attrs[i - 1] == '_' || attrs[i - 1] == '-'))
+            {
+                i += attrName.Length;
+                continue;
+            }
+
+            int j = i + attrName.Length;
+
+            // skip whitespace
+            while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
+
+            // must have '='
+            if (j >= attrs.Length || attrs[j] != '=')
+            {
+                i += attrName.Length;
+                continue;
+            }
+            j++;
+
+            while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
+
+            // must start quote
+            if (j >= attrs.Length || attrs[j] != '"')
+            {
+                i += attrName.Length;
+                continue;
+            }
+            j++;
+
+            int start = j;
+            int end = attrs.IndexOf('"', start);
+            if (end < 0) return null;
+
+            return attrs.Substring(start, end - start);
+        }
     }
+
 }
