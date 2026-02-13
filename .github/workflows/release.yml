@@ -1,0 +1,86 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  PROJECT_DIR: CbetaTranslator.App
+  PROJECT_FILE: CbetaTranslator.App/CbetaTranslator.App.csproj
+  TFM: net8.0
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+            ext: zip
+          - os: ubuntu-latest
+            rid: linux-x64
+            ext: tar.gz
+          - os: macos-latest
+            rid: osx-x64
+            ext: zip
+          # Optional Apple Silicon build:
+           - os: macos-latest
+             rid: osx-arm64
+             ext: zip
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish (self-contained, single-file)
+        shell: bash
+        run: |
+          dotnet restore "${{ env.PROJECT_FILE }}"
+          dotnet publish "${{ env.PROJECT_FILE }}" \
+            -c Release -r "${{ matrix.rid }}" --self-contained true \
+            /p:PublishSingleFile=true \
+            /p:IncludeNativeLibrariesForSelfExtract=true \
+            /p:DebugType=None /p:DebugSymbols=false
+
+      # HARD GUARANTEE: copy dict into publish output (even if msbuild doesn't)
+      - name: Ensure dictionary ships
+        shell: bash
+        run: |
+          PUB="${{ env.PROJECT_DIR }}/bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          mkdir -p "$PUB/Assets/Dict"
+          cp -R "${{ env.PROJECT_DIR }}/Assets/Dict/." "$PUB/Assets/Dict/"
+
+      - name: Package
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          RID="${{ matrix.rid }}"
+          PUB="${{ env.PROJECT_DIR }}/bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          OUT="CbetaTranslator-${RID}-${TAG}"
+
+          mkdir -p dist
+
+          if [ "${{ matrix.ext }}" = "zip" ]; then
+            (cd "$PUB" && zip -r "../../../..//dist/${OUT}.zip" .)
+          else
+            tar -czf "dist/${OUT}.tar.gz" -C "$PUB" .
+          fi
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.zip
+            dist/*.tar.gz
