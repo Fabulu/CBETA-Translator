@@ -5,7 +5,7 @@
 *A high-performance, cross-platform corpus editor for the CBETA XML-P5 canon*
 
 > Translate. Render. Annotate. Search. Commit.  
-> All without breaking XML. All without breaking history.
+> All without breaking history.
 
 ---
 
