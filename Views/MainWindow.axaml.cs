@@ -1,10 +1,11 @@
-﻿using System;
+﻿// Views/MainWindow.axaml.cs
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -15,7 +16,6 @@ using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using CbetaTranslator.App.Text;
-using Avalonia.Styling;
 
 namespace CbetaTranslator.App.Views;
 
@@ -23,10 +23,10 @@ public partial class MainWindow : Window
 {
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
-    private Button? _btnSave;
+    private Button? _btnSave;                 // optional: may not exist in XAML
     private Button? _btnLicenses;
 
-    private Button? _btnAddCommunityNote;
+    private Button? _btnAddCommunityNote;     // optional: may not exist in XAML
 
     private Border? _navPanel;
     private ListBox? _filesList;
@@ -44,7 +44,7 @@ public partial class MainWindow : Window
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
 
-    // NEW: theme toggle
+    // optional: is commented out in your XAML right now
     private CheckBox? _chkNightMode;
 
     private readonly IFileService _fileService = new FileService();
@@ -72,13 +72,14 @@ public partial class MainWindow : Window
         InitializeComponent();
         FindControls();
         WireEvents();
+        WireChildViewEvents();
 
         SetStatus("Ready.");
         UpdateSaveButtonState();
 
-        // Apply theme according to checkbox (defaults to checked in XAML)
-       // ApplyTheme(dark: _chkNightMode?.IsChecked == true);
+        // Force night mode (your current desired state)
         ApplyTheme(dark: true);
+
         _ = TryAutoLoadRootFromConfigAsync();
     }
 
@@ -86,21 +87,25 @@ public partial class MainWindow : Window
 
     private void FindControls()
     {
+        // Top bar
         _btnToggleNav = this.FindControl<Button>("BtnToggleNav");
         _btnOpenRoot = this.FindControl<Button>("BtnOpenRoot");
-        _btnSave = this.FindControl<Button>("BtnSave");
+        _btnSave = this.FindControl<Button>("BtnSave"); // may be null (not in XAML)
         _btnLicenses = this.FindControl<Button>("BtnLicenses");
-        _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
+        _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote"); // may be null (not in XAML)
 
+        // Left nav
         _navPanel = this.FindControl<Border>("NavPanel");
         _filesList = this.FindControl<ListBox>("FilesList");
         _navSearch = this.FindControl<TextBox>("NavSearch");
         _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
 
+        // Status labels
         _txtRoot = this.FindControl<TextBlock>("TxtRoot");
         _txtCurrentFile = this.FindControl<TextBlock>("TxtCurrentFile");
         _txtStatus = this.FindControl<TextBlock>("TxtStatus");
 
+        // Tabs + views
         _tabs = this.FindControl<TabControl>("MainTabs");
 
         _readableView = this.FindControl<ReadableTabView>("ReadableView");
@@ -108,9 +113,38 @@ public partial class MainWindow : Window
         _searchView = this.FindControl<SearchTabView>("SearchView");
         _gitView = this.FindControl<GitTabView>("GitView");
 
-        // NEW
+        // Optional theme checkbox (currently commented out in XAML)
         _chkNightMode = this.FindControl<CheckBox>("ChkNightMode");
+    }
 
+    private void WireEvents()
+    {
+        if (_btnToggleNav != null) _btnToggleNav.Click += ToggleNav_Click;
+        if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
+        if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
+
+        // Optional buttons: wire only if they exist in XAML
+        if (_btnSave != null) _btnSave.Click += Save_Click;
+
+        // IMPORTANT: unify add-note behavior to ONE handler
+        if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
+
+        if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
+        if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
+
+        if (_navSearch != null)
+            _navSearch.TextChanged += (_, _) => ApplyFilter();
+
+        if (_chkShowFilenames != null)
+            _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
+
+        // Optional theme checkbox (if you later un-comment it in XAML)
+        // if (_chkNightMode != null)
+        //     _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
+    }
+
+    private void WireChildViewEvents()
+    {
         if (_readableView != null)
             _readableView.Status += (_, msg) => SetStatus(msg);
 
@@ -120,13 +154,71 @@ public partial class MainWindow : Window
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
+        // ✅ CRITICAL FIX: after insert/delete, refresh from disk and force BOTH tabs to update immediately.
+        // This kills the "first note only appears after second / after tab switch / after restart" symptom.
         if (_readableView != null)
         {
-            _readableView.CommunityNoteInsertRequested += (_, req) =>
-                _ = InsertCommunityNoteAsync(req.XmlIndex, req.NoteText, req.Resp);
+            _readableView.CommunityNoteInsertRequested += async (_, req) =>
+            {
+                try
+                {
+                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
+                        return;
 
-            _readableView.CommunityNoteDeleteRequested += (_, req) =>
-                _ = DeleteCommunityNoteAsync(req.XmlStart, req.XmlEndExclusive);
+                    // Let TranslationTabView do its file-backed mutation
+                    await _translationView!.HandleCommunityNoteInsertAsync(req.XmlIndex, req.NoteText, req.Resp);
+
+                    // Always re-read translated XML from disk to avoid any "editor text stale" timing issues
+                    _rawTranXml = await SafeReadTextAsync(tranAbs);
+
+                    // Keep the XML tab and internal state consistent immediately
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        _translationView!.SetXml(_rawOrigXml, _rawTranXml);
+                    }, DispatcherPriority.Background);
+
+                    // Invalidate cache for translated file so next cached renders can't resurrect old markers
+                    SafeInvalidateRenderCache(tranAbs);
+
+                    // Re-render readable from the raw strings (no disk race)
+                    await RefreshReadableFromRawAsync();
+
+                    SetStatus("Community note inserted.");
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Add note failed: " + ex.Message);
+                }
+            };
+
+            _readableView.CommunityNoteDeleteRequested += async (_, req) =>
+            {
+                try
+                {
+                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
+                        return;
+
+                    await _translationView!.HandleCommunityNoteDeleteAsync(req.XmlStart, req.XmlEndExclusive);
+
+                    // Always re-read translated XML from disk so the UI can't lag behind
+                    _rawTranXml = await SafeReadTextAsync(tranAbs);
+
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        _translationView!.SetXml(_rawOrigXml, _rawTranXml);
+                    }, DispatcherPriority.Background);
+
+                    SafeInvalidateRenderCache(tranAbs);
+
+                    await RefreshReadableFromRawAsync();
+
+                    SetStatus("Community note deleted.");
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Delete note failed: " + ex.Message);
+                }
+            };
         }
 
         if (_searchView != null)
@@ -163,101 +255,46 @@ public partial class MainWindow : Window
         }
     }
 
-    private void WireEvents()
+    // Ensures: translation view exists, current file exists, paths resolved, translation view has file paths.
+    private bool EnsureFileContextForNoteOps(out string origAbs, out string tranAbs)
     {
-        if (_btnToggleNav != null) _btnToggleNav.Click += ToggleNav_Click;
-        if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
-        if (_btnSave != null) _btnSave.Click += Save_Click;
-        if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
+        origAbs = "";
+        tranAbs = "";
 
-        if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
-
-        if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
-        if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
-
-        if (_navSearch != null)
-            _navSearch.TextChanged += (_, _) => ApplyFilter();
-
-        if (_chkShowFilenames != null)
-            _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
-
-        // NEW: theme checkbox
-      //  if (_chkNightMode != null)
-      //      _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
-    }
-
-    // IMPORTANT: parameter name is "dark" so ApplyTheme(dark: true) compiles.
-    private void ApplyTheme(bool dark)
-    {
-        string p = dark ? "Night_" : "Light_";
-
-        void Map(string tokenKey, string sourceKey)
+        if (_translationView == null)
         {
-            // Look up resources from the current window/theme dictionaries
-            if (this.TryGetResource(sourceKey, null, out var v) && v != null)
-                Resources[tokenKey] = v; // store REAL brush/value
+            SetStatus("Cannot modify notes: Translation view missing.");
+            return false;
         }
 
-        Map("AppBg", p + "AppBg");
-        Map("BarBg", p + "BarBg");
-        Map("NavBg", p + "NavBg");
+        if (_currentRelPath == null || _originalDir == null || _translatedDir == null)
+        {
+            SetStatus("Cannot modify notes: no file loaded.");
+            return false;
+        }
 
-        Map("TextFg", p + "TextFg");
-        Map("TextMutedFg", p + "TextMutedFg");
+        origAbs = Path.Combine(_originalDir, _currentRelPath);
+        tranAbs = Path.Combine(_translatedDir, _currentRelPath);
 
-        Map("ControlBg", p + "ControlBg");
-        Map("ControlBgHover", p + "ControlBgHover");
-        Map("ControlBgFocus", p + "ControlBgFocus");
+        try { _translationView.SetCurrentFilePaths(origAbs, tranAbs); } catch { }
 
-        Map("BorderBrush", p + "BorderBrush");
-
-        Map("BtnBg", p + "BtnBg");
-        Map("BtnBgHover", p + "BtnBgHover");
-        Map("BtnBgPressed", p + "BtnBgPressed");
-        Map("BtnFg", p + "BtnFg");
-
-        Map("TabBg", p + "TabBg");
-        Map("TabBgSelected", p + "TabBgSelected");
-        Map("TabFgSelected", p + "TabFgSelected");
-
-        Map("TooltipBg", p + "TooltipBg");
-        Map("TooltipBorder", p + "TooltipBorder");
-        Map("TooltipFg", p + "TooltipFg");
+        return true;
     }
 
-
-    private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
+    private static async Task<string> SafeReadTextAsync(string path)
     {
         try
         {
-            SetStatus("Add note: clicked.");
-
-            if (_readableView == null)
-            {
-                SetStatus("Add note: Readable view not available.");
-                return;
-            }
-
-            if (_currentRelPath == null)
-            {
-                SetStatus("Add note: Select a file first.");
-                return;
-            }
-
-            // Ensure readable tab is active
-            if (_tabs != null)
-                _tabs.SelectedIndex = 0;
-
-            // Let layout settle
-            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
-
-            var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
-            SetStatus(ok ? "Add note: OK (" + reason + ")" : "Add note: FAILED (" + reason + ")");
+            if (File.Exists(path))
+                return await File.ReadAllTextAsync(path);
         }
-        catch (Exception ex)
-        {
-            SetStatus("Add note failed: " + ex.Message);
-        }
+        catch { }
+        return "";
+    }
+
+    private void SafeInvalidateRenderCache(string tranAbs)
+    {
+        try { _renderCache.Invalidate(tranAbs); } catch { }
     }
 
     private void ToggleNav_Click(object? sender, RoutedEventArgs e)
@@ -296,7 +333,6 @@ public partial class MainWindow : Window
     {
         try
         {
-            // Even if no root is loaded, show the window and let it explain what's missing.
             var win = new LicensesWindow(_root);
             await win.ShowDialog(this);
         }
@@ -306,29 +342,44 @@ public partial class MainWindow : Window
         }
     }
 
-    // NEW: global add note (works even when Readable tab not selected)
-    private async void AddNote_Click(object? sender, RoutedEventArgs e)
+    // ONE add-note handler (used by optional global button if present)
+    private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
         try
         {
-            if (_currentRelPath == null || _readableView == null)
+            SetStatus("Add note: clicked.");
+
+            if (_readableView == null)
             {
-                SetStatus("Cannot add note: no file loaded.");
+                SetStatus("Add note: Readable view not available.");
                 return;
             }
 
-            // show readable tab so user sees where caret/selection is
+            if (_currentRelPath == null)
+            {
+                SetStatus("Add note: Select a file first.");
+                return;
+            }
+
+            // Ensure readable tab is active
             if (_tabs != null)
                 _tabs.SelectedIndex = 0;
 
-            // Requires ReadableTabView to expose a public method:
-            // public Task AddCommunityNoteAtCaretAsync() => AddCommunityNoteFromCaretAsync();
-            await _readableView.AddCommunityNoteAtCaretAsync();
+            // Let layout settle
+            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+
+            var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
+            SetStatus(ok ? "Add note: OK (" + reason + ")" : "Add note: FAILED (" + reason + ")");
         }
         catch (Exception ex)
         {
             SetStatus("Add note failed: " + ex.Message);
         }
+    }
+
+    private void Save_Click(object? sender, RoutedEventArgs e)
+    {
+        _ = SaveTranslatedFromTabAsync();
     }
 
     private async Task TryAutoLoadRootFromConfigAsync()
@@ -356,7 +407,6 @@ public partial class MainWindow : Window
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
 
-        // NEW: root switch invalidates runtime render cache
         _renderCache.Clear();
 
         if (_txtRoot != null) _txtRoot.Text = _root;
@@ -370,7 +420,6 @@ public partial class MainWindow : Window
         AppPaths.EnsureTranslatedDirExists(_root);
 
         _gitView?.SetCurrentRepoRoot(_root);
-
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
 
         if (saveToConfig)
@@ -411,7 +460,7 @@ public partial class MainWindow : Window
         }
 
         var cache = await _indexCacheService.TryLoadAsync(_root);
-        if (cache != null && cache.Entries != null && cache.Entries.Count > 0)
+        if (cache?.Entries is { Count: > 0 })
         {
             _allItems = cache.Entries;
             ApplyFilter();
@@ -557,7 +606,6 @@ public partial class MainWindow : Window
         _searchView?.Clear();
 
         UpdateSaveButtonState();
-
         _gitView?.SetSelectedRelPath(null);
     }
 
@@ -575,9 +623,7 @@ public partial class MainWindow : Window
         await LoadPairAsync(item.RelPath);
     }
 
-    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(
-        string relPath,
-        CancellationToken ct)
+    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(string relPath, CancellationToken ct)
     {
         if (_originalDir == null || _translatedDir == null)
             return (RenderedDocument.Empty, RenderedDocument.Empty);
@@ -588,7 +634,6 @@ public partial class MainWindow : Window
         var stampOrig = FileStamp.FromFile(origAbs);
         var stampTran = FileStamp.FromFile(tranAbs);
 
-        // ORIGINAL
         RenderedDocument ro;
         if (!_renderCache.TryGet(stampOrig, out ro))
         {
@@ -597,7 +642,6 @@ public partial class MainWindow : Window
             _renderCache.Put(stampOrig, ro);
         }
 
-        // TRANSLATED
         RenderedDocument rt;
         if (!_renderCache.TryGet(stampTran, out rt))
         {
@@ -636,6 +680,15 @@ public partial class MainWindow : Window
 
         _rawOrigXml = orig ?? "";
         _rawTranXml = tran ?? "";
+
+        // ✅ Ensure TranslationTabView knows which exact files it's operating on
+        try
+        {
+            var origAbs = Path.Combine(_originalDir, relPath);
+            var tranAbs = Path.Combine(_translatedDir, relPath);
+            _translationView?.SetCurrentFilePaths(origAbs, tranAbs);
+        }
+        catch { }
 
         _translationView?.SetXml(_rawOrigXml, _rawTranXml);
         UpdateSaveButtonState();
@@ -676,11 +729,6 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Save_Click(object? sender, RoutedEventArgs e)
-    {
-        _ = SaveTranslatedFromTabAsync();
-    }
-
     private async Task SaveTranslatedFromTabAsync()
     {
         try
@@ -702,13 +750,12 @@ public partial class MainWindow : Window
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
             SetStatus("Saved translated XML: " + _currentRelPath);
 
-            // NEW: invalidate translated rendered cache entry (orig cache stays valid)
             try
             {
                 var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
                 _renderCache.Invalidate(tranAbs);
             }
-            catch { /* ignore */ }
+            catch { }
 
             try
             {
@@ -742,7 +789,7 @@ public partial class MainWindow : Window
                     await _indexCacheService.SaveAsync(_root, cache);
                 }
             }
-            catch { /* ignore */ }
+            catch { }
 
             _rawTranXml = xml ?? "";
 
@@ -780,160 +827,109 @@ public partial class MainWindow : Window
         }
     }
 
-    // -----------------------------
-    // COMMUNITY NOTES: persist to translated XML
-    // -----------------------------
-
-    private async Task InsertCommunityNoteAsync(int xmlIndex, string noteText, string? resp)
+    // ✅ Re-render readable view from the *current* raw strings (no disk re-read, no editor race)
+    private async Task RefreshReadableFromRawAsync()
     {
+        if (_readableView == null)
+            return;
+
+        // Cancel any in-flight render
+        _renderCts?.Cancel();
+        _renderCts = new CancellationTokenSource();
+        var ct = _renderCts.Token;
+
         try
         {
-            if (_translationView == null || _translatedDir == null || _currentRelPath == null)
+            SetStatus("Re-rendering readable view…");
+
+            var sw = Stopwatch.StartNew();
+
+            var renderTask = Task.Run(() =>
             {
-                SetStatus("Cannot add note: no file loaded.");
-                return;
-            }
+                ct.ThrowIfCancellationRequested();
+                var ro = CbetaTeiRenderer.Render(_rawOrigXml ?? "");
+                var rt = CbetaTeiRenderer.Render(_rawTranXml ?? "");
+                return (ro, rt);
+            }, ct);
 
-            var tran = _translationView.GetTranslatedXml();
-            if (string.IsNullOrWhiteSpace(tran))
+            var (renderOrig, renderTran) = await renderTask;
+
+            sw.Stop();
+
+            if (!ct.IsCancellationRequested)
             {
-                SetStatus("Cannot add note: translated XML is empty.");
-                return;
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    _readableView.SetRendered(renderOrig, renderTran);
+                    SetStatus($"Readable view updated. Render={sw.ElapsedMilliseconds:n0}ms");
+                });
             }
-
-            xmlIndex = Math.Clamp(xmlIndex, 0, tran.Length);
-            xmlIndex = NudgeIndexOutOfTag(tran, xmlIndex);
-
-            var noteXml = BuildCommunityNoteXml(noteText, resp);
-
-            var newTran = tran.Insert(xmlIndex, noteXml);
-
-            _rawTranXml = newTran;
-            _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml);
-
-            SetStatus("Community note inserted.");
-
-            await SaveTranslatedFromTabAsync();
         }
+        catch (OperationCanceledException) { }
         catch (Exception ex)
         {
-            SetStatus("Add note failed: " + ex.Message);
+            SetStatus("Re-render failed: " + ex.Message);
         }
     }
-
-    private async Task DeleteCommunityNoteAsync(int xmlStart, int xmlEndExclusive)
-    {
-        try
-        {
-            if (_translationView == null || _translatedDir == null || _currentRelPath == null)
-            {
-                SetStatus("Cannot delete note: no file loaded.");
-                return;
-            }
-
-            var tran = _translationView.GetTranslatedXml();
-            if (string.IsNullOrWhiteSpace(tran))
-            {
-                SetStatus("Cannot delete note: translated XML is empty.");
-                return;
-            }
-
-            int a = Math.Clamp(xmlStart, 0, tran.Length);
-            int b = Math.Clamp(xmlEndExclusive, 0, tran.Length);
-            if (b < a) (a, b) = (b, a);
-
-            if (b <= a)
-            {
-                SetStatus("Delete note failed: invalid range.");
-                return;
-            }
-
-            // Safety: only delete actual community notes
-            if (!IsCommunityNoteSpan(tran, a, b))
-            {
-                SetStatus("Delete blocked: selection is not a community note.");
-                return;
-            }
-
-            var newTran = tran.Remove(a, b - a);
-
-            _rawTranXml = newTran;
-            _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml);
-
-            SetStatus("Community note deleted.");
-
-            await SaveTranslatedFromTabAsync();
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Delete note failed: " + ex.Message);
-        }
-    }
-
-    private static bool IsCommunityNoteSpan(string xml, int start, int endExclusive)
-    {
-        if (string.IsNullOrEmpty(xml)) return false;
-        if (start < 0 || endExclusive > xml.Length || endExclusive <= start) return false;
-
-        var frag = xml.Substring(start, endExclusive - start);
-
-        if (!frag.StartsWith("<note", StringComparison.OrdinalIgnoreCase)) return false;
-        if (frag.IndexOf("type=\"community\"", StringComparison.OrdinalIgnoreCase) < 0) return false;
-        if (!frag.EndsWith("</note>", StringComparison.OrdinalIgnoreCase)) return false;
-
-        return true;
-    }
-
-    private static int NudgeIndexOutOfTag(string xml, int idx)
-    {
-        if (string.IsNullOrEmpty(xml)) return idx;
-        idx = Math.Clamp(idx, 0, xml.Length);
-
-        int scanPos = Math.Min(Math.Max(idx, 0), Math.Max(0, xml.Length - 1));
-        int left = xml.LastIndexOf('<', scanPos);
-        int right = xml.IndexOf('>', scanPos);
-
-        if (left >= 0 && right >= 0 && left < idx && idx < right)
-            return Math.Min(xml.Length, right + 1);
-
-        return idx;
-    }
-
-    private static string BuildCommunityNoteXml(string noteText, string? resp)
-    {
-        string inner = EscapeXmlText((noteText ?? "").Trim());
-        string respAttr = string.IsNullOrWhiteSpace(resp) ? "" : $" resp=\"{EscapeXmlAttr(resp!.Trim())}\"";
-        return $"<note type=\"community\"{respAttr}>{inner}</note>";
-    }
-
-    private static string EscapeXmlText(string s)
-        => (s ?? "")
-            .Replace("&", "&amp;")
-            .Replace("<", "&lt;")
-            .Replace(">", "&gt;");
-
-    private static string EscapeXmlAttr(string s)
-        => EscapeXmlText(s).Replace("\"", "&quot;");
-
-    // -----------------------------
 
     private void UpdateSaveButtonState()
     {
-        if (_btnSave == null) return;
-
-        bool hasFile = _currentRelPath != null;
-        bool translationTabSelected = _tabs?.SelectedIndex == 1;
-
-        _btnSave.IsEnabled = hasFile && translationTabSelected;
+        // If you don't have a global save button in XAML, nothing to enable/disable here.
+        if (_btnSave != null)
+        {
+            bool hasFile = _currentRelPath != null;
+            bool translationTabSelected = _tabs?.SelectedIndex == 1;
+            _btnSave.IsEnabled = hasFile && translationTabSelected;
+        }
 
         if (_btnAddCommunityNote != null)
-            _btnAddCommunityNote.IsEnabled = hasFile;
+            _btnAddCommunityNote.IsEnabled = _currentRelPath != null;
     }
 
     private void SetStatus(string msg)
     {
         if (_txtStatus != null)
             _txtStatus.Text = msg;
+    }
+
+    private void ApplyTheme(bool dark)
+    {
+        string p = dark ? "Night_" : "Light_";
+
+        void Map(string tokenKey, string sourceKey)
+        {
+            if (this.TryGetResource(sourceKey, null, out var v) && v != null)
+                Resources[tokenKey] = v;
+        }
+
+        Map("AppBg", p + "AppBg");
+        Map("BarBg", p + "BarBg");
+        Map("NavBg", p + "NavBg");
+
+        Map("TextFg", p + "TextFg");
+        Map("TextMutedFg", p + "TextMutedFg");
+
+        Map("ControlBg", p + "ControlBg");
+        Map("ControlBgHover", p + "ControlBgHover");
+        Map("ControlBgFocus", p + "ControlBgFocus");
+
+        Map("BorderBrush", p + "BorderBrush");
+
+        Map("BtnBg", p + "BtnBg");
+        Map("BtnBgHover", p + "BtnBgHover");
+        Map("BtnBgPressed", p + "BtnBgPressed");
+        Map("BtnFg", p + "BtnFg");
+
+        Map("TabBg", p + "TabBg");
+        Map("TabBgSelected", p + "TabBgSelected");
+        Map("TabFgSelected", p + "TabFgSelected");
+
+        Map("TooltipBg", p + "TooltipBg");
+        Map("TooltipBorder", p + "TooltipBorder");
+        Map("TooltipFg", p + "TooltipFg");
+
+        Map("SelectionBg", p + "SelectionBg");
+        Map("SelectionFg", p + "SelectionFg");
     }
 
     private static string NormalizeRelForLogs(string p)

@@ -1,21 +1,23 @@
 ﻿// Views/ReadableTabView.axaml.cs
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Media.TextFormatting;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using AvaloniaEdit;
+using AvaloniaEdit.Editing;
+using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -24,21 +26,19 @@ namespace CbetaTranslator.App.Views;
 
 public partial class ReadableTabView : UserControl
 {
-    private TextBox? _editorOriginal;
-    private TextBox? _editorTranslated;
+    // UI (custom controls)
+    private AnnotatedTextEditor? _editorOriginal;
+    private AnnotatedTextEditor? _editorTranslated;
 
-    private HoverDictionaryBehavior? _hoverDict;
+    // Underlying AvaloniaEdit editors (fetched from inside AnnotatedTextEditor)
+    private TextEditor? _aeOrig;
+    private TextEditor? _aeTran;
+
+    // Hover dictionary (original only)
+    private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
-    private ScrollViewer? _svOriginal;
-    private ScrollViewer? _svTranslated;
-
-    // Cached template parts for better scroll/geometry
-    private Visual? _presOriginal;
-    private Visual? _presTranslated;
-    private ScrollContentPresenter? _scpOriginal;
-    private ScrollContentPresenter? _scpTranslated;
-
+    // Selection sync
     private readonly ISelectionSyncService _selectionSync = new SelectionSyncService();
 
     private RenderedDocument _renderOrig = RenderedDocument.Empty;
@@ -58,7 +58,7 @@ public partial class ReadableTabView : UserControl
     private int _lastOrigCaret = -1, _lastTranCaret = -1;
 
     private DateTime _lastUserInputUtc = DateTime.MinValue;
-    private TextBox? _lastUserInputEditor;
+    private object? _lastUserInputEditor; // AnnotatedTextEditor or TextEditor
     private const int UserInputPriorityWindowMs = 250;
 
     // Coalesced mirroring: last request wins
@@ -76,10 +76,10 @@ public partial class ReadableTabView : UserControl
     private Button? _btnNext;
     private Button? _btnCloseFind;
 
-    private SearchHighlightOverlay? _hlOriginal;
-    private SearchHighlightOverlay? _hlTranslated;
+    private SearchHighlightRenderer? _hlOrig;
+    private SearchHighlightRenderer? _hlTran;
 
-    private TextBox? _findTarget;
+    private TextEditor? _findTarget;
     private readonly List<int> _matchStarts = new();
     private int _matchLen = 0;
     private int _matchIndex = -1;
@@ -92,57 +92,114 @@ public partial class ReadableTabView : UserControl
     private const int SuppressMirrorAfterFindMs = 900;
 
     // -------------------------
-    // Notes: markers + bottom panel
+    // Notes: bottom panel
     // -------------------------
-    private AnnotationMarkerOverlay? _annMarksOriginal;
-    private AnnotationMarkerOverlay? _annMarksTranslated;
-
     private Border? _notesPanel;
     private TextBlock? _notesHeader;
     private TextBox? _notesBody;
     private Button? _btnCloseNotes;
 
-    // Notes actions
     private Button? _btnAddCommunityNote;
     private Button? _btnDeleteCommunityNote;
 
-    // Track what note is currently shown
     private DocAnnotation? _currentAnn;
 
     public event EventHandler<DocAnnotation>? NoteClicked;
-
     public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
 
-    // NEW: status channel so MainWindow can show what's happening
     public event EventHandler<string>? Status;
     private void Say(string msg) => Status?.Invoke(this, msg);
+
+    // -------------------------
+    // HARD FIX: pending refresh gate for community note insert/delete
+    // -------------------------
+    private bool _pendingCommunityRefresh;
+    private DateTime _pendingSinceUtc;
+    private const int PendingCommunityTimeoutMs = 2500;
+
+    private void EnterPendingCommunityRefresh(string why)
+    {
+        _pendingCommunityRefresh = true;
+        _pendingSinceUtc = DateTime.UtcNow;
+
+        // Freeze selection/mirroring while parent mutates XML + rebuilds render
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+
+        // Disable buttons so you cannot double-delete/double-add on stale render
+        if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
+        if (_btnDeleteCommunityNote != null) _btnDeleteCommunityNote.IsEnabled = false;
+
+        Log($"PENDING REFRESH ENTER: {why}");
+    }
+
+    private void ExitPendingCommunityRefresh(string why)
+    {
+        if (!_pendingCommunityRefresh) return;
+        _pendingCommunityRefresh = false;
+        Log($"PENDING REFRESH EXIT: {why}");
+        UpdateNotesButtonsState();
+    }
+
+    // -------------------------
+    // Logging helpers
+    // -------------------------
+    private long _seq;
+
+    private void Log(string msg)
+    {
+        var line = $"[ReadableTabView #{++_seq}] {msg}";
+        try { Say(line); } catch { }
+        try { Debug.WriteLine(line); } catch { }
+    }
+
+    private void DumpState(string tag)
+    {
+        Log($"{tag} | " +
+            $"origCtrl={(_editorOriginal != null ? "OK" : "NULL")} tranCtrl={(_editorTranslated != null ? "OK" : "NULL")} | " +
+            $"aeOrig={(_aeOrig != null ? "OK" : "NULL")} aeTran={(_aeTran != null ? "OK" : "NULL")} | " +
+            $"renderOrigEmpty={_renderOrig.IsEmpty} renderTranEmpty={_renderTran.IsEmpty} | " +
+            $"pendingRefresh={_pendingCommunityRefresh} | " +
+            $"addBtn={(_btnAddCommunityNote != null ? "OK" : "NULL")} delBtn={(_btnDeleteCommunityNote != null ? "OK" : "NULL")} | " +
+            $"addEnabled={(_btnAddCommunityNote?.IsEnabled.ToString() ?? "null")} delVisible={(_btnDeleteCommunityNote?.IsVisible.ToString() ?? "null")} delEnabled={(_btnDeleteCommunityNote?.IsEnabled.ToString() ?? "null")}");
+    }
 
     public ReadableTabView()
     {
         InitializeComponent();
+
+        // First pass: try to find stuff in constructor
         FindControls();
         WireEvents();
 
         AttachedToVisualTree += (_, _) =>
         {
-            _svOriginal = FindScrollViewer(_editorOriginal);
-            _svTranslated = FindScrollViewer(_editorTranslated);
+            // IMPORTANT: re-find & rewire AFTER visual tree is alive
+            FindControls();
+            ResolveInnerEditors();
+            RewireNotesButtonsHard();
 
-            RefreshPresenterCache(_editorOriginal, isOriginal: true);
-            RefreshPresenterCache(_editorTranslated, isOriginal: false);
-
-            SetupHoverDictionary(); // hover dict MUST be on ORIGINAL
+            SetupHoverDictionary(); // MUST be on original
             StartSelectionTimer();
 
-            Say("ReadableTabView attached.");
+            Dispatcher.UIThread.Post(() =>
+            {
+                EnsureFindRenderersAttached();
+                UpdateNotesButtonsState();
+                DumpState("AttachedToVisualTree (post)");
+            }, DispatcherPriority.Background);
+
+            Log("ReadableTabView attached.");
         };
 
         DetachedFromVisualTree += (_, _) =>
         {
             StopSelectionTimer();
             DisposeHoverDictionary();
-            Say("ReadableTabView detached.");
+            DetachFindRenderers();
+            Log("ReadableTabView detached.");
         };
     }
 
@@ -150,14 +207,8 @@ public partial class ReadableTabView : UserControl
 
     private void FindControls()
     {
-        _editorOriginal = this.FindControl<TextBox>("EditorOriginal");
-        _editorTranslated = this.FindControl<TextBox>("EditorTranslated");
-
-        if (_editorOriginal != null) _editorOriginal.IsReadOnly = true;
-        if (_editorTranslated != null) _editorTranslated.IsReadOnly = true;
-
-        if (_editorOriginal != null) _editorOriginal.TemplateApplied += (_, _) => RefreshPresenterCache(_editorOriginal, isOriginal: true);
-        if (_editorTranslated != null) _editorTranslated.TemplateApplied += (_, _) => RefreshPresenterCache(_editorTranslated, isOriginal: false);
+        _editorOriginal = this.FindControl<AnnotatedTextEditor>("EditorOriginal");
+        _editorTranslated = this.FindControl<AnnotatedTextEditor>("EditorTranslated");
 
         _findBar = this.FindControl<Border>("FindBar");
         _findQuery = this.FindControl<TextBox>("FindQuery");
@@ -167,18 +218,6 @@ public partial class ReadableTabView : UserControl
         _btnNext = this.FindControl<Button>("BtnNext");
         _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
 
-        _hlOriginal = this.FindControl<SearchHighlightOverlay>("HlOriginal");
-        _hlTranslated = this.FindControl<SearchHighlightOverlay>("HlTranslated");
-
-        if (_hlOriginal != null) _hlOriginal.Target = _editorOriginal;
-        if (_hlTranslated != null) _hlTranslated.Target = _editorTranslated;
-
-        _annMarksOriginal = this.FindControl<AnnotationMarkerOverlay>("AnnMarksOriginal");
-        _annMarksTranslated = this.FindControl<AnnotationMarkerOverlay>("AnnMarksTranslated");
-
-        if (_annMarksOriginal != null) _annMarksOriginal.Target = _editorOriginal;
-        if (_annMarksTranslated != null) _annMarksTranslated.Target = _editorTranslated;
-
         _notesPanel = this.FindControl<Border>("NotesPanel");
         _notesHeader = this.FindControl<TextBlock>("NotesHeader");
         _notesBody = this.FindControl<TextBox>("NotesBody");
@@ -187,19 +226,56 @@ public partial class ReadableTabView : UserControl
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
         _btnDeleteCommunityNote = this.FindControl<Button>("BtnDeleteCommunityNote");
 
-        // If XAML forgot to set it, make sure notes panel starts hidden.
         if (_notesPanel != null)
             _notesPanel.IsVisible = false;
+
+        if (_btnAddCommunityNote == null) Log("FindControls: BtnAddCommunityNote NOT FOUND (null).");
+        if (_btnDeleteCommunityNote == null) Log("FindControls: BtnDeleteCommunityNote NOT FOUND (null).");
+    }
+
+    private void ResolveInnerEditors()
+    {
+        _aeOrig = FindInnerTextEditor(_editorOriginal);
+        _aeTran = FindInnerTextEditor(_editorTranslated);
+
+        if (_aeOrig != null) _aeOrig.IsReadOnly = true;
+        if (_aeTran != null) _aeTran.IsReadOnly = true;
+    }
+
+    private static TextEditor? FindInnerTextEditor(Control? root)
+    {
+        if (root == null) return null;
+        if (root is TextEditor te) return te;
+
+        // Search visual tree
+        var found = root.GetVisualDescendants().OfType<TextEditor>().FirstOrDefault();
+        if (found != null) return found;
+
+        // Reflection fallback (if AnnotatedTextEditor exposes a property)
+        try
+        {
+            var t = root.GetType();
+            foreach (var name in new[] { "Editor", "TextEditor", "InnerEditor", "InnerTextEditor" })
+            {
+                var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (pi?.GetValue(root) is TextEditor te2) return te2;
+            }
+        }
+        catch { }
+
+        return null;
     }
 
     private void WireEvents()
     {
-        HookUserInputTracking(_editorOriginal);
-        HookUserInputTracking(_editorTranslated);
+        // Track user input timing for mirroring + find scope
+        HookUserInputTracking(_editorOriginal, isTranslated: false);
+        HookUserInputTracking(_editorTranslated, isTranslated: true);
 
+        // Ctrl+F, Escape, F3
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
-        // Capture note-clicks at UserControl level in Tunnel phase, and receive even if already handled
+        // Notes: capture clicks anywhere, decide if click was on marker
         AddHandler(
             InputElement.PointerPressedEvent,
             OnPointerPressed_TunnelForNotes,
@@ -222,142 +298,331 @@ public partial class ReadableTabView : UserControl
 
         if (_btnCloseNotes != null) _btnCloseNotes.Click += (_, _) => HideNotes();
 
-        // Notes actions (+ hard status reporting)
+        // Notes buttons are wired via named handlers (and re-wired after attach)
+        RewireNotesButtonsHard();
+    }
+
+    private void RewireNotesButtonsHard()
+    {
         if (_btnAddCommunityNote != null)
         {
-            _btnAddCommunityNote.Click += async (_, _) =>
-            {
-                Say("ReadableTabView: Add community note clicked.");
+            _btnAddCommunityNote.Click -= BtnAddCommunityNote_Click;
+            _btnAddCommunityNote.Click += BtnAddCommunityNote_Click;
 
-                var (ok, reason) = await TryAddCommunityNoteAtSelectionOrCaretAsync();
-                Say(ok ? "ReadableTabView: " + reason : "ReadableTabView: Add note blocked: " + reason);
-            };
+            _btnAddCommunityNote.PropertyChanged -= BtnAddCommunityNote_PropertyChanged;
+            _btnAddCommunityNote.PropertyChanged += BtnAddCommunityNote_PropertyChanged;
         }
 
         if (_btnDeleteCommunityNote != null)
         {
-            _btnDeleteCommunityNote.Click += (_, _) =>
-            {
-                Say("ReadableTabView: Delete community note clicked.");
-                DeleteCurrentCommunityNote();
-            };
+            _btnDeleteCommunityNote.Click -= BtnDeleteCommunityNote_Click;
+            _btnDeleteCommunityNote.Click += BtnDeleteCommunityNote_Click;
+
+            _btnDeleteCommunityNote.PropertyChanged -= BtnDeleteCommunityNote_PropertyChanged;
+            _btnDeleteCommunityNote.PropertyChanged += BtnDeleteCommunityNote_PropertyChanged;
         }
 
-        // If user focuses a pane while Find is open, switch scope like TranslationTabView
-        if (_editorOriginal != null)
-        {
-            _editorOriginal.GotFocus += (_, _) =>
-            {
-                if (_findBar?.IsVisible == true)
-                    SetFindTarget(_editorOriginal, preserveIndex: true);
-            };
-        }
+        UpdateNotesButtonsState();
+    }
 
-        if (_editorTranslated != null)
+    private void BtnAddCommunityNote_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == IsEnabledProperty || e.Property == IsVisibleProperty)
+            Log($"AddBtn property change: Enabled={_btnAddCommunityNote?.IsEnabled} Visible={_btnAddCommunityNote?.IsVisible}");
+    }
+
+    private void BtnDeleteCommunityNote_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == IsEnabledProperty || e.Property == IsVisibleProperty)
+            Log($"DelBtn property change: Enabled={_btnDeleteCommunityNote?.IsEnabled} Visible={_btnDeleteCommunityNote?.IsVisible}");
+    }
+
+    private async void BtnAddCommunityNote_Click(object? sender, RoutedEventArgs e)
+    {
+        try
         {
-            _editorTranslated.GotFocus += (_, _) =>
+            if (_pendingCommunityRefresh)
             {
-                if (_findBar?.IsVisible == true)
-                    SetFindTarget(_editorTranslated, preserveIndex: true);
-            };
+                Log("ADD CLICK ignored: pending refresh still active.");
+                return;
+            }
+
+            Log("ADD CLICK fired.");
+            DumpState("ADD CLICK state(before)");
+
+            // Force-resolve inner editor at click time (prevents stale null)
+            if (_aeTran == null)
+            {
+                Log("ADD CLICK: _aeTran was null; ResolveInnerEditors() now.");
+                ResolveInnerEditors();
+                DumpState("ADD CLICK state(after ResolveInnerEditors)");
+            }
+
+            var (ok, reason) = await TryAddCommunityNoteAtSelectionOrCaretAsync();
+            Log(ok ? "ADD OK: " + reason : "ADD BLOCKED: " + reason);
+        }
+        catch (Exception ex)
+        {
+            Log("ADD CLICK EXCEPTION: " + ex);
         }
     }
 
-    private void RefreshPresenterCache(TextBox? tb, bool isOriginal)
+    private void BtnDeleteCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
-        if (tb == null) return;
-
-        var sv = FindScrollViewer(tb);
-        var scp = sv != null ? FindScrollContentPresenter(sv) : null;
-
-        var presenter = tb
-            .GetVisualDescendants()
-            .OfType<Visual>()
-            .LastOrDefault(v => string.Equals(v.GetType().Name, "TextPresenter", StringComparison.Ordinal));
-
-        presenter ??= tb
-            .GetVisualDescendants()
-            .OfType<Visual>()
-            .LastOrDefault(v => (v.GetType().Name?.Contains("Text", StringComparison.OrdinalIgnoreCase) ?? false));
-
-        if (isOriginal)
+        try
         {
-            _svOriginal = sv ?? _svOriginal;
-            _scpOriginal = scp;
-            _presOriginal = presenter;
+            if (_pendingCommunityRefresh)
+            {
+                Log("DELETE CLICK ignored: pending refresh still active.");
+                return;
+            }
+
+            Log("DELETE CLICK fired.");
+            DumpState("DELETE CLICK state(before)");
+            DeleteCurrentCommunityNote();
+            DumpState("DELETE CLICK state(after)");
         }
-        else
+        catch (Exception ex)
         {
-            _svTranslated = sv ?? _svTranslated;
-            _scpTranslated = scp;
-            _presTranslated = presenter;
+            Log("DELETE CLICK EXCEPTION: " + ex);
         }
+    }
+
+    private void HookUserInputTracking(AnnotatedTextEditor? host, bool isTranslated)
+    {
+        if (host == null) return;
+
+        host.PointerPressed += (_, _) => MarkUserInput(host);
+        host.PointerReleased += (_, _) => OnUserActionReleased(isTranslated, host);
+        host.KeyDown += (_, _) => MarkUserInput(host);
+        host.KeyUp += (_, _) => OnUserActionReleased(isTranslated, host);
+
+        host.GotFocus += (_, _) =>
+        {
+            if (_findBar?.IsVisible == true)
+                SetFindTarget(isTranslated ? _aeTran : _aeOrig, preserveIndex: true);
+        };
+    }
+
+    private void MarkUserInput(object who)
+    {
+        _lastUserInputUtc = DateTime.UtcNow;
+        _lastUserInputEditor = who;
+    }
+
+    private void OnUserActionReleased(bool sourceIsTranslated, object who)
+    {
+        MarkUserInput(who);
+
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
+        RequestMirrorFromUserAction(sourceIsTranslated);
     }
 
     private void SetupHoverDictionary()
     {
-        if (_editorOriginal == null) return;
+        if (_aeOrig == null) return;
 
-        _hoverDict?.Dispose();
-        _hoverDict = new HoverDictionaryBehavior(_editorOriginal, _cedict);
+        try
+        {
+            _hoverDictOrig?.Dispose();
+            _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict);
+        }
+        catch (Exception ex)
+        {
+            Log("Hover dictionary failed: " + ex.Message);
+        }
     }
 
     private void DisposeHoverDictionary()
     {
-        _hoverDict?.Dispose();
-        _hoverDict = null;
+        _hoverDictOrig?.Dispose();
+        _hoverDictOrig = null;
     }
 
     // -------------------------
-    // Notes click (robust)
+    // Notes click detection
     // -------------------------
-
     private void OnPointerPressed_TunnelForNotes(object? sender, PointerPressedEventArgs e)
     {
-        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-            return;
+        try
+        {
+            if (_pendingCommunityRefresh) return;
 
-        // If click is inside notes panel, ignore so copy/scroll works
-        if (IsInsideControl(e.Source, _notesPanel))
-            return;
+            if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+                return;
 
-        // If popup already open -> do NOT hijack clicks anymore
-        if (_notesPanel?.IsVisible == true)
-            return;
+            if (IsInsideControl(e.Source, _notesPanel))
+                return;
 
-        // Ignore scrollbar parts only
-        if (IsInsideScrollbarStuff(e.Source))
-            return;
+            if (_notesPanel?.IsVisible == true)
+                return;
 
-        var tb = FindAncestorTextBox(e.Source);
-        if (tb == null) return;
+            if (IsInsideScrollbarStuff(e.Source))
+                return;
 
-        if (!ReferenceEquals(tb, _editorOriginal) && !ReferenceEquals(tb, _editorTranslated))
-            return;
+            bool onOrig = IsInsideControl(e.Source, _editorOriginal);
+            bool onTran = IsInsideControl(e.Source, _editorTranslated);
+            if (!onOrig && !onTran) return;
 
-        var doc = ReferenceEquals(tb, _editorOriginal) ? _renderOrig : _renderTran;
-        if (doc == null || doc.IsEmpty) return;
+            var te = onOrig ? _aeOrig : _aeTran;
+            if (te == null) return;
 
-        // Resolve marker from marker spans (robust even when multiple markers are adjacent)
-        if (!TryResolveAnnotationFromMarkerSpans(tb, doc, e, out var ann))
-            return;
+            var doc = onOrig ? _renderOrig : _renderTran;
+            if (doc == null || doc.IsEmpty) return;
 
+            int offset = GetDocumentOffsetFromPointer(te, e);
 
-        ShowNotes(ann);
-        NoteClicked?.Invoke(this, ann);
-        e.Handled = true;
+            if (offset >= 0)
+            {
+                if (TryResolveAnnotationFromMarkerSpans(doc, offset, out var ann))
+                {
+                    Log($"Marker click resolved immediately. pane={(onOrig ? "orig" : "tran")} offset={offset}");
+                    ShowNotes(ann);
+                    NoteClicked?.Invoke(this, ann);
+                    e.Handled = true;
+                }
+                return;
+            }
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                int caret = GetCaretOffsetSafe(te);
+                if (caret < 0) return;
+
+                if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
+                    return;
+
+                Log($"Marker click resolved via caret fallback. pane={(onOrig ? "orig" : "tran")} caret={caret}");
+                ShowNotes(ann);
+                NoteClicked?.Invoke(this, ann);
+            }, DispatcherPriority.Background);
+        }
+        catch (Exception ex)
+        {
+            Log("OnPointerPressed_TunnelForNotes exception: " + ex);
+        }
     }
 
-    private bool TryResolveAnnotationFromMarkerSpans(
-    TextBox tb,
-    RenderedDocument doc,
-    PointerPressedEventArgs e,
-    out DocAnnotation ann)
+    private static int GetCaretOffsetSafe(TextEditor te)
+    {
+        try { return te.TextArea?.Caret.Offset ?? -1; }
+        catch { return -1; }
+    }
+
+    private static int GetDocumentOffsetFromPointer(TextEditor ed, PointerEventArgs e)
+    {
+        try
+        {
+            var textView = ed.TextArea?.TextView;
+            var document = ed.Document;
+            if (textView == null || document == null) return -1;
+
+            var p = e.GetPosition(textView);
+            try { textView.EnsureVisualLines(); } catch { }
+
+            object? posObj = null;
+            var tvType = textView.GetType();
+
+            var m1 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point), typeof(bool) });
+            if (m1 != null)
+                posObj = m1.Invoke(textView, new object[] { p, true });
+
+            if (posObj == null)
+            {
+                var m2 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point) });
+                if (m2 != null)
+                    posObj = m2.Invoke(textView, new object[] { p });
+            }
+
+            if (posObj == null)
+            {
+                var m3 = tvType.GetMethod("GetPosition", new[] { typeof(Point) });
+                if (m3 != null)
+                    posObj = m3.Invoke(textView, new object[] { p });
+            }
+
+            if (posObj == null) return -1;
+
+            var unwrapped = UnwrapNullable(posObj);
+            if (unwrapped == null) return -1;
+
+            int line = GetIntMember(unwrapped, "Line", fallback: -1);
+            int column = GetIntMember(unwrapped, "Column", fallback: -1);
+
+            if (line < 1 || column < 1)
+            {
+                var lineObj = GetMember(unwrapped, "Line");
+                if (lineObj != null)
+                {
+                    int ln = GetIntMember(lineObj, "LineNumber", fallback: -1);
+                    if (ln > 0) line = ln;
+                }
+
+                if (column < 1)
+                    column = GetIntMember(unwrapped, "VisualColumn", fallback: column);
+            }
+
+            if (line < 1 || column < 1) return -1;
+
+            int offset = document.GetOffset(line, column);
+            offset = Math.Clamp(offset, 0, document.TextLength);
+            return offset;
+        }
+        catch
+        {
+            return -1;
+        }
+    }
+
+    private static object? UnwrapNullable(object obj)
+    {
+        try
+        {
+            var t = obj.GetType();
+            var hasValue = t.GetProperty("HasValue");
+            var valueProp = t.GetProperty("Value");
+            if (hasValue != null && valueProp != null && hasValue.PropertyType == typeof(bool))
+            {
+                bool hv = (bool)(hasValue.GetValue(obj) ?? false);
+                if (!hv) return null;
+                return valueProp.GetValue(obj);
+            }
+        }
+        catch { }
+        return obj;
+    }
+
+    private static object? GetMember(object obj, string name)
+    {
+        try
+        {
+            var t = obj.GetType();
+            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi != null) return pi.GetValue(obj);
+            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (fi != null) return fi.GetValue(obj);
+        }
+        catch { }
+        return null;
+    }
+
+    private static int GetIntMember(object obj, string name, int fallback)
+    {
+        try
+        {
+            var v = GetMember(obj, name);
+            if (v == null) return fallback;
+            if (v is int i) return i;
+            if (v is long l) return (l > int.MaxValue) ? int.MaxValue : (int)l;
+            if (v is IConvertible) return Convert.ToInt32(v);
+        }
+        catch { }
+        return fallback;
+    }
+
+    private static bool TryResolveAnnotationFromMarkerSpans(RenderedDocument doc, int idx, out DocAnnotation ann)
     {
         ann = default!;
-
-        int idx = GetCharIndexFromPointer(tb, e);
-        if (idx < 0) return false;
 
         var markers = doc.AnnotationMarkers;
         var anns = doc.Annotations;
@@ -365,10 +630,8 @@ public partial class ReadableTabView : UserControl
         if (markers == null || markers.Count == 0) return false;
         if (anns == null || anns.Count == 0) return false;
 
-        // We’ll consider markers within this radius (in characters).
         const int radius = 8;
 
-        // Binary search: first marker with Start > idx, so we can inspect neighbors.
         int lo = 0, hi = markers.Count - 1, firstGreater = markers.Count;
         while (lo <= hi)
         {
@@ -381,11 +644,9 @@ public partial class ReadableTabView : UserControl
             else lo = mid + 1;
         }
 
-        // Search around the insertion point for the closest span.
         int bestMarkerIndex = -1;
         int bestDist = int.MaxValue;
 
-        // Check a small window around where the marker would be.
         int startScan = Math.Max(0, firstGreater - 6);
         int endScan = Math.Min(markers.Count - 1, firstGreater + 6);
 
@@ -393,12 +654,9 @@ public partial class ReadableTabView : UserControl
         {
             var m = markers[i];
 
-            // Quick reject if clearly too far away
             if (m.Start > idx + radius) break;
             if (m.EndExclusive < idx - radius) continue;
 
-            // IMPORTANT: treat EndExclusive as clickable (hit-testing often returns it).
-            // So “inside” is [Start, EndExclusive] instead of [Start, EndExclusive).
             int dist;
             if (idx < m.Start) dist = m.Start - idx;
             else if (idx > m.EndExclusive) dist = idx - m.EndExclusive;
@@ -408,7 +666,7 @@ public partial class ReadableTabView : UserControl
             {
                 bestDist = dist;
                 bestMarkerIndex = i;
-                if (dist == 0) break; // perfect hit
+                if (dist == 0) break;
             }
         }
 
@@ -417,37 +675,10 @@ public partial class ReadableTabView : UserControl
 
         var best = markers[bestMarkerIndex];
         int annIndex = best.AnnotationIndex;
-
-        if ((uint)annIndex >= (uint)anns.Count)
-            return false;
+        if ((uint)annIndex >= (uint)anns.Count) return false;
 
         ann = anns[annIndex];
         return true;
-    }
-
-
-    private static bool IsSuperscriptMarkerChar(char c)
-    {
-        return c switch
-        {
-            '\u00B9' => true, // ¹
-            '\u00B2' => true, // ²
-            '\u00B3' => true, // ³
-            '\u2070' => true, // ⁰
-            '\u2071' => true, // ⁱ
-            '\u2074' => true, // ⁴
-            '\u2075' => true, // ⁵
-            '\u2076' => true, // ⁶
-            '\u2077' => true, // ⁷
-            '\u2078' => true, // ⁸
-            '\u2079' => true, // ⁹
-            '\u207A' => true, // ⁺
-            '\u207B' => true, // ⁻
-            '\u207C' => true, // ⁼
-            '\u207D' => true, // ⁽
-            '\u207E' => true, // ⁾
-            _ => false
-        };
     }
 
     private void ShowNotes(DocAnnotation ann)
@@ -465,12 +696,11 @@ public partial class ReadableTabView : UserControl
             : $"{kind} ({resp})";
 
         _notesBody.Text = ann.Text ?? "";
-
         _notesPanel.IsVisible = true;
 
         UpdateNotesButtonsState();
+        DumpState("ShowNotes");
 
-        // DO NOT steal focus
         try
         {
             _notesBody.SelectionStart = 0;
@@ -488,12 +718,27 @@ public partial class ReadableTabView : UserControl
         _currentAnn = null;
 
         UpdateNotesButtonsState();
+        DumpState("HideNotes");
     }
 
     private void UpdateNotesButtonsState()
     {
+        if (_pendingCommunityRefresh)
+        {
+            if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
+            if (_btnDeleteCommunityNote != null)
+            {
+                _btnDeleteCommunityNote.IsEnabled = false;
+                _btnDeleteCommunityNote.IsVisible = false;
+            }
+            return;
+        }
+
         if (_btnAddCommunityNote != null)
-            _btnAddCommunityNote.IsEnabled = !_renderTran.IsEmpty && _editorTranslated != null;
+        {
+            bool enabled = !_renderTran.IsEmpty && _aeTran != null;
+            _btnAddCommunityNote.IsEnabled = enabled;
+        }
 
         if (_btnDeleteCommunityNote != null)
         {
@@ -502,22 +747,20 @@ public partial class ReadableTabView : UserControl
                 canDelete = true;
 
             _btnDeleteCommunityNote.IsEnabled = canDelete;
-            _btnDeleteCommunityNote.IsVisible = canDelete; // hide unless it's deletable
+            _btnDeleteCommunityNote.IsVisible = canDelete;
         }
     }
+
     private static string? GetAnnotationResp(DocAnnotation ann)
     {
-        // If your DocAnnotation has a Resp property, prefer that.
         try
         {
-            // direct property access (most likely)
             var pi = ann.GetType().GetProperty("Resp");
             if (pi?.GetValue(ann) is string s && !string.IsNullOrWhiteSpace(s))
                 return s.Trim();
         }
         catch { }
 
-        // fallback: maybe it's called Author / By / Name
         if (TryGetStringProp(ann, "Author", out var a) && !string.IsNullOrWhiteSpace(a)) return a.Trim();
         if (TryGetStringProp(ann, "By", out var b) && !string.IsNullOrWhiteSpace(b)) return b.Trim();
         if (TryGetStringProp(ann, "Name", out var n) && !string.IsNullOrWhiteSpace(n)) return n.Trim();
@@ -530,174 +773,139 @@ public partial class ReadableTabView : UserControl
         xmlStart = -1;
         xmlEndExclusive = -1;
 
-        // Heuristics: Kind/type/source contains "community"
         var kind = ann.Kind ?? "";
         var text = kind.ToLowerInvariant();
         bool looksCommunity = text.Contains("community") || text.Contains("comm");
 
-        // Try to extract XmlStart/XmlEndExclusive from annotation (strong requirement for delete)
         if (TryGetIntProp(ann, "XmlStart", out var a) || TryGetIntProp(ann, "XmlStartIndex", out a) || TryGetIntProp(ann, "XmlFrom", out a))
             xmlStart = a;
 
         if (TryGetIntProp(ann, "XmlEndExclusive", out var b) || TryGetIntProp(ann, "XmlEnd", out b) || TryGetIntProp(ann, "XmlTo", out b))
             xmlEndExclusive = b;
 
-        // If annotation has a "Type" property, use it
         if (TryGetStringProp(ann, "Type", out var t) && !string.IsNullOrWhiteSpace(t))
             looksCommunity = t.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
 
-        // If annotation has a "Source" property, use it
         if (TryGetStringProp(ann, "Source", out var s) && !string.IsNullOrWhiteSpace(s))
             looksCommunity = s.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
 
         return looksCommunity && xmlStart >= 0 && xmlEndExclusive > xmlStart;
     }
 
-    private async Task AddCommunityNoteFromCaretAsync()
-    {
-        // Community notes MUST be inserted into TRANSLATED XML, so we take caret from translated pane.
-        if (_editorTranslated == null || _renderTran.IsEmpty)
-            return;
-
-        int caret = _editorTranslated.CaretIndex;
-        if (caret < 0) caret = 0;
-
-        if (!TryMapRenderedCaretToXmlIndex(_renderTran, caret, out int xmlIndex))
-        {
-            // If we cannot map, do nothing (can't safely insert).
-            return;
-        }
-
-        await PromptAddCommunityNoteAsync(xmlIndex);
-    }
-
+    // -------------------------
+    // Community note add/delete
+    // -------------------------
     public async Task AddCommunityNoteAtCaretAsync()
     {
         await AddCommunityNoteFromCaretAsync();
     }
 
-    // NEW: returns a reason so MainWindow (or your status bar) can show what's wrong.
+    private async Task AddCommunityNoteFromCaretAsync()
+    {
+        if (_pendingCommunityRefresh)
+        {
+            Log("AddCommunityNoteFromCaretAsync blocked: pending refresh.");
+            return;
+        }
+
+        if (_aeTran == null || _renderTran.IsEmpty)
+        {
+            Log("AddCommunityNoteFromCaretAsync blocked: _aeTran null or _renderTran empty.");
+            return;
+        }
+
+        int caret = GetCaretOffsetSafe(_aeTran);
+        if (caret < 0) caret = 0;
+
+        if (!TryMapRenderedCaretToXmlIndex(_renderTran, caret, out int xmlIndex))
+        {
+            Log($"Add note blocked: cannot map caret displayIndex={caret} to XML index.");
+            return;
+        }
+
+        await PromptAddCommunityNoteAsync(xmlIndex);
+    }
+
     public async Task<(bool ok, string reason)> TryAddCommunityNoteAtSelectionOrCaretAsync()
     {
-        if (_editorTranslated == null)
-            return (false, "_editorTranslated is null (ReadableTabView not ready / not loaded yet).");
+        if (_pendingCommunityRefresh)
+            return (false, "Pending refresh: waiting for renderer to update after previous add/delete.");
+
+        if (_aeTran == null)
+            return (false, "_aeTran is null (inner editor not found).");
 
         if (_renderTran.IsEmpty)
             return (false, "_renderTran.IsEmpty (no rendered translated document set yet).");
 
-        // Prefer selection midpoint
-        int a = _editorTranslated.SelectionStart;
-        int b = _editorTranslated.SelectionEnd;
-
-        int renderedIndex =
-            (a != b)
-                ? Math.Min(a, b) + (Math.Abs(b - a) / 2)
-                : _editorTranslated.CaretIndex;
-
+        int renderedIndex = GetSelectionMidpointOrCaretSafe(_aeTran);
         if (renderedIndex < 0) renderedIndex = 0;
 
         if (!TryMapRenderedCaretToXmlIndex(_renderTran, renderedIndex, out int xmlIndex))
-        {
-            var diag = ExplainMappingFailure(_renderTran, renderedIndex);
-            return (false, $"Cannot map display index {renderedIndex} to XML index. BaseToXmlIndex is missing or out of range.");
-        }
+            return (false, $"Cannot map display index {renderedIndex} to XML index. DisplayIndexToXmlIndex returned < 0.");
 
         await PromptAddCommunityNoteAsync(xmlIndex);
         return (true, $"Dialog opened. renderedIndex={renderedIndex} -> xmlIndex={xmlIndex}");
     }
 
-    private static string ExplainMappingFailure(RenderedDocument doc, int renderedIndex)
+    private static int GetSelectionMidpointOrCaretSafe(TextEditor ed)
     {
         try
         {
-            var segs = doc.Segments;
+            var sel = ed.TextArea?.Selection;
+            if (sel == null || sel.IsEmpty)
+                return ed.TextArea?.Caret.Offset ?? 0;
 
-            if (segs == null)
-                return "doc.Segments is NULL (renderer did not populate segments).";
-
-            if (segs.Count == 0)
-                return "doc.Segments.Count == 0 (renderer produced no segments).";
-
-            int nullCount = segs.Count(s => s == null);
-            var firstNonNull = segs.FirstOrDefault(s => s != null);
-
-            if (firstNonNull == null)
-                return $"doc.Segments.Count == {segs.Count}, but ALL entries are null.";
-
-            var t = firstNonNull.GetType();
-            var props = t.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                         .Select(p => p.Name)
-                         .Distinct()
-                         .OrderBy(n => n)
-                         .ToList();
-
-            var fields = t.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                          .Select(f => f.Name)
-                          .Distinct()
-                          .OrderBy(n => n)
-                          .ToList();
-
-            // Check how many segments we can parse ranges from
-            int parsed = 0;
-            int covers = 0;
-
-            int minStart = int.MaxValue;
-            int maxEnd = int.MinValue;
-
-            for (int i = 0; i < segs.Count; i++)
-            {
-                var seg = segs[i];
-                if (seg == null) continue;
-
-                if (TryGetSegmentRanges(seg, out int rStart, out int rEndEx, out int xStart, out int xEndEx))
-                {
-                    parsed++;
-
-                    if (rStart < minStart) minStart = rStart;
-                    if (rEndEx > maxEnd) maxEnd = rEndEx;
-
-                    // allow caret at endExclusive
-                    if (renderedIndex >= rStart && renderedIndex <= rEndEx)
-                        covers++;
-                }
-            }
-
-            string rangeInfo =
-                (parsed > 0 && minStart != int.MaxValue && maxEnd != int.MinValue)
-                    ? $"ParsedSegments={parsed}/{segs.Count - nullCount} (non-null). RenderedRangeMinStart={minStart}, MaxEnd={maxEnd}. CaretCoveredBy={covers} segments."
-                    : $"ParsedSegments=0/{segs.Count - nullCount} (non-null).";
-
-            // Show “what we expected”
-            string expected =
-                "Expected seg members like: Start/EndExclusive (or End/Length) AND XmlStart/XmlEndExclusive (or XmlEnd).";
-
-            // Don’t spam: only list some names
-            string propPreview = props.Count == 0 ? "(none)" : string.Join(", ", props.Take(24)) + (props.Count > 24 ? ", …" : "");
-            string fieldPreview = fields.Count == 0 ? "(none)" : string.Join(", ", fields.Take(24)) + (fields.Count > 24 ? ", …" : "");
-
-            return $"Segments.Count={segs.Count}, NullEntries={nullCount}. FirstNonNullType={t.FullName}. {rangeInfo} {expected} Props[{props.Count}]: {propPreview}. Fields[{fields.Count}]: {fieldPreview}.";
+            var seg = sel.SurroundingSegment;
+            int start = seg.Offset;
+            int endEx = seg.Offset + seg.Length;
+            if (endEx < start) (start, endEx) = (endEx, start);
+            return start + Math.Max(0, (endEx - start) / 2);
         }
-        catch (Exception ex)
+        catch
         {
-            return "ExplainMappingFailure threw: " + ex.GetType().Name + " " + ex.Message;
+            return ed.TextArea?.Caret.Offset ?? 0;
         }
     }
 
-
     private void DeleteCurrentCommunityNote()
     {
-        if (_currentAnn == null)
+        if (_pendingCommunityRefresh)
+        {
+            Log("Delete note blocked: pending refresh.");
             return;
+        }
+
+        if (_currentAnn == null)
+        {
+            Log("Delete note: no note is currently open.");
+            return;
+        }
 
         if (!IsCommunityAnnotation(_currentAnn, out int xs, out int xe))
+        {
+            Log("Delete note: current note is not a deletable community annotation (missing XmlStart/XmlEndExclusive or wrong type).");
             return;
+        }
 
+        // CRITICAL: gate UI NOW to prevent double-delete on stale render
+        EnterPendingCommunityRefresh($"delete xs={xs} xe={xe}");
+
+        Log($"Delete note: raising CommunityNoteDeleteRequested xs={xs} xe={xe}");
         CommunityNoteDeleteRequested?.Invoke(this, (xs, xe));
+
         HideNotes();
     }
 
     private async Task PromptAddCommunityNoteAsync(int xmlIndex)
     {
+        if (_pendingCommunityRefresh)
+        {
+            Log("PromptAddCommunityNoteAsync blocked: pending refresh.");
+            return;
+        }
+
+        Log($"PromptAddCommunityNoteAsync: opening dialog at xmlIndex={xmlIndex}");
+
         var owner = TopLevel.GetTopLevel(this) as Window;
 
         var txt = new TextBox
@@ -749,39 +957,57 @@ public partial class ReadableTabView : UserControl
                 : WindowStartupLocation.CenterScreen
         };
 
-        var tcs = new TaskCompletionSource<bool>();
-
-        void CloseOk(bool ok)
-        {
-            try { win.Close(); } catch { }
-            tcs.TrySetResult(ok);
-        }
-
-        btnCancel.Click += (_, _) => CloseOk(false);
-        btnOk.Click += (_, _) => CloseOk(true);
+        bool okRes;
 
         if (owner != null)
-            _ = win.ShowDialog(owner);
-        else
-            win.Show();
+        {
+            btnCancel.Click += (_, _) => win.Close(false);
+            btnOk.Click += (_, _) => win.Close(true);
 
-        bool ok = await tcs.Task;
-        if (!ok) return;
+            okRes = await win.ShowDialog<bool>(owner);
+        }
+        else
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            void CloseOk(bool ok)
+            {
+                try { win.Close(); } catch { }
+                tcs.TrySetResult(ok);
+            }
+
+            btnCancel.Click += (_, _) => CloseOk(false);
+            btnOk.Click += (_, _) => CloseOk(true);
+
+            win.Closed += (_, _) =>
+            {
+                if (!tcs.Task.IsCompleted) tcs.TrySetResult(false);
+            };
+
+            win.Show();
+            okRes = await tcs.Task;
+        }
+
+        Log("PromptAddCommunityNoteAsync: dialog closed ok=" + okRes);
+
+        if (!okRes) return;
 
         var noteText = (txt.Text ?? "").Trim();
-        if (noteText.Length == 0) return;
+        if (noteText.Length == 0)
+        {
+            Log("PromptAddCommunityNoteAsync: empty note text, abort.");
+            return;
+        }
 
         var respVal = (resp.Text ?? "").Trim();
         if (respVal.Length == 0) respVal = null;
 
+        // CRITICAL: gate UI NOW to prevent double-insert on stale render
+        EnterPendingCommunityRefresh($"insert xmlIndex={xmlIndex}");
+
+        Log($"PromptAddCommunityNoteAsync: raising CommunityNoteInsertRequested xmlIndex={xmlIndex} resp={(respVal ?? "(null)")} textLen={noteText.Length}");
         CommunityNoteInsertRequested?.Invoke(this, (xmlIndex, noteText, respVal));
     }
 
-    // Map rendered caret index -> XML index, using segment metadata if available.
-    // Robust against long/int/fields/properties and different segment naming conventions.
-    // Map DISPLAY caret index (with inserted markers) -> absolute XML index.
-    // This MUST use the renderer-provided BaseToXmlIndex mapping.
-    // Returns false if mapping isn't available.
     private static bool TryMapRenderedCaretToXmlIndex(RenderedDocument doc, int displayIndex, out int xmlIndex)
     {
         xmlIndex = -1;
@@ -789,73 +1015,684 @@ public partial class ReadableTabView : UserControl
         if (doc == null || doc.IsEmpty)
             return false;
 
-        // This is the only valid mapping source.
         int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
-
-        if (mapped < 0)
-            return false;
+        if (mapped < 0) return false;
 
         xmlIndex = mapped;
         return true;
     }
 
-
-    private static bool TryGetSegmentRanges(object seg, out int rStart, out int rEndEx, out int xStart, out int xEndEx)
+    // -------------------------
+    // Public API
+    // -------------------------
+    public void Clear()
     {
-        rStart = rEndEx = xStart = xEndEx = 0;
+        _renderOrig = RenderedDocument.Empty;
+        _renderTran = RenderedDocument.Empty;
 
-        // Rendered start
-        if (!TryGetIntProp(seg, "Start", out rStart) &&
-            !TryGetIntProp(seg, "RenderedStart", out rStart) &&
-            !TryGetIntProp(seg, "TextStart", out rStart))
-            return false;
+        if (_aeOrig != null) _aeOrig.Text = "";
+        if (_aeTran != null) _aeTran.Text = "";
 
-        // Rendered end exclusive (or end/length)
-        if (TryGetIntProp(seg, "EndExclusive", out rEndEx) ||
-            TryGetIntProp(seg, "RenderedEndExclusive", out rEndEx) ||
-            TryGetIntProp(seg, "TextEndExclusive", out rEndEx))
+        _lastOrigSelStart = _lastOrigSelEnd = -1;
+        _lastTranSelStart = _lastTranSelEnd = -1;
+        _lastOrigCaret = -1;
+        _lastTranCaret = -1;
+
+        HideNotes();
+
+        ClearFindState();
+        CloseFind();
+
+        _pendingCommunityRefresh = false;
+        UpdateNotesButtonsState();
+        DumpState("Clear()");
+    }
+
+    public void SetRendered(RenderedDocument orig, RenderedDocument tran)
+    {
+        _renderOrig = orig ?? RenderedDocument.Empty;
+        _renderTran = tran ?? RenderedDocument.Empty;
+
+        // Visual tree may not be stable yet; re-find + resolve here too
+        FindControls();
+        ResolveInnerEditors();
+        RewireNotesButtonsHard();
+
+        if (_aeOrig != null) _aeOrig.Text = _renderOrig.Text ?? "";
+        if (_aeTran != null) _aeTran.Text = _renderTran.Text ?? "";
+
+        SetupHoverDictionary();
+
+        HideNotes();
+
+        // This is the ONLY reliable signal that the UI is now up-to-date after add/delete.
+        ExitPendingCommunityRefresh("SetRendered received new render");
+
+        DumpState("SetRendered()");
+
+        if (_findBar?.IsVisible == true)
+            RecomputeMatches(resetToFirst: false);
+    }
+
+    // -------------------------
+    // Polling + mirroring  (DO NOT TOUCH BEHAVIOR)
+    // -------------------------
+    private void StartSelectionTimer()
+    {
+        if (_selTimer != null) return;
+
+        _selTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(240) };
+        _selTimer.Tick += (_, _) => PollSelectionChanges();
+        _selTimer.Start();
+    }
+
+    private void StopSelectionTimer()
+    {
+        if (_selTimer == null) return;
+        _selTimer.Stop();
+        _selTimer = null;
+    }
+
+    private void PollSelectionChanges()
+    {
+        // HARD FIX: while waiting for re-render after add/delete, do nothing.
+        if (_pendingCommunityRefresh)
         {
-            // ok
-        }
-        else if (TryGetIntProp(seg, "End", out int rEnd))
-        {
-            // Some models use End as inclusive; assume it might be exclusive already.
-            // We’ll treat it as exclusive if it looks like a typical exclusive value.
-            // (Either way our containment allows caret==end.)
-            rEndEx = rEnd;
-        }
-        else if (TryGetIntProp(seg, "Length", out int rLen))
-        {
-            rEndEx = rStart + Math.Max(0, rLen);
-        }
-        else
-        {
-            return false;
+            if ((DateTime.UtcNow - _pendingSinceUtc).TotalMilliseconds > PendingCommunityTimeoutMs)
+            {
+                // Safety: don't deadlock UI forever if parent forgot to call SetRendered.
+                _pendingCommunityRefresh = false;
+                Log("PENDING REFRESH TIMEOUT: releasing UI (no SetRendered received).");
+                UpdateNotesButtonsState();
+            }
+            return;
         }
 
-        // XML start
-        if (!TryGetIntProp(seg, "XmlStart", out xStart) &&
-            !TryGetIntProp(seg, "XmlStartIndex", out xStart) &&
-            !TryGetIntProp(seg, "XmlFrom", out xStart))
-            return false;
+        if (DateTime.UtcNow <= _suppressPollingUntilUtc) return;
+        if (_syncingSelection) return;
+        if (DateTime.UtcNow <= _ignoreProgrammaticUntilUtc) return;
+        if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
-        // XML end exclusive (or end/length)
-        if (TryGetIntProp(seg, "XmlEndExclusive", out xEndEx) ||
-            TryGetIntProp(seg, "XmlEnd", out xEndEx) ||
-            TryGetIntProp(seg, "XmlTo", out xEndEx))
+        if (_aeOrig == null || _aeTran == null) return;
+        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+
+        bool anyFocused =
+            (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin) ||
+            (_aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin);
+
+        if (!anyFocused) return;
+
+        int oS = GetSelectionStartSafe(_aeOrig);
+        int oE = GetSelectionEndSafe(_aeOrig);
+        int tS = GetSelectionStartSafe(_aeTran);
+        int tE = GetSelectionEndSafe(_aeTran);
+        int oC = GetCaretOffsetSafe(_aeOrig);
+        int tC = GetCaretOffsetSafe(_aeTran);
+
+        bool origSelChanged = (oS != _lastOrigSelStart) || (oE != _lastOrigSelEnd);
+        bool tranSelChanged = (tS != _lastTranSelStart) || (tE != _lastTranSelEnd);
+        bool origCaretChanged = (oC != _lastOrigCaret);
+        bool tranCaretChanged = (tC != _lastTranCaret);
+
+        if (!origSelChanged && !tranSelChanged && !origCaretChanged && !tranCaretChanged)
+            return;
+
+        _lastOrigSelStart = oS;
+        _lastOrigSelEnd = oE;
+        _lastTranSelStart = tS;
+        _lastTranSelEnd = tE;
+        _lastOrigCaret = oC;
+        _lastTranCaret = tC;
+
+        bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
+        RequestMirrorFromUserAction(sourceIsTranslated);
+    }
+
+    private bool DetermineSourcePane(bool origChanged, bool tranChanged)
+    {
+        if (_aeOrig == null || _aeTran == null)
+            return true;
+
+        bool origFocused = _aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin;
+        bool tranFocused = _aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin;
+
+        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
+
+        if (origFocused && !tranFocused) return false;
+        if (tranFocused && !origFocused) return true;
+
+        if (origChanged && !tranChanged) return false;
+        if (tranChanged && !origChanged) return true;
+
+        if (recentInput && _lastUserInputEditor != null)
         {
-            // ok
+            if (ReferenceEquals(_lastUserInputEditor, _editorTranslated) || ReferenceEquals(_lastUserInputEditor, _aeTran))
+                return true;
+            if (ReferenceEquals(_lastUserInputEditor, _editorOriginal) || ReferenceEquals(_lastUserInputEditor, _aeOrig))
+                return false;
         }
-        else if (TryGetIntProp(seg, "XmlLength", out int xLen))
-        {
-            xEndEx = xStart + Math.Max(0, xLen);
-        }
-        else
-        {
-            return false;
-        }
+
+        if (tranFocused) return true;
+        if (origFocused) return false;
 
         return true;
+    }
+
+    private void MirrorSelectionOneWay(bool sourceIsTranslated)
+    {
+        if (_aeOrig == null || _aeTran == null) return;
+        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+
+        var srcEditor = sourceIsTranslated ? _aeTran : _aeOrig;
+        var dstEditor = sourceIsTranslated ? _aeOrig : _aeTran;
+
+        var srcDoc = sourceIsTranslated ? _renderTran : _renderOrig;
+        var dstDoc = sourceIsTranslated ? _renderOrig : _renderTran;
+
+        int caret = GetCaretOffsetSafe(srcEditor);
+        if (caret < 0) caret = 0;
+
+        if (!_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg))
+            return;
+
+        try
+        {
+            _syncingSelection = true;
+
+            ApplyDestinationSelection(dstEditor, dstSeg.Start, dstSeg.EndExclusive, center: true);
+
+            if (ReferenceEquals(dstEditor, _aeOrig))
+            {
+                _lastOrigSelStart = GetSelectionStartSafe(dstEditor);
+                _lastOrigSelEnd = GetSelectionEndSafe(dstEditor);
+                _lastOrigCaret = GetCaretOffsetSafe(dstEditor);
+            }
+            else
+            {
+                _lastTranSelStart = GetSelectionStartSafe(dstEditor);
+                _lastTranSelEnd = GetSelectionEndSafe(dstEditor);
+                _lastTranCaret = GetCaretOffsetSafe(dstEditor);
+            }
+
+            _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs);
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+    }
+
+    private void ApplyDestinationSelection(TextEditor dst, int start, int endExclusive, bool center)
+    {
+        int len = dst.Text?.Length ?? 0;
+        start = Math.Clamp(start, 0, Math.Max(0, len));
+        endExclusive = Math.Clamp(endExclusive, 0, Math.Max(0, len));
+        if (endExclusive < start) (start, endExclusive) = (endExclusive, start);
+
+        try
+        {
+            dst.TextArea.Selection = Selection.Create(dst.TextArea, start, endExclusive);
+            dst.TextArea.Caret.Offset = start;
+        }
+        catch
+        {
+            // ignore
+        }
+
+        if (!center) return;
+
+        int anchor = start + Math.Max(0, (endExclusive - start) / 2);
+        CenterByCaret(dst, anchor);
+    }
+
+    private void RequestMirrorFromUserAction(bool sourceIsTranslated)
+    {
+        if (_pendingCommunityRefresh) return;
+        if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
+
+        _mirrorSourceIsTranslated = sourceIsTranslated;
+        if (_mirrorQueued) return;
+        _mirrorQueued = true;
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            _mirrorQueued = false;
+
+            if (_pendingCommunityRefresh) return;
+            if (_syncingSelection) return;
+            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+            if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
+
+            MirrorSelectionOneWay(_mirrorSourceIsTranslated);
+        }, DispatcherPriority.Background);
+    }
+
+    // -------------------------
+    // Ctrl+F Find UI
+    // -------------------------
+    private void OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            OpenFind();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Escape && _findBar?.IsVisible == true)
+        {
+            CloseFind();
+            e.Handled = true;
+            return;
+        }
+
+        if (_findBar?.IsVisible == true && e.Key == Key.F3)
+        {
+            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
+            else JumpNext();
+            e.Handled = true;
+            return;
+        }
+    }
+
+    private void FindQuery_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (_findBar?.IsVisible != true) return;
+
+        if (e.Key == Key.Enter)
+        {
+            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
+            else JumpNext();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Escape)
+        {
+            CloseFind();
+            e.Handled = true;
+            return;
+        }
+    }
+
+    private void OpenFind()
+    {
+        if (_findBar == null || _findQuery == null) return;
+
+        ResolveInnerEditors();
+        EnsureFindRenderersAttached();
+
+        _findBar.IsVisible = true;
+
+        var target = DetermineCurrentPaneForFind();
+        SetFindTarget(target, preserveIndex: false);
+
+        _findQuery.Focus();
+        _findQuery.SelectionStart = 0;
+        _findQuery.SelectionEnd = (_findQuery.Text ?? "").Length;
+
+        RecomputeMatches(resetToFirst: false);
+    }
+
+    private void CloseFind()
+    {
+        if (_findBar != null)
+            _findBar.IsVisible = false;
+
+        ClearHighlight();
+
+        try { _findTarget?.Focus(); } catch { }
+    }
+
+    private TextEditor? DetermineCurrentPaneForFind()
+    {
+        if (_aeOrig == null || _aeTran == null)
+            return _aeTran;
+
+        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
+        if (recentInput && _lastUserInputEditor != null)
+        {
+            if (ReferenceEquals(_lastUserInputEditor, _editorOriginal) || ReferenceEquals(_lastUserInputEditor, _aeOrig)) return _aeOrig;
+            if (ReferenceEquals(_lastUserInputEditor, _editorTranslated) || ReferenceEquals(_lastUserInputEditor, _aeTran)) return _aeTran;
+        }
+
+        if (_aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin) return _aeTran;
+        if (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin) return _aeOrig;
+
+        return _aeTran;
+    }
+
+    private void SetFindTarget(TextEditor? ed, bool preserveIndex)
+    {
+        if (ed == null) return;
+
+        _findTarget = ed;
+
+        if (_findScope != null)
+            _findScope.Text = ReferenceEquals(ed, _aeOrig) ? "Find (Original):" : "Find (Translated):";
+
+        RecomputeMatches(resetToFirst: !preserveIndex);
+    }
+
+    private void DebounceRecomputeMatches()
+    {
+        _findDebounceTimer ??= new DispatcherTimer { Interval = FindRecomputeDebounce };
+        _findDebounceTimer.Stop();
+        _findDebounceTimer.Tick -= FindDebounceTimer_Tick;
+        _findDebounceTimer.Tick += FindDebounceTimer_Tick;
+        _findDebounceTimer.Start();
+    }
+
+    private void FindDebounceTimer_Tick(object? sender, EventArgs e)
+    {
+        _findDebounceTimer?.Stop();
+        RecomputeMatches(resetToFirst: true);
+    }
+
+    private void RecomputeMatches(bool resetToFirst)
+    {
+        if (_findBar?.IsVisible != true) return;
+
+        var ed = _findTarget;
+        if (ed == null) return;
+
+        string hay = ed.Text ?? "";
+        string q = (_findQuery?.Text ?? "").Trim();
+
+        int oldSelectedStart = -1;
+        if (!resetToFirst && _matchIndex >= 0 && _matchIndex < _matchStarts.Count)
+            oldSelectedStart = _matchStarts[_matchIndex];
+
+        _matchStarts.Clear();
+        _matchLen = 0;
+        _matchIndex = -1;
+
+        if (q.Length == 0 || hay.Length == 0)
+        {
+            UpdateFindCount();
+            ClearHighlight();
+            return;
+        }
+
+        _matchLen = q.Length;
+
+        int idx = 0;
+        while (true)
+        {
+            idx = hay.IndexOf(q, idx, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0) break;
+            _matchStarts.Add(idx);
+            idx = idx + Math.Max(1, q.Length);
+        }
+
+        if (_matchStarts.Count == 0)
+        {
+            UpdateFindCount();
+            ClearHighlight();
+            return;
+        }
+
+        if (resetToFirst)
+        {
+            int caret = GetCaretOffsetSafe(ed);
+            int nearest = _matchStarts.FindIndex(s => s >= caret);
+            _matchIndex = nearest >= 0 ? nearest : 0;
+        }
+        else
+        {
+            if (oldSelectedStart >= 0)
+            {
+                int exact = _matchStarts.IndexOf(oldSelectedStart);
+                if (exact >= 0) _matchIndex = exact;
+                else
+                {
+                    int nearest = _matchStarts.FindIndex(s => s >= oldSelectedStart);
+                    _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
+                }
+            }
+            else _matchIndex = 0;
+        }
+
+        UpdateFindCount();
+        JumpToCurrentMatch(scroll: false);
+    }
+
+    private void UpdateFindCount()
+    {
+        if (_findCount == null) return;
+
+        if (_matchStarts.Count == 0 || _matchIndex < 0)
+            _findCount.Text = "0/0";
+        else
+            _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
+    }
+
+    private void JumpNext()
+    {
+        if (_matchStarts.Count == 0) return;
+        _matchIndex = (_matchIndex + 1) % _matchStarts.Count;
+        UpdateFindCount();
+        JumpToCurrentMatch(scroll: true);
+    }
+
+    private void JumpPrev()
+    {
+        if (_matchStarts.Count == 0) return;
+        _matchIndex = (_matchIndex - 1 + _matchStarts.Count) % _matchStarts.Count;
+        UpdateFindCount();
+        JumpToCurrentMatch(scroll: true);
+    }
+
+    private void JumpToCurrentMatch(bool scroll)
+    {
+        if (_findTarget == null) return;
+        if (_matchIndex < 0 || _matchIndex >= _matchStarts.Count) return;
+
+        int start = _matchStarts[_matchIndex];
+        int len = _matchLen;
+
+        ApplyHighlight(_findTarget, start, len);
+
+        if (!scroll) return;
+
+        try
+        {
+            _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
+            _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
+            _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterFindMs);
+
+            _findTarget.Focus();
+            _findTarget.TextArea.Caret.Offset = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
+
+            DispatcherTimer.RunOnce(() =>
+            {
+                try { CenterByCaret(_findTarget, start); } catch { }
+                ApplyHighlight(_findTarget, start, len);
+            }, TimeSpan.FromMilliseconds(25));
+
+            DispatcherTimer.RunOnce(() =>
+            {
+                try { CenterByCaret(_findTarget, start); } catch { }
+                ApplyHighlight(_findTarget, start, len);
+            }, TimeSpan.FromMilliseconds(85));
+        }
+        catch { }
+    }
+
+    private void EnsureFindRenderersAttached()
+    {
+        AttachRendererIfMissing(_aeOrig, ref _hlOrig);
+        AttachRendererIfMissing(_aeTran, ref _hlTran);
+    }
+
+    private static void AttachRendererIfMissing(TextEditor? ed, ref SearchHighlightRenderer? renderer)
+    {
+        if (ed == null) return;
+
+        var tv = ed.TextArea?.TextView;
+        if (tv == null) return;
+
+        renderer ??= new SearchHighlightRenderer(tv);
+
+        if (!tv.BackgroundRenderers.Contains(renderer))
+            tv.BackgroundRenderers.Add(renderer);
+    }
+
+    private void DetachFindRenderers()
+    {
+        DetachRenderer(_aeOrig, ref _hlOrig);
+        DetachRenderer(_aeTran, ref _hlTran);
+    }
+
+    private static void DetachRenderer(TextEditor? ed, ref SearchHighlightRenderer? renderer)
+    {
+        if (ed == null || renderer == null) return;
+
+        var tv = ed.TextArea?.TextView;
+        if (tv != null && tv.BackgroundRenderers.Contains(renderer))
+            tv.BackgroundRenderers.Remove(renderer);
+
+        renderer = null;
+    }
+
+    private void ApplyHighlight(TextEditor target, int start, int len)
+    {
+        EnsureFindRenderersAttached();
+
+        if (ReferenceEquals(target, _aeOrig))
+        {
+            _hlTran?.Clear();
+            _hlOrig?.SetRange(start, len);
+        }
+        else
+        {
+            _hlOrig?.Clear();
+            _hlTran?.SetRange(start, len);
+        }
+
+        try { target.TextArea?.TextView?.InvalidateVisual(); } catch { }
+    }
+
+    private void ClearHighlight()
+    {
+        try { _hlOrig?.Clear(); } catch { }
+        try { _hlTran?.Clear(); } catch { }
+        try
+        {
+            _aeOrig?.TextArea?.TextView?.InvalidateVisual();
+            _aeTran?.TextArea?.TextView?.InvalidateVisual();
+        }
+        catch { }
+    }
+
+    private void ClearFindState()
+    {
+        _matchStarts.Clear();
+        _matchLen = 0;
+        _matchIndex = -1;
+        UpdateFindCount();
+        ClearHighlight();
+    }
+
+    // -------------------------
+    // Selection helpers (AvaloniaEdit)
+    // -------------------------
+    private static int GetSelectionStartSafe(TextEditor ed)
+    {
+        try
+        {
+            var sel = ed.TextArea?.Selection;
+            if (sel == null || sel.IsEmpty) return ed.TextArea?.Caret.Offset ?? 0;
+            return sel.SurroundingSegment.Offset;
+        }
+        catch { return 0; }
+    }
+
+    private static int GetSelectionEndSafe(TextEditor ed)
+    {
+        try
+        {
+            var sel = ed.TextArea?.Selection;
+            if (sel == null || sel.IsEmpty) return ed.TextArea?.Caret.Offset ?? 0;
+            return sel.SurroundingSegment.Offset + sel.SurroundingSegment.Length;
+        }
+        catch { return 0; }
+    }
+
+    // -------------------------
+    // Scroll helper (AvaloniaEdit)
+    // -------------------------
+    private static void CenterByCaret(TextEditor ed, int caretOffset)
+    {
+        var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        if (sv == null) return;
+
+        double viewportH = sv.Viewport.Height;
+        double extentH = sv.Extent.Height;
+        if (double.IsNaN(viewportH) || double.IsInfinity(viewportH) || viewportH <= 0) return;
+
+        var textView = ed.TextArea?.TextView;
+        if (textView == null) return;
+
+        textView.EnsureVisualLines();
+
+        try { ed.TextArea.Caret.Offset = Math.Clamp(caretOffset, 0, (ed.Text ?? "").Length); } catch { }
+
+        var caretPos = ed.TextArea.Caret.Position;
+
+        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
+        var p = textView.TranslatePoint(loc, sv);
+        if (p == null) return;
+
+        double caretY = p.Value.Y;
+
+        bool looksLikeViewportCoords =
+            caretY >= -viewportH * 0.25 &&
+            caretY <= viewportH * 1.25;
+
+        double desiredY;
+        if (looksLikeViewportCoords)
+            desiredY = sv.Offset.Y + (caretY - (viewportH / 2.0));
+        else
+            desiredY = caretY - (viewportH / 2.0);
+
+        if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
+        {
+            double maxY = Math.Max(0, extentH - viewportH);
+            desiredY = Math.Max(0, Math.Min(desiredY, maxY));
+        }
+        else desiredY = Math.Max(0, desiredY);
+
+        sv.Offset = new Vector(sv.Offset.X, desiredY);
+    }
+
+    // -------------------------
+    // Utility: visual ancestry checks
+    // -------------------------
+    private static bool IsInsideScrollbarStuff(object? source)
+    {
+        var cur = source as StyledElement;
+        while (cur != null)
+        {
+            if (cur is ScrollBar || cur is Thumb || cur is RepeatButton)
+                return true;
+
+            cur = cur.Parent as StyledElement;
+        }
+        return false;
+    }
+
+    private static bool IsInsideControl(object? source, Control? root)
+    {
+        if (root == null) return false;
+        var cur = source as StyledElement;
+        while (cur != null)
+        {
+            if (ReferenceEquals(cur, root))
+                return true;
+            cur = cur.Parent as StyledElement;
+        }
+        return false;
     }
 
     private static bool TryGetIntProp(object obj, string name, out int value)
@@ -865,7 +1702,6 @@ public partial class ReadableTabView : UserControl
         {
             var t = obj.GetType();
 
-            // property
             var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (pi != null)
             {
@@ -874,7 +1710,6 @@ public partial class ReadableTabView : UserControl
                     return true;
             }
 
-            // field
             var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (fi != null)
             {
@@ -934,822 +1769,5 @@ public partial class ReadableTabView : UserControl
         }
         catch { }
         return false;
-    }
-
-    private static TextBox? FindAncestorTextBox(object? source)
-    {
-        if (source is TextBox tb0) return tb0;
-
-        if (source is Visual v)
-            return v.GetVisualAncestors().OfType<TextBox>().FirstOrDefault();
-
-        var cur = source as StyledElement;
-        while (cur != null)
-        {
-            if (cur is TextBox tb) return tb;
-            cur = cur.Parent as StyledElement;
-        }
-
-        return null;
-    }
-
-    private static bool IsInsideScrollbarStuff(object? source)
-    {
-        var cur = source as StyledElement;
-        while (cur != null)
-        {
-            if (cur is ScrollBar || cur is Thumb || cur is RepeatButton)
-                return true;
-
-            cur = cur.Parent as StyledElement;
-        }
-        return false;
-    }
-
-    private static bool IsInsideControl(object? source, Control? root)
-    {
-        if (root == null) return false;
-        var cur = source as StyledElement;
-        while (cur != null)
-        {
-            if (ReferenceEquals(cur, root))
-                return true;
-            cur = cur.Parent as StyledElement;
-        }
-        return false;
-    }
-
-    private int GetCharIndexFromPointer(TextBox tb, PointerEventArgs e)
-    {
-        try
-        {
-            var pointInTb = e.GetPosition(tb);
-
-            Visual? presenter = ReferenceEquals(tb, _editorOriginal) ? _presOriginal : _presTranslated;
-            ScrollViewer? sv = ReferenceEquals(tb, _editorOriginal) ? _svOriginal : _svTranslated;
-
-            presenter ??= tb
-                .GetVisualDescendants()
-                .OfType<Visual>()
-                .LastOrDefault(v => string.Equals(v.GetType().Name, "TextPresenter", StringComparison.Ordinal))
-                ?? tb.GetVisualDescendants()
-                    .OfType<Visual>()
-                    .LastOrDefault(v => (v.GetType().Name?.Contains("Text", StringComparison.OrdinalIgnoreCase) ?? false));
-
-            if (presenter == null) return -1;
-
-            Point pPresenter;
-
-            var direct = tb.TranslatePoint(pointInTb, presenter);
-            if (direct != null)
-            {
-                pPresenter = direct.Value;
-            }
-            else
-            {
-                sv ??= FindScrollViewer(tb);
-                if (sv == null) return -1;
-
-                var pSv = tb.TranslatePoint(pointInTb, sv);
-                if (pSv == null) return -1;
-
-                var corrected = new Point(pSv.Value.X + sv.Offset.X, pSv.Value.Y + sv.Offset.Y);
-                var pPres2 = sv.TranslatePoint(corrected, presenter);
-                if (pPres2 == null) return -1;
-
-                pPresenter = pPres2.Value;
-            }
-
-            var tl = TryGetTextLayout(presenter);
-            if (tl == null) return -1;
-
-            var hit = tl.HitTestPoint(pPresenter);
-            int idx = hit.TextPosition + (hit.IsTrailing ? 1 : 0);
-
-            int len = tb.Text?.Length ?? 0;
-            if (len <= 0) return -1;
-
-            if (idx < 0) idx = 0;
-            if (idx >= len) idx = len - 1;
-            return idx;
-        }
-        catch
-        {
-            return -1;
-        }
-    }
-
-    private static TextLayout? TryGetTextLayout(Visual presenter)
-    {
-        try
-        {
-            var prop = presenter.GetType().GetProperty(
-                "TextLayout",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-            return prop?.GetValue(presenter) as TextLayout;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    // -------------------------
-    // Public API
-    // -------------------------
-
-    public void Clear()
-    {
-        _renderOrig = RenderedDocument.Empty;
-        _renderTran = RenderedDocument.Empty;
-
-        if (_editorOriginal != null) _editorOriginal.Text = "";
-        if (_editorTranslated != null) _editorTranslated.Text = "";
-
-        _lastOrigSelStart = _lastOrigSelEnd = -1;
-        _lastTranSelStart = _lastTranSelEnd = -1;
-        _lastOrigCaret = _lastTranCaret = -1;
-
-        ResetScroll(_svOriginal);
-        ResetScroll(_svTranslated);
-
-        if (_annMarksOriginal != null) _annMarksOriginal.Annotations = Array.Empty<DocAnnotation>();
-        if (_annMarksTranslated != null) _annMarksTranslated.Annotations = Array.Empty<DocAnnotation>();
-
-        HideNotes();
-
-        ClearFindState();
-        CloseFind();
-
-        UpdateNotesButtonsState();
-    }
-
-    public void SetRendered(RenderedDocument orig, RenderedDocument tran)
-    {
-        _renderOrig = orig ?? RenderedDocument.Empty;
-        _renderTran = tran ?? RenderedDocument.Empty;
-
-        if (_editorOriginal != null) _editorOriginal.Text = _renderOrig.Text;
-        if (_editorTranslated != null) _editorTranslated.Text = _renderTran.Text;
-
-        if (_annMarksOriginal != null) _annMarksOriginal.Annotations = _renderOrig.Annotations ?? new List<DocAnnotation>();
-        if (_annMarksTranslated != null) _annMarksTranslated.Annotations = _renderTran.Annotations ?? new List<DocAnnotation>();
-
-        RefreshPresenterCache(_editorOriginal, isOriginal: true);
-        RefreshPresenterCache(_editorTranslated, isOriginal: false);
-
-        Dispatcher.UIThread.Post(() =>
-        {
-            RefreshPresenterCache(_editorOriginal, isOriginal: true);
-            RefreshPresenterCache(_editorTranslated, isOriginal: false);
-        }, DispatcherPriority.Loaded);
-
-        DispatcherTimer.RunOnce(() =>
-        {
-            RefreshPresenterCache(_editorOriginal, isOriginal: true);
-            RefreshPresenterCache(_editorTranslated, isOriginal: false);
-        }, TimeSpan.FromMilliseconds(90));
-
-        ResetScroll(_svOriginal);
-        ResetScroll(_svTranslated);
-
-        if (_editorOriginal != null)
-        {
-            _lastOrigSelStart = _editorOriginal.SelectionStart;
-            _lastOrigSelEnd = _editorOriginal.SelectionEnd;
-            _lastOrigCaret = _editorOriginal.CaretIndex;
-        }
-
-        if (_editorTranslated != null)
-        {
-            _lastTranSelStart = _editorTranslated.SelectionStart;
-            _lastTranSelEnd = _editorTranslated.SelectionEnd;
-            _lastTranCaret = _editorTranslated.CaretIndex;
-        }
-
-        HideNotes();
-        UpdateNotesButtonsState();
-
-        if (_findBar?.IsVisible == true)
-            RecomputeMatches(resetToFirst: false);
-    }
-
-    // -------------------------
-    // User input tracking (for mirroring + Find scope)
-    // -------------------------
-
-    private void HookUserInputTracking(TextBox? tb)
-    {
-        if (tb == null) return;
-
-        tb.PointerPressed += OnEditorUserInput;
-        tb.PointerReleased += OnEditorPointerReleased;
-        tb.KeyDown += OnEditorUserInput;
-        tb.KeyUp += OnEditorKeyUp;
-
-        tb.GotFocus += (_, _) =>
-        {
-            if (_findBar?.IsVisible == true)
-                SetFindTarget(tb, preserveIndex: true);
-        };
-    }
-
-    private void OnEditorUserInput(object? sender, EventArgs e)
-    {
-        _lastUserInputUtc = DateTime.UtcNow;
-        _lastUserInputEditor = sender as TextBox;
-    }
-
-    private void OnEditorPointerReleased(object? sender, PointerReleasedEventArgs e)
-    {
-        _lastUserInputUtc = DateTime.UtcNow;
-        _lastUserInputEditor = sender as TextBox;
-
-        bool sourceIsTranslated = ReferenceEquals(_lastUserInputEditor, _editorTranslated);
-
-        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
-        RequestMirrorFromUserAction(sourceIsTranslated);
-    }
-
-    private void OnEditorKeyUp(object? sender, KeyEventArgs e)
-    {
-        _lastUserInputUtc = DateTime.UtcNow;
-        _lastUserInputEditor = sender as TextBox;
-
-        bool sourceIsTranslated = ReferenceEquals(_lastUserInputEditor, _editorTranslated);
-
-        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
-        RequestMirrorFromUserAction(sourceIsTranslated);
-    }
-
-    // -------------------------
-    // Polling + mirroring
-    // -------------------------
-
-    private void StartSelectionTimer()
-    {
-        if (_selTimer != null) return;
-
-        _selTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(240) };
-        _selTimer.Tick += (_, _) => PollSelectionChanges();
-        _selTimer.Start();
-    }
-
-    private void StopSelectionTimer()
-    {
-        if (_selTimer == null) return;
-        _selTimer.Stop();
-        _selTimer = null;
-    }
-
-    private void PollSelectionChanges()
-    {
-        if (DateTime.UtcNow <= _suppressPollingUntilUtc) return;
-        if (_syncingSelection) return;
-        if (DateTime.UtcNow <= _ignoreProgrammaticUntilUtc) return;
-        if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
-
-        if (_editorOriginal == null || _editorTranslated == null) return;
-        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
-
-        bool anyFocused =
-            _editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin ||
-            _editorTranslated.IsFocused || _editorTranslated.IsKeyboardFocusWithin;
-
-        if (!anyFocused) return;
-
-        int oS = _editorOriginal.SelectionStart;
-        int oE = _editorOriginal.SelectionEnd;
-        int tS = _editorTranslated.SelectionStart;
-        int tE = _editorTranslated.SelectionEnd;
-        int oC = _editorOriginal.CaretIndex;
-        int tC = _editorTranslated.CaretIndex;
-
-        bool origSelChanged = (oS != _lastOrigSelStart) || (oE != _lastOrigSelEnd);
-        bool tranSelChanged = (tS != _lastTranSelStart) || (tE != _lastTranSelEnd);
-        bool origCaretChanged = (oC != _lastOrigCaret);
-        bool tranCaretChanged = (tC != _lastTranCaret);
-
-        if (!origSelChanged && !tranSelChanged && !origCaretChanged && !tranCaretChanged)
-            return;
-
-        _lastOrigSelStart = oS;
-        _lastOrigSelEnd = oE;
-        _lastTranSelStart = tS;
-        _lastTranSelEnd = tE;
-        _lastOrigCaret = oC;
-        _lastTranCaret = tC;
-
-        bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
-        RequestMirrorFromUserAction(sourceIsTranslated);
-    }
-
-    private bool DetermineSourcePane(bool origChanged, bool tranChanged)
-    {
-        if (_editorOriginal == null || _editorTranslated == null)
-            return true;
-
-        bool origFocused = _editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin;
-        bool tranFocused = _editorTranslated.IsFocused || _editorTranslated.IsKeyboardFocusWithin;
-
-        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
-
-        if (origFocused && !tranFocused) return false;
-        if (tranFocused && !origFocused) return true;
-
-        if (origChanged && !tranChanged) return false;
-        if (tranChanged && !origChanged) return true;
-
-        if (recentInput && _lastUserInputEditor != null)
-            return ReferenceEquals(_lastUserInputEditor, _editorTranslated);
-
-        if (tranFocused) return true;
-        if (origFocused) return false;
-
-        return true;
-    }
-
-    private void MirrorSelectionOneWay(bool sourceIsTranslated)
-    {
-        if (_editorOriginal == null || _editorTranslated == null) return;
-        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
-
-        var srcEditor = sourceIsTranslated ? _editorTranslated : _editorOriginal;
-        var dstEditor = sourceIsTranslated ? _editorOriginal : _editorTranslated;
-
-        var srcDoc = sourceIsTranslated ? _renderTran : _renderOrig;
-        var dstDoc = sourceIsTranslated ? _renderOrig : _renderTran;
-
-        int caret = srcEditor.CaretIndex;
-
-        if (!_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg))
-            return;
-
-        try
-        {
-            _syncingSelection = true;
-
-            ApplyDestinationSelection(dstEditor, dstSeg.Start, dstSeg.EndExclusive, center: true);
-
-            if (ReferenceEquals(dstEditor, _editorOriginal))
-            {
-                _lastOrigSelStart = dstEditor.SelectionStart;
-                _lastOrigSelEnd = dstEditor.SelectionEnd;
-                _lastOrigCaret = dstEditor.CaretIndex;
-            }
-            else
-            {
-                _lastTranSelStart = dstEditor.SelectionStart;
-                _lastTranSelEnd = dstEditor.SelectionEnd;
-                _lastTranCaret = dstEditor.CaretIndex;
-            }
-
-            _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs);
-        }
-        finally
-        {
-            _syncingSelection = false;
-        }
-    }
-
-    private void ApplyDestinationSelection(TextBox dst, int start, int endExclusive, bool center)
-    {
-        int len = dst.Text?.Length ?? 0;
-        start = Math.Max(0, Math.Min(start, len));
-        endExclusive = Math.Max(0, Math.Min(endExclusive, len));
-        if (endExclusive < start) (start, endExclusive) = (endExclusive, start);
-
-        dst.SelectionStart = start;
-        dst.SelectionEnd = endExclusive;
-
-        try { dst.CaretIndex = start; } catch { }
-
-        if (!center) return;
-
-        int anchor = start + Math.Max(0, (endExclusive - start) / 2);
-        CenterByTextLayoutReliable(dst, anchor);
-    }
-
-    private void RequestMirrorFromUserAction(bool sourceIsTranslated)
-    {
-        if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
-
-        _mirrorSourceIsTranslated = sourceIsTranslated;
-        if (_mirrorQueued) return;
-        _mirrorQueued = true;
-
-        Dispatcher.UIThread.Post(() =>
-        {
-            _mirrorQueued = false;
-
-            if (_syncingSelection) return;
-            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
-            if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
-
-            MirrorSelectionOneWay(_mirrorSourceIsTranslated);
-        }, DispatcherPriority.Background);
-    }
-
-    // -------------------------
-    // Ctrl+F Find UI (MATCH TranslationTabView behavior)
-    // -------------------------
-
-    private void OnKeyDown(object? sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
-        {
-            OpenFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape && _findBar?.IsVisible == true)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (_findBar?.IsVisible == true && e.Key == Key.F3)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-            return;
-        }
-    }
-
-    private void FindQuery_KeyDown(object? sender, KeyEventArgs e)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        if (e.Key == Key.Enter)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
-    }
-
-    private void OpenFind()
-    {
-        if (_findBar == null || _findQuery == null) return;
-
-        _findBar.IsVisible = true;
-
-        var target = DetermineCurrentPaneForFind();
-        SetFindTarget(target, preserveIndex: false);
-
-        _findQuery.Focus();
-        _findQuery.SelectionStart = 0;
-        _findQuery.SelectionEnd = (_findQuery.Text ?? "").Length;
-
-        RecomputeMatches(resetToFirst: false);
-    }
-
-    private void CloseFind()
-    {
-        if (_findBar != null)
-            _findBar.IsVisible = false;
-
-        ClearHighlight();
-
-        // restore focus without messing with selections
-        _findTarget?.Focus();
-    }
-
-    private TextBox? DetermineCurrentPaneForFind()
-    {
-        if (_editorOriginal == null || _editorTranslated == null)
-            return _editorTranslated;
-
-        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
-        if (recentInput && _lastUserInputEditor != null)
-            return _lastUserInputEditor;
-
-        if (_editorTranslated.IsFocused || _editorTranslated.IsKeyboardFocusWithin) return _editorTranslated;
-        if (_editorOriginal.IsFocused || _editorOriginal.IsKeyboardFocusWithin) return _editorOriginal;
-
-        return _editorTranslated;
-    }
-
-    private void SetFindTarget(TextBox? tb, bool preserveIndex)
-    {
-        if (tb == null) return;
-
-        _findTarget = tb;
-
-        if (_findScope != null)
-            _findScope.Text = ReferenceEquals(tb, _editorOriginal) ? "Find (Original):" : "Find (Translated):";
-
-        RecomputeMatches(resetToFirst: !preserveIndex);
-    }
-
-    private void DebounceRecomputeMatches()
-    {
-        _findDebounceTimer ??= new DispatcherTimer { Interval = FindRecomputeDebounce };
-        _findDebounceTimer.Stop();
-        _findDebounceTimer.Tick -= FindDebounceTimer_Tick;
-        _findDebounceTimer.Tick += FindDebounceTimer_Tick;
-        _findDebounceTimer.Start();
-    }
-
-    private void FindDebounceTimer_Tick(object? sender, EventArgs e)
-    {
-        _findDebounceTimer?.Stop();
-        RecomputeMatches(resetToFirst: true);
-    }
-
-    private void RecomputeMatches(bool resetToFirst)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        var tb = _findTarget;
-        if (tb == null) return;
-
-        string hay = tb.Text ?? "";
-        string q = (_findQuery?.Text ?? "").Trim();
-
-        int oldSelectedStart = -1;
-        if (!resetToFirst && _matchIndex >= 0 && _matchIndex < _matchStarts.Count)
-            oldSelectedStart = _matchStarts[_matchIndex];
-
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-
-        if (q.Length == 0 || hay.Length == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        _matchLen = q.Length;
-
-        int idx = 0;
-        while (true)
-        {
-            idx = hay.IndexOf(q, idx, StringComparison.OrdinalIgnoreCase);
-            if (idx < 0) break;
-            _matchStarts.Add(idx);
-            idx = idx + Math.Max(1, q.Length);
-        }
-
-        if (_matchStarts.Count == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        if (resetToFirst)
-        {
-            int caret = tb.CaretIndex;
-            int nearest = _matchStarts.FindIndex(s => s >= caret);
-            _matchIndex = nearest >= 0 ? nearest : 0;
-        }
-        else
-        {
-            if (oldSelectedStart >= 0)
-            {
-                int exact = _matchStarts.IndexOf(oldSelectedStart);
-                if (exact >= 0) _matchIndex = exact;
-                else
-                {
-                    int nearest = _matchStarts.FindIndex(s => s >= oldSelectedStart);
-                    _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
-                }
-            }
-            else
-            {
-                _matchIndex = 0;
-            }
-        }
-
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: false);
-    }
-
-    private void UpdateFindCount()
-    {
-        if (_findCount == null) return;
-
-        if (_matchStarts.Count == 0 || _matchIndex < 0)
-            _findCount.Text = "0/0";
-        else
-            _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
-    }
-
-    private void JumpNext()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex + 1) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpPrev()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex - 1 + _matchStarts.Count) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpToCurrentMatch(bool scroll)
-    {
-        if (_findTarget == null) return;
-        if (_matchIndex < 0 || _matchIndex >= _matchStarts.Count) return;
-
-        int start = _matchStarts[_matchIndex];
-        int len = _matchLen;
-
-        // highlight immediately (do NOT touch selection)
-        ApplyHighlight(_findTarget, start, len);
-
-        if (!scroll)
-            return;
-
-        try
-        {
-            // hard suppress so Find never triggers mirroring fights
-            _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
-            _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
-            _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterFindMs);
-
-            _findTarget.Focus();
-
-            // scroll via caret only (no selection changes)
-            _findTarget.CaretIndex = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
-
-            DispatcherTimer.RunOnce(() =>
-            {
-                try { CenterByTextLayoutReliable(_findTarget, start); } catch { }
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(25));
-
-            DispatcherTimer.RunOnce(() =>
-            {
-                try { CenterByTextLayoutReliable(_findTarget, start); } catch { }
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(85));
-        }
-        catch { }
-    }
-
-    private void ApplyHighlight(TextBox target, int start, int len)
-    {
-        if (_hlOriginal == null || _hlTranslated == null) return;
-
-        if (ReferenceEquals(target, _editorOriginal))
-        {
-            _hlTranslated.Clear();
-            _hlOriginal.SetRange(start, len);
-        }
-        else
-        {
-            _hlOriginal.Clear();
-            _hlTranslated.SetRange(start, len);
-        }
-    }
-
-    private void ClearHighlight()
-    {
-        _hlOriginal?.Clear();
-        _hlTranslated?.Clear();
-    }
-
-    private void ClearFindState()
-    {
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-        UpdateFindCount();
-        ClearHighlight();
-    }
-
-    // -------------------------
-    // Scroll helpers
-    // -------------------------
-
-    private static void ResetScroll(ScrollViewer? sv)
-    {
-        if (sv == null) return;
-        sv.Offset = new Vector(0, 0);
-    }
-
-    private static ScrollViewer? FindScrollViewer(Control? c)
-    {
-        if (c == null) return null;
-        return c.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
-    }
-
-    private static ScrollContentPresenter? FindScrollContentPresenter(ScrollViewer? sv)
-    {
-        if (sv == null) return null;
-        return sv.GetVisualDescendants().OfType<ScrollContentPresenter>().FirstOrDefault();
-    }
-
-    private static bool IsFinitePositive(double v)
-        => !double.IsNaN(v) && !double.IsInfinity(v) && v > 0;
-
-    private static double ClampY(double extentH, double viewportH, double y)
-    {
-        if (IsFinitePositive(extentH) && IsFinitePositive(viewportH))
-        {
-            double maxY = Math.Max(0, extentH - viewportH);
-            return Math.Max(0, Math.Min(y, maxY));
-        }
-        return Math.Max(0, y);
-    }
-
-    private void CenterByTextLayoutReliable(TextBox tb, int charIndex)
-    {
-        ScrollViewer? sv;
-        ScrollContentPresenter? scp;
-        Visual? presenter;
-
-        if (ReferenceEquals(tb, _editorOriginal))
-        {
-            sv = _svOriginal ?? FindScrollViewer(tb);
-            scp = _scpOriginal ?? FindScrollContentPresenter(sv);
-            presenter = _presOriginal;
-        }
-        else
-        {
-            sv = _svTranslated ?? FindScrollViewer(tb);
-            scp = _scpTranslated ?? FindScrollContentPresenter(sv);
-            presenter = _presTranslated;
-        }
-
-        if (sv == null) return;
-
-        int len = tb.Text?.Length ?? 0;
-        if (len <= 0) return;
-        charIndex = Math.Clamp(charIndex, 0, len);
-
-        Dispatcher.UIThread.Post(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), DispatcherPriority.Render);
-        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(28));
-        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(60));
-        DispatcherTimer.RunOnce(() => TryCenterOnce_TextLayout(tb, sv, scp, presenter, charIndex), TimeSpan.FromMilliseconds(110));
-    }
-
-    private static void TryCenterOnce_TextLayout(TextBox tb, ScrollViewer sv, ScrollContentPresenter? scp, Visual? presenter, int charIndex)
-    {
-        double viewportH = sv.Viewport.Height;
-        double extentH = sv.Extent.Height;
-        if (!IsFinitePositive(viewportH) || !IsFinitePositive(extentH))
-            return;
-
-        Visual target = (Visual?)scp ?? (Visual)sv;
-
-        presenter ??= tb
-            .GetVisualDescendants()
-            .OfType<Visual>()
-            .LastOrDefault(v => string.Equals(v.GetType().Name, "TextPresenter", StringComparison.Ordinal));
-
-        if (presenter == null) return;
-
-        TextLayout? tl = null;
-        try
-        {
-            var prop = presenter.GetType().GetProperty("TextLayout", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (prop?.GetValue(presenter) is TextLayout got)
-                tl = got;
-        }
-        catch { }
-
-        if (tl == null) return;
-
-        Rect r;
-        try { r = tl.HitTestTextPosition(charIndex); }
-        catch { return; }
-
-        var p = presenter.TranslatePoint(new Point(r.X, r.Y), target);
-        if (p == null) return;
-
-        double yInViewport = p.Value.Y;
-
-        double targetY = viewportH * 0.40;
-        double topBand = viewportH * 0.15;
-        double bottomBand = viewportH * 0.85;
-
-        if (yInViewport >= topBand && yInViewport <= bottomBand)
-            return;
-
-        double desiredY = sv.Offset.Y + (yInViewport - targetY);
-
-        desiredY = ClampY(extentH, viewportH, desiredY);
-        sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
 }

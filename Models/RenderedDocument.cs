@@ -113,7 +113,6 @@ public sealed class RenderedDocument
         }
 
         // ---- fallback: marker list might be weird (or click lands near marker) ----
-        // This makes the feature robust even if some spans are slightly off.
         const int radius = 10;
         int a = Math.Max(0, renderedOffset - radius);
         int b = renderedOffset + radius;
@@ -122,11 +121,9 @@ public sealed class RenderedDocument
         {
             var m = AnnotationMarkers[i];
 
-            // quick reject: marker completely outside neighborhood
             if (m.EndExclusive <= a) continue;
-            if (m.Start >= b) break; // because sorted
+            if (m.Start >= b) break;
 
-            // neighborhood overlap
             if (renderedOffset >= m.Start && renderedOffset < m.EndExclusive ||
                 a >= m.Start && a < m.EndExclusive ||
                 b >= m.Start && b < m.EndExclusive)
@@ -143,57 +140,41 @@ public sealed class RenderedDocument
         return false;
     }
 
-    // NEW: convert display Text index (with inserted superscript markers) -> base index (pre-inserted)
-    // Returns -1 if conversion isn't possible.
+    // FIXED: convert display Text index (with inserted superscript markers) -> base index (pre-inserted)
+    // Key: if the display index lands INSIDE a marker, do NOT subtract that marker's length too.
     public int DisplayIndexToBaseIndex(int displayIndex)
     {
         if (displayIndex < 0) return -1;
 
-        // If there are no markers, it's already base text.
         if (AnnotationMarkers == null || AnnotationMarkers.Count == 0)
             return displayIndex;
 
-        // Count how many marker spans start before (or at) this display index.
-        // Each marker span corresponds to inserted marker characters.
-        // So baseIndex = displayIndex - insertedCharsBefore.
-        int inserted = 0;
+        int insertedBefore = 0;
 
-        // Because AnnotationMarkers is sorted by Start, we can binary search for last marker with Start <= displayIndex.
-        int lo = 0, hi = AnnotationMarkers.Count - 1;
-        int last = -1;
-
-        while (lo <= hi)
-        {
-            int mid = lo + ((hi - lo) / 2);
-            if (AnnotationMarkers[mid].Start <= displayIndex)
-            {
-                last = mid;
-                lo = mid + 1;
-            }
-            else
-            {
-                hi = mid - 1;
-            }
-        }
-
-        if (last < 0)
-            return displayIndex;
-
-        // Sum inserted lengths for markers with Start <= displayIndex.
-        // MarkerSpan describes the inserted range in the FINAL string, so its own length is (EndExclusive-Start).
-        // That length is "inserted chars". This assumes marker spans represent inserted marker glyphs.
-        for (int i = 0; i <= last; i++)
+        // Markers are sorted by Start.
+        for (int i = 0; i < AnnotationMarkers.Count; i++)
         {
             var m = AnnotationMarkers[i];
             int len = Math.Max(0, m.EndExclusive - m.Start);
-            inserted += len;
+
+            if (displayIndex < m.Start)
+                break;
+
+            if (displayIndex >= m.Start && displayIndex < m.EndExclusive)
+            {
+                // Inside marker: base index is insertion point.
+                int baseAtMarker = m.Start - insertedBefore;
+                return baseAtMarker < 0 ? 0 : baseAtMarker;
+            }
+
+            // After marker: count its inserted chars.
+            insertedBefore += len;
         }
 
-        int baseIndex = displayIndex - inserted;
+        int baseIndex = displayIndex - insertedBefore;
         return baseIndex < 0 ? 0 : baseIndex;
     }
 
-    // NEW: convert display index -> xml index via mapping (if available)
     public int DisplayIndexToXmlIndex(int displayIndex)
     {
         if (BaseToXmlIndex == null || BaseToXmlIndex.Length == 0)

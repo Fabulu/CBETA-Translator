@@ -1,9 +1,13 @@
-﻿using System;
+﻿// Views/TranslationTabView.axaml.cs
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -53,6 +57,40 @@ public partial class TranslationTabView : UserControl
 
     private static IBrush SafeBrushOrFallback(IBrush? current, IBrush fallback)
         => (current == null || IsTransparentBrush(current)) ? fallback : current;
+
+    private static string Sha1Short(string s)
+    {
+        try
+        {
+            using var sha1 = SHA1.Create();
+            var bytes = Encoding.UTF8.GetBytes(s);
+            var hash = sha1.ComputeHash(bytes);
+            return Convert.ToHexString(hash).Substring(0, 12);
+        }
+        catch { return "sha1_err"; }
+    }
+
+    // -------------------------
+    // FILE PATHS (MUST BE SET BY PARENT WHEN A FILE IS LOADED)
+    // -------------------------
+    private string? _currentOrigPath;
+    private string? _currentTranPath;
+
+    /// <summary>
+    /// Parent must call this when selecting/loading a file.
+    /// These are the DISK paths that add/delete MUST modify.
+    /// </summary>
+    public void SetCurrentFilePaths(string originalXmlPath, string translatedXmlPath)
+    {
+        _currentOrigPath = originalXmlPath;
+        _currentTranPath = translatedXmlPath;
+
+        Log($"SetCurrentFilePaths: orig='{_currentOrigPath}' (exists={File.Exists(_currentOrigPath)}) " +
+            $"tran='{_currentTranPath}' (exists={File.Exists(_currentTranPath)})");
+    }
+
+    // Gate: prevent overlapping save+reload storms (your logs show double SetXml bursts)
+    private readonly SemaphoreSlim _saveReloadGate = new(1, 1);
 
     // -------------------------
     // UI controls
@@ -560,6 +598,254 @@ public partial class TranslationTabView : UserControl
         {
             Log($"{which}: Post-check (Background). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height}");
         }, DispatcherPriority.Background);
+    }
+
+    // ============================================================
+    // COMMUNITY NOTES (FIX)
+    // ============================================================
+    //
+    // ReadableTabView raises:
+    //   CommunityNoteInsertRequested(xmlIndex, noteText, resp)
+    //   CommunityNoteDeleteRequested(xmlStart, xmlEndExclusive)
+    //
+    // These MUST:
+    //   1) modify the TRANSLATED FILE ON DISK (the one you reload from)
+    //   2) verify disk contains the modified text
+    //   3) reload BOTH orig+tran from disk and call SetXml(orig, tran)
+    //
+    // Parent should call these from the events.
+    // ============================================================
+
+    public async Task HandleCommunityNoteInsertAsync(int xmlIndex, string noteText, string? resp)
+    {
+        await _saveReloadGate.WaitAsync();
+        try
+        {
+            if (!TryValidatePaths(out var origPath, out var tranPath))
+                return;
+
+            Log($"COMM-INSERT start xmlIndex={xmlIndex} textLen={(noteText ?? "").Length} resp='{resp ?? ""}'");
+
+            var beforeDisk = await ReadAllTextUtf8Async(tranPath);
+            Log($"COMM-INSERT disk BEFORE len={beforeDisk.Length} sha1={Sha1Short(beforeDisk)} mtime={SafeMTime(tranPath)}");
+
+            var updated = InsertCommunityNote(beforeDisk, xmlIndex, noteText, resp, out var why);
+            if (updated == null)
+            {
+                Status?.Invoke(this, "Add note failed: " + why);
+                Log("COMM-INSERT FAILED: " + why);
+                return;
+            }
+
+            await AtomicWriteUtf8Async(tranPath, updated);
+
+            var afterDisk = await ReadAllTextUtf8Async(tranPath);
+            Log($"COMM-INSERT disk AFTER  len={afterDisk.Length} sha1={Sha1Short(afterDisk)} mtime={SafeMTime(tranPath)} matchLen={(afterDisk.Length == updated.Length)}");
+
+            if (afterDisk.Length != updated.Length)
+            {
+                Status?.Invoke(this, "Add note FAILED: disk write mismatch (wrong path or overwritten). Check logs.");
+                Log("COMM-INSERT HARD FAIL: disk length mismatch after write.");
+                return;
+            }
+
+            // Reload both from disk, always.
+            var origDisk = await ReadAllTextUtf8Async(origPath);
+            var tranDisk = afterDisk;
+
+            Log($"COMM-INSERT reload: origLen={origDisk.Length} tranLen={tranDisk.Length}");
+            SetXml(origDisk, tranDisk);
+
+            Status?.Invoke(this, "Community note added (saved to file).");
+        }
+        catch (Exception ex)
+        {
+            Log("COMM-INSERT EXCEPTION: " + ex);
+            Status?.Invoke(this, "Add note failed (exception). See debug log.");
+        }
+        finally
+        {
+            _saveReloadGate.Release();
+        }
+    }
+
+    public async Task HandleCommunityNoteDeleteAsync(int xmlStart, int xmlEndExclusive)
+    {
+        await _saveReloadGate.WaitAsync();
+        try
+        {
+            if (!TryValidatePaths(out var origPath, out var tranPath))
+                return;
+
+            Log($"COMM-DELETE start xmlStart={xmlStart} xmlEndEx={xmlEndExclusive}");
+
+            var beforeDisk = await ReadAllTextUtf8Async(tranPath);
+            Log($"COMM-DELETE disk BEFORE len={beforeDisk.Length} sha1={Sha1Short(beforeDisk)} mtime={SafeMTime(tranPath)}");
+
+            var updated = DeleteRange(beforeDisk, xmlStart, xmlEndExclusive, out var why);
+            if (updated == null)
+            {
+                Status?.Invoke(this, "Delete note failed: " + why);
+                Log("COMM-DELETE FAILED: " + why);
+                return;
+            }
+
+            await AtomicWriteUtf8Async(tranPath, updated);
+
+            var afterDisk = await ReadAllTextUtf8Async(tranPath);
+            Log($"COMM-DELETE disk AFTER  len={afterDisk.Length} sha1={Sha1Short(afterDisk)} mtime={SafeMTime(tranPath)} matchLen={(afterDisk.Length == updated.Length)}");
+
+            if (afterDisk.Length != updated.Length)
+            {
+                Status?.Invoke(this, "Delete note FAILED: disk write mismatch (wrong path or overwritten). Check logs.");
+                Log("COMM-DELETE HARD FAIL: disk length mismatch after write.");
+                return;
+            }
+
+            // Reload both from disk, always.
+            var origDisk = await ReadAllTextUtf8Async(origPath);
+            var tranDisk = afterDisk;
+
+            Log($"COMM-DELETE reload: origLen={origDisk.Length} tranLen={tranDisk.Length}");
+            SetXml(origDisk, tranDisk);
+
+            Status?.Invoke(this, "Community note deleted (saved to file).");
+        }
+        catch (Exception ex)
+        {
+            Log("COMM-DELETE EXCEPTION: " + ex);
+            Status?.Invoke(this, "Delete note failed (exception). See debug log.");
+        }
+        finally
+        {
+            _saveReloadGate.Release();
+        }
+    }
+
+    private bool TryValidatePaths(out string origPath, out string tranPath)
+    {
+        origPath = _currentOrigPath ?? "";
+        tranPath = _currentTranPath ?? "";
+
+        if (string.IsNullOrWhiteSpace(origPath) || string.IsNullOrWhiteSpace(tranPath))
+        {
+            Status?.Invoke(this, "Paths not set. Call SetCurrentFilePaths(...) when loading a file.");
+            Log("PATHS INVALID: SetCurrentFilePaths was not called.");
+            return false;
+        }
+
+        bool o = File.Exists(origPath);
+        bool t = File.Exists(tranPath);
+
+        Log($"PATHS: orig='{origPath}' exists={o} | tran='{tranPath}' exists={t}");
+
+        if (!o || !t)
+        {
+            Status?.Invoke(this, "File not found on disk (orig or tran). Check logs.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private static string SafeMTime(string path)
+    {
+        try { return File.GetLastWriteTimeUtc(path).ToString("O"); }
+        catch { return "mtime_err"; }
+    }
+
+    private static async Task<string> ReadAllTextUtf8Async(string path)
+    {
+        // Explicit UTF-8 (no BOM) behavior consistent across platforms
+        using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var sr = new StreamReader(fs, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false), detectEncodingFromByteOrderMarks: true);
+        return await sr.ReadToEndAsync();
+    }
+
+    private static async Task AtomicWriteUtf8Async(string path, string content)
+    {
+        // Write to temp in same dir, then replace. Avoid partial writes and races.
+        var dir = Path.GetDirectoryName(path) ?? "";
+        var file = Path.GetFileName(path);
+        var tmp = Path.Combine(dir, file + ".tmp_" + Guid.NewGuid().ToString("N"));
+
+        var enc = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+
+        await File.WriteAllTextAsync(tmp, content, enc);
+
+        // Prefer Replace when possible, fall back to Move overwrite.
+        try
+        {
+            // If no backup needed, still safe.
+            File.Replace(tmp, path, destinationBackupFileName: null, ignoreMetadataErrors: true);
+        }
+        catch
+        {
+            try
+            {
+#if NET8_0_OR_GREATER
+                File.Move(tmp, path, overwrite: true);
+#else
+                if (File.Exists(path)) File.Delete(path);
+                File.Move(tmp, path);
+#endif
+            }
+            finally
+            {
+                try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
+            }
+        }
+    }
+
+    private static string EscapeXmlText(string s)
+        => (s ?? "")
+            .Replace("&", "&amp;")
+            .Replace("<", "&lt;")
+            .Replace(">", "&gt;");
+
+    private static string EscapeXmlAttr(string s)
+        => EscapeXmlText(s).Replace("\"", "&quot;").Replace("'", "&apos;");
+
+    private static string? InsertCommunityNote(string xml, int index, string noteText, string? resp, out string why)
+    {
+        why = "";
+        if (xml == null) { why = "xml is null"; return null; }
+        if (index < 0 || index > xml.Length) { why = $"index out of range: {index} (len={xml.Length})"; return null; }
+
+        noteText = (noteText ?? "").Trim();
+        if (noteText.Length == 0) { why = "note text empty"; return null; }
+
+        // Minimal TEI-ish note:
+        // <note type="community" resp="...">TEXT</note>
+        var attrs = " type=\"community\"";
+        if (!string.IsNullOrWhiteSpace(resp))
+            attrs += $" resp=\"{EscapeXmlAttr(resp.Trim())}\"";
+
+        var note = $"<note{attrs}>{EscapeXmlText(noteText)}</note>";
+
+        // Insert at exact character index.
+        // This assumes the provided xmlIndex is meant to be a position in the translated XML string.
+        // If upstream gives tag-boundary-safe indices, great. If not, you’ll see broken XML and your checker will scream.
+        var sb = new StringBuilder(xml.Length + note.Length);
+        sb.Append(xml, 0, index);
+        sb.Append(note);
+        sb.Append(xml, index, xml.Length - index);
+
+        return sb.ToString();
+    }
+
+    private static string? DeleteRange(string xml, int start, int endExclusive, out string why)
+    {
+        why = "";
+        if (xml == null) { why = "xml is null"; return null; }
+        if (start < 0 || endExclusive < 0) { why = $"negative range: {start}..{endExclusive}"; return null; }
+        if (endExclusive < start) { why = $"endExclusive < start: {start}..{endExclusive}"; return null; }
+        if (start > xml.Length || endExclusive > xml.Length) { why = $"range out of bounds for len={xml.Length}: {start}..{endExclusive}"; return null; }
+        if (endExclusive == start) { why = "empty range"; return null; }
+
+        // Delete exactly the range we were told.
+        // ReadableTabView’s IsCommunityAnnotation() expects xmlStart/xmlEndExclusive to cover the <note ...>...</note>.
+        return xml.Remove(start, endExclusive - start);
     }
 
     // --------------------------

@@ -1,7 +1,38 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:views="clr-namespace:CbetaTranslator.App.Views"
+             xmlns:local="clr-namespace:CbetaTranslator.App.Views"
+             xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.ReadableTabView">
+
+
+	<!-- LOCAL FALLBACK RESOURCES (same idea as TranslationTabView) -->
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="PanelBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="SplitterBrush" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="MutedFg" Color="#FF9A9A9A"/>
+	</UserControl.Resources>
+
+	<UserControl.Styles>
+		<!-- If you still use AvaloniaEdit elsewhere, keep its theme include.
+         AnnotatedTextEditor DOES contain a TextEditor, so this is fine. -->
+		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+
+		<Style Selector="TextBlock.muted">
+			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
+		</Style>
+
+		<!-- Style the INNER AvaloniaEdit TextEditor, not the wrapper UserControl -->
+		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#FFE6E6E6"/>
+			<Setter Property="FontFamily" Value="Consolas"/>
+			<Setter Property="WordWrap" Value="True"/>
+			<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+			<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+		</Style>
+	</UserControl.Styles>
 
 	<Grid RowDefinitions="Auto,Auto,*,Auto">
 
@@ -34,14 +65,17 @@
 						 MinWidth="260"
 						 VerticalAlignment="Center"/>
 
-				<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8" Margin="10,0,0,0">
+				<StackPanel DockPanel.Dock="Right"
+							Orientation="Horizontal"
+							Spacing="8"
+							Margin="10,0,0,0">
 					<TextBlock Name="FindCount"
 							   Classes="muted"
 							   VerticalAlignment="Center"
 							   Text="0/0" />
-					<Button Name="BtnPrev" Content="Prev" />
-					<Button Name="BtnNext" Content="Next" />
-					<Button Name="BtnCloseFind" Content="✕" />
+					<Button Name="BtnPrev" Content="Prev" Focusable="False"/>
+					<Button Name="BtnNext" Content="Next" Focusable="False"/>
+					<Button Name="BtnCloseFind" Content="✕" Focusable="False"/>
 				</StackPanel>
 			</DockPanel>
 		</Border>
@@ -57,20 +91,8 @@
 						<TextBlock Text="Original (read-only)" Classes="muted"/>
 					</Border>
 
-					<Grid Grid.Row="1">
-						<TextBox Name="EditorOriginal"
-								 IsReadOnly="True"
-								 AcceptsReturn="True"
-								 TextWrapping="Wrap"
-								 FontFamily="Consolas"
-								 Background="Transparent"
-								 BorderThickness="0"
-								 ScrollViewer.VerticalScrollBarVisibility="Visible"
-								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-
-						<views:SearchHighlightOverlay Name="HlOriginal"
-													  IsHitTestVisible="False"/>
-					</Grid>
+					<local:AnnotatedTextEditor Name="EditorOriginal"
+											   Grid.Row="1"/>
 				</Grid>
 			</Border>
 
@@ -86,20 +108,8 @@
 						<TextBlock Text="Translated (readable view)" Classes="muted"/>
 					</Border>
 
-					<Grid Grid.Row="1">
-						<TextBox Name="EditorTranslated"
-								 IsReadOnly="True"
-								 AcceptsReturn="True"
-								 TextWrapping="Wrap"
-								 FontFamily="Consolas"
-								 Background="Transparent"
-								 BorderThickness="0"
-								 ScrollViewer.VerticalScrollBarVisibility="Visible"
-								 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-
-						<views:SearchHighlightOverlay Name="HlTranslated"
-													  IsHitTestVisible="False"/>
-					</Grid>
+					<local:AnnotatedTextEditor Name="EditorTranslated"
+											   Grid.Row="1"/>
 				</Grid>
 			</Border>
 
@@ -122,8 +132,14 @@
 						   Text="Note" />
 
 				<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="6">
-					<Button Name="BtnDeleteCommunityNote" Content="Delete" Padding="10,2" />
-					<Button Name="BtnCloseNotes" Content="✕" Padding="8,2" />
+					<Button Name="BtnDeleteCommunityNote"
+							Content="Delete"
+							Padding="10,2"
+							Focusable="False"/>
+					<Button Name="BtnCloseNotes"
+							Content="✕"
+							Padding="8,2"
+							Focusable="False"/>
 				</StackPanel>
 
 				<ScrollViewer Grid.Row="1"
