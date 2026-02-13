@@ -21,9 +21,6 @@ It is designed for:
 - Cross-platform desktop usage (Windows + Linux + MAC OS)  
 - High performance even with very large XML files  
 
-This is not a toy editor.  
-This is a full corpus environment.
-
 ---
 
 # 📂 Corpus Navigation (Left Sidebar)
