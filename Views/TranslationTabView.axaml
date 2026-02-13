@@ -3,9 +3,26 @@
              xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.TranslationTabView">
 
+	<!-- LOCAL FALLBACK RESOURCES (prevents "blank view" when app theme keys are missing) -->
+	<UserControl.Resources>
+		<!-- Panel colors -->
+		<SolidColorBrush x:Key="PanelBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="SplitterBrush" Color="#FF2A2A2A"/>
+
+		<!-- Muted text -->
+		<SolidColorBrush x:Key="MutedFg" Color="#FF9A9A9A"/>
+	</UserControl.Resources>
+
 	<UserControl.Styles>
 		<!-- Keep Fluent theme for AvaloniaEdit -->
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+
+		<!-- Muted class (fallback) -->
+		<Style Selector="TextBlock.muted">
+			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
+		</Style>
 
 		<!-- Hard override so text is visible in dark UI -->
 		<Style Selector="ae|TextEditor">
@@ -13,7 +30,6 @@
 			<Setter Property="Foreground" Value="#FFE6E6E6"/>
 		</Style>
 	</UserControl.Styles>
-
 
 	<Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="1*,Auto,1*">
 
@@ -118,7 +134,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="True"
 							   FontFamily="Consolas"
-							   Foreground="White"
+							   Foreground="#FFE6E6E6"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
@@ -151,7 +167,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="False"
 							   FontFamily="Consolas"
-							   Foreground="White"
+							   Foreground="#FFE6E6E6"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
