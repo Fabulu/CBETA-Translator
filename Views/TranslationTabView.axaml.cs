@@ -18,7 +18,6 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
-using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
 
@@ -70,8 +69,9 @@ public partial class TranslationTabView : UserControl
 
     private TextBlock? _txtHint;
 
-    // Hover dictionary
-    private HoverDictionaryBehavior? _hoverDict;
+    // Hover dictionary (AvaloniaEdit)
+    private HoverDictionaryBehaviorEdit? _hoverDictOrig;
+    private HoverDictionaryBehaviorEdit? _hoverDictTran;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
     // Remember last "copy selection" range
@@ -92,11 +92,11 @@ public partial class TranslationTabView : UserControl
     private Button? _btnNext;
     private Button? _btnCloseFind;
 
-    // Find highlight renderers (AvaloniaEdit background renderer)
+    // Find highlight renderers
     private SearchHighlightRenderer? _hlOrig;
     private SearchHighlightRenderer? _hlTran;
 
-    private TextEditor? _findTarget; // which editor we are searching in
+    private TextEditor? _findTarget;
 
     private readonly List<int> _matchStarts = new();
     private int _matchLen = 0;
@@ -117,7 +117,29 @@ public partial class TranslationTabView : UserControl
     public TranslationTabView()
     {
         Log("CTOR start");
-        InitializeComponent();
+
+        try
+        {
+            InitializeComponent();
+        }
+        catch (Exception ex)
+        {
+            // If XAML fails to load, you otherwise get "blank UI" and suffer.
+            Log("InitializeComponent ERROR: " + ex);
+
+            Content = new Border
+            {
+                Background = Brushes.Black,
+                Padding = new Thickness(12),
+                Child = new TextBlock
+                {
+                    Foreground = Brushes.OrangeRed,
+                    Text = "TranslationTabView failed to load XAML.\n\n" + ex.ToString()
+                }
+            };
+            return;
+        }
+
         FindControls();
         WireEvents();
 
@@ -125,20 +147,17 @@ public partial class TranslationTabView : UserControl
         {
             Log("AttachedToVisualTree");
 
-            // Force editor visuals/input state once the control is live
             ApplyEditorDefaults(_orig, "orig (AttachedToVisualTree)");
             ApplyEditorDefaults(_tran, "tran (AttachedToVisualTree)");
 
             SetupHoverDictionary();
 
-            // Ensure find highlight renderers are attached once TextView exists
             Dispatcher.UIThread.Post(() =>
             {
                 Log("AttachedToVisualTree -> EnsureFindRenderersAttached (Background)");
                 EnsureFindRenderersAttached();
             }, DispatcherPriority.Background);
 
-            // Re-apply cached text after templates are fully loaded
             Dispatcher.UIThread.Post(() =>
             {
                 Log("AttachedToVisualTree -> ReApplyEditorsText (Background)");
@@ -174,29 +193,21 @@ public partial class TranslationTabView : UserControl
 
         _txtHint = this.FindControl<TextBlock>("TxtHint");
 
-        Log($"Controls: EditorOrigXml(TextEditor)={_orig != null}, EditorTranXml(TextEditor)={_tran != null}, TxtHint={_txtHint != null}");
+        Log($"Controls: orig={_orig != null}, tran={_tran != null}, hint={_txtHint != null}");
 
         if (_orig != null)
         {
             _orig.IsReadOnly = true;
-            Log($"Orig editor found: type={_orig.GetType().FullName}, IsReadOnly={_orig.IsReadOnly}, TextLen={LenStr(_orig.Text)}");
             ApplyEditorDefaults(_orig, "orig (FindControls)");
         }
-        else
-        {
-            Log("ERROR: Could not find EditorOrigXml (TextEditor). Check XAML Name=EditorOrigXml.");
-        }
+        else Log("ERROR: Could not find EditorOrigXml (TextEditor). Check XAML Name=EditorOrigXml.");
 
         if (_tran != null)
         {
             _tran.IsReadOnly = false;
-            Log($"Tran editor found: type={_tran.GetType().FullName}, IsReadOnly={_tran.IsReadOnly}, TextLen={LenStr(_tran.Text)}");
             ApplyEditorDefaults(_tran, "tran (FindControls)");
         }
-        else
-        {
-            Log("ERROR: Could not find EditorTranXml (TextEditor). Check XAML Name=EditorTranXml.");
-        }
+        else Log("ERROR: Could not find EditorTranXml (TextEditor). Check XAML Name=EditorTranXml.");
 
         // Find UI
         _findBar = this.FindControl<Border>("FindBar");
@@ -207,14 +218,13 @@ public partial class TranslationTabView : UserControl
         _btnNext = this.FindControl<Button>("BtnNext");
         _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
 
-        Log($"Find UI: FindBar={_findBar != null}, FindQuery={_findQuery != null}, FindCount={_findCount != null}, FindScope={_findScope != null}, BtnPrev={_btnPrev != null}, BtnNext={_btnNext != null}, BtnCloseFind={_btnCloseFind != null}");
+        Log($"Find UI: bar={_findBar != null}, query={_findQuery != null}, count={_findCount != null}");
 
         Log("FindControls end");
     }
 
     /// <summary>
-    /// Key part: make AvaloniaEdit editors always clickable and visible under your theme.
-    /// This is where "text exists but editor looks missing" is usually fixed.
+    /// Make AvaloniaEdit editors always visible + interactive.
     /// </summary>
     private void ApplyEditorDefaults(TextEditor? ed, string tag)
     {
@@ -222,31 +232,23 @@ public partial class TranslationTabView : UserControl
 
         try
         {
-            // Baseline sanity for input
             ed.Focusable = true;
             ed.IsHitTestVisible = true;
             ed.IsEnabled = true;
 
-            // Scrollbars (helps usability; also proves the control is actually there)
             ed.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             ed.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 
-            // Backgrounds: Transparent is fine but TextArea.Background often needs to be set too.
             ed.Background ??= Brushes.Transparent;
             ed.TextArea.Background ??= Brushes.Transparent;
 
-            // Foreground can become invisible depending on theme. If null or transparent, force a safe default.
             ed.Foreground = SafeBrushOrFallback(ed.Foreground, Brushes.White);
-
-            // Caret/Selection also sometimes end up invisible; ensure non-null.
             ed.TextArea.Caret.CaretBrush = SafeBrushOrFallback(ed.TextArea.Caret.CaretBrush, Brushes.White);
-            ed.TextArea.SelectionBrush = SafeBrushOrFallback(ed.TextArea.SelectionBrush, new SolidColorBrush(Color.FromArgb(80, 120, 160, 255)));
+            ed.TextArea.SelectionBrush = SafeBrushOrFallback(
+                ed.TextArea.SelectionBrush,
+                new SolidColorBrush(Color.FromArgb(80, 120, 160, 255)));
 
-            Log($"ApplyEditorDefaults {tag}: " +
-                $"Focusable={ed.Focusable}, HitTest={ed.IsHitTestVisible}, Enabled={ed.IsEnabled}, " +
-                $"Bg={BrushStr(ed.Background)}, TA.Bg={BrushStr(ed.TextArea.Background)}, Fg={BrushStr(ed.Foreground)}, " +
-                $"Caret={BrushStr(ed.TextArea.Caret.CaretBrush)}, Sel={BrushStr(ed.TextArea.SelectionBrush)}, " +
-                $"Opacity={ed.Opacity}, Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
+            Log($"ApplyEditorDefaults {tag}: Bg={BrushStr(ed.Background)} TA.Bg={BrushStr(ed.TextArea.Background)} Fg={BrushStr(ed.Foreground)} Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
         }
         catch (Exception ex)
         {
@@ -265,11 +267,9 @@ public partial class TranslationTabView : UserControl
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
         if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
 
-        // DEBUG: prove editor receives input
         HookEditorDebugInput(_orig, "orig");
         HookEditorDebugInput(_tran, "tran");
 
-        // Selection tracking
         if (_tran != null)
         {
             _tran.TextArea.SelectionChanged += (_, _) => RememberSelectionIfAny();
@@ -277,11 +277,8 @@ public partial class TranslationTabView : UserControl
         }
 
         if (_orig != null)
-        {
             _orig.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _orig; };
-        }
 
-        // Ctrl+F / Escape handling at control level
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
         if (_findQuery != null)
@@ -298,7 +295,6 @@ public partial class TranslationTabView : UserControl
         if (_btnPrev != null) _btnPrev.Click += (_, _) => JumpPrev();
         if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
 
-        // Switch find target on focus
         if (_orig != null)
         {
             _orig.GotFocus += (_, _) =>
@@ -328,7 +324,7 @@ public partial class TranslationTabView : UserControl
 
         ed.PointerPressed += (_, e) =>
         {
-            Log($"{tag} PointerPressed: pos={e.GetPosition(ed)} IsHitTestVisible={ed.IsHitTestVisible} Opacity={ed.Opacity}");
+            Log($"{tag} PointerPressed: pos={e.GetPosition(ed)} HitTest={ed.IsHitTestVisible} Opacity={ed.Opacity}");
             ApplyEditorDefaults(ed, $"{tag} (PointerPressed)");
         };
 
@@ -337,25 +333,28 @@ public partial class TranslationTabView : UserControl
         ed.TextArea.TextEntered += (_, e) => Log($"{tag} TextEntered: '{e.Text}' caretOffset={ed.TextArea.Caret.Offset}");
         ed.GotFocus += (_, _) =>
         {
-            Log($"{tag} GotFocus: Bounds={ed.Bounds.Width}x{ed.Bounds.Height} Fg={BrushStr(ed.Foreground)} Bg={BrushStr(ed.Background)}");
+            Log($"{tag} GotFocus: Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
             ApplyEditorDefaults(ed, $"{tag} (GotFocus)");
         };
     }
 
     private void SetupHoverDictionary()
     {
-        // Your HoverDictionaryBehavior likely targets TextBox, so skip for now (don’t crash)
-        if (_orig == null)
+        if (_orig == null || _tran == null)
         {
-            Log("SetupHoverDictionary: _orig is null");
+            Log("SetupHoverDictionary: editors null");
             return;
         }
 
         try
         {
-            Log("SetupHoverDictionary: HoverDictionaryBehavior likely requires TextBox; skipping for AvaloniaEdit TextEditor.");
-            _hoverDict?.Dispose();
-            _hoverDict = null;
+            _hoverDictOrig?.Dispose();
+            _hoverDictTran?.Dispose();
+
+            _hoverDictOrig = new HoverDictionaryBehaviorEdit(_orig, _cedict);
+            _hoverDictTran = new HoverDictionaryBehaviorEdit(_tran, _cedict);
+
+            Log("SetupHoverDictionary: attached to orig+tran");
         }
         catch (Exception ex)
         {
@@ -366,8 +365,10 @@ public partial class TranslationTabView : UserControl
     private void DisposeHoverDictionary()
     {
         Log("DisposeHoverDictionary");
-        _hoverDict?.Dispose();
-        _hoverDict = null;
+        _hoverDictOrig?.Dispose();
+        _hoverDictOrig = null;
+        _hoverDictTran?.Dispose();
+        _hoverDictTran = null;
     }
 
     private void RememberSelectionIfAny()
@@ -417,8 +418,7 @@ public partial class TranslationTabView : UserControl
                 return;
             }
 
-            if (renderer == null)
-                renderer = new SearchHighlightRenderer(tv);
+            renderer ??= new SearchHighlightRenderer(tv);
 
             if (!tv.BackgroundRenderers.Contains(renderer))
             {
@@ -494,7 +494,7 @@ public partial class TranslationTabView : UserControl
 
         if (_orig == null || _tran == null)
         {
-            Log("SetXml: ERROR - editors are null. Check XAML: EditorOrigXml/EditorTranXml must be AvaloniaEdit.TextEditor with correct Name.");
+            Log("SetXml: ERROR - editors are null.");
             return;
         }
 
@@ -558,13 +558,8 @@ public partial class TranslationTabView : UserControl
 
         Dispatcher.UIThread.Post(() =>
         {
-            Log($"{which}: Post-check (Background). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height} Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)}");
+            Log($"{which}: Post-check (Background). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height}");
         }, DispatcherPriority.Background);
-
-        DispatcherTimer.RunOnce(() =>
-        {
-            Log($"{which}: Post-check (200ms). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height} Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)}");
-        }, TimeSpan.FromMilliseconds(200));
     }
 
     // --------------------------
@@ -578,7 +573,6 @@ public partial class TranslationTabView : UserControl
         if (_tran == null)
         {
             Status?.Invoke(this, "Translated XML editor not available.");
-            Log("CopySelectionWithPromptAsync abort: _tran null");
             return;
         }
 
@@ -586,7 +580,6 @@ public partial class TranslationTabView : UserControl
         if (text.Length == 0)
         {
             Status?.Invoke(this, "Translated XML is empty.");
-            Log("CopySelectionWithPromptAsync abort: translated empty");
             return;
         }
 
@@ -602,15 +595,12 @@ public partial class TranslationTabView : UserControl
                 end = start + sel.SurroundingSegment.Length;
             }
         }
-        catch { /* ignore */ }
-
-        Log($"CopySelectionWithPromptAsync: selection={start}..{end} remembered={_lastCopyStart}..{_lastCopyEnd}");
+        catch { }
 
         if (end <= start && _lastCopyEnd > _lastCopyStart)
         {
             start = _lastCopyStart;
             end = _lastCopyEnd;
-            Log($"CopySelectionWithPromptAsync: using remembered selection={start}..{end}");
         }
 
         start = Math.Clamp(start, 0, text.Length);
@@ -619,7 +609,6 @@ public partial class TranslationTabView : UserControl
         if (end <= start)
         {
             Status?.Invoke(this, "No selection. Select an XML fragment first.");
-            Log("CopySelectionWithPromptAsync abort: end<=start after clamp");
             return;
         }
 
@@ -634,23 +623,18 @@ public partial class TranslationTabView : UserControl
         if (clipboard == null)
         {
             Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
-            Log("CopySelectionWithPromptAsync abort: clipboard null");
             return;
         }
 
         await clipboard.SetTextAsync(clipboardPayload);
         Status?.Invoke(this, $"Copied selection + prompt ({selectionXml.Length:n0} chars) to clipboard.");
-        Log("CopySelectionWithPromptAsync end");
     }
 
     private async Task PasteReplaceSelectionAsync()
     {
-        Log("PasteReplaceSelectionAsync start");
-
         if (_tran == null)
         {
             Status?.Invoke(this, "Translated XML editor not available.");
-            Log("PasteReplaceSelectionAsync abort: _tran null");
             return;
         }
 
@@ -658,13 +642,11 @@ public partial class TranslationTabView : UserControl
         if (clipboard == null)
         {
             Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
-            Log("PasteReplaceSelectionAsync abort: clipboard null");
             return;
         }
 
         var clipText = await clipboard.TryGetTextAsync() ?? "";
         clipText = clipText.Trim();
-        Log($"PasteReplaceSelectionAsync: clipboardLen={clipText.Length}");
 
         if (clipText.Length == 0)
         {
@@ -691,9 +673,7 @@ public partial class TranslationTabView : UserControl
                 end = start + sel.SurroundingSegment.Length;
             }
         }
-        catch { /* ignore */ }
-
-        Log($"PasteReplaceSelectionAsync: selection={start}..{end} remembered={_lastCopyStart}..{_lastCopyEnd}");
+        catch { }
 
         if (end <= start)
         {
@@ -701,7 +681,6 @@ public partial class TranslationTabView : UserControl
             {
                 start = _lastCopyStart;
                 end = _lastCopyEnd;
-                Log($"PasteReplaceSelectionAsync: using remembered selection={start}..{end}");
             }
             else
             {
@@ -727,13 +706,12 @@ public partial class TranslationTabView : UserControl
             _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, start + pastedXml.Length);
             _tran.TextArea.Caret.Offset = start;
         }
-        catch { /* ignore */ }
+        catch { }
 
         _lastCopyStart = start;
         _lastCopyEnd = start + pastedXml.Length;
 
         Status?.Invoke(this, $"Pasted & replaced selection with {pastedXml.Length:n0} chars.");
-        Log("PasteReplaceSelectionAsync end");
     }
 
     // --------------------------
@@ -744,7 +722,6 @@ public partial class TranslationTabView : UserControl
     {
         if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
         {
-            Log("Ctrl+F -> OpenFind");
             OpenFind();
             e.Handled = true;
             return;
@@ -752,7 +729,6 @@ public partial class TranslationTabView : UserControl
 
         if (e.Key == Key.Escape && _findBar?.IsVisible == true)
         {
-            Log("Escape -> CloseFind");
             CloseFind();
             e.Handled = true;
             return;
@@ -812,7 +788,7 @@ public partial class TranslationTabView : UserControl
 
         ClearHighlight();
 
-        try { _findTarget?.Focus(); } catch { /* ignore */ }
+        try { _findTarget?.Focus(); } catch { }
     }
 
     private TextEditor? DetermineCurrentPaneForFind()
@@ -893,8 +869,6 @@ public partial class TranslationTabView : UserControl
             idx = idx + Math.Max(1, q.Length);
         }
 
-        Log($"RecomputeMatches: qLen={q.Length} matches={_matchStarts.Count} target={(ReferenceEquals(ed, _orig) ? "orig" : "tran")} hayLen={hay.Length}");
-
         if (_matchStarts.Count == 0)
         {
             UpdateFindCount();
@@ -905,7 +879,7 @@ public partial class TranslationTabView : UserControl
         if (resetToFirst)
         {
             int caret = 0;
-            try { caret = ed.TextArea.Caret.Offset; } catch { /* ignore */ }
+            try { caret = ed.TextArea.Caret.Offset; } catch { }
             int nearest = _matchStarts.FindIndex(s => s >= caret);
             _matchIndex = nearest >= 0 ? nearest : 0;
         }
@@ -977,7 +951,6 @@ public partial class TranslationTabView : UserControl
             }, DispatcherPriority.Background);
         }
         catch { }
-
     }
 
     private void ApplyHighlight(TextEditor target, int start, int len)
@@ -1171,7 +1144,7 @@ XML fragment to translate:
             _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, end);
             _tran.TextArea.Caret.Offset = start;
         }
-        catch { /* ignore */ }
+        catch { }
 
         _lastCopyStart = start;
         _lastCopyEnd = end;
@@ -1335,8 +1308,6 @@ XML fragment to translate:
         var orig = _orig.Text ?? "";
         var tran = _tran.Text ?? "";
 
-        Log($"EnsureXmlOkOrWarnAsync: origLen={orig.Length} tranLen={tran.Length}");
-
         var (ok, msg, _, tranTags, _, tranLb) = VerifyXmlHacky(orig, tran);
 
         if (ok)
@@ -1352,8 +1323,7 @@ XML fragment to translate:
         return false;
     }
 
-    private Task CheckXmlWithPopupAsync()
-        => EnsureXmlOkOrWarnAsync(showOkPopup: true);
+    private Task CheckXmlWithPopupAsync() => EnsureXmlOkOrWarnAsync(showOkPopup: true);
 
     private async Task SaveIfValidAsync()
     {
@@ -1435,9 +1405,9 @@ XML fragment to translate:
             _tran.TextArea.Selection = Selection.Create(_tran.TextArea, 0, 0);
             _tran.TextArea.Caret.Offset = 0;
         }
-        catch { /* ignore */ }
+        catch { }
 
-        try { _tran.Focus(); } catch { /* ignore */ }
+        try { _tran.Focus(); } catch { }
 
         Log("ResetNavigationState done");
     }
@@ -1459,48 +1429,31 @@ XML fragment to translate:
 
         textView.EnsureVisualLines();
 
-        var caret = ed.TextArea.Caret;
-        var caretPos = caret.Position;
+        var caretPos = ed.TextArea.Caret.Position;
 
-        // Visual position of caret line top inside TextView
-        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
-
-        // Translate to ScrollViewer space (can be viewport coords OR content coords depending on template/layout)
+        var loc = textView.GetVisualPosition(caretPos, AvaloniaEdit.Rendering.VisualYPosition.LineTop);
         var p = textView.TranslatePoint(loc, sv);
         if (p == null) return;
 
         double caretY = p.Value.Y;
 
-        // Heuristic: if caretY is within the viewport-ish range, it's probably viewport coords.
-        // If it's far larger than the viewport, it's probably content coords.
         bool looksLikeViewportCoords =
             caretY >= -viewportH * 0.25 &&
             caretY <= viewportH * 1.25;
 
         double desiredY;
         if (looksLikeViewportCoords)
-        {
-            // caretY is relative to viewport top -> adjust from current offset
             desiredY = sv.Offset.Y + (caretY - (viewportH / 2.0));
-        }
         else
-        {
-            // caretY is already in content coordinates -> do NOT add current offset
             desiredY = caretY - (viewportH / 2.0);
-        }
 
-        // Clamp
         if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
         {
             double maxY = Math.Max(0, extentH - viewportH);
             desiredY = Math.Max(0, Math.Min(desiredY, maxY));
         }
-        else
-        {
-            desiredY = Math.Max(0, desiredY);
-        }
+        else desiredY = Math.Max(0, desiredY);
 
         sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
-
 }
