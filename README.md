@@ -1,4 +1,4 @@
-# 🩸 CBETA Translator  
+# CBETA Translator  
 *A high-performance, cross-platform corpus editor for the CBETA XML-P5 canon*
 
 > Translate. Render. Annotate. Search. Commit.  
@@ -89,7 +89,7 @@ This is powered by:
 - Index-aware mapping  
 - XML-safe position nudging  
 
-Even large documents remain responsive.
+Even large documents remain responsive. If they don't it's a bug. Come and annoy me on the forums.
 
 ---
 
@@ -111,6 +111,8 @@ Features:
 
 Notes are persisted directly inside the XML structure.
 
+Sounds like gibberish? It'll just look like footnotes in a text.
+
 ---
 
 ## 🔍 Local Search (Ctrl + F)
@@ -121,7 +123,7 @@ All views support local search:
 - Readable view search  
 - Translation XML view search  
 
-Fast. Instant. Zero lag.
+Search go fast. Vroom Vroom.
 
 ---
 
@@ -148,8 +150,6 @@ Purpose:
   - Re-render  
 - Ctrl + F search inside XML  
 - XML integrity preserved  
-
-This is not a loose text box.  
 
 ---
 
@@ -192,8 +192,7 @@ The search system can display:
 - Distribution insights  
 - Translation coverage metrics  
 
-You are not just searching files.  
-You are exploring the canon.
+Honestly the search statistics feature is pretty half baked. If anybody uses it for anything, please tell me. I'll be glad to upgrade the features if people actually know what to do with them. At the moment I think nobody will see the difference between what I did and what it should actually look like if done competently.
 
 ---
 
@@ -232,10 +231,6 @@ Behind the scenes, the app:
 To the user?
 
 It feels like “Save and Submit”.
-
-To Git?
-
-It is a fully valid PR workflow.
 
 ---
 
@@ -287,26 +282,6 @@ No unnecessary re-rendering.
 
 ---
 
-# 🗂 Repository Structure
-
-```
-CbetaTranslator.App/
-  Views/
-  Services/
-  Text/
-  Infrastructure/
-  Models/
-```
-
-Key systems:
-
-- Segment mapping  
-- XML index nudging  
-- Cache management  
-- Git workflow orchestration  
-
----
-
 # 🎯 Long-Term Vision
 
 - Open-source CBETA translation environment  
@@ -332,9 +307,47 @@ dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=
 dotnet publish -c Release -r linux-x64 --self-contained true
 ```
 
+### macOS (Intel)
+
+```
+dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true
+```
+
+### macOS (Apple Silicon / M1–M3)
+
+```
+dotnet publish -c Release -r osx-arm64 --self-contained true /p:PublishSingleFile=true
+```
+
+# 📦 Important: Dictionary Asset
+
+The application requires:
+
+```
+Assets/Dict/cedict_ts.u8
+```
+
+If building manually, verify that the dictionary exists in the publish folder:
+
+```
+bin/Release/net8.0/<runtime>/publish/Assets/Dict/cedict_ts.u8
+```
+
+If it is missing, copy it manually:
+
+```
+cp -r Assets/Dict bin/Release/net8.0/<runtime>/publish/Assets/
+```
+
+(Windows PowerShell:)
+
+```
+Copy-Item -Recurse Assets\Dict bin\Release\net8.0\<runtime>\publish\Assets\
+```
+
 ---
 
-# 🩸 Final Words
+# Final Words
 
 CBETA Translator is:
 
