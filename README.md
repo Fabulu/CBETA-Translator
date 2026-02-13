@@ -1,3 +1,6 @@
+![.NET 8](https://img.shields.io/badge/.NET-8-blue)
+![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 # CBETA Translator  
 *A high-performance, cross-platform corpus editor for the CBETA XML-P5 canon*
 
