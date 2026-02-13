@@ -18,7 +18,7 @@ It is designed for:
 - Serious corpus-scale XML handling  
 - Community translation workflows  
 - Git-based contribution  
-- Cross-platform desktop usage (Windows + Linux)  
+- Cross-platform desktop usage (Windows + Linux + MAC OS)  
 - High performance even with very large XML files  
 
 This is not a toy editor.  
