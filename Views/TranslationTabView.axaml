@@ -1,21 +1,49 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:views="clr-namespace:CbetaTranslator.App.Views"
+             xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.TranslationTabView">
+
+	<UserControl.Styles>
+		<!-- Keep Fluent theme for AvaloniaEdit -->
+		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+
+		<!-- Hard override so text is visible in dark UI -->
+		<Style Selector="ae|TextEditor">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#FFE6E6E6"/>
+		</Style>
+	</UserControl.Styles>
+
 
 	<Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="1*,Auto,1*">
 
+		<!-- Button bar -->
 		<Border Grid.Row="0"
 				Grid.ColumnSpan="3"
 				Background="{DynamicResource PanelAltBg}"
 				Padding="8"
 				CornerRadius="6">
 			<StackPanel Orientation="Horizontal" Spacing="8">
-				<Button Name="BtnCopyPrompt" Focusable="False" Content="Copy selection + prompt"/>
-				<Button Name="BtnPasteReplace" Focusable="False" Content="Paste replace selection"/>
-				<Button Name="BtnSelectNext50Tags" Focusable="False" Content="Select next 100 tags"/>
-				<Button Name="BtnSaveTranslated" Focusable="False" Content="Save translated XML"/>
-				<Button Name="BtnCheckXml" Content="Check XML (hacky)"/>
+				<Button Name="BtnCopyPrompt"
+						Focusable="False"
+						Content="Copy selection + prompt"/>
+
+				<Button Name="BtnPasteReplace"
+						Focusable="False"
+						Content="Paste replace selection"/>
+
+				<Button Name="BtnSelectNext50Tags"
+						Focusable="False"
+						Content="Select next 100 tags"/>
+
+				<Button Name="BtnSaveTranslated"
+						Focusable="False"
+						Content="Save translated XML"/>
+
+				<Button Name="BtnCheckXml"
+						Focusable="False"
+						Content="Check XML (hacky)"/>
+
 				<TextBlock Name="TxtHint"
 						   VerticalAlignment="Center"
 						   Margin="8,0,0,0"
@@ -23,6 +51,7 @@
 			</StackPanel>
 		</Border>
 
+		<!-- Find bar -->
 		<Border Name="FindBar"
 				Grid.Row="1"
 				Grid.ColumnSpan="3"
@@ -32,90 +61,100 @@
 				Margin="0,8,0,0"
 				IsVisible="False">
 			<DockPanel LastChildFill="True">
+
 				<TextBlock Name="FindScope"
 						   DockPanel.Dock="Left"
 						   Classes="muted"
 						   VerticalAlignment="Center"
 						   Margin="0,0,10,0"
-						   Text="Find:" />
+						   Text="Find:"/>
 
 				<TextBox Name="FindQuery"
 						 Watermark="Find…"
 						 MinWidth="260"
 						 VerticalAlignment="Center"/>
 
-				<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8" Margin="10,0,0,0">
+				<StackPanel DockPanel.Dock="Right"
+							Orientation="Horizontal"
+							Spacing="8"
+							Margin="10,0,0,0">
 					<TextBlock Name="FindCount"
 							   Classes="muted"
 							   VerticalAlignment="Center"
-							   Text="0/0" />
+							   Text="0/0"/>
 
-					<Button Name="BtnPrev" Focusable="False" Content="Prev"/>
-					<Button Name="BtnNext" Focusable="False" Content="Next"/>
-					<Button Name="BtnCloseFind" Focusable="False" Content="✕"/>
+					<Button Name="BtnPrev"
+							Focusable="False"
+							Content="Prev"/>
+
+					<Button Name="BtnNext"
+							Focusable="False"
+							Content="Next"/>
+
+					<Button Name="BtnCloseFind"
+							Focusable="False"
+							Content="✕"/>
 				</StackPanel>
+
 			</DockPanel>
 		</Border>
 
-		<Border Grid.Row="2" Grid.Column="0"
+		<!-- Left: Original -->
+		<Border Grid.Row="2"
+				Grid.Column="0"
 				Margin="0,8,6,0"
 				Background="{DynamicResource PanelBg}"
 				BorderBrush="{DynamicResource PanelBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource PanelBg}" Padding="8">
-					<TextBlock Text="Original XML (read-only)" Classes="muted"/>
+				<Border Background="{DynamicResource PanelBg}"
+						Padding="8">
+					<TextBlock Text="Original XML (read-only)"
+							   Classes="muted"/>
 				</Border>
 
-				<Grid Grid.Row="1">
-					<TextBox Name="EditorOrigXml"
-							 IsReadOnly="True"
-							 AcceptsReturn="True"
-							 TextWrapping="NoWrap"
-							 FontFamily="Consolas"
-							 Background="Transparent"
-							 BorderThickness="0"
-							 ScrollViewer.VerticalScrollBarVisibility="Visible"
-							 ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-
-					<views:SearchHighlightOverlay Name="HlOrigXml"
-												  IsHitTestVisible="False"/>
-				</Grid>
+				<ae:TextEditor Name="EditorOrigXml"
+							   Grid.Row="1"
+							   IsReadOnly="True"
+							   FontFamily="Consolas"
+							   Foreground="White"
+							   Background="Transparent"
+							   ShowLineNumbers="False"
+							   WordWrap="False"/>
 			</Grid>
 		</Border>
 
+		<!-- Splitter -->
 		<GridSplitter Grid.Row="2"
 					  Grid.Column="1"
 					  Width="6"
 					  Background="{DynamicResource SplitterBrush}"
 					  Margin="0,8,0,0"/>
 
-		<Border Grid.Row="2" Grid.Column="2"
+		<!-- Right: Translated -->
+		<Border Grid.Row="2"
+				Grid.Column="2"
 				Margin="6,8,0,0"
 				Background="{DynamicResource PanelBg}"
 				BorderBrush="{DynamicResource PanelBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource PanelBg}" Padding="8">
-					<TextBlock Text="Translated XML (editable)" Classes="muted"/>
+				<Border Background="{DynamicResource PanelBg}"
+						Padding="8">
+					<TextBlock Text="Translated XML (editable)"
+							   Classes="muted"/>
 				</Border>
 
-				<Grid Grid.Row="1">
-					<TextBox Name="EditorTranXml"
-							 IsReadOnly="False"
-							 AcceptsReturn="True"
-							 TextWrapping="NoWrap"
-							 FontFamily="Consolas"
-							 Background="Transparent"
-							 BorderThickness="0"
-							 ScrollViewer.VerticalScrollBarVisibility="Visible"
-							 ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-
-					<views:SearchHighlightOverlay Name="HlTranXml"
-												  IsHitTestVisible="False"/>
-				</Grid>
+				<ae:TextEditor Name="EditorTranXml"
+							   Grid.Row="1"
+							   IsReadOnly="False"
+							   FontFamily="Consolas"
+							   Foreground="White"
+							   Background="Transparent"
+							   ShowLineNumbers="False"
+							   WordWrap="False"/>
 			</Grid>
 		</Border>
 

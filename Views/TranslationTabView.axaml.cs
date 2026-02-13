@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,9 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using AvaloniaEdit;
+using AvaloniaEdit.Editing;
+using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
 
@@ -22,21 +26,55 @@ namespace CbetaTranslator.App.Views;
 
 public partial class TranslationTabView : UserControl
 {
+    // -------------------------
+    // DEBUG LOGGING
+    // -------------------------
+    private static void Log(string msg)
+    {
+        var line = $"[{DateTime.Now:HH:mm:ss.fff}] [TranslationTabView] {msg}";
+        Console.WriteLine(line);
+        Debug.WriteLine(line);
+    }
+
+    private static string LenStr(string? s) => s == null ? "null" : s.Length.ToString();
+
+    private static string BrushStr(IBrush? b)
+    {
+        if (b == null) return "null";
+        if (b is SolidColorBrush scb) return $"Solid({scb.Color})";
+        return b.GetType().Name;
+    }
+
+    private static bool IsTransparentBrush(IBrush? b)
+    {
+        if (b is SolidColorBrush scb)
+            return scb.Color.A == 0;
+        return false;
+    }
+
+    private static IBrush SafeBrushOrFallback(IBrush? current, IBrush fallback)
+        => (current == null || IsTransparentBrush(current)) ? fallback : current;
+
+    // -------------------------
+    // UI controls
+    // -------------------------
     private Button? _btnCopyPrompt;
     private Button? _btnPasteReplace;
     private Button? _btnSaveTranslated;
     private Button? _btnSelectNext50Tags;
     private Button? _btnCheckXml;
 
-    private TextBox? _orig;
-    private TextBox? _tran;
+    // IMPORTANT: these are AvaloniaEdit TextEditor, not TextBox
+    private TextEditor? _orig;
+    private TextEditor? _tran;
+
     private TextBlock? _txtHint;
 
-    // Hover dictionary (same pattern as ReadableTabView)
+    // Hover dictionary
     private HoverDictionaryBehavior? _hoverDict;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
-    // Remember last "copy selection" range (so paste can work even if selection got lost)
+    // Remember last "copy selection" range
     private int _lastCopyStart = -1;
     private int _lastCopyEnd = -1;
 
@@ -54,10 +92,11 @@ public partial class TranslationTabView : UserControl
     private Button? _btnNext;
     private Button? _btnCloseFind;
 
-    private SearchHighlightOverlay? _hlOrig;
-    private SearchHighlightOverlay? _hlTran;
+    // Find highlight renderers (AvaloniaEdit background renderer)
+    private SearchHighlightRenderer? _hlOrig;
+    private SearchHighlightRenderer? _hlTran;
 
-    private TextBox? _findTarget; // which editor we are searching in
+    private TextEditor? _findTarget; // which editor we are searching in
 
     private readonly List<int> _matchStarts = new();
     private int _matchLen = 0;
@@ -68,45 +107,96 @@ public partial class TranslationTabView : UserControl
 
     // Track last user input editor for sane scope selection
     private DateTime _lastUserInputUtc = DateTime.MinValue;
-    private TextBox? _lastUserInputEditor;
+    private TextEditor? _lastUserInputEditor;
     private const int UserInputPriorityWindowMs = 250;
+
+    // cached text (so we can re-apply on attach)
+    private string _cachedOrigXml = "";
+    private string _cachedTranXml = "";
 
     public TranslationTabView()
     {
+        Log("CTOR start");
         InitializeComponent();
         FindControls();
         WireEvents();
 
         AttachedToVisualTree += (_, _) =>
         {
+            Log("AttachedToVisualTree");
+
+            // Force editor visuals/input state once the control is live
+            ApplyEditorDefaults(_orig, "orig (AttachedToVisualTree)");
+            ApplyEditorDefaults(_tran, "tran (AttachedToVisualTree)");
+
             SetupHoverDictionary();
+
+            // Ensure find highlight renderers are attached once TextView exists
+            Dispatcher.UIThread.Post(() =>
+            {
+                Log("AttachedToVisualTree -> EnsureFindRenderersAttached (Background)");
+                EnsureFindRenderersAttached();
+            }, DispatcherPriority.Background);
+
+            // Re-apply cached text after templates are fully loaded
+            Dispatcher.UIThread.Post(() =>
+            {
+                Log("AttachedToVisualTree -> ReApplyEditorsText (Background)");
+                ReApplyEditorsText("AttachedToVisualTree post");
+            }, DispatcherPriority.Background);
         };
 
         DetachedFromVisualTree += (_, _) =>
         {
+            Log("DetachedFromVisualTree");
             DisposeHoverDictionary();
+            DetachFindRenderers();
         };
 
         UpdateHint("Select XML in Translated XML → Copy selection + prompt.");
+        Log("CTOR end");
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
     private void FindControls()
     {
+        Log("FindControls start");
+
         _btnCopyPrompt = this.FindControl<Button>("BtnCopyPrompt");
         _btnPasteReplace = this.FindControl<Button>("BtnPasteReplace");
         _btnSaveTranslated = this.FindControl<Button>("BtnSaveTranslated");
         _btnSelectNext50Tags = this.FindControl<Button>("BtnSelectNext50Tags");
         _btnCheckXml = this.FindControl<Button>("BtnCheckXml");
 
-        _orig = this.FindControl<TextBox>("EditorOrigXml");
-        _tran = this.FindControl<TextBox>("EditorTranXml");
+        _orig = this.FindControl<TextEditor>("EditorOrigXml");
+        _tran = this.FindControl<TextEditor>("EditorTranXml");
 
         _txtHint = this.FindControl<TextBlock>("TxtHint");
 
-        if (_orig != null) _orig.IsReadOnly = true;
-        if (_tran != null) _tran.IsReadOnly = false;
+        Log($"Controls: EditorOrigXml(TextEditor)={_orig != null}, EditorTranXml(TextEditor)={_tran != null}, TxtHint={_txtHint != null}");
+
+        if (_orig != null)
+        {
+            _orig.IsReadOnly = true;
+            Log($"Orig editor found: type={_orig.GetType().FullName}, IsReadOnly={_orig.IsReadOnly}, TextLen={LenStr(_orig.Text)}");
+            ApplyEditorDefaults(_orig, "orig (FindControls)");
+        }
+        else
+        {
+            Log("ERROR: Could not find EditorOrigXml (TextEditor). Check XAML Name=EditorOrigXml.");
+        }
+
+        if (_tran != null)
+        {
+            _tran.IsReadOnly = false;
+            Log($"Tran editor found: type={_tran.GetType().FullName}, IsReadOnly={_tran.IsReadOnly}, TextLen={LenStr(_tran.Text)}");
+            ApplyEditorDefaults(_tran, "tran (FindControls)");
+        }
+        else
+        {
+            Log("ERROR: Could not find EditorTranXml (TextEditor). Check XAML Name=EditorTranXml.");
+        }
 
         // Find UI
         _findBar = this.FindControl<Border>("FindBar");
@@ -117,50 +207,79 @@ public partial class TranslationTabView : UserControl
         _btnNext = this.FindControl<Button>("BtnNext");
         _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
 
-        // Highlight overlays
-        _hlOrig = this.FindControl<SearchHighlightOverlay>("HlOrigXml");
-        _hlTran = this.FindControl<SearchHighlightOverlay>("HlTranXml");
+        Log($"Find UI: FindBar={_findBar != null}, FindQuery={_findQuery != null}, FindCount={_findCount != null}, FindScope={_findScope != null}, BtnPrev={_btnPrev != null}, BtnNext={_btnNext != null}, BtnCloseFind={_btnCloseFind != null}");
 
-        if (_hlOrig != null) _hlOrig.Target = _orig;
-        if (_hlTran != null) _hlTran.Target = _tran;
+        Log("FindControls end");
     }
 
-    private void SetupHoverDictionary()
+    /// <summary>
+    /// Key part: make AvaloniaEdit editors always clickable and visible under your theme.
+    /// This is where "text exists but editor looks missing" is usually fixed.
+    /// </summary>
+    private void ApplyEditorDefaults(TextEditor? ed, string tag)
     {
-        // We want it on the ORIGINAL (Chinese) pane, same as ReadableTabView.
-        if (_orig == null) return;
+        if (ed == null) return;
 
-        _hoverDict?.Dispose();
-        _hoverDict = new HoverDictionaryBehavior(_orig, _cedict);
-    }
+        try
+        {
+            // Baseline sanity for input
+            ed.Focusable = true;
+            ed.IsHitTestVisible = true;
+            ed.IsEnabled = true;
 
-    private void DisposeHoverDictionary()
-    {
-        _hoverDict?.Dispose();
-        _hoverDict = null;
+            // Scrollbars (helps usability; also proves the control is actually there)
+            ed.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            ed.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+            // Backgrounds: Transparent is fine but TextArea.Background often needs to be set too.
+            ed.Background ??= Brushes.Transparent;
+            ed.TextArea.Background ??= Brushes.Transparent;
+
+            // Foreground can become invisible depending on theme. If null or transparent, force a safe default.
+            ed.Foreground = SafeBrushOrFallback(ed.Foreground, Brushes.White);
+
+            // Caret/Selection also sometimes end up invisible; ensure non-null.
+            ed.TextArea.Caret.CaretBrush = SafeBrushOrFallback(ed.TextArea.Caret.CaretBrush, Brushes.White);
+            ed.TextArea.SelectionBrush = SafeBrushOrFallback(ed.TextArea.SelectionBrush, new SolidColorBrush(Color.FromArgb(80, 120, 160, 255)));
+
+            Log($"ApplyEditorDefaults {tag}: " +
+                $"Focusable={ed.Focusable}, HitTest={ed.IsHitTestVisible}, Enabled={ed.IsEnabled}, " +
+                $"Bg={BrushStr(ed.Background)}, TA.Bg={BrushStr(ed.TextArea.Background)}, Fg={BrushStr(ed.Foreground)}, " +
+                $"Caret={BrushStr(ed.TextArea.Caret.CaretBrush)}, Sel={BrushStr(ed.TextArea.SelectionBrush)}, " +
+                $"Opacity={ed.Opacity}, Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
+        }
+        catch (Exception ex)
+        {
+            Log($"ApplyEditorDefaults {tag} ERROR: {ex}");
+        }
     }
 
     private void WireEvents()
     {
+        Log("WireEvents start");
+
         if (_btnCopyPrompt != null) _btnCopyPrompt.Click += async (_, _) => await CopySelectionWithPromptAsync();
         if (_btnPasteReplace != null) _btnPasteReplace.Click += async (_, _) => await PasteReplaceSelectionAsync();
 
-        // Save is gated by the SAME hacky XML check used by the Check button.
         if (_btnSaveTranslated != null) _btnSaveTranslated.Click += async (_, _) => await SaveIfValidAsync();
-
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
         if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
 
-        // Track selection range using user input events (Avalonia TextBox has no SelectionChanged event)
+        // DEBUG: prove editor receives input
+        HookEditorDebugInput(_orig, "orig");
+        HookEditorDebugInput(_tran, "tran");
+
+        // Selection tracking
         if (_tran != null)
         {
-            _tran.PointerReleased += (_, _) => RememberSelectionIfAny();
-            _tran.KeyUp += (_, _) => RememberSelectionIfAny();
+            _tran.TextArea.SelectionChanged += (_, _) => RememberSelectionIfAny();
+            _tran.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _tran; };
         }
 
-        // Track “last user input editor” for find scope
-        HookUserInputTracking(_orig);
-        HookUserInputTracking(_tran);
+        if (_orig != null)
+        {
+            _orig.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _orig; };
+        }
 
         // Ctrl+F / Escape handling at control level
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
@@ -179,56 +298,186 @@ public partial class TranslationTabView : UserControl
         if (_btnPrev != null) _btnPrev.Click += (_, _) => JumpPrev();
         if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
 
-        // If user focuses an editor while find is open, switch scope (but keep current match if possible)
+        // Switch find target on focus
         if (_orig != null)
         {
             _orig.GotFocus += (_, _) =>
             {
+                Log("orig GotFocus (switch find target if open)");
                 if (_findBar?.IsVisible == true)
                     SetFindTarget(_orig, preserveIndex: true);
             };
         }
+
         if (_tran != null)
         {
             _tran.GotFocus += (_, _) =>
             {
+                Log("tran GotFocus (switch find target if open)");
                 if (_findBar?.IsVisible == true)
                     SetFindTarget(_tran, preserveIndex: true);
             };
         }
+
+        Log("WireEvents end");
     }
 
-    private void HookUserInputTracking(TextBox? tb)
+    private void HookEditorDebugInput(TextEditor? ed, string tag)
     {
-        if (tb == null) return;
+        if (ed == null) return;
 
-        tb.PointerPressed += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = tb; };
-        tb.PointerReleased += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = tb; };
-        tb.KeyDown += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = tb; };
-        tb.KeyUp += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = tb; };
+        ed.PointerPressed += (_, e) =>
+        {
+            Log($"{tag} PointerPressed: pos={e.GetPosition(ed)} IsHitTestVisible={ed.IsHitTestVisible} Opacity={ed.Opacity}");
+            ApplyEditorDefaults(ed, $"{tag} (PointerPressed)");
+        };
+
+        ed.PointerReleased += (_, _) => Log($"{tag} PointerReleased");
+        ed.KeyDown += (_, e) => Log($"{tag} KeyDown: {e.Key} mods={e.KeyModifiers}");
+        ed.TextArea.TextEntered += (_, e) => Log($"{tag} TextEntered: '{e.Text}' caretOffset={ed.TextArea.Caret.Offset}");
+        ed.GotFocus += (_, _) =>
+        {
+            Log($"{tag} GotFocus: Bounds={ed.Bounds.Width}x{ed.Bounds.Height} Fg={BrushStr(ed.Foreground)} Bg={BrushStr(ed.Background)}");
+            ApplyEditorDefaults(ed, $"{tag} (GotFocus)");
+        };
+    }
+
+    private void SetupHoverDictionary()
+    {
+        // Your HoverDictionaryBehavior likely targets TextBox, so skip for now (don’t crash)
+        if (_orig == null)
+        {
+            Log("SetupHoverDictionary: _orig is null");
+            return;
+        }
+
+        try
+        {
+            Log("SetupHoverDictionary: HoverDictionaryBehavior likely requires TextBox; skipping for AvaloniaEdit TextEditor.");
+            _hoverDict?.Dispose();
+            _hoverDict = null;
+        }
+        catch (Exception ex)
+        {
+            Log("SetupHoverDictionary failed: " + ex);
+        }
+    }
+
+    private void DisposeHoverDictionary()
+    {
+        Log("DisposeHoverDictionary");
+        _hoverDict?.Dispose();
+        _hoverDict = null;
     }
 
     private void RememberSelectionIfAny()
     {
         if (_tran == null) return;
 
-        int s = _tran.SelectionStart;
-        int e = _tran.SelectionEnd;
-
-        if (e > s)
+        try
         {
-            _lastCopyStart = s;
-            _lastCopyEnd = e;
+            var sel = _tran.TextArea.Selection;
+            if (sel != null && !sel.IsEmpty)
+            {
+                int s = sel.SurroundingSegment.Offset;
+                int e = s + sel.SurroundingSegment.Length;
+
+                _lastCopyStart = s;
+                _lastCopyEnd = e;
+
+                Log($"RememberSelectionIfAny: {s}..{e} (len={e - s})");
+            }
+        }
+        catch (Exception ex)
+        {
+            Log("RememberSelectionIfAny error: " + ex);
         }
     }
 
+    // --------------------------
+    // Find highlight renderer attach/detach
+    // --------------------------
+
+    private void EnsureFindRenderersAttached()
+    {
+        AttachRendererIfMissing(_orig, ref _hlOrig, "orig");
+        AttachRendererIfMissing(_tran, ref _hlTran, "tran");
+    }
+
+    private void AttachRendererIfMissing(TextEditor? ed, ref SearchHighlightRenderer? renderer, string tag)
+    {
+        if (ed == null) return;
+
+        try
+        {
+            var tv = ed.TextArea?.TextView;
+            if (tv == null)
+            {
+                Log($"AttachRendererIfMissing({tag}): TextView null (too early).");
+                return;
+            }
+
+            if (renderer == null)
+                renderer = new SearchHighlightRenderer(tv);
+
+            if (!tv.BackgroundRenderers.Contains(renderer))
+            {
+                tv.BackgroundRenderers.Add(renderer);
+                Log($"AttachRendererIfMissing({tag}): attached SearchHighlightRenderer.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Log($"AttachRendererIfMissing({tag}) ERROR: {ex}");
+        }
+    }
+
+    private void DetachFindRenderers()
+    {
+        DetachRenderer(_orig, ref _hlOrig, "orig");
+        DetachRenderer(_tran, ref _hlTran, "tran");
+    }
+
+    private void DetachRenderer(TextEditor? ed, ref SearchHighlightRenderer? renderer, string tag)
+    {
+        if (ed == null || renderer == null) return;
+
+        try
+        {
+            var tv = ed.TextArea?.TextView;
+            if (tv != null && tv.BackgroundRenderers.Contains(renderer))
+            {
+                tv.BackgroundRenderers.Remove(renderer);
+                Log($"DetachRenderer({tag}): removed SearchHighlightRenderer.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Log($"DetachRenderer({tag}) ERROR: {ex}");
+        }
+        finally
+        {
+            renderer = null;
+        }
+    }
+
+    // --------------------------
+    // Public API
+    // --------------------------
+
     public void Clear()
     {
-        if (_orig != null) _orig.Text = "";
-        if (_tran != null) _tran.Text = "";
+        Log("Clear() called");
+
+        _cachedOrigXml = "";
+        _cachedTranXml = "";
+
+        if (_orig != null) SetEditorText(_orig, "", "Clear(orig)");
+        if (_tran != null) SetEditorText(_tran, "", "Clear(tran)");
 
         _lastCopyStart = -1;
         _lastCopyEnd = -1;
+
         ResetNavigationState();
         UpdateHint("Select a file to edit XML.");
 
@@ -238,21 +487,85 @@ public partial class TranslationTabView : UserControl
 
     public void SetXml(string originalXml, string translatedXml)
     {
-        if (_orig != null) _orig.Text = originalXml ?? "";
-        if (_tran != null) _tran.Text = translatedXml ?? "";
+        Log($"SetXml called: origLen={originalXml?.Length ?? 0}, tranLen={translatedXml?.Length ?? 0}");
 
-        _lastCopyStart = -1;
-        _lastCopyEnd = -1;
-        ResetNavigationState();
-        UpdateHint("Tip: select a chunk in Translated XML → Copy selection + prompt.");
+        _cachedOrigXml = originalXml ?? "";
+        _cachedTranXml = translatedXml ?? "";
 
-        // keep find open, recompute
-        if (_findBar?.IsVisible == true)
-            RecomputeMatches(resetToFirst: false);
+        if (_orig == null || _tran == null)
+        {
+            Log("SetXml: ERROR - editors are null. Check XAML: EditorOrigXml/EditorTranXml must be AvaloniaEdit.TextEditor with correct Name.");
+            return;
+        }
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            ApplyEditorDefaults(_orig, "orig (SetXml before set)");
+            ApplyEditorDefaults(_tran, "tran (SetXml before set)");
+
+            EnsureFindRenderersAttached();
+
+            SetEditorText(_orig, _cachedOrigXml, "SetXml(orig)");
+            SetEditorText(_tran, _cachedTranXml, "SetXml(tran)");
+
+            _lastCopyStart = -1;
+            _lastCopyEnd = -1;
+
+            ResetNavigationState();
+            UpdateHint("Tip: select a chunk in Translated XML → Copy selection + prompt.");
+
+            if (_findBar?.IsVisible == true)
+                RecomputeMatches(resetToFirst: false);
+        }, DispatcherPriority.Normal);
     }
 
     public string GetTranslatedXml()
-        => _tran?.Text ?? string.Empty;
+    {
+        var t = _tran?.Text ?? "";
+        Log($"GetTranslatedXml -> len={t.Length}");
+        return t;
+    }
+
+    private void ReApplyEditorsText(string reason)
+    {
+        Log($"ReApplyEditorsText: {reason} cachedOrigLen={_cachedOrigXml.Length} cachedTranLen={_cachedTranXml.Length}");
+
+        EnsureFindRenderersAttached();
+
+        if (_orig != null)
+        {
+            ApplyEditorDefaults(_orig, "orig (ReApply)");
+            SetEditorText(_orig, _cachedOrigXml, "ReApply(orig)");
+        }
+
+        if (_tran != null)
+        {
+            ApplyEditorDefaults(_tran, "tran (ReApply)");
+            SetEditorText(_tran, _cachedTranXml, "ReApply(tran)");
+        }
+    }
+
+    private void SetEditorText(TextEditor editor, string value, string which)
+    {
+        value ??= "";
+
+        Log($"{which}: SetEditorText start. target={editor.Name} currentLen={LenStr(editor.Text)} newLen={value.Length} IsVisible={editor.IsVisible} IsReadOnly={editor.IsReadOnly} Bounds={editor.Bounds.Width}x{editor.Bounds.Height}");
+        Log($"{which}: Brushes before set: Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)} TA.Bg={BrushStr(editor.TextArea.Background)}");
+
+        editor.Text = value;
+
+        Log($"{which}: SetEditorText after set. editor.TextLen={LenStr(editor.Text)}");
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            Log($"{which}: Post-check (Background). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height} Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)}");
+        }, DispatcherPriority.Background);
+
+        DispatcherTimer.RunOnce(() =>
+        {
+            Log($"{which}: Post-check (200ms). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height} Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)}");
+        }, TimeSpan.FromMilliseconds(200));
+    }
 
     // --------------------------
     // Clipboard workflow
@@ -260,9 +573,12 @@ public partial class TranslationTabView : UserControl
 
     private async Task CopySelectionWithPromptAsync()
     {
+        Log("CopySelectionWithPromptAsync start");
+
         if (_tran == null)
         {
             Status?.Invoke(this, "Translated XML editor not available.");
+            Log("CopySelectionWithPromptAsync abort: _tran null");
             return;
         }
 
@@ -270,23 +586,40 @@ public partial class TranslationTabView : UserControl
         if (text.Length == 0)
         {
             Status?.Invoke(this, "Translated XML is empty.");
+            Log("CopySelectionWithPromptAsync abort: translated empty");
             return;
         }
 
-        int start = _tran.SelectionStart;
-        int end = _tran.SelectionEnd;
+        int start = -1;
+        int end = -1;
+
+        try
+        {
+            var sel = _tran.TextArea.Selection;
+            if (sel != null && !sel.IsEmpty)
+            {
+                start = sel.SurroundingSegment.Offset;
+                end = start + sel.SurroundingSegment.Length;
+            }
+        }
+        catch { /* ignore */ }
+
+        Log($"CopySelectionWithPromptAsync: selection={start}..{end} remembered={_lastCopyStart}..{_lastCopyEnd}");
 
         if (end <= start && _lastCopyEnd > _lastCopyStart)
         {
             start = _lastCopyStart;
             end = _lastCopyEnd;
+            Log($"CopySelectionWithPromptAsync: using remembered selection={start}..{end}");
         }
 
         start = Math.Clamp(start, 0, text.Length);
         end = Math.Clamp(end, 0, text.Length);
+
         if (end <= start)
         {
             Status?.Invoke(this, "No selection. Select an XML fragment first.");
+            Log("CopySelectionWithPromptAsync abort: end<=start after clamp");
             return;
         }
 
@@ -301,18 +634,23 @@ public partial class TranslationTabView : UserControl
         if (clipboard == null)
         {
             Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
+            Log("CopySelectionWithPromptAsync abort: clipboard null");
             return;
         }
 
         await clipboard.SetTextAsync(clipboardPayload);
         Status?.Invoke(this, $"Copied selection + prompt ({selectionXml.Length:n0} chars) to clipboard.");
+        Log("CopySelectionWithPromptAsync end");
     }
 
     private async Task PasteReplaceSelectionAsync()
     {
+        Log("PasteReplaceSelectionAsync start");
+
         if (_tran == null)
         {
             Status?.Invoke(this, "Translated XML editor not available.");
+            Log("PasteReplaceSelectionAsync abort: _tran null");
             return;
         }
 
@@ -320,11 +658,13 @@ public partial class TranslationTabView : UserControl
         if (clipboard == null)
         {
             Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
+            Log("PasteReplaceSelectionAsync abort: clipboard null");
             return;
         }
 
         var clipText = await clipboard.TryGetTextAsync() ?? "";
         clipText = clipText.Trim();
+        Log($"PasteReplaceSelectionAsync: clipboardLen={clipText.Length}");
 
         if (clipText.Length == 0)
         {
@@ -339,8 +679,21 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        int start = _tran.SelectionStart;
-        int end = _tran.SelectionEnd;
+        int start = -1;
+        int end = -1;
+
+        try
+        {
+            var sel = _tran.TextArea.Selection;
+            if (sel != null && !sel.IsEmpty)
+            {
+                start = sel.SurroundingSegment.Offset;
+                end = start + sel.SurroundingSegment.Length;
+            }
+        }
+        catch { /* ignore */ }
+
+        Log($"PasteReplaceSelectionAsync: selection={start}..{end} remembered={_lastCopyStart}..{_lastCopyEnd}");
 
         if (end <= start)
         {
@@ -348,6 +701,7 @@ public partial class TranslationTabView : UserControl
             {
                 start = _lastCopyStart;
                 end = _lastCopyEnd;
+                Log($"PasteReplaceSelectionAsync: using remembered selection={start}..{end}");
             }
             else
             {
@@ -368,14 +722,18 @@ public partial class TranslationTabView : UserControl
 
         _tran.Text = sb.ToString();
 
-        _tran.SelectionStart = start;
-        _tran.SelectionEnd = start + pastedXml.Length;
-        try { _tran.CaretIndex = start; } catch { /* ignore */ }
+        try
+        {
+            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, start + pastedXml.Length);
+            _tran.TextArea.Caret.Offset = start;
+        }
+        catch { /* ignore */ }
 
         _lastCopyStart = start;
         _lastCopyEnd = start + pastedXml.Length;
 
         Status?.Invoke(this, $"Pasted & replaced selection with {pastedXml.Length:n0} chars.");
+        Log("PasteReplaceSelectionAsync end");
     }
 
     // --------------------------
@@ -386,6 +744,7 @@ public partial class TranslationTabView : UserControl
     {
         if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
         {
+            Log("Ctrl+F -> OpenFind");
             OpenFind();
             e.Handled = true;
             return;
@@ -393,6 +752,7 @@ public partial class TranslationTabView : UserControl
 
         if (e.Key == Key.Escape && _findBar?.IsVisible == true)
         {
+            Log("Escape -> CloseFind");
             CloseFind();
             e.Handled = true;
             return;
@@ -433,6 +793,8 @@ public partial class TranslationTabView : UserControl
 
         _findBar.IsVisible = true;
 
+        EnsureFindRenderersAttached();
+
         var target = DetermineCurrentPaneForFind();
         SetFindTarget(target, preserveIndex: false);
 
@@ -450,11 +812,10 @@ public partial class TranslationTabView : UserControl
 
         ClearHighlight();
 
-        // restore focus without messing with selections
-        _findTarget?.Focus();
+        try { _findTarget?.Focus(); } catch { /* ignore */ }
     }
 
-    private TextBox? DetermineCurrentPaneForFind()
+    private TextEditor? DetermineCurrentPaneForFind()
     {
         if (_orig == null || _tran == null)
             return _tran;
@@ -469,14 +830,14 @@ public partial class TranslationTabView : UserControl
         return _tran;
     }
 
-    private void SetFindTarget(TextBox? tb, bool preserveIndex)
+    private void SetFindTarget(TextEditor? ed, bool preserveIndex)
     {
-        if (tb == null) return;
+        if (ed == null) return;
 
-        _findTarget = tb;
+        _findTarget = ed;
 
         if (_findScope != null)
-            _findScope.Text = ReferenceEquals(tb, _orig) ? "Find (Original):" : "Find (Translated):";
+            _findScope.Text = ReferenceEquals(ed, _orig) ? "Find (Original):" : "Find (Translated):";
 
         RecomputeMatches(resetToFirst: !preserveIndex);
     }
@@ -500,11 +861,10 @@ public partial class TranslationTabView : UserControl
     {
         if (_findBar?.IsVisible != true) return;
 
-        var tb = _findTarget;
-        if (tb == null)
-            return;
+        var ed = _findTarget;
+        if (ed == null) return;
 
-        string hay = tb.Text ?? "";
+        string hay = ed.Text ?? "";
         string q = (_findQuery?.Text ?? "").Trim();
 
         int oldSelectedStart = -1;
@@ -533,6 +893,8 @@ public partial class TranslationTabView : UserControl
             idx = idx + Math.Max(1, q.Length);
         }
 
+        Log($"RecomputeMatches: qLen={q.Length} matches={_matchStarts.Count} target={(ReferenceEquals(ed, _orig) ? "orig" : "tran")} hayLen={hay.Length}");
+
         if (_matchStarts.Count == 0)
         {
             UpdateFindCount();
@@ -542,7 +904,8 @@ public partial class TranslationTabView : UserControl
 
         if (resetToFirst)
         {
-            int caret = tb.CaretIndex;
+            int caret = 0;
+            try { caret = ed.TextArea.Caret.Offset; } catch { /* ignore */ }
             int nearest = _matchStarts.FindIndex(s => s >= caret);
             _matchIndex = nearest >= 0 ? nearest : 0;
         }
@@ -558,10 +921,7 @@ public partial class TranslationTabView : UserControl
                     _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
                 }
             }
-            else
-            {
-                _matchIndex = 0;
-            }
+            else _matchIndex = 0;
         }
 
         UpdateFindCount();
@@ -602,57 +962,59 @@ public partial class TranslationTabView : UserControl
         int start = _matchStarts[_matchIndex];
         int len = _matchLen;
 
-        // highlight immediately (works when already visible)
         ApplyHighlight(_findTarget, start, len);
 
-        if (!scroll)
-            return;
+        if (!scroll) return;
 
         try
         {
-            _findTarget.Focus();
+            _findTarget.TextArea.Caret.Offset = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
 
-            // scroll via caret only (do NOT touch selection)
-            _findTarget.CaretIndex = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
-
-            DispatcherTimer.RunOnce(() =>
+            Dispatcher.UIThread.Post(() =>
             {
-                try { CenterByCaretRect(_findTarget, start); } catch { /* ignore */ }
+                try { CenterByCaret(_findTarget); } catch { }
                 ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(25));
+            }, DispatcherPriority.Background);
+        }
+        catch { }
 
-            DispatcherTimer.RunOnce(() =>
-            {
-                try { CenterByCaretRect(_findTarget, start); } catch { /* ignore */ }
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(85));
-        }
-        catch
-        {
-            // ignore
-        }
     }
 
-    private void ApplyHighlight(TextBox target, int start, int len)
+    private void ApplyHighlight(TextEditor target, int start, int len)
     {
-        if (_hlOrig == null || _hlTran == null) return;
+        EnsureFindRenderersAttached();
 
-        if (ReferenceEquals(target, _orig))
+        try
         {
-            _hlTran.Clear();
-            _hlOrig.SetRange(start, len);
+            if (ReferenceEquals(target, _orig))
+            {
+                _hlTran?.Clear();
+                _hlOrig?.SetRange(start, len);
+            }
+            else
+            {
+                _hlOrig?.Clear();
+                _hlTran?.SetRange(start, len);
+            }
+
+            target.TextArea?.TextView?.InvalidateVisual();
         }
-        else
+        catch (Exception ex)
         {
-            _hlOrig.Clear();
-            _hlTran.SetRange(start, len);
+            Log("ApplyHighlight renderer error: " + ex.Message);
         }
     }
 
     private void ClearHighlight()
     {
-        _hlOrig?.Clear();
-        _hlTran?.Clear();
+        try { _hlOrig?.Clear(); } catch { }
+        try { _hlTran?.Clear(); } catch { }
+        try
+        {
+            _orig?.TextArea?.TextView?.InvalidateVisual();
+            _tran?.TextArea?.TextView?.InvalidateVisual();
+        }
+        catch { }
     }
 
     private void ClearFindState()
@@ -744,7 +1106,6 @@ XML fragment to translate:
         return clipboardText.Trim();
     }
 
-    // Precompiled tag regex (fast + consistent)
     private static readonly Regex XmlTagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
 
     private async Task SelectNextTagsAsync(int tagCount)
@@ -763,22 +1124,22 @@ XML fragment to translate:
         }
 
         int start;
-        int selStart = _tran.SelectionStart;
-        int selEnd = _tran.SelectionEnd;
 
-        if (selEnd > selStart)
+        try
         {
-            start = selEnd;
-            _lastCopyStart = selStart;
-            _lastCopyEnd = selEnd;
+            var sel = _tran.TextArea.Selection;
+            if (sel != null && !sel.IsEmpty)
+            {
+                start = sel.SurroundingSegment.Offset + sel.SurroundingSegment.Length;
+                _lastCopyStart = sel.SurroundingSegment.Offset;
+                _lastCopyEnd = start;
+            }
+            else if (_lastCopyEnd > _lastCopyStart) start = _lastCopyEnd;
+            else start = _tran.TextArea.Caret.Offset;
         }
-        else if (_lastCopyEnd > _lastCopyStart)
+        catch
         {
-            start = _lastCopyEnd;
-        }
-        else
-        {
-            start = _tran.CaretIndex;
+            start = _lastCopyEnd > _lastCopyStart ? _lastCopyEnd : 0;
         }
 
         start = Math.Clamp(start, 0, text.Length);
@@ -804,10 +1165,13 @@ XML fragment to translate:
             return;
         }
 
-        _tran.Focus();
-        _tran.SelectionStart = start;
-        _tran.SelectionEnd = end;
-        try { _tran.CaretIndex = start; } catch { /* ignore */ }
+        try
+        {
+            _tran.Focus();
+            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, end);
+            _tran.TextArea.Caret.Offset = start;
+        }
+        catch { /* ignore */ }
 
         _lastCopyStart = start;
         _lastCopyEnd = end;
@@ -838,11 +1202,9 @@ XML fragment to translate:
     }
 
     // --------------------------
-    // Hacky XML check (no parser) — SINGLE SOURCE OF TRUTH
+    // Hacky XML check (no parser)
     // --------------------------
 
-    // Community note removal for structural comparison.
-    // We allow these notes to exist ONLY in translated XML.
     private static readonly Regex CommunityNoteBlockRegex = new Regex(
         @"<note\b(?<attrs>[^>]*)\btype\s*=\s*""community""(?<attrs2>[^>]*)>(?<inner>[\s\S]*?)</note>",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -850,12 +1212,8 @@ XML fragment to translate:
     private static string StripCommunityNotes(string xml)
     {
         if (string.IsNullOrEmpty(xml)) return xml ?? string.Empty;
-
-        // Replace the whole block with nothing.
-        // We don't try to preserve whitespace perfectly; this is only for structural validation.
         return CommunityNoteBlockRegex.Replace(xml, "");
     }
-
 
     private static readonly Regex LbTagRegex = new Regex(
         @"<lb\b(?<attrs>[^>]*)\/?>",
@@ -904,14 +1262,11 @@ XML fragment to translate:
 
         tran ??= "";
 
-        // IMPORTANT:
-        // For structure comparison, we ignore community notes in translated XML.
-        // Everything else must remain identical.
         string tranStripped = StripCommunityNotes(tran);
 
         int origTagCount = XmlTagRegex.Matches(orig).Count;
-        int tranTagCount = XmlTagRegex.Matches(tran).Count;                 // informational (real)
-        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count; // compared
+        int tranTagCount = XmlTagRegex.Matches(tran).Count;
+        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count;
 
         var (origLbTotal, origSigs) = CollectLbSignatures(orig);
         var (tranLbTotal, tranSigs) = CollectLbSignatures(tranStripped);
@@ -930,7 +1285,6 @@ XML fragment to translate:
 
         var problems = new List<string>();
 
-        // Compare tag counts AFTER stripping community notes.
         if (origTagCount != tranTagCountStripped)
             problems.Add(
                 $"TAG COUNT MISMATCH (ignoring community notes):\n" +
@@ -968,7 +1322,6 @@ XML fragment to translate:
         return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
     }
 
-
     private async Task<bool> EnsureXmlOkOrWarnAsync(bool showOkPopup)
     {
         if (_orig == null || _tran == null)
@@ -981,6 +1334,8 @@ XML fragment to translate:
 
         var orig = _orig.Text ?? "";
         var tran = _tran.Text ?? "";
+
+        Log($"EnsureXmlOkOrWarnAsync: origLen={orig.Length} tranLen={tran.Length}");
 
         var (ok, msg, _, tranTags, _, tranLb) = VerifyXmlHacky(orig, tran);
 
@@ -1077,114 +1432,75 @@ XML fragment to translate:
 
         try
         {
-            _tran.SelectionStart = 0;
-            _tran.SelectionEnd = 0;
-            _tran.CaretIndex = 0;
+            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, 0, 0);
+            _tran.TextArea.Caret.Offset = 0;
         }
         catch { /* ignore */ }
 
         try { _tran.Focus(); } catch { /* ignore */ }
+
+        Log("ResetNavigationState done");
     }
 
     // --------------------------
-    // Scroll helper (vertical centering)
+    // Scroll helper for AvaloniaEdit
     // --------------------------
-
-    private static ScrollViewer? FindScrollViewer(Control? c)
+    private static void CenterByCaret(TextEditor ed)
     {
-        if (c == null) return null;
-        return c.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
-    }
-
-    private static bool IsFinitePositive(double v)
-        => !double.IsNaN(v) && !double.IsInfinity(v) && v > 0;
-
-    private static double ClampY(double extentH, double viewportH, double y)
-    {
-        if (IsFinitePositive(extentH) && IsFinitePositive(viewportH))
-        {
-            double maxY = Math.Max(0, extentH - viewportH);
-            return Math.Max(0, Math.Min(y, maxY));
-        }
-        return Math.Max(0, y);
-    }
-
-    private static void CenterByCaretRect(TextBox tb, int caretIndex)
-    {
-        var sv = FindScrollViewer(tb);
+        var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
         if (sv == null) return;
 
         double viewportH = sv.Viewport.Height;
         double extentH = sv.Extent.Height;
+        if (double.IsNaN(viewportH) || double.IsInfinity(viewportH) || viewportH <= 0) return;
 
-        if (!IsFinitePositive(viewportH))
-            return;
+        var textView = ed.TextArea.TextView;
+        if (textView == null) return;
 
-        if (!TryGetCaretYInScrollViewer(tb, sv, caretIndex, out double caretY))
-            return;
+        textView.EnsureVisualLines();
 
-        double targetY = viewportH / 2.0;
-        double delta = caretY - targetY;
+        var caret = ed.TextArea.Caret;
+        var caretPos = caret.Position;
 
-        if (Math.Abs(delta) <= Math.Max(6.0, viewportH * 0.03))
-            return;
+        // Visual position of caret line top inside TextView
+        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
 
-        double desiredY = sv.Offset.Y + delta;
-        desiredY = ClampY(extentH, viewportH, desiredY);
+        // Translate to ScrollViewer space (can be viewport coords OR content coords depending on template/layout)
+        var p = textView.TranslatePoint(loc, sv);
+        if (p == null) return;
+
+        double caretY = p.Value.Y;
+
+        // Heuristic: if caretY is within the viewport-ish range, it's probably viewport coords.
+        // If it's far larger than the viewport, it's probably content coords.
+        bool looksLikeViewportCoords =
+            caretY >= -viewportH * 0.25 &&
+            caretY <= viewportH * 1.25;
+
+        double desiredY;
+        if (looksLikeViewportCoords)
+        {
+            // caretY is relative to viewport top -> adjust from current offset
+            desiredY = sv.Offset.Y + (caretY - (viewportH / 2.0));
+        }
+        else
+        {
+            // caretY is already in content coordinates -> do NOT add current offset
+            desiredY = caretY - (viewportH / 2.0);
+        }
+
+        // Clamp
+        if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
+        {
+            double maxY = Math.Max(0, extentH - viewportH);
+            desiredY = Math.Max(0, Math.Min(desiredY, maxY));
+        }
+        else
+        {
+            desiredY = Math.Max(0, desiredY);
+        }
 
         sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
 
-    private static bool TryGetCaretYInScrollViewer(TextBox tb, ScrollViewer sv, int charIndex, out double caretY)
-    {
-        caretY = 0;
-
-        int len = tb.Text?.Length ?? 0;
-        if (len <= 0) return false;
-        charIndex = Math.Clamp(charIndex, 0, len);
-
-        try
-        {
-            var presenter = tb.GetVisualDescendants().FirstOrDefault(v => v.GetType().Name == "TextPresenter");
-            if (presenter != null)
-            {
-                var mPr = presenter.GetType().GetMethod("GetRectFromCharacterIndex", new[] { typeof(int) });
-                if (mPr != null)
-                {
-                    var val = mPr.Invoke(presenter, new object[] { charIndex });
-                    if (val is Rect r2)
-                    {
-                        var p = presenter.TranslatePoint(new Point(r2.X, r2.Y), sv);
-                        if (p != null)
-                        {
-                            caretY = p.Value.Y;
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        catch { /* ignore */ }
-
-        var mTb = tb.GetType().GetMethod("GetRectFromCharacterIndex", new[] { typeof(int) });
-        if (mTb != null)
-        {
-            try
-            {
-                var val = mTb.Invoke(tb, new object[] { charIndex });
-                if (val is Rect r)
-                {
-                    var p = tb.TranslatePoint(new Point(r.X, r.Y), sv);
-                    if (p != null)
-                    {
-                        caretY = p.Value.Y;
-                        return true;
-                    }
-                }
-            }
-            catch { /* ignore */ }
-        }
-
-        return false;
-    }
 }
