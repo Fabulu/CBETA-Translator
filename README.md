@@ -103,6 +103,27 @@ Even large documents remain responsive. If they don't it's a bug. Come and annoy
 
 ---
 
+## 📚 Hover Dictionary (CC-CEDICT)
+
+The Chinese side includes an integrated **CC-CEDICT hover dictionary**.
+
+When you:
+
+- Hover over Chinese text  
+- Pause briefly  
+
+A tooltip appears with dictionary definitions.
+
+This works even if the English translation is empty, making it easier to:
+
+- Understand unfamiliar terms  
+- Spot segmentation boundaries  
+- Sanity-check machine translations  
+
+The dictionary is powered by the included `cedict_ts.u8` dataset.
+
+---
+
 ## 📝 Community Footnotes
 
 You can insert structured community notes directly into the translated XML:
@@ -205,6 +226,8 @@ The search system can display:
 The statistics panel is currently experimental.  
 If you find it useful (or want specific metrics), please tell me what you’d like to see and I’ll improve it. I know what stopwords are, I just didn't include their removal because I thought nobody would notice.
 
+Also, all of the averages are based on a per-file basis. These are not statistics across the whole corpus, which we'd have to do if we wanted them to be useful.
+
 ---
 
 # 🔗 Git Tab – Contribution Without Pain
@@ -292,7 +315,7 @@ No unnecessary re-rendering.
 # 🖥 Platform Support
 
 - Windows (self-contained binary)  
-- Linux (WSL-tested)
+- Linux
 - Mac OS
 - Cross-platform via Avalonia 11.3.11
 
