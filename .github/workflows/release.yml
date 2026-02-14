@@ -42,7 +42,6 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      # Publish on Windows using PowerShell to avoid /p: getting mangled
       - name: Publish (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
@@ -54,7 +53,6 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:DebugType=None /p:DebugSymbols=false
 
-      # Publish on Linux/macOS using bash
       - name: Publish (Linux/macOS)
         if: runner.os != 'Windows'
         shell: bash
@@ -63,6 +61,7 @@ jobs:
           dotnet publish "${{ env.PROJECT_FILE }}" \
             -c Release -r "${{ matrix.rid }}" --self-contained true \
             /p:PublishSingleFile=true \
+            /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:DebugType=None /p:DebugSymbols=false
 
@@ -73,7 +72,7 @@ jobs:
           mkdir -p "$PUB/Assets/Dict"
           cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
 
-            - name: Package (Windows)
+      - name: Package (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
@@ -88,11 +87,11 @@ jobs:
 
           Compress-Archive -Path "$pub\*" -DestinationPath $zipPath
 
-          # IMPORTANT: use forward slashes so action-gh-release can find the file
+          # use forward slashes so action-gh-release can find the file
           $asset = $zipPath -replace '\\','/'
           "ASSET=$asset" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
-
+          Get-ChildItem dist | Format-Table -AutoSize
 
       - name: Package (Linux/macOS)
         if: runner.os != 'Windows'
@@ -113,14 +112,14 @@ jobs:
             echo "ASSET=dist/${OUT}.tar.gz" >> $GITHUB_ENV
           fi
 
-      # Create the GitHub Release ONCE (Linux job), upload its asset
+          ls -la dist
+
       - name: Create/Upload Release (Linux creates)
         if: runner.os == 'Linux'
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.ASSET }}
 
-      # Other OS jobs only upload to the existing release
       - name: Upload asset to existing Release (non-Linux)
         if: runner.os != 'Linux'
         uses: softprops/action-gh-release@v2
