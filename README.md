@@ -1,6 +1,9 @@
 ![.NET 8](https://img.shields.io/badge/.NET-8-blue)
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
+![Releases](https://img.shields.io/badge/Releases-GitHub-black)
+
 # CBETA Translator  
 *A high-performance, cross-platform corpus editor for the CBETA XML-P5 canon*
 
@@ -20,6 +23,13 @@ It is designed for:
 - Git-based contribution  
 - Cross-platform desktop usage (Windows + Linux + MAC OS)  
 - High performance even with very large XML files  
+
+---
+
+## ⚠️ Important: CBETA Non-Commercial Rule
+
+This app is MIT-licensed, but **the CBETA texts and derived translations are non-commercial**.  
+When you share CBETA files, **keep the original CBETA header intact** and don’t use the texts/translations commercially.
 
 ---
 
@@ -123,7 +133,7 @@ All views support local search:
 - Readable view search  
 - Translation XML view search  
 
-Search go fast. Vroom Vroom.
+Search is designed to stay fast, even across a big corpus.
 
 ---
 
@@ -192,7 +202,8 @@ The search system can display:
 - Distribution insights  
 - Translation coverage metrics  
 
-Honestly the search statistics feature is pretty half baked. If anybody uses it for anything, please tell me. I'll be glad to upgrade the features if people actually know what to do with them. At the moment I think nobody will see the difference between what I did and what it should actually look like if done competently.
+The statistics panel is currently experimental.  
+If you find it useful (or want specific metrics), please tell me what you’d like to see and I’ll improve it. I know what stopwords are, I just didn't include their removal because I thought nobody would notice.
 
 ---
 
@@ -244,6 +255,11 @@ The Git tab also supports:
 
 No command line required.
 
+### 🧯 Don’t Panic Button
+
+If something goes wrong and your local repo gets messy, the Git tab includes a **“Don’t Panic”** button.  
+It can wipe *local uncommitted changes* and return your repo to a clean state (you’ll get a clear warning first).
+
 ---
 
 # 🧱 Performance Architecture
@@ -276,9 +292,24 @@ No unnecessary re-rendering.
 # 🖥 Platform Support
 
 - Windows (self-contained binary)  
-- Linux (WSL-tested)  
+- Linux (WSL-tested)
+- Mac OS
 - Cross-platform via Avalonia 11.3.11
-- If someone wants to help me make a Mac build I'm all ears! (I don't have a Mac, all you need is a Mac and some time on a video call with me! Or if you know how to do it yourslf just send me the file!) 
+
+---
+
+# 🤝 Contributing
+
+Pull requests are welcome.
+
+Guidelines:
+
+- Keep XML structure preservation sacred.
+- Do not introduce automatic tag rewriting.
+- Performance regressions must be justified.
+- Large feature additions should be discussed first.
+
+If you're unsure, open an issue.
 
 ---
 
@@ -293,7 +324,20 @@ No unnecessary re-rendering.
 
 ---
 
+# 🧾 Legal Notice
+
+CBETA Translator is licensed under the MIT License.
+
+The CBETA corpus itself is subject to its own licensing terms.
+The included CC-CEDICT dictionary is licensed under CC BY-SA 4.0.
+
+See THIRD_PARTY_NOTICES.txt for full details.
+
+---
+
 # 🛠 Building
+
+If you just want to use the app, grab a prebuilt release instead of building from source.
 
 ### Windows (Self-Contained)
 
