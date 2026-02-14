@@ -103,6 +103,27 @@ Even large documents remain responsive. If they don't it's a bug. Come and annoy
 
 ---
 
+## 📚 Hover Dictionary (CC-CEDICT)
+
+The Chinese side includes an integrated **CC-CEDICT hover dictionary**.
+
+When you:
+
+- Hover over Chinese text  
+- Pause briefly  
+
+A tooltip appears with dictionary definitions.
+
+This works even if the English translation is empty, making it easier to:
+
+- Understand unfamiliar terms  
+- Spot segmentation boundaries  
+- Sanity-check machine translations  
+
+The dictionary is powered by the included `cedict_ts.u8` dataset.
+
+---
+
 ## 📝 Community Footnotes
 
 You can insert structured community notes directly into the translated XML:
