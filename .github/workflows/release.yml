@@ -47,8 +47,8 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          dotnet restore "$env:PROJECT_FILE"
-          dotnet publish "$env:PROJECT_FILE" `
+          dotnet restore "${{ env.PROJECT_FILE }}"
+          dotnet publish "${{ env.PROJECT_FILE }}" `
             -c Release -r "${{ matrix.rid }}" --self-contained true `
             /p:PublishSingleFile=true `
             /p:IncludeNativeLibrariesForSelfExtract=true `
@@ -73,7 +73,24 @@ jobs:
           mkdir -p "$PUB/Assets/Dict"
           cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
 
-      - name: Package
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $rid = "${{ matrix.rid }}"
+          $pub = "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
+          $out = "CbetaTranslator-$rid-$tag"
+          New-Item -ItemType Directory -Force dist | Out-Null
+
+          $zipPath = "dist\$out.zip"
+          if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+
+          Compress-Archive -Path "$pub\*" -DestinationPath $zipPath
+          "ASSET=$zipPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Package (Linux/macOS)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME}"
