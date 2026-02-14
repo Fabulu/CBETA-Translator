@@ -5,28 +5,35 @@
 
 	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
 
+		<!-- ===================== -->
+		<!-- SEARCH BAR -->
+		<!-- ===================== -->
 		<Border Grid.Row="0"
-				Background="{DynamicResource PanelAltBg}"
-				Padding="10"
-				CornerRadius="8">
-			<Grid ColumnDefinitions="*,Auto,Auto,Auto"
-				  RowDefinitions="Auto,Auto"
-				  ColumnSpacing="10"
-				  RowSpacing="8">
+                Background="{DynamicResource PanelAltBg}"
+                Padding="10"
+                CornerRadius="8">
 
+			<Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="10"
+                  RowSpacing="8">
+
+				<!-- Row 0 -->
 				<TextBox Name="TxtQuery"
-						 Grid.Row="0"
-						 Grid.Column="0"
-						 Watermark="Search (CJK phrases, substrings)…"/>
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Watermark="Search (CJK phrases, substrings)…"/>
 
 				<Button Name="BtnSearch" Grid.Row="0" Grid.Column="1" Content="Search"/>
 				<Button Name="BtnCancel" Grid.Row="0" Grid.Column="2" Content="Cancel" IsEnabled="False"/>
 				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3" Content="Build/Update Index"/>
 
+				<!-- Row 1 -->
 				<StackPanel Grid.Row="1"
-							Grid.Column="0"
-							Orientation="Horizontal"
-							Spacing="14">
+                            Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="14">
+
 					<CheckBox Name="ChkOriginal" Content="Original" IsChecked="True"/>
 					<CheckBox Name="ChkTranslated" Content="Translated" IsChecked="False"/>
 
@@ -35,43 +42,56 @@
 
 					<TextBlock Text="Context:" VerticalAlignment="Center" Margin="10,0,0,0" Classes="muted"/>
 					<ComboBox Name="CmbContext" Width="120"/>
+
 				</StackPanel>
 
-				<TextBlock Name="TxtProgress"
-						   Grid.Row="1"
-						   Grid.Column="1"
-						   Grid.ColumnSpan="3"
-						   VerticalAlignment="Center"
-						   TextWrapping="Wrap"
-						   Classes="muted"/>
 			</Grid>
 		</Border>
 
+		<!-- ===================== -->
+		<!-- SUMMARY + PROGRESS -->
+		<!-- ===================== -->
 		<Border Grid.Row="1"
-				Background="{DynamicResource PanelBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="8">
+                Background="{DynamicResource PanelBg}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="8">
+
 			<DockPanel LastChildFill="True">
+
+				<!-- Left -->
 				<TextBlock Name="TxtSummary"
-						   DockPanel.Dock="Left"
-						   VerticalAlignment="Center"
-						   Text="Ready."
-						   Classes="muted"/>
+                           DockPanel.Dock="Left"
+                           VerticalAlignment="Center"
+                           Text="Ready."
+                           Classes="muted"/>
+
+				<!-- Right -->
 				<Button Name="BtnExportTsv"
-						DockPanel.Dock="Right"
-						Content="Export TSV"
-						IsEnabled="False"/>
+                        DockPanel.Dock="Right"
+                        Content="Export TSV"
+                        IsEnabled="False"/>
+
+				<!-- Center (fills space) -->
+				<TextBlock Name="TxtProgress"
+                           Margin="20,0,20,0"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Classes="muted"/>
+
 			</DockPanel>
 		</Border>
 
+		<!-- ===================== -->
+		<!-- CO-OCCURRENCE PANEL -->
+		<!-- ===================== -->
 		<Border Grid.Row="2"
-				Background="{DynamicResource PanelBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="8">
+                Background="{DynamicResource PanelBg}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="8">
 
 			<Expander Name="ExpCooc" IsExpanded="False">
 
@@ -79,55 +99,71 @@
 					<DockPanel LastChildFill="True">
 						<TextBlock Text="" DockPanel.Dock="Left" />
 						<ComboBox Name="CmbCoocMetric"
-								  DockPanel.Dock="Right"
-								  Width="320"/>
+                                  DockPanel.Dock="Right"
+                                  Width="320"/>
 					</DockPanel>
 				</Expander.Header>
 
 				<Grid MaxHeight="360">
 
 					<Grid Name="GridMetricView"
-						  ColumnDefinitions="*,*"
-						  RowDefinitions="Auto,*"
-						  ColumnSpacing="10"
-						  RowSpacing="8">
+                          ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,*"
+                          ColumnSpacing="10"
+                          RowSpacing="8">
 
-						<StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="12">
-							<TextBlock Name="TxtCoocSummary" Text="No data yet." Classes="muted"/>
+						<StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Orientation="Horizontal"
+                                    Spacing="12">
+							<TextBlock Name="TxtCoocSummary"
+                                       Text="No data yet."
+                                       Classes="muted"/>
 						</StackPanel>
 
+						<!-- LEFT PANEL -->
 						<Border Grid.Row="1" Grid.Column="0"
-								Background="{DynamicResource PanelAltBg}"
-								CornerRadius="6"
-								Padding="8">
+                                Background="{DynamicResource PanelAltBg}"
+                                CornerRadius="6"
+                                Padding="8">
 							<StackPanel Spacing="6">
-								<TextBlock Name="TxtLeftTitle" Text="Left" Classes="muted"/>
+								<TextBlock Name="TxtLeftTitle"
+                                           Text="Left"
+                                           Classes="muted"/>
 								<ListBox Name="LstCoocChars" Height="220"/>
 							</StackPanel>
 						</Border>
 
+						<!-- RIGHT PANEL -->
 						<Border Grid.Row="1" Grid.Column="1"
-								Background="{DynamicResource PanelAltBg}"
-								CornerRadius="6"
-								Padding="8">
+                                Background="{DynamicResource PanelAltBg}"
+                                CornerRadius="6"
+                                Padding="8">
 							<StackPanel Spacing="6">
-								<TextBlock Name="TxtRightTitle" Text="Right" Classes="muted"/>
+								<TextBlock Name="TxtRightTitle"
+                                           Text="Right"
+                                           Classes="muted"/>
 								<ListBox Name="LstCoocNgrams" Height="220"/>
-								<TextBlock Name="TxtZipf" TextWrapping="Wrap" Classes="muted"/>
+								<TextBlock Name="TxtZipf"
+                                           TextWrapping="Wrap"
+                                           Classes="muted"/>
 							</StackPanel>
 						</Border>
 
 					</Grid>
 
+					<!-- Metric guide -->
 					<ScrollViewer Name="ScrollMetricGuide"
-								  IsVisible="False"
-								  MaxHeight="360"
-								  VerticalScrollBarVisibility="Auto"
-								  HorizontalScrollBarVisibility="Disabled">
+                                  IsVisible="False"
+                                  MaxHeight="360"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
 
-						<Border Background="{DynamicResource PanelAltBg}" CornerRadius="6" Padding="10">
+						<Border Background="{DynamicResource PanelAltBg}"
+                                CornerRadius="6"
+                                Padding="10">
 							<TextBlock Name="TxtMetricGuide"
-									   TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap"/>
 						</Border>
 
 					</ScrollViewer>
@@ -138,31 +174,39 @@
 
 		</Border>
 
+		<!-- ===================== -->
+		<!-- RESULTS TREE -->
+		<!-- ===================== -->
 		<Border Grid.Row="3"
-				Background="{DynamicResource PanelBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
-				BorderThickness="1"
-				CornerRadius="8"
-				Padding="8">
+                Background="{DynamicResource PanelBg}"
+                BorderBrush="{DynamicResource PanelBorder}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="8">
+
 			<TreeView Name="ResultsTree"
-					  Background="{DynamicResource ControlBg}"
-					  BorderBrush="{DynamicResource BorderBrush}"
-					  BorderThickness="1">
+                      Background="{DynamicResource ControlBg}"
+                      BorderBrush="{DynamicResource BorderBrush}"
+                      BorderThickness="1">
 
 				<TreeView.DataTemplates>
-					<TreeDataTemplate DataType="models:SearchResultGroup" ItemsSource="{Binding Children}">
+
+					<TreeDataTemplate DataType="models:SearchResultGroup"
+                                      ItemsSource="{Binding Children}">
 						<TextBlock Text="{Binding HeaderText}"
-								   ToolTip.Tip="{Binding Tooltip}"
-								   TextWrapping="NoWrap"/>
+                                   ToolTip.Tip="{Binding Tooltip}"
+                                   TextWrapping="NoWrap"/>
 					</TreeDataTemplate>
 
 					<DataTemplate DataType="models:SearchResultChild">
 						<TextBlock Text="{Binding RowText}"
-								   TextWrapping="NoWrap"/>
+                                   TextWrapping="NoWrap"/>
 					</DataTemplate>
+
 				</TreeView.DataTemplates>
 
 			</TreeView>
+
 		</Border>
 
 	</Grid>

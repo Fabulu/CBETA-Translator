@@ -101,11 +101,12 @@ public partial class TranslationTabView : UserControl
     private Button? _btnSelectNext50Tags;
     private Button? _btnCheckXml;
 
+    // NEW: wrap checkbox
+    private CheckBox? _chkWrap;
+
     // IMPORTANT: these are AvaloniaEdit TextEditor, not TextBox
     private TextEditor? _orig;
     private TextEditor? _tran;
-
-    private TextBlock? _txtHint;
 
     // Hover dictionary (AvaloniaEdit)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
@@ -162,7 +163,6 @@ public partial class TranslationTabView : UserControl
         }
         catch (Exception ex)
         {
-            // If XAML fails to load, you otherwise get "blank UI" and suffer.
             Log("InitializeComponent ERROR: " + ex);
 
             Content = new Border
@@ -190,6 +190,9 @@ public partial class TranslationTabView : UserControl
 
             SetupHoverDictionary();
 
+            // Ensure wrap reflects checkbox (default off)
+            ApplyWrapFromCheckbox();
+
             Dispatcher.UIThread.Post(() =>
             {
                 Log("AttachedToVisualTree -> EnsureFindRenderersAttached (Background)");
@@ -209,8 +212,6 @@ public partial class TranslationTabView : UserControl
             DisposeHoverDictionary();
             DetachFindRenderers();
         };
-
-        UpdateHint("Select XML in Translated XML → Copy selection + prompt.");
         Log("CTOR end");
     }
 
@@ -226,12 +227,11 @@ public partial class TranslationTabView : UserControl
         _btnSelectNext50Tags = this.FindControl<Button>("BtnSelectNext50Tags");
         _btnCheckXml = this.FindControl<Button>("BtnCheckXml");
 
+        // NEW
+        _chkWrap = this.FindControl<CheckBox>("ChkWrap");
+
         _orig = this.FindControl<TextEditor>("EditorOrigXml");
         _tran = this.FindControl<TextEditor>("EditorTranXml");
-
-        _txtHint = this.FindControl<TextBlock>("TxtHint");
-
-        Log($"Controls: orig={_orig != null}, tran={_tran != null}, hint={_txtHint != null}");
 
         if (_orig != null)
         {
@@ -246,6 +246,10 @@ public partial class TranslationTabView : UserControl
             ApplyEditorDefaults(_tran, "tran (FindControls)");
         }
         else Log("ERROR: Could not find EditorTranXml (TextEditor). Check XAML Name=EditorTranXml.");
+
+        // Default wrap off
+        if (_chkWrap != null)
+            _chkWrap.IsChecked = false;
 
         // Find UI
         _findBar = this.FindControl<Border>("FindBar");
@@ -305,6 +309,13 @@ public partial class TranslationTabView : UserControl
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
         if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
 
+        // NEW: wrap checkbox toggle
+        if (_chkWrap != null)
+        {
+            _chkWrap.Checked += (_, _) => ApplyWrapFromCheckbox();
+            _chkWrap.Unchecked += (_, _) => ApplyWrapFromCheckbox();
+        }
+
         HookEditorDebugInput(_orig, "orig");
         HookEditorDebugInput(_tran, "tran");
 
@@ -354,6 +365,25 @@ public partial class TranslationTabView : UserControl
         }
 
         Log("WireEvents end");
+    }
+
+    // NEW: apply WordWrap to both editors based on checkbox state
+    private void ApplyWrapFromCheckbox()
+    {
+        bool wrap = _chkWrap?.IsChecked == true;
+
+        if (_orig != null) _orig.WordWrap = wrap;
+        if (_tran != null) _tran.WordWrap = wrap;
+
+        Log($"Wrap toggled: {wrap}");
+
+        // optional: force redraw so user sees immediate effect
+        try
+        {
+            _orig?.TextArea?.TextView?.InvalidateVisual();
+            _tran?.TextArea?.TextView?.InvalidateVisual();
+        }
+        catch { }
     }
 
     private void HookEditorDebugInput(TextEditor? ed, string tag)
@@ -517,7 +547,6 @@ public partial class TranslationTabView : UserControl
         _lastCopyEnd = -1;
 
         ResetNavigationState();
-        UpdateHint("Select a file to edit XML.");
 
         ClearFindState();
         CloseFind();
@@ -546,11 +575,13 @@ public partial class TranslationTabView : UserControl
             SetEditorText(_orig, _cachedOrigXml, "SetXml(orig)");
             SetEditorText(_tran, _cachedTranXml, "SetXml(tran)");
 
+            // keep wrap consistent after re-set
+            ApplyWrapFromCheckbox();
+
             _lastCopyStart = -1;
             _lastCopyEnd = -1;
 
             ResetNavigationState();
-            UpdateHint("Tip: select a chunk in Translated XML → Copy selection + prompt.");
 
             if (_findBar?.IsVisible == true)
                 RecomputeMatches(resetToFirst: false);
@@ -581,6 +612,8 @@ public partial class TranslationTabView : UserControl
             ApplyEditorDefaults(_tran, "tran (ReApply)");
             SetEditorText(_tran, _cachedTranXml, "ReApply(tran)");
         }
+
+        ApplyWrapFromCheckbox();
     }
 
     private void SetEditorText(TextEditor editor, string value, string which)
@@ -603,17 +636,7 @@ public partial class TranslationTabView : UserControl
     // ============================================================
     // COMMUNITY NOTES (FIX)
     // ============================================================
-    //
-    // ReadableTabView raises:
-    //   CommunityNoteInsertRequested(xmlIndex, noteText, resp)
-    //   CommunityNoteDeleteRequested(xmlStart, xmlEndExclusive)
-    //
-    // These MUST:
-    //   1) modify the TRANSLATED FILE ON DISK (the one you reload from)
-    //   2) verify disk contains the modified text
-    //   3) reload BOTH orig+tran from disk and call SetXml(orig, tran)
-    //
-    // Parent should call these from the events.
+    // (unchanged)
     // ============================================================
 
     public async Task HandleCommunityNoteInsertAsync(int xmlIndex, string noteText, string? resp)
@@ -649,7 +672,6 @@ public partial class TranslationTabView : UserControl
                 return;
             }
 
-            // Reload both from disk, always.
             var origDisk = await ReadAllTextUtf8Async(origPath);
             var tranDisk = afterDisk;
 
@@ -702,7 +724,6 @@ public partial class TranslationTabView : UserControl
                 return;
             }
 
-            // Reload both from disk, always.
             var origDisk = await ReadAllTextUtf8Async(origPath);
             var tranDisk = afterDisk;
 
@@ -756,7 +777,6 @@ public partial class TranslationTabView : UserControl
 
     private static async Task<string> ReadAllTextUtf8Async(string path)
     {
-        // Explicit UTF-8 (no BOM) behavior consistent across platforms
         using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         using var sr = new StreamReader(fs, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false), detectEncodingFromByteOrderMarks: true);
         return await sr.ReadToEndAsync();
@@ -764,7 +784,6 @@ public partial class TranslationTabView : UserControl
 
     private static async Task AtomicWriteUtf8Async(string path, string content)
     {
-        // Write to temp in same dir, then replace. Avoid partial writes and races.
         var dir = Path.GetDirectoryName(path) ?? "";
         var file = Path.GetFileName(path);
         var tmp = Path.Combine(dir, file + ".tmp_" + Guid.NewGuid().ToString("N"));
@@ -773,10 +792,8 @@ public partial class TranslationTabView : UserControl
 
         await File.WriteAllTextAsync(tmp, content, enc);
 
-        // Prefer Replace when possible, fall back to Move overwrite.
         try
         {
-            // If no backup needed, still safe.
             File.Replace(tmp, path, destinationBackupFileName: null, ignoreMetadataErrors: true);
         }
         catch
@@ -815,17 +832,12 @@ public partial class TranslationTabView : UserControl
         noteText = (noteText ?? "").Trim();
         if (noteText.Length == 0) { why = "note text empty"; return null; }
 
-        // Minimal TEI-ish note:
-        // <note type="community" resp="...">TEXT</note>
         var attrs = " type=\"community\"";
         if (!string.IsNullOrWhiteSpace(resp))
             attrs += $" resp=\"{EscapeXmlAttr(resp.Trim())}\"";
 
         var note = $"<note{attrs}>{EscapeXmlText(noteText)}</note>";
 
-        // Insert at exact character index.
-        // This assumes the provided xmlIndex is meant to be a position in the translated XML string.
-        // If upstream gives tag-boundary-safe indices, great. If not, you’ll see broken XML and your checker will scream.
         var sb = new StringBuilder(xml.Length + note.Length);
         sb.Append(xml, 0, index);
         sb.Append(note);
@@ -843,8 +855,6 @@ public partial class TranslationTabView : UserControl
         if (start > xml.Length || endExclusive > xml.Length) { why = $"range out of bounds for len={xml.Length}: {start}..{endExclusive}"; return null; }
         if (endExclusive == start) { why = "empty range"; return null; }
 
-        // Delete exactly the range we were told.
-        // ReadableTabView’s IsCommunityAnnotation() expects xmlStart/xmlEndExclusive to cover the <note ...>...</note>.
         return xml.Remove(start, endExclusive - start);
     }
 
@@ -1002,6 +1012,8 @@ public partial class TranslationTabView : UserControl
 
     // --------------------------
     // Ctrl+F Find UI
+    // --------------------------
+    // (rest unchanged)
     // --------------------------
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
@@ -1295,10 +1307,7 @@ public partial class TranslationTabView : UserControl
         return top?.Clipboard;
     }
 
-    private void UpdateHint(string s)
-    {
-        if (_txtHint != null) _txtHint.Text = s;
-    }
+
 
     private static string BuildChatGptPrompt(string selectionXml)
     {
@@ -1462,6 +1471,8 @@ XML fragment to translate:
 
     // --------------------------
     // Hacky XML check (no parser)
+    // --------------------------
+    // (unchanged)
     // --------------------------
 
     private static readonly Regex CommunityNoteBlockRegex = new Regex(
