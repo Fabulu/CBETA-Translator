@@ -226,6 +226,8 @@ The search system can display:
 The statistics panel is currently experimental.  
 If you find it useful (or want specific metrics), please tell me what you’d like to see and I’ll improve it. I know what stopwords are, I just didn't include their removal because I thought nobody would notice.
 
+Also, all of the averages are based on a per-file basis. These are not statistics across the whole corpus, which we'd have to do if we wanted them to be useful.
+
 ---
 
 # 🔗 Git Tab – Contribution Without Pain
