@@ -2,6 +2,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="CbetaTranslator.App.Views.GitTabView">
 
+	<UserControl.Styles>
+		<!-- Panic button styling -->
+		<Style Selector="Button.panic">
+			<Setter Property="Background" Value="#FF3A0F0F"/>
+			<!-- dark red -->
+			<Setter Property="BorderBrush" Value="#FF6B1A1A"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="#FFF2EAEA"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,7"/>
+			<!-- “Hitchhiker-ish” vibe fallback list. If you add a real font asset later,
+           just put it first in this list. -->
+			<Setter Property="FontFamily" Value="Space Mono, Consolas, Menlo, Courier New"/>
+		</Style>
+
+		<Style Selector="Button.panic:pointerover /template/ ContentPresenter">
+			<Setter Property="Opacity" Value="0.95"/>
+		</Style>
+
+		<Style Selector="Button.panic:pressed /template/ ContentPresenter">
+			<Setter Property="Opacity" Value="0.90"/>
+		</Style>
+	</UserControl.Styles>
+
 	<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto"
 		  ColumnDefinitions="*,Auto"
 		  Margin="12"
@@ -22,10 +47,17 @@
 			<TextBox Name="TxtCommitMessage" Watermark="What did you change?" />
 		</StackPanel>
 
+		<!-- Actions row -->
 		<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
 			<Button Name="BtnSendContribution" Content="1) Create local commit (single file)"/>
 			<Button Name="BtnAuth" Content="2) Authorize GitHub"/>
 			<Button Name="BtnPushPr" Content="3) Push + Create PR"/>
+
+			<!-- Panic Button -->
+			<Button Name="BtnPanic"
+					Classes="panic"
+					Content="Don&#39;t Panic"
+					ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
 		</StackPanel>
 
 		<Border Grid.Row="4" Grid.ColumnSpan="2"
