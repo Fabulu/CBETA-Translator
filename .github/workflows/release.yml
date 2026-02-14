@@ -21,17 +21,17 @@ jobs:
         include:
           - os: windows-latest
             rid: win-x64
-            ext: zip
+            pack: zip
           - os: ubuntu-latest
             rid: linux-x64
-            ext: tar.gz
+            pack: tar
           - os: macos-latest
             rid: osx-x64
-            ext: zip
-          # Optional Apple Silicon build:
-           - os: macos-latest
-             rid: osx-arm64
-             ext: zip
+            pack: zip
+          # Optional Apple Silicon build (uncomment these 3 lines if you want it)
+          - os: macos-latest
+            rid: osx-arm64
+            pack: zip
 
     runs-on: ${{ matrix.os }}
 
@@ -54,7 +54,6 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:DebugType=None /p:DebugSymbols=false
 
-      # HARD GUARANTEE: copy dict into publish output (even if msbuild doesn't)
       - name: Ensure dictionary ships
         shell: bash
         run: |
@@ -72,8 +71,8 @@ jobs:
 
           mkdir -p dist
 
-          if [ "${{ matrix.ext }}" = "zip" ]; then
-            (cd "$PUB" && zip -r "../../../..//dist/${OUT}.zip" .)
+          if [ "${{ matrix.pack }}" = "zip" ]; then
+            (cd "$PUB" && zip -r "$GITHUB_WORKSPACE/dist/${OUT}.zip" .)
           else
             tar -czf "dist/${OUT}.tar.gz" -C "$PUB" .
           fi
