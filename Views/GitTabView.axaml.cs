@@ -2,11 +2,14 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
@@ -37,6 +40,8 @@ public partial class GitTabView : UserControl
 
     private Button? _btnAuth;
     private Button? _btnPushPr;
+
+    private Button? _btnPanic;
 
     private TextBlock? _txtDest;
     private TextBlock? _txtProgress;
@@ -90,6 +95,8 @@ public partial class GitTabView : UserControl
         _btnAuth = this.FindControl<Button>("BtnAuth");
         _btnPushPr = this.FindControl<Button>("BtnPushPr");
 
+        _btnPanic = this.FindControl<Button>("BtnPanic");
+
         _txtDest = this.FindControl<TextBlock>("TxtDest");
         _txtProgress = this.FindControl<TextBlock>("TxtProgress");
         _txtLog = this.FindControl<TextBox>("TxtLog");
@@ -109,6 +116,8 @@ public partial class GitTabView : UserControl
 
         if (_btnAuth != null) _btnAuth.Click += async (_, _) => await AuthorizeAsync();
         if (_btnPushPr != null) _btnPushPr.Click += async (_, _) => await PushAndCreatePrAsync();
+
+        if (_btnPanic != null) _btnPanic.Click += async (_, _) => await PanicButtonAsync();
 
         AttachedToVisualTree += (_, _) =>
         {
@@ -320,7 +329,6 @@ public partial class GitTabView : UserControl
                     var pop = await _git.StashPopAsync(repoDir, prog, ct);
                     if (!pop.Success)
                     {
-                        // Do NOT pretend everything is perfect.
                         SetProgress("Updated, but your local changes conflicted.");
                         AppendLog("[warn] stash pop failed (likely conflicts).");
                         AppendLog("[warn] Your stash should still exist. Run: git stash list");
@@ -399,6 +407,289 @@ public partial class GitTabView : UserControl
         }
     }
 
+    // -------------------------
+    // PANIC BUTTON (stash + drop)
+    // -------------------------
+
+    private async Task PanicButtonAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                SetProgress("Repo not ready. Click Update Files first.");
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            SetProgress("Checking git…");
+            var gitOk = await _git.CheckGitAvailableAsync(ct);
+            if (!gitOk)
+            {
+                SetProgress("Git not found. Install Git first.");
+                AppendLog("[error] git not found in PATH");
+                return;
+            }
+
+            var owner = TopLevel.GetTopLevel(this) as Window;
+            if (owner == null)
+            {
+                SetProgress("No window context for confirmation dialog.");
+                return;
+            }
+
+            bool confirm = await ConfirmAsync(
+                owner,
+                title: "Don't Panic",
+                message:
+                    "This will ERASE all your local, uncommitted changes in the repo.\n\n" +
+                    "It does two commands:\n" +
+                    "  1) git stash\n" +
+                    "  2) git stash drop\n\n" +
+                    "Result: your edits are gone and cannot be recovered.\n\n" +
+                    "Only do this if you want to throw away local work and return to a clean state.",
+                yesText: "Yes, erase my local changes",
+                noText: "No, keep my changes");
+
+            if (!confirm)
+            {
+                SetProgress("Canceled.");
+                AppendLog("[cancel] user chose safety");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            SetProgress("PANIC: stashing…");
+            AppendLog("[panic] git stash push -u");
+            var stash = await RunGitAsync(repoDir, "stash", "push", "-u", "-m", "panic-button", progress: prog, ct: ct);
+            if (!stash.Success)
+            {
+                SetProgress("Panic failed (stash).");
+                AppendLog("[error] " + stash.Error);
+                return;
+            }
+
+            SetProgress("PANIC: dropping stash…");
+            AppendLog("[panic] git stash drop");
+            var drop = await RunGitAsync(repoDir, "stash", "drop", progress: prog, ct: ct);
+            if (!drop.Success)
+            {
+                SetProgress("Panic partial failure (drop).");
+                AppendLog("[error] " + drop.Error);
+                AppendLog("[hint] Your changes might still be in stash. Try: git stash list");
+                return;
+            }
+
+            SetProgress("Repo cleaned. You're safe now.");
+            AppendLog("[ok] panic complete: local uncommitted changes erased");
+            Status?.Invoke(this, "Panic complete: repo cleaned.");
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Panic failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    private sealed record GitRunResult(bool Success, string? Error);
+
+    /// <summary>
+    /// Runs "git {args...}" in repoDir, capturing stdout/stderr and streaming lines to progress.
+    /// This is self-contained so the Panic Button does not depend on extra IGitRepoService methods.
+    /// </summary>
+    private static async Task<GitRunResult> RunGitAsync(
+        string repoDir,
+        string arg0,
+        string? arg1 = null,
+        string? arg2 = null,
+        string? arg3 = null,
+        string? arg4 = null,
+        string? arg5 = null,
+        IProgress<string>? progress = null,
+        CancellationToken ct = default)
+    {
+        static string QuoteIfNeeded(string s) => s.Contains(' ') ? $"\"{s}\"" : s;
+
+        var args = new[]
+        {
+            arg0, arg1, arg2, arg3, arg4, arg5
+        }.Where(a => !string.IsNullOrWhiteSpace(a))
+         .Select(a => a!)
+         .ToArray();
+
+        var psi = new ProcessStartInfo
+        {
+            FileName = "git",
+            WorkingDirectory = repoDir,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+        };
+
+        // Avoid ArgumentList (not always available depending on target); build string.
+        psi.Arguments = string.Join(" ", args.Select(QuoteIfNeeded));
+
+        using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
+
+        var sbErr = new StringBuilder();
+
+        try
+        {
+            if (!p.Start())
+                return new GitRunResult(false, "Failed to start git process.");
+
+            // Kill on cancel
+            using var reg = ct.Register(() =>
+            {
+                try { if (!p.HasExited) p.Kill(entireProcessTree: true); }
+                catch { }
+            });
+
+            Task readOut = Task.Run(async () =>
+            {
+                while (!p.StandardOutput.EndOfStream)
+                {
+                    var line = await p.StandardOutput.ReadLineAsync();
+                    if (line != null && line.Length > 0)
+                        progress?.Report(line);
+                }
+            }, CancellationToken.None);
+
+            Task readErr = Task.Run(async () =>
+            {
+                while (!p.StandardError.EndOfStream)
+                {
+                    var line = await p.StandardError.ReadLineAsync();
+                    if (line != null && line.Length > 0)
+                    {
+                        sbErr.AppendLine(line);
+                        progress?.Report("[git] " + line);
+                    }
+                }
+            }, CancellationToken.None);
+
+            await Task.WhenAll(readOut, readErr);
+            await p.WaitForExitAsync(ct);
+
+            if (p.ExitCode != 0)
+                return new GitRunResult(false, sbErr.ToString().Trim());
+
+            return new GitRunResult(true, null);
+        }
+        catch (OperationCanceledException)
+        {
+            return new GitRunResult(false, "Canceled.");
+        }
+        catch (Exception ex)
+        {
+            return new GitRunResult(false, ex.Message);
+        }
+    }
+
+    private static async Task<bool> ConfirmAsync(Window owner, string title, string message, string yesText, string noText)
+    {
+        var dlg = new ConfirmDialog(title, message, yesText, noText)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        return await dlg.ShowDialog<bool>(owner);
+    }
+
+    private sealed class ConfirmDialog : Window
+    {
+        public ConfirmDialog(string title, string message, string yesText, string noText)
+        {
+            Title = title;
+            Width = 560;
+            Height = 320;
+            CanResize = false;
+
+            var root = new Grid
+            {
+                RowDefinitions = new RowDefinitions("Auto,* ,Auto"),
+                Margin = new Thickness(16),
+                RowSpacing = 12
+            };
+
+            var header = new TextBlock
+            {
+                Text = title,
+                FontSize = 20,
+                FontWeight = Avalonia.Media.FontWeight.SemiBold
+            };
+
+            var bodyBorder = new Border
+            {
+                CornerRadius = new CornerRadius(8),
+                BorderThickness = new Thickness(1),
+                BorderBrush = Avalonia.Media.Brushes.Gray,
+                Background = Avalonia.Media.Brushes.Transparent,
+                Padding = new Thickness(12),
+                Child = new ScrollViewer
+                {
+                    Content = new TextBlock
+                    {
+                        Text = message,
+                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        FontSize = 14
+                    }
+                }
+            };
+
+            var buttons = new StackPanel
+            {
+                Orientation = Avalonia.Layout.Orientation.Horizontal,
+                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+                Spacing = 8
+            };
+
+            var btnNo = new Button { Content = noText, MinWidth = 160 };
+            btnNo.Click += (_, _) => Close(false);
+
+            var btnYes = new Button
+            {
+                Content = yesText,
+                MinWidth = 220
+            };
+            // Make the “yes” feel dangerous but clear.
+            btnYes.Classes.Add("panic");
+            btnYes.Click += (_, _) => Close(true);
+
+            buttons.Children.Add(btnNo);
+            buttons.Children.Add(btnYes);
+
+            root.Children.Add(header);
+            Grid.SetRow(header, 0);
+
+            root.Children.Add(bodyBorder);
+            Grid.SetRow(bodyBorder, 1);
+
+            root.Children.Add(buttons);
+            Grid.SetRow(buttons, 2);
+
+            Content = root;
+        }
+    }
 
     // -------------------------
     // 1) LOCAL COMMIT ONLY
@@ -808,10 +1099,6 @@ public partial class GitTabView : UserControl
             var url = await _git.GetRemoteUrlAsync(repoDir, "fork", ct);
             if (string.IsNullOrWhiteSpace(url)) return;
 
-            // detect token/credential in URL
-            // examples:
-            //  - https://x-access-token:....@github.com/user/repo.git
-            //  - https://user:pass@github.com/...
             bool hasCreds = url.Contains("x-access-token:", StringComparison.OrdinalIgnoreCase) ||
                             Regex.IsMatch(url, @"https://[^/]+@github\.com/", RegexOptions.IgnoreCase);
 
@@ -883,6 +1170,8 @@ public partial class GitTabView : UserControl
 
         if (_btnAuth != null) _btnAuth.IsEnabled = !busy;
         if (_btnPushPr != null) _btnPushPr.IsEnabled = !busy;
+
+        if (_btnPanic != null) _btnPanic.IsEnabled = !busy;
     }
 
     private void SetProgress(string msg)
