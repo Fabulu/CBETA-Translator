@@ -9,7 +9,6 @@ permissions:
   contents: write
 
 env:
-  PROJECT_DIR: .
   PROJECT_FILE: CbetaTranslator.App.csproj
   TFM: net8.0
 
@@ -21,17 +20,16 @@ jobs:
         include:
           - os: windows-latest
             rid: win-x64
-            pack: zip
+            package: zip
           - os: ubuntu-latest
             rid: linux-x64
-            pack: tar
+            package: tar
           - os: macos-latest
             rid: osx-x64
-            pack: zip
-          # Optional Apple Silicon build (uncomment these 3 lines if you want it)
+            package: zip
           - os: macos-latest
             rid: osx-arm64
-            pack: zip
+            package: zip
 
     runs-on: ${{ matrix.os }}
 
@@ -44,7 +42,21 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Publish (self-contained, single-file)
+      # Publish on Windows using PowerShell to avoid /p: getting mangled
+      - name: Publish (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          dotnet restore "$env:PROJECT_FILE"
+          dotnet publish "$env:PROJECT_FILE" `
+            -c Release -r "${{ matrix.rid }}" --self-contained true `
+            /p:PublishSingleFile=true `
+            /p:IncludeNativeLibrariesForSelfExtract=true `
+            /p:DebugType=None /p:DebugSymbols=false
+
+      # Publish on Linux/macOS using bash
+      - name: Publish (Linux/macOS)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           dotnet restore "${{ env.PROJECT_FILE }}"
@@ -57,29 +69,38 @@ jobs:
       - name: Ensure dictionary ships
         shell: bash
         run: |
-          PUB="${{ env.PROJECT_DIR }}/bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
           mkdir -p "$PUB/Assets/Dict"
-          cp -R "${{ env.PROJECT_DIR }}/Assets/Dict/." "$PUB/Assets/Dict/"
+          cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
 
       - name: Package
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME}"
           RID="${{ matrix.rid }}"
-          PUB="${{ env.PROJECT_DIR }}/bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
           OUT="CbetaTranslator-${RID}-${TAG}"
 
           mkdir -p dist
 
-          if [ "${{ matrix.pack }}" = "zip" ]; then
+          if [ "${{ matrix.package }}" = "zip" ]; then
             (cd "$PUB" && zip -r "$GITHUB_WORKSPACE/dist/${OUT}.zip" .)
+            echo "ASSET=dist/${OUT}.zip" >> $GITHUB_ENV
           else
             tar -czf "dist/${OUT}.tar.gz" -C "$PUB" .
+            echo "ASSET=dist/${OUT}.tar.gz" >> $GITHUB_ENV
           fi
 
-      - name: Upload to GitHub Release
+      # Create the GitHub Release ONCE (Linux job), upload its asset
+      - name: Create/Upload Release (Linux creates)
+        if: runner.os == 'Linux'
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            dist/*.zip
-            dist/*.tar.gz
+          files: ${{ env.ASSET }}
+
+      # Other OS jobs only upload to the existing release
+      - name: Upload asset to existing Release (non-Linux)
+        if: runner.os != 'Linux'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ASSET }}
