@@ -73,7 +73,7 @@ jobs:
           mkdir -p "$PUB/Assets/Dict"
           cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
 
-      - name: Package (Windows)
+            - name: Package (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
@@ -87,7 +87,12 @@ jobs:
           if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
 
           Compress-Archive -Path "$pub\*" -DestinationPath $zipPath
-          "ASSET=$zipPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+          # IMPORTANT: use forward slashes so action-gh-release can find the file
+          $asset = $zipPath -replace '\\','/'
+          "ASSET=$asset" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+
 
       - name: Package (Linux/macOS)
         if: runner.os != 'Windows'
