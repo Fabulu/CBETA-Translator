@@ -315,7 +315,7 @@ No unnecessary re-rendering.
 # 🖥 Platform Support
 
 - Windows (self-contained binary)  
-- Linux (WSL-tested)
+- Linux
 - Mac OS
 - Cross-platform via Avalonia 11.3.11
 
