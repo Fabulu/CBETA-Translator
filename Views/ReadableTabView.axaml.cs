@@ -33,6 +33,8 @@ public partial class ReadableTabView : UserControl
     // Underlying AvaloniaEdit editors (fetched from inside AnnotatedTextEditor)
     private TextEditor? _aeOrig;
     private TextEditor? _aeTran;
+    private ScrollViewer? _svOrig;
+    private ScrollViewer? _svTran;
 
     // Hover dictionary (original only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
@@ -51,6 +53,8 @@ public partial class ReadableTabView : UserControl
 
     private DateTime _suppressPollingUntilUtc = DateTime.MinValue;
     private const int SuppressPollingAfterUserActionMs = 220;
+    private DispatcherTimer? _scrollSnapTimer;
+    private const int ScrollSnapDebounceMs = 120;
 
     private DispatcherTimer? _selTimer;
     private int _lastOrigSelStart = -1, _lastOrigSelEnd = -1;
@@ -179,9 +183,11 @@ public partial class ReadableTabView : UserControl
             // IMPORTANT: re-find & rewire AFTER visual tree is alive
             FindControls();
             ResolveInnerEditors();
+            ResolveInnerScrollViewers();
             RewireNotesButtonsHard();
 
             SetupHoverDictionary(); // MUST be on original
+            EnsureScrollSnapTimer();
             StartSelectionTimer();
 
             Dispatcher.UIThread.Post(() =>
@@ -197,6 +203,9 @@ public partial class ReadableTabView : UserControl
         DetachedFromVisualTree += (_, _) =>
         {
             StopSelectionTimer();
+            if (_svOrig != null) _svOrig.PropertyChanged -= OnOrigScrollViewerPropertyChanged;
+            _svOrig = null;
+            _svTran = null;
             DisposeHoverDictionary();
             DetachFindRenderers();
             Log("ReadableTabView detached.");
@@ -240,6 +249,56 @@ public partial class ReadableTabView : UserControl
 
         if (_aeOrig != null) _aeOrig.IsReadOnly = true;
         if (_aeTran != null) _aeTran.IsReadOnly = true;
+    }
+
+    private void ResolveInnerScrollViewers()
+    {
+        var newOrig = _aeOrig?.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        var newTran = _aeTran?.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+
+        if (!ReferenceEquals(_svOrig, newOrig))
+        {
+            if (_svOrig != null) _svOrig.PropertyChanged -= OnOrigScrollViewerPropertyChanged;
+            _svOrig = newOrig;
+            if (_svOrig != null) _svOrig.PropertyChanged += OnOrigScrollViewerPropertyChanged;
+        }
+
+        if (ReferenceEquals(_svOrig, null))
+            _svOrig = newOrig;
+        _svTran = newTran;
+    }
+
+    private void OnOrigScrollViewerPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property != ScrollViewer.OffsetProperty)
+            return;
+
+        object who = ((object?)_aeOrig ?? (object?)_editorOriginal) ?? this;
+        MarkUserInput(who);
+        ScheduleSnapFromOriginalScroll();
+    }
+
+    private void EnsureScrollSnapTimer()
+    {
+        if (_scrollSnapTimer != null)
+            return;
+
+        _scrollSnapTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ScrollSnapDebounceMs) };
+        _scrollSnapTimer.Tick += (_, _) =>
+        {
+            _scrollSnapTimer?.Stop();
+            SnapTranslatedScrollToOriginal();
+        };
+    }
+
+    private void ScheduleSnapFromOriginalScroll()
+    {
+        if (_pendingCommunityRefresh)
+            return;
+
+        EnsureScrollSnapTimer();
+        _scrollSnapTimer?.Stop();
+        _scrollSnapTimer?.Start();
     }
 
     private static TextEditor? FindInnerTextEditor(Control? root)
@@ -394,6 +453,12 @@ public partial class ReadableTabView : UserControl
 
         host.PointerPressed += (_, _) => MarkUserInput(host);
         host.PointerReleased += (_, _) => OnUserActionReleased(isTranslated, host);
+        host.PointerWheelChanged += (_, _) =>
+        {
+            MarkUserInput(host);
+            if (!isTranslated)
+                ScheduleSnapFromOriginalScroll();
+        };
         host.KeyDown += (_, _) => MarkUserInput(host);
         host.KeyUp += (_, _) => OnUserActionReleased(isTranslated, host);
 
@@ -415,7 +480,29 @@ public partial class ReadableTabView : UserControl
         MarkUserInput(who);
 
         _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
-        RequestMirrorFromUserAction(sourceIsTranslated);
+        if (!sourceIsTranslated)
+        {
+            // ZH is the leader: on release, snap ENG scroll position to ZH by 0..1 ratio.
+            SnapTranslatedScrollToOriginal();
+            RequestMirrorFromUserAction(sourceIsTranslated: false);
+        }
+    }
+
+    private void SnapTranslatedScrollToOriginal()
+    {
+        var src = _svOrig;
+        var dst = _svTran;
+        if (src == null || dst == null) return;
+
+        double srcMax = Math.Max(0, src.Extent.Height - src.Viewport.Height);
+        double dstMax = Math.Max(0, dst.Extent.Height - dst.Viewport.Height);
+        if (srcMax <= 0 || dstMax <= 0) return;
+
+        double ratio = src.Offset.Y / srcMax;
+        if (double.IsNaN(ratio) || double.IsInfinity(ratio)) return;
+        ratio = Math.Clamp(ratio, 0d, 1d);
+
+        dst.Offset = new Vector(dst.Offset.X, ratio * dstMax);
     }
 
     private void SetupHoverDictionary()
@@ -1056,6 +1143,7 @@ public partial class ReadableTabView : UserControl
         // Visual tree may not be stable yet; re-find + resolve here too
         FindControls();
         ResolveInnerEditors();
+        ResolveInnerScrollViewers();
         RewireNotesButtonsHard();
 
         if (_aeOrig != null) _aeOrig.Text = _renderOrig.Text ?? "";
@@ -1145,7 +1233,8 @@ public partial class ReadableTabView : UserControl
         _lastTranCaret = tC;
 
         bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
-        RequestMirrorFromUserAction(sourceIsTranslated);
+        if (!sourceIsTranslated)
+            RequestMirrorFromUserAction(sourceIsTranslated: false);
     }
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)

@@ -100,9 +100,9 @@ public partial class TranslationTabView : UserControl
     private Button? _btnCopyPrompt;
     private Button? _btnPasteReplace;
     private Button? _btnSaveTranslated;
+    private Button? _btnRevertMarkdown;
     private Button? _btnExportPdf;
     private Button? _btnSelectNext50Tags;
-    private Button? _btnCheckXml;
 
     // NEW: wrap checkbox
     private CheckBox? _chkWrap;
@@ -127,6 +127,7 @@ public partial class TranslationTabView : UserControl
     private int _lastCopyEnd = -1;
 
     public event EventHandler? SaveRequested;
+    public event EventHandler? RevertRequested;
     public event EventHandler? ExportPdfRequested;
     public event EventHandler<string>? Status;
 
@@ -234,9 +235,9 @@ public partial class TranslationTabView : UserControl
         _btnCopyPrompt = this.FindControl<Button>("BtnCopyPrompt");
         _btnPasteReplace = this.FindControl<Button>("BtnPasteReplace");
         _btnSaveTranslated = this.FindControl<Button>("BtnSaveTranslated");
+        _btnRevertMarkdown = this.FindControl<Button>("BtnRevertMarkdown");
         _btnExportPdf = this.FindControl<Button>("BtnExportPdf");
         _btnSelectNext50Tags = this.FindControl<Button>("BtnSelectNext50Tags");
-        _btnCheckXml = this.FindControl<Button>("BtnCheckXml");
 
         // NEW
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
@@ -322,10 +323,10 @@ public partial class TranslationTabView : UserControl
         if (_btnCopyPrompt != null) _btnCopyPrompt.Click += async (_, _) => await CopySelectionWithPromptAsync();
         if (_btnPasteReplace != null) _btnPasteReplace.Click += async (_, _) => await PasteReplaceSelectionAsync();
 
-        if (_btnSaveTranslated != null) _btnSaveTranslated.Click += async (_, _) => await SaveIfValidAsync();
+        if (_btnSaveTranslated != null) _btnSaveTranslated.Click += (_, _) => SaveRequested?.Invoke(this, EventArgs.Empty);
+        if (_btnRevertMarkdown != null) _btnRevertMarkdown.Click += (_, _) => RevertRequested?.Invoke(this, EventArgs.Empty);
         if (_btnExportPdf != null) _btnExportPdf.Click += (_, _) => ExportPdfRequested?.Invoke(this, EventArgs.Empty);
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
-        if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
 
         // NEW: wrap checkbox toggle
         if (_chkWrap != null)
@@ -1541,167 +1542,6 @@ Markdown fragment to translate:
             j++;
 
         return j;
-    }
-
-    // --------------------------
-    // Hacky XML check (no parser)
-    // --------------------------
-    // (unchanged)
-    // --------------------------
-
-    private static readonly Regex CommunityNoteBlockRegex = new Regex(
-        @"<note\b(?<attrs>[^>]*)\btype\s*=\s*""community""(?<attrs2>[^>]*)>(?<inner>[\s\S]*?)</note>",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static string StripCommunityNotes(string xml)
-    {
-        if (string.IsNullOrEmpty(xml)) return xml ?? string.Empty;
-        return CommunityNoteBlockRegex.Replace(xml, "");
-    }
-
-    private static readonly Regex LbTagRegex = new Regex(
-        @"<lb\b(?<attrs>[^>]*)\/?>",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static readonly Regex AttrRegex = new Regex(
-        @"\b(?<name>n|ed)\s*=\s*""(?<val>[^""]*)""",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static (int totalLb, Dictionary<string, int> sigCounts) CollectLbSignatures(string xml)
-    {
-        int total = 0;
-        var dict = new Dictionary<string, int>(StringComparer.Ordinal);
-
-        foreach (Match m in LbTagRegex.Matches(xml))
-        {
-            total++;
-
-            string attrs = m.Groups["attrs"].Value;
-
-            string? nVal = null;
-            string? edVal = null;
-
-            foreach (Match am in AttrRegex.Matches(attrs))
-            {
-                var name = am.Groups["name"].Value;
-                var val = am.Groups["val"].Value;
-
-                if (name.Equals("n", StringComparison.OrdinalIgnoreCase)) nVal = val;
-                else if (name.Equals("ed", StringComparison.OrdinalIgnoreCase)) edVal = val;
-            }
-
-            string sig = $"n={nVal ?? "<missing>"}|ed={edVal ?? "<missing>"}";
-
-            if (dict.TryGetValue(sig, out int c)) dict[sig] = c + 1;
-            else dict[sig] = 1;
-        }
-
-        return (total, dict);
-    }
-
-    private static (bool ok, string message, int origTags, int tranTags, int origLb, int tranLb) VerifyXmlHacky(string orig, string tran)
-    {
-        if (string.IsNullOrEmpty(orig))
-            return (false, "Original XML is empty. Nothing to compare.", 0, 0, 0, 0);
-
-        tran ??= "";
-
-        string tranStripped = StripCommunityNotes(tran);
-
-        int origTagCount = XmlTagRegex.Matches(orig).Count;
-        int tranTagCount = XmlTagRegex.Matches(tran).Count;
-        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count;
-
-        var (origLbTotal, origSigs) = CollectLbSignatures(orig);
-        var (tranLbTotal, tranSigs) = CollectLbSignatures(tranStripped);
-
-        var missing = origSigs.Keys.Where(k => !tranSigs.ContainsKey(k)).ToList();
-        var extra = tranSigs.Keys.Where(k => !origSigs.ContainsKey(k)).ToList();
-
-        var countDiffs = new List<string>();
-        foreach (var k in origSigs.Keys.Intersect(tranSigs.Keys))
-        {
-            int a = origSigs[k];
-            int b = tranSigs[k];
-            if (a != b)
-                countDiffs.Add($"{k}  original={a}  translated={b}");
-        }
-
-        var problems = new List<string>();
-
-        if (origTagCount != tranTagCountStripped)
-            problems.Add(
-                $"TAG COUNT MISMATCH (ignoring community notes):\n" +
-                $"  original={origTagCount:n0}\n" +
-                $"  translated_stripped={tranTagCountStripped:n0}\n" +
-                $"  translated_raw={tranTagCount:n0}");
-
-        if (origLbTotal != tranLbTotal)
-            problems.Add($"LB TOTAL MISMATCH:\n  original={origLbTotal:n0}\n  translated={tranLbTotal:n0}");
-
-        if (missing.Count > 0)
-            problems.Add($"MISSING <lb> SIGNATURES in translated: {missing.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", missing.Take(15))}");
-
-        if (extra.Count > 0)
-            problems.Add($"EXTRA <lb> SIGNATURES in translated: {extra.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", extra.Take(15))}");
-
-        if (countDiffs.Count > 0)
-            problems.Add($"<lb> SIGNATURE COUNT DIFFERENCES: {countDiffs.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", countDiffs.Take(15))}");
-
-        if (problems.Count == 0)
-        {
-            int removed = tranTagCount - tranTagCountStripped;
-
-            string okMsg =
-                $"OK ✅\n\n" +
-                $"Tag count matches (ignoring community notes): {tranTagCountStripped:n0}\n" +
-                $"<lb> count matches: {tranLbTotal:n0}\n" +
-                $"All <lb n=... ed=...> signatures match.\n" +
-                (removed > 0 ? $"\nCommunity-note tags ignored during check: {removed:n0}\n" : "\n") +
-                $"(Hacky structural check only; not a full XML validator.)";
-
-            return (true, okMsg, origTagCount, tranTagCount, origLbTotal, tranLbTotal);
-        }
-
-        return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
-    }
-
-    private async Task<bool> EnsureXmlOkOrWarnAsync(bool showOkPopup)
-    {
-        if (_orig == null || _tran == null)
-        {
-            Status?.Invoke(this, "Editors not available.");
-            if (showOkPopup)
-                await ShowInfoPopupAsync("Check XML", "Editors not available.");
-            return false;
-        }
-
-        var orig = _orig.Text ?? "";
-        var tran = _tran.Text ?? "";
-
-        var (ok, msg, _, tranTags, _, tranLb) = VerifyXmlHacky(orig, tran);
-
-        if (ok)
-        {
-            Status?.Invoke(this, $"XML check OK: tags={tranTags:n0}, lb={tranLb:n0} (n/ed preserved).");
-            if (showOkPopup)
-                await ShowInfoPopupAsync("Check XML", msg);
-            return true;
-        }
-
-        Status?.Invoke(this, "XML check failed (see popup).");
-        await ShowInfoPopupAsync("Check XML (hacky)", msg);
-        return false;
-    }
-
-    private Task CheckXmlWithPopupAsync() => EnsureXmlOkOrWarnAsync(showOkPopup: true);
-
-    private async Task SaveIfValidAsync()
-    {
-        if (!await EnsureXmlOkOrWarnAsync(showOkPopup: false))
-            return;
-
-        SaveRequested?.Invoke(this, EventArgs.Empty);
     }
 
     // --------------------------

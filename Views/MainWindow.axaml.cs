@@ -12,6 +12,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Layout;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CbetaTranslator.App.Infrastructure;
@@ -72,6 +74,8 @@ public partial class MainWindow : Window
     private string _rawOrigXml = "";
     private string _rawTranMarkdown = "";
     private string _rawTranXml = "";
+    private string _rawTranXmlReadable = "";
+    private readonly Dictionary<string, int> _markdownSaveCounts = new(StringComparer.OrdinalIgnoreCase);
 
     private CancellationTokenSource? _renderCts;
     private bool _suppressNavSelectionChanged;
@@ -167,6 +171,7 @@ public partial class MainWindow : Window
         if (_translationView != null)
         {
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
+            _translationView.RevertRequested += async (_, _) => await RevertMarkdownFromOriginalAsync();
             _translationView.ExportPdfRequested += async (_, _) => await ExportCurrentPairToPdfAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
@@ -554,6 +559,7 @@ public partial class MainWindow : Window
         _rawOrigXml = "";
         _rawTranMarkdown = "";
         _rawTranXml = "";
+        _rawTranXmlReadable = "";
         _currentRelPath = null;
 
         if (_txtCurrentFile != null) _txtCurrentFile.Text = "";
@@ -603,7 +609,7 @@ public partial class MainWindow : Window
         if (!_renderCache.TryGet(stampTran, out rt))
         {
             ct.ThrowIfCancellationRequested();
-            rt = CbetaTeiRenderer.Render(_rawTranXml);
+            rt = CbetaTeiRenderer.Render(string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXml : _rawTranXmlReadable);
             _renderCache.Put(stampTran, rt);
         }
 
@@ -620,6 +626,8 @@ public partial class MainWindow : Window
         var ct = _renderCts.Token;
 
         _currentRelPath = relPath;
+        if (!_markdownSaveCounts.ContainsKey(relPath))
+            _markdownSaveCounts[relPath] = 0;
 
         if (_txtCurrentFile != null)
             _txtCurrentFile.Text = relPath;
@@ -646,14 +654,13 @@ public partial class MainWindow : Window
                 await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
             }
             _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+            _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
         }
         catch (MarkdownTranslationException ex)
         {
-            SetStatus("Markdown conversion error: " + ex.Message);
-            _rawTranMarkdown = "";
+            SetStatus("Markdown materialization warning: " + ex.Message);
             _rawTranXml = _rawOrigXml;
-            _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
-            return;
+            _rawTranXmlReadable = _rawOrigXml;
         }
 
         // Ensure TranslationTabView knows which exact files it's operating on.
@@ -723,8 +730,23 @@ public partial class MainWindow : Window
             var md = _translationView.GetTranslatedMarkdown();
             await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, md);
             _rawTranMarkdown = md ?? "";
-            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
-            SetStatus("Saved Markdown: " + Path.ChangeExtension(_currentRelPath, ".md"));
+            if (_markdownSaveCounts.TryGetValue(_currentRelPath, out var count))
+                _markdownSaveCounts[_currentRelPath] = count + 1;
+            else
+                _markdownSaveCounts[_currentRelPath] = 1;
+            try
+            {
+                _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+                _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                SetStatus("Saved Markdown: " + Path.ChangeExtension(_currentRelPath, ".md"));
+            }
+            catch (MarkdownTranslationException ex)
+            {
+                // Save is still successful; only TEI materialization failed for readable/PDF/Git.
+                _rawTranXml = _rawOrigXml;
+                _rawTranXmlReadable = _rawOrigXml;
+                SetStatus("Saved Markdown (materialization warning): " + ex.Message);
+            }
 
             try
             {
@@ -767,6 +789,116 @@ public partial class MainWindow : Window
         }
     }
 
+    private async Task RevertMarkdownFromOriginalAsync()
+    {
+        try
+        {
+            if (_markdownDir == null || _currentRelPath == null)
+            {
+                SetStatus("Nothing to revert (no file selected).");
+                return;
+            }
+
+            int saveCount = _markdownSaveCounts.TryGetValue(_currentRelPath, out var c) ? c : 0;
+            if (saveCount > 1)
+            {
+                var confirm = await ConfirmAsync(
+                    "Revert Markdown",
+                    $"This file has been saved {saveCount} times in this session.\n\nRevert Markdown to the original generated state and discard your edits?",
+                    "Revert",
+                    "Cancel");
+                if (!confirm)
+                    return;
+            }
+
+            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(_currentRelPath));
+            await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, _rawTranMarkdown);
+
+            try
+            {
+                _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+                _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+            }
+            catch (MarkdownTranslationException)
+            {
+                _rawTranXml = _rawOrigXml;
+                _rawTranXmlReadable = _rawOrigXml;
+            }
+
+            _markdownSaveCounts[_currentRelPath] = 0;
+
+            try
+            {
+                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(_currentRelPath, ".md"));
+                _renderCache.Invalidate(mdAbs);
+            }
+            catch { }
+
+            _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
+            await RefreshReadableFromRawAsync();
+            SetStatus("Reverted Markdown to original generated state.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Revert failed: " + ex.Message);
+        }
+    }
+
+    private async Task<bool> ConfirmAsync(string title, string message, string yesText, string noText)
+    {
+        var yes = new Button
+        {
+            Content = yesText,
+            MinWidth = 90,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        var no = new Button
+        {
+            Content = noText,
+            MinWidth = 90
+        };
+
+        var text = new TextBlock
+        {
+            Text = message,
+            TextWrapping = TextWrapping.Wrap
+        };
+
+        var row = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 8,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        row.Children.Add(no);
+        row.Children.Add(yes);
+
+        var panel = new StackPanel
+        {
+            Margin = new Thickness(14),
+            Spacing = 12
+        };
+        panel.Children.Add(text);
+        panel.Children.Add(row);
+
+        var win = new Window
+        {
+            Title = title,
+            Width = 560,
+            Height = 220,
+            Content = panel,
+            Background = new SolidColorBrush(Color.Parse("#FFFEF5D0")),
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        bool result = false;
+        yes.Click += (_, _) => { result = true; win.Close(); };
+        no.Click += (_, _) => { result = false; win.Close(); };
+
+        await win.ShowDialog(this);
+        return result;
+    }
+
     private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentMarkdown)
     {
         if (_originalDir == null || _translatedDir == null || _markdownDir == null)
@@ -796,14 +928,26 @@ public partial class MainWindow : Window
             await _fileService.WriteMarkdownAsync(_markdownDir, relPath, markdown);
         }
 
-        var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
-        await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+        string mergedXml;
+        string readableXml;
+        try
+        {
+            mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
+            readableXml = _markdownService.CreateReadableInlineEnglishXml(mergedXml);
+            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+        }
+        catch (MarkdownTranslationException ex)
+        {
+            SetStatus("Markdown materialization warning: " + ex.Message);
+            return false;
+        }
 
         if (string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
         {
             _rawOrigXml = origXml;
             _rawTranMarkdown = markdown;
             _rawTranXml = mergedXml;
+            _rawTranXmlReadable = readableXml;
         }
 
         try
@@ -836,7 +980,7 @@ public partial class MainWindow : Window
             {
                 ct.ThrowIfCancellationRequested();
                 var ro = CbetaTeiRenderer.Render(_rawOrigXml ?? "");
-                var rt = CbetaTeiRenderer.Render(_rawTranXml ?? "");
+                var rt = CbetaTeiRenderer.Render(string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? (_rawTranXml ?? "") : _rawTranXmlReadable);
                 return (ro, rt);
             }, ct);
 
@@ -999,17 +1143,28 @@ public partial class MainWindow : Window
 
             _config ??= new AppConfig { IsDarkTheme = _isDarkTheme };
 
-            var materialized = await EnsureTranslatedXmlForRelPathAsync(_currentRelPath, saveCurrentMarkdown: true);
-            if (!materialized)
+            // Persist current editor markdown before export.
+            if (_markdownDir != null && _translationView != null)
             {
-                SetStatus("Could not prepare translated XML for PDF.");
-                return;
+                var mdNow = _translationView.GetTranslatedMarkdown();
+                await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, mdNow);
+                _rawTranMarkdown = mdNow ?? "";
             }
 
-            var chinese = ExtractSectionsFromXml(_rawOrigXml);
-            var english = _config.PdfIncludeEnglish
-                ? ExtractSectionsFromXml(_rawTranXml)
-                : new List<string>();
+            List<string> chinese;
+            List<string> english;
+            if (_markdownService.TryExtractPdfSectionsFromMarkdown(_rawTranMarkdown, out var zhMd, out var enMd, out var mdErr))
+            {
+                chinese = zhMd.Select(NormalizePdfText).ToList();
+                english = enMd.Select(NormalizePdfText).ToList();
+            }
+            else
+            {
+                // Fallback for malformed markdown.
+                chinese = ExtractSectionsFromXml(_rawOrigXml);
+                english = ExtractSectionsFromXml(_rawTranXml);
+                SetStatus("PDF: markdown parse warning, using XML fallback. " + (mdErr ?? "Unknown"));
+            }
 
             if (!_config.PdfIncludeEnglish)
             {
@@ -1057,9 +1212,36 @@ public partial class MainWindow : Window
             SetStatus("Exporting PDF...");
             await SaveConfigAsync();
 
-            if (_pdfExportService.TryGeneratePdf(chinese, english, outputPath, _config, out var error))
+            var effectiveConfig = new AppConfig
             {
-                SetStatus("PDF exported: " + outputPath);
+                TextRootPath = _config.TextRootPath,
+                LastSelectedRelPath = _config.LastSelectedRelPath,
+                IsDarkTheme = _config.IsDarkTheme,
+                PdfLayoutMode = _config.PdfLayoutMode,
+                PdfIncludeEnglish = _config.PdfIncludeEnglish,
+                PdfForceSideBySideWhenEnglish = _config.PdfForceSideBySideWhenEnglish,
+                PdfLineSpacing = _config.PdfLineSpacing,
+                PdfTrackingChinese = _config.PdfTrackingChinese,
+                PdfTrackingEnglish = _config.PdfTrackingEnglish,
+                PdfParagraphSpacing = _config.PdfParagraphSpacing,
+                PdfAutoScaleFonts = _config.PdfAutoScaleFonts,
+                PdfTargetFillRatio = _config.PdfTargetFillRatio,
+                PdfMinFontSize = _config.PdfMinFontSize,
+                PdfMaxFontSize = _config.PdfMaxFontSize,
+                PdfLockBilingualFontSize = _config.PdfLockBilingualFontSize,
+                Version = _config.Version
+            };
+
+            if (effectiveConfig.PdfIncludeEnglish &&
+                effectiveConfig.PdfForceSideBySideWhenEnglish &&
+                english.Any(s => !string.IsNullOrWhiteSpace(s)))
+            {
+                effectiveConfig.PdfLayoutMode = PdfLayoutMode.SideBySide;
+            }
+
+            if (_pdfExportService.TryGeneratePdf(chinese, english, outputPath, effectiveConfig, out var error))
+            {
+                SetStatus("PDF exported: " + outputPath + " | DLL=" + PdfExportInteropService.NativeDllDiagnostics);
             }
             else
             {

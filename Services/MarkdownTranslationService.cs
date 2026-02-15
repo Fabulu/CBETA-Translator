@@ -187,8 +187,68 @@ public sealed class MarkdownTranslationService
             }
         }
 
-        var body = doc.ToString();
-        return doc.Declaration == null ? body : doc.Declaration + Environment.NewLine + body;
+        return SerializeWithDeclaration(doc);
+    }
+
+    public string CreateReadableInlineEnglishXml(string mergedXml)
+    {
+        if (string.IsNullOrWhiteSpace(mergedXml))
+            return "";
+
+        var doc = XDocument.Parse(mergedXml, LoadOptions.PreserveWhitespace);
+
+        var pathNotes = doc.Descendants(Tei + "note")
+            .Where(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace((string?)n.Attribute("target-path")))
+            .ToList();
+
+        foreach (var note in pathNotes)
+        {
+            var targetPath = (string?)note.Attribute("target-path");
+            var enText = (note.Value ?? "").Trim();
+
+            if (!string.IsNullOrWhiteSpace(targetPath) && !string.IsNullOrWhiteSpace(enText) &&
+                TryFindNodeByPath(doc, targetPath, out var target) && target != null)
+            {
+                ReplaceElementTextPreserveStructure(target, enText);
+            }
+
+            note.Remove();
+        }
+
+        foreach (var p in doc.Descendants(Tei + "p"))
+        {
+            var note = p.Elements(Tei + "note").FirstOrDefault(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                string.IsNullOrWhiteSpace((string?)n.Attribute("target-path")));
+
+            if (note == null)
+                continue;
+
+            var enText = (note.Value ?? "").Trim();
+            if (!string.IsNullOrWhiteSpace(enText))
+                ReplaceElementTextPreserveStructure(p, enText);
+
+            note.Remove();
+        }
+
+        return SerializeWithDeclaration(doc);
+    }
+
+    private static void ReplaceElementTextPreserveStructure(XElement element, string replacementText)
+    {
+        var textNodes = element
+            .DescendantNodesAndSelf()
+            .OfType<XText>()
+            .ToList();
+
+        foreach (var t in textNodes)
+            t.Remove();
+
+        element.AddFirst(new XText(replacementText));
     }
 
     private static List<MarkdownTranslationRow> ParseMarkdownRows(string markdown)
@@ -365,6 +425,11 @@ public sealed class MarkdownTranslationService
                 {
                     sb.AppendLine();
                     sb.AppendLine($"## {jhead}");
+
+                    // Keep the visible heading and also emit a translatable row.
+                    var jheadEl = e.Element(Cb + "jhead");
+                    if (jheadEl != null)
+                        EmitNodeTextBlock(jheadEl, sb);
                 }
             }
             else if (string.Equals(fun, "close", StringComparison.OrdinalIgnoreCase))
@@ -462,6 +527,11 @@ public sealed class MarkdownTranslationService
 
     private static int ParseInt(string? s, int fallback) => int.TryParse(s, out var n) ? n : fallback;
     private static string NormalizeSpace(string s) => MultiWs.Replace(s ?? "", " ").Trim();
+    private static string SerializeWithDeclaration(XDocument doc)
+    {
+        var body = doc.ToString();
+        return doc.Declaration == null ? body : doc.Declaration + Environment.NewLine + body;
+    }
     private static string PrefixFor(XNamespace ns) => ns == Tei ? "tei" : ns == Cb ? "cb" : "ns";
     private static XNamespace NamespaceForPrefix(string p) => p == "tei" ? Tei : p == "cb" ? Cb : XNamespace.None;
 
@@ -557,6 +627,38 @@ public sealed class MarkdownTranslationService
         }
 
         return false;
+    }
+
+    public bool TryExtractPdfSectionsFromMarkdown(
+        string markdown,
+        out List<string> chineseSections,
+        out List<string> englishSections,
+        out string? error)
+    {
+        chineseSections = new List<string>();
+        englishSections = new List<string>();
+        error = null;
+
+        try
+        {
+            var rows = ParseMarkdownRows(markdown ?? "");
+            foreach (var row in rows)
+            {
+                chineseSections.Add(row.Zh ?? string.Empty);
+                englishSections.Add(row.En ?? string.Empty);
+            }
+            return chineseSections.Count > 0;
+        }
+        catch (MarkdownTranslationException ex)
+        {
+            error = ex.Message;
+            return false;
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            return false;
+        }
     }
 
     private static int ParseFrontmatterNoThrow(string[] lines)

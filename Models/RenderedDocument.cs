@@ -188,4 +188,60 @@ public sealed class RenderedDocument
 
         return BaseToXmlIndex[baseIdx];
     }
+
+    public bool TryFindRenderedOffsetByXmlIndex(int xmlIndex, out int renderedOffset)
+    {
+        renderedOffset = -1;
+        if (xmlIndex < 0 || BaseToXmlIndex == null || BaseToXmlIndex.Length == 0)
+            return false;
+
+        int lo = 0;
+        int hi = BaseToXmlIndex.Length - 1;
+        int best = -1;
+
+        // Find rightmost base index whose xml position is <= requested xmlIndex.
+        while (lo <= hi)
+        {
+            int mid = lo + ((hi - lo) / 2);
+            int val = BaseToXmlIndex[mid];
+            if (val <= xmlIndex)
+            {
+                best = mid;
+                lo = mid + 1;
+            }
+            else
+            {
+                hi = mid - 1;
+            }
+        }
+
+        if (best < 0)
+            best = 0;
+
+        renderedOffset = BaseIndexToDisplayIndex(best);
+        return renderedOffset >= 0;
+    }
+
+    private int BaseIndexToDisplayIndex(int baseIndex)
+    {
+        if (baseIndex < 0)
+            return -1;
+
+        int insertedBefore = 0;
+        if (AnnotationMarkers != null && AnnotationMarkers.Count > 0)
+        {
+            for (int i = 0; i < AnnotationMarkers.Count; i++)
+            {
+                var m = AnnotationMarkers[i];
+                int len = Math.Max(0, m.EndExclusive - m.Start);
+                int baseAtMarker = m.Start - insertedBefore;
+                if (baseAtMarker > baseIndex)
+                    break;
+
+                insertedBefore += len;
+            }
+        }
+
+        return baseIndex + insertedBefore;
+    }
 }

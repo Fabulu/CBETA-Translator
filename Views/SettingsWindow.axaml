@@ -71,8 +71,11 @@
                         </StackPanel>
 
                         <CheckBox Name="ChkPdfIncludeEnglish" Content="Include English text in PDF"/>
+                        <CheckBox Name="ChkPdfForceSideBySideWhenEnglish" Content="Force side-by-side when English text exists"/>
+                        <CheckBox Name="ChkPdfAutoScaleFonts" Content="Auto-scale font size to better fill page"/>
+                        <CheckBox Name="ChkPdfLockBilingualFontSize" Content="Use same font size for Chinese and English"/>
 
-                        <Grid ColumnDefinitions="Auto,100" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="12">
+                        <Grid ColumnDefinitions="Auto,100" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="12">
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="Line spacing" VerticalAlignment="Center"/>
                             <TextBox Grid.Row="0" Grid.Column="1" Name="TxtPdfLineSpacing"/>
 
@@ -84,6 +87,15 @@
 
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="Paragraph spacing" VerticalAlignment="Center"/>
                             <TextBox Grid.Row="3" Grid.Column="1" Name="TxtPdfParagraphSpacing"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Target fill ratio (0-1)" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Name="TxtPdfTargetFillRatio"/>
+
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Min font size" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="5" Grid.Column="1" Name="TxtPdfMinFontSize"/>
+
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="Max font size" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="6" Grid.Column="1" Name="TxtPdfMaxFontSize"/>
                         </Grid>
                     </StackPanel>
                 </Border>

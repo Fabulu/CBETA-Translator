@@ -48,6 +48,7 @@
 					<Button Name="BtnCopyPrompt" Focusable="False" Content="Copy selection + prompt"/>
 					<Button Name="BtnPasteReplace" Focusable="False" Content="Paste replace selection"/>
 					<Button Name="BtnSaveTranslated" Focusable="False" Content="Save Markdown"/>
+					<Button Name="BtnRevertMarkdown" Focusable="False" Content="Revert Markdown"/>
 					<Button Name="BtnExportPdf" Focusable="False" Content="Export PDF"/>
 				</StackPanel>
 
@@ -136,7 +137,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="True"
 							   FontFamily="Consolas"
-							   Foreground="{DynamicResource TextFg}"
+							   Foreground="#FF111111"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
