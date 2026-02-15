@@ -14,91 +14,111 @@
 	<Window.Resources>
 
 		<!-- NIGHT -->
-		<SolidColorBrush x:Key="Night_AppBg" Color="#FF111111"/>
-		<SolidColorBrush x:Key="Night_BarBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="Night_NavBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Night_AppBg" Color="#FF202020"/>
+		<SolidColorBrush x:Key="Night_BarBg" Color="#FF333333"/>
+		<SolidColorBrush x:Key="Night_NavBg" Color="#FF2D2D2D"/>
 
-		<SolidColorBrush x:Key="Night_TextFg" Color="#FFEAEAEA"/>
-		<SolidColorBrush x:Key="Night_TextMutedFg" Color="#FFBDBDBD"/>
+		<SolidColorBrush x:Key="Night_TextFg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Night_TextMutedFg" Color="#FFAAAAAA"/>
 
-		<SolidColorBrush x:Key="Night_ControlBg" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF2B2B2B"/>
+		<SolidColorBrush x:Key="Night_ControlBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF404040"/>
+		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF404040"/>
 
-		<SolidColorBrush x:Key="Night_BorderBrush" Color="#FF444444"/>
+		<SolidColorBrush x:Key="Night_BorderBrush" Color="#FF555555"/>
 
-		<SolidColorBrush x:Key="Night_BtnBg" Color="#FF2A2A2A"/>
-		<SolidColorBrush x:Key="Night_BtnBgHover" Color="#FF333333"/>
-		<SolidColorBrush x:Key="Night_BtnBgPressed" Color="#FF3A3A3A"/>
-		<SolidColorBrush x:Key="Night_BtnFg" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="Night_BtnBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="Night_BtnBgHover" Color="#FF4D4D4D"/>
+		<SolidColorBrush x:Key="Night_BtnBgPressed" Color="#FF666666"/>
+		<SolidColorBrush x:Key="Night_BtnFg" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="Night_TabBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="Night_TabBgSelected" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="Night_TabFgSelected" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="Night_TabBg" Color="#FF333333"/>
+		<SolidColorBrush x:Key="Night_TabBgSelected" Color="#FF404040"/>
+		<SolidColorBrush x:Key="Night_TabFgSelected" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="Night_TooltipBg" Color="#FF0F0F0F"/>
-		<SolidColorBrush x:Key="Night_TooltipBorder" Color="#FF3A3A3A"/>
-		<SolidColorBrush x:Key="Night_TooltipFg" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="Night_TooltipBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Night_TooltipBorder" Color="#FF555555"/>
+		<SolidColorBrush x:Key="Night_TooltipFg" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="Night_SelectionBg" Color="#FF2E5A9E"/>
+		<SolidColorBrush x:Key="Night_SelectionBg" Color="#FF0078D4"/>
 		<SolidColorBrush x:Key="Night_SelectionFg" Color="#FFFFFFFF"/>
 
-		<!-- LIGHT -->
-		<SolidColorBrush x:Key="Light_AppBg" Color="#FFF4F4F4"/>
-		<SolidColorBrush x:Key="Light_BarBg" Color="#FFEDEDED"/>
-		<SolidColorBrush x:Key="Light_NavBg" Color="#FFE9E9E9"/>
+		<!-- Dark mode XML viewer colors -->
+		<SolidColorBrush x:Key="Night_XmlViewerBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="Night_XmlViewerBorder" Color="#FF555555"/>
 
-		<SolidColorBrush x:Key="Light_TextFg" Color="#FF1A1A1A"/>
-		<SolidColorBrush x:Key="Light_TextMutedFg" Color="#FF5A5A5A"/>
+		<!-- LIGHT -->
+		<SolidColorBrush x:Key="Light_AppBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_BarBg" Color="#FFF3F3F3"/>
+		<SolidColorBrush x:Key="Light_NavBg" Color="#FFF9F9F9"/>
+
+		<SolidColorBrush x:Key="Light_TextFg" Color="#FF000000"/>
+		<SolidColorBrush x:Key="Light_TextMutedFg" Color="#FF666666"/>
 
 		<SolidColorBrush x:Key="Light_ControlBg" Color="#FFFFFFFF"/>
 		<SolidColorBrush x:Key="Light_ControlBgHover" Color="#FFFFFFFF"/>
 		<SolidColorBrush x:Key="Light_ControlBgFocus" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="Light_BorderBrush" Color="#FFB8B8B8"/>
+		<SolidColorBrush x:Key="Light_BorderBrush" Color="#FFD1D1D1"/>
 
-		<SolidColorBrush x:Key="Light_BtnBg" Color="#FFE7E7E7"/>
-		<SolidColorBrush x:Key="Light_BtnBgHover" Color="#FFDCDCDC"/>
-		<SolidColorBrush x:Key="Light_BtnBgPressed" Color="#FFD2D2D2"/>
-		<SolidColorBrush x:Key="Light_BtnFg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Light_BtnBg" Color="#FFF0F0F0"/>
+		<SolidColorBrush x:Key="Light_BtnBgHover" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="Light_BtnBgPressed" Color="#FFDDDDDD"/>
+		<SolidColorBrush x:Key="Light_BtnFg" Color="#FF000000"/>
 
-		<SolidColorBrush x:Key="Light_TabBg" Color="#FFEDEDED"/>
+		<SolidColorBrush x:Key="Light_TabBg" Color="#FFF3F3F3"/>
 		<SolidColorBrush x:Key="Light_TabBgSelected" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_TabFgSelected" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Light_TabFgSelected" Color="#FF000000"/>
 
-		<SolidColorBrush x:Key="Light_TooltipBg" Color="#FF111111"/>
-		<SolidColorBrush x:Key="Light_TooltipBorder" Color="#FF333333"/>
-		<SolidColorBrush x:Key="Light_TooltipFg" Color="#FFF2F2F2"/>
+		<SolidColorBrush x:Key="Light_TooltipBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_TooltipBorder" Color="#FFD1D1D1"/>
+		<SolidColorBrush x:Key="Light_TooltipFg" Color="#FF000000"/>
 
-		<SolidColorBrush x:Key="Light_SelectionBg" Color="#FFB7D7FF"/>
-		<SolidColorBrush x:Key="Light_SelectionFg" Color="#FF000000"/>
+		<SolidColorBrush x:Key="Light_SelectionBg" Color="#FF0078D4"/>
+		<SolidColorBrush x:Key="Light_SelectionFg" Color="#FFFFFFFF"/>
+
+		<!-- Light mode XML viewer colors (much lighter red for better text visibility) -->
+		<SolidColorBrush x:Key="Light_XmlViewerBg" Color="#FFF5F5F5"/>
+		<SolidColorBrush x:Key="Light_XmlViewerBorder" Color="#FFE8E8E8"/>
 
 		<!-- TOKENS (default = Night) -->
-		<SolidColorBrush x:Key="AppBg" Color="#FF111111"/>
-		<SolidColorBrush x:Key="BarBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="NavBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="AppBg" Color="#FF202020"/>
+		<SolidColorBrush x:Key="BarBg" Color="#FF333333"/>
+		<SolidColorBrush x:Key="NavBg" Color="#FF2D2D2D"/>
 
-		<SolidColorBrush x:Key="TextFg" Color="#FFEAEAEA"/>
-		<SolidColorBrush x:Key="TextMutedFg" Color="#FFBDBDBD"/>
+		<SolidColorBrush x:Key="TextFg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="TextMutedFg" Color="#FFAAAAAA"/>
 
-		<SolidColorBrush x:Key="ControlBg" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="BorderBrush" Color="#FF444444"/>
+		<SolidColorBrush x:Key="ControlBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="BorderBrush" Color="#FF555555"/>
 
-		<SolidColorBrush x:Key="BtnBg" Color="#FF2A2A2A"/>
-		<SolidColorBrush x:Key="BtnBgHover" Color="#FF333333"/>
-		<SolidColorBrush x:Key="BtnBgPressed" Color="#FF3A3A3A"/>
-		<SolidColorBrush x:Key="BtnFg" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="BtnBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="BtnBgHover" Color="#FF4D4D4D"/>
+		<SolidColorBrush x:Key="BtnBgPressed" Color="#FF666666"/>
+		<SolidColorBrush x:Key="BtnFg" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="TabBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="TabBgSelected" Color="#FF2B2B2B"/>
-		<SolidColorBrush x:Key="TabFgSelected" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="TabBg" Color="#FF333333"/>
+		<SolidColorBrush x:Key="TabBgSelected" Color="#FF404040"/>
+		<SolidColorBrush x:Key="TabFgSelected" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="TooltipBg" Color="#FF0F0F0F"/>
-		<SolidColorBrush x:Key="TooltipBorder" Color="#FF3A3A3A"/>
-		<SolidColorBrush x:Key="TooltipFg" Color="#FFEAEAEA"/>
+		<SolidColorBrush x:Key="TooltipBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="TooltipBorder" Color="#FF555555"/>
+		<SolidColorBrush x:Key="TooltipFg" Color="#FFFFFFFF"/>
 
-		<SolidColorBrush x:Key="SelectionBg" Color="#FF2E5A9E"/>
+		<SolidColorBrush x:Key="SelectionBg" Color="#FF0078D4"/>
 		<SolidColorBrush x:Key="SelectionFg" Color="#FFFFFFFF"/>
+
+		<!-- XML viewer tokens (default = Night) -->
+		<SolidColorBrush x:Key="XmlViewerBg" Color="#FF404040"/>
+		<SolidColorBrush x:Key="XmlViewerBorder" Color="#FF555555"/>
+
+		<!-- Status list / popup palette -->
+		<SolidColorBrush x:Key="StatusRedBg" Color="#FFEDDCDC"/>
+		<SolidColorBrush x:Key="StatusYellowBg" Color="#FFFEF5D0"/>
+		<SolidColorBrush x:Key="StatusGreenBg" Color="#FFE0F0E0"/>
+		<SolidColorBrush x:Key="StatusRedBgStrong" Color="#FFF8D7DA"/>
+		<SolidColorBrush x:Key="StatusYellowBgStrong" Color="#FFFDE89A"/>
+		<SolidColorBrush x:Key="StatusGreenBgStrong" Color="#FFCDEACF"/>
 
 	</Window.Resources>
 
@@ -131,6 +151,8 @@
 			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Padding" Value="8,4"/>
+			<Setter Property="Margin" Value="2"/>
 		</Style>
 
 		<Style Selector="Button:pointerover">
@@ -185,6 +207,7 @@
 				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
 					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"/>
 					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
+					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"/>
 					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
 					<!--<CheckBox Name="ChkNightMode"
 							  Content="Night mode"
@@ -248,7 +271,7 @@
 					<TabItem Header="Readable">
 						<views:ReadableTabView Name="ReadableView"/>
 					</TabItem>
-					<TabItem Header="Translate XML">
+					<TabItem Header="Edit">
 						<views:TranslationTabView Name="TranslationView"/>
 					</TabItem>
 					<TabItem Header="Search">

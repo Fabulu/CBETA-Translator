@@ -410,7 +410,7 @@ public sealed class HoverDictionaryBehavior : IDisposable
         var lines = new List<TextBlock>();
 
         // header
-        lines.Add(MakeLine(match.Headword.Trim(), BrushHeadword, isBold: true));
+        lines.Add(MakeLine(match.Headword.Trim(), BrushHeadword, isBold: true, fontSize: 21));
 
         if (entries.Count == 0)
         {
@@ -468,13 +468,14 @@ public sealed class HoverDictionaryBehavior : IDisposable
         };
     }
 
-    private static TextBlock MakeLine(string text, IBrush fg, bool isBold)
+    private static TextBlock MakeLine(string text, IBrush fg, bool isBold, double fontSize = 14)
     {
         return new TextBlock
         {
             Text = text,
             Foreground = fg,
             FontWeight = isBold ? FontWeight.SemiBold : FontWeight.Normal,
+            FontSize = fontSize,
             TextWrapping = TextWrapping.Wrap
         };
     }

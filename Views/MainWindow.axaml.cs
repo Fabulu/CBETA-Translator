@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -23,6 +25,7 @@ public partial class MainWindow : Window
 {
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
+    private Button? _btnSettings;
     private Button? _btnSave;                 // optional: may not exist in XAML
     private Button? _btnLicenses;
 
@@ -49,12 +52,17 @@ public partial class MainWindow : Window
 
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new AppConfigService();
+    private readonly PdfExportInteropService _pdfExportService = new PdfExportInteropService();
+    private readonly MarkdownTranslationService _markdownService = new MarkdownTranslationService();
+    private AppConfig? _config;
+    private bool _isDarkTheme = true; // Default to dark theme
     private readonly IndexCacheService _indexCacheService = new IndexCacheService();
     private readonly RenderedDocumentCacheService _renderCache = new RenderedDocumentCacheService(maxEntries: 48);
 
     private string? _root;
     private string? _originalDir;
     private string? _translatedDir;
+    private string? _markdownDir;
 
     private List<FileNavItem> _allItems = new();
     private List<FileNavItem> _filteredItems = new();
@@ -62,6 +70,7 @@ public partial class MainWindow : Window
     private string? _currentRelPath;
 
     private string _rawOrigXml = "";
+    private string _rawTranMarkdown = "";
     private string _rawTranXml = "";
 
     private CancellationTokenSource? _renderCts;
@@ -77,8 +86,8 @@ public partial class MainWindow : Window
         SetStatus("Ready.");
         UpdateSaveButtonState();
 
-        // Force night mode (your current desired state)
-        ApplyTheme(dark: true);
+        // Load configuration and apply theme
+        _ = LoadConfigAndApplyThemeAsync();
 
         _ = TryAutoLoadRootFromConfigAsync();
     }
@@ -90,6 +99,7 @@ public partial class MainWindow : Window
         // Top bar
         _btnToggleNav = this.FindControl<Button>("BtnToggleNav");
         _btnOpenRoot = this.FindControl<Button>("BtnOpenRoot");
+        _btnSettings = this.FindControl<Button>("BtnSettings");
         _btnSave = this.FindControl<Button>("BtnSave"); // may be null (not in XAML)
         _btnLicenses = this.FindControl<Button>("BtnLicenses");
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote"); // may be null (not in XAML)
@@ -120,8 +130,14 @@ public partial class MainWindow : Window
     private void WireEvents()
     {
         if (_btnToggleNav != null) _btnToggleNav.Click += ToggleNav_Click;
-        if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
-        if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
+        if (_btnOpenRoot != null)
+            _btnOpenRoot.Click += (_, _) => OpenRoot_Click(null, null);
+
+        if (_btnSettings != null)
+            _btnSettings.Click += OnSettingsClicked;
+
+        if (_btnLicenses != null)
+            _btnLicenses.Click += (_, _) => Licenses_Click(null, null);
 
         // Optional buttons: wire only if they exist in XAML
         if (_btnSave != null) _btnSave.Click += Save_Click;
@@ -151,73 +167,23 @@ public partial class MainWindow : Window
         if (_translationView != null)
         {
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
+            _translationView.ExportPdfRequested += async (_, _) => await ExportCurrentPairToPdfAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
-        // ✅ CRITICAL FIX: after insert/delete, refresh from disk and force BOTH tabs to update immediately.
-        // This kills the "first note only appears after second / after tab switch / after restart" symptom.
+        // Community notes in readable view are disabled while Edit tab is Markdown-backed.
         if (_readableView != null)
         {
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
             {
-                try
-                {
-                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
-                        return;
-
-                    // Let TranslationTabView do its file-backed mutation
-                    await _translationView!.HandleCommunityNoteInsertAsync(req.XmlIndex, req.NoteText, req.Resp);
-
-                    // Always re-read translated XML from disk to avoid any "editor text stale" timing issues
-                    _rawTranXml = await SafeReadTextAsync(tranAbs);
-
-                    // Keep the XML tab and internal state consistent immediately
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        _translationView!.SetXml(_rawOrigXml, _rawTranXml);
-                    }, DispatcherPriority.Background);
-
-                    // Invalidate cache for translated file so next cached renders can't resurrect old markers
-                    SafeInvalidateRenderCache(tranAbs);
-
-                    // Re-render readable from the raw strings (no disk race)
-                    await RefreshReadableFromRawAsync();
-
-                    SetStatus("Community note inserted.");
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Add note failed: " + ex.Message);
-                }
+                await Task.Yield();
+                SetStatus("Community note edit is disabled in Markdown Edit mode.");
             };
 
             _readableView.CommunityNoteDeleteRequested += async (_, req) =>
             {
-                try
-                {
-                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
-                        return;
-
-                    await _translationView!.HandleCommunityNoteDeleteAsync(req.XmlStart, req.XmlEndExclusive);
-
-                    // Always re-read translated XML from disk so the UI can't lag behind
-                    _rawTranXml = await SafeReadTextAsync(tranAbs);
-
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        _translationView!.SetXml(_rawOrigXml, _rawTranXml);
-                    }, DispatcherPriority.Background);
-
-                    SafeInvalidateRenderCache(tranAbs);
-
-                    await RefreshReadableFromRawAsync();
-
-                    SetStatus("Community note deleted.");
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Delete note failed: " + ex.Message);
-                }
+                await Task.Yield();
+                SetStatus("Community note edit is disabled in Markdown Edit mode.");
             };
         }
 
@@ -237,6 +203,18 @@ public partial class MainWindow : Window
         if (_gitView != null)
         {
             _gitView.Status += (_, msg) => SetStatus(msg);
+            _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
+            {
+                try
+                {
+                    return await EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentMarkdown: true);
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Prepare translated XML failed: " + ex.Message);
+                    return false;
+                }
+            };
 
             _gitView.RootCloned += async (_, repoRoot) =>
             {
@@ -315,7 +293,7 @@ public partial class MainWindow : Window
 
             var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
             {
-                Title = "Select CBETA root folder (contains xml-p5; xml-p5t will be created if missing)"
+                Title = "Select CBETA root folder (contains xml-p5; md-p5t/xml-p5t created if missing)"
             });
 
             var folder = picked.FirstOrDefault();
@@ -345,36 +323,8 @@ public partial class MainWindow : Window
     // ONE add-note handler (used by optional global button if present)
     private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
-        try
-        {
-            SetStatus("Add note: clicked.");
-
-            if (_readableView == null)
-            {
-                SetStatus("Add note: Readable view not available.");
-                return;
-            }
-
-            if (_currentRelPath == null)
-            {
-                SetStatus("Add note: Select a file first.");
-                return;
-            }
-
-            // Ensure readable tab is active
-            if (_tabs != null)
-                _tabs.SelectedIndex = 0;
-
-            // Let layout settle
-            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
-
-            var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
-            SetStatus(ok ? "Add note: OK (" + reason + ")" : "Add note: FAILED (" + reason + ")");
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Add note failed: " + ex.Message);
-        }
+        await Task.Yield();
+        SetStatus("Community notes are disabled in Markdown Edit mode.");
     }
 
     private void Save_Click(object? sender, RoutedEventArgs e)
@@ -406,6 +356,7 @@ public partial class MainWindow : Window
         _root = rootPath;
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
+        _markdownDir = AppPaths.GetMarkdownDir(_root);
 
         _renderCache.Clear();
 
@@ -418,12 +369,17 @@ public partial class MainWindow : Window
         }
 
         AppPaths.EnsureTranslatedDirExists(_root);
+        AppPaths.EnsureMarkdownDirExists(_root);
 
         _gitView?.SetCurrentRepoRoot(_root);
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
 
         if (saveToConfig)
-            await _configService.SaveAsync(new AppConfig { TextRootPath = _root });
+        {
+            _config ??= new AppConfig();
+            _config.TextRootPath = _root;
+            await _configService.SaveAsync(_config);
+        }
 
         await LoadFileListFromCacheOrBuildAsync();
     }
@@ -596,6 +552,7 @@ public partial class MainWindow : Window
         _renderCts = null;
 
         _rawOrigXml = "";
+        _rawTranMarkdown = "";
         _rawTranXml = "";
         _currentRelPath = null;
 
@@ -625,11 +582,11 @@ public partial class MainWindow : Window
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(string relPath, CancellationToken ct)
     {
-        if (_originalDir == null || _translatedDir == null)
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
             return (RenderedDocument.Empty, RenderedDocument.Empty);
 
         var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_translatedDir, relPath);
+        var tranAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
 
         var stampOrig = FileStamp.FromFile(origAbs);
         var stampTran = FileStamp.FromFile(tranAbs);
@@ -655,7 +612,7 @@ public partial class MainWindow : Window
 
     private async Task LoadPairAsync(string relPath)
     {
-        if (_originalDir == null || _translatedDir == null)
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
             return;
 
         _renderCts?.Cancel();
@@ -674,23 +631,41 @@ public partial class MainWindow : Window
         var swTotal = Stopwatch.StartNew();
         var swRead = Stopwatch.StartNew();
 
-        var (orig, tran) = await _fileService.ReadPairAsync(_originalDir, _translatedDir, relPath);
+        var (orig, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
 
         swRead.Stop();
 
         _rawOrigXml = orig ?? "";
-        _rawTranXml = tran ?? "";
+        _rawTranMarkdown = md ?? "";
 
-        // ✅ Ensure TranslationTabView knows which exact files it's operating on
+        try
+        {
+            if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
+            {
+                _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(relPath));
+                await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
+            }
+            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+        }
+        catch (MarkdownTranslationException ex)
+        {
+            SetStatus("Markdown conversion error: " + ex.Message);
+            _rawTranMarkdown = "";
+            _rawTranXml = _rawOrigXml;
+            _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
+            return;
+        }
+
+        // Ensure TranslationTabView knows which exact files it's operating on.
         try
         {
             var origAbs = Path.Combine(_originalDir, relPath);
-            var tranAbs = Path.Combine(_translatedDir, relPath);
-            _translationView?.SetCurrentFilePaths(origAbs, tranAbs);
+            var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
+            _translationView?.SetCurrentFilePaths(origAbs, mdAbs);
         }
         catch { }
 
-        _translationView?.SetXml(_rawOrigXml, _rawTranXml);
+        _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
         UpdateSaveButtonState();
 
         SetStatus("Rendering readable view…");
@@ -733,7 +708,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (_translatedDir == null || _currentRelPath == null)
+            if (_markdownDir == null || _currentRelPath == null)
             {
                 SetStatus("Nothing to save (no file selected).");
                 return;
@@ -745,53 +720,18 @@ public partial class MainWindow : Window
                 return;
             }
 
-            var xml = _translationView.GetTranslatedXml();
-
-            await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, xml);
-            SetStatus("Saved translated XML: " + _currentRelPath);
-
-            try
-            {
-                var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-                _renderCache.Invalidate(tranAbs);
-            }
-            catch { }
+            var md = _translationView.GetTranslatedMarkdown();
+            await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, md);
+            _rawTranMarkdown = md ?? "";
+            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+            SetStatus("Saved Markdown: " + Path.ChangeExtension(_currentRelPath, ".md"));
 
             try
             {
-                if (_root != null && _originalDir != null && _translatedDir != null && _currentRelPath != null)
-                {
-                    var origAbs = Path.Combine(_originalDir, _currentRelPath);
-                    var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-
-                    var newStatus = _indexCacheService.ComputeStatusForPairLive(
-                        origAbs,
-                        tranAbs,
-                        _root,
-                        NormalizeRelForLogs(_currentRelPath),
-                        verboseLog: true);
-
-                    var canon = _allItems.FirstOrDefault(x =>
-                        string.Equals(x.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase));
-
-                    if (canon != null)
-                        canon.Status = newStatus;
-
-                    ApplyFilter();
-
-                    var cache = new IndexCache
-                    {
-                        Version = 2,
-                        RootPath = _root,
-                        BuiltUtc = DateTime.UtcNow,
-                        Entries = _allItems
-                    };
-                    await _indexCacheService.SaveAsync(_root, cache);
-                }
+                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(_currentRelPath, ".md"));
+                _renderCache.Invalidate(mdAbs);
             }
             catch { }
-
-            _rawTranXml = xml ?? "";
 
             _renderCts?.Cancel();
             _renderCts = new CancellationTokenSource();
@@ -825,6 +765,54 @@ public partial class MainWindow : Window
         {
             SetStatus("Save failed: " + ex.Message);
         }
+    }
+
+    private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentMarkdown)
+    {
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
+            return false;
+
+        var origPath = Path.Combine(_originalDir, relPath);
+        if (!File.Exists(origPath))
+            return false;
+
+        if (saveCurrentMarkdown && _translationView != null && string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
+        {
+            var currentMd = _translationView.GetTranslatedMarkdown();
+            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, currentMd);
+            _rawTranMarkdown = currentMd ?? "";
+            try
+            {
+                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
+                _renderCache.Invalidate(mdAbs);
+            }
+            catch { }
+        }
+
+        var (origXml, markdown) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
+        if (string.IsNullOrWhiteSpace(markdown) || !_markdownService.IsCurrentMarkdownFormat(markdown))
+        {
+            markdown = _markdownService.ConvertTeiToMarkdown(origXml, Path.GetFileName(relPath));
+            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, markdown);
+        }
+
+        var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
+        await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+
+        if (string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
+        {
+            _rawOrigXml = origXml;
+            _rawTranMarkdown = markdown;
+            _rawTranXml = mergedXml;
+        }
+
+        try
+        {
+            _renderCache.Invalidate(Path.Combine(_translatedDir, relPath));
+        }
+        catch { }
+
+        return true;
     }
 
     // ✅ Re-render readable view from the *current* raw strings (no disk re-read, no editor race)
@@ -883,7 +871,7 @@ public partial class MainWindow : Window
         }
 
         if (_btnAddCommunityNote != null)
-            _btnAddCommunityNote.IsEnabled = _currentRelPath != null;
+            _btnAddCommunityNote.IsEnabled = false;
     }
 
     private void SetStatus(string msg)
@@ -930,6 +918,201 @@ public partial class MainWindow : Window
 
         Map("SelectionBg", p + "SelectionBg");
         Map("SelectionFg", p + "SelectionFg");
+
+        Map("XmlViewerBg", p + "XmlViewerBg");
+        Map("XmlViewerBorder", p + "XmlViewerBorder");
+    }
+
+    private async Task LoadConfigAndApplyThemeAsync()
+    {
+        try
+        {
+            _config = await _configService.TryLoadAsync();
+            if (_config != null)
+            {
+                _isDarkTheme = _config.IsDarkTheme;
+                ApplyTheme(_isDarkTheme);
+                _translationView?.SetPdfQuickSettings(_config);
+            }
+            else
+            {
+                _translationView?.SetPdfQuickSettings(new AppConfig { IsDarkTheme = _isDarkTheme });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Failed to load config: {ex.Message}");
+            // Fallback to dark theme
+            ApplyTheme(true);
+        }
+    }
+
+    private async void OnSettingsClicked(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var current = _config ?? new AppConfig { IsDarkTheme = _isDarkTheme };
+            var settingsWindow = new SettingsWindow(current);
+            var result = await settingsWindow.ShowDialog<AppConfig?>(this);
+
+            if (result == null)
+                return;
+
+            _config = result;
+            _isDarkTheme = _config.IsDarkTheme;
+            ApplyTheme(_isDarkTheme);
+            _translationView?.SetPdfQuickSettings(_config);
+            await SaveConfigAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Failed to open settings: {ex.Message}");
+        }
+    }
+
+    private async Task SaveConfigAsync()
+    {
+        try
+        {
+            _config ??= new AppConfig();
+            _config.IsDarkTheme = _isDarkTheme;
+            if (!string.IsNullOrWhiteSpace(_root))
+                _config.TextRootPath = _root;
+
+            await _configService.SaveAsync(_config);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Failed to save config: {ex.Message}");
+        }
+    }
+
+    private async Task ExportCurrentPairToPdfAsync()
+    {
+        try
+        {
+            if (_currentRelPath == null)
+            {
+                SetStatus("Select a file before exporting PDF.");
+                return;
+            }
+
+            _config ??= new AppConfig { IsDarkTheme = _isDarkTheme };
+
+            var materialized = await EnsureTranslatedXmlForRelPathAsync(_currentRelPath, saveCurrentMarkdown: true);
+            if (!materialized)
+            {
+                SetStatus("Could not prepare translated XML for PDF.");
+                return;
+            }
+
+            var chinese = ExtractSectionsFromXml(_rawOrigXml);
+            var english = _config.PdfIncludeEnglish
+                ? ExtractSectionsFromXml(_rawTranXml)
+                : new List<string>();
+
+            if (!_config.PdfIncludeEnglish)
+            {
+                english = Enumerable.Repeat(string.Empty, chinese.Count).ToList();
+            }
+            else
+            {
+                int count = Math.Max(chinese.Count, english.Count);
+                if (count == 0)
+                {
+                    SetStatus("No text content available for PDF export.");
+                    return;
+                }
+
+                while (chinese.Count < count) chinese.Add(string.Empty);
+                while (english.Count < count) english.Add(string.Empty);
+            }
+
+            if (chinese.Count == 0)
+            {
+                SetStatus("No Chinese content available for PDF export.");
+                return;
+            }
+
+            var defaultFileName = Path.GetFileNameWithoutExtension(_currentRelPath) + ".pdf";
+            var pick = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+            {
+                Title = "Export PDF",
+                SuggestedFileName = defaultFileName,
+                DefaultExtension = "pdf",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("PDF Document")
+                    {
+                        Patterns = new[] { "*.pdf" },
+                        MimeTypes = new[] { "application/pdf" }
+                    }
+                }
+            });
+
+            if (pick == null)
+                return;
+
+            var outputPath = pick.Path.LocalPath;
+            SetStatus("Exporting PDF...");
+            await SaveConfigAsync();
+
+            if (_pdfExportService.TryGeneratePdf(chinese, english, outputPath, _config, out var error))
+            {
+                SetStatus("PDF exported: " + outputPath);
+            }
+            else
+            {
+                SetStatus("PDF export failed: " + error);
+            }
+        }
+        catch (Exception ex)
+        {
+            SetStatus("PDF export failed: " + ex.Message);
+        }
+    }
+
+    private static readonly Regex XmlTagStripRegex = new("<[^>]+>", RegexOptions.Compiled);
+    private static readonly Regex MultiWhitespaceRegex = new(@"\s+", RegexOptions.Compiled);
+    private static readonly Regex SuperscriptRegex = new(@"[\u00B9\u00B2\u00B3\u2070-\u209F]+", RegexOptions.Compiled);
+
+    private static List<string> ExtractSectionsFromXml(string xml)
+    {
+        var rendered = CbetaTeiRenderer.Render(xml ?? "");
+        var sections = new List<string>();
+
+        if (rendered.Segments.Count > 0 && !string.IsNullOrEmpty(rendered.Text))
+        {
+            foreach (var seg in rendered.Segments)
+            {
+                int start = Math.Clamp(seg.Start, 0, rendered.Text.Length);
+                int end = Math.Clamp(seg.EndExclusive, start, rendered.Text.Length);
+                if (end <= start)
+                    continue;
+
+                var content = NormalizePdfText(rendered.Text.Substring(start, end - start));
+                if (!string.IsNullOrWhiteSpace(content))
+                    sections.Add(content);
+            }
+        }
+
+        if (sections.Count > 0)
+            return sections;
+
+        var fallback = NormalizePdfText(WebUtility.HtmlDecode(XmlTagStripRegex.Replace(xml ?? "", " ")));
+        if (!string.IsNullOrWhiteSpace(fallback))
+            sections.Add(fallback);
+        return sections;
+    }
+
+    private static string NormalizePdfText(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return string.Empty;
+
+        var noMarkers = SuperscriptRegex.Replace(value, "");
+        var collapsed = MultiWhitespaceRegex.Replace(noMarkers, " ");
+        return collapsed.Trim();
     }
 
     private static string NormalizeRelForLogs(string p)
