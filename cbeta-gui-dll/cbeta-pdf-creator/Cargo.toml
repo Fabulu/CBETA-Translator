@@ -1,0 +1,44 @@
+[package]
+name = "cbeta-pdf-creator"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# PDF generation - use local version
+lopdf = { path = "../../lopdf" }
+flate2 = "1.0"
+
+# High-quality font rendering
+fontdue = "0.8"
+
+# Text layout and typography
+unicode-bidi = "0.3"
+unicode-script = "0.5"
+unicode-segmentation = "1.11"
+
+# XML parsing for hOCR
+quick-xml = "0.31"
+
+# Error handling
+anyhow = "1.0"
+
+# Utilities
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# FFI support
+libc = "0.2"
+
+# Logging
+log = "0.4"
+
+[features]
+default = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

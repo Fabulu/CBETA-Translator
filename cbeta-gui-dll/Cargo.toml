@@ -1,0 +1,14 @@
+[package]
+name = "cbeta-gui-dll"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cbeta-pdf-creator = { path = "./cbeta-pdf-creator" }
+
+[profile.release]
+opt-level = 3
+lto = true
