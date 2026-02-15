@@ -16,12 +16,12 @@ public sealed class NavStatusToBrushConverter : IValueConverter
         if (value is not TranslationStatus s)
             s = TranslationStatus.Red;
 
-        // opaque backgrounds (as requested)
+        // Soft pastel backgrounds (requested palette)
         return s switch
         {
-            TranslationStatus.Green => new SolidColorBrush(Color.Parse("#FF1F6F2A")), // green
-            TranslationStatus.Yellow => new SolidColorBrush(Color.Parse("#FF8A6E00")), // yellow
-            _ => new SolidColorBrush(Color.Parse("#FF6B3A3A")), // red
+            TranslationStatus.Green => new SolidColorBrush(Color.Parse("#FFE0F0E0")),
+            TranslationStatus.Yellow => new SolidColorBrush(Color.Parse("#FFFEF5D0")),
+            _ => new SolidColorBrush(Color.Parse("#FFEDDCDC")),
         };
     }
 

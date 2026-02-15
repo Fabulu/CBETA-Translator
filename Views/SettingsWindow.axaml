@@ -1,0 +1,100 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.SettingsWindow"
+        Width="560" Height="560"
+        Background="{DynamicResource AppBg}"
+        Title="Settings"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+        </Style>
+
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+        </Style>
+
+        <Style Selector="TextBlock.muted">
+            <Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
+        </Style>
+
+        <Style Selector="RadioButton">
+            <Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+        </Style>
+
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+        <StackPanel Grid.Row="0" Spacing="10" Margin="0,0,0,20">
+            <TextBlock Text="Settings" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextFg}"/>
+            <TextBlock Text="Theme and PDF export preferences" Classes="muted"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Background="{DynamicResource ControlBg}" Padding="20">
+            <StackPanel Spacing="20">
+
+                <Border Background="{DynamicResource BarBg}" Padding="15" CornerRadius="5">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextFg}"/>
+                        <TextBlock Text="Theme" Foreground="{DynamicResource TextFg}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="18">
+                            <RadioButton Name="RadioLightTheme" Content="Light"/>
+                            <RadioButton Name="RadioDarkTheme" Content="Dark"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="{DynamicResource BarBg}" Padding="15" CornerRadius="5">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="PDF Export" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextFg}"/>
+
+                        <TextBlock Text="Paragraph layout" Foreground="{DynamicResource TextFg}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="18">
+                            <RadioButton Name="RadioPdfAlternating" Content="Alternating (ZH then EN)"/>
+                            <RadioButton Name="RadioPdfSideBySide" Content="Side-by-side"/>
+                        </StackPanel>
+
+                        <CheckBox Name="ChkPdfIncludeEnglish" Content="Include English text in PDF"/>
+
+                        <Grid ColumnDefinitions="Auto,100" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="12">
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Line spacing" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Name="TxtPdfLineSpacing"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Chinese tracking" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="TxtPdfTrackingChinese"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="English tracking" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Name="TxtPdfTrackingEnglish"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Paragraph spacing" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Name="TxtPdfParagraphSpacing"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,20,0,0">
+            <Button Name="BtnCancel" Content="Cancel" Width="90" Height="32"/>
+            <Button Name="BtnApply" Content="Apply" Width="90" Height="32" Classes="primary"/>
+        </StackPanel>
+    </Grid>
+
+</Window>

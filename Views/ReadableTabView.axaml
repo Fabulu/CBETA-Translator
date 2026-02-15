@@ -7,11 +7,11 @@
 
 	<!-- LOCAL FALLBACK RESOURCES (same idea as TranslationTabView) -->
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="PanelBg" Color="#FF151515"/>
-		<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
-		<SolidColorBrush x:Key="SplitterBrush" Color="#FF2A2A2A"/>
-		<SolidColorBrush x:Key="MutedFg" Color="#FF9A9A9A"/>
+		<SolidColorBrush x:Key="PanelBg" Color="#FFF5F5F5"/>
+		<SolidColorBrush x:Key="PanelAltBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="PanelBorder" Color="#FFE8E8E8"/>
+		<SolidColorBrush x:Key="SplitterBrush" Color="#FFD1D1D1"/>
+		<SolidColorBrush x:Key="MutedFg" Color="#FF666666"/>
 	</UserControl.Resources>
 
 	<UserControl.Styles>
@@ -26,7 +26,7 @@
 		<!-- Style the INNER AvaloniaEdit TextEditor, not the wrapper UserControl -->
 		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Foreground" Value="#FFE6E6E6"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 			<Setter Property="FontFamily" Value="Consolas"/>
 			<Setter Property="WordWrap" Value="True"/>
 			<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
@@ -82,12 +82,12 @@
 
 		<Grid Grid.Row="2" ColumnDefinitions="1*,Auto,2*" Margin="0">
 
-			<Border Background="{DynamicResource PanelBg}"
-					BorderBrush="{DynamicResource PanelBorder}"
+			<Border Background="{DynamicResource XmlViewerBg}"
+					BorderBrush="{DynamicResource XmlViewerBorder}"
 					BorderThickness="1"
 					CornerRadius="6">
 				<Grid RowDefinitions="Auto,*">
-					<Border Background="{DynamicResource PanelBg}" Padding="8">
+					<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
 						<TextBlock Text="Original (read-only)" Classes="muted"/>
 					</Border>
 
@@ -99,12 +99,12 @@
 			<GridSplitter Grid.Column="1" Width="6" Background="{DynamicResource SplitterBrush}"/>
 
 			<Border Grid.Column="2"
-					Background="{DynamicResource PanelBg}"
-					BorderBrush="{DynamicResource PanelBorder}"
+					Background="{DynamicResource XmlViewerBg}"
+					BorderBrush="{DynamicResource XmlViewerBorder}"
 					BorderThickness="1"
 					CornerRadius="6">
 				<Grid RowDefinitions="Auto,*">
-					<Border Background="{DynamicResource PanelBg}" Padding="8">
+					<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
 						<TextBlock Text="Translated (readable view)" Classes="muted"/>
 					</Border>
 

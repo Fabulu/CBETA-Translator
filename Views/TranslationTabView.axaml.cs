@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,6 +24,7 @@ using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
 using CbetaTranslator.App.Infrastructure;
+using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 
 namespace CbetaTranslator.App.Views;
@@ -98,11 +100,18 @@ public partial class TranslationTabView : UserControl
     private Button? _btnCopyPrompt;
     private Button? _btnPasteReplace;
     private Button? _btnSaveTranslated;
+    private Button? _btnExportPdf;
     private Button? _btnSelectNext50Tags;
     private Button? _btnCheckXml;
 
     // NEW: wrap checkbox
     private CheckBox? _chkWrap;
+    private ComboBox? _cmbPdfLayout;
+    private CheckBox? _chkPdfIncludeEnglish;
+    private TextBox? _txtPdfLineSpacing;
+    private TextBox? _txtPdfTrackingChinese;
+    private TextBox? _txtPdfTrackingEnglish;
+    private TextBox? _txtPdfParagraphSpacing;
 
     // IMPORTANT: these are AvaloniaEdit TextEditor, not TextBox
     private TextEditor? _orig;
@@ -118,6 +127,7 @@ public partial class TranslationTabView : UserControl
     private int _lastCopyEnd = -1;
 
     public event EventHandler? SaveRequested;
+    public event EventHandler? ExportPdfRequested;
     public event EventHandler<string>? Status;
 
     // -------------------------
@@ -224,11 +234,18 @@ public partial class TranslationTabView : UserControl
         _btnCopyPrompt = this.FindControl<Button>("BtnCopyPrompt");
         _btnPasteReplace = this.FindControl<Button>("BtnPasteReplace");
         _btnSaveTranslated = this.FindControl<Button>("BtnSaveTranslated");
+        _btnExportPdf = this.FindControl<Button>("BtnExportPdf");
         _btnSelectNext50Tags = this.FindControl<Button>("BtnSelectNext50Tags");
         _btnCheckXml = this.FindControl<Button>("BtnCheckXml");
 
         // NEW
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
+        _cmbPdfLayout = this.FindControl<ComboBox>("CmbPdfLayout");
+        _chkPdfIncludeEnglish = this.FindControl<CheckBox>("ChkPdfIncludeEnglish");
+        _txtPdfLineSpacing = this.FindControl<TextBox>("TxtPdfLineSpacing");
+        _txtPdfTrackingChinese = this.FindControl<TextBox>("TxtPdfTrackingChinese");
+        _txtPdfTrackingEnglish = this.FindControl<TextBox>("TxtPdfTrackingEnglish");
+        _txtPdfParagraphSpacing = this.FindControl<TextBox>("TxtPdfParagraphSpacing");
 
         _orig = this.FindControl<TextEditor>("EditorOrigXml");
         _tran = this.FindControl<TextEditor>("EditorTranXml");
@@ -306,6 +323,7 @@ public partial class TranslationTabView : UserControl
         if (_btnPasteReplace != null) _btnPasteReplace.Click += async (_, _) => await PasteReplaceSelectionAsync();
 
         if (_btnSaveTranslated != null) _btnSaveTranslated.Click += async (_, _) => await SaveIfValidAsync();
+        if (_btnExportPdf != null) _btnExportPdf.Click += (_, _) => ExportPdfRequested?.Invoke(this, EventArgs.Empty);
         if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
         if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
 
@@ -595,6 +613,80 @@ public partial class TranslationTabView : UserControl
         return t;
     }
 
+    public string GetTranslatedMarkdown() => GetTranslatedXml();
+
+    public void SetPdfQuickSettings(AppConfig cfg)
+    {
+        if (_cmbPdfLayout != null)
+            _cmbPdfLayout.SelectedIndex = cfg.PdfLayoutMode == PdfLayoutMode.SideBySide ? 1 : 0;
+        if (_chkPdfIncludeEnglish != null)
+            _chkPdfIncludeEnglish.IsChecked = cfg.PdfIncludeEnglish;
+        if (_txtPdfLineSpacing != null)
+            _txtPdfLineSpacing.Text = cfg.PdfLineSpacing.ToString("0.###", CultureInfo.InvariantCulture);
+        if (_txtPdfTrackingChinese != null)
+            _txtPdfTrackingChinese.Text = cfg.PdfTrackingChinese.ToString("0.###", CultureInfo.InvariantCulture);
+        if (_txtPdfTrackingEnglish != null)
+            _txtPdfTrackingEnglish.Text = cfg.PdfTrackingEnglish.ToString("0.###", CultureInfo.InvariantCulture);
+        if (_txtPdfParagraphSpacing != null)
+            _txtPdfParagraphSpacing.Text = cfg.PdfParagraphSpacing.ToString("0.###", CultureInfo.InvariantCulture);
+    }
+
+    public bool TryApplyPdfQuickSettings(AppConfig cfg, out string error)
+    {
+        error = string.Empty;
+
+        if (_cmbPdfLayout != null)
+        {
+            cfg.PdfLayoutMode = _cmbPdfLayout.SelectedIndex == 1
+                ? PdfLayoutMode.SideBySide
+                : PdfLayoutMode.Alternating;
+        }
+        if (_chkPdfIncludeEnglish != null)
+            cfg.PdfIncludeEnglish = _chkPdfIncludeEnglish.IsChecked == true;
+
+        // If quick-setting controls are not present in XAML, keep values from Settings window.
+        if (_txtPdfLineSpacing == null || _txtPdfTrackingChinese == null || _txtPdfTrackingEnglish == null || _txtPdfParagraphSpacing == null)
+            return true;
+
+        if (!TryParseFloat(_txtPdfLineSpacing?.Text, 1.0f, 2.2f, out var lineSpacing))
+        {
+            error = "Line spacing must be a number between 1.0 and 2.2.";
+            return false;
+        }
+        if (!TryParseFloat(_txtPdfTrackingChinese?.Text, 0.0f, 50.0f, out var trackingZh))
+        {
+            error = "Chinese tracking must be a number between 0 and 50.";
+            return false;
+        }
+        if (!TryParseFloat(_txtPdfTrackingEnglish?.Text, 0.0f, 40.0f, out var trackingEn))
+        {
+            error = "English tracking must be a number between 0 and 40.";
+            return false;
+        }
+        if (!TryParseFloat(_txtPdfParagraphSpacing?.Text, 0.0f, 2.0f, out var paraSpacing))
+        {
+            error = "Paragraph spacing must be a number between 0 and 2.0.";
+            return false;
+        }
+
+        cfg.PdfLineSpacing = lineSpacing;
+        cfg.PdfTrackingChinese = trackingZh;
+        cfg.PdfTrackingEnglish = trackingEn;
+        cfg.PdfParagraphSpacing = paraSpacing;
+        return true;
+    }
+
+    private static bool TryParseFloat(string? input, float min, float max, out float value)
+    {
+        value = 0;
+        if (!float.TryParse(input, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed))
+            return false;
+        if (parsed < min || parsed > max)
+            return false;
+        value = parsed;
+        return true;
+    }
+
     private void ReApplyEditorsText(string reason)
     {
         Log($"ReApplyEditorsText: {reason} cachedOrigLen={_cachedOrigXml.Length} cachedTranLen={_cachedTranXml.Length}");
@@ -868,14 +960,14 @@ public partial class TranslationTabView : UserControl
 
         if (_tran == null)
         {
-            Status?.Invoke(this, "Translated XML editor not available.");
+            Status?.Invoke(this, "Editable markdown editor not available.");
             return;
         }
 
         var text = _tran.Text ?? "";
         if (text.Length == 0)
         {
-            Status?.Invoke(this, "Translated XML is empty.");
+            Status?.Invoke(this, "Editable markdown is empty.");
             return;
         }
 
@@ -904,7 +996,7 @@ public partial class TranslationTabView : UserControl
 
         if (end <= start)
         {
-            Status?.Invoke(this, "No selection. Select an XML fragment first.");
+            Status?.Invoke(this, "No selection. Select a markdown fragment first.");
             return;
         }
 
@@ -930,7 +1022,7 @@ public partial class TranslationTabView : UserControl
     {
         if (_tran == null)
         {
-            Status?.Invoke(this, "Translated XML editor not available.");
+            Status?.Invoke(this, "Editable markdown editor not available.");
             return;
         }
 
@@ -953,7 +1045,7 @@ public partial class TranslationTabView : UserControl
         string pastedXml = ExtractXmlFromClipboard(clipText);
         if (string.IsNullOrWhiteSpace(pastedXml))
         {
-            Status?.Invoke(this, "Could not find XML in clipboard text (no ```xml``` block, and content wasn't raw XML).");
+            Status?.Invoke(this, "Could not find markdown/text in clipboard.");
             return;
         }
 
@@ -1309,55 +1401,37 @@ public partial class TranslationTabView : UserControl
 
 
 
-    private static string BuildChatGptPrompt(string selectionXml)
+    private static string BuildChatGptPrompt(string selectionMarkdown)
     {
         return
-$@"You are an XML-preserving translator.
+$@"You are translating a CBETA translation markdown fragment.
 
 ABSOLUTE TARGET LANGUAGE:
 - Translate into ENGLISH ONLY.
-- Do NOT rewrite or paraphrase text that is already in English; keep existing English EXACTLY as-is.
+- Keep existing English text unchanged.
 
 NON-NEGOTIABLE RULES (STRICT SPEC):
 
-1) XML STRUCTURE MUST BE PRESERVED EXACTLY
-   - Every start tag, end tag, self-closing tag, attribute name/value, namespace prefix,
-     entity reference, CDATA marker, processing instruction, and tag order must remain IDENTICAL.
-   - Do NOT add, remove, reorder, rename, or reformat any tags or attributes.
-   - Do NOT move text across tag boundaries.
-   - Do NOT duplicate the fragment or append a second copy.
-   - Output must be well-formed XML.
+1) Preserve structure exactly
+   - Keep headings, comments, `ZH:` lines, and `xml-ref` comments unchanged.
+   - Edit only `EN:` lines.
+   - Keep block order unchanged.
 
-2) TRANSLATE TEXT NODES ONLY (HUMAN-READABLE NATURAL LANGUAGE)
-   - Translate ONLY natural-language text inside text nodes.
-   - NEVER translate or modify:
-     • tag names
-     • attribute names or values
-     • IDs, codes, catalog numbers, dates/times, line numbers, refs, witness marks (e.g., 【CB】), or other non-prose tokens
-     • any text that is already English (leave it exactly unchanged)
-   - You MUST translate ALL non-empty Chinese/Japanese/Korean (CJK) natural-language text that appears in text nodes.
-   - You MAY smooth sentence flow across line-break tags (e.g. <lb/>, <pb/>) ONLY by choosing English wording that reads naturally,
-     but you may NOT move text across tags. Punctuation is up to you as long as you make the text remain close to the original meaning.
+2) Translate source text faithfully
+   - Translate Chinese in the corresponding `ZH:` into natural English in `EN:`.
+   - Do not add explanations, glosses, or metadata.
 
-3) WHITESPACE / PUNCTUATION PRESERVATION
-   - Keep whitespace/newlines as close as possible to the input (do NOT rewrap or normalize).
-   - Preserve the existing punctuation structure as long as you output readable English.
-   - Do NOT add explanatory parentheses, glosses, or extra words like ""(i.e.)"".
-
-4) SILENT INTERNAL SELF-CHECK (MANDATORY)
-   - Check that the sequence and count of '<...>' XML tokens in your output EXACTLY matches the input.
-   - Check that all attributes, namespaces, and processing instructions are unchanged.
-   - Check that NO CJK characters remain in text nodes that should have been translated.
-   - Check that you did NOT translate any existing English text.
-   - If ANY check fails, output the ORIGINAL XML UNCHANGED (verbatim).
+3) Output format
+   - Output only the updated markdown fragment.
+   - Put output in one ```markdown code block``` and nothing else.
 
 OUTPUT REQUIREMENTS:
-- Output ONLY the XML fragment (exactly one copy).
-- Put the entire output in ONE single ```xml code block``` and NOTHING ELSE.
+- Output ONLY the markdown fragment (exactly one copy).
+- Put the entire output in ONE single ```markdown code block``` and NOTHING ELSE.
 
-XML fragment to translate:
-```xml
-{selectionXml}
+Markdown fragment to translate:
+```markdown
+{selectionMarkdown}
 ```";
     }
 
@@ -1365,7 +1439,7 @@ XML fragment to translate:
     {
         var m = Regex.Match(
             clipboardText,
-            @"```(?:xml)?\s*(?<xml>[\s\S]*?)\s*```",
+            @"```(?:markdown|md|xml)?\s*(?<xml>[\s\S]*?)\s*```",
             RegexOptions.IgnoreCase);
 
         if (m.Success)
@@ -1651,7 +1725,10 @@ XML fragment to translate:
             IsReadOnly = true,
             TextWrapping = TextWrapping.Wrap,
             AcceptsReturn = true,
-            Height = 240
+            Height = 240,
+            Background = new SolidColorBrush(Color.Parse("#FFFDE89A")),
+            BorderBrush = new SolidColorBrush(Color.Parse("#FFD1D1D1")),
+            BorderThickness = new Thickness(1)
         };
 
         ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
@@ -1671,7 +1748,15 @@ XML fragment to translate:
             Title = title,
             Width = 700,
             Height = 380,
-            Content = panel,
+            Background = new SolidColorBrush(Color.Parse("#FFFEF5D0")),
+            Content = new Border
+            {
+                Background = new SolidColorBrush(Color.Parse("#FFFEF5D0")),
+                BorderBrush = new SolidColorBrush(Color.Parse("#FFD1D1D1")),
+                BorderThickness = new Thickness(1),
+                Padding = new Thickness(4),
+                Child = panel
+            },
             WindowStartupLocation = owner != null
                 ? WindowStartupLocation.CenterOwner
                 : WindowStartupLocation.CenterScreen

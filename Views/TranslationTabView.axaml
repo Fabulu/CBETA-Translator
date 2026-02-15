@@ -6,13 +6,13 @@
 	<!-- LOCAL FALLBACK RESOURCES (prevents "blank view" when app theme keys are missing) -->
 	<UserControl.Resources>
 		<!-- Panel colors -->
-		<SolidColorBrush x:Key="PanelBg" Color="#FF151515"/>
-		<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
-		<SolidColorBrush x:Key="SplitterBrush" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="PanelBg" Color="#FFF5F5F5"/>
+		<SolidColorBrush x:Key="PanelAltBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="PanelBorder" Color="#FFE8E8E8"/>
+		<SolidColorBrush x:Key="SplitterBrush" Color="#FFD1D1D1"/>
 
 		<!-- Muted text -->
-		<SolidColorBrush x:Key="MutedFg" Color="#FF9A9A9A"/>
+		<SolidColorBrush x:Key="MutedFg" Color="#FF666666"/>
 	</UserControl.Resources>
 
 	<UserControl.Styles>
@@ -24,10 +24,10 @@
 			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
 		</Style>
 
-		<!-- Hard override so text is visible in dark UI -->
+		<!-- Hard override so text is visible in both light and dark UI -->
 		<Style Selector="ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Foreground" Value="#FFE6E6E6"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 	</UserControl.Styles>
 
@@ -47,9 +47,8 @@
 							Spacing="6">
 					<Button Name="BtnCopyPrompt" Focusable="False" Content="Copy selection + prompt"/>
 					<Button Name="BtnPasteReplace" Focusable="False" Content="Paste replace selection"/>
-					<Button Name="BtnSelectNext50Tags" Focusable="False" Content="Select next 100 tags"/>
-					<Button Name="BtnSaveTranslated" Focusable="False" Content="Save translated XML"/>
-					<Button Name="BtnCheckXml" Focusable="False" Content="Check XML (hacky)"/>
+					<Button Name="BtnSaveTranslated" Focusable="False" Content="Save Markdown"/>
+					<Button Name="BtnExportPdf" Focusable="False" Content="Export PDF"/>
 				</StackPanel>
 
 				<!-- spacer (fills the middle) -->
@@ -58,7 +57,7 @@
 				<!-- Right cluster -->
 				<StackPanel DockPanel.Dock="Right"
 							Orientation="Horizontal"
-							Spacing="10"
+							Spacing="8"
 							VerticalAlignment="Center"
 							Margin="18,0,0,0">
 					<CheckBox Name="ChkWrap"
@@ -122,12 +121,12 @@
 		<Border Grid.Row="2"
 				Grid.Column="0"
 				Margin="0,8,6,0"
-				Background="{DynamicResource PanelBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
+				Background="{DynamicResource XmlViewerBg}"
+				BorderBrush="{DynamicResource XmlViewerBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource PanelBg}"
+				<Border Background="{DynamicResource XmlViewerBg}"
 						Padding="8">
 					<TextBlock Text="Original XML (read-only)"
 							   Classes="muted"/>
@@ -137,7 +136,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="True"
 							   FontFamily="Consolas"
-							   Foreground="#FFE6E6E6"
+							   Foreground="{DynamicResource TextFg}"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
@@ -155,14 +154,14 @@
 		<Border Grid.Row="2"
 				Grid.Column="2"
 				Margin="6,8,0,0"
-				Background="{DynamicResource PanelBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
+				Background="{DynamicResource XmlViewerBg}"
+				BorderBrush="{DynamicResource XmlViewerBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource PanelBg}"
+				<Border Background="{DynamicResource XmlViewerBg}"
 						Padding="8">
-					<TextBlock Text="Translated XML (editable)"
+					<TextBlock Text="Editable Markdown"
 							   Classes="muted"/>
 				</Border>
 
@@ -170,7 +169,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="False"
 							   FontFamily="Consolas"
-							   Foreground="#FFE6E6E6"
+							   Foreground="{DynamicResource TextFg}"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>

@@ -68,6 +68,7 @@ public partial class GitTabView : UserControl
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
+    public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabView()
     {
@@ -723,6 +724,27 @@ public partial class GitTabView : UserControl
 
             var cbetaRel = NormalizeRel(_selectedRelPath);
             var repoRel = NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
+
+            if (EnsureTranslatedForSelectedRequested != null)
+            {
+                SetProgress("Preparing translated XML from Markdown…");
+                bool prepared = true;
+                foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                {
+                    if (!await fn(cbetaRel))
+                    {
+                        prepared = false;
+                        break;
+                    }
+                }
+
+                if (!prepared)
+                {
+                    SetProgress("Preparation failed. Save in Edit tab and retry.");
+                    AppendLog("[error] failed to materialize translated XML for selected file");
+                    return;
+                }
+            }
 
             AppendLog("[map] cbeta: " + cbetaRel);
             AppendLog("[map] repo : " + repoRel);

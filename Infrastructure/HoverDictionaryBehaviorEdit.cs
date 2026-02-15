@@ -431,7 +431,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
             .Take(MaxEntriesShown)
             .ToList();
 
-        var lines = new List<TextBlock> { MakeLine(match.Headword.Trim(), BrushHeadword, true) };
+        var lines = new List<TextBlock> { MakeLine(match.Headword.Trim(), BrushHeadword, true, 21) };
 
         if (entries.Count == 0)
         {
@@ -482,12 +482,13 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         };
     }
 
-    private static TextBlock MakeLine(string text, IBrush fg, bool isBold)
+    private static TextBlock MakeLine(string text, IBrush fg, bool isBold, double fontSize = 14)
         => new()
         {
             Text = text,
             Foreground = fg,
             FontWeight = isBold ? FontWeight.SemiBold : FontWeight.Normal,
+            FontSize = fontSize,
             TextWrapping = TextWrapping.Wrap
         };
 
