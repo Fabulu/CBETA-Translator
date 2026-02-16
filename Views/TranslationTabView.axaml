@@ -45,7 +45,10 @@
 				<StackPanel DockPanel.Dock="Left"
 							Orientation="Horizontal"
 							Spacing="6">
-					<Button Name="BtnCopyPrompt" Focusable="False" Content="Copy selection + prompt"/>
+					<Button Name="BtnCopyPrompt"
+							Focusable="False"
+							Content="Copy selection + prompt"
+							ToolTip.Tip="Copies only from the right (Translated XML) editor.&#10;Selections on the left (Original XML) can’t be copied with this button."/>
 					<Button Name="BtnPasteReplace" Focusable="False" Content="Paste replace selection"/>
 					<Button Name="BtnSelectNext50Tags" Focusable="False" Content="Select next 100 tags"/>
 					<Button Name="BtnSaveTranslated" Focusable="False" Content="Save translated XML"/>
