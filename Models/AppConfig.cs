@@ -14,7 +14,6 @@ namespace CbetaTranslator.App.Models
 
         public PdfLayoutMode PdfLayoutMode { get; set; } = PdfLayoutMode.Alternating;
         public bool PdfIncludeEnglish { get; set; } = true;
-        public bool PdfForceSideBySideWhenEnglish { get; set; } = true;
         public float PdfLineSpacing { get; set; } = 1.4f;
         public float PdfTrackingChinese { get; set; } = 12.0f;
         public float PdfTrackingEnglish { get; set; } = 8.0f;

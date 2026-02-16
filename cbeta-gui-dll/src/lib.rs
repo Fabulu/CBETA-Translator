@@ -42,7 +42,7 @@ pub extern "C" fn generate_pdf_output_ffi(
                 if ptr.is_null() {
                     return String::new();
                 }
-                CStr::from_ptr(ptr).to_string_lossy().into_owned()
+                normalize_pdf_section_text(&CStr::from_ptr(ptr).to_string_lossy())
             })
             .collect::<Vec<_>>()
     };
@@ -54,7 +54,7 @@ pub extern "C" fn generate_pdf_output_ffi(
                 if ptr.is_null() {
                     return String::new();
                 }
-                CStr::from_ptr(ptr).to_string_lossy().into_owned()
+                normalize_pdf_section_text(&CStr::from_ptr(ptr).to_string_lossy())
             })
             .collect::<Vec<_>>()
     };
@@ -136,6 +136,10 @@ pub extern "C" fn generate_pdf_output_ffi(
             -1
         }
     }
+}
+
+fn normalize_pdf_section_text(text: &str) -> String {
+    text.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 fn choose_auto_font_size(

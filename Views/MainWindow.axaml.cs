@@ -956,6 +956,14 @@ public partial class MainWindow : Window
             {
                 _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
                 _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                
+                // Write the translated XML to disk and update status
+                if (_translatedDir != null && _currentRelPath != null)
+                {
+                    await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                    await RefreshFileStatusAsync(_currentRelPath);
+                }
+                
                 SetStatus("Saved Markdown: " + Path.ChangeExtension(_currentRelPath, ".md"));
             }
             catch (MarkdownTranslationException ex)
@@ -1036,11 +1044,25 @@ public partial class MainWindow : Window
             {
                 _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
                 _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                
+                // Write the translated XML to disk and update status
+                if (_translatedDir != null && _currentRelPath != null)
+                {
+                    await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                    await RefreshFileStatusAsync(_currentRelPath);
+                }
             }
             catch (MarkdownTranslationException)
             {
                 _rawTranXml = _rawOrigXml;
                 _rawTranXmlReadable = _rawOrigXml;
+                
+                // Even on failure, write the original and update status
+                if (_translatedDir != null && _currentRelPath != null)
+                {
+                    await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                    await RefreshFileStatusAsync(_currentRelPath);
+                }
             }
 
             _markdownSaveCounts[_currentRelPath] = 0;
@@ -1174,7 +1196,53 @@ public partial class MainWindow : Window
         }
         catch { }
 
+        // Update navigation status for this file
+        await RefreshFileStatusAsync(relPath);
+
         return true;
+    }
+
+    private async Task RefreshFileStatusAsync(string relPath)
+    {
+        if (_originalDir == null || _translatedDir == null || _root == null)
+            return;
+
+        try
+        {
+            var origAbs = Path.Combine(_originalDir, relPath);
+            var tranAbs = Path.Combine(_translatedDir, relPath);
+            var relKey = NormalizeRelForLogs(relPath);
+
+            // Compute new status
+            var newStatus = _indexCacheService.ComputeStatusForPairLive(
+                origAbs, tranAbs, _root, relKey, verboseLog: false);
+
+            // Update the cached item if it exists
+            if (_allItemsByRel.TryGetValue(relKey, out var existingItem))
+            {
+                var oldStatus = existingItem.Status;
+                existingItem.Status = newStatus;
+
+                // Refresh the navigation tree if status changed
+                if (oldStatus != newStatus)
+                {
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        // Trigger a refresh of the navigation tree
+                        if (_navTree != null)
+                        {
+                            _navTree.ItemsSource = null;
+                            _navTree.ItemsSource = _filteredItems;
+                        }
+                    });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Silently fail to avoid interrupting the save flow
+            Debug.WriteLine($"Failed to refresh file status: {ex.Message}");
+        }
     }
 
     // ✅ Re-render readable view from the *current* raw strings (no disk re-read, no editor race)
@@ -1437,7 +1505,6 @@ public partial class MainWindow : Window
                 IsDarkTheme = _config.IsDarkTheme,
                 PdfLayoutMode = _config.PdfLayoutMode,
                 PdfIncludeEnglish = _config.PdfIncludeEnglish,
-                PdfForceSideBySideWhenEnglish = _config.PdfForceSideBySideWhenEnglish,
                 PdfLineSpacing = _config.PdfLineSpacing,
                 PdfTrackingChinese = _config.PdfTrackingChinese,
                 PdfTrackingEnglish = _config.PdfTrackingEnglish,
@@ -1449,13 +1516,6 @@ public partial class MainWindow : Window
                 PdfLockBilingualFontSize = _config.PdfLockBilingualFontSize,
                 Version = _config.Version
             };
-
-            if (effectiveConfig.PdfIncludeEnglish &&
-                effectiveConfig.PdfForceSideBySideWhenEnglish &&
-                english.Any(s => !string.IsNullOrWhiteSpace(s)))
-            {
-                effectiveConfig.PdfLayoutMode = PdfLayoutMode.SideBySide;
-            }
 
             if (_pdfExportService.TryGeneratePdf(chinese, english, outputPath, effectiveConfig, out var error))
             {
