@@ -22,6 +22,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
+using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
 
@@ -212,6 +213,7 @@ public partial class TranslationTabView : UserControl
             DisposeHoverDictionary();
             DetachFindRenderers();
         };
+
         Log("CTOR end");
     }
 
@@ -323,10 +325,18 @@ public partial class TranslationTabView : UserControl
         {
             _tran.TextArea.SelectionChanged += (_, _) => RememberSelectionIfAny();
             _tran.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _tran; };
+
+            // ✅ dirty-safe: keep cached text in sync on any change so tab switching never loses text
+            _tran.TextChanged += (_, _) =>
+            {
+                try { _cachedTranXml = _tran.Text ?? ""; } catch { }
+            };
         }
 
         if (_orig != null)
+        {
             _orig.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _orig; };
+        }
 
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
@@ -635,8 +645,6 @@ public partial class TranslationTabView : UserControl
 
     // ============================================================
     // COMMUNITY NOTES (FIX)
-    // ============================================================
-    // (unchanged)
     // ============================================================
 
     public async Task HandleCommunityNoteInsertAsync(int xmlIndex, string noteText, string? resp)
@@ -1013,8 +1021,6 @@ public partial class TranslationTabView : UserControl
     // --------------------------
     // Ctrl+F Find UI
     // --------------------------
-    // (rest unchanged)
-    // --------------------------
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
@@ -1307,8 +1313,6 @@ public partial class TranslationTabView : UserControl
         return top?.Clipboard;
     }
 
-
-
     private static string BuildChatGptPrompt(string selectionXml)
     {
         return
@@ -1471,8 +1475,6 @@ XML fragment to translate:
 
     // --------------------------
     // Hacky XML check (no parser)
-    // --------------------------
-    // (unchanged)
     // --------------------------
 
     private static readonly Regex CommunityNoteBlockRegex = new Regex(
@@ -1728,7 +1730,7 @@ XML fragment to translate:
 
         var caretPos = ed.TextArea.Caret.Position;
 
-        var loc = textView.GetVisualPosition(caretPos, AvaloniaEdit.Rendering.VisualYPosition.LineTop);
+        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
         var p = textView.TranslatePoint(loc, sv);
         if (p == null) return;
 
