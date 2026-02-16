@@ -32,6 +32,7 @@ public partial class MainWindow : Window
     private ListBox? _filesList;
     private TextBox? _navSearch;
     private CheckBox? _chkShowFilenames;
+    private CheckBox? _chkZenOnly;            // ✅ NEW
 
     private TextBlock? _txtRoot;
     private TextBlock? _txtCurrentFile;
@@ -67,6 +68,12 @@ public partial class MainWindow : Window
     private CancellationTokenSource? _renderCts;
     private bool _suppressNavSelectionChanged;
 
+    private readonly ZenTextsService _zenTexts = new ZenTextsService();
+
+    // ✅ Config persistence
+    private AppConfig? _cfg;
+    private bool _suppressConfigSaves;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -99,6 +106,7 @@ public partial class MainWindow : Window
         _filesList = this.FindControl<ListBox>("FilesList");
         _navSearch = this.FindControl<TextBox>("NavSearch");
         _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
+        _chkZenOnly = this.FindControl<CheckBox>("ChkZenOnly"); // ✅ NEW
 
         // Status labels
         _txtRoot = this.FindControl<TextBlock>("TxtRoot");
@@ -132,11 +140,21 @@ public partial class MainWindow : Window
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
         if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
 
+        // Search applies live
         if (_navSearch != null)
             _navSearch.TextChanged += (_, _) => ApplyFilter();
 
+        // Show filenames applies live
         if (_chkShowFilenames != null)
             _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
+
+        // ✅ Zen-only applies live + persist
+        if (_chkZenOnly != null)
+            _chkZenOnly.IsCheckedChanged += async (_, _) =>
+            {
+                ApplyFilter();
+                await SaveUiStateAsync();
+            };
 
         // Optional theme checkbox (if you later un-comment it in XAML)
         // if (_chkNightMode != null)
@@ -155,7 +173,6 @@ public partial class MainWindow : Window
         }
 
         // ✅ CRITICAL FIX: after insert/delete, refresh from disk and force BOTH tabs to update immediately.
-        // This kills the "first note only appears after second / after tab switch / after restart" symptom.
         if (_readableView != null)
         {
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
@@ -165,22 +182,17 @@ public partial class MainWindow : Window
                     if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
                         return;
 
-                    // Let TranslationTabView do its file-backed mutation
                     await _translationView!.HandleCommunityNoteInsertAsync(req.XmlIndex, req.NoteText, req.Resp);
 
-                    // Always re-read translated XML from disk to avoid any "editor text stale" timing issues
                     _rawTranXml = await SafeReadTextAsync(tranAbs);
 
-                    // Keep the XML tab and internal state consistent immediately
                     await Dispatcher.UIThread.InvokeAsync(() =>
                     {
                         _translationView!.SetXml(_rawOrigXml, _rawTranXml);
                     }, DispatcherPriority.Background);
 
-                    // Invalidate cache for translated file so next cached renders can't resurrect old markers
                     SafeInvalidateRenderCache(tranAbs);
 
-                    // Re-render readable from the raw strings (no disk race)
                     await RefreshReadableFromRawAsync();
 
                     SetStatus("Community note inserted.");
@@ -200,7 +212,6 @@ public partial class MainWindow : Window
 
                     await _translationView!.HandleCommunityNoteDeleteAsync(req.XmlStart, req.XmlEndExclusive);
 
-                    // Always re-read translated XML from disk so the UI can't lag behind
                     _rawTranXml = await SafeReadTextAsync(tranAbs);
 
                     await Dispatcher.UIThread.InvokeAsync(() =>
@@ -250,6 +261,30 @@ public partial class MainWindow : Window
                 catch (Exception ex)
                 {
                     SetStatus("Failed to load cloned repo: " + ex.Message);
+                }
+            };
+        }
+
+        if (_readableView != null)
+        {
+            _readableView.ZenFlagChanged += async (_, ev) =>
+            {
+                try
+                {
+                    if (_root == null) return;
+
+                    await _zenTexts.SetZenAsync(_root, ev.RelPath, ev.IsZen);
+                    SetStatus(ev.IsZen ? "Marked as Zen text." : "Unmarked as Zen text.");
+
+                    // ✅ If Zen-only filter is active, refreshing the list makes the item appear/disappear immediately
+                    ApplyFilter();
+
+                    // ✅ search tab should see latest zen state instantly (resolver reads service)
+                    // no extra wiring needed here
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Zen toggle failed: " + ex.Message);
                 }
             };
         }
@@ -384,20 +419,71 @@ public partial class MainWindow : Window
 
     private async Task TryAutoLoadRootFromConfigAsync()
     {
-        var cfg = await _configService.TryLoadAsync();
-        if (cfg?.TextRootPath is null) return;
+        _cfg = await _configService.TryLoadAsync();
+        if (_cfg?.TextRootPath is null) return;
 
         try
         {
-            if (!Directory.Exists(cfg.TextRootPath))
+            if (!Directory.Exists(_cfg.TextRootPath))
                 return;
 
+            // ✅ restore ZenOnly before list loads so filtering is correct immediately
+            _suppressConfigSaves = true;
+            try
+            {
+                if (_chkZenOnly != null)
+                    _chkZenOnly.IsChecked = _cfg.ZenOnly;
+            }
+            finally
+            {
+                _suppressConfigSaves = false;
+            }
+
             SetStatus("Auto-loading last root…");
-            await LoadRootAsync(cfg.TextRootPath, saveToConfig: false);
+            await LoadRootAsync(_cfg.TextRootPath, saveToConfig: false);
+
+            // ✅ auto-open last file (after root + index loaded)
+            if (!string.IsNullOrWhiteSpace(_cfg.LastSelectedRelPath))
+            {
+                var rel = NormalizeRelForLogs(_cfg.LastSelectedRelPath);
+
+                // best-effort select in nav (may fail if filtered out)
+                SelectInNav(rel);
+
+                // always try to load it anyway
+                await LoadPairAsync(rel);
+            }
         }
         catch
         {
             // ignore
+        }
+    }
+
+    private async Task SaveUiStateAsync()
+    {
+        if (_suppressConfigSaves)
+            return;
+
+        try
+        {
+            if (_root == null)
+                return;
+
+            var cfg = _cfg ?? new AppConfig();
+
+            cfg.TextRootPath = _root;
+            cfg.LastSelectedRelPath = _currentRelPath;
+            cfg.ZenOnly = _chkZenOnly?.IsChecked == true;
+            cfg.Version = Math.Max(cfg.Version, 2);
+
+            _cfg = cfg;
+
+            await _configService.SaveAsync(cfg);
+        }
+        catch
+        {
+            // ignore (config saving must never break UX)
         }
     }
 
@@ -408,6 +494,16 @@ public partial class MainWindow : Window
         _translatedDir = AppPaths.GetTranslatedDir(_root);
 
         _renderCache.Clear();
+
+        // ✅ load zen list early; resolver reads live from service
+        try
+        {
+            await _zenTexts.LoadAsync(_root);
+
+            // Make sure search tab has the resolver even before SetContext happens.
+            _searchView?.SetZenResolver(rel => _zenTexts.IsZen(rel));
+        }
+        catch { /* ignore */ }
 
         if (_txtRoot != null) _txtRoot.Text = _root;
 
@@ -423,7 +519,16 @@ public partial class MainWindow : Window
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
 
         if (saveToConfig)
-            await _configService.SaveAsync(new AppConfig { TextRootPath = _root });
+        {
+            // Preserve existing config fields if we have them
+            var cfg = _cfg ?? new AppConfig();
+            cfg.TextRootPath = _root;
+            cfg.ZenOnly = _chkZenOnly?.IsChecked == true;
+            cfg.Version = Math.Max(cfg.Version, 2);
+            _cfg = cfg;
+
+            await _configService.SaveAsync(cfg);
+        }
 
         await LoadFileListFromCacheOrBuildAsync();
     }
@@ -433,6 +538,7 @@ public partial class MainWindow : Window
         if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
             return;
 
+        // ⚠ ClearViews() calls SearchTabView.Clear(), which nulls the Zen resolver.
         ClearViews();
 
         void WireSearchTab()
@@ -457,6 +563,9 @@ public partial class MainWindow : Window
                     string rel = relKey;
                     return (rel, rel, null);
                 });
+
+            // ✅ CRITICAL: re-attach Zen resolver AFTER Clear()
+            _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
         }
 
         var cache = await _indexCacheService.TryLoadAsync(_root);
@@ -503,12 +612,21 @@ public partial class MainWindow : Window
 
         string q = (_navSearch?.Text ?? "").Trim();
         bool showFilenames = _chkShowFilenames?.IsChecked == true;
+        bool zenOnly = _chkZenOnly?.IsChecked == true; // ✅ NEW
 
         string? selectedRel =
             (_filesList.SelectedItem as FileNavItem)?.RelPath
             ?? _currentRelPath;
 
         IEnumerable<FileNavItem> seq = _allItems;
+
+        // ✅ Zen-only filter first (cheap)
+        if (zenOnly)
+        {
+            seq = seq.Where(it =>
+                !string.IsNullOrWhiteSpace(it.RelPath) &&
+                _zenTexts.IsZen(it.RelPath));
+        }
 
         if (q.Length > 0)
         {
@@ -603,7 +721,11 @@ public partial class MainWindow : Window
 
         _readableView?.Clear();
         _translationView?.Clear();
+
+        // ⚠ This clears _isZen inside SearchTabView; we MUST rewire via WireSearchTab() later.
         _searchView?.Clear();
+
+        _readableView?.SetZenContext(null, false);
 
         UpdateSaveButtonState();
         _gitView?.SetSelectedRelPath(null);
@@ -721,6 +843,16 @@ public partial class MainWindow : Window
                     $"Loaded. Segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}. " +
                     $"Read={swRead.ElapsedMilliseconds:n0}ms Render={swRender.ElapsedMilliseconds:n0}ms Total={swTotal.ElapsedMilliseconds:n0}ms");
             });
+
+            try
+            {
+                bool isZen = _root != null && _zenTexts.IsZen(relPath);
+                _readableView?.SetZenContext(relPath, isZen);
+            }
+            catch { }
+
+            // ✅ persist "where user was"
+            await SaveUiStateAsync();
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)

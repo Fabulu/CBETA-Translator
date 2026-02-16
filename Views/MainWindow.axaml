@@ -194,8 +194,7 @@
 			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
 		</Style>
 
-
-		<!-- Tabs: Fluent templates often ignore bare TabItem.Background; hit template border -->
+		<!-- Tabs -->
 		<Style Selector="TabItem">
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
@@ -208,7 +207,6 @@
 			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
 		</Style>
 
-		<!-- Template surface of TabItem (this is what actually paints) -->
 		<Style Selector="TabItem /template/ Border">
 			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
 		</Style>
@@ -220,7 +218,6 @@
 		<Style Selector="TabItem:selected /template/ Border">
 			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
 		</Style>
-
 
 	</Window.Styles>
 
@@ -238,11 +235,6 @@
 					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"/>
 					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
 					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
-					<!--<CheckBox Name="ChkNightMode"
-							  Content="Night mode"
-							  VerticalAlignment="Center"
-							  Margin="10,0,0,0"
-							  IsChecked="True"/> -->
 					<TextBlock Name="TxtRoot" Margin="10,0,0,0" Classes="muted"/>
 				</StackPanel>
 
@@ -259,7 +251,10 @@
 					Background="{DynamicResource NavBg}"
 					Width="320">
 
-				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
+				<!-- ✅ Reduced vertical crowding -->
+				<Grid Margin="8"
+					  RowDefinitions="Auto,Auto,Auto,*"
+					  RowSpacing="8">
 
 					<TextBlock Text="Files" FontWeight="Bold" Classes="muted"/>
 
@@ -267,9 +262,16 @@
 							 Grid.Row="1"
 							 Watermark="Search (filename or title)…"/>
 
-					<CheckBox Name="ChkShowFilenames"
-							  Grid.Row="2"
-							  Content="Show filenames"/>
+					<!-- ✅ Two checkboxes on one row, with a spacer -->
+					<StackPanel Grid.Row="2"
+								Orientation="Horizontal"
+								Spacing="10">
+						<CheckBox Name="ChkShowFilenames"
+								  Content="Show filenames"/>
+						<Border Width="6"/>
+						<CheckBox Name="ChkZenOnly"
+								  Content="Zen texts"/>
+					</StackPanel>
 
 					<ListBox Name="FilesList"
 							 Grid.Row="3"

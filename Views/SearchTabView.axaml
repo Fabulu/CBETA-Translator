@@ -29,21 +29,53 @@
 				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3" Content="Build/Update Index"/>
 
 				<!-- Row 1 -->
-				<StackPanel Grid.Row="1"
-                            Grid.Column="0"
-                            Orientation="Horizontal"
-                            Spacing="14">
+				<Grid Grid.Row="1"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="4"
+                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+                      ColumnSpacing="14">
 
-					<CheckBox Name="ChkOriginal" Content="Original" IsChecked="True"/>
-					<CheckBox Name="ChkTranslated" Content="Translated" IsChecked="False"/>
+					<!-- Left cluster -->
+					<CheckBox Name="ChkOriginal"
+                              Grid.Column="0"
+                              Content="Original"
+                              IsChecked="True"/>
 
-					<TextBlock Text="Status:" VerticalAlignment="Center" Margin="10,0,0,0" Classes="muted"/>
-					<ComboBox Name="CmbStatus" Width="160"/>
+					<CheckBox Name="ChkTranslated"
+                              Grid.Column="1"
+                              Content="Translated"
+                              IsChecked="False"/>
 
-					<TextBlock Text="Context:" VerticalAlignment="Center" Margin="10,0,0,0" Classes="muted"/>
-					<ComboBox Name="CmbContext" Width="120"/>
+					<TextBlock Grid.Column="2"
+                               Text="Status:"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"
+                               Classes="muted"/>
 
-				</StackPanel>
+					<ComboBox Name="CmbStatus"
+                              Grid.Column="3"
+                              Width="160"/>
+
+					<TextBlock Grid.Column="4"
+                               Text="Context:"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"
+                               Classes="muted"/>
+
+					<ComboBox Name="CmbContext"
+                              Grid.Column="5"
+                              Width="120"/>
+
+					<!-- Filler -->
+					<Border Grid.Column="8"/>
+
+					<!-- Right cluster (Zen-only) -->
+					<CheckBox Name="ChkZenOnly"
+                              Grid.Column="9"
+                              Content="Zen texts"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"/>
+				</Grid>
 
 			</Grid>
 		</Border>

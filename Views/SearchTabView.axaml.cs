@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Views/SearchTabView.axaml.cs
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,9 @@ public partial class SearchTabView : UserControl
     private ComboBox? _cmbStatus;
     private ComboBox? _cmbContext;
 
+    // ✅ Zen-only filter
+    private CheckBox? _chkZenOnly;
+
     private TextBlock? _txtSummary;
     private Button? _btnExportTsv;
 
@@ -42,7 +46,6 @@ public partial class SearchTabView : UserControl
     private Control? _gridMetricView;
     private ScrollViewer? _scrollMetricGuide;
     private TextBlock? _txtMetricGuide;
-
 
     private readonly SearchIndexService _svc = new();
 
@@ -64,22 +67,13 @@ public partial class SearchTabView : UserControl
     // avoid stale async metric recomputes racing each other
     private int _metricComputeVersion = 0;
 
+    // Zen flag lookup (provided by MainWindow via SetZenResolver)
+    private Func<string, bool>? _isZen;
+
     public event EventHandler<string>? Status;
     public event EventHandler<string>? OpenFileRequested;
 
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
-
-    public void SetRootContext(string root, string originalDir, string translatedDir)
-    {
-        _root = root;
-        _originalDir = originalDir;
-        _translatedDir = translatedDir;
-    }
-
-    public void SetFileIndex(List<FileNavItem> items)
-    {
-        _fileIndex = items ?? new List<FileNavItem>();
-    }
 
     public SearchTabView()
     {
@@ -108,6 +102,8 @@ public partial class SearchTabView : UserControl
         _cmbStatus = this.FindControl<ComboBox>("CmbStatus");
         _cmbContext = this.FindControl<ComboBox>("CmbContext");
 
+        _chkZenOnly = this.FindControl<CheckBox>("ChkZenOnly");
+
         _txtSummary = this.FindControl<TextBlock>("TxtSummary");
         _btnExportTsv = this.FindControl<Button>("BtnExportTsv");
 
@@ -126,7 +122,6 @@ public partial class SearchTabView : UserControl
         _gridMetricView = this.FindControl<Control>("GridMetricView");
         _scrollMetricGuide = this.FindControl<ScrollViewer>("ScrollMetricGuide");
         _txtMetricGuide = this.FindControl<TextBlock>("TxtMetricGuide");
-
     }
 
     private void WireEvents()
@@ -186,6 +181,38 @@ public partial class SearchTabView : UserControl
                 await RefreshCoocUiFromCurrentStateAsync();
             };
         }
+
+        // ✅ Key fix:
+        // When Zen-only changes, re-run last query (if any).
+        // AND the filter MUST be applied at SearchAllAsync via relPathFilter (not via fileMeta hiding).
+        if (_chkZenOnly != null)
+        {
+            _chkZenOnly.IsCheckedChanged += async (_, _) =>
+            {
+                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
+                    await StartSearchAsync();
+            };
+        }
+
+        // Optional: if status/context changes and we already searched, re-run
+        if (_cmbStatus != null)
+        {
+            _cmbStatus.SelectionChanged += async (_, _) =>
+            {
+                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
+                    await StartSearchAsync();
+            };
+        }
+
+        if (_cmbContext != null)
+        {
+            _cmbContext.SelectionChanged += async (_, _) =>
+            {
+                // context change affects cooc + KWIC; re-run for correctness
+                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
+                    await StartSearchAsync();
+            };
+        }
     }
 
     private void InitCombos()
@@ -231,27 +258,20 @@ public partial class SearchTabView : UserControl
         }
     }
 
-    public void Clear()
+    // ------------------------------------------------------------
+    // Public wiring
+    // ------------------------------------------------------------
+
+    public void SetRootContext(string root, string originalDir, string translatedDir)
     {
-        Cancel();
+        _root = root;
+        _originalDir = originalDir;
+        _translatedDir = translatedDir;
+    }
 
-        _root = null;
-        _originalDir = null;
-        _translatedDir = null;
-        _fileIndex.Clear();
-        _meta = null;
-
-        _groups.Clear();
-        if (_resultsTree != null) _resultsTree.ItemsSource = null;
-
-        SetProgress("No root loaded.");
-        SetSummary("Ready.");
-        if (_btnExportTsv != null) _btnExportTsv.IsEnabled = false;
-
-        _lastQuery = "";
-        _lastContextWidth = 40;
-
-        ClearCoocUi();
+    public void SetFileIndex(List<FileNavItem> items)
+    {
+        _fileIndex = items ?? new List<FileNavItem>();
     }
 
     public void SetContext(
@@ -269,6 +289,45 @@ public partial class SearchTabView : UserControl
         SetSummary("Ready.");
         ClearCoocUi();
     }
+
+    /// <summary>
+    /// Provide a resolver that tells whether a relPath is marked as Zen text.
+    /// In MainWindow, call: _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
+    /// </summary>
+    public void SetZenResolver(Func<string, bool> isZenResolver)
+    {
+        _isZen = isZenResolver;
+    }
+
+    public void Clear()
+    {
+        Cancel();
+
+        _root = null;
+        _originalDir = null;
+        _translatedDir = null;
+        _fileIndex.Clear();
+        _meta = null;
+        _isZen = null;
+
+        _groups.Clear();
+        if (_resultsTree != null) _resultsTree.ItemsSource = null;
+
+        SetProgress("No root loaded.");
+        SetSummary("Ready.");
+        if (_btnExportTsv != null) _btnExportTsv.IsEnabled = false;
+
+        _lastQuery = "";
+        _lastContextWidth = 40;
+
+        if (_chkZenOnly != null) _chkZenOnly.IsChecked = false;
+
+        ClearCoocUi();
+    }
+
+    // ------------------------------------------------------------
+    // Filters
+    // ------------------------------------------------------------
 
     private int GetContextWidth()
     {
@@ -290,8 +349,30 @@ public partial class SearchTabView : UserControl
         };
     }
 
+    private bool ZenOnly()
+        => _chkZenOnly?.IsChecked == true;
+
+    private Func<string, bool>? BuildRelPathFilter(bool zenOnly)
+    {
+        if (!zenOnly) return null;
+        if (_isZen == null) return null;
+
+        // IMPORTANT: SearchIndexService already normalizes relPaths to use '/'
+        // but to be safe, normalize here too.
+        return rel =>
+        {
+            if (string.IsNullOrWhiteSpace(rel)) return false;
+            rel = rel.Replace('\\', '/').TrimStart('/');
+            return _isZen(rel);
+        };
+    }
+
+    // ------------------------------------------------------------
+    // Cooc helpers
+    // ------------------------------------------------------------
+
     private bool IsGuideSelected()
-    => (_cmbCoocMetric?.SelectedIndex ?? 0) == 8;
+        => (_cmbCoocMetric?.SelectedIndex ?? 0) == 8;
 
     private CoocMetric GetSelectedMetric()
     {
@@ -309,7 +390,6 @@ public partial class SearchTabView : UserControl
             _ => CoocMetric.TopCooccurrences
         };
     }
-
 
     private void Cancel()
     {
@@ -390,6 +470,9 @@ public partial class SearchTabView : UserControl
         });
     }
 
+    // ------------------------------------------------------------
+    // Index build
+    // ------------------------------------------------------------
 
     private async Task BuildIndexAsync()
     {
@@ -441,6 +524,10 @@ public partial class SearchTabView : UserControl
         }
     }
 
+    // ------------------------------------------------------------
+    // Search
+    // ------------------------------------------------------------
+
     private async Task StartSearchAsync()
     {
         if (_root == null || _originalDir == null || _translatedDir == null || _meta == null)
@@ -463,6 +550,18 @@ public partial class SearchTabView : UserControl
             Status?.Invoke(this, "Select Original and/or Translated.");
             return;
         }
+
+        bool zenOnly = ZenOnly();
+        if (zenOnly && _isZen == null)
+        {
+            Status?.Invoke(this, "Zen filter is enabled but no Zen resolver was provided.");
+            // still allow search, but it will behave like 'All'
+            zenOnly = false;
+        }
+
+        // ✅ THIS is the real “Zen-only works” switch:
+        // pass relPathFilter into SearchAllAsync so candidate generation + verification skip non-zen files.
+        var relFilter = BuildRelPathFilter(zenOnly);
 
         Cancel();
         _cts = new CancellationTokenSource();
@@ -512,19 +611,35 @@ public partial class SearchTabView : UserControl
                                includeT,
                                fileMeta: rel =>
                                {
+                                   // NOTE: Zen filtering is done by relPathFilter now.
+                                   // fileMeta should NOT “hide” results by returning empty strings,
+                                   // because that still wastes time verifying and can create confusing UX.
+
                                    var m = _meta(rel);
-                                   if (statusFilter.HasValue && m.status.HasValue && m.status.Value != statusFilter.Value)
-                                       return ("", "", m.status);
-                                   if (statusFilter.HasValue && !m.status.HasValue)
-                                       return ("", "", null);
+
+                                   if (statusFilter.HasValue)
+                                   {
+                                       if (m.status.HasValue)
+                                       {
+                                           if (m.status.Value != statusFilter.Value)
+                                               return ("", "", m.status); // filtered out later by DisplayName check
+                                       }
+                                       else
+                                       {
+                                           return ("", "", null);
+                                       }
+                                   }
+
                                    return m;
                                },
                                contextWidth: contextWidth,
                                progress: prog,
+                               relPathFilter: relFilter,
                                ct: ct))
             {
                 ct.ThrowIfCancellationRequested();
 
+                // Status filter hides items by blanking DisplayName
                 if (string.IsNullOrWhiteSpace(g.DisplayName))
                     continue;
 
@@ -572,6 +687,10 @@ public partial class SearchTabView : UserControl
             if (_btnCancel != null) _btnCancel.IsEnabled = false;
         }
     }
+
+    // ------------------------------------------------------------
+    // Export
+    // ------------------------------------------------------------
 
     private async Task ExportTsvAsync()
     {
@@ -634,6 +753,10 @@ public partial class SearchTabView : UserControl
         return s;
     }
 
+    // ------------------------------------------------------------
+    // UI helpers
+    // ------------------------------------------------------------
+
     private void SetProgress(string msg)
     {
         if (_txtProgress != null) _txtProgress.Text = msg;
@@ -647,7 +770,7 @@ public partial class SearchTabView : UserControl
     private static string MetricGuideText()
     {
         return
-    @"Metric guide (using KWIC windows)
+@"Metric guide (using KWIC windows)
 
 All metrics are computed from the SAME evidence:
 each hit contributes a window string = Left + Match + Right using your Context width.
@@ -707,7 +830,7 @@ How a researcher uses this:
 Example query: 洞山 (Dongshan)
 - Start with Top co-occurrences (overview): find names/titles that reliably surround Dongshan.
 - Switch to Range: see which collocates appear across many files (tradition-wide usage).
-- Switch to Dominance: verify you’re not just seeing one famous text dominating.
+- Switch to Dominance: verify you're not just seeing one famous text dominating.
 - Switch to PMI/logDice: hunt for tighter phrase fragments (nicknames, technical terms).
 - Use t-score to prioritize collocations with real volume.
 
@@ -716,5 +839,4 @@ PMI/logDice = 'interesting and specific'
 t-score/dispersion = 'reliable and common'
 dominance = 'artifact detector'";
     }
-
 }
