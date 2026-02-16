@@ -662,10 +662,12 @@ public partial class MainWindow : Window
         if (_filesList == null)
             return;
 
+        // If the user is typing in the search box, preserve that focus even if the ListBox rebuilds.
+        bool shouldRestoreSearchFocus = _navSearch?.IsFocused == true;
+
         string q = (_navSearch?.Text ?? "").Trim();
         bool showFilenames = _chkShowFilenames?.IsChecked == true;
         bool zenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
-
         int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0; // ✅ NEW
 
         string? selectedRel =
@@ -721,17 +723,34 @@ public partial class MainWindow : Window
             };
         }).ToList();
 
-        _filesList.ItemsSource = _filteredItems;
-
-        if (!string.IsNullOrWhiteSpace(selectedRel))
+        try
         {
-            var match = _filteredItems.FirstOrDefault(x =>
-                string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
+            // Prevent SelectionChanged from firing load/render work while we rebuild.
+            _suppressNavSelectionChanged = true;
 
-            if (match != null)
-                _filesList.SelectedItem = match;
+            _filesList.ItemsSource = _filteredItems;
+
+            if (!string.IsNullOrWhiteSpace(selectedRel))
+            {
+                var match = _filteredItems.FirstOrDefault(x =>
+                    string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
+
+                if (match != null)
+                    _filesList.SelectedItem = match;
+            }
+        }
+        finally
+        {
+            _suppressNavSelectionChanged = false;
+        }
+
+        // Defer focus restore until after layout/selection settles (Linux/WMs can be touchy here).
+        if (shouldRestoreSearchFocus && _navSearch != null)
+        {
+            Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
         }
     }
+
 
     private static bool MatchesStatusFilter(object? statusObj, int statusIdx)
     {
