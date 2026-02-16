@@ -62,15 +62,15 @@ jobs:
             -c Release -r "${{ matrix.rid }}" --self-contained true \
             /p:PublishSingleFile=true \
             /p:IncludeNativeLibrariesForSelfExtract=true \
-            /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:DebugType=None /p:DebugSymbols=false
 
-      - name: Ensure dictionary ships
+      # Ship dictionary exactly at assets/dict (lowercase) in publish output
+      - name: Ensure dictionary ships (assets/dict)
         shell: bash
         run: |
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
-          mkdir -p "$PUB/Assets/Dict"
-          cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
+          mkdir -p "$PUB/assets/dict"
+          cp -R "Assets/Dict/." "$PUB/assets/dict/"
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
@@ -87,11 +87,8 @@ jobs:
 
           Compress-Archive -Path "$pub\*" -DestinationPath $zipPath
 
-          # use forward slashes so action-gh-release can find the file
           $asset = $zipPath -replace '\\','/'
           "ASSET=$asset" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-
-          Get-ChildItem dist | Format-Table -AutoSize
 
       - name: Package (Linux/macOS)
         if: runner.os != 'Windows'
@@ -111,8 +108,6 @@ jobs:
             tar -czf "dist/${OUT}.tar.gz" -C "$PUB" .
             echo "ASSET=dist/${OUT}.tar.gz" >> $GITHUB_ENV
           fi
-
-          ls -la dist
 
       - name: Create/Upload Release (Linux creates)
         if: runner.os == 'Linux'
