@@ -58,6 +58,36 @@ bin\SelfContained\
 └── cbeta-gui-dll.dll         # Rust DLL (you must add this)
 ```
 
+## ⚠️ **IMPORTANT: Additional Data Required**
+
+The self-contained executable **does NOT include the CBETA XML database**. You must also provide:
+
+### Required External Data:
+1. **CbetaZenTexts folder** (~500MB+)
+   - Contains 4,990 XML files in `xml-p5/` subfolder
+   - Translation files in `xml-p5t/` and `md-p5t/`
+   - Index files and metadata
+   - **Must be placed in same directory as the exe**
+
+### Complete Deployment Structure:
+```
+[Application Directory]\
+├── CbetaTranslator.App.exe          # ~46MB self-contained exe
+├── cbeta-gui-dll.dll                # ~5MB Rust DLL
+└── CbetaZenTexts\                   # ~500MB+ CBETA database
+    ├── xml-p5\                      # Original XML files
+    ├── xml-p5t\                     # Translated XML files  
+    ├── md-p5t\                      # Markdown translations
+    ├── canons.json                  # Canon metadata
+    └── index.cache.json             # Search index
+```
+
+### Why Not Include CbetaZenTexts in Self-Contained Build?
+- **Size**: The XML database is ~500MB+ vs 46MB exe
+- **Updates**: Database can be updated independently of app
+- **Flexibility**: Users can choose which canons to include
+- **Build time**: Including 5,000+ files would make builds extremely slow
+
 ## ⚙️ Configuration Details
 
 The project file (`CbetaTranslator.App.csproj`) includes these key settings:
