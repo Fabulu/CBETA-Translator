@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CbetaTranslator.App.Infrastructure;
@@ -21,6 +27,8 @@ namespace CbetaTranslator.App.Views;
 
 public partial class MainWindow : Window
 {
+    private const string AppTitleBase = "CBETA Translator";
+
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
     private Button? _btnSave;                 // optional: may not exist in XAML
@@ -74,6 +82,22 @@ public partial class MainWindow : Window
     private AppConfig? _cfg;
     private bool _suppressConfigSaves;
 
+    // ============================================================
+    // ✅ "KEEP TEXT ON TAB SWITCH" + DIRTY TRACKING + WARNINGS
+    // ============================================================
+
+    // Baseline = last saved/loaded translated XML hash
+    private string _baselineTranSha1 = "";
+    private bool _dirty;
+
+    // Periodic dirty detector (no need to change TranslationTabView)
+    private DispatcherTimer? _dirtyTimer;
+    private string _lastSeenTranSha1 = "";
+
+    // Track tab transitions to capture/restore text and warn when leaving
+    private int _lastTabIndex = -1;
+    private bool _suppressTabEvents;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -86,6 +110,16 @@ public partial class MainWindow : Window
 
         // Force night mode (your current desired state)
         ApplyTheme(dark: true);
+
+        // Start dirty polling (cheap SHA1 on current editor text)
+        StartDirtyTimer();
+
+        Closing += async (_, e) =>
+        {
+            // block close if user cancels
+            if (!await ConfirmNavigateIfDirtyAsync("close the app"))
+                e.Cancel = true;
+        };
 
         _ = TryAutoLoadRootFromConfigAsync();
     }
@@ -138,7 +172,18 @@ public partial class MainWindow : Window
         if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
 
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
-        if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
+
+        if (_tabs != null)
+        {
+            _tabs.SelectionChanged += async (_, _) =>
+            {
+                if (_suppressTabEvents) return;
+                await OnTabSelectionChangedAsync();
+                UpdateSaveButtonState();
+            };
+
+            _lastTabIndex = _tabs.SelectedIndex;
+        }
 
         // Search applies live
         if (_navSearch != null)
@@ -193,6 +238,10 @@ public partial class MainWindow : Window
 
                     SafeInvalidateRenderCache(tranAbs);
 
+                    // ✅ Note ops always produce disk changes -> update baseline/dirty
+                    SetBaselineFromCurrentTranslated();
+                    UpdateDirtyStateFromEditor(forceUi: true);
+
                     await RefreshReadableFromRawAsync();
 
                     SetStatus("Community note inserted.");
@@ -221,6 +270,10 @@ public partial class MainWindow : Window
 
                     SafeInvalidateRenderCache(tranAbs);
 
+                    // ✅ Note ops always produce disk changes -> update baseline/dirty
+                    SetBaselineFromCurrentTranslated();
+                    UpdateDirtyStateFromEditor(forceUi: true);
+
                     await RefreshReadableFromRawAsync();
 
                     SetStatus("Community note deleted.");
@@ -237,11 +290,18 @@ public partial class MainWindow : Window
             _searchView.Status += (_, msg) => SetStatus(msg);
             _searchView.OpenFileRequested += async (_, rel) =>
             {
+                if (!await ConfirmNavigateIfDirtyAsync($"open another file ({rel})"))
+                    return;
+
                 SelectInNav(rel);
                 await LoadPairAsync(rel);
 
                 if (_tabs != null)
-                    _tabs.SelectedIndex = 0;
+                {
+                    _suppressTabEvents = true;
+                    try { _tabs.SelectedIndex = 0; }
+                    finally { _suppressTabEvents = false; }
+                }
             };
         }
 
@@ -253,10 +313,17 @@ public partial class MainWindow : Window
             {
                 try
                 {
+                    if (!await ConfirmNavigateIfDirtyAsync("load a different root"))
+                        return;
+
                     await LoadRootAsync(repoRoot, saveToConfig: true);
 
                     if (_tabs != null)
-                        _tabs.SelectedIndex = 0;
+                    {
+                        _suppressTabEvents = true;
+                        try { _tabs.SelectedIndex = 0; }
+                        finally { _suppressTabEvents = false; }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -278,9 +345,6 @@ public partial class MainWindow : Window
 
                     // ✅ If Zen-only filter is active, refreshing the list makes the item appear/disappear immediately
                     ApplyFilter();
-
-                    // ✅ search tab should see latest zen state instantly (resolver reads service)
-                    // no extra wiring needed here
                 }
                 catch (Exception ex)
                 {
@@ -342,6 +406,9 @@ public partial class MainWindow : Window
     {
         try
         {
+            if (!await ConfirmNavigateIfDirtyAsync("open a different root"))
+                return;
+
             if (StorageProvider is null)
             {
                 SetStatus("StorageProvider not available.");
@@ -398,7 +465,11 @@ public partial class MainWindow : Window
 
             // Ensure readable tab is active
             if (_tabs != null)
-                _tabs.SelectedIndex = 0;
+            {
+                _suppressTabEvents = true;
+                try { _tabs.SelectedIndex = 0; }
+                finally { _suppressTabEvents = false; }
+            }
 
             // Let layout settle
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
@@ -717,6 +788,11 @@ public partial class MainWindow : Window
         _rawTranXml = "";
         _currentRelPath = null;
 
+        // reset dirty/baseline
+        _baselineTranSha1 = "";
+        _lastSeenTranSha1 = "";
+        _dirty = false;
+
         if (_txtCurrentFile != null) _txtCurrentFile.Text = "";
 
         _readableView?.Clear();
@@ -727,6 +803,7 @@ public partial class MainWindow : Window
 
         _readableView?.SetZenContext(null, false);
 
+        UpdateWindowTitle();
         UpdateSaveButtonState();
         _gitView?.SetSelectedRelPath(null);
     }
@@ -741,6 +818,30 @@ public partial class MainWindow : Window
 
         if (string.IsNullOrWhiteSpace(item.RelPath))
             return;
+
+        // ✅ Warn on dirty before leaving current file
+        if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
+        {
+            if (!await ConfirmNavigateIfDirtyAsync($"switch files ({_currentRelPath} → {item.RelPath})"))
+            {
+                // revert UI selection back
+                Dispatcher.UIThread.Post(() =>
+                {
+                    try
+                    {
+                        _suppressNavSelectionChanged = true;
+                        var back = _filteredItems.FirstOrDefault(x =>
+                            string.Equals(x.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase));
+                        if (back != null) _filesList.SelectedItem = back;
+                    }
+                    finally
+                    {
+                        _suppressNavSelectionChanged = false;
+                    }
+                });
+                return;
+            }
+        }
 
         await LoadPairAsync(item.RelPath);
     }
@@ -813,6 +914,13 @@ public partial class MainWindow : Window
         catch { }
 
         _translationView?.SetXml(_rawOrigXml, _rawTranXml);
+
+        // ✅ establish baseline at load
+        _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
+        _lastSeenTranSha1 = _baselineTranSha1;
+        _dirty = false;
+        UpdateWindowTitle();
+
         UpdateSaveButtonState();
 
         SetStatus("Rendering readable view…");
@@ -924,6 +1032,12 @@ public partial class MainWindow : Window
             catch { }
 
             _rawTranXml = xml ?? "";
+
+            // ✅ baseline becomes current after save
+            _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
+            _lastSeenTranSha1 = _baselineTranSha1;
+            _dirty = false;
+            UpdateWindowTitle();
 
             _renderCts?.Cancel();
             _renderCts = new CancellationTokenSource();
@@ -1066,4 +1180,400 @@ public partial class MainWindow : Window
 
     private static string NormalizeRelForLogs(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
+
+    // ============================================================
+    // ✅ TAB SWITCH: keep text + warn on "scary dirty" when leaving Translation tab
+    // ============================================================
+
+    private async Task OnTabSelectionChangedAsync()
+    {
+        if (_tabs == null) return;
+
+        int newIdx = _tabs.SelectedIndex;
+        int oldIdx = _lastTabIndex;
+        _lastTabIndex = newIdx;
+
+        // Translation tab index is 1 in your UI logic.
+        bool leavingTranslation = oldIdx == 1 && newIdx != 1;
+        bool enteringTranslation = oldIdx != 1 && newIdx == 1;
+
+        if (leavingTranslation)
+        {
+            // capture edits into _rawTranXml so readable re-render uses latest when you save later
+            CaptureTranslationEditsToRaw();
+
+            // warn only if dirty + structurally scary
+            if (_dirty && IsScaryDirty(out var scaryMsg))
+            {
+                // if user cancels, bounce back to translation tab
+                bool ok = await ShowYesNoAsync(
+                    "Unsaved + structural problems",
+                    scaryMsg + "\n\nLeave the Translation tab anyway?");
+
+                if (!ok)
+                {
+                    _suppressTabEvents = true;
+                    try { _tabs.SelectedIndex = 1; }
+                    finally { _suppressTabEvents = false; }
+                    _lastTabIndex = 1;
+                    return;
+                }
+            }
+        }
+
+        if (enteringTranslation)
+        {
+            // If for any reason the editor got reset, restore from _raw* cache.
+            // (TranslationTabView already does caching, but this makes it bulletproof.)
+            if (_translationView != null)
+            {
+                var current = _translationView.GetTranslatedXml() ?? "";
+                if (current.Length == 0 && (_rawTranXml?.Length ?? 0) > 0)
+                {
+                    _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml ?? "");
+                }
+            }
+        }
+
+        UpdateSaveButtonState();
+        UpdateDirtyStateFromEditor(forceUi: true);
+    }
+
+    // ============================================================
+    // ✅ DIRTY TRACKING (unsaved indicator)
+    // ============================================================
+
+    private void StartDirtyTimer()
+    {
+        _dirtyTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(350) };
+        _dirtyTimer.Tick -= DirtyTimer_Tick;
+        _dirtyTimer.Tick += DirtyTimer_Tick;
+        _dirtyTimer.Start();
+    }
+
+    private void DirtyTimer_Tick(object? sender, EventArgs e)
+    {
+        // Only track when a file is loaded
+        if (_currentRelPath == null || _translationView == null)
+            return;
+
+        // Light touch: SHA1 of current editor text
+        string cur = "";
+        try { cur = _translationView.GetTranslatedXml() ?? ""; }
+        catch { return; }
+
+        string sha = Sha1Hex(cur);
+
+        // Avoid doing UI work if nothing changed since last tick
+        if (sha == _lastSeenTranSha1)
+            return;
+
+        _lastSeenTranSha1 = sha;
+        UpdateDirtyStateFromEditor(forceUi: true);
+    }
+
+    private void UpdateDirtyStateFromEditor(bool forceUi)
+    {
+        if (_translationView == null || _currentRelPath == null)
+        {
+            if (forceUi) UpdateWindowTitle();
+            return;
+        }
+
+        string cur = "";
+        try { cur = _translationView.GetTranslatedXml() ?? ""; }
+        catch { cur = ""; }
+
+        bool dirtyNow = Sha1Hex(cur) != (_baselineTranSha1 ?? "");
+
+        if (dirtyNow == _dirty && !forceUi)
+            return;
+
+        _dirty = dirtyNow;
+        UpdateWindowTitle();
+    }
+
+    private void SetBaselineFromCurrentTranslated()
+    {
+        if (_translationView == null) return;
+        string cur = "";
+        try { cur = _translationView.GetTranslatedXml() ?? ""; } catch { cur = ""; }
+        _baselineTranSha1 = Sha1Hex(cur);
+        _lastSeenTranSha1 = _baselineTranSha1;
+        _dirty = false;
+        UpdateWindowTitle();
+    }
+
+    private void CaptureTranslationEditsToRaw()
+    {
+        if (_translationView == null) return;
+        try { _rawTranXml = _translationView.GetTranslatedXml() ?? ""; }
+        catch { }
+    }
+
+    private void UpdateWindowTitle()
+    {
+        var file = _currentRelPath ?? "";
+        var star = _dirty ? "*" : "";
+        Title = string.IsNullOrWhiteSpace(file)
+            ? $"{AppTitleBase}{star}"
+            : $"{AppTitleBase}{star} — {file}";
+
+        if (_txtCurrentFile != null)
+            _txtCurrentFile.Text = string.IsNullOrWhiteSpace(file) ? "" : (file + (_dirty ? "  *" : ""));
+    }
+
+    // ============================================================
+    // ✅ WARNINGS: "scary dirt problems"
+    // - We interpret "scary" as: dirty + hacky structure check FAILS
+    //   (tag-count mismatch ignoring community notes, or lb mismatch/signature mismatch)
+    // ============================================================
+
+    private async Task<bool> ConfirmNavigateIfDirtyAsync(string action)
+    {
+        // Always capture latest editor contents before deciding
+        CaptureTranslationEditsToRaw();
+        UpdateDirtyStateFromEditor(forceUi: true);
+
+        if (!_dirty)
+            return true;
+
+        // If it's scary, show scary message; else simple unsaved prompt.
+        if (IsScaryDirty(out var scaryMsg))
+        {
+            return await ShowYesNoAsync(
+                "Unsaved changes + structural issues",
+                $"You have unsaved changes AND the translation looks structurally broken.\n\n{scaryMsg}\n\n" +
+                $"Proceed to {action}? (Choosing Yes may lose edits if you later reload)");
+        }
+
+        return await ShowYesNoAsync(
+            "Unsaved changes",
+            $"You have unsaved changes.\n\nProceed to {action}?");
+    }
+
+    private bool IsScaryDirty(out string message)
+    {
+        message = "";
+
+        if (!_dirty) return false;
+
+        // We need original + current translated (from editor, not _rawTranXml snapshot)
+        if (_translationView == null) return false;
+
+        string orig = _rawOrigXml ?? "";
+        string tran = "";
+        try { tran = _translationView.GetTranslatedXml() ?? ""; }
+        catch { return false; }
+
+        if (string.IsNullOrEmpty(orig))
+            return false;
+
+        var (ok, msg, _, _, _, _) = VerifyXmlHacky(orig, tran);
+
+        if (ok)
+            return false;
+
+        message = msg;
+        return true;
+    }
+
+    // ============================================================
+    // ✅ POPUPS (no extra XAML needed)
+    // ============================================================
+
+    private async Task<bool> ShowYesNoAsync(string title, string message)
+    {
+        var owner = this;
+
+        var btnYes = new Button { Content = "Yes", MinWidth = 90 };
+        var btnNo = new Button { Content = "No", MinWidth = 90 };
+
+        var buttons = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Spacing = 10
+        };
+        buttons.Children.Add(btnNo);
+        buttons.Children.Add(btnYes);
+
+        var text = new TextBox
+        {
+            Text = message,
+            IsReadOnly = true,
+            TextWrapping = TextWrapping.Wrap,
+            AcceptsReturn = true,
+            Height = 250
+        };
+        ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
+        ScrollViewer.SetHorizontalScrollBarVisibility(text, ScrollBarVisibility.Disabled);
+
+        var panel = new StackPanel
+        {
+            Margin = new Thickness(16),
+            Spacing = 10
+        };
+        panel.Children.Add(text);
+        panel.Children.Add(buttons);
+
+        var win = new Window
+        {
+            Title = title,
+            Width = 720,
+            Height = 420,
+            Content = panel,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        var tcs = new TaskCompletionSource<bool>();
+
+        btnYes.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
+        btnNo.Click += (_, _) => { win.Close(); tcs.TrySetResult(false); };
+
+        await win.ShowDialog(owner);
+        return await tcs.Task;
+    }
+
+    // ============================================================
+    // ✅ HACKY STRUCTURE CHECK (copied from TranslationTabView, minimal)
+    // ============================================================
+
+    private static readonly Regex XmlTagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
+
+    private static readonly Regex CommunityNoteBlockRegex = new Regex(
+        @"<note\b(?<attrs>[^>]*)\btype\s*=\s*""community""(?<attrs2>[^>]*)>(?<inner>[\s\S]*?)</note>",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static string StripCommunityNotes(string xml)
+    {
+        if (string.IsNullOrEmpty(xml)) return xml ?? string.Empty;
+        return CommunityNoteBlockRegex.Replace(xml, "");
+    }
+
+    private static readonly Regex LbTagRegex = new Regex(
+        @"<lb\b(?<attrs>[^>]*)\/?>",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static readonly Regex AttrRegex = new Regex(
+        @"\b(?<name>n|ed)\s*=\s*""(?<val>[^""]*)""",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static (int totalLb, Dictionary<string, int> sigCounts) CollectLbSignatures(string xml)
+    {
+        int total = 0;
+        var dict = new Dictionary<string, int>(StringComparer.Ordinal);
+
+        foreach (Match m in LbTagRegex.Matches(xml))
+        {
+            total++;
+
+            string attrs = m.Groups["attrs"].Value;
+
+            string? nVal = null;
+            string? edVal = null;
+
+            foreach (Match am in AttrRegex.Matches(attrs))
+            {
+                var name = am.Groups["name"].Value;
+                var val = am.Groups["val"].Value;
+
+                if (name.Equals("n", StringComparison.OrdinalIgnoreCase)) nVal = val;
+                else if (name.Equals("ed", StringComparison.OrdinalIgnoreCase)) edVal = val;
+            }
+
+            string sig = $"n={nVal ?? "<missing>"}|ed={edVal ?? "<missing>"}";
+
+            if (dict.TryGetValue(sig, out int c)) dict[sig] = c + 1;
+            else dict[sig] = 1;
+        }
+
+        return (total, dict);
+    }
+
+    private static (bool ok, string message, int origTags, int tranTags, int origLb, int tranLb) VerifyXmlHacky(string orig, string tran)
+    {
+        if (string.IsNullOrEmpty(orig))
+            return (false, "Original XML is empty. Nothing to compare.", 0, 0, 0, 0);
+
+        tran ??= "";
+
+        string tranStripped = StripCommunityNotes(tran);
+
+        int origTagCount = XmlTagRegex.Matches(orig).Count;
+        int tranTagCount = XmlTagRegex.Matches(tran).Count;
+        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count;
+
+        var (origLbTotal, origSigs) = CollectLbSignatures(orig);
+        var (tranLbTotal, tranSigs) = CollectLbSignatures(tranStripped);
+
+        var missing = origSigs.Keys.Where(k => !tranSigs.ContainsKey(k)).ToList();
+        var extra = tranSigs.Keys.Where(k => !origSigs.ContainsKey(k)).ToList();
+
+        var countDiffs = new List<string>();
+        foreach (var k in origSigs.Keys.Intersect(tranSigs.Keys))
+        {
+            int a = origSigs[k];
+            int b = tranSigs[k];
+            if (a != b)
+                countDiffs.Add($"{k}  original={a}  translated={b}");
+        }
+
+        var problems = new List<string>();
+
+        if (origTagCount != tranTagCountStripped)
+            problems.Add(
+                $"TAG COUNT MISMATCH (ignoring community notes):\n" +
+                $"  original={origTagCount:n0}\n" +
+                $"  translated_stripped={tranTagCountStripped:n0}\n" +
+                $"  translated_raw={tranTagCount:n0}");
+
+        if (origLbTotal != tranLbTotal)
+            problems.Add($"LB TOTAL MISMATCH:\n  original={origLbTotal:n0}\n  translated={tranLbTotal:n0}");
+
+        if (missing.Count > 0)
+            problems.Add($"MISSING <lb> SIGNATURES in translated: {missing.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", missing.Take(15))}");
+
+        if (extra.Count > 0)
+            problems.Add($"EXTRA <lb> SIGNATURES in translated: {extra.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", extra.Take(15))}");
+
+        if (countDiffs.Count > 0)
+            problems.Add($"<lb> SIGNATURE COUNT DIFFERENCES: {countDiffs.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", countDiffs.Take(15))}");
+
+        if (problems.Count == 0)
+        {
+            int removed = tranTagCount - tranTagCountStripped;
+
+            string okMsg =
+                $"OK ✅\n\n" +
+                $"Tag count matches (ignoring community notes): {tranTagCountStripped:n0}\n" +
+                $"<lb> count matches: {tranLbTotal:n0}\n" +
+                $"All <lb n=... ed=...> signatures match.\n" +
+                (removed > 0 ? $"\nCommunity-note tags ignored during check: {removed:n0}\n" : "\n") +
+                $"(Hacky structural check only; not a full XML validator.)";
+
+            return (true, okMsg, origTagCount, tranTagCount, origLbTotal, tranLbTotal);
+        }
+
+        return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
+    }
+
+    // ============================================================
+    // ✅ SHA1 helper
+    // ============================================================
+
+    private static string Sha1Hex(string s)
+    {
+        try
+        {
+            using var sha1 = SHA1.Create();
+            var bytes = Encoding.UTF8.GetBytes(s ?? "");
+            var hash = sha1.ComputeHash(bytes);
+            return Convert.ToHexString(hash);
+        }
+        catch
+        {
+            return "sha1_err";
+        }
+    }
 }
