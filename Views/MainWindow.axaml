@@ -4,6 +4,10 @@
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
         x:Class="CbetaTranslator.App.Views.MainWindow"
         Width="1400" Height="900"
+        SystemDecorations="None"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="0"
         Background="{DynamicResource AppBg}"
         Title="CBETA Translator">
 
@@ -201,7 +205,7 @@
 	<Grid RowDefinitions="Auto,*,Auto">
 
 		<!-- Top Bar -->
-		<Border Grid.Row="0" Background="{DynamicResource BarBg}" Padding="10">
+		<Border Name="TopBar" Grid.Row="0" Background="{DynamicResource BarBg}" Padding="10" PointerPressed="TopBar_PointerPressed">
 			<DockPanel LastChildFill="True">
 
 				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
@@ -217,54 +221,93 @@
 					<TextBlock Name="TxtRoot" Margin="10,0,0,0" Classes="muted"/>
 				</StackPanel>
 
+				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Right" HorizontalAlignment="Right">
+					<Button Name="BtnMinimize" Width="36" Height="28" Content="−"/>
+					<Button Name="BtnMaximize" Width="36" Height="28" Content="□"/>
+					<Button Name="BtnClose" Width="36" Height="28" Content="×"/>
+				</StackPanel>
+
 				<TextBlock Name="TxtCurrentFile"
-						   DockPanel.Dock="Right"
+						   HorizontalAlignment="Right"
+						   VerticalAlignment="Center"
+						   Margin="10,0,10,0"
 						   Classes="muted"/>
 			</DockPanel>
 		</Border>
 
 		<!-- Main -->
-		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
+		<Grid Grid.Row="1" ColumnDefinitions="320,6,*">
 
 			<Border Name="NavPanel"
+					Grid.Column="0"
 					Background="{DynamicResource NavBg}"
-					Width="320">
+					MinWidth="280">
 
-				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
+				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" RowSpacing="8">
 
 					<TextBlock Text="Files" FontWeight="Bold" Classes="muted"/>
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
-							 Watermark="Search (filename or title)…"/>
+							 Watermark="Find text, filename, title..."/>
 
-					<CheckBox Name="ChkShowFilenames"
-							  Grid.Row="2"
-							  Content="Show filenames"/>
+					<StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="6">
+						<CheckBox Name="ChkNavOriginal" Content="O" IsChecked="True" ToolTip.Tip="Search Original text"/>
+						<CheckBox Name="ChkNavTranslated" Content="T" ToolTip.Tip="Search Translated text"/>
+						<ComboBox Name="CmbNavStatus" Width="88"/>
+						<ComboBox Name="CmbNavContext" Width="72"/>
+					</StackPanel>
 
-					<ListBox Name="FilesList"
-							 Grid.Row="3"
-							 Background="{DynamicResource ControlBg}"
-							 BorderBrush="{DynamicResource BorderBrush}"
-							 BorderThickness="1">
+					<ComboBox Name="CmbOrganizeBy"
+							  Grid.Row="3"
+							  Width="240"
+							  HorizontalAlignment="Left"/>
 
-						<ListBox.ItemTemplate>
-							<DataTemplate x:DataType="models:FileNavItem">
+					<Expander Name="ExpAdvancedSearch"
+							  Grid.Row="4"
+							  IsExpanded="False"
+							  Header="Advanced Search">
+						<Border BorderBrush="{DynamicResource BorderBrush}"
+								BorderThickness="1"
+								Padding="6">
+							<views:SearchTabView Name="SearchView"/>
+						</Border>
+					</Expander>
+
+					<TreeView Name="NavTree"
+							  Grid.Row="5"
+							  Background="{DynamicResource ControlBg}"
+							  BorderBrush="{DynamicResource BorderBrush}"
+							  BorderThickness="1">
+						<TreeView.DataTemplates>
+							<TreeDataTemplate DataType="models:NavTreeNode" ItemsSource="{Binding Children}">
 								<Border CornerRadius="6"
 										Padding="6"
-										Margin="4"
+										Margin="3"
+										Background="{Binding TintBrush}">
+									<TextBlock Text="{Binding Header}" TextWrapping="NoWrap"/>
+								</Border>
+							</TreeDataTemplate>
+							<DataTemplate DataType="models:FileNavItem">
+								<Border CornerRadius="6"
+										Padding="6"
+										Margin="3"
 										Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
 									<TextBlock Text="{Binding DisplayShort}"
 											   ToolTip.Tip="{Binding Tooltip}"
 											   TextWrapping="NoWrap"/>
 								</Border>
 							</DataTemplate>
-						</ListBox.ItemTemplate>
-
-					</ListBox>
+						</TreeView.DataTemplates>
+					</TreeView>
 
 				</Grid>
-			</Border>
+				</Border>
+
+				<GridSplitter Grid.Column="1"
+							  Width="6"
+							  ResizeDirection="Columns"
+							  Background="{DynamicResource BorderBrush}"/>
 
 			<Border Grid.Column="2" Margin="8">
 				<TabControl Name="MainTabs">
@@ -273,9 +316,6 @@
 					</TabItem>
 					<TabItem Header="Edit">
 						<views:TranslationTabView Name="TranslationView"/>
-					</TabItem>
-					<TabItem Header="Search">
-						<views:SearchTabView Name="SearchView"/>
 					</TabItem>
 					<TabItem Header="Git">
 						<views:GitTabView Name="GitView"/>

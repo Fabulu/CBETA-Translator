@@ -17,7 +17,8 @@ public sealed class IndexCacheService
 
     // Bump this string whenever you want to force rebuild even if cache exists.
     // (Useful when you change status logic and want to ensure the cache isn't stale.)
-    private const string CacheBuildGuid = "phase2-status-v1";
+    private const string CacheBuildGuid = "phase3-nav-metadata-v2";
+    private readonly BuddhistMetadataService _metadataService = new();
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -73,13 +74,10 @@ public sealed class IndexCacheService
             if (cache.Entries == null || cache.Entries.Count == 0)
                 return null;
 
-            // Version gate (keep your v2 baseline)
-            if (cache.Version < 2)
+            // Version gate
+            if (cache.Version < 3)
                 return null;
 
-            // Extra invalidation lever: cache must match our build guid.
-            // If your IndexCache model doesn't have this field yet, add it (string? BuildGuid).
-            // If it doesn't exist, this line will not compile — see note below.
             if (!string.Equals(cache.BuildGuid, CacheBuildGuid, StringComparison.Ordinal))
                 return null;
 
@@ -95,7 +93,7 @@ public sealed class IndexCacheService
     {
         cache.RootPath = root;
         cache.BuiltUtc = DateTime.UtcNow;
-        cache.Version = 2;
+        cache.Version = 3;
         cache.BuildGuid = CacheBuildGuid;
 
         var path = GetCachePath(root);
@@ -308,6 +306,9 @@ public sealed class IndexCacheService
             Log(root, $"BUILD: Enumerating files under {originalDir}");
 
             var titles = LoadTitlesMap(root);
+            var metadataByRel = new Dictionary<string, BuddhistMetadataRecord>(
+                _metadataService.LoadByRelPath(root),
+                StringComparer.OrdinalIgnoreCase);
 
             var files = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories).ToList();
             int total = files.Count;
@@ -364,13 +365,24 @@ public sealed class IndexCacheService
 
                 var status = ComputeStatus(origAbs, tranAbs, root, relKey, verbose);
 
+                metadataByRel.TryGetValue(relKey, out var md);
+                if (md == null)
+                {
+                    md = _metadataService.InferFromXml(relKey, origAbs);
+                    metadataByRel[relKey] = md;
+                }
+
                 entries.Add(new FileNavItem
                 {
                     RelPath = rel,
                     FileName = fileName,
                     DisplayShort = shortLabel,
                     Tooltip = tooltip,
-                    Status = status
+                    Status = status,
+                    CanonCode = md?.CanonCode ?? "Unknown",
+                    Traditions = md?.Traditions ?? new List<string> { "Unknown Tradition" },
+                    Period = md?.Period ?? "Unknown Period",
+                    Origin = md?.Origin ?? "Unknown Origin"
                 });
 
                 if (progress != null && (i % 50 == 0 || i == total - 1))
@@ -383,7 +395,7 @@ public sealed class IndexCacheService
 
             return new IndexCache
             {
-                Version = 2,
+                Version = 3,
                 RootPath = root,
                 BuiltUtc = DateTime.UtcNow,
                 BuildGuid = CacheBuildGuid,
