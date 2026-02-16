@@ -117,7 +117,7 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
-		<!-- CheckBox (THIS fixes “Show filenames” being black on Linux) -->
+		<!-- CheckBox (fixes “Show filenames” being black on Linux) -->
 		<Style Selector="CheckBox">
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
@@ -134,7 +134,7 @@
 			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
-		<!-- Buttons (force Foreground on hover/pressed so Linux can’t flip it) -->
+		<!-- Buttons -->
 		<Style Selector="Button">
 			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
@@ -154,7 +154,7 @@
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
-		<!-- TextBox: set control props -->
+		<!-- TextBox -->
 		<Style Selector="TextBox">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
@@ -165,7 +165,7 @@
 			<Setter Property="SelectionForegroundBrush" Value="{DynamicResource SelectionFg}"/>
 		</Style>
 
-		<!-- TextBox: TEMPLATE OVERRIDE (fixes white focus background on Linux) -->
+		<!-- TextBox template border override (Linux focus bg) -->
 		<Style Selector="TextBox /template/ Border">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
@@ -182,13 +182,6 @@
 			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
-		<!-- Force text color at the TextBox level (this is the supported way) -->
-		<Style Selector="TextBox">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<!-- If your focused textbox text flips, explicitly restate it -->
 		<Style Selector="TextBox:focus">
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
@@ -245,24 +238,42 @@
 		</Border>
 
 		<!-- Main -->
-		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
+		<!-- FIX 1: remove the unused middle column that created a big empty gulf -->
+		<Grid Grid.Row="1" ColumnDefinitions="Auto,*">
 
 			<Border Name="NavPanel"
+					Grid.Column="0"
 					Background="{DynamicResource NavBg}"
 					Width="320">
 
-				<!-- ✅ Reduced vertical crowding -->
+				<!-- FIX 2: put the ComboBox in the header row (right side),
+				         and remove the "invisible overlap" bug by giving everything a real row -->
 				<Grid Margin="8"
 					  RowDefinitions="Auto,Auto,Auto,*"
 					  RowSpacing="8">
 
-					<TextBlock Text="Files" FontWeight="Bold" Classes="muted"/>
+					<!-- Header row: Files (left) + Status filter (right) -->
+					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+						<TextBlock Text="Files" FontWeight="Bold" Classes="muted" VerticalAlignment="Center"/>
+
+						<ComboBox Name="CmbStatusFilter"
+								  Grid.Column="1"
+								  SelectedIndex="0"
+								  MinWidth="160"
+								  HorizontalAlignment="Right"
+								  VerticalAlignment="Center">
+							<ComboBoxItem Content="All"/>
+							<ComboBoxItem Content="Translated (Green)"/>
+							<ComboBoxItem Content="Partially translated (Yellow)"/>
+							<ComboBoxItem Content="Untranslated (Red)"/>
+						</ComboBox>
+					</Grid>
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
 							 Watermark="Search (filename or title)…"/>
 
-					<!-- ✅ Two checkboxes on one row, with a spacer -->
+					<!-- Keep ChkZenOnly exactly as-is (no changes) -->
 					<StackPanel Grid.Row="2"
 								Orientation="Horizontal"
 								Spacing="10">
@@ -297,7 +308,7 @@
 				</Grid>
 			</Border>
 
-			<Border Grid.Column="2" Margin="8">
+			<Border Grid.Column="1" Margin="8">
 				<TabControl Name="MainTabs">
 					<TabItem Header="Readable">
 						<views:ReadableTabView Name="ReadableView"/>
