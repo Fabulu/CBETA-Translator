@@ -14,7 +14,6 @@ public partial class SettingsWindow : Window
     private RadioButton? _radioPdfAlternating;
     private RadioButton? _radioPdfSideBySide;
     private CheckBox? _chkPdfIncludeEnglish;
-    private CheckBox? _chkPdfForceSideBySideWhenEnglish;
     private CheckBox? _chkPdfAutoScaleFonts;
     private CheckBox? _chkPdfLockBilingualFontSize;
     private TextBox? _txtPdfLineSpacing;
@@ -48,7 +47,6 @@ public partial class SettingsWindow : Window
         IsDarkTheme = cfg.IsDarkTheme,
         PdfLayoutMode = cfg.PdfLayoutMode,
         PdfIncludeEnglish = cfg.PdfIncludeEnglish,
-        PdfForceSideBySideWhenEnglish = cfg.PdfForceSideBySideWhenEnglish,
         PdfLineSpacing = cfg.PdfLineSpacing,
         PdfTrackingChinese = cfg.PdfTrackingChinese,
         PdfTrackingEnglish = cfg.PdfTrackingEnglish,
@@ -71,7 +69,6 @@ public partial class SettingsWindow : Window
         _radioPdfAlternating = this.FindControl<RadioButton>("RadioPdfAlternating");
         _radioPdfSideBySide = this.FindControl<RadioButton>("RadioPdfSideBySide");
         _chkPdfIncludeEnglish = this.FindControl<CheckBox>("ChkPdfIncludeEnglish");
-        _chkPdfForceSideBySideWhenEnglish = this.FindControl<CheckBox>("ChkPdfForceSideBySideWhenEnglish");
         _chkPdfAutoScaleFonts = this.FindControl<CheckBox>("ChkPdfAutoScaleFonts");
         _chkPdfLockBilingualFontSize = this.FindControl<CheckBox>("ChkPdfLockBilingualFontSize");
         _txtPdfLineSpacing = this.FindControl<TextBox>("TxtPdfLineSpacing");
@@ -105,8 +102,6 @@ public partial class SettingsWindow : Window
 
         if (_chkPdfIncludeEnglish != null)
             _chkPdfIncludeEnglish.IsChecked = _working.PdfIncludeEnglish;
-        if (_chkPdfForceSideBySideWhenEnglish != null)
-            _chkPdfForceSideBySideWhenEnglish.IsChecked = _working.PdfForceSideBySideWhenEnglish;
         if (_chkPdfAutoScaleFonts != null)
             _chkPdfAutoScaleFonts.IsChecked = _working.PdfAutoScaleFonts;
         if (_chkPdfLockBilingualFontSize != null)
@@ -135,7 +130,6 @@ public partial class SettingsWindow : Window
             ? PdfLayoutMode.SideBySide
             : PdfLayoutMode.Alternating;
         _working.PdfIncludeEnglish = _chkPdfIncludeEnglish?.IsChecked == true;
-        _working.PdfForceSideBySideWhenEnglish = _chkPdfForceSideBySideWhenEnglish?.IsChecked == true;
         _working.PdfAutoScaleFonts = _chkPdfAutoScaleFonts?.IsChecked == true;
         _working.PdfLockBilingualFontSize = _chkPdfLockBilingualFontSize?.IsChecked == true;
 

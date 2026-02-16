@@ -388,6 +388,18 @@ impl BilingualPdfGenerator {
         let font_name = if paragraph.is_chinese { "chinese" } else { "english" };
         let font_size = paragraph.font_size;
 
+        // Clip each paragraph to its own box to prevent cross-column bleeding.
+        let clip_bottom = self.font_context.page_height - (paragraph.y + paragraph.height);
+        content.operations.push(Operation::new("q", vec![]));
+        content.operations.push(Operation::new("re", vec![
+            Object::Real(paragraph.x),
+            Object::Real(clip_bottom),
+            Object::Real(paragraph.width),
+            Object::Real(paragraph.height),
+        ]));
+        content.operations.push(Operation::new("W", vec![]));
+        content.operations.push(Operation::new("n", vec![]));
+
         content.operations.push(Operation::new("BT", vec![]));
         content.operations.push(Operation::new("Tf", vec![
             Object::Name(font_name.as_bytes().to_vec()),
@@ -410,6 +422,7 @@ impl BilingualPdfGenerator {
         }
 
         content.operations.push(Operation::new("ET", vec![]));
+        content.operations.push(Operation::new("Q", vec![]));
         Ok(())
     }
 
