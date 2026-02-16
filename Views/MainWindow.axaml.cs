@@ -18,6 +18,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using Avalonia.Styling; // (safe to keep even if unused)
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -40,7 +41,8 @@ public partial class MainWindow : Window
     private ListBox? _filesList;
     private TextBox? _navSearch;
     private CheckBox? _chkShowFilenames;
-    private CheckBox? _chkZenOnly;            // ✅ NEW
+    private CheckBox? _chkZenOnly;            // ✅ KEEP (do not change behavior)
+    private ComboBox? _cmbStatusFilter;       // ✅ NEW (wired)
 
     private TextBlock? _txtRoot;
     private TextBlock? _txtCurrentFile;
@@ -86,15 +88,12 @@ public partial class MainWindow : Window
     // ✅ "KEEP TEXT ON TAB SWITCH" + DIRTY TRACKING + WARNINGS
     // ============================================================
 
-    // Baseline = last saved/loaded translated XML hash
     private string _baselineTranSha1 = "";
     private bool _dirty;
 
-    // Periodic dirty detector (no need to change TranslationTabView)
     private DispatcherTimer? _dirtyTimer;
     private string _lastSeenTranSha1 = "";
 
-    // Track tab transitions to capture/restore text and warn when leaving
     private int _lastTabIndex = -1;
     private bool _suppressTabEvents;
 
@@ -111,12 +110,10 @@ public partial class MainWindow : Window
         // Force night mode (your current desired state)
         ApplyTheme(dark: true);
 
-        // Start dirty polling (cheap SHA1 on current editor text)
         StartDirtyTimer();
 
         Closing += async (_, e) =>
         {
-            // block close if user cancels
             if (!await ConfirmNavigateIfDirtyAsync("close the app"))
                 e.Cancel = true;
         };
@@ -140,7 +137,8 @@ public partial class MainWindow : Window
         _filesList = this.FindControl<ListBox>("FilesList");
         _navSearch = this.FindControl<TextBox>("NavSearch");
         _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
-        _chkZenOnly = this.FindControl<CheckBox>("ChkZenOnly"); // ✅ NEW
+        _chkZenOnly = this.FindControl<CheckBox>("ChkZenOnly"); // ✅ KEEP
+        _cmbStatusFilter = this.FindControl<ComboBox>("CmbStatusFilter"); // ✅ NEW
 
         // Status labels
         _txtRoot = this.FindControl<TextBlock>("TxtRoot");
@@ -165,10 +163,8 @@ public partial class MainWindow : Window
         if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
         if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
 
-        // Optional buttons: wire only if they exist in XAML
         if (_btnSave != null) _btnSave.Click += Save_Click;
 
-        // IMPORTANT: unify add-note behavior to ONE handler
         if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
 
         if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
@@ -193,13 +189,17 @@ public partial class MainWindow : Window
         if (_chkShowFilenames != null)
             _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
 
-        // ✅ Zen-only applies live + persist
+        // ✅ Zen-only applies live + persist (DO NOT CHANGE THIS LOGIC)
         if (_chkZenOnly != null)
             _chkZenOnly.IsCheckedChanged += async (_, _) =>
             {
                 ApplyFilter();
                 await SaveUiStateAsync();
             };
+
+        // ✅ Status filter applies live (no config persistence required)
+        if (_cmbStatusFilter != null)
+            _cmbStatusFilter.SelectionChanged += (_, _) => ApplyFilter();
 
         // Optional theme checkbox (if you later un-comment it in XAML)
         // if (_chkNightMode != null)
@@ -217,7 +217,7 @@ public partial class MainWindow : Window
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
-        // ✅ CRITICAL FIX: after insert/delete, refresh from disk and force BOTH tabs to update immediately.
+        // ✅ insert/delete -> refresh both tabs immediately
         if (_readableView != null)
         {
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
@@ -238,7 +238,6 @@ public partial class MainWindow : Window
 
                     SafeInvalidateRenderCache(tranAbs);
 
-                    // ✅ Note ops always produce disk changes -> update baseline/dirty
                     SetBaselineFromCurrentTranslated();
                     UpdateDirtyStateFromEditor(forceUi: true);
 
@@ -270,7 +269,6 @@ public partial class MainWindow : Window
 
                     SafeInvalidateRenderCache(tranAbs);
 
-                    // ✅ Note ops always produce disk changes -> update baseline/dirty
                     SetBaselineFromCurrentTranslated();
                     UpdateDirtyStateFromEditor(forceUi: true);
 
@@ -343,7 +341,6 @@ public partial class MainWindow : Window
                     await _zenTexts.SetZenAsync(_root, ev.RelPath, ev.IsZen);
                     SetStatus(ev.IsZen ? "Marked as Zen text." : "Unmarked as Zen text.");
 
-                    // ✅ If Zen-only filter is active, refreshing the list makes the item appear/disappear immediately
                     ApplyFilter();
                 }
                 catch (Exception ex)
@@ -354,7 +351,6 @@ public partial class MainWindow : Window
         }
     }
 
-    // Ensures: translation view exists, current file exists, paths resolved, translation view has file paths.
     private bool EnsureFileContextForNoteOps(out string origAbs, out string tranAbs)
     {
         origAbs = "";
@@ -444,7 +440,6 @@ public partial class MainWindow : Window
         }
     }
 
-    // ONE add-note handler (used by optional global button if present)
     private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
         try
@@ -463,7 +458,6 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Ensure readable tab is active
             if (_tabs != null)
             {
                 _suppressTabEvents = true;
@@ -471,7 +465,6 @@ public partial class MainWindow : Window
                 finally { _suppressTabEvents = false; }
             }
 
-            // Let layout settle
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
 
             var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
@@ -498,12 +491,11 @@ public partial class MainWindow : Window
             if (!Directory.Exists(_cfg.TextRootPath))
                 return;
 
-            // ✅ restore ZenOnly before list loads so filtering is correct immediately
             _suppressConfigSaves = true;
             try
             {
                 if (_chkZenOnly != null)
-                    _chkZenOnly.IsChecked = _cfg.ZenOnly;
+                    _chkZenOnly.IsChecked = _cfg.ZenOnly; // ✅ KEEP
             }
             finally
             {
@@ -513,15 +505,10 @@ public partial class MainWindow : Window
             SetStatus("Auto-loading last root…");
             await LoadRootAsync(_cfg.TextRootPath, saveToConfig: false);
 
-            // ✅ auto-open last file (after root + index loaded)
             if (!string.IsNullOrWhiteSpace(_cfg.LastSelectedRelPath))
             {
                 var rel = NormalizeRelForLogs(_cfg.LastSelectedRelPath);
-
-                // best-effort select in nav (may fail if filtered out)
                 SelectInNav(rel);
-
-                // always try to load it anyway
                 await LoadPairAsync(rel);
             }
         }
@@ -545,7 +532,7 @@ public partial class MainWindow : Window
 
             cfg.TextRootPath = _root;
             cfg.LastSelectedRelPath = _currentRelPath;
-            cfg.ZenOnly = _chkZenOnly?.IsChecked == true;
+            cfg.ZenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
             cfg.Version = Math.Max(cfg.Version, 2);
 
             _cfg = cfg;
@@ -554,7 +541,7 @@ public partial class MainWindow : Window
         }
         catch
         {
-            // ignore (config saving must never break UX)
+            // ignore
         }
     }
 
@@ -566,15 +553,12 @@ public partial class MainWindow : Window
 
         _renderCache.Clear();
 
-        // ✅ load zen list early; resolver reads live from service
         try
         {
             await _zenTexts.LoadAsync(_root);
-
-            // Make sure search tab has the resolver even before SetContext happens.
             _searchView?.SetZenResolver(rel => _zenTexts.IsZen(rel));
         }
-        catch { /* ignore */ }
+        catch { }
 
         if (_txtRoot != null) _txtRoot.Text = _root;
 
@@ -591,10 +575,9 @@ public partial class MainWindow : Window
 
         if (saveToConfig)
         {
-            // Preserve existing config fields if we have them
             var cfg = _cfg ?? new AppConfig();
             cfg.TextRootPath = _root;
-            cfg.ZenOnly = _chkZenOnly?.IsChecked == true;
+            cfg.ZenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
             cfg.Version = Math.Max(cfg.Version, 2);
             _cfg = cfg;
 
@@ -609,7 +592,6 @@ public partial class MainWindow : Window
         if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
             return;
 
-        // ⚠ ClearViews() calls SearchTabView.Clear(), which nulls the Zen resolver.
         ClearViews();
 
         void WireSearchTab()
@@ -635,7 +617,6 @@ public partial class MainWindow : Window
                     return (rel, rel, null);
                 });
 
-            // ✅ CRITICAL: re-attach Zen resolver AFTER Clear()
             _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
         }
 
@@ -683,7 +664,9 @@ public partial class MainWindow : Window
 
         string q = (_navSearch?.Text ?? "").Trim();
         bool showFilenames = _chkShowFilenames?.IsChecked == true;
-        bool zenOnly = _chkZenOnly?.IsChecked == true; // ✅ NEW
+        bool zenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
+
+        int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0; // ✅ NEW
 
         string? selectedRel =
             (_filesList.SelectedItem as FileNavItem)?.RelPath
@@ -691,12 +674,18 @@ public partial class MainWindow : Window
 
         IEnumerable<FileNavItem> seq = _allItems;
 
-        // ✅ Zen-only filter first (cheap)
+        // ✅ Zen-only filter first (unchanged behavior)
         if (zenOnly)
         {
             seq = seq.Where(it =>
                 !string.IsNullOrWhiteSpace(it.RelPath) &&
                 _zenTexts.IsZen(it.RelPath));
+        }
+
+        // ✅ Status filter (robust against unknown enum names)
+        if (statusIdx != 0)
+        {
+            seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
         }
 
         if (q.Length > 0)
@@ -744,6 +733,22 @@ public partial class MainWindow : Window
         }
     }
 
+    private static bool MatchesStatusFilter(object? statusObj, int statusIdx)
+    {
+        // 1 = Green/Translated, 2 = Yellow/Partial, 3 = Red/Untranslated
+        if (statusIdx == 0) return true;
+        if (statusObj == null) return false;
+
+        string s = statusObj.ToString()?.ToLowerInvariant() ?? "";
+        return statusIdx switch
+        {
+            1 => s.Contains("green") || s.Contains("translated"),
+            2 => s.Contains("yellow") || s.Contains("partial") || s.Contains("partially"),
+            3 => s.Contains("red") || s.Contains("untranslated"),
+            _ => true
+        };
+    }
+
     private void SelectInNav(string relPath)
     {
         if (_filesList == null) return;
@@ -788,7 +793,6 @@ public partial class MainWindow : Window
         _rawTranXml = "";
         _currentRelPath = null;
 
-        // reset dirty/baseline
         _baselineTranSha1 = "";
         _lastSeenTranSha1 = "";
         _dirty = false;
@@ -798,8 +802,7 @@ public partial class MainWindow : Window
         _readableView?.Clear();
         _translationView?.Clear();
 
-        // ⚠ This clears _isZen inside SearchTabView; we MUST rewire via WireSearchTab() later.
-        _searchView?.Clear();
+        _searchView?.Clear(); // note: resolver re-wired later
 
         _readableView?.SetZenContext(null, false);
 
@@ -819,12 +822,10 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(item.RelPath))
             return;
 
-        // ✅ Warn on dirty before leaving current file
         if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
             if (!await ConfirmNavigateIfDirtyAsync($"switch files ({_currentRelPath} → {item.RelPath})"))
             {
-                // revert UI selection back
                 Dispatcher.UIThread.Post(() =>
                 {
                     try
@@ -904,7 +905,6 @@ public partial class MainWindow : Window
         _rawOrigXml = orig ?? "";
         _rawTranXml = tran ?? "";
 
-        // ✅ Ensure TranslationTabView knows which exact files it's operating on
         try
         {
             var origAbs = Path.Combine(_originalDir, relPath);
@@ -915,7 +915,6 @@ public partial class MainWindow : Window
 
         _translationView?.SetXml(_rawOrigXml, _rawTranXml);
 
-        // ✅ establish baseline at load
         _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
         _lastSeenTranSha1 = _baselineTranSha1;
         _dirty = false;
@@ -959,7 +958,6 @@ public partial class MainWindow : Window
             }
             catch { }
 
-            // ✅ persist "where user was"
             await SaveUiStateAsync();
         }
         catch (OperationCanceledException) { }
@@ -1033,7 +1031,6 @@ public partial class MainWindow : Window
 
             _rawTranXml = xml ?? "";
 
-            // ✅ baseline becomes current after save
             _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
             _lastSeenTranSha1 = _baselineTranSha1;
             _dirty = false;
@@ -1073,13 +1070,11 @@ public partial class MainWindow : Window
         }
     }
 
-    // ✅ Re-render readable view from the *current* raw strings (no disk re-read, no editor race)
     private async Task RefreshReadableFromRawAsync()
     {
         if (_readableView == null)
             return;
 
-        // Cancel any in-flight render
         _renderCts?.Cancel();
         _renderCts = new CancellationTokenSource();
         var ct = _renderCts.Token;
@@ -1120,7 +1115,6 @@ public partial class MainWindow : Window
 
     private void UpdateSaveButtonState()
     {
-        // If you don't have a global save button in XAML, nothing to enable/disable here.
         if (_btnSave != null)
         {
             bool hasFile = _currentRelPath != null;
@@ -1181,10 +1175,6 @@ public partial class MainWindow : Window
     private static string NormalizeRelForLogs(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
 
-    // ============================================================
-    // ✅ TAB SWITCH: keep text + warn on "scary dirty" when leaving Translation tab
-    // ============================================================
-
     private async Task OnTabSelectionChangedAsync()
     {
         if (_tabs == null) return;
@@ -1193,19 +1183,15 @@ public partial class MainWindow : Window
         int oldIdx = _lastTabIndex;
         _lastTabIndex = newIdx;
 
-        // Translation tab index is 1 in your UI logic.
         bool leavingTranslation = oldIdx == 1 && newIdx != 1;
         bool enteringTranslation = oldIdx != 1 && newIdx == 1;
 
         if (leavingTranslation)
         {
-            // capture edits into _rawTranXml so readable re-render uses latest when you save later
             CaptureTranslationEditsToRaw();
 
-            // warn only if dirty + structurally scary
             if (_dirty && IsScaryDirty(out var scaryMsg))
             {
-                // if user cancels, bounce back to translation tab
                 bool ok = await ShowYesNoAsync(
                     "Unsaved + structural problems",
                     scaryMsg + "\n\nLeave the Translation tab anyway?");
@@ -1223,8 +1209,6 @@ public partial class MainWindow : Window
 
         if (enteringTranslation)
         {
-            // If for any reason the editor got reset, restore from _raw* cache.
-            // (TranslationTabView already does caching, but this makes it bulletproof.)
             if (_translationView != null)
             {
                 var current = _translationView.GetTranslatedXml() ?? "";
@@ -1239,10 +1223,6 @@ public partial class MainWindow : Window
         UpdateDirtyStateFromEditor(forceUi: true);
     }
 
-    // ============================================================
-    // ✅ DIRTY TRACKING (unsaved indicator)
-    // ============================================================
-
     private void StartDirtyTimer()
     {
         _dirtyTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(350) };
@@ -1253,18 +1233,15 @@ public partial class MainWindow : Window
 
     private void DirtyTimer_Tick(object? sender, EventArgs e)
     {
-        // Only track when a file is loaded
         if (_currentRelPath == null || _translationView == null)
             return;
 
-        // Light touch: SHA1 of current editor text
         string cur = "";
         try { cur = _translationView.GetTranslatedXml() ?? ""; }
         catch { return; }
 
         string sha = Sha1Hex(cur);
 
-        // Avoid doing UI work if nothing changed since last tick
         if (sha == _lastSeenTranSha1)
             return;
 
@@ -1323,22 +1300,14 @@ public partial class MainWindow : Window
             _txtCurrentFile.Text = string.IsNullOrWhiteSpace(file) ? "" : (file + (_dirty ? "  *" : ""));
     }
 
-    // ============================================================
-    // ✅ WARNINGS: "scary dirt problems"
-    // - We interpret "scary" as: dirty + hacky structure check FAILS
-    //   (tag-count mismatch ignoring community notes, or lb mismatch/signature mismatch)
-    // ============================================================
-
     private async Task<bool> ConfirmNavigateIfDirtyAsync(string action)
     {
-        // Always capture latest editor contents before deciding
         CaptureTranslationEditsToRaw();
         UpdateDirtyStateFromEditor(forceUi: true);
 
         if (!_dirty)
             return true;
 
-        // If it's scary, show scary message; else simple unsaved prompt.
         if (IsScaryDirty(out var scaryMsg))
         {
             return await ShowYesNoAsync(
@@ -1357,8 +1326,6 @@ public partial class MainWindow : Window
         message = "";
 
         if (!_dirty) return false;
-
-        // We need original + current translated (from editor, not _rawTranXml snapshot)
         if (_translationView == null) return false;
 
         string orig = _rawOrigXml ?? "";
@@ -1377,10 +1344,6 @@ public partial class MainWindow : Window
         message = msg;
         return true;
     }
-
-    // ============================================================
-    // ✅ POPUPS (no extra XAML needed)
-    // ============================================================
 
     private async Task<bool> ShowYesNoAsync(string title, string message)
     {
@@ -1434,10 +1397,6 @@ public partial class MainWindow : Window
         await win.ShowDialog(owner);
         return await tcs.Task;
     }
-
-    // ============================================================
-    // ✅ HACKY STRUCTURE CHECK (copied from TranslationTabView, minimal)
-    // ============================================================
 
     private static readonly Regex XmlTagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
 
@@ -1557,10 +1516,6 @@ public partial class MainWindow : Window
 
         return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
     }
-
-    // ============================================================
-    // ✅ SHA1 helper
-    // ============================================================
 
     private static string Sha1Hex(string s)
     {

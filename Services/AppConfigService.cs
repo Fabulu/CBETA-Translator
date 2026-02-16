@@ -15,6 +15,9 @@ public sealed class AppConfigService
 
     public string ConfigPath { get; }
 
+    public int NavStatusFilterIndex { get; set; } = 0; // 0=All,1=Green,2=Yellow,3=Red
+
+
     public AppConfigService()
     {
         // "Hacked is fine": config.json next to the exe

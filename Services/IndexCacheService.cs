@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
@@ -17,7 +18,7 @@ public sealed class IndexCacheService
 
     // Bump this string whenever you want to force rebuild even if cache exists.
     // (Useful when you change status logic and want to ensure the cache isn't stale.)
-    private const string CacheBuildGuid = "phase2-status-v1";
+    private const string CacheBuildGuid = "phase2-status-v2-textnodes";
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -233,17 +234,15 @@ public sealed class IndexCacheService
         // different => yellow unless body has zero CJK => green
         try
         {
-            var tranXml = File.ReadAllText(tranPath, Utf8NoBom);
-            var body = ExtractBodyInnerXml(tranXml);
+            bool hasCjkText = BodyHasCjkTextNodesOnly(tranPath);
 
-            bool hasCjk = CjkRegex.IsMatch(body);
-
-            if (!hasCjk)
+            if (!hasCjkText)
             {
                 if (verboseLog)
-                    Log(rootForLogs, $"STATUS GREEN (body has 0 CJK) rel={relKeyForLogs} bodyLen={body.Length}");
+                    Log(rootForLogs, $"STATUS GREEN (body text nodes have 0 CJK) rel={relKeyForLogs}");
                 return TranslationStatus.Green;
             }
+
         }
         catch (Exception ex)
         {
@@ -281,9 +280,92 @@ public sealed class IndexCacheService
         return ComputeStatus(origAbs, tranAbs, rootForLogs, relKeyForLogs, verboseLog);
     }
 
+private static bool BodyHasCjkTextNodesOnly(string xmlPath)
+{
+    var settings = new XmlReaderSettings
+    {
+        DtdProcessing = DtdProcessing.Ignore,
+        IgnoreComments = true,
+        IgnoreProcessingInstructions = true,
+        // Keep whitespace handling simple: we only care if whitespace contains CJK (it won’t).
+        IgnoreWhitespace = false,
+        CloseInput = true,
+    };
+
+    using var fs = File.OpenRead(xmlPath);
+    using var reader = XmlReader.Create(fs, settings);
+
+    bool inBody = false;
+
+    // Track element stack so we can ignore text under specific elements like <g>
+    var elementStack = new Stack<(string local, string ns)>();
+
+    while (reader.Read())
+    {
+        switch (reader.NodeType)
+        {
+            case XmlNodeType.Element:
+                {
+                    if (reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
+                    {
+                        inBody = true;
+                    }
+
+                    // push element (even if empty; we pop immediately below)
+                    elementStack.Push((reader.LocalName, reader.NamespaceURI));
+
+                    if (reader.IsEmptyElement)
+                    {
+                        // pop immediately for <tag/>
+                        elementStack.Pop();
+
+                        // if this was <body/>, we are done
+                        if (inBody && reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
+                            return false;
+                    }
+                    break;
+                }
+
+            case XmlNodeType.EndElement:
+                {
+                    if (elementStack.Count > 0)
+                        elementStack.Pop();
+
+                    if (reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // finished scanning body
+                        return false;
+                    }
+                    break;
+                }
+
+            case XmlNodeType.Text:
+            case XmlNodeType.CDATA:
+            case XmlNodeType.SignificantWhitespace:
+                {
+                    if (!inBody) break;
+                    if (elementStack.Count == 0) break;
+
+                    // Optional exclusion: ignore text inside <g> (TEI glyph wrapper),
+                    // because it often contains Chinese/PUA glyphs that you DON'T want to count.
+                    var (curLocal, curNs) = elementStack.Peek();
+                    if (curLocal.Equals("g", StringComparison.OrdinalIgnoreCase))
+                        break;
+
+                    var text = reader.Value;
+                    if (!string.IsNullOrEmpty(text) && CjkRegex.IsMatch(text))
+                        return true;
+
+                    break;
+                }
+        }
+    }
+
+    return false;
+}
 
 
-    public Task<IndexCache> BuildAsync(
+public Task<IndexCache> BuildAsync(
         string originalDir,
         string translatedDir,
         string root,
