@@ -10,12 +10,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -30,13 +32,21 @@ public partial class MainWindow : Window
     private Button? _btnSettings;
     private Button? _btnSave;                 // optional: may not exist in XAML
     private Button? _btnLicenses;
+    private Button? _btnMinimize;
+    private Button? _btnMaximize;
+    private Button? _btnClose;
 
     private Button? _btnAddCommunityNote;     // optional: may not exist in XAML
 
     private Border? _navPanel;
-    private ListBox? _filesList;
+    private Border? _topBar;
+    private TreeView? _navTree;
     private TextBox? _navSearch;
-    private CheckBox? _chkShowFilenames;
+    private CheckBox? _chkNavOriginal;
+    private CheckBox? _chkNavTranslated;
+    private ComboBox? _cmbNavStatus;
+    private ComboBox? _cmbNavContext;
+    private ComboBox? _cmbOrganizeBy;
 
     private TextBlock? _txtRoot;
     private TextBlock? _txtCurrentFile;
@@ -59,6 +69,7 @@ public partial class MainWindow : Window
     private AppConfig? _config;
     private bool _isDarkTheme = true; // Default to dark theme
     private readonly IndexCacheService _indexCacheService = new IndexCacheService();
+    private readonly SearchIndexService _navSearchIndexService = new();
     private readonly RenderedDocumentCacheService _renderCache = new RenderedDocumentCacheService(maxEntries: 48);
 
     private string? _root;
@@ -68,6 +79,8 @@ public partial class MainWindow : Window
 
     private List<FileNavItem> _allItems = new();
     private List<FileNavItem> _filteredItems = new();
+    private readonly Dictionary<string, FileNavItem> _allItemsByRel = new(StringComparer.OrdinalIgnoreCase);
+    private CancellationTokenSource? _navSearchCts;
 
     private string? _currentRelPath;
 
@@ -86,6 +99,7 @@ public partial class MainWindow : Window
         FindControls();
         WireEvents();
         WireChildViewEvents();
+        InitNavControls();
 
         SetStatus("Ready.");
         UpdateSaveButtonState();
@@ -94,6 +108,32 @@ public partial class MainWindow : Window
         _ = LoadConfigAndApplyThemeAsync();
 
         _ = TryAutoLoadRootFromConfigAsync();
+    }
+
+    private void InitNavControls()
+    {
+        if (_cmbNavStatus != null)
+        {
+            _cmbNavStatus.ItemsSource = new[] { "All", "Red", "Yellow", "Green" };
+            _cmbNavStatus.SelectedIndex = 0;
+        }
+
+        if (_cmbNavContext != null)
+        {
+            _cmbNavContext.ItemsSource = new[] { "20", "40", "80" };
+            _cmbNavContext.SelectedIndex = 1;
+        }
+
+        if (_cmbOrganizeBy != null)
+        {
+            _cmbOrganizeBy.ItemsSource = new[]
+            {
+                "Tradition  ->  Dynasty",
+                "Dynasty    ->  Tradition",
+                "Geography  ->  Tradition"
+            };
+            _cmbOrganizeBy.SelectedIndex = 0;
+        }
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -107,12 +147,20 @@ public partial class MainWindow : Window
         _btnSave = this.FindControl<Button>("BtnSave"); // may be null (not in XAML)
         _btnLicenses = this.FindControl<Button>("BtnLicenses");
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote"); // may be null (not in XAML)
+        _btnMinimize = this.FindControl<Button>("BtnMinimize");
+        _btnMaximize = this.FindControl<Button>("BtnMaximize");
+        _btnClose = this.FindControl<Button>("BtnClose");
 
         // Left nav
+        _topBar = this.FindControl<Border>("TopBar");
         _navPanel = this.FindControl<Border>("NavPanel");
-        _filesList = this.FindControl<ListBox>("FilesList");
+        _navTree = this.FindControl<TreeView>("NavTree");
         _navSearch = this.FindControl<TextBox>("NavSearch");
-        _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
+        _chkNavOriginal = this.FindControl<CheckBox>("ChkNavOriginal");
+        _chkNavTranslated = this.FindControl<CheckBox>("ChkNavTranslated");
+        _cmbNavStatus = this.FindControl<ComboBox>("CmbNavStatus");
+        _cmbNavContext = this.FindControl<ComboBox>("CmbNavContext");
+        _cmbOrganizeBy = this.FindControl<ComboBox>("CmbOrganizeBy");
 
         // Status labels
         _txtRoot = this.FindControl<TextBlock>("TxtRoot");
@@ -142,6 +190,12 @@ public partial class MainWindow : Window
 
         if (_btnLicenses != null)
             _btnLicenses.Click += (_, _) => Licenses_Click(null, null);
+        if (_btnMinimize != null) _btnMinimize.Click += (_, _) => WindowState = WindowState.Minimized;
+        if (_btnMaximize != null) _btnMaximize.Click += (_, _) =>
+        {
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        };
+        if (_btnClose != null) _btnClose.Click += (_, _) => Close();
 
         // Optional buttons: wire only if they exist in XAML
         if (_btnSave != null) _btnSave.Click += Save_Click;
@@ -149,18 +203,43 @@ public partial class MainWindow : Window
         // IMPORTANT: unify add-note behavior to ONE handler
         if (_btnAddCommunityNote != null) _btnAddCommunityNote.Click += AddCommunityNote_Click;
 
-        if (_filesList != null) _filesList.SelectionChanged += FilesList_SelectionChanged;
+        if (_navTree != null) _navTree.SelectionChanged += NavTree_SelectionChanged;
         if (_tabs != null) _tabs.SelectionChanged += (_, _) => UpdateSaveButtonState();
 
         if (_navSearch != null)
-            _navSearch.TextChanged += (_, _) => ApplyFilter();
+            _navSearch.TextChanged += async (_, _) => await ApplyFilterAsync();
 
-        if (_chkShowFilenames != null)
-            _chkShowFilenames.IsCheckedChanged += (_, _) => ApplyFilter();
+        if (_chkNavOriginal != null) _chkNavOriginal.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
+        if (_chkNavTranslated != null) _chkNavTranslated.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
+        if (_cmbNavStatus != null) _cmbNavStatus.SelectionChanged += async (_, _) => await ApplyFilterAsync();
+        if (_cmbNavContext != null) _cmbNavContext.SelectionChanged += async (_, _) => await ApplyFilterAsync();
+        if (_cmbOrganizeBy != null) _cmbOrganizeBy.SelectionChanged += async (_, _) => await ApplyFilterAsync();
+
+        if (_topBar != null)
+            _topBar.DoubleTapped += (_, _) =>
+            {
+                WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            };
 
         // Optional theme checkbox (if you later un-comment it in XAML)
         // if (_chkNightMode != null)
         //     _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
+    }
+
+    private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        var visual = e.Source as Visual;
+        while (visual != null)
+        {
+            if (visual is Button or TextBox or CheckBox or ComboBox)
+                return;
+            visual = visual.GetVisualParent();
+        }
+
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+        {
+            try { BeginMoveDrag(e); } catch { }
+        }
     }
 
     private void WireChildViewEvents()
@@ -197,7 +276,7 @@ public partial class MainWindow : Window
             _searchView.Status += (_, msg) => SetStatus(msg);
             _searchView.OpenFileRequested += async (_, rel) =>
             {
-                SelectInNav(rel);
+                await SelectInNavAsync(rel);
                 await LoadPairAsync(rel);
 
                 if (_tabs != null)
@@ -391,7 +470,7 @@ public partial class MainWindow : Window
 
     private async Task LoadFileListFromCacheOrBuildAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
+        if (_root == null || _originalDir == null || _translatedDir == null || _navTree == null)
             return;
 
         ClearViews();
@@ -406,11 +485,7 @@ public partial class MainWindow : Window
                 _translatedDir!,
                 fileMeta: relKey =>
                 {
-                    var canon = _allItems.FirstOrDefault(x =>
-                        string.Equals(
-                            NormalizeRelForLogs(x.RelPath),
-                            NormalizeRelForLogs(relKey),
-                            StringComparison.OrdinalIgnoreCase));
+                    _allItemsByRel.TryGetValue(NormalizeRelForLogs(relKey), out var canon);
 
                     if (canon != null)
                         return (canon.DisplayShort, canon.Tooltip, canon.Status);
@@ -424,7 +499,8 @@ public partial class MainWindow : Window
         if (cache?.Entries is { Count: > 0 })
         {
             _allItems = cache.Entries;
-            ApplyFilter();
+            RebuildLookupAndFilters();
+            await ApplyFilterAsync();
             WireSearchTab();
             SetStatus($"Loaded index cache: {_allItems.Count:n0} files.");
             return;
@@ -451,89 +527,228 @@ public partial class MainWindow : Window
         await _indexCacheService.SaveAsync(_root, built);
 
         _allItems = built.Entries ?? new List<FileNavItem>();
-        ApplyFilter();
+        RebuildLookupAndFilters();
+        await ApplyFilterAsync();
         WireSearchTab();
 
         SetStatus($"Index cache created: {_allItems.Count:n0} files.");
     }
 
-    private void ApplyFilter()
+    private void RebuildLookupAndFilters()
     {
-        if (_filesList == null)
+        _allItemsByRel.Clear();
+        foreach (var item in _allItems)
+            _allItemsByRel[NormalizeRelForLogs(item.RelPath)] = item;
+    }
+
+    private static string GetFirstTradition(FileNavItem item)
+        => item.Traditions is { Count: > 0 } ? item.Traditions[0] : "Unknown Tradition";
+
+    private (Func<FileNavItem, string> primary, Func<FileNavItem, string> secondary, string tint) GetHierarchy()
+    {
+        var choice = _cmbOrganizeBy?.SelectedItem as string ?? "Tradition  ->  Dynasty";
+
+        if (string.Equals(choice, "Dynasty    ->  Tradition", StringComparison.Ordinal))
+        {
+            return (
+                it => string.IsNullOrWhiteSpace(it.Period) ? "Unknown Dynasty" : it.Period,
+                it => GetFirstTradition(it),
+                "#144A90E2"
+            );
+        }
+
+        if (string.Equals(choice, "Geography  ->  Tradition", StringComparison.Ordinal))
+        {
+            return (
+                it => string.IsNullOrWhiteSpace(it.Origin) ? "Unknown Origin" : it.Origin,
+                it => GetFirstTradition(it),
+                "#14C97A1E"
+            );
+        }
+
+        return (
+            it => GetFirstTradition(it),
+            it => string.IsNullOrWhiteSpace(it.Period) ? "Unknown Dynasty" : it.Period,
+            "#143FA34D"
+        );
+    }
+
+    private TranslationStatus? GetStatusFilter()
+    {
+        var selected = _cmbNavStatus?.SelectedItem as string ?? "All";
+        return selected switch
+        {
+            "Red" => TranslationStatus.Red,
+            "Yellow" => TranslationStatus.Yellow,
+            "Green" => TranslationStatus.Green,
+            _ => null
+        };
+    }
+
+    private int GetContextWidth()
+    {
+        var selected = _cmbNavContext?.SelectedItem as string ?? "40";
+        if (selected.StartsWith("20", StringComparison.Ordinal)) return 20;
+        if (selected.StartsWith("80", StringComparison.Ordinal)) return 80;
+        return 40;
+    }
+
+    private async Task<HashSet<string>?> ComputeFullTextMatchesAsync(string query, CancellationToken ct)
+    {
+        if (_root == null || _originalDir == null || _translatedDir == null || string.IsNullOrWhiteSpace(query))
+            return null;
+
+        var manifest = await _navSearchIndexService.TryLoadAsync(_root);
+        if (manifest == null)
+            return null;
+
+        bool includeOriginal = _chkNavOriginal?.IsChecked != false;
+        bool includeTranslated = _chkNavTranslated?.IsChecked == true;
+        if (!includeOriginal && !includeTranslated)
+            includeOriginal = true;
+
+        var statusFilter = GetStatusFilter();
+        var matches = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        await foreach (var group in _navSearchIndexService.SearchAllAsync(
+                           _root,
+                           _originalDir,
+                           _translatedDir,
+                           manifest,
+                           query,
+                           includeOriginal,
+                           includeTranslated,
+                           fileMeta: rel =>
+                           {
+                               _allItemsByRel.TryGetValue(NormalizeRelForLogs(rel), out var found);
+                               var status = found?.Status;
+                               if (statusFilter.HasValue && status.HasValue && status.Value != statusFilter.Value)
+                                   return ("", "", status);
+                               if (statusFilter.HasValue && !status.HasValue)
+                                   return ("", "", null);
+                               return (found?.DisplayShort ?? rel, found?.Tooltip ?? rel, status);
+                           },
+                           contextWidth: GetContextWidth(),
+                           progress: null,
+                           ct: ct))
+        {
+            if (!string.IsNullOrWhiteSpace(group.RelPath))
+                matches.Add(NormalizeRelForLogs(group.RelPath));
+        }
+
+        return matches;
+    }
+
+    private static bool MatchesLocalText(FileNavItem it, string qLower)
+    {
+        if (qLower.Length == 0) return true;
+        if (!string.IsNullOrEmpty(it.RelPath) && it.RelPath.ToLowerInvariant().Contains(qLower)) return true;
+        if (!string.IsNullOrEmpty(it.FileName) && it.FileName.ToLowerInvariant().Contains(qLower)) return true;
+        if (!string.IsNullOrEmpty(it.DisplayShort) && it.DisplayShort.ToLowerInvariant().Contains(qLower)) return true;
+        if (!string.IsNullOrEmpty(it.Tooltip) && it.Tooltip.ToLowerInvariant().Contains(qLower)) return true;
+        return false;
+    }
+
+    private List<NavTreeNode> BuildNavTree(List<FileNavItem> items)
+    {
+        var (primary, secondary, tint) = GetHierarchy();
+        var groups = items
+            .GroupBy(primary)
+            .OrderBy(g => g.Key, StringComparer.OrdinalIgnoreCase)
+            .Select(g => new NavTreeNode
+            {
+                Header = $"{g.Key} ({g.Count():n0})",
+                NodeType = "group",
+                TintBrush = tint,
+                Children = g.GroupBy(secondary)
+                    .OrderBy(sg => sg.Key, StringComparer.OrdinalIgnoreCase)
+                    .Select(sg => (object)new NavTreeNode
+                    {
+                        Header = $"{sg.Key} ({sg.Count():n0})",
+                        NodeType = "subgroup",
+                        TintBrush = "#10000000",
+                        Children = sg
+                            .OrderBy(x => x.DisplayShort, StringComparer.OrdinalIgnoreCase)
+                            .Cast<object>()
+                            .ToList()
+                    })
+                    .ToList()
+            })
+            .ToList();
+
+        return groups;
+    }
+
+    private async Task ApplyFilterAsync()
+    {
+        if (_navTree == null)
             return;
 
-        string q = (_navSearch?.Text ?? "").Trim();
-        bool showFilenames = _chkShowFilenames?.IsChecked == true;
+        _navSearchCts?.Cancel();
+        _navSearchCts = new CancellationTokenSource();
+        var ct = _navSearchCts.Token;
 
-        string? selectedRel =
-            (_filesList.SelectedItem as FileNavItem)?.RelPath
-            ?? _currentRelPath;
+        var q = (_navSearch?.Text ?? "").Trim();
+        var qLower = q.ToLowerInvariant();
+        var selectedRel = (_navTree.SelectedItem as FileNavItem)?.RelPath ?? _currentRelPath;
+
+        var statusFilter = GetStatusFilter();
+
+        HashSet<string>? fullTextMatches = null;
+        if (q.Length > 0)
+        {
+            try
+            {
+                fullTextMatches = await ComputeFullTextMatchesAsync(q, ct);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+            catch
+            {
+                fullTextMatches = null;
+            }
+        }
 
         IEnumerable<FileNavItem> seq = _allItems;
+        if (statusFilter.HasValue)
+            seq = seq.Where(x => x.Status == statusFilter.Value);
 
         if (q.Length > 0)
         {
-            var qLower = q.ToLowerInvariant();
-
-            seq = seq.Where(it =>
-            {
-                if (!string.IsNullOrEmpty(it.RelPath) && it.RelPath.ToLowerInvariant().Contains(qLower)) return true;
-                if (!string.IsNullOrEmpty(it.FileName) && it.FileName.ToLowerInvariant().Contains(qLower)) return true;
-                if (!string.IsNullOrEmpty(it.DisplayShort) && it.DisplayShort.ToLowerInvariant().Contains(qLower)) return true;
-                if (!string.IsNullOrEmpty(it.Tooltip) && it.Tooltip.ToLowerInvariant().Contains(qLower)) return true;
-                return false;
-            });
+            seq = seq.Where(x =>
+                MatchesLocalText(x, qLower) ||
+                (fullTextMatches != null && fullTextMatches.Contains(NormalizeRelForLogs(x.RelPath))));
         }
 
-        _filteredItems = seq.Select(it =>
-        {
-            var label =
-                showFilenames
-                    ? (string.IsNullOrWhiteSpace(it.FileName) ? it.RelPath : it.FileName)
-                    : (string.IsNullOrWhiteSpace(it.DisplayShort)
-                        ? (string.IsNullOrWhiteSpace(it.FileName) ? it.RelPath : it.FileName)
-                        : it.DisplayShort);
-
-            return new FileNavItem
-            {
-                RelPath = it.RelPath,
-                FileName = it.FileName,
-                DisplayShort = label,
-                Tooltip = it.Tooltip,
-                Status = it.Status
-            };
-        }).ToList();
-
-        _filesList.ItemsSource = _filteredItems;
+        _filteredItems = seq.ToList();
+        var treeNodes = BuildNavTree(_filteredItems);
+        _navTree.ItemsSource = treeNodes;
 
         if (!string.IsNullOrWhiteSpace(selectedRel))
         {
             var match = _filteredItems.FirstOrDefault(x =>
                 string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
-
             if (match != null)
-                _filesList.SelectedItem = match;
+                _navTree.SelectedItem = match;
         }
     }
 
-    private void SelectInNav(string relPath)
+    private async Task SelectInNavAsync(string relPath)
     {
-        if (_filesList == null) return;
-        if (string.IsNullOrWhiteSpace(relPath)) return;
+        if (_navTree == null || string.IsNullOrWhiteSpace(relPath))
+            return;
 
         var match = _filteredItems.FirstOrDefault(x =>
             string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
 
-        if (match == null)
+        if (match == null && _navSearch != null && !string.IsNullOrWhiteSpace(_navSearch.Text))
         {
-            if (_navSearch != null && !string.IsNullOrWhiteSpace(_navSearch.Text))
-            {
-                _navSearch.Text = "";
-                ApplyFilter();
-
-                match = _filteredItems.FirstOrDefault(x =>
-                    string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
-            }
+            _navSearch.Text = "";
+            await ApplyFilterAsync();
+            match = _filteredItems.FirstOrDefault(x =>
+                string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
         }
 
         if (match == null)
@@ -542,8 +757,7 @@ public partial class MainWindow : Window
         try
         {
             _suppressNavSelectionChanged = true;
-            _filesList.SelectedItem = match;
-            _filesList.ScrollIntoView(match);
+            _navTree.SelectedItem = match;
         }
         finally
         {
@@ -553,6 +767,9 @@ public partial class MainWindow : Window
 
     private void ClearViews()
     {
+        try { _navSearchCts?.Cancel(); } catch { }
+        _navSearchCts = null;
+
         _renderCts?.Cancel();
         _renderCts = null;
 
@@ -567,17 +784,18 @@ public partial class MainWindow : Window
         _readableView?.Clear();
         _translationView?.Clear();
         _searchView?.Clear();
+        if (_navTree != null) _navTree.ItemsSource = null;
 
         UpdateSaveButtonState();
         _gitView?.SetSelectedRelPath(null);
     }
 
-    private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private async void NavTree_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (_suppressNavSelectionChanged)
             return;
 
-        if (_filesList?.SelectedItem is not FileNavItem item)
+        if (_navTree?.SelectedItem is not FileNavItem item)
             return;
 
         if (string.IsNullOrWhiteSpace(item.RelPath))

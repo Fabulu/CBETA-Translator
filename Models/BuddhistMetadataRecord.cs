@@ -1,14 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace CbetaTranslator.App.Models;
 
-public sealed class FileNavItem
+public sealed class BuddhistMetadataRecord
 {
     public string RelPath { get; set; } = "";
-    public string FileName { get; set; } = "";
-    public string DisplayShort { get; set; } = "";
-    public string Tooltip { get; set; } = "";
-    public TranslationStatus Status { get; set; } = TranslationStatus.Red;
     public string CanonCode { get; set; } = "Unknown";
     public List<string> Traditions { get; set; } = new();
     public string Period { get; set; } = "Unknown Period";

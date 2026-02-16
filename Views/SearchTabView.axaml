@@ -13,37 +13,34 @@
                 Padding="10"
                 CornerRadius="8">
 
-			<Grid ColumnDefinitions="*,Auto,Auto,Auto"
-                  RowDefinitions="Auto,Auto"
-                  ColumnSpacing="10"
+			<Grid RowDefinitions="Auto,Auto,Auto"
                   RowSpacing="8">
 
-				<!-- Row 0 -->
 				<TextBox Name="TxtQuery"
                          Grid.Row="0"
-                         Grid.Column="0"
+                         HorizontalAlignment="Stretch"
                          Watermark="Search (CJK phrases, substrings)…"/>
 
-				<Button Name="BtnSearch" Grid.Row="0" Grid.Column="1" Content="Search"/>
-				<Button Name="BtnCancel" Grid.Row="0" Grid.Column="2" Content="Cancel" IsEnabled="False"/>
-				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3" Content="Build/Update Index"/>
-
-				<!-- Row 1 -->
 				<StackPanel Grid.Row="1"
-                            Grid.Column="0"
                             Orientation="Horizontal"
-                            Spacing="14">
+                            Spacing="8">
+					<Button Name="BtnSearch" Content="Search"/>
+					<Button Name="BtnCancel" Content="Cancel" IsEnabled="False"/>
+					<Button Name="BtnBuildIndex" Content="Build/Update Index"/>
+				</StackPanel>
 
+				<WrapPanel Grid.Row="2" Orientation="Horizontal" ItemWidth="130">
 					<CheckBox Name="ChkOriginal" Content="Original" IsChecked="True"/>
 					<CheckBox Name="ChkTranslated" Content="Translated" IsChecked="False"/>
-
-					<TextBlock Text="Status:" VerticalAlignment="Center" Margin="10,0,0,0" Classes="muted"/>
-					<ComboBox Name="CmbStatus" Width="160"/>
-
-					<TextBlock Text="Context:" VerticalAlignment="Center" Margin="10,0,0,0" Classes="muted"/>
-					<ComboBox Name="CmbContext" Width="120"/>
-
-				</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Text="Status:" VerticalAlignment="Center" Classes="muted"/>
+						<ComboBox Name="CmbStatus" Width="100"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Text="Context:" VerticalAlignment="Center" Classes="muted"/>
+						<ComboBox Name="CmbContext" Width="80"/>
+					</StackPanel>
+				</WrapPanel>
 
 			</Grid>
 		</Border>
@@ -98,9 +95,9 @@
 				<Expander.Header>
 					<DockPanel LastChildFill="True">
 						<TextBlock Text="" DockPanel.Dock="Left" />
-						<ComboBox Name="CmbCoocMetric"
+							<ComboBox Name="CmbCoocMetric"
                                   DockPanel.Dock="Right"
-                                  Width="320"/>
+                                  Width="220"/>
 					</DockPanel>
 				</Expander.Header>
 

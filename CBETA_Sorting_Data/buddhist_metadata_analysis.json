@@ -1,0 +1,2411 @@
+{
+  "summary": {
+    "total_files": 4990,
+    "canons_found": 26,
+    "traditions_found": 15,
+    "periods_found": 8,
+    "origins_found": 7
+  },
+  "by_canon": {
+    "ZW": {
+      "file_count": 202,
+      "traditions": {
+        "Chan/Zen": 7,
+        "Commentarial": 35,
+        "General/Unspecified": 121,
+        "Historical": 32,
+        "Huayan": 2,
+        "Tiantai": 3,
+        "Yogacara": 4,
+        "Liturgical": 12,
+        "Esoteric": 4
+      },
+      "periods": {
+        "Unknown Period": 173,
+        "Ming": 4,
+        "Qing": 2,
+        "Pre-Tang": 15,
+        "Song": 5,
+        "Tang": 3
+      },
+      "origins": {
+        "India": 6,
+        "Unknown Origin": 190,
+        "China": 2,
+        "Japan": 3,
+        "Korea": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0005.xml"
+      ]
+    },
+    "ZS": {
+      "file_count": 1,
+      "traditions": {
+        "Historical": 1
+      },
+      "periods": {
+        "Unknown Period": 1
+      },
+      "origins": {
+        "Unknown Origin": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZS\\ZS01\\ZS01n0001.xml"
+      ]
+    },
+    "YP": {
+      "file_count": 13,
+      "traditions": {
+        "Historical": 1,
+        "General/Unspecified": 2,
+        "Esoteric": 3,
+        "Commentarial": 10
+      },
+      "periods": {
+        "Unknown Period": 3,
+        "Modern": 9,
+        "Ming": 1
+      },
+      "origins": {
+        "Unknown Origin": 12,
+        "Japan": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP00\\YP00na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP00\\YP00na002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP00\\YP00na003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0002.xml"
+      ]
+    },
+    "Y": {
+      "file_count": 44,
+      "traditions": {
+        "Historical": 33,
+        "Huayan": 40,
+        "Pure Land": 25,
+        "Tiantai": 36,
+        "Pali/Theravada": 19,
+        "Yogacara": 42,
+        "Chan/Zen": 24,
+        "Madhyamaka": 36,
+        "Esoteric": 35,
+        "Vinaya": 28,
+        "Commentarial": 44,
+        "Pure Precepts": 16,
+        "Tibetan": 11,
+        "Liturgical": 14
+      },
+      "periods": {
+        "Pre-Tang": 20,
+        "Ming": 7,
+        "Modern": 8,
+        "Yuan": 1,
+        "Tang": 2,
+        "Qing": 2,
+        "Song": 4
+      },
+      "origins": {
+        "India": 24,
+        "Unknown Origin": 14,
+        "China": 4,
+        "Central Asia": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml"
+      ]
+    },
+    "X": {
+      "file_count": 1236,
+      "traditions": {
+        "General/Unspecified": 281,
+        "Pure Land": 46,
+        "Historical": 276,
+        "Esoteric": 33,
+        "Chan/Zen": 154,
+        "Madhyamaka": 3,
+        "Liturgical": 68,
+        "Huayan": 65,
+        "Commentarial": 560,
+        "Tiantai": 81,
+        "Pure Precepts": 27,
+        "Vinaya": 35,
+        "Pali/Theravada": 1,
+        "Yogacara": 27,
+        "Tibetan": 1
+      },
+      "periods": {
+        "Unknown Period": 161,
+        "Pre-Tang": 46,
+        "Ming": 283,
+        "Tang": 153,
+        "Qing": 277,
+        "Song": 253,
+        "Yuan": 63
+      },
+      "origins": {
+        "Japan": 1220,
+        "China": 1,
+        "Korea": 11,
+        "India": 4
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0010.xml"
+      ]
+    },
+    "U": {
+      "file_count": 3,
+      "traditions": {
+        "Commentarial": 3,
+        "Huayan": 2
+      },
+      "periods": {
+        "Tang": 3
+      },
+      "origins": {
+        "Unknown Origin": 3
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\U\\U205\\U205n1368.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\U\\U222\\U222n1418.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\U\\U223\\U223n1418.xml"
+      ]
+    },
+    "TX": {
+      "file_count": 40,
+      "traditions": {
+        "General/Unspecified": 1,
+        "Commentarial": 39,
+        "Yogacara": 3,
+        "Vinaya": 1
+      },
+      "periods": {
+        "Ming": 1,
+        "Modern": 39
+      },
+      "origins": {
+        "Unknown Origin": 40
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\TX\\TX00\\TX00na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\TX\\TX01\\TX01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\TX\\TX02\\TX02n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\TX\\TX03\\TX03n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\TX\\TX03\\TX03n0003.xml"
+      ]
+    },
+    "T": {
+      "file_count": 2471,
+      "traditions": {
+        "General/Unspecified": 1304,
+        "Commentarial": 511,
+        "Madhyamaka": 54,
+        "Vinaya": 49,
+        "Huayan": 80,
+        "Esoteric": 334,
+        "Yogacara": 117,
+        "Tiantai": 60,
+        "Liturgical": 188,
+        "Pure Land": 54,
+        "Chan/Zen": 63,
+        "Historical": 133,
+        "Pure Precepts": 31,
+        "Tibetan": 4,
+        "Pali/Theravada": 2
+      },
+      "periods": {
+        "Unknown Period": 592,
+        "Song": 386,
+        "Pre-Tang": 648,
+        "Tang": 753,
+        "Ming": 37,
+        "Qing": 12,
+        "Yuan": 43
+      },
+      "origins": {
+        "Unknown Origin": 2376,
+        "China": 32,
+        "Korea": 34,
+        "India": 11,
+        "Japan": 10,
+        "Central Asia": 7,
+        "Southeast Asia": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T01\\T01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T01\\T01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T01\\T01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T01\\T01n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T01\\T01n0005.xml"
+      ]
+    },
+    "S": {
+      "file_count": 2,
+      "traditions": {
+        "General/Unspecified": 1,
+        "Commentarial": 1
+      },
+      "periods": {
+        "Tang": 1,
+        "Song": 1
+      },
+      "origins": {
+        "Unknown Origin": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\S\\S06\\S06n0046.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\S\\S06\\S06n0047.xml"
+      ]
+    },
+    "P": {
+      "file_count": 20,
+      "traditions": {
+        "General/Unspecified": 12,
+        "Liturgical": 2,
+        "Commentarial": 6,
+        "Historical": 5,
+        "Tiantai": 1
+      },
+      "periods": {
+        "Song": 7,
+        "Tang": 2,
+        "Ming": 10,
+        "Yuan": 1
+      },
+      "origins": {
+        "Unknown Origin": 16,
+        "China": 4
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\P\\P154\\P154n1519.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\P\\P155\\P155n1519.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\P\\P167\\P167n1573.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\P\\P168\\P168n1581.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\P\\P174\\P174n1590.xml"
+      ]
+    },
+    "N": {
+      "file_count": 83,
+      "traditions": {
+        "Historical": 83,
+        "Pali/Theravada": 83,
+        "Commentarial": 27,
+        "Vinaya": 2
+      },
+      "periods": {
+        "Pre-Tang": 83
+      },
+      "origins": {
+        "Unknown Origin": 83
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\N\\N01\\N01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\N\\N02\\N02n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\N\\N03\\N03n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\N\\N04\\N04n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\N\\N05\\N05n0003.xml"
+      ]
+    },
+    "M": {
+      "file_count": 1,
+      "traditions": {
+        "Historical": 1,
+        "Chan/Zen": 1
+      },
+      "periods": {
+        "Song": 1
+      },
+      "origins": {
+        "Unknown Origin": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\M\\M59\\M59n1540.xml"
+      ]
+    },
+    "LC": {
+      "file_count": 8,
+      "traditions": {
+        "General/Unspecified": 2,
+        "Tibetan": 1,
+        "Commentarial": 5,
+        "Historical": 1
+      },
+      "periods": {
+        "Modern": 6,
+        "Ming": 1,
+        "Pre-Tang": 1
+      },
+      "origins": {
+        "India": 1,
+        "China": 1,
+        "Unknown Origin": 6
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\LC\\LC01\\LC01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\LC\\LC02\\LC02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\LC\\LC03\\LC03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\LC\\LC04\\LC04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\LC\\LC05\\LC05n0005.xml"
+      ]
+    },
+    "L": {
+      "file_count": 26,
+      "traditions": {
+        "Commentarial": 9,
+        "Huayan": 5,
+        "General/Unspecified": 2,
+        "Historical": 15,
+        "Chan/Zen": 9,
+        "Esoteric": 1
+      },
+      "periods": {
+        "Pre-Tang": 3,
+        "Tang": 6,
+        "Song": 2,
+        "Ming": 9,
+        "Qing": 6
+      },
+      "origins": {
+        "Unknown Origin": 26
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\L\\L115\\L115n1490.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\L\\L116\\L116n1490.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\L\\L130\\L130n1557.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\L\\L131\\L131n1557.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\L\\L132\\L132n1557.xml"
+      ]
+    },
+    "K": {
+      "file_count": 10,
+      "traditions": {
+        "General/Unspecified": 5,
+        "Huayan": 1,
+        "Historical": 3,
+        "Madhyamaka": 1,
+        "Commentarial": 1
+      },
+      "periods": {
+        "Tang": 2,
+        "Pre-Tang": 2,
+        "Song": 5,
+        "Unknown Period": 1
+      },
+      "origins": {
+        "Korea": 10
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\K\\K05\\K05n0016.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\K\\K32\\K32n1064.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\K\\K34\\K34n1257.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\K\\K35\\K35n1257.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\K\\K35\\K35n1258.xml"
+      ]
+    },
+    "J": {
+      "file_count": 287,
+      "traditions": {
+        "Historical": 242,
+        "Chan/Zen": 221,
+        "Commentarial": 46,
+        "Esoteric": 7,
+        "Huayan": 7,
+        "General/Unspecified": 19,
+        "Liturgical": 2,
+        "Yogacara": 1,
+        "Tiantai": 3,
+        "Pure Land": 4
+      },
+      "periods": {
+        "Song": 5,
+        "Ming": 85,
+        "Tang": 7,
+        "Unknown Period": 2,
+        "Pre-Tang": 4,
+        "Qing": 166,
+        "Yuan": 18
+      },
+      "origins": {
+        "Unknown Origin": 286,
+        "Southeast Asia": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J01\\J01nA042.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J07\\J07nA123.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J10\\J10nA158.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J15\\J15nB005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J19\\J19nB044.xml"
+      ]
+    },
+    "I": {
+      "file_count": 101,
+      "traditions": {
+        "General/Unspecified": 26,
+        "Commentarial": 70,
+        "Historical": 4,
+        "Chan/Zen": 2,
+        "Huayan": 1
+      },
+      "periods": {
+        "Ming": 4,
+        "Unknown Period": 86,
+        "Yuan": 2,
+        "Pre-Tang": 5,
+        "Qing": 1,
+        "Song": 2,
+        "Tang": 1
+      },
+      "origins": {
+        "Unknown Origin": 101
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\I\\I00\\I00na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\I\\I01\\I01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\I\\I01\\I01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\I\\I01\\I01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\I\\I01\\I01n0004.xml"
+      ]
+    },
+    "GB": {
+      "file_count": 2,
+      "traditions": {
+        "General/Unspecified": 1,
+        "Commentarial": 1
+      },
+      "periods": {
+        "Ming": 2
+      },
+      "origins": {
+        "China": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GB\\GB000\\GB000na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GB\\GB078\\GB078n0109.xml"
+      ]
+    },
+    "GA": {
+      "file_count": 58,
+      "traditions": {
+        "Historical": 58,
+        "Commentarial": 25,
+        "Vinaya": 1,
+        "Huayan": 1,
+        "Chan/Zen": 3,
+        "Tiantai": 4
+      },
+      "periods": {
+        "Ming": 18,
+        "Qing": 28,
+        "Tang": 1,
+        "Modern": 6,
+        "Pre-Tang": 2,
+        "Song": 2,
+        "Yuan": 1
+      },
+      "origins": {
+        "China": 57,
+        "India": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GA\\GA000\\GA000na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GA\\GA001\\GA001n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GA\\GA001\\GA001n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GA\\GA001\\GA001n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\GA\\GA002\\GA002n0005.xml"
+      ]
+    },
+    "G": {
+      "file_count": 57,
+      "traditions": {
+        "Yogacara": 1,
+        "General/Unspecified": 8,
+        "Commentarial": 34,
+        "Chan/Zen": 3,
+        "Vinaya": 13,
+        "Historical": 12,
+        "Pure Precepts": 4,
+        "Huayan": 1,
+        "Liturgical": 3,
+        "Tiantai": 2
+      },
+      "periods": {
+        "Tang": 2,
+        "Ming": 7,
+        "Yuan": 1,
+        "Unknown Period": 1,
+        "Modern": 45,
+        "Pre-Tang": 1
+      },
+      "origins": {
+        "Unknown Origin": 54,
+        "China": 1,
+        "Japan": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\G\\G052\\G052n1222.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\G\\G069\\G069n1977.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\G\\G083\\G083n2073.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\G\\G083\\G083n2075.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\G\\G084\\G084n2084.xml"
+      ]
+    },
+    "F": {
+      "file_count": 27,
+      "traditions": {
+        "General/Unspecified": 14,
+        "Esoteric": 10,
+        "Historical": 1,
+        "Commentarial": 4,
+        "Vinaya": 1,
+        "Huayan": 2
+      },
+      "periods": {
+        "Unknown Period": 13,
+        "Pre-Tang": 3,
+        "Song": 6,
+        "Tang": 5
+      },
+      "origins": {
+        "Unknown Origin": 25,
+        "India": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\F\\F01\\F01n0016.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\F\\F02\\F02n0041.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\F\\F02\\F02n0069.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\F\\F03\\F03n0088.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\F\\F03\\F03n0089.xml"
+      ]
+    },
+    "D": {
+      "file_count": 64,
+      "traditions": {
+        "General/Unspecified": 20,
+        "Commentarial": 38,
+        "Esoteric": 1,
+        "Yogacara": 4,
+        "Historical": 8,
+        "Huayan": 1,
+        "Chan/Zen": 4,
+        "Tiantai": 1,
+        "Pure Land": 3,
+        "Liturgical": 2
+      },
+      "periods": {
+        "Unknown Period": 41,
+        "Tang": 7,
+        "Pre-Tang": 1,
+        "Yuan": 4,
+        "Ming": 8,
+        "Song": 3
+      },
+      "origins": {
+        "Unknown Origin": 46,
+        "Japan": 17,
+        "Korea": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\D\\D01\\D01n8679.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\D\\D02\\D02n8680.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\D\\D03\\D03n8701.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\D\\D04\\D04n8724.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\D\\D05\\D05n8774.xml"
+      ]
+    },
+    "CC": {
+      "file_count": 6,
+      "traditions": {
+        "Historical": 2,
+        "Commentarial": 5,
+        "Esoteric": 1,
+        "Yogacara": 1,
+        "General/Unspecified": 1
+      },
+      "periods": {
+        "Modern": 2,
+        "Tang": 2,
+        "Ming": 1,
+        "Qing": 1
+      },
+      "origins": {
+        "Unknown Origin": 6
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\CC\\CC001\\CC001n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\CC\\CC002\\CC002n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\CC\\CC003\\CC003n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\CC\\CC004\\CC004n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\CC\\CC005\\CC005n0005.xml"
+      ]
+    },
+    "C": {
+      "file_count": 12,
+      "traditions": {
+        "Historical": 3,
+        "General/Unspecified": 7,
+        "Chan/Zen": 1,
+        "Commentarial": 1
+      },
+      "periods": {
+        "Song": 7,
+        "Tang": 2,
+        "Unknown Period": 1,
+        "Pre-Tang": 1,
+        "Ming": 1
+      },
+      "origins": {
+        "Unknown Origin": 11,
+        "China": 1
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\C\\C056\\C056n1159.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\C\\C056\\C056n1163.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\C\\C057\\C057n1163.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\C\\C059\\C059n1169.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\C\\C071\\C071n1665.xml"
+      ]
+    },
+    "B": {
+      "file_count": 204,
+      "traditions": {
+        "General/Unspecified": 88,
+        "Huayan": 9,
+        "Commentarial": 73,
+        "Historical": 39,
+        "Pali/Theravada": 9,
+        "Pure Land": 1,
+        "Yogacara": 7,
+        "Pure Precepts": 2,
+        "Madhyamaka": 5,
+        "Tibetan": 4,
+        "Esoteric": 5,
+        "Tiantai": 2,
+        "Chan/Zen": 4,
+        "Vinaya": 1
+      },
+      "periods": {
+        "Ming": 35,
+        "Unknown Period": 150,
+        "Pre-Tang": 6,
+        "Yuan": 7,
+        "Tang": 5,
+        "Qing": 1
+      },
+      "origins": {
+        "Unknown Origin": 199,
+        "India": 1,
+        "Central Asia": 2,
+        "Korea": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B00\\B00na001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B00\\B00na002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B01\\B01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B02\\B02n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B03\\B03n0002.xml"
+      ]
+    },
+    "A": {
+      "file_count": 12,
+      "traditions": {
+        "Huayan": 1,
+        "Commentarial": 6,
+        "Historical": 4,
+        "General/Unspecified": 2,
+        "Yogacara": 2
+      },
+      "periods": {
+        "Tang": 6,
+        "Song": 6
+      },
+      "origins": {
+        "Unknown Origin": 10,
+        "China": 2
+      },
+      "sample_files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\A\\A091\\A091n1057.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\A\\A097\\A097n1267.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\A\\A098\\A098n1267.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\A\\A110\\A110n1490.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\A\\A111\\A111n1493.xml"
+      ]
+    }
+  },
+  "by_tradition": {
+    "Chan/Zen": {
+      "file_count": 496,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0016.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018a.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018b.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y16\\Y16n0016.xml"
+      ]
+    },
+    "Commentarial": {
+      "file_count": 1554,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0017.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018a.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018b.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0019.xml"
+      ]
+    },
+    "General/Unspecified": {
+      "file_count": 1917,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0011.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0012.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014a.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014b.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014c.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015a.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015b.xml"
+      ]
+    },
+    "Historical": {
+      "file_count": 957,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na014.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na015.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0044.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na022.xml"
+      ]
+    },
+    "Huayan": {
+      "file_count": 218,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW08\\ZW08n0067.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y06\\Y06n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y07\\Y07n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y08\\Y08n0008.xml"
+      ]
+    },
+    "Tiantai": {
+      "file_count": 193,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0020.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0050.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0083.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y06\\Y06n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y07\\Y07n0007.xml"
+      ]
+    },
+    "Yogacara": {
+      "file_count": 209,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0022.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0030.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0049.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0078.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y06\\Y06n0006.xml"
+      ]
+    },
+    "Liturgical": {
+      "file_count": 291,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0044.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0051.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0052.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0053.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0054.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0055.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW07\\ZW07n0062.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW08\\ZW08n0068.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0089.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0091.xml"
+      ]
+    },
+    "Esoteric": {
+      "file_count": 434,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0044.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW07\\ZW07n0058.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0091.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0092.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml"
+      ]
+    },
+    "Pure Land": {
+      "file_count": 133,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y12\\Y12n0012.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y16\\Y16n0016.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y17\\Y17n0017.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y18\\Y18n0018.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y19\\Y19n0019.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y22\\Y22n0022.xml"
+      ]
+    },
+    "Pali/Theravada": {
+      "file_count": 114,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y08\\Y08n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y22\\Y22n0022.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y23\\Y23n0023.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y24\\Y24n0024.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y27\\Y27n0027.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y28\\Y28n0028.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y29\\Y29n0029.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y30\\Y30n0030.xml"
+      ]
+    },
+    "Madhyamaka": {
+      "file_count": 99,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y07\\Y07n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y08\\Y08n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y09\\Y09n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y10\\Y10n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y11\\Y11n0011.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y12\\Y12n0012.xml"
+      ]
+    },
+    "Vinaya": {
+      "file_count": 131,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y08\\Y08n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y09\\Y09n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y12\\Y12n0012.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y16\\Y16n0016.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y21\\Y21n0021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y22\\Y22n0022.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y23\\Y23n0023.xml"
+      ]
+    },
+    "Pure Precepts": {
+      "file_count": 80,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y06\\Y06n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y12\\Y12n0012.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y25\\Y25n0025.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y26\\Y26n0026.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y28\\Y28n0028.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y30\\Y30n0030.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y34\\Y34n0032.xml"
+      ]
+    },
+    "Tibetan": {
+      "file_count": 21,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y04\\Y04n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y13\\Y13n0013.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y22\\Y22n0022.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y27\\Y27n0027.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y29\\Y29n0029.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y33\\Y33n0031.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y34\\Y34n0032.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y35\\Y35n0033.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y36\\Y36n0034.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y37\\Y37n0035.xml"
+      ]
+    }
+  },
+  "by_period": {
+    "Unknown Period": {
+      "file_count": 1225,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0010.xml"
+      ]
+    },
+    "Ming": {
+      "file_count": 514,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0019.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0025.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0084.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0088.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y02\\Y02n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y05\\Y05n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y06\\Y06n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y08\\Y08n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y09\\Y09n0009.xml"
+      ]
+    },
+    "Qing": {
+      "file_count": 496,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0022.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0043b.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y11\\Y11n0011.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y19\\Y19n0019.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0028.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X09\\X09n0241.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X09\\X09n0242.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X10\\X10n0262.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X10\\X10n0263.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X15\\X15n0303.xml"
+      ]
+    },
+    "Pre-Tang": {
+      "file_count": 841,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0034.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0035.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0036.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0037.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0038.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0039.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0040.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0044.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW07\\ZW07n0065.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW09\\ZW09n0073f.xml"
+      ]
+    },
+    "Song": {
+      "file_count": 695,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0051.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0052.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0053.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW08\\ZW08n0068.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW12\\ZW12n0098.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y17\\Y17n0017.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y21\\Y21n0021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y25\\Y25n0025.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y27\\Y27n0027.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X03\\X03n0220.xml"
+      ]
+    },
+    "Tang": {
+      "file_count": 963,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW07\\ZW07n0058.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW08\\ZW08n0071.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0081.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y10\\Y10n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y38\\Y38n0036.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0017.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0020.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X02\\X02n0182.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X02\\X02n0184.xml"
+      ]
+    },
+    "Modern": {
+      "file_count": 115,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP01\\YP01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP03\\YP03n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP03\\YP03n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP03\\YP03n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP04\\YP04n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y03\\Y03n0003.xml"
+      ]
+    },
+    "Yuan": {
+      "file_count": 141,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y07\\Y07n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X08\\X08n0236.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X10\\X10n0250.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X12\\X12n0281.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X15\\X15n0302.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X19\\X19n0347.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X21\\X21n0379.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X22\\X22n0421.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X24\\X24n0466.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X25\\X25n0482.xml"
+      ]
+    }
+  },
+  "by_origin": {
+    "India": {
+      "file_count": 50,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018a.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018b.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0078.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW10\\ZW10n0079.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y01\\Y01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y07\\Y07n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y09\\Y09n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y10\\Y10n0010.xml"
+      ]
+    },
+    "Unknown Origin": {
+      "file_count": 3508,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0002.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0004.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0007.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0009.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0011.xml"
+      ]
+    },
+    "China": {
+      "file_count": 107,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na023.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0057.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y19\\Y19n0019.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y24\\Y24n0024.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y30\\Y30n0030.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y42\\Y42n0040.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0010.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T08\\T08n0225.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T08\\T08n0250.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T18\\T18n0891.xml"
+      ]
+    },
+    "Japan": {
+      "file_count": 1253,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW07\\ZW07n0066.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0095.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW12\\ZW12n0102.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\YP\\YP02\\YP02n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0001.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0005.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0006.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0008.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0011.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X01\\X01n0012.xml"
+      ]
+    },
+    "Korea": {
+      "file_count": 59,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW11\\ZW11n0096.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X08\\X08n0237.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X38\\X38n0683.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X39\\X39n0705.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X45\\X45n0757.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X48\\X48n0797.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X50\\X50n0818.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X53\\X53n0860.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X58\\X58n1015.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\X\\X63\\X63n1255.xml"
+      ]
+    },
+    "Central Asia": {
+      "file_count": 11,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y21\\Y21n0021.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\Y\\Y27\\Y27n0027.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T51\\T51n2066.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T51\\T51n2086.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T51\\T51n2087.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T55\\T55n2160.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T55\\T55n2180.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T55\\T55n2181.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T55\\T55n2183.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\B\\B13\\B13n0080.xml"
+      ]
+    },
+    "Southeast Asia": {
+      "file_count": 2,
+      "files": [
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\T\\T54\\T54n2125.xml",
+        "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\J\\J35\\J35nB336.xml"
+      ]
+    }
+  },
+  "detailed_analysis": [
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0001.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "India",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0002.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0003.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "達摩禪師作　方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0004.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "馬鳴菩薩造　方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0005.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "沙門文軌撰　李際寧整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0006.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "沙門道宣述　蘇軍整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0007.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "尊者安惠造　蘇軍整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0008.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "惠辯禪師註　方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0009.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0010.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0011.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0012.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0013.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Huayan"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "徐紹強整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014a.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014b.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0014c.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015a.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "大德安法師譯　李際寧整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015b.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "李際寧整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015c.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "李際寧整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0015d.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "李際寧整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01n0016.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na001.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na002.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na003.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na004.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na005.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW01\\ZW01na006.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0017.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "華方田整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018a.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "India",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0018b.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Chan/Zen",
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "India",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0019.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Ming",
+      "origin": "Unknown Origin",
+      "author": "沙門道液集　黎明整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0020.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Tiantai"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "李際寧．張曉娟整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0021.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "India",
+      "author": "古印度 烏瑪斯伐蒂著　方廣錩譯註",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02n0022.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial",
+        "Yogacara"
+      ],
+      "period": "Qing",
+      "origin": "Unknown Origin",
+      "author": "韓清淨著　程恭讓整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na007.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na008.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na009.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na010.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na011.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW02\\ZW02na012.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0023.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "上山大峻．袁德領整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0024.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0025.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Ming",
+      "origin": "Unknown Origin",
+      "author": "沙門道液述　黎明整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0026.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "龍猛菩薩作　華方田整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0027.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "龍猛菩薩造　華方田整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0028.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "華方田整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0029.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "華方田整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0030.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial",
+        "Yogacara"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "徐紹強整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0031a.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "黃霞整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0031b.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "黃霞整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0031c.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "黃霞整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0031d.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "黃霞整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0031e.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "黃霞整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03n0032.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "李際寧",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na013.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na014.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na015.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na016.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na017.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na018.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW03\\ZW03na019.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0033.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "寂天菩薩造頌　傑操大師註解　隆蓮法師譯",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0034.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0035.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0036.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0037.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0038.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "北宋 太宗．真宗．仁宗撰　陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0039.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0040.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳明光整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0041.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "業露華整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0042.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "信行撰　方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0043a.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "侯旭東整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0043b.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Qing",
+      "origin": "Unknown Origin",
+      "author": "侯旭東整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04n0044.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical",
+        "Liturgical",
+        "Esoteric"
+      ],
+      "period": "Pre-Tang",
+      "origin": "Unknown Origin",
+      "author": "陳金華",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na020.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na021.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na022.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na023.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "China",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na024.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na025.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW04\\ZW04na026.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0045.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "鄧殿臣譯",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0046.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "鄧殿臣譯",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0047.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "鄧殿臣譯",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0048.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "鄧殿臣．趙桐譯",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0049.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Commentarial",
+        "Yogacara"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "徐紹強整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05n0050.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Tiantai"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na027.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "方廣錩",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na028.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na029.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Historical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na030.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na031.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW05\\ZW05na032.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0051.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Liturgical",
+        "Commentarial"
+      ],
+      "period": "Song",
+      "origin": "Unknown Origin",
+      "author": "宋 釋祖照集　趙文煥．侯沖整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0052.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Liturgical",
+        "Commentarial"
+      ],
+      "period": "Song",
+      "origin": "Unknown Origin",
+      "author": "宋 釋元照集　趙文煥．侯沖整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0053.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Liturgical",
+        "Commentarial"
+      ],
+      "period": "Song",
+      "origin": "Unknown Origin",
+      "author": "宋 釋宗鏡述　侯沖整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0054.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Liturgical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "侯沖整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0055.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "Liturgical"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "侯沖整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0056.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "Unknown Origin",
+      "author": "弘景撰　方廣錩整理",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    },
+    {
+      "file": "D:\\Rust-projects\\not-rust-projects\\CBETA-Translator\\CbetaZenTexts\\xml-p5\\ZW\\ZW06\\ZW06n0057.xml",
+      "canon": "ZW",
+      "canon_name": "藏外佛教文獻",
+      "traditions": [
+        "General/Unspecified"
+      ],
+      "period": "Unknown Period",
+      "origin": "China",
+      "author": "侯沖",
+      "main_title": "Buddhist Texts not contained in the Tripiṭaka"
+    }
+  ]
+}
