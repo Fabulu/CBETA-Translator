@@ -117,6 +117,15 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
+		<!-- CheckBox (THIS fixes “Show filenames” being black on Linux) -->
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<Style Selector="CheckBox:pointerover">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
 		<!-- Tooltip -->
 		<Style Selector="ToolTip">
 			<Setter Property="Background" Value="{DynamicResource TooltipBg}"/>
@@ -125,7 +134,7 @@
 			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
-		<!-- Buttons -->
+		<!-- Buttons (force Foreground on hover/pressed so Linux can’t flip it) -->
 		<Style Selector="Button">
 			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
@@ -135,13 +144,17 @@
 
 		<Style Selector="Button:pointerover">
 			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
 		<Style Selector="Button:pressed">
 			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
-		<!-- TextBox (no dark jump EVER) -->
+		<!-- TextBox: set control props -->
 		<Style Selector="TextBox">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
@@ -152,23 +165,62 @@
 			<Setter Property="SelectionForegroundBrush" Value="{DynamicResource SelectionFg}"/>
 		</Style>
 
-		<Style Selector="TextBox:pointerover">
+		<!-- TextBox: TEMPLATE OVERRIDE (fixes white focus background on Linux) -->
+		<Style Selector="TextBox /template/ Border">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
+		<Style Selector="TextBox:pointerover /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+		</Style>
+
+		<Style Selector="TextBox:focus /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+		</Style>
+
+		<!-- Force text color at the TextBox level (this is the supported way) -->
+		<Style Selector="TextBox">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<!-- If your focused textbox text flips, explicitly restate it -->
 		<Style Selector="TextBox:focus">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
 		</Style>
 
-		<!-- Tabs -->
+
+		<!-- Tabs: Fluent templates often ignore bare TabItem.Background; hit template border -->
 		<Style Selector="TabItem">
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
+		<Style Selector="TabItem:pointerover">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
 		<Style Selector="TabItem:selected">
-			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
 		</Style>
+
+		<!-- Template surface of TabItem (this is what actually paints) -->
+		<Style Selector="TabItem /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
+		</Style>
+
+		<Style Selector="TabItem:pointerover /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+		</Style>
+
+		<Style Selector="TabItem:selected /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
+		</Style>
+
 
 	</Window.Styles>
 
