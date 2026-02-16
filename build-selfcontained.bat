@@ -18,5 +18,10 @@ echo.
 echo Build complete!
 echo Executable location: bin\SelfContained\CbetaTranslator.App.exe
 echo.
-echo Note: You will still need the Rust DLL in the same directory as the exe.
+echo IMPORTANT: You will also need:
+echo   1. cbeta-gui-dll.dll (in same directory as exe)
+echo   2. CbetaZenTexts folder (in same directory as exe)
+echo.
+echo The CbetaZenTexts folder contains the CBETA XML database (~500MB+)
+echo and must be copied separately to the application directory.
 pause
