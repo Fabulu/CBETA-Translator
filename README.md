@@ -378,10 +378,11 @@ If you just want to use the app, grab a prebuilt release instead of building fro
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### Linux
+### Linux (Self-Contained, Reliable)
 
 ```
-dotnet publish -c Release -r linux-x64 --self-contained true
+./eng/build-linux.sh Release true linux-x64
+./run-cbeta-selfcontained.sh linux-x64
 ```
 
 ### macOS (Intel)

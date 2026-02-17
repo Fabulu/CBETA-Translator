@@ -6,17 +6,20 @@
 
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
+		<InvariantGlobalization>true</InvariantGlobalization>
 
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 		
-		<!-- Self-contained publishing configuration -->
-		<SelfContained>true</SelfContained>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<PublishSingleFile>true</PublishSingleFile>
+		<!-- Self-contained publishing configuration (only applied when RuntimeIdentifier is explicitly specified) -->
+		<SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
+		<PublishSingleFile Condition="'$(RuntimeIdentifier)' != ''">false</PublishSingleFile>
 		<PublishTrimmed>false</PublishTrimmed>
-		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<IncludeNativeLibrariesForSelfExtract Condition="'$(RuntimeIdentifier)' != ''">true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile Condition="'$(RuntimeIdentifier)' != ''">false</EnableCompressionInSingleFile>
+		
+		<!-- Use invariant globalization for self-contained builds to avoid ICU dependency -->
+		<InvariantGlobalization Condition="'$(RuntimeIdentifier)' != ''">true</InvariantGlobalization>
 	</PropertyGroup>
 
 	<ItemGroup>

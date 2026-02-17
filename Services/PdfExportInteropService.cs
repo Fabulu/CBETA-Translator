@@ -167,13 +167,45 @@ public sealed class PdfExportInteropService
 
         _loadAttempted = true;
 
-        var candidates = new[]
+        var libNames = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            ? new[] { "cbeta_gui_dll.dll", "libcbeta_gui_dll.dll" }
+            : RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+                ? new[] { "libcbeta_gui_dll.dylib", "cbeta_gui_dll.dylib" }
+                : new[] { "libcbeta_gui_dll.so", "cbeta_gui_dll.so" };
+
+        var candidates = new List<string>();
+        void AddPath(string? path)
         {
-            Environment.GetEnvironmentVariable("CBETA_GUI_DLL_PATH"),
-            @"D:\Rust-projects\MT15-model\cbeta-gui-dll\target\release\cbeta_gui_dll.dll",
-            "/mnt/d/Rust-projects/MT15-model/cbeta-gui-dll/target/release/cbeta_gui_dll.dll",
-            Path.Combine(AppContext.BaseDirectory, "cbeta_gui_dll.dll"),
-        };
+            if (string.IsNullOrWhiteSpace(path))
+                return;
+            if (!candidates.Contains(path, StringComparer.Ordinal))
+                candidates.Add(path);
+        }
+
+        var envPath = Environment.GetEnvironmentVariable("CBETA_GUI_DLL_PATH");
+        if (!string.IsNullOrWhiteSpace(envPath))
+        {
+            if (Directory.Exists(envPath))
+            {
+                foreach (var libName in libNames)
+                    AddPath(Path.Combine(envPath, libName));
+            }
+            else
+            {
+                AddPath(envPath);
+            }
+        }
+
+        foreach (var libName in libNames)
+        {
+            AddPath(Path.Combine(AppContext.BaseDirectory, libName));
+            AddPath(Path.Combine(Environment.CurrentDirectory, libName));
+        }
+
+        // Keep legacy hardcoded paths for existing Windows/WSL workflows.
+        AddPath(@"D:\Rust-projects\MT15-model\cbeta-gui-dll\target\release\cbeta_gui_dll.dll");
+        AddPath("/mnt/d/Rust-projects/MT15-model/cbeta-gui-dll/target/release/cbeta_gui_dll.dll");
+        AddPath("/mnt/Samsung980_1TB/Rust-projects/not-rust-projects/CBETA-Translator/cbeta-gui-dll/target/release/libcbeta_gui_dll.so");
 
         var loadErrors = new List<string>();
         foreach (var candidate in candidates)

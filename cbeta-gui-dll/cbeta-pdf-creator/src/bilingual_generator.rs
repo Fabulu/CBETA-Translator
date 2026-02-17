@@ -388,14 +388,14 @@ impl BilingualPdfGenerator {
         let font_name = if paragraph.is_chinese { "chinese" } else { "english" };
         let font_size = paragraph.font_size;
 
-        // Clip each paragraph to its own box to prevent cross-column bleeding.
-        let clip_bottom = self.font_context.page_height - (paragraph.y + paragraph.height);
+        // Clip only by column width (full page height), so text never bleeds across columns
+        // while avoiding vertical clipping artifacts on glyph ascenders/descenders.
         content.operations.push(Operation::new("q", vec![]));
         content.operations.push(Operation::new("re", vec![
             Object::Real(paragraph.x),
-            Object::Real(clip_bottom),
+            Object::Real(0.0),
             Object::Real(paragraph.width),
-            Object::Real(paragraph.height),
+            Object::Real(self.font_context.page_height),
         ]));
         content.operations.push(Operation::new("W", vec![]));
         content.operations.push(Operation::new("n", vec![]));
@@ -455,10 +455,10 @@ impl BilingualPdfGenerator {
                 }
                 tj.push(Object::String(utf16be, StringFormat::Hexadecimal));
             } else {
-                // English path keeps literal single-byte behavior (WinAnsi-compatible text expected).
-                let char_string = ch.to_string();
-                let utf8_bytes = char_string.as_bytes();
-                tj.push(Object::String(utf8_bytes.to_vec(), StringFormat::Literal));
+                // English path must emit WinAnsi-safe single-byte text. Curly punctuation and
+                // other Unicode typography chars are downgraded to ASCII equivalents.
+                let ascii = sanitize_english_pdf_char(ch);
+                tj.push(Object::String(vec![ascii], StringFormat::Literal));
             }
 
             if i < chars.len() - 1 {
@@ -726,6 +726,18 @@ end"
         } else {
             Ok(0)
         }
+    }
+}
+
+fn sanitize_english_pdf_char(ch: char) -> u8 {
+    match ch {
+        '\u{2018}' | '\u{2019}' | '\u{2032}' | '\u{00B4}' => b'\'',
+        '\u{201C}' | '\u{201D}' | '\u{2033}' => b'"',
+        '\u{2013}' | '\u{2014}' | '\u{2212}' => b'-',
+        '\u{2026}' => b'.',
+        '\u{00A0}' => b' ',
+        c if c.is_ascii() => c as u8,
+        _ => b'?',
     }
 }
 
