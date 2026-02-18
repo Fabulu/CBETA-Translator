@@ -28,6 +28,7 @@ pub struct FontContext {
     // English fonts
     pub english_font: Font,
     pub english_font_name: String,  // Track which font was loaded
+    pub english_font_path: String,  // Track source path to decide embedding strategy
     pub english_font_data: Vec<u8>, // Store raw font data for embedding
     pub english_font_italic: Option<Font>,
     pub english_font_bold: Option<Font>,
@@ -56,7 +57,7 @@ impl FontContext {
         // Try to load high-quality fonts, fallback to system fonts
         let (chinese_font, chinese_font_name, chinese_font_path, chinese_font_data) =
             Self::load_chinese_font()?;
-        let (english_font, english_font_name, english_font_data) = Self::load_english_font()?;
+        let (english_font, english_font_name, english_font_path, english_font_data) = Self::load_english_font()?;
         
         println!("Loaded fonts: Chinese={}, English={}", chinese_font_name, english_font_name);
         
@@ -68,6 +69,7 @@ impl FontContext {
             chinese_font_bold: None, // TODO: Load bold variant
             english_font,
             english_font_name,
+            english_font_path,
             english_font_data,
             english_font_italic: None, // TODO: Load italic variant
             english_font_bold: None, // TODO: Load bold variant
@@ -94,14 +96,19 @@ impl FontContext {
     fn load_chinese_font() -> Result<(Font, String, String, Vec<u8>)> {
         // Priority order for Chinese fonts
         let font_paths = vec![
+            // Bundled open-source, print-ready default for Linux/portable builds.
+            ("Noto Serif CJK TC", concat!(env!("CARGO_MANIFEST_DIR"), "/assets/fonts/NotoSerifCJKtc-Regular.otf")),
+            // Source Han (same glyph design family; also open-source).
+            ("Source Han Serif TC", concat!(env!("CARGO_MANIFEST_DIR"), "/assets/fonts/SourceHanSerifTC-Regular.otf")),
             // SimSun (high compatibility for Windows PDF viewers)
             ("SimSun", "C:\\Windows\\Fonts\\simsun.ttc"),
             // Microsoft JhengHei (Windows system font) - Regular
             ("Microsoft JhengHei", "C:\\Windows\\Fonts\\msjh.ttc"),
             // Microsoft YaHei (Windows system font) - Regular  
             ("Microsoft YaHei", "C:\\Windows\\Fonts\\msyh.ttc"),
-            // Source Han Sans TC (Adobe, high quality) - Regular
-            ("Source Han Sans TC Regular", "D:\\Rust-projects\\not-rust-projects\\CBETA-GUI\\15_SourceHanSansHWTC\\OTF\\TraditionalChineseHW\\SourceHanSansHWTC-Regular.otf"),
+            // Linux packaged fonts (if installed)
+            ("Noto Serif CJK TC", "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"),
+            ("Noto Serif CJK TC", "/usr/share/fonts/opentype/noto/NotoSerifCJKtc-Regular.otf"),
             // SimSun Bold TTF (fontdue lookup currently returns missing-glyph for many CJK chars)
             ("SimSun Bold", "C:\\Windows\\Fonts\\simsunb.ttf"),
         ];
@@ -125,17 +132,22 @@ impl FontContext {
     }
     
     /// Load a high-quality English font
-    fn load_english_font() -> Result<(Font, String, Vec<u8>)> {
+    fn load_english_font() -> Result<(Font, String, String, Vec<u8>)> {
         // Priority order for English fonts
         let font_paths = vec![
-            // Garamond (classic, print-quality)
-            ("Garamond", "C:\\Windows\\Fonts\\garamond.ttf"),
-            // Georgia (serif, excellent readability)
+            // Bundled open-source serif for print-ready portable PDFs.
+            ("EB Garamond", concat!(env!("CARGO_MANIFEST_DIR"), "/assets/fonts/EBGaramond-Regular.ttf")),
+            ("Noto Serif", concat!(env!("CARGO_MANIFEST_DIR"), "/assets/fonts/NotoSerif-Regular.ttf")),
+            // Linux packaged open-source serif fallbacks.
+            ("Noto Serif", "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf"),
+            ("Liberation Serif", "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf"),
+            // Windows system serif options.
+            ("Garamond", "C:\\Windows\\Fonts\\GARABD.TTF"),
             ("Georgia", "C:\\Windows\\Fonts\\georgia.ttf"),
             // Times New Roman (fallback)
             ("Times New Roman", "C:\\Windows\\Fonts\\times.ttf"),
-            // Cambria (modern serif)
-            ("Cambria", "C:\\Windows\\Fonts\\cambria.ttc"),
+            // Last-resort Linux serif
+            ("DejaVu Serif", "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"),
         ];
         
         for (font_name, font_path) in font_paths {
@@ -144,7 +156,7 @@ impl FontContext {
                 let font_data = std::fs::read(font_path)?;
                 let font = Font::from_bytes(font_data.clone(), FontSettings::default())
                     .map_err(|e| anyhow!("Failed to load English font from {}: {}", font_path, e))?;
-                return Ok((font, font_name.to_string(), font_data));
+                return Ok((font, font_name.to_string(), font_path.to_string(), font_data));
             }
         }
         

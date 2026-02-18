@@ -448,18 +448,12 @@ impl BilingualPdfGenerator {
 
         let mut char_position = 0;
         for (i, &ch) in chars.iter().enumerate() {
-            if line.is_chinese {
-                let mut utf16be = Vec::new();
-                for unit in ch.encode_utf16(&mut [0; 2]).iter().copied() {
-                    utf16be.extend_from_slice(&unit.to_be_bytes());
-                }
-                tj.push(Object::String(utf16be, StringFormat::Hexadecimal));
-            } else {
-                // English path must emit WinAnsi-safe single-byte text. Curly punctuation and
-                // other Unicode typography chars are downgraded to ASCII equivalents.
-                let ascii = sanitize_english_pdf_char(ch);
-                tj.push(Object::String(vec![ascii], StringFormat::Literal));
+            // Use UTF-16BE hex strings for both Chinese and English Type0 fonts.
+            let mut utf16be = Vec::new();
+            for unit in ch.encode_utf16(&mut [0; 2]).iter().copied() {
+                utf16be.extend_from_slice(&unit.to_be_bytes());
             }
+            tj.push(Object::String(utf16be, StringFormat::Hexadecimal));
 
             if i < chars.len() - 1 {
                 let mut adjust: f32 = 0.0;
@@ -506,85 +500,86 @@ impl BilingualPdfGenerator {
         Ok(Object::Dictionary(resources))
     }
     
-    /// Add font to document with proper CJK composite font support.
+    /// Add font to document with composite Type0 + CIDFont support.
     fn add_font_to_document(&mut self, name: &str) -> Result<ObjectId> {
-        // Chinese must be a composite Type0 font with a CIDFont descendant.
-        if name == "chinese" {
-            let base_font_name = self.chinese_pdf_font_name();
-
-            let mut font_descriptor = Dictionary::new();
-            font_descriptor.set("Type", Object::Name(b"FontDescriptor".to_vec()));
-            font_descriptor.set("FontName", Object::Name(base_font_name.clone().into_bytes()));
-            font_descriptor.set("Flags", Object::Integer(4));
-            font_descriptor.set("FontBBox", Object::Array(vec![
-                Object::Integer(0),
-                Object::Integer(-300),
-                Object::Integer(1000),
-                Object::Integer(1000),
-            ]));
-            font_descriptor.set("ItalicAngle", Object::Integer(0));
-            font_descriptor.set("Ascent", Object::Integer(880));
-            font_descriptor.set("Descent", Object::Integer(-120));
-            font_descriptor.set("CapHeight", Object::Integer(700));
-            font_descriptor.set("StemV", Object::Integer(80));
-
-            let mut is_embedded = false;
-            if let Some(font_file_obj) = self.create_embeddable_chinese_font_stream() {
-                let font_stream_id = self.document.add_object(font_file_obj);
-                font_descriptor.set("FontFile2", Object::Reference(font_stream_id));
-                is_embedded = true;
-            }
-            let font_descriptor_id = self.document.add_object(Object::Dictionary(font_descriptor));
-
-            let mut cidfont = Dictionary::new();
-            cidfont.set("Type", Object::Name(b"Font".to_vec()));
-            cidfont.set("Subtype", Object::Name(b"CIDFontType2".to_vec()));
-            cidfont.set("BaseFont", Object::Name(base_font_name.clone().into_bytes()));
-            cidfont.set("CIDSystemInfo", Object::Dictionary({
-                let mut d = Dictionary::new();
-                d.set("Registry", Object::string_literal("Adobe"));
-                d.set("Ordering", Object::string_literal("Identity"));
-                d.set("Supplement", Object::Integer(0));
-                d
-            }));
-            cidfont.set("FontDescriptor", Object::Reference(font_descriptor_id));
-            cidfont.set("DW", Object::Integer(1000));
-            if is_embedded {
-                // Embedded font: explicit map is safe and keeps glyph mapping deterministic.
-                let cid_to_gid_map_id = self.document.add_object(self.create_cid_to_gid_map_stream());
-                cidfont.set("CIDToGIDMap", Object::Reference(cid_to_gid_map_id));
-            } else {
-                // System font (e.g. TTC) is not embedded; do not force a possibly mismatched
-                // custom CIDToGID map, let viewer resolve with identity mapping.
-                cidfont.set("CIDToGIDMap", Object::Name(b"Identity".to_vec()));
-            }
-            let cidfont_id = self.document.add_object(Object::Dictionary(cidfont));
-
-            let tounicode_id = self.document.add_object(self.create_identity_tounicode_cmap_stream());
-
-            let mut type0 = Dictionary::new();
-            type0.set("Type", Object::Name(b"Font".to_vec()));
-            type0.set("Subtype", Object::Name(b"Type0".to_vec()));
-            type0.set("BaseFont", Object::Name(base_font_name.into_bytes()));
-            type0.set("Encoding", Object::Name(b"Identity-H".to_vec()));
-            type0.set("DescendantFonts", Object::Array(vec![Object::Reference(cidfont_id)]));
-            type0.set("ToUnicode", Object::Reference(tounicode_id));
-
-            let font_id = self.document.add_object(Object::Dictionary(type0));
-            self.font_objects.insert(name.to_string(), font_id);
-            Ok(font_id)
+        let (base_font_name, font_path, font_data, is_chinese_font) = if name == "chinese" {
+            (
+                self.chinese_pdf_font_name(),
+                self.font_context.chinese_font_path.clone(),
+                self.font_context.chinese_font_data.clone(),
+                true,
+            )
         } else {
-            // For English text, use a built-in PDF Type1 font for maximum viewer compatibility.
-            let mut font_dict = Dictionary::new();
-            font_dict.set("Type", Object::Name(b"Font".to_vec()));
-            font_dict.set("Subtype", Object::Name(b"Type1".to_vec()));
-            font_dict.set("BaseFont", Object::Name(b"Times-Roman".to_vec()));
-            font_dict.set("Encoding", Object::Name(b"WinAnsiEncoding".to_vec()));
-            
-            let font_id = self.document.add_object(Object::Dictionary(font_dict));
-            self.font_objects.insert(name.to_string(), font_id);
-            Ok(font_id)
+            (
+                self.english_pdf_font_name(),
+                self.font_context.english_font_path.clone(),
+                self.font_context.english_font_data.clone(),
+                false,
+            )
+        };
+
+        let mut font_descriptor = Dictionary::new();
+        font_descriptor.set("Type", Object::Name(b"FontDescriptor".to_vec()));
+        font_descriptor.set("FontName", Object::Name(base_font_name.clone().into_bytes()));
+        font_descriptor.set("Flags", Object::Integer(if is_chinese_font { 4 } else { 32 }));
+        font_descriptor.set("FontBBox", Object::Array(vec![
+            Object::Integer(-200),
+            Object::Integer(-300),
+            Object::Integer(1400),
+            Object::Integer(1100),
+        ]));
+        font_descriptor.set("ItalicAngle", Object::Integer(0));
+        font_descriptor.set("Ascent", Object::Integer(880));
+        font_descriptor.set("Descent", Object::Integer(-220));
+        font_descriptor.set("CapHeight", Object::Integer(700));
+        font_descriptor.set("StemV", Object::Integer(80));
+
+        let mut is_embedded = false;
+        if let Some((font_file_key, font_file_obj)) = self.create_embeddable_font_stream(&font_path, &font_data) {
+            let font_stream_id = self.document.add_object(font_file_obj);
+            font_descriptor.set(font_file_key.as_str(), Object::Reference(font_stream_id));
+            is_embedded = true;
         }
+        let font_descriptor_id = self.document.add_object(Object::Dictionary(font_descriptor));
+
+        let mut cidfont = Dictionary::new();
+        cidfont.set("Type", Object::Name(b"Font".to_vec()));
+        cidfont.set("Subtype", Object::Name(b"CIDFontType2".to_vec()));
+        cidfont.set("BaseFont", Object::Name(base_font_name.clone().into_bytes()));
+        cidfont.set("CIDSystemInfo", Object::Dictionary({
+            let mut d = Dictionary::new();
+            d.set("Registry", Object::string_literal("Adobe"));
+            d.set("Ordering", Object::string_literal("Identity"));
+            d.set("Supplement", Object::Integer(0));
+            d
+        }));
+        cidfont.set("FontDescriptor", Object::Reference(font_descriptor_id));
+        cidfont.set("DW", Object::Integer(1000));
+        if is_embedded {
+            let cid_to_gid_map_id = if is_chinese_font {
+                self.document.add_object(self.create_chinese_cid_to_gid_map_stream())
+            } else {
+                self.document.add_object(self.create_english_cid_to_gid_map_stream())
+            };
+            cidfont.set("CIDToGIDMap", Object::Reference(cid_to_gid_map_id));
+        } else {
+            cidfont.set("CIDToGIDMap", Object::Name(b"Identity".to_vec()));
+        }
+        let cidfont_id = self.document.add_object(Object::Dictionary(cidfont));
+
+        let tounicode_id = self.document.add_object(self.create_identity_tounicode_cmap_stream());
+
+        let mut type0 = Dictionary::new();
+        type0.set("Type", Object::Name(b"Font".to_vec()));
+        type0.set("Subtype", Object::Name(b"Type0".to_vec()));
+        type0.set("BaseFont", Object::Name(base_font_name.into_bytes()));
+        type0.set("Encoding", Object::Name(b"Identity-H".to_vec()));
+        type0.set("DescendantFonts", Object::Array(vec![Object::Reference(cidfont_id)]));
+        type0.set("ToUnicode", Object::Reference(tounicode_id));
+
+        let font_id = self.document.add_object(Object::Dictionary(type0));
+        self.font_objects.insert(name.to_string(), font_id);
+        Ok(font_id)
     }
 
     fn sanitize_pdf_font_name(&self, raw: &str) -> String {
@@ -605,12 +600,23 @@ impl BilingualPdfGenerator {
 
     fn chinese_pdf_font_name(&self) -> String {
         match self.font_context.chinese_font_name.as_str() {
-            "Source Han Sans TC Regular" => "SourceHanSansTC-Regular".to_string(),
+            "Source Han Serif TC" => "SourceHanSerifTC-Regular".to_string(),
+            "Noto Serif CJK TC" => "NotoSerifCJKTC-Regular".to_string(),
             "Microsoft JhengHei" => "MicrosoftJhengHei".to_string(),
             "Microsoft YaHei" => "MicrosoftYaHei".to_string(),
             "SimSun" => "SimSun".to_string(),
             "SimSun Bold" => "SimSun-Bold".to_string(),
             _ => self.sanitize_pdf_font_name(&self.font_context.chinese_font_name),
+        }
+    }
+
+    fn english_pdf_font_name(&self) -> String {
+        match self.font_context.english_font_name.as_str() {
+            "EB Garamond" => "EBGaramond-Regular".to_string(),
+            "Noto Serif" => "NotoSerif-Regular".to_string(),
+            "Liberation Serif" => "LiberationSerif-Regular".to_string(),
+            "DejaVu Serif" => "DejaVuSerif".to_string(),
+            _ => self.sanitize_pdf_font_name(&self.font_context.english_font_name),
         }
     }
 
@@ -639,7 +645,7 @@ end"
         Object::Stream(Stream::new(Dictionary::new(), cmap))
     }
 
-    fn create_cid_to_gid_map_stream(&self) -> Object {
+    fn create_chinese_cid_to_gid_map_stream(&self) -> Object {
         // Build a full BMP CID -> glyph index map (2 bytes per CID).
         // CID code equals UTF-16 BMP code unit in our content stream.
         let mut map = vec![0u8; 65536 * 2];
@@ -654,21 +660,45 @@ end"
         Object::Stream(Stream::new(Dictionary::new(), map))
     }
 
-    fn create_embeddable_chinese_font_stream(&self) -> Option<Object> {
-        let path = self.font_context.chinese_font_path.to_ascii_lowercase();
-        if !path.ends_with(".ttf") {
-            // Skip invalid embedding for TTC/OTF in FontFile2.
-            return None;
+    fn create_english_cid_to_gid_map_stream(&self) -> Object {
+        let mut map = vec![0u8; 65536 * 2];
+        for cid in 0u32..=0xFFFF {
+            if let Some(ch) = char::from_u32(cid) {
+                let gid = self.font_context.english_font.lookup_glyph_index(ch);
+                let offset = (cid as usize) * 2;
+                map[offset] = (gid >> 8) as u8;
+                map[offset + 1] = (gid & 0xFF) as u8;
+            }
         }
+        Object::Stream(Stream::new(Dictionary::new(), map))
+    }
 
-        let font_data = self.font_context.chinese_font_data.clone();
+    fn create_embeddable_font_stream(&self, font_path: &str, font_data: &[u8]) -> Option<(String, Object)> {
         if font_data.is_empty() {
             return None;
         }
 
+        let path = font_path.to_ascii_lowercase();
         let mut stream_dict = Dictionary::new();
         stream_dict.set("Length1", Object::Integer(font_data.len() as i64));
-        Some(Object::Stream(Stream::new(stream_dict, font_data)))
+
+        if path.ends_with(".ttf") {
+            return Some((
+                "FontFile2".to_string(),
+                Object::Stream(Stream::new(stream_dict, font_data.to_vec())),
+            ));
+        }
+
+        if path.ends_with(".otf") {
+            stream_dict.set("Subtype", Object::Name(b"OpenType".to_vec()));
+            return Some((
+                "FontFile3".to_string(),
+                Object::Stream(Stream::new(stream_dict, font_data.to_vec())),
+            ));
+        }
+
+        // TTC collections are not embedded yet in this pipeline.
+        None
     }
     
     /// Add page to pages tree
@@ -726,18 +756,6 @@ end"
         } else {
             Ok(0)
         }
-    }
-}
-
-fn sanitize_english_pdf_char(ch: char) -> u8 {
-    match ch {
-        '\u{2018}' | '\u{2019}' | '\u{2032}' | '\u{00B4}' => b'\'',
-        '\u{201C}' | '\u{201D}' | '\u{2033}' => b'"',
-        '\u{2013}' | '\u{2014}' | '\u{2212}' => b'-',
-        '\u{2026}' => b'.',
-        '\u{00A0}' => b' ',
-        c if c.is_ascii() => c as u8,
-        _ => b'?',
     }
 }
 
