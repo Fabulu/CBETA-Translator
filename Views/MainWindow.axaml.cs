@@ -1161,6 +1161,29 @@ public partial class MainWindow : Window
         };
     }
 
+    private void SelectInNav(string relPath)
+    {
+        // best-effort synchronous helper (no awaits)
+        if (_navTree == null || string.IsNullOrWhiteSpace(relPath))
+            return;
+
+        var match = _filteredItems.FirstOrDefault(x =>
+            string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
+
+        if (match == null)
+            return;
+
+        try
+        {
+            _suppressNavSelectionChanged = true;
+            _navTree.SelectedItem = match;
+        }
+        finally
+        {
+            _suppressNavSelectionChanged = false;
+        }
+    }
+
     private async Task SelectInNavAsync(string relPath)
     {
         if (_navTree == null || string.IsNullOrWhiteSpace(relPath))
@@ -1231,36 +1254,52 @@ public partial class MainWindow : Window
         if (_suppressNavSelectionChanged)
             return;
 
+        // IMPORTANT: your TreeView ItemsSource is NavTreeNode groups, not FileNavItem.
+        // So SelectedItem can be either NavTreeNode or FileNavItem depending on your node structure.
+        // We only react to leaf FileNavItem selections.
         if (_navTree?.SelectedItem is not FileNavItem item)
             return;
 
         if (string.IsNullOrWhiteSpace(item.RelPath))
             return;
 
-        if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
+        // If user is switching away from a loaded file and we are dirty, confirm
+        if (_currentRelPath != null &&
+            !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
             if (!await ConfirmNavigateIfDirtyAsync($"switch files ({_currentRelPath} → {item.RelPath})"))
             {
+                // revert selection back to current file in the TreeView
+                var backRel = _currentRelPath;
+
                 Dispatcher.UIThread.Post(() =>
                 {
                     try
                     {
                         _suppressNavSelectionChanged = true;
+
+                        // This sets selection by rel path by searching your filtered leaf items.
+                        // It won't expand groups, but it will keep your internal selection consistent.
+                        // If you later want to auto-expand to the leaf, we can add that.
                         var back = _filteredItems.FirstOrDefault(x =>
-                            string.Equals(x.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase));
-                        if (back != null) _filesList.SelectedItem = back;
+                            string.Equals(x.RelPath, backRel, StringComparison.OrdinalIgnoreCase));
+
+                        if (back != null && _navTree != null)
+                            _navTree.SelectedItem = back;
                     }
                     finally
                     {
                         _suppressNavSelectionChanged = false;
                     }
-                });
+                }, DispatcherPriority.Background);
+
                 return;
             }
         }
 
         await LoadPairAsync(item.RelPath);
     }
+
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(string relPath, CancellationToken ct)
     {
