@@ -11,6 +11,8 @@ namespace CbetaTranslator.App.Models
         public string? TextRootPath { get; set; }
         public string? LastSelectedRelPath { get; set; }
         public bool IsDarkTheme { get; set; } = true;
+        public string? LastSelectedRelPath { get; set; }
+        public bool ZenOnly { get; set; }
 
         public PdfLayoutMode PdfLayoutMode { get; set; } = PdfLayoutMode.Alternating;
         public bool PdfIncludeEnglish { get; set; } = true;

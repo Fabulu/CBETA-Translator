@@ -141,6 +141,15 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
+		<!-- CheckBox (fixes “Show filenames” being black on Linux) -->
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<Style Selector="CheckBox:pointerover">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
 		<!-- Tooltip -->
 		<Style Selector="ToolTip">
 			<Setter Property="Background" Value="{DynamicResource TooltipBg}"/>
@@ -161,13 +170,17 @@
 
 		<Style Selector="Button:pointerover">
 			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
 		<Style Selector="Button:pressed">
 			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
-		<!-- TextBox (no dark jump EVER) -->
+		<!-- TextBox -->
 		<Style Selector="TextBox">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
@@ -178,12 +191,26 @@
 			<Setter Property="SelectionForegroundBrush" Value="{DynamicResource SelectionFg}"/>
 		</Style>
 
-		<Style Selector="TextBox:pointerover">
+		<!-- TextBox template border override (Linux focus bg) -->
+		<Style Selector="TextBox /template/ Border">
 			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+
+		<Style Selector="TextBox:pointerover /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+		</Style>
+
+		<Style Selector="TextBox:focus /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 		</Style>
 
 		<Style Selector="TextBox:focus">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
 		</Style>
 
 		<!-- Tabs -->
@@ -191,9 +218,24 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
+		<Style Selector="TabItem:pointerover">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
 		<Style Selector="TabItem:selected">
-			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
+		</Style>
+
+		<Style Selector="TabItem /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
+		</Style>
+
+		<Style Selector="TabItem:pointerover /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+		</Style>
+
+		<Style Selector="TabItem:selected /template/ Border">
+			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
 		</Style>
 
 	</Window.Styles>
@@ -205,7 +247,11 @@
 	<Grid RowDefinitions="Auto,*,Auto">
 
 		<!-- Top Bar -->
-		<Border Name="TopBar" Grid.Row="0" Background="{DynamicResource BarBg}" Padding="10" PointerPressed="TopBar_PointerPressed">
+		<Border Name="TopBar"
+                Grid.Row="0"
+                Background="{DynamicResource BarBg}"
+                Padding="10"
+                PointerPressed="TopBar_PointerPressed">
 			<DockPanel LastChildFill="True">
 
 				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
@@ -213,11 +259,6 @@
 					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
 					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"/>
 					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
-					<!--<CheckBox Name="ChkNightMode"
-							  Content="Night mode"
-							  VerticalAlignment="Center"
-							  Margin="10,0,0,0"
-							  IsChecked="True"/> -->
 					<TextBlock Name="TxtRoot" Margin="10,0,0,0" Classes="muted"/>
 				</StackPanel>
 
@@ -238,6 +279,7 @@
 		<!-- Main -->
 		<Grid Grid.Row="1" ColumnDefinitions="320,6,*">
 
+			<!-- Nav -->
 			<Border Name="NavPanel"
 					Grid.Column="0"
 					Background="{DynamicResource NavBg}"
@@ -245,17 +287,45 @@
 
 				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" RowSpacing="8">
 
-					<TextBlock Text="Files" FontWeight="Bold" Classes="muted"/>
+					<!-- Header row: Files (left) + Status filter (right) -->
+					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+						<TextBlock Text="Files" FontWeight="Bold" Classes="muted" VerticalAlignment="Center"/>
+
+						<ComboBox Name="CmbStatusFilter"
+								  Grid.Column="1"
+								  SelectedIndex="0"
+								  MinWidth="160"
+								  HorizontalAlignment="Right"
+								  VerticalAlignment="Center">
+							<ComboBoxItem Content="All"/>
+							<ComboBoxItem Content="Translated (Green)"/>
+							<ComboBoxItem Content="Partially translated (Yellow)"/>
+							<ComboBoxItem Content="Untranslated (Red)"/>
+						</ComboBox>
+					</Grid>
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
 							 Watermark="Find text, filename, title..."/>
 
-					<StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="6">
+					<!-- Nav toggles + compatibility controls -->
+					<StackPanel Grid.Row="2"
+								Orientation="Horizontal"
+								Spacing="10">
+
+						<!-- Keep these for now if code-behind still references them -->
 						<CheckBox Name="ChkNavOriginal" Content="O" IsChecked="True" ToolTip.Tip="Search Original text"/>
 						<CheckBox Name="ChkNavTranslated" Content="T" ToolTip.Tip="Search Translated text"/>
 						<ComboBox Name="CmbNavStatus" Width="88"/>
 						<ComboBox Name="CmbNavContext" Width="72"/>
+
+						<Border Width="10"/>
+
+						<CheckBox Name="ChkShowFilenames"
+								  Content="Show filenames"/>
+						<Border Width="6"/>
+						<CheckBox Name="ChkZenOnly"
+								  Content="Zen texts"/>
 					</StackPanel>
 
 					<ComboBox Name="CmbOrganizeBy"
@@ -302,13 +372,15 @@
 					</TreeView>
 
 				</Grid>
-				</Border>
+			</Border>
 
-				<GridSplitter Grid.Column="1"
-							  Width="6"
-							  ResizeDirection="Columns"
-							  Background="{DynamicResource BorderBrush}"/>
+			<!-- Splitter -->
+			<GridSplitter Grid.Column="1"
+						  Width="6"
+						  ResizeDirection="Columns"
+						  Background="{DynamicResource BorderBrush}"/>
 
+			<!-- Main content -->
 			<Border Grid.Column="2" Margin="8">
 				<TabControl Name="MainTabs">
 					<TabItem Header="Readable">

@@ -14,6 +14,7 @@ env:
 
 jobs:
   build:
+    name: Build (${{ matrix.rid }})
     strategy:
       fail-fast: false
       matrix:
@@ -62,15 +63,15 @@ jobs:
             -c Release -r "${{ matrix.rid }}" --self-contained true \
             /p:PublishSingleFile=true \
             /p:IncludeNativeLibrariesForSelfExtract=true \
-            /p:IncludeNativeLibrariesForSelfExtract=true \
             /p:DebugType=None /p:DebugSymbols=false
 
-      - name: Ensure dictionary ships
+      # Assume runtime expects assets/dict (lowercase) and ship it that way
+      - name: Ensure dictionary ships (assets/dict)
         shell: bash
         run: |
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
-          mkdir -p "$PUB/Assets/Dict"
-          cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
+          mkdir -p "$PUB/assets/dict"
+          cp -R "Assets/Dict/." "$PUB/assets/dict/"
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
@@ -86,11 +87,6 @@ jobs:
           if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
 
           Compress-Archive -Path "$pub\*" -DestinationPath $zipPath
-
-          # use forward slashes so action-gh-release can find the file
-          $asset = $zipPath -replace '\\','/'
-          "ASSET=$asset" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-
           Get-ChildItem dist | Format-Table -AutoSize
 
       - name: Package (Linux/macOS)
@@ -106,22 +102,40 @@ jobs:
 
           if [ "${{ matrix.package }}" = "zip" ]; then
             (cd "$PUB" && zip -r "$GITHUB_WORKSPACE/dist/${OUT}.zip" .)
-            echo "ASSET=dist/${OUT}.zip" >> $GITHUB_ENV
           else
             tar -czf "dist/${OUT}.tar.gz" -C "$PUB" .
-            echo "ASSET=dist/${OUT}.tar.gz" >> $GITHUB_ENV
           fi
 
           ls -la dist
 
-      - name: Create/Upload Release (Linux creates)
-        if: runner.os == 'Linux'
-        uses: softprops/action-gh-release@v2
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          files: ${{ env.ASSET }}
+          name: dist-${{ matrix.rid }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
 
-      - name: Upload asset to existing Release (non-Linux)
-        if: runner.os != 'Linux'
+  release:
+    name: Create GitHub Release (single)
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: dist-*
+          path: dist
+          merge-multiple: true
+
+      - name: Show dist contents
+        run: |
+          ls -la dist
+
+      - name: Create/Upload GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.ASSET }}
+          files: dist/*
+          fail_on_unmatched_files: true
+          overwrite_files: true

@@ -69,6 +69,14 @@ public partial class ReadableTabView : UserControl
     private bool _mirrorQueued;
     private bool _mirrorSourceIsTranslated;
 
+    // Zen events
+    private CheckBox? _chkZenText;
+    private bool _suppressZenEvents;
+    private string? _currentRelPathForZen;
+
+    public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
+
+
     // -------------------------
     // Find (Ctrl+F) state
     // -------------------------
@@ -235,6 +243,8 @@ public partial class ReadableTabView : UserControl
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
         _btnDeleteCommunityNote = this.FindControl<Button>("BtnDeleteCommunityNote");
 
+        _chkZenText = this.FindControl<CheckBox>("ChkZenText");
+
         if (_notesPanel != null)
             _notesPanel.IsVisible = false;
 
@@ -340,6 +350,11 @@ public partial class ReadableTabView : UserControl
             OnPointerPressed_TunnelForNotes,
             RoutingStrategies.Tunnel,
             handledEventsToo: true);
+
+        //Zen check
+        if (_chkZenText != null)
+            _chkZenText.IsCheckedChanged += ChkZenText_IsCheckedChanged;
+
 
         if (_findQuery != null)
         {
@@ -1125,6 +1140,9 @@ public partial class ReadableTabView : UserControl
         _lastOrigCaret = -1;
         _lastTranCaret = -1;
 
+        SetZenContext(null, isZen: false);
+
+
         HideNotes();
 
         ClearFindState();
@@ -1681,6 +1699,44 @@ public partial class ReadableTabView : UserControl
         _matchIndex = -1;
         UpdateFindCount();
         ClearHighlight();
+    }
+    // -------------------------
+    // Zen Check
+    // -------------------------
+    private void ChkZenText_IsCheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (_suppressZenEvents) return;
+            if (string.IsNullOrWhiteSpace(_currentRelPathForZen)) return;
+
+            bool isZen = _chkZenText?.IsChecked == true;
+            Log($"ZEN TOGGLE: rel={_currentRelPathForZen} isZen={isZen}");
+
+            ZenFlagChanged?.Invoke(this, (_currentRelPathForZen!, isZen));
+        }
+        catch (Exception ex)
+        {
+            Log("ZEN TOGGLE EXCEPTION: " + ex);
+        }
+    }
+
+    public void SetZenContext(string? relPath, bool isZen)
+    {
+        _currentRelPathForZen = relPath;
+
+        if (_chkZenText == null) return;
+
+        _suppressZenEvents = true;
+        try
+        {
+            _chkZenText.IsChecked = isZen;
+            _chkZenText.IsEnabled = !string.IsNullOrWhiteSpace(relPath);
+        }
+        finally
+        {
+            _suppressZenEvents = false;
+        }
     }
 
     // -------------------------
