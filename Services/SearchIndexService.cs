@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Services/SearchIndexService.cs
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
@@ -20,15 +20,25 @@ public sealed class SearchIndexService
     {
         public long MaxBloomCacheBytes { get; set; } = 40L * 1024 * 1024;
 
-        public int MaxVerifyDegreeOfParallelism { get; set; } = Math.Min(8, Environment.ProcessorCount);
-        public int MaxBloomDegreeOfParallelism { get; set; } = Environment.ProcessorCount;
+        // HDD + 2MB files: IO-bound verification is common.
+        // Too much parallelism can *thrash* an HDD (seeks).
+        // Start conservative; bump if you move corpus to SSD.
+        public int MaxVerifyDegreeOfParallelism { get; set; } = Math.Min(2, Environment.ProcessorCount);
+
+        // Bloom scan is sequential-ish over the bin file; CPU-bound-ish.
+        public int MaxBloomDegreeOfParallelism { get; set; } = Math.Min(Environment.ProcessorCount, 8);
 
         public int ReplaceTries { get; set; } = 18;
         public int ReplaceDelayMs { get; set; } = 80;
+
+        // If you truly need entity-decoding for search, keep this true.
+        // For CBETA bodies it’s often unnecessary; turning it off is faster.
+        public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
     }
 
     public SearchIndexServiceOptions Options { get; } = new();
 
+    // Gate only for index file I/O (manifest/bin) so we can release before expensive verification.
     private static readonly SemaphoreSlim _indexIoGate = new(1, 1);
 
     private readonly Dictionary<long, LinkedListNode<(long key, ulong[] bits)>> _bloomCache = new();
@@ -51,10 +61,6 @@ public sealed class SearchIndexService
     // ==========================================================
     // CO-OCCURRENCE METRICS (dropdown controls what panel shows)
     // ==========================================================
-    //
-    // IMPORTANT: We do NOT define a second enum here.
-    // The UI uses CbetaTranslator.App.Models.CoocMetric.
-    //
 
     public sealed class CooccurrencePanelResult
     {
@@ -83,12 +89,11 @@ public sealed class SearchIndexService
         var chRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
         var chByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
 
-        // Ngrams (bigrams+trigrams together, like you had)
+        // Ngrams (bigrams+trigrams together)
         var ngFreq = new Dictionary<string, int>(StringComparer.Ordinal);
         var ngRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
         var ngByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
 
-        // Only files that contain at least one hit are present in groups
         var groupList = groups?.ToList() ?? new List<SearchResultGroup>();
         int Nfiles = groupList.Count;
 
@@ -124,44 +129,69 @@ public sealed class SearchIndexService
                     map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
                 }
 
-                // Compact string for ngrams
-                var compact = new string(window.Where(x => !char.IsWhiteSpace(x)).ToArray());
-                if (compact.Length == 0) continue;
+                // Ngrams: avoid LINQ allocations by doing a compact rolling window over non-whitespace
+                char a = '\0', b = '\0';
+                bool hasA = false, hasB = false;
 
-                for (int i = 0; i < compact.Length; i++)
+                for (int i = 0; i < window.Length; i++)
                 {
-                    if (i + 2 <= compact.Length)
-                    {
-                        string bg = compact.Substring(i, 2);
-                        ngFreq[bg] = ngFreq.TryGetValue(bg, out var f2) ? f2 + 1 : 1;
+                    char ch = window[i];
+                    if (char.IsWhiteSpace(ch)) continue;
 
-                        if (!ngRange.TryGetValue(bg, out var set))
-                            ngRange[bg] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    // shift rolling buffer: (a,b,ch)
+                    if (!hasA)
+                    {
+                        a = ch; hasA = true;
+                        continue;
+                    }
+                    if (!hasB)
+                    {
+                        b = ch; hasB = true;
+
+                        // bigram (a,b)
+                        string bg0 = string.Concat(a, b);
+                        ngFreq[bg0] = ngFreq.TryGetValue(bg0, out var f2) ? f2 + 1 : 1;
+
+                        if (!ngRange.TryGetValue(bg0, out var set))
+                            ngRange[bg0] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                         set.Add(rel);
 
-                        if (!ngByFile.TryGetValue(bg, out var map))
-                            ngByFile[bg] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                        if (!ngByFile.TryGetValue(bg0, out var map))
+                            ngByFile[bg0] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
                         map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+
+                        continue;
                     }
 
-                    if (i + 3 <= compact.Length)
-                    {
-                        string tg = compact.Substring(i, 3);
-                        ngFreq[tg] = ngFreq.TryGetValue(tg, out var f3) ? f3 + 1 : 1;
+                    // Now we have a,b and new ch => bigram (b,ch) and trigram (a,b,ch)
+                    string bg = string.Concat(b, ch);
+                    ngFreq[bg] = ngFreq.TryGetValue(bg, out var fbg) ? fbg + 1 : 1;
 
-                        if (!ngRange.TryGetValue(tg, out var set))
-                            ngRange[tg] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                        set.Add(rel);
+                    if (!ngRange.TryGetValue(bg, out var setBg))
+                        ngRange[bg] = setBg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    setBg.Add(rel);
 
-                        if (!ngByFile.TryGetValue(tg, out var map))
-                            ngByFile[tg] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-                        map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
-                    }
+                    if (!ngByFile.TryGetValue(bg, out var mapBg))
+                        ngByFile[bg] = mapBg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                    mapBg[rel] = mapBg.TryGetValue(rel, out var vbg) ? vbg + 1 : 1;
+
+                    string tg = string.Concat(a, b, ch);
+                    ngFreq[tg] = ngFreq.TryGetValue(tg, out var ftg) ? ftg + 1 : 1;
+
+                    if (!ngRange.TryGetValue(tg, out var setTg))
+                        ngRange[tg] = setTg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    setTg.Add(rel);
+
+                    if (!ngByFile.TryGetValue(tg, out var mapTg))
+                        ngByFile[tg] = mapTg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                    mapTg[rel] = mapTg.TryGetValue(rel, out var vtg) ? vtg + 1 : 1;
+
+                    // shift
+                    a = b;
+                    b = ch;
                 }
             }
         }
-
-        // ---------- metric math ----------
 
         double DispersionScore(int freq, int range)
             => (freq / Math.Sqrt(1.0 + totalWindows)) * Math.Log(1.0 + range);
@@ -175,62 +205,29 @@ public sealed class SearchIndexService
             return (double)max / freq; // 0..1
         }
 
-        // NOTE:
-        // We compute association metrics from KWIC windows only (not full corpus stats),
-        // so PMI/logDice/t-score are "window-based" approximations useful for ranking.
-
         double LogDiceApprox(int f_xq, int f_x, int f_q)
-        {
-            // logDice = 14 + log2( 2*f(x,q) / (f(x)+f(q)) )
-            // Here: f(x,q) ~= f_x (count across windows), f(q)=totalWindows (one query per window)
-            return 14.0 + Math.Log((2.0 * f_xq) / (f_x + (double)f_q + 1e-9), 2.0);
-        }
+            => 14.0 + Math.Log((2.0 * f_xq) / (f_x + (double)f_q + 1e-9), 2.0);
 
         double PmiSurrogate(int freq, int range)
-        {
-            // "PMI-like": reward items that are frequent *and* not spread everywhere.
-            // This is not true corpus PMI (we lack global counts), but behaves similarly for ranking.
-            return (Math.Log(1.0 + freq, 2.0) - Math.Log(1.0 + range, 2.0));
-        }
+            => (Math.Log(1.0 + freq, 2.0) - Math.Log(1.0 + range, 2.0));
 
         double TScoreSurrogate(int freq, int range)
-        {
-            // Frequency-biased "robustness" score: more evidence => bigger.
-            return Math.Sqrt(Math.Max(0, freq)) * Math.Log(1.0 + Math.Max(0, range));
-        }
+            => Math.Sqrt(Math.Max(0, freq)) * Math.Log(1.0 + Math.Max(0, range));
 
         double MetricValueFor(int freq, int range, Dictionary<string, int>? perFile)
         {
-            switch (metric)
+            return metric switch
             {
-                case CoocMetric.TopCooccurrences:
-                    return DispersionScore(freq, range);
-
-                case CoocMetric.DispersionScore:
-                    return DispersionScore(freq, range);
-
-                case CoocMetric.Frequency:
-                    return freq;
-
-                case CoocMetric.Range:
-                    return range;
-
-                case CoocMetric.Dominance:
-                    return DominanceShare(perFile, freq); // 0..1
-
-                case CoocMetric.PMI:
-                    return PmiSurrogate(freq, range);
-
-                case CoocMetric.LogDice:
-                    // treat f(x,q)=freq, f(x)=freq, f(q)=totalWindows
-                    return LogDiceApprox(freq, freq, Math.Max(1, totalWindows));
-
-                case CoocMetric.TScore:
-                    return TScoreSurrogate(freq, range);
-
-                default:
-                    return DispersionScore(freq, range);
-            }
+                CoocMetric.TopCooccurrences => DispersionScore(freq, range),
+                CoocMetric.DispersionScore => DispersionScore(freq, range),
+                CoocMetric.Frequency => freq,
+                CoocMetric.Range => range,
+                CoocMetric.Dominance => DominanceShare(perFile, freq),
+                CoocMetric.PMI => PmiSurrogate(freq, range),
+                CoocMetric.LogDice => LogDiceApprox(freq, freq, Math.Max(1, totalWindows)),
+                CoocMetric.TScore => TScoreSurrogate(freq, range),
+                _ => DispersionScore(freq, range)
+            };
         }
 
         string metricName = metric switch
@@ -246,55 +243,31 @@ public sealed class SearchIndexService
             _ => "Dispersion score"
         };
 
-        // ---------- build rows ----------
+        var left = chFreq.Select(kv =>
+        {
+            var key = kv.Key;
+            int freq = kv.Value;
+            int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
+            chByFile.TryGetValue(key, out var byFile);
+            double val = MetricValueFor(freq, range, byFile);
 
-        var left = chFreq
-            .Select(kv =>
-            {
-                var key = kv.Key;
-                int freq = kv.Value;
-                int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
-                chByFile.TryGetValue(key, out var byFile);
+            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
+        }).ToList();
 
-                double val = MetricValueFor(freq, range, byFile);
+        var right = ngFreq.Select(kv =>
+        {
+            var key = kv.Key;
+            int freq = kv.Value;
+            int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
+            ngByFile.TryGetValue(key, out var byFile);
+            double val = MetricValueFor(freq, range, byFile);
 
-                return new CoocRow
-                {
-                    Key = key,
-                    Freq = freq,
-                    Range = range,
-                    Assoc = val,
-                    Bar = "" // fill later
-                };
-            })
-            .ToList();
+            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
+        }).ToList();
 
-        var right = ngFreq
-            .Select(kv =>
-            {
-                var key = kv.Key;
-                int freq = kv.Value;
-                int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
-                ngByFile.TryGetValue(key, out var byFile);
-
-                double val = MetricValueFor(freq, range, byFile);
-
-                return new CoocRow
-                {
-                    Key = key,
-                    Freq = freq,
-                    Range = range,
-                    Assoc = val,
-                    Bar = ""
-                };
-            })
-            .ToList();
-
-        // Sort by selected metric (Assoc), tie-break by freq
         left = left.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
         right = right.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
 
-        // Bars: always frequency bars (simple + meaningful)
         static string MakeBar(int v, int max)
         {
             if (max <= 0) return "";
@@ -308,32 +281,18 @@ public sealed class SearchIndexService
         foreach (var r in left) r.Bar = MakeBar(r.Freq, maxC);
         foreach (var r in right) r.Bar = MakeBar(r.Freq, maxN);
 
-        // Extra lines: Zipf-ish + dominance hint (artifact signal)
-        var zip = right
-            .OrderByDescending(r => r.Freq)
-            .Take(12)
-            .Select((r, i) => $"{i + 1}:{r.Freq}")
-            .ToArray();
+        var zip = right.OrderByDescending(r => r.Freq).Take(12).Select((r, i) => $"{i + 1}:{r.Freq}").ToArray();
+        string zipLine = zip.Length > 0 ? ("Zipf-ish ranks (top ngrams): " + string.Join("  ", zip)) : "";
 
-        string zipLine = zip.Length > 0
-            ? ("Zipf-ish ranks (top ngrams): " + string.Join("  ", zip))
-            : "";
+        var domTop = right.OrderByDescending(r => r.Freq).Take(10).Select(r =>
+        {
+            ngByFile.TryGetValue(r.Key, out var byFile);
+            double share = DominanceShare(byFile, r.Freq);
+            int bars = Math.Clamp((int)Math.Round(12 * share), 0, 12);
+            return $"{r.Key}:{share * 100:0.#}% {new string('█', bars)}";
+        }).ToArray();
 
-        var domTop = right
-            .OrderByDescending(r => r.Freq)
-            .Take(10)
-            .Select(r =>
-            {
-                ngByFile.TryGetValue(r.Key, out var byFile);
-                double share = DominanceShare(byFile, r.Freq);
-                int bars = Math.Clamp((int)Math.Round(12 * share), 0, 12);
-                return $"{r.Key}:{share * 100:0.#}% {new string('█', bars)}";
-            })
-            .ToArray();
-
-        string domLine = domTop.Length > 0
-            ? ("Dominance (top-file share): " + string.Join("  ", domTop))
-            : "";
+        string domLine = domTop.Length > 0 ? ("Dominance (top-file share): " + string.Join("  ", domTop)) : "";
 
         var extra = string.Join("\n", new[] { zipLine, domLine }.Where(s => !string.IsNullOrWhiteSpace(s)));
 
@@ -349,7 +308,7 @@ public sealed class SearchIndexService
     }
 
     // ---------------------------
-    // Helpers
+    // Helpers (file replace retry)
     // ---------------------------
 
     private static FileStream OpenFileWithRetry(
@@ -364,22 +323,9 @@ public sealed class SearchIndexService
 
         for (int i = 0; i < tries; i++)
         {
-            try
-            {
-                return new FileStream(path, mode, access, share);
-            }
-            catch (IOException ex)
-            {
-                last = ex;
-                Thread.Sleep(delayMs);
-                delayMs = Math.Min(500, (int)(delayMs * 1.4));
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                last = ex;
-                Thread.Sleep(delayMs);
-                delayMs = Math.Min(500, (int)(delayMs * 1.4));
-            }
+            try { return new FileStream(path, mode, access, share); }
+            catch (IOException ex) { last = ex; Thread.Sleep(delayMs); delayMs = Math.Min(500, (int)(delayMs * 1.4)); }
+            catch (UnauthorizedAccessException ex) { last = ex; Thread.Sleep(delayMs); delayMs = Math.Min(500, (int)(delayMs * 1.4)); }
         }
 
         throw new IOException($"Could not open '{path}' after {tries} attempts. Still locked by another process.", last);
@@ -494,10 +440,10 @@ public sealed class SearchIndexService
     }
 
     // ---------------------------
-    // Body extraction / normalization
+    // FAST body extraction / normalization (NO REGEX)
     // ---------------------------
 
-    private static string ExtractBodyInnerXml(string xml)
+    private static string MakeSearchableTextFromXml_Fast(string xml, bool htmlDecodeIfAmpersandPresent)
     {
         if (string.IsNullOrEmpty(xml)) return "";
 
@@ -510,24 +456,91 @@ public sealed class SearchIndexService
         int iEnd = xml.IndexOf("</body>", iStart + 1, StringComparison.OrdinalIgnoreCase);
         if (iEnd < 0) return "";
 
-        return xml.Substring(iStart + 1, iEnd - (iStart + 1));
+        int bodyLen = iEnd - (iStart + 1);
+        if (bodyLen <= 0) return "";
+
+        var sb = StringBuilderCache.Acquire(bodyLen);
+
+        bool inTag = false;
+        bool prevSpace = true; // trim-leading
+        bool sawAmp = false;
+
+        for (int i = iStart + 1; i < iEnd; i++)
+        {
+            char ch = xml[i];
+
+            if (inTag)
+            {
+                if (ch == '>') inTag = false;
+                continue;
+            }
+
+            if (ch == '<')
+            {
+                inTag = true;
+                if (!prevSpace)
+                {
+                    sb.Append(' ');
+                    prevSpace = true;
+                }
+                continue;
+            }
+
+            if (ch == '\r') continue;
+
+            if (ch == '\n' || ch == '\t' || ch == ' ' || ch == '\f' || ch == '\v')
+            {
+                if (!prevSpace)
+                {
+                    sb.Append(' ');
+                    prevSpace = true;
+                }
+                continue;
+            }
+
+            if (ch == '&') sawAmp = true;
+
+            sb.Append(ch);
+            prevSpace = false;
+        }
+
+        if (sb.Length > 0 && sb[sb.Length - 1] == ' ')
+            sb.Length--;
+
+        string text = StringBuilderCache.GetStringAndRelease(sb);
+
+        if (htmlDecodeIfAmpersandPresent && sawAmp)
+        {
+            try { text = WebUtility.HtmlDecode(text); }
+            catch { /* ignore */ }
+        }
+
+        return text;
     }
 
-    private static readonly Regex TagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
-    private static readonly Regex WsRegex = new Regex(@"[ \t\f\v]+", RegexOptions.Compiled);
-
-    private static string MakeSearchableTextFromXml(string xml)
+    private static class StringBuilderCache
     {
-        var body = ExtractBodyInnerXml(xml);
-        if (string.IsNullOrEmpty(body)) return "";
+        [ThreadStatic] private static StringBuilder? _cached;
 
-        var noTags = TagRegex.Replace(body, " ");
-        noTags = WebUtility.HtmlDecode(noTags);
+        public static StringBuilder Acquire(int capacity)
+        {
+            var sb = _cached;
+            if (sb == null)
+                return new StringBuilder(capacity);
 
-        noTags = noTags.Replace("\r", "");
-        noTags = WsRegex.Replace(noTags, " ");
+            _cached = null;
+            sb.Clear();
+            if (sb.Capacity < capacity) sb.Capacity = capacity;
+            return sb;
+        }
 
-        return noTags;
+        public static string GetStringAndRelease(StringBuilder sb)
+        {
+            string s = sb.ToString();
+            if (sb.Capacity <= 256 * 1024) // don’t hold giant buffers
+                _cached = sb;
+            return s;
+        }
     }
 
     // ---------------------------
@@ -703,6 +716,8 @@ public sealed class SearchIndexService
     {
         if (string.IsNullOrEmpty(text)) return;
 
+        // IMPORTANT: text already has normalized spaces (single ' ').
+        // We still include grams crossing spaces so bloom remains permissive.
         for (int i = 0; i < text.Length; i++)
         {
             if (i + 2 <= text.Length)
@@ -861,8 +876,9 @@ public sealed class SearchIndexService
                             {
                                 var bits = new ulong[BloomUlongs];
 
+                                // FAST extraction: no regex; optional html decode only when '&' appears
                                 string xml = File.ReadAllText(absPath, Utf8NoBom);
-                                string searchable = MakeSearchableTextFromXml(xml);
+                                string searchable = MakeSearchableTextFromXml_Fast(xml, Options.HtmlDecodeIfAmpersandPresent);
                                 BuildBloomFromText(bits, searchable);
 
                                 WriteBloom(outFs, bits);
@@ -948,32 +964,39 @@ public sealed class SearchIndexService
         Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta,
         int contextWidth,
         IProgress<SearchProgress>? progress = null,
+        Func<string, bool>? relPathFilter = null,
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)
     {
         query = (query ?? "").Trim();
         if (query.Length == 0)
             yield break;
 
+        bool useBloom = query.Length >= 2;
+        var grams = MakeQueryGrams(query);
+
+        bool sideAllowed(SearchSide s)
+            => (s == SearchSide.Original && includeOriginal) ||
+               (s == SearchSide.Translated && includeTranslated);
+
+        progress?.Report(new SearchProgress { Phase = "Building candidates..." });
+
+        var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        // IMPORTANT CHANGE:
+        // Hold _indexIoGate only during candidate scan (bin access).
+        // Release before expensive verification (file reads) so searches don’t serialize behind index I/O.
         await _indexIoGate.WaitAsync(ct);
         try
         {
-            bool useBloom = query.Length >= 2;
-            var grams = MakeQueryGrams(query);
-
-            bool sideAllowed(SearchSide s)
-                => (s == SearchSide.Original && includeOriginal) ||
-                   (s == SearchSide.Translated && includeTranslated);
-
-            progress?.Report(new SearchProgress { Phase = "Building candidates..." });
-
-            var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-
             if (!useBloom)
             {
                 foreach (var e in manifest.Entries)
                 {
                     ct.ThrowIfCancellationRequested();
                     if (!sideAllowed(e.Side)) continue;
+
+                    if (relPathFilter != null && !relPathFilter(e.RelPath))
+                        continue;
 
                     candidates.AddOrUpdate(
                         e.RelPath,
@@ -994,182 +1017,193 @@ public sealed class SearchIndexService
                     MaxDegreeOfParallelism = Math.Max(1, Options.MaxBloomDegreeOfParallelism)
                 };
 
-                Parallel.ForEach(manifest.Entries, po, e =>
-                {
-                    if (!sideAllowed(e.Side)) return;
-                    if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return;
-
-                    byte[] arr = new byte[BloomBytes];
-                    accessor.ReadArray(e.BloomOffset, arr, 0, BloomBytes);
-
-                    var bits = new ulong[BloomUlongs];
-                    for (int i = 0; i < BloomUlongs; i++)
+                Parallel.ForEach(
+                    manifest.Entries,
+                    po,
+                    () => (arr: new byte[BloomBytes], bits: new ulong[BloomUlongs]),
+                    (e, _, local) =>
                     {
-                        int o = i * 8;
-                        ulong v =
-                            ((ulong)arr[o + 0]) |
-                            ((ulong)arr[o + 1] << 8) |
-                            ((ulong)arr[o + 2] << 16) |
-                            ((ulong)arr[o + 3] << 24) |
-                            ((ulong)arr[o + 4] << 32) |
-                            ((ulong)arr[o + 5] << 40) |
-                            ((ulong)arr[o + 6] << 48) |
-                            ((ulong)arr[o + 7] << 56);
-                        bits[i] = v;
-                    }
+                        if (!sideAllowed(e.Side)) return local;
+                        if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return local;
 
-                    bool ok = true;
-                    for (int i = 0; i < grams.Count; i++)
-                    {
-                        var (n, start) = grams[i];
-                        if (start + n > query.Length) continue;
+                        if (relPathFilter != null && !relPathFilter(e.RelPath))
+                            return local;
 
-                        if (!BloomMightContain(bits, query.AsSpan(start, n)))
+                        accessor.ReadArray(e.BloomOffset, local.arr, 0, BloomBytes);
+
+                        for (int i = 0; i < BloomUlongs; i++)
                         {
-                            ok = false;
-                            break;
+                            int o = i * 8;
+                            ulong v =
+                                ((ulong)local.arr[o + 0]) |
+                                ((ulong)local.arr[o + 1] << 8) |
+                                ((ulong)local.arr[o + 2] << 16) |
+                                ((ulong)local.arr[o + 3] << 24) |
+                                ((ulong)local.arr[o + 4] << 32) |
+                                ((ulong)local.arr[o + 5] << 40) |
+                                ((ulong)local.arr[o + 6] << 48) |
+                                ((ulong)local.arr[o + 7] << 56);
+
+                            local.bits[i] = v;
                         }
-                    }
 
-                    if (!ok) return;
-
-                    int mask = (e.Side == SearchSide.Original) ? 1 : 2;
-                    candidates.AddOrUpdate(e.RelPath, _ => mask, (_, v) => v | mask);
-                });
-            }
-
-            var candidateList = candidates.Keys
-                .OrderBy(k => k, StringComparer.OrdinalIgnoreCase)
-                .ToList();
-
-            int totalDocsToVerify = 0;
-            foreach (var rel in candidateList)
-            {
-                int mask = candidates[rel];
-                if ((mask & 1) != 0) totalDocsToVerify++;
-                if ((mask & 2) != 0) totalDocsToVerify++;
-            }
-
-            progress?.Report(new SearchProgress
-            {
-                Phase = useBloom ? "Candidate filtering done" : "Brute candidates (1-char search)",
-                Candidates = totalDocsToVerify,
-                TotalDocsToVerify = totalDocsToVerify
-            });
-
-            var outGroups = new ConcurrentBag<SearchResultGroup>();
-            int verifiedDocs = 0;
-            int totalHits = 0;
-
-            var verifyPo = new ParallelOptions
-            {
-                CancellationToken = ct,
-                MaxDegreeOfParallelism = Math.Max(1, Options.MaxVerifyDegreeOfParallelism)
-            };
-
-            Parallel.ForEach(candidateList, verifyPo, relKey =>
-            {
-                ct.ThrowIfCancellationRequested();
-
-                int mask = candidates[relKey];
-
-                var meta = fileMeta(relKey);
-                var group = new SearchResultGroup
-                {
-                    RelPath = relKey,
-                    DisplayName = string.IsNullOrWhiteSpace(meta.display) ? relKey : meta.display,
-                    Tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip,
-                    Status = meta.status
-                };
-
-                int hitsO = 0;
-                int hitsT = 0;
-
-                if ((mask & 1) != 0)
-                {
-                    string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                    var hits = VerifyFileAllHits(abs, query, contextWidth);
-                    Interlocked.Increment(ref verifiedDocs);
-
-                    foreach (var h in hits)
-                    {
-                        hitsO++;
-                        Interlocked.Increment(ref totalHits);
-
-                        group.Children.Add(new SearchResultChild
+                        bool ok = true;
+                        for (int i = 0; i < grams.Count; i++)
                         {
-                            RelPath = relKey,
-                            Side = SearchSide.Original,
-                            Hit = h
-                        });
-                    }
-                }
+                            var (n, start) = grams[i];
+                            if (start + n > query.Length) continue;
 
-                if ((mask & 2) != 0)
-                {
-                    string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                    var hits = VerifyFileAllHits(abs, query, contextWidth);
-                    Interlocked.Increment(ref verifiedDocs);
+                            if (!BloomMightContain(local.bits, query.AsSpan(start, n)))
+                            {
+                                ok = false;
+                                break;
+                            }
+                        }
 
-                    foreach (var h in hits)
-                    {
-                        hitsT++;
-                        Interlocked.Increment(ref totalHits);
+                        if (!ok) return local;
 
-                        group.Children.Add(new SearchResultChild
-                        {
-                            RelPath = relKey,
-                            Side = SearchSide.Translated,
-                            Hit = h
-                        });
-                    }
-                }
+                        int mask = (e.Side == SearchSide.Original) ? 1 : 2;
+                        candidates.AddOrUpdate(e.RelPath, _ => mask, (_, v) => v | mask);
 
-                group.HitsOriginal = hitsO;
-                group.HitsTranslated = hitsT;
-
-                if (group.Children.Count > 0)
-                    outGroups.Add(group);
-
-                int v = Volatile.Read(ref verifiedDocs);
-                if (v % 50 == 0)
-                {
-                    progress?.Report(new SearchProgress
-                    {
-                        Phase = "Searching...",
-                        Candidates = totalDocsToVerify,
-                        VerifiedDocs = v,
-                        TotalDocsToVerify = totalDocsToVerify,
-                        Groups = outGroups.Count,
-                        TotalHits = Volatile.Read(ref totalHits)
-                    });
-                }
-            });
-
-            var ordered = outGroups
-                .OrderBy(g => g.RelPath, StringComparer.OrdinalIgnoreCase)
-                .ToList();
-
-            progress?.Report(new SearchProgress
-            {
-                Phase = "Done",
-                Candidates = totalDocsToVerify,
-                VerifiedDocs = verifiedDocs,
-                TotalDocsToVerify = totalDocsToVerify,
-                Groups = ordered.Count,
-                TotalHits = totalHits
-            });
-
-            foreach (var g in ordered)
-            {
-                ct.ThrowIfCancellationRequested();
-                yield return g;
-                await Task.Yield();
+                        return local;
+                    },
+                    _ => { }
+                );
             }
         }
         finally
         {
             _indexIoGate.Release();
+        }
+
+        var candidateList = candidates.Keys
+            .OrderBy(k => k, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        int totalDocsToVerify = 0;
+        foreach (var rel in candidateList)
+        {
+            int mask = candidates[rel];
+            if ((mask & 1) != 0) totalDocsToVerify++;
+            if ((mask & 2) != 0) totalDocsToVerify++;
+        }
+
+        progress?.Report(new SearchProgress
+        {
+            Phase = useBloom ? "Candidate filtering done" : "Brute candidates (1-char search)",
+            Candidates = totalDocsToVerify,
+            TotalDocsToVerify = totalDocsToVerify
+        });
+
+        var outGroups = new ConcurrentBag<SearchResultGroup>();
+        int verifiedDocs = 0;
+        int totalHits = 0;
+
+        var verifyPo = new ParallelOptions
+        {
+            CancellationToken = ct,
+            // HDD: keep modest parallelism to reduce seek thrash
+            MaxDegreeOfParallelism = Math.Max(1, Options.MaxVerifyDegreeOfParallelism)
+        };
+
+        Parallel.ForEach(candidateList, verifyPo, relKey =>
+        {
+            ct.ThrowIfCancellationRequested();
+
+            int mask = candidates[relKey];
+
+            var meta = fileMeta(relKey);
+            var group = new SearchResultGroup
+            {
+                RelPath = relKey,
+                DisplayName = string.IsNullOrWhiteSpace(meta.display) ? relKey : meta.display,
+                Tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip,
+                Status = meta.status
+            };
+
+            int hitsO = 0;
+            int hitsT = 0;
+
+            if ((mask & 1) != 0)
+            {
+                string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                var hits = VerifyFileAllHits(abs, query, contextWidth, htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                Interlocked.Increment(ref verifiedDocs);
+
+                foreach (var h in hits)
+                {
+                    hitsO++;
+                    Interlocked.Increment(ref totalHits);
+
+                    group.Children.Add(new SearchResultChild
+                    {
+                        RelPath = relKey,
+                        Side = SearchSide.Original,
+                        Hit = h
+                    });
+                }
+            }
+
+            if ((mask & 2) != 0)
+            {
+                string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                var hits = VerifyFileAllHits(abs, query, contextWidth, htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                Interlocked.Increment(ref verifiedDocs);
+
+                foreach (var h in hits)
+                {
+                    hitsT++;
+                    Interlocked.Increment(ref totalHits);
+
+                    group.Children.Add(new SearchResultChild
+                    {
+                        RelPath = relKey,
+                        Side = SearchSide.Translated,
+                        Hit = h
+                    });
+                }
+            }
+
+            group.HitsOriginal = hitsO;
+            group.HitsTranslated = hitsT;
+
+            if (group.Children.Count > 0)
+                outGroups.Add(group);
+
+            int v = Volatile.Read(ref verifiedDocs);
+            if (v % 50 == 0)
+            {
+                progress?.Report(new SearchProgress
+                {
+                    Phase = "Searching...",
+                    Candidates = totalDocsToVerify,
+                    VerifiedDocs = v,
+                    TotalDocsToVerify = totalDocsToVerify,
+                    Groups = outGroups.Count,
+                    TotalHits = Volatile.Read(ref totalHits)
+                });
+            }
+        });
+
+        var ordered = outGroups
+            .OrderBy(g => g.RelPath, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        progress?.Report(new SearchProgress
+        {
+            Phase = "Done",
+            Candidates = totalDocsToVerify,
+            VerifiedDocs = verifiedDocs,
+            TotalDocsToVerify = totalDocsToVerify,
+            Groups = ordered.Count,
+            TotalHits = totalHits
+        });
+
+        foreach (var g in ordered)
+        {
+            ct.ThrowIfCancellationRequested();
+            yield return g;
+            await Task.Yield();
         }
     }
 
@@ -1189,7 +1223,11 @@ public sealed class SearchIndexService
         }
     }
 
-    private static List<SearchHit> VerifyFileAllHits(string absPath, string query, int contextWidth)
+    private static List<SearchHit> VerifyFileAllHits(
+        string absPath,
+        string query,
+        int contextWidth,
+        bool htmlDecodeIfAmpersandPresent)
     {
         var hits = new List<SearchHit>();
         if (!File.Exists(absPath)) return hits;
@@ -1199,7 +1237,7 @@ public sealed class SearchIndexService
         catch { return hits; }
 
         string text;
-        try { text = MakeSearchableTextFromXml(xml); }
+        try { text = MakeSearchableTextFromXml_Fast(xml, htmlDecodeIfAmpersandPresent); }
         catch { return hits; }
 
         if (string.IsNullOrEmpty(text)) return hits;
@@ -1216,17 +1254,16 @@ public sealed class SearchIndexService
             int leftStart = Math.Max(0, start - contextWidth);
             int rightEnd = Math.Min(text.Length, end + contextWidth);
 
+            // Text is already whitespace-normalized: no Replace/Trim per-hit
             string left = text.Substring(leftStart, start - leftStart);
+            string match = text.Substring(start, query.Length);
             string right = text.Substring(end, rightEnd - end);
-
-            left = left.Replace("\n", " ").TrimStart();
-            right = right.Replace("\n", " ").TrimEnd();
 
             hits.Add(new SearchHit
             {
                 Index = start,
                 Left = left,
-                Match = text.Substring(start, query.Length),
+                Match = match,
                 Right = right
             });
 

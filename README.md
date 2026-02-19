@@ -255,6 +255,27 @@ The Git tab integrates full repository workflows directly into the app.
 
 Users don’t need to understand Git internals.
 
+### Linux note (Git login)
+
+On Linux, Step 3 (**Push + Create PR**) may fail if Git cannot open a login prompt from inside the app.
+
+Fix (recommended): install **Git Credential Manager**, then retry Step 3.
+
+**Ubuntu / Debian**
+```bash
+sudo apt-get update && sudo apt-get install -y git-credential-manager
+```
+
+**Fedora**
+```bash
+sudo dnf install git-credential-manager
+```
+
+**Arch**
+```bash
+sudo pacman -S git-credential-manager
+```
+
 ---
 
 ## 🧾 Single-File Contribution Flow

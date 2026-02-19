@@ -546,7 +546,6 @@ public partial class GitTabView : UserControl
             CreateNoWindow = true,
         };
 
-        // Avoid ArgumentList (not always available depending on target); build string.
         psi.Arguments = string.Join(" ", args.Select(QuoteIfNeeded));
 
         using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
@@ -558,7 +557,6 @@ public partial class GitTabView : UserControl
             if (!p.Start())
                 return new GitRunResult(false, "Failed to start git process.");
 
-            // Kill on cancel
             using var reg = ct.Register(() =>
             {
                 try { if (!p.HasExited) p.Kill(entireProcessTree: true); }
@@ -672,7 +670,6 @@ public partial class GitTabView : UserControl
                 Content = yesText,
                 MinWidth = 220
             };
-            // Make the “yes” feel dangerous but clear.
             btnYes.Classes.Add("panic");
             btnYes.Click += (_, _) => Close(true);
 
@@ -1039,16 +1036,18 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // Push branch (this will prompt via Git Credential Manager)
+            // Push branch (requires credential helper on Linux; on Windows Git for Windows includes GCM)
             SetProgress("Pushing branch…");
             AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
-            AppendLog("[hint] if a browser/login pops up, complete it once. then retry.");
+            AppendLog("[hint] If Git asks you to log in, complete it once, then retry.");
+
             var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastContribBranch!, prog, ct);
             if (!push.Success)
             {
                 SetProgress("Push failed.");
                 AppendLog("[error] " + push.Error);
-                AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential popup.");
+
+                AppendPushFailureHints(push.Error);
                 return;
             }
 
@@ -1111,6 +1110,59 @@ public partial class GitTabView : UserControl
         finally
         {
             SetButtonsBusy(false);
+        }
+    }
+
+    private void AppendPushFailureHints(string? err)
+    {
+        err ??= "";
+
+        // Common GitHub HTTPS auth failures (especially on Linux without a helper / GUI)
+        bool looksLikeNoPrompt =
+            err.Contains("terminal prompts disabled", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("could not read Username", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("could not read Password", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("Authentication failed", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("support for password authentication was removed", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("fatal: Authentication failed", StringComparison.OrdinalIgnoreCase);
+
+        bool looksLikeWrongAccount =
+            err.Contains("403", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("Forbidden", StringComparison.OrdinalIgnoreCase);
+
+        bool looksLikeRepoNotFound =
+            err.Contains("Repository not found", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("404", StringComparison.OrdinalIgnoreCase);
+
+        if (looksLikeRepoNotFound)
+        {
+            AppendLog("[hint] Git says 'Repository not found'. Usually: wrong remote URL or you are not authenticated.");
+        }
+
+        if (looksLikeWrongAccount)
+        {
+            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in your Git credential helper.");
+        }
+
+        if (looksLikeNoPrompt)
+        {
+            AppendLog("[hint] This usually means Git could not open an interactive login prompt on your system.");
+            AppendLog("[hint] On Linux, install Git Credential Manager (GCM) so Git can authenticate via browser/device flow.");
+
+            AppendLog("[linux] Recommended (cross-distro) install via .NET tool:");
+            AppendLog("  dotnet tool install -g git-credential-manager");
+            AppendLog("  git-credential-manager configure");
+
+            AppendLog("[linux] If you prefer the .deb package (Debian/Ubuntu-style):");
+            AppendLog("  1) Download the latest .deb from the GCM releases page");
+            AppendLog("  2) sudo dpkg -i <downloaded-file.deb>");
+            AppendLog("  3) git-credential-manager configure");
+
+            AppendLog("[hint] After installing GCM, retry the Push + Create PR step.");
+        }
+        else
+        {
+            AppendLog("[hint] If this is an auth problem: install/configure Git Credential Manager (GCM) and retry.");
         }
     }
 

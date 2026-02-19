@@ -272,6 +272,19 @@ public sealed class GitRepoService : IGitRepoService
             StandardErrorEncoding = Encoding.UTF8,
         };
 
+        // Fail fast instead of hanging on an invisible prompt in a headless process.
+        // - GIT_TERMINAL_PROMPT=0 -> git errors instead of waiting for username/password
+        // - GCM_INTERACTIVE=Always -> nudge Git Credential Manager to show UI when available
+        try
+        {
+            psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
+            psi.Environment["GCM_INTERACTIVE"] = "Always";
+        }
+        catch
+        {
+            // ignore env failures; still try to run git
+        }
+
         var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
         _running = p;
 
