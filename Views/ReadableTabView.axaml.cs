@@ -1155,29 +1155,40 @@ public partial class ReadableTabView : UserControl
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
     {
-        _renderOrig = orig ?? RenderedDocument.Empty;
-        _renderTran = tran ?? RenderedDocument.Empty;
+        if (orig == null) orig = RenderedDocument.Empty;
+        if (tran == null) tran = RenderedDocument.Empty;
 
-        // Visual tree may not be stable yet; re-find + resolve here too
+        _renderOrig = orig;
+        _renderTran = tran;
+
         FindControls();
         ResolveInnerEditors();
         ResolveInnerScrollViewers();
         RewireNotesButtonsHard();
 
-        if (_aeOrig != null) _aeOrig.Text = _renderOrig.Text ?? "";
-        if (_aeTran != null) _aeTran.Text = _renderTran.Text ?? "";
+        if (_aeOrig != null)
+            _aeOrig.Text = _renderOrig.Text ?? "";
+
+        if (_aeTran != null)
+        {
+            // HARD SAFETY: If translated text is null or empty,
+            // do NOT silently show original.
+            if (string.IsNullOrWhiteSpace(_renderTran.Text))
+            {
+                _aeTran.Text = "[No translated content found in this file]";
+            }
+            else
+            {
+                _aeTran.Text = _renderTran.Text;
+            }
+        }
 
         SetupHoverDictionary();
-
         HideNotes();
 
-        // This is the ONLY reliable signal that the UI is now up-to-date after add/delete.
         ExitPendingCommunityRefresh("SetRendered received new render");
 
         DumpState("SetRendered()");
-
-        if (_findBar?.IsVisible == true)
-            RecomputeMatches(resetToFirst: false);
     }
 
     // -------------------------

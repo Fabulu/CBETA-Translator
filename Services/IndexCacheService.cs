@@ -18,8 +18,7 @@ public sealed class IndexCacheService
 
     // Bump this string whenever you want to force rebuild even if cache exists.
     // (Useful when you change status logic and want to ensure the cache isn't stale.)
-    private const string CacheBuildGuid = "phase3-nav-metadata-v2";
-    private readonly BuddhistMetadataService _metadataService = new();
+    private const string CacheBuildGuid = "phase3-nav-v3-no-metadata";
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -388,9 +387,6 @@ public Task<IndexCache> BuildAsync(
             Log(root, $"BUILD: Enumerating files under {originalDir}");
 
             var titles = LoadTitlesMap(root);
-            var metadataByRel = new Dictionary<string, BuddhistMetadataRecord>(
-                _metadataService.LoadByRelPath(root),
-                StringComparer.OrdinalIgnoreCase);
 
             var files = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories).ToList();
             int total = files.Count;
@@ -447,13 +443,6 @@ public Task<IndexCache> BuildAsync(
 
                 var status = ComputeStatus(origAbs, tranAbs, root, relKey, verbose);
 
-                metadataByRel.TryGetValue(relKey, out var md);
-                if (md == null)
-                {
-                    md = _metadataService.InferFromXml(relKey, origAbs);
-                    metadataByRel[relKey] = md;
-                }
-
                 entries.Add(new FileNavItem
                 {
                     RelPath = rel,
@@ -461,10 +450,6 @@ public Task<IndexCache> BuildAsync(
                     DisplayShort = shortLabel,
                     Tooltip = tooltip,
                     Status = status,
-                    CanonCode = md?.CanonCode ?? "Unknown",
-                    Traditions = md?.Traditions ?? new List<string> { "Unknown Tradition" },
-                    Period = md?.Period ?? "Unknown Period",
-                    Origin = md?.Origin ?? "Unknown Origin"
                 });
 
                 if (progress != null && (i % 50 == 0 || i == total - 1))

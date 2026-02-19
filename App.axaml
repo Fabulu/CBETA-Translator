@@ -1,117 +1,310 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="CbetaTranslator.App.App"
-             RequestedThemeVariant="Dark">
+             RequestedThemeVariant="Default">
 
 	<Application.Resources>
 
-		<!-- Core app palette -->
+		<!-- =========================
+         NIGHT PALETTE
+         ========================= -->
+
+		<SolidColorBrush x:Key="Night_AppBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="Night_BarBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="Night_NavBg" Color="#FF151515"/>
+
+		<SolidColorBrush x:Key="Night_TextFg" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="Night_TextMutedFg" Color="#FF9A9A9A"/>
+
+		<SolidColorBrush x:Key="Night_ControlBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF111111"/>
+
+		<SolidColorBrush x:Key="Night_BorderBrush" Color="#FF2E2E2E"/>
+
+		<SolidColorBrush x:Key="Night_BtnBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Night_BtnBgHover" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="Night_BtnBgPressed" Color="#FF333333"/>
+		<SolidColorBrush x:Key="Night_BtnFg" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="Night_TabBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="Night_TabBgSelected" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="Night_TabBgHover" Color="#FF232323"/>
+		<SolidColorBrush x:Key="Night_TabFg" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="Night_TabFgSelected" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="Night_TooltipBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Night_TooltipBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="Night_TooltipFg" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="Night_SelectionBg" Color="#FF3A3A3A"/>
+		<SolidColorBrush x:Key="Night_SelectionFg" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="Night_XmlViewerBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="Night_XmlViewerBorder" Color="#FF2E2E2E"/>
+
+		<SolidColorBrush x:Key="Night_NavStatusGreenBg" Color="#FF1F3A1F"/>
+		<SolidColorBrush x:Key="Night_NavStatusYellowBg" Color="#FF3A3418"/>
+		<SolidColorBrush x:Key="Night_NavStatusRedBg" Color="#FF3A1F1F"/>
+
+		<!-- EXTRA TOKENS - NIGHT -->
+		<SolidColorBrush x:Key="Night_CheckBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="Night_CheckBorderHover" Color="#FF6A6A6A"/>
+
+		<SolidColorBrush x:Key="Night_ComboBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="Night_ComboBgHover" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="Night_ComboBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="Night_ComboBorderHover" Color="#FF6A6A6A"/>
+
+		<SolidColorBrush x:Key="Night_MenuBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="Night_MenuItemHoverBg" Color="#FF242424"/>
+
+		<!-- =========================
+         LIGHT PALETTE
+         ========================= -->
+
+		<SolidColorBrush x:Key="Light_AppBg" Color="#FFF6F6F6"/>
+		<SolidColorBrush x:Key="Light_BarBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_NavBg" Color="#FFFFFFFF"/>
+
+		<SolidColorBrush x:Key="Light_TextFg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Light_TextMutedFg" Color="#FF666666"/>
+
+		<SolidColorBrush x:Key="Light_ControlBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_ControlBgHover" Color="#FFF0F0F0"/>
+		<SolidColorBrush x:Key="Light_ControlBgFocus" Color="#FFFFFFFF"/>
+
+		<SolidColorBrush x:Key="Light_BorderBrush" Color="#FFCCCCCC"/>
+
+		<SolidColorBrush x:Key="Light_BtnBg" Color="#FFF2F2F2"/>
+		<SolidColorBrush x:Key="Light_BtnBgHover" Color="#FFE8E8E8"/>
+		<SolidColorBrush x:Key="Light_BtnBgPressed" Color="#FFDDDDDD"/>
+		<SolidColorBrush x:Key="Light_BtnFg" Color="#FF1A1A1A"/>
+
+		<SolidColorBrush x:Key="Light_TabBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_TabBgSelected" Color="#FFF2F2F2"/>
+		<SolidColorBrush x:Key="Light_TabBgHover" Color="#FFEDEDED"/>
+		<SolidColorBrush x:Key="Light_TabFg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="Light_TabFgSelected" Color="#FF1A1A1A"/>
+
+		<SolidColorBrush x:Key="Light_TooltipBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_TooltipBorder" Color="#FFCCCCCC"/>
+		<SolidColorBrush x:Key="Light_TooltipFg" Color="#FF1A1A1A"/>
+
+		<SolidColorBrush x:Key="Light_SelectionBg" Color="#FFCCE3FF"/>
+		<SolidColorBrush x:Key="Light_SelectionFg" Color="#FF1A1A1A"/>
+
+		<SolidColorBrush x:Key="Light_XmlViewerBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_XmlViewerBorder" Color="#FFCCCCCC"/>
+
+		<SolidColorBrush x:Key="Light_NavStatusGreenBg" Color="#FFE0F0E0"/>
+		<SolidColorBrush x:Key="Light_NavStatusYellowBg" Color="#FFFEF5D0"/>
+		<SolidColorBrush x:Key="Light_NavStatusRedBg" Color="#FFEDDCDC"/>
+
+		<!-- EXTRA TOKENS - LIGHT (THIS is what you were missing) -->
+		<SolidColorBrush x:Key="Light_CheckBorder" Color="#FF888888"/>
+		<SolidColorBrush x:Key="Light_CheckBorderHover" Color="#FF444444"/>
+
+		<SolidColorBrush x:Key="Light_ComboBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_ComboBgHover" Color="#FFF0F0F0"/>
+		<SolidColorBrush x:Key="Light_ComboBorder" Color="#FFCCCCCC"/>
+		<SolidColorBrush x:Key="Light_ComboBorderHover" Color="#FF666666"/>
+
+		<SolidColorBrush x:Key="Light_MenuBg" Color="#FFFFFFFF"/>
+		<SolidColorBrush x:Key="Light_MenuItemHoverBg" Color="#FFEDEDED"/>
+
+		<!-- =========================
+         ACTIVE TOKENS (runtime swapped)
+         Defaults = Night
+         ========================= -->
+
 		<SolidColorBrush x:Key="AppBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="BarBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="NavBg" Color="#FF151515"/>
 
-		<SolidColorBrush x:Key="PanelBg" Color="#FF151515"/>
-		<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
-		<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="TextFg" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="TextMutedFg" Color="#FF9A9A9A"/>
 
-		<SolidColorBrush x:Key="SplitterBrush" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="ControlBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="ControlBgHover" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="ControlBgFocus" Color="#FF111111"/>
 
-		<SolidColorBrush x:Key="MutedFg" Color="#FF9A9A9A"/>
-		<SolidColorBrush x:Key="MainFg" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="BorderBrush" Color="#FF2E2E2E"/>
 
-		<!-- TextBox -->
-		<SolidColorBrush x:Key="TextBoxBg" Color="#FF111111"/>
-		<SolidColorBrush x:Key="TextBoxFg" Color="#FFE6E6E6"/>
-		<SolidColorBrush x:Key="TextBoxBorder" Color="#FF2E2E2E"/>
-		<SolidColorBrush x:Key="TextBoxBorderHover" Color="#FF6A6A6A"/>
-		<SolidColorBrush x:Key="TextBoxBorderFocus" Color="#FFB0B0B0"/>
-		<SolidColorBrush x:Key="TextSelectionBg" Color="#FF3A3A3A"/>
+		<SolidColorBrush x:Key="BtnBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="BtnBgHover" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="BtnBgPressed" Color="#FF333333"/>
+		<SolidColorBrush x:Key="BtnFg" Color="#FFE6E6E6"/>
 
-		<!-- Buttons -->
-		<SolidColorBrush x:Key="ButtonBg" Color="#FF1A1A1A"/>
-		<SolidColorBrush x:Key="ButtonBgHover" Color="#FF2A2A2A"/>
-		<SolidColorBrush x:Key="ButtonBgPressed" Color="#FF333333"/>
-		<SolidColorBrush x:Key="ButtonFg" Color="#FFE6E6E6"/>
-		<SolidColorBrush x:Key="ButtonBorder" Color="#FF2E2E2E"/>
-		<SolidColorBrush x:Key="ButtonBorderHover" Color="#FF6A6A6A"/>
+		<SolidColorBrush x:Key="TabBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="TabBgSelected" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="TabBgHover" Color="#FF232323"/>
+		<SolidColorBrush x:Key="TabFg" Color="#FFE6E6E6"/>
+		<SolidColorBrush x:Key="TabFgSelected" Color="#FFE6E6E6"/>
 
-		<!-- List/File list -->
-		<SolidColorBrush x:Key="ListItemHoverBg" Color="#FF242424"/>
-		<SolidColorBrush x:Key="ListItemSelectedBg" Color="#FF2A2A2A"/>
+		<SolidColorBrush x:Key="TooltipBg" Color="#FF1A1A1A"/>
+		<SolidColorBrush x:Key="TooltipBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="TooltipFg" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="SelectionBg" Color="#FF3A3A3A"/>
+		<SolidColorBrush x:Key="SelectionFg" Color="#FFE6E6E6"/>
+
+		<SolidColorBrush x:Key="XmlViewerBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="XmlViewerBorder" Color="#FF2E2E2E"/>
+
+		<SolidColorBrush x:Key="NavStatusGreenBg" Color="#FF1F3A1F"/>
+		<SolidColorBrush x:Key="NavStatusYellowBg" Color="#FF3A3418"/>
+		<SolidColorBrush x:Key="NavStatusRedBg" Color="#FF3A1F1F"/>
+
+		<!-- Active extras -->
+		<SolidColorBrush x:Key="CheckBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="CheckBorderHover" Color="#FF6A6A6A"/>
+
+		<SolidColorBrush x:Key="ComboBg" Color="#FF111111"/>
+		<SolidColorBrush x:Key="ComboBgHover" Color="#FF1E1E1E"/>
+		<SolidColorBrush x:Key="ComboBorder" Color="#FF2E2E2E"/>
+		<SolidColorBrush x:Key="ComboBorderHover" Color="#FF6A6A6A"/>
+
+		<SolidColorBrush x:Key="MenuBg" Color="#FF151515"/>
+		<SolidColorBrush x:Key="MenuItemHoverBg" Color="#FF242424"/>
 
 	</Application.Resources>
 
 	<Application.Styles>
 
-		<!-- Fluent theme (older API: no Mode property) -->
 		<FluentTheme/>
 
-		<!-- Default window background -->
+		<!-- Window -->
 		<Style Selector="Window">
 			<Setter Property="Background" Value="{DynamicResource AppBg}"/>
 		</Style>
 
-		<!-- Muted text helper -->
+		<!-- Text -->
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
 		<Style Selector="TextBlock.muted">
-			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
-		<!-- TextBox (fix Linux focus turning white + wrong text color) -->
+		<!-- TextBox -->
 		<Style Selector="TextBox">
-			<Setter Property="Background" Value="{DynamicResource TextBoxBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TextBoxFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorder}"/>
+			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextBoxFg}"/>
-			<Setter Property="SelectionBrush" Value="{DynamicResource TextSelectionBg}"/>
+			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
+			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBg}"/>
 		</Style>
 
-		<Style Selector="TextBox:pointerover">
-			<Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderHover}"/>
+		<Style Selector="TextBox /template/ ContentPresenter">
+			<Setter Property="TextElement.Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
-		<Style Selector="TextBox:focus">
-			<Setter Property="Background" Value="{DynamicResource TextBoxBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TextBoxFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderFocus}"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextBoxFg}"/>
-		</Style>
-
-		<!-- Button (fix hover “melting”) -->
+		<!-- Buttons -->
 		<Style Selector="Button">
-			<Setter Property="Background" Value="{DynamicResource ButtonBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource ButtonFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorder}"/>
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
 			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
 		<Style Selector="Button:pointerover">
-			<Setter Property="Background" Value="{DynamicResource ButtonBgHover}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderHover}"/>
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
 		</Style>
 
 		<Style Selector="Button:pressed">
-			<Setter Property="Background" Value="{DynamicResource ButtonBgPressed}"/>
+			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
 		</Style>
 
-		<Style Selector="Button:disabled">
-			<Setter Property="Opacity" Value="0.55"/>
+		<!-- ComboBox -->
+		<Style Selector="ComboBox">
+			<Setter Property="Background" Value="{DynamicResource ComboBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ComboBorder}"/>
+			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 
-		<!-- ListBox / filenames list -->
-		<Style Selector="ListBox">
+		<Style Selector="ComboBox:pointerover">
+			<Setter Property="Background" Value="{DynamicResource ComboBgHover}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ComboBorderHover}"/>
+		</Style>
+
+		<Style Selector="ComboBox /template/ ContentPresenter">
+			<Setter Property="TextElement.Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<Style Selector="ComboBoxItem">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
 
-		<Style Selector="ListBoxItem">
-			<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
+		<Style Selector="ComboBoxItem:pointerover">
+			<Setter Property="Background" Value="{DynamicResource MenuItemHoverBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
-		<Style Selector="ListBoxItem:pointerover">
-			<Setter Property="Background" Value="{DynamicResource ListItemHoverBg}"/>
+		<!-- CheckBox -->
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 
-		<Style Selector="ListBoxItem:selected">
-			<Setter Property="Background" Value="{DynamicResource ListItemSelectedBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
+		<Style Selector="CheckBox /template/ Border">
+			<Setter Property="BorderBrush" Value="{DynamicResource CheckBorder}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+
+		<Style Selector="CheckBox:pointerover /template/ Border">
+			<Setter Property="BorderBrush" Value="{DynamicResource CheckBorderHover}"/>
+		</Style>
+
+		<!-- Menus / Flyouts / Popup -->
+		<Style Selector="FlyoutPresenter, ContextMenu">
+			<Setter Property="Background" Value="{DynamicResource MenuBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+
+		<Style Selector="MenuItem">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<Style Selector="MenuItem:pointerover">
+			<Setter Property="Background" Value="{DynamicResource MenuItemHoverBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<!-- Tabs -->
+		<Style Selector="TabItem">
+			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TabFg}"/>
+		</Style>
+
+		<Style Selector="TabItem:pointerover">
+			<Setter Property="Background" Value="{DynamicResource TabBgHover}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TabFg}"/>
+		</Style>
+
+		<Style Selector="TabItem:selected">
+			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
+		</Style>
+
+		<Style Selector="TabItem /template/ ContentPresenter">
+			<Setter Property="TextElement.Foreground" Value="{DynamicResource TabFg}"/>
+		</Style>
+
+		<!-- ToolTip -->
+		<Style Selector="ToolTip">
+			<Setter Property="Background" Value="{DynamicResource TooltipBg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource TooltipBorder}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TooltipFg}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Padding" Value="8,6"/>
 		</Style>
 
 	</Application.Styles>

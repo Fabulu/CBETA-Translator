@@ -9,8 +9,4 @@ public sealed class FileNavItem
     public string DisplayShort { get; set; } = "";
     public string Tooltip { get; set; } = "";
     public TranslationStatus Status { get; set; } = TranslationStatus.Red;
-    public string CanonCode { get; set; } = "Unknown";
-    public List<string> Traditions { get; set; } = new();
-    public string Period { get; set; } = "Unknown Period";
-    public string Origin { get; set; } = "Unknown Origin";
 }

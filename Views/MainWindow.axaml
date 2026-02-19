@@ -3,300 +3,65 @@
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
         x:Class="CbetaTranslator.App.Views.MainWindow"
-        Width="1400" Height="900"
-        SystemDecorations="None"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome"
-        ExtendClientAreaTitleBarHeightHint="0"
-        Background="{DynamicResource AppBg}"
+        Width="1400"
+        Height="900"
         Title="CBETA Translator">
-
-	<!-- ========================================================= -->
-	<!-- RESOURCES (Night + Light + Tokens)                       -->
-	<!-- ========================================================= -->
-
-	<Window.Resources>
-
-		<!-- NIGHT -->
-		<SolidColorBrush x:Key="Night_AppBg" Color="#FF202020"/>
-		<SolidColorBrush x:Key="Night_BarBg" Color="#FF333333"/>
-		<SolidColorBrush x:Key="Night_NavBg" Color="#FF2D2D2D"/>
-
-		<SolidColorBrush x:Key="Night_TextFg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Night_TextMutedFg" Color="#FFAAAAAA"/>
-
-		<SolidColorBrush x:Key="Night_ControlBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="Night_ControlBgHover" Color="#FF404040"/>
-		<SolidColorBrush x:Key="Night_ControlBgFocus" Color="#FF404040"/>
-
-		<SolidColorBrush x:Key="Night_BorderBrush" Color="#FF555555"/>
-
-		<SolidColorBrush x:Key="Night_BtnBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="Night_BtnBgHover" Color="#FF4D4D4D"/>
-		<SolidColorBrush x:Key="Night_BtnBgPressed" Color="#FF666666"/>
-		<SolidColorBrush x:Key="Night_BtnFg" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="Night_TabBg" Color="#FF333333"/>
-		<SolidColorBrush x:Key="Night_TabBgSelected" Color="#FF404040"/>
-		<SolidColorBrush x:Key="Night_TabFgSelected" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="Night_TooltipBg" Color="#FF1A1A1A"/>
-		<SolidColorBrush x:Key="Night_TooltipBorder" Color="#FF555555"/>
-		<SolidColorBrush x:Key="Night_TooltipFg" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="Night_SelectionBg" Color="#FF0078D4"/>
-		<SolidColorBrush x:Key="Night_SelectionFg" Color="#FFFFFFFF"/>
-
-		<!-- Dark mode XML viewer colors -->
-		<SolidColorBrush x:Key="Night_XmlViewerBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="Night_XmlViewerBorder" Color="#FF555555"/>
-
-		<!-- LIGHT -->
-		<SolidColorBrush x:Key="Light_AppBg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_BarBg" Color="#FFF3F3F3"/>
-		<SolidColorBrush x:Key="Light_NavBg" Color="#FFF9F9F9"/>
-
-		<SolidColorBrush x:Key="Light_TextFg" Color="#FF000000"/>
-		<SolidColorBrush x:Key="Light_TextMutedFg" Color="#FF666666"/>
-
-		<SolidColorBrush x:Key="Light_ControlBg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_ControlBgHover" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_ControlBgFocus" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="Light_BorderBrush" Color="#FFD1D1D1"/>
-
-		<SolidColorBrush x:Key="Light_BtnBg" Color="#FFF0F0F0"/>
-		<SolidColorBrush x:Key="Light_BtnBgHover" Color="#FFE6E6E6"/>
-		<SolidColorBrush x:Key="Light_BtnBgPressed" Color="#FFDDDDDD"/>
-		<SolidColorBrush x:Key="Light_BtnFg" Color="#FF000000"/>
-
-		<SolidColorBrush x:Key="Light_TabBg" Color="#FFF3F3F3"/>
-		<SolidColorBrush x:Key="Light_TabBgSelected" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_TabFgSelected" Color="#FF000000"/>
-
-		<SolidColorBrush x:Key="Light_TooltipBg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="Light_TooltipBorder" Color="#FFD1D1D1"/>
-		<SolidColorBrush x:Key="Light_TooltipFg" Color="#FF000000"/>
-
-		<SolidColorBrush x:Key="Light_SelectionBg" Color="#FF0078D4"/>
-		<SolidColorBrush x:Key="Light_SelectionFg" Color="#FFFFFFFF"/>
-
-		<!-- Light mode XML viewer colors (much lighter red for better text visibility) -->
-		<SolidColorBrush x:Key="Light_XmlViewerBg" Color="#FFF5F5F5"/>
-		<SolidColorBrush x:Key="Light_XmlViewerBorder" Color="#FFE8E8E8"/>
-
-		<!-- TOKENS (default = Night) -->
-		<SolidColorBrush x:Key="AppBg" Color="#FF202020"/>
-		<SolidColorBrush x:Key="BarBg" Color="#FF333333"/>
-		<SolidColorBrush x:Key="NavBg" Color="#FF2D2D2D"/>
-
-		<SolidColorBrush x:Key="TextFg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="TextMutedFg" Color="#FFAAAAAA"/>
-
-		<SolidColorBrush x:Key="ControlBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="BorderBrush" Color="#FF555555"/>
-
-		<SolidColorBrush x:Key="BtnBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="BtnBgHover" Color="#FF4D4D4D"/>
-		<SolidColorBrush x:Key="BtnBgPressed" Color="#FF666666"/>
-		<SolidColorBrush x:Key="BtnFg" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="TabBg" Color="#FF333333"/>
-		<SolidColorBrush x:Key="TabBgSelected" Color="#FF404040"/>
-		<SolidColorBrush x:Key="TabFgSelected" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="TooltipBg" Color="#FF1A1A1A"/>
-		<SolidColorBrush x:Key="TooltipBorder" Color="#FF555555"/>
-		<SolidColorBrush x:Key="TooltipFg" Color="#FFFFFFFF"/>
-
-		<SolidColorBrush x:Key="SelectionBg" Color="#FF0078D4"/>
-		<SolidColorBrush x:Key="SelectionFg" Color="#FFFFFFFF"/>
-
-		<!-- XML viewer tokens (default = Night) -->
-		<SolidColorBrush x:Key="XmlViewerBg" Color="#FF404040"/>
-		<SolidColorBrush x:Key="XmlViewerBorder" Color="#FF555555"/>
-
-		<!-- Status list / popup palette -->
-		<SolidColorBrush x:Key="StatusRedBg" Color="#FFEDDCDC"/>
-		<SolidColorBrush x:Key="StatusYellowBg" Color="#FFFEF5D0"/>
-		<SolidColorBrush x:Key="StatusGreenBg" Color="#FFE0F0E0"/>
-		<SolidColorBrush x:Key="StatusRedBgStrong" Color="#FFF8D7DA"/>
-		<SolidColorBrush x:Key="StatusYellowBgStrong" Color="#FFFDE89A"/>
-		<SolidColorBrush x:Key="StatusGreenBgStrong" Color="#FFCDEACF"/>
-
-	</Window.Resources>
-
-	<!-- ========================================================= -->
-	<!-- GLOBAL STYLES                                             -->
-	<!-- ========================================================= -->
-
-	<Window.Styles>
-
-		<!-- Text -->
-		<Style Selector="TextBlock">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<Style Selector="TextBlock.muted">
-			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
-		</Style>
-
-		<!-- CheckBox (fixes “Show filenames” being black on Linux) -->
-		<Style Selector="CheckBox">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<Style Selector="CheckBox:pointerover">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<!-- Tooltip -->
-		<Style Selector="ToolTip">
-			<Setter Property="Background" Value="{DynamicResource TooltipBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TooltipFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource TooltipBorder}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-		</Style>
-
-		<!-- Buttons -->
-		<Style Selector="Button">
-			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="Padding" Value="8,4"/>
-			<Setter Property="Margin" Value="2"/>
-		</Style>
-
-		<Style Selector="Button:pointerover">
-			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
-			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-		</Style>
-
-		<Style Selector="Button:pressed">
-			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
-			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-		</Style>
-
-		<!-- TextBox -->
-		<Style Selector="TextBox">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
-			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBg}"/>
-			<Setter Property="SelectionForegroundBrush" Value="{DynamicResource SelectionFg}"/>
-		</Style>
-
-		<!-- TextBox template border override (Linux focus bg) -->
-		<Style Selector="TextBox /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-		</Style>
-
-		<Style Selector="TextBox:pointerover /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-		</Style>
-
-		<Style Selector="TextBox:focus /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource ControlBg}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-		</Style>
-
-		<Style Selector="TextBox:focus">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<!-- Tabs -->
-		<Style Selector="TabItem">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<Style Selector="TabItem:pointerover">
-			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
-
-		<Style Selector="TabItem:selected">
-			<Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
-		</Style>
-
-		<Style Selector="TabItem /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
-		</Style>
-
-		<Style Selector="TabItem:pointerover /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
-		</Style>
-
-		<Style Selector="TabItem:selected /template/ Border">
-			<Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
-		</Style>
-
-	</Window.Styles>
-
-	<!-- ========================================================= -->
-	<!-- LAYOUT                                                    -->
-	<!-- ========================================================= -->
 
 	<Grid RowDefinitions="Auto,*,Auto">
 
 		<!-- Top Bar -->
-		<Border Name="TopBar"
-                Grid.Row="0"
-                Background="{DynamicResource BarBg}"
-                Padding="10"
-                PointerPressed="TopBar_PointerPressed">
+		<Border Grid.Row="0"
+				Name="TopBar"
+				Background="{DynamicResource BarBg}"
+				Padding="10">
+
 			<DockPanel LastChildFill="True">
 
-				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Left">
+				<StackPanel Orientation="Horizontal"
+							Spacing="8"
+							DockPanel.Dock="Left">
+
 					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"/>
 					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
 					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"/>
 					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
-					<TextBlock Name="TxtRoot" Margin="10,0,0,0" Classes="muted"/>
-				</StackPanel>
 
-				<StackPanel Orientation="Horizontal" Spacing="8" DockPanel.Dock="Right" HorizontalAlignment="Right">
-					<Button Name="BtnMinimize" Width="36" Height="28" Content="−"/>
-					<Button Name="BtnMaximize" Width="36" Height="28" Content="□"/>
-					<Button Name="BtnClose" Width="36" Height="28" Content="×"/>
+					<TextBlock Name="TxtRoot"
+							   Margin="10,0,0,0"
+							   Classes="muted"/>
+
 				</StackPanel>
 
 				<TextBlock Name="TxtCurrentFile"
-						   HorizontalAlignment="Right"
-						   VerticalAlignment="Center"
-						   Margin="10,0,10,0"
+						   DockPanel.Dock="Right"
 						   Classes="muted"/>
+
 			</DockPanel>
 		</Border>
 
 		<!-- Main -->
-		<Grid Grid.Row="1" ColumnDefinitions="320,6,*">
+		<Grid Grid.Row="1" ColumnDefinitions="Auto,*">
 
 			<!-- Nav -->
 			<Border Name="NavPanel"
 					Grid.Column="0"
 					Background="{DynamicResource NavBg}"
-					MinWidth="280">
+					Width="320">
 
-				<Grid Margin="8" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" RowSpacing="8">
+				<Grid Margin="8"
+					  RowDefinitions="Auto,Auto,Auto,*"
+					  RowSpacing="8">
 
-					<!-- Header row: Files (left) + Status filter (right) -->
 					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8">
-						<TextBlock Text="Files" FontWeight="Bold" Classes="muted" VerticalAlignment="Center"/>
+						<TextBlock Text="Files"
+								   FontWeight="Bold"
+								   Classes="muted"
+								   VerticalAlignment="Center"/>
 
 						<ComboBox Name="CmbStatusFilter"
 								  Grid.Column="1"
 								  SelectedIndex="0"
-								  MinWidth="160"
-								  HorizontalAlignment="Right"
-								  VerticalAlignment="Center">
+								  MinWidth="160">
 							<ComboBoxItem Content="All"/>
 							<ComboBoxItem Content="Translated (Green)"/>
 							<ComboBoxItem Content="Partially translated (Yellow)"/>
@@ -306,89 +71,56 @@
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
-							 Watermark="Find text, filename, title..."/>
+							 Watermark="Search (filename or title)…"/>
 
-					<!-- Nav toggles + compatibility controls -->
 					<StackPanel Grid.Row="2"
 								Orientation="Horizontal"
 								Spacing="10">
-
-						<!-- Keep these for now if code-behind still references them -->
-						<CheckBox Name="ChkNavOriginal" Content="O" IsChecked="True" ToolTip.Tip="Search Original text"/>
-						<CheckBox Name="ChkNavTranslated" Content="T" ToolTip.Tip="Search Translated text"/>
-						<ComboBox Name="CmbNavStatus" Width="88"/>
-						<ComboBox Name="CmbNavContext" Width="72"/>
-
-						<Border Width="10"/>
-
 						<CheckBox Name="ChkShowFilenames"
 								  Content="Show filenames"/>
-						<Border Width="6"/>
 						<CheckBox Name="ChkZenOnly"
 								  Content="Zen texts"/>
 					</StackPanel>
 
-					<ComboBox Name="CmbOrganizeBy"
-							  Grid.Row="3"
-							  Width="240"
-							  HorizontalAlignment="Left"/>
+					<ListBox Name="FilesList"
+							 Grid.Row="3"
+							 Background="{DynamicResource ControlBg}"
+							 BorderBrush="{DynamicResource BorderBrush}"
+							 BorderThickness="1">
 
-					<Expander Name="ExpAdvancedSearch"
-							  Grid.Row="4"
-							  IsExpanded="False"
-							  Header="Advanced Search">
-						<Border BorderBrush="{DynamicResource BorderBrush}"
-								BorderThickness="1"
-								Padding="6">
-							<views:SearchTabView Name="SearchView"/>
-						</Border>
-					</Expander>
-
-					<TreeView Name="NavTree"
-							  Grid.Row="5"
-							  Background="{DynamicResource ControlBg}"
-							  BorderBrush="{DynamicResource BorderBrush}"
-							  BorderThickness="1">
-						<TreeView.DataTemplates>
-							<TreeDataTemplate DataType="models:NavTreeNode" ItemsSource="{Binding Children}">
+						<ListBox.ItemTemplate>
+							<DataTemplate x:DataType="models:FileNavItem">
 								<Border CornerRadius="6"
 										Padding="6"
-										Margin="3"
-										Background="{Binding TintBrush}">
-									<TextBlock Text="{Binding Header}" TextWrapping="NoWrap"/>
-								</Border>
-							</TreeDataTemplate>
-							<DataTemplate DataType="models:FileNavItem">
-								<Border CornerRadius="6"
-										Padding="6"
-										Margin="3"
+										Margin="4"
 										Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
 									<TextBlock Text="{Binding DisplayShort}"
 											   ToolTip.Tip="{Binding Tooltip}"
 											   TextWrapping="NoWrap"/>
 								</Border>
 							</DataTemplate>
-						</TreeView.DataTemplates>
-					</TreeView>
+						</ListBox.ItemTemplate>
+
+					</ListBox>
 
 				</Grid>
 			</Border>
 
-			<!-- Splitter -->
-			<GridSplitter Grid.Column="1"
-						  Width="6"
-						  ResizeDirection="Columns"
-						  Background="{DynamicResource BorderBrush}"/>
-
-			<!-- Main content -->
-			<Border Grid.Column="2" Margin="8">
+			<!-- Tabs -->
+			<Border Grid.Column="1" Margin="8">
 				<TabControl Name="MainTabs">
 					<TabItem Header="Readable">
 						<views:ReadableTabView Name="ReadableView"/>
 					</TabItem>
-					<TabItem Header="Edit">
+
+					<TabItem Header="Translate XML">
 						<views:TranslationTabView Name="TranslationView"/>
 					</TabItem>
+
+					<TabItem Header="Search">
+						<views:SearchTabView Name="SearchView"/>
+					</TabItem>
+
 					<TabItem Header="Git">
 						<views:GitTabView Name="GitView"/>
 					</TabItem>
@@ -405,5 +137,4 @@
 		</Border>
 
 	</Grid>
-
 </Window>
