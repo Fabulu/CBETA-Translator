@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net; // needed for WebUtility.HtmlDecode in ExtractSectionsFromXml
+using System.Net; // WebUtility.HtmlDecode
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -35,6 +35,7 @@ public partial class MainWindow : Window
 {
     private const string AppTitleBase = "CBETA Translator";
 
+    // Top bar buttons
     private Button? _btnToggleNav;
     private Button? _btnOpenRoot;
     private Button? _btnSettings;
@@ -48,20 +49,17 @@ public partial class MainWindow : Window
 
     private Border? _navPanel;
     private Border? _topBar;
-    private TreeView? _navTree;
+
+    // ✅ Your XAML uses ListBox now
+    private ListBox? _filesList;
     private TextBox? _navSearch;
 
-    // Legacy advanced-search toggles (keep, because your XAML has them)
-    private CheckBox? _chkNavOriginal;
-    private CheckBox? _chkNavTranslated;
-    private ComboBox? _cmbNavStatus;
-    private ComboBox? _cmbNavContext;
-    private ComboBox? _cmbOrganizeBy;
-
-    // New convenience controls (also in your XAML now)
+    // New convenience controls (in your XAML)
     private CheckBox? _chkShowFilenames;
-    private CheckBox? _chkZenOnly;       
-    private ComboBox? _cmbStatusFilter;  
+    private CheckBox? _chkZenOnly;
+    private ComboBox? _cmbStatusFilter;
+
+    // Status labels
     private TextBlock? _txtRoot;
     private TextBlock? _txtCurrentFile;
     private TextBlock? _txtStatus;
@@ -73,15 +71,19 @@ public partial class MainWindow : Window
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
 
-    // optional: is commented out in your XAML right now
+    // optional theme checkbox (currently commented out in your XAML)
     private CheckBox? _chkNightMode;
 
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new AppConfigService();
     private readonly PdfExportInteropService _pdfExportService = new PdfExportInteropService();
     private readonly MarkdownTranslationService _markdownService = new MarkdownTranslationService();
+
     private AppConfig? _config;
-    private bool _isDarkTheme = true; // Default to dark theme
+    private AppConfig? _cfg;
+
+    private bool _isDarkTheme = true;
+
     private readonly IndexCacheService _indexCacheService = new IndexCacheService();
     private readonly SearchIndexService _navSearchIndexService = new();
     private readonly RenderedDocumentCacheService _renderCache = new RenderedDocumentCacheService(maxEntries: 48);
@@ -94,6 +96,7 @@ public partial class MainWindow : Window
     private List<FileNavItem> _allItems = new();
     private List<FileNavItem> _filteredItems = new();
     private readonly Dictionary<string, FileNavItem> _allItemsByRel = new(StringComparer.OrdinalIgnoreCase);
+
     private CancellationTokenSource? _navSearchCts;
 
     private string? _currentRelPath;
@@ -109,12 +112,11 @@ public partial class MainWindow : Window
 
     private readonly ZenTextsService _zenTexts = new ZenTextsService();
 
-    // ✅ Config persistence
-    private AppConfig? _cfg;
+    // ✅ UI state persistence
     private bool _suppressConfigSaves;
 
     // ============================================================
-    // ✅ "KEEP TEXT ON TAB SWITCH" + DIRTY TRACKING + WARNINGS
+    // ✅ "KEEP TEXT ON TAB SWITCH" + DIRTY TRACKING (MARKDOWN)
     // ============================================================
 
     private string _baselineTranSha1 = "";
@@ -132,14 +134,11 @@ public partial class MainWindow : Window
         FindControls();
         WireEvents();
         WireChildViewEvents();
-        InitNavControls();
 
         SetStatus("Ready.");
         UpdateSaveButtonState();
 
-        // Load configuration and apply theme
         _ = LoadConfigAndApplyThemeAsync();
-
         StartDirtyTimer();
 
         Closing += async (_, e) =>
@@ -149,32 +148,6 @@ public partial class MainWindow : Window
         };
 
         _ = TryAutoLoadRootFromConfigAsync();
-    }
-
-    private void InitNavControls()
-    {
-        if (_cmbNavStatus != null)
-        {
-            _cmbNavStatus.ItemsSource = new[] { "All", "Red", "Yellow", "Green" };
-            _cmbNavStatus.SelectedIndex = 0;
-        }
-
-        if (_cmbNavContext != null)
-        {
-            _cmbNavContext.ItemsSource = new[] { "20", "40", "80" };
-            _cmbNavContext.SelectedIndex = 1;
-        }
-
-        if (_cmbOrganizeBy != null)
-        {
-            _cmbOrganizeBy.ItemsSource = new[]
-            {
-                "Tradition  ->  Dynasty",
-                "Dynasty    ->  Tradition",
-                "Geography  ->  Tradition"
-            };
-            _cmbOrganizeBy.SelectedIndex = 0;
-        }
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -192,20 +165,14 @@ public partial class MainWindow : Window
         _btnMaximize = this.FindControl<Button>("BtnMaximize");
         _btnClose = this.FindControl<Button>("BtnClose");
 
-        // Left nav
         _topBar = this.FindControl<Border>("TopBar");
         _navPanel = this.FindControl<Border>("NavPanel");
-        _navTree = this.FindControl<TreeView>("NavTree");
+
+        // ✅ Nav list is ListBox in your XAML
+        _filesList = this.FindControl<ListBox>("FilesList");
         _navSearch = this.FindControl<TextBox>("NavSearch");
 
-        // advanced-search controls
-        _chkNavOriginal = this.FindControl<CheckBox>("ChkNavOriginal");
-        _chkNavTranslated = this.FindControl<CheckBox>("ChkNavTranslated");
-        _cmbNavStatus = this.FindControl<ComboBox>("CmbNavStatus");
-        _cmbNavContext = this.FindControl<ComboBox>("CmbNavContext");
-        _cmbOrganizeBy = this.FindControl<ComboBox>("CmbOrganizeBy");
-
-        // new controls
+        // New controls
         _chkShowFilenames = this.FindControl<CheckBox>("ChkShowFilenames");
         _chkZenOnly = this.FindControl<CheckBox>("ChkZenOnly");
         _cmbStatusFilter = this.FindControl<ComboBox>("CmbStatusFilter");
@@ -217,31 +184,27 @@ public partial class MainWindow : Window
 
         // Tabs + views
         _tabs = this.FindControl<TabControl>("MainTabs");
-
         _readableView = this.FindControl<ReadableTabView>("ReadableView");
         _translationView = this.FindControl<TranslationTabView>("TranslationView");
         _searchView = this.FindControl<SearchTabView>("SearchView");
         _gitView = this.FindControl<GitTabView>("GitView");
 
-        // Optional theme checkbox (currently commented out in XAML)
         _chkNightMode = this.FindControl<CheckBox>("ChkNightMode");
     }
 
-   private void WireEvents()
+    private void WireEvents()
     {
-        // ----------------------------
         // Top bar buttons
-        // ----------------------------
         if (_btnToggleNav != null) _btnToggleNav.Click += ToggleNav_Click;
 
         if (_btnOpenRoot != null)
-            _btnOpenRoot.Click += (_, _) => OpenRoot_Click(null, null);
+            _btnOpenRoot.Click += OpenRoot_Click;
 
         if (_btnSettings != null)
             _btnSettings.Click += OnSettingsClicked;
 
         if (_btnLicenses != null)
-            _btnLicenses.Click += (_, _) => Licenses_Click(null, null);
+            _btnLicenses.Click += Licenses_Click;
 
         if (_btnMinimize != null)
             _btnMinimize.Click += (_, _) => WindowState = WindowState.Minimized;
@@ -261,15 +224,11 @@ public partial class MainWindow : Window
         if (_btnAddCommunityNote != null)
             _btnAddCommunityNote.Click += AddCommunityNote_Click;
 
-        // ----------------------------
-        // Navigation selection (KEEP NavTree; no _filesList in your XAML)
-        // ----------------------------
-        if (_navTree != null)
-            _navTree.SelectionChanged += NavTree_SelectionChanged;
+        // ✅ Nav selection (ListBox)
+        if (_filesList != null)
+            _filesList.SelectionChanged += FilesList_SelectionChanged;
 
-        // ----------------------------
-        // Tabs (dirty tracking + save button enablement)
-        // ----------------------------
+        // Tabs
         if (_tabs != null)
         {
             _tabs.SelectionChanged += async (_, _) =>
@@ -282,37 +241,14 @@ public partial class MainWindow : Window
             _lastTabIndex = _tabs.SelectedIndex;
         }
 
-        // ----------------------------
-        // Left nav search box
-        // ----------------------------
+        // Nav search
         if (_navSearch != null)
             _navSearch.TextChanged += async (_, _) => await ApplyFilterAsync();
 
-        // ----------------------------
-        // Advanced search toggles (your original nav search/index controls)
-        // ----------------------------
-        if (_chkNavOriginal != null)
-            _chkNavOriginal.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
-
-        if (_chkNavTranslated != null)
-            _chkNavTranslated.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
-
-        if (_cmbNavStatus != null)
-            _cmbNavStatus.SelectionChanged += async (_, _) => await ApplyFilterAsync();
-
-        if (_cmbNavContext != null)
-            _cmbNavContext.SelectionChanged += async (_, _) => await ApplyFilterAsync();
-
-        if (_cmbOrganizeBy != null)
-            _cmbOrganizeBy.SelectionChanged += async (_, _) => await ApplyFilterAsync();
-
-        // ----------------------------
-        // New convenience toggles (his additions) — use ApplyFilterAsync (not ApplyFilter)
-        // ----------------------------
+        // New toggles
         if (_chkShowFilenames != null)
             _chkShowFilenames.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
 
-        // ✅ Zen-only applies live + persist
         if (_chkZenOnly != null)
             _chkZenOnly.IsCheckedChanged += async (_, _) =>
             {
@@ -320,27 +256,23 @@ public partial class MainWindow : Window
                 await SaveUiStateAsync();
             };
 
-        // ✅ Status filter applies live (no persistence required)
         if (_cmbStatusFilter != null)
             _cmbStatusFilter.SelectionChanged += async (_, _) => await ApplyFilterAsync();
 
-        // ----------------------------
         // Window chrome behavior
-        // ----------------------------
         if (_topBar != null)
+        {
+            _topBar.PointerPressed += TopBar_PointerPressed;
             _topBar.DoubleTapped += (_, _) =>
             {
                 WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             };
-
-        // Optional theme checkbox (if you later un-comment it in XAML)
-        // if (_chkNightMode != null)
-        //     _chkNightMode.IsCheckedChanged += (_, _) => ApplyTheme(dark: _chkNightMode.IsChecked == true);
+        }
     }
-
 
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
+        // Ignore drag when clicking interactive controls
         var visual = e.Source as Visual;
         while (visual != null)
         {
@@ -357,15 +289,9 @@ public partial class MainWindow : Window
 
     private void WireChildViewEvents()
     {
-        // ----------------------------
-        // Readable tab status passthrough
-        // ----------------------------
         if (_readableView != null)
             _readableView.Status += (_, msg) => SetStatus(msg);
 
-        // ----------------------------
-        // Translation tab actions
-        // ----------------------------
         if (_translationView != null)
         {
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
@@ -374,91 +300,6 @@ public partial class MainWindow : Window
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
-        // ----------------------------
-        // Community notes: apply change -> refresh both views
-        // (Works even if your edit tab is markdown-backed because the handlers operate on XML ranges.)
-        // ----------------------------
-        if (_readableView != null)
-        {
-            _readableView.CommunityNoteInsertRequested += async (_, req) =>
-            {
-                try
-                {
-                    if (_translationView == null)
-                    {
-                        SetStatus("Add note failed: Translation view missing.");
-                        return;
-                    }
-
-                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
-                        return;
-
-                    await _translationView.HandleCommunityNoteInsertAsync(req.XmlIndex, req.NoteText, req.Resp);
-
-                    // Reload the translated XML after mutation (it should have been written by the handler)
-                    _rawTranXml = await SafeReadTextAsync(tranAbs);
-
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        _translationView.SetXml(_rawOrigXml, _rawTranXml);
-                    }, DispatcherPriority.Background);
-
-                    SafeInvalidateRenderCache(tranAbs);
-
-                    SetBaselineFromCurrentTranslated();
-                    UpdateDirtyStateFromEditor(forceUi: true);
-
-                    await RefreshReadableFromRawAsync();
-
-                    SetStatus("Community note inserted.");
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Add note failed: " + ex.Message);
-                }
-            };
-
-            _readableView.CommunityNoteDeleteRequested += async (_, req) =>
-            {
-                try
-                {
-                    if (_translationView == null)
-                    {
-                        SetStatus("Delete note failed: Translation view missing.");
-                        return;
-                    }
-
-                    if (!EnsureFileContextForNoteOps(out var origAbs, out var tranAbs))
-                        return;
-
-                    await _translationView.HandleCommunityNoteDeleteAsync(req.XmlStart, req.XmlEndExclusive);
-
-                    _rawTranXml = await SafeReadTextAsync(tranAbs);
-
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        _translationView.SetXml(_rawOrigXml, _rawTranXml);
-                    }, DispatcherPriority.Background);
-
-                    SafeInvalidateRenderCache(tranAbs);
-
-                    SetBaselineFromCurrentTranslated();
-                    UpdateDirtyStateFromEditor(forceUi: true);
-
-                    await RefreshReadableFromRawAsync();
-
-                    SetStatus("Community note deleted.");
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Delete note failed: " + ex.Message);
-                }
-            };
-        }
-
-        // ----------------------------
-        // Search tab: open file request
-        // ----------------------------
         if (_searchView != null)
         {
             _searchView.Status += (_, msg) => SetStatus(msg);
@@ -467,16 +308,7 @@ public partial class MainWindow : Window
                 if (!await ConfirmNavigateIfDirtyAsync($"open another file ({rel})"))
                     return;
 
-                // Prefer sync selection helper if you have it; otherwise fall back to async
-                try
-                {
-                    SelectInNav(rel); // if exists in your file
-                }
-                catch
-                {
-                    await SelectInNavAsync(rel); // fallback if your codebase only has the async version
-                }
-
+                SelectInNav(rel);
                 await LoadPairAsync(rel);
 
                 if (_tabs != null)
@@ -488,19 +320,13 @@ public partial class MainWindow : Window
             };
         }
 
-        // ----------------------------
-        // Git tab: ensure translated XML exists before commit/PR
-        // ----------------------------
         if (_gitView != null)
         {
             _gitView.Status += (_, msg) => SetStatus(msg);
 
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {
-                try
-                {
-                    return await EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentMarkdown: true);
-                }
+                try { return await EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentMarkdown: true); }
                 catch (Exception ex)
                 {
                     SetStatus("Prepare translated XML failed: " + ex.Message);
@@ -531,9 +357,6 @@ public partial class MainWindow : Window
             };
         }
 
-        // ----------------------------
-        // Zen flag toggle (from Readable view)
-        // ----------------------------
         if (_readableView != null)
         {
             _readableView.ZenFlagChanged += async (_, ev) =>
@@ -544,8 +367,6 @@ public partial class MainWindow : Window
 
                     await _zenTexts.SetZenAsync(_root, ev.RelPath, ev.IsZen);
                     SetStatus(ev.IsZen ? "Marked as Zen text." : "Unmarked as Zen text.");
-
-                    // Re-apply filter to update nav
                     await ApplyFilterAsync();
                 }
                 catch (Exception ex)
@@ -554,48 +375,6 @@ public partial class MainWindow : Window
                 }
             };
         }
-    }
-
-
-    private bool EnsureFileContextForNoteOps(out string origAbs, out string tranAbs)
-    {
-        origAbs = "";
-        tranAbs = "";
-
-        if (_translationView == null)
-        {
-            SetStatus("Cannot modify notes: Translation view missing.");
-            return false;
-        }
-
-        if (_currentRelPath == null || _originalDir == null || _translatedDir == null)
-        {
-            SetStatus("Cannot modify notes: no file loaded.");
-            return false;
-        }
-
-        origAbs = Path.Combine(_originalDir, _currentRelPath);
-        tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-
-        try { _translationView.SetCurrentFilePaths(origAbs, tranAbs); } catch { }
-
-        return true;
-    }
-
-    private static async Task<string> SafeReadTextAsync(string path)
-    {
-        try
-        {
-            if (File.Exists(path))
-                return await File.ReadAllTextAsync(path);
-        }
-        catch { }
-        return "";
-    }
-
-    private void SafeInvalidateRenderCache(string tranAbs)
-    {
-        try { _renderCache.Invalidate(tranAbs); } catch { }
     }
 
     private void ToggleNav_Click(object? sender, RoutedEventArgs e)
@@ -645,6 +424,7 @@ public partial class MainWindow : Window
             SetStatus("Failed to open licenses: " + ex.Message);
         }
     }
+
     private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
         try
@@ -661,7 +441,6 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Ensure we're on Readable tab so selection/caret makes sense
             if (_tabs != null && _tabs.SelectedIndex != 0)
             {
                 _suppressTabEvents = true;
@@ -669,7 +448,6 @@ public partial class MainWindow : Window
                 finally { _suppressTabEvents = false; }
             }
 
-            // Let UI settle so caret/selection is valid
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
 
             var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
@@ -681,27 +459,30 @@ public partial class MainWindow : Window
         }
     }
 
-
-    private void Save_Click(object? sender, RoutedEventArgs e)
-    {
-        _ = SaveTranslatedFromTabAsync();
-    }
+    private void Save_Click(object? sender, RoutedEventArgs e) => _ = SaveTranslatedFromTabAsync();
 
     private async Task TryAutoLoadRootFromConfigAsync()
     {
-        _cfg = await _configService.TryLoadAsync();
-        if (_cfg?.TextRootPath is null) return;
+        _config = await _configService.TryLoadAsync();
+        _cfg = _config;
+
+        if (_config?.TextRootPath is null) return;
+
+        // Apply saved theme immediately
+        _isDarkTheme = _config.IsDarkTheme;
+        ApplyTheme(_isDarkTheme);
+        _translationView?.SetPdfQuickSettings(_config);
 
         try
         {
-            if (!Directory.Exists(_cfg.TextRootPath))
+            if (!Directory.Exists(_config.TextRootPath))
                 return;
 
             _suppressConfigSaves = true;
             try
             {
                 if (_chkZenOnly != null)
-                    _chkZenOnly.IsChecked = _cfg.ZenOnly; // ✅ KEEP
+                    _chkZenOnly.IsChecked = _config.ZenOnly;
             }
             finally
             {
@@ -709,11 +490,11 @@ public partial class MainWindow : Window
             }
 
             SetStatus("Auto-loading last root…");
-            await LoadRootAsync(_cfg.TextRootPath, saveToConfig: false);
+            await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
 
-            if (!string.IsNullOrWhiteSpace(_cfg.LastSelectedRelPath))
+            if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
             {
-                var rel = NormalizeRelForLogs(_cfg.LastSelectedRelPath);
+                var rel = NormalizeRelForLogs(_config.LastSelectedRelPath);
                 SelectInNav(rel);
                 await LoadPairAsync(rel);
             }
@@ -726,24 +507,28 @@ public partial class MainWindow : Window
 
     private async Task SaveUiStateAsync()
     {
-        if (_suppressConfigSaves)
-            return;
+        if (_suppressConfigSaves) return;
 
         try
         {
-            if (_root == null)
-                return;
+            if (_root == null) return;
 
-            var cfg = _cfg ?? new AppConfig();
+            // ✅ Always save ONE unified config object, preserving theme + pdf settings
+            _config ??= _cfg ?? new AppConfig();
 
-            cfg.TextRootPath = _root;
-            cfg.LastSelectedRelPath = _currentRelPath;
-            cfg.ZenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
-            cfg.Version = Math.Max(cfg.Version, 2);
+            _config.TextRootPath = _root;
+            _config.LastSelectedRelPath = _currentRelPath;
+            _config.ZenOnly = _chkZenOnly?.IsChecked == true;
 
-            _cfg = cfg;
+            // ✅ Preserve theme
+            _config.IsDarkTheme = _isDarkTheme;
 
-            await _configService.SaveAsync(cfg);
+            // Keep version monotonic
+            _config.Version = Math.Max(_config.Version, 3);
+
+            _cfg = _config;
+
+            await _configService.SaveAsync(_config);
         }
         catch
         {
@@ -753,66 +538,56 @@ public partial class MainWindow : Window
 
     private async Task LoadRootAsync(string rootPath, bool saveToConfig)
     {
-    _root = rootPath;
-    _originalDir = AppPaths.GetOriginalDir(_root);
-    _translatedDir = AppPaths.GetTranslatedDir(_root);
-    _markdownDir = AppPaths.GetMarkdownDir(_root);
+        _root = rootPath;
+        _originalDir = AppPaths.GetOriginalDir(_root);
+        _translatedDir = AppPaths.GetTranslatedDir(_root);
+        _markdownDir = AppPaths.GetMarkdownDir(_root);
 
-    _renderCache.Clear();
+        SetStatus($"origDir={_originalDir} tranDir={_translatedDir}");
 
-    try
-    {
-        await _zenTexts.LoadAsync(_root);
-        _searchView?.SetZenResolver(rel => _zenTexts.IsZen(rel));
-    }
-    catch { }
+        _renderCache.Clear();
 
-    if (_txtRoot != null) _txtRoot.Text = _root;
-
-    if (!Directory.Exists(_originalDir))
-    {
-        SetStatus($"Original folder missing: {_originalDir}");
-        return;
-    }
-
-    AppPaths.EnsureTranslatedDirExists(_root);
-    AppPaths.EnsureMarkdownDirExists(_root);
-
-    _gitView?.SetCurrentRepoRoot(_root);
-    _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
-
-    if (saveToConfig)
-    {
-        // 1) Persist UI state (root + zen-only + last selected file etc.)
         try
         {
-            var cfg = _cfg ?? new AppConfig();
-            cfg.TextRootPath = _root;
-            cfg.ZenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
-            cfg.Version = Math.Max(cfg.Version, 2);
-            _cfg = cfg;
-
-            await _configService.SaveAsync(cfg);
+            await _zenTexts.LoadAsync(_root);
+            _searchView?.SetZenResolver(rel => _zenTexts.IsZen(rel));
         }
-        catch { /* ignore */ }
+        catch { }
 
-        // 2) Persist settings/theme/PDF config (your older flow)
-        try
+        if (_txtRoot != null) _txtRoot.Text = _root;
+
+        if (!Directory.Exists(_originalDir))
         {
-            _config ??= new AppConfig { IsDarkTheme = _isDarkTheme };
-            _config.TextRootPath = _root;
-            await _configService.SaveAsync(_config);
+            SetStatus($"Original folder missing: {_originalDir}");
+            return;
         }
-        catch { /* ignore */ }
+
+        AppPaths.EnsureTranslatedDirExists(_root);
+        AppPaths.EnsureMarkdownDirExists(_root);
+
+        _gitView?.SetCurrentRepoRoot(_root);
+        _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
+
+        if (saveToConfig)
+        {
+            try
+            {
+                _config ??= new AppConfig { IsDarkTheme = _isDarkTheme };
+                _config.TextRootPath = _root;
+                _config.ZenOnly = _chkZenOnly?.IsChecked == true;
+                _config.Version = Math.Max(_config.Version, 3);
+                await _configService.SaveAsync(_config);
+                _cfg = _config;
+            }
+            catch { }
+        }
+
+        await LoadFileListFromCacheOrBuildAsync();
     }
-
-    await LoadFileListFromCacheOrBuildAsync();
-}
-
 
     private async Task LoadFileListFromCacheOrBuildAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null || _navTree == null)
+        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
             return;
 
         ClearViews();
@@ -828,12 +603,8 @@ public partial class MainWindow : Window
                 fileMeta: relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRelForLogs(relKey), out var canon);
-
-                    if (canon != null)
-                        return (canon.DisplayShort, canon.Tooltip, canon.Status);
-
-                    string rel = relKey;
-                    return (rel, rel, null);
+                    if (canon != null) return (canon.DisplayShort, canon.Tooltip, canon.Status);
+                    return (relKey, relKey, null);
                 });
 
             _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
@@ -843,7 +614,7 @@ public partial class MainWindow : Window
         if (cache?.Entries is { Count: > 0 })
         {
             _allItems = cache.Entries;
-            RebuildLookupAndFilters();
+            RebuildLookup();
             await ApplyFilterAsync();
             WireSearchTab();
             SetStatus($"Loaded index cache: {_allItems.Count:n0} files.");
@@ -871,70 +642,18 @@ public partial class MainWindow : Window
         await _indexCacheService.SaveAsync(_root, built);
 
         _allItems = built.Entries ?? new List<FileNavItem>();
-        RebuildLookupAndFilters();
+        RebuildLookup();
         await ApplyFilterAsync();
         WireSearchTab();
 
         SetStatus($"Index cache created: {_allItems.Count:n0} files.");
     }
 
-    private void RebuildLookupAndFilters()
+    private void RebuildLookup()
     {
         _allItemsByRel.Clear();
         foreach (var item in _allItems)
             _allItemsByRel[NormalizeRelForLogs(item.RelPath)] = item;
-    }
-
-    private static string GetFirstTradition(FileNavItem item)
-        => item.Traditions is { Count: > 0 } ? item.Traditions[0] : "Unknown Tradition";
-
-    private (Func<FileNavItem, string> primary, Func<FileNavItem, string> secondary, string tint) GetHierarchy()
-    {
-        var choice = _cmbOrganizeBy?.SelectedItem as string ?? "Tradition  ->  Dynasty";
-
-        if (string.Equals(choice, "Dynasty    ->  Tradition", StringComparison.Ordinal))
-        {
-            return (
-                it => string.IsNullOrWhiteSpace(it.Period) ? "Unknown Dynasty" : it.Period,
-                it => GetFirstTradition(it),
-                "#144A90E2"
-            );
-        }
-
-        if (string.Equals(choice, "Geography  ->  Tradition", StringComparison.Ordinal))
-        {
-            return (
-                it => string.IsNullOrWhiteSpace(it.Origin) ? "Unknown Origin" : it.Origin,
-                it => GetFirstTradition(it),
-                "#14C97A1E"
-            );
-        }
-
-        return (
-            it => GetFirstTradition(it),
-            it => string.IsNullOrWhiteSpace(it.Period) ? "Unknown Dynasty" : it.Period,
-            "#143FA34D"
-        );
-    }
-
-    private TranslationStatus? GetStatusFilter()
-    {
-        var selected = _cmbNavStatus?.SelectedItem as string ?? "All";
-        return selected switch
-        {
-            "Red" => TranslationStatus.Red,
-            "Yellow" => TranslationStatus.Yellow,
-            "Green" => TranslationStatus.Green,
-            _ => null
-        };
-    }
-
-    private int GetContextWidth()
-    {
-        var selected = _cmbNavContext?.SelectedItem as string ?? "40";
-        if (selected.StartsWith("20", StringComparison.Ordinal)) return 20;
-        if (selected.StartsWith("80", StringComparison.Ordinal)) return 80;
-        return 40;
     }
 
     private async Task<HashSet<string>?> ComputeFullTextMatchesAsync(string query, CancellationToken ct)
@@ -946,12 +665,10 @@ public partial class MainWindow : Window
         if (manifest == null)
             return null;
 
-        bool includeOriginal = _chkNavOriginal?.IsChecked != false;
-        bool includeTranslated = _chkNavTranslated?.IsChecked == true;
-        if (!includeOriginal && !includeTranslated)
-            includeOriginal = true;
+        // Keep current behavior: original included by default, translated optional
+        bool includeOriginal = true;
+        bool includeTranslated = false;
 
-        var statusFilter = GetStatusFilter();
         var matches = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         await foreach (var group in _navSearchIndexService.SearchAllAsync(
@@ -965,14 +682,9 @@ public partial class MainWindow : Window
                            fileMeta: rel =>
                            {
                                _allItemsByRel.TryGetValue(NormalizeRelForLogs(rel), out var found);
-                               var status = found?.Status;
-                               if (statusFilter.HasValue && status.HasValue && status.Value != statusFilter.Value)
-                                   return ("", "", status);
-                               if (statusFilter.HasValue && !status.HasValue)
-                                   return ("", "", null);
-                               return (found?.DisplayShort ?? rel, found?.Tooltip ?? rel, status);
+                               return (found?.DisplayShort ?? rel, found?.Tooltip ?? rel, found?.Status);
                            },
-                           contextWidth: GetContextWidth(),
+                           contextWidth: 40,
                            progress: null,
                            ct: ct))
         {
@@ -993,161 +705,9 @@ public partial class MainWindow : Window
         return false;
     }
 
-    private List<NavTreeNode> BuildNavTree(List<FileNavItem> items)
-    {
-        var (primary, secondary, tint) = GetHierarchy();
-        var groups = items
-            .GroupBy(primary)
-            .OrderBy(g => g.Key, StringComparer.OrdinalIgnoreCase)
-            .Select(g => new NavTreeNode
-            {
-                Header = $"{g.Key} ({g.Count():n0})",
-                NodeType = "group",
-                TintBrush = tint,
-                Children = g.GroupBy(secondary)
-                    .OrderBy(sg => sg.Key, StringComparer.OrdinalIgnoreCase)
-                    .Select(sg => (object)new NavTreeNode
-                    {
-                        Header = $"{sg.Key} ({sg.Count():n0})",
-                        NodeType = "subgroup",
-                        TintBrush = "#10000000",
-                        Children = sg
-                            .OrderBy(x => x.DisplayShort, StringComparer.OrdinalIgnoreCase)
-                            .Cast<object>()
-                            .ToList()
-                    })
-                    .ToList()
-            })
-            .ToList();
-
-        return groups;
-    }
-
-    private async Task ApplyFilterAsync()
-{
-    if (_navTree == null)
-        return;
-
-    // cancel any in-flight full-text search
-    _navSearchCts?.Cancel();
-    _navSearchCts = new CancellationTokenSource();
-    var ct = _navSearchCts.Token;
-
-    // Preserve focus in search box while we rebuild the tree (Linux/WMs can be touchy)
-    bool shouldRestoreSearchFocus = _navSearch?.IsFocused == true;
-
-    string q = (_navSearch?.Text ?? "").Trim();
-    string qLower = q.ToLowerInvariant();
-
-    bool showFilenames = _chkShowFilenames?.IsChecked == true;
-    bool zenOnly = _chkZenOnly?.IsChecked == true; // ✅ KEEP
-    int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0; // ✅ NEW
-
-    // keep selection if possible
-    string? selectedRel =
-        (_navTree.SelectedItem as FileNavItem)?.RelPath
-        ?? _currentRelPath;
-
-    // Full-text matches (optional)
-    HashSet<string>? fullTextMatches = null;
-    if (q.Length > 0)
-    {
-        try
-        {
-            fullTextMatches = await ComputeFullTextMatchesAsync(q, ct);
-        }
-        catch (OperationCanceledException)
-        {
-            return;
-        }
-        catch
-        {
-            fullTextMatches = null;
-        }
-    }
-
-    IEnumerable<FileNavItem> seq = _allItems;
-
-    // ✅ Zen-only filter first (unchanged behavior)
-    if (zenOnly)
-    {
-        seq = seq.Where(it =>
-            !string.IsNullOrWhiteSpace(it.RelPath) &&
-            _zenTexts.IsZen(it.RelPath));
-    }
-
-    // ✅ Status filter (robust against unknown enum names)
-    if (statusIdx != 0)
-    {
-        seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
-    }
-
-    // Local search + (optional) full-text hits
-    if (q.Length > 0)
-    {
-        seq = seq.Where(it =>
-            MatchesLocalText(it, qLower) ||
-            (fullTextMatches != null && fullTextMatches.Contains(NormalizeRelForLogs(it.RelPath))));
-    }
-
-    // Project for display only (do NOT mutate _allItems; keep metadata canonical there)
-    _filteredItems = seq.Select(it =>
-    {
-        string label =
-            showFilenames
-                ? (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath)
-                : (!string.IsNullOrWhiteSpace(it.DisplayShort)
-                    ? it.DisplayShort
-                    : (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath));
-
-        return new FileNavItem
-        {
-            RelPath = it.RelPath,
-            FileName = it.FileName,
-            DisplayShort = label,
-            Tooltip = it.Tooltip,
-            Status = it.Status,
-
-            // keep grouping metadata if your FileNavItem has these props
-            Traditions = it.Traditions,
-            Period = it.Period,
-            Origin = it.Origin,
-        };
-    }).ToList();
-
-    // Build + bind tree
-    var treeNodes = BuildNavTree(_filteredItems);
-
-    try
-    {
-        _suppressNavSelectionChanged = true;
-
-        _navTree.ItemsSource = treeNodes;
-
-        if (!string.IsNullOrWhiteSpace(selectedRel))
-        {
-            var match = _filteredItems.FirstOrDefault(x =>
-                string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
-
-            if (match != null)
-                _navTree.SelectedItem = match;
-        }
-    }
-    finally
-    {
-        _suppressNavSelectionChanged = false;
-    }
-
-    if (shouldRestoreSearchFocus && _navSearch != null)
-    {
-        Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
-    }
-}
-
-
     private static bool MatchesStatusFilter(object? statusObj, int statusIdx)
     {
-        // 1 = Green/Translated, 2 = Yellow/Partial, 3 = Red/Untranslated
+        // 1 = Translated (Green), 2 = Partial (Yellow), 3 = Untranslated (Red)
         if (statusIdx == 0) return true;
         if (statusObj == null) return false;
 
@@ -1161,44 +721,104 @@ public partial class MainWindow : Window
         };
     }
 
-    private void SelectInNav(string relPath)
+    private async Task ApplyFilterAsync()
     {
-        // best-effort synchronous helper (no awaits)
-        if (_navTree == null || string.IsNullOrWhiteSpace(relPath))
+        if (_filesList == null)
             return;
 
-        var match = _filteredItems.FirstOrDefault(x =>
-            string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
+        _navSearchCts?.Cancel();
+        _navSearchCts = new CancellationTokenSource();
+        var ct = _navSearchCts.Token;
 
-        if (match == null)
-            return;
+        bool shouldRestoreSearchFocus = _navSearch?.IsFocused == true;
+
+        string q = (_navSearch?.Text ?? "").Trim();
+        string qLower = q.ToLowerInvariant();
+
+        bool showFilenames = _chkShowFilenames?.IsChecked == true;
+        bool zenOnly = _chkZenOnly?.IsChecked == true;
+        int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0;
+
+        string? selectedRel =
+            (_filesList.SelectedItem as FileNavItem)?.RelPath
+            ?? _currentRelPath;
+
+        HashSet<string>? fullTextMatches = null;
+        if (q.Length > 0)
+        {
+            try { fullTextMatches = await ComputeFullTextMatchesAsync(q, ct); }
+            catch (OperationCanceledException) { return; }
+            catch { fullTextMatches = null; }
+        }
+
+        IEnumerable<FileNavItem> seq = _allItems;
+
+        if (zenOnly)
+        {
+            seq = seq.Where(it =>
+                !string.IsNullOrWhiteSpace(it.RelPath) &&
+                _zenTexts.IsZen(it.RelPath));
+        }
+
+        if (statusIdx != 0)
+            seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
+
+        if (q.Length > 0)
+        {
+            seq = seq.Where(it =>
+                MatchesLocalText(it, qLower) ||
+                (fullTextMatches != null && fullTextMatches.Contains(NormalizeRelForLogs(it.RelPath))));
+        }
+
+        _filteredItems = seq.Select(it =>
+        {
+            string label =
+                showFilenames
+                    ? (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath)
+                    : (!string.IsNullOrWhiteSpace(it.DisplayShort)
+                        ? it.DisplayShort
+                        : (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath));
+
+            return new FileNavItem
+            {
+                RelPath = it.RelPath,
+                FileName = it.FileName,
+                DisplayShort = label,
+                Tooltip = it.Tooltip,
+                Status = it.Status,
+            };
+        }).ToList();
 
         try
         {
             _suppressNavSelectionChanged = true;
-            _navTree.SelectedItem = match;
+
+            _filesList.ItemsSource = _filteredItems;
+
+            if (!string.IsNullOrWhiteSpace(selectedRel))
+            {
+                var match = _filteredItems.FirstOrDefault(x =>
+                    string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
+                if (match != null)
+                    _filesList.SelectedItem = match;
+            }
         }
         finally
         {
             _suppressNavSelectionChanged = false;
         }
+
+        if (shouldRestoreSearchFocus && _navSearch != null)
+            Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
     }
 
-    private async Task SelectInNavAsync(string relPath)
+    private void SelectInNav(string relPath)
     {
-        if (_navTree == null || string.IsNullOrWhiteSpace(relPath))
+        if (_filesList == null || string.IsNullOrWhiteSpace(relPath))
             return;
 
         var match = _filteredItems.FirstOrDefault(x =>
             string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
-
-        if (match == null && _navSearch != null && !string.IsNullOrWhiteSpace(_navSearch.Text))
-        {
-            _navSearch.Text = "";
-            await ApplyFilterAsync();
-            match = _filteredItems.FirstOrDefault(x =>
-                string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
-        }
 
         if (match == null)
             return;
@@ -1206,7 +826,7 @@ public partial class MainWindow : Window
         try
         {
             _suppressNavSelectionChanged = true;
-            _navTree.SelectedItem = match;
+            _filesList.SelectedItem = match;
         }
         finally
         {
@@ -1236,10 +856,10 @@ public partial class MainWindow : Window
 
         _readableView?.Clear();
         _translationView?.Clear();
-        _searchView?.Clear(); // note: resolver re-wired later
+        _searchView?.Clear();
 
-        if (_navTree != null)
-            _navTree.ItemsSource = null;
+        if (_filesList != null)
+            _filesList.ItemsSource = null;
 
         _readableView?.SetZenContext(null, false);
 
@@ -1248,28 +868,22 @@ public partial class MainWindow : Window
         _gitView?.SetSelectedRelPath(null);
     }
 
-
-    private async void NavTree_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (_suppressNavSelectionChanged)
             return;
 
-        // IMPORTANT: your TreeView ItemsSource is NavTreeNode groups, not FileNavItem.
-        // So SelectedItem can be either NavTreeNode or FileNavItem depending on your node structure.
-        // We only react to leaf FileNavItem selections.
-        if (_navTree?.SelectedItem is not FileNavItem item)
+        if (_filesList?.SelectedItem is not FileNavItem item)
             return;
 
         if (string.IsNullOrWhiteSpace(item.RelPath))
             return;
 
-        // If user is switching away from a loaded file and we are dirty, confirm
         if (_currentRelPath != null &&
             !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
             if (!await ConfirmNavigateIfDirtyAsync($"switch files ({_currentRelPath} → {item.RelPath})"))
             {
-                // revert selection back to current file in the TreeView
                 var backRel = _currentRelPath;
 
                 Dispatcher.UIThread.Post(() =>
@@ -1277,15 +891,10 @@ public partial class MainWindow : Window
                     try
                     {
                         _suppressNavSelectionChanged = true;
-
-                        // This sets selection by rel path by searching your filtered leaf items.
-                        // It won't expand groups, but it will keep your internal selection consistent.
-                        // If you later want to auto-expand to the leaf, we can add that.
                         var back = _filteredItems.FirstOrDefault(x =>
                             string.Equals(x.RelPath, backRel, StringComparison.OrdinalIgnoreCase));
-
-                        if (back != null && _navTree != null)
-                            _navTree.SelectedItem = back;
+                        if (back != null && _filesList != null)
+                            _filesList.SelectedItem = back;
                     }
                     finally
                     {
@@ -1300,23 +909,30 @@ public partial class MainWindow : Window
         await LoadPairAsync(item.RelPath);
     }
 
+    // ============================================================
+    // ✅ FIX: cache render must not read mutable fields inside Task.Run
+    // ============================================================
 
-    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(string relPath, CancellationToken ct)
+    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(
+        string relPath,
+        string origXml,
+        string tranXmlReadableOrFallback,
+        CancellationToken ct)
     {
         if (_originalDir == null || _translatedDir == null || _markdownDir == null)
             return (RenderedDocument.Empty, RenderedDocument.Empty);
 
         var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
+        var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
 
         var stampOrig = FileStamp.FromFile(origAbs);
-        var stampTran = FileStamp.FromFile(tranAbs);
+        var stampTran = FileStamp.FromFile(mdAbs);
 
         RenderedDocument ro;
         if (!_renderCache.TryGet(stampOrig, out ro))
         {
             ct.ThrowIfCancellationRequested();
-            ro = CbetaTeiRenderer.Render(_rawOrigXml);
+            ro = CbetaTeiRenderer.Render(origXml ?? "");
             _renderCache.Put(stampOrig, ro);
         }
 
@@ -1324,7 +940,7 @@ public partial class MainWindow : Window
         if (!_renderCache.TryGet(stampTran, out rt))
         {
             ct.ThrowIfCancellationRequested();
-            rt = CbetaTeiRenderer.Render(string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXml : _rawTranXmlReadable);
+            rt = CbetaTeiRenderer.Render(tranXmlReadableOrFallback ?? "");
             _renderCache.Put(stampTran, rt);
         }
 
@@ -1332,127 +948,129 @@ public partial class MainWindow : Window
     }
 
     private async Task LoadPairAsync(string relPath)
-{
-    if (_originalDir == null || _translatedDir == null || _markdownDir == null)
-        return;
-
-    _renderCts?.Cancel();
-    _renderCts = new CancellationTokenSource();
-    var ct = _renderCts.Token;
-
-    _currentRelPath = relPath;
-
-    if (!_markdownSaveCounts.ContainsKey(relPath))
-        _markdownSaveCounts[relPath] = 0;
-
-    if (_txtCurrentFile != null)
-        _txtCurrentFile.Text = relPath;
-
-    _gitView?.SetSelectedRelPath(_currentRelPath);
-
-    SetStatus("Loading: " + relPath);
-
-    var swTotal = Stopwatch.StartNew();
-    var swRead = Stopwatch.StartNew();
-
-    var (orig, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
-
-    swRead.Stop();
-
-    _rawOrigXml = orig ?? "";
-    _rawTranMarkdown = md ?? "";
-
-    // Ensure TranslationTabView knows which exact files it's operating on.
-    try
     {
-        var origAbs = Path.Combine(_originalDir, relPath);
-        var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
-        _translationView?.SetCurrentFilePaths(origAbs, mdAbs);
-    }
-    catch { }
-
-    // Materialize translated XML + readable XML from Markdown (Markdown-backed Edit tab)
-    try
-    {
-        if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
-        {
-            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(relPath));
-            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
-        }
-
-        _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
-        _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
-    }
-    catch (MarkdownTranslationException ex)
-    {
-        // Keep app usable even if materialization fails
-        SetStatus("Markdown materialization warning: " + ex.Message);
-        _rawTranXml = _rawOrigXml;
-        _rawTranXmlReadable = _rawOrigXml;
-    }
-    catch (Exception ex)
-    {
-        SetStatus("Materialization failed: " + ex.Message);
-        _rawTranXml = _rawOrigXml;
-        _rawTranXmlReadable = _rawOrigXml;
-    }
-
-    // Edit tab stays Markdown-backed
-    _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
-
-    // Dirty baseline: use the materialized XML (so structural checks make sense)
-    _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
-    _lastSeenTranSha1 = _baselineTranSha1;
-    _dirty = false;
-    UpdateWindowTitle();
-
-    UpdateSaveButtonState();
-
-    SetStatus("Rendering readable view…");
-
-    try
-    {
-        var swRender = Stopwatch.StartNew();
-
-        var renderTask = Task.Run(async () =>
-        {
-            ct.ThrowIfCancellationRequested();
-            return await RenderPairCachedAsync(relPath, ct);
-        }, ct);
-
-        var (renderOrig, renderTran) = await renderTask;
-
-        swRender.Stop();
-
-        if (ct.IsCancellationRequested)
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
             return;
 
-        await Dispatcher.UIThread.InvokeAsync(() =>
-        {
-            _readableView?.SetRendered(renderOrig, renderTran);
+        _renderCts?.Cancel();
+        _renderCts = new CancellationTokenSource();
+        var ct = _renderCts.Token;
 
-            swTotal.Stop();
-            SetStatus(
-                $"Loaded. Segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}. " +
-                $"Read={swRead.ElapsedMilliseconds:n0}ms Render={swRender.ElapsedMilliseconds:n0}ms Total={swTotal.ElapsedMilliseconds:n0}ms");
-        });
+        _currentRelPath = relPath;
 
+        if (!_markdownSaveCounts.ContainsKey(relPath))
+            _markdownSaveCounts[relPath] = 0;
+
+        if (_txtCurrentFile != null)
+            _txtCurrentFile.Text = relPath;
+
+        _gitView?.SetSelectedRelPath(_currentRelPath);
+
+        SetStatus("Loading: " + relPath);
+
+        var swTotal = Stopwatch.StartNew();
+        var swRead = Stopwatch.StartNew();
+
+        var (orig, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
+
+        swRead.Stop();
+
+        _rawOrigXml = orig ?? "";
+        _rawTranMarkdown = md ?? "";
+
+        // Ensure TranslationTabView knows which files it is operating on
         try
         {
-            bool isZen = _root != null && _zenTexts.IsZen(relPath);
-            _readableView?.SetZenContext(relPath, isZen);
+            var origAbs = Path.Combine(_originalDir, relPath);
+            var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
+            _translationView?.SetCurrentFilePaths(origAbs, mdAbs);
         }
         catch { }
 
-        await SaveUiStateAsync();
-    }
-    catch (OperationCanceledException) { }
-    catch (Exception ex)
-    {
-        SetStatus("Render failed: " + ex.Message);
-    }
-}
+        // Ensure markdown exists and is current format
+        try
+        {
+            if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
+            {
+                _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(relPath));
+                await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
+            }
 
+            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+            _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+        }
+        catch (MarkdownTranslationException ex)
+        {
+            SetStatus("Markdown materialization warning: " + ex.Message);
+            _rawTranXml = _rawOrigXml;
+            _rawTranXmlReadable = _rawOrigXml;
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Materialization failed: " + ex.Message);
+            _rawTranXml = _rawOrigXml;
+            _rawTranXmlReadable = _rawOrigXml;
+        }
+
+        // ✅ Translation tab is MARKDOWN-backed
+        _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
+
+        // ✅ Dirty baseline = markdown
+        _baselineTranSha1 = Sha1Hex(_rawTranMarkdown ?? "");
+        _lastSeenTranSha1 = _baselineTranSha1;
+        _dirty = false;
+        UpdateWindowTitle();
+
+        UpdateSaveButtonState();
+
+        SetStatus("Rendering readable view…");
+
+        try
+        {
+            var swRender = Stopwatch.StartNew();
+
+            // ✅ capture locals so Task.Run can't read mutated fields
+            var origXmlLocal = _rawOrigXml ?? "";
+            var tranReadableLocal = !string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXmlReadable : (_rawTranXml ?? "");
+
+            var renderTask = Task.Run(async () =>
+            {
+                ct.ThrowIfCancellationRequested();
+                return await RenderPairCachedAsync(relPath, origXmlLocal, tranReadableLocal, ct);
+            }, ct);
+
+            var (renderOrig, renderTran) = await renderTask;
+
+            swRender.Stop();
+
+            if (ct.IsCancellationRequested)
+                return;
+
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                _readableView?.SetRendered(renderOrig, renderTran);
+
+                swTotal.Stop();
+                SetStatus(
+                    $"Loaded. Segments: O={renderOrig.Segments.Count:n0}, T={renderTran.Segments.Count:n0}. " +
+                    $"Read={swRead.ElapsedMilliseconds:n0}ms Render={swRender.ElapsedMilliseconds:n0}ms Total={swTotal.ElapsedMilliseconds:n0}ms");
+            });
+
+            try
+            {
+                bool isZen = _root != null && _zenTexts.IsZen(relPath);
+                _readableView?.SetZenContext(relPath, isZen);
+            }
+            catch { }
+
+            await SaveUiStateAsync();
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception ex)
+        {
+            SetStatus("Render failed: " + ex.Message);
+        }
+    }
 
     private async Task SaveTranslatedFromTabAsync()
     {
@@ -1470,11 +1088,11 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // 1️⃣ Get Markdown from editor
+            // 1) Get Markdown from editor
             var md = _translationView.GetTranslatedMarkdown();
             _rawTranMarkdown = md ?? "";
 
-            // 2️⃣ Write Markdown
+            // 2) Write Markdown
             await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, _rawTranMarkdown);
 
             if (_markdownSaveCounts.TryGetValue(_currentRelPath, out var count))
@@ -1482,13 +1100,12 @@ public partial class MainWindow : Window
             else
                 _markdownSaveCounts[_currentRelPath] = 1;
 
-            // 3️⃣ Materialize TEI XML from Markdown
+            // 3) Materialize TEI XML from Markdown + write translated XML (for Git/other tools)
             try
             {
                 _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
                 _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
 
-                // Write translated XML to disk
                 if (_translatedDir != null)
                 {
                     await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
@@ -1499,14 +1116,12 @@ public partial class MainWindow : Window
             }
             catch (MarkdownTranslationException ex)
             {
-                // Markdown save is still valid — only XML materialization failed
                 _rawTranXml = _rawOrigXml;
                 _rawTranXmlReadable = _rawOrigXml;
-
                 SetStatus("Saved Markdown (materialization warning): " + ex.Message);
             }
 
-            // 4️⃣ Invalidate render cache
+            // 4) Invalidate render cache for md stamp
             try
             {
                 var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(_currentRelPath, ".md"));
@@ -1514,41 +1129,15 @@ public partial class MainWindow : Window
             }
             catch { }
 
-            // 5️⃣ Reset dirty baseline (based on materialized XML)
-            _baselineTranSha1 = Sha1Hex(_rawTranXml ?? "");
+            // 5) Reset dirty baseline (markdown)
+            _baselineTranSha1 = Sha1Hex(_rawTranMarkdown ?? "");
             _lastSeenTranSha1 = _baselineTranSha1;
             _dirty = false;
             UpdateWindowTitle();
 
-            // 6️⃣ Re-render readable view
-            _renderCts?.Cancel();
-            _renderCts = new CancellationTokenSource();
-            var ct = _renderCts.Token;
-
-            SetStatus("Re-rendering readable view…");
-
-            var sw = Stopwatch.StartNew();
-
-            var renderTask = Task.Run(async () =>
-            {
-                ct.ThrowIfCancellationRequested();
-                return await RenderPairCachedAsync(_currentRelPath, ct);
-            }, ct);
-
-            var (renderOrig, renderTran) = await renderTask;
-
-            sw.Stop();
-
-            if (!ct.IsCancellationRequested)
-            {
-                await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    _readableView?.SetRendered(renderOrig, renderTran);
-                    SetStatus($"Saved + readable updated. Render={sw.ElapsedMilliseconds:n0}ms");
-                });
-            }
+            // 6) Re-render readable view
+            await RefreshReadableFromRawAsync();
         }
-        catch (OperationCanceledException) { }
         catch (Exception ex)
         {
             SetStatus("Save failed: " + ex.Message);
@@ -1602,10 +1191,9 @@ public partial class MainWindow : Window
             _markdownSaveCounts[_currentRelPath] = 0;
 
             _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
-
             await RefreshReadableFromRawAsync();
 
-            SetBaselineFromCurrentTranslated();
+            SetBaselineFromCurrentTranslatedMarkdown();
 
             SetStatus("Reverted Markdown to original state.");
         }
@@ -1615,143 +1203,31 @@ public partial class MainWindow : Window
         }
     }
 
-
-    private async Task<bool> ConfirmAsync(string title, string message, string yesText, string noText)
+    private async Task RefreshFileStatusAsync(string relPath)
     {
-        var yes = new Button
-        {
-            Content = yesText,
-            MinWidth = 90,
-            HorizontalAlignment = HorizontalAlignment.Right
-        };
-        var no = new Button
-        {
-            Content = noText,
-            MinWidth = 90
-        };
-
-        var text = new TextBlock
-        {
-            Text = message,
-            TextWrapping = TextWrapping.Wrap
-        };
-
-        var row = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            Spacing = 8,
-            HorizontalAlignment = HorizontalAlignment.Right
-        };
-        row.Children.Add(no);
-        row.Children.Add(yes);
-
-        var panel = new StackPanel
-        {
-            Margin = new Thickness(14),
-            Spacing = 12
-        };
-        panel.Children.Add(text);
-        panel.Children.Add(row);
-
-        var win = new Window
-        {
-            Title = title,
-            Width = 560,
-            Height = 220,
-            Content = panel,
-            Background = new SolidColorBrush(Color.Parse("#FFFEF5D0")),
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-
-        bool result = false;
-        yes.Click += (_, _) => { result = true; win.Close(); };
-        no.Click += (_, _) => { result = false; win.Close(); };
-
-        await win.ShowDialog(this);
-        return result;
-    }
-
-    private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentMarkdown)
-    {
-        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
-            return false;
-
-        var origPath = Path.Combine(_originalDir, relPath);
-        if (!File.Exists(origPath))
-            return false;
-
-        if (saveCurrentMarkdown &&
-            _translationView != null &&
-            string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
-        {
-            var currentMd = _translationView.GetTranslatedMarkdown();
-            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, currentMd);
-            _rawTranMarkdown = currentMd ?? "";
-        }
-
-        var (origXml, markdown) =
-            await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
-
-        if (string.IsNullOrWhiteSpace(markdown) ||
-            !_markdownService.IsCurrentMarkdownFormat(markdown))
-        {
-            markdown = _markdownService.ConvertTeiToMarkdown(origXml, Path.GetFileName(relPath));
-            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, markdown);
-        }
+        if (_originalDir == null || _translatedDir == null || _root == null)
+            return;
 
         try
         {
-            var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
-            var readableXml = _markdownService.CreateReadableInlineEnglishXml(mergedXml);
+            var origAbs = Path.Combine(_originalDir, relPath);
+            var tranAbs = Path.Combine(_translatedDir, relPath);
+            var relKey = NormalizeRelForLogs(relPath);
 
-            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+            var newStatus = _indexCacheService.ComputeStatusForPairLive(
+                origAbs, tranAbs, _root, relKey, verboseLog: false);
 
-            if (string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
+            if (_allItemsByRel.TryGetValue(relKey, out var existingItem))
             {
-                _rawOrigXml = origXml;
-                _rawTranMarkdown = markdown;
-                _rawTranXml = mergedXml;
-                _rawTranXmlReadable = readableXml;
+                existingItem.Status = newStatus;
+                await ApplyFilterAsync();
             }
-
-            await RefreshFileStatusAsync(relPath);
-            return true;
         }
-        catch (MarkdownTranslationException ex)
+        catch (Exception ex)
         {
-            SetStatus("Markdown materialization warning: " + ex.Message);
-            return false;
+            Debug.WriteLine($"Failed to refresh file status: {ex.Message}");
         }
     }
-
-
-    private async Task RefreshFileStatusAsync(string relPath)
-{
-    if (_originalDir == null || _translatedDir == null || _root == null)
-        return;
-
-    try
-    {
-        var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_translatedDir, relPath);
-        var relKey = NormalizeRelForLogs(relPath);
-
-        var newStatus = _indexCacheService.ComputeStatusForPairLive(
-            origAbs, tranAbs, _root, relKey, verboseLog: false);
-
-        if (_allItemsByRel.TryGetValue(relKey, out var existingItem))
-        {
-            existingItem.Status = newStatus;
-
-            // Just re-apply filter instead of nuking TreeView
-            await ApplyFilterAsync();
-        }
-    }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"Failed to refresh file status: {ex.Message}");
-    }
-}
 
     private async Task RefreshReadableFromRawAsync()
     {
@@ -1768,11 +1244,15 @@ public partial class MainWindow : Window
 
             var sw = Stopwatch.StartNew();
 
+            // ✅ capture locals (same race fix)
+            var origLocal = _rawOrigXml ?? "";
+            var tranLocal = !string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXmlReadable : (_rawTranXml ?? "");
+
             var renderTask = Task.Run(() =>
             {
                 ct.ThrowIfCancellationRequested();
-                var ro = CbetaTeiRenderer.Render(_rawOrigXml ?? "");
-                var rt = CbetaTeiRenderer.Render(string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? (_rawTranXml ?? "") : _rawTranXmlReadable);
+                var ro = CbetaTeiRenderer.Render(origLocal);
+                var rt = CbetaTeiRenderer.Render(tranLocal);
                 return (ro, rt);
             }, ct);
 
@@ -1805,6 +1285,7 @@ public partial class MainWindow : Window
             _btnSave.IsEnabled = hasFile && translationTabSelected;
         }
 
+        // keep your current behavior
         if (_btnAddCommunityNote != null)
             _btnAddCommunityNote.IsEnabled = false;
     }
@@ -1817,67 +1298,88 @@ public partial class MainWindow : Window
 
     private void ApplyTheme(bool dark)
     {
+        var variant = dark ? ThemeVariant.Dark : ThemeVariant.Light;
+
+        RequestedThemeVariant = variant;
+
+        if (Application.Current != null)
+            Application.Current.RequestedThemeVariant = variant;
+
+        var appRes = Application.Current?.Resources;
+        if (appRes == null)
+            return;
+
         string p = dark ? "Night_" : "Light_";
 
-        void Map(string tokenKey, string sourceKey)
+        void Map(string tokenKey)
         {
-            if (this.TryGetResource(sourceKey, null, out var v) && v != null)
-                Resources[tokenKey] = v;
+            var sourceKey = p + tokenKey;
+            if (appRes.TryGetValue(sourceKey, out var v) && v != null)
+                appRes[tokenKey] = v;
         }
 
-        Map("AppBg", p + "AppBg");
-        Map("BarBg", p + "BarBg");
-        Map("NavBg", p + "NavBg");
+        // Core tokens
+        Map("AppBg");
+        Map("BarBg");
+        Map("NavBg");
+        Map("TextFg");
+        Map("TextMutedFg");
+        Map("ControlBg");
+        Map("BorderBrush");
+        Map("BtnBg");
+        Map("BtnBgHover");
+        Map("BtnBgPressed");
+        Map("BtnFg");
+        Map("TabBg");
+        Map("TabBgSelected");
+        Map("TabFgSelected");
+        Map("TooltipBg");
+        Map("TooltipBorder");
+        Map("TooltipFg");
+        Map("SelectionBg");
+        Map("SelectionFg");
 
-        Map("TextFg", p + "TextFg");
-        Map("TextMutedFg", p + "TextMutedFg");
+        // Extras referenced by styles
+        Map("ControlBgHover");
+        Map("ControlBgFocus");
 
-        Map("ControlBg", p + "ControlBg");
-        Map("ControlBgHover", p + "ControlBgHover");
-        Map("ControlBgFocus", p + "ControlBgFocus");
+        Map("TabBgHover");
+        Map("TabFg");
 
-        Map("BorderBrush", p + "BorderBrush");
+        Map("ComboBg");
+        Map("ComboBgHover");
+        Map("ComboBorder");
+        Map("ComboBorderHover");
 
-        Map("BtnBg", p + "BtnBg");
-        Map("BtnBgHover", p + "BtnBgHover");
-        Map("BtnBgPressed", p + "BtnBgPressed");
-        Map("BtnFg", p + "BtnFg");
+        Map("CheckBorder");
+        Map("CheckBorderHover");
 
-        Map("TabBg", p + "TabBg");
-        Map("TabBgSelected", p + "TabBgSelected");
-        Map("TabFgSelected", p + "TabFgSelected");
+        Map("MenuBg");
+        Map("MenuItemHoverBg");
 
-        Map("TooltipBg", p + "TooltipBg");
-        Map("TooltipBorder", p + "TooltipBorder");
-        Map("TooltipFg", p + "TooltipFg");
+        Map("XmlViewerBg");
+        Map("XmlViewerBorder");
 
-        Map("SelectionBg", p + "SelectionBg");
-        Map("SelectionFg", p + "SelectionFg");
-
-        Map("XmlViewerBg", p + "XmlViewerBg");
-        Map("XmlViewerBorder", p + "XmlViewerBorder");
+        Map("NavStatusGreenBg");
+        Map("NavStatusYellowBg");
+        Map("NavStatusRedBg");
     }
 
     private async Task LoadConfigAndApplyThemeAsync()
     {
         try
         {
-            _config = await _configService.TryLoadAsync();
-            if (_config != null)
-            {
-                _isDarkTheme = _config.IsDarkTheme;
-                ApplyTheme(_isDarkTheme);
-                _translationView?.SetPdfQuickSettings(_config);
-            }
-            else
-            {
-                _translationView?.SetPdfQuickSettings(new AppConfig { IsDarkTheme = _isDarkTheme });
-            }
+            _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = _isDarkTheme };
+            _cfg = _config;
+
+            _isDarkTheme = _config.IsDarkTheme;
+            ApplyTheme(_isDarkTheme);
+            _translationView?.SetPdfQuickSettings(_config);
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Failed to load config: {ex.Message}");
-            // Fallback to dark theme
+            _isDarkTheme = true;
             ApplyTheme(true);
         }
     }
@@ -1922,6 +1424,276 @@ public partial class MainWindow : Window
         }
     }
 
+    // ============================================================
+    // DIRTY TRACKING IS MARKDOWN-BASED
+    // ============================================================
+
+    private void StartDirtyTimer()
+    {
+        _dirtyTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(350) };
+        _dirtyTimer.Tick -= DirtyTimer_Tick;
+        _dirtyTimer.Tick += DirtyTimer_Tick;
+        _dirtyTimer.Start();
+    }
+
+    private void DirtyTimer_Tick(object? sender, EventArgs e)
+    {
+        if (_currentRelPath == null || _translationView == null)
+            return;
+
+        string cur = "";
+        try { cur = _translationView.GetTranslatedMarkdown() ?? ""; }
+        catch { return; }
+
+        string sha = Sha1Hex(cur);
+
+        if (sha == _lastSeenTranSha1)
+            return;
+
+        _lastSeenTranSha1 = sha;
+        UpdateDirtyStateFromEditor(forceUi: true);
+    }
+
+    private void UpdateDirtyStateFromEditor(bool forceUi)
+    {
+        if (_translationView == null || _currentRelPath == null)
+        {
+            if (forceUi) UpdateWindowTitle();
+            return;
+        }
+
+        string cur = "";
+        try { cur = _translationView.GetTranslatedMarkdown() ?? ""; }
+        catch { cur = ""; }
+
+        bool dirtyNow = Sha1Hex(cur) != (_baselineTranSha1 ?? "");
+
+        if (dirtyNow == _dirty && !forceUi)
+            return;
+
+        _dirty = dirtyNow;
+        UpdateWindowTitle();
+    }
+
+    private void SetBaselineFromCurrentTranslatedMarkdown()
+    {
+        if (_translationView == null) return;
+        string cur = "";
+        try { cur = _translationView.GetTranslatedMarkdown() ?? ""; } catch { cur = ""; }
+        _baselineTranSha1 = Sha1Hex(cur);
+        _lastSeenTranSha1 = _baselineTranSha1;
+        _dirty = false;
+        UpdateWindowTitle();
+    }
+
+    private void CaptureTranslationEditsToRaw()
+    {
+        if (_translationView == null) return;
+        try { _rawTranMarkdown = _translationView.GetTranslatedMarkdown() ?? ""; }
+        catch { }
+    }
+
+    private async Task OnTabSelectionChangedAsync()
+    {
+        if (_tabs == null) return;
+
+        int newIdx = _tabs.SelectedIndex;
+        int oldIdx = _lastTabIndex;
+        _lastTabIndex = newIdx;
+
+        bool leavingTranslation = oldIdx == 1 && newIdx != 1;
+
+        if (leavingTranslation)
+        {
+            CaptureTranslationEditsToRaw();
+            UpdateDirtyStateFromEditor(forceUi: true);
+
+            if (_dirty && IsScaryDirty(out var scaryMsg))
+            {
+                bool ok = await ShowYesNoAsync(
+                    "Unsaved + structural problems",
+                    scaryMsg + "\n\nLeave the Translation tab anyway?");
+
+                if (!ok)
+                {
+                    _suppressTabEvents = true;
+                    try { _tabs.SelectedIndex = 1; }
+                    finally { _suppressTabEvents = false; }
+                    _lastTabIndex = 1;
+                    return;
+                }
+            }
+        }
+
+        UpdateSaveButtonState();
+        UpdateDirtyStateFromEditor(forceUi: true);
+    }
+
+    private void UpdateWindowTitle()
+    {
+        var file = _currentRelPath ?? "";
+        var star = _dirty ? "*" : "";
+        Title = string.IsNullOrWhiteSpace(file)
+            ? $"{AppTitleBase}{star}"
+            : $"{AppTitleBase}{star} — {file}";
+
+        if (_txtCurrentFile != null)
+            _txtCurrentFile.Text = string.IsNullOrWhiteSpace(file) ? "" : (file + (_dirty ? "  *" : ""));
+    }
+
+    private async Task<bool> ConfirmNavigateIfDirtyAsync(string action)
+    {
+        CaptureTranslationEditsToRaw();
+        UpdateDirtyStateFromEditor(forceUi: true);
+
+        if (!_dirty)
+            return true;
+
+        if (IsScaryDirty(out var scaryMsg))
+        {
+            return await ShowYesNoAsync(
+                "Unsaved changes + structural issues",
+                $"You have unsaved changes AND the translation looks structurally broken.\n\n{scaryMsg}\n\nProceed to {action}?");
+        }
+
+        return await ShowYesNoAsync(
+            "Unsaved changes",
+            $"You have unsaved changes.\n\nProceed to {action}?");
+    }
+
+    private bool IsScaryDirty(out string message)
+    {
+        message = "";
+
+        if (!_dirty) return false;
+        if (_translationView == null) return false;
+
+        string orig = _rawOrigXml ?? "";
+        if (string.IsNullOrEmpty(orig)) return false;
+
+        // ✅ Compare STRUCTURE using materialized XML from current markdown
+        string md;
+        try { md = _translationView.GetTranslatedMarkdown() ?? ""; }
+        catch { return false; }
+
+        string tranXml;
+        try
+        {
+            tranXml = _markdownService.MergeMarkdownIntoTei(orig, md, out _);
+        }
+        catch
+        {
+            message = "Markdown materialization failed. The translation may be structurally broken.";
+            return true;
+        }
+
+        var (ok, msg, _, _, _, _) = VerifyXmlHacky(orig, tranXml);
+        if (ok) return false;
+
+        message = msg;
+        return true;
+    }
+
+    // ============================================================
+    // Dialog helpers
+    // ============================================================
+
+    private async Task<bool> ConfirmAsync(string title, string message, string yesText, string noText)
+    {
+        var yes = new Button { Content = yesText, MinWidth = 90, HorizontalAlignment = HorizontalAlignment.Right };
+        var no = new Button { Content = noText, MinWidth = 90 };
+
+        var text = new TextBlock { Text = message, TextWrapping = TextWrapping.Wrap };
+
+        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Right };
+        row.Children.Add(no);
+        row.Children.Add(yes);
+
+        var panel = new StackPanel { Margin = new Thickness(14), Spacing = 12 };
+        panel.Children.Add(text);
+        panel.Children.Add(row);
+
+        var win = new Window
+        {
+            Title = title,
+            Width = 560,
+            Height = 220,
+            Content = panel,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        ApplyWindowTheme(win);
+
+        bool result = false;
+        yes.Click += (_, _) => { result = true; win.Close(); };
+        no.Click += (_, _) => { result = false; win.Close(); };
+
+        await win.ShowDialog(this);
+        return result;
+    }
+
+    private async Task<bool> ShowYesNoAsync(string title, string message)
+    {
+        var btnYes = new Button { Content = "Yes", MinWidth = 90 };
+        var btnNo = new Button { Content = "No", MinWidth = 90 };
+
+        var buttons = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Spacing = 10
+        };
+        buttons.Children.Add(btnNo);
+        buttons.Children.Add(btnYes);
+
+        var text = new TextBox
+        {
+            Text = message,
+            IsReadOnly = true,
+            TextWrapping = TextWrapping.Wrap,
+            AcceptsReturn = true,
+            Height = 250
+        };
+        ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
+        ScrollViewer.SetHorizontalScrollBarVisibility(text, ScrollBarVisibility.Disabled);
+
+        var panel = new StackPanel { Margin = new Thickness(16), Spacing = 10 };
+        panel.Children.Add(text);
+        panel.Children.Add(buttons);
+
+        var win = new Window
+        {
+            Title = title,
+            Width = 720,
+            Height = 420,
+            Content = panel,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        ApplyWindowTheme(win);
+
+        var tcs = new TaskCompletionSource<bool>();
+        btnYes.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
+        btnNo.Click += (_, _) => { win.Close(); tcs.TrySetResult(false); };
+
+        await win.ShowDialog(this);
+        return await tcs.Task;
+    }
+
+    private void ApplyWindowTheme(Window win)
+    {
+        win.RequestedThemeVariant = this.ActualThemeVariant;
+
+        if (Application.Current?.TryGetResource("ControlBg", null, out var bg) == true && bg is IBrush b)
+            win.Background = b;
+
+        if (Application.Current?.TryGetResource("TextFg", null, out var fg) == true && fg is IBrush f)
+            win.Foreground = f;
+    }
+
+    // ============================================================
+    // PDF Export + XML structural verify helpers (unchanged)
+    // ============================================================
+
     private async Task ExportCurrentPairToPdfAsync()
     {
         try
@@ -1929,6 +1701,12 @@ public partial class MainWindow : Window
             if (_currentRelPath == null)
             {
                 SetStatus("Select a file before exporting PDF.");
+                return;
+            }
+
+            if (StorageProvider is null)
+            {
+                SetStatus("StorageProvider not available.");
                 return;
             }
 
@@ -1951,7 +1729,6 @@ public partial class MainWindow : Window
             }
             else
             {
-                // Fallback for malformed markdown.
                 chinese = ExtractSectionsFromXml(_rawOrigXml);
                 english = ExtractSectionsFromXml(_rawTranXml);
                 SetStatus("PDF: markdown parse warning, using XML fallback. " + (mdErr ?? "Unknown"));
@@ -2082,229 +1859,6 @@ public partial class MainWindow : Window
 
     private static string NormalizeRelForLogs(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
-
-    private async Task OnTabSelectionChangedAsync()
-    {
-        if (_tabs == null) return;
-
-        int newIdx = _tabs.SelectedIndex;
-        int oldIdx = _lastTabIndex;
-        _lastTabIndex = newIdx;
-
-        bool leavingTranslation = oldIdx == 1 && newIdx != 1;
-        bool enteringTranslation = oldIdx != 1 && newIdx == 1;
-
-        if (leavingTranslation)
-        {
-            CaptureTranslationEditsToRaw();
-
-            if (_dirty && IsScaryDirty(out var scaryMsg))
-            {
-                bool ok = await ShowYesNoAsync(
-                    "Unsaved + structural problems",
-                    scaryMsg + "\n\nLeave the Translation tab anyway?");
-
-                if (!ok)
-                {
-                    _suppressTabEvents = true;
-                    try { _tabs.SelectedIndex = 1; }
-                    finally { _suppressTabEvents = false; }
-                    _lastTabIndex = 1;
-                    return;
-                }
-            }
-        }
-
-        if (enteringTranslation)
-        {
-            if (_translationView != null)
-            {
-                var current = _translationView.GetTranslatedXml() ?? "";
-                if (current.Length == 0 && (_rawTranXml?.Length ?? 0) > 0)
-                {
-                    _translationView.SetXml(_rawOrigXml ?? "", _rawTranXml ?? "");
-                }
-            }
-        }
-
-        UpdateSaveButtonState();
-        UpdateDirtyStateFromEditor(forceUi: true);
-    }
-
-    private void StartDirtyTimer()
-    {
-        _dirtyTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(350) };
-        _dirtyTimer.Tick -= DirtyTimer_Tick;
-        _dirtyTimer.Tick += DirtyTimer_Tick;
-        _dirtyTimer.Start();
-    }
-
-    private void DirtyTimer_Tick(object? sender, EventArgs e)
-    {
-        if (_currentRelPath == null || _translationView == null)
-            return;
-
-        string cur = "";
-        try { cur = _translationView.GetTranslatedXml() ?? ""; }
-        catch { return; }
-
-        string sha = Sha1Hex(cur);
-
-        if (sha == _lastSeenTranSha1)
-            return;
-
-        _lastSeenTranSha1 = sha;
-        UpdateDirtyStateFromEditor(forceUi: true);
-    }
-
-    private void UpdateDirtyStateFromEditor(bool forceUi)
-    {
-        if (_translationView == null || _currentRelPath == null)
-        {
-            if (forceUi) UpdateWindowTitle();
-            return;
-        }
-
-        string cur = "";
-        try { cur = _translationView.GetTranslatedXml() ?? ""; }
-        catch { cur = ""; }
-
-        bool dirtyNow = Sha1Hex(cur) != (_baselineTranSha1 ?? "");
-
-        if (dirtyNow == _dirty && !forceUi)
-            return;
-
-        _dirty = dirtyNow;
-        UpdateWindowTitle();
-    }
-
-    private void SetBaselineFromCurrentTranslated()
-    {
-        if (_translationView == null) return;
-        string cur = "";
-        try { cur = _translationView.GetTranslatedXml() ?? ""; } catch { cur = ""; }
-        _baselineTranSha1 = Sha1Hex(cur);
-        _lastSeenTranSha1 = _baselineTranSha1;
-        _dirty = false;
-        UpdateWindowTitle();
-    }
-
-    private void CaptureTranslationEditsToRaw()
-    {
-        if (_translationView == null) return;
-        try { _rawTranXml = _translationView.GetTranslatedXml() ?? ""; }
-        catch { }
-    }
-
-    private void UpdateWindowTitle()
-    {
-        var file = _currentRelPath ?? "";
-        var star = _dirty ? "*" : "";
-        Title = string.IsNullOrWhiteSpace(file)
-            ? $"{AppTitleBase}{star}"
-            : $"{AppTitleBase}{star} — {file}";
-
-        if (_txtCurrentFile != null)
-            _txtCurrentFile.Text = string.IsNullOrWhiteSpace(file) ? "" : (file + (_dirty ? "  *" : ""));
-    }
-
-    private async Task<bool> ConfirmNavigateIfDirtyAsync(string action)
-    {
-        CaptureTranslationEditsToRaw();
-        UpdateDirtyStateFromEditor(forceUi: true);
-
-        if (!_dirty)
-            return true;
-
-        if (IsScaryDirty(out var scaryMsg))
-        {
-            return await ShowYesNoAsync(
-                "Unsaved changes + structural issues",
-                $"You have unsaved changes AND the translation looks structurally broken.\n\n{scaryMsg}\n\n" +
-                $"Proceed to {action}? (Choosing Yes may lose edits if you later reload)");
-        }
-
-        return await ShowYesNoAsync(
-            "Unsaved changes",
-            $"You have unsaved changes.\n\nProceed to {action}?");
-    }
-
-    private bool IsScaryDirty(out string message)
-    {
-        message = "";
-
-        if (!_dirty) return false;
-        if (_translationView == null) return false;
-
-        string orig = _rawOrigXml ?? "";
-        string tran = "";
-        try { tran = _translationView.GetTranslatedXml() ?? ""; }
-        catch { return false; }
-
-        if (string.IsNullOrEmpty(orig))
-            return false;
-
-        var (ok, msg, _, _, _, _) = VerifyXmlHacky(orig, tran);
-
-        if (ok)
-            return false;
-
-        message = msg;
-        return true;
-    }
-
-    private async Task<bool> ShowYesNoAsync(string title, string message)
-    {
-        var owner = this;
-
-        var btnYes = new Button { Content = "Yes", MinWidth = 90 };
-        var btnNo = new Button { Content = "No", MinWidth = 90 };
-
-        var buttons = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            HorizontalAlignment = HorizontalAlignment.Right,
-            Spacing = 10
-        };
-        buttons.Children.Add(btnNo);
-        buttons.Children.Add(btnYes);
-
-        var text = new TextBox
-        {
-            Text = message,
-            IsReadOnly = true,
-            TextWrapping = TextWrapping.Wrap,
-            AcceptsReturn = true,
-            Height = 250
-        };
-        ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
-        ScrollViewer.SetHorizontalScrollBarVisibility(text, ScrollBarVisibility.Disabled);
-
-        var panel = new StackPanel
-        {
-            Margin = new Thickness(16),
-            Spacing = 10
-        };
-        panel.Children.Add(text);
-        panel.Children.Add(buttons);
-
-        var win = new Window
-        {
-            Title = title,
-            Width = 720,
-            Height = 420,
-            Content = panel,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-
-        var tcs = new TaskCompletionSource<bool>();
-
-        btnYes.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
-        btnNo.Click += (_, _) => { win.Close(); tcs.TrySetResult(false); };
-
-        await win.ShowDialog(owner);
-        return await tcs.Task;
-    }
 
     private static readonly Regex XmlTagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
 
@@ -2437,6 +1991,51 @@ public partial class MainWindow : Window
         catch
         {
             return "sha1_err";
+        }
+    }
+
+    // ============================================================
+    // Git helper: ensure translated XML exists (unchanged logic)
+    // ============================================================
+
+    private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentMarkdown)
+    {
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
+            return false;
+
+        var origPath = Path.Combine(_originalDir, relPath);
+        if (!File.Exists(origPath))
+            return false;
+
+        if (saveCurrentMarkdown &&
+            _translationView != null &&
+            string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
+        {
+            var currentMd = _translationView.GetTranslatedMarkdown();
+            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, currentMd);
+            _rawTranMarkdown = currentMd ?? "";
+        }
+
+        var (origXml, markdown) =
+            await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
+
+        if (string.IsNullOrWhiteSpace(markdown) || !_markdownService.IsCurrentMarkdownFormat(markdown))
+        {
+            markdown = _markdownService.ConvertTeiToMarkdown(origXml, Path.GetFileName(relPath));
+            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, markdown);
+        }
+
+        try
+        {
+            var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
+            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+            await RefreshFileStatusAsync(relPath);
+            return true;
+        }
+        catch (MarkdownTranslationException ex)
+        {
+            SetStatus("Markdown materialization warning: " + ex.Message);
+            return false;
         }
     }
 }

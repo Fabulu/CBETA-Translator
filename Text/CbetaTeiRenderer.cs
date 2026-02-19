@@ -641,7 +641,7 @@ public static class CbetaTeiRenderer
         {
             var n = Attr(attrs, AttrN);
             var ed = Attr(attrs, AttrEd);
-            key = MakeKey("lb", n, ed);
+            key = MakeKey("lb", n);
             return true;
         }
 
@@ -649,7 +649,7 @@ public static class CbetaTeiRenderer
         {
             var id = Attr(attrs, AttrXmlId) ?? Attr(attrs, AttrN);
             var ed = Attr(attrs, AttrEd);
-            key = MakeKey("pb", id, ed);
+            key = MakeKey("pb", id);
             return true;
         }
 

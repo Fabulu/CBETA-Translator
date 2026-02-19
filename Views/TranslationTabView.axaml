@@ -1,33 +1,34 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+             xmlns:ed="clr-namespace:AvaloniaEdit.Editing;assembly=AvaloniaEdit"
+             xmlns:rd="clr-namespace:AvaloniaEdit.Rendering;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.TranslationTabView">
 
-	<!-- LOCAL FALLBACK RESOURCES (prevents "blank view" when app theme keys are missing) -->
-	<UserControl.Resources>
-		<!-- Panel colors -->
-		<SolidColorBrush x:Key="PanelBg" Color="#FFF5F5F5"/>
-		<SolidColorBrush x:Key="PanelAltBg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="PanelBorder" Color="#FFE8E8E8"/>
-		<SolidColorBrush x:Key="SplitterBrush" Color="#FFD1D1D1"/>
-
-		<!-- Muted text -->
-		<SolidColorBrush x:Key="MutedFg" Color="#FF666666"/>
-	</UserControl.Resources>
-
 	<UserControl.Styles>
-		<!-- Keep Fluent theme for AvaloniaEdit -->
+		<!-- AvaloniaEdit fluent theme -->
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
 
-		<!-- Muted class (fallback) -->
+		<!-- Muted text class uses app token -->
 		<Style Selector="TextBlock.muted">
-			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
 		</Style>
 
-		<!-- Hard override so text is visible in both light and dark UI -->
+		<!-- Ensure AvaloniaEdit respects your theme tokens -->
 		<Style Selector="ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<!-- Caret + selection inside the editor -->
+		<Style Selector="ae|TextEditor ed|TextArea">
+			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
+			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBg}"/>
+		</Style>
+
+		<!-- Some templates need this for actual rendered text -->
+		<Style Selector="ae|TextEditor rd|TextView">
+			<Setter Property="TextElement.Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
 	</UserControl.Styles>
 
@@ -36,12 +37,13 @@
 		<!-- Button bar -->
 		<Border Grid.Row="0"
 				Grid.ColumnSpan="3"
-				Background="{DynamicResource PanelAltBg}"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
 				Padding="8"
 				CornerRadius="6">
 			<DockPanel LastChildFill="True">
 
-				<!-- Left cluster -->
 				<StackPanel DockPanel.Dock="Left"
 							Orientation="Horizontal"
 							Spacing="6">
@@ -55,10 +57,8 @@
 					<Button Name="BtnExportPdf" Focusable="False" Content="Export PDF"/>
 				</StackPanel>
 
-				<!-- spacer (fills the middle) -->
 				<Border/>
 
-				<!-- Right cluster -->
 				<StackPanel DockPanel.Dock="Right"
 							Orientation="Horizontal"
 							Spacing="8"
@@ -72,12 +72,13 @@
 			</DockPanel>
 		</Border>
 
-
 		<!-- Find bar -->
 		<Border Name="FindBar"
 				Grid.Row="1"
 				Grid.ColumnSpan="3"
-				Background="{DynamicResource PanelAltBg}"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
 				Padding="8"
 				CornerRadius="8"
 				Margin="0,8,0,0"
@@ -105,17 +106,9 @@
 							   VerticalAlignment="Center"
 							   Text="0/0"/>
 
-					<Button Name="BtnPrev"
-							Focusable="False"
-							Content="Prev"/>
-
-					<Button Name="BtnNext"
-							Focusable="False"
-							Content="Next"/>
-
-					<Button Name="BtnCloseFind"
-							Focusable="False"
-							Content="✕"/>
+					<Button Name="BtnPrev" Focusable="False" Content="Prev"/>
+					<Button Name="BtnNext" Focusable="False" Content="Next"/>
+					<Button Name="BtnCloseFind" Focusable="False" Content="✕"/>
 				</StackPanel>
 
 			</DockPanel>
@@ -131,6 +124,8 @@
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
 				<Border Background="{DynamicResource XmlViewerBg}"
+						BorderBrush="{DynamicResource XmlViewerBorder}"
+						BorderThickness="0,0,0,1"
 						Padding="8">
 					<TextBlock Text="Original XML (read-only)"
 							   Classes="muted"/>
@@ -140,7 +135,7 @@
 							   Grid.Row="1"
 							   IsReadOnly="True"
 							   FontFamily="Consolas"
-							   Foreground="#FF111111"
+							   Foreground="{DynamicResource TextFg}"
 							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
@@ -151,7 +146,7 @@
 		<GridSplitter Grid.Row="2"
 					  Grid.Column="1"
 					  Width="6"
-					  Background="{DynamicResource SplitterBrush}"
+					  Background="{DynamicResource BorderBrush}"
 					  Margin="0,8,0,0"/>
 
 		<!-- Right: Translated -->
@@ -164,6 +159,8 @@
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
 				<Border Background="{DynamicResource XmlViewerBg}"
+						BorderBrush="{DynamicResource XmlViewerBorder}"
+						BorderThickness="0,0,0,1"
 						Padding="8">
 					<TextBlock Text="Editable Markdown"
 							   Classes="muted"/>
