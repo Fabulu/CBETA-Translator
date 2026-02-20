@@ -1,10 +1,4 @@
 ﻿// Views/ReadableTabView.axaml.cs
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -21,30 +15,31 @@ using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Views;
 
 public partial class ReadableTabView : UserControl
 {
     // UI (custom controls)
-    private AnnotatedTextEditor? _editorOriginal;
-    private AnnotatedTextEditor? _editorTranslated;
+    private AnnotatedTextEditor? _editorOriginal, _editorTranslated;
 
-    // Underlying AvaloniaEdit editors (fetched from inside AnnotatedTextEditor)
-    private TextEditor? _aeOrig;
-    private TextEditor? _aeTran;
-    private ScrollViewer? _svOrig;
-    private ScrollViewer? _svTran;
+    // Inner AvaloniaEdit
+    private TextEditor? _aeOrig, _aeTran;
+    private ScrollViewer? _svOrig, _svTran;
 
-    // Hover dictionary (original only)
+    // Hover dictionary (orig only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
     // Selection sync
     private readonly ISelectionSyncService _selectionSync = new SelectionSyncService();
-
-    private RenderedDocument _renderOrig = RenderedDocument.Empty;
-    private RenderedDocument _renderTran = RenderedDocument.Empty;
+    private RenderedDocument _renderOrig = RenderedDocument.Empty, _renderTran = RenderedDocument.Empty;
 
     private bool _syncingSelection;
 
@@ -53,48 +48,36 @@ public partial class ReadableTabView : UserControl
 
     private DateTime _suppressPollingUntilUtc = DateTime.MinValue;
     private const int SuppressPollingAfterUserActionMs = 220;
+
     private DispatcherTimer? _scrollSnapTimer;
     private const int ScrollSnapDebounceMs = 120;
 
     private DispatcherTimer? _selTimer;
-    private int _lastOrigSelStart = -1, _lastOrigSelEnd = -1;
-    private int _lastTranSelStart = -1, _lastTranSelEnd = -1;
-    private int _lastOrigCaret = -1, _lastTranCaret = -1;
+    private int _lastOrigSelStart = -1, _lastOrigSelEnd = -1, _lastTranSelStart = -1, _lastTranSelEnd = -1, _lastOrigCaret = -1, _lastTranCaret = -1;
 
     private DateTime _lastUserInputUtc = DateTime.MinValue;
     private object? _lastUserInputEditor; // AnnotatedTextEditor or TextEditor
     private const int UserInputPriorityWindowMs = 250;
 
     // Coalesced mirroring: last request wins
-    private bool _mirrorQueued;
-    private bool _mirrorSourceIsTranslated;
+    private bool _mirrorQueued, _mirrorSourceIsTranslated;
 
-    // Zen events
+    // Zen
     private CheckBox? _chkZenText;
     private bool _suppressZenEvents;
     private string? _currentRelPathForZen;
-
     public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
 
-
-    // -------------------------
-    // Find (Ctrl+F) state
-    // -------------------------
+    // Find (Ctrl+F)
     private Border? _findBar;
     private TextBox? _findQuery;
-    private TextBlock? _findCount;
-    private TextBlock? _findScope;
-    private Button? _btnPrev;
-    private Button? _btnNext;
-    private Button? _btnCloseFind;
+    private TextBlock? _findCount, _findScope;
+    private Button? _btnPrev, _btnNext, _btnCloseFind;
 
-    private SearchHighlightRenderer? _hlOrig;
-    private SearchHighlightRenderer? _hlTran;
-
+    private SearchHighlightRenderer? _hlOrig, _hlTran;
     private TextEditor? _findTarget;
     private readonly List<int> _matchStarts = new();
-    private int _matchLen = 0;
-    private int _matchIndex = -1;
+    private int _matchLen, _matchIndex = -1;
 
     private static readonly TimeSpan FindRecomputeDebounce = TimeSpan.FromMilliseconds(140);
     private DispatcherTimer? _findDebounceTimer;
@@ -103,17 +86,11 @@ public partial class ReadableTabView : UserControl
     private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
     private const int SuppressMirrorAfterFindMs = 900;
 
-    // -------------------------
-    // Notes: bottom panel
-    // -------------------------
+    // Notes panel
     private Border? _notesPanel;
     private TextBlock? _notesHeader;
     private TextBox? _notesBody;
-    private Button? _btnCloseNotes;
-
-    private Button? _btnAddCommunityNote;
-    private Button? _btnDeleteCommunityNote;
-
+    private Button? _btnCloseNotes, _btnAddCommunityNote, _btnDeleteCommunityNote;
     private DocAnnotation? _currentAnn;
 
     public event EventHandler<DocAnnotation>? NoteClicked;
@@ -123,72 +100,22 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<string>? Status;
     private void Say(string msg) => Status?.Invoke(this, msg);
 
-    // -------------------------
-    // HARD FIX: pending refresh gate for community note insert/delete
-    // -------------------------
+    // Pending refresh gate (community insert/delete)
     private bool _pendingCommunityRefresh;
     private DateTime _pendingSinceUtc;
     private const int PendingCommunityTimeoutMs = 2500;
 
-    private void EnterPendingCommunityRefresh(string why)
-    {
-        _pendingCommunityRefresh = true;
-        _pendingSinceUtc = DateTime.UtcNow;
-
-        // Freeze selection/mirroring while parent mutates XML + rebuilds render
-        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-
-        // Disable buttons so you cannot double-delete/double-add on stale render
-        if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
-        if (_btnDeleteCommunityNote != null) _btnDeleteCommunityNote.IsEnabled = false;
-
-        Log($"PENDING REFRESH ENTER: {why}");
-    }
-
-    private void ExitPendingCommunityRefresh(string why)
-    {
-        if (!_pendingCommunityRefresh) return;
-        _pendingCommunityRefresh = false;
-        Log($"PENDING REFRESH EXIT: {why}");
-        UpdateNotesButtonsState();
-    }
-
-    // -------------------------
-    // Logging helpers
-    // -------------------------
     private long _seq;
-
-    private void Log(string msg)
-    {
-        var line = $"[ReadableTabView #{++_seq}] {msg}";
-        try { Say(line); } catch { }
-        try { Debug.WriteLine(line); } catch { }
-    }
-
-    private void DumpState(string tag)
-    {
-        Log($"{tag} | " +
-            $"origCtrl={(_editorOriginal != null ? "OK" : "NULL")} tranCtrl={(_editorTranslated != null ? "OK" : "NULL")} | " +
-            $"aeOrig={(_aeOrig != null ? "OK" : "NULL")} aeTran={(_aeTran != null ? "OK" : "NULL")} | " +
-            $"renderOrigEmpty={_renderOrig.IsEmpty} renderTranEmpty={_renderTran.IsEmpty} | " +
-            $"pendingRefresh={_pendingCommunityRefresh} | " +
-            $"addBtn={(_btnAddCommunityNote != null ? "OK" : "NULL")} delBtn={(_btnDeleteCommunityNote != null ? "OK" : "NULL")} | " +
-            $"addEnabled={(_btnAddCommunityNote?.IsEnabled.ToString() ?? "null")} delVisible={(_btnDeleteCommunityNote?.IsVisible.ToString() ?? "null")} delEnabled={(_btnDeleteCommunityNote?.IsEnabled.ToString() ?? "null")}");
-    }
 
     public ReadableTabView()
     {
         InitializeComponent();
 
-        // First pass: try to find stuff in constructor
         FindControls();
         WireEvents();
 
         AttachedToVisualTree += (_, _) =>
         {
-            // IMPORTANT: re-find & rewire AFTER visual tree is alive
             FindControls();
             ResolveInnerEditors();
             ResolveInnerScrollViewers();
@@ -222,6 +149,47 @@ public partial class ReadableTabView : UserControl
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
+    private void Log(string msg)
+    {
+        var line = $"[ReadableTabView #{++_seq}] {msg}";
+        try { Say(line); } catch { }
+        try { Debug.WriteLine(line); } catch { }
+    }
+
+    private void DumpState(string tag)
+    {
+        Log($"{tag} | " +
+            $"origCtrl={(_editorOriginal != null ? "OK" : "NULL")} tranCtrl={(_editorTranslated != null ? "OK" : "NULL")} | " +
+            $"aeOrig={(_aeOrig != null ? "OK" : "NULL")} aeTran={(_aeTran != null ? "OK" : "NULL")} | " +
+            $"renderOrigEmpty={_renderOrig.IsEmpty} renderTranEmpty={_renderTran.IsEmpty} | " +
+            $"pendingRefresh={_pendingCommunityRefresh} | " +
+            $"addBtn={(_btnAddCommunityNote != null ? "OK" : "NULL")} delBtn={(_btnDeleteCommunityNote != null ? "OK" : "NULL")} | " +
+            $"addEnabled={(_btnAddCommunityNote?.IsEnabled.ToString() ?? "null")} delVisible={(_btnDeleteCommunityNote?.IsVisible.ToString() ?? "null")} delEnabled={(_btnDeleteCommunityNote?.IsEnabled.ToString() ?? "null")}");
+    }
+
+    private void EnterPendingCommunityRefresh(string why)
+    {
+        _pendingCommunityRefresh = true;
+        _pendingSinceUtc = DateTime.UtcNow;
+
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+
+        if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
+        if (_btnDeleteCommunityNote != null) _btnDeleteCommunityNote.IsEnabled = false;
+
+        Log($"PENDING REFRESH ENTER: {why}");
+    }
+
+    private void ExitPendingCommunityRefresh(string why)
+    {
+        if (!_pendingCommunityRefresh) return;
+        _pendingCommunityRefresh = false;
+        Log($"PENDING REFRESH EXIT: {why}");
+        UpdateNotesButtonsState();
+    }
+
     private void FindControls()
     {
         _editorOriginal = this.FindControl<AnnotatedTextEditor>("EditorOriginal");
@@ -245,8 +213,7 @@ public partial class ReadableTabView : UserControl
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
 
-        if (_notesPanel != null)
-            _notesPanel.IsVisible = false;
+        if (_notesPanel != null) _notesPanel.IsVisible = false;
 
         if (_btnAddCommunityNote == null) Log("FindControls: BtnAddCommunityNote NOT FOUND (null).");
         if (_btnDeleteCommunityNote == null) Log("FindControls: BtnDeleteCommunityNote NOT FOUND (null).");
@@ -256,7 +223,6 @@ public partial class ReadableTabView : UserControl
     {
         _aeOrig = FindInnerTextEditor(_editorOriginal);
         _aeTran = FindInnerTextEditor(_editorTranslated);
-
         if (_aeOrig != null) _aeOrig.IsReadOnly = true;
         if (_aeTran != null) _aeTran.IsReadOnly = true;
     }
@@ -275,14 +241,13 @@ public partial class ReadableTabView : UserControl
 
         if (ReferenceEquals(_svOrig, null))
             _svOrig = newOrig;
+
         _svTran = newTran;
     }
 
     private void OnOrigScrollViewerPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
-        if (e.Property != ScrollViewer.OffsetProperty)
-            return;
-
+        if (e.Property != ScrollViewer.OffsetProperty) return;
         object who = ((object?)_aeOrig ?? (object?)_editorOriginal) ?? this;
         MarkUserInput(who);
         ScheduleSnapFromOriginalScroll();
@@ -290,8 +255,7 @@ public partial class ReadableTabView : UserControl
 
     private void EnsureScrollSnapTimer()
     {
-        if (_scrollSnapTimer != null)
-            return;
+        if (_scrollSnapTimer != null) return;
 
         _scrollSnapTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ScrollSnapDebounceMs) };
         _scrollSnapTimer.Tick += (_, _) =>
@@ -303,9 +267,7 @@ public partial class ReadableTabView : UserControl
 
     private void ScheduleSnapFromOriginalScroll()
     {
-        if (_pendingCommunityRefresh)
-            return;
-
+        if (_pendingCommunityRefresh) return;
         EnsureScrollSnapTimer();
         _scrollSnapTimer?.Stop();
         _scrollSnapTimer?.Start();
@@ -316,11 +278,9 @@ public partial class ReadableTabView : UserControl
         if (root == null) return null;
         if (root is TextEditor te) return te;
 
-        // Search visual tree
         var found = root.GetVisualDescendants().OfType<TextEditor>().FirstOrDefault();
         if (found != null) return found;
 
-        // Reflection fallback (if AnnotatedTextEditor exposes a property)
         try
         {
             var t = root.GetType();
@@ -337,24 +297,19 @@ public partial class ReadableTabView : UserControl
 
     private void WireEvents()
     {
-        // Track user input timing for mirroring + find scope
         HookUserInputTracking(_editorOriginal, isTranslated: false);
         HookUserInputTracking(_editorTranslated, isTranslated: true);
 
-        // Ctrl+F, Escape, F3
         AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 
-        // Notes: capture clicks anywhere, decide if click was on marker
         AddHandler(
             InputElement.PointerPressedEvent,
             OnPointerPressed_TunnelForNotes,
             RoutingStrategies.Tunnel,
             handledEventsToo: true);
 
-        //Zen check
         if (_chkZenText != null)
             _chkZenText.IsCheckedChanged += ChkZenText_IsCheckedChanged;
-
 
         if (_findQuery != null)
         {
@@ -372,7 +327,6 @@ public partial class ReadableTabView : UserControl
 
         if (_btnCloseNotes != null) _btnCloseNotes.Click += (_, _) => HideNotes();
 
-        // Notes buttons are wired via named handlers (and re-wired after attach)
         RewireNotesButtonsHard();
     }
 
@@ -415,16 +369,11 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingCommunityRefresh)
-            {
-                Log("ADD CLICK ignored: pending refresh still active.");
-                return;
-            }
+            if (_pendingCommunityRefresh) { Log("ADD CLICK ignored: pending refresh still active."); return; }
 
             Log("ADD CLICK fired.");
             DumpState("ADD CLICK state(before)");
 
-            // Force-resolve inner editor at click time (prevents stale null)
             if (_aeTran == null)
             {
                 Log("ADD CLICK: _aeTran was null; ResolveInnerEditors() now.");
@@ -445,11 +394,7 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingCommunityRefresh)
-            {
-                Log("DELETE CLICK ignored: pending refresh still active.");
-                return;
-            }
+            if (_pendingCommunityRefresh) { Log("DELETE CLICK ignored: pending refresh still active."); return; }
 
             Log("DELETE CLICK fired.");
             DumpState("DELETE CLICK state(before)");
@@ -471,8 +416,7 @@ public partial class ReadableTabView : UserControl
         host.PointerWheelChanged += (_, _) =>
         {
             MarkUserInput(host);
-            if (!isTranslated)
-                ScheduleSnapFromOriginalScroll();
+            if (!isTranslated) ScheduleSnapFromOriginalScroll();
         };
         host.KeyDown += (_, _) => MarkUserInput(host);
         host.KeyUp += (_, _) => OnUserActionReleased(isTranslated, host);
@@ -493,11 +437,9 @@ public partial class ReadableTabView : UserControl
     private void OnUserActionReleased(bool sourceIsTranslated, object who)
     {
         MarkUserInput(who);
-
         _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
         if (!sourceIsTranslated)
         {
-            // ZH is the leader: on release, snap ENG scroll position to ZH by 0..1 ratio.
             SnapTranslatedScrollToOriginal();
             RequestMirrorFromUserAction(sourceIsTranslated: false);
         }
@@ -541,26 +483,16 @@ public partial class ReadableTabView : UserControl
         _hoverDictOrig = null;
     }
 
-    // -------------------------
     // Notes click detection
-    // -------------------------
     private void OnPointerPressed_TunnelForNotes(object? sender, PointerPressedEventArgs e)
     {
         try
         {
             if (_pendingCommunityRefresh) return;
-
-            if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-                return;
-
-            if (IsInsideControl(e.Source, _notesPanel))
-                return;
-
-            if (_notesPanel?.IsVisible == true)
-                return;
-
-            if (IsInsideScrollbarStuff(e.Source))
-                return;
+            if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+            if (IsInsideControl(e.Source, _notesPanel)) return;
+            if (_notesPanel?.IsVisible == true) return;
+            if (IsInsideScrollbarStuff(e.Source)) return;
 
             bool onOrig = IsInsideControl(e.Source, _editorOriginal);
             bool onTran = IsInsideControl(e.Source, _editorTranslated);
@@ -573,7 +505,6 @@ public partial class ReadableTabView : UserControl
             if (doc == null || doc.IsEmpty) return;
 
             int offset = GetDocumentOffsetFromPointer(te, e);
-
             if (offset >= 0)
             {
                 if (TryResolveAnnotationFromMarkerSpans(doc, offset, out var ann))
@@ -590,9 +521,7 @@ public partial class ReadableTabView : UserControl
             {
                 int caret = GetCaretOffsetSafe(te);
                 if (caret < 0) return;
-
-                if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
-                    return;
+                if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann)) return;
 
                 Log($"Marker click resolved via caret fallback. pane={(onOrig ? "orig" : "tran")} caret={caret}");
                 ShowNotes(ann);
@@ -626,21 +555,18 @@ public partial class ReadableTabView : UserControl
             var tvType = textView.GetType();
 
             var m1 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point), typeof(bool) });
-            if (m1 != null)
-                posObj = m1.Invoke(textView, new object[] { p, true });
+            if (m1 != null) posObj = m1.Invoke(textView, new object[] { p, true });
 
             if (posObj == null)
             {
                 var m2 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point) });
-                if (m2 != null)
-                    posObj = m2.Invoke(textView, new object[] { p });
+                if (m2 != null) posObj = m2.Invoke(textView, new object[] { p });
             }
 
             if (posObj == null)
             {
                 var m3 = tvType.GetMethod("GetPosition", new[] { typeof(Point) });
-                if (m3 != null)
-                    posObj = m3.Invoke(textView, new object[] { p });
+                if (m3 != null) posObj = m3.Invoke(textView, new object[] { p });
             }
 
             if (posObj == null) return -1;
@@ -648,20 +574,19 @@ public partial class ReadableTabView : UserControl
             var unwrapped = UnwrapNullable(posObj);
             if (unwrapped == null) return -1;
 
-            int line = GetIntMember(unwrapped, "Line", fallback: -1);
-            int column = GetIntMember(unwrapped, "Column", fallback: -1);
+            int line = GetIntMember(unwrapped, "Line", -1);
+            int column = GetIntMember(unwrapped, "Column", -1);
 
             if (line < 1 || column < 1)
             {
                 var lineObj = GetMember(unwrapped, "Line");
                 if (lineObj != null)
                 {
-                    int ln = GetIntMember(lineObj, "LineNumber", fallback: -1);
+                    int ln = GetIntMember(lineObj, "LineNumber", -1);
                     if (ln > 0) line = ln;
                 }
-
                 if (column < 1)
-                    column = GetIntMember(unwrapped, "VisualColumn", fallback: column);
+                    column = GetIntMember(unwrapped, "VisualColumn", column);
             }
 
             if (line < 1 || column < 1) return -1;
@@ -670,10 +595,7 @@ public partial class ReadableTabView : UserControl
             offset = Math.Clamp(offset, 0, document.TextLength);
             return offset;
         }
-        catch
-        {
-            return -1;
-        }
+        catch { return -1; }
     }
 
     private static object? UnwrapNullable(object obj)
@@ -715,7 +637,7 @@ public partial class ReadableTabView : UserControl
             var v = GetMember(obj, name);
             if (v == null) return fallback;
             if (v is int i) return i;
-            if (v is long l) return (l > int.MaxValue) ? int.MaxValue : (int)l;
+            if (v is long l) return l > int.MaxValue ? int.MaxValue : (int)l;
             if (v is IConvertible) return Convert.ToInt32(v);
         }
         catch { }
@@ -725,7 +647,6 @@ public partial class ReadableTabView : UserControl
     private static bool TryResolveAnnotationFromMarkerSpans(RenderedDocument doc, int idx, out DocAnnotation ann)
     {
         ann = default!;
-
         var markers = doc.AnnotationMarkers;
         var anns = doc.Annotations;
 
@@ -746,8 +667,7 @@ public partial class ReadableTabView : UserControl
             else lo = mid + 1;
         }
 
-        int bestMarkerIndex = -1;
-        int bestDist = int.MaxValue;
+        int bestMarkerIndex = -1, bestDist = int.MaxValue;
 
         int startScan = Math.Max(0, firstGreater - 6);
         int endScan = Math.Min(markers.Count - 1, firstGreater + 6);
@@ -755,14 +675,10 @@ public partial class ReadableTabView : UserControl
         for (int i = startScan; i <= endScan; i++)
         {
             var m = markers[i];
-
             if (m.Start > idx + radius) break;
             if (m.EndExclusive < idx - radius) continue;
 
-            int dist;
-            if (idx < m.Start) dist = m.Start - idx;
-            else if (idx > m.EndExclusive) dist = idx - m.EndExclusive;
-            else dist = 0;
+            int dist = idx < m.Start ? (m.Start - idx) : (idx > m.EndExclusive ? (idx - m.EndExclusive) : 0);
 
             if (dist < bestDist)
             {
@@ -772,8 +688,7 @@ public partial class ReadableTabView : UserControl
             }
         }
 
-        if (bestMarkerIndex < 0 || bestDist > radius)
-            return false;
+        if (bestMarkerIndex < 0 || bestDist > radius) return false;
 
         var best = markers[bestMarkerIndex];
         int annIndex = best.AnnotationIndex;
@@ -785,30 +700,21 @@ public partial class ReadableTabView : UserControl
 
     private void ShowNotes(DocAnnotation ann)
     {
-        if (_notesPanel == null || _notesBody == null || _notesHeader == null)
-            return;
+        if (_notesPanel == null || _notesBody == null || _notesHeader == null) return;
 
         _currentAnn = ann;
 
         var kind = string.IsNullOrWhiteSpace(ann.Kind) ? "Note" : ann.Kind!.Trim();
         var resp = GetAnnotationResp(ann);
 
-        _notesHeader.Text = string.IsNullOrWhiteSpace(resp)
-            ? kind
-            : $"{kind} ({resp})";
-
+        _notesHeader.Text = string.IsNullOrWhiteSpace(resp) ? kind : $"{kind} ({resp})";
         _notesBody.Text = ann.Text ?? "";
         _notesPanel.IsVisible = true;
 
         UpdateNotesButtonsState();
         DumpState("ShowNotes");
 
-        try
-        {
-            _notesBody.SelectionStart = 0;
-            _notesBody.SelectionEnd = 0;
-        }
-        catch { }
+        try { _notesBody.SelectionStart = 0; _notesBody.SelectionEnd = 0; } catch { }
     }
 
     private void HideNotes()
@@ -837,17 +743,11 @@ public partial class ReadableTabView : UserControl
         }
 
         if (_btnAddCommunityNote != null)
-        {
-            bool enabled = !_renderTran.IsEmpty && _aeTran != null;
-            _btnAddCommunityNote.IsEnabled = enabled;
-        }
+            _btnAddCommunityNote.IsEnabled = !_renderTran.IsEmpty && _aeTran != null;
 
         if (_btnDeleteCommunityNote != null)
         {
-            bool canDelete = false;
-            if (_currentAnn != null && IsCommunityAnnotation(_currentAnn, out var xs, out var xe) && xe > xs)
-                canDelete = true;
-
+            bool canDelete = _currentAnn != null && IsCommunityAnnotation(_currentAnn, out var xs, out var xe) && xe > xs;
             _btnDeleteCommunityNote.IsEnabled = canDelete;
             _btnDeleteCommunityNote.IsVisible = canDelete;
         }
@@ -866,7 +766,6 @@ public partial class ReadableTabView : UserControl
         if (TryGetStringProp(ann, "Author", out var a) && !string.IsNullOrWhiteSpace(a)) return a.Trim();
         if (TryGetStringProp(ann, "By", out var b) && !string.IsNullOrWhiteSpace(b)) return b.Trim();
         if (TryGetStringProp(ann, "Name", out var n) && !string.IsNullOrWhiteSpace(n)) return n.Trim();
-
         return null;
     }
 
@@ -894,27 +793,13 @@ public partial class ReadableTabView : UserControl
         return looksCommunity && xmlStart >= 0 && xmlEndExclusive > xmlStart;
     }
 
-    // -------------------------
     // Community note add/delete
-    // -------------------------
-    public async Task AddCommunityNoteAtCaretAsync()
-    {
-        await AddCommunityNoteFromCaretAsync();
-    }
+    public async Task AddCommunityNoteAtCaretAsync() => await AddCommunityNoteFromCaretAsync();
 
     private async Task AddCommunityNoteFromCaretAsync()
     {
-        if (_pendingCommunityRefresh)
-        {
-            Log("AddCommunityNoteFromCaretAsync blocked: pending refresh.");
-            return;
-        }
-
-        if (_aeTran == null || _renderTran.IsEmpty)
-        {
-            Log("AddCommunityNoteFromCaretAsync blocked: _aeTran null or _renderTran empty.");
-            return;
-        }
+        if (_pendingCommunityRefresh) { Log("AddCommunityNoteFromCaretAsync blocked: pending refresh."); return; }
+        if (_aeTran == null || _renderTran.IsEmpty) { Log("AddCommunityNoteFromCaretAsync blocked: _aeTran null or _renderTran empty."); return; }
 
         int caret = GetCaretOffsetSafe(_aeTran);
         if (caret < 0) caret = 0;
@@ -932,10 +817,8 @@ public partial class ReadableTabView : UserControl
     {
         if (_pendingCommunityRefresh)
             return (false, "Pending refresh: waiting for renderer to update after previous add/delete.");
-
         if (_aeTran == null)
             return (false, "_aeTran is null (inner editor not found).");
-
         if (_renderTran.IsEmpty)
             return (false, "_renderTran.IsEmpty (no rendered translated document set yet).");
 
@@ -954,8 +837,7 @@ public partial class ReadableTabView : UserControl
         try
         {
             var sel = ed.TextArea?.Selection;
-            if (sel == null || sel.IsEmpty)
-                return ed.TextArea?.Caret.Offset ?? 0;
+            if (sel == null || sel.IsEmpty) return ed.TextArea?.Caret.Offset ?? 0;
 
             var seg = sel.SurroundingSegment;
             int start = seg.Offset;
@@ -963,25 +845,13 @@ public partial class ReadableTabView : UserControl
             if (endEx < start) (start, endEx) = (endEx, start);
             return start + Math.Max(0, (endEx - start) / 2);
         }
-        catch
-        {
-            return ed.TextArea?.Caret.Offset ?? 0;
-        }
+        catch { return ed.TextArea?.Caret.Offset ?? 0; }
     }
 
     private void DeleteCurrentCommunityNote()
     {
-        if (_pendingCommunityRefresh)
-        {
-            Log("Delete note blocked: pending refresh.");
-            return;
-        }
-
-        if (_currentAnn == null)
-        {
-            Log("Delete note: no note is currently open.");
-            return;
-        }
+        if (_pendingCommunityRefresh) { Log("Delete note blocked: pending refresh."); return; }
+        if (_currentAnn == null) { Log("Delete note: no note is currently open."); return; }
 
         if (!IsCommunityAnnotation(_currentAnn, out int xs, out int xe))
         {
@@ -989,40 +859,23 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        // CRITICAL: gate UI NOW to prevent double-delete on stale render
         EnterPendingCommunityRefresh($"delete xs={xs} xe={xe}");
-
         Log($"Delete note: raising CommunityNoteDeleteRequested xs={xs} xe={xe}");
         CommunityNoteDeleteRequested?.Invoke(this, (xs, xe));
-
         HideNotes();
     }
 
     private async Task PromptAddCommunityNoteAsync(int xmlIndex)
     {
-        if (_pendingCommunityRefresh)
-        {
-            Log("PromptAddCommunityNoteAsync blocked: pending refresh.");
-            return;
-        }
+        if (_pendingCommunityRefresh) { Log("PromptAddCommunityNoteAsync blocked: pending refresh."); return; }
 
         Log($"PromptAddCommunityNoteAsync: opening dialog at xmlIndex={xmlIndex}");
-
         var owner = TopLevel.GetTopLevel(this) as Window;
 
-        var txt = new TextBox
-        {
-            AcceptsReturn = true,
-            TextWrapping = TextWrapping.Wrap,
-            Height = 140
-        };
+        var txt = new TextBox { AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 140 };
         ScrollViewer.SetVerticalScrollBarVisibility(txt, ScrollBarVisibility.Auto);
 
-        var resp = new TextBox
-        {
-            Watermark = "Optional resp (e.g., your initials)",
-            Height = 32
-        };
+        var resp = new TextBox { Watermark = "Optional resp (e.g., your initials)", Height = 32 };
 
         var btnOk = new Button { Content = "Add note", MinWidth = 110 };
         var btnCancel = new Button { Content = "Cancel", MinWidth = 90 };
@@ -1036,12 +889,7 @@ public partial class ReadableTabView : UserControl
         btnRow.Children.Add(btnCancel);
         btnRow.Children.Add(btnOk);
 
-        var panel = new StackPanel
-        {
-            Margin = new Thickness(16),
-            Spacing = 10
-        };
-
+        var panel = new StackPanel { Margin = new Thickness(16), Spacing = 10 };
         panel.Children.Add(new TextBlock { Text = "Community note text:" });
         panel.Children.Add(txt);
         panel.Children.Add(new TextBlock { Text = "Resp (optional):" });
@@ -1054,18 +902,14 @@ public partial class ReadableTabView : UserControl
             Width = 520,
             Height = 360,
             Content = panel,
-            WindowStartupLocation = owner != null
-                ? WindowStartupLocation.CenterOwner
-                : WindowStartupLocation.CenterScreen
+            WindowStartupLocation = owner != null ? WindowStartupLocation.CenterOwner : WindowStartupLocation.CenterScreen
         };
 
         bool okRes;
-
         if (owner != null)
         {
             btnCancel.Click += (_, _) => win.Close(false);
             btnOk.Click += (_, _) => win.Close(true);
-
             okRes = await win.ShowDialog<bool>(owner);
         }
         else
@@ -1090,22 +934,15 @@ public partial class ReadableTabView : UserControl
         }
 
         Log("PromptAddCommunityNoteAsync: dialog closed ok=" + okRes);
-
         if (!okRes) return;
 
         var noteText = (txt.Text ?? "").Trim();
-        if (noteText.Length == 0)
-        {
-            Log("PromptAddCommunityNoteAsync: empty note text, abort.");
-            return;
-        }
+        if (noteText.Length == 0) { Log("PromptAddCommunityNoteAsync: empty note text, abort."); return; }
 
         var respVal = (resp.Text ?? "").Trim();
         if (respVal.Length == 0) respVal = null;
 
-        // CRITICAL: gate UI NOW to prevent double-insert on stale render
         EnterPendingCommunityRefresh($"insert xmlIndex={xmlIndex}");
-
         Log($"PromptAddCommunityNoteAsync: raising CommunityNoteInsertRequested xmlIndex={xmlIndex} resp={(respVal ?? "(null)")} textLen={noteText.Length}");
         CommunityNoteInsertRequested?.Invoke(this, (xmlIndex, noteText, respVal));
     }
@@ -1113,20 +950,14 @@ public partial class ReadableTabView : UserControl
     private static bool TryMapRenderedCaretToXmlIndex(RenderedDocument doc, int displayIndex, out int xmlIndex)
     {
         xmlIndex = -1;
-
-        if (doc == null || doc.IsEmpty)
-            return false;
-
+        if (doc == null || doc.IsEmpty) return false;
         int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
         if (mapped < 0) return false;
-
         xmlIndex = mapped;
         return true;
     }
 
-    // -------------------------
     // Public API
-    // -------------------------
     public void Clear()
     {
         _renderOrig = RenderedDocument.Empty;
@@ -1142,9 +973,7 @@ public partial class ReadableTabView : UserControl
 
         SetZenContext(null, isZen: false);
 
-
         HideNotes();
-
         ClearFindState();
         CloseFind();
 
@@ -1166,38 +995,27 @@ public partial class ReadableTabView : UserControl
         ResolveInnerScrollViewers();
         RewireNotesButtonsHard();
 
-        if (_aeOrig != null)
-            _aeOrig.Text = _renderOrig.Text ?? "";
+        if (_aeOrig != null) _aeOrig.Text = _renderOrig.Text ?? "";
 
         if (_aeTran != null)
         {
-            // HARD SAFETY: If translated text is null or empty,
-            // do NOT silently show original.
             if (string.IsNullOrWhiteSpace(_renderTran.Text))
-            {
                 _aeTran.Text = "[No translated content found in this file]";
-            }
             else
-            {
                 _aeTran.Text = _renderTran.Text;
-            }
         }
 
         SetupHoverDictionary();
         HideNotes();
 
         ExitPendingCommunityRefresh("SetRendered received new render");
-
         DumpState("SetRendered()");
     }
 
-    // -------------------------
-    // Polling + mirroring  (DO NOT TOUCH BEHAVIOR)
-    // -------------------------
+    // Polling + mirroring (DO NOT TOUCH BEHAVIOR)
     private void StartSelectionTimer()
     {
         if (_selTimer != null) return;
-
         _selTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(240) };
         _selTimer.Tick += (_, _) => PollSelectionChanges();
         _selTimer.Start();
@@ -1212,12 +1030,10 @@ public partial class ReadableTabView : UserControl
 
     private void PollSelectionChanges()
     {
-        // HARD FIX: while waiting for re-render after add/delete, do nothing.
         if (_pendingCommunityRefresh)
         {
             if ((DateTime.UtcNow - _pendingSinceUtc).TotalMilliseconds > PendingCommunityTimeoutMs)
             {
-                // Safety: don't deadlock UI forever if parent forgot to call SetRendered.
                 _pendingCommunityRefresh = false;
                 Log("PENDING REFRESH TIMEOUT: releasing UI (no SetRendered received).");
                 UpdateNotesButtonsState();
@@ -1254,12 +1070,9 @@ public partial class ReadableTabView : UserControl
         if (!origSelChanged && !tranSelChanged && !origCaretChanged && !tranCaretChanged)
             return;
 
-        _lastOrigSelStart = oS;
-        _lastOrigSelEnd = oE;
-        _lastTranSelStart = tS;
-        _lastTranSelEnd = tE;
-        _lastOrigCaret = oC;
-        _lastTranCaret = tC;
+        _lastOrigSelStart = oS; _lastOrigSelEnd = oE;
+        _lastTranSelStart = tS; _lastTranSelEnd = tE;
+        _lastOrigCaret = oC; _lastTranCaret = tC;
 
         bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
         if (!sourceIsTranslated)
@@ -1268,8 +1081,7 @@ public partial class ReadableTabView : UserControl
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)
     {
-        if (_aeOrig == null || _aeTran == null)
-            return true;
+        if (_aeOrig == null || _aeTran == null) return true;
 
         bool origFocused = _aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin;
         bool tranFocused = _aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin;
@@ -1284,10 +1096,8 @@ public partial class ReadableTabView : UserControl
 
         if (recentInput && _lastUserInputEditor != null)
         {
-            if (ReferenceEquals(_lastUserInputEditor, _editorTranslated) || ReferenceEquals(_lastUserInputEditor, _aeTran))
-                return true;
-            if (ReferenceEquals(_lastUserInputEditor, _editorOriginal) || ReferenceEquals(_lastUserInputEditor, _aeOrig))
-                return false;
+            if (ReferenceEquals(_lastUserInputEditor, _editorTranslated) || ReferenceEquals(_lastUserInputEditor, _aeTran)) return true;
+            if (ReferenceEquals(_lastUserInputEditor, _editorOriginal) || ReferenceEquals(_lastUserInputEditor, _aeOrig)) return false;
         }
 
         if (tranFocused) return true;
@@ -1334,10 +1144,7 @@ public partial class ReadableTabView : UserControl
 
             _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs);
         }
-        finally
-        {
-            _syncingSelection = false;
-        }
+        finally { _syncingSelection = false; }
     }
 
     private void ApplyDestinationSelection(TextEditor dst, int start, int endExclusive, bool center)
@@ -1352,10 +1159,7 @@ public partial class ReadableTabView : UserControl
             dst.TextArea.Selection = Selection.Create(dst.TextArea, start, endExclusive);
             dst.TextArea.Caret.Offset = start;
         }
-        catch
-        {
-            // ignore
-        }
+        catch { }
 
         if (!center) return;
 
@@ -1385,31 +1189,17 @@ public partial class ReadableTabView : UserControl
         }, DispatcherPriority.Background);
     }
 
-    // -------------------------
     // Ctrl+F Find UI
-    // -------------------------
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
-        {
-            OpenFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape && _findBar?.IsVisible == true)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
+        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control)) { OpenFind(); e.Handled = true; return; }
+        if (e.Key == Key.Escape && _findBar?.IsVisible == true) { CloseFind(); e.Handled = true; return; }
 
         if (_findBar?.IsVisible == true && e.Key == Key.F3)
         {
             if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
             else JumpNext();
             e.Handled = true;
-            return;
         }
     }
 
@@ -1429,7 +1219,6 @@ public partial class ReadableTabView : UserControl
         {
             CloseFind();
             e.Handled = true;
-            return;
         }
     }
 
@@ -1454,18 +1243,14 @@ public partial class ReadableTabView : UserControl
 
     private void CloseFind()
     {
-        if (_findBar != null)
-            _findBar.IsVisible = false;
-
+        if (_findBar != null) _findBar.IsVisible = false;
         ClearHighlight();
-
         try { _findTarget?.Focus(); } catch { }
     }
 
     private TextEditor? DetermineCurrentPaneForFind()
     {
-        if (_aeOrig == null || _aeTran == null)
-            return _aeTran;
+        if (_aeOrig == null || _aeTran == null) return _aeTran;
 
         bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
         if (recentInput && _lastUserInputEditor != null)
@@ -1483,7 +1268,6 @@ public partial class ReadableTabView : UserControl
     private void SetFindTarget(TextEditor? ed, bool preserveIndex)
     {
         if (ed == null) return;
-
         _findTarget = ed;
 
         if (_findScope != null)
@@ -1494,7 +1278,9 @@ public partial class ReadableTabView : UserControl
 
     private void DebounceRecomputeMatches()
     {
-        _findDebounceTimer ??= new DispatcherTimer { Interval = FindRecomputeDebounce };
+        if (_findDebounceTimer == null)
+            _findDebounceTimer = new DispatcherTimer { Interval = FindRecomputeDebounce };
+
         _findDebounceTimer.Stop();
         _findDebounceTimer.Tick -= FindDebounceTimer_Tick;
         _findDebounceTimer.Tick += FindDebounceTimer_Tick;
@@ -1525,12 +1311,7 @@ public partial class ReadableTabView : UserControl
         _matchLen = 0;
         _matchIndex = -1;
 
-        if (q.Length == 0 || hay.Length == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
+        if (q.Length == 0 || hay.Length == 0) { UpdateFindCount(); ClearHighlight(); return; }
 
         _matchLen = q.Length;
 
@@ -1543,12 +1324,7 @@ public partial class ReadableTabView : UserControl
             idx = idx + Math.Max(1, q.Length);
         }
 
-        if (_matchStarts.Count == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
+        if (_matchStarts.Count == 0) { UpdateFindCount(); ClearHighlight(); return; }
 
         if (resetToFirst)
         {
@@ -1578,11 +1354,8 @@ public partial class ReadableTabView : UserControl
     private void UpdateFindCount()
     {
         if (_findCount == null) return;
-
-        if (_matchStarts.Count == 0 || _matchIndex < 0)
-            _findCount.Text = "0/0";
-        else
-            _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
+        if (_matchStarts.Count == 0 || _matchIndex < 0) _findCount.Text = "0/0";
+        else _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
     }
 
     private void JumpNext()
@@ -1610,7 +1383,6 @@ public partial class ReadableTabView : UserControl
         int len = _matchLen;
 
         ApplyHighlight(_findTarget, start, len);
-
         if (!scroll) return;
 
         try
@@ -1646,12 +1418,10 @@ public partial class ReadableTabView : UserControl
     private static void AttachRendererIfMissing(TextEditor? ed, ref SearchHighlightRenderer? renderer)
     {
         if (ed == null) return;
-
         var tv = ed.TextArea?.TextView;
         if (tv == null) return;
 
         renderer ??= new SearchHighlightRenderer(tv);
-
         if (!tv.BackgroundRenderers.Contains(renderer))
             tv.BackgroundRenderers.Add(renderer);
     }
@@ -1711,9 +1481,8 @@ public partial class ReadableTabView : UserControl
         UpdateFindCount();
         ClearHighlight();
     }
-    // -------------------------
-    // Zen Check
-    // -------------------------
+
+    // Zen
     private void ChkZenText_IsCheckedChanged(object? sender, RoutedEventArgs e)
     {
         try
@@ -1723,7 +1492,6 @@ public partial class ReadableTabView : UserControl
 
             bool isZen = _chkZenText?.IsChecked == true;
             Log($"ZEN TOGGLE: rel={_currentRelPathForZen} isZen={isZen}");
-
             ZenFlagChanged?.Invoke(this, (_currentRelPathForZen!, isZen));
         }
         catch (Exception ex)
@@ -1735,7 +1503,6 @@ public partial class ReadableTabView : UserControl
     public void SetZenContext(string? relPath, bool isZen)
     {
         _currentRelPathForZen = relPath;
-
         if (_chkZenText == null) return;
 
         _suppressZenEvents = true;
@@ -1744,15 +1511,10 @@ public partial class ReadableTabView : UserControl
             _chkZenText.IsChecked = isZen;
             _chkZenText.IsEnabled = !string.IsNullOrWhiteSpace(relPath);
         }
-        finally
-        {
-            _suppressZenEvents = false;
-        }
+        finally { _suppressZenEvents = false; }
     }
 
-    // -------------------------
-    // Selection helpers (AvaloniaEdit)
-    // -------------------------
+    // Selection helpers
     private static int GetSelectionStartSafe(TextEditor ed)
     {
         try
@@ -1775,9 +1537,7 @@ public partial class ReadableTabView : UserControl
         catch { return 0; }
     }
 
-    // -------------------------
-    // Scroll helper (AvaloniaEdit)
-    // -------------------------
+    // Scroll helper
     private static void CenterByCaret(TextEditor ed, int caretOffset)
     {
         var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
@@ -1791,26 +1551,20 @@ public partial class ReadableTabView : UserControl
         if (textView == null) return;
 
         textView.EnsureVisualLines();
-
         try { ed.TextArea.Caret.Offset = Math.Clamp(caretOffset, 0, (ed.Text ?? "").Length); } catch { }
 
         var caretPos = ed.TextArea.Caret.Position;
-
         var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
         var p = textView.TranslatePoint(loc, sv);
         if (p == null) return;
 
         double caretY = p.Value.Y;
 
-        bool looksLikeViewportCoords =
-            caretY >= -viewportH * 0.25 &&
-            caretY <= viewportH * 1.25;
+        bool looksLikeViewportCoords = caretY >= -viewportH * 0.25 && caretY <= viewportH * 1.25;
 
-        double desiredY;
-        if (looksLikeViewportCoords)
-            desiredY = sv.Offset.Y + (caretY - (viewportH / 2.0));
-        else
-            desiredY = caretY - (viewportH / 2.0);
+        double desiredY = looksLikeViewportCoords
+            ? sv.Offset.Y + (caretY - (viewportH / 2.0))
+            : caretY - (viewportH / 2.0);
 
         if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
         {
@@ -1822,17 +1576,13 @@ public partial class ReadableTabView : UserControl
         sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
 
-    // -------------------------
-    // Utility: visual ancestry checks
-    // -------------------------
+    // Visual ancestry checks
     private static bool IsInsideScrollbarStuff(object? source)
     {
         var cur = source as StyledElement;
         while (cur != null)
         {
-            if (cur is ScrollBar || cur is Thumb || cur is RepeatButton)
-                return true;
-
+            if (cur is ScrollBar || cur is Thumb || cur is RepeatButton) return true;
             cur = cur.Parent as StyledElement;
         }
         return false;
@@ -1844,8 +1594,7 @@ public partial class ReadableTabView : UserControl
         var cur = source as StyledElement;
         while (cur != null)
         {
-            if (ReferenceEquals(cur, root))
-                return true;
+            if (ReferenceEquals(cur, root)) return true;
             cur = cur.Parent as StyledElement;
         }
         return false;
@@ -1862,20 +1611,17 @@ public partial class ReadableTabView : UserControl
             if (pi != null)
             {
                 var raw = pi.GetValue(obj);
-                if (TryConvertNumber(raw, out value))
-                    return true;
+                if (TryConvertNumber(raw, out value)) return true;
             }
 
             var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (fi != null)
             {
                 var raw = fi.GetValue(obj);
-                if (TryConvertNumber(raw, out value))
-                    return true;
+                if (TryConvertNumber(raw, out value)) return true;
             }
         }
         catch { }
-
         return false;
     }
 
@@ -1889,9 +1635,7 @@ public partial class ReadableTabView : UserControl
             switch (raw)
             {
                 case int i: value = i; return true;
-                case long l:
-                    value = l > int.MaxValue ? int.MaxValue : (l < int.MinValue ? int.MinValue : (int)l);
-                    return true;
+                case long l: value = l > int.MaxValue ? int.MaxValue : (l < int.MinValue ? int.MinValue : (int)l); return true;
                 case short s: value = s; return true;
                 case byte b: value = b; return true;
                 case uint ui: value = ui > int.MaxValue ? int.MaxValue : (int)ui; return true;
@@ -1900,18 +1644,11 @@ public partial class ReadableTabView : UserControl
                 case double d: value = (int)d; return true;
                 case decimal m: value = (int)m; return true;
                 default:
-                    if (raw is IConvertible)
-                    {
-                        value = Convert.ToInt32(raw);
-                        return true;
-                    }
+                    if (raw is IConvertible) { value = Convert.ToInt32(raw); return true; }
                     return false;
             }
         }
-        catch
-        {
-            return false;
-        }
+        catch { return false; }
     }
 
     private static bool TryGetStringProp(object obj, string name, out string? value)
