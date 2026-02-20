@@ -77,30 +77,35 @@ public sealed class MarkdownTranslationService
     public string MergeMarkdownIntoTei(string originalXml, string markdown, out int updatedCount)
     {
         var rows = ParseMarkdownRows(markdown);
+
+        // NOTE: keep these Ordinal to match your existing behavior; assumes ParseMarkdownRows emits stable ids/paths.
         var enById = rows
             .Where(r => !string.IsNullOrWhiteSpace(r.XmlId))
             .ToDictionary(r => r.XmlId!, r => r.En ?? "", StringComparer.Ordinal);
+
         var enByPath = rows
             .Where(r => !string.IsNullOrWhiteSpace(r.NodePath))
             .ToDictionary(r => r.NodePath!, r => r.En ?? "", StringComparer.Ordinal);
 
         var doc = XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace);
         updatedCount = 0;
-        var sourceIds = new HashSet<string>(StringComparer.Ordinal);
 
+        // -------- validate source ids (and catch duplicates) --------
+        var sourceIds = new HashSet<string>(StringComparer.Ordinal);
         foreach (var p in doc.Descendants(Tei + "p"))
         {
             var xmlId = (string?)p.Attribute(Xml + "id");
-            if (string.IsNullOrWhiteSpace(xmlId))
-                continue;
+            if (string.IsNullOrWhiteSpace(xmlId)) continue;
 
             if (!sourceIds.Add(xmlId))
                 throw new MarkdownTranslationException($"Duplicate xml:id in source TEI: {xmlId}");
         }
 
+        // -------- validate markdown references --------
         var missingInSource = rows
             .Where(r => !string.IsNullOrWhiteSpace(r.XmlId) && !sourceIds.Contains(r.XmlId!))
             .ToList();
+
         if (missingInSource.Count > 0)
         {
             var first = missingInSource[0];
@@ -112,23 +117,42 @@ public sealed class MarkdownTranslationService
         foreach (var row in rows.Where(r => !string.IsNullOrWhiteSpace(r.NodePath)))
         {
             if (!TryFindNodeByPath(doc, row.NodePath!, out _))
-                throw new MarkdownTranslationException($"Markdown references node path not found in source TEI: {row.NodePath}", row.XmlRefLine);
+                throw new MarkdownTranslationException(
+                    $"Markdown references node path not found in source TEI: {row.NodePath}",
+                    row.XmlRefLine);
         }
 
+        // ============================================================
+        // FULL RESYNC WITHOUT TOUCHING LEGACY NOTES:
+        // - We ONLY ever create/update/delete notes that are resp="md-import" and xml:lang="en"
+        // - We do NOT overwrite other community notes (including legacy ones) and we do NOT delete Chinese notes.
+        // ============================================================
+
+        // -------- PASS 1: xml:id rows on <tei:p xml:id="..."> --------
         foreach (var p in doc.Descendants(Tei + "p"))
         {
             var xmlId = (string?)p.Attribute(Xml + "id");
-            if (string.IsNullOrWhiteSpace(xmlId) || !enById.TryGetValue(xmlId, out var enTextRaw))
+            if (string.IsNullOrWhiteSpace(xmlId)) continue;
+
+            // Find the md-import slot note on this <p> (ONLY this one is managed by markdown)
+            var existingMdImport = p.Elements(Tei + "note").FirstOrDefault(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute("resp"), "md-import", StringComparison.OrdinalIgnoreCase));
+
+            // If markdown has no row for this id, we must delete stale md-import notes (full resync)
+            if (!enById.TryGetValue(xmlId, out var enTextRaw))
+            {
+                if (existingMdImport != null)
+                    existingMdImport.Remove();
                 continue;
+            }
 
             var enText = (enTextRaw ?? "").Trim();
-            var existing = p.Elements(Tei + "note").FirstOrDefault(n =>
-                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
-                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase));
 
             if (!string.IsNullOrWhiteSpace(enText))
             {
-                if (existing == null)
+                if (existingMdImport == null)
                 {
                     p.Add(new XElement(Tei + "note",
                         new XAttribute("type", "community"),
@@ -138,16 +162,36 @@ public sealed class MarkdownTranslationService
                 }
                 else
                 {
-                    existing.SetAttributeValue("resp", "md-import");
-                    existing.Value = enText;
+                    existingMdImport.Value = enText;
                 }
 
                 updatedCount++;
             }
-            else if (existing != null)
+            else
             {
-                existing.Remove();
+                // markdown explicitly blank => remove only the md-import slot (no touching legacy notes)
+                if (existingMdImport != null)
+                    existingMdImport.Remove();
             }
+        }
+
+        // -------- PASS 2: node-path rows (target-path notes placed after the target node) --------
+        // Also full resync: any md-import note with target-path NOT present in markdown must be removed.
+        var allPathNotes = doc.Descendants(Tei + "note")
+            .Where(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute("resp"), "md-import", StringComparison.OrdinalIgnoreCase) &&
+                n.Attribute("target-path") != null)
+            .ToList();
+
+        foreach (var n in allPathNotes)
+        {
+            var path = (string?)n.Attribute("target-path");
+            if (string.IsNullOrWhiteSpace(path)) continue;
+
+            if (!enByPath.ContainsKey(path))
+                n.Remove(); // stale md-import path note
         }
 
         foreach (var kv in enByPath)
@@ -156,11 +200,14 @@ public sealed class MarkdownTranslationService
                 continue;
 
             var enText = (kv.Value ?? "").Trim();
+
+            // Only manage the md-import slot note for this exact path
             var existingPathNote = target
                 .ElementsAfterSelf(Tei + "note")
                 .FirstOrDefault(n =>
                     string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
                     string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals((string?)n.Attribute("resp"), "md-import", StringComparison.OrdinalIgnoreCase) &&
                     string.Equals((string?)n.Attribute("target-path"), kv.Key, StringComparison.Ordinal));
 
             if (!string.IsNullOrWhiteSpace(enText))
@@ -176,14 +223,16 @@ public sealed class MarkdownTranslationService
                 }
                 else
                 {
-                    existingPathNote.SetAttributeValue("resp", "md-import");
                     existingPathNote.Value = enText;
                 }
+
                 updatedCount++;
             }
-            else if (existingPathNote != null)
+            else
             {
-                existingPathNote.Remove();
+                // explicit blank => remove only md-import slot for that path
+                if (existingPathNote != null)
+                    existingPathNote.Remove();
             }
         }
 
