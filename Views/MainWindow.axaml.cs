@@ -1,12 +1,12 @@
 ﻿// Views/MainWindow.axaml.cs
 //
-// FIXES:
-// 1) Community notes insert/delete modify translated XML (xml-p5t) and re-render ReadableTabView.
-// 2) Selection-anchored notes: insert uses (XmlStart, XmlEndExclusive) so you can annotate a specific word/phrase.
-// 3) PERSISTENCE: Saving Markdown merges into a TEI base that already contains community notes (prefers disk translated TEI),
-//    so MergeMarkdownIntoTei does NOT wipe notes.
-//
-// PDF EXPORT: REMOVED COMPLETELY.
+// MERGED-BRANCH INTEGRATION TARGET:
+// - Translation tab stays MARKDOWN-based.
+// - Readable tab becomes XML-ONLY: always renders disk TEI (xml-p5 + xml-p5t).
+// - Community notes edit disk TEI ONLY (creating xml-p5t once if missing).
+// - Remove MainWindow-driven mirroring hacks (restore old mirroring behavior in ReadableTabView).
+// - Keep: settings + theme, improved hover dictionary behavior (elsewhere), full-text nav filter, Git helpers.
+// - PDF EXPORT: REMOVED COMPLETELY.
 
 using Avalonia;
 using Avalonia.Controls;
@@ -81,11 +81,7 @@ public partial class MainWindow : Window
 
     private string _rawOrigXml = "";
     private string _rawTranMarkdown = "";
-    private string _rawTranXml = "";
-    private string _rawTranXmlReadable = "";
-
-    // This is the exact translated XML source that was rendered into ReadableTabView last time
-    private string _lastReadableTranslatedXmlSource = "";
+    private string _rawTranXml = ""; // materialized / last-saved merged TEI (not the readable source anymore)
 
     private readonly Dictionary<string, int> _markdownSaveCounts = new(StringComparer.OrdinalIgnoreCase);
 
@@ -98,9 +94,6 @@ public partial class MainWindow : Window
     private bool _dirty;
     private DispatcherTimer? _dirtyTimer;
     private int _lastTabIndex = -1;
-
-    // For right->left mirroring: reflect into ReadableTabView private method
-    private ReadableMirrorInvoker? _mirrorInvoker;
 
     public MainWindow()
     {
@@ -122,7 +115,6 @@ public partial class MainWindow : Window
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
-
     private T? Find<T>(string name) where T : Control => this.FindControl<T>(name);
 
     private void FindControls()
@@ -259,22 +251,20 @@ public partial class MainWindow : Window
                 catch (Exception ex) { SetStatus("Zen toggle failed: " + ex.Message); }
             };
 
-            // ✅ community notes: selection-aware insert + delete
-            // Expected event tuple: (int XmlStart, int XmlEndExclusive, string NoteText, string? Resp)
+            // Community notes:
+            // ReadableTabView now raises INSERT with a single XmlIndex (caret/midpoint mapped into TEI).
+            // DELETE still raises the full XmlStart..XmlEndExclusive range of the <note> node.
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
             {
-                await OnCommunityNoteInsertRequestedAsync(req.XmlStart, req.XmlEndExclusive, req.NoteText, req.Resp);
+                await OnCommunityNoteInsertRequestedAsync(req.XmlIndex, req.NoteText, req.Resp);
             };
             _readableView.CommunityNoteDeleteRequested += async (_, req) =>
             {
                 await OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
             };
 
-            // ✅ right->left mirroring
-            _mirrorInvoker = new ReadableMirrorInvoker(_readableView, SetStatus);
-            _readableView.AddHandler(InputElement.PointerReleasedEvent, OnReadablePointerReleasedTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
-            _readableView.AddHandler(InputElement.KeyUpEvent, OnReadableKeyUpTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
-            _readableView.AddHandler(InputElement.PointerPressedEvent, OnReadablePointerPressedTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
+            // IMPORTANT: Do NOT hook any MainWindow mirroring hacks here.
+            // Mirroring behavior should be restored/handled inside ReadableTabView (old logic).
         }
 
         if (_translationView != null)
@@ -328,76 +318,32 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Mirroring: translated -> original
+    // Community notes handlers (DISK-TEI ONLY)
     // =========================
 
-    private void OnReadablePointerPressedTunnel(object? sender, PointerPressedEventArgs e)
-    {
-        if (_mirrorInvoker == null || _readableView == null) return;
-        if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-            _mirrorInvoker.MarkTranslatedInteraction();
-    }
-
-    private void OnReadablePointerReleasedTunnel(object? sender, PointerReleasedEventArgs e)
-    {
-        if (_mirrorInvoker == null || _readableView == null) return;
-
-        if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-            Dispatcher.UIThread.Post(() => _mirrorInvoker.TryMirrorTranslatedToOriginal(), DispatcherPriority.Background);
-    }
-
-    private void OnReadableKeyUpTunnel(object? sender, KeyEventArgs e)
-    {
-        if (_mirrorInvoker == null || _readableView == null) return;
-
-        if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-            Dispatcher.UIThread.Post(() => _mirrorInvoker.TryMirrorTranslatedToOriginal(), DispatcherPriority.Background);
-    }
-
-    private static bool IsInsideNamedControl(object? source, string name)
-    {
-        var cur = source as StyledElement;
-        while (cur != null)
-        {
-            if (cur is Control c && string.Equals(c.Name, name, StringComparison.Ordinal))
-                return true;
-            cur = cur.Parent as StyledElement;
-        }
-        return false;
-    }
-
-    // =========================
-    // Community notes handlers (SELECTION-AWARE + PERSISTENT)
-    // =========================
-
-    private async Task OnCommunityNoteInsertRequestedAsync(int xmlStart, int xmlEndExclusive, string noteText, string? resp)
+    private async Task OnCommunityNoteInsertRequestedAsync(int xmlIndex, string noteText, string? resp)
     {
         try
         {
-            if (_currentRelPath == null || _translatedDir == null)
+            if (_currentRelPath == null || _translatedDir == null || _originalDir == null || _markdownDir == null)
             {
-                SetStatus("Community insert ignored: no file selected or translatedDir missing.");
+                SetStatus("Community insert ignored: no file selected or dirs missing.");
                 return;
             }
 
-            // Work against the real translated TEI if it exists; otherwise fall back safely.
-            var baseXml = ReadTranslatedXmlRawForEdit(_currentRelPath);
+            // Ensure disk translated TEI exists so indices remain stable (Readable renders disk TEI only).
+            await EnsureTranslatedXmlExistsForCurrentAsync();
+
+            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var baseXml = SafeReadAllTextUtf8(tranAbs);
+
             int len = baseXml.Length;
-
-            int s = Math.Clamp(xmlStart, 0, len);
-            int e = Math.Clamp(xmlEndExclusive, 0, len);
-            if (e < s) (s, e) = (e, s);
-
-            // For “annotate word/selection”, we insert the <note> AFTER the selected span.
-            // For “caret only”, s==e and we insert at that point.
-            int insertAt = e;
+            int insertAt = Math.Clamp(xmlIndex, 0, len);
 
             string noteXml = BuildCommunityNoteXml(noteText, resp);
-
-            // IMPORTANT: insert into the underlying TEI, not the “readable-inline” variant.
             string updated = baseXml.Insert(insertAt, noteXml);
 
-            await WriteTranslatedXmlAndRerenderAsync(_currentRelPath, updated, why: $"community insert at {insertAt} (span {s}..{e})");
+            await WriteTranslatedDiskAndRerenderAsync(_currentRelPath, updated, why: $"community insert at {insertAt}");
         }
         catch (Exception ex)
         {
@@ -409,13 +355,17 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (_currentRelPath == null || _translatedDir == null)
+            if (_currentRelPath == null || _translatedDir == null || _originalDir == null || _markdownDir == null)
             {
-                SetStatus("Community delete ignored: no file selected or translatedDir missing.");
+                SetStatus("Community delete ignored: no file selected or dirs missing.");
                 return;
             }
 
-            var baseXml = ReadTranslatedXmlRawForEdit(_currentRelPath);
+            // Ensure disk translated TEI exists so indices remain stable.
+            await EnsureTranslatedXmlExistsForCurrentAsync();
+
+            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var baseXml = SafeReadAllTextUtf8(tranAbs);
 
             int len = baseXml.Length;
             int s = Math.Clamp(xmlStart, 0, len);
@@ -429,40 +379,12 @@ public partial class MainWindow : Window
             }
 
             string updated = baseXml.Remove(s, e - s);
-
-            await WriteTranslatedXmlAndRerenderAsync(_currentRelPath, updated, why: $"community delete {s}..{e}");
+            await WriteTranslatedDiskAndRerenderAsync(_currentRelPath, updated, why: $"community delete {s}..{e}");
         }
         catch (Exception ex)
         {
             SetStatus("Community delete failed: " + ex.Message);
         }
-    }
-
-    private string ReadTranslatedXmlRawForEdit(string relPath)
-    {
-        // Priority:
-        // 1) disk xml-p5t file (real TEI we persist)
-        // 2) last readable source (what we rendered last time)
-        // 3) current merged xml from markdown
-        // 4) original xml
-        if (_translatedDir != null)
-        {
-            try
-            {
-                var p = Path.Combine(_translatedDir, relPath);
-                if (File.Exists(p))
-                    return File.ReadAllText(p, Encoding.UTF8);
-            }
-            catch { }
-        }
-
-        if (!string.IsNullOrWhiteSpace(_lastReadableTranslatedXmlSource))
-            return _lastReadableTranslatedXmlSource;
-
-        if (!string.IsNullOrWhiteSpace(_rawTranXml))
-            return _rawTranXml;
-
-        return _rawOrigXml ?? "";
     }
 
     private static string BuildCommunityNoteXml(string noteText, string? resp)
@@ -477,7 +399,6 @@ public partial class MainWindow : Window
             respAttr = $" resp=\"{r}\"";
         }
 
-        // Keep this minimal + inline; renderer captures <note type="community" ...>...</note>
         return $"<note type=\"community\"{respAttr}>{inner}</note>";
     }
 
@@ -490,15 +411,14 @@ public partial class MainWindow : Window
     private static string EscapeXmlAttr(string s)
         => EscapeXmlText(s).Replace("\"", "&quot;").Replace("'", "&apos;");
 
-    private async Task WriteTranslatedXmlAndRerenderAsync(string relPath, string updatedXml, string why)
+    private async Task WriteTranslatedDiskAndRerenderAsync(string relPath, string updatedXml, string why)
     {
         if (_translatedDir == null) return;
 
         await _fileService.WriteTranslatedAsync(_translatedDir, relPath, updatedXml);
 
+        // Keep an in-memory copy for save-merge fallback/debug, but Readable will render from disk only.
         _rawTranXml = updatedXml;
-        try { _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(updatedXml); }
-        catch { _rawTranXmlReadable = updatedXml; }
 
         try
         {
@@ -507,7 +427,7 @@ public partial class MainWindow : Window
         }
         catch { }
 
-        await RefreshReadableFromDiskOrMemoryAsync();
+        await RefreshReadableFromDiskOnlyAsync();
         await RefreshFileStatusAsync(relPath);
 
         SetStatus("OK: " + why);
@@ -643,7 +563,7 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Index + filter (same as before)
+    // Index + filter
     // =========================
 
     private async Task LoadFileListFromCacheOrBuildAsync()
@@ -854,8 +774,7 @@ public partial class MainWindow : Window
         _renderCts?.Cancel();
         _renderCts = null;
 
-        _rawOrigXml = _rawTranMarkdown = _rawTranXml = _rawTranXmlReadable = "";
-        _lastReadableTranslatedXmlSource = "";
+        _rawOrigXml = _rawTranMarkdown = _rawTranXml = "";
         _currentRelPath = null;
 
         _baselineTranSha1 = _lastSeenTranSha1 = "";
@@ -905,7 +824,7 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Load/render
+    // Load/render (Readable = DISK XML ONLY)
     // =========================
 
     private string? TryReadTranslatedXmlFromDisk(string relPath)
@@ -918,6 +837,83 @@ public partial class MainWindow : Window
             return File.ReadAllText(tranAbs, Encoding.UTF8);
         }
         catch { return null; }
+    }
+
+    private async Task EnsureTranslatedXmlExistsForCurrentAsync()
+    {
+        if (_currentRelPath == null) return;
+        await EnsureTranslatedXmlExistsForRelPathAsync(_currentRelPath);
+    }
+
+    private async Task EnsureTranslatedXmlExistsForRelPathAsync(string relPath)
+    {
+        if (_originalDir == null || _translatedDir == null || _markdownDir == null) return;
+
+        var tranAbs = Path.Combine(_translatedDir, relPath);
+        if (File.Exists(tranAbs)) return;
+
+        // If missing, materialize TEI from (orig + markdown) and write once.
+        // This ensures Readable & notes operate on stable disk XML.
+        var (origXml, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
+        origXml ??= "";
+        md ??= "";
+
+        if (string.IsNullOrWhiteSpace(md) || !_markdownService.IsCurrentMarkdownFormat(md))
+        {
+            md = _markdownService.ConvertTeiToMarkdown(origXml, Path.GetFileName(relPath));
+            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, md);
+        }
+
+        try
+        {
+            var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, md, out _);
+            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
+        }
+        catch
+        {
+            // As a last resort, create a disk translated file identical to original.
+            // Better to have stable disk truth than to render synthetic strings.
+            try { await _fileService.WriteTranslatedAsync(_translatedDir, relPath, origXml); } catch { }
+        }
+    }
+
+    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
+    {
+        if (_originalDir == null || _translatedDir == null) return (RenderedDocument.Empty, RenderedDocument.Empty);
+
+        var origAbs = Path.Combine(_originalDir, relPath);
+        var tranAbs = Path.Combine(_translatedDir, relPath);
+
+        // Original: always exists.
+        var stampOrig = FileStamp.FromFile(origAbs);
+        RenderedDocument ro;
+        if (!_renderCache.TryGet(stampOrig, out ro))
+        {
+            ct.ThrowIfCancellationRequested();
+            ro = CbetaTeiRenderer.Render(_rawOrigXml ?? "");
+            _renderCache.Put(stampOrig, ro);
+        }
+
+        // Translated: if missing, render original (or empty) without caching.
+        if (!File.Exists(tranAbs))
+        {
+            ct.ThrowIfCancellationRequested();
+            var fallback = _rawOrigXml ?? "";
+            var rtFallback = CbetaTeiRenderer.Render(fallback);
+            return (ro, rtFallback);
+        }
+
+        var stampTran = FileStamp.FromFile(tranAbs);
+        RenderedDocument rt;
+        if (!_renderCache.TryGet(stampTran, out rt))
+        {
+            ct.ThrowIfCancellationRequested();
+            var diskTran = SafeReadAllTextUtf8(tranAbs);
+            rt = CbetaTeiRenderer.Render(diskTran);
+            _renderCache.Put(stampTran, rt);
+        }
+
+        return (ro, rt);
     }
 
     private async Task LoadPairAsync(string relPath)
@@ -936,6 +932,7 @@ public partial class MainWindow : Window
         _gitView?.SetSelectedRelPath(_currentRelPath);
         SetStatus("Loading: " + relPath);
 
+        // Read original + markdown (translation editor source of truth).
         var (orig, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
 
         _rawOrigXml = orig ?? "";
@@ -949,6 +946,7 @@ public partial class MainWindow : Window
         }
         catch { }
 
+        // Ensure markdown exists / is current format.
         try
         {
             if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
@@ -957,22 +955,18 @@ public partial class MainWindow : Window
                 await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
             }
 
-            // NOTE: For the working in-memory merged xml, use original as the base.
-            // PERSISTENCE across saves is handled in SaveTranslatedFromTabAsync where we merge into disk TEI if available.
+            // Materialize an in-memory merged TEI for save/diagnostics (Readable does not use this anymore).
             _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
-            _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
         }
         catch (MarkdownTranslationException ex)
         {
             SetStatus("Markdown materialization warning: " + ex.Message);
             _rawTranXml = _rawOrigXml;
-            _rawTranXmlReadable = _rawOrigXml;
         }
         catch (Exception ex)
         {
             SetStatus("Materialization failed: " + ex.Message);
             _rawTranXml = _rawOrigXml;
-            _rawTranXmlReadable = _rawOrigXml;
         }
 
         _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
@@ -983,43 +977,46 @@ public partial class MainWindow : Window
         UpdateWindowTitle();
         UpdateSaveButtonState();
 
+        // Ensure disk translated TEI exists for Readable + notes stability.
+        try { await EnsureTranslatedXmlExistsForRelPathAsync(relPath); }
+        catch { }
+
         SetStatus("Rendering readable view…");
 
         try
         {
-            // Prefer disk translated TEI (contains persisted community notes)
-            var diskTran = TryReadTranslatedXmlFromDisk(relPath);
-            var translatedReadableSource =
-                !string.IsNullOrWhiteSpace(diskTran) ? diskTran! :
-                (!string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXmlReadable : _rawTranXml);
+            var swRender = Stopwatch.StartNew();
 
-            _lastReadableTranslatedXmlSource = translatedReadableSource;
+            var (ro, rt) = await Task.Run(async () =>
+            {
+                ct.ThrowIfCancellationRequested();
+                return await RenderReadablePairDiskOnlyAsync(relPath, ct);
+            }, ct);
 
-            var ro = await Task.Run(() => CbetaTeiRenderer.Render(_rawOrigXml), ct);
-            var rt = await Task.Run(() => CbetaTeiRenderer.Render(translatedReadableSource), ct);
+            swRender.Stop();
 
             if (ct.IsCancellationRequested) return;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 _readableView?.SetRendered(ro, rt);
-
-                try
-                {
-                    bool isZen = _root != null && _zenTexts.IsZen(relPath);
-                    _readableView?.SetZenContext(relPath, isZen);
-                }
-                catch { }
             });
 
+            try
+            {
+                bool isZen = _root != null && _zenTexts.IsZen(relPath);
+                _readableView?.SetZenContext(relPath, isZen);
+            }
+            catch { }
+
             await SaveUiStateAsync();
-            SetStatus($"Loaded. Segments: O={ro.Segments.Count:n0}, T={rt.Segments.Count:n0}.");
+            SetStatus($"Loaded. Segments: O={ro.Segments.Count:n0}, T={rt.Segments.Count:n0}. Render={swRender.ElapsedMilliseconds:n0}ms");
         }
         catch (OperationCanceledException) { }
         catch (Exception ex) { SetStatus("Render failed: " + ex.Message); }
     }
 
-    private async Task RefreshReadableFromDiskOrMemoryAsync()
+    private async Task RefreshReadableFromDiskOnlyAsync()
     {
         if (_readableView == null || _currentRelPath == null || _originalDir == null || _translatedDir == null) return;
 
@@ -1029,17 +1026,14 @@ public partial class MainWindow : Window
 
         try
         {
-            var orig = _rawOrigXml ?? "";
+            // Disk-only translated render; ensure file exists.
+            await EnsureTranslatedXmlExistsForCurrentAsync();
 
-            var diskTran = TryReadTranslatedXmlFromDisk(_currentRelPath);
-            var tranSource =
-                !string.IsNullOrWhiteSpace(diskTran) ? diskTran! :
-                (!string.IsNullOrWhiteSpace(_rawTranXmlReadable) ? _rawTranXmlReadable : _rawTranXml);
-
-            _lastReadableTranslatedXmlSource = tranSource;
-
-            var ro = await Task.Run(() => CbetaTeiRenderer.Render(orig), ct);
-            var rt = await Task.Run(() => CbetaTeiRenderer.Render(tranSource), ct);
+            var (ro, rt) = await Task.Run(async () =>
+            {
+                ct.ThrowIfCancellationRequested();
+                return await RenderReadablePairDiskOnlyAsync(_currentRelPath, ct);
+            }, ct);
 
             if (ct.IsCancellationRequested) return;
 
@@ -1048,7 +1042,7 @@ public partial class MainWindow : Window
                 _readableView.SetRendered(ro, rt);
             });
 
-            SetStatus("Readable refreshed.");
+            SetStatus("Readable refreshed (disk XML).");
         }
         catch (OperationCanceledException) { }
         catch (Exception ex) { SetStatus("Readable refresh failed: " + ex.Message); }
@@ -1070,23 +1064,27 @@ public partial class MainWindow : Window
             await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, _rawTranMarkdown);
             _markdownSaveCounts[_currentRelPath] = (_markdownSaveCounts.TryGetValue(_currentRelPath, out var c) ? c : 0) + 1;
 
-            // ✅ PERSISTENCE FIX:
             // Merge EN rows into a base TEI that already contains community notes (prefer disk translated TEI).
-            // This prevents MergeMarkdownIntoTei(_rawOrigXml, ...) from wiping notes.
             string baseForMerge = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
 
             _rawTranXml = _markdownService.MergeMarkdownIntoTei(baseForMerge, _rawTranMarkdown, out var updatedCount);
-            _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
 
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
             await RefreshFileStatusAsync(_currentRelPath);
+
+            try
+            {
+                var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+                _renderCache.Invalidate(tranAbs);
+            }
+            catch { }
 
             _baselineTranSha1 = Sha1Hex(_rawTranMarkdown);
             _lastSeenTranSha1 = _baselineTranSha1;
             _dirty = false;
             UpdateWindowTitle();
 
-            await RefreshReadableFromDiskOrMemoryAsync();
+            await RefreshReadableFromDiskOnlyAsync();
 
             SetStatus($"Saved → translated XML rebuilt ({updatedCount:n0} EN rows).");
         }
@@ -1111,24 +1109,31 @@ public partial class MainWindow : Window
 
             try
             {
-                // Revert means "back to original EN-less baseline"
-                _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
-                _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                // Revert means "back to original EN-less baseline".
+                // IMPORTANT: merge into disk TEI if present so community notes persist.
+                string baseForMerge = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
+                _rawTranXml = _markdownService.MergeMarkdownIntoTei(baseForMerge, _rawTranMarkdown, out _);
 
                 if (_translatedDir != null)
                 {
                     await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
                     await RefreshFileStatusAsync(_currentRelPath);
+
+                    try
+                    {
+                        var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+                        _renderCache.Invalidate(tranAbs);
+                    }
+                    catch { }
                 }
             }
             catch (MarkdownTranslationException)
             {
                 _rawTranXml = _rawOrigXml;
-                _rawTranXmlReadable = _rawOrigXml;
             }
 
             _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
-            await RefreshReadableFromDiskOrMemoryAsync();
+            await RefreshReadableFromDiskOnlyAsync();
             SetBaselineFromCurrentTranslatedMarkdown();
 
             SetStatus("Reverted Markdown to original state.");
@@ -1317,7 +1322,7 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Theme (kept as token copy)
+    // Theme
     // =========================
 
     private static readonly string[] ThemeTokens =
@@ -1414,49 +1419,14 @@ public partial class MainWindow : Window
         catch { return "sha1_err"; }
     }
 
-    // =========================
-    // Private helper: invoke ReadableTabView mirroring in the missing direction
-    // =========================
-
-    private sealed class ReadableMirrorInvoker
+    private static string SafeReadAllTextUtf8(string path)
     {
-        private readonly ReadableTabView _view;
-        private readonly Action<string> _status;
-        private readonly System.Reflection.MethodInfo? _miRequestMirror;
-        private DateTime _lastTranslatedMarkUtc = DateTime.MinValue;
-
-        public ReadableMirrorInvoker(ReadableTabView view, Action<string> status)
+        try
         {
-            _view = view;
-            _status = status;
-
-            _miRequestMirror = _view.GetType().GetMethod("RequestMirrorFromUserAction",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-
-            if (_miRequestMirror == null)
-                _status("Readable: could not find private RequestMirrorFromUserAction(bool). Right->left mirroring will not work.");
+            if (File.Exists(path))
+                return File.ReadAllText(path, Encoding.UTF8);
         }
-
-        public void MarkTranslatedInteraction()
-        {
-            _lastTranslatedMarkUtc = DateTime.UtcNow;
-        }
-
-        public void TryMirrorTranslatedToOriginal()
-        {
-            if (_miRequestMirror == null) return;
-
-            if ((DateTime.UtcNow - _lastTranslatedMarkUtc).TotalMilliseconds > 600)
-                return;
-
-            try
-            {
-                _miRequestMirror.Invoke(_view, new object[] { true });
-            }
-            catch (Exception ex)
-            {
-                _status("Readable mirror invoke failed: " + ex.Message);
-            }
-        }
+        catch { }
+        return "";
     }
 }
