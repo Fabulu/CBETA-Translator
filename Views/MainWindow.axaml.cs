@@ -1,4 +1,12 @@
 ﻿// Views/MainWindow.axaml.cs
+//
+// FIXES:
+// 1) Community notes insert/delete modify translated XML (xml-p5t) and re-render ReadableTabView.
+// 2) Selection-anchored notes: insert uses (XmlStart, XmlEndExclusive) so you can annotate a specific word/phrase.
+// 3) PERSISTENCE: Saving Markdown merges into a TEI base that already contains community notes (prefers disk translated TEI),
+//    so MergeMarkdownIntoTei does NOT wipe notes.
+//
+// PDF EXPORT: REMOVED COMPLETELY.
 
 using Avalonia;
 using Avalonia.Controls;
@@ -21,10 +29,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,7 +61,6 @@ public partial class MainWindow : Window
     // Services/state
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new();
-    private readonly PdfExportInteropService _pdfExportService = new();
     private readonly MarkdownTranslationService _markdownService = new();
     private readonly IndexCacheService _indexCacheService = new();
     private readonly SearchIndexService _navSearchIndexService = new();
@@ -80,7 +85,6 @@ public partial class MainWindow : Window
     private string _rawTranXmlReadable = "";
 
     // This is the exact translated XML source that was rendered into ReadableTabView last time
-    // (either disk xml-p5t, or the inline-readable version).
     private string _lastReadableTranslatedXmlSource = "";
 
     private readonly Dictionary<string, int> _markdownSaveCounts = new(StringComparer.OrdinalIgnoreCase);
@@ -243,7 +247,6 @@ public partial class MainWindow : Window
         {
             _readableView.Status += (_, msg) => SetStatus(msg);
 
-            // Zen toggle
             _readableView.ZenFlagChanged += async (_, ev) =>
             {
                 try
@@ -256,20 +259,19 @@ public partial class MainWindow : Window
                 catch (Exception ex) { SetStatus("Zen toggle failed: " + ex.Message); }
             };
 
-            // ✅ COMMUNITY NOTES: subscribe and actually apply changes
+            // ✅ community notes: selection-aware insert + delete
+            // Expected event tuple: (int XmlStart, int XmlEndExclusive, string NoteText, string? Resp)
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
             {
-                await OnCommunityNoteInsertRequestedAsync(req.XmlIndex, req.NoteText, req.Resp);
+                await OnCommunityNoteInsertRequestedAsync(req.XmlStart, req.XmlEndExclusive, req.NoteText, req.Resp);
             };
             _readableView.CommunityNoteDeleteRequested += async (_, req) =>
             {
                 await OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
             };
 
-            // ✅ Right->left mirroring: detect user input in translated pane and invoke internal mirror (private)
+            // ✅ right->left mirroring
             _mirrorInvoker = new ReadableMirrorInvoker(_readableView, SetStatus);
-
-            // We hook on the ReadableTabView root so we catch events coming from inside the editors.
             _readableView.AddHandler(InputElement.PointerReleasedEvent, OnReadablePointerReleasedTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
             _readableView.AddHandler(InputElement.KeyUpEvent, OnReadableKeyUpTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
             _readableView.AddHandler(InputElement.PointerPressedEvent, OnReadablePointerPressedTunnel, RoutingStrategies.Tunnel, handledEventsToo: true);
@@ -279,7 +281,6 @@ public partial class MainWindow : Window
         {
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
             _translationView.RevertRequested += async (_, _) => await RevertMarkdownFromOriginalAsync();
-            _translationView.ExportPdfRequested += async (_, _) => await ExportCurrentPairToPdfAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
@@ -327,19 +328,14 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Mirroring: translated -> original (external trigger)
+    // Mirroring: translated -> original
     // =========================
 
     private void OnReadablePointerPressedTunnel(object? sender, PointerPressedEventArgs e)
     {
-        // Mark input on translated pane early so keyboard focus / selection changes settle,
-        // then we mirror on release.
         if (_mirrorInvoker == null || _readableView == null) return;
-
         if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-        {
             _mirrorInvoker.MarkTranslatedInteraction();
-        }
     }
 
     private void OnReadablePointerReleasedTunnel(object? sender, PointerReleasedEventArgs e)
@@ -347,10 +343,7 @@ public partial class MainWindow : Window
         if (_mirrorInvoker == null || _readableView == null) return;
 
         if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-        {
-            // Give AvaloniaEdit a beat to update caret/selection, then mirror.
             Dispatcher.UIThread.Post(() => _mirrorInvoker.TryMirrorTranslatedToOriginal(), DispatcherPriority.Background);
-        }
     }
 
     private void OnReadableKeyUpTunnel(object? sender, KeyEventArgs e)
@@ -358,10 +351,7 @@ public partial class MainWindow : Window
         if (_mirrorInvoker == null || _readableView == null) return;
 
         if (IsInsideNamedControl(e.Source, "EditorTranslated"))
-        {
-            // Cursor keys / page up/down / typing in find etc. Update then mirror.
             Dispatcher.UIThread.Post(() => _mirrorInvoker.TryMirrorTranslatedToOriginal(), DispatcherPriority.Background);
-        }
     }
 
     private static bool IsInsideNamedControl(object? source, string name)
@@ -377,10 +367,10 @@ public partial class MainWindow : Window
     }
 
     // =========================
-    // Community notes handlers
+    // Community notes handlers (SELECTION-AWARE + PERSISTENT)
     // =========================
 
-    private async Task OnCommunityNoteInsertRequestedAsync(int xmlIndex, string noteText, string? resp)
+    private async Task OnCommunityNoteInsertRequestedAsync(int xmlStart, int xmlEndExclusive, string noteText, string? resp)
     {
         try
         {
@@ -390,17 +380,24 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Use the same XML source the readable tab was rendered from when possible.
-            // But we MUST write to xml-p5t (translated raw XML file).
+            // Work against the real translated TEI if it exists; otherwise fall back safely.
             var baseXml = ReadTranslatedXmlRawForEdit(_currentRelPath);
+            int len = baseXml.Length;
 
-            xmlIndex = Math.Clamp(xmlIndex, 0, baseXml.Length);
+            int s = Math.Clamp(xmlStart, 0, len);
+            int e = Math.Clamp(xmlEndExclusive, 0, len);
+            if (e < s) (s, e) = (e, s);
+
+            // For “annotate word/selection”, we insert the <note> AFTER the selected span.
+            // For “caret only”, s==e and we insert at that point.
+            int insertAt = e;
 
             string noteXml = BuildCommunityNoteXml(noteText, resp);
 
-            string updated = baseXml.Insert(xmlIndex, noteXml);
+            // IMPORTANT: insert into the underlying TEI, not the “readable-inline” variant.
+            string updated = baseXml.Insert(insertAt, noteXml);
 
-            await WriteTranslatedXmlAndRerenderAsync(_currentRelPath, updated, why: $"community insert at {xmlIndex}");
+            await WriteTranslatedXmlAndRerenderAsync(_currentRelPath, updated, why: $"community insert at {insertAt} (span {s}..{e})");
         }
         catch (Exception ex)
         {
@@ -444,11 +441,10 @@ public partial class MainWindow : Window
     private string ReadTranslatedXmlRawForEdit(string relPath)
     {
         // Priority:
-        // 1) actual disk xml-p5t file (the real persisted target)
-        // 2) last readable source (in-memory)
-        // 3) current merged xml from markdown (in-memory)
-        // 4) original xml as worst fallback
-
+        // 1) disk xml-p5t file (real TEI we persist)
+        // 2) last readable source (what we rendered last time)
+        // 3) current merged xml from markdown
+        // 4) original xml
         if (_translatedDir != null)
         {
             try
@@ -471,7 +467,6 @@ public partial class MainWindow : Window
 
     private static string BuildCommunityNoteXml(string noteText, string? resp)
     {
-        // Minimal safe XML emission.
         string inner = EscapeXmlText(noteText?.Trim() ?? "");
         if (inner.Length == 0) inner = "…";
 
@@ -482,7 +477,7 @@ public partial class MainWindow : Window
             respAttr = $" resp=\"{r}\"";
         }
 
-        // Include leading/trailing whitespace to reduce chance of gluing tokens together.
+        // Keep this minimal + inline; renderer captures <note type="community" ...>...</note>
         return $"<note type=\"community\"{respAttr}>{inner}</note>";
     }
 
@@ -499,15 +494,12 @@ public partial class MainWindow : Window
     {
         if (_translatedDir == null) return;
 
-        // Persist to xml-p5t
         await _fileService.WriteTranslatedAsync(_translatedDir, relPath, updatedXml);
 
-        // Update in-memory
         _rawTranXml = updatedXml;
         try { _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(updatedXml); }
         catch { _rawTranXmlReadable = updatedXml; }
 
-        // Invalidate cache for translated XML file
         try
         {
             var tranAbs = Path.Combine(_translatedDir, relPath);
@@ -515,9 +507,7 @@ public partial class MainWindow : Window
         }
         catch { }
 
-        // Re-render readable to exit pending refresh in ReadableTabView
         await RefreshReadableFromDiskOrMemoryAsync();
-
         await RefreshFileStatusAsync(relPath);
 
         SetStatus("OK: " + why);
@@ -533,7 +523,6 @@ public partial class MainWindow : Window
         catch { _config = new AppConfig { IsDarkTheme = true }; }
 
         ApplyTheme(_config.IsDarkTheme);
-        _translationView?.SetPdfQuickSettings(_config);
 
         if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
         {
@@ -648,7 +637,6 @@ public partial class MainWindow : Window
 
             _config = result;
             ApplyTheme(_config.IsDarkTheme);
-            _translationView?.SetPdfQuickSettings(_config);
             await SafeSaveConfigAsync();
         }
         catch (Exception ex) { Debug.WriteLine($"Failed to open settings: {ex.Message}"); }
@@ -961,7 +949,6 @@ public partial class MainWindow : Window
         }
         catch { }
 
-        // Ensure markdown exists and materialize merged XML for translation workflows
         try
         {
             if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
@@ -970,6 +957,8 @@ public partial class MainWindow : Window
                 await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
             }
 
+            // NOTE: For the working in-memory merged xml, use original as the base.
+            // PERSISTENCE across saves is handled in SaveTranslatedFromTabAsync where we merge into disk TEI if available.
             _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
             _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
         }
@@ -986,7 +975,6 @@ public partial class MainWindow : Window
             _rawTranXmlReadable = _rawOrigXml;
         }
 
-        // Translation tab unchanged
         _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
 
         _baselineTranSha1 = Sha1Hex(_rawTranMarkdown);
@@ -999,8 +987,7 @@ public partial class MainWindow : Window
 
         try
         {
-            // Readable uses disk translated XML if present (raw xml-p5t),
-            // otherwise the inline-readable merged XML.
+            // Prefer disk translated TEI (contains persisted community notes)
             var diskTran = TryReadTranslatedXmlFromDisk(relPath);
             var translatedReadableSource =
                 !string.IsNullOrWhiteSpace(diskTran) ? diskTran! :
@@ -1083,10 +1070,14 @@ public partial class MainWindow : Window
             await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, _rawTranMarkdown);
             _markdownSaveCounts[_currentRelPath] = (_markdownSaveCounts.TryGetValue(_currentRelPath, out var c) ? c : 0) + 1;
 
-            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out var updatedCount);
+            // ✅ PERSISTENCE FIX:
+            // Merge EN rows into a base TEI that already contains community notes (prefer disk translated TEI).
+            // This prevents MergeMarkdownIntoTei(_rawOrigXml, ...) from wiping notes.
+            string baseForMerge = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
+
+            _rawTranXml = _markdownService.MergeMarkdownIntoTei(baseForMerge, _rawTranMarkdown, out var updatedCount);
             _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
 
-            // Write translated XML (this is separate from community notes; but community notes live here too if you edit same file)
             await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
             await RefreshFileStatusAsync(_currentRelPath);
 
@@ -1120,6 +1111,7 @@ public partial class MainWindow : Window
 
             try
             {
+                // Revert means "back to original EN-less baseline"
                 _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
                 _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
 
@@ -1391,7 +1383,10 @@ public partial class MainWindow : Window
 
         try
         {
-            var mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
+            // Prefer existing translated TEI if present so notes persist through “ensure”.
+            string baseForMerge = TryReadTranslatedXmlFromDisk(relPath) ?? origXml;
+
+            var mergedXml = _markdownService.MergeMarkdownIntoTei(baseForMerge, markdown, out _);
             await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
             await RefreshFileStatusAsync(relPath);
             return true;
@@ -1399,26 +1394,6 @@ public partial class MainWindow : Window
         catch
         {
             return false;
-        }
-    }
-
-    // =========================
-    // PDF export: call into your existing service (left as-is; if you want I can paste your full version)
-    // =========================
-
-    private async Task ExportCurrentPairToPdfAsync()
-    {
-        try
-        {
-            if (_currentRelPath == null) { SetStatus("Select a file before exporting PDF."); return; }
-            if (StorageProvider is null) { SetStatus("StorageProvider not available."); return; }
-
-            // Use your existing flow; this is a minimal call placeholder.
-            SetStatus("PDF export not shown here (keep your existing implementation).");
-        }
-        catch (Exception ex)
-        {
-            SetStatus("PDF export failed: " + ex.Message);
         }
     }
 
@@ -1447,7 +1422,7 @@ public partial class MainWindow : Window
     {
         private readonly ReadableTabView _view;
         private readonly Action<string> _status;
-        private readonly MethodInfo? _miRequestMirror;
+        private readonly System.Reflection.MethodInfo? _miRequestMirror;
         private DateTime _lastTranslatedMarkUtc = DateTime.MinValue;
 
         public ReadableMirrorInvoker(ReadableTabView view, Action<string> status)
@@ -1455,7 +1430,6 @@ public partial class MainWindow : Window
             _view = view;
             _status = status;
 
-            // private void RequestMirrorFromUserAction(bool sourceIsTranslated)
             _miRequestMirror = _view.GetType().GetMethod("RequestMirrorFromUserAction",
                 System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
@@ -1472,7 +1446,6 @@ public partial class MainWindow : Window
         {
             if (_miRequestMirror == null) return;
 
-            // Only mirror if user actually interacted with translated pane recently.
             if ((DateTime.UtcNow - _lastTranslatedMarkUtc).TotalMilliseconds > 600)
                 return;
 

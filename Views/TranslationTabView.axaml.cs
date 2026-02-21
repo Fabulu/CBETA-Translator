@@ -1681,7 +1681,7 @@ Markdown fragment to translate:
             desiredY = Math.Max(0, Math.Min(desiredY, maxY));
         }
         else desiredY = Math.Max(0, desiredY);
-
+        
         sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
 }

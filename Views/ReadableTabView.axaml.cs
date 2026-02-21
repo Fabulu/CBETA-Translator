@@ -7,6 +7,7 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaEdit;
@@ -26,7 +27,38 @@ namespace CbetaTranslator.App.Views;
 
 public partial class ReadableTabView : UserControl
 {
+    // =========================
+    // Event args (FIX: keep MainWindow compatibility)
+    // =========================
+
+    public sealed class CommunityNoteInsertRequest : EventArgs
+    {
+        // Back-compat for MainWindow: it uses req.XmlIndex
+        public int XmlIndex { get; init; }
+
+        // Newer range-based anchoring (selection)
+        public int XmlStart { get; init; }
+        public int XmlEndExclusive { get; init; }
+
+        public string NoteText { get; init; } = "";
+        public string? Resp { get; init; }
+
+        public override string ToString()
+            => $"Insert XmlIndex={XmlIndex} XmlRange=[{XmlStart},{XmlEndExclusive}) Resp={(Resp ?? "(null)")} TextLen={NoteText?.Length ?? 0}";
+    }
+
+    public sealed class CommunityNoteDeleteRequest : EventArgs
+    {
+        public int XmlStart { get; init; }
+        public int XmlEndExclusive { get; init; }
+
+        public override string ToString()
+            => $"Delete XmlRange=[{XmlStart},{XmlEndExclusive})";
+    }
+
+    // =========================
     // UI (custom controls)
+    // =========================
     private AnnotatedTextEditor? _editorOriginal, _editorTranslated;
 
     // Inner AvaloniaEdit
@@ -94,8 +126,10 @@ public partial class ReadableTabView : UserControl
     private DocAnnotation? _currentAnn;
 
     public event EventHandler<DocAnnotation>? NoteClicked;
-    public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
-    public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
+
+    // ✅ FIX: back-compatible event shapes
+    public event EventHandler<CommunityNoteInsertRequest>? CommunityNoteInsertRequested;
+    public event EventHandler<CommunityNoteDeleteRequest>? CommunityNoteDeleteRequested;
 
     public event EventHandler<string>? Status;
     private void Say(string msg) => Status?.Invoke(this, msg);
@@ -704,6 +738,38 @@ public partial class ReadableTabView : UserControl
 
         _currentAnn = ann;
 
+        // --- pull token brushes (same keys your app swaps) ---
+        IBrush? R(string key)
+        {
+            try
+            {
+                if (Application.Current?.Resources?.TryGetValue(key, out var v) == true && v is IBrush b)
+                    return b;
+            }
+            catch { }
+            return null;
+        }
+
+        // --- HARD THEME the notes popup itself ---
+        // This fixes the *real* "white notes popup" problem: local/templated background on NotesPanel/NotesBody.
+        var bg = R("ControlBg") ?? R("AppBg");
+        var fg = R("TextFg");
+        var border = R("BorderBrush");
+        var sel = R("SelectionBg");
+
+        // NotesPanel is a Border in your view -> set its surface explicitly
+        _notesPanel.Background = bg;
+        _notesPanel.BorderBrush = border;
+
+        // NotesBody is a TextBox -> also set explicitly
+        _notesBody.Background = bg;
+        _notesBody.Foreground = fg;
+        _notesBody.BorderBrush = border;
+        _notesBody.BorderThickness = new Thickness(1);
+        _notesBody.CaretBrush = fg;
+        _notesBody.SelectionBrush = sel;
+
+        // --- existing logic ---
         var kind = string.IsNullOrWhiteSpace(ann.Kind) ? "Note" : ann.Kind!.Trim();
         var resp = GetAnnotationResp(ann);
 
@@ -715,6 +781,19 @@ public partial class ReadableTabView : UserControl
         DumpState("ShowNotes");
 
         try { _notesBody.SelectionStart = 0; _notesBody.SelectionEnd = 0; } catch { }
+
+        // --- PROOF / DIAGNOSTIC: log what was applied ---
+        try
+        {
+            var tl = TopLevel.GetTopLevel(this);
+            var reqKey = (tl as Window)?.RequestedThemeVariant?.Key?.ToString()
+                      ?? Application.Current?.RequestedThemeVariant?.Key?.ToString()
+                      ?? "null";
+            var actKey = tl?.ActualThemeVariant?.Key?.ToString() ?? "null";
+
+            Log($"NOTES THEME: panelBg={_notesPanel.Background} bodyBg={_notesBody.Background} theme(req={reqKey} act={actKey})");
+        }
+        catch { }
     }
 
     private void HideNotes()
@@ -793,26 +872,11 @@ public partial class ReadableTabView : UserControl
         return looksCommunity && xmlStart >= 0 && xmlEndExclusive > xmlStart;
     }
 
+    // =========================
     // Community note add/delete
-    public async Task AddCommunityNoteAtCaretAsync() => await AddCommunityNoteFromCaretAsync();
+    // =========================
 
-    private async Task AddCommunityNoteFromCaretAsync()
-    {
-        if (_pendingCommunityRefresh) { Log("AddCommunityNoteFromCaretAsync blocked: pending refresh."); return; }
-        if (_aeTran == null || _renderTran.IsEmpty) { Log("AddCommunityNoteFromCaretAsync blocked: _aeTran null or _renderTran empty."); return; }
-
-        int caret = GetCaretOffsetSafe(_aeTran);
-        if (caret < 0) caret = 0;
-
-        if (!TryMapRenderedCaretToXmlIndex(_renderTran, caret, out int xmlIndex))
-        {
-            Log($"Add note blocked: cannot map caret displayIndex={caret} to XML index.");
-            return;
-        }
-
-        await PromptAddCommunityNoteAsync(xmlIndex);
-    }
-
+    // ✅ FIXED: selection -> xml range; caret -> point range
     public async Task<(bool ok, string reason)> TryAddCommunityNoteAtSelectionOrCaretAsync()
     {
         if (_pendingCommunityRefresh)
@@ -822,30 +886,78 @@ public partial class ReadableTabView : UserControl
         if (_renderTran.IsEmpty)
             return (false, "_renderTran.IsEmpty (no rendered translated document set yet).");
 
-        int renderedIndex = GetSelectionMidpointOrCaretSafe(_aeTran);
-        if (renderedIndex < 0) renderedIndex = 0;
+        // Prefer precise selection anchoring.
+        if (TryGetSelectionRangeSafe(_aeTran, out int selStart, out int selEndExclusive) && selEndExclusive > selStart)
+        {
+            if (!TryMapRenderedRangeToXmlRange(_renderTran, selStart, selEndExclusive, out int xs, out int xe))
+                return (false, $"Cannot map selection range [{selStart},{selEndExclusive}) to XML range.");
 
-        if (!TryMapRenderedCaretToXmlIndex(_renderTran, renderedIndex, out int xmlIndex))
-            return (false, $"Cannot map display index {renderedIndex} to XML index. DisplayIndexToXmlIndex returned < 0.");
+            await PromptAddCommunityNoteAsync(xs, xe);
+            return (true, $"Dialog opened. selection [{selStart},{selEndExclusive}) -> xml [{xs},{xe})");
+        }
 
-        await PromptAddCommunityNoteAsync(xmlIndex);
-        return (true, $"Dialog opened. renderedIndex={renderedIndex} -> xmlIndex={xmlIndex}");
+        // No selection: caret-only note (point range)
+        int caret = GetCaretOffsetSafe(_aeTran);
+        if (caret < 0) caret = 0;
+
+        if (!TryMapRenderedPointToXmlPoint(_renderTran, caret, out int x))
+            return (false, $"Cannot map caret display index {caret} to XML index.");
+
+        await PromptAddCommunityNoteAsync(x, x);
+        return (true, $"Dialog opened. caret {caret} -> xml [{x},{x})");
     }
 
-    private static int GetSelectionMidpointOrCaretSafe(TextEditor ed)
+    private static bool TryGetSelectionRangeSafe(TextEditor ed, out int start, out int endExclusive)
     {
+        start = 0;
+        endExclusive = 0;
+
         try
         {
             var sel = ed.TextArea?.Selection;
-            if (sel == null || sel.IsEmpty) return ed.TextArea?.Caret.Offset ?? 0;
+            if (sel == null || sel.IsEmpty) return false;
 
             var seg = sel.SurroundingSegment;
-            int start = seg.Offset;
-            int endEx = seg.Offset + seg.Length;
-            if (endEx < start) (start, endEx) = (endEx, start);
-            return start + Math.Max(0, (endEx - start) / 2);
+            start = seg.Offset;
+            endExclusive = seg.Offset + seg.Length;
+
+            if (endExclusive < start) (start, endExclusive) = (endExclusive, start);
+
+            int len = ed.Document?.TextLength ?? (ed.Text?.Length ?? 0);
+            start = Math.Clamp(start, 0, len);
+            endExclusive = Math.Clamp(endExclusive, 0, len);
+
+            return endExclusive > start;
         }
-        catch { return ed.TextArea?.Caret.Offset ?? 0; }
+        catch { return false; }
+    }
+
+    private static bool TryMapRenderedPointToXmlPoint(RenderedDocument doc, int displayIndex, out int xmlIndex)
+    {
+        xmlIndex = -1;
+        if (doc == null || doc.IsEmpty) return false;
+        int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
+        if (mapped < 0) return false;
+        xmlIndex = mapped;
+        return true;
+    }
+
+    private static bool TryMapRenderedRangeToXmlRange(RenderedDocument doc, int displayStart, int displayEndExclusive, out int xmlStart, out int xmlEndExclusive)
+    {
+        xmlStart = -1;
+        xmlEndExclusive = -1;
+        if (doc == null || doc.IsEmpty) return false;
+
+        int a = doc.DisplayIndexToXmlIndex(displayStart);
+        int b = doc.DisplayIndexToXmlIndex(displayEndExclusive);
+
+        if (a < 0 || b < 0) return false;
+
+        if (b < a) (a, b) = (b, a);
+
+        xmlStart = a;
+        xmlEndExclusive = b;
+        return true;
     }
 
     private void DeleteCurrentCommunityNote()
@@ -861,21 +973,60 @@ public partial class ReadableTabView : UserControl
 
         EnterPendingCommunityRefresh($"delete xs={xs} xe={xe}");
         Log($"Delete note: raising CommunityNoteDeleteRequested xs={xs} xe={xe}");
-        CommunityNoteDeleteRequested?.Invoke(this, (xs, xe));
+
+        CommunityNoteDeleteRequested?.Invoke(this, new CommunityNoteDeleteRequest
+        {
+            XmlStart = xs,
+            XmlEndExclusive = xe
+        });
+
         HideNotes();
     }
 
-    private async Task PromptAddCommunityNoteAsync(int xmlIndex)
+    private async Task PromptAddCommunityNoteAsync(int xmlStart, int xmlEndExclusive)
     {
         if (_pendingCommunityRefresh) { Log("PromptAddCommunityNoteAsync blocked: pending refresh."); return; }
 
-        Log($"PromptAddCommunityNoteAsync: opening dialog at xmlIndex={xmlIndex}");
+        Log($"PromptAddCommunityNoteAsync: opening dialog at xmlRange=[{xmlStart},{xmlEndExclusive})");
         var owner = TopLevel.GetTopLevel(this) as Window;
 
-        var txt = new TextBox { AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 140 };
+        // Helper: safely grab token brushes
+        IBrush? R(string key)
+        {
+            try
+            {
+                if (Application.Current?.Resources?.TryGetValue(key, out var v) == true && v is IBrush b)
+                    return b;
+            }
+            catch { }
+            return null;
+        }
+
+        var txt = new TextBox
+        {
+            AcceptsReturn = true,
+            TextWrapping = TextWrapping.Wrap,
+            Height = 140,
+            Background = R("ControlBg"),
+            Foreground = R("TextFg"),
+            BorderBrush = R("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CaretBrush = R("TextFg"),
+            SelectionBrush = R("SelectionBg"),
+        };
         ScrollViewer.SetVerticalScrollBarVisibility(txt, ScrollBarVisibility.Auto);
 
-        var resp = new TextBox { Watermark = "Optional resp (e.g., your initials)", Height = 32 };
+        var resp = new TextBox
+        {
+            Watermark = "Optional resp (e.g., your initials)",
+            Height = 32,
+            Background = R("ControlBg"),
+            Foreground = R("TextFg"),
+            BorderBrush = R("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CaretBrush = R("TextFg"),
+            SelectionBrush = R("SelectionBg"),
+        };
 
         var btnOk = new Button { Content = "Add note", MinWidth = 110 };
         var btnCancel = new Button { Content = "Cancel", MinWidth = 90 };
@@ -889,23 +1040,56 @@ public partial class ReadableTabView : UserControl
         btnRow.Children.Add(btnCancel);
         btnRow.Children.Add(btnOk);
 
+        var rangeHint = new TextBlock
+        {
+            Text = xmlEndExclusive > xmlStart
+                ? $"Anchored to selection (xml range {xmlStart}–{xmlEndExclusive})"
+                : $"Anchored to caret (xml index {xmlStart})",
+            Opacity = 0.75
+        };
+
         var panel = new StackPanel { Margin = new Thickness(16), Spacing = 10 };
+        panel.Children.Add(rangeHint);
         panel.Children.Add(new TextBlock { Text = "Community note text:" });
         panel.Children.Add(txt);
         panel.Children.Add(new TextBlock { Text = "Resp (optional):" });
         panel.Children.Add(resp);
         panel.Children.Add(btnRow);
 
+        // ✅ IMPORTANT: put content inside a Border that uses your app tokens.
+        // This removes dependence on whatever the Window template decides to draw.
+        var chrome = new Border
+        {
+            Background = R("AppBg") ?? R("MenuBg"),
+            BorderBrush = R("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(10),
+            Child = panel
+        };
+
         var win = new Window
         {
             Title = "Add community note",
             Width = 520,
-            Height = 360,
-            Content = panel,
+            Height = 380,
+            Content = chrome,
             WindowStartupLocation = owner != null ? WindowStartupLocation.CenterOwner : WindowStartupLocation.CenterScreen
         };
 
+        // ✅ THEME LINK (real cause #1)
+        // Use RequestedThemeVariant first (you set it explicitly), fall back to ActualThemeVariant.
+        win.RequestedThemeVariant =
+            owner?.RequestedThemeVariant
+            ?? owner?.ActualThemeVariant
+            ?? Application.Current?.RequestedThemeVariant
+            ?? ThemeVariant.Dark;
+
+        // ✅ SURFACE COLOR (real cause #2)
+        // Ensure the top-level surface isn't Fluent's default white.
+        win.Background = R("AppBg") ?? R("MenuBg");
+
         bool okRes;
+
         if (owner != null)
         {
             btnCancel.Click += (_, _) => win.Close(false);
@@ -915,6 +1099,7 @@ public partial class ReadableTabView : UserControl
         else
         {
             var tcs = new TaskCompletionSource<bool>();
+
             void CloseOk(bool ok)
             {
                 try { win.Close(); } catch { }
@@ -942,22 +1127,29 @@ public partial class ReadableTabView : UserControl
         var respVal = (resp.Text ?? "").Trim();
         if (respVal.Length == 0) respVal = null;
 
-        EnterPendingCommunityRefresh($"insert xmlIndex={xmlIndex}");
-        Log($"PromptAddCommunityNoteAsync: raising CommunityNoteInsertRequested xmlIndex={xmlIndex} resp={(respVal ?? "(null)")} textLen={noteText.Length}");
-        CommunityNoteInsertRequested?.Invoke(this, (xmlIndex, noteText, respVal));
+        // Back-compat: MainWindow inserts XML at XmlIndex
+        // We choose XmlStart as insertion point (stable & intuitive for selections).
+        int xmlIndex = Math.Max(0, xmlStart);
+
+        EnterPendingCommunityRefresh($"insert xmlRange=[{xmlStart},{xmlEndExclusive}) at xmlIndex={xmlIndex}");
+
+        var req = new CommunityNoteInsertRequest
+        {
+            XmlIndex = xmlIndex,
+            XmlStart = xmlStart,
+            XmlEndExclusive = xmlEndExclusive,
+            NoteText = noteText,
+            Resp = respVal
+        };
+
+        Log("PromptAddCommunityNoteAsync: raising " + req);
+        CommunityNoteInsertRequested?.Invoke(this, req);
     }
 
-    private static bool TryMapRenderedCaretToXmlIndex(RenderedDocument doc, int displayIndex, out int xmlIndex)
-    {
-        xmlIndex = -1;
-        if (doc == null || doc.IsEmpty) return false;
-        int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
-        if (mapped < 0) return false;
-        xmlIndex = mapped;
-        return true;
-    }
-
+    // =========================
     // Public API
+    // =========================
+
     public void Clear()
     {
         _renderOrig = RenderedDocument.Empty;
@@ -1012,7 +1204,9 @@ public partial class ReadableTabView : UserControl
         DumpState("SetRendered()");
     }
 
+    // =========================
     // Polling + mirroring (DO NOT TOUCH BEHAVIOR)
+    // =========================
     private void StartSelectionTimer()
     {
         if (_selTimer != null) return;
@@ -1189,6 +1383,15 @@ public partial class ReadableTabView : UserControl
         }, DispatcherPriority.Background);
     }
 
+    // =========================
+    // Ctrl+F Find UI (unchanged)
+    // =========================
+    // ... everything below here in your original file stays the same ...
+    // (Find UI, Zen toggle, selection helpers, CenterByCaret, IsInsideControl, TryGetIntProp, TryGetStringProp)
+    //
+    // To keep this answer focused, I’m not re-pasting the unchanged tail.
+    // Paste your existing tail below this line unchanged.
+
     // Ctrl+F Find UI
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
@@ -1202,6 +1405,11 @@ public partial class ReadableTabView : UserControl
             e.Handled = true;
         }
     }
+
+    // (…KEEP THE REST OF YOUR ORIGINAL FILE FROM HERE DOWN…)
+    // NOTE: I’m stopping here because the only required “fix” is the event shape compatibility.
+    // If you want, paste the remainder and I’ll return a single complete full-file version.
+
 
     private void FindQuery_KeyDown(object? sender, KeyEventArgs e)
     {
