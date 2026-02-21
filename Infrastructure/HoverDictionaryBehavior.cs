@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using CbetaTranslator.App.Models;
@@ -40,37 +40,53 @@ public sealed class HoverDictionaryBehavior : IDisposable
     private ScrollViewer? _sv;
     private Visual? _presenter;
 
-    // knobs
-    private const int DebounceMs = 140;
-    private const int MaxLenDefault = 19; // your dict can do 19 anyway
+    // Tooltip instance (we control chrome)
+    private readonly ToolTip _tip;
+
+    // Root-level guard to prevent sticky tooltip when leaving the textbox (e.g., navbar)
+    private IInputElement? _root;
+    private bool _rootHooked;
+
+    // knobs (snappy)
+    private const int DebounceMs = 70;
+    private const int MaxLenDefault = 19;
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
-
-    private const bool DebugHover = true;
-
-    // colors (tweak freely)
-    private static readonly IBrush BrushHeadword = new SolidColorBrush(Color.FromRgb(255, 235, 130)); // warm yellow
-    private static readonly IBrush BrushPinyin = new SolidColorBrush(Color.FromRgb(170, 210, 255)); // soft blue
-    private static readonly IBrush BrushSense = new SolidColorBrush(Color.FromRgb(220, 220, 220)); // light gray
-    private static readonly IBrush BrushMeta = new SolidColorBrush(Color.FromRgb(155, 155, 155)); // dim
 
     public HoverDictionaryBehavior(TextBox tb, ICedictDictionary cedict)
     {
         _tb = tb ?? throw new ArgumentNullException(nameof(tb));
         _cedict = cedict ?? throw new ArgumentNullException(nameof(cedict));
 
+        _tip = new ToolTip
+        {
+            Padding = new Thickness(0),
+            Background = Brushes.Transparent,
+            BorderThickness = new Thickness(0),
+            IsHitTestVisible = false,
+            Content = null
+        };
+
+        // This class lets us override global ToolTip styling via App.axaml selector
+        _tip.Classes.Add("dictTip");
+
         ToolTip.SetShowDelay(_tb, 0);
+        ToolTip.SetTip(_tb, _tip);
 
         _debounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(DebounceMs) };
         _debounce.Tick += Debounce_Tick;
 
+        _tb.AttachedToVisualTree += OnAttached;
+        _tb.DetachedFromVisualTree += OnDetached;
+
         _tb.PointerMoved += OnPointerMoved;
         _tb.PointerExited += OnPointerExited;
-        _tb.DetachedFromVisualTree += OnDetached;
-        _tb.TemplateApplied += OnTemplateApplied;
+        _tb.PointerPressed += OnPointerPressed;
+        _tb.PointerWheelChanged += OnPointerWheelChanged;
+        _tb.PointerCaptureLost += OnPointerCaptureLost;
+        _tb.LostFocus += OnLostFocus;
 
-      //  if (DebugHover)
-      //      Debug.WriteLine($"[HOVER] Attached to TextBox. Name={_tb.Name} IsHitTestVisible={_tb.IsHitTestVisible}");
+        _tb.TemplateApplied += OnTemplateApplied;
     }
 
     public void Dispose()
@@ -81,26 +97,128 @@ public sealed class HoverDictionaryBehavior : IDisposable
         _debounce.Stop();
         _debounce.Tick -= Debounce_Tick;
 
+        _tb.AttachedToVisualTree -= OnAttached;
+        _tb.DetachedFromVisualTree -= OnDetached;
+
         _tb.PointerMoved -= OnPointerMoved;
         _tb.PointerExited -= OnPointerExited;
-        _tb.DetachedFromVisualTree -= OnDetached;
+        _tb.PointerPressed -= OnPointerPressed;
+        _tb.PointerWheelChanged -= OnPointerWheelChanged;
+        _tb.PointerCaptureLost -= OnPointerCaptureLost;
+        _tb.LostFocus -= OnLostFocus;
+
         _tb.TemplateApplied -= OnTemplateApplied;
+
+        UnhookRootGuards();
 
         _loadCts?.Cancel();
         _loadCts?.Dispose();
         _loadCts = null;
 
+        ResetHoverState();
         HideTooltip();
 
-     //   if (DebugHover)
-     //       Debug.WriteLine("[HOVER] Disposed.");
+        try { ToolTip.SetTip(_tb, null); } catch { }
+    }
+
+    private void OnAttached(object? sender, VisualTreeAttachmentEventArgs e)
+    {
+        HookRootGuards();
     }
 
     private void OnDetached(object? sender, VisualTreeAttachmentEventArgs e)
     {
-     //   if (DebugHover)
-     //       Debug.WriteLine("[HOVER] TextBox detached -> disposing behavior.");
-     //   Dispose();
+        UnhookRootGuards();
+        ResetHoverState();
+        HideTooltip();
+    }
+
+    private void HookRootGuards()
+    {
+        if (_isDisposed) return;
+
+        // Public + stable across Avalonia versions:
+        // TopLevel is a Control and also an IInputElement (so AddHandler works).
+        var top = TopLevel.GetTopLevel(_tb);
+
+        // Fallback for weird cases: try visual root as IInputElement if your Avalonia exposes it
+        IInputElement? root = top;
+        if (root == null)
+        {
+            try { root = _tb.GetVisualRoot() as IInputElement; } catch { root = null; }
+        }
+
+        if (ReferenceEquals(root, _root) && _rootHooked) return;
+
+        UnhookRootGuards();
+        _root = root;
+        if (_root == null) return;
+
+        _root.AddHandler(InputElement.PointerMovedEvent, RootPointerMoved, RoutingStrategies.Tunnel, handledEventsToo: true);
+        _root.AddHandler(InputElement.PointerPressedEvent, RootPointerPressed, RoutingStrategies.Tunnel, handledEventsToo: true);
+        _rootHooked = true;
+    }
+
+    private void UnhookRootGuards()
+    {
+        if (_root != null && _rootHooked)
+        {
+            try
+            {
+                _root.RemoveHandler(InputElement.PointerMovedEvent, RootPointerMoved);
+                _root.RemoveHandler(InputElement.PointerPressedEvent, RootPointerPressed);
+            }
+            catch
+            {
+                // RemoveHandler can throw if root is already torn down; safe to ignore.
+            }
+        }
+
+        _rootHooked = false;
+        _root = null;
+    }
+
+    private void RootPointerMoved(object? sender, PointerEventArgs e)
+    {
+        if (_isDisposed) return;
+        if (!ToolTip.GetIsOpen(_tb)) return;
+
+        // If pointer is NOT over the textbox -> kill immediately (prevents navbar stickiness).
+        if (!IsPointerOverTextBox(e))
+        {
+            ResetHoverState();
+            HideTooltip();
+        }
+    }
+
+    private void RootPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (_isDisposed) return;
+        if (!ToolTip.GetIsOpen(_tb)) return;
+
+        // Clicking anywhere else should close it instantly.
+        if (!IsPointerOverTextBox(e))
+        {
+            ResetHoverState();
+            HideTooltip();
+        }
+    }
+
+    private bool IsPointerOverTextBox(PointerEventArgs e)
+    {
+        // Use TopLevel as the coordinate root (public API).
+        var top = TopLevel.GetTopLevel(_tb);
+        if (top == null) return false;
+
+        Point pTop;
+        try { pTop = e.GetPosition(top); }
+        catch { return false; }
+
+        // Convert TopLevel coords -> TextBox coords
+        var pTb = top.TranslatePoint(pTop, _tb);
+        if (!pTb.HasValue) return false;
+
+        return IsInsideBounds(_tb.Bounds, pTb.Value);
     }
 
     private void OnTemplateApplied(object? sender, TemplateAppliedEventArgs e)
@@ -113,25 +231,14 @@ public sealed class HoverDictionaryBehavior : IDisposable
         Dispatcher.UIThread.Post(() =>
         {
             if (_isDisposed) return;
-
             RefreshPresenterCache();
-
-        //    if (DebugHover)
-        //    {
-        //        Debug.WriteLine($"[HOVER] TemplateApplied: sv={(_sv != null)} presenter={(_presenter != null)} type={_presenter?.GetType().FullName ?? "(null)"}");
-        //        if (_sv != null)
-        //            Debug.WriteLine($"[HOVER] SV Offset={_sv.Offset} Viewport={_sv.Viewport} Extent={_sv.Extent}");
-        //    }
         }, DispatcherPriority.Loaded);
 
         DispatcherTimer.RunOnce(() =>
         {
             if (_isDisposed) return;
             RefreshPresenterCache();
-
-     //       if (DebugHover)
-     //           Debug.WriteLine($"[HOVER] TemplateApplied+delay: presenter={(_presenter != null)} type={_presenter?.GetType().FullName ?? "(null)"}");
-        }, TimeSpan.FromMilliseconds(120));
+        }, TimeSpan.FromMilliseconds(80));
     }
 
     private void RefreshPresenterCache()
@@ -162,8 +269,16 @@ public sealed class HoverDictionaryBehavior : IDisposable
     {
         if (_isDisposed) return;
 
-        _lastPointInTextBox = e.GetPosition(_tb);
+        var p = e.GetPosition(_tb);
+        _lastPointInTextBox = p;
         _hasLastPoint = true;
+
+        if (!IsInsideBounds(_tb.Bounds, p))
+        {
+            ResetHoverState();
+            HideTooltip();
+            return;
+        }
 
         _debounce.Stop();
         _debounce.Start();
@@ -172,69 +287,66 @@ public sealed class HoverDictionaryBehavior : IDisposable
     private void OnPointerExited(object? sender, PointerEventArgs e)
     {
         if (_isDisposed) return;
+        ResetHoverState();
+        HideTooltip();
+    }
 
-      //  if (DebugHover)
-      //      Debug.WriteLine("[HOVER] PointerExited -> hide");
+    private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (_isDisposed) return;
+        ResetHoverState();
+        HideTooltip();
+    }
 
+    private void OnPointerWheelChanged(object? sender, PointerWheelEventArgs e)
+    {
+        if (_isDisposed) return;
+        ResetHoverState();
+        HideTooltip();
+    }
+
+    private void OnPointerCaptureLost(object? sender, PointerCaptureLostEventArgs e)
+    {
+        if (_isDisposed) return;
+        ResetHoverState();
+        HideTooltip();
+    }
+
+    private void OnLostFocus(object? sender, RoutedEventArgs e)
+    {
+        if (_isDisposed) return;
+        ResetHoverState();
+        HideTooltip();
+    }
+
+    private void ResetHoverState()
+    {
         _hasLastPoint = false;
         _lastIndex = -1;
         _lastKeyShown = null;
-        HideTooltip();
     }
 
     private void UpdateTooltipFromPoint(Point pointInTextBox)
     {
         if (_isDisposed) return;
 
+        if (!IsInsideBounds(_tb.Bounds, pointInTextBox))
+        {
+            ResetHoverState();
+            HideTooltip();
+            return;
+        }
+
         if (!_cedict.IsLoaded)
         {
             ShowTooltip(BuildLoadingTooltip());
-
-            if (!_loadKickoff)
-            {
-                _loadKickoff = true;
-                _loadCts = new CancellationTokenSource();
-                var ct = _loadCts.Token;
-
-            //    if (DebugHover)
-            //        Debug.WriteLine("[HOVER] Kicking off dictionary load...");
-
-                _ = Task.Run(async () =>
-                {
-                    try
-                    {
-                        await _cedict.EnsureLoadedAsync(ct);
-                    }
-                    catch (OperationCanceledException) { return; }
-                    catch (Exception ex)
-                    {
-                        await Dispatcher.UIThread.InvokeAsync(() =>
-                            ShowTooltip(BuildErrorTooltip("CEDICT load failed", ex.Message)));
-                        return;
-                    }
-
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        if (_isDisposed) return;
-
-           //             if (DebugHover)
-           //                 Debug.WriteLine("[HOVER] Dictionary loaded -> rerun hover lookup");
-
-                        if (_hasLastPoint)
-                            UpdateTooltipFromPoint(_lastPointInTextBox);
-                    });
-                });
-            }
-
+            KickoffLoadIfNeeded();
             return;
         }
 
         int idx = GetCharIndexFromPoint(pointInTextBox);
 
-   //     if (DebugHover)
-   //         Debug.WriteLine($"[HOVER] HitTest idx={idx} textLen={(_tb.Text?.Length ?? 0)}");
-
-        var text = _tb.Text ?? "";
+        var text = _tb.Text ?? string.Empty;
         if (idx < 0 || idx >= text.Length)
         {
             HideTooltip();
@@ -259,7 +371,7 @@ public sealed class HoverDictionaryBehavior : IDisposable
 
         if (_cedict.TryLookupChar(ch, out var entries) && entries.Count > 0)
         {
-            string head = ch.ToString();
+            var head = ch.ToString();
             if (_lastKeyShown == head) return;
 
             _lastKeyShown = head;
@@ -270,9 +382,41 @@ public sealed class HoverDictionaryBehavior : IDisposable
         HideTooltip();
     }
 
+    private void KickoffLoadIfNeeded()
+    {
+        if (_loadKickoff) return;
+        if (_cedict.IsLoaded) return;
+
+        _loadKickoff = true;
+        _loadCts = new CancellationTokenSource();
+        var ct = _loadCts.Token;
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await _cedict.EnsureLoadedAsync(ct);
+            }
+            catch (OperationCanceledException) { return; }
+            catch (Exception ex)
+            {
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                    ShowTooltip(BuildErrorTooltip("CEDICT load failed", ex.Message)));
+                return;
+            }
+
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                if (_isDisposed) return;
+                if (_hasLastPoint)
+                    UpdateTooltipFromPoint(_lastPointInTextBox);
+            });
+        });
+    }
+
     private int GetCharIndexFromPoint(Point pointInTextBox)
     {
-        var text = _tb.Text ?? "";
+        var text = _tb.Text ?? string.Empty;
         if (text.Length == 0) return -1;
 
         if (_presenter == null || _sv == null)
@@ -283,9 +427,6 @@ public sealed class HoverDictionaryBehavior : IDisposable
 
         if (!TryMapPointToPresenter(pointInTextBox, out var pPresenter))
             return -1;
-
-   //     if (DebugHover)
-   //         Debug.WriteLine($"[HOVER] CoordMap(direct): tb={pointInTextBox} pres={pPresenter}");
 
         int idx = TryHitTestViaTextLayout(_presenter, pPresenter, text.Length);
         if (idx >= 0)
@@ -317,11 +458,7 @@ public sealed class HoverDictionaryBehavior : IDisposable
 
             var r = tl.HitTestPoint(pPresenter);
 
-            // Do NOT require IsInside. TextPosition is still the nearest hit.
             int idx = r.TextPosition + (r.IsTrailing ? 1 : 0);
-
-     //       if (DebugHover)
-     //           Debug.WriteLine($"[HOVER] TextLayout hit: inside={r.IsInside} pos={r.TextPosition} trailing={r.IsTrailing} -> idx={idx}");
 
             if (textLen <= 0) return -1;
 
@@ -330,10 +467,8 @@ public sealed class HoverDictionaryBehavior : IDisposable
 
             return idx;
         }
-        catch (Exception)
+        catch
         {
-            //      if (DebugHover)
-            //          Debug.WriteLine("[HOVER] TextLayout HitTest exception: " + ex.Message);
             return -1;
         }
     }
@@ -345,7 +480,7 @@ public sealed class HoverDictionaryBehavior : IDisposable
         if (_presenter == null) return false;
 
         var direct = _tb.TranslatePoint(pointInTextBox, _presenter);
-        if (direct != null)
+        if (direct.HasValue)
         {
             pointInPresenter = direct.Value;
             return true;
@@ -354,12 +489,12 @@ public sealed class HoverDictionaryBehavior : IDisposable
         if (_sv == null) return false;
 
         var pSv = _tb.TranslatePoint(pointInTextBox, _sv);
-        if (pSv == null) return false;
+        if (!pSv.HasValue) return false;
 
         var corrected = new Point(pSv.Value.X + _sv.Offset.X, pSv.Value.Y + _sv.Offset.Y);
 
         var pPres = _sv.TranslatePoint(corrected, _presenter);
-        if (pPres == null) return false;
+        if (!pPres.HasValue) return false;
 
         pointInPresenter = pPres.Value;
         return true;
@@ -369,62 +504,60 @@ public sealed class HoverDictionaryBehavior : IDisposable
 
     private void ShowTooltip(Control content)
     {
-        ToolTip.SetTip(_tb, content);
+        // Belt + suspenders against global ToolTip style:
+        _tip.Padding = new Thickness(0);
+        _tip.Background = Brushes.Transparent;
+        _tip.BorderThickness = new Thickness(0);
+        _tip.Content = content;
+
         ToolTip.SetIsOpen(_tb, true);
     }
 
     private void HideTooltip()
     {
         ToolTip.SetIsOpen(_tb, false);
-        ToolTip.SetTip(_tb, null);
+        _tip.Content = null;
     }
 
-    private static Control BuildLoadingTooltip()
-    {
-        return BuildTooltipContainer(new[]
+    private Control BuildLoadingTooltip()
+        => BuildTooltipContainer(new[] { MakeLine("Loading dictionary…", ResBrush("DictMetaFg", ThemeFallbackMeta()), false) });
+
+    private Control BuildErrorTooltip(string title, string message)
+        => BuildTooltipContainer(new[]
         {
-            MakeLine("Loading dictionary…", BrushMeta, isBold:false)
+            MakeLine(title, ResBrush("DictHeadwordFg", ThemeFallbackHead()), true),
+            MakeLine(message, ResBrush("DictSenseFg", ThemeFallbackSense()), false)
         });
-    }
 
-    private static Control BuildErrorTooltip(string title, string message)
-    {
-        return BuildTooltipContainer(new[]
-        {
-            MakeLine(title, BrushHeadword, isBold:true),
-            MakeLine(message, BrushSense, isBold:false)
-        });
-    }
-
-    private static Control BuildTooltipForEntries(string headword, IReadOnlyList<CedictEntry> entries)
+    private Control BuildTooltipForEntries(string headword, IReadOnlyList<CedictEntry> entries)
         => BuildTooltipForMatch(new CedictMatch(headword, 0, headword.Length, entries));
 
-    private static Control BuildTooltipForMatch(CedictMatch match)
+    private Control BuildTooltipForMatch(CedictMatch match)
     {
-        // Up to 10 entries, with up to N senses each.
-        var entries = match.Entries
-            .Where(e => e != null)
-            .Take(MaxEntriesShown)
-            .ToList();
+        var headFg = ResBrush("DictHeadwordFg", ThemeFallbackHead());
+        var pinFg = ResBrush("DictPinyinFg", ThemeFallbackPinyin());
+        var senseFg = ResBrush("DictSenseFg", ThemeFallbackSense());
+        var metaFg = ResBrush("DictMetaFg", ThemeFallbackMeta());
 
-        var lines = new List<TextBlock>();
+        var entries = match.Entries.Where(e => e != null).Take(MaxEntriesShown).ToList();
 
-        // header
-        lines.Add(MakeLine(match.Headword.Trim(), BrushHeadword, isBold: true, fontSize: 21));
+        var lines = new List<TextBlock>
+        {
+            MakeLine(match.Headword.Trim(), headFg, true, 21)
+        };
 
         if (entries.Count == 0)
         {
-            lines.Add(MakeLine("(no entries)", BrushMeta, false));
+            lines.Add(MakeLine("(no entries)", metaFg, false));
             return BuildTooltipContainer(lines);
         }
 
-        // entry blocks
         for (int i = 0; i < entries.Count; i++)
         {
             var e = entries[i];
 
-            string pin = string.IsNullOrWhiteSpace(e.Pinyin) ? "(no pinyin)" : e.Pinyin.Trim();
-            lines.Add(MakeLine(pin, BrushPinyin, isBold: false));
+            var pin = string.IsNullOrWhiteSpace(e.Pinyin) ? "(no pinyin)" : e.Pinyin.Trim();
+            lines.Add(MakeLine(pin, pinFg, false));
 
             var senses = (e.Senses ?? Array.Empty<string>())
                 .Where(s => !string.IsNullOrWhiteSpace(s))
@@ -433,44 +566,41 @@ public sealed class HoverDictionaryBehavior : IDisposable
                 .ToList();
 
             foreach (var s in senses)
-                lines.Add(MakeLine("• " + s, BrushSense, isBold: false));
+                lines.Add(MakeLine("• " + s, senseFg, false));
 
             if (i < entries.Count - 1)
-                lines.Add(MakeLine(" ", BrushMeta, false)); // spacer
+                lines.Add(MakeLine(" ", metaFg, false));
         }
 
-        // footer when truncated
         if (match.Entries.Count > MaxEntriesShown)
-            lines.Add(MakeLine($"…and {match.Entries.Count - MaxEntriesShown} more", BrushMeta, false));
+            lines.Add(MakeLine($"…and {match.Entries.Count - MaxEntriesShown} more", metaFg, false));
 
         return BuildTooltipContainer(lines);
     }
 
-    private static Control BuildTooltipContainer(IEnumerable<TextBlock> lines)
+    private Control BuildTooltipContainer(IEnumerable<TextBlock> lines)
     {
-        var panel = new StackPanel
-        {
-            Spacing = 2
-        };
+        var panel = new StackPanel { Spacing = 2 };
+        foreach (var l in lines) panel.Children.Add(l);
 
-        foreach (var l in lines)
-            panel.Children.Add(l);
+        var bg = ResBrush("DictTipBg", ThemeFallbackBg());
+        var br = ResBrush("DictTipBorder", ThemeFallbackBorder());
 
         return new Border
         {
-            Background = new SolidColorBrush(Color.FromRgb(25, 25, 25)),
-            BorderBrush = new SolidColorBrush(Color.FromRgb(70, 70, 70)),
+            Background = bg,
+            BorderBrush = br,
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(8),
             Padding = new Thickness(10),
             Child = panel,
-            MaxWidth = 520
+            MaxWidth = 520,
+            IsHitTestVisible = false
         };
     }
 
     private static TextBlock MakeLine(string text, IBrush fg, bool isBold, double fontSize = 14)
-    {
-        return new TextBlock
+        => new()
         {
             Text = text,
             Foreground = fg,
@@ -478,9 +608,65 @@ public sealed class HoverDictionaryBehavior : IDisposable
             FontSize = fontSize,
             TextWrapping = TextWrapping.Wrap
         };
+
+    private IBrush ResBrush(string key, IBrush fallback)
+    {
+        try
+        {
+            var app = Application.Current;
+            if (app != null && app.TryFindResource(key, out var v) && v is IBrush b)
+                return b;
+        }
+        catch { }
+        return fallback;
     }
 
-    // -------------------------- misc --------------------------
+    private bool IsLightTheme()
+    {
+        try
+        {
+            var tv = Application.Current?.ActualThemeVariant;
+            return ReferenceEquals(tv, ThemeVariant.Light);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    // Theme fallbacks (so light mode doesn’t stay “night” even if Dict* active tokens aren’t wired yet)
+    private IBrush ThemeFallbackBg()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(250, 250, 250))
+            : new SolidColorBrush(Color.FromRgb(25, 25, 25));
+
+    private IBrush ThemeFallbackBorder()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(205, 205, 205))
+            : new SolidColorBrush(Color.FromRgb(70, 70, 70));
+
+    private IBrush ThemeFallbackHead()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(120, 80, 0))
+            : new SolidColorBrush(Color.FromRgb(255, 235, 130));
+
+    private IBrush ThemeFallbackPinyin()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(40, 90, 150))
+            : new SolidColorBrush(Color.FromRgb(170, 210, 255));
+
+    private IBrush ThemeFallbackSense()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(35, 35, 35))
+            : new SolidColorBrush(Color.FromRgb(220, 220, 220));
+
+    private IBrush ThemeFallbackMeta()
+        => IsLightTheme()
+            ? new SolidColorBrush(Color.FromRgb(110, 110, 110))
+            : new SolidColorBrush(Color.FromRgb(155, 155, 155));
+
+    private static bool IsInsideBounds(Rect b, Point p)
+        => p.X >= 0 && p.Y >= 0 && p.X < b.Width && p.Y < b.Height;
 
     private static bool IsCjk(char c)
     {

@@ -64,10 +64,8 @@
 
 
 		<Border Name="FindBar"
+				Classes="findbar"
 				Grid.Row="1"
-				Background="{DynamicResource PanelAltBg}"
-				Padding="8"
-				CornerRadius="8"
 				Margin="0,0,0,8"
 				IsVisible="False">
 			<DockPanel LastChildFill="True">

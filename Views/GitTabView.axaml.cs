@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CbetaTranslator.App.Services;
@@ -634,22 +636,22 @@ public partial class GitTabView : UserControl
             {
                 Text = title,
                 FontSize = 20,
-                FontWeight = Avalonia.Media.FontWeight.SemiBold
+                FontWeight = FontWeight.SemiBold
             };
 
             var bodyBorder = new Border
             {
                 CornerRadius = new CornerRadius(8),
                 BorderThickness = new Thickness(1),
-                BorderBrush = Avalonia.Media.Brushes.Gray,
-                Background = Avalonia.Media.Brushes.Transparent,
+                BorderBrush = Brushes.Gray,
+                Background = Brushes.Transparent,
                 Padding = new Thickness(12),
                 Child = new ScrollViewer
                 {
                     Content = new TextBlock
                     {
                         Text = message,
-                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        TextWrapping = TextWrapping.Wrap,
                         FontSize = 14
                     }
                 }
@@ -657,8 +659,8 @@ public partial class GitTabView : UserControl
 
             var buttons = new StackPanel
             {
-                Orientation = Avalonia.Layout.Orientation.Horizontal,
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Spacing = 8
             };
 
@@ -1134,6 +1136,11 @@ public partial class GitTabView : UserControl
             err.Contains("Repository not found", StringComparison.OrdinalIgnoreCase) ||
             err.Contains("404", StringComparison.OrdinalIgnoreCase);
 
+        bool looksLikeNoCredStore =
+            err.Contains("No credential store has been selected", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("GCM_CREDENTIAL_STORE", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("credential.credentialStore", StringComparison.OrdinalIgnoreCase);
+
         if (looksLikeRepoNotFound)
         {
             AppendLog("[hint] Git says 'Repository not found'. Usually: wrong remote URL or you are not authenticated.");
@@ -1141,7 +1148,21 @@ public partial class GitTabView : UserControl
 
         if (looksLikeWrongAccount)
         {
-            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in your Git credential helper.");
+            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential helper.");
+        }
+
+        if (looksLikeNoCredStore)
+        {
+            AppendLog("[hint] Git Credential Manager is installed but no credential store is configured.");
+            AppendLog("[hint] On GNOME desktops, you usually want: secretservice (GNOME Keyring).");
+            AppendLog("[linux] Run these commands, then retry Step 3:");
+            AppendLog("  git config --global credential.helper manager");
+            AppendLog("  git config --global credential.credentialStore secretservice");
+            AppendLog("  git-credential-manager configure");
+            AppendLog("[linux] If it still fails, run and share:");
+            AppendLog("  git config --list --show-origin | grep -E \"credential.helper|credential.credentialStore\"");
+            AppendLog("  git config --show-origin --get-all credential.helper");
+            return;
         }
 
         if (looksLikeNoPrompt)

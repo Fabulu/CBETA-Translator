@@ -21,20 +21,43 @@ namespace CbetaTranslator.App.Text;
 ///   1) Inline notes: <note place="inline">...</note> at current text position
 ///   2) End notes in <back>: <note ... target="#nkr_note_mod_XXXX">...</note>
 ///      anchored by <anchor xml:id="nkr_note_mod_XXXX" .../> in the body.
-///   3) Community inline notes: <note type="community" resp="NAME">...</note>
-///      (these will be removable later)
+///   3) Community notes meant as *annotations* (NOT translations):
+///      <note type="community" resp="SOMEONE">...</note>
+///      - We explicitly SKIP resp="md-import" (that’s translation glue, not an annotation)
+///      - We KEEP resp="md-note" (your markdown-native notes)
 /// - Builds DocAnnotation list + calls AnnotationMarkerInserter.InsertMarkers(...)
 ///
-/// NEW:
-/// - Also returns BaseToXmlIndex mapping: base rendered text (before marker insertion) -> absolute XML index.
-///   This is needed to place new notes at a clicked position in the rendered view.
+/// IMPORTANT (connected to MarkdownTranslationService):
+/// - Markdown range notes validate/anchor against XML with LF-normalized newlines.
+/// - Therefore this renderer also normalizes newlines (CRLF/CR -> LF) BEFORE computing BaseToXmlIndex,
+///   so click->xmlIndex matches the merge logic.
 /// </summary>
 public static class CbetaTeiRenderer
 {
+    // Your translation merge uses resp="md-import"; renderer must NOT treat those as annotations.
+    private const string RespMdImport = "md-import";
+    private const string RespMdNote = "md-note";
+
+    private const string AttrTargetPath = "target-path";
+    private const string AttrRespUser = "resp-user";
+    private const string AttrType = "type";
+    private const string AttrPlace = "place";
+    private const string AttrTarget = "target";
+    private const string AttrLang = "xml:lang"; // only used for checks via Attr(...) since we're scanning text
+
+    // Segment keys + attribute parsing (no regex)
+    private const string AttrN = "n";
+    private const string AttrEd = "ed";
+    private const string AttrXmlId = "xml:id";
+    private const string AttrFun = "fun";
+
     public static RenderedDocument Render(string xml)
     {
         if (string.IsNullOrWhiteSpace(xml))
             return RenderedDocument.Empty;
+
+        // CRITICAL: normalize newlines so our baseToXmlIndex matches merge/validation logic.
+        xml = NormalizeNewlines(xml);
 
         var sb = new StringBuilder(xml.Length);
         var baseToXml = new List<int>(capacity: Math.Max(1024, xml.Length / 4));
@@ -52,8 +75,8 @@ public static class CbetaTeiRenderer
         var noteSb = new StringBuilder(256);
 
         int noteAnchorPos = -1;     // in base rendered text (sb)
-        string? noteKind = null;    // "mod"/"orig"/"add"/"inline"/"community"/...
-        string? noteResp = null;    // name / author for community notes
+        string? noteKind = null;    // "mod"/"orig"/"add"/"inline"/"md-note"/"community"/...
+        string? noteResp = null;    // author-ish (for md-note, prefer resp-user)
 
         // XML span for inline/community notes (for precise removal later)
         int noteXmlStart = -1;
@@ -153,8 +176,7 @@ public static class CbetaTeiRenderer
 
                         if (noteAnchorPos >= 0 && !string.IsNullOrWhiteSpace(noteText))
                         {
-                            // IMPORTANT: new DocAnnotation constructor order:
-                            // (start, endExclusive, text, kind, resp, xmlStart, xmlEndExclusive)
+                            // DocAnnotation: (start, endExclusive, text, kind, resp, xmlStart, xmlEndExclusive)
                             annotations.Add(new DocAnnotation(
                                 start: noteAnchorPos,
                                 endExclusive: noteAnchorPos,
@@ -180,21 +202,24 @@ public static class CbetaTeiRenderer
                 {
                     // entering blocks
                     if (EqualsIgnoreCase(tagName, "teiHeader"))
-                    {
                         teiHeaderDepth++;
-                    }
                     else if (EqualsIgnoreCase(tagName, "back"))
-                    {
                         backDepth++;
-                    }
 
                     // If we're capturing a note and we hit any start-tag: treat as a soft separator
                     if (inNoteCapture)
                     {
-                        if (EqualsIgnoreCase(tagName, "lb") || EqualsIgnoreCase(tagName, "p") || EqualsIgnoreCase(tagName, "head") || EqualsIgnoreCase(tagName, "br"))
+                        if (EqualsIgnoreCase(tagName, "lb") ||
+                            EqualsIgnoreCase(tagName, "p") ||
+                            EqualsIgnoreCase(tagName, "head") ||
+                            EqualsIgnoreCase(tagName, "br"))
+                        {
                             AppendNewline(noteSb, map: null, xmlIndexForInserted: lt, ref noteLastWasNewline);
+                        }
                         else
+                        {
                             AppendText(noteSb, map: null, " ".AsSpan(), absStartXmlIndex: lt, ref noteLastWasNewline);
+                        }
                     }
 
                     // Only do segmentation/rendering while not in teiHeader and not in back and not in note capture
@@ -217,30 +242,44 @@ public static class CbetaTeiRenderer
                         }
 
                         // Inline notes: <note place="inline">...</note>
-                        // Community notes: <note type="community" resp="NAME">...</note>
+                        // Community notes (annotations): <note type="community" resp="NAME">...</note>
+                        // - SKIP resp="md-import" (translations)
+                        // - KEEP resp="md-note" (markdown-native notes)
                         if (EqualsIgnoreCase(tagName, "note"))
                         {
-                            var place = Attr(attrs, "place");
-                            var type = Attr(attrs, "type");
+                            var place = Attr(attrs, AttrPlace);
+                            var type = Attr(attrs, AttrType);
                             var resp = Attr(attrs, "resp");
 
                             bool isInline = string.Equals(place, "inline", StringComparison.OrdinalIgnoreCase);
                             bool isCommunity = string.Equals(type, "community", StringComparison.OrdinalIgnoreCase);
 
-                            // We allow capturing either "inline" or "community" notes here.
-                            // (Community notes are intended for translated side edits.)
-                            if (isInline || isCommunity)
+                            // Translation glue? Don't capture.
+                            if (isCommunity && string.Equals(resp, RespMdImport, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // invisible metadata for reader
+                            }
+                            else if (isInline || isCommunity)
                             {
                                 inNoteCapture = true;
                                 noteSb.Clear();
                                 noteLastWasNewline = false;
 
+                                // Anchor at current rendered pos (note appears here in XML).
                                 noteAnchorPos = sb.Length;
+
                                 noteXmlStart = lt;
                                 noteXmlEndExclusive = -1;
 
-                                noteKind = isCommunity ? "community" : (type ?? "inline");
-                                noteResp = resp;
+                                // Kind: preserve md-note explicitly so UI can distinguish.
+                                if (isCommunity && string.Equals(resp, RespMdNote, StringComparison.OrdinalIgnoreCase))
+                                    noteKind = RespMdNote;
+                                else
+                                    noteKind = isCommunity ? "community" : (type ?? "inline");
+
+                                // Author-ish: prefer resp-user for md-note, else resp attribute.
+                                var respUser = Attr(attrs, AttrRespUser);
+                                noteResp = !string.IsNullOrWhiteSpace(respUser) ? respUser : resp;
                             }
                         }
 
@@ -261,7 +300,7 @@ public static class CbetaTeiRenderer
                         // Inside <back> (or header): do NOT render, but collect end-notes anchored by <anchor> ids.
                         if (teiHeaderDepth == 0 && EqualsIgnoreCase(tagName, "note"))
                         {
-                            var target = Attr(attrs, "target");
+                            var target = Attr(attrs, AttrTarget);
                             if (!string.IsNullOrWhiteSpace(target) && target[0] == '#')
                             {
                                 var targetId = target.Substring(1);
@@ -275,7 +314,8 @@ public static class CbetaTeiRenderer
                                     noteXmlStart = lt;
                                     noteXmlEndExclusive = -1;
 
-                                    noteResp = Attr(attrs, "resp");
+                                    var resp = Attr(attrs, "resp");
+                                    noteResp = resp;
 
                                     if (anchorPosById.TryGetValue(targetId, out var hit))
                                     {
@@ -351,11 +391,11 @@ public static class CbetaTeiRenderer
 
         int nameStart = p;
 
-        // tag name: letters + optional colon, e.g. cb:juan
+        // tag name: allow letters/digits + optional colon + '-' '_' (defensive)
         while (p < tag.Length - 1)
         {
             char ch = tag[p];
-            if (char.IsLetter(ch) || ch == ':')
+            if (char.IsLetterOrDigit(ch) || ch == ':' || ch == '-' || ch == '_')
             {
                 p++;
                 continue;
@@ -411,7 +451,6 @@ public static class CbetaTeiRenderer
             boundarySpaceEmitted = true;
             wroteAny = true;
 
-            // after boundary space, we no longer need it
             needBoundarySpace = false;
         }
 
@@ -438,7 +477,6 @@ public static class CbetaTeiRenderer
                 pendingSpace = false;
             }
 
-            // boundary space between chunks if needed
             EmitBoundarySpaceIfNeeded(xmlIndexForChar);
 
             outSb.Append(c);
@@ -507,7 +545,6 @@ public static class CbetaTeiRenderer
 
         while (sb.Length > 0 && (sb[^1] == ' ' || sb[^1] == '\t' || sb[^1] == '\r'))
         {
-            // if we trimmed a char, trim the map too
             sb.Length--;
             if (map != null && map.Count > sb.Length)
                 map.RemoveAt(map.Count - 1);
@@ -628,11 +665,6 @@ public static class CbetaTeiRenderer
     // Segment keys + attribute parsing (no regex)
     // ------------------------------------------------------------
 
-    private const string AttrN = "n";
-    private const string AttrEd = "ed";
-    private const string AttrXmlId = "xml:id";
-    private const string AttrFun = "fun";
-
     private static bool TryMakeSyncKey(ReadOnlySpan<char> tagName, ReadOnlySpan<char> attrs, out string key)
     {
         key = "";
@@ -641,7 +673,7 @@ public static class CbetaTeiRenderer
         {
             var n = Attr(attrs, AttrN);
             var ed = Attr(attrs, AttrEd);
-            key = MakeKey("lb", n, ed);          // ✅ restore ed
+            key = MakeKey("lb", n, ed);
             return true;
         }
 
@@ -649,7 +681,7 @@ public static class CbetaTeiRenderer
         {
             var id = Attr(attrs, AttrXmlId) ?? Attr(attrs, AttrN);
             var ed = Attr(attrs, AttrEd);
-            key = MakeKey("pb", id, ed);         // ✅ restore ed
+            key = MakeKey("pb", id, ed);
             return true;
         }
 
@@ -689,7 +721,7 @@ public static class CbetaTeiRenderer
 
     /// <summary>
     /// Extract attribute value from an attribute span.
-    /// Supports double quotes only (which matches CBETA TEI).
+    /// Supports double quotes and (defensively) single quotes.
     /// Returns null if not found.
     /// </summary>
     private static string? Attr(ReadOnlySpan<char> attrs, string attrName)
@@ -717,7 +749,10 @@ public static class CbetaTeiRenderer
 
             int j = eq + 1;
             while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
-            if (j >= attrs.Length || attrs[j] != '"')
+            if (j >= attrs.Length) { i = eq + 1; continue; }
+
+            char quote = attrs[j];
+            if (quote != '"' && quote != '\'')
             {
                 i = eq + 1;
                 continue;
@@ -725,7 +760,7 @@ public static class CbetaTeiRenderer
 
             j++;
             int start = j;
-            int endRel = attrs.Slice(start).IndexOf('"');
+            int endRel = attrs.Slice(start).IndexOf(quote);
             if (endRel < 0) return null;
             int end = start + endRel;
 
@@ -744,5 +779,11 @@ public static class CbetaTeiRenderer
         if (id.StartsWith("nkr_note_orig_", StringComparison.Ordinal)) return "orig";
         if (id.StartsWith("nkr_note_add_", StringComparison.Ordinal)) return "add";
         return null;
+    }
+
+    private static string NormalizeNewlines(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return "";
+        return s.Replace("\r\n", "\n").Replace("\r", "\n");
     }
 }
