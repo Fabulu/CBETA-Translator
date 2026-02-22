@@ -1,12 +1,4 @@
 ﻿// Views/MainWindow.axaml.cs
-//
-// MERGED-BRANCH INTEGRATION TARGET:
-// - Translation tab stays MARKDOWN-based.
-// - Readable tab becomes XML-ONLY: always renders disk TEI (xml-p5 + xml-p5t).
-// - Community notes edit disk TEI ONLY (creating xml-p5t once if missing).
-// - Remove MainWindow-driven mirroring hacks (restore old mirroring behavior in ReadableTabView).
-// - Keep: settings + theme, improved hover dictionary behavior (elsewhere), full-text nav filter, Git helpers.
-// - PDF EXPORT: REMOVED COMPLETELY.
 
 using Avalonia;
 using Avalonia.Controls;
@@ -879,27 +871,36 @@ public partial class MainWindow : Window
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
     {
-        if (_originalDir == null || _translatedDir == null) return (RenderedDocument.Empty, RenderedDocument.Empty);
+        if (_originalDir == null || _translatedDir == null)
+            return (RenderedDocument.Empty, RenderedDocument.Empty);
 
         var origAbs = Path.Combine(_originalDir, relPath);
         var tranAbs = Path.Combine(_translatedDir, relPath);
 
-        // Original: always exists.
+        // ----- ORIGINAL (disk only, cached by disk stamp) -----
+        ct.ThrowIfCancellationRequested();
+
         var stampOrig = FileStamp.FromFile(origAbs);
         RenderedDocument ro;
         if (!_renderCache.TryGet(stampOrig, out ro))
         {
             ct.ThrowIfCancellationRequested();
-            ro = CbetaTeiRenderer.Render(_rawOrigXml ?? "");
+
+            // IMPORTANT: render from disk when caching by disk stamp
+            var diskOrig = SafeReadAllTextUtf8(origAbs);
+            ro = CbetaTeiRenderer.Render(diskOrig);
+
             _renderCache.Put(stampOrig, ro);
         }
 
-        // Translated: if missing, render original (or empty) without caching.
+        // ----- TRANSLATED (disk only, cached by disk stamp) -----
+        ct.ThrowIfCancellationRequested();
+
         if (!File.Exists(tranAbs))
         {
-            ct.ThrowIfCancellationRequested();
-            var fallback = _rawOrigXml ?? "";
-            var rtFallback = CbetaTeiRenderer.Render(fallback);
+            // If translated missing, render original content as fallback (NOT cached)
+            var diskOrig = SafeReadAllTextUtf8(origAbs);
+            var rtFallback = CbetaTeiRenderer.Render(diskOrig);
             return (ro, rtFallback);
         }
 
