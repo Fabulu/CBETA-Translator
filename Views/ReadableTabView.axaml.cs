@@ -39,6 +39,10 @@ public partial class ReadableTabView : UserControl
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
+    // Prevent mirror from racing a marker click (caret moves on click; mirroring can move again)
+    private DateTime _suppressMirrorForMarkerClickUntilUtc = DateTime.MinValue;
+    private const int SuppressMirrorAfterMarkerClickMs = 260;
+
     // Selection sync
     private readonly ISelectionSyncService _selectionSync = new SelectionSyncService();
 
@@ -486,34 +490,34 @@ public partial class ReadableTabView : UserControl
             if (te == null) return;
 
             var doc = onOrig ? _renderOrig : _renderTran;
-            if (doc == null || doc.IsEmpty) return;
+            if (doc.IsEmpty) return;
 
-            int offset = GetDocumentOffsetFromPointer(te, e);
+            // Critical: prevent selection mirroring from racing the caret placement caused by the click.
+            _suppressMirrorForMarkerClickUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterMarkerClickMs);
+            _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterMarkerClickMs);
 
-            if (offset >= 0)
-            {
-                if (TryResolveAnnotationFromMarkerSpans(doc, offset, out var ann))
-                {
-                    Log($"Marker click resolved immediately. pane={(onOrig ? "orig" : "tran")} offset={offset}");
-                    ShowNotes(ann);
-                    NoteClicked?.Invoke(this, ann);
-                    e.Handled = true;
-                }
-                return;
-            }
-
+            // Let AvaloniaEdit process the click and move the caret first, then resolve markers from caret.
             Dispatcher.UIThread.Post(() =>
             {
-                int caret = GetCaretOffsetSafe(te);
-                if (caret < 0) return;
+                try
+                {
+                    if (_pendingCommunityRefresh) return;
 
-                if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
-                    return;
+                    int caret = GetCaretOffsetSafe(te);
+                    if (caret < 0) return;
 
-                Log($"Marker click resolved via caret fallback. pane={(onOrig ? "orig" : "tran")} caret={caret}");
-                ShowNotes(ann);
-                NoteClicked?.Invoke(this, ann);
-            }, DispatcherPriority.Background);
+                    if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
+                        return;
+
+                    Log($"Marker click resolved via caret (post). pane={(onOrig ? "orig" : "tran")} caret={caret}");
+                    ShowNotes(ann);
+                    NoteClicked?.Invoke(this, ann);
+                }
+                catch (Exception ex2)
+                {
+                    Log("Marker click (post) exception: " + ex2);
+                }
+            }, DispatcherPriority.Input);
         }
         catch (Exception ex)
         {
@@ -527,116 +531,6 @@ public partial class ReadableTabView : UserControl
         catch { return -1; }
     }
 
-    private static int GetDocumentOffsetFromPointer(TextEditor ed, PointerEventArgs e)
-    {
-        try
-        {
-            var textView = ed.TextArea?.TextView;
-            var document = ed.Document;
-            if (textView == null || document == null) return -1;
-
-            var p = e.GetPosition(textView);
-            try { textView.EnsureVisualLines(); } catch { }
-
-            object? posObj = null;
-            var tvType = textView.GetType();
-
-            var m1 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point), typeof(bool) });
-            if (m1 != null)
-                posObj = m1.Invoke(textView, new object[] { p, true });
-
-            if (posObj == null)
-            {
-                var m2 = tvType.GetMethod("GetPositionFromPoint", new[] { typeof(Point) });
-                if (m2 != null)
-                    posObj = m2.Invoke(textView, new object[] { p });
-            }
-
-            if (posObj == null)
-            {
-                var m3 = tvType.GetMethod("GetPosition", new[] { typeof(Point) });
-                if (m3 != null)
-                    posObj = m3.Invoke(textView, new object[] { p });
-            }
-
-            if (posObj == null) return -1;
-
-            var unwrapped = UnwrapNullable(posObj);
-            if (unwrapped == null) return -1;
-
-            int line = GetIntMember(unwrapped, "Line", fallback: -1);
-            int column = GetIntMember(unwrapped, "Column", fallback: -1);
-
-            if (line < 1 || column < 1)
-            {
-                var lineObj = GetMember(unwrapped, "Line");
-                if (lineObj != null)
-                {
-                    int ln = GetIntMember(lineObj, "LineNumber", fallback: -1);
-                    if (ln > 0) line = ln;
-                }
-
-                if (column < 1)
-                    column = GetIntMember(unwrapped, "VisualColumn", fallback: column);
-            }
-
-            if (line < 1 || column < 1) return -1;
-
-            int offset = document.GetOffset(line, column);
-            offset = Math.Clamp(offset, 0, document.TextLength);
-            return offset;
-        }
-        catch
-        {
-            return -1;
-        }
-    }
-
-    private static object? UnwrapNullable(object obj)
-    {
-        try
-        {
-            var t = obj.GetType();
-            var hasValue = t.GetProperty("HasValue");
-            var valueProp = t.GetProperty("Value");
-            if (hasValue != null && valueProp != null && hasValue.PropertyType == typeof(bool))
-            {
-                bool hv = (bool)(hasValue.GetValue(obj) ?? false);
-                if (!hv) return null;
-                return valueProp.GetValue(obj);
-            }
-        }
-        catch { }
-        return obj;
-    }
-
-    private static object? GetMember(object obj, string name)
-    {
-        try
-        {
-            var t = obj.GetType();
-            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pi != null) return pi.GetValue(obj);
-            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (fi != null) return fi.GetValue(obj);
-        }
-        catch { }
-        return null;
-    }
-
-    private static int GetIntMember(object obj, string name, int fallback)
-    {
-        try
-        {
-            var v = GetMember(obj, name);
-            if (v == null) return fallback;
-            if (v is int i) return i;
-            if (v is long l) return (l > int.MaxValue) ? int.MaxValue : (int)l;
-            if (v is IConvertible) return Convert.ToInt32(v);
-        }
-        catch { }
-        return fallback;
-    }
 
     private static bool TryResolveAnnotationFromMarkerSpans(RenderedDocument doc, int idx, out DocAnnotation ann)
     {
@@ -707,7 +601,6 @@ public partial class ReadableTabView : UserControl
 
         _currentAnn = ann;
 
-        // Helper: safely grab token brushes
         IBrush? R(string key)
         {
             try
@@ -734,7 +627,11 @@ public partial class ReadableTabView : UserControl
         _notesBody.CaretBrush = fg;
         _notesBody.SelectionBrush = sel;
 
-        var kind = string.IsNullOrWhiteSpace(ann.Kind) ? "Note" : ann.Kind!.Trim();
+        // XML-only labeling:
+        var kind = TryGetXmlCommunitySpanStrict(ann, out _, out _)
+            ? "Community"
+            : "Note";
+
         var resp = GetAnnotationResp(ann);
 
         _notesHeader.Text = string.IsNullOrWhiteSpace(resp)
@@ -784,6 +681,7 @@ public partial class ReadableTabView : UserControl
         if (_pendingCommunityRefresh)
         {
             if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
+
             if (_btnDeleteCommunityNote != null)
             {
                 _btnDeleteCommunityNote.IsEnabled = false;
@@ -792,62 +690,85 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
+        // Add: only depends on having a translated render + editor
         if (_btnAddCommunityNote != null)
         {
             bool enabled = !_renderTran.IsEmpty && _aeTran != null;
             _btnAddCommunityNote.IsEnabled = enabled;
         }
 
+        // Delete: ONLY when the currently open annotation is a STRICT XML community note with a sane XML span
         if (_btnDeleteCommunityNote != null)
         {
             bool canDelete = false;
-            if (_currentAnn != null && IsCommunityAnnotation(_currentAnn, out var xs, out var xe) && xe > xs)
-                canDelete = true;
+
+            if (_currentAnn != null && TryGetXmlCommunitySpanStrict(_currentAnn, out var xs, out var xe))
+                canDelete = xe > xs;
 
             _btnDeleteCommunityNote.IsEnabled = canDelete;
             _btnDeleteCommunityNote.IsVisible = canDelete;
         }
     }
 
-    private static string? GetAnnotationResp(DocAnnotation ann)
+    private static bool IsCommunityAnnotation(DocAnnotation ann, out int xmlStart, out int xmlEndExclusive)
     {
-        try
-        {
-            var pi = ann.GetType().GetProperty("Resp");
-            if (pi?.GetValue(ann) is string s && !string.IsNullOrWhiteSpace(s))
-                return s.Trim();
-        }
-        catch { }
-
-        if (TryGetStringProp(ann, "Author", out var a) && !string.IsNullOrWhiteSpace(a)) return a.Trim();
-        if (TryGetStringProp(ann, "By", out var b) && !string.IsNullOrWhiteSpace(b)) return b.Trim();
-        if (TryGetStringProp(ann, "Name", out var n) && !string.IsNullOrWhiteSpace(n)) return n.Trim();
-
-        return null;
+        return TryGetXmlCommunitySpanStrict(ann, out xmlStart, out xmlEndExclusive);
     }
 
-    private static bool IsCommunityAnnotation(DocAnnotation ann, out int xmlStart, out int xmlEndExclusive)
+    private static bool TryGetXmlCommunitySpanStrict(DocAnnotation ann, out int xmlStart, out int xmlEndExclusive)
     {
         xmlStart = -1;
         xmlEndExclusive = -1;
 
-        var kind = ann.Kind ?? "";
-        var text = kind.ToLowerInvariant();
-        bool looksCommunity = text.Contains("community") || text.Contains("comm");
+        if (ann == null) return false;
 
-        if (TryGetIntProp(ann, "XmlStart", out var a) || TryGetIntProp(ann, "XmlStartIndex", out a) || TryGetIntProp(ann, "XmlFrom", out a))
-            xmlStart = a;
+        // XML-ONLY:
+        // We only accept annotations that are explicitly "community" notes.
+        // No "md-note", no "md-import", no legacy heuristics.
+        var kind = (ann.Kind ?? "").Trim();
 
-        if (TryGetIntProp(ann, "XmlEndExclusive", out var b) || TryGetIntProp(ann, "XmlEnd", out b) || TryGetIntProp(ann, "XmlTo", out b))
-            xmlEndExclusive = b;
+        bool isCommunity =
+            kind.Equals("community", StringComparison.OrdinalIgnoreCase);
 
-        if (TryGetStringProp(ann, "Type", out var t) && !string.IsNullOrWhiteSpace(t))
-            looksCommunity = t.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
+        // Some models store this on Type/Source instead of Kind.
+        if (!isCommunity)
+        {
+            if (TryGetStringProp(ann, "Type", out var t) && !string.IsNullOrWhiteSpace(t) &&
+                t.Trim().Equals("community", StringComparison.OrdinalIgnoreCase))
+                isCommunity = true;
 
-        if (TryGetStringProp(ann, "Source", out var s) && !string.IsNullOrWhiteSpace(s))
-            looksCommunity = s.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) || looksCommunity;
+            if (!isCommunity &&
+                TryGetStringProp(ann, "Source", out var s) && !string.IsNullOrWhiteSpace(s) &&
+                s.Trim().Equals("community", StringComparison.OrdinalIgnoreCase))
+                isCommunity = true;
+        }
 
-        return looksCommunity && xmlStart >= 0 && xmlEndExclusive > xmlStart;
+        if (!isCommunity)
+            return false;
+
+        // Pull XML span (these must be present for XML deletion).
+        bool gotStart =
+            TryGetIntProp(ann, "XmlStart", out xmlStart) ||
+            TryGetIntProp(ann, "XmlStartIndex", out xmlStart) ||
+            TryGetIntProp(ann, "XmlFrom", out xmlStart);
+
+        bool gotEnd =
+            TryGetIntProp(ann, "XmlEndExclusive", out xmlEndExclusive) ||
+            TryGetIntProp(ann, "XmlEnd", out xmlEndExclusive) ||
+            TryGetIntProp(ann, "XmlTo", out xmlEndExclusive);
+
+        if (!gotStart || !gotEnd)
+            return false;
+
+        // Sanity checks so a bad span never nukes real text
+        if (xmlStart < 0) return false;
+        if (xmlEndExclusive <= xmlStart) return false;
+
+        const int MaxReasonableNoteSpan = 20_000;
+        if (xmlEndExclusive - xmlStart > MaxReasonableNoteSpan)
+            return false;
+
+        return true;
     }
 
     // -------------------------
@@ -892,6 +813,9 @@ public partial class ReadableTabView : UserControl
         if (_pendingCommunityRefresh)
             return (false, "Pending refresh: waiting for renderer to update after previous add/delete.");
 
+        if (_notesPanel?.IsVisible == true)
+            return (false, "Notes panel is open (close it before adding a new note to avoid stale selection/caret confusion).");
+
         if (_aeTran == null)
             return (false, "_aeTran is null (inner editor not found).");
 
@@ -902,7 +826,7 @@ public partial class ReadableTabView : UserControl
         if (renderedIndex < 0) renderedIndex = 0;
 
         if (!TryMapRenderedCaretToXmlIndex(_renderTran, renderedIndex, out int xmlIndex))
-            return (false, $"Cannot map display index {renderedIndex} to XML index. DisplayIndexToXmlIndex returned < 0.");
+            return (false, $"Cannot map display index {renderedIndex} to XML index.");
 
         await PromptAddCommunityNoteAsync(xmlIndex);
         return (true, $"Dialog opened. renderedIndex={renderedIndex} -> xmlIndex={xmlIndex}");
@@ -942,13 +866,13 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        if (!IsCommunityAnnotation(_currentAnn, out int xs, out int xe))
+        if (!TryGetXmlCommunitySpanStrict(_currentAnn, out int xs, out int xe))
         {
-            Log("Delete note: current note is not a deletable community annotation (missing XmlStart/XmlEndExclusive or wrong type).");
+            Log("Delete note: current note is not a STRICT XML community annotation (kind/type/source/span sanity failed).");
             return;
         }
 
-        // CRITICAL: gate UI NOW to prevent double-delete on stale render
+        // Gate UI NOW to prevent double-delete on stale render
         EnterPendingCommunityRefresh($"delete xs={xs} xe={xe}");
 
         Log($"Delete note: raising CommunityNoteDeleteRequested xs={xs} xe={xe}");
@@ -1121,11 +1045,33 @@ public partial class ReadableTabView : UserControl
         if (doc == null || doc.IsEmpty)
             return false;
 
-        int mapped = doc.DisplayIndexToXmlIndex(displayIndex);
-        if (mapped < 0) return false;
+        var map = doc.BaseToXmlIndex;
+        if (map == null || map.Length == 0)
+            return false;
 
-        xmlIndex = mapped;
-        return true;
+        try
+        {
+            // Clamp display index into rendered (DISPLAY) text range
+            int dispLen = doc.Text?.Length ?? 0;
+            if (displayIndex < 0) displayIndex = 0;
+            if (displayIndex > dispLen) displayIndex = dispLen;
+
+            // Convert display caret -> base caret
+            int baseIdx = doc.DisplayIndexToBaseIndex(displayIndex);
+
+            // Base caret can be at end (== baseTextLength). Map must support that with +1.
+            if (baseIdx < 0) baseIdx = 0;
+            if (baseIdx >= map.Length) baseIdx = map.Length - 1;
+
+            xmlIndex = map[baseIdx];
+
+            // Another sanity check: xmlIndex must be non-negative
+            return xmlIndex >= 0;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     // -------------------------
@@ -1166,20 +1112,123 @@ public partial class ReadableTabView : UserControl
         ResolveInnerEditors();
         RewireNotesButtonsHard();
 
-        if (_aeOrig != null) _aeOrig.Text = _renderOrig.Text ?? "";
-        if (_aeTran != null) _aeTran.Text = _renderTran.Text ?? "";
+        if (_aeOrig == null || _aeTran == null)
+        {
+            DumpState("SetRendered() (editors missing)");
+            return;
+        }
 
-        SetupHoverDictionary();
+        // ---- HARD: preserve view state BEFORE we touch .Text ----
+        var (origSv, origOff) = GetScrollOffsetSafe(_aeOrig);
+        var (tranSv, tranOff) = GetScrollOffsetSafe(_aeTran);
 
-        HideNotes();
+        int origCaret = GetCaretOffsetSafe(_aeOrig);
+        int tranCaret = GetCaretOffsetSafe(_aeTran);
 
-        // This is the ONLY reliable signal that the UI is now up-to-date after add/delete.
-        ExitPendingCommunityRefresh("SetRendered received new render");
+        // Selection (optional but helps avoid jumps if AvaloniaEdit decides to adjust)
+        int origSelS = GetSelectionStartSafe(_aeOrig);
+        int origSelE = GetSelectionEndSafe(_aeOrig);
+        int tranSelS = GetSelectionStartSafe(_aeTran);
+        int tranSelE = GetSelectionEndSafe(_aeTran);
 
-        DumpState("SetRendered()");
+        // ---- Prevent any mirroring/polling/centering from fighting this swap ----
+        _syncingSelection = true;
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _suppressMirrorForMarkerClickUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+
+        try
+        {
+            _aeOrig.Text = _renderOrig.Text ?? "";
+            _aeTran.Text = _renderTran.Text ?? "";
+
+            SetupHoverDictionary();
+
+            HideNotes();
+
+            // This is the ONLY reliable signal that the UI is now up-to-date after add/delete.
+            ExitPendingCommunityRefresh("SetRendered received new render");
+
+            // ---- Restore caret/selection WITHOUT centering ----
+            try
+            {
+                if (origCaret < 0) origCaret = 0;
+                if (tranCaret < 0) tranCaret = 0;
+
+                _aeOrig.TextArea.Caret.Offset = Math.Clamp(origCaret, 0, (_aeOrig.Text ?? "").Length);
+                _aeTran.TextArea.Caret.Offset = Math.Clamp(tranCaret, 0, (_aeTran.Text ?? "").Length);
+
+                // Restore selection if it was non-empty; otherwise keep caret-only.
+                if (origSelE != origSelS)
+                    _aeOrig.TextArea.Selection = Selection.Create(_aeOrig.TextArea, origSelS, origSelE);
+                if (tranSelE != tranSelS)
+                    _aeTran.TextArea.Selection = Selection.Create(_aeTran.TextArea, tranSelS, tranSelE);
+            }
+            catch { }
+
+            // ---- Restore scroll offsets AFTER layout has had a tick ----
+            Dispatcher.UIThread.Post(() =>
+            {
+                try
+                {
+                    SetScrollOffsetSafe(origSv, origOff);
+                    SetScrollOffsetSafe(tranSv, tranOff);
+                }
+                catch { }
+            }, DispatcherPriority.Background);
+
+            DumpState("SetRendered()");
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
 
         if (_findBar?.IsVisible == true)
             RecomputeMatches(resetToFirst: false);
+    }
+
+    private static (ScrollViewer? sv, Vector offset) GetScrollOffsetSafe(TextEditor ed)
+    {
+        try
+        {
+            var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+            if (sv == null) return (null, default);
+            return (sv, sv.Offset);
+        }
+        catch
+        {
+            return (null, default);
+        }
+    }
+
+    private static void SetScrollOffsetSafe(ScrollViewer? sv, Vector offset)
+    {
+        if (sv == null) return;
+
+        try
+        {
+            // Clamp defensively (extent/viewport can be NaN during transitions)
+            double viewportH = sv.Viewport.Height;
+            double extentH = sv.Extent.Height;
+
+            double y = offset.Y;
+
+            if (!double.IsNaN(viewportH) && !double.IsInfinity(viewportH) && viewportH > 0 &&
+                !double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
+            {
+                double maxY = Math.Max(0, extentH - viewportH);
+                y = Math.Clamp(y, 0, maxY);
+            }
+            else
+            {
+                y = Math.Max(0, y);
+            }
+
+            sv.Offset = new Vector(offset.X, y);
+        }
+        catch { }
     }
 
     // -------------------------
@@ -1360,6 +1409,9 @@ public partial class ReadableTabView : UserControl
         if (_pendingCommunityRefresh) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
+        // NEW: marker-click guard (caret is settling)
+        if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
+
         _mirrorSourceIsTranslated = sourceIsTranslated;
         if (_mirrorQueued) return;
         _mirrorQueued = true;
@@ -1372,6 +1424,9 @@ public partial class ReadableTabView : UserControl
             if (_syncingSelection) return;
             if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
             if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
+
+            // NEW: marker-click guard (still within guard window)
+            if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
 
             MirrorSelectionOneWay(_mirrorSourceIsTranslated);
         }, DispatcherPriority.Background);
@@ -1905,6 +1960,24 @@ public partial class ReadableTabView : UserControl
         {
             return false;
         }
+    }
+
+    private static string? GetAnnotationResp(DocAnnotation ann)
+    {
+        try
+        {
+            var pi = ann.GetType().GetProperty("Resp", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi?.GetValue(ann) is string s && !string.IsNullOrWhiteSpace(s))
+                return s.Trim();
+        }
+        catch { }
+
+        // Common alternates
+        if (TryGetStringProp(ann, "Author", out var a) && !string.IsNullOrWhiteSpace(a)) return a.Trim();
+        if (TryGetStringProp(ann, "By", out var b) && !string.IsNullOrWhiteSpace(b)) return b.Trim();
+        if (TryGetStringProp(ann, "Name", out var n) && !string.IsNullOrWhiteSpace(n)) return n.Trim();
+
+        return null;
     }
 
     private static bool TryGetStringProp(object obj, string name, out string? value)
