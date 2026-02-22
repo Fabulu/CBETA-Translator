@@ -246,7 +246,14 @@ public sealed class MarkdownTranslationService
             .ToList();
 
         foreach (var t in textNodes)
-            t.Remove();
+        {
+            bool insideNote = t
+                .Ancestors()
+                .OfType<XElement>()
+                .Any(a => a.Name == Tei + "note");
+            if (!insideNote)
+                t.Remove();
+        }
 
         element.AddFirst(new XText(replacementText));
     }
@@ -448,10 +455,11 @@ public sealed class MarkdownTranslationService
         if (e.Name == Tei + "p")
         {
             var xmlId = (string?)e.Attribute(Xml + "id");
+            var en = GetParagraphEnglish(e);
             sb.AppendLine();
             sb.AppendLine($"<!-- xml-ref: p xml:id={xmlId} -->");
             sb.AppendLine($"ZH: {NormalizeSpace(ExtractInlineText(e))}");
-            sb.AppendLine("EN: ");
+            sb.AppendLine($"EN: {en}");
             return;
         }
 
@@ -469,10 +477,8 @@ public sealed class MarkdownTranslationService
     {
         if (e.Name == Tei + "head" || e.Name == Tei + "item" || e.Name == Tei + "note")
         {
-            // Skip imported English notes.
             if (e.Name == Tei + "note" &&
-                string.Equals((string?)e.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
-                string.Equals((string?)e.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase))
+                string.Equals((string?)e.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase))
                 return false;
 
             return !string.IsNullOrWhiteSpace(NormalizeSpace(ExtractInlineText(e)));
@@ -495,10 +501,11 @@ public sealed class MarkdownTranslationService
             return;
 
         var path = BuildNodePath(e);
+        var en = GetPathEnglish(e, path);
         sb.AppendLine();
         sb.AppendLine($"<!-- xml-ref: node path={path} -->");
         sb.AppendLine($"ZH: {text}");
-        sb.AppendLine("EN: ");
+        sb.AppendLine($"EN: {en}");
     }
 
     private static string ExtractInlineText(XElement p)
@@ -514,6 +521,9 @@ public sealed class MarkdownTranslationService
                     continue;
                 if (e.Name == Tei + "note")
                 {
+                    if (string.Equals((string?)e.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
                     var text = NormalizeSpace(e.Value);
                     if (!string.IsNullOrWhiteSpace(text))
                         sb.Append(" [NOTE:" + text + "]");
@@ -527,6 +537,27 @@ public sealed class MarkdownTranslationService
 
     private static int ParseInt(string? s, int fallback) => int.TryParse(s, out var n) ? n : fallback;
     private static string NormalizeSpace(string s) => MultiWs.Replace(s ?? "", " ").Trim();
+
+    private static string GetParagraphEnglish(XElement p)
+    {
+        var note = p.Elements(Tei + "note")
+            .FirstOrDefault(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                string.IsNullOrWhiteSpace((string?)n.Attribute("target-path")));
+        return NormalizeSpace(note?.Value ?? "");
+    }
+
+    private static string GetPathEnglish(XElement target, string path)
+    {
+        var note = target.ElementsAfterSelf(Tei + "note")
+            .FirstOrDefault(n =>
+                string.Equals((string?)n.Attribute("type"), "community", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute(Xml + "lang"), "en", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals((string?)n.Attribute("target-path"), path, StringComparison.Ordinal));
+        return NormalizeSpace(note?.Value ?? "");
+    }
+
     private static string SerializeWithDeclaration(XDocument doc)
     {
         var body = doc.ToString();

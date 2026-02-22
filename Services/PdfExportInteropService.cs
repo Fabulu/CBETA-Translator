@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using CbetaTranslator.App.Models;
 
@@ -178,7 +179,7 @@ public sealed class PdfExportInteropService
         {
             if (string.IsNullOrWhiteSpace(path))
                 return;
-            if (!candidates.Contains(path, StringComparer.Ordinal))
+            if (!candidates.Any(p => string.Equals(p, path, StringComparison.Ordinal)))
                 candidates.Add(path);
         }
 

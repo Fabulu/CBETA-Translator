@@ -45,9 +45,8 @@ public partial class LicensesWindow : Window
     {
         if (_txtLicenses == null) return;
 
-        // Resolve dictionary path the same way your loader does (AppContext.BaseDirectory/assets/...)
-        string baseDir = AppContext.BaseDirectory;
-        string dictPath = Path.Combine(baseDir, "assets", "dict", "cedict_ts.u8");
+        // Resolve dictionary path through centralized app path logic.
+        string dictPath = AppPaths.GetCedictPath();
 
         string header = CedictLicenseService.ReadCedictHeader(dictPath);
 

@@ -481,11 +481,10 @@ public partial class ReadableTabView : UserControl
 
         _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressPollingAfterUserActionMs);
         if (!sourceIsTranslated)
-        {
-            // ZH is the leader: on release, snap ENG scroll position to ZH by 0..1 ratio.
             SnapTranslatedScrollToOriginal();
-            RequestMirrorFromUserAction(sourceIsTranslated: false);
-        }
+
+        // Keep selection mirroring bidirectional even though scroll snap is one-way.
+        RequestMirrorFromUserAction(sourceIsTranslated);
     }
 
     private void SnapTranslatedScrollToOriginal()
@@ -1233,8 +1232,7 @@ public partial class ReadableTabView : UserControl
         _lastTranCaret = tC;
 
         bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
-        if (!sourceIsTranslated)
-            RequestMirrorFromUserAction(sourceIsTranslated: false);
+        RequestMirrorFromUserAction(sourceIsTranslated);
     }
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)

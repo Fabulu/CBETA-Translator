@@ -329,7 +329,13 @@
 		<Border Grid.Row="2"
 				Background="{DynamicResource BarBg}"
 				Padding="8">
-			<TextBlock Name="TxtStatus" Classes="muted"/>
+			<DockPanel LastChildFill="True">
+				<TextBlock Name="TxtVersion"
+						   DockPanel.Dock="Right"
+						   Classes="muted"
+						   Text="v0.3.1"/>
+				<TextBlock Name="TxtStatus" Classes="muted"/>
+			</DockPanel>
 		</Border>
 
 	</Grid>

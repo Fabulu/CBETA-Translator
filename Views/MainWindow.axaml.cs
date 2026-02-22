@@ -75,7 +75,6 @@ public partial class MainWindow : Window
     private string? _root;
     private string? _originalDir;
     private string? _translatedDir;
-    private string? _markdownDir;
 
     private List<FileNavItem> _allItems = new();
     private List<FileNavItem> _filteredItems = new();
@@ -88,7 +87,6 @@ public partial class MainWindow : Window
     private string _rawTranMarkdown = "";
     private string _rawTranXml = "";
     private string _rawTranXmlReadable = "";
-    private readonly Dictionary<string, int> _markdownSaveCounts = new(StringComparer.OrdinalIgnoreCase);
 
     private CancellationTokenSource? _renderCts;
     private bool _suppressNavSelectionChanged;
@@ -255,19 +253,68 @@ public partial class MainWindow : Window
             _translationView.Status += (_, msg) => SetStatus(msg);
         }
 
-        // Community notes in readable view are disabled while Edit tab is Markdown-backed.
         if (_readableView != null)
         {
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
             {
-                await Task.Yield();
-                SetStatus("Community note edit is disabled in Markdown Edit mode.");
+                try
+                {
+                    if (!EnsureFileContextForNoteOps(out var _, out var _))
+                        return;
+
+                    if (string.IsNullOrWhiteSpace(_rawTranXml))
+                        _rawTranXml = _rawOrigXml;
+
+                    _rawTranXml = CommunityNoteXmlEditor.InsertCommunityNote(_rawTranXml, req.XmlIndex, req.NoteText, req.Resp);
+                    _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                    _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawTranXml, Path.GetFileName(_currentRelPath));
+
+                    if (_translatedDir != null && _currentRelPath != null)
+                    {
+                        await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                        SafeInvalidateRenderCache(Path.Combine(_translatedDir, _currentRelPath));
+                        await RefreshFileStatusAsync(_currentRelPath);
+                    }
+
+                    _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
+                    await RefreshReadableFromRawAsync();
+                    SetStatus("Community note inserted.");
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Add note failed: " + ex.Message);
+                }
             };
 
             _readableView.CommunityNoteDeleteRequested += async (_, req) =>
             {
-                await Task.Yield();
-                SetStatus("Community note edit is disabled in Markdown Edit mode.");
+                try
+                {
+                    if (!EnsureFileContextForNoteOps(out var _, out var _))
+                        return;
+
+                    if (string.IsNullOrWhiteSpace(_rawTranXml))
+                        _rawTranXml = _rawOrigXml;
+
+                    _rawTranXml = CommunityNoteXmlEditor.DeleteSpan(_rawTranXml, req.XmlStart, req.XmlEndExclusive);
+                    _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+                    _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawTranXml, Path.GetFileName(_currentRelPath));
+
+                    if (_translatedDir != null && _currentRelPath != null)
+                    {
+                        await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                        SafeInvalidateRenderCache(Path.Combine(_translatedDir, _currentRelPath));
+                        await RefreshFileStatusAsync(_currentRelPath);
+                    }
+
+                    _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
+                    await RefreshReadableFromRawAsync();
+                    SetStatus("Community note deleted.");
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Delete note failed: " + ex.Message);
+                }
             };
         }
 
@@ -377,7 +424,7 @@ public partial class MainWindow : Window
 
             var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
             {
-                Title = "Select CBETA root folder (contains xml-p5; md-p5t/xml-p5t created if missing)"
+                Title = "Select CBETA root folder (contains xml-p5; xml-p5t created if missing)"
             });
 
             var folder = picked.FirstOrDefault();
@@ -407,8 +454,31 @@ public partial class MainWindow : Window
     // ONE add-note handler (used by optional global button if present)
     private async void AddCommunityNote_Click(object? sender, RoutedEventArgs e)
     {
-        await Task.Yield();
-        SetStatus("Community notes are disabled in Markdown Edit mode.");
+        try
+        {
+            if (_readableView == null)
+            {
+                SetStatus("Add note: Readable view not available.");
+                return;
+            }
+
+            if (_currentRelPath == null)
+            {
+                SetStatus("Add note: Select a file first.");
+                return;
+            }
+
+            if (_tabs != null)
+                _tabs.SelectedIndex = 0;
+
+            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+            var (ok, reason) = await _readableView.TryAddCommunityNoteAtSelectionOrCaretAsync();
+            SetStatus(ok ? "Add note: OK (" + reason + ")" : "Add note: FAILED (" + reason + ")");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Add note failed: " + ex.Message);
+        }
     }
 
     private void Save_Click(object? sender, RoutedEventArgs e)
@@ -440,7 +510,6 @@ public partial class MainWindow : Window
         _root = rootPath;
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
-        _markdownDir = AppPaths.GetMarkdownDir(_root);
 
         _renderCache.Clear();
 
@@ -453,7 +522,6 @@ public partial class MainWindow : Window
         }
 
         AppPaths.EnsureTranslatedDirExists(_root);
-        AppPaths.EnsureMarkdownDirExists(_root);
 
         _gitView?.SetCurrentRepoRoot(_root);
         _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
@@ -806,11 +874,11 @@ public partial class MainWindow : Window
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderPairCachedAsync(string relPath, CancellationToken ct)
     {
-        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
+        if (_originalDir == null || _translatedDir == null)
             return (RenderedDocument.Empty, RenderedDocument.Empty);
 
         var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
+        var tranAbs = Path.Combine(_translatedDir, relPath);
 
         var stampOrig = FileStamp.FromFile(origAbs);
         var stampTran = FileStamp.FromFile(tranAbs);
@@ -836,7 +904,7 @@ public partial class MainWindow : Window
 
     private async Task LoadPairAsync(string relPath)
     {
-        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
+        if (_originalDir == null || _translatedDir == null)
             return;
 
         _renderCts?.Cancel();
@@ -844,8 +912,6 @@ public partial class MainWindow : Window
         var ct = _renderCts.Token;
 
         _currentRelPath = relPath;
-        if (!_markdownSaveCounts.ContainsKey(relPath))
-            _markdownSaveCounts[relPath] = 0;
 
         if (_txtCurrentFile != null)
             _txtCurrentFile.Text = relPath;
@@ -857,21 +923,16 @@ public partial class MainWindow : Window
         var swTotal = Stopwatch.StartNew();
         var swRead = Stopwatch.StartNew();
 
-        var (orig, md) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
+        var (orig, tran) = await _fileService.ReadPairAsync(_originalDir, _translatedDir, relPath);
 
         swRead.Stop();
 
         _rawOrigXml = orig ?? "";
-        _rawTranMarkdown = md ?? "";
+        _rawTranXml = string.IsNullOrWhiteSpace(tran) ? _rawOrigXml : (tran ?? "");
 
         try
         {
-            if (string.IsNullOrWhiteSpace(_rawTranMarkdown) || !_markdownService.IsCurrentMarkdownFormat(_rawTranMarkdown))
-            {
-                _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(relPath));
-                await _fileService.WriteMarkdownAsync(_markdownDir, relPath, _rawTranMarkdown);
-            }
-            _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawTranXml, Path.GetFileName(relPath));
             _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
         }
         catch (MarkdownTranslationException ex)
@@ -885,8 +946,8 @@ public partial class MainWindow : Window
         try
         {
             var origAbs = Path.Combine(_originalDir, relPath);
-            var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
-            _translationView?.SetCurrentFilePaths(origAbs, mdAbs);
+            var tranAbs = Path.Combine(_translatedDir, relPath);
+            _translationView?.SetCurrentFilePaths(origAbs, tranAbs);
         }
         catch { }
 
@@ -933,7 +994,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (_markdownDir == null || _currentRelPath == null)
+            if (_currentRelPath == null)
             {
                 SetStatus("Nothing to save (no file selected).");
                 return;
@@ -946,40 +1007,27 @@ public partial class MainWindow : Window
             }
 
             var md = _translationView.GetTranslatedMarkdown();
-            await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, md);
             _rawTranMarkdown = md ?? "";
-            if (_markdownSaveCounts.TryGetValue(_currentRelPath, out var count))
-                _markdownSaveCounts[_currentRelPath] = count + 1;
-            else
-                _markdownSaveCounts[_currentRelPath] = 1;
             try
             {
-                _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
+                var baseXml = string.IsNullOrWhiteSpace(_rawTranXml) ? _rawOrigXml : _rawTranXml;
+                _rawTranXml = _markdownService.MergeMarkdownIntoTei(baseXml, _rawTranMarkdown, out _);
                 _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
-                
-                // Write the translated XML to disk and update status
+
                 if (_translatedDir != null && _currentRelPath != null)
                 {
                     await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+                    SafeInvalidateRenderCache(Path.Combine(_translatedDir, _currentRelPath));
                     await RefreshFileStatusAsync(_currentRelPath);
                 }
-                
-                SetStatus("Saved Markdown: " + Path.ChangeExtension(_currentRelPath, ".md"));
+
+                SetStatus("Saved translated XML: " + _currentRelPath);
             }
             catch (MarkdownTranslationException ex)
             {
-                // Save is still successful; only TEI materialization failed for readable/PDF/Git.
-                _rawTranXml = _rawOrigXml;
-                _rawTranXmlReadable = _rawOrigXml;
-                SetStatus("Saved Markdown (materialization warning): " + ex.Message);
+                SetStatus("Save failed: markdown to TEI materialization error. " + ex.Message);
+                return;
             }
-
-            try
-            {
-                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(_currentRelPath, ".md"));
-                _renderCache.Invalidate(mdAbs);
-            }
-            catch { }
 
             _renderCts?.Cancel();
             _renderCts = new CancellationTokenSource();
@@ -1019,64 +1067,29 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (_markdownDir == null || _currentRelPath == null)
+            if (_currentRelPath == null)
             {
                 SetStatus("Nothing to revert (no file selected).");
                 return;
             }
 
-            int saveCount = _markdownSaveCounts.TryGetValue(_currentRelPath, out var c) ? c : 0;
-            if (saveCount > 1)
-            {
-                var confirm = await ConfirmAsync(
-                    "Revert Markdown",
-                    $"This file has been saved {saveCount} times in this session.\n\nRevert Markdown to the original generated state and discard your edits?",
-                    "Revert",
-                    "Cancel");
-                if (!confirm)
-                    return;
-            }
+            var confirm = await ConfirmAsync(
+                "Rebuild Markdown View",
+                "Regenerate the editable markdown view from current translated TEI XML?\n\nThis does not modify TEI XML.",
+                "Rebuild",
+                "Cancel");
+            if (!confirm)
+                return;
 
-            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawOrigXml, Path.GetFileName(_currentRelPath));
-            await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, _rawTranMarkdown);
-
-            try
-            {
-                _rawTranXml = _markdownService.MergeMarkdownIntoTei(_rawOrigXml, _rawTranMarkdown, out _);
-                _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
-                
-                // Write the translated XML to disk and update status
-                if (_translatedDir != null && _currentRelPath != null)
-                {
-                    await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
-                    await RefreshFileStatusAsync(_currentRelPath);
-                }
-            }
-            catch (MarkdownTranslationException)
-            {
-                _rawTranXml = _rawOrigXml;
-                _rawTranXmlReadable = _rawOrigXml;
-                
-                // Even on failure, write the original and update status
-                if (_translatedDir != null && _currentRelPath != null)
-                {
-                    await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
-                    await RefreshFileStatusAsync(_currentRelPath);
-                }
-            }
-
-            _markdownSaveCounts[_currentRelPath] = 0;
-
-            try
-            {
-                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(_currentRelPath, ".md"));
-                _renderCache.Invalidate(mdAbs);
-            }
-            catch { }
-
+            var source = string.IsNullOrWhiteSpace(_rawTranXml) ? _rawOrigXml : _rawTranXml;
+            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(source, Path.GetFileName(_currentRelPath));
             _translationView?.SetXml(_rawOrigXml, _rawTranMarkdown);
-            await RefreshReadableFromRawAsync();
-            SetStatus("Reverted Markdown to original generated state.");
+
+            if (string.IsNullOrWhiteSpace(_rawTranXmlReadable))
+            {
+                _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(source);
+            }
+            SetStatus("Markdown view rebuilt from TEI XML.");
         }
         catch (Exception ex)
         {
@@ -1141,53 +1154,46 @@ public partial class MainWindow : Window
 
     private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentMarkdown)
     {
-        if (_originalDir == null || _translatedDir == null || _markdownDir == null)
+        if (_originalDir == null || _translatedDir == null)
             return false;
 
         var origPath = Path.Combine(_originalDir, relPath);
         if (!File.Exists(origPath))
             return false;
 
+        var tranPath = Path.Combine(_translatedDir, relPath);
+        var origXml = await SafeReadTextAsync(origPath);
+        var tranXmlDisk = await SafeReadTextAsync(tranPath);
+        if (string.IsNullOrWhiteSpace(tranXmlDisk))
+            tranXmlDisk = origXml;
+
         if (saveCurrentMarkdown && _translationView != null && string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
         {
             var currentMd = _translationView.GetTranslatedMarkdown();
-            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, currentMd);
             _rawTranMarkdown = currentMd ?? "";
             try
             {
-                var mdAbs = Path.Combine(_markdownDir, Path.ChangeExtension(relPath, ".md"));
-                _renderCache.Invalidate(mdAbs);
+                tranXmlDisk = _markdownService.MergeMarkdownIntoTei(tranXmlDisk, _rawTranMarkdown, out _);
+                await _fileService.WriteTranslatedAsync(_translatedDir, relPath, tranXmlDisk);
             }
-            catch { }
+            catch (MarkdownTranslationException ex)
+            {
+                SetStatus("Markdown materialization warning: " + ex.Message);
+                return false;
+            }
         }
 
-        var (origXml, markdown) = await _fileService.ReadOriginalAndMarkdownAsync(_originalDir, _markdownDir, relPath);
-        if (string.IsNullOrWhiteSpace(markdown) || !_markdownService.IsCurrentMarkdownFormat(markdown))
+        if (!File.Exists(tranPath))
         {
-            markdown = _markdownService.ConvertTeiToMarkdown(origXml, Path.GetFileName(relPath));
-            await _fileService.WriteMarkdownAsync(_markdownDir, relPath, markdown);
-        }
-
-        string mergedXml;
-        string readableXml;
-        try
-        {
-            mergedXml = _markdownService.MergeMarkdownIntoTei(origXml, markdown, out _);
-            readableXml = _markdownService.CreateReadableInlineEnglishXml(mergedXml);
-            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, mergedXml);
-        }
-        catch (MarkdownTranslationException ex)
-        {
-            SetStatus("Markdown materialization warning: " + ex.Message);
-            return false;
+            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, tranXmlDisk);
         }
 
         if (string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
         {
             _rawOrigXml = origXml;
-            _rawTranMarkdown = markdown;
-            _rawTranXml = mergedXml;
-            _rawTranXmlReadable = readableXml;
+            _rawTranXml = tranXmlDisk;
+            _rawTranXmlReadable = _markdownService.CreateReadableInlineEnglishXml(_rawTranXml);
+            _rawTranMarkdown = _markdownService.ConvertTeiToMarkdown(_rawTranXml, Path.GetFileName(relPath));
         }
 
         try
@@ -1301,7 +1307,7 @@ public partial class MainWindow : Window
         }
 
         if (_btnAddCommunityNote != null)
-            _btnAddCommunityNote.IsEnabled = false;
+            _btnAddCommunityNote.IsEnabled = _currentRelPath != null;
     }
 
     private void SetStatus(string msg)
@@ -1429,13 +1435,9 @@ public partial class MainWindow : Window
 
             _config ??= new AppConfig { IsDarkTheme = _isDarkTheme };
 
-            // Persist current editor markdown before export.
-            if (_markdownDir != null && _translationView != null)
-            {
-                var mdNow = _translationView.GetTranslatedMarkdown();
-                await _fileService.WriteMarkdownAsync(_markdownDir, _currentRelPath, mdNow);
-                _rawTranMarkdown = mdNow ?? "";
-            }
+            // Markdown is a view/edit representation; TEI remains primary persisted source.
+            if (_translationView != null)
+                _rawTranMarkdown = _translationView.GetTranslatedMarkdown() ?? "";
 
             List<string> chinese;
             List<string> english;
