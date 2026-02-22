@@ -79,4 +79,18 @@ public sealed class FileService : IFileService
             File.WriteAllText(path, markdownText ?? string.Empty, Utf8NoBom);
         });
     }
+
+    public Task<string?> ReadOriginalAsync(string originalDir, string relPath)
+    {
+        var path = Path.Combine(originalDir, relPath);
+        if (!File.Exists(path)) return Task.FromResult<string?>(null);
+        return Task.FromResult<string?>(File.ReadAllText(path, Encoding.UTF8));
+    }
+
+    public Task<string?> ReadTranslatedAsync(string translatedDir, string relPath)
+    {
+        var path = Path.Combine(translatedDir, relPath);
+        if (!File.Exists(path)) return Task.FromResult<string?>(null);
+        return Task.FromResult<string?>(File.ReadAllText(path, Encoding.UTF8));
+    }
 }
