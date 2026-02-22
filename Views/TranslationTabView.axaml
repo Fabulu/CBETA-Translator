@@ -1,42 +1,19 @@
+<!-- Views/TranslationTabView.axaml -->
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
-             xmlns:ed="clr-namespace:AvaloniaEdit.Editing;assembly=AvaloniaEdit"
-             xmlns:rd="clr-namespace:AvaloniaEdit.Rendering;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.TranslationTabView">
 
 	<UserControl.Styles>
-		<!-- AvaloniaEdit fluent theme -->
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
-
-		<!-- Muted text class uses app token -->
-		<Style Selector="TextBlock.muted">
-			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
-		</Style>
-
-		<!-- Ensure AvaloniaEdit respects your theme tokens -->
 		<Style Selector="ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
-
-		<!-- Caret + selection inside the editor -->
-		<Style Selector="ae|TextEditor ed|TextArea">
-			<Setter Property="CaretBrush" Value="{DynamicResource TextFg}"/>
-			<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBg}"/>
-		</Style>
-
-		<!-- Some templates need this for actual rendered text -->
-		<Style Selector="ae|TextEditor rd|TextView">
-			<Setter Property="TextElement.Foreground" Value="{DynamicResource TextFg}"/>
-		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="1*,Auto,1*">
-
-		<!-- Button bar -->
+	<Grid RowDefinitions="Auto,*">
 		<Border Grid.Row="0"
-				Grid.ColumnSpan="3"
 				Background="{DynamicResource BarBg}"
 				BorderBrush="{DynamicResource BorderBrush}"
 				BorderThickness="1"
@@ -44,139 +21,48 @@
 				CornerRadius="6">
 			<DockPanel LastChildFill="True">
 
-				<StackPanel DockPanel.Dock="Left"
-							Orientation="Horizontal"
-							Spacing="6">
-					<Button Name="BtnCopyPrompt"
-							Focusable="False"
-							Content="Copy selection + prompt"
-							ToolTip.Tip="Copies only from the right (Translated XML) editor.&#10;Selections on the left (Original XML) can’t be copied with this button."/>
-					<Button Name="BtnPasteReplace" Focusable="False" Content="Paste replace selection"/>
-					<Button Name="BtnSaveTranslated" Focusable="False" Content="Save Markdown"/>
-					<Button Name="BtnRevertMarkdown" Focusable="False" Content="Revert Markdown"/>
-					<Button Name="BtnExportPdf" Focusable="False" Content="Export PDF"/>
+				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Spacing="6">
+					<Button Name="BtnModeHead" Content="Head of File"/>
+					<Button Name="BtnModeBody" Content="Body of File"/>
+					<Button Name="BtnModeNotes" Content="Notes"/>
+
+					<Separator Width="12"/>
+
+					<Button Name="BtnCopyPrompt" Content="Copy selection + prompt"/>
+					<Button Name="BtnPasteReplace" Content="Paste replace selection"/>
+
+					<Separator Width="12"/>
+
+					<Button Name="BtnSave" Content="Save XML"/>
+					<Button Name="BtnRevert" Content="Revert from XML"/>
 				</StackPanel>
 
-				<Border/>
-
-				<StackPanel DockPanel.Dock="Right"
-							Orientation="Horizontal"
-							Spacing="8"
-							VerticalAlignment="Center"
-							Margin="18,0,0,0">
-					<CheckBox Name="ChkWrap"
-							  VerticalAlignment="Center"
-							  Content="Wrap"/>
+				<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8">
+					<CheckBox Name="ChkWrap" Content="Wrap"/>
 				</StackPanel>
 
 			</DockPanel>
 		</Border>
 
-		<!-- Find bar -->
-		<Border Name="FindBar"
-				Classes="findbar"
-				Grid.Row="1"
-				Grid.ColumnSpan="3"
-				Background="{DynamicResource BarBg}"
-				BorderBrush="{DynamicResource BorderBrush}"
-				BorderThickness="1"
-				Padding="8"
-				CornerRadius="8"
+		<Border Grid.Row="1"
 				Margin="0,8,0,0"
-				IsVisible="False">
-			<DockPanel LastChildFill="True">
-
-				<TextBlock Name="FindScope"
-						   DockPanel.Dock="Left"
-						   Classes="muted"
-						   VerticalAlignment="Center"
-						   Margin="0,0,10,0"
-						   Text="Find:"/>
-
-				<TextBox Name="FindQuery"
-						 Watermark="Find…"
-						 MinWidth="260"
-						 VerticalAlignment="Center"/>
-
-				<StackPanel DockPanel.Dock="Right"
-							Orientation="Horizontal"
-							Spacing="8"
-							Margin="10,0,0,0">
-					<TextBlock Name="FindCount"
-							   Classes="muted"
-							   VerticalAlignment="Center"
-							   Text="0/0"/>
-
-					<Button Name="BtnPrev" Focusable="False" Content="Prev"/>
-					<Button Name="BtnNext" Focusable="False" Content="Next"/>
-					<Button Name="BtnCloseFind" Focusable="False" Content="✕"/>
-				</StackPanel>
-
-			</DockPanel>
-		</Border>
-
-		<!-- Left: Original -->
-		<Border Grid.Row="2"
-				Grid.Column="0"
-				Margin="0,8,6,0"
 				Background="{DynamicResource XmlViewerBg}"
 				BorderBrush="{DynamicResource XmlViewerBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
 			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource XmlViewerBg}"
+				<Border BorderThickness="0,0,0,1"
 						BorderBrush="{DynamicResource XmlViewerBorder}"
-						BorderThickness="0,0,0,1"
 						Padding="8">
-					<TextBlock Text="Original XML (read-only)"
-							   Classes="muted"/>
+					<TextBlock Name="TxtModeInfo" Text="Translation Editor"/>
 				</Border>
 
-				<ae:TextEditor Name="EditorOrigXml"
+				<ae:TextEditor Name="EditorProjection"
 							   Grid.Row="1"
-							   IsReadOnly="True"
 							   FontFamily="Consolas"
-							   Foreground="{DynamicResource TextFg}"
-							   Background="Transparent"
 							   ShowLineNumbers="False"
 							   WordWrap="False"/>
 			</Grid>
 		</Border>
-
-		<!-- Splitter -->
-		<GridSplitter Grid.Row="2"
-					  Grid.Column="1"
-					  Width="6"
-					  Background="{DynamicResource BorderBrush}"
-					  Margin="0,8,0,0"/>
-
-		<!-- Right: Translated -->
-		<Border Grid.Row="2"
-				Grid.Column="2"
-				Margin="6,8,0,0"
-				Background="{DynamicResource XmlViewerBg}"
-				BorderBrush="{DynamicResource XmlViewerBorder}"
-				BorderThickness="1"
-				CornerRadius="6">
-			<Grid RowDefinitions="Auto,*">
-				<Border Background="{DynamicResource XmlViewerBg}"
-						BorderBrush="{DynamicResource XmlViewerBorder}"
-						BorderThickness="0,0,0,1"
-						Padding="8">
-					<TextBlock Text="Editable Markdown"
-							   Classes="muted"/>
-				</Border>
-
-				<ae:TextEditor Name="EditorTranXml"
-							   Grid.Row="1"
-							   IsReadOnly="False"
-							   FontFamily="Consolas"
-							   Foreground="{DynamicResource TextFg}"
-							   Background="Transparent"
-							   ShowLineNumbers="False"
-							   WordWrap="False"/>
-			</Grid>
-		</Border>
-
 	</Grid>
 </UserControl>
