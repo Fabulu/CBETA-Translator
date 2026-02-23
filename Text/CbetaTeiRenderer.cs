@@ -21,23 +21,78 @@ namespace CbetaTranslator.App.Text;
 ///   1) Inline notes: <note place="inline">...</note> at current text position
 ///   2) End notes in <back>: <note ... target="#nkr_note_mod_XXXX">...</note>
 ///      anchored by <anchor xml:id="nkr_note_mod_XXXX" .../> in the body.
-///   3) Community inline notes: <note type="community" resp="NAME">...</note>
-///      (these will be removable later)
+///   3) Community notes meant as *annotations* (NOT translations):
+///      <note type="community" resp="SOMEONE">...</note>
+///      - We explicitly SKIP resp="md-import" (that’s translation glue, not an annotation)
+///      - We KEEP resp="md-note" (your markdown-native notes)
 /// - Builds DocAnnotation list + calls AnnotationMarkerInserter.InsertMarkers(...)
 ///
-/// NEW:
-/// - Also returns BaseToXmlIndex mapping: base rendered text (before marker insertion) -> absolute XML index.
-///   This is needed to place new notes at a clicked position in the rendered view.
+/// IMPORTANT (your bug):
+/// - NEVER normalize newlines inside Render(). Indices (XmlStart/XmlEndExclusive/BaseToXmlIndex)
+///   MUST be in the original XML string index space, because insert/delete mutate the original XML.
+/// - If you need LF-normalized text for merge/validation, call NormalizeNewlinesForMerge() elsewhere.
+///
+/// CRITICAL DETAIL:
+/// - BaseToXmlIndex is a *POSITION MAP* (caret positions), not a char map:
+///     Length == baseText.Length + 1
+///     BaseToXmlIndex[p] = XML index where an insertion at BASE caret position p logically occurs.
+///
+/// - Any characters we INSERT that do not exist in XML (newlines/paragraph breaks/spaces)
+///   must map to an XML index that matches where the insertion *logically occurs*.
+///   We therefore map inserted breaks to (gt+1), i.e. "after this tag", NOT to lt.
 /// </summary>
 public static class CbetaTeiRenderer
 {
+    // Your translation merge uses resp="md-import"; renderer must NOT treat those as annotations.
+    private const string RespMdImport = "md-import";
+    private const string RespMdNote = "md-note";
+
+    private const string AttrTargetPath = "target-path";
+    private const string AttrRespUser = "resp-user";
+    private const string AttrType = "type";
+    private const string AttrPlace = "place";
+    private const string AttrTarget = "target";
+    private const string AttrLang = "xml:lang"; // only used for checks via Attr(...) since we're scanning text
+
+    // Segment keys + attribute parsing (no regex)
+    private const string AttrN = "n";
+    private const string AttrEd = "ed";
+    private const string AttrXmlId = "xml:id";
+    private const string AttrFun = "fun";
+
+    /// <summary>
+    /// LF-normalize CRLF/CR to LF.
+    /// Use this ONLY when you explicitly want "merge/validation space"
+    /// (e.g., markdown import validation).
+    /// DO NOT use this for indices used to mutate the original XML string.
+    /// </summary>
+    public static string NormalizeNewlinesForMerge(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return "";
+        return s.Replace("\r\n", "\n").Replace("\r", "\n");
+    }
+
     public static RenderedDocument Render(string xml)
     {
         if (string.IsNullOrWhiteSpace(xml))
             return RenderedDocument.Empty;
 
+        // IMPORTANT:
+        // Do NOT normalize newlines here.
+        // Indices (XmlStart/XmlEndExclusive/BaseToXmlIndex) must match the ORIGINAL xml string
+        // that later gets mutated for insert/delete.
+        //
+        // Rendered output is still stable because:
+        // - structural breaks come from tags (lb/p/pb/head)
+        // - AppendText ignores '\r' already (so CRLF won't render extra chars)
+
         var sb = new StringBuilder(xml.Length);
+
+        // POSITION MAP:
+        // baseToXml.Count == sb.Length + 1 always.
+        // baseToXml[p] = XML insertion index at base caret position p.
         var baseToXml = new List<int>(capacity: Math.Max(1024, xml.Length / 4));
+        baseToXml.Add(0); // caret at position 0 maps to xml index 0
 
         var segments = new List<RenderSegment>(capacity: 4096);
 
@@ -52,8 +107,8 @@ public static class CbetaTeiRenderer
         var noteSb = new StringBuilder(256);
 
         int noteAnchorPos = -1;     // in base rendered text (sb)
-        string? noteKind = null;    // "mod"/"orig"/"add"/"inline"/"community"/...
-        string? noteResp = null;    // name / author for community notes
+        string? noteKind = null;    // "mod"/"orig"/"add"/"inline"/"md-note"/"community"/...
+        string? noteResp = null;    // author-ish (for md-note, prefer resp-user)
 
         // XML span for inline/community notes (for precise removal later)
         int noteXmlStart = -1;
@@ -127,6 +182,7 @@ public static class CbetaTeiRenderer
             }
 
             int gt = lt + relGt;
+            int afterTag = gt + 1; // IMPORTANT: where insertions should map (logical "after this tag")
             var tagSpan = s.Slice(lt, gt - lt + 1);
 
             if (TryParseTag(tagSpan, out var isEndTag, out var tagName, out var attrs))
@@ -149,12 +205,10 @@ public static class CbetaTeiRenderer
                         noteSb.Clear();
                         noteLastWasNewline = false;
 
-                        noteXmlEndExclusive = gt + 1;
+                        noteXmlEndExclusive = afterTag;
 
                         if (noteAnchorPos >= 0 && !string.IsNullOrWhiteSpace(noteText))
                         {
-                            // IMPORTANT: new DocAnnotation constructor order:
-                            // (start, endExclusive, text, kind, resp, xmlStart, xmlEndExclusive)
                             annotations.Add(new DocAnnotation(
                                 start: noteAnchorPos,
                                 endExclusive: noteAnchorPos,
@@ -174,27 +228,31 @@ public static class CbetaTeiRenderer
 
                     // paragraph end spacing (only in main rendered part)
                     if (teiHeaderDepth == 0 && backDepth == 0 && EqualsIgnoreCase(tagName, "p"))
-                        EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: lt, ref lastWasNewline);
+                        EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                 }
                 else
                 {
                     // entering blocks
                     if (EqualsIgnoreCase(tagName, "teiHeader"))
-                    {
                         teiHeaderDepth++;
-                    }
                     else if (EqualsIgnoreCase(tagName, "back"))
-                    {
                         backDepth++;
-                    }
 
                     // If we're capturing a note and we hit any start-tag: treat as a soft separator
                     if (inNoteCapture)
                     {
-                        if (EqualsIgnoreCase(tagName, "lb") || EqualsIgnoreCase(tagName, "p") || EqualsIgnoreCase(tagName, "head") || EqualsIgnoreCase(tagName, "br"))
-                            AppendNewline(noteSb, map: null, xmlIndexForInserted: lt, ref noteLastWasNewline);
+                        if (EqualsIgnoreCase(tagName, "lb") ||
+                            EqualsIgnoreCase(tagName, "p") ||
+                            EqualsIgnoreCase(tagName, "head") ||
+                            EqualsIgnoreCase(tagName, "br"))
+                        {
+                            AppendNewline(noteSb, map: null, xmlIndexForInserted: afterTag, ref noteLastWasNewline);
+                        }
                         else
-                            AppendText(noteSb, map: null, " ".AsSpan(), absStartXmlIndex: lt, ref noteLastWasNewline);
+                        {
+                            // space between words caused by tags inside notes
+                            AppendText(noteSb, map: null, " ".AsSpan(), absStartXmlIndex: afterTag, ref noteLastWasNewline);
+                        }
                     }
 
                     // Only do segmentation/rendering while not in teiHeader and not in back and not in note capture
@@ -217,43 +275,59 @@ public static class CbetaTeiRenderer
                         }
 
                         // Inline notes: <note place="inline">...</note>
-                        // Community notes: <note type="community" resp="NAME">...</note>
+                        // Community notes (annotations): <note type="community" resp="NAME">...</note>
+                        // - SKIP resp="md-import" (translations)
+                        // - KEEP resp="md-note" (markdown-native notes)
                         if (EqualsIgnoreCase(tagName, "note"))
                         {
-                            var place = Attr(attrs, "place");
-                            var type = Attr(attrs, "type");
+                            var place = Attr(attrs, AttrPlace);
+                            var type = Attr(attrs, AttrType);
                             var resp = Attr(attrs, "resp");
 
                             bool isInline = string.Equals(place, "inline", StringComparison.OrdinalIgnoreCase);
                             bool isCommunity = string.Equals(type, "community", StringComparison.OrdinalIgnoreCase);
 
-                            // We allow capturing either "inline" or "community" notes here.
-                            // (Community notes are intended for translated side edits.)
-                            if (isInline || isCommunity)
+                            // Translation glue? Don't capture.
+                            if (isCommunity && string.Equals(resp, RespMdImport, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // invisible metadata for reader
+                            }
+                            else if (isInline || isCommunity)
                             {
                                 inNoteCapture = true;
                                 noteSb.Clear();
                                 noteLastWasNewline = false;
 
+                                // Anchor at current rendered pos (note appears here in XML).
                                 noteAnchorPos = sb.Length;
+
                                 noteXmlStart = lt;
                                 noteXmlEndExclusive = -1;
 
-                                noteKind = isCommunity ? "community" : (type ?? "inline");
-                                noteResp = resp;
+                                // Kind: preserve md-note explicitly so UI can distinguish.
+                                if (isCommunity && string.Equals(resp, RespMdNote, StringComparison.OrdinalIgnoreCase))
+                                    noteKind = RespMdNote;
+                                else
+                                    noteKind = isCommunity ? "community" : (type ?? "inline");
+
+                                // Author-ish: prefer resp-user for md-note, else resp attribute.
+                                var respUser = Attr(attrs, AttrRespUser);
+                                noteResp = !string.IsNullOrWhiteSpace(respUser) ? respUser : resp;
                             }
                         }
 
                         // Rendering structural breaks
                         if (EqualsIgnoreCase(tagName, "lb"))
                         {
-                            AppendNewline(sb, baseToXml, xmlIndexForInserted: lt, ref lastWasNewline);
+                            // INSERTED newline should map AFTER the <lb .../> tag.
+                            AppendNewline(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                         }
                         else if (EqualsIgnoreCase(tagName, "pb") ||
                                  EqualsIgnoreCase(tagName, "p") ||
                                  EqualsIgnoreCase(tagName, "head"))
                         {
-                            EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: lt, ref lastWasNewline);
+                            // INSERTED paragraph break should map AFTER the tag that caused it.
+                            EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                         }
                     }
                     else
@@ -261,7 +335,7 @@ public static class CbetaTeiRenderer
                         // Inside <back> (or header): do NOT render, but collect end-notes anchored by <anchor> ids.
                         if (teiHeaderDepth == 0 && EqualsIgnoreCase(tagName, "note"))
                         {
-                            var target = Attr(attrs, "target");
+                            var target = Attr(attrs, AttrTarget);
                             if (!string.IsNullOrWhiteSpace(target) && target[0] == '#')
                             {
                                 var targetId = target.Substring(1);
@@ -275,7 +349,8 @@ public static class CbetaTeiRenderer
                                     noteXmlStart = lt;
                                     noteXmlEndExclusive = -1;
 
-                                    noteResp = Attr(attrs, "resp");
+                                    var resp = Attr(attrs, "resp");
+                                    noteResp = resp;
 
                                     if (anchorPosById.TryGetValue(targetId, out var hit))
                                     {
@@ -294,7 +369,7 @@ public static class CbetaTeiRenderer
                 }
             }
 
-            i = gt + 1;
+            i = afterTag;
         }
 
         // Close last segment (main text only)
@@ -304,9 +379,19 @@ public static class CbetaTeiRenderer
 
         // Build base text
         var baseText = sb.ToString();
+
+        // POSITION MAP invariant: baseToXml.Count == baseText.Length + 1
+        if (baseToXml.Count != baseText.Length + 1)
+        {
+            throw new InvalidOperationException(
+                $"BaseToXmlIndex invariant violated. " +
+                $"Count={baseToXml.Count}, Expected={baseText.Length + 1}");
+        }
+
         var baseToXmlIndex = baseToXml.ToArray();
 
         // Insert visible markers/superscripts into the rendered text.
+        // NOTE: BaseToXmlIndex is in BASE coordinates (pre-marker insertion). That's correct.
         var (newText, newSegments, markers) =
             AnnotationMarkerInserter.InsertMarkers(baseText, annotations, segments);
 
@@ -315,7 +400,8 @@ public static class CbetaTeiRenderer
             newSegments,
             annotations,
             markers,
-            baseToXmlIndex: baseToXmlIndex);
+            baseToXmlIndex: baseToXmlIndex,
+            baseTextLength: baseText.Length);
     }
 
     // ------------------------------------------------------------
@@ -351,11 +437,11 @@ public static class CbetaTeiRenderer
 
         int nameStart = p;
 
-        // tag name: letters + optional colon, e.g. cb:juan
+        // tag name: allow letters/digits + optional colon + '-' '_' (defensive)
         while (p < tag.Length - 1)
         {
             char ch = tag[p];
-            if (char.IsLetter(ch) || ch == ':')
+            if (char.IsLetterOrDigit(ch) || ch == ':' || ch == '-' || ch == '_')
             {
                 p++;
                 continue;
@@ -387,11 +473,42 @@ public static class CbetaTeiRenderer
     // Text handling (normalize + optional entity decode) + OPTIONAL map
     // ------------------------------------------------------------
 
+    // POSITION MAP HELPERS:
+    // map.Count == sb.Length + 1
+    private static void MapAppendChar(StringBuilder sb, List<int>? map, char c, int xmlCaretIndexAfter)
+    {
+        sb.Append(c);
+        map?.Add(xmlCaretIndexAfter);
+    }
+
+    private static void MapRemoveLastChar(StringBuilder sb, List<int>? map)
+    {
+        if (sb.Length <= 0) return;
+
+        sb.Length--;
+
+        if (map != null)
+        {
+            // After removing one character, map must have one extra entry
+            // corresponding to the removed caret position.
+            if (map.Count == sb.Length + 2)
+            {
+                map.RemoveAt(map.Count - 1);
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    $"MapRemoveLastChar invariant violated. " +
+                    $"sb.Length={sb.Length}, map.Count={map.Count}");
+            }
+        }
+    }
+
     private static void AppendText(StringBuilder outSb, List<int>? map, ReadOnlySpan<char> raw, int absStartXmlIndex, ref bool lastWasNewline)
     {
         if (raw.Length == 0) return;
 
-        bool wroteAny = false;
+        bool wroteAnyNonWs = false;
         bool pendingSpace = false;
 
         // If we are appending onto non-ws and our first real char is non-ws, we insert a space.
@@ -405,17 +522,30 @@ public static class CbetaTeiRenderer
         {
             if (!needBoundarySpace || boundarySpaceEmitted) return;
 
-            outSb.Append(' ');
-            map?.Add(xmlIndexForInserted);
+            // Space inserted BETWEEN chunks: caret after space is still at insertion point.
+            MapAppendChar(outSb, map, ' ', xmlCaretIndexAfter: xmlIndexForInserted);
 
             boundarySpaceEmitted = true;
-            wroteAny = true;
-
-            // after boundary space, we no longer need it
+            wroteAnyNonWs = true;
             needBoundarySpace = false;
         }
 
-        void EmitChar(char c, int xmlIndexForChar)
+        void EmitCollapsedSpaceIfNeeded(int xmlIndexWhereSpaceOccurs)
+        {
+            if (!pendingSpace) return;
+            pendingSpace = false;
+
+            // We only emit a collapsed space if we already wrote something in this chunk
+            // AND last output isn't whitespace.
+            if (wroteAnyNonWs && outSb.Length > 0 && !char.IsWhiteSpace(outSb[outSb.Length - 1]))
+            {
+                // Collapsed whitespace: this space is "inserted" at the next-non-ws XML index.
+                // Caret after the space is still at that insertion point (before the next real char).
+                MapAppendChar(outSb, map, ' ', xmlCaretIndexAfter: xmlIndexWhereSpaceOccurs);
+            }
+        }
+
+        void EmitRealChar(char c, int xmlCharIndex, int xmlCaretAfter)
         {
             if (c == '\r') return;
 
@@ -425,29 +555,18 @@ public static class CbetaTeiRenderer
                 return;
             }
 
-            if (pendingSpace)
-            {
-                if (wroteAny)
-                {
-                    if (outSb.Length > 0 && !char.IsWhiteSpace(outSb[outSb.Length - 1]))
-                    {
-                        outSb.Append(' ');
-                        map?.Add(xmlIndexForChar);
-                    }
-                }
-                pendingSpace = false;
-            }
+            // If we had whitespace, emit at most one space at the insertion point (before this char).
+            EmitCollapsedSpaceIfNeeded(xmlIndexWhereSpaceOccurs: xmlCharIndex);
 
-            // boundary space between chunks if needed
-            EmitBoundarySpaceIfNeeded(xmlIndexForChar);
+            // If this is the first real char and we need a boundary space, emit it.
+            EmitBoundarySpaceIfNeeded(xmlIndexForInserted: xmlCharIndex);
 
-            outSb.Append(c);
-            map?.Add(xmlIndexForChar);
+            // Emit the actual character. Caret after it should map to AFTER the source char.
+            MapAppendChar(outSb, map, c, xmlCaretIndexAfter: xmlCaretAfter);
 
-            wroteAny = true;
+            wroteAnyNonWs = true;
         }
 
-        // Scan raw span. Decode entities only if we see '&'.
         int i = 0;
         while (i < raw.Length)
         {
@@ -455,33 +574,40 @@ public static class CbetaTeiRenderer
 
             if (c == '&')
             {
-                int entityStartAbs = absStartXmlIndex + i;
+                int entityStartRel = i;
+                int entityStartAbs = absStartXmlIndex + entityStartRel;
 
+                int before = i;
                 if (TryDecodeEntity(raw, ref i, out var decodedChar, out var decodedString))
                 {
+                    // i now points to the char AFTER ';' in raw (relative index)
+                    int entityEndAbsExclusive = absStartXmlIndex + i;
+
                     if (decodedString != null)
                     {
+                        // Surrogate pair etc. Both map to caret after the entire entity.
                         for (int k = 0; k < decodedString.Length; k++)
-                            EmitChar(decodedString[k], entityStartAbs);
+                            EmitRealChar(decodedString[k], xmlCharIndex: entityStartAbs, xmlCaretAfter: entityEndAbsExclusive);
                     }
                     else
                     {
-                        EmitChar(decodedChar, entityStartAbs);
+                        EmitRealChar(decodedChar, xmlCharIndex: entityStartAbs, xmlCaretAfter: entityEndAbsExclusive);
                     }
                     continue;
                 }
 
-                // failed decode -> literal '&'
-                EmitChar('&', entityStartAbs);
-                i++;
+                // failed decode -> literal '&' from entityStartAbs
+                EmitRealChar('&', xmlCharIndex: entityStartAbs, xmlCaretAfter: entityStartAbs + 1);
+                i = before + 1;
                 continue;
             }
 
-            EmitChar(c, absStartXmlIndex + i);
+            int abs = absStartXmlIndex + i;
+            EmitRealChar(c, xmlCharIndex: abs, xmlCaretAfter: abs + 1);
             i++;
         }
 
-        if (!wroteAny)
+        if (!wroteAnyNonWs)
             return;
 
         lastWasNewline = outSb.Length > 0 && outSb[outSb.Length - 1] == '\n';
@@ -491,8 +617,8 @@ public static class CbetaTeiRenderer
     {
         if (!lastWasNewline)
         {
-            sb.Append('\n');
-            map?.Add(xmlIndexForInserted);
+            // Inserted newline: caret after newline maps to the insertion point in XML.
+            MapAppendChar(sb, map, '\n', xmlCaretIndexAfter: xmlIndexForInserted);
         }
         lastWasNewline = true;
     }
@@ -505,13 +631,9 @@ public static class CbetaTeiRenderer
             return;
         }
 
+        // Trim trailing spaces/tabs/CR (if any), keeping map invariant.
         while (sb.Length > 0 && (sb[^1] == ' ' || sb[^1] == '\t' || sb[^1] == '\r'))
-        {
-            // if we trimmed a char, trim the map too
-            sb.Length--;
-            if (map != null && map.Count > sb.Length)
-                map.RemoveAt(map.Count - 1);
-        }
+            MapRemoveLastChar(sb, map);
 
         int trailingNewlines = 0;
         for (int i = sb.Length - 1; i >= 0 && sb[i] == '\n'; i--)
@@ -519,12 +641,12 @@ public static class CbetaTeiRenderer
 
         if (trailingNewlines == 0)
         {
-            sb.Append('\n'); map?.Add(xmlIndexForInserted);
-            sb.Append('\n'); map?.Add(xmlIndexForInserted);
+            MapAppendChar(sb, map, '\n', xmlCaretIndexAfter: xmlIndexForInserted);
+            MapAppendChar(sb, map, '\n', xmlCaretIndexAfter: xmlIndexForInserted);
         }
         else if (trailingNewlines == 1)
         {
-            sb.Append('\n'); map?.Add(xmlIndexForInserted);
+            MapAppendChar(sb, map, '\n', xmlCaretIndexAfter: xmlIndexForInserted);
         }
 
         lastWasNewline = true;
@@ -628,11 +750,6 @@ public static class CbetaTeiRenderer
     // Segment keys + attribute parsing (no regex)
     // ------------------------------------------------------------
 
-    private const string AttrN = "n";
-    private const string AttrEd = "ed";
-    private const string AttrXmlId = "xml:id";
-    private const string AttrFun = "fun";
-
     private static bool TryMakeSyncKey(ReadOnlySpan<char> tagName, ReadOnlySpan<char> attrs, out string key)
     {
         key = "";
@@ -689,7 +806,7 @@ public static class CbetaTeiRenderer
 
     /// <summary>
     /// Extract attribute value from an attribute span.
-    /// Supports double quotes only (which matches CBETA TEI).
+    /// Supports double quotes and (defensively) single quotes.
     /// Returns null if not found.
     /// </summary>
     private static string? Attr(ReadOnlySpan<char> attrs, string attrName)
@@ -717,7 +834,10 @@ public static class CbetaTeiRenderer
 
             int j = eq + 1;
             while (j < attrs.Length && char.IsWhiteSpace(attrs[j])) j++;
-            if (j >= attrs.Length || attrs[j] != '"')
+            if (j >= attrs.Length) { i = eq + 1; continue; }
+
+            char quote = attrs[j];
+            if (quote != '"' && quote != '\'')
             {
                 i = eq + 1;
                 continue;
@@ -725,7 +845,7 @@ public static class CbetaTeiRenderer
 
             j++;
             int start = j;
-            int endRel = attrs.Slice(start).IndexOf('"');
+            int endRel = attrs.Slice(start).IndexOf(quote);
             if (endRel < 0) return null;
             int end = start + endRel;
 

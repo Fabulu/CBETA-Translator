@@ -12,6 +12,12 @@ namespace CbetaTranslator.App.Services;
 public sealed class GitRepoService : IGitRepoService
 {
     private Process? _running;
+    private readonly string _gitExe;
+
+    public GitRepoService()
+    {
+        _gitExe = GitBinaryLocator.ResolveGitExecutablePath();
+    }
 
     public void TryCancelRunningProcess()
     {
@@ -86,6 +92,55 @@ public sealed class GitRepoService : IGitRepoService
         {
             progress.Report("[git] setting local user.email = cbeta-translator@local");
             await RunGitAsync(repoDir, "config user.email \"cbeta-translator@local\"", progress, ct);
+        }
+    }
+
+    /// <summary>
+    /// Ensures a local credential helper is configured so HTTPS push can open the
+    /// browser/device login flow via bundled Portable Git on Windows.
+    /// </summary>
+    public async Task<GitOpResult> EnsureCredentialHelperAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            progress.Report("[git] credential helper bootstrap skipped (non-Windows)");
+            return new GitOpResult(true);
+        }
+
+        try
+        {
+            // If already set locally, keep it.
+            var existing = await RunGitAsync(repoDir, "config --local --get credential.helper", null, ct);
+            var helper = (existing.StdOut ?? "").Trim();
+
+            if (!string.IsNullOrWhiteSpace(helper))
+            {
+                progress.Report("[git] credential.helper (local) = " + helper);
+                return new GitOpResult(true);
+            }
+
+            // Prefer manager-core, fallback to manager for older variants.
+            progress.Report("[git] setting local credential.helper = manager-core");
+            var r1 = await RunGitAsync(repoDir, "config --local credential.helper manager-core", progress, ct);
+            if (r1.ExitCode == 0)
+            {
+                progress.Report("[git] credential.helper set to manager-core");
+                return new GitOpResult(true);
+            }
+
+            progress.Report("[git] manager-core failed, trying manager");
+            var r2 = await RunGitAsync(repoDir, "config --local credential.helper manager", progress, ct);
+            if (r2.ExitCode == 0)
+            {
+                progress.Report("[git] credential.helper set to manager");
+                return new GitOpResult(true);
+            }
+
+            return new GitOpResult(false, (r1.AllText + "\n" + r2.AllText).Trim());
+        }
+        catch (Exception ex)
+        {
+            return new GitOpResult(false, ex.ToString());
         }
     }
 
@@ -261,7 +316,7 @@ public sealed class GitRepoService : IGitRepoService
     {
         var psi = new ProcessStartInfo
         {
-            FileName = "git",
+            FileName = _gitExe,
             Arguments = args,
             WorkingDirectory = string.IsNullOrWhiteSpace(repoDir) ? Environment.CurrentDirectory : repoDir,
             UseShellExecute = false,
@@ -271,6 +326,9 @@ public sealed class GitRepoService : IGitRepoService
             StandardOutputEncoding = Encoding.UTF8,
             StandardErrorEncoding = Encoding.UTF8,
         };
+
+        // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
+        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
 
         // Fail fast instead of hanging on an invisible prompt in a headless process.
         // - GIT_TERMINAL_PROMPT=0 -> git errors instead of waiting for username/password

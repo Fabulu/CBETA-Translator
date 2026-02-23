@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CbetaTranslator.App.Services;
@@ -68,6 +70,7 @@ public partial class GitTabView : UserControl
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
+    public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabView()
     {
@@ -127,27 +130,63 @@ public partial class GitTabView : UserControl
         };
     }
 
+    private string? TryResolveRepoRootFromAnyFolder(string? folderPath)
+    {
+        if (string.IsNullOrWhiteSpace(folderPath))
+            return null;
+
+        try
+        {
+            var full = Path.GetFullPath(folderPath.Trim());
+
+            if (!Directory.Exists(full))
+                return null;
+
+            // Case 1: exact repo root
+            if (Directory.Exists(Path.Combine(full, ".git")))
+                return full;
+
+            // Case 2: parent folder that contains the repo folder
+            var childRepo = Path.Combine(full, RepoFolderName);
+            if (Directory.Exists(childRepo) && Directory.Exists(Path.Combine(childRepo, ".git")))
+                return childRepo;
+
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public void SetCurrentRepoRoot(string? rootPath)
     {
         if (string.IsNullOrWhiteSpace(rootPath))
             return;
 
-        var root = rootPath.Trim();
+        var input = rootPath.Trim();
 
-        if (Directory.Exists(root) && Directory.Exists(Path.Combine(root, ".git")))
+        // Resolve intelligently:
+        // - If input is the repo root -> use it
+        // - If input is a parent folder containing CbetaZenTexts -> use that child repo
+        // - Otherwise treat input as base destination folder
+        var resolvedRepo = TryResolveRepoRootFromAnyFolder(input);
+
+        if (!string.IsNullOrWhiteSpace(resolvedRepo))
         {
-            _currentRepoRoot = root;
-            _baseDestFolder = Path.GetDirectoryName(root);
+            _currentRepoRoot = resolvedRepo;
+            _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
             return;
         }
 
-        if (Directory.Exists(root))
+        if (Directory.Exists(input))
         {
             _currentRepoRoot = null;
-            _baseDestFolder = root;
+            _baseDestFolder = input;
             UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
         }
     }
 
@@ -184,6 +223,7 @@ public partial class GitTabView : UserControl
 
     private string GetTargetRepoDir()
     {
+        // If we already know the repo root and it looks valid, use it.
         if (!string.IsNullOrWhiteSpace(_currentRepoRoot) &&
             Directory.Exists(_currentRepoRoot) &&
             Directory.Exists(Path.Combine(_currentRepoRoot, ".git")))
@@ -192,6 +232,25 @@ public partial class GitTabView : UserControl
         }
 
         var baseDir = _baseDestFolder ?? GetDefaultBaseFolder();
+
+        // If the chosen "base" folder is actually the repo root, use it directly.
+        if (Directory.Exists(baseDir) &&
+            string.Equals(Path.GetFileName(baseDir), RepoFolderName, StringComparison.OrdinalIgnoreCase) &&
+            Directory.Exists(Path.Combine(baseDir, ".git")))
+        {
+            _currentRepoRoot = baseDir;
+            return baseDir;
+        }
+
+        // If the chosen "base" folder contains the repo folder, use that.
+        var nestedRepo = Path.Combine(baseDir, RepoFolderName);
+        if (Directory.Exists(nestedRepo) && Directory.Exists(Path.Combine(nestedRepo, ".git")))
+        {
+            _currentRepoRoot = nestedRepo;
+            return nestedRepo;
+        }
+
+        // Default clone target path.
         return Path.Combine(baseDir, RepoFolderName);
     }
 
@@ -221,8 +280,25 @@ public partial class GitTabView : UserControl
             var folder = picked.Count > 0 ? picked[0] : null;
             if (folder == null) return;
 
-            _baseDestFolder = folder.Path.LocalPath;
-            _currentRepoRoot = null;
+            var pickedPath = folder.Path.LocalPath;
+
+            // Smart handling:
+            // - If user picked the repo root, use it.
+            // - If user picked a parent folder that contains CbetaZenTexts, use that child repo.
+            // - Otherwise treat as base destination folder.
+            var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
+
+            if (!string.IsNullOrWhiteSpace(resolvedRepo))
+            {
+                _currentRepoRoot = resolvedRepo;
+                _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+            }
+            else
+            {
+                _currentRepoRoot = null;
+                _baseDestFolder = pickedPath;
+            }
+
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
 
@@ -256,9 +332,10 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
-                Status?.Invoke(this, "Git not found. Install Git first.");
+                SetProgress("Git not found (portable/system).");
+                AppendLog("[error] git not found");
+                AppendLog("[hint] If using bundled Portable Git, make sure the PortableGit folder is included beside the app.");
+                Status?.Invoke(this, "Git not found.");
                 return;
             }
 
@@ -434,8 +511,8 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
                 return;
             }
 
@@ -514,6 +591,7 @@ public partial class GitTabView : UserControl
     /// <summary>
     /// Runs "git {args...}" in repoDir, capturing stdout/stderr and streaming lines to progress.
     /// This is self-contained so the Panic Button does not depend on extra IGitRepoService methods.
+    /// It is portable-git aware (uses GitBinaryLocator).
     /// </summary>
     private static async Task<GitRunResult> RunGitAsync(
         string repoDir,
@@ -537,15 +615,28 @@ public partial class GitTabView : UserControl
 
         var psi = new ProcessStartInfo
         {
-            FileName = "git",
+            FileName = GitBinaryLocator.ResolveGitExecutablePath(),
             WorkingDirectory = repoDir,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8,
         };
 
         psi.Arguments = string.Join(" ", args.Select(QuoteIfNeeded));
+
+        // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
+        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+
+        // Keep same behavior as main service: no hidden terminal prompts
+        try
+        {
+            psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
+            psi.Environment["GCM_INTERACTIVE"] = "Always";
+        }
+        catch { }
 
         using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
 
@@ -633,22 +724,22 @@ public partial class GitTabView : UserControl
             {
                 Text = title,
                 FontSize = 20,
-                FontWeight = Avalonia.Media.FontWeight.SemiBold
+                FontWeight = FontWeight.SemiBold
             };
 
             var bodyBorder = new Border
             {
                 CornerRadius = new CornerRadius(8),
                 BorderThickness = new Thickness(1),
-                BorderBrush = Avalonia.Media.Brushes.Gray,
-                Background = Avalonia.Media.Brushes.Transparent,
+                BorderBrush = Brushes.Gray,
+                Background = Brushes.Transparent,
                 Padding = new Thickness(12),
                 Child = new ScrollViewer
                 {
                     Content = new TextBlock
                     {
                         Text = message,
-                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        TextWrapping = TextWrapping.Wrap,
                         FontSize = 14
                     }
                 }
@@ -656,8 +747,8 @@ public partial class GitTabView : UserControl
 
             var buttons = new StackPanel
             {
-                Orientation = Avalonia.Layout.Orientation.Horizontal,
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Spacing = 8
             };
 
@@ -721,6 +812,27 @@ public partial class GitTabView : UserControl
             var cbetaRel = NormalizeRel(_selectedRelPath);
             var repoRel = NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
 
+            if (EnsureTranslatedForSelectedRequested != null)
+            {
+                SetProgress("Preparing translated XML from Markdown…");
+                bool prepared = true;
+                foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                {
+                    if (!await fn(cbetaRel))
+                    {
+                        prepared = false;
+                        break;
+                    }
+                }
+
+                if (!prepared)
+                {
+                    SetProgress("Preparation failed. Save in Edit tab and retry.");
+                    AppendLog("[error] failed to materialize translated XML for selected file");
+                    return;
+                }
+            }
+
             AppendLog("[map] cbeta: " + cbetaRel);
             AppendLog("[map] repo : " + repoRel);
 
@@ -737,8 +849,8 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
                 return;
             }
 
@@ -1014,10 +1126,21 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // Push branch (requires credential helper on Linux; on Windows Git for Windows includes GCM)
+            // NEW: make sure bundled Portable Git has a local credential helper configured on Windows
+            // so HTTPS push can launch the browser/device login flow via GCM.
+            AppendLog("[step] ensuring local credential helper");
+            var cred = await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
+            if (!cred.Success)
+            {
+                // non-fatal on some platforms, but log it loudly
+                AppendLog("[warn] could not configure credential helper automatically");
+                AppendLog("[warn] " + (cred.Error ?? "unknown error"));
+            }
+
+            // Push branch
             SetProgress("Pushing branch…");
             AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
-            AppendLog("[hint] If Git asks you to log in, complete it once, then retry.");
+            AppendLog("[hint] If Git opens a browser/device login, complete it and retry if needed.");
 
             var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastContribBranch!, prog, ct);
             if (!push.Success)
@@ -1095,7 +1218,6 @@ public partial class GitTabView : UserControl
     {
         err ??= "";
 
-        // Common GitHub HTTPS auth failures (especially on Linux without a helper / GUI)
         bool looksLikeNoPrompt =
             err.Contains("terminal prompts disabled", StringComparison.OrdinalIgnoreCase) ||
             err.Contains("could not read Username", StringComparison.OrdinalIgnoreCase) ||
@@ -1112,6 +1234,15 @@ public partial class GitTabView : UserControl
             err.Contains("Repository not found", StringComparison.OrdinalIgnoreCase) ||
             err.Contains("404", StringComparison.OrdinalIgnoreCase);
 
+        bool looksLikeNoCredStore =
+            err.Contains("No credential store has been selected", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("GCM_CREDENTIAL_STORE", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("credential.credentialStore", StringComparison.OrdinalIgnoreCase);
+
+        bool looksLikeNoHelper =
+            err.Contains("git: 'credential-manager-core' is not a git command", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("git: 'credential-manager' is not a git command", StringComparison.OrdinalIgnoreCase);
+
         if (looksLikeRepoNotFound)
         {
             AppendLog("[hint] Git says 'Repository not found'. Usually: wrong remote URL or you are not authenticated.");
@@ -1119,28 +1250,37 @@ public partial class GitTabView : UserControl
 
         if (looksLikeWrongAccount)
         {
-            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in your Git credential helper.");
+            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential helper.");
+        }
+
+        if (looksLikeNoHelper)
+        {
+            AppendLog("[hint] Credential helper not found.");
+            AppendLog("[hint] If using bundled Portable Git, ensure the full PortableGit folder is shipped, including mingw64/libexec/git-core.");
+            AppendLog("[hint] If using system Git, install Git for Windows (includes Git Credential Manager).");
+            return;
+        }
+
+        if (looksLikeNoCredStore)
+        {
+            AppendLog("[hint] Git Credential Manager is installed but no credential store is configured.");
+            AppendLog("[hint] On GNOME desktops, you usually want: secretservice (GNOME Keyring).");
+            AppendLog("[linux] Run these commands, then retry Step 3:");
+            AppendLog("  git config --global credential.helper manager");
+            AppendLog("  git config --global credential.credentialStore secretservice");
+            AppendLog("  git-credential-manager configure");
+            return;
         }
 
         if (looksLikeNoPrompt)
         {
-            AppendLog("[hint] This usually means Git could not open an interactive login prompt on your system.");
-            AppendLog("[hint] On Linux, install Git Credential Manager (GCM) so Git can authenticate via browser/device flow.");
-
-            AppendLog("[linux] Recommended (cross-distro) install via .NET tool:");
-            AppendLog("  dotnet tool install -g git-credential-manager");
-            AppendLog("  git-credential-manager configure");
-
-            AppendLog("[linux] If you prefer the .deb package (Debian/Ubuntu-style):");
-            AppendLog("  1) Download the latest .deb from the GCM releases page");
-            AppendLog("  2) sudo dpkg -i <downloaded-file.deb>");
-            AppendLog("  3) git-credential-manager configure");
-
-            AppendLog("[hint] After installing GCM, retry the Push + Create PR step.");
+            AppendLog("[hint] Git could not open an interactive login prompt.");
+            AppendLog("[hint] On Windows, this usually means Git Credential Manager is missing from the shipped Git bundle.");
+            AppendLog("[hint] On Linux, install/configure Git Credential Manager (GCM) and retry.");
         }
         else
         {
-            AppendLog("[hint] If this is an auth problem: install/configure Git Credential Manager (GCM) and retry.");
+            AppendLog("[hint] If this is an auth problem: check credential helper setup and retry.");
         }
     }
 

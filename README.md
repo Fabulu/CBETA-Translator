@@ -33,7 +33,7 @@ When you share CBETA files, **keep the original CBETA header intact** and don’
 
 ---
 
-# 📂 Corpus Navigation (Left Sidebar)
+# 📂 Corpus Navigation (Unified Left Pane)
 
 ![File Navbar Screenshot](./Screenshots/filesystem-navbar.png)
 
@@ -50,7 +50,15 @@ The app automatically:
 - Indexes the corpus  
 - Tracks translation status  
 - Matches original and translated files  
-- Caches index data for performance  
+- Caches index data for performance
+- Loads Buddhist metadata from `CBETA_Sorting_Data/buddhist_metadata_analysis.json`
+
+The left pane is now the primary document discovery surface:
+
+- Query search (filename/title/full text via search index, when present)
+- Metadata filtering (`Sect`, `Dynasty`, `Geography`) with AND logic
+- Hierarchical grouping based on selected `Group By`
+- Status/context/original-vs-translated controls for quick narrowing
 
 ### 🌈 Translation Status Coloring
 
@@ -184,19 +192,21 @@ Purpose:
 
 ---
 
-# 🚀 Super Search (Corpus-Wide)
+# 🚀 Super Search (Corpus-Wide, Advanced)
 
 ![Search Tab Screenshot](./Screenshots/search-tab.png)
 
-The **Search Tab** scans the entire CBETA corpus.
+Advanced corpus-wide search is available from the left pane via the collapsed **Advanced Search** section.
 
 It provides:
 
-- Full-text search  
-- File matches  
-- Metadata display  
-- Quick open navigation  
-- Corpus statistics  
+- Full-text search
+- File matches
+- Metadata display
+- Quick open navigation
+- Corpus statistics
+
+The advanced tools are hidden by default to keep the main workflow minimal.
 
 ### ⚡ Speed
 
@@ -389,10 +399,11 @@ If you just want to use the app, grab a prebuilt release instead of building fro
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### Linux
+### Linux (Self-Contained, Reliable)
 
 ```
-dotnet publish -c Release -r linux-x64 --self-contained true
+./eng/build-linux.sh Release true linux-x64
+./run-cbeta-selfcontained.sh linux-x64
 ```
 
 ### macOS (Intel)
