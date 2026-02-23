@@ -1,6 +1,7 @@
 ﻿// Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -58,7 +59,11 @@ public partial class SearchTabView : UserControl
     private Func<string, (string display, string tooltip, TranslationStatus? status)>? _meta;
 
     private CancellationTokenSource? _cts;
+    private CancellationTokenSource? _autoRerunCts;
     private readonly List<SearchResultGroup> _groups = new();
+
+    // Incremental UI backing collection (append-only during a search run)
+    private readonly ObservableCollection<SearchResultGroup> _groupsView = new();
 
     // remember last search so dropdown recompute works
     private string _lastQuery = "";
@@ -66,6 +71,9 @@ public partial class SearchTabView : UserControl
 
     // avoid stale async metric recomputes racing each other
     private int _metricComputeVersion = 0;
+
+    // avoid stale search UI updates racing each other
+    private int _searchRunVersion = 0;
 
     // Zen flag lookup (provided by MainWindow via SetZenResolver)
     private Func<string, bool>? _isZen;
@@ -81,6 +89,9 @@ public partial class SearchTabView : UserControl
         FindControls();
         WireEvents();
         InitCombos();
+
+        if (_resultsTree != null)
+            _resultsTree.ItemsSource = _groupsView;
 
         SetProgress("Index not loaded.");
         SetSummary("Ready.");
@@ -182,25 +193,19 @@ public partial class SearchTabView : UserControl
             };
         }
 
-        // ✅ Key fix:
-        // When Zen-only changes, re-run last query (if any).
-        // AND the filter MUST be applied at SearchAllAsync via relPathFilter (not via fileMeta hiding).
         if (_chkZenOnly != null)
         {
             _chkZenOnly.IsCheckedChanged += async (_, _) =>
             {
-                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
-                    await StartSearchAsync();
+                await TriggerAutoRerunAsync();
             };
         }
 
-        // Optional: if status/context changes and we already searched, re-run
         if (_cmbStatus != null)
         {
             _cmbStatus.SelectionChanged += async (_, _) =>
             {
-                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
-                    await StartSearchAsync();
+                await TriggerAutoRerunAsync();
             };
         }
 
@@ -208,9 +213,23 @@ public partial class SearchTabView : UserControl
         {
             _cmbContext.SelectionChanged += async (_, _) =>
             {
-                // context change affects cooc + KWIC; re-run for correctness
-                if (!string.IsNullOrWhiteSpace(_lastQuery) && (_root != null) && (_meta != null))
-                    await StartSearchAsync();
+                await TriggerAutoRerunAsync();
+            };
+        }
+
+        if (_chkOriginal != null)
+        {
+            _chkOriginal.IsCheckedChanged += async (_, _) =>
+            {
+                await TriggerAutoRerunAsync();
+            };
+        }
+
+        if (_chkTranslated != null)
+        {
+            _chkTranslated.IsCheckedChanged += async (_, _) =>
+            {
+                await TriggerAutoRerunAsync();
             };
         }
     }
@@ -288,6 +307,13 @@ public partial class SearchTabView : UserControl
         SetProgress("Ready. (Index will load automatically on first search if present.)");
         SetSummary("Ready.");
         ClearCoocUi();
+
+        // Tiny warm-up (best effort)
+        _ = Task.Run(async () =>
+        {
+            try { await _svc.TryLoadAsync(root); }
+            catch { /* ignore */ }
+        });
     }
 
     /// <summary>
@@ -311,7 +337,7 @@ public partial class SearchTabView : UserControl
         _isZen = null;
 
         _groups.Clear();
-        if (_resultsTree != null) _resultsTree.ItemsSource = null;
+        _groupsView.Clear();
 
         SetProgress("No root loaded.");
         SetSummary("Ready.");
@@ -352,18 +378,33 @@ public partial class SearchTabView : UserControl
     private bool ZenOnly()
         => _chkZenOnly?.IsChecked == true;
 
-    private Func<string, bool>? BuildRelPathFilter(bool zenOnly)
+    private Func<string, bool>? BuildRelPathFilter(bool zenOnly, TranslationStatus? statusFilter)
     {
-        if (!zenOnly) return null;
-        if (_isZen == null) return null;
+        if (!zenOnly && !statusFilter.HasValue)
+            return null;
 
-        // IMPORTANT: SearchIndexService already normalizes relPaths to use '/'
-        // but to be safe, normalize here too.
         return rel =>
         {
-            if (string.IsNullOrWhiteSpace(rel)) return false;
+            if (string.IsNullOrWhiteSpace(rel))
+                return false;
+
             rel = rel.Replace('\\', '/').TrimStart('/');
-            return _isZen(rel);
+
+            if (zenOnly)
+            {
+                if (_isZen == null || !_isZen(rel))
+                    return false;
+            }
+
+            if (statusFilter.HasValue)
+            {
+                if (_meta == null) return false;
+                var meta = _meta(rel);
+                if (!meta.status.HasValue || meta.status.Value != statusFilter.Value)
+                    return false;
+            }
+
+            return true;
         };
     }
 
@@ -391,8 +432,31 @@ public partial class SearchTabView : UserControl
         };
     }
 
+    private async Task TriggerAutoRerunAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_lastQuery) || _root == null || _meta == null)
+            return;
+
+        try { _autoRerunCts?.Cancel(); } catch { }
+        _autoRerunCts = new CancellationTokenSource();
+        var token = _autoRerunCts.Token;
+
+        try
+        {
+            await Task.Delay(120, token);
+            await StartSearchAsync();
+        }
+        catch (OperationCanceledException)
+        {
+            // newer UI change won
+        }
+    }
+
     private void Cancel()
     {
+        try { _autoRerunCts?.Cancel(); } catch { }
+        _autoRerunCts = null;
+
         try { _cts?.Cancel(); } catch { }
         _cts = null;
 
@@ -419,7 +483,6 @@ public partial class SearchTabView : UserControl
             return;
         }
 
-        // Toggle guide view immediately
         if (IsGuideSelected())
         {
             Dispatcher.UIThread.Post(() =>
@@ -433,7 +496,6 @@ public partial class SearchTabView : UserControl
             return;
         }
 
-        // show metric view
         Dispatcher.UIThread.Post(() =>
         {
             if (_gridMetricView != null) _gridMetricView.IsVisible = true;
@@ -444,7 +506,6 @@ public partial class SearchTabView : UserControl
         int myVer = Interlocked.Increment(ref _metricComputeVersion);
         var metric = GetSelectedMetric();
 
-        // compute off UI thread on a snapshot
         var snapshotGroups = _groups.ToList();
         string q = _lastQuery;
         int cw = _lastContextWidth;
@@ -452,7 +513,6 @@ public partial class SearchTabView : UserControl
         var result = await Task.Run(() =>
             SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 30));
 
-        // ignore stale
         if (myVer != Volatile.Read(ref _metricComputeVersion))
             return;
 
@@ -468,6 +528,24 @@ public partial class SearchTabView : UserControl
 
             if (_txtZipf != null) _txtZipf.Text = result.ExtraLine ?? "";
         });
+    }
+
+    // ------------------------------------------------------------
+    // Incremental tree append helpers
+    // ------------------------------------------------------------
+
+    private void ResetResultsView()
+    {
+        _groups.Clear();
+        _groupsView.Clear();
+        if (_btnExportTsv != null) _btnExportTsv.IsEnabled = false;
+    }
+
+    private void AppendGroupsToView(IReadOnlyList<SearchResultGroup> batch)
+    {
+        // UI-thread only
+        for (int i = 0; i < batch.Count; i++)
+            _groupsView.Add(batch[i]);
     }
 
     // ------------------------------------------------------------
@@ -555,21 +633,19 @@ public partial class SearchTabView : UserControl
         if (zenOnly && _isZen == null)
         {
             Status?.Invoke(this, "Zen filter is enabled but no Zen resolver was provided.");
-            // still allow search, but it will behave like 'All'
             zenOnly = false;
         }
 
-        // ✅ THIS is the real “Zen-only works” switch:
-        // pass relPathFilter into SearchAllAsync so candidate generation + verification skip non-zen files.
-        var relFilter = BuildRelPathFilter(zenOnly);
+        var statusFilter = GetStatusFilter();
+        var relFilter = BuildRelPathFilter(zenOnly, statusFilter);
 
         Cancel();
         _cts = new CancellationTokenSource();
         var ct = _cts.Token;
 
-        _groups.Clear();
-        if (_resultsTree != null) _resultsTree.ItemsSource = null;
-        if (_btnExportTsv != null) _btnExportTsv.IsEnabled = false;
+        int mySearchVer = Interlocked.Increment(ref _searchRunVersion);
+
+        ResetResultsView();
         ClearCoocUi();
 
         try
@@ -586,10 +662,8 @@ public partial class SearchTabView : UserControl
                 return;
             }
 
-            var statusFilter = GetStatusFilter();
             int contextWidth = GetContextWidth();
 
-            // remember for dropdown recompute
             _lastQuery = q;
             _lastContextWidth = contextWidth;
 
@@ -598,8 +672,37 @@ public partial class SearchTabView : UserControl
 
             var prog = new Progress<SearchIndexService.SearchProgress>(p =>
             {
+                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                    return;
+
                 SetProgress($"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}");
             });
+
+            // Batch pending UI appends so we avoid resetting the tree and reduce dispatcher churn.
+            var pendingUiBatch = new List<SearchResultGroup>(32);
+
+            async Task FlushPendingUiBatchAsync(bool forceSummary)
+            {
+                if (pendingUiBatch.Count == 0 && !forceSummary) return;
+
+                var batch = pendingUiBatch.Count > 0 ? pendingUiBatch.ToArray() : Array.Empty<SearchResultGroup>();
+                pendingUiBatch.Clear();
+
+                int snapshotGroups = totalGroups;
+                int snapshotHits = totalHits;
+
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                        return;
+
+                    if (batch.Length > 0)
+                        AppendGroupsToView(batch);
+
+                    if (forceSummary || batch.Length > 0)
+                        SetSummary($"Results: files={snapshotGroups:n0}, hits={snapshotHits:n0}");
+                });
+            }
 
             await foreach (var g in _svc.SearchAllAsync(
                                _root,
@@ -609,29 +712,7 @@ public partial class SearchTabView : UserControl
                                q,
                                includeO,
                                includeT,
-                               fileMeta: rel =>
-                               {
-                                   // NOTE: Zen filtering is done by relPathFilter now.
-                                   // fileMeta should NOT “hide” results by returning empty strings,
-                                   // because that still wastes time verifying and can create confusing UX.
-
-                                   var m = _meta(rel);
-
-                                   if (statusFilter.HasValue)
-                                   {
-                                       if (m.status.HasValue)
-                                       {
-                                           if (m.status.Value != statusFilter.Value)
-                                               return ("", "", m.status); // filtered out later by DisplayName check
-                                       }
-                                       else
-                                       {
-                                           return ("", "", null);
-                                       }
-                                   }
-
-                                   return m;
-                               },
+                               fileMeta: rel => _meta(rel),
                                contextWidth: contextWidth,
                                progress: prog,
                                relPathFilter: relFilter,
@@ -639,52 +720,60 @@ public partial class SearchTabView : UserControl
             {
                 ct.ThrowIfCancellationRequested();
 
-                // Status filter hides items by blanking DisplayName
-                if (string.IsNullOrWhiteSpace(g.DisplayName))
-                    continue;
+                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                    return;
 
                 _groups.Add(g);
+                pendingUiBatch.Add(g);
+
                 totalGroups++;
                 totalHits += g.Children.Count;
 
-                if (totalGroups <= 10 || totalGroups % 10 == 0)
-                {
-                    await Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        if (_resultsTree != null)
-                            _resultsTree.ItemsSource = _groups.ToList();
-
-                        SetSummary($"Results: files={totalGroups:n0}, hits={totalHits:n0}");
-                    });
-                }
+                // Flush early for first results, then in chunks
+                if (totalGroups <= 10 || pendingUiBatch.Count >= 20)
+                    await FlushPendingUiBatchAsync(forceSummary: false);
             }
+
+            // Final flush
+            await FlushPendingUiBatchAsync(forceSummary: true);
+
+            int finalGroups = _groups.Count;
+            int finalHits = totalHits;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
-                if (_resultsTree != null)
-                    _resultsTree.ItemsSource = _groups.ToList();
+                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                    return;
 
-                SetSummary($"Done. files={_groups.Count:n0}, hits={_groups.Sum(x => x.Children.Count):n0}");
-                if (_btnExportTsv != null) _btnExportTsv.IsEnabled = _groups.Count > 0;
+                SetSummary($"Done. files={finalGroups:n0}, hits={finalHits:n0}");
+                if (_btnExportTsv != null) _btnExportTsv.IsEnabled = finalGroups > 0;
             });
 
-            // compute the initial view based on current dropdown selection
             await RefreshCoocUiFromCurrentStateAsync();
         }
         catch (OperationCanceledException)
         {
-            SetProgress("Canceled.");
-            SetSummary("Canceled.");
+            if (mySearchVer == Volatile.Read(ref _searchRunVersion))
+            {
+                SetProgress("Canceled.");
+                SetSummary("Canceled.");
+            }
         }
         catch (Exception ex)
         {
-            SetProgress("Search failed: " + ex.Message);
-            SetSummary("Search failed.");
-            Status?.Invoke(this, "Search failed: " + ex.Message);
+            if (mySearchVer == Volatile.Read(ref _searchRunVersion))
+            {
+                SetProgress("Search failed: " + ex.Message);
+                SetSummary("Search failed.");
+                Status?.Invoke(this, "Search failed: " + ex.Message);
+            }
         }
         finally
         {
-            if (_btnCancel != null) _btnCancel.IsEnabled = false;
+            if (mySearchVer == Volatile.Read(ref _searchRunVersion))
+            {
+                if (_btnCancel != null) _btnCancel.IsEnabled = false;
+            }
         }
     }
 
@@ -748,7 +837,7 @@ public partial class SearchTabView : UserControl
 
     private static string EscapeTsv(string s)
     {
-        s = s ?? "";
+        s ??= "";
         s = s.Replace("\t", " ").Replace("\r", "").Replace("\n", " ");
         return s;
     }

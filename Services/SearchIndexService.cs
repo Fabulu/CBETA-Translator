@@ -14,11 +14,11 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class SearchIndexService
+public sealed class SearchIndexService : IDisposable
 {
     public sealed class SearchIndexServiceOptions
     {
-        public long MaxBloomCacheBytes { get; set; } = 40L * 1024 * 1024;
+        public long MaxBloomCacheBytes { get; set; } = 128L * 1024 * 1024;
 
         // HDD + 2MB files: IO-bound verification is common.
         // Too much parallelism can *thrash* an HDD (seeks).
@@ -46,14 +46,25 @@ public sealed class SearchIndexService
     private long _bloomCacheBytes = 0;
     private readonly object _bloomLock = new();
 
+    // Cached manifest + mmap (big real-world speed win for repeated searches)
+    private readonly object _indexCacheLock = new();
+    private SearchIndexManifest? _cachedManifest;
+    private string? _cachedManifestPath;
+    private DateTime _cachedManifestWriteUtc;
+
+    private MemoryMappedFile? _cachedMmf;
+    private MemoryMappedViewAccessor? _cachedAccessor;
+    private string? _cachedBinPath;
+    private DateTime _cachedBinWriteUtc;
+
     private const string ManifestFileName = "search.index.manifest.json";
     private const string BinFileName = "search.index.bin";
 
-    private const int BloomBits = 4096;
+    private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
-    private const int BloomHashCount = 4;
-    private const string BuildGuid = "search-v1-bloom-4096";
+    private const int BloomHashCount = 5; // optional: 4 is okay too
+    private const string BuildGuid = "search-v2-bloom-16384";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
@@ -308,6 +319,61 @@ public sealed class SearchIndexService
     }
 
     // ---------------------------
+    // Helpers (index caches)
+    // ---------------------------
+
+    public void Dispose()
+    {
+        InvalidateIndexCaches();
+        GC.SuppressFinalize(this);
+    }
+
+    private void InvalidateIndexCaches()
+    {
+        lock (_indexCacheLock)
+        {
+            _cachedManifest = null;
+            _cachedManifestPath = null;
+            _cachedManifestWriteUtc = default;
+
+            try { _cachedAccessor?.Dispose(); } catch { }
+            try { _cachedMmf?.Dispose(); } catch { }
+
+            _cachedAccessor = null;
+            _cachedMmf = null;
+            _cachedBinPath = null;
+            _cachedBinWriteUtc = default;
+        }
+    }
+
+    private MemoryMappedViewAccessor GetOrCreateMappedAccessor(string binPath)
+    {
+        var full = Path.GetFullPath(binPath);
+        var writeUtc = File.GetLastWriteTimeUtc(full);
+
+        lock (_indexCacheLock)
+        {
+            if (_cachedAccessor != null &&
+                _cachedMmf != null &&
+                string.Equals(_cachedBinPath, full, StringComparison.OrdinalIgnoreCase) &&
+                _cachedBinWriteUtc == writeUtc)
+            {
+                return _cachedAccessor;
+            }
+
+            try { _cachedAccessor?.Dispose(); } catch { }
+            try { _cachedMmf?.Dispose(); } catch { }
+
+            _cachedMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+            _cachedAccessor = _cachedMmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
+            _cachedBinPath = full;
+            _cachedBinWriteUtc = writeUtc;
+
+            return _cachedAccessor;
+        }
+    }
+
+    // ---------------------------
     // Helpers (file replace retry)
     // ---------------------------
 
@@ -557,6 +623,20 @@ public sealed class SearchIndexService
             if (!File.Exists(mp) || !File.Exists(bp))
                 return null;
 
+            var mpFull = Path.GetFullPath(mp);
+            var mpWriteUtc = File.GetLastWriteTimeUtc(mpFull);
+
+            // Fast path: cached manifest still matches file timestamp
+            lock (_indexCacheLock)
+            {
+                if (_cachedManifest != null &&
+                    string.Equals(_cachedManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    _cachedManifestWriteUtc == mpWriteUtc)
+                {
+                    return _cachedManifest;
+                }
+            }
+
             var json = await File.ReadAllTextAsync(mp, Utf8NoBom);
             if (string.IsNullOrWhiteSpace(json))
                 return null;
@@ -583,6 +663,13 @@ public sealed class SearchIndexService
                     return null;
             }
 
+            lock (_indexCacheLock)
+            {
+                _cachedManifest = man;
+                _cachedManifestPath = mpFull;
+                _cachedManifestWriteUtc = mpWriteUtc;
+            }
+
             return man;
         }
         catch
@@ -607,6 +694,23 @@ public sealed class SearchIndexService
         await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct);
 
         ReplaceFileAtomicWithRetry(tmp, final);
+
+        // Refresh manifest cache immediately so next search avoids JSON reload
+        try
+        {
+            var full = Path.GetFullPath(final);
+            var writeUtc = File.GetLastWriteTimeUtc(full);
+            lock (_indexCacheLock)
+            {
+                _cachedManifest = manifest;
+                _cachedManifestPath = full;
+                _cachedManifestWriteUtc = writeUtc;
+            }
+        }
+        catch
+        {
+            // harmless
+        }
     }
 
     // ---------------------------
@@ -776,6 +880,9 @@ public sealed class SearchIndexService
             await _indexIoGate.WaitAsync(ct);
             try
             {
+                // Make sure stale mmap/manifest caches don't point at files being replaced
+                InvalidateIndexCaches();
+
                 SearchIndexManifest? oldMan = null;
                 string oldBinPath = GetBinPath(root);
 
@@ -930,6 +1037,9 @@ public sealed class SearchIndexService
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
                 await SaveManifestAtomicAsync(root, manifest, ct);
 
+                // Warm mmap cache after rebuild so next search click is faster
+                try { _ = GetOrCreateMappedAccessor(finalBin); } catch { }
+
                 progress?.Report((total, total, "Done"));
             }
             finally
@@ -982,7 +1092,6 @@ public sealed class SearchIndexService
 
         var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
-        // IMPORTANT CHANGE:
         // Hold _indexIoGate only during candidate scan (bin access).
         // Release before expensive verification (file reads) so searches don’t serialize behind index I/O.
         await _indexIoGate.WaitAsync(ct);
@@ -1007,9 +1116,7 @@ public sealed class SearchIndexService
             else
             {
                 string binPath = GetBinPath(root);
-
-                using var mmf = MemoryMappedFile.CreateFromFile(binPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
-                using var accessor = mmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
+                var accessor = GetOrCreateMappedAccessor(binPath);
 
                 var po = new ParallelOptions
                 {
@@ -1029,6 +1136,7 @@ public sealed class SearchIndexService
                         if (relPathFilter != null && !relPathFilter(e.RelPath))
                             return local;
 
+                        // Concurrent reads from the shared accessor are read-only.
                         accessor.ReadArray(e.BloomOffset, local.arr, 0, BloomBytes);
 
                         for (int i = 0; i < BloomUlongs; i++)
