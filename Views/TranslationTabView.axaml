@@ -20,7 +20,7 @@
 				Padding="8"
 				CornerRadius="6">
 
-			<!-- inside the top Border, replace the inner Grid -->
+			<!-- top toolbar area -->
 			<Grid RowDefinitions="Auto,Auto" RowSpacing="8">
 
 				<!-- Row 1: Modes + quick info + wrap -->
@@ -29,9 +29,11 @@
 						<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
 						<Button Name="BtnModeBody" Content="Body of File" ToolTip.Tip="Switch to body projection (Ctrl+2)"/>
 						<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)"/>
+						<Button Name="BtnFindChineseInEn"
+								Content="Find Chinese in EN"
+								ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete."/>
 					</StackPanel>
 
-					<!-- moved here -->
 					<TextBlock Grid.Column="1"
 							   Name="TxtQuickInfo"
 							   Text=""
@@ -41,47 +43,53 @@
 							   TextTrimming="CharacterEllipsis"
 							   Margin="8,0,0,0"/>
 
-					<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+					<StackPanel Grid.Column="2"
+								Orientation="Horizontal"
+								Spacing="8"
+								VerticalAlignment="Center">
 						<CheckBox Name="ChkWrap" Content="Wrap" ToolTip.Tip="Toggle line wrapping"/>
 					</StackPanel>
 				</Grid>
 
-				<!-- Row 2: Actions -->
-				<Grid Grid.Row="1" ColumnDefinitions="*" ColumnSpacing="8">
-					<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
-						<Button Name="BtnUndo" Content="↶" Width="32" ToolTip.Tip="Undo (Ctrl+Z)"/>
-						<Button Name="BtnRedo" Content="↷" Width="32" ToolTip.Tip="Redo (Ctrl+Y)"/>
+				<!-- Row 2: Actions (wraps nicely on smaller windows) -->
+				<WrapPanel Grid.Row="1"
+						   Orientation="Horizontal"
+						   ItemSpacing="6"
+						   LineSpacing="6"
+						   VerticalAlignment="Top">
 
-						<Separator Width="10"/>
+					<Button Name="BtnUndo" Content="↶" Width="32" ToolTip.Tip="Undo (Ctrl+Z)"/>
+					<Button Name="BtnRedo" Content="↷" Width="32" ToolTip.Tip="Redo (Ctrl+Y)"/>
 
-						<TextBlock Text="Copy N:" VerticalAlignment="Center"/>
-						<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="0" ToolTip.Tip="How many blocks max to copy">
-							<ComboBoxItem Content="1"/>
-							<ComboBoxItem Content="10"/>
-							<ComboBoxItem Content="25"/>
-							<ComboBoxItem Content="50"/>
-							<ComboBoxItem Content="100"/>
-							<ComboBoxItem Content="150"/>
-						</ComboBox>
+					<Border Width="8"/>
 
-						<Button Name="BtnCopyChunkPrompt"
-								Content="Copy N + prompt"
-								ToolTip.Tip="Copy a continuous untranslated block chunk from the caret (Ctrl+Shift+C)"/>
+					<TextBlock Text="Copy N:" VerticalAlignment="Center"/>
+					<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="1" ToolTip.Tip="How many blocks max to copy">
+						<ComboBoxItem Content="1"/>
+						<ComboBoxItem Content="10"/>
+						<ComboBoxItem Content="25"/>
+						<ComboBoxItem Content="50"/>
+						<ComboBoxItem Content="100"/>
+						<ComboBoxItem Content="150"/>
+					</ComboBox>
 
-						<Button Name="BtnPasteByNumber"
-								Content="Paste by block #"
-								ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
+					<Button Name="BtnCopyChunkPrompt"
+							Content="Copy N + prompt"
+							ToolTip.Tip="Copy up to N valid untranslated blocks from the caret (Ctrl+Shift+C)"/>
 
-						<Button Name="BtnNextUntranslated"
-								Content="Next untranslated"
-								ToolTip.Tip="Jump to next block with empty EN (F8)"/>
+					<Button Name="BtnPasteByNumber"
+							Content="Paste by block #"
+							ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
 
-						<Separator Width="10"/>
+					<Button Name="BtnNextUntranslated"
+							Content="Next untranslated"
+							ToolTip.Tip="Jump to next untranslated Chinese block (F8)"/>
 
-						<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
-						<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
-					</StackPanel>
-				</Grid>
+					<Border Width="8"/>
+
+					<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
+					<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
+				</WrapPanel>
 
 			</Grid>
 		</Border>
