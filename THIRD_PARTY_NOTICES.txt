@@ -176,6 +176,36 @@ Section 8 – Interpretation.
 Nothing in this Public License reduces, limits, or restricts any uses
 permitted by law.
 
+---------------------------------------------------------------------------
+GIT FOR WINDOWS (BUNDLED PORTABLE GIT)
+---------------------------------------------------------------------------
+
+This product bundles Git for Windows (PortableGit) for Windows builds
+to provide an embedded Git executable.
+
+Component:
+- Git for Windows (PortableGit), x64
+- Version: 2.49.0 (or the version you ship)
+
+Upstream project:
+- https://gitforwindows.org/
+- https://git-scm.com/
+
+Licensing:
+- Git is licensed under the GNU General Public License version 2 (GPLv2).
+- Git for Windows distributions also include additional third-party components
+  (such as MSYS2/MinGW userspace tools and libraries) under their respective
+  licenses.
+
+Important notice:
+- The full license texts and notices for the bundled Git for Windows package
+  are included with this application in the bundled Git directory and/or
+  accompanying license files distributed with the package.
+
+Source / corresponding materials:
+- This application redistributes an unmodified PortableGit package obtained
+  from the official Git for Windows releases:
+  https://github.com/git-for-windows/git/releases
 
 ---------------------------------------------------------------------------
 END OF THIRD PARTY SOFTWARE NOTICES

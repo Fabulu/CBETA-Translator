@@ -1,7 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.LicensesWindow"
-        Width="860" Height="640"
+        Width="980" Height="720"
         Background="{DynamicResource AppBg}"
         Title="Licenses &amp; Attributions"
         WindowStartupLocation="CenterOwner">
@@ -13,7 +13,7 @@
 					   FontSize="20"
 					   FontWeight="SemiBold"/>
 
-			<TextBlock Text="Dictionary data attribution is shown below (taken from the shipped dictionary file header)."
+			<TextBlock Text="Shows app license, third-party notices, CC-CEDICT attribution, and bundled Git for Windows notices (when present)."
 					   Classes="muted"
 					   TextWrapping="Wrap"/>
 		</StackPanel>

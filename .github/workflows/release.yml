@@ -13,7 +13,7 @@ env:
   TFM: net8.0
 
   # Portable Git for Windows (fuller than MinGit; includes GCM/browser auth flow pieces)
-  # You can bump this later if needed.
+  # Bump these together when updating.
   PORTABLE_GIT_VERSION: 2.49.0
   PORTABLE_GIT_FILE: PortableGit-2.49.0-64-bit.7z.exe
   PORTABLE_GIT_URL: https://github.com/git-for-windows/git/releases/download/v2.49.0.windows.1/PortableGit-2.49.0-64-bit.7z.exe
@@ -79,6 +79,14 @@ jobs:
           mkdir -p "$PUB/assets/dict"
           cp -R "Assets/Dict/." "$PUB/assets/dict/"
 
+      # Include top-level project licensing files in every package (all OSes)
+      - name: Copy project license files into publish
+        shell: bash
+        run: |
+          PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          cp "LICENSE" "$PUB/LICENSE"
+          cp "THIRD_PARTY_NOTICES.txt" "$PUB/THIRD_PARTY_NOTICES.txt"
+
       # ------------------------------------------------------------
       # Windows only: bundle FULL Portable Git in the exact layout your
       # GitBinaryLocator expects:
@@ -93,7 +101,7 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Force .ci-tools | Out-Null
-          $dst = Join-Path $PWD ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
+          $dst = Join-Path $PWD.Path ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
           Write-Host "Downloading Portable Git: ${{ env.PORTABLE_GIT_URL }}"
           Invoke-WebRequest -Uri "${{ env.PORTABLE_GIT_URL }}" -OutFile $dst
           if (!(Test-Path $dst)) { throw "Portable Git download failed." }
@@ -104,9 +112,9 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          $pub = Join-Path $PWD "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
+          $pub = Join-Path $PWD.Path "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
           $gitRoot = Join-Path $pub "tools\git\win-x64"
-          $archive = Join-Path $PWD ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
+          $archive = Join-Path $PWD.Path ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
 
           if (!(Test-Path $archive)) {
             throw "Portable Git archive not found: $archive"
@@ -119,7 +127,7 @@ jobs:
           New-Item -ItemType Directory -Force $gitRoot | Out-Null
 
           # PortableGit-*.7z.exe is a self-extracting 7z archive.
-          # Use Start-Process instead of '&' for more reliable exit-code handling on Actions.
+          # Use Start-Process instead of '&' for reliable exit-code handling on Actions.
           Write-Host "Extracting Portable Git to: $gitRoot"
           Write-Host "Archive: $archive"
 
@@ -134,6 +142,7 @@ jobs:
             throw "Failed to start Portable Git extractor process."
           }
 
+          Write-Host "Extractor exit code: $($proc.ExitCode)"
           if ($proc.ExitCode -ne 0) {
             throw "Portable Git extractor failed with exit code $($proc.ExitCode)"
           }
@@ -148,6 +157,62 @@ jobs:
 
           Write-Host "Portable Git bundled successfully."
           Get-ChildItem $gitRoot | Select-Object Name, Mode | Format-Table -AutoSize
+
+      # Copy Git/Git-for-Windows license and notice files into a predictable package folder
+      - name: Collect bundled Git license files (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $pub = Join-Path $PWD.Path "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
+          $gitRoot = Join-Path $pub "tools\git\win-x64"
+          $dst = Join-Path $pub "licenses\git-for-windows"
+
+          if (!(Test-Path $gitRoot)) {
+            throw "Git root not found: $gitRoot"
+          }
+
+          New-Item -ItemType Directory -Force $dst | Out-Null
+
+          # Common notice/license filenames in PortableGit distributions
+          $patterns = @(
+            "LICENSE*",
+            "COPYING*",
+            "ReleaseNotes*",
+            "README*"
+          )
+
+          $found = New-Object System.Collections.Generic.List[string]
+
+          foreach ($pattern in $patterns) {
+            $matches = Get-ChildItem -Path $gitRoot -Recurse -File -Filter $pattern -ErrorAction SilentlyContinue
+            foreach ($m in $matches) {
+              $target = Join-Path $dst $m.Name
+              if (Test-Path $target) {
+                $base = [System.IO.Path]::GetFileNameWithoutExtension($m.Name)
+                $ext  = [System.IO.Path]::GetExtension($m.Name)
+                $target = Join-Path $dst ("{0}_{1}{2}" -f $base, ([Guid]::NewGuid().ToString("N").Substring(0,8)), $ext)
+              }
+              Copy-Item $m.FullName $target -Force
+              $found.Add($target)
+            }
+          }
+
+          if ($found.Count -eq 0) {
+            Write-Warning "No Git license/notice files matched expected patterns. Packaging continues, but verify PortableGit contents."
+          } else {
+            Write-Host "Collected Git license/notice files:"
+            $found | ForEach-Object { Write-Host " - $_" }
+          }
+
+          @"
+Bundled component: Git for Windows (PortableGit)
+Version: ${{ env.PORTABLE_GIT_VERSION }}
+Source: ${{ env.PORTABLE_GIT_URL }}
+
+These files were copied from the extracted PortableGit bundle included in this release.
+"@ | Set-Content -Path (Join-Path $dst "BUNDLED_GIT_NOTICE.txt") -Encoding UTF8
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
