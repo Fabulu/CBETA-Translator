@@ -97,7 +97,9 @@ public sealed class CedictDictionaryService : ICedictDictionary
                 string? line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    ct.ThrowIfCancellationRequested();
+                    // Treat cancellation as expected, not a crash
+                    if (ct.IsCancellationRequested)
+                        ct.ThrowIfCancellationRequested();
 
                     line = line.Trim();
                     if (line.Length == 0) { skipped++; continue; }
@@ -152,6 +154,12 @@ public sealed class CedictDictionaryService : ICedictDictionary
                 Debug.WriteLine($"[CEDICT] Stats: lines={stats.lines:n0} parsed={stats.parsed:n0} skipped={stats.skipped:n0} trad={stats.addedTrad:n0} simp={stats.addedSimp:n0} elapsed={stats.Elapsed}");
             }
         }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+            // Expected cancellation (startup/shutdown race, app close, etc.)
+            Debug.WriteLine("[CEDICT] Load cancelled.");
+            return;
+        }
         catch (Exception ex)
         {
             _lastLoadError = ex.ToString();
@@ -160,7 +168,10 @@ public sealed class CedictDictionaryService : ICedictDictionary
         }
         finally
         {
-            _isLoading = false;
+            lock (_gate)
+            {
+                _isLoading = false;
+            }
         }
     }
 
