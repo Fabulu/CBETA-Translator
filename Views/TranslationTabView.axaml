@@ -19,29 +19,70 @@
 				BorderThickness="1"
 				Padding="8"
 				CornerRadius="6">
-			<DockPanel LastChildFill="True">
 
-				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Spacing="6">
-					<Button Name="BtnModeHead" Content="Head of File"/>
-					<Button Name="BtnModeBody" Content="Body of File"/>
-					<Button Name="BtnModeNotes" Content="Notes"/>
+			<!-- inside the top Border, replace the inner Grid -->
+			<Grid RowDefinitions="Auto,Auto" RowSpacing="8">
 
-					<Separator Width="12"/>
+				<!-- Row 1: Modes + quick info + wrap -->
+				<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+					<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
+						<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
+						<Button Name="BtnModeBody" Content="Body of File" ToolTip.Tip="Switch to body projection (Ctrl+2)"/>
+						<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)"/>
+					</StackPanel>
 
-					<Button Name="BtnCopyPrompt" Content="Copy selection + prompt"/>
-					<Button Name="BtnPasteReplace" Content="Paste replace selection"/>
+					<!-- moved here -->
+					<TextBlock Grid.Column="1"
+							   Name="TxtQuickInfo"
+							   Text=""
+							   VerticalAlignment="Center"
+							   HorizontalAlignment="Left"
+							   Opacity="0.8"
+							   TextTrimming="CharacterEllipsis"
+							   Margin="8,0,0,0"/>
 
-					<Separator Width="12"/>
+					<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+						<CheckBox Name="ChkWrap" Content="Wrap" ToolTip.Tip="Toggle line wrapping"/>
+					</StackPanel>
+				</Grid>
 
-					<Button Name="BtnSave" Content="Save XML"/>
-					<Button Name="BtnRevert" Content="Revert from XML"/>
-				</StackPanel>
+				<!-- Row 2: Actions -->
+				<Grid Grid.Row="1" ColumnDefinitions="*" ColumnSpacing="8">
+					<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
+						<Button Name="BtnUndo" Content="↶" Width="32" ToolTip.Tip="Undo (Ctrl+Z)"/>
+						<Button Name="BtnRedo" Content="↷" Width="32" ToolTip.Tip="Redo (Ctrl+Y)"/>
 
-				<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8">
-					<CheckBox Name="ChkWrap" Content="Wrap"/>
-				</StackPanel>
+						<Separator Width="10"/>
 
-			</DockPanel>
+						<TextBlock Text="Copy N:" VerticalAlignment="Center"/>
+						<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="0" ToolTip.Tip="How many blocks max to copy">
+							<ComboBoxItem Content="10"/>
+							<ComboBoxItem Content="25"/>
+							<ComboBoxItem Content="50"/>
+							<ComboBoxItem Content="100"/>
+							<ComboBoxItem Content="150"/>
+						</ComboBox>
+
+						<Button Name="BtnCopyChunkPrompt"
+								Content="Copy N + prompt"
+								ToolTip.Tip="Copy a continuous untranslated block chunk from the caret (Ctrl+Shift+C)"/>
+
+						<Button Name="BtnPasteByNumber"
+								Content="Paste by block #"
+								ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
+
+						<Button Name="BtnNextUntranslated"
+								Content="Next untranslated"
+								ToolTip.Tip="Jump to next block with empty EN (F8)"/>
+
+						<Separator Width="10"/>
+
+						<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
+						<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
+					</StackPanel>
+				</Grid>
+
+			</Grid>
 		</Border>
 
 		<Border Grid.Row="1"

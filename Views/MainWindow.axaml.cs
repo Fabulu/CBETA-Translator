@@ -461,12 +461,14 @@ public partial class MainWindow : Window
     // Root + config
     // =========================
 
+    // MainWindow.axaml.cs - REPLACE method
     private async Task LoadConfigApplyThemeAndMaybeAutoloadAsync()
     {
         try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
         catch { _config = new AppConfig { IsDarkTheme = true }; }
 
         ApplyTheme(_config.IsDarkTheme);
+        ApplySettingsToChildViews();
 
         if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
         {
@@ -578,6 +580,7 @@ public partial class MainWindow : Window
         catch (Exception ex) { SetStatus("Failed to open licenses: " + ex.Message); }
     }
 
+    // MainWindow.axaml.cs - REPLACE method
     private async void OnSettingsClicked(object? sender, RoutedEventArgs e)
     {
         try
@@ -588,6 +591,7 @@ public partial class MainWindow : Window
 
             _config = result;
             ApplyTheme(_config.IsDarkTheme);
+            ApplySettingsToChildViews();
             await SafeSaveConfigAsync();
         }
         catch (Exception ex)
@@ -707,6 +711,25 @@ public partial class MainWindow : Window
             3 => s.Contains("red") || s.Contains("untranslated"),
             _ => true
         };
+    }
+
+    // MainWindow.axaml.cs - add this helper (new method)
+    private void ApplySettingsToChildViews()
+    {
+        try
+        {
+            _translationView?.SetHoverDictionaryEnabled(_config.EnableHoverDictionary);
+        }
+        catch { }
+
+        // If your ReadableTabView already has a similar method, keep this.
+        // If not, this try/catch safely does nothing.
+        try
+        {
+            var m = _readableView?.GetType().GetMethod("SetHoverDictionaryEnabled");
+            m?.Invoke(_readableView, new object[] { _config.EnableHoverDictionary });
+        }
+        catch { }
     }
 
     private async Task ApplyFilterAsync()
@@ -1378,18 +1401,55 @@ public partial class MainWindow : Window
         var variant = dark ? ThemeVariant.Dark : ThemeVariant.Light;
 
         RequestedThemeVariant = variant;
-        if (Application.Current != null) Application.Current.RequestedThemeVariant = variant;
+        if (Application.Current != null)
+            Application.Current.RequestedThemeVariant = variant;
 
         var res = Application.Current?.Resources;
         if (res == null) return;
 
-        string p = dark ? "Night_" : "Light_";
+        string prefix = dark ? "Night_" : "Light_";
 
         foreach (var token in ThemeTokens)
         {
-            var sourceKey = p + token;
-            if (res.TryGetValue(sourceKey, out var v) && v != null)
-                res[token] = v;
+            var sourceKey = prefix + token;
+
+            if (!res.TryGetValue(sourceKey, out var sourceObj) || sourceObj is null)
+                continue;
+
+            // Best case: both are SolidColorBrush -> mutate color in place
+            if (res.TryGetValue(token, out var activeObj) &&
+                activeObj is SolidColorBrush activeBrush &&
+                sourceObj is SolidColorBrush sourceBrush)
+            {
+                activeBrush.Color = sourceBrush.Color;
+                activeBrush.Opacity = sourceBrush.Opacity;
+                continue;
+            }
+
+            // Fallback (non-brush resource types)
+            res[token] = sourceObj;
+        }
+
+        // Optional but useful: force nav item containers to refresh converter-applied backgrounds
+        RefreshNavListVisuals();
+    }
+
+    private void RefreshNavListVisuals()
+    {
+        try
+        {
+            if (_filesList == null) return;
+
+            var selected = _filesList.SelectedItem;
+            var src = _filesList.ItemsSource;
+
+            _filesList.ItemsSource = null;
+            _filesList.ItemsSource = src;
+            _filesList.SelectedItem = selected;
+        }
+        catch
+        {
+            // ignore
         }
     }
 
