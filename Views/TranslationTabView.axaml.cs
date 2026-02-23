@@ -839,13 +839,14 @@ $@"You are translating a CBETA projection block.
 
 STRICT RULES:
 - Edit ONLY EN: lines.
-- Keep <n> and all ZH: lines unchanged.
-- Keep the same number of EN[n] lines as ZH[n] lines.
+- Keep all ZH: lines unchanged.
+- Keep the same number of EN lines as ZH lines.
 - Do NOT merge lines.
 - Do NOT split lines.
 - Do NOT add commentary.
 - Do NOT add or remove blocks.
 - Do NOT use angle brackets < or > in EN text.
+- Do NOT include any Chinese text in EN lines
 - Output ONLY one markdown code block.
 
 ```markdown
