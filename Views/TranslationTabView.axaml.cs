@@ -23,7 +23,7 @@ public partial class TranslationTabView : UserControl
 {
     private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
-    private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnSave, _btnRevert;
+    private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
     private TextBlock? _txtModeInfo;
@@ -69,6 +69,7 @@ public partial class TranslationTabView : UserControl
         _btnCopyChunkPrompt = this.FindControl<Button>("BtnCopyChunkPrompt");
         _btnPasteByNumber = this.FindControl<Button>("BtnPasteByNumber");
         _btnNextUntranslated = this.FindControl<Button>("BtnNextUntranslated");
+        _btnFindChineseInEn = this.FindControl<Button>("BtnFindChineseInEn"); // add later in axaml
         _btnSave = this.FindControl<Button>("BtnSave");
         _btnRevert = this.FindControl<Button>("BtnRevert");
 
@@ -100,6 +101,7 @@ public partial class TranslationTabView : UserControl
         if (_btnCopyChunkPrompt != null) _btnCopyChunkPrompt.Click += async (_, _) => await CopyChunkWithPromptAsync();
         if (_btnPasteByNumber != null) _btnPasteByNumber.Click += async (_, _) => await PasteByMatchingBlockNumberAsync();
         if (_btnNextUntranslated != null) _btnNextUntranslated.Click += (_, _) => JumpToNextUntranslated();
+        if (_btnFindChineseInEn != null) _btnFindChineseInEn.Click += (_, _) => JumpToChineseInEnglishLine();
 
         if (_btnSave != null)
             _btnSave.Click += (_, _) => SaveRequested?.Invoke(this, EventArgs.Empty);
@@ -679,6 +681,82 @@ public partial class TranslationTabView : UserControl
             : $"Jumped to untranslated block <{blocks[nextIx].BlockNumber}>.");
     }
 
+    private void JumpToChineseInEnglishLine()
+    {
+        if (_editor == null)
+        {
+            Status?.Invoke(this, "Editor not available.");
+            return;
+        }
+
+        var text = _editor.Text ?? "";
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            Status?.Invoke(this, "Editor is empty.");
+            return;
+        }
+
+        List<ProjectionBlockInfo> blocks;
+        try
+        {
+            blocks = ParseProjectionBlocksWithOffsets(text);
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Projection parse failed: " + ex.Message);
+            return;
+        }
+
+        if (blocks.Count == 0)
+        {
+            Status?.Invoke(this, "No blocks found.");
+            return;
+        }
+
+        int caret = _editor.CaretOffset;
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
+        if (curIx < 0) curIx = 0;
+
+        int hitIx = -1;
+
+        // search after current first
+        for (int i = Math.Min(curIx + 1, blocks.Count); i < blocks.Count; i++)
+        {
+            if (ContainsChineseChar(blocks[i].En))
+            {
+                hitIx = i;
+                break;
+            }
+        }
+
+        // wrap
+        bool wrapped = false;
+        if (hitIx < 0)
+        {
+            for (int i = 0; i <= Math.Min(curIx, blocks.Count - 1); i++)
+            {
+                if (ContainsChineseChar(blocks[i].En))
+                {
+                    hitIx = i;
+                    wrapped = true;
+                    break;
+                }
+            }
+        }
+
+        if (hitIx < 0)
+        {
+            Status?.Invoke(this, "No Chinese characters found in EN lines.");
+            return;
+        }
+
+        SelectEnValueAndReveal(blocks[hitIx]);
+
+        Status?.Invoke(this, wrapped
+            ? $"Found Chinese in EN at block <{blocks[hitIx].BlockNumber}> (wrapped)."
+            : $"Found Chinese in EN at block <{blocks[hitIx].BlockNumber}>.");
+    }
+
     private int GetSelectedChunkSize()
     {
         try
@@ -741,6 +819,30 @@ public partial class TranslationTabView : UserControl
         _editor.Focus();
     }
 
+    private void SelectEnValueAndReveal(ProjectionBlockInfo block)
+    {
+        if (_editor?.Document == null)
+            return;
+
+        int start = Math.Clamp(block.EnValueStartOffset, 0, _editor.Document.TextLength);
+        int end = Math.Clamp(block.EnValueStartOffset + block.EnValueLength, start, _editor.Document.TextLength);
+
+        _editor.CaretOffset = start;
+        _editor.TextArea.Selection = Selection.Create(_editor.TextArea, start, end);
+
+        try
+        {
+            var line = _editor.Document.GetLineByOffset(start).LineNumber;
+            _editor.ScrollToLine(line);
+        }
+        catch
+        {
+            // ignore
+        }
+
+        _editor.Focus();
+    }
+
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
         if (e.Key == Key.Z && e.KeyModifiers.HasFlag(KeyModifiers.Control))
@@ -778,6 +880,16 @@ public partial class TranslationTabView : UserControl
         if (e.Key == Key.F8)
         {
             JumpToNextUntranslated();
+            e.Handled = true;
+            return;
+        }
+
+        // Optional shortcut: Ctrl+Shift+F = find Chinese in EN
+        if (e.Key == Key.F &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Control) &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+        {
+            JumpToChineseInEnglishLine();
             e.Handled = true;
             return;
         }
