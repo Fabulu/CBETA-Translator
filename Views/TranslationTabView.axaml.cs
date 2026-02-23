@@ -372,36 +372,55 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Move to first untranslated block from there
-        while (startIx < blocks.Count && !string.IsNullOrWhiteSpace(blocks[startIx].En))
+        // Move to first valid untranslated block from there:
+        // - EN must be empty
+        // - block must not be empty ZH+EN
+        // - ZH must contain Chinese chars
+        while (startIx < blocks.Count && !ShouldIncludeForCopy(blocks[startIx], requireUntranslated: true))
             startIx++;
 
         if (startIx >= blocks.Count)
         {
-            Status?.Invoke(this, "No untranslated block found after caret.");
+            Status?.Invoke(this, "No suitable untranslated block found after caret.");
             return;
         }
 
-        // Continuous untranslated span only (stop at first translated EN)
+        // Continuous span only, but skip junk blocks inside the scan:
+        // stop at first translated *valid* block; ignore empty/non-Chinese/junk blocks
         int endIxExclusive = startIx;
         int copied = 0;
+        int firstIncludedIx = -1;
+        int lastIncludedIx = -1;
+
         while (endIxExclusive < blocks.Count && copied < maxCount)
         {
-            if (!string.IsNullOrWhiteSpace(blocks[endIxExclusive].En))
+            var b = blocks[endIxExclusive];
+
+            // Skip junk blocks entirely (empty or no Chinese in ZH), regardless of EN
+            if (IsSkippableForCopy(b))
+            {
+                endIxExclusive++;
+                continue;
+            }
+
+            // For real translatable blocks, stop at first already-translated EN
+            if (!string.IsNullOrWhiteSpace(b.En))
                 break;
 
+            if (firstIncludedIx < 0) firstIncludedIx = endIxExclusive;
+            lastIncludedIx = endIxExclusive;
             copied++;
             endIxExclusive++;
         }
 
-        if (copied == 0)
+        if (copied == 0 || firstIncludedIx < 0 || lastIncludedIx < 0)
         {
             Status?.Invoke(this, "Nothing to copy.");
             return;
         }
 
-        var firstBlock = blocks[startIx];
-        var lastBlock = blocks[endIxExclusive - 1];
+        var firstBlock = blocks[firstIncludedIx];
+        var lastBlock = blocks[lastIncludedIx];
 
         int copyStart = firstBlock.BlockStartOffset;
         int copyEndExclusive = lastBlock.BlockEndOffsetExclusive;
@@ -412,7 +431,37 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        var rawChunk = text.Substring(copyStart, copyEndExclusive - copyStart).TrimEnd('\r', '\n');
+        // Build filtered chunk from individual blocks so skipped junk blocks are not included
+        var chunkBuilder = new StringBuilder();
+        for (int i = firstIncludedIx; i <= lastIncludedIx && copied > 0; i++)
+        {
+            var b = blocks[i];
+            if (!ShouldIncludeForCopy(b, requireUntranslated: true))
+                continue;
+
+            int bs = b.BlockStartOffset;
+            int be = b.BlockEndOffsetExclusive;
+
+            if (bs < 0 || be < bs || be > text.Length)
+                continue;
+
+            var blockText = text.Substring(bs, be - bs).TrimEnd('\r', '\n');
+            if (blockText.Length == 0)
+                continue;
+
+            if (chunkBuilder.Length > 0)
+                chunkBuilder.AppendLine().AppendLine();
+
+            chunkBuilder.Append(blockText);
+        }
+
+        var rawChunk = chunkBuilder.ToString().TrimEnd('\r', '\n');
+        if (string.IsNullOrWhiteSpace(rawChunk))
+        {
+            Status?.Invoke(this, "Nothing to copy after filtering.");
+            return;
+        }
+
         var payload = BuildPrompt(rawChunk);
 
         var cb = GetClipboard();
@@ -424,27 +473,8 @@ public partial class TranslationTabView : UserControl
 
         await cb.SetTextAsync(payload);
 
-        // VISUAL FEEDBACK: select the entire copied chunk (all N blocks), not just the first one
-        if (_editor.Document != null)
-        {
-            int start = Math.Clamp(copyStart, 0, _editor.Document.TextLength);
-            int end = Math.Clamp(copyEndExclusive, start, _editor.Document.TextLength);
-
-            _editor.CaretOffset = start;
-            _editor.TextArea.Selection = Selection.Create(_editor.TextArea, start, end);
-
-            try
-            {
-                var line = _editor.Document.GetLineByOffset(start).LineNumber;
-                _editor.ScrollToLine(line);
-            }
-            catch
-            {
-                // ignore
-            }
-
-            _editor.Focus();
-        }
+        // Visual feedback: select only the first copied block (stable behavior)
+        SelectAndRevealBlock(firstBlock);
 
         Status?.Invoke(this, $"Copied {copied} block(s): <{firstBlock.BlockNumber}>–<{lastBlock.BlockNumber}> + prompt.");
     }
@@ -827,6 +857,58 @@ STRICT RULES:
     {
         var m = Regex.Match(text, @"```(?:markdown|md|text)?\s*(?<x>[\s\S]*?)\s*```", RegexOptions.IgnoreCase);
         return m.Success ? m.Groups["x"].Value.Trim() : text.Trim();
+    }
+
+    // =========================
+    // Copy filtering helpers
+    // =========================
+
+    private static bool ShouldIncludeForCopy(ProjectionBlockInfo block, bool requireUntranslated)
+    {
+        if (block == null) return false;
+
+        if (IsSkippableForCopy(block))
+            return false;
+
+        if (requireUntranslated && !string.IsNullOrWhiteSpace(block.En))
+            return false;
+
+        return true;
+    }
+
+    private static bool IsSkippableForCopy(ProjectionBlockInfo block)
+    {
+        var zh = block.Zh ?? "";
+        var en = block.En ?? "";
+
+        // Skip completely empty noise entries
+        if (string.IsNullOrWhiteSpace(zh) && string.IsNullOrWhiteSpace(en))
+            return true;
+
+        // Skip entries with no Chinese chars in ZH (headers/meta/latin-only etc.)
+        if (!ContainsChineseChar(zh))
+            return true;
+
+        return false;
+    }
+
+    private static bool ContainsChineseChar(string? s)
+    {
+        if (string.IsNullOrEmpty(s))
+            return false;
+
+        foreach (char ch in s)
+        {
+            // CJK Unified Ideographs + Ext A + Compatibility Ideographs
+            if ((ch >= '\u3400' && ch <= '\u4DBF') ||
+                (ch >= '\u4E00' && ch <= '\u9FFF') ||
+                (ch >= '\uF900' && ch <= '\uFAFF'))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // =========================
