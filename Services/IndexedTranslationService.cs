@@ -698,7 +698,7 @@ public sealed class IndexedTranslationService
                         $"Unsafe rebuild: visible preserved inline element <{seg.ElementName}> exists in line-based patch template.");
 
                 if (!seg.MoveToLineEnd)
-                    output.Add(new XElement(seg.ElementTemplate));
+                    output.Add(ClonePreservedElementForTranslated(seg));
             }
 
             if (!emittedLineText && !string.IsNullOrEmpty(lineText))
@@ -715,7 +715,7 @@ public sealed class IndexedTranslationService
                     throw new InvalidOperationException(
                         $"Unsafe rebuild: visible preserved inline element <{seg.ElementName}> exists in line-end patch template.");
 
-                output.Add(new XElement(seg.ElementTemplate));
+                output.Add(ClonePreservedElementForTranslated(seg));
             }
 
             if (line.TrailingLbTemplate != null)
@@ -723,6 +723,24 @@ public sealed class IndexedTranslationService
         }
 
         return output;
+    }
+
+    private static XElement ClonePreservedElementForTranslated(TranslationSegment seg)
+    {
+        if (seg.ElementTemplate == null)
+            throw new InvalidOperationException("Preserved element template is missing.");
+
+        var clone = new XElement(seg.ElementTemplate);
+
+        // IMPORTANT:
+        // In translated XML, keep <g> tags for structural equivalence,
+        // but purge their inner glyph content so no Chinese leaks into English text.
+        if (string.Equals(seg.ElementName, "g", StringComparison.Ordinal))
+        {
+            clone.RemoveNodes(); // keep attributes like ref=..., drop inner text/glyph
+        }
+
+        return clone;
     }
 
     private static bool CanPatchGroupSafely(IEnumerable<TranslationUnit> lines, out string reason)
@@ -1335,25 +1353,41 @@ public sealed class IndexedTranslationService
 
     private static string SerializeWithDeclaration(XDocument doc)
     {
+        // Force a sane XML declaration for string output that will later be written as UTF-8.
+        // This prevents "Cannot switch to Unicode / no BOM" errors caused by utf-16 declarations.
+        if (doc.Declaration == null)
+        {
+            doc.Declaration = new XDeclaration("1.0", "utf-8", null);
+        }
+        else
+        {
+            // Preserve version/standalone if present, but force encoding to utf-8
+            doc.Declaration = new XDeclaration(
+                string.IsNullOrWhiteSpace(doc.Declaration.Version) ? "1.0" : doc.Declaration.Version,
+                "utf-8",
+                doc.Declaration.Standalone);
+        }
+
         var settings = new XmlWriterSettings
         {
-            OmitXmlDeclaration = doc.Declaration == null,
+            OmitXmlDeclaration = false, // always write declaration now
             Indent = false,
             NewLineChars = "\n",
-            NewLineHandling = NewLineHandling.Replace
+            NewLineHandling = NewLineHandling.Replace,
+            Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false)
         };
 
         var sb = new StringBuilder();
 
-        using (var sw = new StringWriter(sb))
+        using (var sw = new Utf8StringWriter())
         using (var xw = XmlWriter.Create(sw, settings))
         {
             doc.Save(xw);
             xw.Flush();
-            sw.Flush();
-        }
 
-        return sb.ToString();
+            // StringWriter has its own internal buffer, so return that
+            return sw.ToString();
+        }
     }
 
     private static string InsertPrettyTagNewlines(string xml)
@@ -1508,5 +1542,10 @@ public sealed class IndexedTranslationService
         {
             return "";
         }
+    }
+
+    private sealed class Utf8StringWriter : StringWriter
+    {
+        public override Encoding Encoding => new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
     }
 }
