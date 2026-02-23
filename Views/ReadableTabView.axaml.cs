@@ -38,6 +38,7 @@ public partial class ReadableTabView : UserControl
     // Hover dictionary (original only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
+    private bool _hoverDictionaryEnabled = true;
 
     // Prevent mirror from racing a marker click (caret moves on click; mirroring can move again)
     private DateTime _suppressMirrorForMarkerClickUntilUtc = DateTime.MinValue;
@@ -442,12 +443,26 @@ public partial class ReadableTabView : UserControl
 
     private void SetupHoverDictionary()
     {
-        if (_aeOrig == null) return;
+        // Always dispose first so toggling is reliable and we never double-hook
+        _hoverDictOrig?.Dispose();
+        _hoverDictOrig = null;
+
+        if (!_hoverDictionaryEnabled)
+        {
+            Log("Hover dictionary disabled by settings.");
+            return;
+        }
+
+        if (_aeOrig == null)
+        {
+            Log("Hover dictionary not attached: original editor is null.");
+            return;
+        }
 
         try
         {
-            _hoverDictOrig?.Dispose();
             _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict);
+            Log("Hover dictionary attached to original pane.");
         }
         catch (Exception ex)
         {
@@ -457,8 +472,33 @@ public partial class ReadableTabView : UserControl
 
     private void DisposeHoverDictionary()
     {
-        _hoverDictOrig?.Dispose();
-        _hoverDictOrig = null;
+        try
+        {
+            _hoverDictOrig?.Dispose();
+        }
+        catch { }
+        finally
+        {
+            _hoverDictOrig = null;
+        }
+    }
+
+    public void SetHoverDictionaryEnabled(bool enabled)
+    {
+        _hoverDictionaryEnabled = enabled;
+
+        Log("SetHoverDictionaryEnabled: " + enabled);
+
+        // Re-apply immediately if editors already exist
+        if (enabled)
+            SetupHoverDictionary();
+        else
+            DisposeHoverDictionary();
+    }
+
+    public bool GetHoverDictionaryEnabled()
+    {
+        return _hoverDictionaryEnabled;
     }
 
     // -------------------------
