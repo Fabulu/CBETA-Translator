@@ -4,26 +4,17 @@
              xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
              x:Class="CbetaTranslator.App.Views.ReadableTabView">
 
-
-	<!-- LOCAL FALLBACK RESOURCES (same idea as TranslationTabView) -->
+	<!-- Only local fallback keys that DON'T collide with your global theme tokens -->
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="PanelBg" Color="#FFF5F5F5"/>
-		<SolidColorBrush x:Key="PanelAltBg" Color="#FFFFFFFF"/>
-		<SolidColorBrush x:Key="PanelBorder" Color="#FFE8E8E8"/>
 		<SolidColorBrush x:Key="SplitterBrush" Color="#FFD1D1D1"/>
-		<SolidColorBrush x:Key="MutedFg" Color="#FF666666"/>
+		<SolidColorBrush x:Key="PanelBorderFallback" Color="#FFE8E8E8"/>
 	</UserControl.Resources>
 
 	<UserControl.Styles>
-		<!-- If you still use AvaloniaEdit elsewhere, keep its theme include.
-         AnnotatedTextEditor DOES contain a TextEditor, so this is fine. -->
+		<!-- Keep AvaloniaEdit theme include -->
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
 
-		<Style Selector="TextBlock.muted">
-			<Setter Property="Foreground" Value="{DynamicResource MutedFg}"/>
-		</Style>
-
-		<!-- Style the INNER AvaloniaEdit TextEditor, not the wrapper UserControl -->
+		<!-- Inner AvaloniaEdit (inside your wrapper) must use global dynamic tokens -->
 		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
@@ -41,7 +32,6 @@
 				   Margin="0,0,0,8"
 				   LastChildFill="True">
 
-			<!-- Left -->
 			<StackPanel Orientation="Horizontal"
 						Spacing="8"
 						DockPanel.Dock="Left">
@@ -50,36 +40,29 @@
 						Focusable="False"/>
 			</StackPanel>
 
-			<!-- Right -->
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
 					  Content="Zen text"
 					  VerticalAlignment="Center"
 					  Focusable="False"/>
 
-			<!-- Filler (must be last) -->
 			<Border/>
 		</DockPanel>
 
-
-
+		<!-- Row 1: Find bar (styled globally via Border.findbar in App.axaml) -->
 		<Border Name="FindBar"
 				Classes="findbar"
 				Grid.Row="1"
 				Margin="0,0,0,8"
 				IsVisible="False">
 			<DockPanel LastChildFill="True">
+
 				<TextBlock Name="FindScope"
 						   DockPanel.Dock="Left"
 						   Classes="muted"
 						   VerticalAlignment="Center"
 						   Margin="0,0,10,0"
 						   Text="Find:" />
-
-				<TextBox Name="FindQuery"
-						 Watermark="Find…"
-						 MinWidth="260"
-						 VerticalAlignment="Center"/>
 
 				<StackPanel DockPanel.Dock="Right"
 							Orientation="Horizontal"
@@ -93,12 +76,19 @@
 					<Button Name="BtnNext" Content="Next" Focusable="False"/>
 					<Button Name="BtnCloseFind" Content="✕" Focusable="False"/>
 				</StackPanel>
+
+				<TextBox Name="FindQuery"
+						 Watermark="Find…"
+						 MinWidth="260"
+						 VerticalAlignment="Center"/>
 			</DockPanel>
 		</Border>
 
+		<!-- Row 2: two readable panes -->
 		<Grid Grid.Row="2" ColumnDefinitions="1*,Auto,2*" Margin="0">
 
-			<Border Background="{DynamicResource XmlViewerBg}"
+			<Border Grid.Column="0"
+					Background="{DynamicResource XmlViewerBg}"
 					BorderBrush="{DynamicResource XmlViewerBorder}"
 					BorderThickness="1"
 					CornerRadius="6">
@@ -112,7 +102,11 @@
 				</Grid>
 			</Border>
 
-			<GridSplitter Grid.Column="1" Width="6" Background="{DynamicResource SplitterBrush}"/>
+			<GridSplitter Grid.Column="1"
+						  Width="6"
+						  Background="{DynamicResource SplitterBrush}"
+						  ResizeDirection="Columns"
+						  ResizeBehavior="PreviousAndNext"/>
 
 			<Border Grid.Column="2"
 					Background="{DynamicResource XmlViewerBg}"
@@ -131,11 +125,12 @@
 
 		</Grid>
 
+		<!-- Row 3: notes panel -->
 		<Border Grid.Row="3"
 				Name="NotesPanel"
 				IsVisible="False"
-				Background="{DynamicResource PanelAltBg}"
-				BorderBrush="{DynamicResource PanelBorder}"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
 				BorderThickness="1"
 				CornerRadius="8"
 				Margin="0,8,0,0"
@@ -143,15 +138,20 @@
 
 			<Grid RowDefinitions="Auto,*" ColumnDefinitions="*,Auto">
 				<TextBlock Name="NotesHeader"
-						   Grid.Row="0" Grid.Column="0"
+						   Grid.Row="0"
+						   Grid.Column="0"
 						   FontWeight="SemiBold"
 						   Text="Note" />
 
-				<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="6">
+				<StackPanel Grid.Row="0"
+							Grid.Column="1"
+							Orientation="Horizontal"
+							Spacing="6">
 					<Button Name="BtnDeleteCommunityNote"
 							Content="Delete"
 							Padding="10,2"
-							Focusable="False"/>
+							Focusable="False"
+							IsVisible="False"/>
 					<Button Name="BtnCloseNotes"
 							Content="✕"
 							Padding="8,2"
