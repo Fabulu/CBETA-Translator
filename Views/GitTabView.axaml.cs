@@ -158,6 +158,7 @@ public partial class GitTabView : UserControl
             return null;
         }
     }
+
     public void SetCurrentRepoRoot(string? rootPath)
     {
         if (string.IsNullOrWhiteSpace(rootPath))
@@ -331,9 +332,10 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
-                Status?.Invoke(this, "Git not found. Install Git first.");
+                SetProgress("Git not found (portable/system).");
+                AppendLog("[error] git not found");
+                AppendLog("[hint] If using bundled Portable Git, make sure the PortableGit folder is included beside the app.");
+                Status?.Invoke(this, "Git not found.");
                 return;
             }
 
@@ -509,8 +511,8 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
                 return;
             }
 
@@ -589,6 +591,7 @@ public partial class GitTabView : UserControl
     /// <summary>
     /// Runs "git {args...}" in repoDir, capturing stdout/stderr and streaming lines to progress.
     /// This is self-contained so the Panic Button does not depend on extra IGitRepoService methods.
+    /// It is portable-git aware (uses GitBinaryLocator).
     /// </summary>
     private static async Task<GitRunResult> RunGitAsync(
         string repoDir,
@@ -612,15 +615,28 @@ public partial class GitTabView : UserControl
 
         var psi = new ProcessStartInfo
         {
-            FileName = "git",
+            FileName = GitBinaryLocator.ResolveGitExecutablePath(),
             WorkingDirectory = repoDir,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8,
         };
 
         psi.Arguments = string.Join(" ", args.Select(QuoteIfNeeded));
+
+        // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
+        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+
+        // Keep same behavior as main service: no hidden terminal prompts
+        try
+        {
+            psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
+            psi.Environment["GCM_INTERACTIVE"] = "Always";
+        }
+        catch { }
 
         using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
 
@@ -833,8 +849,8 @@ public partial class GitTabView : UserControl
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
-                SetProgress("Git not found. Install Git first.");
-                AppendLog("[error] git not found in PATH");
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
                 return;
             }
 
@@ -1110,10 +1126,21 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // Push branch (requires credential helper on Linux; on Windows Git for Windows includes GCM)
+            // NEW: make sure bundled Portable Git has a local credential helper configured on Windows
+            // so HTTPS push can launch the browser/device login flow via GCM.
+            AppendLog("[step] ensuring local credential helper");
+            var cred = await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
+            if (!cred.Success)
+            {
+                // non-fatal on some platforms, but log it loudly
+                AppendLog("[warn] could not configure credential helper automatically");
+                AppendLog("[warn] " + (cred.Error ?? "unknown error"));
+            }
+
+            // Push branch
             SetProgress("Pushing branch…");
             AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
-            AppendLog("[hint] If Git asks you to log in, complete it once, then retry.");
+            AppendLog("[hint] If Git opens a browser/device login, complete it and retry if needed.");
 
             var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastContribBranch!, prog, ct);
             if (!push.Success)
@@ -1191,7 +1218,6 @@ public partial class GitTabView : UserControl
     {
         err ??= "";
 
-        // Common GitHub HTTPS auth failures (especially on Linux without a helper / GUI)
         bool looksLikeNoPrompt =
             err.Contains("terminal prompts disabled", StringComparison.OrdinalIgnoreCase) ||
             err.Contains("could not read Username", StringComparison.OrdinalIgnoreCase) ||
@@ -1213,6 +1239,10 @@ public partial class GitTabView : UserControl
             err.Contains("GCM_CREDENTIAL_STORE", StringComparison.OrdinalIgnoreCase) ||
             err.Contains("credential.credentialStore", StringComparison.OrdinalIgnoreCase);
 
+        bool looksLikeNoHelper =
+            err.Contains("git: 'credential-manager-core' is not a git command", StringComparison.OrdinalIgnoreCase) ||
+            err.Contains("git: 'credential-manager' is not a git command", StringComparison.OrdinalIgnoreCase);
+
         if (looksLikeRepoNotFound)
         {
             AppendLog("[hint] Git says 'Repository not found'. Usually: wrong remote URL or you are not authenticated.");
@@ -1223,6 +1253,14 @@ public partial class GitTabView : UserControl
             AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential helper.");
         }
 
+        if (looksLikeNoHelper)
+        {
+            AppendLog("[hint] Credential helper not found.");
+            AppendLog("[hint] If using bundled Portable Git, ensure the full PortableGit folder is shipped, including mingw64/libexec/git-core.");
+            AppendLog("[hint] If using system Git, install Git for Windows (includes Git Credential Manager).");
+            return;
+        }
+
         if (looksLikeNoCredStore)
         {
             AppendLog("[hint] Git Credential Manager is installed but no credential store is configured.");
@@ -1231,31 +1269,18 @@ public partial class GitTabView : UserControl
             AppendLog("  git config --global credential.helper manager");
             AppendLog("  git config --global credential.credentialStore secretservice");
             AppendLog("  git-credential-manager configure");
-            AppendLog("[linux] If it still fails, run and share:");
-            AppendLog("  git config --list --show-origin | grep -E \"credential.helper|credential.credentialStore\"");
-            AppendLog("  git config --show-origin --get-all credential.helper");
             return;
         }
 
         if (looksLikeNoPrompt)
         {
-            AppendLog("[hint] This usually means Git could not open an interactive login prompt on your system.");
-            AppendLog("[hint] On Linux, install Git Credential Manager (GCM) so Git can authenticate via browser/device flow.");
-
-            AppendLog("[linux] Recommended (cross-distro) install via .NET tool:");
-            AppendLog("  dotnet tool install -g git-credential-manager");
-            AppendLog("  git-credential-manager configure");
-
-            AppendLog("[linux] If you prefer the .deb package (Debian/Ubuntu-style):");
-            AppendLog("  1) Download the latest .deb from the GCM releases page");
-            AppendLog("  2) sudo dpkg -i <downloaded-file.deb>");
-            AppendLog("  3) git-credential-manager configure");
-
-            AppendLog("[hint] After installing GCM, retry the Push + Create PR step.");
+            AppendLog("[hint] Git could not open an interactive login prompt.");
+            AppendLog("[hint] On Windows, this usually means Git Credential Manager is missing from the shipped Git bundle.");
+            AppendLog("[hint] On Linux, install/configure Git Credential Manager (GCM) and retry.");
         }
         else
         {
-            AppendLog("[hint] If this is an auth problem: install/configure Git Credential Manager (GCM) and retry.");
+            AppendLog("[hint] If this is an auth problem: check credential helper setup and retry.");
         }
     }
 
