@@ -32,6 +32,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace CbetaTranslator.App.Views;
 
@@ -269,7 +271,6 @@ public partial class MainWindow : Window
             _translationView.RevertRequested += async (_, _) => await RevertTranslatedXmlFromDiskAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
 
-            // Indexed projection mode switch (Head / Body / Notes)
             _translationView.ModeChanged += (_, mode) =>
             {
                 try
@@ -357,7 +358,7 @@ public partial class MainWindow : Window
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
             var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            var baseXml = SafeReadAllTextUtf8(tranAbs);
+            var baseXml = ReadAllTextUtf8Strict(tranAbs);
 
             int insertAt = Math.Clamp(xmlIndex, 0, baseXml.Length);
             string noteXml = BuildCommunityNoteXml(noteText, resp);
@@ -384,7 +385,7 @@ public partial class MainWindow : Window
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
             var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            var baseXml = SafeReadAllTextUtf8(tranAbs);
+            var baseXml = ReadAllTextUtf8Strict(tranAbs);
 
             int s = Math.Clamp(xmlStart, 0, baseXml.Length);
             int e = Math.Clamp(xmlEndExclusive, 0, baseXml.Length);
@@ -429,12 +430,15 @@ public partial class MainWindow : Window
     {
         if (_translatedDir == null) return;
 
-        await _fileService.WriteTranslatedAsync(_translatedDir, relPath, updatedXml);
+        EnsureXmlIsWellFormed(updatedXml, "Updated translated XML is not well-formed.");
+
+        var tranAbs = Path.Combine(_translatedDir, relPath);
+        var saveInfo = await AtomicWriteXmlAsync(tranAbs, updatedXml);
+
         _rawTranXml = updatedXml;
 
         try
         {
-            var tranAbs = Path.Combine(_translatedDir, relPath);
             _renderCache.Invalidate(tranAbs);
         }
         catch { }
@@ -450,7 +454,7 @@ public partial class MainWindow : Window
         await RefreshReadableFromDiskOnlyAsync();
         await RefreshFileStatusAsync(relPath);
 
-        SetStatus("OK: " + why);
+        SetStatus("OK: " + why + (saveInfo.BackupCreated ? " (backup updated)" : ""));
     }
 
     // =========================
@@ -881,13 +885,36 @@ public partial class MainWindow : Window
     private string? TryReadTranslatedXmlFromDisk(string relPath)
     {
         if (_translatedDir == null) return null;
+
         try
         {
             var tranAbs = Path.Combine(_translatedDir, relPath);
-            if (!File.Exists(tranAbs)) return null;
-            return File.ReadAllText(tranAbs, Encoding.UTF8);
+            if (!File.Exists(tranAbs))
+                return null;
+
+            var text = File.ReadAllText(tranAbs, Encoding.UTF8);
+
+            if (TryParseXml(text, out _))
+                return text;
+
+            var bak = tranAbs + ".bak";
+            if (File.Exists(bak))
+            {
+                var bakText = File.ReadAllText(bak, Encoding.UTF8);
+                if (TryParseXml(bakText, out _))
+                {
+                    SetStatus("Translated XML was corrupted; loaded backup (.bak) instead.");
+                    return bakText;
+                }
+            }
+
+            SetStatus("Translated XML is malformed and no valid backup was found.");
+            return null;
         }
-        catch { return null; }
+        catch
+        {
+            return null;
+        }
     }
 
     private async Task EnsureTranslatedXmlExistsForCurrentAsync()
@@ -904,12 +931,11 @@ public partial class MainWindow : Window
         if (File.Exists(tranAbs)) return;
 
         var origXml = await ReadOriginalXmlAsync(relPath);
+        if (string.IsNullOrWhiteSpace(origXml)) return;
 
-        try
-        {
-            await _fileService.WriteTranslatedAsync(_translatedDir, relPath, origXml);
-        }
-        catch { }
+        EnsureXmlIsWellFormed(origXml, "Original XML is malformed; cannot create translated copy.");
+
+        await AtomicWriteXmlAsync(tranAbs, origXml);
     }
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
@@ -966,23 +992,17 @@ public partial class MainWindow : Window
 
         SetStatus("Loading: " + relPath);
 
-        // Read original XML
         _rawOrigXml = await ReadOriginalXmlAsync(relPath);
 
-        // Ensure translated exists (copy original if missing)
         await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
 
-        // Read translated XML from disk
         _rawTranXml = TryReadTranslatedXmlFromDisk(relPath) ?? _rawOrigXml;
 
-        // Build indexed projection doc from original + translated
         _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
 
-        // Render projection into translation editor
         var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
         SetTranslationProjection(_translationMode, projection);
 
-        // Dirty baseline tracks projection text (not raw XML)
         _baselineTranSha1 = Sha1Hex(projection);
         _lastSeenTranSha1 = _baselineTranSha1;
         _dirty = false;
@@ -1067,20 +1087,18 @@ public partial class MainWindow : Window
             if (_translationView == null || _translatedDir == null) { SetStatus("Save unavailable."); return; }
             if (_indexedDoc == null) { SetStatus("Translation index not loaded."); return; }
 
-            // 1) Pull edited projection text from editor
             var editedProjection = GetTranslationProjectionText();
 
-            // 2) Apply edits into indexed doc (current mode only)
             _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, editedProjection);
 
-            // 3) Build translated TEI XML
-            _rawTranXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
+            var builtXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
 
-            // 4) Write translated TEI to disk
-            await _fileService.WriteTranslatedAsync(_translatedDir, _currentRelPath, _rawTranXml);
+            var saveInfo = await AtomicWriteTranslatedXmlForCurrentAsync(builtXml);
+
+            _rawTranXml = builtXml;
+
             await RefreshFileStatusAsync(_currentRelPath);
 
-            // 5) Invalidate render cache
             try
             {
                 var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
@@ -1088,12 +1106,10 @@ public partial class MainWindow : Window
             }
             catch { }
 
-            // 6) Rebuild index from saved XML to keep projection canonical
             _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
             var freshProjection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
             SetTranslationProjection(_translationMode, freshProjection);
 
-            // 7) Dirty baseline now tracks projection text
             _baselineTranSha1 = Sha1Hex(freshProjection);
             _lastSeenTranSha1 = _baselineTranSha1;
             _dirty = false;
@@ -1101,7 +1117,8 @@ public partial class MainWindow : Window
 
             await RefreshReadableFromDiskOnlyAsync();
 
-            SetStatus("Saved translated XML (" + updatedCount.ToString("n0") + " units updated).");
+            var backupMsg = saveInfo.BackupCreated ? " backup=yes" : " backup=no";
+            SetStatus("Saved translated XML (" + updatedCount.ToString("n0") + " units updated)." + backupMsg);
         }
         catch (Exception ex)
         {
@@ -1116,7 +1133,16 @@ public partial class MainWindow : Window
             if (_currentRelPath == null) { SetStatus("Nothing to revert."); return; }
 
             _rawOrigXml = await ReadOriginalXmlAsync(_currentRelPath);
+            if (string.IsNullOrWhiteSpace(_rawOrigXml))
+            {
+                SetStatus("Revert failed: original XML could not be read.");
+                return;
+            }
+
             _rawTranXml = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
+
+            EnsureXmlIsWellFormed(_rawOrigXml, "Original XML is malformed.");
+            EnsureXmlIsWellFormed(_rawTranXml, "Translated XML is malformed.");
 
             _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
             var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
@@ -1387,9 +1413,12 @@ public partial class MainWindow : Window
             {
                 var projection = GetTranslationProjectionText();
                 _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, projection);
-                var xml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
 
-                await _fileService.WriteTranslatedAsync(_translatedDir, relPath, xml);
+                var xml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
+                var tranAbs = Path.Combine(_translatedDir, relPath);
+
+                await AtomicWriteXmlAsync(tranAbs, xml);
+
                 _rawTranXml = xml;
                 return true;
             }
@@ -1435,6 +1464,169 @@ public partial class MainWindow : Window
     }
 
     // =========================
+    // Atomic XML save helpers
+    // =========================
+
+    private sealed class AtomicSaveInfo
+    {
+        public bool BackupCreated { get; init; }
+        public string FinalPath { get; init; } = "";
+        public string TempPath { get; init; } = "";
+        public string BackupPath { get; init; } = "";
+    }
+
+    private async Task<AtomicSaveInfo> AtomicWriteTranslatedXmlForCurrentAsync(string xml)
+    {
+        if (_currentRelPath == null) throw new InvalidOperationException("No file selected.");
+        if (_translatedDir == null) throw new InvalidOperationException("Translated directory not available.");
+
+        var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+        return await AtomicWriteXmlAsync(tranAbs, xml);
+    }
+
+    private async Task<AtomicSaveInfo> AtomicWriteXmlAsync(string finalPath, string xml)
+    {
+        if (string.IsNullOrWhiteSpace(finalPath))
+            throw new ArgumentException("Target path is empty.", nameof(finalPath));
+
+        xml ??= "";
+
+        EnsureXmlIsWellFormed(xml, "XML validation failed before save.");
+
+        var dir = Path.GetDirectoryName(finalPath);
+        if (string.IsNullOrWhiteSpace(dir))
+            throw new InvalidOperationException("Could not resolve target directory.");
+
+        Directory.CreateDirectory(dir);
+
+        string tmpPath = finalPath + ".tmp";
+        string bakPath = finalPath + ".bak";
+
+        try
+        {
+            if (File.Exists(tmpPath))
+                File.Delete(tmpPath);
+        }
+        catch { }
+
+        await File.WriteAllTextAsync(tmpPath, xml, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+
+        string tmpReadBack;
+        try
+        {
+            tmpReadBack = await File.ReadAllTextAsync(tmpPath, Encoding.UTF8);
+        }
+        catch (Exception ex)
+        {
+            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
+            throw new InvalidOperationException("Save failed while verifying temporary file: " + ex.Message, ex);
+        }
+
+        EnsureXmlIsWellFormed(tmpReadBack, "Temporary save file is malformed.");
+        if (!string.Equals(xml, tmpReadBack, StringComparison.Ordinal))
+        {
+            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
+            throw new InvalidOperationException("Temporary save file content mismatch after write verification.");
+        }
+
+        bool backupCreated = false;
+
+        if (File.Exists(finalPath))
+        {
+            try
+            {
+                if (File.Exists(bakPath))
+                    File.Delete(bakPath);
+
+                File.Move(finalPath, bakPath);
+                backupCreated = true;
+            }
+            catch (Exception ex)
+            {
+                try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
+                throw new InvalidOperationException("Could not create backup before save: " + ex.Message, ex);
+            }
+        }
+
+        try
+        {
+            File.Move(tmpPath, finalPath);
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                if (!File.Exists(finalPath) && File.Exists(bakPath))
+                    File.Move(bakPath, finalPath);
+            }
+            catch { }
+
+            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
+
+            throw new InvalidOperationException("Could not finalize save: " + ex.Message, ex);
+        }
+
+        try
+        {
+            var finalText = await File.ReadAllTextAsync(finalPath, Encoding.UTF8);
+            EnsureXmlIsWellFormed(finalText, "Final saved file is malformed.");
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                if (File.Exists(bakPath))
+                {
+                    if (File.Exists(finalPath)) File.Delete(finalPath);
+                    File.Move(bakPath, finalPath);
+                }
+            }
+            catch { }
+
+            throw new InvalidOperationException("Saved file failed verification and was rolled back if possible: " + ex.Message, ex);
+        }
+
+        return new AtomicSaveInfo
+        {
+            BackupCreated = backupCreated,
+            FinalPath = finalPath,
+            TempPath = tmpPath,
+            BackupPath = bakPath
+        };
+    }
+
+    private static void EnsureXmlIsWellFormed(string xml, string? prefix = null)
+    {
+        if (!TryParseXml(xml, out var error))
+        {
+            if (string.IsNullOrWhiteSpace(prefix))
+                throw new InvalidOperationException(error ?? "XML is not well-formed.");
+
+            throw new InvalidOperationException(prefix + " " + (error ?? "XML is not well-formed."));
+        }
+    }
+
+    private static bool TryParseXml(string xml, out string? error)
+    {
+        try
+        {
+            _ = XDocument.Parse(xml ?? "", LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo);
+            error = null;
+            return true;
+        }
+        catch (XmlException xex)
+        {
+            error = "XML parse error at line " + xex.LineNumber + ", pos " + xex.LinePosition + ": " + xex.Message;
+            return false;
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            return false;
+        }
+    }
+
+    // =========================
     // Utils
     // =========================
 
@@ -1463,5 +1655,16 @@ public partial class MainWindow : Window
         }
         catch { }
         return "";
+    }
+
+    private static string ReadAllTextUtf8Strict(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            throw new ArgumentException("Path is empty.", nameof(path));
+
+        if (!File.Exists(path))
+            throw new FileNotFoundException("File not found.", path);
+
+        return File.ReadAllText(path, Encoding.UTF8);
     }
 }
