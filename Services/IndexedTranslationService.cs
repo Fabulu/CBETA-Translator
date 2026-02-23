@@ -841,8 +841,19 @@ public sealed class IndexedTranslationService
             }
 
             // Preserve nested notes; hide in body/head projection, show in notes mode.
+            // BUT: apparatus inline cross-ref notes (cf/cf1/cf2) must stay hidden even in Notes mode,
+            // otherwise they become visible text and make the line unsafe for round-trip patching.
             if (ln == "note")
             {
+                var noteType = ((string?)xe.Attribute("type"))?.Trim() ?? "";
+
+                bool isInlineCfRef =
+                    noteType.Equals("cf", StringComparison.OrdinalIgnoreCase) ||
+                    noteType.Equals("cf1", StringComparison.OrdinalIgnoreCase) ||
+                    noteType.Equals("cf2", StringComparison.OrdinalIgnoreCase);
+
+                bool hideInProjection = isInlineCfRef || !includeInlineNotesInProjection;
+
                 target.Add(new TranslationSegment
                 {
                     Kind = TranslationSegmentKind.PreservedElement,
@@ -850,9 +861,9 @@ public sealed class IndexedTranslationService
                     ElementName = "note",
                     ElementXmlId = (string?)xe.Attribute(XmlNs + "id"),
                     LineIndex = line,
-                    HideInProjection = !includeInlineNotesInProjection,
+                    HideInProjection = hideInProjection,
                     MoveToLineEnd = true,
-                    VisibleText = includeInlineNotesInProjection ? NormalizeVisibleInlineText(xe) : ""
+                    VisibleText = hideInProjection ? "" : NormalizeVisibleInlineText(xe)
                 });
                 continue;
             }
@@ -897,11 +908,8 @@ public sealed class IndexedTranslationService
                 continue;
             }
 
-            // IMPORTANT FIX:
-            // <g> (CBETA gaiji glyph wrapper) was previously treated as visible preserved text,
-            // which made the whole paragraph "unsafe" and skipped write-back.
-            // We now preserve it structurally but hide it from projection and move it to line end
-            // on rebuild (acceptable offset per your spec).
+            // <g> (CBETA gaiji glyph wrapper): preserve structurally but hide in projection.
+            // We move it to line end on rebuild (acceptable offset per spec).
             if (ln == "g")
             {
                 target.Add(new TranslationSegment
