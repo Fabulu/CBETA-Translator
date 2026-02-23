@@ -1,0 +1,99 @@
+<!-- Views/SettingsWindow.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.SettingsWindow"
+        Width="560" Height="320"
+        Background="{DynamicResource AppBg}"
+        Title="Settings"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+
+		<Style Selector="Button:pointerover">
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+		</Style>
+
+		<Style Selector="Button:pressed">
+			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+		</Style>
+
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+
+		<Style Selector="TextBlock.muted">
+			<Setter Property="Foreground" Value="{DynamicResource TextMutedFg}"/>
+		</Style>
+
+		<Style Selector="RadioButton">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="20">
+		<!-- Header -->
+		<StackPanel Grid.Row="0" Margin="0,0,0,16">
+			<TextBlock Text="Settings"
+			           FontSize="24"
+			           FontWeight="Bold"
+			           Foreground="{DynamicResource TextFg}"/>
+		</StackPanel>
+
+		<!-- Content -->
+		<Border Grid.Row="1"
+		        Background="{DynamicResource ControlBg}"
+		        BorderBrush="{DynamicResource BorderBrush}"
+		        BorderThickness="1"
+		        CornerRadius="6"
+		        Padding="18">
+			<StackPanel Spacing="16">
+
+				<!-- Theme -->
+				<StackPanel Spacing="8">
+					<TextBlock Text="Theme"
+					           FontSize="14"
+					           FontWeight="SemiBold"
+					           Foreground="{DynamicResource TextFg}"/>
+
+					<StackPanel Orientation="Horizontal" Spacing="18">
+						<RadioButton Name="RadioLightTheme" Content="Light" VerticalAlignment="Center"/>
+						<RadioButton Name="RadioDarkTheme" Content="Dark" VerticalAlignment="Center"/>
+					</StackPanel>
+				</StackPanel>
+
+				<!-- Divider -->
+				<Border Height="1"
+				        Background="{DynamicResource BorderBrush}"
+				        Opacity="0.5"
+				        Margin="0,2,0,2"/>
+
+				<!-- Hover dictionary checkbox (kept visible and not clipped) -->
+				<CheckBox Name="ChkEnableHoverDictionary"
+				          Content="Enable hover dictionary in reader"
+				          VerticalAlignment="Top"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Footer buttons -->
+		<StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="10"
+                    Margin="0,16,0,0">
+			<Button Name="BtnCancel" Content="Cancel" Width="90" Height="32"/>
+			<Button Name="BtnApply" Content="Apply" Width="90" Height="32" Classes="primary"/>
+		</StackPanel>
+	</Grid>
+
+</Window>

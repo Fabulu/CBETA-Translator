@@ -1,1311 +1,933 @@
 ﻿// Views/TranslationTabView.axaml.cs
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using Avalonia;
+// Projection editor for IndexedTranslationService (Head / Body / Notes)
+
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
-using Avalonia.Interactivity;
-using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Threading;
-using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
-using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Views;
 
 public partial class TranslationTabView : UserControl
 {
-    // -------------------------
-    // DEBUG LOGGING
-    // -------------------------
-    private static void Log(string msg)
-    {
-        var line = $"[{DateTime.Now:HH:mm:ss.fff}] [TranslationTabView] {msg}";
-        Console.WriteLine(line);
-        Debug.WriteLine(line);
-    }
-
-    private static string LenStr(string? s) => s == null ? "null" : s.Length.ToString();
-
-    private static string BrushStr(IBrush? b)
-    {
-        if (b == null) return "null";
-        if (b is SolidColorBrush scb) return $"Solid({scb.Color})";
-        return b.GetType().Name;
-    }
-
-    private static bool IsTransparentBrush(IBrush? b)
-    {
-        if (b is SolidColorBrush scb)
-            return scb.Color.A == 0;
-        return false;
-    }
-
-    private static IBrush SafeBrushOrFallback(IBrush? current, IBrush fallback)
-        => (current == null || IsTransparentBrush(current)) ? fallback : current;
-
-    private static string Sha1Short(string s)
-    {
-        try
-        {
-            using var sha1 = SHA1.Create();
-            var bytes = Encoding.UTF8.GetBytes(s);
-            var hash = sha1.ComputeHash(bytes);
-            return Convert.ToHexString(hash).Substring(0, 12);
-        }
-        catch { return "sha1_err"; }
-    }
-
-    // -------------------------
-    // FILE PATHS (MUST BE SET BY PARENT WHEN A FILE IS LOADED)
-    // -------------------------
-    private string? _currentOrigPath;
-    private string? _currentTranPath;
-
-    /// <summary>
-    /// Parent must call this when selecting/loading a file.
-    /// These are the DISK paths that add/delete MUST modify.
-    /// </summary>
-    public void SetCurrentFilePaths(string originalXmlPath, string translatedXmlPath)
-    {
-        _currentOrigPath = originalXmlPath;
-        _currentTranPath = translatedXmlPath;
-
-        Log($"SetCurrentFilePaths: orig='{_currentOrigPath}' (exists={File.Exists(_currentOrigPath)}) " +
-            $"tran='{_currentTranPath}' (exists={File.Exists(_currentTranPath)})");
-    }
-
-    // Gate: prevent overlapping save+reload storms (your logs show double SetXml bursts)
-    private readonly SemaphoreSlim _saveReloadGate = new(1, 1);
-
-    // -------------------------
-    // UI controls
-    // -------------------------
-    private Button? _btnCopyPrompt;
-    private Button? _btnPasteReplace;
-    private Button? _btnSaveTranslated;
-    private Button? _btnSelectNext50Tags;
-    private Button? _btnCheckXml;
-
-    // NEW: wrap checkbox
+    private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
+    private Button? _btnUndo, _btnRedo;
+    private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
     private CheckBox? _chkWrap;
+    private ComboBox? _cmbChunkSize;
+    private TextBlock? _txtModeInfo;
+    private TextBlock? _txtQuickInfo;
+    private TextEditor? _editor;
 
-    // IMPORTANT: these are AvaloniaEdit TextEditor, not TextBox
-    private TextEditor? _orig;
-    private TextEditor? _tran;
+    private TranslationEditMode _currentMode = TranslationEditMode.Body;
+    private string _currentProjection = "";
 
-    // Hover dictionary (AvaloniaEdit)
-    private HoverDictionaryBehaviorEdit? _hoverDictOrig;
-    private HoverDictionaryBehaviorEdit? _hoverDictTran;
+    // Optional file path display context (used by MainWindow)
+    private string? _origPath;
+    private string? _tranPath;
+
+    // Hover dictionary
+    private bool _hoverDictionaryEnabled = true;
+    private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
 
-    // Remember last "copy selection" range
-    private int _lastCopyStart = -1;
-    private int _lastCopyEnd = -1;
-
+    public event EventHandler<TranslationEditMode>? ModeChanged;
     public event EventHandler? SaveRequested;
+    public event EventHandler? RevertRequested;
     public event EventHandler<string>? Status;
-
-    // -------------------------
-    // Ctrl+F Find state
-    // -------------------------
-    private Border? _findBar;
-    private TextBox? _findQuery;
-    private TextBlock? _findCount;
-    private TextBlock? _findScope;
-    private Button? _btnPrev;
-    private Button? _btnNext;
-    private Button? _btnCloseFind;
-
-    // Find highlight renderers
-    private SearchHighlightRenderer? _hlOrig;
-    private SearchHighlightRenderer? _hlTran;
-
-    private TextEditor? _findTarget;
-
-    private readonly List<int> _matchStarts = new();
-    private int _matchLen = 0;
-    private int _matchIndex = -1;
-
-    private static readonly TimeSpan FindRecomputeDebounce = TimeSpan.FromMilliseconds(140);
-    private DispatcherTimer? _findDebounceTimer;
-
-    // Track last user input editor for sane scope selection
-    private DateTime _lastUserInputUtc = DateTime.MinValue;
-    private TextEditor? _lastUserInputEditor;
-    private const int UserInputPriorityWindowMs = 250;
-
-    // cached text (so we can re-apply on attach)
-    private string _cachedOrigXml = "";
-    private string _cachedTranXml = "";
 
     public TranslationTabView()
     {
-        Log("CTOR start");
-
-        try
-        {
-            InitializeComponent();
-        }
-        catch (Exception ex)
-        {
-            Log("InitializeComponent ERROR: " + ex);
-
-            Content = new Border
-            {
-                Background = Brushes.Black,
-                Padding = new Thickness(12),
-                Child = new TextBlock
-                {
-                    Foreground = Brushes.OrangeRed,
-                    Text = "TranslationTabView failed to load XAML.\n\n" + ex.ToString()
-                }
-            };
-            return;
-        }
-
+        AvaloniaXamlLoader.Load(this);
         FindControls();
         WireEvents();
-
-        AttachedToVisualTree += (_, _) =>
-        {
-            Log("AttachedToVisualTree");
-
-            ApplyEditorDefaults(_orig, "orig (AttachedToVisualTree)");
-            ApplyEditorDefaults(_tran, "tran (AttachedToVisualTree)");
-
-            SetupHoverDictionary();
-
-            // Ensure wrap reflects checkbox (default off)
-            ApplyWrapFromCheckbox();
-
-            Dispatcher.UIThread.Post(() =>
-            {
-                Log("AttachedToVisualTree -> EnsureFindRenderersAttached (Background)");
-                EnsureFindRenderersAttached();
-            }, DispatcherPriority.Background);
-
-            Dispatcher.UIThread.Post(() =>
-            {
-                Log("AttachedToVisualTree -> ReApplyEditorsText (Background)");
-                ReApplyEditorsText("AttachedToVisualTree post");
-            }, DispatcherPriority.Background);
-        };
-
-        DetachedFromVisualTree += (_, _) =>
-        {
-            Log("DetachedFromVisualTree");
-            DisposeHoverDictionary();
-            DetachFindRenderers();
-        };
-
-        Log("CTOR end");
+        ApplyWrap();
+        UpdateModeInfo();
+        ApplyHoverDictionarySetting();
     }
-
-    private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
     private void FindControls()
     {
-        Log("FindControls start");
+        _btnModeHead = this.FindControl<Button>("BtnModeHead");
+        _btnModeBody = this.FindControl<Button>("BtnModeBody");
+        _btnModeNotes = this.FindControl<Button>("BtnModeNotes");
 
-        _btnCopyPrompt = this.FindControl<Button>("BtnCopyPrompt");
-        _btnPasteReplace = this.FindControl<Button>("BtnPasteReplace");
-        _btnSaveTranslated = this.FindControl<Button>("BtnSaveTranslated");
-        _btnSelectNext50Tags = this.FindControl<Button>("BtnSelectNext50Tags");
-        _btnCheckXml = this.FindControl<Button>("BtnCheckXml");
+        _btnUndo = this.FindControl<Button>("BtnUndo");
+        _btnRedo = this.FindControl<Button>("BtnRedo");
 
-        // NEW
+        _btnCopyChunkPrompt = this.FindControl<Button>("BtnCopyChunkPrompt");
+        _btnPasteByNumber = this.FindControl<Button>("BtnPasteByNumber");
+        _btnNextUntranslated = this.FindControl<Button>("BtnNextUntranslated");
+        _btnFindChineseInEn = this.FindControl<Button>("BtnFindChineseInEn"); // add later in axaml
+        _btnSave = this.FindControl<Button>("BtnSave");
+        _btnRevert = this.FindControl<Button>("BtnRevert");
+
+        _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
+        _txtModeInfo = this.FindControl<TextBlock>("TxtModeInfo");
+        _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
+        _editor = this.FindControl<TextEditor>("EditorProjection");
 
-        _orig = this.FindControl<TextEditor>("EditorOrigXml");
-        _tran = this.FindControl<TextEditor>("EditorTranXml");
-
-        if (_orig != null)
+        if (_editor != null)
         {
-            _orig.IsReadOnly = true;
-            ApplyEditorDefaults(_orig, "orig (FindControls)");
-        }
-        else Log("ERROR: Could not find EditorOrigXml (TextEditor). Check XAML Name=EditorOrigXml.");
-
-        if (_tran != null)
-        {
-            _tran.IsReadOnly = false;
-            ApplyEditorDefaults(_tran, "tran (FindControls)");
-        }
-        else Log("ERROR: Could not find EditorTranXml (TextEditor). Check XAML Name=EditorTranXml.");
-
-        // Default wrap off
-        if (_chkWrap != null)
-            _chkWrap.IsChecked = false;
-
-        // Find UI
-        _findBar = this.FindControl<Border>("FindBar");
-        _findQuery = this.FindControl<TextBox>("FindQuery");
-        _findCount = this.FindControl<TextBlock>("FindCount");
-        _findScope = this.FindControl<TextBlock>("FindScope");
-        _btnPrev = this.FindControl<Button>("BtnPrev");
-        _btnNext = this.FindControl<Button>("BtnNext");
-        _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
-
-        Log($"Find UI: bar={_findBar != null}, query={_findQuery != null}, count={_findCount != null}");
-
-        Log("FindControls end");
-    }
-
-    /// <summary>
-    /// Make AvaloniaEdit editors always visible + interactive.
-    /// </summary>
-    private void ApplyEditorDefaults(TextEditor? ed, string tag)
-    {
-        if (ed == null) return;
-
-        try
-        {
-            ed.Focusable = true;
-            ed.IsHitTestVisible = true;
-            ed.IsEnabled = true;
-
-            ed.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            ed.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-
-            ed.Background ??= Brushes.Transparent;
-            ed.TextArea.Background ??= Brushes.Transparent;
-
-            ed.Foreground = SafeBrushOrFallback(ed.Foreground, Brushes.White);
-            ed.TextArea.Caret.CaretBrush = SafeBrushOrFallback(ed.TextArea.Caret.CaretBrush, Brushes.White);
-            ed.TextArea.SelectionBrush = SafeBrushOrFallback(
-                ed.TextArea.SelectionBrush,
-                new SolidColorBrush(Color.FromArgb(80, 120, 160, 255)));
-
-            Log($"ApplyEditorDefaults {tag}: Bg={BrushStr(ed.Background)} TA.Bg={BrushStr(ed.TextArea.Background)} Fg={BrushStr(ed.Foreground)} Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
-        }
-        catch (Exception ex)
-        {
-            Log($"ApplyEditorDefaults {tag} ERROR: {ex}");
+            _editor.Background ??= Brushes.Transparent;
+            _editor.IsReadOnly = false;
+            _editor.WordWrap = false;
+            _editor.ShowLineNumbers = true;
+            _editor.TextChanged += (_, _) => UpdateQuickInfo();
         }
     }
 
     private void WireEvents()
     {
-        Log("WireEvents start");
+        if (_btnModeHead != null) _btnModeHead.Click += (_, _) => SwitchMode(TranslationEditMode.Head);
+        if (_btnModeBody != null) _btnModeBody.Click += (_, _) => SwitchMode(TranslationEditMode.Body);
+        if (_btnModeNotes != null) _btnModeNotes.Click += (_, _) => SwitchMode(TranslationEditMode.Notes);
 
-        if (_btnCopyPrompt != null) _btnCopyPrompt.Click += async (_, _) => await CopySelectionWithPromptAsync();
-        if (_btnPasteReplace != null) _btnPasteReplace.Click += async (_, _) => await PasteReplaceSelectionAsync();
+        if (_btnUndo != null) _btnUndo.Click += (_, _) => DoUndo();
+        if (_btnRedo != null) _btnRedo.Click += (_, _) => DoRedo();
 
-        if (_btnSaveTranslated != null) _btnSaveTranslated.Click += async (_, _) => await SaveIfValidAsync();
-        if (_btnSelectNext50Tags != null) _btnSelectNext50Tags.Click += async (_, _) => await SelectNextTagsAsync(100);
-        if (_btnCheckXml != null) _btnCheckXml.Click += async (_, _) => await CheckXmlWithPopupAsync();
+        if (_btnCopyChunkPrompt != null) _btnCopyChunkPrompt.Click += async (_, _) => await CopyChunkWithPromptAsync();
+        if (_btnPasteByNumber != null) _btnPasteByNumber.Click += async (_, _) => await PasteByMatchingBlockNumberAsync();
+        if (_btnNextUntranslated != null) _btnNextUntranslated.Click += (_, _) => JumpToNextUntranslated();
+        if (_btnFindChineseInEn != null) _btnFindChineseInEn.Click += (_, _) => JumpToChineseInEnglishLine();
 
-        // NEW: wrap checkbox toggle
+        if (_btnSave != null)
+            _btnSave.Click += (_, _) => SaveRequested?.Invoke(this, EventArgs.Empty);
+
+        if (_btnRevert != null)
+            _btnRevert.Click += (_, _) => RevertRequested?.Invoke(this, EventArgs.Empty);
+
         if (_chkWrap != null)
         {
-            _chkWrap.Checked += (_, _) => ApplyWrapFromCheckbox();
-            _chkWrap.Unchecked += (_, _) => ApplyWrapFromCheckbox();
+            _chkWrap.Checked += (_, _) => ApplyWrap();
+            _chkWrap.Unchecked += (_, _) => ApplyWrap();
         }
 
-        HookEditorDebugInput(_orig, "orig");
-        HookEditorDebugInput(_tran, "tran");
-
-        if (_tran != null)
-        {
-            _tran.TextArea.SelectionChanged += (_, _) => RememberSelectionIfAny();
-            _tran.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _tran; };
-
-            // ✅ dirty-safe: keep cached text in sync on any change so tab switching never loses text
-            _tran.TextChanged += (_, _) =>
-            {
-                try { _cachedTranXml = _tran.Text ?? ""; } catch { }
-            };
-        }
-
-        if (_orig != null)
-        {
-            _orig.TextArea.Caret.PositionChanged += (_, _) => { _lastUserInputUtc = DateTime.UtcNow; _lastUserInputEditor = _orig; };
-        }
-
-        AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
-
-        if (_findQuery != null)
-        {
-            _findQuery.KeyDown += FindQuery_KeyDown;
-            _findQuery.PropertyChanged += (_, e) =>
-            {
-                if (e.Property == TextBox.TextProperty)
-                    DebounceRecomputeMatches();
-            };
-        }
-
-        if (_btnNext != null) _btnNext.Click += (_, _) => JumpNext();
-        if (_btnPrev != null) _btnPrev.Click += (_, _) => JumpPrev();
-        if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
-
-        if (_orig != null)
-        {
-            _orig.GotFocus += (_, _) =>
-            {
-                Log("orig GotFocus (switch find target if open)");
-                if (_findBar?.IsVisible == true)
-                    SetFindTarget(_orig, preserveIndex: true);
-            };
-        }
-
-        if (_tran != null)
-        {
-            _tran.GotFocus += (_, _) =>
-            {
-                Log("tran GotFocus (switch find target if open)");
-                if (_findBar?.IsVisible == true)
-                    SetFindTarget(_tran, preserveIndex: true);
-            };
-        }
-
-        Log("WireEvents end");
+        AddHandler(KeyDownEvent, OnKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel);
     }
 
-    // NEW: apply WordWrap to both editors based on checkbox state
-    private void ApplyWrapFromCheckbox()
+    // =========================
+    // Public API used by MainWindow
+    // =========================
+
+    public void SetModeProjection(TranslationEditMode mode, string projectionText)
     {
-        bool wrap = _chkWrap?.IsChecked == true;
+        _currentMode = mode;
+        _currentProjection = projectionText ?? "";
 
-        if (_orig != null) _orig.WordWrap = wrap;
-        if (_tran != null) _tran.WordWrap = wrap;
+        if (_editor != null)
+            _editor.Text = _currentProjection;
 
-        Log($"Wrap toggled: {wrap}");
-
-        // optional: force redraw so user sees immediate effect
-        try
-        {
-            _orig?.TextArea?.TextView?.InvalidateVisual();
-            _tran?.TextArea?.TextView?.InvalidateVisual();
-        }
-        catch { }
+        UpdateModeInfo();
+        UpdateModeButtons();
+        UpdateQuickInfo();
     }
 
-    private void HookEditorDebugInput(TextEditor? ed, string tag)
+    public string GetCurrentProjectionText()
+        => _editor?.Text ?? _currentProjection ?? "";
+
+    public void SetCurrentFilePaths(string originalPath, string translatedPath)
     {
-        if (ed == null) return;
-
-        ed.PointerPressed += (_, e) =>
-        {
-            Log($"{tag} PointerPressed: pos={e.GetPosition(ed)} HitTest={ed.IsHitTestVisible} Opacity={ed.Opacity}");
-            ApplyEditorDefaults(ed, $"{tag} (PointerPressed)");
-        };
-
-        ed.PointerReleased += (_, _) => Log($"{tag} PointerReleased");
-        ed.KeyDown += (_, e) => Log($"{tag} KeyDown: {e.Key} mods={e.KeyModifiers}");
-        ed.TextArea.TextEntered += (_, e) => Log($"{tag} TextEntered: '{e.Text}' caretOffset={ed.TextArea.Caret.Offset}");
-        ed.GotFocus += (_, _) =>
-        {
-            Log($"{tag} GotFocus: Bounds={ed.Bounds.Width}x{ed.Bounds.Height}");
-            ApplyEditorDefaults(ed, $"{tag} (GotFocus)");
-        };
+        _origPath = originalPath;
+        _tranPath = translatedPath;
+        UpdateModeInfo();
     }
 
-    private void SetupHoverDictionary()
+    public void SetHoverDictionaryEnabled(bool enabled)
     {
-        if (_orig == null || _tran == null)
-        {
-            Log("SetupHoverDictionary: editors null");
-            return;
-        }
-
-        try
-        {
-            _hoverDictOrig?.Dispose();
-            _hoverDictTran?.Dispose();
-
-            _hoverDictOrig = new HoverDictionaryBehaviorEdit(_orig, _cedict);
-            _hoverDictTran = new HoverDictionaryBehaviorEdit(_tran, _cedict);
-
-            Log("SetupHoverDictionary: attached to orig+tran");
-        }
-        catch (Exception ex)
-        {
-            Log("SetupHoverDictionary failed: " + ex);
-        }
+        _hoverDictionaryEnabled = enabled;
+        ApplyHoverDictionarySetting();
     }
 
-    private void DisposeHoverDictionary()
+    // Compatibility helpers (so older MainWindow variants don't explode)
+    public void SetXml(string originalXml, string translatedXml)
     {
-        Log("DisposeHoverDictionary");
-        _hoverDictOrig?.Dispose();
-        _hoverDictOrig = null;
-        _hoverDictTran?.Dispose();
-        _hoverDictTran = null;
+        _currentProjection = translatedXml ?? "";
+        if (_editor != null) _editor.Text = _currentProjection;
+        UpdateModeInfo();
+        UpdateQuickInfo();
     }
 
-    private void RememberSelectionIfAny()
-    {
-        if (_tran == null) return;
-
-        try
-        {
-            var sel = _tran.TextArea.Selection;
-            if (sel != null && !sel.IsEmpty)
-            {
-                int s = sel.SurroundingSegment.Offset;
-                int e = s + sel.SurroundingSegment.Length;
-
-                _lastCopyStart = s;
-                _lastCopyEnd = e;
-
-                Log($"RememberSelectionIfAny: {s}..{e} (len={e - s})");
-            }
-        }
-        catch (Exception ex)
-        {
-            Log("RememberSelectionIfAny error: " + ex);
-        }
-    }
-
-    // --------------------------
-    // Find highlight renderer attach/detach
-    // --------------------------
-
-    private void EnsureFindRenderersAttached()
-    {
-        AttachRendererIfMissing(_orig, ref _hlOrig, "orig");
-        AttachRendererIfMissing(_tran, ref _hlTran, "tran");
-    }
-
-    private void AttachRendererIfMissing(TextEditor? ed, ref SearchHighlightRenderer? renderer, string tag)
-    {
-        if (ed == null) return;
-
-        try
-        {
-            var tv = ed.TextArea?.TextView;
-            if (tv == null)
-            {
-                Log($"AttachRendererIfMissing({tag}): TextView null (too early).");
-                return;
-            }
-
-            renderer ??= new SearchHighlightRenderer(tv);
-
-            if (!tv.BackgroundRenderers.Contains(renderer))
-            {
-                tv.BackgroundRenderers.Add(renderer);
-                Log($"AttachRendererIfMissing({tag}): attached SearchHighlightRenderer.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Log($"AttachRendererIfMissing({tag}) ERROR: {ex}");
-        }
-    }
-
-    private void DetachFindRenderers()
-    {
-        DetachRenderer(_orig, ref _hlOrig, "orig");
-        DetachRenderer(_tran, ref _hlTran, "tran");
-    }
-
-    private void DetachRenderer(TextEditor? ed, ref SearchHighlightRenderer? renderer, string tag)
-    {
-        if (ed == null || renderer == null) return;
-
-        try
-        {
-            var tv = ed.TextArea?.TextView;
-            if (tv != null && tv.BackgroundRenderers.Contains(renderer))
-            {
-                tv.BackgroundRenderers.Remove(renderer);
-                Log($"DetachRenderer({tag}): removed SearchHighlightRenderer.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Log($"DetachRenderer({tag}) ERROR: {ex}");
-        }
-        finally
-        {
-            renderer = null;
-        }
-    }
-
-    // --------------------------
-    // Public API
-    // --------------------------
+    public string GetTranslatedXml() => GetCurrentProjectionText();
+    public string GetTranslatedText() => GetCurrentProjectionText();
+    public string GetTranslatedMarkdown() => GetCurrentProjectionText();
 
     public void Clear()
     {
-        Log("Clear() called");
+        _currentProjection = "";
+        _origPath = null;
+        _tranPath = null;
 
-        _cachedOrigXml = "";
-        _cachedTranXml = "";
+        if (_editor != null)
+            _editor.Text = "";
 
-        if (_orig != null) SetEditorText(_orig, "", "Clear(orig)");
-        if (_tran != null) SetEditorText(_tran, "", "Clear(tran)");
-
-        _lastCopyStart = -1;
-        _lastCopyEnd = -1;
-
-        ResetNavigationState();
-
-        ClearFindState();
-        CloseFind();
+        UpdateModeInfo();
+        UpdateModeButtons();
+        UpdateQuickInfo();
     }
 
-    public void SetXml(string originalXml, string translatedXml)
+    // =========================
+    // UI helpers
+    // =========================
+
+    private void SwitchMode(TranslationEditMode mode)
     {
-        Log($"SetXml called: origLen={originalXml?.Length ?? 0}, tranLen={translatedXml?.Length ?? 0}");
+        if (_currentMode == mode) return;
 
-        _cachedOrigXml = originalXml ?? "";
-        _cachedTranXml = translatedXml ?? "";
+        _currentMode = mode;
+        UpdateModeInfo();
+        UpdateModeButtons();
 
-        if (_orig == null || _tran == null)
+        ModeChanged?.Invoke(this, mode);
+    }
+
+    private void UpdateModeButtons()
+    {
+        if (_btnModeHead != null) _btnModeHead.IsEnabled = _currentMode != TranslationEditMode.Head;
+        if (_btnModeBody != null) _btnModeBody.IsEnabled = _currentMode != TranslationEditMode.Body;
+        if (_btnModeNotes != null) _btnModeNotes.IsEnabled = _currentMode != TranslationEditMode.Notes;
+    }
+
+    private void UpdateModeInfo()
+    {
+        if (_txtModeInfo == null) return;
+
+        var modeText = _currentMode switch
         {
-            Log("SetXml: ERROR - editors are null.");
+            TranslationEditMode.Head => "Head of File",
+            TranslationEditMode.Body => "Body of File",
+            TranslationEditMode.Notes => "Notes",
+            _ => "Translation Editor"
+        };
+
+        var fileLabel = string.IsNullOrWhiteSpace(_tranPath)
+            ? ""
+            : $" — {System.IO.Path.GetFileName(_tranPath)}";
+
+        _txtModeInfo.Text = $"{modeText}{fileLabel}";
+    }
+
+    private void UpdateQuickInfo()
+    {
+        if (_txtQuickInfo == null)
             return;
-        }
-
-        Dispatcher.UIThread.Post(() =>
-        {
-            ApplyEditorDefaults(_orig, "orig (SetXml before set)");
-            ApplyEditorDefaults(_tran, "tran (SetXml before set)");
-
-            EnsureFindRenderersAttached();
-
-            SetEditorText(_orig, _cachedOrigXml, "SetXml(orig)");
-            SetEditorText(_tran, _cachedTranXml, "SetXml(tran)");
-
-            // keep wrap consistent after re-set
-            ApplyWrapFromCheckbox();
-
-            _lastCopyStart = -1;
-            _lastCopyEnd = -1;
-
-            ResetNavigationState();
-
-            if (_findBar?.IsVisible == true)
-                RecomputeMatches(resetToFirst: false);
-        }, DispatcherPriority.Normal);
-    }
-
-    public string GetTranslatedXml()
-    {
-        var t = _tran?.Text ?? "";
-        Log($"GetTranslatedXml -> len={t.Length}");
-        return t;
-    }
-
-    private void ReApplyEditorsText(string reason)
-    {
-        Log($"ReApplyEditorsText: {reason} cachedOrigLen={_cachedOrigXml.Length} cachedTranLen={_cachedTranXml.Length}");
-
-        EnsureFindRenderersAttached();
-
-        if (_orig != null)
-        {
-            ApplyEditorDefaults(_orig, "orig (ReApply)");
-            SetEditorText(_orig, _cachedOrigXml, "ReApply(orig)");
-        }
-
-        if (_tran != null)
-        {
-            ApplyEditorDefaults(_tran, "tran (ReApply)");
-            SetEditorText(_tran, _cachedTranXml, "ReApply(tran)");
-        }
-
-        ApplyWrapFromCheckbox();
-    }
-
-    private void SetEditorText(TextEditor editor, string value, string which)
-    {
-        value ??= "";
-
-        Log($"{which}: SetEditorText start. target={editor.Name} currentLen={LenStr(editor.Text)} newLen={value.Length} IsVisible={editor.IsVisible} IsReadOnly={editor.IsReadOnly} Bounds={editor.Bounds.Width}x{editor.Bounds.Height}");
-        Log($"{which}: Brushes before set: Fg={BrushStr(editor.Foreground)} Bg={BrushStr(editor.Background)} TA.Bg={BrushStr(editor.TextArea.Background)}");
-
-        editor.Text = value;
-
-        Log($"{which}: SetEditorText after set. editor.TextLen={LenStr(editor.Text)}");
-
-        Dispatcher.UIThread.Post(() =>
-        {
-            Log($"{which}: Post-check (Background). editor.TextLen={LenStr(editor.Text)} IsVisible={editor.IsVisible} Bounds={editor.Bounds.Width}x{editor.Bounds.Height}");
-        }, DispatcherPriority.Background);
-    }
-
-    // ============================================================
-    // COMMUNITY NOTES (FIX)
-    // ============================================================
-
-    public async Task HandleCommunityNoteInsertAsync(int xmlIndex, string noteText, string? resp)
-    {
-        await _saveReloadGate.WaitAsync();
-        try
-        {
-            if (!TryValidatePaths(out var origPath, out var tranPath))
-                return;
-
-            Log($"COMM-INSERT start xmlIndex={xmlIndex} textLen={(noteText ?? "").Length} resp='{resp ?? ""}'");
-
-            var beforeDisk = await ReadAllTextUtf8Async(tranPath);
-            Log($"COMM-INSERT disk BEFORE len={beforeDisk.Length} sha1={Sha1Short(beforeDisk)} mtime={SafeMTime(tranPath)}");
-
-            var updated = InsertCommunityNote(beforeDisk, xmlIndex, noteText, resp, out var why);
-            if (updated == null)
-            {
-                Status?.Invoke(this, "Add note failed: " + why);
-                Log("COMM-INSERT FAILED: " + why);
-                return;
-            }
-
-            await AtomicWriteUtf8Async(tranPath, updated);
-
-            var afterDisk = await ReadAllTextUtf8Async(tranPath);
-            Log($"COMM-INSERT disk AFTER  len={afterDisk.Length} sha1={Sha1Short(afterDisk)} mtime={SafeMTime(tranPath)} matchLen={(afterDisk.Length == updated.Length)}");
-
-            if (afterDisk.Length != updated.Length)
-            {
-                Status?.Invoke(this, "Add note FAILED: disk write mismatch (wrong path or overwritten). Check logs.");
-                Log("COMM-INSERT HARD FAIL: disk length mismatch after write.");
-                return;
-            }
-
-            var origDisk = await ReadAllTextUtf8Async(origPath);
-            var tranDisk = afterDisk;
-
-            Log($"COMM-INSERT reload: origLen={origDisk.Length} tranLen={tranDisk.Length}");
-            SetXml(origDisk, tranDisk);
-
-            Status?.Invoke(this, "Community note added (saved to file).");
-        }
-        catch (Exception ex)
-        {
-            Log("COMM-INSERT EXCEPTION: " + ex);
-            Status?.Invoke(this, "Add note failed (exception). See debug log.");
-        }
-        finally
-        {
-            _saveReloadGate.Release();
-        }
-    }
-
-    public async Task HandleCommunityNoteDeleteAsync(int xmlStart, int xmlEndExclusive)
-    {
-        await _saveReloadGate.WaitAsync();
-        try
-        {
-            if (!TryValidatePaths(out var origPath, out var tranPath))
-                return;
-
-            Log($"COMM-DELETE start xmlStart={xmlStart} xmlEndEx={xmlEndExclusive}");
-
-            var beforeDisk = await ReadAllTextUtf8Async(tranPath);
-            Log($"COMM-DELETE disk BEFORE len={beforeDisk.Length} sha1={Sha1Short(beforeDisk)} mtime={SafeMTime(tranPath)}");
-
-            var updated = DeleteRange(beforeDisk, xmlStart, xmlEndExclusive, out var why);
-            if (updated == null)
-            {
-                Status?.Invoke(this, "Delete note failed: " + why);
-                Log("COMM-DELETE FAILED: " + why);
-                return;
-            }
-
-            await AtomicWriteUtf8Async(tranPath, updated);
-
-            var afterDisk = await ReadAllTextUtf8Async(tranPath);
-            Log($"COMM-DELETE disk AFTER  len={afterDisk.Length} sha1={Sha1Short(afterDisk)} mtime={SafeMTime(tranPath)} matchLen={(afterDisk.Length == updated.Length)}");
-
-            if (afterDisk.Length != updated.Length)
-            {
-                Status?.Invoke(this, "Delete note FAILED: disk write mismatch (wrong path or overwritten). Check logs.");
-                Log("COMM-DELETE HARD FAIL: disk length mismatch after write.");
-                return;
-            }
-
-            var origDisk = await ReadAllTextUtf8Async(origPath);
-            var tranDisk = afterDisk;
-
-            Log($"COMM-DELETE reload: origLen={origDisk.Length} tranLen={tranDisk.Length}");
-            SetXml(origDisk, tranDisk);
-
-            Status?.Invoke(this, "Community note deleted (saved to file).");
-        }
-        catch (Exception ex)
-        {
-            Log("COMM-DELETE EXCEPTION: " + ex);
-            Status?.Invoke(this, "Delete note failed (exception). See debug log.");
-        }
-        finally
-        {
-            _saveReloadGate.Release();
-        }
-    }
-
-    private bool TryValidatePaths(out string origPath, out string tranPath)
-    {
-        origPath = _currentOrigPath ?? "";
-        tranPath = _currentTranPath ?? "";
-
-        if (string.IsNullOrWhiteSpace(origPath) || string.IsNullOrWhiteSpace(tranPath))
-        {
-            Status?.Invoke(this, "Paths not set. Call SetCurrentFilePaths(...) when loading a file.");
-            Log("PATHS INVALID: SetCurrentFilePaths was not called.");
-            return false;
-        }
-
-        bool o = File.Exists(origPath);
-        bool t = File.Exists(tranPath);
-
-        Log($"PATHS: orig='{origPath}' exists={o} | tran='{tranPath}' exists={t}");
-
-        if (!o || !t)
-        {
-            Status?.Invoke(this, "File not found on disk (orig or tran). Check logs.");
-            return false;
-        }
-
-        return true;
-    }
-
-    private static string SafeMTime(string path)
-    {
-        try { return File.GetLastWriteTimeUtc(path).ToString("O"); }
-        catch { return "mtime_err"; }
-    }
-
-    private static async Task<string> ReadAllTextUtf8Async(string path)
-    {
-        using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-        using var sr = new StreamReader(fs, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false), detectEncodingFromByteOrderMarks: true);
-        return await sr.ReadToEndAsync();
-    }
-
-    private static async Task AtomicWriteUtf8Async(string path, string content)
-    {
-        var dir = Path.GetDirectoryName(path) ?? "";
-        var file = Path.GetFileName(path);
-        var tmp = Path.Combine(dir, file + ".tmp_" + Guid.NewGuid().ToString("N"));
-
-        var enc = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
-
-        await File.WriteAllTextAsync(tmp, content, enc);
 
         try
         {
-            File.Replace(tmp, path, destinationBackupFileName: null, ignoreMetadataErrors: true);
+            var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
+            int total = blocks.Count;
+            int emptyEn = blocks.Count(b => string.IsNullOrWhiteSpace(b.En));
+            int untranslated = blocks.Count(b => ShouldJumpToUntranslated(b)); // empty EN + valid Chinese block only
+
+            _txtQuickInfo.Text = total > 0
+                ? $"Blocks: {total}  Empty EN: {emptyEn}  Untranslated: {untranslated}"
+                : "";
         }
         catch
         {
+            _txtQuickInfo.Text = "";
+        }
+    }
+
+    private void ApplyWrap()
+    {
+        if (_editor != null)
+            _editor.WordWrap = _chkWrap?.IsChecked == true;
+    }
+
+    // =========================
+    // Hover dictionary
+    // =========================
+
+    private void ApplyHoverDictionarySetting()
+    {
+        if (_editor == null)
+            return;
+
+        if (_hoverDictionaryEnabled)
+            AttachHoverDictionary();
+        else
+            DetachHoverDictionary();
+    }
+
+    private void AttachHoverDictionary()
+    {
+        try
+        {
+            if (_editor == null)
+                return;
+
+            _hoverDictionaryBehavior?.Dispose();
+            _hoverDictionaryBehavior = null;
+
+            _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict);
+            Status?.Invoke(this, "Hover dictionary attached.");
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Hover dictionary failed: " + ex.Message);
+        }
+    }
+
+    private void DetachHoverDictionary()
+    {
+        try
+        {
+            _hoverDictionaryBehavior?.Dispose();
+            _hoverDictionaryBehavior = null;
+            Status?.Invoke(this, "Hover dictionary disabled.");
+        }
+        catch
+        {
+            _hoverDictionaryBehavior = null;
+        }
+    }
+
+    // =========================
+    // Undo / Redo
+    // =========================
+
+    private void DoUndo()
+    {
+        try
+        {
+            if (_editor?.CanUndo == true)
+            {
+                _editor.Undo();
+                Status?.Invoke(this, "Undo");
+            }
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Undo failed: " + ex.Message);
+        }
+    }
+
+    private void DoRedo()
+    {
+        try
+        {
+            if (_editor?.CanRedo == true)
+            {
+                _editor.Redo();
+                Status?.Invoke(this, "Redo");
+            }
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Redo failed: " + ex.Message);
+        }
+    }
+
+    // =========================
+    // Chunk copy / smart paste / navigation
+    // =========================
+
+    private async Task CopyChunkWithPromptAsync()
+    {
+        if (_editor == null)
+        {
+            Status?.Invoke(this, "Editor not available.");
+            return;
+        }
+
+        var text = _editor.Text ?? "";
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            Status?.Invoke(this, "Editor is empty.");
+            return;
+        }
+
+        List<ProjectionBlockInfo> blocks;
+        try
+        {
+            blocks = ParseProjectionBlocksWithOffsets(text);
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Projection parse failed: " + ex.Message);
+            return;
+        }
+
+        if (blocks.Count == 0)
+        {
+            Status?.Invoke(this, "No blocks found.");
+            return;
+        }
+
+        int caret = _editor.CaretOffset;
+        int maxCount = GetSelectedChunkSize();
+
+        // Find block at/after caret
+        int startIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
+        if (startIx < 0)
+        {
+            Status?.Invoke(this, "No block found near caret.");
+            return;
+        }
+
+        // Move to first valid untranslated block from there
+        while (startIx < blocks.Count && !ShouldIncludeForCopy(blocks[startIx], requireUntranslated: true))
+            startIx++;
+
+        if (startIx >= blocks.Count)
+        {
+            Status?.Invoke(this, "No suitable untranslated block found after caret.");
+            return;
+        }
+
+        // Copy up to N valid untranslated blocks (non-contiguous allowed)
+        // and keep selection as full visible span for confidence.
+        int copied = 0;
+        int firstIncludedIx = -1;
+        int lastIncludedIx = -1;
+
+        var selectedBlockTexts = new List<string>(maxCount);
+
+        for (int i = startIx; i < blocks.Count && copied < maxCount; i++)
+        {
+            var b = blocks[i];
+
+            if (!ShouldIncludeForCopy(b, requireUntranslated: true))
+                continue;
+
+            if (firstIncludedIx < 0) firstIncludedIx = i;
+            lastIncludedIx = i;
+
+            int bs = b.BlockStartOffset;
+            int be = b.BlockEndOffsetExclusive;
+
+            if (bs < 0 || be < bs || be > text.Length)
+                continue;
+
+            var blockText = text.Substring(bs, be - bs).TrimEnd('\r', '\n');
+            if (blockText.Length == 0)
+                continue;
+
+            selectedBlockTexts.Add(blockText);
+            copied++;
+        }
+
+        if (copied == 0 || firstIncludedIx < 0 || lastIncludedIx < 0)
+        {
+            Status?.Invoke(this, "Nothing to copy.");
+            return;
+        }
+
+        var firstBlock = blocks[firstIncludedIx];
+        var lastBlock = blocks[lastIncludedIx];
+
+        var rawChunk = string.Join(Environment.NewLine + Environment.NewLine, selectedBlockTexts).TrimEnd('\r', '\n');
+        if (string.IsNullOrWhiteSpace(rawChunk))
+        {
+            Status?.Invoke(this, "Nothing to copy after filtering.");
+            return;
+        }
+
+        var payload = BuildPrompt(rawChunk);
+
+        var cb = GetClipboard();
+        if (cb == null)
+        {
+            Status?.Invoke(this, "Clipboard unavailable.");
+            return;
+        }
+
+        await cb.SetTextAsync(payload);
+
+        // Full-span selection (from first copied to last copied)
+        if (_editor.Document != null)
+        {
+            int selStart = Math.Clamp(firstBlock.BlockStartOffset, 0, _editor.Document.TextLength);
+            int selEnd = Math.Clamp(lastBlock.BlockEndOffsetExclusive, selStart, _editor.Document.TextLength);
+
+            _editor.CaretOffset = selStart;
+            _editor.TextArea.Selection = Selection.Create(_editor.TextArea, selStart, selEnd);
+
             try
             {
-#if NET8_0_OR_GREATER
-                File.Move(tmp, path, overwrite: true);
-#else
-                if (File.Exists(path)) File.Delete(path);
-                File.Move(tmp, path);
-#endif
+                var line = _editor.Document.GetLineByOffset(selStart).LineNumber;
+                _editor.ScrollToLine(line);
             }
-            finally
+            catch
             {
-                try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
+                // ignore
             }
+
+            _editor.Focus();
         }
+
+        Status?.Invoke(this, $"Copied {copied} block(s): <{firstBlock.BlockNumber}>–<{lastBlock.BlockNumber}> + prompt.");
     }
 
-    private static string EscapeXmlText(string s)
-        => (s ?? "")
-            .Replace("&", "&amp;")
-            .Replace("<", "&lt;")
-            .Replace(">", "&gt;");
-
-    private static string EscapeXmlAttr(string s)
-        => EscapeXmlText(s).Replace("\"", "&quot;").Replace("'", "&apos;");
-
-    private static string? InsertCommunityNote(string xml, int index, string noteText, string? resp, out string why)
+    private async Task PasteByMatchingBlockNumberAsync()
     {
-        why = "";
-        if (xml == null) { why = "xml is null"; return null; }
-        if (index < 0 || index > xml.Length) { why = $"index out of range: {index} (len={xml.Length})"; return null; }
-
-        noteText = (noteText ?? "").Trim();
-        if (noteText.Length == 0) { why = "note text empty"; return null; }
-
-        var attrs = " type=\"community\"";
-        if (!string.IsNullOrWhiteSpace(resp))
-            attrs += $" resp=\"{EscapeXmlAttr(resp.Trim())}\"";
-
-        var note = $"<note{attrs}>{EscapeXmlText(noteText)}</note>";
-
-        var sb = new StringBuilder(xml.Length + note.Length);
-        sb.Append(xml, 0, index);
-        sb.Append(note);
-        sb.Append(xml, index, xml.Length - index);
-
-        return sb.ToString();
-    }
-
-    private static string? DeleteRange(string xml, int start, int endExclusive, out string why)
-    {
-        why = "";
-        if (xml == null) { why = "xml is null"; return null; }
-        if (start < 0 || endExclusive < 0) { why = $"negative range: {start}..{endExclusive}"; return null; }
-        if (endExclusive < start) { why = $"endExclusive < start: {start}..{endExclusive}"; return null; }
-        if (start > xml.Length || endExclusive > xml.Length) { why = $"range out of bounds for len={xml.Length}: {start}..{endExclusive}"; return null; }
-        if (endExclusive == start) { why = "empty range"; return null; }
-
-        return xml.Remove(start, endExclusive - start);
-    }
-
-    // --------------------------
-    // Clipboard workflow
-    // --------------------------
-
-    private async Task CopySelectionWithPromptAsync()
-    {
-        Log("CopySelectionWithPromptAsync start");
-
-        if (_tran == null)
+        if (_editor == null)
         {
-            Status?.Invoke(this, "Translated XML editor not available.");
+            Status?.Invoke(this, "Editor not available.");
             return;
         }
 
-        var text = _tran.Text ?? "";
-        if (text.Length == 0)
+        var cb = GetClipboard();
+        if (cb == null)
         {
-            Status?.Invoke(this, "Translated XML is empty.");
+            Status?.Invoke(this, "Clipboard unavailable.");
             return;
         }
 
-        int start = -1;
-        int end = -1;
+        var clip = (await cb.TryGetTextAsync()) ?? "";
+        if (string.IsNullOrWhiteSpace(clip))
+        {
+            Status?.Invoke(this, "Clipboard empty.");
+            return;
+        }
 
+        var pastedText = ExtractCodeBlockOrRaw(clip);
+
+        List<ProjectionBlockInfo> pastedBlocks;
         try
         {
-            var sel = _tran.TextArea.Selection;
-            if (sel != null && !sel.IsEmpty)
-            {
-                start = sel.SurroundingSegment.Offset;
-                end = start + sel.SurroundingSegment.Length;
-            }
+            pastedBlocks = ParseProjectionBlocksWithOffsets(pastedText);
         }
-        catch { }
-
-        if (end <= start && _lastCopyEnd > _lastCopyStart)
+        catch (Exception ex)
         {
-            start = _lastCopyStart;
-            end = _lastCopyEnd;
-        }
-
-        start = Math.Clamp(start, 0, text.Length);
-        end = Math.Clamp(end, 0, text.Length);
-
-        if (end <= start)
-        {
-            Status?.Invoke(this, "No selection. Select an XML fragment first.");
+            Status?.Invoke(this, "Clipboard parse failed: " + ex.Message);
             return;
         }
 
-        string selectionXml = text.Substring(start, end - start);
-
-        _lastCopyStart = start;
-        _lastCopyEnd = end;
-
-        string clipboardPayload = BuildChatGptPrompt(selectionXml);
-
-        var clipboard = GetClipboard();
-        if (clipboard == null)
+        if (pastedBlocks.Count == 0)
         {
-            Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
+            Status?.Invoke(this, "No valid blocks found in clipboard.");
             return;
         }
 
-        await clipboard.SetTextAsync(clipboardPayload);
-        Status?.Invoke(this, $"Copied selection + prompt ({selectionXml.Length:n0} chars) to clipboard.");
-    }
-
-    private async Task PasteReplaceSelectionAsync()
-    {
-        if (_tran == null)
-        {
-            Status?.Invoke(this, "Translated XML editor not available.");
-            return;
-        }
-
-        var clipboard = GetClipboard();
-        if (clipboard == null)
-        {
-            Status?.Invoke(this, "Clipboard not available (TopLevel.Clipboard is null).");
-            return;
-        }
-
-        var clipText = await clipboard.TryGetTextAsync() ?? "";
-        clipText = clipText.Trim();
-
-        if (clipText.Length == 0)
-        {
-            Status?.Invoke(this, "Clipboard is empty.");
-            return;
-        }
-
-        string pastedXml = ExtractXmlFromClipboard(clipText);
-        if (string.IsNullOrWhiteSpace(pastedXml))
-        {
-            Status?.Invoke(this, "Could not find XML in clipboard text (no ```xml``` block, and content wasn't raw XML).");
-            return;
-        }
-
-        int start = -1;
-        int end = -1;
-
+        var editorText = _editor.Text ?? "";
+        List<ProjectionBlockInfo> editorBlocks;
         try
         {
-            var sel = _tran.TextArea.Selection;
-            if (sel != null && !sel.IsEmpty)
-            {
-                start = sel.SurroundingSegment.Offset;
-                end = start + sel.SurroundingSegment.Length;
-            }
+            editorBlocks = ParseProjectionBlocksWithOffsets(editorText);
         }
-        catch { }
-
-        if (end <= start)
+        catch (Exception ex)
         {
-            if (_lastCopyEnd > _lastCopyStart)
+            Status?.Invoke(this, "Current editor parse failed: " + ex.Message);
+            return;
+        }
+
+        var editorByNum = new Dictionary<int, ProjectionBlockInfo>();
+        foreach (var b in editorBlocks)
+        {
+            if (editorByNum.ContainsKey(b.BlockNumber))
             {
-                start = _lastCopyStart;
-                end = _lastCopyEnd;
+                Status?.Invoke(this, $"Editor has duplicate block number <{b.BlockNumber}>.");
+                return;
             }
-            else
+            editorByNum[b.BlockNumber] = b;
+        }
+
+        var seenPasteNums = new HashSet<int>();
+        foreach (var pb in pastedBlocks)
+        {
+            if (!seenPasteNums.Add(pb.BlockNumber))
             {
-                Status?.Invoke(this, "No active selection (and no remembered copy range). Select where to paste.");
+                Status?.Invoke(this, $"Clipboard contains duplicate block <{pb.BlockNumber}>.");
+                return;
+            }
+
+            if (!editorByNum.TryGetValue(pb.BlockNumber, out var target))
+            {
+                Status?.Invoke(this, $"Reject: block <{pb.BlockNumber}> not found in current editor.");
+                return;
+            }
+
+            if (!string.Equals(pb.Zh, target.Zh, StringComparison.Ordinal))
+            {
+                Status?.Invoke(this, $"Reject: ZH mismatch in block <{pb.BlockNumber}>.");
+                return;
+            }
+
+            try
+            {
+                ValidateEnglish(pb.En, pb.BlockNumber);
+            }
+            catch (Exception ex)
+            {
+                Status?.Invoke(this, ex.Message);
                 return;
             }
         }
 
-        var all = _tran.Text ?? "";
-        start = Math.Clamp(start, 0, all.Length);
-        end = Math.Clamp(end, 0, all.Length);
-        if (end < start) (start, end) = (end, start);
+        // Apply replacements from back to front so offsets stay valid
+        var orderedTargets = pastedBlocks
+            .Select(pb => (Paste: pb, Target: editorByNum[pb.BlockNumber]))
+            .OrderByDescending(x => x.Target.EnValueStartOffset)
+            .ToList();
 
-        var sb = new StringBuilder(all.Length - (end - start) + pastedXml.Length);
-        sb.Append(all, 0, start);
-        sb.Append(pastedXml);
-        sb.Append(all, end, all.Length - end);
+        var sb = new StringBuilder(editorText);
 
-        _tran.Text = sb.ToString();
-
-        try
+        foreach (var x in orderedTargets)
         {
-            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, start + pastedXml.Length);
-            _tran.TextArea.Caret.Offset = start;
-        }
-        catch { }
+            int start = x.Target.EnValueStartOffset;
+            int len = x.Target.EnValueLength;
 
-        _lastCopyStart = start;
-        _lastCopyEnd = start + pastedXml.Length;
-
-        Status?.Invoke(this, $"Pasted & replaced selection with {pastedXml.Length:n0} chars.");
-    }
-
-    // --------------------------
-    // Ctrl+F Find UI
-    // --------------------------
-
-    private void OnKeyDown(object? sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
-        {
-            OpenFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape && _findBar?.IsVisible == true)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (_findBar?.IsVisible == true && e.Key == Key.F3)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-            return;
-        }
-    }
-
-    private void FindQuery_KeyDown(object? sender, KeyEventArgs e)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        if (e.Key == Key.Enter)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
-    }
-
-    private void OpenFind()
-    {
-        if (_findBar == null || _findQuery == null) return;
-
-        _findBar.IsVisible = true;
-
-        EnsureFindRenderersAttached();
-
-        var target = DetermineCurrentPaneForFind();
-        SetFindTarget(target, preserveIndex: false);
-
-        _findQuery.Focus();
-        _findQuery.SelectionStart = 0;
-        _findQuery.SelectionEnd = (_findQuery.Text ?? "").Length;
-
-        RecomputeMatches(resetToFirst: false);
-    }
-
-    private void CloseFind()
-    {
-        if (_findBar != null)
-            _findBar.IsVisible = false;
-
-        ClearHighlight();
-
-        try { _findTarget?.Focus(); } catch { }
-    }
-
-    private TextEditor? DetermineCurrentPaneForFind()
-    {
-        if (_orig == null || _tran == null)
-            return _tran;
-
-        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
-        if (recentInput && _lastUserInputEditor != null)
-            return _lastUserInputEditor;
-
-        if (_tran.IsFocused || _tran.IsKeyboardFocusWithin) return _tran;
-        if (_orig.IsFocused || _orig.IsKeyboardFocusWithin) return _orig;
-
-        return _tran;
-    }
-
-    private void SetFindTarget(TextEditor? ed, bool preserveIndex)
-    {
-        if (ed == null) return;
-
-        _findTarget = ed;
-
-        if (_findScope != null)
-            _findScope.Text = ReferenceEquals(ed, _orig) ? "Find (Original):" : "Find (Translated):";
-
-        RecomputeMatches(resetToFirst: !preserveIndex);
-    }
-
-    private void DebounceRecomputeMatches()
-    {
-        _findDebounceTimer ??= new DispatcherTimer { Interval = FindRecomputeDebounce };
-        _findDebounceTimer.Stop();
-        _findDebounceTimer.Tick -= FindDebounceTimer_Tick;
-        _findDebounceTimer.Tick += FindDebounceTimer_Tick;
-        _findDebounceTimer.Start();
-    }
-
-    private void FindDebounceTimer_Tick(object? sender, EventArgs e)
-    {
-        _findDebounceTimer?.Stop();
-        RecomputeMatches(resetToFirst: true);
-    }
-
-    private void RecomputeMatches(bool resetToFirst)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        var ed = _findTarget;
-        if (ed == null) return;
-
-        string hay = ed.Text ?? "";
-        string q = (_findQuery?.Text ?? "").Trim();
-
-        int oldSelectedStart = -1;
-        if (!resetToFirst && _matchIndex >= 0 && _matchIndex < _matchStarts.Count)
-            oldSelectedStart = _matchStarts[_matchIndex];
-
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-
-        if (q.Length == 0 || hay.Length == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        _matchLen = q.Length;
-
-        int idx = 0;
-        while (true)
-        {
-            idx = hay.IndexOf(q, idx, StringComparison.OrdinalIgnoreCase);
-            if (idx < 0) break;
-            _matchStarts.Add(idx);
-            idx = idx + Math.Max(1, q.Length);
-        }
-
-        if (_matchStarts.Count == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        if (resetToFirst)
-        {
-            int caret = 0;
-            try { caret = ed.TextArea.Caret.Offset; } catch { }
-            int nearest = _matchStarts.FindIndex(s => s >= caret);
-            _matchIndex = nearest >= 0 ? nearest : 0;
-        }
-        else
-        {
-            if (oldSelectedStart >= 0)
+            if (start < 0 || len < 0 || start + len > sb.Length)
             {
-                int exact = _matchStarts.IndexOf(oldSelectedStart);
-                if (exact >= 0) _matchIndex = exact;
-                else
-                {
-                    int nearest = _matchStarts.FindIndex(s => s >= oldSelectedStart);
-                    _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
-                }
-            }
-            else _matchIndex = 0;
-        }
-
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: false);
-    }
-
-    private void UpdateFindCount()
-    {
-        if (_findCount == null) return;
-
-        if (_matchStarts.Count == 0 || _matchIndex < 0)
-            _findCount.Text = "0/0";
-        else
-            _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
-    }
-
-    private void JumpNext()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex + 1) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpPrev()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex - 1 + _matchStarts.Count) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpToCurrentMatch(bool scroll)
-    {
-        if (_findTarget == null) return;
-        if (_matchIndex < 0 || _matchIndex >= _matchStarts.Count) return;
-
-        int start = _matchStarts[_matchIndex];
-        int len = _matchLen;
-
-        ApplyHighlight(_findTarget, start, len);
-
-        if (!scroll) return;
-
-        try
-        {
-            _findTarget.TextArea.Caret.Offset = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
-
-            Dispatcher.UIThread.Post(() =>
-            {
-                try { CenterByCaret(_findTarget); } catch { }
-                ApplyHighlight(_findTarget, start, len);
-            }, DispatcherPriority.Background);
-        }
-        catch { }
-    }
-
-    private void ApplyHighlight(TextEditor target, int start, int len)
-    {
-        EnsureFindRenderersAttached();
-
-        try
-        {
-            if (ReferenceEquals(target, _orig))
-            {
-                _hlTran?.Clear();
-                _hlOrig?.SetRange(start, len);
-            }
-            else
-            {
-                _hlOrig?.Clear();
-                _hlTran?.SetRange(start, len);
+                Status?.Invoke(this, $"Internal offset error while pasting block <{x.Paste.BlockNumber}>.");
+                return;
             }
 
-            target.TextArea?.TextView?.InvalidateVisual();
+            sb.Remove(start, len);
+            sb.Insert(start, x.Paste.En);
+        }
+
+        _editor.Text = sb.ToString();
+
+        // Reselect / reveal first pasted block
+        int minNum = pastedBlocks.Min(b => b.BlockNumber);
+        int maxNum = pastedBlocks.Max(b => b.BlockNumber);
+
+        var reparsed = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        var firstReparsed = reparsed.FirstOrDefault(b => b.BlockNumber == pastedBlocks[0].BlockNumber)
+            ?? reparsed.FirstOrDefault(b => b.BlockNumber == minNum);
+
+        if (firstReparsed != null)
+            SelectAndRevealBlock(firstReparsed);
+
+        Status?.Invoke(this, $"Pasted {pastedBlocks.Count} block(s): <{minNum}>–<{maxNum}> (ZH validated).");
+    }
+
+    private void JumpToNextUntranslated()
+    {
+        if (_editor == null)
+        {
+            Status?.Invoke(this, "Editor not available.");
+            return;
+        }
+
+        var text = _editor.Text ?? "";
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            Status?.Invoke(this, "Editor is empty.");
+            return;
+        }
+
+        List<ProjectionBlockInfo> blocks;
+        try
+        {
+            blocks = ParseProjectionBlocksWithOffsets(text);
         }
         catch (Exception ex)
         {
-            Log("ApplyHighlight renderer error: " + ex.Message);
+            Status?.Invoke(this, "Projection parse failed: " + ex.Message);
+            return;
         }
+
+        if (blocks.Count == 0)
+        {
+            Status?.Invoke(this, "No blocks found.");
+            return;
+        }
+
+        int caret = _editor.CaretOffset;
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
+        if (curIx < 0) curIx = 0;
+
+        // Prefer next valid untranslated block after current
+        int nextIx = -1;
+        for (int i = Math.Min(curIx + 1, blocks.Count); i < blocks.Count; i++)
+        {
+            if (ShouldJumpToUntranslated(blocks[i]))
+            {
+                nextIx = i;
+                break;
+            }
+        }
+
+        // Wrap if needed
+        bool wrapped = false;
+        if (nextIx < 0)
+        {
+            for (int i = 0; i <= Math.Min(curIx, blocks.Count - 1); i++)
+            {
+                if (ShouldJumpToUntranslated(blocks[i]))
+                {
+                    nextIx = i;
+                    wrapped = true;
+                    break;
+                }
+            }
+        }
+
+        if (nextIx < 0)
+        {
+            Status?.Invoke(this, "No untranslated Chinese blocks.");
+            return;
+        }
+
+        SelectAndRevealBlock(blocks[nextIx]);
+        Status?.Invoke(this, wrapped
+            ? $"Jumped to untranslated block <{blocks[nextIx].BlockNumber}> (wrapped)."
+            : $"Jumped to untranslated block <{blocks[nextIx].BlockNumber}>.");
     }
 
-    private void ClearHighlight()
+    private void JumpToChineseInEnglishLine()
     {
-        try { _hlOrig?.Clear(); } catch { }
-        try { _hlTran?.Clear(); } catch { }
+        if (_editor == null)
+        {
+            Status?.Invoke(this, "Editor not available.");
+            return;
+        }
+
+        var text = _editor.Text ?? "";
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            Status?.Invoke(this, "Editor is empty.");
+            return;
+        }
+
+        List<ProjectionBlockInfo> blocks;
         try
         {
-            _orig?.TextArea?.TextView?.InvalidateVisual();
-            _tran?.TextArea?.TextView?.InvalidateVisual();
+            blocks = ParseProjectionBlocksWithOffsets(text);
+        }
+        catch (Exception ex)
+        {
+            Status?.Invoke(this, "Projection parse failed: " + ex.Message);
+            return;
+        }
+
+        if (blocks.Count == 0)
+        {
+            Status?.Invoke(this, "No blocks found.");
+            return;
+        }
+
+        int caret = _editor.CaretOffset;
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
+        if (curIx < 0) curIx = 0;
+
+        int hitIx = -1;
+
+        // search after current first
+        for (int i = Math.Min(curIx + 1, blocks.Count); i < blocks.Count; i++)
+        {
+            if (ContainsChineseChar(blocks[i].En))
+            {
+                hitIx = i;
+                break;
+            }
+        }
+
+        // wrap
+        bool wrapped = false;
+        if (hitIx < 0)
+        {
+            for (int i = 0; i <= Math.Min(curIx, blocks.Count - 1); i++)
+            {
+                if (ContainsChineseChar(blocks[i].En))
+                {
+                    hitIx = i;
+                    wrapped = true;
+                    break;
+                }
+            }
+        }
+
+        if (hitIx < 0)
+        {
+            Status?.Invoke(this, "No Chinese characters found in EN lines.");
+            return;
+        }
+
+        SelectEnValueAndReveal(blocks[hitIx]);
+
+        Status?.Invoke(this, wrapped
+            ? $"Found Chinese in EN at block <{blocks[hitIx].BlockNumber}> (wrapped)."
+            : $"Found Chinese in EN at block <{blocks[hitIx].BlockNumber}>.");
+    }
+
+    private int GetSelectedChunkSize()
+    {
+        try
+        {
+            if (_cmbChunkSize?.SelectedItem is ComboBoxItem cbi &&
+                int.TryParse(cbi.Content?.ToString(), out var n) &&
+                n > 0)
+                return n;
+
+            if (_cmbChunkSize?.SelectedItem != null &&
+                int.TryParse(_cmbChunkSize.SelectedItem.ToString(), out n) &&
+                n > 0)
+                return n;
         }
         catch { }
+
+        return 10;
     }
 
-    private void ClearFindState()
+    private static int FindBlockIndexAtOrAfterCaret(List<ProjectionBlockInfo> blocks, int caretOffset)
     {
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-        UpdateFindCount();
-        ClearHighlight();
+        if (blocks.Count == 0) return -1;
+
+        for (int i = 0; i < blocks.Count; i++)
+        {
+            var b = blocks[i];
+            if (caretOffset >= b.BlockStartOffset && caretOffset < b.BlockEndOffsetExclusive)
+                return i;
+        }
+
+        // If caret is before first block, start there
+        if (caretOffset < blocks[0].BlockStartOffset)
+            return 0;
+
+        // If caret is after all blocks, return last
+        return blocks.Count - 1;
     }
 
-    // --------------------------
-    // Helpers
-    // --------------------------
+    private void SelectAndRevealBlock(ProjectionBlockInfo block)
+    {
+        if (_editor?.Document == null)
+            return;
+
+        int start = Math.Clamp(block.BlockStartOffset, 0, _editor.Document.TextLength);
+        int end = Math.Clamp(block.BlockEndOffsetExclusive, start, _editor.Document.TextLength);
+
+        _editor.CaretOffset = start;
+        _editor.TextArea.Selection = Selection.Create(_editor.TextArea, start, end);
+
+        try
+        {
+            var line = _editor.Document.GetLineByOffset(start).LineNumber;
+            _editor.ScrollToLine(line);
+        }
+        catch
+        {
+            // ignore
+        }
+
+        _editor.Focus();
+    }
+
+    private void SelectEnValueAndReveal(ProjectionBlockInfo block)
+    {
+        if (_editor?.Document == null)
+            return;
+
+        int start = Math.Clamp(block.EnValueStartOffset, 0, _editor.Document.TextLength);
+        int end = Math.Clamp(block.EnValueStartOffset + block.EnValueLength, start, _editor.Document.TextLength);
+
+        _editor.CaretOffset = start;
+        _editor.TextArea.Selection = Selection.Create(_editor.TextArea, start, end);
+
+        try
+        {
+            var line = _editor.Document.GetLineByOffset(start).LineNumber;
+            _editor.ScrollToLine(line);
+        }
+        catch
+        {
+            // ignore
+        }
+
+        _editor.Focus();
+    }
+
+    private void OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Z && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            DoUndo();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Y && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            DoRedo();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.C &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Control) &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+        {
+            _ = CopyChunkWithPromptAsync();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.V &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Control) &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+        {
+            _ = PasteByMatchingBlockNumberAsync();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.F8)
+        {
+            JumpToNextUntranslated();
+            e.Handled = true;
+            return;
+        }
+
+        // Optional shortcut: Ctrl+Shift+F = find Chinese in EN
+        if (e.Key == Key.F &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Control) &&
+            e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+        {
+            JumpToChineseInEnglishLine();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.D1 && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            SwitchMode(TranslationEditMode.Head);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.D2 && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            SwitchMode(TranslationEditMode.Body);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.D3 && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            SwitchMode(TranslationEditMode.Notes);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.S && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            SaveRequested?.Invoke(this, EventArgs.Empty);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.R && e.KeyModifiers.HasFlag(KeyModifiers.Control))
+        {
+            RevertRequested?.Invoke(this, EventArgs.Empty);
+            e.Handled = true;
+        }
+    }
 
     private IClipboard? GetClipboard()
     {
@@ -1313,446 +935,204 @@ public partial class TranslationTabView : UserControl
         return top?.Clipboard;
     }
 
-    private static string BuildChatGptPrompt(string selectionXml)
+    private static string BuildPrompt(string selectedProjection)
     {
         return
-$@"You are an XML-preserving translator.
+$@"You are translating a CBETA projection block.
 
-ABSOLUTE TARGET LANGUAGE:
-- Translate into ENGLISH ONLY.
-- Do NOT rewrite or paraphrase text that is already in English; keep existing English EXACTLY as-is.
+STRICT RULES:
+- Edit ONLY EN: lines.
+- Keep <n> and all ZH: lines unchanged.
+- Keep the same number of EN[n] lines as ZH[n] lines.
+- Do NOT merge lines.
+- Do NOT split lines.
+- Do NOT add commentary.
+- Do NOT add or remove blocks.
+- Do NOT use angle brackets < or > in EN text.
+- Output ONLY one markdown code block.
 
-NON-NEGOTIABLE RULES (STRICT SPEC):
-
-1) XML STRUCTURE MUST BE PRESERVED EXACTLY
-   - Every start tag, end tag, self-closing tag, attribute name/value, namespace prefix,
-     entity reference, CDATA marker, processing instruction, and tag order must remain IDENTICAL.
-   - Do NOT add, remove, reorder, rename, or reformat any tags or attributes.
-   - Do NOT move text across tag boundaries.
-   - Do NOT duplicate the fragment or append a second copy.
-   - Output must be well-formed XML.
-
-2) TRANSLATE TEXT NODES ONLY (HUMAN-READABLE NATURAL LANGUAGE)
-   - Translate ONLY natural-language text inside text nodes.
-   - NEVER translate or modify:
-     • tag names
-     • attribute names or values
-     • IDs, codes, catalog numbers, dates/times, line numbers, refs, witness marks (e.g., 【CB】), or other non-prose tokens
-     • any text that is already English (leave it exactly unchanged)
-   - You MUST translate ALL non-empty Chinese/Japanese/Korean (CJK) natural-language text that appears in text nodes.
-   - You MAY smooth sentence flow across line-break tags (e.g. <lb/>, <pb/>) ONLY by choosing English wording that reads naturally,
-     but you may NOT move text across tags. Punctuation is up to you as long as you make the text remain close to the original meaning.
-
-3) WHITESPACE / PUNCTUATION PRESERVATION
-   - Keep whitespace/newlines as close as possible to the input (do NOT rewrap or normalize).
-   - Preserve the existing punctuation structure as long as you output readable English.
-   - Do NOT add explanatory parentheses, glosses, or extra words like ""(i.e.)"".
-
-4) SILENT INTERNAL SELF-CHECK (MANDATORY)
-   - Check that the sequence and count of '<...>' XML tokens in your output EXACTLY matches the input.
-   - Check that all attributes, namespaces, and processing instructions are unchanged.
-   - Check that NO CJK characters remain in text nodes that should have been translated.
-   - Check that you did NOT translate any existing English text.
-   - If ANY check fails, output the ORIGINAL XML UNCHANGED (verbatim).
-
-OUTPUT REQUIREMENTS:
-- Output ONLY the XML fragment (exactly one copy).
-- Put the entire output in ONE single ```xml code block``` and NOTHING ELSE.
-
-XML fragment to translate:
-```xml
-{selectionXml}
+```markdown
+{selectedProjection}
 ```";
     }
 
-    private static string ExtractXmlFromClipboard(string clipboardText)
+    private static string ExtractCodeBlockOrRaw(string text)
     {
-        var m = Regex.Match(
-            clipboardText,
-            @"```(?:xml)?\s*(?<xml>[\s\S]*?)\s*```",
-            RegexOptions.IgnoreCase);
-
-        if (m.Success)
-            return m.Groups["xml"].Value.Trim();
-
-        return clipboardText.Trim();
+        var m = Regex.Match(text, @"```(?:markdown|md|text)?\s*(?<x>[\s\S]*?)\s*```", RegexOptions.IgnoreCase);
+        return m.Success ? m.Groups["x"].Value.Trim() : text.Trim();
     }
 
-    private static readonly Regex XmlTagRegex = new Regex(@"<[^>]+>", RegexOptions.Compiled);
+    // =========================
+    // Copy / navigation filtering helpers
+    // =========================
 
-    private async Task SelectNextTagsAsync(int tagCount)
+    private static bool ShouldIncludeForCopy(ProjectionBlockInfo block, bool requireUntranslated)
     {
-        if (_tran == null)
-        {
-            Status?.Invoke(this, "Translated XML editor not available.");
-            return;
-        }
+        if (block == null) return false;
 
-        var text = _tran.Text ?? "";
-        if (text.Length == 0)
-        {
-            Status?.Invoke(this, "Translated XML is empty.");
-            return;
-        }
-
-        int start;
-
-        try
-        {
-            var sel = _tran.TextArea.Selection;
-            if (sel != null && !sel.IsEmpty)
-            {
-                start = sel.SurroundingSegment.Offset + sel.SurroundingSegment.Length;
-                _lastCopyStart = sel.SurroundingSegment.Offset;
-                _lastCopyEnd = start;
-            }
-            else if (_lastCopyEnd > _lastCopyStart) start = _lastCopyEnd;
-            else start = _tran.TextArea.Caret.Offset;
-        }
-        catch
-        {
-            start = _lastCopyEnd > _lastCopyStart ? _lastCopyEnd : 0;
-        }
-
-        start = Math.Clamp(start, 0, text.Length);
-
-        var matches = XmlTagRegex.Matches(text, start);
-        if (matches.Count == 0)
-        {
-            await ShowInfoPopupAsync("End reached", "No more XML tags found after the current position.");
-            return;
-        }
-
-        int take = Math.Min(tagCount, matches.Count);
-        var last = matches[take - 1];
-
-        int end = last.Index + last.Length;
-        end = Math.Clamp(end, 0, text.Length);
-
-        end = ExtendToNextNewline(text, end);
-
-        if (end <= start)
-        {
-            await ShowInfoPopupAsync("Selection failed", "Could not compute a valid selection range.");
-            return;
-        }
-
-        try
-        {
-            _tran.Focus();
-            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, start, end);
-            _tran.TextArea.Caret.Offset = start;
-        }
-        catch { }
-
-        _lastCopyStart = start;
-        _lastCopyEnd = end;
-
-        Status?.Invoke(this, $"Selected {take} tag(s) + newline boundary ({end - start:n0} chars).");
-    }
-
-    private static int ExtendToNextNewline(string text, int end)
-    {
-        if (string.IsNullOrEmpty(text)) return end;
-        end = Math.Clamp(end, 0, text.Length);
-        if (end >= text.Length) return text.Length;
-
-        const int MaxScan = 4000;
-        int scanLimit = Math.Min(text.Length, end + MaxScan);
-
-        for (int i = end; i < scanLimit; i++)
-        {
-            if (text[i] == '\n')
-                return i + 1;
-        }
-
-        int j = end;
-        while (j < text.Length && (text[j] == ' ' || text[j] == '\t' || text[j] == '\r'))
-            j++;
-
-        return j;
-    }
-
-    // --------------------------
-    // Hacky XML check (no parser)
-    // --------------------------
-
-    private static readonly Regex CommunityNoteBlockRegex = new Regex(
-        @"<note\b(?<attrs>[^>]*)\btype\s*=\s*""community""(?<attrs2>[^>]*)>(?<inner>[\s\S]*?)</note>",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static string StripCommunityNotes(string xml)
-    {
-        if (string.IsNullOrEmpty(xml)) return xml ?? string.Empty;
-        return CommunityNoteBlockRegex.Replace(xml, "");
-    }
-
-    private static readonly Regex LbTagRegex = new Regex(
-        @"<lb\b(?<attrs>[^>]*)\/?>",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static readonly Regex AttrRegex = new Regex(
-        @"\b(?<name>n|ed)\s*=\s*""(?<val>[^""]*)""",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    private static (int totalLb, Dictionary<string, int> sigCounts) CollectLbSignatures(string xml)
-    {
-        int total = 0;
-        var dict = new Dictionary<string, int>(StringComparer.Ordinal);
-
-        foreach (Match m in LbTagRegex.Matches(xml))
-        {
-            total++;
-
-            string attrs = m.Groups["attrs"].Value;
-
-            string? nVal = null;
-            string? edVal = null;
-
-            foreach (Match am in AttrRegex.Matches(attrs))
-            {
-                var name = am.Groups["name"].Value;
-                var val = am.Groups["val"].Value;
-
-                if (name.Equals("n", StringComparison.OrdinalIgnoreCase)) nVal = val;
-                else if (name.Equals("ed", StringComparison.OrdinalIgnoreCase)) edVal = val;
-            }
-
-            string sig = $"n={nVal ?? "<missing>"}|ed={edVal ?? "<missing>"}";
-
-            if (dict.TryGetValue(sig, out int c)) dict[sig] = c + 1;
-            else dict[sig] = 1;
-        }
-
-        return (total, dict);
-    }
-
-    private static (bool ok, string message, int origTags, int tranTags, int origLb, int tranLb) VerifyXmlHacky(string orig, string tran)
-    {
-        if (string.IsNullOrEmpty(orig))
-            return (false, "Original XML is empty. Nothing to compare.", 0, 0, 0, 0);
-
-        tran ??= "";
-
-        string tranStripped = StripCommunityNotes(tran);
-
-        int origTagCount = XmlTagRegex.Matches(orig).Count;
-        int tranTagCount = XmlTagRegex.Matches(tran).Count;
-        int tranTagCountStripped = XmlTagRegex.Matches(tranStripped).Count;
-
-        var (origLbTotal, origSigs) = CollectLbSignatures(orig);
-        var (tranLbTotal, tranSigs) = CollectLbSignatures(tranStripped);
-
-        var missing = origSigs.Keys.Where(k => !tranSigs.ContainsKey(k)).ToList();
-        var extra = tranSigs.Keys.Where(k => !origSigs.ContainsKey(k)).ToList();
-
-        var countDiffs = new List<string>();
-        foreach (var k in origSigs.Keys.Intersect(tranSigs.Keys))
-        {
-            int a = origSigs[k];
-            int b = tranSigs[k];
-            if (a != b)
-                countDiffs.Add($"{k}  original={a}  translated={b}");
-        }
-
-        var problems = new List<string>();
-
-        if (origTagCount != tranTagCountStripped)
-            problems.Add(
-                $"TAG COUNT MISMATCH (ignoring community notes):\n" +
-                $"  original={origTagCount:n0}\n" +
-                $"  translated_stripped={tranTagCountStripped:n0}\n" +
-                $"  translated_raw={tranTagCount:n0}");
-
-        if (origLbTotal != tranLbTotal)
-            problems.Add($"LB TOTAL MISMATCH:\n  original={origLbTotal:n0}\n  translated={tranLbTotal:n0}");
-
-        if (missing.Count > 0)
-            problems.Add($"MISSING <lb> SIGNATURES in translated: {missing.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", missing.Take(15))}");
-
-        if (extra.Count > 0)
-            problems.Add($"EXTRA <lb> SIGNATURES in translated: {extra.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", extra.Take(15))}");
-
-        if (countDiffs.Count > 0)
-            problems.Add($"<lb> SIGNATURE COUNT DIFFERENCES: {countDiffs.Count:n0}\n(showing up to 15)\n- {string.Join("\n- ", countDiffs.Take(15))}");
-
-        if (problems.Count == 0)
-        {
-            int removed = tranTagCount - tranTagCountStripped;
-
-            string okMsg =
-                $"OK ✅\n\n" +
-                $"Tag count matches (ignoring community notes): {tranTagCountStripped:n0}\n" +
-                $"<lb> count matches: {tranLbTotal:n0}\n" +
-                $"All <lb n=... ed=...> signatures match.\n" +
-                (removed > 0 ? $"\nCommunity-note tags ignored during check: {removed:n0}\n" : "\n") +
-                $"(Hacky structural check only; not a full XML validator.)";
-
-            return (true, okMsg, origTagCount, tranTagCount, origLbTotal, tranLbTotal);
-        }
-
-        return (false, string.Join("\n\n", problems), origTagCount, tranTagCount, origLbTotal, tranLbTotal);
-    }
-
-    private async Task<bool> EnsureXmlOkOrWarnAsync(bool showOkPopup)
-    {
-        if (_orig == null || _tran == null)
-        {
-            Status?.Invoke(this, "Editors not available.");
-            if (showOkPopup)
-                await ShowInfoPopupAsync("Check XML", "Editors not available.");
+        if (IsSkippableForCopyOrJump(block))
             return false;
-        }
 
-        var orig = _orig.Text ?? "";
-        var tran = _tran.Text ?? "";
+        if (requireUntranslated && !string.IsNullOrWhiteSpace(block.En))
+            return false;
 
-        var (ok, msg, _, tranTags, _, tranLb) = VerifyXmlHacky(orig, tran);
+        return true;
+    }
 
-        if (ok)
-        {
-            Status?.Invoke(this, $"XML check OK: tags={tranTags:n0}, lb={tranLb:n0} (n/ed preserved).");
-            if (showOkPopup)
-                await ShowInfoPopupAsync("Check XML", msg);
+    private static bool ShouldJumpToUntranslated(ProjectionBlockInfo block)
+    {
+        if (block == null) return false;
+
+        if (IsSkippableForCopyOrJump(block))
+            return false;
+
+        return string.IsNullOrWhiteSpace(block.En);
+    }
+
+    private static bool IsSkippableForCopyOrJump(ProjectionBlockInfo block)
+    {
+        var zh = block.Zh ?? "";
+        var en = block.En ?? "";
+
+        // Skip completely empty noise entries
+        if (string.IsNullOrWhiteSpace(zh) && string.IsNullOrWhiteSpace(en))
             return true;
-        }
 
-        Status?.Invoke(this, "XML check failed (see popup).");
-        await ShowInfoPopupAsync("Check XML (hacky)", msg);
+        // Skip entries with no Chinese chars in ZH
+        if (!ContainsChineseChar(zh))
+            return true;
+
         return false;
     }
 
-    private Task CheckXmlWithPopupAsync() => EnsureXmlOkOrWarnAsync(showOkPopup: true);
-
-    private async Task SaveIfValidAsync()
+    private static bool ContainsChineseChar(string? s)
     {
-        if (!await EnsureXmlOkOrWarnAsync(showOkPopup: false))
-            return;
+        if (string.IsNullOrEmpty(s))
+            return false;
 
-        SaveRequested?.Invoke(this, EventArgs.Empty);
-    }
-
-    // --------------------------
-    // Popup (awaited)
-    // --------------------------
-
-    private async Task ShowInfoPopupAsync(string title, string message)
-    {
-        var owner = TopLevel.GetTopLevel(this) as Window;
-
-        var ok = new Button
+        foreach (char ch in s)
         {
-            Content = "OK",
-            HorizontalAlignment = HorizontalAlignment.Right,
-            MinWidth = 80
-        };
-
-        var text = new TextBox
-        {
-            Text = message,
-            IsReadOnly = true,
-            TextWrapping = TextWrapping.Wrap,
-            AcceptsReturn = true,
-            Height = 240
-        };
-
-        ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
-        ScrollViewer.SetHorizontalScrollBarVisibility(text, ScrollBarVisibility.Disabled);
-
-        var panel = new StackPanel
-        {
-            Margin = new Thickness(16),
-            Spacing = 10
-        };
-
-        panel.Children.Add(text);
-        panel.Children.Add(ok);
-
-        var win = new Window
-        {
-            Title = title,
-            Width = 700,
-            Height = 380,
-            Content = panel,
-            WindowStartupLocation = owner != null
-                ? WindowStartupLocation.CenterOwner
-                : WindowStartupLocation.CenterScreen
-        };
-
-        if (owner != null)
-        {
-            ok.Click += (_, _) => win.Close();
-            await win.ShowDialog(owner);
-            return;
+            // CJK Unified Ideographs + Ext A + Compatibility Ideographs
+            if ((ch >= '\u3400' && ch <= '\u4DBF') ||
+                (ch >= '\u4E00' && ch <= '\u9FFF') ||
+                (ch >= '\uF900' && ch <= '\uFAFF'))
+            {
+                return true;
+            }
         }
 
-        var tcs = new TaskCompletionSource<bool>();
-        ok.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
-        win.Show();
-        await tcs.Task;
+        return false;
     }
 
-    private void ResetNavigationState()
+    // =========================
+    // Block parsing (editor text)
+    // =========================
+
+    private sealed class ProjectionBlockInfo
     {
-        if (_tran == null) return;
+        public int BlockNumber { get; set; }
+        public string Zh { get; set; } = "";
+        public string En { get; set; } = "";
 
-        _lastCopyStart = -1;
-        _lastCopyEnd = -1;
-
-        try
-        {
-            _tran.TextArea.Selection = Selection.Create(_tran.TextArea, 0, 0);
-            _tran.TextArea.Caret.Offset = 0;
-        }
-        catch { }
-
-        try { _tran.Focus(); } catch { }
-
-        Log("ResetNavigationState done");
+        public int BlockStartOffset { get; set; }               // at '<'
+        public int BlockEndOffsetExclusive { get; set; }        // end of block (may include trailing blank lines)
+        public int EnValueStartOffset { get; set; }             // offset of EN value text
+        public int EnValueLength { get; set; }                  // length of EN value text
     }
 
-    // --------------------------
-    // Scroll helper for AvaloniaEdit
-    // --------------------------
-    private static void CenterByCaret(TextEditor ed)
+    private static List<ProjectionBlockInfo> ParseProjectionBlocksWithOffsets(string text)
     {
-        var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
-        if (sv == null) return;
+        text ??= "";
 
-        double viewportH = sv.Viewport.Height;
-        double extentH = sv.Extent.Height;
-        if (double.IsNaN(viewportH) || double.IsInfinity(viewportH) || viewportH <= 0) return;
+        // Strict single-line ZH / EN blocks:
+        // <123>
+        // ZH: ...
+        // EN: ...
+        //
+        // Extra blank lines after block are allowed.
+        var rx = new Regex(
+            @"(?m)^(?<hdr><(?<num>\d+)>)\s*\r?\n" +
+            @"ZH:\s?(?<zh>[^\r\n]*)\r?\n" +
+            @"EN:\s?(?<en>[^\r\n]*)",
+            RegexOptions.Compiled);
 
-        var textView = ed.TextArea.TextView;
-        if (textView == null) return;
+        var ms = rx.Matches(text);
+        var list = new List<ProjectionBlockInfo>(ms.Count);
 
-        textView.EnsureVisualLines();
-
-        var caretPos = ed.TextArea.Caret.Position;
-
-        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
-        var p = textView.TranslatePoint(loc, sv);
-        if (p == null) return;
-
-        double caretY = p.Value.Y;
-
-        bool looksLikeViewportCoords =
-            caretY >= -viewportH * 0.25 &&
-            caretY <= viewportH * 1.25;
-
-        double desiredY;
-        if (looksLikeViewportCoords)
-            desiredY = sv.Offset.Y + (caretY - (viewportH / 2.0));
-        else
-            desiredY = caretY - (viewportH / 2.0);
-
-        if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
+        foreach (Match m in ms)
         {
-            double maxY = Math.Max(0, extentH - viewportH);
-            desiredY = Math.Max(0, Math.Min(desiredY, maxY));
-        }
-        else desiredY = Math.Max(0, desiredY);
+            if (!m.Success) continue;
 
-        sv.Offset = new Vector(sv.Offset.X, desiredY);
+            if (!int.TryParse(m.Groups["num"].Value, out int num))
+                continue;
+
+            var enGroup = m.Groups["en"];
+            var blockStart = m.Index;
+            var blockEnd = m.Index + m.Length; // extend later to include blank lines up to next header/start
+
+            list.Add(new ProjectionBlockInfo
+            {
+                BlockNumber = num,
+                Zh = m.Groups["zh"].Value,
+                En = enGroup.Value,
+                BlockStartOffset = blockStart,
+                BlockEndOffsetExclusive = blockEnd,
+                EnValueStartOffset = enGroup.Index,
+                EnValueLength = enGroup.Length
+            });
+        }
+
+        // Expand each block end to right before next block start (so copied chunks preserve blank separators)
+        for (int i = 0; i < list.Count; i++)
+        {
+            int end = (i + 1 < list.Count) ? list[i + 1].BlockStartOffset : text.Length;
+            list[i].BlockEndOffsetExclusive = end;
+        }
+
+        return list;
+    }
+
+    private static void ValidateEnglish(string en, int blockNumber)
+    {
+        en ??= "";
+
+        if (en.Contains('<') || en.Contains('>'))
+            throw new InvalidOperationException($"Block <{blockNumber}> EN contains '<' or '>' which is not allowed.");
+
+        for (int i = 0; i < en.Length; i++)
+        {
+            char ch = en[i];
+
+            if (char.IsHighSurrogate(ch))
+            {
+                if (i + 1 < en.Length && char.IsLowSurrogate(en[i + 1]))
+                {
+                    i++;
+                    continue;
+                }
+
+                throw new InvalidOperationException(
+                    $"Block <{blockNumber}> EN contains invalid XML character (unpaired high surrogate U+{((int)ch):X4}) at position {i + 1}.");
+            }
+
+            if (char.IsLowSurrogate(ch))
+            {
+                throw new InvalidOperationException(
+                    $"Block <{blockNumber}> EN contains invalid XML character (unpaired low surrogate U+{((int)ch):X4}) at position {i + 1}.");
+            }
+
+            bool ok =
+                ch == '\t' ||
+                ch == '\n' ||
+                ch == '\r' ||
+                (ch >= 0x20 && ch <= 0xD7FF) ||
+                (ch >= 0xE000 && ch <= 0xFFFD);
+
+            if (!ok)
+            {
+                throw new InvalidOperationException(
+                    $"Block <{blockNumber}> EN contains invalid XML character (U+{((int)ch):X4}) at position {i + 1}.");
+            }
+        }
     }
 }

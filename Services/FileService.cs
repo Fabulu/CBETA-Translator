@@ -10,6 +10,7 @@ namespace CbetaTranslator.App.Services;
 public sealed class FileService : IFileService
 {
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+    private static string ToMarkdownRelativePath(string relativePath) => Path.ChangeExtension(relativePath, ".md");
 
     public Task<List<string>> EnumerateXmlRelativePathsAsync(string originalDir)
     {
@@ -48,5 +49,48 @@ public sealed class FileService : IFileService
 
             File.WriteAllText(path, translatedXml ?? string.Empty, Utf8NoBom);
         });
+    }
+
+    public Task<(string OriginalXml, string MarkdownText)> ReadOriginalAndMarkdownAsync(string originalDir, string markdownDir, string relativePath)
+    {
+        return Task.Run(() =>
+        {
+            var origPath = Path.Combine(originalDir, relativePath);
+            var mdPath = Path.Combine(markdownDir, ToMarkdownRelativePath(relativePath));
+
+            string orig = File.Exists(origPath) ? File.ReadAllText(origPath, Utf8NoBom) : string.Empty;
+            string md = File.Exists(mdPath) ? File.ReadAllText(mdPath, Utf8NoBom) : string.Empty;
+
+            return (orig, md);
+        });
+    }
+
+    public Task WriteMarkdownAsync(string markdownDir, string relativePath, string markdownText)
+    {
+        return Task.Run(() =>
+        {
+            var mdRelPath = ToMarkdownRelativePath(relativePath);
+            var path = Path.Combine(markdownDir, mdRelPath);
+
+            var dir = Path.GetDirectoryName(path);
+            if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            File.WriteAllText(path, markdownText ?? string.Empty, Utf8NoBom);
+        });
+    }
+
+    public Task<string?> ReadOriginalAsync(string originalDir, string relPath)
+    {
+        var path = Path.Combine(originalDir, relPath);
+        if (!File.Exists(path)) return Task.FromResult<string?>(null);
+        return Task.FromResult<string?>(File.ReadAllText(path, Encoding.UTF8));
+    }
+
+    public Task<string?> ReadTranslatedAsync(string translatedDir, string relPath)
+    {
+        var path = Path.Combine(translatedDir, relPath);
+        if (!File.Exists(path)) return Task.FromResult<string?>(null);
+        return Task.FromResult<string?>(File.ReadAllText(path, Encoding.UTF8));
     }
 }

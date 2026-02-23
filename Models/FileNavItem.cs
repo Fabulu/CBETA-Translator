@@ -1,4 +1,6 @@
-﻿namespace CbetaTranslator.App.Models;
+﻿using System.Collections.Generic;
+
+namespace CbetaTranslator.App.Models;
 
 public sealed class FileNavItem
 {

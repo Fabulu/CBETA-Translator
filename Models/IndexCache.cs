@@ -5,7 +5,7 @@ namespace CbetaTranslator.App.Models;
 
 public sealed class IndexCache
 {
-    public int Version { get; set; } = 2;
+    public int Version { get; set; } = 3;
 
     public string RootPath { get; set; } = "";
     public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;

@@ -18,7 +18,7 @@ public sealed class IndexCacheService
 
     // Bump this string whenever you want to force rebuild even if cache exists.
     // (Useful when you change status logic and want to ensure the cache isn't stale.)
-    private const string CacheBuildGuid = "phase2-status-v2-textnodes";
+    private const string CacheBuildGuid = "phase3-nav-v3-no-metadata";
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -74,13 +74,10 @@ public sealed class IndexCacheService
             if (cache.Entries == null || cache.Entries.Count == 0)
                 return null;
 
-            // Version gate (keep your v2 baseline)
-            if (cache.Version < 2)
+            // Version gate
+            if (cache.Version < 3)
                 return null;
 
-            // Extra invalidation lever: cache must match our build guid.
-            // If your IndexCache model doesn't have this field yet, add it (string? BuildGuid).
-            // If it doesn't exist, this line will not compile — see note below.
             if (!string.Equals(cache.BuildGuid, CacheBuildGuid, StringComparison.Ordinal))
                 return null;
 
@@ -96,7 +93,7 @@ public sealed class IndexCacheService
     {
         cache.RootPath = root;
         cache.BuiltUtc = DateTime.UtcNow;
-        cache.Version = 2;
+        cache.Version = 3;
         cache.BuildGuid = CacheBuildGuid;
 
         var path = GetCachePath(root);
@@ -452,7 +449,7 @@ public Task<IndexCache> BuildAsync(
                     FileName = fileName,
                     DisplayShort = shortLabel,
                     Tooltip = tooltip,
-                    Status = status
+                    Status = status,
                 });
 
                 if (progress != null && (i % 50 == 0 || i == total - 1))
@@ -465,7 +462,7 @@ public Task<IndexCache> BuildAsync(
 
             return new IndexCache
             {
-                Version = 2,
+                Version = 3,
                 RootPath = root,
                 BuiltUtc = DateTime.UtcNow,
                 BuildGuid = CacheBuildGuid,

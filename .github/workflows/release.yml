@@ -12,6 +12,12 @@ env:
   PROJECT_FILE: CbetaTranslator.App.csproj
   TFM: net8.0
 
+  # Portable Git for Windows (fuller than MinGit; includes GCM/browser auth flow pieces)
+  # You can bump this later if needed.
+  PORTABLE_GIT_VERSION: 2.49.0
+  PORTABLE_GIT_FILE: PortableGit-2.49.0-64-bit.7z.exe
+  PORTABLE_GIT_URL: https://github.com/git-for-windows/git/releases/download/v2.49.0.windows.1/PortableGit-2.49.0-64-bit.7z.exe
+
 jobs:
   build:
     name: Build (${{ matrix.rid }})
@@ -72,6 +78,55 @@ jobs:
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
           mkdir -p "$PUB/assets/dict"
           cp -R "Assets/Dict/." "$PUB/assets/dict/"
+
+      # ------------------------------------------------------------
+      # Windows only: bundle FULL Portable Git in the exact layout your
+      # GitBinaryLocator expects:
+      #   tools/git/win-x64/cmd/git.exe
+      #   tools/git/win-x64/bin/git.exe
+      #   tools/git/win-x64/mingw64/...
+      #   tools/git/win-x64/usr/...
+      # ------------------------------------------------------------
+      - name: Download Portable Git (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          New-Item -ItemType Directory -Force .ci-tools | Out-Null
+          $dst = Join-Path $PWD ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
+          Write-Host "Downloading Portable Git: ${{ env.PORTABLE_GIT_URL }}"
+          Invoke-WebRequest -Uri "${{ env.PORTABLE_GIT_URL }}" -OutFile $dst
+          if (!(Test-Path $dst)) { throw "Portable Git download failed." }
+
+      - name: Extract Portable Git into publish/tools/git/win-x64 (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $pub = "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
+          $gitRoot = Join-Path $pub "tools\git\win-x64"
+          $archive = Join-Path $PWD ".ci-tools\${{ env.PORTABLE_GIT_FILE }}"
+
+          if (Test-Path $gitRoot) { Remove-Item $gitRoot -Recurse -Force }
+          New-Item -ItemType Directory -Force $gitRoot | Out-Null
+
+          # PortableGit-*.7z.exe is a self-extracting 7z archive.
+          # -y = assume Yes, -o<path> = output directory
+          Write-Host "Extracting Portable Git to: $gitRoot"
+          & $archive "-y" "-o$gitRoot"
+
+          if ($LASTEXITCODE -ne 0) { throw "Portable Git extractor failed with exit code $LASTEXITCODE" }
+
+          # Sanity checks against your GitBinaryLocator
+          $p1 = Join-Path $gitRoot "cmd\git.exe"
+          $p2 = Join-Path $gitRoot "bin\git.exe"
+          if (!(Test-Path $p1) -and !(Test-Path $p2)) {
+            throw "Portable Git extracted, but git.exe not found in cmd/ or bin/."
+          }
+
+          Write-Host "Portable Git bundled successfully."
+          Get-ChildItem $gitRoot | Select-Object Name, Mode | Format-Table -AutoSize
 
       - name: Package (Windows)
         if: runner.os == 'Windows'

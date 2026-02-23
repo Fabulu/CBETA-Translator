@@ -13,15 +13,15 @@
                 Padding="10"
                 CornerRadius="8">
 
-			<Grid ColumnDefinitions="*,Auto,Auto,Auto"
-                  RowDefinitions="Auto,Auto"
-                  ColumnSpacing="10"
-                  RowSpacing="8">
+			<Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,Auto,Auto,Auto"
+                  RowSpacing="8"
+                  ColumnSpacing="8">
 
-				<!-- Row 0 -->
 				<TextBox Name="TxtQuery"
                          Grid.Row="0"
                          Grid.Column="0"
+                         HorizontalAlignment="Stretch"
                          Watermark="Search (CJK phrases, substrings)…"/>
 
 				<Button Name="BtnSearch" Grid.Row="0" Grid.Column="1" Content="Search"/>
@@ -132,7 +132,7 @@
 						<TextBlock Text="" DockPanel.Dock="Left" />
 						<ComboBox Name="CmbCoocMetric"
                                   DockPanel.Dock="Right"
-                                  Width="320"/>
+                                  Width="220"/>
 					</DockPanel>
 				</Expander.Header>
 
