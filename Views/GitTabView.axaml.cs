@@ -130,27 +130,62 @@ public partial class GitTabView : UserControl
         };
     }
 
+    private string? TryResolveRepoRootFromAnyFolder(string? folderPath)
+    {
+        if (string.IsNullOrWhiteSpace(folderPath))
+            return null;
+
+        try
+        {
+            var full = Path.GetFullPath(folderPath.Trim());
+
+            if (!Directory.Exists(full))
+                return null;
+
+            // Case 1: exact repo root
+            if (Directory.Exists(Path.Combine(full, ".git")))
+                return full;
+
+            // Case 2: parent folder that contains the repo folder
+            var childRepo = Path.Combine(full, RepoFolderName);
+            if (Directory.Exists(childRepo) && Directory.Exists(Path.Combine(childRepo, ".git")))
+                return childRepo;
+
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
     public void SetCurrentRepoRoot(string? rootPath)
     {
         if (string.IsNullOrWhiteSpace(rootPath))
             return;
 
-        var root = rootPath.Trim();
+        var input = rootPath.Trim();
 
-        if (Directory.Exists(root) && Directory.Exists(Path.Combine(root, ".git")))
+        // Resolve intelligently:
+        // - If input is the repo root -> use it
+        // - If input is a parent folder containing CbetaZenTexts -> use that child repo
+        // - Otherwise treat input as base destination folder
+        var resolvedRepo = TryResolveRepoRootFromAnyFolder(input);
+
+        if (!string.IsNullOrWhiteSpace(resolvedRepo))
         {
-            _currentRepoRoot = root;
-            _baseDestFolder = Path.GetDirectoryName(root);
+            _currentRepoRoot = resolvedRepo;
+            _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
             return;
         }
 
-        if (Directory.Exists(root))
+        if (Directory.Exists(input))
         {
             _currentRepoRoot = null;
-            _baseDestFolder = root;
+            _baseDestFolder = input;
             UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
         }
     }
 
@@ -187,6 +222,7 @@ public partial class GitTabView : UserControl
 
     private string GetTargetRepoDir()
     {
+        // If we already know the repo root and it looks valid, use it.
         if (!string.IsNullOrWhiteSpace(_currentRepoRoot) &&
             Directory.Exists(_currentRepoRoot) &&
             Directory.Exists(Path.Combine(_currentRepoRoot, ".git")))
@@ -195,6 +231,25 @@ public partial class GitTabView : UserControl
         }
 
         var baseDir = _baseDestFolder ?? GetDefaultBaseFolder();
+
+        // If the chosen "base" folder is actually the repo root, use it directly.
+        if (Directory.Exists(baseDir) &&
+            string.Equals(Path.GetFileName(baseDir), RepoFolderName, StringComparison.OrdinalIgnoreCase) &&
+            Directory.Exists(Path.Combine(baseDir, ".git")))
+        {
+            _currentRepoRoot = baseDir;
+            return baseDir;
+        }
+
+        // If the chosen "base" folder contains the repo folder, use that.
+        var nestedRepo = Path.Combine(baseDir, RepoFolderName);
+        if (Directory.Exists(nestedRepo) && Directory.Exists(Path.Combine(nestedRepo, ".git")))
+        {
+            _currentRepoRoot = nestedRepo;
+            return nestedRepo;
+        }
+
+        // Default clone target path.
         return Path.Combine(baseDir, RepoFolderName);
     }
 
@@ -224,8 +279,25 @@ public partial class GitTabView : UserControl
             var folder = picked.Count > 0 ? picked[0] : null;
             if (folder == null) return;
 
-            _baseDestFolder = folder.Path.LocalPath;
-            _currentRepoRoot = null;
+            var pickedPath = folder.Path.LocalPath;
+
+            // Smart handling:
+            // - If user picked the repo root, use it.
+            // - If user picked a parent folder that contains CbetaZenTexts, use that child repo.
+            // - Otherwise treat as base destination folder.
+            var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
+
+            if (!string.IsNullOrWhiteSpace(resolvedRepo))
+            {
+                _currentRepoRoot = resolvedRepo;
+                _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+            }
+            else
+            {
+                _currentRepoRoot = null;
+                _baseDestFolder = pickedPath;
+            }
+
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
 
