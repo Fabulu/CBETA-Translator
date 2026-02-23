@@ -83,6 +83,9 @@ public partial class MainWindow : Window
     private CancellationTokenSource? _navSearchCts;
     private CancellationTokenSource? _renderCts;
 
+    private DispatcherTimer? _indexCacheSaveDebounce;
+    private bool _indexCacheDirty;
+
     private string _rawOrigXml = "";
     private string _rawTranXml = "";
 
@@ -650,7 +653,52 @@ public partial class MainWindow : Window
         await ApplyFilterAsync();
         WireSearchTab();
 
+        if (cache?.Entries is { Count: > 0 })
+        {
+            _allItems = cache.Entries;
+            RebuildLookup();
+
+            // Quick status refresh from disk (optional but recommended)
+            await RefreshAllCachedStatusesAsync();
+
+            await ApplyFilterAsync();
+            WireSearchTab();
+            SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
+            return;
+        }
+
         SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
+    }
+
+    private async Task RefreshAllCachedStatusesAsync()
+    {
+        if (_root == null || _originalDir == null || _translatedDir == null) return;
+
+        bool changed = false;
+
+        await Task.Run(() =>
+        {
+            foreach (var it in _allItems)
+            {
+                if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
+
+                var rel = NormalizeRel(it.RelPath);
+                var origAbs = Path.Combine(_originalDir, it.RelPath);
+                var tranAbs = Path.Combine(_translatedDir, it.RelPath);
+
+                var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, rel, verboseLog: false);
+                if (!Equals(it.Status, newStatus))
+                {
+                    it.Status = newStatus;
+                    changed = true;
+                }
+            }
+        });
+
+        if (changed)
+        {
+            await _indexCacheService.SaveAsync(_root, new IndexCache { Entries = _allItems });
+        }
     }
 
     private void RebuildLookup()
@@ -1196,7 +1244,12 @@ public partial class MainWindow : Window
 
             if (_allItemsByRel.TryGetValue(relKey, out var existing))
             {
-                existing.Status = newStatus;
+                if (!Equals(existing.Status, newStatus))
+                {
+                    existing.Status = newStatus;
+                    MarkIndexCacheDirty();   // <-- persist later
+                }
+
                 await ApplyFilterAsync();
             }
         }
@@ -1500,8 +1553,11 @@ public partial class MainWindow : Window
     {
         if (_translationView == null) return;
 
-        _translationView.SetModeProjection(mode, projectionText ?? "");
+        // Give the view full context first (paths, current file)
         TrySetCurrentFilePaths();
+
+        // Then inject text so any initial highlighting/classification runs with correct context
+        _translationView.SetModeProjection(mode, projectionText ?? "");
     }
 
     private string GetTranslationProjectionText()
@@ -1726,5 +1782,42 @@ public partial class MainWindow : Window
             throw new FileNotFoundException("File not found.", path);
 
         return File.ReadAllText(path, Encoding.UTF8);
+    }
+
+    private void MarkIndexCacheDirty()
+    {
+        _indexCacheDirty = true;
+
+        _indexCacheSaveDebounce ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(500)
+        };
+
+        _indexCacheSaveDebounce.Tick -= IndexCacheSaveDebounce_Tick;
+        _indexCacheSaveDebounce.Tick += IndexCacheSaveDebounce_Tick;
+
+        _indexCacheSaveDebounce.Stop();
+        _indexCacheSaveDebounce.Start();
+    }
+
+    private async void IndexCacheSaveDebounce_Tick(object? sender, EventArgs e)
+    {
+        try
+        {
+            _indexCacheSaveDebounce?.Stop();
+            if (!_indexCacheDirty) return;
+            if (_root == null) return;
+
+            _indexCacheDirty = false;
+
+            await _indexCacheService.SaveAsync(_root, new IndexCache
+            {
+                Entries = _allItems
+            });
+        }
+        catch
+        {
+            // optional: SetStatus("Failed to save index cache.");
+        }
     }
 }
