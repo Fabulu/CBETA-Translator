@@ -15,15 +15,14 @@ namespace CbetaTranslator.App.Views;
 
 /// <summary>
 /// Wraps AvaloniaEdit TextEditor and supports:
-/// - search highlight (SearchHighlightRenderer)
 /// - clicking annotation superscript markers to open/select annotations
 ///
-/// Built to survive different AvaloniaEdit versions (some APIs may be missing).
+/// Search highlight support was intentionally removed.
+/// Public highlight methods are kept as no-ops for compatibility.
 /// </summary>
 public sealed class AnnotatedTextEditor : UserControl
 {
     private readonly TextEditor _editor;
-    private SearchHighlightRenderer? _highlight;
 
     public event Action<DocAnnotation>? AnnotationClicked;
 
@@ -38,11 +37,6 @@ public sealed class AnnotatedTextEditor : UserControl
         TrySetWrapping(_editor, enable: true);
 
         Content = _editor;
-
-        _editor.AttachedToVisualTree += (_, _) =>
-        {
-            EnsureHighlightRenderer();
-        };
 
         // click handling for markers
         _editor.AddHandler(PointerPressedEvent, OnPointerPressed, RoutingStrategies.Tunnel);
@@ -59,31 +53,17 @@ public sealed class AnnotatedTextEditor : UserControl
     {
         _editor.Document ??= new TextDocument();
         _editor.Document.Text = text ?? "";
-        EnsureHighlightRenderer();
     }
 
+    // Compatibility no-ops (old search UI may still call these)
     public void ClearHighlight()
-        => _highlight?.Clear();
+    {
+        // intentionally no-op
+    }
 
     public void SetHighlight(int start, int length)
     {
-        EnsureHighlightRenderer();
-        _highlight?.SetRange(start, length);
-    }
-
-    private void EnsureHighlightRenderer()
-    {
-        if (_editor.TextArea?.TextView == null) return;
-
-        var tv = _editor.TextArea.TextView;
-
-        if (_highlight == null)
-        {
-            _highlight = new SearchHighlightRenderer(tv);
-            tv.BackgroundRenderers.Add(_highlight);
-        }
-
-        tv.InvalidateVisual();
+        // intentionally no-op
     }
 
     private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
@@ -180,7 +160,6 @@ public sealed class AnnotatedTextEditor : UserControl
                             int lineLen = GetVisualLineLength(vl);
                             int relClamped = Math.Clamp(rel, 0, Math.Max(0, lineLen));
 
-                            // FirstDocumentLine exists on VisualLine in basically all versions
                             var firstLine = vl.FirstDocumentLine;
                             int baseOffset = firstLine?.Offset ?? 0;
 
@@ -201,8 +180,6 @@ public sealed class AnnotatedTextEditor : UserControl
 
     private static int GetVisualLineLength(VisualLine vl)
     {
-        // Some versions have DocumentLength, some have Length.
-        // Use reflection so we compile everywhere.
         try
         {
             var t = vl.GetType();
@@ -221,7 +198,6 @@ public sealed class AnnotatedTextEditor : UserControl
         }
         catch { }
 
-        // last resort: use first document line length
         try
         {
             return vl.FirstDocumentLine?.Length ?? 0;
@@ -251,8 +227,6 @@ public sealed class AnnotatedTextEditor : UserControl
 
     private static void TrySetWrapping(TextEditor editor, bool enable)
     {
-        // Some versions: WordWrap (bool)
-        // Some versions: TextWrapping (Avalonia.Controls.TextWrapping)
         try
         {
             var t = editor.GetType();
@@ -267,14 +241,13 @@ public sealed class AnnotatedTextEditor : UserControl
             var pTextWrapping = t.GetProperty("TextWrapping", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (pTextWrapping != null && pTextWrapping.CanWrite)
             {
-                // Try assign enum value "Wrap" if it exists
                 var wrapValue = Enum.Parse(pTextWrapping.PropertyType, "Wrap", ignoreCase: true);
                 pTextWrapping.SetValue(editor, wrapValue);
             }
         }
         catch
         {
-            // ignore - wrapping is optional
+            // wrapping is optional
         }
     }
 }

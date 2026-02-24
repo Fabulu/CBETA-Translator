@@ -63,7 +63,6 @@ public partial class MainWindow : Window
     private readonly IFileService _fileService = new FileService();
     private readonly AppConfigService _configService = new();
     private readonly IndexCacheService _indexCacheService = new();
-    private readonly SearchIndexService _navSearchIndexService = new();
     private readonly RenderedDocumentCacheService _renderCache = new(maxEntries: 48);
     private readonly ZenTextsService _zenTexts = new();
     private readonly IndexedTranslationService _indexedTranslation = new();
@@ -82,6 +81,10 @@ public partial class MainWindow : Window
 
     private CancellationTokenSource? _navSearchCts;
     private CancellationTokenSource? _renderCts;
+
+    // Nav filter performance / race control
+    private DispatcherTimer? _navFilterDebounce;
+    private int _navFilterVersion;
 
     private DispatcherTimer? _indexCacheSaveDebounce;
     private bool _indexCacheDirty;
@@ -194,19 +197,19 @@ public partial class MainWindow : Window
         }
 
         if (_navSearch != null)
-            _navSearch.TextChanged += async (_, _) => await ApplyFilterAsync();
+            _navSearch.TextChanged += (_, _) => ScheduleApplyFilter(debounce: true);
 
         if (_chkShowFilenames != null)
-            _chkShowFilenames.IsCheckedChanged += async (_, _) => await ApplyFilterAsync();
+            _chkShowFilenames.IsCheckedChanged += (_, _) => ScheduleApplyFilter(debounce: false);
 
         if (_cmbStatusFilter != null)
-            _cmbStatusFilter.SelectionChanged += async (_, _) => await ApplyFilterAsync();
+            _cmbStatusFilter.SelectionChanged += (_, _) => ScheduleApplyFilter(debounce: false);
 
         if (_chkZenOnly != null)
         {
             _chkZenOnly.IsCheckedChanged += async (_, _) =>
             {
-                await ApplyFilterAsync();
+                ScheduleApplyFilter(debounce: false);
                 await SaveUiStateAsync();
             };
         }
@@ -249,7 +252,7 @@ public partial class MainWindow : Window
                     if (_root == null) return;
                     await _zenTexts.SetZenAsync(_root, ev.RelPath, ev.IsZen);
                     SetStatus(ev.IsZen ? "Marked as Zen text." : "Unmarked as Zen text.");
-                    await ApplyFilterAsync();
+                    await ApplyFilterSafeAsync();
                 }
                 catch (Exception ex)
                 {
@@ -464,7 +467,6 @@ public partial class MainWindow : Window
     // Root + config
     // =========================
 
-    // MainWindow.axaml.cs - REPLACE method
     private async Task LoadConfigApplyThemeAndMaybeAutoloadAsync()
     {
         try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
@@ -583,7 +585,6 @@ public partial class MainWindow : Window
         catch (Exception ex) { SetStatus("Failed to open licenses: " + ex.Message); }
     }
 
-    // MainWindow.axaml.cs - REPLACE method
     private async void OnSettingsClicked(object? sender, RoutedEventArgs e)
     {
         try
@@ -599,7 +600,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to open settings: " + ex.Message);
+            SetStatus("Failed to open settings: " + ex.Message);
         }
     }
 
@@ -609,7 +610,8 @@ public partial class MainWindow : Window
 
     private async Task LoadFileListFromCacheOrBuildAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null) return;
+        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
+            return;
 
         ClearViews();
 
@@ -627,47 +629,44 @@ public partial class MainWindow : Window
             _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
         }
 
-        var cache = await _indexCacheService.TryLoadAsync(_root);
-        if (cache?.Entries is { Count: > 0 })
+        try
         {
-            _allItems = cache.Entries;
-            RebuildLookup();
-            await ApplyFilterAsync();
-            WireSearchTab();
-            SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
-            return;
-        }
+            var cache = await _indexCacheService.TryLoadAsync(_root);
 
-        SetStatus("Building index cache…");
+            if (cache?.Entries is { Count: > 0 })
+            {
+                _allItems = cache.Entries;
+                RebuildLookup();
 
-        var progress = new Progress<(int done, int total)>(p => SetStatus("Indexing files… " + p.done.ToString("n0") + "/" + p.total.ToString("n0")));
+                await ApplyFilterSafeAsync();
+                WireSearchTab();
 
-        IndexCache built;
-        try { built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _root, progress); }
-        catch (Exception ex) { SetStatus("Index build failed: " + ex.Message); return; }
+                SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
+                return;
+            }
 
-        await _indexCacheService.SaveAsync(_root, built);
+            SetStatus("Building index cache…");
 
-        _allItems = built.Entries ?? new List<FileNavItem>();
-        RebuildLookup();
-        await ApplyFilterAsync();
-        WireSearchTab();
+            var progress = new Progress<(int done, int total)>(p =>
+            {
+                SetStatus("Indexing files… " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
+            });
 
-        if (cache?.Entries is { Count: > 0 })
-        {
-            _allItems = cache.Entries;
+            IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _root, progress);
+            await _indexCacheService.SaveAsync(_root, built);
+
+            _allItems = built.Entries ?? new List<FileNavItem>();
             RebuildLookup();
 
-            // Quick status refresh from disk (optional but recommended)
-            await RefreshAllCachedStatusesAsync();
-
-            await ApplyFilterAsync();
+            await ApplyFilterSafeAsync();
             WireSearchTab();
-            SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
-            return;
-        }
 
-        SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
+            SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Index load/build failed: " + ex.Message);
+        }
     }
 
     private async Task RefreshAllCachedStatusesAsync()
@@ -707,36 +706,6 @@ public partial class MainWindow : Window
         foreach (var it in _allItems) _allItemsByRel[NormalizeRel(it.RelPath)] = it;
     }
 
-    private async Task<HashSet<string>?> ComputeFullTextMatchesAsync(string query, CancellationToken ct)
-    {
-        if (_root == null || _originalDir == null || _translatedDir == null || string.IsNullOrWhiteSpace(query)) return null;
-
-        var manifest = await _navSearchIndexService.TryLoadAsync(_root);
-        if (manifest == null) return null;
-
-        var matches = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-        await foreach (var group in _navSearchIndexService.SearchAllAsync(
-                           _root, _originalDir, _translatedDir, manifest,
-                           query,
-                           includeOriginal: true,
-                           includeTranslated: false,
-                           fileMeta: rel =>
-                           {
-                               _allItemsByRel.TryGetValue(NormalizeRel(rel), out var found);
-                               return (found?.DisplayShort ?? rel, found?.Tooltip ?? rel, found?.Status);
-                           },
-                           contextWidth: 40,
-                           progress: null,
-                           ct: ct))
-        {
-            if (!string.IsNullOrWhiteSpace(group.RelPath))
-                matches.Add(NormalizeRel(group.RelPath));
-        }
-
-        return matches;
-    }
-
     private static bool MatchesLocalText(FileNavItem it, string qLower)
     {
         if (qLower.Length == 0) return true;
@@ -761,7 +730,6 @@ public partial class MainWindow : Window
         };
     }
 
-    // MainWindow.axaml.cs - add this helper (new method)
     private void ApplySettingsToChildViews()
     {
         try
@@ -770,8 +738,6 @@ public partial class MainWindow : Window
         }
         catch { }
 
-        // If your ReadableTabView already has a similar method, keep this.
-        // If not, this try/catch safely does nothing.
         try
         {
             var m = _readableView?.GetType().GetMethod("SetHoverDictionaryEnabled");
@@ -780,84 +746,154 @@ public partial class MainWindow : Window
         catch { }
     }
 
+    // -------------------------
+    // Nav filter scheduling / debounce
+    // -------------------------
+
+    private void ScheduleApplyFilter(bool debounce)
+    {
+        if (!debounce)
+        {
+            _ = ApplyFilterSafeAsync();
+            return;
+        }
+
+        _navFilterDebounce ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(220)
+        };
+
+        _navFilterDebounce.Tick -= NavFilterDebounce_Tick;
+        _navFilterDebounce.Tick += NavFilterDebounce_Tick;
+
+        _navFilterDebounce.Stop();
+        _navFilterDebounce.Start();
+    }
+
+    private void NavFilterDebounce_Tick(object? sender, EventArgs e)
+    {
+        _navFilterDebounce?.Stop();
+        _ = ApplyFilterSafeAsync();
+    }
+
+    private async Task ApplyFilterSafeAsync()
+    {
+        try
+        {
+            await ApplyFilterAsync();
+        }
+        catch (TaskCanceledException)
+        {
+            // expected during fast typing
+        }
+        catch (OperationCanceledException)
+        {
+            // expected during fast typing
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Filter failed: " + ex.Message);
+        }
+    }
+
     private async Task ApplyFilterAsync()
     {
-        if (_filesList == null) return;
+        if (_filesList == null)
+            return;
 
-        _navSearchCts?.Cancel();
-        _navSearchCts = new CancellationTokenSource();
-        var ct = _navSearchCts.Token;
-
-        bool restoreFocus = _navSearch != null && _navSearch.IsFocused;
-
-        string q = (_navSearch?.Text ?? "").Trim();
-        string qLower = q.ToLowerInvariant();
-
-        bool showFilenames = _chkShowFilenames != null && _chkShowFilenames.IsChecked == true;
-        bool zenOnly = _chkZenOnly != null && _chkZenOnly.IsChecked == true;
-        int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0;
-
-        string? selectedRel = (_filesList.SelectedItem as FileNavItem)?.RelPath ?? _currentRelPath;
-
-        HashSet<string>? fullTextMatches = null;
-        if (q.Length > 0)
-        {
-            try { fullTextMatches = await ComputeFullTextMatchesAsync(q, ct); }
-            catch (OperationCanceledException) { return; }
-            catch { fullTextMatches = null; }
-        }
-
-        IEnumerable<FileNavItem> seq = _allItems;
-
-        if (zenOnly)
-            seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath) && _zenTexts.IsZen(it.RelPath));
-
-        if (statusIdx != 0)
-            seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
-
-        if (q.Length > 0)
-        {
-            seq = seq.Where(it =>
-                MatchesLocalText(it, qLower) ||
-                (fullTextMatches != null && fullTextMatches.Contains(NormalizeRel(it.RelPath))));
-        }
-
-        _filteredItems = seq.Select(it =>
-        {
-            string label =
-                showFilenames
-                    ? (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath)
-                    : (!string.IsNullOrWhiteSpace(it.DisplayShort) ? it.DisplayShort :
-                        (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath));
-
-            return new FileNavItem
-            {
-                RelPath = it.RelPath,
-                FileName = it.FileName,
-                DisplayShort = label,
-                Tooltip = it.Tooltip,
-                Status = it.Status,
-            };
-        }).ToList();
+        int myVersion = Interlocked.Increment(ref _navFilterVersion);
 
         try
         {
-            _suppressNavSelectionChanged = true;
-            _filesList.ItemsSource = _filteredItems;
-
-            if (!string.IsNullOrWhiteSpace(selectedRel))
+            try
             {
-                var match = _filteredItems.FirstOrDefault(x => string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
-                if (match != null) _filesList.SelectedItem = match;
+                _navSearchCts?.Cancel();
+                _navSearchCts?.Dispose();
             }
-        }
-        finally
-        {
-            _suppressNavSelectionChanged = false;
-        }
+            catch
+            {
+                // ignore
+            }
 
-        if (restoreFocus && _navSearch != null)
-            Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
+            _navSearchCts = new CancellationTokenSource();
+            var ct = _navSearchCts.Token;
+
+            bool restoreFocus = _navSearch != null && _navSearch.IsFocused;
+
+            string q = (_navSearch?.Text ?? "").Trim();
+            string qLower = q.ToLowerInvariant();
+
+            bool showFilenames = _chkShowFilenames != null && _chkShowFilenames.IsChecked == true;
+            bool zenOnly = _chkZenOnly != null && _chkZenOnly.IsChecked == true;
+            int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0;
+
+            string? selectedRel = (_filesList.SelectedItem as FileNavItem)?.RelPath ?? _currentRelPath;
+
+            var allSnapshot = _allItems.ToList();
+
+            var built = await Task.Run(() =>
+            {
+                ct.ThrowIfCancellationRequested();
+
+                IEnumerable<FileNavItem> seq = allSnapshot;
+
+                if (zenOnly)
+                    seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath) && _zenTexts.IsZen(it.RelPath));
+
+                if (statusIdx != 0)
+                    seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
+
+                if (q.Length > 0)
+                    seq = seq.Where(it => MatchesLocalText(it, qLower));
+
+                return seq.Select(it =>
+                {
+                    string label =
+                        showFilenames
+                            ? (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath)
+                            : (!string.IsNullOrWhiteSpace(it.DisplayShort) ? it.DisplayShort :
+                                (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath));
+
+                    return new FileNavItem
+                    {
+                        RelPath = it.RelPath,
+                        FileName = it.FileName,
+                        DisplayShort = label,
+                        Tooltip = it.Tooltip,
+                        Status = it.Status,
+                    };
+                }).ToList();
+            }, ct);
+
+            if (ct.IsCancellationRequested) return;
+            if (myVersion != _navFilterVersion) return;
+
+            _filteredItems = built;
+
+            try
+            {
+                _suppressNavSelectionChanged = true;
+                _filesList.ItemsSource = _filteredItems;
+
+                if (!string.IsNullOrWhiteSpace(selectedRel))
+                {
+                    var match = _filteredItems.FirstOrDefault(x =>
+                        string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
+                    if (match != null) _filesList.SelectedItem = match;
+                }
+            }
+            finally
+            {
+                _suppressNavSelectionChanged = false;
+            }
+
+            if (restoreFocus && _navSearch != null)
+                Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
+        }
+        catch
+        {
+            throw;
+        }
     }
 
     private void SelectInNav(string relPath)
@@ -874,10 +910,14 @@ public partial class MainWindow : Window
     private void ClearViews()
     {
         try { _navSearchCts?.Cancel(); } catch { }
+        try { _navSearchCts?.Dispose(); } catch { }
         _navSearchCts = null;
 
         try { _renderCts?.Cancel(); } catch { }
+        try { _renderCts?.Dispose(); } catch { }
         _renderCts = null;
+
+        try { _navFilterDebounce?.Stop(); } catch { }
 
         _rawOrigXml = "";
         _rawTranXml = "";
@@ -1053,6 +1093,7 @@ public partial class MainWindow : Window
         if (_originalDir == null || _translatedDir == null) return;
 
         _renderCts?.Cancel();
+        _renderCts?.Dispose();
         _renderCts = new CancellationTokenSource();
         var ct = _renderCts.Token;
 
@@ -1124,6 +1165,7 @@ public partial class MainWindow : Window
         if (_readableView == null || _currentRelPath == null || _originalDir == null || _translatedDir == null) return;
 
         _renderCts?.Cancel();
+        _renderCts?.Dispose();
         _renderCts = new CancellationTokenSource();
         var ct = _renderCts.Token;
 
@@ -1247,10 +1289,10 @@ public partial class MainWindow : Window
                 if (!Equals(existing.Status, newStatus))
                 {
                     existing.Status = newStatus;
-                    MarkIndexCacheDirty();   // <-- persist later
+                    MarkIndexCacheDirty();
                 }
 
-                await ApplyFilterAsync();
+                await ApplyFilterSafeAsync();
             }
         }
         catch { }
@@ -1469,7 +1511,6 @@ public partial class MainWindow : Window
             if (!res.TryGetValue(sourceKey, out var sourceObj) || sourceObj is null)
                 continue;
 
-            // Best case: both are SolidColorBrush -> mutate color in place
             if (res.TryGetValue(token, out var activeObj) &&
                 activeObj is SolidColorBrush activeBrush &&
                 sourceObj is SolidColorBrush sourceBrush)
@@ -1479,11 +1520,9 @@ public partial class MainWindow : Window
                 continue;
             }
 
-            // Fallback (non-brush resource types)
             res[token] = sourceObj;
         }
 
-        // Optional but useful: force nav item containers to refresh converter-applied backgrounds
         RefreshNavListVisuals();
     }
 
@@ -1553,10 +1592,7 @@ public partial class MainWindow : Window
     {
         if (_translationView == null) return;
 
-        // Give the view full context first (paths, current file)
         TrySetCurrentFilePaths();
-
-        // Then inject text so any initial highlighting/classification runs with correct context
         _translationView.SetModeProjection(mode, projectionText ?? "");
     }
 
@@ -1817,7 +1853,7 @@ public partial class MainWindow : Window
         }
         catch
         {
-            // optional: SetStatus("Failed to save index cache.");
+            // ignore
         }
     }
 }

@@ -31,12 +31,14 @@ public sealed class CedictDictionaryService : ICedictDictionary
     private TrieNode _rootSimp = new();
     private int _maxWordLenSeen = 1;
 
-    // Debug-visible state (helps a lot when hover “loads then disappears”)
+    // Debug-visible state
     private volatile bool _isLoading;
     private volatile string? _lastLoadError;
 
-    public bool IsLoaded => _loaded;
+    // The key fix: all concurrent callers await the same load task instead of "returning early"
+    private Task? _loadTask;
 
+    public bool IsLoaded => _loaded;
     public bool IsLoading => _isLoading;
     public string? LastLoadError => _lastLoadError;
 
@@ -47,22 +49,39 @@ public sealed class CedictDictionaryService : ICedictDictionary
         DictionaryPath = dictionaryPath ?? AppPaths.GetCedictPath();
     }
 
-    public async Task EnsureLoadedAsync(CancellationToken ct = default)
+    public Task EnsureLoadedAsync(CancellationToken ct = default)
     {
-        if (_loaded) return;
+        if (_loaded) return Task.CompletedTask;
 
-        // Single loader (fast path)
+        Task loadTask;
+
         lock (_gate)
         {
-            if (_loaded) return;
-            if (_isLoading) return;
-            _isLoading = true;
-            _lastLoadError = null;
+            if (_loaded) return Task.CompletedTask;
+
+            // Reuse in-flight load task so callers don't "bounce off" _isLoading and continue uninitialized.
+            if (_loadTask == null || _loadTask.IsCompleted)
+            {
+                _isLoading = true;
+                _lastLoadError = null;
+                _loadTask = LoadCoreAsync();
+            }
+
+            loadTask = _loadTask;
         }
 
+        // Each caller can cancel *its own wait* without cancelling the shared load.
+        if (!ct.CanBeCanceled)
+            return loadTask;
+
+        return WaitWithCancellationAsync(loadTask, ct);
+    }
+
+    private async Task LoadCoreAsync()
+    {
         try
         {
-            Debug.WriteLine($"[CEDICT] EnsureLoadedAsync called");
+            Debug.WriteLine("[CEDICT] EnsureLoadedAsync called");
             Debug.WriteLine($"[CEDICT] AppContext.BaseDirectory = {AppContext.BaseDirectory}");
             Debug.WriteLine($"[CEDICT] DictionaryPath = {DictionaryPath}");
             Debug.WriteLine($"[CEDICT] Exists(DictionaryPath) = {File.Exists(DictionaryPath)}");
@@ -74,11 +93,9 @@ public sealed class CedictDictionaryService : ICedictDictionary
                     "CC-CEDICT dictionary file not found. Place it at: " + DictionaryPath,
                     DictionaryPath);
 
-            // Build outside lock (expensive)
+            // Build off-thread
             var (trad, simp, maxLen, stats) = await Task.Run(() =>
             {
-                ct.ThrowIfCancellationRequested();
-
                 var tRoot = new TrieNode();
                 var sRoot = new TrieNode();
                 int maxWordLen = 1;
@@ -97,10 +114,6 @@ public sealed class CedictDictionaryService : ICedictDictionary
                 string? line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    // Treat cancellation as expected, not a crash
-                    if (ct.IsCancellationRequested)
-                        ct.ThrowIfCancellationRequested();
-
                     line = line.Trim();
                     if (line.Length == 0) { skipped++; continue; }
                     if (line.StartsWith("#")) { skipped++; continue; }
@@ -110,8 +123,6 @@ public sealed class CedictDictionaryService : ICedictDictionary
                     if ((lines % 200000) == 0)
                         Debug.WriteLine($"[CEDICT] reading... lines={lines:n0} parsed={parsed:n0} skipped={skipped:n0} elapsed={sw.Elapsed}");
 
-                    // Format (common): 傳統 簡体 [pin yin] /sense1/sense2/
-                    // Sometimes: 傳統 簡体 [[pin1yin1]] /.../
                     if (!TryParseLine(line, out var entry))
                     {
                         skipped++;
@@ -138,27 +149,21 @@ public sealed class CedictDictionaryService : ICedictDictionary
                 Debug.WriteLine($"[CEDICT] DONE lines={lines:n0} parsed={parsed:n0} skipped={skipped:n0} trad={addedTrad:n0} simp={addedSimp:n0} maxLen={maxWordLen} elapsed={sw.Elapsed}");
 
                 return (tRoot, sRoot, maxWordLen, (lines, parsed, skipped, addedTrad, addedSimp, sw.Elapsed));
-            }, ct);
+            }).ConfigureAwait(false);
 
-            // Commit under lock
             lock (_gate)
             {
-                if (_loaded) return;
+                if (!_loaded)
+                {
+                    _rootTrad = trad;
+                    _rootSimp = simp;
+                    _maxWordLenSeen = Math.Max(1, maxLen);
+                    _loaded = true;
 
-                _rootTrad = trad;
-                _rootSimp = simp;
-                _maxWordLenSeen = Math.Max(1, maxLen);
-                _loaded = true;
-
-                Debug.WriteLine($"[CEDICT] Loaded OK. maxWordLenSeen={_maxWordLenSeen} tradRoots={_rootTrad.Next.Count} simpRoots={_rootSimp.Next.Count}");
-                Debug.WriteLine($"[CEDICT] Stats: lines={stats.lines:n0} parsed={stats.parsed:n0} skipped={stats.skipped:n0} trad={stats.addedTrad:n0} simp={stats.addedSimp:n0} elapsed={stats.Elapsed}");
+                    Debug.WriteLine($"[CEDICT] Loaded OK. maxWordLenSeen={_maxWordLenSeen} tradRoots={_rootTrad.Next.Count} simpRoots={_rootSimp.Next.Count}");
+                    Debug.WriteLine($"[CEDICT] Stats: lines={stats.lines:n0} parsed={stats.parsed:n0} skipped={stats.skipped:n0} trad={stats.addedTrad:n0} simp={stats.addedSimp:n0} elapsed={stats.Elapsed}");
+                }
             }
-        }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested)
-        {
-            // Expected cancellation (startup/shutdown race, app close, etc.)
-            Debug.WriteLine("[CEDICT] Load cancelled.");
-            return;
         }
         catch (Exception ex)
         {
@@ -175,6 +180,20 @@ public sealed class CedictDictionaryService : ICedictDictionary
         }
     }
 
+    private static async Task WaitWithCancellationAsync(Task task, CancellationToken ct)
+    {
+        var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        using var reg = ct.Register(static s => ((TaskCompletionSource<bool>)s!).TrySetResult(true), tcs);
+
+        if (task == await Task.WhenAny(task, tcs.Task).ConfigureAwait(false))
+        {
+            await task.ConfigureAwait(false);
+            return;
+        }
+
+        throw new OperationCanceledException(ct);
+    }
+
     public bool TryLookupLongest(string text, int startIndex, out CedictMatch match, int maxLen = 12)
     {
         match = default!;
@@ -189,7 +208,6 @@ public sealed class CedictDictionaryService : ICedictDictionary
         int cap = Math.Min(maxLen, _maxWordLenSeen);
         cap = Math.Min(cap, text.Length - startIndex);
 
-        // Longest match over BOTH tries, prefer longer; if equal prefer Traditional hit
         bool found = false;
         CedictMatch best = default!;
 
