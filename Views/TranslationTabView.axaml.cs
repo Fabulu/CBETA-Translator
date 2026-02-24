@@ -453,8 +453,10 @@ public partial class TranslationTabView : UserControl
             int selStart = Math.Clamp(firstBlock.BlockStartOffset, 0, _editor.Document.TextLength);
             int selEnd = Math.Clamp(lastBlock.BlockEndOffsetExclusive, selStart, _editor.Document.TextLength);
 
-            _editor.CaretOffset = selStart;
+            // Keep the visual selection for confidence, but move caret to the END
+            // so the next Ctrl+Shift+C / button click starts after this chunk.
             _editor.TextArea.Selection = Selection.Create(_editor.TextArea, selStart, selEnd);
+            _editor.CaretOffset = selEnd;
 
             try
             {

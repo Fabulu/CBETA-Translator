@@ -184,54 +184,24 @@ public partial class SearchTabView : UserControl
 
         if (_cmbCoocMetric != null)
         {
-            // prevent expander header click-toggle stealing pointer events while selecting
             _cmbCoocMetric.PointerPressed += (_, e) => e.Handled = true;
-
-            _cmbCoocMetric.SelectionChanged += async (_, _) =>
-            {
-                await RefreshCoocUiFromCurrentStateAsync();
-            };
+            _cmbCoocMetric.SelectionChanged += async (_, _) => await RefreshCoocUiFromCurrentStateAsync();
         }
 
         if (_chkZenOnly != null)
-        {
-            _chkZenOnly.IsCheckedChanged += async (_, _) =>
-            {
-                await TriggerAutoRerunAsync();
-            };
-        }
+            _chkZenOnly.IsCheckedChanged += async (_, _) => await TriggerAutoRerunAsync();
 
         if (_cmbStatus != null)
-        {
-            _cmbStatus.SelectionChanged += async (_, _) =>
-            {
-                await TriggerAutoRerunAsync();
-            };
-        }
+            _cmbStatus.SelectionChanged += async (_, _) => await TriggerAutoRerunAsync();
 
         if (_cmbContext != null)
-        {
-            _cmbContext.SelectionChanged += async (_, _) =>
-            {
-                await TriggerAutoRerunAsync();
-            };
-        }
+            _cmbContext.SelectionChanged += async (_, _) => await TriggerAutoRerunAsync();
 
         if (_chkOriginal != null)
-        {
-            _chkOriginal.IsCheckedChanged += async (_, _) =>
-            {
-                await TriggerAutoRerunAsync();
-            };
-        }
+            _chkOriginal.IsCheckedChanged += async (_, _) => await TriggerAutoRerunAsync();
 
         if (_chkTranslated != null)
-        {
-            _chkTranslated.IsCheckedChanged += async (_, _) =>
-            {
-                await TriggerAutoRerunAsync();
-            };
-        }
+            _chkTranslated.IsCheckedChanged += async (_, _) => await TriggerAutoRerunAsync();
     }
 
     private void InitCombos()
@@ -256,7 +226,7 @@ public partial class SearchTabView : UserControl
                 "40 chars",
                 "80 chars"
             };
-            _cmbContext.SelectedIndex = 1; // 40
+            _cmbContext.SelectedIndex = 1;
         }
 
         if (_cmbCoocMetric != null)
@@ -308,18 +278,13 @@ public partial class SearchTabView : UserControl
         SetSummary("Ready.");
         ClearCoocUi();
 
-        // Tiny warm-up (best effort)
         _ = Task.Run(async () =>
         {
             try { await _svc.TryLoadAsync(root); }
-            catch { /* ignore */ }
+            catch { }
         });
     }
 
-    /// <summary>
-    /// Provide a resolver that tells whether a relPath is marked as Zen text.
-    /// In MainWindow, call: _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
-    /// </summary>
     public void SetZenResolver(Func<string, bool> isZenResolver)
     {
         _isZen = isZenResolver;
@@ -378,10 +343,10 @@ public partial class SearchTabView : UserControl
     private bool ZenOnly()
         => _chkZenOnly?.IsChecked == true;
 
-    private Func<string, bool>? BuildRelPathFilter(bool zenOnly, TranslationStatus? statusFilter)
+    private Func<string, bool>? BuildRelPathFilter(bool zenOnly)
     {
-        if (!zenOnly && !statusFilter.HasValue)
-            return null;
+        if (!zenOnly) return null;
+        if (_isZen == null) return null;
 
         return rel =>
         {
@@ -389,22 +354,7 @@ public partial class SearchTabView : UserControl
                 return false;
 
             rel = rel.Replace('\\', '/').TrimStart('/');
-
-            if (zenOnly)
-            {
-                if (_isZen == null || !_isZen(rel))
-                    return false;
-            }
-
-            if (statusFilter.HasValue)
-            {
-                if (_meta == null) return false;
-                var meta = _meta(rel);
-                if (!meta.status.HasValue || meta.status.Value != statusFilter.Value)
-                    return false;
-            }
-
-            return true;
+            return _isZen(rel);
         };
     }
 
@@ -519,13 +469,10 @@ public partial class SearchTabView : UserControl
         await Dispatcher.UIThread.InvokeAsync(() =>
         {
             if (_txtCoocSummary != null) _txtCoocSummary.Text = result.Summary;
-
             if (_txtLeftTitle != null) _txtLeftTitle.Text = result.LeftTitle;
             if (_txtRightTitle != null) _txtRightTitle.Text = result.RightTitle;
-
             if (_lstCoocChars != null) _lstCoocChars.ItemsSource = result.Left;
             if (_lstCoocNgrams != null) _lstCoocNgrams.ItemsSource = result.Right;
-
             if (_txtZipf != null) _txtZipf.Text = result.ExtraLine ?? "";
         });
     }
@@ -543,7 +490,6 @@ public partial class SearchTabView : UserControl
 
     private void AppendGroupsToView(IReadOnlyList<SearchResultGroup> batch)
     {
-        // UI-thread only
         for (int i = 0; i < batch.Count; i++)
             _groupsView.Add(batch[i]);
     }
@@ -637,7 +583,7 @@ public partial class SearchTabView : UserControl
         }
 
         var statusFilter = GetStatusFilter();
-        var relFilter = BuildRelPathFilter(zenOnly, statusFilter);
+        var relFilter = BuildRelPathFilter(zenOnly);
 
         Cancel();
         _cts = new CancellationTokenSource();
@@ -648,108 +594,150 @@ public partial class SearchTabView : UserControl
         ResetResultsView();
         ClearCoocUi();
 
+        // Snapshot UI-derived values before jumping to background work
+        string root = _root;
+        string originalDir = _originalDir;
+        string translatedDir = _translatedDir;
+        var metaFn = _meta;
+        int contextWidth = GetContextWidth();
+
+        _lastQuery = q;
+        _lastContextWidth = contextWidth;
+
         try
         {
             if (_btnCancel != null) _btnCancel.IsEnabled = true;
             SetSummary($"Searching for: {q}");
             SetProgress("Loading index...");
 
-            var manifest = await _svc.TryLoadAsync(_root);
-            if (manifest == null)
+            // Force a UI turn so the user sees the immediate feedback before heavy candidate scan begins.
+            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
+
+            await Task.Run(async () =>
             {
-                SetProgress("No index found. Build it first.");
-                Status?.Invoke(this, "No search index found. Click 'Build/Update Index' first.");
-                return;
-            }
-
-            int contextWidth = GetContextWidth();
-
-            _lastQuery = q;
-            _lastContextWidth = contextWidth;
-
-            int totalHits = 0;
-            int totalGroups = 0;
-
-            var prog = new Progress<SearchIndexService.SearchProgress>(p =>
-            {
-                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                var manifest = await _svc.TryLoadAsync(root);
+                if (manifest == null)
+                {
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        if (mySearchVer != Volatile.Read(ref _searchRunVersion)) return;
+                        SetProgress("No index found. Build it first.");
+                        Status?.Invoke(this, "No search index found. Click 'Build/Update Index' first.");
+                    });
                     return;
+                }
 
-                SetProgress($"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}");
-            });
+                int totalHits = 0;
+                int totalGroups = 0;
 
-            // Batch pending UI appends so we avoid resetting the tree and reduce dispatcher churn.
-            var pendingUiBatch = new List<SearchResultGroup>(32);
+                var localGroups = new List<SearchResultGroup>(256);
+                var pendingUiBatch = new List<SearchResultGroup>(16);
 
-            async Task FlushPendingUiBatchAsync(bool forceSummary)
-            {
-                if (pendingUiBatch.Count == 0 && !forceSummary) return;
+                var prog = new Progress<SearchIndexService.SearchProgress>(p =>
+                {
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                            return;
 
-                var batch = pendingUiBatch.Count > 0 ? pendingUiBatch.ToArray() : Array.Empty<SearchResultGroup>();
-                pendingUiBatch.Clear();
+                        SetProgress($"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}");
+                    });
+                });
 
-                int snapshotGroups = totalGroups;
-                int snapshotHits = totalHits;
+                async Task FlushPendingUiBatchAsync(bool forceSummary)
+                {
+                    if (pendingUiBatch.Count == 0 && !forceSummary) return;
+
+                    var batch = pendingUiBatch.Count > 0 ? pendingUiBatch.ToArray() : Array.Empty<SearchResultGroup>();
+                    pendingUiBatch.Clear();
+
+                    int snapshotGroups = totalGroups;
+                    int snapshotHits = totalHits;
+
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                            return;
+
+                        if (batch.Length > 0)
+                            AppendGroupsToView(batch);
+
+                        if (forceSummary || batch.Length > 0)
+                            SetSummary($"Results: files={snapshotGroups:n0}, hits={snapshotHits:n0}");
+                    }, DispatcherPriority.Background);
+                }
+
+                await foreach (var g in _svc.SearchAllAsync(
+                                   root,
+                                   originalDir,
+                                   translatedDir,
+                                   manifest,
+                                   q,
+                                   includeO,
+                                   includeT,
+                                   fileMeta: rel =>
+                                   {
+                                       var m = metaFn(rel);
+
+                                       if (statusFilter.HasValue)
+                                       {
+                                           if (m.status.HasValue)
+                                           {
+                                               if (m.status.Value != statusFilter.Value)
+                                                   return ("", "", m.status);
+                                           }
+                                           else
+                                           {
+                                               return ("", "", null);
+                                           }
+                                       }
+
+                                       return m;
+                                   },
+                                   contextWidth: contextWidth,
+                                   progress: prog,
+                                   relPathFilter: relFilter,
+                                   ct: ct))
+                {
+                    ct.ThrowIfCancellationRequested();
+
+                    if (mySearchVer != Volatile.Read(ref _searchRunVersion))
+                        return;
+
+                    if (string.IsNullOrWhiteSpace(g.DisplayName))
+                        continue;
+
+                    localGroups.Add(g);
+                    pendingUiBatch.Add(g);
+
+                    totalGroups++;
+                    totalHits += g.Children.Count;
+
+                    // Early feedback first, then chunked appends.
+                    if (totalGroups <= 8 || pendingUiBatch.Count >= 12)
+                    {
+                        await FlushPendingUiBatchAsync(forceSummary: false);
+                        await Task.Yield();
+                    }
+                }
+
+                await FlushPendingUiBatchAsync(forceSummary: true);
 
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     if (mySearchVer != Volatile.Read(ref _searchRunVersion))
                         return;
 
-                    if (batch.Length > 0)
-                        AppendGroupsToView(batch);
+                    _groups.Clear();
+                    _groups.AddRange(localGroups);
 
-                    if (forceSummary || batch.Length > 0)
-                        SetSummary($"Results: files={snapshotGroups:n0}, hits={snapshotHits:n0}");
+                    SetSummary($"Done. files={localGroups.Count:n0}, hits={totalHits:n0}");
+                    if (_btnExportTsv != null) _btnExportTsv.IsEnabled = localGroups.Count > 0;
                 });
-            }
+            }, ct);
 
-            await foreach (var g in _svc.SearchAllAsync(
-                               _root,
-                               _originalDir,
-                               _translatedDir,
-                               manifest,
-                               q,
-                               includeO,
-                               includeT,
-                               fileMeta: rel => _meta(rel),
-                               contextWidth: contextWidth,
-                               progress: prog,
-                               relPathFilter: relFilter,
-                               ct: ct))
-            {
-                ct.ThrowIfCancellationRequested();
-
-                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
-                    return;
-
-                _groups.Add(g);
-                pendingUiBatch.Add(g);
-
-                totalGroups++;
-                totalHits += g.Children.Count;
-
-                // Flush early for first results, then in chunks
-                if (totalGroups <= 10 || pendingUiBatch.Count >= 20)
-                    await FlushPendingUiBatchAsync(forceSummary: false);
-            }
-
-            // Final flush
-            await FlushPendingUiBatchAsync(forceSummary: true);
-
-            int finalGroups = _groups.Count;
-            int finalHits = totalHits;
-
-            await Dispatcher.UIThread.InvokeAsync(() =>
-            {
-                if (mySearchVer != Volatile.Read(ref _searchRunVersion))
-                    return;
-
-                SetSummary($"Done. files={finalGroups:n0}, hits={finalHits:n0}");
-                if (_btnExportTsv != null) _btnExportTsv.IsEnabled = finalGroups > 0;
-            });
-
-            await RefreshCoocUiFromCurrentStateAsync();
+            if (mySearchVer == Volatile.Read(ref _searchRunVersion))
+                await RefreshCoocUiFromCurrentStateAsync();
         }
         catch (OperationCanceledException)
         {
