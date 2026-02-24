@@ -57,8 +57,7 @@ public sealed class GitRepoService : IGitRepoService
         var r = await RunGitAsync(repoDir, "status --porcelain", null, ct);
         if (r.ExitCode != 0) return Array.Empty<string>();
 
-        return (r.StdOut ?? "")
-            .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+        return SplitLines(r.StdOut)
             .Select(s => s.TrimEnd())
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .ToArray();
@@ -144,6 +143,28 @@ public sealed class GitRepoService : IGitRepoService
         }
     }
 
+    /// <summary>
+    /// Repo-local line ending config to avoid scary CRLF warnings and churn.
+    /// </summary>
+    public async Task<GitOpResult> EnsureLineEndingConfigAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    {
+        try
+        {
+            var r1 = await RunGitAsync(repoDir, "config --local core.autocrlf false", progress, ct);
+            if (r1.ExitCode != 0) return new GitOpResult(false, r1.AllText);
+
+            var r2 = await RunGitAsync(repoDir, "config --local core.eol lf", progress, ct);
+            if (r2.ExitCode != 0) return new GitOpResult(false, r2.AllText);
+
+            progress.Report("[git] line endings configured (local): autocrlf=false, eol=lf");
+            return new GitOpResult(true);
+        }
+        catch (Exception ex)
+        {
+            return new GitOpResult(false, ex.ToString());
+        }
+    }
+
     public async Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct)
     {
         var r = await RunGitAsync(repoDir, $"add -- \"{relPath}\"", progress, ct);
@@ -204,6 +225,91 @@ public sealed class GitRepoService : IGitRepoService
     {
         // Remove untracked files/dirs to guarantee a clean tree after reset
         var r = await RunGitAsync(repoDir, "clean -fd", progress, ct);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
+    // -------------------------
+    // Update safety helpers (new)
+    // -------------------------
+
+    /// <summary>
+    /// Returns repo-relative paths to preserve during "update but keep my local edits".
+    /// Includes modified, added, staged, untracked, renamed/copied targets.
+    /// Excludes deletes and anything under .git/.
+    /// Optionally filter paths via prefixes (e.g. xml-p5t/).
+    /// </summary>
+    public async Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct)
+    {
+        var porcelain = await GetStatusPorcelainAsync(repoDir, ct);
+        if (porcelain.Length == 0) return Array.Empty<string>();
+
+        var prefixes = (includePrefixes ?? Array.Empty<string>())
+            .Select(NormalizeRelPath)
+            .Where(p => !string.IsNullOrWhiteSpace(p))
+            .ToArray();
+
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var line in porcelain)
+        {
+            foreach (var path in ParsePorcelainPaths(line))
+            {
+                var rel = NormalizeRelPath(path);
+                if (string.IsNullOrWhiteSpace(rel)) continue;
+                if (rel.StartsWith(".git/", StringComparison.OrdinalIgnoreCase)) continue;
+
+                if (prefixes.Length > 0 && !prefixes.Any(p => rel.StartsWith(p, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+
+                if (IsDeletedStatus(line))
+                    continue;
+
+                result.Add(rel);
+            }
+        }
+
+        return result.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray();
+    }
+
+    /// <summary>
+    /// Returns ahead/behind counts for e.g. origin/main...HEAD using:
+    /// git rev-list --left-right --count origin/main...HEAD
+    /// left=behind, right=ahead
+    /// </summary>
+    public async Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)
+    {
+        var r = await RunGitAsync(repoDir, $"rev-list --left-right --count \"{upstreamRef}...HEAD\"", null, ct);
+        if (r.ExitCode != 0)
+            return (0, 0);
+
+        var txt = (r.StdOut ?? "").Trim();
+        if (string.IsNullOrWhiteSpace(txt))
+            return (0, 0);
+
+        // Usually: "12\t3" or "12 3"
+        var parts = txt.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length < 2)
+            return (0, 0);
+
+        if (!int.TryParse(parts[0], out int behind)) behind = 0;
+        if (!int.TryParse(parts[1], out int ahead)) ahead = 0;
+        return (behind, ahead);
+    }
+
+    /// <summary>
+    /// Creates a lightweight rescue branch at current HEAD (used before destructive reset).
+    /// If branch already exists, returns success.
+    /// </summary>
+    public async Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
+    {
+        var check = await RunGitAsync(repoDir, $"show-ref --verify --quiet \"refs/heads/{branchName}\"", null, ct);
+        if (check.ExitCode == 0)
+        {
+            progress.Report("[git] rescue branch already exists: " + branchName);
+            return new GitOpResult(true);
+        }
+
+        var r = await RunGitAsync(repoDir, $"branch \"{branchName}\" HEAD", progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
@@ -305,6 +411,71 @@ public sealed class GitRepoService : IGitRepoService
         var r = await RunGitAsync(repoDir, $"config --get {key}", null, ct);
         if (r.ExitCode != 0) return "";
         return (r.StdOut ?? "").Trim();
+    }
+
+    private static IEnumerable<string> SplitLines(string? s)
+    {
+        return (s ?? "")
+            .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    private static string NormalizeRelPath(string p)
+    {
+        return (p ?? "")
+            .Replace('\\', '/')
+            .Trim()
+            .TrimStart('/');
+    }
+
+    private static bool IsDeletedStatus(string porcelainLine)
+    {
+        if (string.IsNullOrWhiteSpace(porcelainLine) || porcelainLine.Length < 2)
+            return false;
+
+        char x = porcelainLine[0];
+        char y = porcelainLine[1];
+
+        // Delete if either side marks deletion. We do not "restore deletions" in the backup flow.
+        return x == 'D' || y == 'D';
+    }
+
+    private static IEnumerable<string> ParsePorcelainPaths(string line)
+    {
+        // Porcelain (v1) examples:
+        // " M path/file.xml"
+        // "A  path/file.xml"
+        // "?? path/file.xml"
+        // "R  old/path.xml -> new/path.xml"
+        // "RM old -> new"
+        // We preserve the destination path for renames/copies.
+        if (string.IsNullOrWhiteSpace(line))
+            yield break;
+
+        string payload = line.Length > 3 ? line.Substring(3) : "";
+
+        if (string.IsNullOrWhiteSpace(payload))
+            yield break;
+
+        // Rename/copy style "old -> new"
+        int arrow = payload.IndexOf(" -> ", StringComparison.Ordinal);
+        if (arrow >= 0)
+        {
+            var oldPath = payload.Substring(0, arrow).Trim();
+            var newPath = payload.Substring(arrow + 4).Trim();
+
+            // Destination matters most for restore.
+            if (!string.IsNullOrWhiteSpace(newPath))
+                yield return newPath;
+
+            // Optionally also keep old path if it still exists physically (rare useful case)
+            // Caller will copy only existing files anyway.
+            if (!string.IsNullOrWhiteSpace(oldPath))
+                yield return oldPath;
+
+            yield break;
+        }
+
+        yield return payload.Trim();
     }
 
     private sealed record RunResult(int ExitCode, string StdOut, string StdErr)
