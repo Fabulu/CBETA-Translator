@@ -6,15 +6,12 @@
 		<!-- Panic button styling -->
 		<Style Selector="Button.panic">
 			<Setter Property="Background" Value="#FF3A0F0F"/>
-			<!-- dark red -->
 			<Setter Property="BorderBrush" Value="#FF6B1A1A"/>
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="Foreground" Value="#FFF2EAEA"/>
 			<Setter Property="FontWeight" Value="SemiBold"/>
 			<Setter Property="CornerRadius" Value="6"/>
 			<Setter Property="Padding" Value="12,7"/>
-			<!-- “Hitchhiker-ish” vibe fallback list. If you add a real font asset later,
-           just put it first in this list. -->
 			<Setter Property="FontFamily" Value="Space Mono, Consolas, Menlo, Courier New"/>
 		</Style>
 
@@ -25,42 +22,109 @@
 		<Style Selector="Button.panic:pressed /template/ ContentPresenter">
 			<Setter Property="Opacity" Value="0.90"/>
 		</Style>
+
+		<!-- Primary "safe update" button (keep local changes) -->
+		<Style Selector="Button.updateSafe">
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,7"/>
+		</Style>
+
+		<!-- Danger-ish update button (discard local changes) -->
+		<Style Selector="Button.updateDiscard">
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,7"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush" Value="#AA9A6A00"/>
+		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto"
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
 		  ColumnDefinitions="*,Auto"
 		  Margin="12"
 		  RowSpacing="8"
 		  ColumnSpacing="8">
 
-		<TextBlock Grid.Row="0" Grid.Column="0" Name="TxtDest" Text="Location:" VerticalAlignment="Center"/>
-		<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="8">
+		<!-- Repo location + clone/update controls -->
+		<TextBlock Grid.Row="0"
+				   Grid.Column="0"
+				   Name="TxtDest"
+				   Text="Location:"
+				   VerticalAlignment="Center"/>
+
+		<StackPanel Grid.Row="0"
+					Grid.Column="1"
+					Orientation="Horizontal"
+					Spacing="8">
 			<Button Name="BtnPickDest" Content="Pick Location"/>
-			<Button Name="BtnGetFiles" Content="Update Files"/>
+			<Button Name="BtnGetFiles"
+					Content="Get Files"
+					ToolTip.Tip="Clone the repo if missing. If it already exists, does a safe update that keeps local file changes."/>
 			<Button Name="BtnCancel" Content="Cancel" IsEnabled="False"/>
 		</StackPanel>
 
-		<TextBlock Grid.Row="1" Grid.ColumnSpan="2" Name="TxtSelected" Text="Selected: (none)" />
+		<!-- Super update buttons -->
+		<Border Grid.Row="1"
+				Grid.ColumnSpan="2"
+				CornerRadius="6"
+				BorderThickness="1"
+				BorderBrush="{DynamicResource PanelBorder}"
+				Background="{DynamicResource PanelBg}"
+				Padding="10">
+			<StackPanel Orientation="Vertical" Spacing="8">
+				<TextBlock Text="Update options"
+						   FontWeight="SemiBold"/>
 
-		<StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" Spacing="4">
+				<TextBlock Text="Use the safe button for normal users. It updates the repo and restores their local file edits on top."
+						   TextWrapping="Wrap"
+						   Opacity="0.85"
+						   Classes="muted"/>
+
+				<StackPanel Orientation="Horizontal" Spacing="8">
+					<Button Name="BtnUpdateKeepLocal"
+							Classes="updateSafe"
+							Content="Update (Keep My Local Changes)"
+							ToolTip.Tip="Recommended. Backs up changed files, updates repo, then restores your local files."/>
+
+					<Button Name="BtnUpdateDiscardLocal"
+							Classes="updateDiscard"
+							Content="Update (Discard Local Changes)"
+							ToolTip.Tip="Dangerous. Throws away uncommitted local edits and updates to the latest files."/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+
+		<TextBlock Grid.Row="2"
+				   Grid.ColumnSpan="2"
+				   Name="TxtSelected"
+				   Text="Selected: (none)" />
+
+		<StackPanel Grid.Row="3"
+					Grid.ColumnSpan="2"
+					Orientation="Vertical"
+					Spacing="4">
 			<TextBlock Text="Commit message"/>
 			<TextBox Name="TxtCommitMessage" Watermark="What did you change?" />
 		</StackPanel>
 
 		<!-- Actions row -->
-		<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
+		<StackPanel Grid.Row="4"
+					Grid.ColumnSpan="2"
+					Orientation="Horizontal"
+					Spacing="8">
 			<Button Name="BtnSendContribution" Content="1) Create local commit (single file)"/>
 			<Button Name="BtnAuth" Content="2) Authorize GitHub"/>
 			<Button Name="BtnPushPr" Content="3) Push + Create PR"/>
 
-			<!-- Panic Button -->
 			<Button Name="BtnPanic"
 					Classes="panic"
 					Content="Don&#39;t Panic"
 					ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
 		</StackPanel>
 
-		<Border Grid.Row="4" Grid.ColumnSpan="2"
+		<!-- Log -->
+		<Border Grid.Row="5"
+				Grid.ColumnSpan="2"
 				CornerRadius="6"
 				BorderThickness="1"
 				Background="{DynamicResource PanelBg}"
@@ -71,7 +135,7 @@
 						 AcceptsReturn="True"
 						 IsReadOnly="True"
 						 TextWrapping="NoWrap"
-						 MinHeight="220"
+						 MinHeight="240"
 						 Padding="8"
 						 Background="Transparent"
 						 BorderThickness="0"
@@ -79,7 +143,12 @@
 			</ScrollViewer>
 		</Border>
 
-		<TextBlock Grid.Row="5" Grid.ColumnSpan="2" Name="TxtProgress" Text="Ready." Opacity="0.8" Classes="muted"/>
+		<TextBlock Grid.Row="6"
+				   Grid.ColumnSpan="2"
+				   Name="TxtProgress"
+				   Text="Ready."
+				   Opacity="0.8"
+				   Classes="muted"/>
 
 	</Grid>
 </UserControl>

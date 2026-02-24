@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,11 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CbetaTranslator.App.Services;
 
@@ -24,7 +23,7 @@ public partial class GitTabView : UserControl
     private const string RepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
     private const string RepoFolderName = "CbetaZenTexts";
 
-    private const string RepoTranslatedRoot = "xml-p5t"; // where translated files live inside the repo
+    private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
     private const string UpstreamRepo = "CbetaZenTexts";
 
@@ -37,7 +36,9 @@ public partial class GitTabView : UserControl
     };
 
     private Button? _btnPickDest;
-    private Button? _btnGetFiles;
+    private Button? _btnGetFiles;              // clone if missing
+    private Button? _btnUpdateKeepLocal;       // NEW
+    private Button? _btnUpdateDiscardLocal;    // NEW
     private Button? _btnCancel;
 
     private Button? _btnAuth;
@@ -83,7 +84,6 @@ public partial class GitTabView : UserControl
         UpdateSelectedLabel();
 
         TryRestoreLastBranchFromDisk();
-
         SetProgress("Ready.");
     }
 
@@ -93,6 +93,8 @@ public partial class GitTabView : UserControl
     {
         _btnPickDest = this.FindControl<Button>("BtnPickDest");
         _btnGetFiles = this.FindControl<Button>("BtnGetFiles");
+        _btnUpdateKeepLocal = this.FindControl<Button>("BtnUpdateKeepLocal");         // NEW
+        _btnUpdateDiscardLocal = this.FindControl<Button>("BtnUpdateDiscardLocal");   // NEW
         _btnCancel = this.FindControl<Button>("BtnCancel");
 
         _btnAuth = this.FindControl<Button>("BtnAuth");
@@ -112,7 +114,13 @@ public partial class GitTabView : UserControl
     private void WireEvents()
     {
         if (_btnPickDest != null) _btnPickDest.Click += async (_, _) => await PickDestAsync();
-        if (_btnGetFiles != null) _btnGetFiles.Click += async (_, _) => await GetOrUpdateFilesAsync();
+
+        // "Get Files" now means: clone if missing, otherwise safe update (keep local)
+        if (_btnGetFiles != null) _btnGetFiles.Click += async (_, _) => await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+
+        if (_btnUpdateKeepLocal != null) _btnUpdateKeepLocal.Click += async (_, _) => await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+        if (_btnUpdateDiscardLocal != null) _btnUpdateDiscardLocal.Click += async (_, _) => await GetOrUpdateFilesAsync(UpdateMode.DiscardLocalChanges);
+
         if (_btnCancel != null) _btnCancel.Click += (_, _) => Cancel();
 
         if (_btnSend != null) _btnSend.Click += async (_, _) => await SendContributionLocalAsync();
@@ -130,6 +138,12 @@ public partial class GitTabView : UserControl
         };
     }
 
+    private enum UpdateMode
+    {
+        KeepLocalChanges,
+        DiscardLocalChanges
+    }
+
     private string? TryResolveRepoRootFromAnyFolder(string? folderPath)
     {
         if (string.IsNullOrWhiteSpace(folderPath))
@@ -142,11 +156,9 @@ public partial class GitTabView : UserControl
             if (!Directory.Exists(full))
                 return null;
 
-            // Case 1: exact repo root
             if (Directory.Exists(Path.Combine(full, ".git")))
                 return full;
 
-            // Case 2: parent folder that contains the repo folder
             var childRepo = Path.Combine(full, RepoFolderName);
             if (Directory.Exists(childRepo) && Directory.Exists(Path.Combine(childRepo, ".git")))
                 return childRepo;
@@ -165,11 +177,6 @@ public partial class GitTabView : UserControl
             return;
 
         var input = rootPath.Trim();
-
-        // Resolve intelligently:
-        // - If input is the repo root -> use it
-        // - If input is a parent folder containing CbetaZenTexts -> use that child repo
-        // - Otherwise treat input as base destination folder
         var resolvedRepo = TryResolveRepoRootFromAnyFolder(input);
 
         if (!string.IsNullOrWhiteSpace(resolvedRepo))
@@ -199,7 +206,6 @@ public partial class GitTabView : UserControl
     private void UpdateSelectedLabel()
     {
         if (_txtSelected == null) return;
-
         _txtSelected.Text = string.IsNullOrWhiteSpace(_selectedRelPath)
             ? "Selected: (none)"
             : "Selected: " + _selectedRelPath;
@@ -223,7 +229,6 @@ public partial class GitTabView : UserControl
 
     private string GetTargetRepoDir()
     {
-        // If we already know the repo root and it looks valid, use it.
         if (!string.IsNullOrWhiteSpace(_currentRepoRoot) &&
             Directory.Exists(_currentRepoRoot) &&
             Directory.Exists(Path.Combine(_currentRepoRoot, ".git")))
@@ -233,7 +238,6 @@ public partial class GitTabView : UserControl
 
         var baseDir = _baseDestFolder ?? GetDefaultBaseFolder();
 
-        // If the chosen "base" folder is actually the repo root, use it directly.
         if (Directory.Exists(baseDir) &&
             string.Equals(Path.GetFileName(baseDir), RepoFolderName, StringComparison.OrdinalIgnoreCase) &&
             Directory.Exists(Path.Combine(baseDir, ".git")))
@@ -242,7 +246,6 @@ public partial class GitTabView : UserControl
             return baseDir;
         }
 
-        // If the chosen "base" folder contains the repo folder, use that.
         var nestedRepo = Path.Combine(baseDir, RepoFolderName);
         if (Directory.Exists(nestedRepo) && Directory.Exists(Path.Combine(nestedRepo, ".git")))
         {
@@ -250,7 +253,6 @@ public partial class GitTabView : UserControl
             return nestedRepo;
         }
 
-        // Default clone target path.
         return Path.Combine(baseDir, RepoFolderName);
     }
 
@@ -272,7 +274,7 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            var picked = await owner.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
+            var picked = await owner.StorageProvider.OpenFolderPickerAsync(new Avalonia.Platform.Storage.FolderPickerOpenOptions
             {
                 Title = "Select a folder where the repo will be stored"
             });
@@ -281,11 +283,6 @@ public partial class GitTabView : UserControl
             if (folder == null) return;
 
             var pickedPath = folder.Path.LocalPath;
-
-            // Smart handling:
-            // - If user picked the repo root, use it.
-            // - If user picked a parent folder that contains CbetaZenTexts, use that child repo.
-            // - Otherwise treat as base destination folder.
             var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
 
             if (!string.IsNullOrWhiteSpace(resolvedRepo))
@@ -301,7 +298,6 @@ public partial class GitTabView : UserControl
 
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
-
             Status?.Invoke(this, "Location updated.");
         }
         catch (Exception ex)
@@ -311,7 +307,11 @@ public partial class GitTabView : UserControl
         }
     }
 
-    private async Task GetOrUpdateFilesAsync()
+    // =========================
+    // Clone / Update
+    // =========================
+
+    private async Task GetOrUpdateFilesAsync(UpdateMode mode)
     {
         Cancel();
         _cts = new CancellationTokenSource();
@@ -341,30 +341,13 @@ public partial class GitTabView : UserControl
 
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-            // -------------------------
-            // Repo exists -> UPDATE NO MATTER WHAT
-            // -------------------------
+            // =========================
+            // Existing repo -> UPDATE
+            // =========================
             if (Directory.Exists(repoDir) && Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
-
-                // If dirty, stash EVERYTHING so update never blocks.
-                var statusBefore = await _git.GetStatusPorcelainAsync(repoDir, ct);
-                bool hadLocalNoise = statusBefore.Length > 0;
-
-                if (hadLocalNoise)
-                {
-                    SetProgress("Saving your local changes…");
-                    AppendLog("[step] stash (update safety)");
-                    var stashAll = await _git.StashAllAsync(repoDir, "cbeta-update-autostash", prog, ct);
-                    if (!stashAll.Success)
-                    {
-                        SetProgress("Update failed (could not stash).");
-                        AppendLog("[error] " + (stashAll.Error ?? "unknown error"));
-                        Status?.Invoke(this, "Update failed (could not stash).");
-                        return;
-                    }
-                }
+                await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
 
                 SetProgress("Fetching…");
                 var fetch = await _git.FetchAsync(repoDir, prog, ct);
@@ -376,46 +359,45 @@ public partial class GitTabView : UserControl
                     return;
                 }
 
-                // No merge, no ff-only. Force to origin/main.
-                SetProgress("Updating files…");
-                AppendLog("[step] reset --hard origin/main");
-                var reset = await _git.HardResetToRemoteMainAsync(repoDir, "origin", "main", prog, ct);
-                if (!reset.Success)
-                {
-                    SetProgress("Update failed (reset).");
-                    AppendLog("[error] " + (reset.Error ?? "unknown error"));
-                    Status?.Invoke(this, "Update failed (reset).");
-                    return;
-                }
+                // rescue branch if local commits exist (ahead > 0) before destructive actions
+                var ab = await _git.GetAheadBehindAsync(repoDir, "origin/main", ct);
+                AppendLog($"[git] ahead/behind vs origin/main: ahead={ab.ahead}, behind={ab.behind}");
 
-                // Remove untracked (only after we stashed with -u).
-                AppendLog("[step] clean -fd");
-                var clean = await _git.CleanUntrackedAsync(repoDir, prog, ct);
-                if (!clean.Success)
+                if (ab.ahead > 0)
                 {
-                    SetProgress("Update failed (clean).");
-                    AppendLog("[error] " + (clean.Error ?? "unknown error"));
-                    Status?.Invoke(this, "Update failed (clean).");
-                    return;
-                }
+                    string rescueBranch = "rescue/local-" + DateTime.Now.ToString("yyyyMMdd-HHmmss");
+                    AppendLog("[safety] local commits detected. Creating rescue branch: " + rescueBranch);
 
-                if (hadLocalNoise)
-                {
-                    SetProgress("Restoring your local changes…");
-                    AppendLog("[step] stash pop");
-                    var pop = await _git.StashPopAsync(repoDir, prog, ct);
-                    if (!pop.Success)
+                    var rescue = await _git.CreateBranchAtHeadAsync(repoDir, rescueBranch, prog, ct);
+                    if (!rescue.Success)
                     {
-                        SetProgress("Updated, but your local changes conflicted.");
-                        AppendLog("[warn] stash pop failed (likely conflicts).");
-                        AppendLog("[warn] Your stash should still exist. Run: git stash list");
-                        AppendLog("[warn] Then resolve conflicts and run: git stash pop");
-                        Status?.Invoke(this, "Updated, but local changes conflicted.");
+                        SetProgress("Update blocked (could not create rescue branch).");
+                        AppendLog("[error] " + (rescue.Error ?? "unknown error"));
+                        AppendLog("[hint] This repo has local commits. Create/push a PR first, or fix branch state manually.");
+                        Status?.Invoke(this, "Update blocked (rescue branch failed).");
+                        return;
                     }
+
+                    AppendLog("[safety] rescue branch saved: " + rescueBranch);
+                    AppendLog("[note] Update will continue on main. Your local commits remain on that rescue branch.");
                 }
 
-                SetProgress("Up to date.");
-                AppendLog("[ok] update complete: " + repoDir);
+                if (mode == UpdateMode.DiscardLocalChanges)
+                {
+                    bool confirmDiscard = await ConfirmDangerousUpdateDiscardAsync();
+                    if (!confirmDiscard)
+                    {
+                        SetProgress("Canceled.");
+                        AppendLog("[cancel] user canceled discard update");
+                        return;
+                    }
+
+                    await UpdateDiscardLocalAsync(repoDir, prog, ct);
+                }
+                else
+                {
+                    await UpdateKeepLocalAsync(repoDir, prog, ct);
+                }
 
                 _currentRepoRoot = repoDir;
                 _baseDestFolder = Path.GetDirectoryName(repoDir);
@@ -423,14 +405,15 @@ public partial class GitTabView : UserControl
                 TryRestoreLastBranchFromDisk();
 
                 RootCloned?.Invoke(this, repoDir);
-                Status?.Invoke(this, "Repo updated.");
+                Status?.Invoke(this, mode == UpdateMode.KeepLocalChanges
+                    ? "Repo updated (kept local changes)."
+                    : "Repo updated (discarded local changes).");
                 return;
             }
 
-            // -------------------------
-            // Repo missing -> CLONE
-            // -------------------------
-
+            // =========================
+            // Missing repo -> CLONE
+            // =========================
             if (!Directory.Exists(baseDir))
                 Directory.CreateDirectory(baseDir);
 
@@ -454,6 +437,7 @@ public partial class GitTabView : UserControl
             }
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+            await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
 
             SetProgress("Done. Repo is ready.");
             AppendLog("[ok] clone complete: " + repoDir);
@@ -484,9 +468,175 @@ public partial class GitTabView : UserControl
         }
     }
 
-    // -------------------------
-    // PANIC BUTTON (stash + drop)
-    // -------------------------
+    private async Task UpdateKeepLocalAsync(string repoDir, IProgress<string> prog, CancellationToken ct)
+    {
+        // Strategy:
+        // 1) Detect changed files (tracked + untracked), typically translation files
+        // 2) Copy them to a temp backup dir
+        // 3) Hard reset + clean to origin/main
+        // 4) Copy files back
+        // This avoids stash conflicts and weird states.
+
+        var changedPaths = await _git.GetChangedPathsForBackupAsync(repoDir, includePrefixes: null, ct);
+        AppendLog($"[scan] changed paths to preserve: {changedPaths.Length}");
+
+        string backupDir = CreateBackupDir();
+        bool backupCreated = false;
+
+        try
+        {
+            if (changedPaths.Length > 0)
+            {
+                SetProgress("Backing up your local changes…");
+                AppendLog("[step] backup changed files -> " + backupDir);
+
+                foreach (var rel in changedPaths)
+                {
+                    ct.ThrowIfCancellationRequested();
+
+                    var src = Path.Combine(repoDir, rel.Replace('/', Path.DirectorySeparatorChar));
+                    if (!File.Exists(src))
+                    {
+                        AppendLog("[skip] missing (likely deleted/renamed): " + rel);
+                        continue;
+                    }
+
+                    var dst = Path.Combine(backupDir, rel.Replace('/', Path.DirectorySeparatorChar));
+                    var dstDir = Path.GetDirectoryName(dst);
+                    if (!string.IsNullOrWhiteSpace(dstDir))
+                        Directory.CreateDirectory(dstDir);
+
+                    File.Copy(src, dst, overwrite: true);
+                    AppendLog("[backup] " + rel);
+                    backupCreated = true;
+                }
+            }
+            else
+            {
+                AppendLog("[scan] no local file changes detected");
+            }
+
+            // Clean update
+            SetProgress("Resetting to latest files…");
+            AppendLog("[step] reset --hard origin/main");
+            var reset = await _git.HardResetToRemoteMainAsync(repoDir, "origin", "main", prog, ct);
+            if (!reset.Success)
+            {
+                SetProgress("Update failed (reset).");
+                AppendLog("[error] " + (reset.Error ?? "unknown error"));
+                throw new InvalidOperationException(reset.Error ?? "reset failed");
+            }
+
+            AppendLog("[step] clean -fd");
+            var clean = await _git.CleanUntrackedAsync(repoDir, prog, ct);
+            if (!clean.Success)
+            {
+                SetProgress("Update failed (clean).");
+                AppendLog("[error] " + (clean.Error ?? "unknown error"));
+                throw new InvalidOperationException(clean.Error ?? "clean failed");
+            }
+
+            // Restore local files
+            if (backupCreated)
+            {
+                SetProgress("Restoring your local files…");
+                AppendLog("[step] restore backup files");
+
+                foreach (var file in Directory.EnumerateFiles(backupDir, "*", SearchOption.AllDirectories))
+                {
+                    ct.ThrowIfCancellationRequested();
+
+                    var rel = Path.GetRelativePath(backupDir, file)
+                        .Replace('\\', '/');
+
+                    var dst = Path.Combine(repoDir, rel.Replace('/', Path.DirectorySeparatorChar));
+                    var dstDir = Path.GetDirectoryName(dst);
+                    if (!string.IsNullOrWhiteSpace(dstDir))
+                        Directory.CreateDirectory(dstDir);
+
+                    File.Copy(file, dst, overwrite: true);
+                    AppendLog("[restore] " + rel);
+                }
+
+                AppendLog("[ok] local file changes restored on top of latest repo");
+                AppendLog("[note] If upstream changed the same file, your local version was kept (copied back).");
+            }
+
+            SetProgress("Up to date (kept local changes).");
+            AppendLog("[ok] update complete (kept local changes)");
+        }
+        finally
+        {
+            TryDeleteDirectory(backupDir);
+        }
+    }
+
+    private async Task UpdateDiscardLocalAsync(string repoDir, IProgress<string> prog, CancellationToken ct)
+    {
+        SetProgress("Discarding local changes and updating…");
+
+        AppendLog("[step] reset --hard origin/main");
+        var reset = await _git.HardResetToRemoteMainAsync(repoDir, "origin", "main", prog, ct);
+        if (!reset.Success)
+        {
+            SetProgress("Update failed (reset).");
+            AppendLog("[error] " + (reset.Error ?? "unknown error"));
+            return;
+        }
+
+        AppendLog("[step] clean -fd");
+        var clean = await _git.CleanUntrackedAsync(repoDir, prog, ct);
+        if (!clean.Success)
+        {
+            SetProgress("Update failed (clean).");
+            AppendLog("[error] " + (clean.Error ?? "unknown error"));
+            return;
+        }
+
+        SetProgress("Up to date (discarded local changes).");
+        AppendLog("[ok] update complete (discarded local changes)");
+    }
+
+    private async Task<bool> ConfirmDangerousUpdateDiscardAsync()
+    {
+        var owner = TopLevel.GetTopLevel(this) as Window;
+        if (owner == null) return false;
+
+        return await ConfirmAsync(
+            owner,
+            title: "Update and Discard Local Changes",
+            message:
+                "This will update the repo to the newest files and ERASE all uncommitted local changes.\n\n" +
+                "Your local commits are kept on a rescue branch if they exist.\n" +
+                "But unsaved/uncommitted file edits will be lost.\n\n" +
+                "Use this when you want a clean, fresh copy.",
+            yesText: "Yes, update and discard local changes",
+            noText: "No, keep my changes");
+    }
+
+    private static string CreateBackupDir()
+    {
+        var dir = Path.Combine(Path.GetTempPath(), "CbetaTranslator", "git-keep-local", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(dir);
+        return dir;
+    }
+
+    private static void TryDeleteDirectory(string path)
+    {
+        try
+        {
+            if (Directory.Exists(path))
+                Directory.Delete(path, recursive: true);
+        }
+        catch
+        {
+            // ignore temp cleanup failures
+        }
+    }
+
+    // =========================
+    // PANIC BUTTON
+    // =========================
 
     private async Task PanicButtonAsync()
     {
@@ -502,7 +652,7 @@ public partial class GitTabView : UserControl
             var repoDir = GetTargetRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
-                SetProgress("Repo not ready. Click Update Files first.");
+                SetProgress("Repo not ready. Click Get/Update first.");
                 AppendLog("[error] repo not found / not a git working tree");
                 return;
             }
@@ -525,14 +675,14 @@ public partial class GitTabView : UserControl
 
             bool confirm = await ConfirmAsync(
                 owner,
-                title: "Don't Panic",
+                title: "Discard local changes",
                 message:
                     "This will ERASE all your local, uncommitted changes in the repo.\n\n" +
-                    "It does two commands:\n" +
-                    "  1) git stash\n" +
+                    "It does:\n" +
+                    "  1) git stash push -u\n" +
                     "  2) git stash drop\n\n" +
-                    "Result: your edits are gone and cannot be recovered.\n\n" +
-                    "Only do this if you want to throw away local work and return to a clean state.",
+                    "Result: local edits are gone.\n" +
+                    "Use this only if you want a clean working tree.",
                 yesText: "Yes, erase my local changes",
                 noText: "No, keep my changes");
 
@@ -588,11 +738,6 @@ public partial class GitTabView : UserControl
 
     private sealed record GitRunResult(bool Success, string? Error);
 
-    /// <summary>
-    /// Runs "git {args...}" in repoDir, capturing stdout/stderr and streaming lines to progress.
-    /// This is self-contained so the Panic Button does not depend on extra IGitRepoService methods.
-    /// It is portable-git aware (uses GitBinaryLocator).
-    /// </summary>
     private static async Task<GitRunResult> RunGitAsync(
         string repoDir,
         string arg0,
@@ -606,12 +751,10 @@ public partial class GitTabView : UserControl
     {
         static string QuoteIfNeeded(string s) => s.Contains(' ') ? $"\"{s}\"" : s;
 
-        var args = new[]
-        {
-            arg0, arg1, arg2, arg3, arg4, arg5
-        }.Where(a => !string.IsNullOrWhiteSpace(a))
-         .Select(a => a!)
-         .ToArray();
+        var args = new[] { arg0, arg1, arg2, arg3, arg4, arg5 }
+            .Where(a => !string.IsNullOrWhiteSpace(a))
+            .Select(a => a!)
+            .ToArray();
 
         var psi = new ProcessStartInfo
         {
@@ -623,14 +766,11 @@ public partial class GitTabView : UserControl
             CreateNoWindow = true,
             StandardOutputEncoding = Encoding.UTF8,
             StandardErrorEncoding = Encoding.UTF8,
+            Arguments = string.Join(" ", args.Select(QuoteIfNeeded))
         };
 
-        psi.Arguments = string.Join(" ", args.Select(QuoteIfNeeded));
-
-        // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
         GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
 
-        // Keep same behavior as main service: no hidden terminal prompts
         try
         {
             psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
@@ -639,7 +779,6 @@ public partial class GitTabView : UserControl
         catch { }
 
         using var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
-
         var sbErr = new StringBuilder();
 
         try
@@ -649,8 +788,7 @@ public partial class GitTabView : UserControl
 
             using var reg = ct.Register(() =>
             {
-                try { if (!p.HasExited) p.Kill(entireProcessTree: true); }
-                catch { }
+                try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
             });
 
             Task readOut = Task.Run(async () =>
@@ -658,31 +796,30 @@ public partial class GitTabView : UserControl
                 while (!p.StandardOutput.EndOfStream)
                 {
                     var line = await p.StandardOutput.ReadLineAsync();
-                    if (line != null && line.Length > 0)
+                    if (!string.IsNullOrWhiteSpace(line))
                         progress?.Report(line);
                 }
-            }, CancellationToken.None);
+            });
 
             Task readErr = Task.Run(async () =>
             {
                 while (!p.StandardError.EndOfStream)
                 {
                     var line = await p.StandardError.ReadLineAsync();
-                    if (line != null && line.Length > 0)
+                    if (!string.IsNullOrWhiteSpace(line))
                     {
                         sbErr.AppendLine(line);
                         progress?.Report("[git] " + line);
                     }
                 }
-            }, CancellationToken.None);
+            });
 
             await Task.WhenAll(readOut, readErr);
             await p.WaitForExitAsync(ct);
 
-            if (p.ExitCode != 0)
-                return new GitRunResult(false, sbErr.ToString().Trim());
-
-            return new GitRunResult(true, null);
+            return p.ExitCode == 0
+                ? new GitRunResult(true, null)
+                : new GitRunResult(false, sbErr.ToString().Trim());
         }
         catch (OperationCanceledException)
         {
@@ -700,7 +837,6 @@ public partial class GitTabView : UserControl
         {
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
-
         return await dlg.ShowDialog<bool>(owner);
     }
 
@@ -709,13 +845,13 @@ public partial class GitTabView : UserControl
         public ConfirmDialog(string title, string message, string yesText, string noText)
         {
             Title = title;
-            Width = 560;
-            Height = 320;
+            Width = 600;
+            Height = 340;
             CanResize = false;
 
             var root = new Grid
             {
-                RowDefinitions = new RowDefinitions("Auto,* ,Auto"),
+                RowDefinitions = new RowDefinitions("Auto,*,Auto"),
                 Margin = new Thickness(16),
                 RowSpacing = 12
             };
@@ -752,15 +888,10 @@ public partial class GitTabView : UserControl
                 Spacing = 8
             };
 
-            var btnNo = new Button { Content = noText, MinWidth = 160 };
+            var btnNo = new Button { Content = noText, MinWidth = 170 };
             btnNo.Click += (_, _) => Close(false);
 
-            var btnYes = new Button
-            {
-                Content = yesText,
-                MinWidth = 220
-            };
-            btnYes.Classes.Add("panic");
+            var btnYes = new Button { Content = yesText, MinWidth = 250 };
             btnYes.Click += (_, _) => Close(true);
 
             buttons.Children.Add(btnNo);
@@ -779,9 +910,9 @@ public partial class GitTabView : UserControl
         }
     }
 
-    // -------------------------
+    // =========================
     // 1) LOCAL COMMIT ONLY
-    // -------------------------
+    // =========================
 
     private async Task SendContributionLocalAsync()
     {
@@ -797,7 +928,7 @@ public partial class GitTabView : UserControl
             var repoDir = GetTargetRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
-                SetProgress("Repo not ready. Click Update Files first.");
+                SetProgress("Repo not ready. Click Get/Update first.");
                 AppendLog("[error] repo not found / not a git working tree");
                 return;
             }
@@ -857,6 +988,7 @@ public partial class GitTabView : UserControl
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+            await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
             await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
@@ -953,9 +1085,9 @@ public partial class GitTabView : UserControl
         }
     }
 
-    // -------------------------
+    // =========================
     // 2) AUTH
-    // -------------------------
+    // =========================
 
     private async Task AuthorizeAsync()
     {
@@ -979,7 +1111,6 @@ public partial class GitTabView : UserControl
             }
 
             _githubAccessToken = token.access_token;
-
             var me = await _api.GetMeAsync(_githubAccessToken, ct);
             _githubLogin = me?.login;
 
@@ -1003,9 +1134,9 @@ public partial class GitTabView : UserControl
         }
     }
 
-    // -------------------------
+    // =========================
     // 3) PUSH + PR
-    // -------------------------
+    // =========================
 
     private async Task PushAndCreatePrAsync()
     {
@@ -1021,7 +1152,7 @@ public partial class GitTabView : UserControl
             var repoDir = GetTargetRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
-                SetProgress("Repo not ready. Click Update Files first.");
+                SetProgress("Repo not ready. Click Get/Update first.");
                 AppendLog("[error] repo not found / not a git working tree");
                 return;
             }
@@ -1039,7 +1170,6 @@ public partial class GitTabView : UserControl
 
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-            // Ensure OAuth for API calls (fork + PR)
             if (string.IsNullOrWhiteSpace(_githubAccessToken) || string.IsNullOrWhiteSpace(_githubLogin))
             {
                 SetProgress("Need GitHub auth first…");
@@ -1052,12 +1182,10 @@ public partial class GitTabView : UserControl
                 }
 
                 _githubAccessToken = token.access_token;
-
                 var me = await _api.GetMeAsync(_githubAccessToken, ct);
                 _githubLogin = me?.login;
 
                 AppendLog("[auth] user: " + (_githubLogin ?? "(unknown)"));
-
                 if (string.IsNullOrWhiteSpace(_githubLogin))
                 {
                     SetProgress("Auth ok but could not read username.");
@@ -1068,7 +1196,6 @@ public partial class GitTabView : UserControl
 
             bool isUpstreamOwner = string.Equals(_githubLogin, UpstreamOwner, StringComparison.OrdinalIgnoreCase);
 
-            // SECURITY: remove any previously-created token remote URL (from old builds)
             await ScrubTokenizedForkRemoteIfAny(repoDir, prog, ct);
 
             string remoteName;
@@ -1077,7 +1204,6 @@ public partial class GitTabView : UserControl
 
             if (isUpstreamOwner)
             {
-                // Maintainer mode: push to origin, PR from same repo.
                 AppendLog("[mode] upstream owner detected -> no fork");
                 remoteName = "origin";
                 remoteUrlClean = RepoUrl;
@@ -1085,7 +1211,6 @@ public partial class GitTabView : UserControl
             }
             else
             {
-                // Contributor mode: ensure fork exists; push to fork remote.
                 SetProgress("Ensuring fork…");
 
                 bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
@@ -1114,10 +1239,8 @@ public partial class GitTabView : UserControl
                 prHeadOwner = _githubLogin!;
             }
 
-            // Ensure remote uses CLEAN url (no token embedded)
             SetProgress("Configuring remote…");
             AppendLog("[step] remote " + remoteName + " -> " + remoteUrlClean);
-
             var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
             if (!rem.Success)
             {
@@ -1126,18 +1249,14 @@ public partial class GitTabView : UserControl
                 return;
             }
 
-            // NEW: make sure bundled Portable Git has a local credential helper configured on Windows
-            // so HTTPS push can launch the browser/device login flow via GCM.
             AppendLog("[step] ensuring local credential helper");
             var cred = await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
             if (!cred.Success)
             {
-                // non-fatal on some platforms, but log it loudly
                 AppendLog("[warn] could not configure credential helper automatically");
                 AppendLog("[warn] " + (cred.Error ?? "unknown error"));
             }
 
-            // Push branch
             SetProgress("Pushing branch…");
             AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
             AppendLog("[hint] If Git opens a browser/device login, complete it and retry if needed.");
@@ -1147,17 +1266,13 @@ public partial class GitTabView : UserControl
             {
                 SetProgress("Push failed.");
                 AppendLog("[error] " + push.Error);
-
                 AppendPushFailureHints(push.Error);
                 return;
             }
 
-            // Create PR (API)
             SetProgress("Creating PR…");
 
             string head = $"{prHeadOwner}:{_lastContribBranch}";
-            string baseBranch = "main";
-
             string title = (_txtCommitMessage?.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(title))
                 title = "Translation update";
@@ -1171,7 +1286,7 @@ public partial class GitTabView : UserControl
                 UpstreamOwner,
                 UpstreamRepo,
                 head,
-                baseBranch,
+                "main",
                 title,
                 body,
                 ct);
@@ -1188,11 +1303,7 @@ public partial class GitTabView : UserControl
 
             try
             {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = prUrl,
-                    UseShellExecute = true
-                });
+                Process.Start(new ProcessStartInfo { FileName = prUrl, UseShellExecute = true });
             }
             catch { }
 
@@ -1244,28 +1355,22 @@ public partial class GitTabView : UserControl
             err.Contains("git: 'credential-manager' is not a git command", StringComparison.OrdinalIgnoreCase);
 
         if (looksLikeRepoNotFound)
-        {
-            AppendLog("[hint] Git says 'Repository not found'. Usually: wrong remote URL or you are not authenticated.");
-        }
+            AppendLog("[hint] Repository not found -> wrong remote URL or not authenticated.");
 
         if (looksLikeWrongAccount)
-        {
-            AppendLog("[hint] If you see 403: you are logged into the wrong GitHub account in the git credential helper.");
-        }
+            AppendLog("[hint] 403 usually means wrong GitHub account is cached in credential helper.");
 
         if (looksLikeNoHelper)
         {
             AppendLog("[hint] Credential helper not found.");
-            AppendLog("[hint] If using bundled Portable Git, ensure the full PortableGit folder is shipped, including mingw64/libexec/git-core.");
-            AppendLog("[hint] If using system Git, install Git for Windows (includes Git Credential Manager).");
+            AppendLog("[hint] Bundle full PortableGit (including git-core helpers) or install Git for Windows.");
             return;
         }
 
         if (looksLikeNoCredStore)
         {
-            AppendLog("[hint] Git Credential Manager is installed but no credential store is configured.");
-            AppendLog("[hint] On GNOME desktops, you usually want: secretservice (GNOME Keyring).");
-            AppendLog("[linux] Run these commands, then retry Step 3:");
+            AppendLog("[hint] Git Credential Manager has no credential store configured.");
+            AppendLog("[linux] Try:");
             AppendLog("  git config --global credential.helper manager");
             AppendLog("  git config --global credential.credentialStore secretservice");
             AppendLog("  git-credential-manager configure");
@@ -1274,13 +1379,12 @@ public partial class GitTabView : UserControl
 
         if (looksLikeNoPrompt)
         {
-            AppendLog("[hint] Git could not open an interactive login prompt.");
-            AppendLog("[hint] On Windows, this usually means Git Credential Manager is missing from the shipped Git bundle.");
-            AppendLog("[hint] On Linux, install/configure Git Credential Manager (GCM) and retry.");
+            AppendLog("[hint] Git could not open a login prompt.");
+            AppendLog("[hint] On Windows, the shipped Git may be missing Git Credential Manager files.");
         }
         else
         {
-            AppendLog("[hint] If this is an auth problem: check credential helper setup and retry.");
+            AppendLog("[hint] If this is auth-related, check credential helper setup and retry.");
         }
     }
 
@@ -1357,6 +1461,9 @@ public partial class GitTabView : UserControl
         if (_btnCancel != null) _btnCancel.IsEnabled = busy;
 
         if (_btnGetFiles != null) _btnGetFiles.IsEnabled = !busy;
+        if (_btnUpdateKeepLocal != null) _btnUpdateKeepLocal.IsEnabled = !busy;
+        if (_btnUpdateDiscardLocal != null) _btnUpdateDiscardLocal.IsEnabled = !busy;
+
         if (_btnPickDest != null) _btnPickDest.IsEnabled = !busy;
         if (_btnSend != null) _btnSend.IsEnabled = !busy;
 
@@ -1390,9 +1497,9 @@ public partial class GitTabView : UserControl
         try { _txtLog.CaretIndex = _txtLog.Text.Length; } catch { }
     }
 
-    // -------------------------
+    // =========================
     // Persist last contrib branch
-    // -------------------------
+    // =========================
 
     private sealed record GitTabState(string RepoDir, string LastContribBranch, DateTimeOffset SavedAt);
 
