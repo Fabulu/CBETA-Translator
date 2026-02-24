@@ -1,6 +1,4 @@
-﻿// Views/ReadableTabView.axaml.cs
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -53,6 +51,8 @@ public partial class ReadableTabView : UserControl
     private DateTime _suppressPollingUntilUtc = DateTime.MinValue;
     private const int SuppressPollingAfterUserActionMs = 220;
 
+    private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
+
     private DispatcherTimer? _selTimer;
     private int _lastOrigSelStart = -1, _lastOrigSelEnd = -1;
     private int _lastTranSelStart = -1, _lastTranSelEnd = -1;
@@ -71,29 +71,6 @@ public partial class ReadableTabView : UserControl
 
     public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
 
-    // Find UI / state
-    private Border? _findBar;
-    private TextBox? _findQuery;
-    private TextBlock? _findCount;
-    private TextBlock? _findScope;
-    private Button? _btnPrev;
-    private Button? _btnNext;
-    private Button? _btnCloseFind;
-
-    private SearchHighlightRenderer? _hlOrig;
-    private SearchHighlightRenderer? _hlTran;
-
-    private TextEditor? _findTarget;
-    private readonly List<int> _matchStarts = new();
-    private int _matchLen = 0;
-    private int _matchIndex = -1;
-
-    private static readonly TimeSpan FindRecomputeDebounce = TimeSpan.FromMilliseconds(140);
-    private DispatcherTimer? _findDebounceTimer;
-
-    private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
-    private const int SuppressMirrorAfterFindMs = 900;
-
     // Notes panel
     private Border? _notesPanel;
     private TextBlock? _notesHeader;
@@ -106,14 +83,12 @@ public partial class ReadableTabView : UserControl
     private DocAnnotation? _currentAnn;
 
     public event EventHandler<DocAnnotation>? NoteClicked;
-
     public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
 
     public event EventHandler<string>? Status;
     private void Say(string msg) => Status?.Invoke(this, msg);
 
-    // pending refresh gate after add/delete
     private bool _pendingCommunityRefresh;
     private DateTime _pendingSinceUtc;
     private const int PendingCommunityTimeoutMs = 2500;
@@ -136,11 +111,7 @@ public partial class ReadableTabView : UserControl
             SetupHoverDictionary();
             StartSelectionTimer();
 
-            Dispatcher.UIThread.Post(() =>
-            {
-                EnsureFindRenderersAttached();
-                UpdateNotesButtonsState();
-            }, DispatcherPriority.Background);
+            Dispatcher.UIThread.Post(UpdateNotesButtonsState, DispatcherPriority.Background);
 
             Log("ReadableTabView attached");
         };
@@ -149,7 +120,6 @@ public partial class ReadableTabView : UserControl
         {
             StopSelectionTimer();
             DisposeHoverDictionary();
-            DetachFindRenderers();
             Log("ReadableTabView detached");
         };
     }
@@ -160,14 +130,6 @@ public partial class ReadableTabView : UserControl
     {
         _editorOriginal = this.FindControl<AnnotatedTextEditor>("EditorOriginal");
         _editorTranslated = this.FindControl<AnnotatedTextEditor>("EditorTranslated");
-
-        _findBar = this.FindControl<Border>("FindBar");
-        _findQuery = this.FindControl<TextBox>("FindQuery");
-        _findCount = this.FindControl<TextBlock>("FindCount");
-        _findScope = this.FindControl<TextBlock>("FindScope");
-        _btnPrev = this.FindControl<Button>("BtnPrev");
-        _btnNext = this.FindControl<Button>("BtnNext");
-        _btnCloseFind = this.FindControl<Button>("BtnCloseFind");
 
         _notesPanel = this.FindControl<Border>("NotesPanel");
         _notesHeader = this.FindControl<TextBlock>("NotesHeader");
@@ -219,8 +181,6 @@ public partial class ReadableTabView : UserControl
         HookUserInputTracking(_editorOriginal, isTranslated: false);
         HookUserInputTracking(_editorTranslated, isTranslated: true);
 
-        AddHandler(KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
-
         AddHandler(
             InputElement.PointerPressedEvent,
             OnPointerPressed_TunnelForNotes,
@@ -230,21 +190,8 @@ public partial class ReadableTabView : UserControl
         if (_chkZenText != null)
             _chkZenText.IsCheckedChanged += ChkZenText_IsCheckedChanged;
 
-        if (_findQuery != null)
-        {
-            _findQuery.KeyDown += FindQuery_KeyDown;
-            _findQuery.PropertyChanged += (_, e) =>
-            {
-                if (e.Property == TextBox.TextProperty)
-                    DebounceRecomputeMatches();
-            };
-        }
-
-        if (_btnNext != null) _btnNext.Click += (_, _) => JumpNext();
-        if (_btnPrev != null) _btnPrev.Click += (_, _) => JumpPrev();
-        if (_btnCloseFind != null) _btnCloseFind.Click += (_, _) => CloseFind();
-
-        if (_btnCloseNotes != null) _btnCloseNotes.Click += (_, _) => HideNotes();
+        if (_btnCloseNotes != null)
+            _btnCloseNotes.Click += (_, _) => HideNotes();
 
         RewireNotesButtonsHard();
     }
@@ -271,9 +218,7 @@ public partial class ReadableTabView : UserControl
         try
         {
             if (_pendingCommunityRefresh) return;
-
-            if (_aeTran == null)
-                ResolveInnerEditors();
+            if (_aeTran == null) ResolveInnerEditors();
 
             await TryAddCommunityNoteAtSelectionOrCaretAsync();
         }
@@ -304,12 +249,6 @@ public partial class ReadableTabView : UserControl
         host.PointerReleased += (_, _) => OnUserActionReleased(isTranslated, host);
         host.KeyDown += (_, _) => MarkUserInput(host);
         host.KeyUp += (_, _) => OnUserActionReleased(isTranslated, host);
-
-        host.GotFocus += (_, _) =>
-        {
-            if (_findBar?.IsVisible == true)
-                SetFindTarget(isTranslated ? _aeTran : _aeOrig, preserveIndex: true);
-        };
     }
 
     private void MarkUserInput(object who)
@@ -345,9 +284,8 @@ public partial class ReadableTabView : UserControl
 
     private void DisposeHoverDictionary()
     {
-        try { _hoverDictOrig?.Dispose(); }
-        catch { }
-        finally { _hoverDictOrig = null; }
+        try { _hoverDictOrig?.Dispose(); } catch { }
+        _hoverDictOrig = null;
     }
 
     public void SetHoverDictionaryEnabled(bool enabled)
@@ -451,10 +389,9 @@ public partial class ReadableTabView : UserControl
             if (m.Start > idx + radius) break;
             if (m.EndExclusive < idx - radius) continue;
 
-            int dist;
-            if (idx < m.Start) dist = m.Start - idx;
-            else if (idx > m.EndExclusive) dist = idx - m.EndExclusive;
-            else dist = 0;
+            int dist = idx < m.Start ? (m.Start - idx)
+                     : idx > m.EndExclusive ? (idx - m.EndExclusive)
+                     : 0;
 
             if (dist < bestDist)
             {
@@ -569,7 +506,6 @@ public partial class ReadableTabView : UserControl
         if (ann == null) return false;
 
         var kind = (ann.Kind ?? "").Trim();
-
         bool isCommunity = kind.Equals("community", StringComparison.OrdinalIgnoreCase);
 
         if (!isCommunity)
@@ -627,17 +563,10 @@ public partial class ReadableTabView : UserControl
 
     public async Task<(bool ok, string reason)> TryAddCommunityNoteAtSelectionOrCaretAsync()
     {
-        if (_pendingCommunityRefresh)
-            return (false, "Pending refresh");
-
-        if (_notesPanel?.IsVisible == true)
-            return (false, "Notes panel open");
-
-        if (_aeTran == null)
-            return (false, "_aeTran is null");
-
-        if (_renderTran.IsEmpty)
-            return (false, "_renderTran empty");
+        if (_pendingCommunityRefresh) return (false, "Pending refresh");
+        if (_notesPanel?.IsVisible == true) return (false, "Notes panel open");
+        if (_aeTran == null) return (false, "_aeTran is null");
+        if (_renderTran.IsEmpty) return (false, "_renderTran empty");
 
         int renderedIndex = GetSelectionMidpointOrCaretSafe(_aeTran);
         if (renderedIndex < 0) renderedIndex = 0;
@@ -854,8 +783,6 @@ public partial class ReadableTabView : UserControl
         SetZenContext(null, isZen: false);
 
         HideNotes();
-        ClearFindState();
-        CloseFind();
 
         _pendingCommunityRefresh = false;
         UpdateNotesButtonsState();
@@ -902,17 +829,31 @@ public partial class ReadableTabView : UserControl
 
             try
             {
-                if (origCaret < 0) origCaret = 0;
-                if (tranCaret < 0) tranCaret = 0;
+                if (_aeOrig.TextArea != null)
+                {
+                    int len = (_aeOrig.Text ?? "").Length;
+                    _aeOrig.TextArea.Caret.Offset = Math.Clamp(origCaret < 0 ? 0 : origCaret, 0, len);
 
-                _aeOrig.TextArea.Caret.Offset = Math.Clamp(origCaret, 0, (_aeOrig.Text ?? "").Length);
-                _aeTran.TextArea.Caret.Offset = Math.Clamp(tranCaret, 0, (_aeTran.Text ?? "").Length);
+                    if (origSelE != origSelS)
+                    {
+                        int s = Math.Clamp(Math.Min(origSelS, origSelE), 0, len);
+                        int e = Math.Clamp(Math.Max(origSelS, origSelE), 0, len);
+                        _aeOrig.TextArea.Selection = Selection.Create(_aeOrig.TextArea, s, e);
+                    }
+                }
 
-                if (origSelE != origSelS)
-                    _aeOrig.TextArea.Selection = Selection.Create(_aeOrig.TextArea, origSelS, origSelE);
+                if (_aeTran.TextArea != null)
+                {
+                    int len = (_aeTran.Text ?? "").Length;
+                    _aeTran.TextArea.Caret.Offset = Math.Clamp(tranCaret < 0 ? 0 : tranCaret, 0, len);
 
-                if (tranSelE != tranSelS)
-                    _aeTran.TextArea.Selection = Selection.Create(_aeTran.TextArea, tranSelS, tranSelE);
+                    if (tranSelE != tranSelS)
+                    {
+                        int s = Math.Clamp(Math.Min(tranSelS, tranSelE), 0, len);
+                        int e = Math.Clamp(Math.Max(tranSelS, tranSelE), 0, len);
+                        _aeTran.TextArea.Selection = Selection.Create(_aeTran.TextArea, s, e);
+                    }
+                }
             }
             catch { }
 
@@ -930,9 +871,6 @@ public partial class ReadableTabView : UserControl
         {
             _syncingSelection = false;
         }
-
-        if (_findBar?.IsVisible == true)
-            RecomputeMatches(resetToFirst: false);
     }
 
     private static (ScrollViewer? sv, Vector offset) GetScrollOffsetSafe(TextEditor ed)
@@ -940,8 +878,7 @@ public partial class ReadableTabView : UserControl
         try
         {
             var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
-            if (sv == null) return (null, default);
-            return (sv, sv.Offset);
+            return sv == null ? (null, default) : (sv, sv.Offset);
         }
         catch
         {
@@ -957,7 +894,6 @@ public partial class ReadableTabView : UserControl
         {
             double viewportH = sv.Viewport.Height;
             double extentH = sv.Extent.Height;
-
             double y = offset.Y;
 
             if (!double.IsNaN(viewportH) && !double.IsInfinity(viewportH) && viewportH > 0 &&
@@ -1050,7 +986,6 @@ public partial class ReadableTabView : UserControl
 
         bool origFocused = _aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin;
         bool tranFocused = _aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin;
-
         bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
 
         if (origFocused && !tranFocused) return false;
@@ -1119,14 +1054,17 @@ public partial class ReadableTabView : UserControl
     private void ApplyDestinationSelection(TextEditor dst, int start, int endExclusive, bool center)
     {
         int len = dst.Text?.Length ?? 0;
-        start = Math.Clamp(start, 0, Math.Max(0, len));
-        endExclusive = Math.Clamp(endExclusive, 0, Math.Max(0, len));
+        start = Math.Clamp(start, 0, len);
+        endExclusive = Math.Clamp(endExclusive, 0, len);
         if (endExclusive < start) (start, endExclusive) = (endExclusive, start);
 
         try
         {
-            dst.TextArea.Selection = Selection.Create(dst.TextArea, start, endExclusive);
-            dst.TextArea.Caret.Offset = start;
+            if (dst.TextArea != null)
+            {
+                dst.TextArea.Selection = Selection.Create(dst.TextArea, start, endExclusive);
+                dst.TextArea.Caret.Offset = start;
+            }
         }
         catch { }
 
@@ -1158,330 +1096,6 @@ public partial class ReadableTabView : UserControl
 
             MirrorSelectionOneWay(_mirrorSourceIsTranslated);
         }, DispatcherPriority.Background);
-    }
-
-    // -------------------------
-    // Find (Ctrl+F / F3 / Shift+F3)
-    // -------------------------
-    private void OnKeyDown(object? sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.F && e.KeyModifiers.HasFlag(KeyModifiers.Control))
-        {
-            OpenFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape && _findBar?.IsVisible == true)
-        {
-            CloseFind();
-            e.Handled = true;
-            return;
-        }
-
-        if (_findBar?.IsVisible == true && e.Key == Key.F3)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-        }
-    }
-
-    private void FindQuery_KeyDown(object? sender, KeyEventArgs e)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        if (e.Key == Key.Enter)
-        {
-            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift)) JumpPrev();
-            else JumpNext();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Escape)
-        {
-            CloseFind();
-            e.Handled = true;
-        }
-    }
-
-    private void OpenFind()
-    {
-        if (_findBar == null || _findQuery == null) return;
-
-        ResolveInnerEditors();
-        EnsureFindRenderersAttached();
-
-        _findBar.IsVisible = true;
-
-        var target = DetermineCurrentPaneForFind();
-        SetFindTarget(target, preserveIndex: false);
-
-        _findQuery.Focus();
-        _findQuery.SelectionStart = 0;
-        _findQuery.SelectionEnd = (_findQuery.Text ?? "").Length;
-
-        RecomputeMatches(resetToFirst: false);
-    }
-
-    private void CloseFind()
-    {
-        if (_findBar != null)
-            _findBar.IsVisible = false;
-
-        ClearHighlight();
-
-        try { _findTarget?.Focus(); } catch { }
-    }
-
-    private TextEditor? DetermineCurrentPaneForFind()
-    {
-        if (_aeOrig == null || _aeTran == null) return _aeTran;
-
-        bool recentInput = (DateTime.UtcNow - _lastUserInputUtc).TotalMilliseconds <= UserInputPriorityWindowMs;
-        if (recentInput && _lastUserInputEditor != null)
-        {
-            if (ReferenceEquals(_lastUserInputEditor, _editorOriginal) || ReferenceEquals(_lastUserInputEditor, _aeOrig)) return _aeOrig;
-            if (ReferenceEquals(_lastUserInputEditor, _editorTranslated) || ReferenceEquals(_lastUserInputEditor, _aeTran)) return _aeTran;
-        }
-
-        if (_aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin) return _aeTran;
-        if (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin) return _aeOrig;
-
-        return _aeTran;
-    }
-
-    private void SetFindTarget(TextEditor? ed, bool preserveIndex)
-    {
-        if (ed == null) return;
-
-        _findTarget = ed;
-
-        if (_findScope != null)
-            _findScope.Text = ReferenceEquals(ed, _aeOrig) ? "Find (Original):" : "Find (Translated):";
-
-        RecomputeMatches(resetToFirst: !preserveIndex);
-    }
-
-    private void DebounceRecomputeMatches()
-    {
-        _findDebounceTimer ??= new DispatcherTimer { Interval = FindRecomputeDebounce };
-        _findDebounceTimer.Stop();
-        _findDebounceTimer.Tick -= FindDebounceTimer_Tick;
-        _findDebounceTimer.Tick += FindDebounceTimer_Tick;
-        _findDebounceTimer.Start();
-    }
-
-    private void FindDebounceTimer_Tick(object? sender, EventArgs e)
-    {
-        _findDebounceTimer?.Stop();
-        RecomputeMatches(resetToFirst: true);
-    }
-
-    private void RecomputeMatches(bool resetToFirst)
-    {
-        if (_findBar?.IsVisible != true) return;
-
-        var ed = _findTarget;
-        if (ed == null) return;
-
-        string hay = ed.Text ?? "";
-        string q = (_findQuery?.Text ?? "").Trim();
-
-        int oldSelectedStart = -1;
-        if (!resetToFirst && _matchIndex >= 0 && _matchIndex < _matchStarts.Count)
-            oldSelectedStart = _matchStarts[_matchIndex];
-
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-
-        if (q.Length == 0 || hay.Length == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        _matchLen = q.Length;
-
-        int idx = 0;
-        while (true)
-        {
-            idx = hay.IndexOf(q, idx, StringComparison.OrdinalIgnoreCase);
-            if (idx < 0) break;
-            _matchStarts.Add(idx);
-            idx += Math.Max(1, q.Length);
-        }
-
-        if (_matchStarts.Count == 0)
-        {
-            UpdateFindCount();
-            ClearHighlight();
-            return;
-        }
-
-        if (resetToFirst)
-        {
-            int caret = GetCaretOffsetSafe(ed);
-            int nearest = _matchStarts.FindIndex(s => s >= caret);
-            _matchIndex = nearest >= 0 ? nearest : 0;
-        }
-        else
-        {
-            if (oldSelectedStart >= 0)
-            {
-                int exact = _matchStarts.IndexOf(oldSelectedStart);
-                if (exact >= 0) _matchIndex = exact;
-                else
-                {
-                    int nearest = _matchStarts.FindIndex(s => s >= oldSelectedStart);
-                    _matchIndex = nearest >= 0 ? nearest : _matchStarts.Count - 1;
-                }
-            }
-            else _matchIndex = 0;
-        }
-
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: false);
-    }
-
-    private void UpdateFindCount()
-    {
-        if (_findCount == null) return;
-
-        if (_matchStarts.Count == 0 || _matchIndex < 0)
-            _findCount.Text = "0/0";
-        else
-            _findCount.Text = $"{_matchIndex + 1}/{_matchStarts.Count}";
-    }
-
-    private void JumpNext()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex + 1) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpPrev()
-    {
-        if (_matchStarts.Count == 0) return;
-        _matchIndex = (_matchIndex - 1 + _matchStarts.Count) % _matchStarts.Count;
-        UpdateFindCount();
-        JumpToCurrentMatch(scroll: true);
-    }
-
-    private void JumpToCurrentMatch(bool scroll)
-    {
-        if (_findTarget == null) return;
-        if (_matchIndex < 0 || _matchIndex >= _matchStarts.Count) return;
-
-        int start = _matchStarts[_matchIndex];
-        int len = _matchLen;
-
-        ApplyHighlight(_findTarget, start, len);
-
-        if (!scroll) return;
-
-        try
-        {
-            _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
-            _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(420);
-            _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterFindMs);
-
-            _findTarget.Focus();
-            _findTarget.TextArea.Caret.Offset = Math.Clamp(start, 0, (_findTarget.Text ?? "").Length);
-
-            DispatcherTimer.RunOnce(() =>
-            {
-                try { CenterByCaret(_findTarget, start); } catch { }
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(25));
-
-            DispatcherTimer.RunOnce(() =>
-            {
-                try { CenterByCaret(_findTarget, start); } catch { }
-                ApplyHighlight(_findTarget, start, len);
-            }, TimeSpan.FromMilliseconds(85));
-        }
-        catch { }
-    }
-
-    private void EnsureFindRenderersAttached()
-    {
-        AttachRendererIfMissing(_aeOrig, ref _hlOrig);
-        AttachRendererIfMissing(_aeTran, ref _hlTran);
-    }
-
-    private static void AttachRendererIfMissing(TextEditor? ed, ref SearchHighlightRenderer? renderer)
-    {
-        if (ed == null) return;
-
-        var tv = ed.TextArea?.TextView;
-        if (tv == null) return;
-
-        renderer ??= new SearchHighlightRenderer(tv);
-
-        if (!tv.BackgroundRenderers.Contains(renderer))
-            tv.BackgroundRenderers.Add(renderer);
-    }
-
-    private void DetachFindRenderers()
-    {
-        DetachRenderer(_aeOrig, ref _hlOrig);
-        DetachRenderer(_aeTran, ref _hlTran);
-    }
-
-    private static void DetachRenderer(TextEditor? ed, ref SearchHighlightRenderer? renderer)
-    {
-        if (ed == null || renderer == null) return;
-
-        var tv = ed.TextArea?.TextView;
-        if (tv != null && tv.BackgroundRenderers.Contains(renderer))
-            tv.BackgroundRenderers.Remove(renderer);
-
-        renderer = null;
-    }
-
-    private void ApplyHighlight(TextEditor target, int start, int len)
-    {
-        EnsureFindRenderersAttached();
-
-        if (ReferenceEquals(target, _aeOrig))
-        {
-            _hlTran?.Clear();
-            _hlOrig?.SetRange(start, len);
-        }
-        else
-        {
-            _hlOrig?.Clear();
-            _hlTran?.SetRange(start, len);
-        }
-
-        try { target.TextArea?.TextView?.InvalidateVisual(); } catch { }
-    }
-
-    private void ClearHighlight()
-    {
-        try { _hlOrig?.Clear(); } catch { }
-        try { _hlTran?.Clear(); } catch { }
-        try
-        {
-            _aeOrig?.TextArea?.TextView?.InvalidateVisual();
-            _aeTran?.TextArea?.TextView?.InvalidateVisual();
-        }
-        catch { }
-    }
-
-    private void ClearFindState()
-    {
-        _matchStarts.Clear();
-        _matchLen = 0;
-        _matchIndex = -1;
-        UpdateFindCount();
-        ClearHighlight();
     }
 
     private void ChkZenText_IsCheckedChanged(object? sender, RoutedEventArgs e)
@@ -1554,10 +1168,17 @@ public partial class ReadableTabView : UserControl
 
         textView.EnsureVisualLines();
 
-        try { ed.TextArea.Caret.Offset = Math.Clamp(caretOffset, 0, (ed.Text ?? "").Length); } catch { }
+        try
+        {
+            if (ed.TextArea != null)
+                ed.TextArea.Caret.Offset = Math.Clamp(caretOffset, 0, (ed.Text ?? "").Length);
+        }
+        catch { }
 
-        var caretPos = ed.TextArea.Caret.Position;
-        var loc = textView.GetVisualPosition(caretPos, VisualYPosition.LineTop);
+        var caretPos = ed.TextArea?.Caret.Position;
+        if (caretPos == null) return;
+
+        var loc = textView.GetVisualPosition(caretPos.Value, VisualYPosition.LineTop);
         var p = textView.TranslatePoint(loc, sv);
         if (p == null) return;
 
@@ -1576,7 +1197,10 @@ public partial class ReadableTabView : UserControl
             double maxY = Math.Max(0, extentH - viewportH);
             desiredY = Math.Clamp(desiredY, 0, maxY);
         }
-        else desiredY = Math.Max(0, desiredY);
+        else
+        {
+            desiredY = Math.Max(0, desiredY);
+        }
 
         sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
@@ -1615,20 +1239,12 @@ public partial class ReadableTabView : UserControl
             var t = obj.GetType();
 
             var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pi != null)
-            {
-                var raw = pi.GetValue(obj);
-                if (TryConvertNumber(raw, out value))
-                    return true;
-            }
+            if (pi != null && TryConvertNumber(pi.GetValue(obj), out value))
+                return true;
 
             var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (fi != null)
-            {
-                var raw = fi.GetValue(obj);
-                if (TryConvertNumber(raw, out value))
-                    return true;
-            }
+            if (fi != null && TryConvertNumber(fi.GetValue(obj), out value))
+                return true;
         }
         catch { }
 
@@ -1645,9 +1261,7 @@ public partial class ReadableTabView : UserControl
             switch (raw)
             {
                 case int i: value = i; return true;
-                case long l:
-                    value = l > int.MaxValue ? int.MaxValue : (l < int.MinValue ? int.MinValue : (int)l);
-                    return true;
+                case long l: value = l > int.MaxValue ? int.MaxValue : l < int.MinValue ? int.MinValue : (int)l; return true;
                 case short s: value = s; return true;
                 case byte b: value = b; return true;
                 case uint ui: value = ui > int.MaxValue ? int.MaxValue : (int)ui; return true;
@@ -1664,10 +1278,7 @@ public partial class ReadableTabView : UserControl
                     return false;
             }
         }
-        catch
-        {
-            return false;
-        }
+        catch { return false; }
     }
 
     private static string? GetAnnotationResp(DocAnnotation ann)
@@ -1693,8 +1304,7 @@ public partial class ReadableTabView : UserControl
         try
         {
             var pi = obj.GetType().GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pi == null) return false;
-            if (pi.GetValue(obj) is string s)
+            if (pi?.GetValue(obj) is string s)
             {
                 value = s;
                 return true;

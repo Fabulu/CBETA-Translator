@@ -25,7 +25,8 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,*,Auto">
+	<!-- Find bar row removed -->
+	<Grid RowDefinitions="Auto,*,Auto">
 
 		<!-- Row 0: top action bar -->
 		<DockPanel Grid.Row="0"
@@ -49,43 +50,8 @@
 			<Border/>
 		</DockPanel>
 
-		<!-- Row 1: Find bar (styled globally via Border.findbar in App.axaml) -->
-		<Border Name="FindBar"
-				Classes="findbar"
-				Grid.Row="1"
-				Margin="0,0,0,8"
-				IsVisible="False">
-			<DockPanel LastChildFill="True">
-
-				<TextBlock Name="FindScope"
-						   DockPanel.Dock="Left"
-						   Classes="muted"
-						   VerticalAlignment="Center"
-						   Margin="0,0,10,0"
-						   Text="Find:" />
-
-				<StackPanel DockPanel.Dock="Right"
-							Orientation="Horizontal"
-							Spacing="8"
-							Margin="10,0,0,0">
-					<TextBlock Name="FindCount"
-							   Classes="muted"
-							   VerticalAlignment="Center"
-							   Text="0/0" />
-					<Button Name="BtnPrev" Content="Prev" Focusable="False"/>
-					<Button Name="BtnNext" Content="Next" Focusable="False"/>
-					<Button Name="BtnCloseFind" Content="✕" Focusable="False"/>
-				</StackPanel>
-
-				<TextBox Name="FindQuery"
-						 Watermark="Find…"
-						 MinWidth="260"
-						 VerticalAlignment="Center"/>
-			</DockPanel>
-		</Border>
-
-		<!-- Row 2: two readable panes -->
-		<Grid Grid.Row="2" ColumnDefinitions="1*,Auto,2*" Margin="0">
+		<!-- Row 1: two readable panes -->
+		<Grid Grid.Row="1" ColumnDefinitions="1*,Auto,2*" Margin="0">
 
 			<Border Grid.Column="0"
 					Background="{DynamicResource XmlViewerBg}"
@@ -125,8 +91,8 @@
 
 		</Grid>
 
-		<!-- Row 3: notes panel -->
-		<Border Grid.Row="3"
+		<!-- Row 2: notes panel -->
+		<Border Grid.Row="2"
 				Name="NotesPanel"
 				IsVisible="False"
 				Background="{DynamicResource ControlBg}"
