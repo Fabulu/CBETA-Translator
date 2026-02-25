@@ -4,262 +4,195 @@
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
 ![Releases](https://img.shields.io/badge/Releases-GitHub-black)
 
-# CBETA Translator  
-*A high-performance, cross-platform corpus editor for the CBETA XML-P5 canon*
+# CBETA Translator
+*A fast desktop app for reading, translating, and contributing CBETA texts*
 
-> Translate. Render. Annotate. Search. Commit.  
-> All without breaking history.
-
----
-
-## 📌 What Is This?
-
-**CBETA Translator** is a desktop application built with **Avalonia UI (.NET 8)** for working with the **CBETA XML-P5 corpus** — especially Chan/Zen texts.
-
-It is designed for:
-
-- Serious corpus-scale XML handling  
-- Community translation workflows  
-- Git-based contribution  
-- Cross-platform desktop usage (Windows + Linux + MAC OS)  
-- High performance even with very large XML files  
+> Read. Translate. Annotate. Search. Commit.  
+> Built for real work.
 
 ---
 
-## ⚠️ Important: CBETA Non-Commercial Rule
+## What this is
 
-This app is MIT-licensed, but **the CBETA texts and derived translations are non-commercial**.  
-When you share CBETA files, **keep the original CBETA header intact** and don’t use the texts/translations commercially.
+**CBETA Translator** is a cross-platform desktop app (Windows / Linux / macOS) for working with CBETA texts, especially Zen material.
+
+It is built for people who want to:
+
+- read Chinese and English side by side
+- translate in a human-friendly editor
+- use machine translation and then clean it up
+- add footnotes/notes
+- search a large local text collection
+- send changes to GitHub without living in the terminal
 
 ---
 
-# 📂 Corpus Navigation (Unified Left Pane)
+## Important: CBETA is non-commercial
+
+This app is MIT-licensed, but the **CBETA texts and derived translations are non-commercial**.
+
+If you share CBETA files or translations:
+
+- keep the original CBETA header
+- do not use them commercially
+
+---
+
+## Main library view (left pane)
 
 ![File Navbar Screenshot](./Screenshots/filesystem-navbar.png)
 
-Select a **root folder** containing:
+Pick a root folder like this:
 
-```
+```text
 root/
-  xml-p5/    (original Chinese XML)
-  xml-p5t/   (translated XML)
+  xml-p5/    (original Chinese files)
+  xml-p5t/   (translated files)
 ```
 
-The app automatically:
+The app will automatically:
 
-- Indexes the corpus  
-- Tracks translation status  
-- Matches original and translated files  
-- Caches index data for performance
-- Loads Buddhist metadata from `CBETA_Sorting_Data/buddhist_metadata_analysis.json`
+- scan the texts
+- match originals and translations
+- track translation progress
+- cache data for speed
 
-The left pane is now the primary document discovery surface:
+You can quickly narrow things down with:
 
-- Query search (filename/title/full text via search index, when present)
-- Metadata filtering (`Sect`, `Dynasty`, `Geography`) with AND logic
-- Hierarchical grouping based on selected `Group By`
-- Status/context/original-vs-translated controls for quick narrowing
+- search
+- filters
+- grouping options
+- translation status filters
 
-### 🌈 Translation Status Coloring
+### Translation status colors
 
-The file system view visually shows translation state:
-
-| Color | Meaning |
-|-------|---------|
-| 🔴 Red | Not translated |
-| 🟡 Yellow | Partially translated |
-| 🟢 Green | Fully translated |
-
-Filtering is **instant**.  
-Search within the file tree is **hyper fast**.
+- 🔴 Red = not translated
+- 🟡 Yellow = partially translated
+- 🟢 Green = fully translated
 
 ---
 
-# 📖 Readable Tab
+## Readable view (side-by-side reading + notes)
 
 ![Readable View Screenshot](./Screenshots/readable-view.png)
 
-The **Readable** tab renders TEI XML into a clean side-by-side document view.
+The **Readable** view shows:
 
-### Layout
+- **Left:** Chinese
+- **Right:** English translation
 
-| Left Side | Right Side |
-|------------|-------------|
-| Chinese (original) | English (translated) |
+If a translation does not exist yet, you’ll see Chinese on both sides.
 
-If no translation exists yet:
+### Linked reading (both sides stay in sync)
 
-- You will see **Chinese on both sides**.
+When you click or select text on one side, the matching part on the other side is highlighted.
 
----
+This makes it much easier to:
 
-## 🔁 Bidirectional Segment Mapping
+- compare lines
+- review translations
+- spot mistakes fast
 
-When you:
+### Hover dictionary (CC-CEDICT)
 
-- Select English text → the corresponding Chinese segment highlights.  
-- Select Chinese text → the English segment highlights.  
-- Move caret → mapping stays correct.  
+Hover over Chinese text and a dictionary popup appears (powered by **CC-CEDICT**).
 
-This is powered by:
+Useful for:
 
-- Segment-level rendering  
-- Index-aware mapping  
-- XML-safe position nudging  
+- quick word checks
+- difficult phrases
+- sanity-checking draft translations
 
-Even large documents remain responsive. If they don't it's a bug. Come and annoy me on the forums.
+### Community footnotes
 
----
+You can add community notes directly into the translated text, and they show up like normal footnotes in the readable view.
 
-## 📚 Hover Dictionary (CC-CEDICT)
-
-The Chinese side includes an integrated **CC-CEDICT hover dictionary**.
-
-When you:
-
-- Hover over Chinese text  
-- Pause briefly  
-
-A tooltip appears with dictionary definitions.
-
-This works even if the English translation is empty, making it easier to:
-
-- Understand unfamiliar terms  
-- Spot segmentation boundaries  
-- Sanity-check machine translations  
-
-The dictionary is powered by the included `cedict_ts.u8` dataset.
-
----
-
-## 📝 Community Footnotes
-
-You can insert structured community notes directly into the translated XML:
+Example note format:
 
 ```xml
 <note type="community" resp="optional">Text</note>
 ```
 
-Features:
-
-- Caret → XML index mapping  
-- Tag-safe insertion  
-- Strict deletion validation  
-- Re-render on save  
-- Cache invalidation handled automatically  
-
-Notes are persisted directly inside the XML structure.
-
-Sounds like gibberish? It'll just look like footnotes in a text.
+Nice community habit idea: if you submit a translation, add a short footnote near the beginning saying what method you used (manual, AI-assisted, which model/tool, how heavily edited, etc.). That makes review easier for everyone.
 
 ---
 
-## 🔍 Local Search (Ctrl + F)
-
-All views support local search:
-
-- File system filter  
-- Readable view search  
-- Translation XML view search  
-
-Search is designed to stay fast, even across a big corpus.
-
----
-
-# 🧠 Translation XML View
+## Translation view (for real translation work)
 
 ![Translation View Screenshot](./Screenshots/translation-xml.png)
 
-A structured XML editing environment for the translated document.
+There is one main translation editing view, and it is built for actual work:
 
-Purpose:
+- human translation
+- machine translation cleanup
+- preserving the file structure as much as possible
+- avoiding accidental breakage
 
-- Machine translation assistance  
-- Manual correction  
-- Preserve XML tags  
-- Avoid structural corruption  
+When you save, the app automatically:
 
-### Features
+- writes the file
+- refreshes the rendered view
+- updates caches
+- recalculates translation status
 
-- Raw XML editing  
-- Save triggers:
-  - File write  
-  - Render cache invalidation  
-  - Translation status recompute  
-  - Re-render  
-- Ctrl + F search inside XML  
-- XML integrity preserved  
+This is the core workflow of the app.
 
 ---
 
-# 🚀 Super Search (Corpus-Wide, Advanced)
+## Advanced search (whole corpus)
 
 ![Search Tab Screenshot](./Screenshots/search-tab.png)
 
-Advanced corpus-wide search is available from the left pane via the collapsed **Advanced Search** section.
+There is a built-in advanced search for the whole corpus:
 
-It provides:
+- full-text search
+- file matches
+- quick open
+- basic corpus stats
 
-- Full-text search
-- File matches
-- Metadata display
-- Quick open navigation
-- Corpus statistics
-
-The advanced tools are hidden by default to keep the main workflow minimal.
-
-### ⚡ Speed
-
-Search is powered by:
-
-- Index caching  
-- Bloom filter acceleration  
-
-Initial index build may take a while.  
-Be patient. It’s building something massive.
-
-After that?
-
-Search is lightning fast.
+First-time indexing can take a bit (big corpus), but after that it is very fast.
 
 ---
 
-# 🧮 Statistics
-
-The search system can display:
-
-- Match counts  
-- File counts  
-- Distribution insights  
-- Translation coverage metrics  
-
-The statistics panel is currently experimental.  
-If you find it useful (or want specific metrics), please tell me what you’d like to see and I’ll improve it. I know what stopwords are, I just didn't include their removal because I thought nobody would notice.
-
-Also, all of the averages are based on a per-file basis. These are not statistics across the whole corpus, which we'd have to do if we wanted them to be useful.
-
----
-
-# 🔗 Git Tab – Contribution Without Pain
+## Git tab (send changes without terminal pain)
 
 ![Git Tab Screenshot](./Screenshots/git-tab.png)
 
-The Git tab integrates full repository workflows directly into the app.
+The Git tab is there so normal people can contribute without learning command-line Git.
 
-### Clone with One Click
+It can help you:
 
-- Press clone  
-- Select repository  
-- App creates the project root  
-- No manual folder setup required  
+- download the project files to your computer
+- update your local copy
+- save your changes with a message
+- upload your changes
+- submit to the community repository on Github (This is called a pull request. I get to review it before it ends up public)
+- recover from local messes with a **Don’t Panic** button
 
-Users don’t need to understand Git internals.
+### Git and GitHub account required
+
+To use this app, you need **Git installed** (the app uses Git to download and update the files).  
+If you want to **submit translations**, you also need a **GitHub account**.
+
+- **Install Git:** https://git-scm.com/downloads  
+- **Create a GitHub account:** https://github.com/signup
+
+#### Quick install help
+
+- **Windows:** Download **Git for Windows** here: https://git-scm.com/download/win  
+- **macOS:** Download Git here: https://git-scm.com/download/mac  
+  (or install Apple’s command line tools by opening Terminal and running `xcode-select --install`)
+- **Linux:** Download/install info here: https://git-scm.com/download/linux  
+  (usually you install it with your package manager, like `apt`, `dnf`, or `pacman`)
+
+> **Windows note:** the app now includes a **bundled Git version** (experimental), so it may work even if Git is not installed system-wide.  
+> **Still recommended:** install Git normally anyway.
 
 ### Linux note (Git login)
 
-On Linux, Step 3 (**Push + Create PR**) may fail if Git cannot open a login prompt from inside the app.
+On Linux, upload/PR can fail if Git cannot open a login prompt from inside the app.
 
-Fix (recommended): install **Git Credential Manager**, then retry Step 3.
+Recommended fix: install **Git Credential Manager**.
 
 **Ubuntu / Debian**
 ```bash
@@ -278,185 +211,101 @@ sudo pacman -S git-credential-manager
 
 ---
 
-## 🧾 Single-File Contribution Flow
+## Performance (why it stays fast)
 
-Users can:
+This app is built for big text collections and uses caching so it doesn’t re-scan or re-render everything every time.
 
-- Edit one translation file  
-- Enter a commit message  
-- Press commit  
+If it gets slow, that is a bug.
 
-Behind the scenes, the app:
-
-- Forks the GitHub repository  
-- Commits only the selected file  
-- Pushes to the fork  
-- Opens a Pull Request automatically  
-
-To the user?
-
-It feels like “Save and Submit”.
+Come yell at me on the /r/zen reddit forums.
 
 ---
 
-## 🔄 Update
+## Platform support
 
-The Git tab also supports:
-
-- Pull latest changes  
-- Sync local repo  
-- Maintain clean working state  
-
-No command line required.
-
-### 🧯 Don’t Panic Button
-
-If something goes wrong and your local repo gets messy, the Git tab includes a **“Don’t Panic”** button.  
-It can wipe *local uncommitted changes* and return your repo to a clean state (you’ll get a clear warning first).
-
----
-
-# 🧱 Performance Architecture
-
-This application is designed for large XML corpora.
-
-### Index Cache
-
-- Stored via `IndexCacheService`  
-- Avoids full re-index on every launch  
-
-### Render Cache
-
-- `RenderedDocumentCacheService`  
-- LRU-style caching  
-- Keyed by file stamp (mtime + length)  
-
-### Invalidation Rules
-
-Triggered when:
-
-- Root changes  
-- File saved  
-- Translation updated  
-
-No unnecessary re-rendering.
-
----
-
-# 🖥 Platform Support
-
-- Windows (self-contained binary)  
+- Windows
 - Linux
-- Mac OS
-- Cross-platform via Avalonia 11.3.11
+- macOS
+
+Built with **Avalonia 11** on **.NET 8**.
 
 ---
 
-# 🤝 Contributing
+## Contributing
 
 Pull requests are welcome.
 
-Guidelines:
+Main rules:
 
-- Keep XML structure preservation sacred.
-- Do not introduce automatic tag rewriting.
-- Performance regressions must be justified.
-- Large feature additions should be discussed first.
+- don’t break features
+- don’t break file structure
+- don’t add automatic “cleanup” that rewrites tags
+- don’t make it slower without a good reason
 
-If you're unsure, open an issue.
-
----
-
-# 🎯 Long-Term Vision
-
-- Open-source CBETA translation environment  
-- Community note system  
-- Git-based collaborative translation  
-- Cross-platform distribution  
-- High-performance XML rendering  
-- Clean GitHub-based contribution model  
+If you’re unsure, open an issue first.
 
 ---
 
-# 🧾 Legal Notice
+## Legal
 
-CBETA Translator is licensed under the MIT License.
+CBETA Translator is licensed under the **MIT License**.
 
-The CBETA corpus itself is subject to its own licensing terms.
-The included CC-CEDICT dictionary is licensed under CC BY-SA 4.0.
+Other data/licenses:
 
-See THIRD_PARTY_NOTICES.txt for full details.
+- **CBETA corpus**: CBETA terms (non-commercial)
+- **CC-CEDICT**: **CC BY-SA 4.0**
+
+See `THIRD_PARTY_NOTICES.txt` for details.
 
 ---
 
-# 🛠 Building
+## Building
 
-If you just want to use the app, grab a prebuilt release instead of building from source.
+If you just want to use it, grab a release.
 
-### Windows (Self-Contained)
-
-```
+### Windows (self-contained)
+```bash
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### Linux (Self-Contained, Reliable)
-
-```
+### Linux (self-contained)
+```bash
 ./eng/build-linux.sh Release true linux-x64
 ./run-cbeta-selfcontained.sh linux-x64
 ```
 
 ### macOS (Intel)
-
-```
+```bash
 dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### macOS (Apple Silicon / M1–M3)
-
-```
+### macOS (Apple Silicon)
+```bash
 dotnet publish -c Release -r osx-arm64 --self-contained true /p:PublishSingleFile=true
 ```
 
-# 📦 Important: Dictionary Asset
+### Dictionary asset required
 
-The application requires:
+Make sure this file exists in the publish output:
 
-```
+```text
 Assets/Dict/cedict_ts.u8
 ```
 
-If building manually, verify that the dictionary exists in the publish folder:
-
-```
-bin/Release/net8.0/<runtime>/publish/Assets/Dict/cedict_ts.u8
-```
-
-If it is missing, copy it manually:
-
-```
-cp -r Assets/Dict bin/Release/net8.0/<runtime>/publish/Assets/
-```
-
-(Windows PowerShell:)
-
-```
-Copy-Item -Recurse Assets\Dict bin\Release\net8.0\<runtime>\publish\Assets\
-```
+If it is missing, copy it manually.
 
 ---
 
-# Final Words
+## Final words
 
-CBETA Translator is:
+CBETA Translator is a practical tool for real translation work:
 
-- A serious corpus-scale XML editor  
-- A collaborative translation platform  
-- A Git-integrated contribution engine  
-- A high-performance renderer  
+- read side by side
+- translate and clean machine output
+- add footnotes
+- search the corpus
+- send changes to GitHub
 
-Built for reddit by yours truly, hello /r/zen!
-
-This is dota2nub
+Built for /r/zen by dota2nub.
 
 🦇 Welcome to the canon.
