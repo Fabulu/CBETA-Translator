@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -484,24 +485,118 @@ public sealed class GitRepoService : IGitRepoService
         public string AllText => (StdOut + "\n" + StdErr).Trim();
     }
 
-    private static string DescribeResolvedGit(string gitExe)
+    private sealed record GitLaunchAttemptResult(bool Started, RunResult Result, string GitExe, bool UsedBundled);
+
+    private static string DescribeResolvedGit(string gitExe, bool usedBundled)
     {
+        var mode = usedBundled ? "bundled" : "system-or-path";
+        return $"{gitExe} [{mode}]";
+    }
+
+    private static IEnumerable<string> GetGitCandidates()
+    {
+        // local helper list because yield + local function is annoying
+        var candidates = new List<string>();
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        void Add(string? p)
+        {
+            if (string.IsNullOrWhiteSpace(p)) return;
+            p = p.Trim();
+            if (seen.Add(p))
+                candidates.Add(p);
+        }
+
+        // 1) Preferred resolver result first (usually bundled if present)
         try
         {
-            var mode = GitBinaryLocator.IsUsingBundledGit() ? "bundled" : "system-or-path";
-            return $"{gitExe} [{mode}]";
+            Add(GitBinaryLocator.ResolveGitExecutablePath());
         }
         catch
         {
-            return gitExe;
+            Add("git");
         }
+
+        // 2) PATH fallback
+        Add("git");
+
+        // 3) Common Windows install paths (very common after "installed Git" while app is open)
+        if (OperatingSystem.IsWindows())
+        {
+            var pf = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            var pf86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            Add(Path.Combine(pf, "Git", "cmd", "git.exe"));
+            Add(Path.Combine(pf, "Git", "bin", "git.exe"));
+            Add(Path.Combine(pf86, "Git", "cmd", "git.exe"));
+            Add(Path.Combine(pf86, "Git", "bin", "git.exe"));
+            Add(Path.Combine(localAppData, "Programs", "Git", "cmd", "git.exe"));
+            Add(Path.Combine(localAppData, "Programs", "Git", "bin", "git.exe"));
+        }
+
+        return candidates;
     }
 
     private async Task<RunResult> RunGitAsync(string? repoDir, string args, IProgress<string>? progress, CancellationToken ct)
     {
-        // Resolve git path fresh every call so users who install Git while the app is open
-        // don't need to restart.
-        var gitExe = GitBinaryLocator.ResolveGitExecutablePath();
+        // We only fallback when the executable fails to START (missing file / broken bundled git / DLL load issue).
+        // If git starts and exits non-zero (auth error, bad repo, etc.), we do not retry random candidates.
+        var launchErrors = new List<string>();
+
+        foreach (var candidate in GetGitCandidates())
+        {
+            ct.ThrowIfCancellationRequested();
+
+            var attempt = await TryRunGitWithExecutableAsync(candidate, repoDir, args, progress, ct);
+
+            if (attempt.Started)
+                return attempt.Result;
+
+            launchErrors.Add($"[git] launch failed with {DescribeResolvedGit(attempt.GitExe, attempt.UsedBundled)}");
+            if (!string.IsNullOrWhiteSpace(attempt.Result.StdErr))
+                launchErrors.Add(attempt.Result.StdErr);
+
+            // Let the user see the fallback behavior in the progress log
+            progress?.Report("[git] fallback after launch failure: " + DescribeResolvedGit(attempt.GitExe, attempt.UsedBundled));
+        }
+
+        // All candidates failed to launch
+        var combined = string.Join("\n", launchErrors.Where(s => !string.IsNullOrWhiteSpace(s))).Trim();
+        if (string.IsNullOrWhiteSpace(combined))
+            combined = "Unable to launch Git (all candidates failed).";
+
+        combined += "\n[hint] If you manually replaced app files, the bundled Portable Git folder may be incomplete.";
+        combined += "\n[hint] Try deleting tools/git/<rid>/ and restart the app so it uses system Git.";
+        combined += "\n[hint] Verify Git works in a terminal with: git --version";
+
+        return new RunResult(-1, "", combined);
+    }
+
+    private async Task<GitLaunchAttemptResult> TryRunGitWithExecutableAsync(
+        string gitExe,
+        string? repoDir,
+        string args,
+        IProgress<string>? progress,
+        CancellationToken ct)
+    {
+        bool usedBundled = false;
+
+        try
+        {
+            // Best effort classification for diagnostics
+            if (!string.Equals(gitExe, "git", StringComparison.OrdinalIgnoreCase))
+            {
+                var normalized = gitExe.Replace('\\', '/');
+                usedBundled = normalized.Contains("/tools/git/", StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                // If candidate is "git", ask locator if available (best effort only)
+                try { usedBundled = GitBinaryLocator.IsUsingBundledGit(); } catch { }
+            }
+        }
+        catch { }
 
         var psi = new ProcessStartInfo
         {
@@ -517,12 +612,17 @@ public sealed class GitRepoService : IGitRepoService
         };
 
         // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
-        // Safe to call always; it no-ops when not using bundled git.
-        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+        // Safe to call always; it should no-op when not using bundled git.
+        try
+        {
+            GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+        }
+        catch
+        {
+            // Don't fail just because env enrichment failed
+        }
 
         // Fail fast instead of hanging on an invisible prompt in a headless process.
-        // - GIT_TERMINAL_PROMPT=0 -> git errors instead of waiting for username/password
-        // - GCM_INTERACTIVE=Always -> nudge Git Credential Manager to show UI when available
         try
         {
             psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
@@ -533,7 +633,7 @@ public sealed class GitRepoService : IGitRepoService
             // ignore env failures; still try to run git
         }
 
-        progress?.Report("[git] exe: " + DescribeResolvedGit(gitExe));
+        progress?.Report("[git] exe: " + DescribeResolvedGit(gitExe, usedBundled));
 
         var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
         _running = p;
@@ -561,7 +661,13 @@ public sealed class GitRepoService : IGitRepoService
         try
         {
             if (!p.Start())
-                return new RunResult(-1, "", "Failed to start git process.");
+            {
+                return new GitLaunchAttemptResult(
+                    Started: false,
+                    Result: new RunResult(-1, "", "Failed to start git process."),
+                    GitExe: gitExe,
+                    UsedBundled: usedBundled);
+            }
 
             p.BeginOutputReadLine();
             p.BeginErrorReadLine();
@@ -572,27 +678,43 @@ public sealed class GitRepoService : IGitRepoService
             lock (stdout) so = string.Join("\n", stdout);
             lock (stderr) se = string.Join("\n", stderr);
 
-            return new RunResult(p.ExitCode, so, se);
+            return new GitLaunchAttemptResult(
+                Started: true,
+                Result: new RunResult(p.ExitCode, so, se),
+                GitExe: gitExe,
+                UsedBundled: usedBundled);
         }
         catch (OperationCanceledException)
         {
             try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
             throw;
         }
+        catch (Exception ex) when (ex is Win32Exception || ex is FileNotFoundException)
+        {
+            try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
+
+            var msg = ex.ToString()
+                + "\n[git] resolved exe: " + DescribeResolvedGit(gitExe, usedBundled);
+
+            return new GitLaunchAttemptResult(
+                Started: false,
+                Result: new RunResult(-1, "", msg),
+                GitExe: gitExe,
+                UsedBundled: usedBundled);
+        }
         catch (Exception ex)
         {
             try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
 
-            // Common "git not found" cases become easier to diagnose.
-            string msg = ex.ToString();
-            if (ex is System.ComponentModel.Win32Exception || ex is FileNotFoundException)
-            {
-                msg += "\n[git] resolved exe: " + DescribeResolvedGit(gitExe);
-                msg += "\n[hint] If Git was just installed, fully close and reopen the app.";
-                msg += "\n[hint] If using bundled Git, verify tools/git/<rid>/cmd/git.exe or bin/git(.exe) exists.";
-            }
+            // Other exceptions are not necessarily "not found", but still a launch failure.
+            var msg = ex.ToString()
+                + "\n[git] resolved exe: " + DescribeResolvedGit(gitExe, usedBundled);
 
-            return new RunResult(-1, "", msg);
+            return new GitLaunchAttemptResult(
+                Started: false,
+                Result: new RunResult(-1, "", msg),
+                GitExe: gitExe,
+                UsedBundled: usedBundled);
         }
         finally
         {
