@@ -240,7 +240,7 @@ public static class GitBinaryLocator
 
             // 3) As a final "system" probe, allow PATH command name if no absolute path found.
             //    We don't verify here (process launch will verify), but this preserves old behavior.
-            return "git";
+            return "null";
         }
         catch
         {
