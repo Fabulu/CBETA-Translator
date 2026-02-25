@@ -16,8 +16,6 @@ public static class GitBinaryLocator
     // Optional override (env var):
     //   CBETA_GIT_PREFERENCE=system   -> prefer system git
     //   CBETA_GIT_PREFERENCE=bundled  -> prefer bundled git
-    //
-    // This gives you "real git first" while still supporting your bundled copy.
 
     public static string ResolveGitExecutablePath()
     {
@@ -64,7 +62,6 @@ public static class GitBinaryLocator
     {
         try
         {
-            // Return a root only if the currently resolved git is the bundled one.
             var exe = ResolveGitExecutablePath();
             if (!IsBundledGitPath(exe))
                 return null;
@@ -81,12 +78,16 @@ public static class GitBinaryLocator
     {
         try
         {
-            // Only enrich if the chosen executable is bundled.
-            var exe = ResolveGitExecutablePath();
+            // Important: check the executable already selected for THIS process first.
+            // Don't re-resolve independently if psi.FileName is already set.
+            var exe = psi.FileName;
+            if (string.IsNullOrWhiteSpace(exe))
+                exe = ResolveGitExecutablePath();
+
             if (!IsBundledGitPath(exe))
                 return;
 
-            var root = GetBundledRootFromExePath(exe);
+            var root = GetBundledRootFromExePath(exe!);
             if (string.IsNullOrWhiteSpace(root))
                 return;
 
@@ -149,7 +150,6 @@ public static class GitBinaryLocator
             // ignore
         }
 
-        // Your requested default: prefer real/system Git over bundled.
         return GitPreference.SystemFirst;
     }
 
@@ -161,7 +161,9 @@ public static class GitBinaryLocator
 
             if (OperatingSystem.IsWindows())
             {
-                // Bundled Portable Git layout (release YAML should create this)
+                // PortableGit layout:
+                // tools\git\win-x64\cmd\git.exe  (preferred)
+                // tools\git\win-x64\bin\git.exe
                 var p1 = Path.Combine(baseDir, "tools", "git", "win-x64", "cmd", "git.exe");
                 if (File.Exists(p1)) return p1;
 
@@ -194,7 +196,7 @@ public static class GitBinaryLocator
     {
         try
         {
-            // 1) PATH scan (absolute lookup) - works cross-platform
+            // 1) PATH scan (absolute lookup)
             var pathValue = Environment.GetEnvironmentVariable("PATH") ?? "";
             foreach (var part in pathValue.Split(Path.PathSeparator))
             {
@@ -238,9 +240,8 @@ public static class GitBinaryLocator
                 }
             }
 
-            // 3) As a final "system" probe, allow PATH command name if no absolute path found.
-            //    We don't verify here (process launch will verify), but this preserves old behavior.
-            return "null";
+            // No absolute system git found
+            return null;
         }
         catch
         {
