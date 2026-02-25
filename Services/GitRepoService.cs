@@ -12,11 +12,12 @@ namespace CbetaTranslator.App.Services;
 public sealed class GitRepoService : IGitRepoService
 {
     private Process? _running;
-    private readonly string _gitExe;
 
     public GitRepoService()
     {
-        _gitExe = GitBinaryLocator.ResolveGitExecutablePath();
+        // Intentionally do not cache git path here.
+        // We resolve it per command so the app can detect Git installs/changes
+        // without requiring a restart.
     }
 
     public void TryCancelRunningProcess()
@@ -229,7 +230,7 @@ public sealed class GitRepoService : IGitRepoService
     }
 
     // -------------------------
-    // Update safety helpers (new)
+    // Update safety helpers
     // -------------------------
 
     /// <summary>
@@ -483,11 +484,28 @@ public sealed class GitRepoService : IGitRepoService
         public string AllText => (StdOut + "\n" + StdErr).Trim();
     }
 
+    private static string DescribeResolvedGit(string gitExe)
+    {
+        try
+        {
+            var mode = GitBinaryLocator.IsUsingBundledGit() ? "bundled" : "system-or-path";
+            return $"{gitExe} [{mode}]";
+        }
+        catch
+        {
+            return gitExe;
+        }
+    }
+
     private async Task<RunResult> RunGitAsync(string? repoDir, string args, IProgress<string>? progress, CancellationToken ct)
     {
+        // Resolve git path fresh every call so users who install Git while the app is open
+        // don't need to restart.
+        var gitExe = GitBinaryLocator.ResolveGitExecutablePath();
+
         var psi = new ProcessStartInfo
         {
-            FileName = _gitExe,
+            FileName = gitExe,
             Arguments = args,
             WorkingDirectory = string.IsNullOrWhiteSpace(repoDir) ? Environment.CurrentDirectory : repoDir,
             UseShellExecute = false,
@@ -499,6 +517,7 @@ public sealed class GitRepoService : IGitRepoService
         };
 
         // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
+        // Safe to call always; it no-ops when not using bundled git.
         GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
 
         // Fail fast instead of hanging on an invisible prompt in a headless process.
@@ -513,6 +532,8 @@ public sealed class GitRepoService : IGitRepoService
         {
             // ignore env failures; still try to run git
         }
+
+        progress?.Report("[git] exe: " + DescribeResolvedGit(gitExe));
 
         var p = new Process { StartInfo = psi, EnableRaisingEvents = true };
         _running = p;
@@ -561,7 +582,17 @@ public sealed class GitRepoService : IGitRepoService
         catch (Exception ex)
         {
             try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
-            return new RunResult(-1, "", ex.ToString());
+
+            // Common "git not found" cases become easier to diagnose.
+            string msg = ex.ToString();
+            if (ex is System.ComponentModel.Win32Exception || ex is FileNotFoundException)
+            {
+                msg += "\n[git] resolved exe: " + DescribeResolvedGit(gitExe);
+                msg += "\n[hint] If Git was just installed, fully close and reopen the app.";
+                msg += "\n[hint] If using bundled Git, verify tools/git/<rid>/cmd/git.exe or bin/git(.exe) exists.";
+            }
+
+            return new RunResult(-1, "", msg);
         }
         finally
         {
@@ -573,6 +604,7 @@ public sealed class GitRepoService : IGitRepoService
             catch { }
 
             _running = null;
+            p.Dispose();
         }
     }
 }
