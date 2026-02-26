@@ -844,6 +844,24 @@ public sealed class IndexedTranslationService
 
             var ln = xe.Name.LocalName;
 
+            // Treat <list> as preserved structure but hidden in projection.
+            // This prevents container <item> lines from absorbing all child <item> text.
+            if (ln == "list")
+            {
+                target.Add(new TranslationSegment
+                {
+                    Kind = TranslationSegmentKind.PreservedElement,
+                    ElementTemplate = new XElement(xe),
+                    ElementName = "list",
+                    ElementXmlId = (string?)xe.Attribute(XmlNs + "id"),
+                    LineIndex = line,
+                    HideInProjection = true,
+                    MoveToLineEnd = false,
+                    VisibleText = ""
+                });
+                continue;
+            }
+
             if (ln == "lb")
             {
                 target.Add(new TranslationSegment
@@ -1305,19 +1323,27 @@ public sealed class IndexedTranslationService
             if (n is XText t)
             {
                 sb.Append(t.Value);
+                continue;
             }
-            else if (n is XElement x)
-            {
-                if (x.Name.LocalName is "lb" or "pb" or "milestone" or "anchor")
-                    continue;
 
-                if (x.Name.LocalName == "note")
-                    continue;
+            if (n is not XElement x)
+                continue;
 
-                // Do include gaiji visible text for "is this translatable?" detection.
-                // (write-back safety is handled separately in segment builder)
-                sb.Append(VisibleTextWithoutInlineNotes(x));
-            }
+            // Skip structure-only markers
+            if (x.Name.LocalName is "lb" or "pb" or "milestone" or "anchor")
+                continue;
+
+            // Skip inline notes in body/head detection
+            if (x.Name.LocalName == "note")
+                continue;
+
+            // IMPORTANT: do NOT recurse into donor <list> containers.
+            // Otherwise container <item> becomes "header + all child names" and cannot round-trip safely.
+            if (x.Name.LocalName == "list")
+                continue;
+
+            // Do include gaiji/inline wrapper text for detection
+            sb.Append(VisibleTextWithoutInlineNotes(x));
         }
 
         return NormalizeProjectionLine(sb.ToString());

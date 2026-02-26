@@ -952,6 +952,7 @@ STRICT RULES:
 - Do NOT add or remove blocks.
 - Do NOT use angle brackets < or > in EN text.
 - Output ONLY one markdown code block.
+- Translate common Zen honorifics/titles like 「和尚」 as “the master” (or “Venerable”) in EN, not left as Chinese.
 
 ```markdown
 {selectedProjection}
