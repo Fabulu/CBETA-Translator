@@ -269,6 +269,12 @@ public partial class MainWindow : Window
             {
                 await OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
             };
+
+            // NEW: move existing note/footnote by cloning its XML span and removing the old span
+            _readableView.FootnoteMoveRequested += async (_, req) =>
+            {
+                await OnFootnoteMoveRequestedAsync(req);
+            };
         }
 
         if (_translationView != null)
@@ -338,7 +344,93 @@ public partial class MainWindow : Window
             };
         }
     }
+    private async Task OnFootnoteMoveRequestedAsync(ReadableTabView.MoveFootnoteRequest req)
+    {
+        try
+        {
+            if (_currentRelPath == null || _translatedDir == null)
+            {
+                SetStatus("Move footnote ignored: no file selected.");
+                return;
+            }
 
+            await EnsureTranslatedXmlExistsForCurrentAsync();
+
+            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var baseXml = ReadAllTextUtf8Strict(tranAbs);
+
+            int len = baseXml.Length;
+
+            int oldS = Math.Clamp(req.OldXmlStart, 0, len);
+            int oldE = Math.Clamp(req.OldXmlEndExclusive, 0, len);
+            if (oldE < oldS) (oldS, oldE) = (oldE, oldS);
+
+            if (oldE <= oldS)
+            {
+                SetStatus($"Move footnote ignored: invalid old span {req.OldXmlStart}..{req.OldXmlEndExclusive}");
+                return;
+            }
+
+            int newIndex = Math.Clamp(req.NewXmlIndex, 0, len);
+
+            // If the click maps INSIDE the old <note> span, that’s fine.
+            // We *interpret* it as “insert at the note’s anchor point”, i.e. the start of the element.
+            // (Inserting into note markup is never desirable.)
+            if (newIndex >= oldS && newIndex <= oldE)
+                newIndex = oldS;
+
+            // Extract original note XML snippet
+            string noteXml = baseXml.Substring(oldS, oldE - oldS);
+
+            // Sanity check: avoid deleting arbitrary XML if spans ever go wrong
+            if (!LooksLikeNoteElement(noteXml))
+            {
+                SetStatus("Move footnote refused: source span does not look like a <note> element.");
+                return;
+            }
+
+            // Remove old note first
+            string withoutOld = baseXml.Remove(oldS, oldE - oldS);
+
+            // Adjust insertion index AFTER the removal
+            int removedLen = oldE - oldS;
+            int adjustedNewIndex =
+                (newIndex <= oldS)
+                    ? newIndex
+                    : newIndex - removedLen;
+
+            adjustedNewIndex = Math.Clamp(adjustedNewIndex, 0, withoutOld.Length);
+
+            // Insert the cloned note element at the new location
+            string updated = withoutOld.Insert(adjustedNewIndex, noteXml);
+
+            await WriteTranslatedDiskAndRerenderAsync(
+                _currentRelPath,
+                updated,
+                $"moved footnote {oldS}..{oldE} -> {adjustedNewIndex}"
+            );
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Move footnote failed: " + ex.Message);
+        }
+    }
+    private static bool LooksLikeNoteElement(string xmlSnippet)
+    {
+        if (string.IsNullOrWhiteSpace(xmlSnippet)) return false;
+
+        var s = xmlSnippet.TrimStart();
+
+        // Allow whitespace before <note ...>
+        if (!s.StartsWith("<note", StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        // Should contain a closing tag (renderer captures <note ...>...</note>)
+        if (s.IndexOf("</note>", StringComparison.OrdinalIgnoreCase) < 0)
+            return false;
+
+        return true;
+    }
     private void ForceTab(int idx)
     {
         if (_tabs == null) return;
