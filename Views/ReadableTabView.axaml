@@ -102,7 +102,8 @@
 				Margin="0,8,0,0"
 				Padding="10">
 
-			<Grid RowDefinitions="Auto,*" ColumnDefinitions="*,Auto">
+			<!-- Added a 3rd row for footer buttons -->
+			<Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,Auto">
 				<TextBlock Name="NotesHeader"
 						   Grid.Row="0"
 						   Grid.Column="0"
@@ -136,6 +137,21 @@
 							 Background="Transparent"
 							 BorderThickness="0"/>
 				</ScrollViewer>
+
+				<!-- Footer actions -->
+				<StackPanel Grid.Row="2"
+							Grid.ColumnSpan="2"
+							Orientation="Horizontal"
+							HorizontalAlignment="Right"
+							Spacing="8"
+							Margin="0,8,0,0">
+					<Button Name="BtnMoveFootnote"
+							Content="Move footnote"
+							Padding="10,2"
+							Focusable="False"
+							IsVisible="False"
+							IsEnabled="False"/>
+				</StackPanel>
 			</Grid>
 
 		</Border>
