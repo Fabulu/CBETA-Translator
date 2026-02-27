@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using CbetaTranslator.App.Models;
 
@@ -9,8 +10,15 @@ namespace CbetaTranslator.App.Infrastructure;
 
 public static class AnnotationMarkerInserter
 {
-    // Span in FINAL rendered text that maps to an annotation index
-    public readonly record struct MarkerSpan(int Start, int EndExclusive, int AnnotationIndex);
+    public enum MarkerKind
+    {
+        Normal,     // grey
+        Yuanwu,      // yellow (inline commentary notes, but NOT CBETA/Taisho apparatus)
+        Community    // blue (type="community")
+    }
+
+    // Span in FINAL rendered text that maps to an annotation index + kind
+    public readonly record struct MarkerSpan(int Start, int EndExclusive, int AnnotationIndex, MarkerKind Kind);
 
     private readonly record struct InsertEvent(int OriginalPos, int InsertedLen);
 
@@ -84,7 +92,8 @@ public static class AnnotationMarkerInserter
             sb.Append(marker);
             int markerEndFinal = sb.Length;
 
-            markers.Add(new MarkerSpan(markerStartFinal, markerEndFinal, it.Index));
+            var kind = GetMarkerKind(it.Ann);
+            markers.Add(new MarkerSpan(markerStartFinal, markerEndFinal, it.Index, kind));
             inserts.Add(new InsertEvent(insertAt, marker.Length));
         }
 
@@ -100,6 +109,176 @@ public static class AnnotationMarkerInserter
 
         return (newText, shiftedSegs, markers, baseToXmlFinal);
     }
+
+    // =========================
+    // Marker kind detection (GENERAL + SAFE)
+    // =========================
+
+    private static MarkerKind GetMarkerKind(DocAnnotation ann)
+    {
+        if (ann == null) return MarkerKind.Normal;
+
+        // 1) Community always wins (your custom notes)
+        if (IsCommunity(ann))
+            return MarkerKind.Community;
+
+        // 2) Yellow only for inline commentary notes that are NOT editorial apparatus.
+        // This is the "Yuanwu-style" behavior you want, but generalized across texts.
+        if (IsInlineNote(ann) && !LooksLikeEditorialApparatus(ann))
+            return MarkerKind.Yuanwu;
+
+        // 3) Everything else stays grey
+        return MarkerKind.Normal;
+    }
+
+    private static bool IsCommunity(DocAnnotation ann)
+    {
+        var k = (ann.Kind ?? "").Trim();
+        if (k.Equals("community", StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (TryGetStringPropOrField(ann, "Type", out var type) &&
+            type?.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) == true)
+            return true;
+
+        if (TryGetStringPropOrField(ann, "Source", out var src) &&
+            src?.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) == true)
+            return true;
+
+        return false;
+    }
+
+    private static bool IsInlineNote(DocAnnotation ann)
+    {
+        // Renderer might store TEI @place="inline" under many names.
+        // We check a small set of common ones so this works across your texts.
+        static bool EqInline(string? s)
+            => !string.IsNullOrWhiteSpace(s) && s.Trim().Equals("inline", StringComparison.OrdinalIgnoreCase);
+
+        if (TryGetStringPropOrField(ann, "Place", out var place) && EqInline(place)) return true;
+        if (TryGetStringPropOrField(ann, "NotePlace", out place) && EqInline(place)) return true;
+        if (TryGetStringPropOrField(ann, "XmlPlace", out place) && EqInline(place)) return true;
+        if (TryGetStringPropOrField(ann, "place", out place) && EqInline(place)) return true;
+
+        // Some renderers encode this into Kind
+        var k = (ann.Kind ?? "").Trim();
+        if (k.Equals("inline", StringComparison.OrdinalIgnoreCase)) return true;
+        if (k.Contains("inline", StringComparison.OrdinalIgnoreCase)) return true;
+
+        // Some renderers use bool flags
+        if (TryGetBoolPropOrField(ann, "IsInline", out var b) && b) return true;
+        if (TryGetBoolPropOrField(ann, "Inline", out b) && b) return true;
+
+        return false;
+    }
+
+    private static bool LooksLikeEditorialApparatus(DocAnnotation ann)
+    {
+        // We want to KEEP these grey even if they're inline:
+        // - CBETA / Taisho editorial / apparatus notes
+        // - variant/orig/modification markers
+        //
+        // This stays conservative: only excludes when we see strong signals.
+        bool HasToken(string? hay, string token)
+            => !string.IsNullOrWhiteSpace(hay) && hay.IndexOf(token, StringComparison.OrdinalIgnoreCase) >= 0;
+
+        // resp signals
+        if (TryGetStringPropOrField(ann, "Resp", out var resp) ||
+            TryGetStringPropOrField(ann, "resp", out resp) ||
+            TryGetStringPropOrField(ann, "Responsibility", out resp))
+        {
+            if (HasToken(resp, "cbeta")) return true;
+            if (HasToken(resp, "taisho") || HasToken(resp, "taishō")) return true;
+            if (HasToken(resp, "t")) return false; // too weak, ignore
+        }
+
+        // type signals
+        if (TryGetStringPropOrField(ann, "Type", out var type) ||
+            TryGetStringPropOrField(ann, "type", out type))
+        {
+            // Your community already handled above; this is for editorial types.
+            if (HasToken(type, "orig")) return true;
+            if (HasToken(type, "mod")) return true;
+            if (HasToken(type, "variant")) return true;
+            if (HasToken(type, "apparatus")) return true;
+            if (HasToken(type, "editor")) return true;
+            if (HasToken(type, "corr")) return true;
+            if (HasToken(type, "sic")) return true;
+        }
+
+        // source signals
+        if (TryGetStringPropOrField(ann, "Source", out var src) ||
+            TryGetStringPropOrField(ann, "source", out src))
+        {
+            if (HasToken(src, "cbeta")) return true;
+            if (HasToken(src, "taisho") || HasToken(src, "taishō")) return true;
+        }
+
+        // kind sometimes carries these tags too
+        var k = (ann.Kind ?? "").Trim();
+        if (HasToken(k, "cbeta")) return true;
+        if (HasToken(k, "taisho") || HasToken(k, "taishō")) return true;
+        if (HasToken(k, "variant") || HasToken(k, "apparatus") || HasToken(k, "orig") || HasToken(k, "mod"))
+            return true;
+
+        return false;
+    }
+
+    private static bool TryGetStringPropOrField(object obj, string name, out string? value)
+    {
+        value = null;
+        try
+        {
+            var t = obj.GetType();
+
+            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi?.GetValue(obj) is string s)
+            {
+                value = s;
+                return true;
+            }
+
+            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (fi?.GetValue(obj) is string s2)
+            {
+                value = s2;
+                return true;
+            }
+        }
+        catch { }
+
+        return false;
+    }
+
+    private static bool TryGetBoolPropOrField(object obj, string name, out bool value)
+    {
+        value = false;
+        try
+        {
+            var t = obj.GetType();
+
+            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (pi != null)
+            {
+                var v = pi.GetValue(obj);
+                if (v is bool b) { value = b; return true; }
+            }
+
+            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (fi != null)
+            {
+                var v = fi.GetValue(obj);
+                if (v is bool b) { value = b; return true; }
+            }
+        }
+        catch { }
+
+        return false;
+    }
+
+    // =========================
+    // Segment + map shifting
+    // =========================
 
     private static List<RenderSegment> ShiftSegments(List<RenderSegment> segs, List<InsertEvent> inserts)
     {

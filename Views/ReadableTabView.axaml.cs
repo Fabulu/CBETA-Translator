@@ -10,12 +10,14 @@ using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaEdit;
+using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
 using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -92,6 +94,9 @@ public partial class ReadableTabView : UserControl
 
     private DocAnnotation? _currentAnn;
     private bool _currentAnnFromTranslatedPane;
+
+    private MarkerColorizer? _markerColorizerOrig;
+    private MarkerColorizer? _markerColorizerTran;
 
     // Move mode state
     private bool _awaitingMoveTargetClick;
@@ -257,6 +262,8 @@ public partial class ReadableTabView : UserControl
         _renderOrig = RenderedDocument.Empty;
         _renderTran = RenderedDocument.Empty;
 
+        try { UninstallMarkerColorizers(); } catch { }
+
         if (_aeOrig != null) _aeOrig.Text = "";
         if (_aeTran != null) _aeTran.Text = "";
 
@@ -303,8 +310,14 @@ public partial class ReadableTabView : UserControl
 
         try
         {
+            // remove any old transformers before swapping docs/text
+            try { UninstallMarkerColorizers(); } catch { }
+
             _aeOrig.Text = _renderOrig.Text ?? "";
             _aeTran.Text = _renderTran.Text ?? "";
+
+            // install colorizers for the NEW marker spans
+            InstallMarkerColorizers();
 
             SetupHoverDictionary();
             CancelMoveModeAndHideNotes();
@@ -1415,6 +1428,127 @@ public partial class ReadableTabView : UserControl
         }
         catch { return false; }
     }
+
+    private void UninstallMarkerColorizers()
+    {
+        try
+        {
+            if (_aeOrig?.TextArea?.TextView != null && _markerColorizerOrig != null)
+            {
+                _aeOrig.TextArea.TextView.LineTransformers.Remove(_markerColorizerOrig);
+                _aeOrig.TextArea.TextView.Redraw();
+            }
+        }
+        catch { }
+
+        try
+        {
+            if (_aeTran?.TextArea?.TextView != null && _markerColorizerTran != null)
+            {
+                _aeTran.TextArea.TextView.LineTransformers.Remove(_markerColorizerTran);
+                _aeTran.TextArea.TextView.Redraw();
+            }
+        }
+        catch { }
+    }
+    private void InstallMarkerColorizers()
+    {
+        try
+        {
+            if (_aeOrig?.TextArea?.TextView != null)
+            {
+                _markerColorizerOrig ??= new MarkerColorizer(() =>
+                    _renderOrig.AnnotationMarkers != null
+                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_renderOrig.AnnotationMarkers
+                        : Array.Empty<AnnotationMarkerInserter.MarkerSpan>());
+
+                var list = _aeOrig.TextArea.TextView.LineTransformers;
+                if (!list.Contains(_markerColorizerOrig))
+                    list.Add(_markerColorizerOrig);
+
+                _aeOrig.TextArea.TextView.Redraw();
+            }
+        }
+        catch { }
+
+        try
+        {
+            if (_aeTran?.TextArea?.TextView != null)
+            {
+                _markerColorizerTran ??= new MarkerColorizer(() =>
+                    _renderTran.AnnotationMarkers != null
+                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_renderTran.AnnotationMarkers
+                        : Array.Empty<AnnotationMarkerInserter.MarkerSpan>());
+
+                var list = _aeTran.TextArea.TextView.LineTransformers;
+                if (!list.Contains(_markerColorizerTran))
+                    list.Add(_markerColorizerTran);
+
+                _aeTran.TextArea.TextView.Redraw();
+            }
+        }
+        catch { }
+    }
+
+    private sealed class MarkerColorizer : DocumentColorizingTransformer
+    {
+        private readonly Func<IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>> _getMarkers;
+
+        public MarkerColorizer(Func<IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>> getMarkers)
+        {
+            _getMarkers = getMarkers;
+        }
+
+        private static IBrush Brush(string key, IBrush fallback)
+        {
+            var app = Application.Current;
+            if (app is null) return fallback;
+
+            if (app.TryFindResource(key, theme: null, out var res) && res is IBrush b)
+                return b;
+
+            return fallback;
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            var markers = _getMarkers();
+            if (markers == null || markers.Count == 0) return;
+
+            int lineStart = line.Offset;
+            int lineEnd = line.EndOffset;
+
+            for (int i = 0; i < markers.Count; i++)
+            {
+                var m = markers[i];
+                if (m.EndExclusive <= lineStart) continue;
+                if (m.Start >= lineEnd) break;
+
+                var fg = m.Kind switch
+                {
+                    AnnotationMarkerInserter.MarkerKind.Yuanwu =>
+                        Brush("NoteMarkerYuanwuFg", Brushes.Goldenrod),
+
+                    AnnotationMarkerInserter.MarkerKind.Community =>
+                        Brush("NoteMarkerCommunityFg", Brushes.DodgerBlue),
+
+                    _ =>
+                        Brush("NoteMarkerNormalFg", Brushes.Gray),
+                };
+
+                int s = Math.Max(m.Start, lineStart);
+                int e = Math.Min(m.EndExclusive, lineEnd);
+
+                ChangeLinePart(s, e, el =>
+                {
+                    el.TextRunProperties.SetForegroundBrush(fg);
+                });
+            }
+        }
+    }
+
+
+
 
     private static string? GetAnnotationResp(DocAnnotation ann)
     {

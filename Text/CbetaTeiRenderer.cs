@@ -475,6 +475,9 @@ public static class CbetaTeiRenderer
 
     // POSITION MAP HELPERS:
     // map.Count == sb.Length + 1
+
+
+
     private static void MapAppendChar(StringBuilder sb, List<int>? map, char c, int xmlCaretIndexAfter)
     {
         sb.Append(c);

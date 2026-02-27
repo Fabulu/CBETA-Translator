@@ -277,92 +277,119 @@ public sealed class IndexCacheService
         return ComputeStatus(origAbs, tranAbs, rootForLogs, relKeyForLogs, verboseLog);
     }
 
-private static bool BodyHasCjkTextNodesOnly(string xmlPath)
-{
-    var settings = new XmlReaderSettings
+    private static bool BodyHasCjkTextNodesOnly(string xmlPath)
     {
-        DtdProcessing = DtdProcessing.Ignore,
-        IgnoreComments = true,
-        IgnoreProcessingInstructions = true,
-        // Keep whitespace handling simple: we only care if whitespace contains CJK (it won’t).
-        IgnoreWhitespace = false,
-        CloseInput = true,
-    };
-
-    using var fs = File.OpenRead(xmlPath);
-    using var reader = XmlReader.Create(fs, settings);
-
-    bool inBody = false;
-
-    // Track element stack so we can ignore text under specific elements like <g>
-    var elementStack = new Stack<(string local, string ns)>();
-
-    while (reader.Read())
-    {
-        switch (reader.NodeType)
+        var settings = new XmlReaderSettings
         {
-            case XmlNodeType.Element:
-                {
-                    if (reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
+            DtdProcessing = DtdProcessing.Ignore,
+            IgnoreComments = true,
+            IgnoreProcessingInstructions = true,
+            IgnoreWhitespace = false,
+            CloseInput = true,
+        };
+
+        using var fs = File.OpenRead(xmlPath);
+        using var reader = XmlReader.Create(fs, settings);
+
+        bool inBody = false;
+
+        // Track whether we're currently inside a community note that should be ignored for CJK checks.
+        // Use a stack so nested elements are handled correctly.
+        var ignoreCjkStack = new Stack<bool>();
+
+        // Track current element stack for other exclusions like <g>
+        var elementStack = new Stack<string>();
+
+        while (reader.Read())
+        {
+            switch (reader.NodeType)
+            {
+                case XmlNodeType.Element:
                     {
-                        inBody = true;
-                    }
+                        var local = reader.LocalName;
 
-                    // push element (even if empty; we pop immediately below)
-                    elementStack.Push((reader.LocalName, reader.NamespaceURI));
+                        if (local.Equals("body", StringComparison.OrdinalIgnoreCase))
+                            inBody = true;
 
-                    if (reader.IsEmptyElement)
-                    {
-                        // pop immediately for <tag/>
-                        elementStack.Pop();
+                        elementStack.Push(local);
 
-                        // if this was <body/>, we are done
-                        if (inBody && reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
-                            return false;
-                    }
-                    break;
-                }
+                        // Determine whether this element introduces an "ignore CJK" region.
+                        bool parentIgnore = ignoreCjkStack.Count > 0 && ignoreCjkStack.Peek();
 
-            case XmlNodeType.EndElement:
-                {
-                    if (elementStack.Count > 0)
-                        elementStack.Pop();
+                        bool ignoreHere = parentIgnore;
 
-                    if (reader.LocalName.Equals("body", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // finished scanning body
-                        return false;
-                    }
-                    break;
-                }
+                        // Ignore ONLY community notes (your example: <note type="community" ...>...</note>)
+                        if (!ignoreHere && local.Equals("note", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var typeAttr = reader.GetAttribute("type");
+                            if (!string.IsNullOrWhiteSpace(typeAttr) &&
+                                typeAttr.Equals("community", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ignoreHere = true;
+                            }
+                        }
 
-            case XmlNodeType.Text:
-            case XmlNodeType.CDATA:
-            case XmlNodeType.SignificantWhitespace:
-                {
-                    if (!inBody) break;
-                    if (elementStack.Count == 0) break;
+                        ignoreCjkStack.Push(ignoreHere);
 
-                    // Optional exclusion: ignore text inside <g> (TEI glyph wrapper),
-                    // because it often contains Chinese/PUA glyphs that you DON'T want to count.
-                    var (curLocal, curNs) = elementStack.Peek();
-                    if (curLocal.Equals("g", StringComparison.OrdinalIgnoreCase))
+                        if (reader.IsEmptyElement)
+                        {
+                            // pop immediately for <tag/>
+                            elementStack.Pop();
+                            ignoreCjkStack.Pop();
+
+                            // if this was <body/>, we are done (no CJK found)
+                            if (inBody && local.Equals("body", StringComparison.OrdinalIgnoreCase))
+                                return false;
+                        }
+
                         break;
+                    }
 
-                    var text = reader.Value;
-                    if (!string.IsNullOrEmpty(text) && CjkRegex.IsMatch(text))
-                        return true;
+                case XmlNodeType.EndElement:
+                    {
+                        var local = reader.LocalName;
 
-                    break;
-                }
+                        if (elementStack.Count > 0) elementStack.Pop();
+                        if (ignoreCjkStack.Count > 0) ignoreCjkStack.Pop();
+
+                        if (local.Equals("body", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // finished scanning body, no CJK found in counted regions
+                            return false;
+                        }
+
+                        break;
+                    }
+
+                case XmlNodeType.Text:
+                case XmlNodeType.CDATA:
+                case XmlNodeType.SignificantWhitespace:
+                    {
+                        if (!inBody) break;
+
+                        // If we're inside a community note, ignore its content entirely.
+                        if (ignoreCjkStack.Count > 0 && ignoreCjkStack.Peek())
+                            break;
+
+                        // Keep your existing exclusion: ignore text inside <g>
+                        if (elementStack.Count > 0 &&
+                            elementStack.Peek().Equals("g", StringComparison.OrdinalIgnoreCase))
+                            break;
+
+                        var text = reader.Value;
+                        if (!string.IsNullOrEmpty(text) && CjkRegex.IsMatch(text))
+                            return true;
+
+                        break;
+                    }
+            }
         }
+
+        return false;
     }
 
-    return false;
-}
 
-
-public Task<IndexCache> BuildAsync(
+    public Task<IndexCache> BuildAsync(
         string originalDir,
         string translatedDir,
         string root,
