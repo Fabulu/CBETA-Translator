@@ -103,6 +103,12 @@
 
 					<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
 					<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
+					<Button Name="BtnBuildReferenceTm"
+					Content="Build Ref TM"
+					ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts"/>
+					<Button Name="BtnManageTerms"
+					Content="Manage Terms"
+					ToolTip.Tip="Open the termbase editor"/>
 				</WrapPanel>
 
 			</Grid>

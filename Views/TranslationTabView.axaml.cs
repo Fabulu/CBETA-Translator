@@ -58,6 +58,12 @@ public partial class TranslationTabView : UserControl
     private Border? _assistantPane;
     private GridSplitter? _assistantSplitter;
 
+    private Button? _btnBuildReferenceTm;
+    public event EventHandler? BuildReferenceTmRequested;
+
+    private Button? _btnManageTerms;
+    public event EventHandler? ManageTermsRequested;
+
     public TranslationTabView()
     {
         AvaloniaXamlLoader.Load(this);
@@ -80,14 +86,19 @@ public partial class TranslationTabView : UserControl
         _btnCopyChunkPrompt = this.FindControl<Button>("BtnCopyChunkPrompt");
         _btnPasteByNumber = this.FindControl<Button>("BtnPasteByNumber");
         _btnNextUntranslated = this.FindControl<Button>("BtnNextUntranslated");
-        _btnFindChineseInEn = this.FindControl<Button>("BtnFindChineseInEn"); // add later in axaml
+        _btnFindChineseInEn = this.FindControl<Button>("BtnFindChineseInEn");
         _btnSave = this.FindControl<Button>("BtnSave");
         _btnRevert = this.FindControl<Button>("BtnRevert");
+        _btnBuildReferenceTm = this.FindControl<Button>("BtnBuildReferenceTm");
+        _btnManageTerms = this.FindControl<Button>("BtnManageTerms");
 
         _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
+        _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
+
         _txtModeInfo = this.FindControl<TextBlock>("TxtModeInfo");
         _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
+
         _editor = this.FindControl<TextEditor>("EditorProjection");
 
         _approvedTmItems = this.FindControl<ItemsControl>("ApprovedTmItems");
@@ -95,7 +106,6 @@ public partial class TranslationTabView : UserControl
         _termItems = this.FindControl<ItemsControl>("TermItems");
         _qaItems = this.FindControl<ItemsControl>("QaItems");
 
-        _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
         _assistantPane = this.FindControl<Border>("AssistantPane");
         _assistantSplitter = this.FindControl<GridSplitter>("AssistantSplitter");
 
@@ -103,7 +113,7 @@ public partial class TranslationTabView : UserControl
         {
             _editor.Background ??= Brushes.Transparent;
             _editor.IsReadOnly = false;
-            _editor.WordWrap = false;
+            _editor.WordWrap = _chkWrap?.IsChecked == true;
             _editor.ShowLineNumbers = true;
 
             _editor.TextChanged += (_, _) =>
@@ -137,6 +147,12 @@ public partial class TranslationTabView : UserControl
         if (_btnRevert != null)
             _btnRevert.Click += (_, _) => RevertRequested?.Invoke(this, EventArgs.Empty);
 
+        if (_btnBuildReferenceTm != null)
+            _btnBuildReferenceTm.Click += (_, _) => BuildReferenceTmRequested?.Invoke(this, EventArgs.Empty);
+
+        if (_btnManageTerms != null)
+            _btnManageTerms.Click += (_, _) => ManageTermsRequested?.Invoke(this, EventArgs.Empty);
+
         if (_chkWrap != null)
         {
             _chkWrap.Checked += (_, _) => ApplyWrap();
@@ -158,18 +174,15 @@ public partial class TranslationTabView : UserControl
     // Public API used by MainWindow
     // =========================
 
-    public void SetModeProjection(TranslationEditMode mode, string projectionText)
+    private void UpdateAssistantVisibility()
     {
-        _currentMode = mode;
-        _currentProjection = projectionText ?? "";
+        bool visible = _chkAssistantVisible?.IsChecked == true;
 
-        if (_editor != null)
-            _editor.Text = _currentProjection;
+        if (_assistantPane != null)
+            _assistantPane.IsVisible = visible;
 
-        UpdateModeInfo();
-        UpdateModeButtons();
-        UpdateQuickInfo();
-        PublishCurrentSegment();
+        if (_assistantSplitter != null)
+            _assistantSplitter.IsVisible = visible;
     }
 
     public string GetCurrentProjectionText()
@@ -210,6 +223,7 @@ public partial class TranslationTabView : UserControl
         if (_editor != null)
             _editor.Text = "";
 
+        SetAssistantSnapshot(null);
         UpdateModeInfo();
         UpdateModeButtons();
         UpdateQuickInfo();
@@ -1228,7 +1242,7 @@ STRICT RULES:
         {
             _approvedTmItems.ItemsSource =
                 snapshot?.ApprovedMatches?.Select(m =>
-                    $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
+                    $"{Math.Round(m.Score)}%\nZH: {m.SourceText}\nEN: {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
                 .ToList()
                 ?? new List<string>();
         }
@@ -1237,7 +1251,7 @@ STRICT RULES:
         {
             _referenceTmItems.ItemsSource =
                 snapshot?.ReferenceMatches?.Select(m =>
-                    $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
+                    $"{Math.Round(m.Score)}%\nZH: {m.SourceText}\nEN: {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
                 .ToList()
                 ?? new List<string>();
         }
@@ -1247,7 +1261,9 @@ STRICT RULES:
             _termItems.ItemsSource =
                 snapshot?.Terms?.Select(t =>
                     $"{t.SourceTerm}\nPreferred: {t.PreferredTarget}" +
-                    (t.AlternateTargets.Count > 0 ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}" : "") +
+                    (t.AlternateTargets != null && t.AlternateTargets.Count > 0
+                        ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}"
+                        : "") +
                     (string.IsNullOrWhiteSpace(t.Note) ? "" : $"\nNote: {t.Note}"))
                 .ToList()
                 ?? new List<string>();
@@ -1263,15 +1279,21 @@ STRICT RULES:
         }
     }
 
-    private void UpdateAssistantVisibility()
+    public void SetModeProjection(TranslationEditMode mode, string projectionText)
     {
-        bool visible = _chkAssistantVisible?.IsChecked == true;
+        _currentMode = mode;
+        _currentProjection = projectionText ?? "";
 
-        if (_assistantPane != null)
-            _assistantPane.IsVisible = visible;
+        if (_editor != null)
+            _editor.Text = _currentProjection;
 
-        if (_assistantSplitter != null)
-            _assistantSplitter.IsVisible = visible;
+        UpdateModeInfo();
+        UpdateModeButtons();
+        UpdateQuickInfo();
+        PublishCurrentSegment();
     }
+
+    
+
 
 }

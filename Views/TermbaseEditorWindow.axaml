@@ -1,0 +1,150 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:CbetaTranslator.App.Models"
+        x:Class="CbetaTranslator.App.Views.TermbaseEditorWindow"
+        Width="1100"
+        Height="720"
+        Title="Manage Terms"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid RowDefinitions="*,Auto" ColumnDefinitions="320,12,*" Margin="12">
+
+		<!-- Left: list -->
+		<Border Grid.Row="0"
+				Grid.Column="0"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="8">
+			<Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+				<TextBlock Text="Terms" FontWeight="Bold"/>
+
+				<TextBox Name="TxtSearch"
+						 Grid.Row="1"
+						 Watermark="Search source / preferred / note..."/>
+
+				<ListBox Name="LstTerms"
+						 Grid.Row="2">
+					<ListBox.ItemTemplate>
+						<DataTemplate x:DataType="models:TermbaseEntry">
+							<Border Padding="6" Margin="0,0,0,4">
+								<StackPanel Spacing="2">
+									<TextBlock Text="{Binding SourceTerm}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding PreferredTarget}"
+											   Opacity="0.85"
+											   TextWrapping="Wrap"/>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</Border>
+
+		<GridSplitter Grid.Row="0"
+					  Grid.Column="1"
+					  Width="12"
+					  ResizeDirection="Columns"
+					  Background="Transparent"/>
+
+		<!-- Right: editor -->
+		<Border Grid.Row="0"
+				Grid.Column="2"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="12">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10">
+				<TextBlock Text="Edit Term" FontWeight="Bold"/>
+
+				<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
+					<TextBlock Text="Source term"
+							   VerticalAlignment="Center"/>
+					<TextBox Name="TxtSourceTerm"
+							 Grid.Column="1"/>
+				</Grid>
+
+				<Grid Grid.Row="2" ColumnDefinitions="140,*" ColumnSpacing="10">
+					<TextBlock Text="Preferred target"
+							   VerticalAlignment="Center"/>
+					<TextBox Name="TxtPreferredTarget"
+							 Grid.Column="1"/>
+				</Grid>
+
+				<Grid Grid.Row="3" ColumnDefinitions="140,220,*" ColumnSpacing="10">
+					<TextBlock Text="Status"
+							   VerticalAlignment="Center"/>
+					<ComboBox Name="CmbStatus"
+							  Grid.Column="1"
+							  SelectedIndex="0">
+						<ComboBoxItem Content="preferred"/>
+						<ComboBoxItem Content="allowed"/>
+						<ComboBoxItem Content="deprecated"/>
+						<ComboBoxItem Content="forbidden"/>
+					</ComboBox>
+				</Grid>
+
+				<Grid Grid.Row="4" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+					<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+						<TextBlock Text="Alternates"
+								   VerticalAlignment="Top"/>
+						<TextBox Name="TxtAlternates"
+								 Grid.Column="1"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 MinHeight="90"
+								 Watermark="One alternate per line"/>
+					</Grid>
+
+					<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
+						<TextBlock Text="Note"
+								   VerticalAlignment="Top"/>
+						<TextBox Name="TxtNote"
+								 Grid.Column="1"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 MinHeight="90"/>
+					</Grid>
+				</Grid>
+
+				<TextBlock Grid.Row="5"
+						   Name="TxtEditorStatus"
+						   Text=""
+						   Opacity="0.8"/>
+			</Grid>
+		</Border>
+
+		<!-- Bottom buttons -->
+		<Border Grid.Row="1"
+				Grid.ColumnSpan="3"
+				Margin="0,12,0,0"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="10">
+			<Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto" ColumnSpacing="8">
+				<Button Name="BtnNew"
+						Content="New"/>
+				<Button Name="BtnDelete"
+						Grid.Column="1"
+						Content="Delete"/>
+				<Button Name="BtnDuplicate"
+						Grid.Column="2"
+						Content="Duplicate"/>
+
+				<Button Name="BtnCancel"
+						Grid.Column="4"
+						Content="Cancel"
+						MinWidth="100"/>
+				<Button Name="BtnSave"
+						Grid.Column="5"
+						Content="Save"
+						MinWidth="100"/>
+			</Grid>
+		</Border>
+
+	</Grid>
+</Window>

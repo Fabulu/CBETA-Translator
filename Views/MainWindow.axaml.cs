@@ -30,6 +30,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
@@ -102,9 +103,10 @@ public partial class MainWindow : Window
     private DispatcherTimer? _dirtyTimer;
     private int _lastTabIndex = -1;
 
-    // Translation assistand
+    // Translation assistant
     private readonly TranslationAssistantService _translationAssistant = new();
     private CancellationTokenSource? _assistantCts;
+    private readonly TranslationAssistantBuildService _translationAssistantBuilder = new();
 
     public MainWindow()
     {
@@ -275,15 +277,9 @@ public partial class MainWindow : Window
                 await OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
             };
 
-            // NEW: move existing note/footnote by cloning its XML span and removing the old span
             _readableView.FootnoteMoveRequested += async (_, req) =>
             {
                 await OnFootnoteMoveRequestedAsync(req);
-            };
-
-            _translationView.CurrentSegmentChanged += async (_, ev) =>
-            {
-                await RefreshAssistantForCurrentSegmentAsync(ev);
             };
         }
 
@@ -292,6 +288,21 @@ public partial class MainWindow : Window
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
             _translationView.RevertRequested += async (_, _) => await RevertTranslatedXmlFromDiskAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
+
+            _translationView.CurrentSegmentChanged += async (_, ev) =>
+            {
+                await RefreshAssistantForCurrentSegmentAsync(ev);
+            };
+
+            _translationView.BuildReferenceTmRequested += async (_, _) =>
+            {
+                await BuildReferenceTmAsync();
+            };
+
+            _translationView.ManageTermsRequested += async (_, _) =>
+            {
+                await OpenTermbaseEditorAsync();
+            };
 
             _translationView.ModeChanged += (_, mode) =>
             {
@@ -354,6 +365,7 @@ public partial class MainWindow : Window
             };
         }
     }
+
 
     private async Task RefreshAssistantForCurrentSegmentAsync(TranslationTabView.CurrentProjectionSegmentChangedEventArgs ev)
     {
@@ -1267,6 +1279,14 @@ public partial class MainWindow : Window
 
         try
         {
+            await RefreshAssistantFromEditorAsync();
+        }
+        catch
+        {
+        }
+
+        try
+        {
             var swRender = Stopwatch.StartNew();
 
             var (ro, rt) = await Task.Run(async () =>
@@ -1299,6 +1319,42 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             SetStatus("Render failed: " + ex.Message);
+        }
+    }
+    private async Task RefreshAssistantFromEditorAsync()
+    {
+        try
+        {
+            if (_translationView == null || _currentRelPath == null)
+                return;
+
+            var text = GetTranslationProjectionText();
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                _translationView.SetAssistantSnapshot(null);
+                return;
+            }
+
+            var snapshot = await _translationAssistant.BuildSnapshotAsync(
+                new CurrentSegmentContext
+                {
+                    RelPath = _currentRelPath,
+                    BlockNumber = 0,
+                    ZhText = "",
+                    EnText = "",
+                    ProjectionOffsetStart = 0,
+                    ProjectionOffsetEndExclusive = 0,
+                    Mode = _translationMode
+                },
+                _root,
+                _originalDir,
+                _translatedDir);
+
+            _translationView.SetAssistantSnapshot(snapshot);
+        }
+        catch
+        {
+            // assistant must never break file loading
         }
     }
 
@@ -1738,6 +1794,161 @@ public partial class MainWindow : Window
         _translationView.SetModeProjection(mode, projectionText ?? "");
     }
 
+    private async Task OpenTermbaseEditorAsync()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(_root))
+            {
+                SetStatus("Cannot open termbase editor: no root is loaded.");
+                return;
+            }
+
+            var path = Path.Combine(_root, "termbase.json");
+
+            if (!File.Exists(path))
+            {
+                var starterJson =
+    @"[
+  {
+    ""sourceTerm"": ""和尚"",
+    ""preferredTarget"": ""the master"",
+    ""alternateTargets"": [""Venerable""],
+    ""status"": ""preferred"",
+    ""note"": ""do not leave as Chinese in EN""
+  }
+]";
+                await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
+            }
+
+            var win = new Window
+            {
+                Title = "Edit Recognized Terms (termbase.json)",
+                Width = 900,
+                Height = 700,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+            win.RequestedThemeVariant = this.ActualThemeVariant;
+
+            var editor = new AvaloniaEdit.TextEditor
+            {
+                FontFamily = new FontFamily("Consolas"),
+                ShowLineNumbers = true,
+                WordWrap = true,
+                Text = await File.ReadAllTextAsync(path, Encoding.UTF8)
+            };
+
+            var btnSave = new Button
+            {
+                Content = "Save",
+                MinWidth = 100
+            };
+
+            var btnCancel = new Button
+            {
+                Content = "Cancel",
+                MinWidth = 100
+            };
+
+            var buttons = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Spacing = 10,
+                Children =
+            {
+                btnCancel,
+                btnSave
+            }
+            };
+
+            var layout = new Grid();
+            layout.RowDefinitions.Add(new RowDefinition(GridLength.Star));
+            layout.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+
+            Grid.SetRow(editor, 0);
+            layout.Children.Add(editor);
+
+            var buttonsBorder = new Border
+            {
+                Padding = new Thickness(12),
+                Child = buttons
+            };
+            Grid.SetRow(buttonsBorder, 1);
+            layout.Children.Add(buttonsBorder);
+
+            win.Content = layout;
+
+            btnCancel.Click += (_, _) => win.Close();
+
+            btnSave.Click += async (_, _) =>
+            {
+                try
+                {
+                    var json = editor.Text ?? "";
+
+                    _ = JsonDocument.Parse(json);
+
+                    var tmp = path + ".tmp";
+                    await File.WriteAllTextAsync(tmp, json, new UTF8Encoding(false));
+
+                    if (File.Exists(path))
+                    {
+                        var bak = path + ".bak";
+                        try
+                        {
+                            if (File.Exists(bak))
+                                File.Delete(bak);
+                        }
+                        catch
+                        {
+                        }
+
+                        File.Replace(tmp, path, bak, true);
+
+                        try
+                        {
+                            if (File.Exists(bak))
+                                File.Delete(bak);
+                        }
+                        catch
+                        {
+                        }
+                    }
+                    else
+                    {
+                        File.Move(tmp, path);
+                    }
+
+                    SetStatus("Saved termbase.json");
+                    win.Close();
+
+                    // Refresh current assistant panel after saving terms
+                    _translationView?.SetAssistantSnapshot(null);
+
+                    if (_translationView != null && _currentRelPath != null)
+                    {
+                        var text = GetTranslationProjectionText();
+                        var blocks = typeof(TranslationTabView)
+                            .GetMethod("GetCurrentProjectionText") != null
+                            ? text
+                            : text;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Save termbase failed: " + ex.Message);
+                }
+            };
+
+            await win.ShowDialog(this);
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Open termbase editor failed: " + ex.Message);
+        }
+    }
+
     private string GetTranslationProjectionText()
     {
         if (_translationView == null) return "";
@@ -1996,6 +2207,41 @@ public partial class MainWindow : Window
         catch
         {
             // ignore
+        }
+    }
+
+    private async Task BuildReferenceTmAsync()
+    {
+        try
+        {
+            if (_root == null || _originalDir == null || _translatedDir == null)
+            {
+                SetStatus("Cannot build reference TM: no root is loaded.");
+                return;
+            }
+
+            SetStatus("Building reference TM from Zen texts...");
+
+            var progress = new Progress<(int done, int total, string status)>(p =>
+            {
+                if (p.total > 0)
+                    SetStatus($"{p.status} ({p.done:n0}/{p.total:n0})");
+                else
+                    SetStatus(p.status);
+            });
+
+            int count = await _translationAssistantBuilder.BuildReferenceTranslationMemoryAsync(
+                _root,
+                _originalDir,
+                _translatedDir,
+                rel => _zenTexts.IsZen(rel),
+                progress);
+
+            SetStatus($"Built translation-memory.reference.jsonl with {count:n0} rows.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Build reference TM failed: " + ex.Message);
         }
     }
 }
