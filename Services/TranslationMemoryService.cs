@@ -11,6 +11,11 @@ namespace CbetaTranslator.App.Services;
 
 public sealed class TranslationMemoryService
 {
+    private static readonly JsonSerializerOptions JsonOpts = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
     private sealed class TmRow
     {
         public string SourceText { get; set; } = "";
@@ -25,14 +30,28 @@ public sealed class TranslationMemoryService
         string? root,
         string? translatedDir,
         CancellationToken ct = default)
-        => LoadAndMatchAsync(ctx, root, "translation-memory.approved.jsonl", TranslationResourceTrust.Approved, ct);
+    {
+        return LoadAndMatchAsync(
+            ctx,
+            root,
+            "translation-memory.approved.jsonl",
+            TranslationResourceTrust.Approved,
+            ct);
+    }
 
     public Task<List<TranslationTmMatch>> FindReferenceMatchesAsync(
         CurrentSegmentContext ctx,
         string? root,
         string? translatedDir,
         CancellationToken ct = default)
-        => LoadAndMatchAsync(ctx, root, "translation-memory.reference.jsonl", TranslationResourceTrust.AiReference, ct);
+    {
+        return LoadAndMatchAsync(
+            ctx,
+            root,
+            "translation-memory.reference.jsonl",
+            TranslationResourceTrust.AiReference,
+            ct);
+    }
 
     private async Task<List<TranslationTmMatch>> LoadAndMatchAsync(
         CurrentSegmentContext ctx,
@@ -42,29 +61,50 @@ public sealed class TranslationMemoryService
         CancellationToken ct)
     {
         var result = new List<TranslationTmMatch>();
-        if (string.IsNullOrWhiteSpace(root)) return result;
+
+        if (string.IsNullOrWhiteSpace(root))
+            return result;
 
         var path = Path.Combine(root, fileName);
-        if (!File.Exists(path)) return result;
+        if (!File.Exists(path))
+            return result;
+
+        string[] lines;
+        try
+        {
+            lines = await File.ReadAllLinesAsync(path, ct);
+        }
+        catch
+        {
+            return result;
+        }
 
         var rows = new List<TmRow>();
-        foreach (var line in await File.ReadAllLinesAsync(path, ct))
+
+        foreach (var line in lines)
         {
-            if (string.IsNullOrWhiteSpace(line)) continue;
+            if (string.IsNullOrWhiteSpace(line))
+                continue;
 
             try
             {
-                var row = JsonSerializer.Deserialize<TmRow>(line);
-                if (row != null) rows.Add(row);
+                var row = JsonSerializer.Deserialize<TmRow>(line, JsonOpts);
+                if (row != null)
+                    rows.Add(row);
             }
             catch
             {
+                // ignore bad lines
             }
         }
+
+        if (rows.Count == 0)
+            return result;
 
         string zh = Normalize(ctx.ZhText);
 
         result = rows
+            .Where(r => !string.IsNullOrWhiteSpace(r.SourceText))
             .Select(r => new TranslationTmMatch
             {
                 SourceText = r.SourceText,
@@ -76,8 +116,8 @@ public sealed class TranslationMemoryService
                 Score = Score(zh, Normalize(r.SourceText))
             })
             .Where(x => x.Score >= 60)
-            .OrderByDescending(x => x.Trust == TranslationResourceTrust.Approved ? 1 : 0)
-            .ThenByDescending(x => x.Score)
+            .OrderByDescending(x => x.Score)
+            .ThenBy(x => x.RelPath, StringComparer.OrdinalIgnoreCase)
             .Take(8)
             .ToList();
 
@@ -85,7 +125,16 @@ public sealed class TranslationMemoryService
     }
 
     private static string Normalize(string s)
-        => (s ?? "").Trim().Replace(" ", "");
+    {
+        if (string.IsNullOrWhiteSpace(s))
+            return "";
+
+        return s.Trim()
+                .Replace(" ", "")
+                .Replace("\t", "")
+                .Replace("\r", "")
+                .Replace("\n", "");
+    }
 
     private static double Score(string a, string b)
     {
@@ -104,7 +153,9 @@ public sealed class TranslationMemoryService
 
     private static int LongestCommonSubstringLength(string a, string b)
     {
-        if (a.Length == 0 || b.Length == 0) return 0;
+        if (a.Length == 0 || b.Length == 0)
+            return 0;
+
         var dp = new int[b.Length + 1];
         int best = 0;
 
@@ -115,7 +166,8 @@ public sealed class TranslationMemoryService
                 if (a[i - 1] == b[j - 1])
                 {
                     dp[j] = dp[j - 1] + 1;
-                    if (dp[j] > best) best = dp[j];
+                    if (dp[j] > best)
+                        best = dp[j];
                 }
                 else
                 {
