@@ -9,6 +9,7 @@ using Avalonia.Media;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
 using CbetaTranslator.App.Infrastructure;
+using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,16 @@ public partial class TranslationTabView : UserControl
     public event EventHandler? RevertRequested;
     public event EventHandler<string>? Status;
 
+    // Translation assistant stuff
+    private ItemsControl? _approvedTmItems;
+    private ItemsControl? _referenceTmItems;
+    private ItemsControl? _termItems;
+    private ItemsControl? _qaItems;
+
+    private CheckBox? _chkAssistantVisible;
+    private Border? _assistantPane;
+    private GridSplitter? _assistantSplitter;
+
     public TranslationTabView()
     {
         AvaloniaXamlLoader.Load(this);
@@ -79,13 +90,30 @@ public partial class TranslationTabView : UserControl
         _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
         _editor = this.FindControl<TextEditor>("EditorProjection");
 
+        _approvedTmItems = this.FindControl<ItemsControl>("ApprovedTmItems");
+        _referenceTmItems = this.FindControl<ItemsControl>("ReferenceTmItems");
+        _termItems = this.FindControl<ItemsControl>("TermItems");
+        _qaItems = this.FindControl<ItemsControl>("QaItems");
+
+        _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
+        _assistantPane = this.FindControl<Border>("AssistantPane");
+        _assistantSplitter = this.FindControl<GridSplitter>("AssistantSplitter");
+
         if (_editor != null)
         {
             _editor.Background ??= Brushes.Transparent;
             _editor.IsReadOnly = false;
             _editor.WordWrap = false;
             _editor.ShowLineNumbers = true;
-            _editor.TextChanged += (_, _) => UpdateQuickInfo();
+
+            _editor.TextChanged += (_, _) =>
+            {
+                UpdateQuickInfo();
+                PublishCurrentSegment();
+            };
+
+            if (_editor.TextArea != null && _editor.TextArea.Caret != null)
+                _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegment();
         }
     }
 
@@ -115,8 +143,16 @@ public partial class TranslationTabView : UserControl
             _chkWrap.Unchecked += (_, _) => ApplyWrap();
         }
 
+        if (_chkAssistantVisible != null)
+        {
+            _chkAssistantVisible.Checked += (_, _) => UpdateAssistantVisibility();
+            _chkAssistantVisible.Unchecked += (_, _) => UpdateAssistantVisibility();
+        }
+
         AddHandler(KeyDownEvent, OnKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel);
     }
+
+
 
     // =========================
     // Public API used by MainWindow
@@ -133,6 +169,7 @@ public partial class TranslationTabView : UserControl
         UpdateModeInfo();
         UpdateModeButtons();
         UpdateQuickInfo();
+        PublishCurrentSegment();
     }
 
     public string GetCurrentProjectionText()
@@ -1138,4 +1175,128 @@ STRICT RULES:
             }
         }
     }
+
+    ///
+    /// Translation Assistant stuff
+    /// 
+    public sealed class CurrentProjectionSegmentChangedEventArgs : EventArgs
+    {
+        public int BlockNumber { get; init; }
+        public string Zh { get; init; } = "";
+        public string En { get; init; } = "";
+        public int BlockStartOffset { get; init; }
+        public int BlockEndOffsetExclusive { get; init; }
+        public TranslationEditMode Mode { get; init; }
+    }
+
+    public event EventHandler<CurrentProjectionSegmentChangedEventArgs>? CurrentSegmentChanged;
+
+    private void PublishCurrentSegment()
+    {
+        try
+        {
+            if (_editor == null) return;
+
+            var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+            if (blocks.Count == 0) return;
+
+            int caret = _editor.CaretOffset;
+            int ix = FindBlockIndexAtOrAfterCaret(blocks, caret);
+            if (ix < 0 || ix >= blocks.Count) return;
+
+            var b = blocks[ix];
+
+            CurrentSegmentChanged?.Invoke(this, new CurrentProjectionSegmentChangedEventArgs
+            {
+                BlockNumber = b.BlockNumber,
+                Zh = b.Zh ?? "",
+                En = b.En ?? "",
+                BlockStartOffset = b.BlockStartOffset,
+                BlockEndOffsetExclusive = b.BlockEndOffsetExclusive,
+                Mode = _currentMode
+            });
+        }
+        catch
+        {
+            // ignore assistant sync errors
+        }
+    }
+
+    public void SetAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
+    {
+        if (_approvedTmItems != null)
+        {
+            var approved = snapshot?.ApprovedMatches?.Select(m =>
+                    $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
+                .ToList()
+                ?? new List<string>();
+
+            if (approved.Count == 0)
+                approved.Add("(debug) no approved matches");
+
+            _approvedTmItems.ItemsSource = approved;
+        }
+
+        if (_referenceTmItems != null)
+        {
+            var reference = snapshot?.ReferenceMatches?.Select(m =>
+                    $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
+                .ToList()
+                ?? new List<string>();
+
+            if (reference.Count == 0)
+                reference.Add("(debug) no reference matches");
+
+            _referenceTmItems.ItemsSource = reference;
+        }
+
+        if (_termItems != null)
+        {
+            var terms = new List<string>();
+
+            terms.Add("(debug) zh = " + (snapshot?.Segment?.ZhText ?? ""));
+            terms.Add("(debug) en = " + (snapshot?.Segment?.EnText ?? ""));
+            terms.Add("(debug) terms found = " + (snapshot?.Terms?.Count ?? 0));
+
+            if (snapshot?.Terms != null)
+            {
+                foreach (var t in snapshot.Terms)
+                {
+                    terms.Add(
+                        $"{t.SourceTerm}\nPreferred: {t.PreferredTarget}" +
+                        (t.AlternateTargets.Count > 0 ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}" : "") +
+                        (string.IsNullOrWhiteSpace(t.Note) ? "" : $"\nNote: {t.Note}"));
+                }
+            }
+
+            _termItems.ItemsSource = terms;
+        }
+
+        if (_qaItems != null)
+        {
+            var qa = new List<string>();
+
+            qa.Add("(debug) qa count = " + (snapshot?.QaIssues?.Count ?? 0));
+
+            if (snapshot?.QaIssues != null)
+            {
+                foreach (var q in snapshot.QaIssues)
+                    qa.Add($"[{q.Severity}] {q.Message}");
+            }
+
+            _qaItems.ItemsSource = qa;
+        }
+    }
+
+    private void UpdateAssistantVisibility()
+    {
+        bool visible = _chkAssistantVisible?.IsChecked == true;
+
+        if (_assistantPane != null)
+            _assistantPane.IsVisible = visible;
+
+        if (_assistantSplitter != null)
+            _assistantSplitter.IsVisible = visible;
+    }
+
 }

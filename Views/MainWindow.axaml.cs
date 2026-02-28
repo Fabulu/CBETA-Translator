@@ -102,6 +102,10 @@ public partial class MainWindow : Window
     private DispatcherTimer? _dirtyTimer;
     private int _lastTabIndex = -1;
 
+    // Translation assistand
+    private readonly TranslationAssistantService _translationAssistant = new();
+    private CancellationTokenSource? _assistantCts;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -222,6 +226,7 @@ public partial class MainWindow : Window
                 WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             };
         }
+
     }
 
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
@@ -274,6 +279,11 @@ public partial class MainWindow : Window
             _readableView.FootnoteMoveRequested += async (_, req) =>
             {
                 await OnFootnoteMoveRequestedAsync(req);
+            };
+
+            _translationView.CurrentSegmentChanged += async (_, ev) =>
+            {
+                await RefreshAssistantForCurrentSegmentAsync(ev);
             };
         }
 
@@ -342,6 +352,46 @@ public partial class MainWindow : Window
                     SetStatus("Failed to load cloned repo: " + ex.Message);
                 }
             };
+        }
+    }
+
+    private async Task RefreshAssistantForCurrentSegmentAsync(TranslationTabView.CurrentProjectionSegmentChangedEventArgs ev)
+    {
+        try
+        {
+            if (_translationView == null) return;
+            if (_currentRelPath == null) return;
+
+            try { _assistantCts?.Cancel(); } catch { }
+            try { _assistantCts?.Dispose(); } catch { }
+            _assistantCts = new CancellationTokenSource();
+            var ct = _assistantCts.Token;
+
+            var ctx = new CurrentSegmentContext
+            {
+                RelPath = _currentRelPath,
+                BlockNumber = ev.BlockNumber,
+                ZhText = ev.Zh,
+                EnText = ev.En,
+                ProjectionOffsetStart = ev.BlockStartOffset,
+                ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
+                Mode = ev.Mode
+            };
+
+            var snapshot = await _translationAssistant.BuildSnapshotAsync(
+                ctx,
+                _root,
+                _originalDir,
+                _translatedDir,
+                ct);
+
+            if (ct.IsCancellationRequested) return;
+
+            _translationView.SetAssistantSnapshot(snapshot);
+        }
+        catch
+        {
+            // assistant errors must never break translation
         }
     }
     private async Task OnFootnoteMoveRequestedAsync(ReadableTabView.MoveFootnoteRequest req)
