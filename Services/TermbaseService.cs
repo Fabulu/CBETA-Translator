@@ -37,31 +37,16 @@ public sealed class TermbaseService
             return result;
 
         var path = Path.Combine(root, "termbase.json");
-
         if (!File.Exists(path))
-        {
-            result.Add(new TermHit
-            {
-                SourceTerm = "(debug)",
-                PreferredTarget = "termbase.json NOT FOUND at: " + path,
-                Status = "debug"
-            });
             return result;
-        }
 
         string rawJson;
         try
         {
             rawJson = await File.ReadAllTextAsync(path, ct);
         }
-        catch (Exception ex)
+        catch
         {
-            result.Add(new TermHit
-            {
-                SourceTerm = "(debug)",
-                PreferredTarget = "termbase read FAILED: " + ex.Message,
-                Status = "debug"
-            });
             return result;
         }
 
@@ -70,41 +55,17 @@ public sealed class TermbaseService
         {
             rows = JsonSerializer.Deserialize<List<TermRow>>(rawJson, JsonOpts);
         }
-        catch (Exception ex)
+        catch
         {
-            result.Add(new TermHit
-            {
-                SourceTerm = "(debug)",
-                PreferredTarget = "termbase load FAILED: " + ex.Message,
-                Status = "debug"
-            });
             return result;
         }
 
-        if (rows == null)
-        {
-            result.Add(new TermHit
-            {
-                SourceTerm = "(debug)",
-                PreferredTarget = "termbase deserialized to null",
-                Status = "debug"
-            });
+        if (rows == null || rows.Count == 0)
             return result;
-        }
 
-        string zhRaw = ctx.ZhText ?? "";
-        string zh = NormalizeForMatch(zhRaw);
+        string zh = NormalizeForMatch(ctx.ZhText ?? "");
 
-        result.Add(new TermHit
-        {
-            SourceTerm = "(debug)",
-            PreferredTarget = $"rows={rows.Count}, first sourceTerm='{rows.FirstOrDefault()?.SourceTerm ?? "(null)"}'",
-            AlternateTargets = rows.Take(6).Select(r => $"'{r.SourceTerm}'").ToList(),
-            Status = "debug",
-            Note = "deserialization check"
-        });
-
-        var hits = rows
+        return rows
             .Where(t =>
                 !string.IsNullOrWhiteSpace(t.SourceTerm) &&
                 zh.Contains(NormalizeForMatch(t.SourceTerm), StringComparison.Ordinal))
@@ -118,26 +79,6 @@ public sealed class TermbaseService
                 Note = t.Note
             })
             .ToList();
-
-        if (hits.Count == 0)
-        {
-            result.Add(new TermHit
-            {
-                SourceTerm = "(debug)",
-                PreferredTarget = "loaded OK, but no term matched current ZH",
-                AlternateTargets = rows
-                    .Where(x => !string.IsNullOrWhiteSpace(x.SourceTerm))
-                    .Take(10)
-                    .Select(x => x.SourceTerm)
-                    .ToList(),
-                Status = "debug",
-                Note = "match check"
-            });
-
-            return result;
-        }
-
-        return hits;
     }
 
     private static string NormalizeForMatch(string s)
