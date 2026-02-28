@@ -124,15 +124,25 @@ public partial class TermbaseEditorWindow : Window
             var entries = await _storage.LoadAsync(_root);
 
             _allEntries.Clear();
-            foreach (var entry in entries)
-                _allEntries.Add(entry);
+            foreach (var entry in entries ?? new List<TermbaseEntry>())
+                _allEntries.Add(NormalizeEntry(entry));
 
             ApplyFilter();
 
-            if (_visibleEntries.Count > 0 && _lstTerms != null)
-                _lstTerms.SelectedItem = _visibleEntries[0];
+            if (_visibleEntries.Count > 0)
+            {
+                _currentEntry = _visibleEntries[0];
 
-            SetEditorStatus($"Loaded {_allEntries.Count:n0} terms.");
+                if (_lstTerms != null)
+                    _lstTerms.SelectedItem = _currentEntry;
+            }
+            else
+            {
+                _currentEntry = null;
+            }
+
+            LoadCurrentEntryIntoFields();
+            SetEditorStatus($"Loaded {_allEntries.Count:n0} term(s).");
         }
         catch (Exception ex)
         {
@@ -156,11 +166,9 @@ public partial class TermbaseEditorWindow : Window
         }
 
         var filtered = seq
-            .OrderBy(x => x.SourceTerm, StringComparer.Ordinal)
+            .OrderBy(x => x.SourceTerm ?? "", StringComparer.OrdinalIgnoreCase)
+            .ThenBy(x => x.PreferredTarget ?? "", StringComparer.OrdinalIgnoreCase)
             .ToList();
-
-        var currentSource = _currentEntry?.SourceTerm;
-        var currentPreferred = _currentEntry?.PreferredTarget;
 
         _visibleEntries.Clear();
         foreach (var entry in filtered)
@@ -179,23 +187,21 @@ public partial class TermbaseEditorWindow : Window
             }
             else if (_visibleEntries.Count > 0)
             {
-                var same = _visibleEntries.FirstOrDefault(x =>
-                    string.Equals(x.SourceTerm, currentSource, StringComparison.Ordinal) &&
-                    string.Equals(x.PreferredTarget, currentPreferred, StringComparison.Ordinal));
-
-                _lstTerms.SelectedItem = same ?? _visibleEntries[0];
+                _currentEntry = _visibleEntries[0];
+                _lstTerms.SelectedItem = _currentEntry;
             }
             else
             {
-                _lstTerms.SelectedItem = null;
                 _currentEntry = null;
-                LoadCurrentEntryIntoFields();
+                _lstTerms.SelectedItem = null;
             }
         }
         finally
         {
             _suppressSelectionChanged = false;
         }
+
+        LoadCurrentEntryIntoFields();
     }
 
     private void LstTerms_SelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -230,7 +236,7 @@ public partial class TermbaseEditorWindow : Window
 
             if (_cmbStatus != null)
             {
-                var status = (_currentEntry.Status ?? "preferred").Trim().ToLowerInvariant();
+                string status = (_currentEntry.Status ?? "preferred").Trim().ToLowerInvariant();
                 _cmbStatus.SelectedIndex = status switch
                 {
                     "preferred" => 0,
@@ -265,30 +271,35 @@ public partial class TermbaseEditorWindow : Window
             .Distinct(StringComparer.Ordinal)
             .ToList();
 
-        RefreshCurrentListItem();
+        RefreshCurrentListItemTextOnly();
     }
 
-    private void RefreshCurrentListItem()
+    private void RefreshCurrentListItemTextOnly()
     {
-        if (_currentEntry == null)
+        if (_currentEntry == null || _lstTerms == null)
             return;
 
-        int ix = _visibleEntries.IndexOf(_currentEntry);
-        if (ix < 0)
-            return;
+        var selected = _lstTerms.SelectedItem;
+        var items = _lstTerms.ItemsSource;
 
-        _visibleEntries.RemoveAt(ix);
-        _visibleEntries.Insert(ix, _currentEntry);
-
-        if (_lstTerms != null)
-            _lstTerms.SelectedItem = _currentEntry;
+        try
+        {
+            _suppressSelectionChanged = true;
+            _lstTerms.ItemsSource = null;
+            _lstTerms.ItemsSource = items;
+            _lstTerms.SelectedItem = selected ?? _currentEntry;
+        }
+        finally
+        {
+            _suppressSelectionChanged = false;
+        }
     }
 
     private void BtnNew_Click(object? sender, RoutedEventArgs e)
     {
         var entry = new TermbaseEntry
         {
-            SourceTerm = "",
+            SourceTerm = "新語",
             PreferredTarget = "",
             Status = "preferred",
             Note = "",
@@ -296,11 +307,14 @@ public partial class TermbaseEditorWindow : Window
         };
 
         _allEntries.Add(entry);
+        _currentEntry = entry;
+
         ApplyFilter();
 
         if (_lstTerms != null)
             _lstTerms.SelectedItem = entry;
 
+        LoadCurrentEntryIntoFields();
         _txtSourceTerm?.Focus();
         SetEditorStatus("New term created.");
     }
@@ -310,12 +324,12 @@ public partial class TermbaseEditorWindow : Window
         if (_currentEntry == null)
             return;
 
-        var toDelete = _currentEntry;
+        var entry = _currentEntry;
         _currentEntry = null;
 
-        _allEntries.Remove(toDelete);
-        ApplyFilter();
+        _allEntries.Remove(entry);
 
+        ApplyFilter();
         SetEditorStatus("Term deleted.");
     }
 
@@ -334,11 +348,14 @@ public partial class TermbaseEditorWindow : Window
         };
 
         _allEntries.Add(copy);
+        _currentEntry = copy;
+
         ApplyFilter();
 
         if (_lstTerms != null)
             _lstTerms.SelectedItem = copy;
 
+        LoadCurrentEntryIntoFields();
         SetEditorStatus("Term duplicated.");
     }
 
@@ -348,15 +365,30 @@ public partial class TermbaseEditorWindow : Window
         {
             PushFieldsIntoCurrentEntry();
 
-            var bad = _allEntries.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.SourceTerm));
+            var cleaned = _allEntries
+                .Select(NormalizeEntry)
+                .Where(x =>
+                    !string.IsNullOrWhiteSpace(x.SourceTerm) ||
+                    !string.IsNullOrWhiteSpace(x.PreferredTarget) ||
+                    !string.IsNullOrWhiteSpace(x.Note) ||
+                    (x.AlternateTargets?.Count ?? 0) > 0)
+                .ToList();
+
+            var bad = cleaned.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.SourceTerm));
             if (bad != null)
             {
-                SetEditorStatus("Save blocked: every term needs a source term.");
+                SetEditorStatus("Save blocked: every non-empty term needs a source term.");
                 return;
             }
 
-            await _storage.SaveAsync(_root, _allEntries);
+            await _storage.SaveAsync(_root, cleaned);
+
+            _allEntries.Clear();
+            foreach (var entry in cleaned)
+                _allEntries.Add(entry);
+
             Saved = true;
+            SetEditorStatus($"Saved {cleaned.Count:n0} terms.");
             Close(true);
         }
         catch (Exception ex)
@@ -377,5 +409,23 @@ public partial class TermbaseEditorWindow : Window
     {
         if (_txtEditorStatus != null)
             _txtEditorStatus.Text = message;
+    }
+
+    private static TermbaseEntry NormalizeEntry(TermbaseEntry? entry)
+    {
+        entry ??= new TermbaseEntry();
+
+        entry.SourceTerm = (entry.SourceTerm ?? "").Trim();
+        entry.PreferredTarget = (entry.PreferredTarget ?? "").Trim();
+        entry.Note = (entry.Note ?? "").Trim();
+        entry.Status = string.IsNullOrWhiteSpace(entry.Status) ? "preferred" : entry.Status.Trim();
+
+        entry.AlternateTargets = (entry.AlternateTargets ?? new List<string>())
+            .Select(x => (x ?? "").Trim())
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.Ordinal)
+            .ToList();
+
+        return entry;
     }
 }
