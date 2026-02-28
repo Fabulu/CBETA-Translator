@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,54 +70,76 @@ public sealed class TranslationMemoryService
         if (!File.Exists(path))
             return result;
 
-        string[] lines;
+        var rows = new List<TmRow>();
+
         try
         {
-            lines = await File.ReadAllLinesAsync(path, ct);
+            using var fs = new FileStream(
+                path,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.ReadWrite | FileShare.Delete);
+
+            using var sr = new StreamReader(fs, Encoding.UTF8);
+
+            while (!sr.EndOfStream)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var line = await sr.ReadLineAsync();
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                try
+                {
+                    var row = JsonSerializer.Deserialize<TmRow>(line, JsonOpts);
+                    if (row != null)
+                        rows.Add(row);
+                }
+                catch
+                {
+                    // ignore bad jsonl rows
+                }
+            }
         }
         catch
         {
             return result;
         }
 
-        var rows = new List<TmRow>();
-
-        foreach (var line in lines)
-        {
-            if (string.IsNullOrWhiteSpace(line))
-                continue;
-
-            try
-            {
-                var row = JsonSerializer.Deserialize<TmRow>(line, JsonOpts);
-                if (row != null)
-                    rows.Add(row);
-            }
-            catch
-            {
-                // ignore bad lines
-            }
-        }
-
         if (rows.Count == 0)
             return result;
 
         string zh = Normalize(ctx.ZhText);
+        string currentRel = NormalizeRel(ctx.RelPath);
+
+        int minLen = 3;
+        double minScore = trust == TranslationResourceTrust.Approved ? 60 : 35;
 
         result = rows
             .Where(r => !string.IsNullOrWhiteSpace(r.SourceText))
-            .Select(r => new TranslationTmMatch
+            .Where(r => Normalize(r.SourceText).Length >= minLen)
+            .Where(r =>
+                trust != TranslationResourceTrust.AiReference ||
+                !string.Equals(NormalizeRel(r.RelPath), currentRel, StringComparison.OrdinalIgnoreCase))
+            .Select(r =>
             {
-                SourceText = r.SourceText,
-                TargetText = r.TargetText,
-                RelPath = r.RelPath,
-                ReviewStatus = r.ReviewStatus,
-                Translator = r.Translator,
-                Trust = trust,
-                Score = Score(zh, Normalize(r.SourceText))
+                string sourceNorm = Normalize(r.SourceText);
+
+                return new TranslationTmMatch
+                {
+                    SourceText = r.SourceText,
+                    TargetText = r.TargetText,
+                    RelPath = r.RelPath,
+                    ReviewStatus = r.ReviewStatus,
+                    Translator = r.Translator,
+                    Trust = trust,
+                    Score = Score(zh, sourceNorm)
+                };
             })
-            .Where(x => x.Score >= 60)
+            .Where(x => x.Score >= minScore)
             .OrderByDescending(x => x.Score)
+            .ThenByDescending(x => Normalize(x.SourceText).Length)
             .ThenBy(x => x.RelPath, StringComparer.OrdinalIgnoreCase)
             .Take(8)
             .ToList();
@@ -124,16 +147,24 @@ public sealed class TranslationMemoryService
         return result;
     }
 
-    private static string Normalize(string s)
+    private static string Normalize(string? s)
     {
         if (string.IsNullOrWhiteSpace(s))
             return "";
+
+        s = s.Normalize(NormalizationForm.FormKC);
+        s = s.Replace("\u3000", " ");
 
         return s.Trim()
                 .Replace(" ", "")
                 .Replace("\t", "")
                 .Replace("\r", "")
                 .Replace("\n", "");
+    }
+
+    private static string NormalizeRel(string? p)
+    {
+        return (p ?? "").Replace('\\', '/').TrimStart('/');
     }
 
     private static double Score(string a, string b)
@@ -144,11 +175,23 @@ public sealed class TranslationMemoryService
         if (string.IsNullOrWhiteSpace(a) || string.IsNullOrWhiteSpace(b))
             return 0;
 
+        int minLen = Math.Min(a.Length, b.Length);
+        int maxLen = Math.Max(a.Length, b.Length);
+
         if (a.Contains(b, StringComparison.Ordinal) || b.Contains(a, StringComparison.Ordinal))
-            return 90;
+        {
+            double coverage = 100.0 * minLen / maxLen;
+            return Math.Max(coverage, Math.Min(85, 40 + (10.0 * minLen)));
+        }
 
         int common = LongestCommonSubstringLength(a, b);
-        return 100.0 * common / Math.Max(a.Length, b.Length);
+        if (common <= 0)
+            return 0;
+
+        double longestCoverage = 100.0 * common / maxLen;
+        double shorterCoverage = 100.0 * common / minLen;
+
+        return (longestCoverage * 0.7) + (shorterCoverage * 0.3);
     }
 
     private static int LongestCommonSubstringLength(string a, string b)
