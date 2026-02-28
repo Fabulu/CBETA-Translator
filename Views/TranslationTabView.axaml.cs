@@ -1226,65 +1226,40 @@ STRICT RULES:
     {
         if (_approvedTmItems != null)
         {
-            var approved = snapshot?.ApprovedMatches?.Select(m =>
+            _approvedTmItems.ItemsSource =
+                snapshot?.ApprovedMatches?.Select(m =>
                     $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
                 .ToList()
                 ?? new List<string>();
-
-            if (approved.Count == 0)
-                approved.Add("(debug) no approved matches");
-
-            _approvedTmItems.ItemsSource = approved;
         }
 
         if (_referenceTmItems != null)
         {
-            var reference = snapshot?.ReferenceMatches?.Select(m =>
+            _referenceTmItems.ItemsSource =
+                snapshot?.ReferenceMatches?.Select(m =>
                     $"{Math.Round(m.Score)}%  {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
                 .ToList()
                 ?? new List<string>();
-
-            if (reference.Count == 0)
-                reference.Add("(debug) no reference matches");
-
-            _referenceTmItems.ItemsSource = reference;
         }
 
         if (_termItems != null)
         {
-            var terms = new List<string>();
-
-            terms.Add("(debug) zh = " + (snapshot?.Segment?.ZhText ?? ""));
-            terms.Add("(debug) en = " + (snapshot?.Segment?.EnText ?? ""));
-            terms.Add("(debug) terms found = " + (snapshot?.Terms?.Count ?? 0));
-
-            if (snapshot?.Terms != null)
-            {
-                foreach (var t in snapshot.Terms)
-                {
-                    terms.Add(
-                        $"{t.SourceTerm}\nPreferred: {t.PreferredTarget}" +
-                        (t.AlternateTargets.Count > 0 ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}" : "") +
-                        (string.IsNullOrWhiteSpace(t.Note) ? "" : $"\nNote: {t.Note}"));
-                }
-            }
-
-            _termItems.ItemsSource = terms;
+            _termItems.ItemsSource =
+                snapshot?.Terms?.Select(t =>
+                    $"{t.SourceTerm}\nPreferred: {t.PreferredTarget}" +
+                    (t.AlternateTargets.Count > 0 ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}" : "") +
+                    (string.IsNullOrWhiteSpace(t.Note) ? "" : $"\nNote: {t.Note}"))
+                .ToList()
+                ?? new List<string>();
         }
 
         if (_qaItems != null)
         {
-            var qa = new List<string>();
-
-            qa.Add("(debug) qa count = " + (snapshot?.QaIssues?.Count ?? 0));
-
-            if (snapshot?.QaIssues != null)
-            {
-                foreach (var q in snapshot.QaIssues)
-                    qa.Add($"[{q.Severity}] {q.Message}");
-            }
-
-            _qaItems.ItemsSource = qa;
+            _qaItems.ItemsSource =
+                snapshot?.QaIssues?.Select(q =>
+                    $"[{q.Severity}] {q.Message}")
+                .ToList()
+                ?? new List<string>();
         }
     }
 
