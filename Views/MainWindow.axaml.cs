@@ -1821,127 +1821,20 @@ public partial class MainWindow : Window
                 await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
             }
 
-            var win = new Window
+            var win = new TermbaseEditorWindow(_root)
             {
-                Title = "Edit Recognized Terms (termbase.json)",
-                Width = 900,
-                Height = 700,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
-            };
-            win.RequestedThemeVariant = this.ActualThemeVariant;
-
-            var editor = new AvaloniaEdit.TextEditor
-            {
-                FontFamily = new FontFamily("Consolas"),
-                ShowLineNumbers = true,
-                WordWrap = true,
-                Text = await File.ReadAllTextAsync(path, Encoding.UTF8)
+                RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            var btnSave = new Button
-            {
-                Content = "Save",
-                MinWidth = 100
-            };
+            var saved = await win.ShowDialog<bool>(this);
 
-            var btnCancel = new Button
+            if (saved)
             {
-                Content = "Cancel",
-                MinWidth = 100
-            };
+                SetStatus("Saved termbase.json");
 
-            var buttons = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Spacing = 10,
-                Children =
-            {
-                btnCancel,
-                btnSave
+                if (_translationView != null)
+                    _translationView.SetAssistantSnapshot(null);
             }
-            };
-
-            var layout = new Grid();
-            layout.RowDefinitions.Add(new RowDefinition(GridLength.Star));
-            layout.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
-
-            Grid.SetRow(editor, 0);
-            layout.Children.Add(editor);
-
-            var buttonsBorder = new Border
-            {
-                Padding = new Thickness(12),
-                Child = buttons
-            };
-            Grid.SetRow(buttonsBorder, 1);
-            layout.Children.Add(buttonsBorder);
-
-            win.Content = layout;
-
-            btnCancel.Click += (_, _) => win.Close();
-
-            btnSave.Click += async (_, _) =>
-            {
-                try
-                {
-                    var json = editor.Text ?? "";
-
-                    _ = JsonDocument.Parse(json);
-
-                    var tmp = path + ".tmp";
-                    await File.WriteAllTextAsync(tmp, json, new UTF8Encoding(false));
-
-                    if (File.Exists(path))
-                    {
-                        var bak = path + ".bak";
-                        try
-                        {
-                            if (File.Exists(bak))
-                                File.Delete(bak);
-                        }
-                        catch
-                        {
-                        }
-
-                        File.Replace(tmp, path, bak, true);
-
-                        try
-                        {
-                            if (File.Exists(bak))
-                                File.Delete(bak);
-                        }
-                        catch
-                        {
-                        }
-                    }
-                    else
-                    {
-                        File.Move(tmp, path);
-                    }
-
-                    SetStatus("Saved termbase.json");
-                    win.Close();
-
-                    // Refresh current assistant panel after saving terms
-                    _translationView?.SetAssistantSnapshot(null);
-
-                    if (_translationView != null && _currentRelPath != null)
-                    {
-                        var text = GetTranslationProjectionText();
-                        var blocks = typeof(TranslationTabView)
-                            .GetMethod("GetCurrentProjectionText") != null
-                            ? text
-                            : text;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Save termbase failed: " + ex.Message);
-                }
-            };
-
-            await win.ShowDialog(this);
         }
         catch (Exception ex)
         {
