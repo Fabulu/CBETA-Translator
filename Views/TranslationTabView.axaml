@@ -6,13 +6,21 @@
 
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+
 		<Style Selector="ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
 		</Style>
+
+		<Style Selector="ItemsControl.assistantList TextBlock">
+			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="Margin" Value="0,0,0,8"/>
+		</Style>
 	</UserControl.Styles>
 
 	<Grid RowDefinitions="Auto,*">
+
+		<!-- Top toolbar -->
 		<Border Grid.Row="0"
 				Background="{DynamicResource BarBg}"
 				BorderBrush="{DynamicResource BorderBrush}"
@@ -20,10 +28,9 @@
 				Padding="8"
 				CornerRadius="6">
 
-			<!-- top toolbar area -->
 			<Grid RowDefinitions="Auto,Auto" RowSpacing="8">
 
-				<!-- Row 1: Modes + quick info + wrap -->
+				<!-- Row 1 -->
 				<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
 					<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
 						<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
@@ -45,13 +52,20 @@
 
 					<StackPanel Grid.Column="2"
 								Orientation="Horizontal"
-								Spacing="8"
+								Spacing="12"
 								VerticalAlignment="Center">
-						<CheckBox Name="ChkWrap" Content="Wrap" ToolTip.Tip="Toggle line wrapping"/>
+						<CheckBox Name="ChkWrap"
+								  Content="Wrap"
+								  IsChecked="True"
+								  ToolTip.Tip="Toggle line wrapping"/>
+						<CheckBox Name="ChkAssistantVisible"
+								  Content="Assistant"
+								  IsChecked="True"
+								  ToolTip.Tip="Show or hide the translation assistant pane"/>
 					</StackPanel>
 				</Grid>
 
-				<!-- Row 2: Actions (wraps nicely on smaller windows) -->
+				<!-- Row 2 -->
 				<WrapPanel Grid.Row="1"
 						   Orientation="Horizontal"
 						   ItemSpacing="6"
@@ -94,24 +108,122 @@
 			</Grid>
 		</Border>
 
+		<!-- Main editor + assistant -->
 		<Border Grid.Row="1"
 				Margin="0,8,0,0"
 				Background="{DynamicResource XmlViewerBg}"
 				BorderBrush="{DynamicResource XmlViewerBorder}"
 				BorderThickness="1"
 				CornerRadius="6">
+
 			<Grid RowDefinitions="Auto,*">
-				<Border BorderThickness="0,0,0,1"
+				<Border Grid.Row="0"
+						BorderThickness="0,0,0,1"
 						BorderBrush="{DynamicResource XmlViewerBorder}"
 						Padding="8">
 					<TextBlock Name="TxtModeInfo" Text="Translation Editor"/>
 				</Border>
 
-				<ae:TextEditor Name="EditorProjection"
-							   Grid.Row="1"
-							   FontFamily="Consolas"
-							   ShowLineNumbers="False"
-							   WordWrap="False"/>
+				<Grid Grid.Row="1" ColumnDefinitions="*,8,360">
+					<!-- Editor side -->
+					<Border Grid.Column="0" Padding="0">
+						<ae:TextEditor Name="EditorProjection"
+									   FontFamily="Consolas"
+									   ShowLineNumbers="False"
+									   WordWrap="True"
+									   HorizontalScrollBarVisibility="Auto"
+									   VerticalScrollBarVisibility="Auto"/>
+					</Border>
+
+					<!-- Splitter -->
+					<GridSplitter Name="AssistantSplitter"
+								  Grid.Column="1"
+								  Width="8"
+								  ResizeDirection="Columns"
+								  ResizeBehavior="PreviousAndNext"
+								  Background="Transparent"/>
+
+					<!-- Assistant side -->
+					<Border Name="AssistantPane"
+							Grid.Column="2"
+							Padding="8"
+							Background="{DynamicResource ControlBg}"
+							BorderBrush="{DynamicResource XmlViewerBorder}"
+							BorderThickness="1,0,0,0">
+						<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+									  VerticalScrollBarVisibility="Auto">
+							<StackPanel Spacing="10">
+
+								<TextBlock Text="Assistant" FontWeight="Bold"/>
+
+								<Border Padding="8"
+										CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Approved TM" FontWeight="Bold"/>
+										<ItemsControl Name="ApprovedTmItems" Classes="assistantList">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+									</StackPanel>
+								</Border>
+
+								<Border Padding="8"
+										CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Reference / AI" FontWeight="Bold"/>
+										<ItemsControl Name="ReferenceTmItems" Classes="assistantList">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+									</StackPanel>
+								</Border>
+
+								<Border Padding="8"
+										CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+										<ItemsControl Name="TermItems" Classes="assistantList">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+									</StackPanel>
+								</Border>
+
+								<Border Padding="8"
+										CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Warnings / QA" FontWeight="Bold"/>
+										<ItemsControl Name="QaItems" Classes="assistantList">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+									</StackPanel>
+								</Border>
+
+							</StackPanel>
+						</ScrollViewer>
+					</Border>
+				</Grid>
 			</Grid>
 		</Border>
 	</Grid>
