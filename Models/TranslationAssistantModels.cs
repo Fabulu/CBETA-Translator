@@ -38,6 +38,7 @@ public sealed class TranslationTmMatch
     public string TargetText { get; set; } = "";
 
     public string RelPath { get; set; } = "";
+    public int BlockNumber { get; set; }
     public string SourceRef { get; set; } = "";
     public string Translator { get; set; } = "";
 

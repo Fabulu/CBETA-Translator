@@ -1,13 +1,16 @@
 ﻿// Views/TranslationTabView.axaml.cs
 // Projection editor for IndexedTranslationService (Head / Body / Notes)
 
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using AvaloniaEdit;
+using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
+using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -25,20 +28,20 @@ public partial class TranslationTabView : UserControl
     private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
     private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
+    private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment;
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
     private TextBlock? _txtModeInfo;
     private TextBlock? _txtQuickInfo;
+    private TextBlock? _txtReviewState;
     private TextEditor? _editor;
 
     private TranslationEditMode _currentMode = TranslationEditMode.Body;
     private string _currentProjection = "";
 
-    // Optional file path display context (used by MainWindow)
     private string? _origPath;
     private string? _tranPath;
 
-    // Hover dictionary
     private bool _hoverDictionaryEnabled = true;
     private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
     private readonly ICedictDictionary _cedict = new CedictDictionaryService();
@@ -48,15 +51,10 @@ public partial class TranslationTabView : UserControl
     public event EventHandler? RevertRequested;
     public event EventHandler<string>? Status;
 
-    // Translation assistant stuff
-    private ItemsControl? _approvedTmItems;
-    private ItemsControl? _referenceTmItems;
-    private ItemsControl? _termItems;
-    private ItemsControl? _qaItems;
-
     private CheckBox? _chkAssistantVisible;
     private Border? _assistantPane;
     private GridSplitter? _assistantSplitter;
+    private Grid? _editorAssistantGrid;
 
     private Button? _btnBuildReferenceTm;
     public event EventHandler? BuildReferenceTmRequested;
@@ -64,14 +62,27 @@ public partial class TranslationTabView : UserControl
     private Button? _btnManageTerms;
     public event EventHandler? ManageTermsRequested;
 
+    private StackPanel? _approvedTmHost;
+    private StackPanel? _referenceTmHost;
+    private StackPanel? _termHost;
+    private StackPanel? _qaHost;
+
+    private readonly List<IDisposable> _assistantHoverDisposables = new();
+    private Func<string, string>? _assistantTitleResolver;
+    private TranslationAssistantSnapshot? _lastAssistantSnapshot;
+
+    public event EventHandler<string>? ReviewActionRequested;
+
     public TranslationTabView()
     {
         AvaloniaXamlLoader.Load(this);
         FindControls();
         WireEvents();
         ApplyWrap();
+        UpdateAssistantVisibility();
         UpdateModeInfo();
         ApplyHoverDictionarySetting();
+        SetCurrentReviewState(null, null, null);
     }
 
     private void FindControls()
@@ -92,22 +103,28 @@ public partial class TranslationTabView : UserControl
         _btnBuildReferenceTm = this.FindControl<Button>("BtnBuildReferenceTm");
         _btnManageTerms = this.FindControl<Button>("BtnManageTerms");
 
+        _btnApproveSegment = this.FindControl<Button>("BtnApproveSegment");
+        _btnNeedsWorkSegment = this.FindControl<Button>("BtnNeedsWorkSegment");
+        _btnRejectSegment = this.FindControl<Button>("BtnRejectSegment");
+
         _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
         _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
 
         _txtModeInfo = this.FindControl<TextBlock>("TxtModeInfo");
         _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
+        _txtReviewState = this.FindControl<TextBlock>("TxtReviewState");
 
         _editor = this.FindControl<TextEditor>("EditorProjection");
 
-        _approvedTmItems = this.FindControl<ItemsControl>("ApprovedTmItems");
-        _referenceTmItems = this.FindControl<ItemsControl>("ReferenceTmItems");
-        _termItems = this.FindControl<ItemsControl>("TermItems");
-        _qaItems = this.FindControl<ItemsControl>("QaItems");
-
         _assistantPane = this.FindControl<Border>("AssistantPane");
         _assistantSplitter = this.FindControl<GridSplitter>("AssistantSplitter");
+        _editorAssistantGrid = this.FindControl<Grid>("EditorAssistantGrid");
+
+        _approvedTmHost = this.FindControl<StackPanel>("ApprovedTmHost");
+        _referenceTmHost = this.FindControl<StackPanel>("ReferenceTmHost");
+        _termHost = this.FindControl<StackPanel>("TermHost");
+        _qaHost = this.FindControl<StackPanel>("QaHost");
 
         if (_editor != null)
         {
@@ -122,7 +139,7 @@ public partial class TranslationTabView : UserControl
                 PublishCurrentSegment();
             };
 
-            if (_editor.TextArea != null && _editor.TextArea.Caret != null)
+            if (_editor.TextArea?.Caret != null)
                 _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegment();
         }
     }
@@ -153,6 +170,15 @@ public partial class TranslationTabView : UserControl
         if (_btnManageTerms != null)
             _btnManageTerms.Click += (_, _) => ManageTermsRequested?.Invoke(this, EventArgs.Empty);
 
+        if (_btnApproveSegment != null)
+            _btnApproveSegment.Click += (_, _) => ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Approved);
+
+        if (_btnNeedsWorkSegment != null)
+            _btnNeedsWorkSegment.Click += (_, _) => ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.NeedsWork);
+
+        if (_btnRejectSegment != null)
+            _btnRejectSegment.Click += (_, _) => ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Rejected);
+
         if (_chkWrap != null)
         {
             _chkWrap.Checked += (_, _) => ApplyWrap();
@@ -168,11 +194,47 @@ public partial class TranslationTabView : UserControl
         AddHandler(KeyDownEvent, OnKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel);
     }
 
+    public void SetAssistantTitleResolver(Func<string, string>? resolver)
+    {
+        _assistantTitleResolver = resolver;
+        if (_lastAssistantSnapshot != null)
+            RenderAssistantSnapshot(_lastAssistantSnapshot);
+    }
 
+    public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc)
+    {
+        if (_txtReviewState == null)
+            return;
 
-    // =========================
-    // Public API used by MainWindow
-    // =========================
+        status = (status ?? "").Trim().ToLowerInvariant();
+
+        if (string.IsNullOrWhiteSpace(status))
+        {
+            _txtReviewState.Text = "Unreviewed";
+            return;
+        }
+
+        string stateLabel = status switch
+        {
+            TranslationReviewStatuses.Approved => "Approved",
+            TranslationReviewStatuses.NeedsWork => "Needs work",
+            TranslationReviewStatuses.Rejected => "Rejected",
+            _ => status
+        };
+
+        if (!string.IsNullOrWhiteSpace(reviewer) && reviewedUtc.HasValue)
+        {
+            _txtReviewState.Text = $"{stateLabel} — {reviewer} — {reviewedUtc.Value.ToLocalTime():yyyy-MM-dd HH:mm}";
+        }
+        else if (!string.IsNullOrWhiteSpace(reviewer))
+        {
+            _txtReviewState.Text = $"{stateLabel} — {reviewer}";
+        }
+        else
+        {
+            _txtReviewState.Text = stateLabel;
+        }
+    }
 
     private void UpdateAssistantVisibility()
     {
@@ -183,6 +245,12 @@ public partial class TranslationTabView : UserControl
 
         if (_assistantSplitter != null)
             _assistantSplitter.IsVisible = visible;
+
+        if (_editorAssistantGrid != null && _editorAssistantGrid.ColumnDefinitions.Count >= 3)
+        {
+            _editorAssistantGrid.ColumnDefinitions[1].Width = visible ? new GridLength(8) : new GridLength(0);
+            _editorAssistantGrid.ColumnDefinitions[2].Width = visible ? new GridLength(360) : new GridLength(0);
+        }
     }
 
     public string GetCurrentProjectionText()
@@ -199,9 +267,9 @@ public partial class TranslationTabView : UserControl
     {
         _hoverDictionaryEnabled = enabled;
         ApplyHoverDictionarySetting();
+        ReattachAssistantHoverBehaviors();
     }
 
-    // Compatibility helpers (so older MainWindow variants don't explode)
     public void SetXml(string originalXml, string translatedXml)
     {
         _currentProjection = translatedXml ?? "";
@@ -224,14 +292,11 @@ public partial class TranslationTabView : UserControl
             _editor.Text = "";
 
         SetAssistantSnapshot(null);
+        SetCurrentReviewState(null, null, null);
         UpdateModeInfo();
         UpdateModeButtons();
         UpdateQuickInfo();
     }
-
-    // =========================
-    // UI helpers
-    // =========================
 
     private void SwitchMode(TranslationEditMode mode)
     {
@@ -280,7 +345,7 @@ public partial class TranslationTabView : UserControl
             var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
             int total = blocks.Count;
             int emptyEn = blocks.Count(b => string.IsNullOrWhiteSpace(b.En));
-            int untranslated = blocks.Count(b => ShouldJumpToUntranslated(b)); // empty EN + valid Chinese block only
+            int untranslated = blocks.Count(b => ShouldJumpToUntranslated(b));
 
             _txtQuickInfo.Text = total > 0
                 ? $"Blocks: {total}  Empty EN: {emptyEn}  Untranslated: {untranslated}"
@@ -297,10 +362,6 @@ public partial class TranslationTabView : UserControl
         if (_editor != null)
             _editor.WordWrap = _chkWrap?.IsChecked == true;
     }
-
-    // =========================
-    // Hover dictionary
-    // =========================
 
     private void ApplyHoverDictionarySetting()
     {
@@ -324,7 +385,6 @@ public partial class TranslationTabView : UserControl
             _hoverDictionaryBehavior = null;
 
             _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict);
-            Status?.Invoke(this, "Hover dictionary attached.");
         }
         catch (Exception ex)
         {
@@ -338,17 +398,12 @@ public partial class TranslationTabView : UserControl
         {
             _hoverDictionaryBehavior?.Dispose();
             _hoverDictionaryBehavior = null;
-            Status?.Invoke(this, "Hover dictionary disabled.");
         }
         catch
         {
             _hoverDictionaryBehavior = null;
         }
     }
-
-    // =========================
-    // Undo / Redo
-    // =========================
 
     private void DoUndo()
     {
@@ -381,10 +436,6 @@ public partial class TranslationTabView : UserControl
             Status?.Invoke(this, "Redo failed: " + ex.Message);
         }
     }
-
-    // =========================
-    // Chunk copy / smart paste / navigation
-    // =========================
 
     private async Task CopyChunkWithPromptAsync()
     {
@@ -421,7 +472,6 @@ public partial class TranslationTabView : UserControl
         int caret = _editor.CaretOffset;
         int maxCount = GetSelectedChunkSize();
 
-        // Find block at/after caret
         int startIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
         if (startIx < 0)
         {
@@ -429,7 +479,6 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Move to first valid untranslated block from there
         while (startIx < blocks.Count && !ShouldIncludeForCopy(blocks[startIx], requireUntranslated: true))
             startIx++;
 
@@ -439,8 +488,6 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Copy up to N valid untranslated blocks (non-contiguous allowed)
-        // and keep selection as full visible span for confidence.
         int copied = 0;
         int firstIncludedIx = -1;
         int lastIncludedIx = -1;
@@ -498,14 +545,11 @@ public partial class TranslationTabView : UserControl
 
         await cb.SetTextAsync(payload);
 
-        // Full-span selection (from first copied to last copied)
         if (_editor.Document != null)
         {
             int selStart = Math.Clamp(firstBlock.BlockStartOffset, 0, _editor.Document.TextLength);
             int selEnd = Math.Clamp(lastBlock.BlockEndOffsetExclusive, selStart, _editor.Document.TextLength);
 
-            // Keep the visual selection for confidence, but move caret to the END
-            // so the next Ctrl+Shift+C / button click starts after this chunk.
             _editor.TextArea.Selection = Selection.Create(_editor.TextArea, selStart, selEnd);
             _editor.CaretOffset = selEnd;
 
@@ -516,7 +560,6 @@ public partial class TranslationTabView : UserControl
             }
             catch
             {
-                // ignore
             }
 
             _editor.Focus();
@@ -621,7 +664,6 @@ public partial class TranslationTabView : UserControl
             }
         }
 
-        // Apply replacements from back to front so offsets stay valid
         var orderedTargets = pastedBlocks
             .Select(pb => (Paste: pb, Target: editorByNum[pb.BlockNumber]))
             .OrderByDescending(x => x.Target.EnValueStartOffset)
@@ -646,7 +688,6 @@ public partial class TranslationTabView : UserControl
 
         _editor.Text = sb.ToString();
 
-        // Reselect / reveal first pasted block
         int minNum = pastedBlocks.Min(b => b.BlockNumber);
         int maxNum = pastedBlocks.Max(b => b.BlockNumber);
 
@@ -696,7 +737,6 @@ public partial class TranslationTabView : UserControl
         int curIx = FindBlockIndexAtOrAfterCaret(blocks, caret);
         if (curIx < 0) curIx = 0;
 
-        // Prefer next valid untranslated block after current
         int nextIx = -1;
         for (int i = Math.Min(curIx + 1, blocks.Count); i < blocks.Count; i++)
         {
@@ -707,7 +747,6 @@ public partial class TranslationTabView : UserControl
             }
         }
 
-        // Wrap if needed
         bool wrapped = false;
         if (nextIx < 0)
         {
@@ -772,7 +811,6 @@ public partial class TranslationTabView : UserControl
 
         int hitIx = -1;
 
-        // search after current first
         for (int i = Math.Min(curIx + 1, blocks.Count); i < blocks.Count; i++)
         {
             if (ContainsChineseChar(blocks[i].En))
@@ -782,7 +820,6 @@ public partial class TranslationTabView : UserControl
             }
         }
 
-        // wrap
         bool wrapped = false;
         if (hitIx < 0)
         {
@@ -824,7 +861,9 @@ public partial class TranslationTabView : UserControl
                 n > 0)
                 return n;
         }
-        catch { }
+        catch
+        {
+        }
 
         return 10;
     }
@@ -840,11 +879,9 @@ public partial class TranslationTabView : UserControl
                 return i;
         }
 
-        // If caret is before first block, start there
         if (caretOffset < blocks[0].BlockStartOffset)
             return 0;
 
-        // If caret is after all blocks, return last
         return blocks.Count - 1;
     }
 
@@ -866,7 +903,6 @@ public partial class TranslationTabView : UserControl
         }
         catch
         {
-            // ignore
         }
 
         _editor.Focus();
@@ -890,7 +926,6 @@ public partial class TranslationTabView : UserControl
         }
         catch
         {
-            // ignore
         }
 
         _editor.Focus();
@@ -937,7 +972,6 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Optional shortcut: Ctrl+Shift+F = find Chinese in EN
         if (e.Key == Key.F &&
             e.KeyModifiers.HasFlag(KeyModifiers.Control) &&
             e.KeyModifiers.HasFlag(KeyModifiers.Shift))
@@ -979,6 +1013,27 @@ public partial class TranslationTabView : UserControl
         {
             RevertRequested?.Invoke(this, EventArgs.Empty);
             e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.F9)
+        {
+            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Approved);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.F10)
+        {
+            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.NeedsWork);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.F11)
+        {
+            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Rejected);
+            e.Handled = true;
         }
     }
 
@@ -1016,10 +1071,6 @@ STRICT RULES:
         return m.Success ? m.Groups["x"].Value.Trim() : text.Trim();
     }
 
-    // =========================
-    // Copy / navigation filtering helpers
-    // =========================
-
     private static bool ShouldIncludeForCopy(ProjectionBlockInfo block, bool requireUntranslated)
     {
         if (block == null) return false;
@@ -1048,11 +1099,9 @@ STRICT RULES:
         var zh = block.Zh ?? "";
         var en = block.En ?? "";
 
-        // Skip completely empty noise entries
         if (string.IsNullOrWhiteSpace(zh) && string.IsNullOrWhiteSpace(en))
             return true;
 
-        // Skip entries with no Chinese chars in ZH
         if (!ContainsChineseChar(zh))
             return true;
 
@@ -1066,7 +1115,6 @@ STRICT RULES:
 
         foreach (char ch in s)
         {
-            // CJK Unified Ideographs + Ext A + Compatibility Ideographs
             if ((ch >= '\u3400' && ch <= '\u4DBF') ||
                 (ch >= '\u4E00' && ch <= '\u9FFF') ||
                 (ch >= '\uF900' && ch <= '\uFAFF'))
@@ -1078,32 +1126,28 @@ STRICT RULES:
         return false;
     }
 
-    // =========================
-    // Block parsing (editor text)
-    // =========================
+    private static bool IsChineseChar(char ch)
+    {
+        return (ch >= '\u3400' && ch <= '\u4DBF')
+            || (ch >= '\u4E00' && ch <= '\u9FFF')
+            || (ch >= '\uF900' && ch <= '\uFAFF');
+    }
 
     private sealed class ProjectionBlockInfo
     {
         public int BlockNumber { get; set; }
         public string Zh { get; set; } = "";
         public string En { get; set; } = "";
-
-        public int BlockStartOffset { get; set; }               // at '<'
-        public int BlockEndOffsetExclusive { get; set; }        // end of block (may include trailing blank lines)
-        public int EnValueStartOffset { get; set; }             // offset of EN value text
-        public int EnValueLength { get; set; }                  // length of EN value text
+        public int BlockStartOffset { get; set; }
+        public int BlockEndOffsetExclusive { get; set; }
+        public int EnValueStartOffset { get; set; }
+        public int EnValueLength { get; set; }
     }
 
     private static List<ProjectionBlockInfo> ParseProjectionBlocksWithOffsets(string text)
     {
         text ??= "";
 
-        // Strict single-line ZH / EN blocks:
-        // <123>
-        // ZH: ...
-        // EN: ...
-        //
-        // Extra blank lines after block are allowed.
         var rx = new Regex(
             @"(?m)^(?<hdr><(?<num>\d+)>)\s*\r?\n" +
             @"ZH:\s?(?<zh>[^\r\n]*)\r?\n" +
@@ -1122,7 +1166,7 @@ STRICT RULES:
 
             var enGroup = m.Groups["en"];
             var blockStart = m.Index;
-            var blockEnd = m.Index + m.Length; // extend later to include blank lines up to next header/start
+            var blockEnd = m.Index + m.Length;
 
             list.Add(new ProjectionBlockInfo
             {
@@ -1136,7 +1180,6 @@ STRICT RULES:
             });
         }
 
-        // Expand each block end to right before next block start (so copied chunks preserve blank separators)
         for (int i = 0; i < list.Count; i++)
         {
             int end = (i + 1 < list.Count) ? list[i + 1].BlockStartOffset : text.Length;
@@ -1190,9 +1233,6 @@ STRICT RULES:
         }
     }
 
-    ///
-    /// Translation Assistant stuff
-    /// 
     public sealed class CurrentProjectionSegmentChangedEventArgs : EventArgs
     {
         public int BlockNumber { get; init; }
@@ -1232,51 +1272,425 @@ STRICT RULES:
         }
         catch
         {
-            // ignore assistant sync errors
         }
     }
 
     public void SetAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
     {
-        if (_approvedTmItems != null)
+        _lastAssistantSnapshot = snapshot;
+        RenderAssistantSnapshot(snapshot);
+    }
+
+    private void RenderAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
+    {
+        ClearAssistantHoverBehaviors();
+
+        if (_approvedTmHost != null) _approvedTmHost.Children.Clear();
+        if (_referenceTmHost != null) _referenceTmHost.Children.Clear();
+        if (_termHost != null) _termHost.Children.Clear();
+        if (_qaHost != null) _qaHost.Children.Clear();
+
+        if (snapshot == null)
+            return;
+
+        if (_approvedTmHost != null)
         {
-            _approvedTmItems.ItemsSource =
-                snapshot?.ApprovedMatches?.Select(m =>
-                    $"{Math.Round(m.Score)}%\nZH: {m.SourceText}\nEN: {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
-                .ToList()
-                ?? new List<string>();
+            foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
+                _approvedTmHost.Children.Add(BuildTmEntry(snapshot, m));
         }
 
-        if (_referenceTmItems != null)
+        if (_referenceTmHost != null)
         {
-            _referenceTmItems.ItemsSource =
-                snapshot?.ReferenceMatches?.Select(m =>
-                    $"{Math.Round(m.Score)}%\nZH: {m.SourceText}\nEN: {m.TargetText}\n{m.RelPath}  [{m.ReviewStatus}]")
-                .ToList()
-                ?? new List<string>();
+            foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
+                _referenceTmHost.Children.Add(BuildTmEntry(snapshot, m));
         }
 
-        if (_termItems != null)
+        if (_termHost != null)
         {
-            _termItems.ItemsSource =
-                snapshot?.Terms?.Select(t =>
-                    $"{t.SourceTerm}\nPreferred: {t.PreferredTarget}" +
-                    (t.AlternateTargets != null && t.AlternateTargets.Count > 0
-                        ? $"\nAlternates: {string.Join(", ", t.AlternateTargets)}"
-                        : "") +
-                    (string.IsNullOrWhiteSpace(t.Note) ? "" : $"\nNote: {t.Note}"))
-                .ToList()
-                ?? new List<string>();
+            foreach (var t in snapshot.Terms ?? new List<TermHit>())
+                _termHost.Children.Add(BuildTermEntry(snapshot, t));
         }
 
-        if (_qaItems != null)
+        if (_qaHost != null)
         {
-            _qaItems.ItemsSource =
-                snapshot?.QaIssues?.Select(q =>
-                    $"[{q.Severity}] {q.Message}")
-                .ToList()
-                ?? new List<string>();
+            foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
+                _qaHost.Children.Add(BuildQaEntry(q));
         }
+    }
+
+    private Control BuildTmEntry(TranslationAssistantSnapshot snapshot, TranslationTmMatch match)
+    {
+        string title = ResolveAssistantTitle(match.RelPath);
+        string currentZh = snapshot.Segment?.ZhText ?? "";
+        string editorText = BuildTmEditorText(match, title);
+        var ranges = BuildTmHighlightRanges(editorText, match.SourceText ?? "", currentZh);
+
+        var editor = BuildAssistantEditor(editorText, ranges, minHeight: 90, maxHeight: 220);
+
+        return new Border
+        {
+            BorderBrush = GetResourceBrush("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor
+        };
+    }
+
+    private Control BuildTermEntry(TranslationAssistantSnapshot snapshot, TermHit term)
+    {
+        string currentZh = snapshot.Segment?.ZhText ?? "";
+        string editorText = BuildTermEditorText(term);
+        var ranges = BuildSingleLineChineseHighlightRanges(editorText, term.SourceTerm ?? "", currentZh);
+
+        var editor = BuildAssistantEditor(editorText, ranges, minHeight: 70, maxHeight: 180);
+
+        return new Border
+        {
+            BorderBrush = GetResourceBrush("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor
+        };
+    }
+
+    private Control BuildQaEntry(QaIssue issue)
+    {
+        var editor = BuildAssistantEditor(
+            $"[{issue.Severity}] {issue.Message}",
+            Array.Empty<TextRange>(),
+            minHeight: 56,
+            maxHeight: 140);
+
+        return new Border
+        {
+            BorderBrush = GetResourceBrush("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor
+        };
+    }
+
+    private TextEditor BuildAssistantEditor(
+        string text,
+        IReadOnlyList<TextRange> highlightRanges,
+        double minHeight,
+        double maxHeight)
+    {
+        var editor = new TextEditor
+        {
+            Text = text ?? "",
+            IsReadOnly = true,
+            ShowLineNumbers = false,
+            WordWrap = true,
+            FontFamily = new FontFamily("Consolas"),
+            HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+            VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+            Background = GetResourceBrush("XmlViewerBg"),
+            Foreground = GetResourceBrush("TextFg"),
+            MinHeight = minHeight,
+            MaxHeight = maxHeight
+        };
+
+        if (editor.TextArea?.TextView != null && highlightRanges.Count > 0)
+        {
+            var colorizer = new SharedChineseColorizer(highlightRanges);
+            editor.TextArea.TextView.LineTransformers.Add(colorizer);
+            editor.TextArea.TextView.Redraw();
+        }
+
+        if (editor.TextArea != null)
+        {
+            editor.TextArea.Caret.Offset = 0;
+            editor.TextArea.Selection = Selection.Create(editor.TextArea, 0, 0);
+        }
+
+        AttachAssistantHover(editor);
+        return editor;
+    }
+
+    private static string BuildTmEditorText(TranslationTmMatch match, string title)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine($"{Math.Round(match.Score)}%  [{match.ReviewStatus}]");
+
+        if (!string.IsNullOrWhiteSpace(title))
+            sb.AppendLine(title);
+
+        sb.AppendLine($"ZH: {match.SourceText}");
+        sb.AppendLine($"EN: {match.TargetText}");
+
+        if (!string.IsNullOrWhiteSpace(match.Translator))
+            sb.AppendLine($"Translator: {match.Translator}");
+
+        return sb.ToString().TrimEnd();
+    }
+
+    private static string BuildTermEditorText(TermHit t)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine($"Source: {t.SourceTerm}");
+        sb.AppendLine($"Preferred: {t.PreferredTarget}");
+
+        if (t.AlternateTargets != null && t.AlternateTargets.Count > 0)
+            sb.AppendLine($"Alternates: {string.Join(", ", t.AlternateTargets)}");
+
+        if (!string.IsNullOrWhiteSpace(t.Status))
+            sb.AppendLine($"Status: {t.Status}");
+
+        if (!string.IsNullOrWhiteSpace(t.Note))
+            sb.AppendLine($"Note: {t.Note}");
+
+        return sb.ToString().TrimEnd();
+    }
+
+    private sealed record TextRange(int Start, int Length);
+
+    private static IReadOnlyList<TextRange> BuildTmHighlightRanges(string wholeText, string suggestionZh, string currentZh)
+    {
+        int zhLineStart = wholeText.IndexOf("ZH: ", StringComparison.Ordinal);
+        if (zhLineStart < 0)
+            return Array.Empty<TextRange>();
+
+        zhLineStart += 4;
+        int zhLineEnd = wholeText.IndexOf('\n', zhLineStart);
+        if (zhLineEnd < 0)
+            zhLineEnd = wholeText.Length;
+
+        return BuildSharedChineseRangesInWholeText(
+            wholeText,
+            zhLineStart,
+            zhLineEnd - zhLineStart,
+            suggestionZh,
+            currentZh);
+    }
+
+    private static IReadOnlyList<TextRange> BuildSingleLineChineseHighlightRanges(string wholeText, string lineText, string currentZh)
+    {
+        int lineEnd = wholeText.IndexOf('\n');
+        if (lineEnd < 0)
+            lineEnd = wholeText.Length;
+
+        int colon = wholeText.IndexOf(": ", StringComparison.Ordinal);
+        int contentStart = colon >= 0 ? colon + 2 : 0;
+        int contentLength = Math.Max(0, lineEnd - contentStart);
+
+        return BuildSharedChineseRangesInWholeText(
+            wholeText,
+            contentStart,
+            contentLength,
+            lineText,
+            currentZh);
+    }
+
+    private static IReadOnlyList<TextRange> BuildSharedChineseRangesInWholeText(
+        string wholeText,
+        int targetStart,
+        int targetLength,
+        string suggestionZh,
+        string currentZh)
+    {
+        var result = new List<TextRange>();
+
+        if (string.IsNullOrWhiteSpace(wholeText) ||
+            string.IsNullOrWhiteSpace(suggestionZh) ||
+            string.IsNullOrWhiteSpace(currentZh) ||
+            targetLength <= 0)
+            return result;
+
+        var localRanges = FindSharedChineseRanges(suggestionZh, currentZh);
+        foreach (var r in localRanges)
+        {
+            int absStart = targetStart + r.Start;
+            if (absStart < 0 || absStart >= wholeText.Length)
+                continue;
+
+            int len = Math.Min(r.Length, wholeText.Length - absStart);
+            if (len > 0)
+                result.Add(new TextRange(absStart, len));
+        }
+
+        return MergeRanges(result);
+    }
+
+    private static List<TextRange> FindSharedChineseRanges(string suggestionZh, string currentZh)
+    {
+        var result = new List<TextRange>();
+        if (string.IsNullOrWhiteSpace(suggestionZh) || string.IsNullOrWhiteSpace(currentZh))
+            return result;
+
+        var candidates = ExtractChinesePhrases(currentZh)
+            .Where(x => x.Length >= 2)
+            .Distinct(StringComparer.Ordinal)
+            .OrderByDescending(x => x.Length)
+            .ToList();
+
+        var used = new bool[suggestionZh.Length];
+
+        foreach (var phrase in candidates)
+        {
+            int searchAt = 0;
+            while (searchAt < suggestionZh.Length)
+            {
+                int ix = suggestionZh.IndexOf(phrase, searchAt, StringComparison.Ordinal);
+                if (ix < 0)
+                    break;
+
+                bool overlaps = false;
+                for (int i = ix; i < ix + phrase.Length && i < used.Length; i++)
+                {
+                    if (used[i])
+                    {
+                        overlaps = true;
+                        break;
+                    }
+                }
+
+                if (!overlaps)
+                {
+                    for (int i = ix; i < ix + phrase.Length && i < used.Length; i++)
+                        used[i] = true;
+
+                    result.Add(new TextRange(ix, phrase.Length));
+                }
+
+                searchAt = ix + Math.Max(1, phrase.Length);
+            }
+        }
+
+        return result.OrderBy(x => x.Start).ToList();
+    }
+
+    private static List<string> ExtractChinesePhrases(string text)
+    {
+        var result = new List<string>();
+        if (string.IsNullOrWhiteSpace(text))
+            return result;
+
+        var runs = new List<string>();
+        var sb = new StringBuilder();
+
+        foreach (char ch in text)
+        {
+            if (IsChineseChar(ch))
+            {
+                sb.Append(ch);
+            }
+            else if (sb.Length > 0)
+            {
+                runs.Add(sb.ToString());
+                sb.Clear();
+            }
+        }
+
+        if (sb.Length > 0)
+            runs.Add(sb.ToString());
+
+        foreach (var run in runs)
+        {
+            for (int len = run.Length; len >= 2; len--)
+            {
+                for (int i = 0; i + len <= run.Length; i++)
+                {
+                    result.Add(run.Substring(i, len));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private static IReadOnlyList<TextRange> MergeRanges(List<TextRange> ranges)
+    {
+        if (ranges.Count == 0)
+            return ranges;
+
+        var ordered = ranges.OrderBy(r => r.Start).ThenBy(r => r.Length).ToList();
+        var merged = new List<TextRange> { ordered[0] };
+
+        for (int i = 1; i < ordered.Count; i++)
+        {
+            var last = merged[^1];
+            var cur = ordered[i];
+
+            int lastEnd = last.Start + last.Length;
+            int curEnd = cur.Start + cur.Length;
+
+            if (cur.Start <= lastEnd)
+            {
+                merged[^1] = new TextRange(last.Start, Math.Max(lastEnd, curEnd) - last.Start);
+            }
+            else
+            {
+                merged.Add(cur);
+            }
+        }
+
+        return merged;
+    }
+
+    private string ResolveAssistantTitle(string? relPath)
+    {
+        if (string.IsNullOrWhiteSpace(relPath))
+            return "";
+
+        if (_assistantTitleResolver != null)
+        {
+            var resolved = _assistantTitleResolver(relPath);
+            if (!string.IsNullOrWhiteSpace(resolved))
+                return resolved;
+        }
+
+        return relPath ?? "";
+    }
+
+    private void AttachAssistantHover(TextEditor editor)
+    {
+        if (!_hoverDictionaryEnabled)
+            return;
+
+        try
+        {
+            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict);
+            _assistantHoverDisposables.Add(behavior);
+        }
+        catch
+        {
+            // assistant hover must never break rendering
+        }
+    }
+
+    private void ClearAssistantHoverBehaviors()
+    {
+        foreach (var d in _assistantHoverDisposables)
+        {
+            try { d.Dispose(); } catch { }
+        }
+        _assistantHoverDisposables.Clear();
+    }
+
+    private void ReattachAssistantHoverBehaviors()
+    {
+        if (_lastAssistantSnapshot != null)
+            RenderAssistantSnapshot(_lastAssistantSnapshot);
+    }
+
+    private IBrush? GetResourceBrush(string key)
+    {
+        try
+        {
+            if (Application.Current?.TryFindResource(key, out var obj) == true && obj is IBrush brush)
+                return brush;
+        }
+        catch
+        {
+        }
+
+        return null;
     }
 
     public void SetModeProjection(TranslationEditMode mode, string projectionText)
@@ -1293,7 +1707,62 @@ STRICT RULES:
         PublishCurrentSegment();
     }
 
-    
+    private sealed class SharedChineseColorizer : DocumentColorizingTransformer
+    {
+        private readonly IReadOnlyList<TextRange> _ranges;
 
+        public SharedChineseColorizer(IReadOnlyList<TextRange> ranges)
+        {
+            _ranges = ranges ?? Array.Empty<TextRange>();
+        }
 
+        private static IBrush Brush(string key, IBrush fallback)
+        {
+            var app = Application.Current;
+            if (app != null && app.TryFindResource(key, out var res) && res is IBrush b)
+                return b;
+            return fallback;
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            if (_ranges.Count == 0)
+                return;
+
+            int lineStart = line.Offset;
+            int lineEnd = line.EndOffset;
+
+            var fg = Brush("NoteMarkerCommunityFg", Brushes.DodgerBlue);
+
+            for (int i = 0; i < _ranges.Count; i++)
+            {
+                var r = _ranges[i];
+                int rStart = r.Start;
+                int rEnd = r.Start + r.Length;
+
+                if (rEnd <= lineStart)
+                    continue;
+
+                if (rStart >= lineEnd)
+                    break;
+
+                int s = Math.Max(rStart, lineStart);
+                int e = Math.Min(rEnd, lineEnd);
+
+                if (e <= s)
+                    continue;
+
+                ChangeLinePart(s, e, el =>
+                {
+                    el.TextRunProperties.SetForegroundBrush(fg);
+                    el.TextRunProperties.SetTypeface(
+                        new Typeface(
+                            el.TextRunProperties.Typeface.FontFamily,
+                            el.TextRunProperties.Typeface.Style,
+                            FontWeight.SemiBold,
+                            el.TextRunProperties.Typeface.Stretch));
+                });
+            }
+        }
+    }
 }
