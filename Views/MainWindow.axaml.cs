@@ -108,6 +108,9 @@ public partial class MainWindow : Window
     private CancellationTokenSource? _assistantCts;
     private readonly TranslationAssistantBuildService _translationAssistantBuilder = new();
 
+    private readonly TranslationReviewService _translationReview = new();
+    private CurrentSegmentContext? _currentSegmentContext;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -285,13 +288,49 @@ public partial class MainWindow : Window
 
         if (_translationView != null)
         {
+            _translationView.SetAssistantTitleResolver(rel =>
+            {
+                var key = NormalizeRel(rel);
+
+                if (_allItemsByRel.TryGetValue(key, out var item))
+                {
+                    if (!string.IsNullOrWhiteSpace(item.Tooltip))
+                        return item.Tooltip;
+
+                    if (!string.IsNullOrWhiteSpace(item.DisplayShort))
+                        return item.DisplayShort;
+
+                    if (!string.IsNullOrWhiteSpace(item.FileName))
+                        return item.FileName;
+                }
+
+                return rel ?? "";
+            });
+
             _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
             _translationView.RevertRequested += async (_, _) => await RevertTranslatedXmlFromDiskAsync();
             _translationView.Status += (_, msg) => SetStatus(msg);
 
             _translationView.CurrentSegmentChanged += async (_, ev) =>
             {
+                _currentSegmentContext = new CurrentSegmentContext
+                {
+                    RelPath = _currentRelPath ?? "",
+                    BlockNumber = ev.BlockNumber,
+                    ZhText = ev.Zh,
+                    EnText = ev.En,
+                    ProjectionOffsetStart = ev.BlockStartOffset,
+                    ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
+                    Mode = ev.Mode
+                };
+
+                await RefreshReviewBadgeAsync();
                 await RefreshAssistantForCurrentSegmentAsync(ev);
+            };
+
+            _translationView.ReviewActionRequested += async (_, status) =>
+            {
+                await HandleReviewActionAsync(status);
             };
 
             _translationView.BuildReferenceTmRequested += async (_, _) =>
@@ -390,6 +429,8 @@ public partial class MainWindow : Window
                 Mode = ev.Mode
             };
 
+            _currentSegmentContext = ctx;
+
             var snapshot = await _translationAssistant.BuildSnapshotAsync(
                 ctx,
                 _root,
@@ -400,6 +441,7 @@ public partial class MainWindow : Window
             if (ct.IsCancellationRequested) return;
 
             _translationView.SetAssistantSnapshot(snapshot);
+            await RefreshReviewBadgeAsync();
         }
         catch
         {
@@ -1252,6 +1294,7 @@ public partial class MainWindow : Window
         var ct = _renderCts.Token;
 
         _currentRelPath = relPath;
+        _currentSegmentContext = null;
 
         if (_txtCurrentFile != null) _txtCurrentFile.Text = relPath;
         _gitView?.SetSelectedRelPath(_currentRelPath);
@@ -1332,6 +1375,7 @@ public partial class MainWindow : Window
             if (string.IsNullOrWhiteSpace(text))
             {
                 _translationView.SetAssistantSnapshot(null);
+                _translationView.SetCurrentReviewState(null, null, null);
                 return;
             }
 
@@ -1351,10 +1395,86 @@ public partial class MainWindow : Window
                 _translatedDir);
 
             _translationView.SetAssistantSnapshot(snapshot);
+            await RefreshReviewBadgeAsync();
         }
         catch
         {
             // assistant must never break file loading
+        }
+    }
+
+    private async Task RefreshReviewBadgeAsync()
+    {
+        try
+        {
+            if (_translationView == null)
+                return;
+
+            if (_root == null || _currentSegmentContext == null)
+            {
+                _translationView.SetCurrentReviewState(null, null, null);
+                return;
+            }
+
+            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
+            _translationView.SetCurrentReviewState(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
+        }
+        catch
+        {
+            _translationView?.SetCurrentReviewState(null, null, null);
+        }
+    }
+
+    private async Task HandleReviewActionAsync(string status)
+    {
+        try
+        {
+            if (_root == null)
+            {
+                SetStatus("Review failed: no root is loaded.");
+                return;
+            }
+
+            if (_translationView == null)
+            {
+                SetStatus("Review failed: translation view unavailable.");
+                return;
+            }
+
+            if (_currentSegmentContext == null)
+            {
+                SetStatus("Review failed: no current segment.");
+                return;
+            }
+
+            _currentSegmentContext.EnText = _currentSegmentContext.EnText ?? "";
+
+            await _translationReview.AppendReviewAsync(
+                _root,
+                _currentSegmentContext,
+                status,
+                reviewer: "User");
+
+            int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_root);
+
+            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
+            _translationView.SetCurrentReviewState(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
+
+            await RefreshAssistantForCurrentSegmentAsync(new TranslationTabView.CurrentProjectionSegmentChangedEventArgs
+            {
+                BlockNumber = _currentSegmentContext.BlockNumber,
+                Zh = _currentSegmentContext.ZhText,
+                En = _currentSegmentContext.EnText,
+                BlockStartOffset = _currentSegmentContext.ProjectionOffsetStart,
+                BlockEndOffsetExclusive = _currentSegmentContext.ProjectionOffsetEndExclusive,
+                Mode = _currentSegmentContext.Mode
+            });
+
+            SetStatus($"Segment <{_currentSegmentContext.BlockNumber}> marked {TranslationReviewStatuses.Normalize(status)}. Approved TM rows: {count:n0}.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Review failed: " + ex.Message);
         }
     }
 
