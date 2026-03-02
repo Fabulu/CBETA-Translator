@@ -111,8 +111,33 @@ public partial class MainWindow : Window
     private readonly TranslationReviewService _translationReview = new();
     private CurrentSegmentContext? _currentSegmentContext;
 
-    public MainWindow()
+    // -------------------------
+    // Secondary-window support
+    // -------------------------
+
+    /// <summary>
+    /// True when this window was opened as a satellite reader by
+    /// <see cref="Services.WindowNavigationService"/>. Secondary windows:
+    ///   • never save config or UI state to disk
+    ///   • skip the auto-load of the last root on startup
+    ///   • expose <see cref="OpenAtAsync"/> for programmatic navigation
+    /// </summary>
+    public bool IsSecondaryWindow { get; private set; }
+
+    /// <summary>
+    /// Signalled when the window's asynchronous init (config load + theme) has finished.
+    /// <see cref="OpenAtAsync"/> awaits this before loading any root.
+    /// </summary>
+    private readonly TaskCompletionSource _windowReady = new();
+
+    // Parameterless ctor used by App.axaml.cs (main window) and Avalonia XAML loader.
+    public MainWindow() : this(isSecondaryWindow: false) { }
+
+    // Parameterized ctor used by WindowNavigationService (secondary windows).
+    public MainWindow(bool isSecondaryWindow)
     {
+        IsSecondaryWindow = isSecondaryWindow;
+
         InitializeComponent();
         FindControls();
         WireEvents();
@@ -124,10 +149,29 @@ public partial class MainWindow : Window
         _ = LoadConfigApplyThemeAndMaybeAutoloadAsync();
         StartDirtyTimer();
 
+        string closeWhat = isSecondaryWindow ? "close this window" : "close the app";
         Closing += async (_, e) =>
         {
-            if (!await ConfirmNavigateIfDirtyAsync("close the app")) e.Cancel = true;
+            if (!await ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
         };
+    }
+
+    /// <summary>
+    /// Loads <paramref name="root"/>, opens <paramref name="request"/>.RelPath in the
+    /// Reader tab, and scrolls to the exact hit. Intended for secondary windows only.
+    /// </summary>
+    public async Task OpenAtAsync(string root, NavigationRequest request)
+    {
+        // Wait for this window's async init (config load + theme) to finish.
+        await _windowReady.Task;
+
+        await LoadRootAsync(root, saveToConfig: false);
+        SelectInNav(request.RelPath);
+        await LoadPairAsync(request.RelPath);
+        ForceTab(0); // switch to Reader tab
+
+        if (_readableView != null && !string.IsNullOrEmpty(request.MatchText))
+            await _readableView.NavigateToAsync(request);
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -365,17 +409,21 @@ public partial class MainWindow : Window
                     SetStatus("Mode switch failed: " + ex.Message);
                 }
             };
+
+            _translationView.NavigationRequested += (_, req) =>
+            {
+                if (_root == null) return;
+                WindowNavigationService.OpenAndNavigate(_root, req);
+            };
         }
 
         if (_searchView != null)
         {
             _searchView.Status += (_, msg) => SetStatus(msg);
-            _searchView.OpenFileRequested += async (_, rel) =>
+            _searchView.NavigationRequested += (_, req) =>
             {
-                if (!await ConfirmNavigateIfDirtyAsync("open another file (" + rel + ")")) return;
-                SelectInNav(rel);
-                await LoadPairAsync(rel);
-                ForceTab(0);
+                if (_root == null) return;
+                WindowNavigationService.OpenAndNavigate(_root, req);
             };
         }
 
@@ -665,33 +713,44 @@ public partial class MainWindow : Window
 
     private async Task LoadConfigApplyThemeAndMaybeAutoloadAsync()
     {
-        try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
-        catch { _config = new AppConfig { IsDarkTheme = true }; }
-
-        ApplyTheme(_config.IsDarkTheme);
-        ApplySettingsToChildViews();
-
-        if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
+        try
         {
-            _suppressConfigSaves = true;
-            try
-            {
-                if (_chkZenOnly != null) _chkZenOnly.IsChecked = _config.ZenOnly;
-            }
-            finally
-            {
-                _suppressConfigSaves = false;
-            }
+            try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
+            catch { _config = new AppConfig { IsDarkTheme = true }; }
 
-            SetStatus("Auto-loading last root…");
-            await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
+            ApplyTheme(_config.IsDarkTheme);
+            ApplySettingsToChildViews();
 
-            if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
+            // Secondary windows skip auto-load; OpenAtAsync handles the root/file explicitly.
+            if (IsSecondaryWindow) return;
+
+            if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
             {
-                var rel = NormalizeRel(_config.LastSelectedRelPath);
-                SelectInNav(rel);
-                await LoadPairAsync(rel);
+                _suppressConfigSaves = true;
+                try
+                {
+                    if (_chkZenOnly != null) _chkZenOnly.IsChecked = _config.ZenOnly;
+                }
+                finally
+                {
+                    _suppressConfigSaves = false;
+                }
+
+                SetStatus("Auto-loading last root…");
+                await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
+
+                if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
+                {
+                    var rel = NormalizeRel(_config.LastSelectedRelPath);
+                    SelectInNav(rel);
+                    await LoadPairAsync(rel);
+                }
             }
+        }
+        finally
+        {
+            // Always signal ready so OpenAtAsync is never permanently blocked.
+            _windowReady.TrySetResult();
         }
     }
 
@@ -765,7 +824,7 @@ public partial class MainWindow : Window
 
     private async Task SaveUiStateAsync()
     {
-        if (_suppressConfigSaves) return;
+        if (_suppressConfigSaves || IsSecondaryWindow) return;
         if (_root == null) return;
 
         _config.TextRootPath = _root;

@@ -79,7 +79,12 @@ public partial class SearchTabView : UserControl
     private Func<string, bool>? _isZen;
 
     public event EventHandler<string>? Status;
-    public event EventHandler<string>? OpenFileRequested;
+
+    /// <summary>
+    /// Fired when the user double-clicks a search result group or child hit.
+    /// Carries enough information to open a new window and navigate to the exact hit.
+    /// </summary>
+    public event EventHandler<NavigationRequest>? NavigationRequested;
 
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
 
@@ -169,15 +174,22 @@ public partial class SearchTabView : UserControl
             _resultsTree.DoubleTapped += (_, _) =>
             {
                 var sel = _resultsTree.SelectedItem;
-                if (sel is SearchResultGroup g)
+                if (sel is SearchResultGroup g && !string.IsNullOrWhiteSpace(g.RelPath))
                 {
-                    if (!string.IsNullOrWhiteSpace(g.RelPath))
-                        OpenFileRequested?.Invoke(this, g.RelPath);
+                    // Group double-click: open file without a specific hit offset
+                    NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = g.RelPath });
                 }
-                else if (sel is SearchResultChild c)
+                else if (sel is SearchResultChild c && !string.IsNullOrWhiteSpace(c.RelPath))
                 {
-                    if (!string.IsNullOrWhiteSpace(c.RelPath))
-                        OpenFileRequested?.Invoke(this, c.RelPath);
+                    // Child double-click: carry the exact hit info for precise in-document navigation
+                    NavigationRequested?.Invoke(this, new NavigationRequest
+                    {
+                        RelPath = c.RelPath,
+                        Side = c.Side,
+                        MatchText = c.Hit.Match,
+                        LeftContext = c.Hit.Left,
+                        RightContext = c.Hit.Right,
+                    });
                 }
             };
         }
