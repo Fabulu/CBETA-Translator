@@ -5,6 +5,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using AvaloniaEdit;
@@ -61,6 +62,12 @@ public partial class TranslationTabView : UserControl
 
     private Button? _btnManageTerms;
     public event EventHandler? ManageTermsRequested;
+
+    /// <summary>
+    /// Fired when the user double-clicks a TM match in the assistant panel.
+    /// Carries the source file and the Chinese source text to locate.
+    /// </summary>
+    public event EventHandler<NavigationRequest>? NavigationRequested;
 
     private StackPanel? _approvedTmHost;
     private StackPanel? _referenceTmHost;
@@ -1327,14 +1334,38 @@ STRICT RULES:
 
         var editor = BuildAssistantEditor(editorText, ranges, minHeight: 90, maxHeight: 220);
 
-        return new Border
+        var border = new Border
         {
             BorderBrush = GetResourceBrush("BorderBrush"),
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(6),
-            Child = editor
+            Child = editor,
         };
+
+        // Double-click on the TM card opens the source file in a new window.
+        // We use a tunnel handler so it fires even when the inner TextEditor absorbs pointer events.
+        if (!string.IsNullOrWhiteSpace(match.RelPath) && !string.IsNullOrWhiteSpace(match.SourceText))
+        {
+            var capturedMatch = match; // capture for the lambda
+            border.AddHandler(
+                InputElement.PointerPressedEvent,
+                (object? _, PointerPressedEventArgs e) =>
+                {
+                    if (e.ClickCount >= 2)
+                    {
+                        NavigationRequested?.Invoke(this, new NavigationRequest
+                        {
+                            RelPath = capturedMatch.RelPath,
+                            Side = SearchSide.Original,  // navigate to the Chinese source pane
+                            MatchText = capturedMatch.SourceText,
+                        });
+                    }
+                },
+                RoutingStrategies.Tunnel);
+        }
+
+        return border;
     }
 
     private Control BuildTermEntry(TranslationAssistantSnapshot snapshot, TermHit term)

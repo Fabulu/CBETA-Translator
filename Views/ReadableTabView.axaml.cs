@@ -410,6 +410,116 @@ public partial class ReadableTabView : UserControl
     }
 
     // =========================
+    // Navigate-to (called from secondary windows after SetRendered)
+    // =========================
+
+    /// <summary>
+    /// Scrolls the appropriate pane to the location described by <paramref name="request"/>
+    /// and briefly highlights the matched span.
+    /// Must be called after <see cref="SetRendered"/> has completed and the layout has settled.
+    /// </summary>
+    public async Task NavigateToAsync(NavigationRequest request)
+    {
+        // Give the layout engine one full pass so the text is measured and scrollable.
+        await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+        await Task.Delay(150);
+
+        var doc = request.Side == SearchSide.Original ? _renderOrig : _renderTran;
+        var editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
+
+        if (doc == null || doc.IsEmpty || editor?.Document == null)
+            return;
+
+        if (string.IsNullOrEmpty(request.MatchText))
+            return;
+
+        int offset = FindBestMatchOffset(doc.Text, request.MatchText, request.LeftContext, request.RightContext);
+        if (offset < 0)
+            return;
+
+        // Suppress selection-mirror during our programmatic move
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+
+        int docLen = editor.Document.TextLength;
+        int safeStart = Math.Clamp(offset, 0, Math.Max(0, docLen - 1));
+        int safeEnd = Math.Clamp(safeStart + request.MatchText.Length, 0, docLen);
+
+        editor.TextArea.Caret.Offset = safeStart;
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, safeStart, safeEnd);
+
+        // Caret.Offset assignment does not always scroll — scroll explicitly too.
+        var line = editor.Document.GetLineByOffset(safeStart);
+        editor.ScrollToLine(line.LineNumber);
+
+        // Clear the highlight after a short pause (skip if user has started interacting).
+        await Task.Delay(2000);
+        try
+        {
+            editor.TextArea.Selection = Selection.Create(editor.TextArea, 0, 0);
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Finds the offset of the best-scoring occurrence of <paramref name="match"/> in
+    /// <paramref name="docText"/>, using <paramref name="left"/> / <paramref name="right"/>
+    /// KWIC context to break ties when the same string appears multiple times.
+    /// Returns -1 if the match is not found.
+    /// </summary>
+    private static int FindBestMatchOffset(string docText, string match, string? left, string? right)
+    {
+        if (string.IsNullOrEmpty(docText) || string.IsNullOrEmpty(match))
+            return -1;
+
+        int first = docText.IndexOf(match, StringComparison.Ordinal);
+        if (first < 0)
+            return -1;
+
+        // No context supplied — return the first occurrence immediately.
+        if (string.IsNullOrEmpty(left) && string.IsNullOrEmpty(right))
+            return first;
+
+        // Score every occurrence and return the best-ranked one.
+        int best = first;
+        int bestScore = -1;
+        int searchFrom = 0;
+
+        while (searchFrom < docText.Length)
+        {
+            int idx = docText.IndexOf(match, searchFrom, StringComparison.Ordinal);
+            if (idx < 0) break;
+
+            int score = 0;
+
+            if (!string.IsNullOrEmpty(left))
+            {
+                int winStart = Math.Max(0, idx - left.Length * 2);
+                string pre = docText.Substring(winStart, idx - winStart);
+                if (pre.Contains(left, StringComparison.Ordinal)) score += 2;
+            }
+
+            if (!string.IsNullOrEmpty(right))
+            {
+                int matchEnd = idx + match.Length;
+                int winEnd = Math.Min(docText.Length, matchEnd + right.Length * 2);
+                string post = docText.Substring(matchEnd, winEnd - matchEnd);
+                if (post.Contains(right, StringComparison.Ordinal)) score += 2;
+            }
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                best = idx;
+            }
+
+            searchFrom = idx + 1;
+        }
+
+        return best;
+    }
+
+    // =========================
     // Notes UI
     // =========================
     private void ShowNotes(DocAnnotation ann, bool fromTranslatedPane)
