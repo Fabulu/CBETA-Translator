@@ -111,6 +111,9 @@ public partial class MainWindow : Window
     private readonly TranslationReviewService _translationReview = new();
     private CurrentSegmentContext? _currentSegmentContext;
 
+    // Termbase editor (non-modal — at most one instance per main window)
+    private TermbaseEditorWindow? _termbaseEditorWindow;
+
     // -------------------------
     // Secondary-window support
     // -------------------------
@@ -1983,6 +1986,13 @@ public partial class MainWindow : Window
                 return;
             }
 
+            // If the editor is already open, bring it to the front instead of opening a second one.
+            if (_termbaseEditorWindow != null)
+            {
+                _termbaseEditorWindow.Activate();
+                return;
+            }
+
             var path = Path.Combine(_root, "termbase.json");
 
             if (!File.Exists(path))
@@ -2005,15 +2015,18 @@ public partial class MainWindow : Window
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            var saved = await win.ShowDialog<bool>(this);
-
-            if (saved)
+            // Refresh the assistant panel whenever the user saves inside the editor.
+            win.TermsSaved += (_, _) =>
             {
                 SetStatus("Saved termbase.json");
+                _translationView?.SetAssistantSnapshot(null);
+            };
 
-                if (_translationView != null)
-                    _translationView.SetAssistantSnapshot(null);
-            }
+            // Clear our reference once the window is closed so the next button click opens a fresh one.
+            win.Closed += (_, _) => _termbaseEditorWindow = null;
+
+            _termbaseEditorWindow = win;
+            win.Show();
         }
         catch (Exception ex)
         {

@@ -41,6 +41,12 @@ public partial class TermbaseEditorWindow : Window
 
     public bool Saved { get; private set; }
 
+    /// <summary>
+    /// Fired after a successful save. The window stays open so the user can keep editing.
+    /// MainWindow subscribes to this to refresh the assistant panel.
+    /// </summary>
+    public event EventHandler? TermsSaved;
+
     public TermbaseEditorWindow(string root)
     {
         _root = root ?? throw new ArgumentNullException(nameof(root));
@@ -111,7 +117,7 @@ public partial class TermbaseEditorWindow : Window
             _btnDuplicate.Click += BtnDuplicate_Click;
 
         if (_btnCancel != null)
-            _btnCancel.Click += (_, _) => Close(false);
+            _btnCancel.Click += (_, _) => Close();
 
         if (_btnSave != null)
             _btnSave.Click += async (_, _) => await SaveAsync();
@@ -389,7 +395,7 @@ public partial class TermbaseEditorWindow : Window
 
             Saved = true;
             SetEditorStatus($"Saved {cleaned.Count:n0} terms.");
-            Close(true);
+            TermsSaved?.Invoke(this, EventArgs.Empty);
         }
         catch (Exception ex)
         {
