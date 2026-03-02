@@ -26,6 +26,7 @@ public sealed class TranslationReviewService
         public string RelPath { get; set; } = "";
         public string ReviewStatus { get; set; } = "";
         public string Translator { get; set; } = "";
+        public DateTimeOffset? WrittenUtc { get; set; }
     }
 
     public static string GetLedgerPath(string root)
@@ -179,7 +180,8 @@ public sealed class TranslationReviewService
                 TargetText = NormalizeLine(entry.EnText),
                 RelPath = entry.RelPath,
                 ReviewStatus = "Approved",
-                Translator = string.IsNullOrWhiteSpace(entry.Reviewer) ? "User" : entry.Reviewer
+                Translator = string.IsNullOrWhiteSpace(entry.Reviewer) ? "User" : entry.Reviewer,
+                WrittenUtc = entry.ReviewedUtc == default ? DateTimeOffset.UtcNow : new DateTimeOffset(entry.ReviewedUtc, TimeSpan.Zero)
             };
 
             var json = JsonSerializer.Serialize(row, JsonOpts);

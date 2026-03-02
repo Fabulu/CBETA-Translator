@@ -44,6 +44,10 @@ public partial class GitTabView : UserControl
     private Button? _btnAuth;
     private Button? _btnPushPr;
 
+    private Button? _btnSendCommunityData;
+    private Button? _btnPushCommunityPr;
+    private Button? _btnFetchMergeCommunity;
+
     private Button? _btnPanic;
 
     private TextBlock? _txtDest;
@@ -63,11 +67,13 @@ public partial class GitTabView : UserControl
     private readonly IGitRepoService _git = new GitRepoService();
     private readonly IGitHubAuthService _auth = new GitHubAuthService();
     private readonly IGitHubApiService _api = new GitHubApiService();
+    private readonly CommunityDataService _community = new();
 
     private string? _githubAccessToken;
     private string? _githubLogin;
 
     private string? _lastContribBranch;
+    private string? _lastCommunityBranch;
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
@@ -100,6 +106,10 @@ public partial class GitTabView : UserControl
         _btnAuth = this.FindControl<Button>("BtnAuth");
         _btnPushPr = this.FindControl<Button>("BtnPushPr");
 
+        _btnSendCommunityData = this.FindControl<Button>("BtnSendCommunityData");
+        _btnPushCommunityPr = this.FindControl<Button>("BtnPushCommunityPr");
+        _btnFetchMergeCommunity = this.FindControl<Button>("BtnFetchMergeCommunity");
+
         _btnPanic = this.FindControl<Button>("BtnPanic");
 
         _txtDest = this.FindControl<TextBlock>("TxtDest");
@@ -127,6 +137,10 @@ public partial class GitTabView : UserControl
 
         if (_btnAuth != null) _btnAuth.Click += async (_, _) => await AuthorizeAsync();
         if (_btnPushPr != null) _btnPushPr.Click += async (_, _) => await PushAndCreatePrAsync();
+
+        if (_btnSendCommunityData != null) _btnSendCommunityData.Click += async (_, _) => await SendCommunityDataLocalAsync();
+        if (_btnPushCommunityPr != null) _btnPushCommunityPr.Click += async (_, _) => await PushCommunityPrAsync();
+        if (_btnFetchMergeCommunity != null) _btnFetchMergeCommunity.Click += async (_, _) => await FetchAndMergeCommunityDataAsync();
 
         if (_btnPanic != null) _btnPanic.Click += async (_, _) => await PanicButtonAsync();
 
@@ -1470,6 +1484,10 @@ public partial class GitTabView : UserControl
         if (_btnAuth != null) _btnAuth.IsEnabled = !busy;
         if (_btnPushPr != null) _btnPushPr.IsEnabled = !busy;
 
+        if (_btnSendCommunityData != null) _btnSendCommunityData.IsEnabled = !busy;
+        if (_btnPushCommunityPr != null) _btnPushCommunityPr.IsEnabled = !busy;
+        if (_btnFetchMergeCommunity != null) _btnFetchMergeCommunity.IsEnabled = !busy;
+
         if (_btnPanic != null) _btnPanic.IsEnabled = !busy;
     }
 
@@ -1495,6 +1513,533 @@ public partial class GitTabView : UserControl
         _txtLog.Text += line + Environment.NewLine;
 
         try { _txtLog.CaretIndex = _txtLog.Text.Length; } catch { }
+    }
+
+    // =========================
+    // COMMUNITY DATA
+    // =========================
+
+    private const string CommunityTmFile = "translation-memory.approved.jsonl";
+    private const string CommunityTermbaseFile = "termbase.json";
+
+    private async Task SendCommunityDataLocalAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                SetProgress("Repo not ready. Click Get/Update first.");
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            SetProgress("Checking git…");
+            var gitOk = await _git.CheckGitAvailableAsync(ct);
+            if (!gitOk)
+            {
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
+                return;
+            }
+
+            var tmPath = Path.Combine(repoDir, CommunityTmFile);
+            var tbPath = Path.Combine(repoDir, CommunityTermbaseFile);
+
+            bool hasTm = File.Exists(tmPath);
+            bool hasTb = File.Exists(tbPath);
+
+            if (!hasTm && !hasTb)
+            {
+                SetProgress("No community data files found.");
+                AppendLog("[warn] neither " + CommunityTmFile + " nor " + CommunityTermbaseFile + " exists at: " + repoDir);
+                AppendLog("[hint] Approve some translations in the Translation tab and use the termbase editor first.");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            // Sort + dedup both files before committing
+            if (hasTm)
+            {
+                SetProgress("Sorting/deduping approved TM…");
+                var kept = await _community.SortAndDedupApprovedTmAsync(repoDir, ct);
+                AppendLog($"[dedup] TM: {kept:n0} unique rows after dedup");
+            }
+
+            if (hasTb)
+            {
+                SetProgress("Sorting/deduping termbase…");
+                var kept = await _community.SortAndDedupTermbaseAsync(repoDir, ct);
+                AppendLog($"[dedup] termbase: {kept:n0} entries after dedup");
+            }
+
+            await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+            await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+
+            var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+
+            var communityFiles = new List<string>();
+            if (hasTm && status.Any(l => l.Contains(CommunityTmFile, StringComparison.OrdinalIgnoreCase)))
+                communityFiles.Add(CommunityTmFile);
+            if (hasTb && status.Any(l => l.Contains(CommunityTermbaseFile, StringComparison.OrdinalIgnoreCase)))
+                communityFiles.Add(CommunityTermbaseFile);
+
+            if (communityFiles.Count == 0)
+            {
+                SetProgress("No changes in community data files (already up to date).");
+                AppendLog("[warn] git status shows no changes for community data files");
+                AppendLog("[hint] If you recently approved entries, they may already be committed.");
+                return;
+            }
+
+            string originalBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
+            AppendLog("[git] current branch: " + originalBranch);
+
+            string msg = (_txtCommitMessage?.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(msg))
+                msg = "Community data: approved TM + termbase update";
+
+            string branchName = $"community/data/{DateTime.Now:yyyyMMdd-HHmmss}";
+
+            // Stage only community data files
+            foreach (var rel in communityFiles)
+            {
+                SetProgress("Staging " + rel + "…");
+                AppendLog("[step] git add -- " + rel);
+                var stage = await _git.StagePathAsync(repoDir, rel, prog, ct);
+                if (!stage.Success)
+                {
+                    SetProgress("Stage failed.");
+                    AppendLog("[error] " + stage.Error);
+                    return;
+                }
+            }
+
+            SetProgress("Stashing other work…");
+            AppendLog("[step] git stash push -u -k");
+            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-community-autostash", prog, ct);
+            if (!stash.Success)
+            {
+                SetProgress("Stash failed.");
+                AppendLog("[error] " + stash.Error);
+                return;
+            }
+
+            SetProgress("Creating branch…");
+            AppendLog("[step] new branch: " + branchName);
+            var br = await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
+            if (!br.Success)
+            {
+                SetProgress("Branch create failed.");
+                AppendLog("[error] " + br.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            SetProgress("Committing…");
+            AppendLog("[step] commit: " + msg);
+            var commit = await _git.CommitAsync(repoDir, msg, prog, ct);
+            if (!commit.Success)
+            {
+                SetProgress("Commit failed.");
+                AppendLog("[error] " + commit.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            _lastCommunityBranch = branchName;
+
+            SetProgress("Restoring other work…");
+            await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+
+            SetProgress("Community data commit created.");
+            AppendLog("[ok] committed community data on branch: " + branchName);
+            AppendLog("[files] " + string.Join(", ", communityFiles));
+            AppendLog("[next] 2) Authorize GitHub (button above), then 3) Push + PR (Community Data)");
+
+            Status?.Invoke(this, "Community data commit ready: " + branchName);
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    private async Task PushCommunityPrAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                SetProgress("Repo not ready. Click Get/Update first.");
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(_lastCommunityBranch))
+            {
+                SetProgress("No community data branch found. Run step 1 first.");
+                AppendLog("[error] no community branch prepared");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            if (string.IsNullOrWhiteSpace(_githubAccessToken) || string.IsNullOrWhiteSpace(_githubLogin))
+            {
+                SetProgress("Authorizing GitHub…");
+                var token = await _auth.AuthorizeDeviceFlowAsync(prog, ct);
+                if (token == null)
+                {
+                    SetProgress("Auth failed.");
+                    return;
+                }
+
+                _githubAccessToken = token.access_token;
+                var me = await _api.GetMeAsync(_githubAccessToken, ct);
+                _githubLogin = me?.login;
+
+                if (string.IsNullOrWhiteSpace(_githubLogin))
+                {
+                    SetProgress("Auth ok but could not read username.");
+                    return;
+                }
+
+                AppendLog("[auth] user: " + _githubLogin);
+            }
+
+            bool isUpstreamOwner = string.Equals(_githubLogin, UpstreamOwner, StringComparison.OrdinalIgnoreCase);
+
+            await ScrubTokenizedForkRemoteIfAny(repoDir, prog, ct);
+
+            string remoteName;
+            string remoteUrlClean;
+            string prHeadOwner;
+
+            if (isUpstreamOwner)
+            {
+                remoteName = "origin";
+                remoteUrlClean = RepoUrl;
+                prHeadOwner = UpstreamOwner;
+                AppendLog("[mode] upstream owner -> push to origin");
+            }
+            else
+            {
+                SetProgress("Ensuring fork…");
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                if (!forkExists)
+                {
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    if (!okFork)
+                    {
+                        SetProgress("Fork failed.");
+                        AppendLog("[error] fork creation failed");
+                        return;
+                    }
+
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    if (!ready)
+                    {
+                        SetProgress("Fork not ready yet.");
+                        return;
+                    }
+                }
+
+                remoteName = "fork";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                prHeadOwner = _githubLogin!;
+            }
+
+            var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
+            if (!rem.Success)
+            {
+                SetProgress("Remote config failed.");
+                AppendLog("[error] " + rem.Error);
+                return;
+            }
+
+            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
+
+            SetProgress("Pushing community branch…");
+            AppendLog("[step] push -u " + remoteName + " " + _lastCommunityBranch);
+            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastCommunityBranch!, prog, ct);
+            if (!push.Success)
+            {
+                SetProgress("Push failed.");
+                AppendLog("[error] " + push.Error);
+                AppendPushFailureHints(push.Error);
+                return;
+            }
+
+            SetProgress("Creating PR…");
+            string head = $"{prHeadOwner}:{_lastCommunityBranch}";
+            string prTitle = "Community data: approved TM + termbase";
+            string prBody =
+                "Community data contribution from CbetaTranslator.\n\n" +
+                $"Branch: `{_lastCommunityBranch}`\n\n" +
+                "Contains: approved translation memory and/or termbase updates.";
+
+            var prUrl = await _api.CreatePullRequestAsync(
+                _githubAccessToken!,
+                UpstreamOwner,
+                UpstreamRepo,
+                head,
+                "main",
+                prTitle,
+                prBody,
+                ct);
+
+            if (string.IsNullOrWhiteSpace(prUrl))
+            {
+                SetProgress("PR creation failed.");
+                AppendLog("[error] create PR returned null");
+                return;
+            }
+
+            AppendLog("[ok] PR created: " + prUrl);
+            SetProgress("PR created.");
+
+            try
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = prUrl, UseShellExecute = true });
+            }
+            catch { }
+
+            Status?.Invoke(this, "Community PR created: " + prUrl);
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    private async Task FetchAndMergeCommunityDataAsync()
+    {
+        Cancel();
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                SetProgress("Repo not ready. Click Get/Update first.");
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            SetProgress("Checking git…");
+            var gitOk = await _git.CheckGitAvailableAsync(ct);
+            if (!gitOk)
+            {
+                SetProgress("Git not found.");
+                AppendLog("[error] git not found");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            SetProgress("Fetching origin…");
+            AppendLog("[step] git fetch origin");
+            var fetch = await _git.FetchAsync(repoDir, prog, ct);
+            if (!fetch.Success)
+            {
+                SetProgress("Fetch failed.");
+                AppendLog("[error] " + (fetch.Error ?? "unknown"));
+                return;
+            }
+
+            // Export upstream community files to temp paths using git show
+            var tempDir = Path.Combine(Path.GetTempPath(), "CbetaTranslator", "community-merge", Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(tempDir);
+
+            try
+            {
+                var upstreamTmTemp = Path.Combine(tempDir, CommunityTmFile);
+                var upstreamTbTemp = Path.Combine(tempDir, CommunityTermbaseFile);
+
+                int mergedTm = 0;
+                int mergedTb = 0;
+
+                // Try to export TM from origin/main
+                SetProgress("Reading upstream TM…");
+                AppendLog("[step] git show origin/main:" + CommunityTmFile);
+                var showTm = await RunGitOutputAsync(repoDir, "show", $"origin/main:{CommunityTmFile}", ct);
+                if (showTm != null)
+                {
+                    await File.WriteAllTextAsync(upstreamTmTemp, showTm, new UTF8Encoding(false), ct);
+                    SetProgress("Merging TM…");
+                    mergedTm = await _community.MergeApprovedTmFromAsync(repoDir, upstreamTmTemp, ct);
+                    AppendLog($"[merge] TM: {mergedTm:n0} unique rows after merge");
+                }
+                else
+                {
+                    AppendLog("[info] no " + CommunityTmFile + " found in origin/main (skipping TM merge)");
+                }
+
+                // Try to export termbase from origin/main
+                SetProgress("Reading upstream termbase…");
+                AppendLog("[step] git show origin/main:" + CommunityTermbaseFile);
+                var showTb = await RunGitOutputAsync(repoDir, "show", $"origin/main:{CommunityTermbaseFile}", ct);
+                if (showTb != null)
+                {
+                    await File.WriteAllTextAsync(upstreamTbTemp, showTb, new UTF8Encoding(false), ct);
+                    SetProgress("Merging termbase…");
+                    mergedTb = await _community.MergeTermbaseFromAsync(repoDir, upstreamTbTemp, ct);
+                    AppendLog($"[merge] termbase: {mergedTb:n0} entries after merge");
+                }
+                else
+                {
+                    AppendLog("[info] no " + CommunityTermbaseFile + " found in origin/main (skipping termbase merge)");
+                }
+
+                if (mergedTm == 0 && mergedTb == 0 && showTm == null && showTb == null)
+                {
+                    SetProgress("No community data found in origin/main.");
+                    AppendLog("[info] origin/main has no community data files yet");
+                    return;
+                }
+
+                SetProgress($"Merge complete. TM: {mergedTm:n0} rows, termbase: {mergedTb:n0} entries.");
+                AppendLog("[ok] community data merged into local files");
+                AppendLog("[note] Your local files have been updated. Save/reload the app to see new entries in the assistant.");
+
+                Status?.Invoke(this, $"Community merge done: {mergedTm:n0} TM rows, {mergedTb:n0} termbase entries.");
+            }
+            finally
+            {
+                TryDeleteDirectory(tempDir);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            SetProgress("Canceled.");
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            SetProgress("Failed: " + ex.Message);
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
+    /// <summary>Runs git and captures stdout. Returns null if git exits non-zero.</summary>
+    private static async Task<string?> RunGitOutputAsync(
+        string repoDir,
+        string arg0,
+        string? arg1 = null,
+        CancellationToken ct = default)
+    {
+        var args = new[] { arg0, arg1 }
+            .Where(a => !string.IsNullOrWhiteSpace(a))
+            .Select(a => a!)
+            .ToArray();
+
+        static string QuoteIfNeeded(string s) => s.Contains(' ') ? $"\"{s}\"" : s;
+
+        var psi = new ProcessStartInfo
+        {
+            FileName = GitBinaryLocator.ResolveGitExecutablePath(),
+            WorkingDirectory = repoDir,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8,
+            Arguments = string.Join(" ", args.Select(QuoteIfNeeded))
+        };
+
+        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+
+        try
+        {
+            psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
+        }
+        catch { }
+
+        using var p = new Process { StartInfo = psi };
+
+        var sbOut = new StringBuilder();
+        var sbErr = new StringBuilder();
+
+        if (!p.Start())
+            return null;
+
+        using var reg = ct.Register(() =>
+        {
+            try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
+        });
+
+        Task readOut = Task.Run(async () =>
+        {
+            while (!p.StandardOutput.EndOfStream)
+            {
+                var line = await p.StandardOutput.ReadLineAsync();
+                if (line != null)
+                    sbOut.AppendLine(line);
+            }
+        });
+
+        Task readErr = Task.Run(async () =>
+        {
+            while (!p.StandardError.EndOfStream)
+                await p.StandardError.ReadLineAsync();
+        });
+
+        await Task.WhenAll(readOut, readErr);
+        await p.WaitForExitAsync(ct);
+
+        if (p.ExitCode != 0)
+            return null;
+
+        var output = sbOut.ToString();
+        return string.IsNullOrWhiteSpace(output) ? null : output;
     }
 
     // =========================

@@ -39,7 +39,7 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
 		  ColumnDefinitions="*,Auto"
 		  Margin="12"
 		  RowSpacing="8"
@@ -122,8 +122,41 @@
 					ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
 		</StackPanel>
 
-		<!-- Log -->
+		<!-- Community Data -->
 		<Border Grid.Row="5"
+				Grid.ColumnSpan="2"
+				CornerRadius="6"
+				BorderThickness="1"
+				BorderBrush="{DynamicResource PanelBorder}"
+				Background="{DynamicResource PanelBg}"
+				Padding="10">
+			<StackPanel Orientation="Vertical" Spacing="8">
+				<TextBlock Text="Community Data (Approved TM + Termbase)"
+						   FontWeight="SemiBold"/>
+
+				<TextBlock Text="Commit your approved translations and termbase entries so others can benefit from them, or fetch what the community has contributed."
+						   TextWrapping="Wrap"
+						   Opacity="0.85"
+						   Classes="muted"/>
+
+				<StackPanel Orientation="Horizontal" Spacing="8">
+					<Button Name="BtnSendCommunityData"
+							Content="1) Commit Community Data"
+							ToolTip.Tip="Sort, dedup, and commit translation-memory.approved.jsonl and termbase.json to a new branch."/>
+
+					<Button Name="BtnPushCommunityPr"
+							Content="3) Push + PR (Community Data)"
+							ToolTip.Tip="Push the community data branch and open a pull request. Use '2) Authorize GitHub' above first."/>
+
+					<Button Name="BtnFetchMergeCommunity"
+							Content="Fetch + Merge Community Data"
+							ToolTip.Tip="Fetch origin/main and merge the community TM and termbase into your local files (last-write-wins)."/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+
+		<!-- Log -->
+		<Border Grid.Row="6"
 				Grid.ColumnSpan="2"
 				CornerRadius="6"
 				BorderThickness="1"
@@ -143,7 +176,7 @@
 			</ScrollViewer>
 		</Border>
 
-		<TextBlock Grid.Row="6"
+		<TextBlock Grid.Row="7"
 				   Grid.ColumnSpan="2"
 				   Name="TxtProgress"
 				   Text="Ready."
