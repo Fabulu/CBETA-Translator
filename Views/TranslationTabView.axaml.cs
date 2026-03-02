@@ -29,12 +29,13 @@ public partial class TranslationTabView : UserControl
     private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
     private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
-    private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment;
+    private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment, _btnNextUnapproved;
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
     private TextBlock? _txtModeInfo;
     private TextBlock? _txtQuickInfo;
     private TextBlock? _txtReviewState;
+    private TextBlock? _txtProgress;
     private TextEditor? _editor;
 
     private TranslationEditMode _currentMode = TranslationEditMode.Body;
@@ -79,6 +80,7 @@ public partial class TranslationTabView : UserControl
     private TranslationAssistantSnapshot? _lastAssistantSnapshot;
 
     public event EventHandler<string>? ReviewActionRequested;
+    public event EventHandler? NextUnapprovedRequested;
 
     public TranslationTabView()
     {
@@ -113,6 +115,7 @@ public partial class TranslationTabView : UserControl
         _btnApproveSegment = this.FindControl<Button>("BtnApproveSegment");
         _btnNeedsWorkSegment = this.FindControl<Button>("BtnNeedsWorkSegment");
         _btnRejectSegment = this.FindControl<Button>("BtnRejectSegment");
+        _btnNextUnapproved = this.FindControl<Button>("BtnNextUnapproved");
 
         _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
@@ -121,6 +124,7 @@ public partial class TranslationTabView : UserControl
         _txtModeInfo = this.FindControl<TextBlock>("TxtModeInfo");
         _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
         _txtReviewState = this.FindControl<TextBlock>("TxtReviewState");
+        _txtProgress = this.FindControl<TextBlock>("TxtProgress");
 
         _editor = this.FindControl<TextEditor>("EditorProjection");
 
@@ -185,6 +189,9 @@ public partial class TranslationTabView : UserControl
 
         if (_btnRejectSegment != null)
             _btnRejectSegment.Click += (_, _) => ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Rejected);
+
+        if (_btnNextUnapproved != null)
+            _btnNextUnapproved.Click += (_, _) => NextUnapprovedRequested?.Invoke(this, EventArgs.Empty);
 
         if (_chkWrap != null)
         {
@@ -780,6 +787,182 @@ public partial class TranslationTabView : UserControl
             : $"Jumped to untranslated block <{blocks[nextIx].BlockNumber}>.");
     }
 
+    public void JumpToNextBlock()
+    {
+        if (_editor == null) return;
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        if (blocks.Count == 0) return;
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+        if (curIx < 0) curIx = 0;
+        int nextIx = (curIx + 1) % blocks.Count;
+        SelectAndRevealBlock(blocks[nextIx]);
+    }
+
+    public void JumpToPreviousBlock()
+    {
+        if (_editor == null) return;
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        if (blocks.Count == 0) return;
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+        if (curIx < 0) curIx = 0;
+        int prevIx = (curIx - 1 + blocks.Count) % blocks.Count;
+        SelectAndRevealBlock(blocks[prevIx]);
+    }
+
+    public void JumpToNextUnapproved(IReadOnlySet<int> approvedBlockNumbers)
+    {
+        if (_editor == null) return;
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        if (blocks.Count == 0) return;
+
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+        if (curIx < 0) curIx = 0;
+
+        for (int i = curIx + 1; i < blocks.Count; i++)
+        {
+            if (!approvedBlockNumbers.Contains(blocks[i].BlockNumber))
+            {
+                SelectAndRevealBlock(blocks[i]);
+                return;
+            }
+        }
+
+        for (int i = 0; i <= curIx && i < blocks.Count; i++)
+        {
+            if (!approvedBlockNumbers.Contains(blocks[i].BlockNumber))
+            {
+                SelectAndRevealBlock(blocks[i]);
+                Status?.Invoke(this, $"Jumped to block <{blocks[i].BlockNumber}> (wrapped).");
+                return;
+            }
+        }
+
+        Status?.Invoke(this, "All segments in this file are approved.");
+    }
+
+    public IReadOnlyList<int> GetAllBlockNumbers()
+    {
+        var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
+        return blocks.Select(b => b.BlockNumber).ToList();
+    }
+
+    public void FillEnForCurrentBlock(string enText, int expectedBlockNumber = -1)
+    {
+        if (_editor == null) return;
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        if (blocks.Count == 0) return;
+
+        int curIx = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+        if (curIx < 0 || curIx >= blocks.Count) return;
+
+        var block = blocks[curIx];
+        if (expectedBlockNumber >= 0 && block.BlockNumber != expectedBlockNumber) return;
+        if (!string.IsNullOrWhiteSpace(block.En)) return;
+        if (block.EnValueStartOffset < 0) return;
+
+        _editor.Document.Replace(block.EnValueStartOffset, Math.Max(0, block.EnValueLength), enText);
+        Status?.Invoke(this, "Auto-filled from 100% TM match.");
+    }
+
+    public void SetProgressStats(int approved, int needsWork, int total)
+    {
+        if (_txtProgress == null) return;
+        _txtProgress.Text = total == 0
+            ? ""
+            : $"{approved}/{total} approved · {needsWork} needs work";
+    }
+
+    public bool IsEditorFocused()
+        => _editor?.IsFocused == true || _editor?.TextArea?.IsFocused == true;
+
+    // -------------------------
+    // Termbase highlighting (projection editor)
+    // -------------------------
+
+    private TermbaseHighlightTransformer? _projectionTermHighlighter;
+
+    public void UpdateTermbaseHighlights(IReadOnlyList<TermHit>? hits, string? zhText)
+    {
+        if (_editor == null) return;
+
+        if (_projectionTermHighlighter == null)
+        {
+            _projectionTermHighlighter = new TermbaseHighlightTransformer();
+            _editor.TextArea.TextView.LineTransformers.Add(_projectionTermHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length)>();
+
+        if (hits != null && !string.IsNullOrWhiteSpace(zhText))
+        {
+            string docText = _editor.Document?.Text ?? "";
+            int zhStart = docText.IndexOf(zhText, StringComparison.Ordinal);
+            if (zhStart >= 0)
+            {
+                int zhEnd = zhStart + zhText.Length;
+                foreach (var hit in hits)
+                {
+                    if (string.IsNullOrWhiteSpace(hit.SourceTerm)) continue;
+                    int from = zhStart;
+                    while (from < zhEnd)
+                    {
+                        int idx = docText.IndexOf(hit.SourceTerm, from,
+                            Math.Max(0, zhEnd - from), StringComparison.Ordinal);
+                        if (idx < 0) break;
+                        ranges.Add((idx, hit.SourceTerm.Length));
+                        from = idx + 1;
+                    }
+                }
+            }
+        }
+
+        _projectionTermHighlighter.SetRanges(ranges);
+        _editor.TextArea.TextView.Redraw();
+    }
+
+    private TmSharedHighlightTransformer? _tmSharedHighlighter;
+
+    public void UpdateTmSharedHighlights(
+        IReadOnlyList<TranslationTmMatch>? approvedMatches,
+        IReadOnlyList<TranslationTmMatch>? referenceMatches,
+        string? zhText)
+    {
+        if (_editor == null) return;
+
+        if (_tmSharedHighlighter == null)
+        {
+            _tmSharedHighlighter = new TmSharedHighlightTransformer();
+            _editor.TextArea.TextView.LineTransformers.Add(_tmSharedHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length)>();
+
+        if (!string.IsNullOrWhiteSpace(zhText))
+        {
+            var best = (approvedMatches ?? Enumerable.Empty<TranslationTmMatch>())
+                .Concat(referenceMatches ?? Enumerable.Empty<TranslationTmMatch>())
+                .OrderByDescending(m => m.Score)
+                .FirstOrDefault();
+
+            if (best != null && !string.IsNullOrWhiteSpace(best.SourceText))
+            {
+                string docText = _editor.Document?.Text ?? "";
+                int zhStart = docText.IndexOf(zhText, StringComparison.Ordinal);
+                if (zhStart >= 0)
+                {
+                    // FindSharedChineseRanges(suggestionZh=currentZh, currentZh=bestMatchZh)
+                    // returns positions within currentZh where shared phrases appear
+                    var sharedInZh = FindSharedChineseRanges(zhText, best.SourceText);
+                    foreach (var r in sharedInZh)
+                        ranges.Add((zhStart + r.Start, r.Length));
+                }
+            }
+        }
+
+        _tmSharedHighlighter.SetRanges(ranges);
+        _editor.TextArea.TextView.Redraw();
+    }
+
     private void JumpToChineseInEnglishLine()
     {
         if (_editor == null)
@@ -1040,6 +1223,20 @@ public partial class TranslationTabView : UserControl
         if (e.Key == Key.F11)
         {
             ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Rejected);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Right && e.KeyModifiers == KeyModifiers.Alt)
+        {
+            JumpToNextBlock();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Left && e.KeyModifiers == KeyModifiers.Alt)
+        {
+            JumpToPreviousBlock();
             e.Handled = true;
         }
     }
@@ -1736,6 +1933,64 @@ STRICT RULES:
         UpdateModeButtons();
         UpdateQuickInfo();
         PublishCurrentSegment();
+    }
+
+    private sealed class TermbaseHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length)> _ranges = new();
+
+        public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
+            => _ranges = ranges.ToList();
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            foreach (var (start, length) in _ranges)
+            {
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                ChangeLinePart(s, e, el =>
+                    el.TextRunProperties.SetBackgroundBrush(
+                        new SolidColorBrush(Color.FromArgb(90, 255, 185, 0))));
+            }
+        }
+    }
+
+    private sealed class TmSharedHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length)> _ranges = new();
+
+        public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
+            => _ranges = ranges.ToList();
+
+        private static IBrush GetBlueBrush()
+        {
+            var app = Application.Current;
+            if (app != null && app.TryFindResource("NoteMarkerCommunityFg", out var res) && res is IBrush b)
+                return b;
+            return Brushes.DodgerBlue;
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            if (_ranges.Count == 0) return;
+            var fg = GetBlueBrush();
+            foreach (var (start, length) in _ranges)
+            {
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                ChangeLinePart(s, e, el =>
+                {
+                    el.TextRunProperties.SetForegroundBrush(fg);
+                    el.TextRunProperties.SetTypeface(new Typeface(
+                        el.TextRunProperties.Typeface.FontFamily,
+                        el.TextRunProperties.Typeface.Style,
+                        FontWeight.SemiBold,
+                        el.TextRunProperties.Typeface.Stretch));
+                });
+            }
+        }
     }
 
     private sealed class SharedChineseColorizer : DocumentColorizingTransformer

@@ -1725,4 +1725,79 @@ public partial class ReadableTabView : UserControl
         try { Say(line); } catch { }
         try { Debug.WriteLine(line); } catch { }
     }
+
+    // =========================
+    // Termbase highlighting
+    // =========================
+
+    private TermbaseHighlightTransformer? _termHighlighter;
+
+    /// <summary>
+    /// Highlights all occurrences of recognized termbase source terms within
+    /// the current segment's Chinese text in the original (left) pane.
+    /// Pass null/empty to clear all highlights.
+    /// </summary>
+    public void UpdateTermbaseHighlights(IReadOnlyList<TermHit>? hits, string? currentZhText)
+    {
+        var editor = _aeOrig;
+        if (editor == null) return;
+
+        if (_termHighlighter == null)
+        {
+            _termHighlighter = new TermbaseHighlightTransformer();
+            editor.TextArea.TextView.LineTransformers.Add(_termHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length)>();
+
+        if (hits != null && !string.IsNullOrWhiteSpace(currentZhText))
+        {
+            string docText = editor.Document?.Text ?? "";
+            int zhStart = docText.IndexOf(currentZhText, StringComparison.Ordinal);
+            if (zhStart >= 0)
+            {
+                int zhEnd = zhStart + currentZhText.Length;
+                foreach (var hit in hits)
+                {
+                    if (string.IsNullOrWhiteSpace(hit.SourceTerm)) continue;
+                    int from = zhStart;
+                    while (from < zhEnd)
+                    {
+                        int remaining = zhEnd - from;
+                        if (remaining <= 0) break;
+                        int idx = docText.IndexOf(hit.SourceTerm, from, remaining, StringComparison.Ordinal);
+                        if (idx < 0) break;
+                        ranges.Add((idx, hit.SourceTerm.Length));
+                        from = idx + 1;
+                    }
+                }
+            }
+        }
+
+        _termHighlighter.SetRanges(ranges);
+        editor.TextArea.TextView.Redraw();
+    }
+
+    private sealed class TermbaseHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length)> _ranges = new();
+
+        public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
+        {
+            _ranges = ranges.ToList();
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            foreach (var (start, length) in _ranges)
+            {
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                ChangeLinePart(s, e, el =>
+                    el.TextRunProperties.SetBackgroundBrush(
+                        new SolidColorBrush(Color.FromArgb(90, 255, 185, 0))));
+            }
+        }
+    }
 }
