@@ -453,7 +453,7 @@ public partial class ReadableTabView : UserControl
         editor.ScrollToLine(line.LineNumber);
 
         // Clear the highlight after a short pause (skip if user has started interacting).
-        await Task.Delay(2000);
+        await Task.Delay(8000);
         try
         {
             editor.TextArea.Selection = Selection.Create(editor.TextArea, 0, 0);
