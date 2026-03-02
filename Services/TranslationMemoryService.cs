@@ -25,6 +25,7 @@ public sealed class TranslationMemoryService
         public int BlockNumber { get; set; }
         public string ReviewStatus { get; set; } = "";
         public string Translator { get; set; } = "";
+        public DateTimeOffset? WrittenUtc { get; set; }
     }
 
     public Task<List<TranslationTmMatch>> FindApprovedMatchesAsync(

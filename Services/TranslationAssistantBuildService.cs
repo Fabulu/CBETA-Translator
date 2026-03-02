@@ -26,6 +26,7 @@ public sealed class TranslationAssistantBuildService
         public string RelPath { get; set; } = "";
         public string ReviewStatus { get; set; } = "";
         public string Translator { get; set; } = "";
+        public DateTimeOffset? WrittenUtc { get; set; }
     }
 
     public async Task<int> BuildReferenceTranslationMemoryAsync(
@@ -181,7 +182,8 @@ public sealed class TranslationAssistantBuildService
             TargetText = en,
             RelPath = ctx.RelPath ?? "",
             ReviewStatus = string.IsNullOrWhiteSpace(reviewStatus) ? "Approved" : reviewStatus,
-            Translator = string.IsNullOrWhiteSpace(translator) ? "User" : translator
+            Translator = string.IsNullOrWhiteSpace(translator) ? "User" : translator,
+            WrittenUtc = DateTimeOffset.UtcNow
         };
 
         var path = Path.Combine(root, "translation-memory.approved.jsonl");
