@@ -390,6 +390,26 @@ public partial class MainWindow : Window
                 await OpenTermbaseEditorAsync();
             };
 
+            _translationView.NextUnapprovedRequested += async (_, _) =>
+            {
+                try
+                {
+                    if (_root == null || _currentRelPath == null) return;
+                    var map = await _translationReview.LoadLatestEntriesAsync(_root);
+                    var approvedBlocks = map.Values
+                        .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
+                                 && e.Mode == _translationMode.ToString()
+                                 && e.Status == TranslationReviewStatuses.Approved)
+                        .Select(e => e.BlockNumber)
+                        .ToHashSet();
+                    _translationView.JumpToNextUnapproved(approvedBlocks);
+                }
+                catch (Exception ex)
+                {
+                    SetStatus("Next unapproved failed: " + ex.Message);
+                }
+            };
+
             _translationView.ModeChanged += (_, mode) =>
             {
                 try
@@ -454,6 +474,35 @@ public partial class MainWindow : Window
                 }
             };
         }
+
+        AddHandler(InputElement.KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
+    }
+
+    private void OnWindowKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyModifiers != KeyModifiers.Alt) return;
+        if (_tabs?.SelectedIndex != 1) return; // only active on Translation tab
+
+        if (e.Key == Key.A)
+        {
+            e.Handled = true;
+            _ = HandleReviewActionAsync(TranslationReviewStatuses.Approved);
+        }
+        else if (e.Key == Key.N)
+        {
+            e.Handled = true;
+            _ = HandleReviewActionAsync(TranslationReviewStatuses.NeedsWork);
+        }
+        else if (e.Key == Key.Right && !(_translationView?.IsEditorFocused() ?? false))
+        {
+            e.Handled = true;
+            _translationView?.JumpToNextBlock();
+        }
+        else if (e.Key == Key.Left && !(_translationView?.IsEditorFocused() ?? false))
+        {
+            e.Handled = true;
+            _translationView?.JumpToPreviousBlock();
+        }
     }
 
 
@@ -492,6 +541,10 @@ public partial class MainWindow : Window
             if (ct.IsCancellationRequested) return;
 
             _translationView.SetAssistantSnapshot(snapshot);
+            MaybeAutoFillFromExactMatch(snapshot);
+            _translationView.UpdateTermbaseHighlights(snapshot?.Terms, _currentSegmentContext?.ZhText);
+            _translationView.UpdateTmSharedHighlights(snapshot?.ApprovedMatches, snapshot?.ReferenceMatches, _currentSegmentContext?.ZhText);
+            _readableView?.UpdateTermbaseHighlights(snapshot?.Terms, _currentSegmentContext?.ZhText);
             await RefreshReviewBadgeAsync();
         }
         catch
@@ -499,6 +552,35 @@ public partial class MainWindow : Window
             // assistant errors must never break translation
         }
     }
+
+    private void MaybeAutoFillFromExactMatch(TranslationAssistantSnapshot? snapshot)
+    {
+        if (snapshot == null) return;
+        if (!string.IsNullOrWhiteSpace(snapshot.Segment.EnText)) return;
+        var exact = snapshot.ApprovedMatches?.FirstOrDefault(m => m.Score >= 100);
+        if (exact == null) return;
+        _translationView?.FillEnForCurrentBlock(exact.TargetText, snapshot.Segment.BlockNumber);
+    }
+
+    private async Task RefreshProgressStatsAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_currentRelPath))
+        {
+            _translationView?.SetProgressStats(0, 0, 0);
+            return;
+        }
+
+        var map = await _translationReview.LoadLatestEntriesAsync(_root);
+        var entries = map.Values
+            .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
+                     && e.Mode == _translationMode.ToString())
+            .ToList();
+        int approved = entries.Count(e => e.Status == TranslationReviewStatuses.Approved);
+        int needsWork = entries.Count(e => e.Status == TranslationReviewStatuses.NeedsWork);
+        int total = _translationView?.GetAllBlockNumbers().Count ?? 0;
+        _translationView?.SetProgressStats(approved, needsWork, total);
+    }
+
     private async Task OnFootnoteMoveRequestedAsync(ReadableTabView.MoveFootnoteRequest req)
     {
         try
@@ -1358,6 +1440,10 @@ public partial class MainWindow : Window
         _currentRelPath = relPath;
         _currentSegmentContext = null;
 
+        _readableView?.UpdateTermbaseHighlights(null, null);
+        _translationView?.UpdateTermbaseHighlights(null, null);
+        _translationView?.UpdateTmSharedHighlights(null, null, null);
+
         if (_txtCurrentFile != null) _txtCurrentFile.Text = relPath;
         _gitView?.SetSelectedRelPath(_currentRelPath);
 
@@ -1419,6 +1505,8 @@ public partial class MainWindow : Window
             SetStatus("Loaded. Segments: O=" + ro.Segments.Count.ToString("n0") +
                       ", T=" + rt.Segments.Count.ToString("n0") +
                       ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
+
+            await RefreshProgressStatsAsync();
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
@@ -1533,6 +1621,21 @@ public partial class MainWindow : Window
             });
 
             SetStatus($"Segment <{_currentSegmentContext.BlockNumber}> marked {TranslationReviewStatuses.Normalize(status)}. Approved TM rows: {count:n0}.");
+
+            if (status == TranslationReviewStatuses.Approved)
+            {
+                var reviewMap = await _translationReview.LoadLatestEntriesAsync(_root);
+                var currentRel = NormalizeRel(_currentRelPath ?? "");
+                var approvedBlocks = reviewMap.Values
+                    .Where(e => NormalizeRel(e.RelPath) == currentRel
+                             && e.Mode == _currentSegmentContext.Mode.ToString()
+                             && e.Status == TranslationReviewStatuses.Approved)
+                    .Select(e => e.BlockNumber)
+                    .ToHashSet();
+                _translationView?.JumpToNextUnapproved(approvedBlocks);
+            }
+
+            await RefreshProgressStatsAsync();
         }
         catch (Exception ex)
         {

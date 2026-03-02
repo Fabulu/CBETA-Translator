@@ -33,6 +33,42 @@ public sealed class TranslationQaService
             });
         }
 
+        if (!string.IsNullOrWhiteSpace(en) && !string.IsNullOrWhiteSpace(zh)
+            && string.Equals(StripSpaces(en), StripSpaces(zh), StringComparison.Ordinal))
+        {
+            issues.Add(new QaIssue
+            {
+                RuleId = "same-as-source",
+                Severity = QaSeverity.Warning,
+                Message = "EN text is identical to ZH — segment may be untranslated."
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(en) && ContainsCjk(en))
+        {
+            issues.Add(new QaIssue
+            {
+                RuleId = "chinese-in-en",
+                Severity = QaSeverity.Error,
+                Message = "EN contains Chinese characters — possible copy-paste error."
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(zh) && !string.IsNullOrWhiteSpace(en))
+        {
+            int zhLen = zh.Replace(" ", "").Length;
+            int enWords = en.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length;
+            if (zhLen > 15 && enWords <= 2)
+            {
+                issues.Add(new QaIssue
+                {
+                    RuleId = "too-short",
+                    Severity = QaSeverity.Warning,
+                    Message = $"Translation seems very short ({enWords} word(s)) for a {zhLen}-character source."
+                });
+            }
+        }
+
         foreach (var term in terms)
         {
             if (string.IsNullOrWhiteSpace(term.PreferredTarget))
@@ -68,4 +104,12 @@ public sealed class TranslationQaService
 
         return issues;
     }
+
+    private static string StripSpaces(string s)
+        => s.Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("\n", "");
+
+    private static bool ContainsCjk(string s)
+        => s.Any(c => (c >= '\u3400' && c <= '\u4DBF')
+                   || (c >= '\u4E00' && c <= '\u9FFF')
+                   || (c >= '\uF900' && c <= '\uFAFF'));
 }
