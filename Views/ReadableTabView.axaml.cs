@@ -109,6 +109,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
 
+    /// <summary>Pre-filled value for the Resp field in the "Add community note" dialog.</summary>
+    public string DefaultResp { get; set; } = "";
+
     public sealed record MoveFootnoteRequest(
         int OldXmlStart,
         int OldXmlEndExclusive,
@@ -694,6 +697,7 @@ public partial class ReadableTabView : UserControl
 
         var resp = new TextBox
         {
+            Text = DefaultResp.Length > 0 ? DefaultResp : null,
             Watermark = "Optional resp (e.g., your initials)",
             Height = 32,
             Background = R("ControlBg"),
