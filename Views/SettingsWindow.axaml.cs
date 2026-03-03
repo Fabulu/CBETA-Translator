@@ -11,6 +11,8 @@ public partial class SettingsWindow : Window
     private RadioButton? _radioLightTheme;
     private RadioButton? _radioDarkTheme;
     private CheckBox? _chkEnableHoverDictionary;
+    private TextBox? _txtUsername;
+    private TextBlock? _txtUsernameError;
 
     private Button? _btnApply;
     private Button? _btnCancel;
@@ -35,6 +37,7 @@ public partial class SettingsWindow : Window
         IsDarkTheme = cfg.IsDarkTheme,
         ZenOnly = cfg.ZenOnly,
         EnableHoverDictionary = cfg.EnableHoverDictionary,
+        Username = cfg.Username,
         Version = cfg.Version
     };
 
@@ -45,6 +48,9 @@ public partial class SettingsWindow : Window
         _radioLightTheme = this.FindControl<RadioButton>("RadioLightTheme");
         _radioDarkTheme = this.FindControl<RadioButton>("RadioDarkTheme");
         _chkEnableHoverDictionary = this.FindControl<CheckBox>("ChkEnableHoverDictionary");
+
+        _txtUsername = this.FindControl<TextBox>("TxtUsername");
+        _txtUsernameError = this.FindControl<TextBlock>("TxtUsernameError");
 
         _btnApply = this.FindControl<Button>("BtnApply");
         _btnCancel = this.FindControl<Button>("BtnCancel");
@@ -65,12 +71,23 @@ public partial class SettingsWindow : Window
 
         if (_chkEnableHoverDictionary != null)
             _chkEnableHoverDictionary.IsChecked = _working.EnableHoverDictionary;
+
+        if (_txtUsername != null)
+            _txtUsername.Text = _working.Username ?? "";
     }
 
     private void OnApplyClicked(object? sender, RoutedEventArgs e)
     {
+        var name = _txtUsername?.Text?.Trim() ?? "";
+        if (name.Length == 0)
+        {
+            if (_txtUsernameError != null) _txtUsernameError.IsVisible = true;
+            return;
+        }
+
         _working.IsDarkTheme = _radioDarkTheme?.IsChecked == true;
         _working.EnableHoverDictionary = _chkEnableHoverDictionary?.IsChecked == true;
+        _working.Username = name;
 
         Close(_working);
     }

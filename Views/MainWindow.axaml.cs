@@ -31,6 +31,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
@@ -466,6 +467,11 @@ public partial class MainWindow : Window
                 {
                     if (!await ConfirmNavigateIfDirtyAsync("load a different root")) return;
                     await LoadRootAsync(repoRoot, saveToConfig: true);
+                    // After a git clone/update, files on disk may differ from the cached statuses.
+                    // Recompute every file's status and refresh the nav so it reflects the new state.
+                    SetStatus("Refreshing nav statuses after git update…");
+                    await RefreshAllCachedStatusesAsync();
+                    await ApplyFilterSafeAsync();
                     ForceTab(0);
                 }
                 catch (Exception ex)
@@ -761,6 +767,147 @@ public partial class MainWindow : Window
     private static string EscapeXmlAttr(string s)
         => EscapeXmlText(s).Replace("\"", "&quot;").Replace("'", "&apos;");
 
+    // =========================
+    // Translator annotation (auto-updated on every save)
+    // =========================
+
+    /// <summary>
+    /// Inserts or updates a "translated lines X-Y, Z-W" community annotation at the very beginning
+    /// of the translated XML.  If a matching annotation (resp == username, text starts with
+    /// "translated lines ") already exists near the top, it is replaced in-place; otherwise a new
+    /// one is inserted before the first rendered character.
+    /// Returns the (possibly modified) XML unchanged if nothing is translated or on any error.
+    /// </summary>
+    private static string ApplyTranslatorAnnotation(
+        string xml,
+        IReadOnlyList<int> changedBlocks,
+        string username)
+    {
+        // changedBlocks is pre-computed before BuildTranslatedXml resets dirty state.
+
+        RenderedDocument rendered;
+        try { rendered = CbetaTeiRenderer.Render(xml); }
+        catch { return xml; }
+
+        // Find existing translator annotation near the top of the document.
+        DocAnnotation? existing = null;
+        foreach (var ann in rendered.Annotations)
+        {
+            if (ann.Start > 500) break;
+            if (!ann.IsCommunity) continue;
+            if (!string.Equals(ann.Resp, username, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!ann.Text.StartsWith("translated blocks ", StringComparison.OrdinalIgnoreCase)) continue;
+            if (!ann.HasXmlSpan) continue;
+            existing = ann;
+            break;
+        }
+
+        // Merge previously recorded blocks (from any earlier save) with the newly changed ones.
+        var allBlocks = new HashSet<int>(changedBlocks);
+        if (existing != null)
+            foreach (var n in ParseAnnotationBlockNumbers(existing.Text))
+                allBlocks.Add(n);
+
+        if (allBlocks.Count == 0) return xml;
+
+        var annotationText = FormatBlockRanges(allBlocks);
+
+        if (existing != null)
+        {
+            // Delete old note then re-insert at the exact same XML position.
+            xml = CommunityNoteXmlEditor.DeleteSpan(xml, existing.XmlStart, existing.XmlEndExclusive);
+            xml = CommunityNoteXmlEditor.InsertCommunityNote(xml, existing.XmlStart, annotationText, username);
+        }
+        else
+        {
+            // BaseToXmlIndex[0] is always 0 (before the <?xml?> declaration) — skip past the
+            // first rendered line so we land safely inside the body element.
+            int insertPos = 0;
+            if (rendered.BaseToXmlIndex is { Length: > 0 })
+            {
+                int firstNl = rendered.Text.IndexOf('\n');
+                int insertDisplay = (firstNl >= 0 && firstNl + 1 < rendered.Text.Length)
+                    ? firstNl + 1
+                    : Math.Max(1, rendered.Text.Length / 2);
+                int xmlIdx = rendered.DisplayIndexToXmlIndex(insertDisplay);
+                if (xmlIdx > 0) insertPos = xmlIdx;
+            }
+            xml = CommunityNoteXmlEditor.InsertCommunityNote(xml, insertPos, annotationText, username);
+        }
+
+        return xml;
+    }
+
+    /// <summary>
+    /// Returns 1-based block numbers (within the current mode's units) where the user
+    /// actually changed the English text compared to what was on disk when the file was opened.
+    /// Empty or whitespace-only translations are excluded.
+    /// </summary>
+    private static List<int> GetChangedBlockNumbers(IndexedTranslationDocument indexedDoc, TranslationEditMode mode)
+    {
+        var kindFilter = mode switch
+        {
+            TranslationEditMode.Head => CbetaTranslator.App.Services.TranslationUnitKind.Head,
+            TranslationEditMode.Notes => CbetaTranslator.App.Services.TranslationUnitKind.Note,
+            _ => CbetaTranslator.App.Services.TranslationUnitKind.Body
+        };
+
+        var units = indexedDoc.Units.Where(u => u.Kind == kindFilter).ToList();
+        var changed = new List<int>();
+
+        for (int i = 0; i < units.Count; i++)
+        {
+            var u = units[i];
+            if (string.IsNullOrWhiteSpace(u.En)) continue;
+            if (string.Equals(u.En.Trim(), u.EnBaseline.Trim(), StringComparison.Ordinal)) continue;
+            changed.Add(i + 1); // 1-based block number matching the UI
+        }
+
+        return changed;
+    }
+
+    /// <summary>
+    /// Parses block numbers out of "translated blocks 1-5, 7, 9-12" → {1,2,3,4,5,7,9,10,11,12}.
+    /// </summary>
+    private static IEnumerable<int> ParseAnnotationBlockNumbers(string text)
+    {
+        foreach (Match m in Regex.Matches(text, @"(\d+)(?:-(\d+))?"))
+        {
+            int start = int.Parse(m.Groups[1].Value);
+            int end = m.Groups[2].Success ? int.Parse(m.Groups[2].Value) : start;
+            for (int i = start; i <= end; i++)
+                yield return i;
+        }
+    }
+
+    /// <summary>
+    /// Formats a set of block numbers as "translated blocks 1-5, 7, 9-12".
+    /// </summary>
+    private static string FormatBlockRanges(IEnumerable<int> blocks)
+    {
+        var sorted = blocks.Distinct().OrderBy(x => x).ToList();
+        if (sorted.Count == 0) return "";
+
+        var ranges = new List<(int Start, int End)>();
+        int rs = sorted[0], re = sorted[0];
+        for (int i = 1; i < sorted.Count; i++)
+        {
+            if (sorted[i] == re + 1) { re = sorted[i]; }
+            else { ranges.Add((rs, re)); rs = re = sorted[i]; }
+        }
+        ranges.Add((rs, re));
+
+        var sb = new StringBuilder("translated blocks ");
+        for (int i = 0; i < ranges.Count; i++)
+        {
+            if (i > 0) sb.Append(", ");
+            var (s, e) = ranges[i];
+            if (s == e) sb.Append(s);
+            else sb.Append($"{s}-{e}");
+        }
+        return sb.ToString();
+    }
+
     private async Task WriteTranslatedDiskAndRerenderAsync(string relPath, string updatedXml, string why)
     {
         if (_translatedDir == null) return;
@@ -808,6 +955,18 @@ public partial class MainWindow : Window
 
             // Secondary windows skip auto-load; OpenAtAsync handles the root/file explicitly.
             if (IsSecondaryWindow) return;
+
+            // Require a username before proceeding.
+            if (string.IsNullOrWhiteSpace(_config.Username))
+            {
+                var prompt = new UsernamePromptWindow();
+                var name = await prompt.ShowDialog<string?>(this);
+                // name is guaranteed non-null/non-empty because the window cannot close otherwise.
+                _config.Username = name ?? "User";
+                await SafeSaveConfigAsync();
+                // Re-push now-valid username to child views (ApplySettingsToChildViews above ran before the prompt).
+                ApplySettingsToChildViews();
+            }
 
             if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
             {
@@ -1014,9 +1173,14 @@ public partial class MainWindow : Window
         if (_root == null || _originalDir == null || _translatedDir == null) return;
 
         bool changed = false;
+        int total = _allItems.Count;
+
+        var progress = new Progress<int>(done =>
+            SetStatus($"Refreshing nav statuses… {done:n0}/{total:n0}"));
 
         await Task.Run(() =>
         {
+            int done = 0;
             foreach (var it in _allItems)
             {
                 if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
@@ -1031,7 +1195,12 @@ public partial class MainWindow : Window
                     it.Status = newStatus;
                     changed = true;
                 }
+
+                done++;
+                if (done % 50 == 0)
+                    ((IProgress<int>)progress).Report(done);
             }
+            ((IProgress<int>)progress).Report(done);
         });
 
         if (changed)
@@ -1084,6 +1253,9 @@ public partial class MainWindow : Window
             m?.Invoke(_readableView, new object[] { _config.EnableHoverDictionary });
         }
         catch { }
+
+        if (_readableView != null)
+            _readableView.DefaultResp = _config.Username ?? "";
     }
 
     // -------------------------
@@ -1603,7 +1775,7 @@ public partial class MainWindow : Window
                 _root,
                 _currentSegmentContext,
                 status,
-                reviewer: "User");
+                reviewer: _config.Username ?? "User");
 
             int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_root);
 
@@ -1687,7 +1859,16 @@ public partial class MainWindow : Window
 
             _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, editedProjection);
 
+            // Snapshot changed blocks NOW — BuildTranslatedXml resets IsDirty + syncs EnBaseline,
+            // so any check inside or after that call would always find zero changes.
+            var changedBlocks = string.IsNullOrWhiteSpace(_config.Username)
+                ? null
+                : GetChangedBlockNumbers(_indexedDoc, _translationMode);
+
             var builtXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
+
+            if (changedBlocks != null && changedBlocks.Count > 0)
+                builtXml = ApplyTranslatorAnnotation(builtXml, changedBlocks, _config.Username);
 
             var saveInfo = await AtomicWriteTranslatedXmlForCurrentAsync(builtXml);
 

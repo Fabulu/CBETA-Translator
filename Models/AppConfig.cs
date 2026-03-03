@@ -10,6 +10,8 @@ namespace CbetaTranslator.App.Models
 
         public bool EnableHoverDictionary { get; set; } = true;
 
+        public string? Username { get; set; }
+
         public int Version { get; set; } = 3;
     }
 }

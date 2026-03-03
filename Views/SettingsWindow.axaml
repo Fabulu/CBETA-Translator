@@ -2,7 +2,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.SettingsWindow"
-        Width="560" Height="320"
+        Width="560" Height="400"
         Background="{DynamicResource AppBg}"
         Title="Settings"
         WindowStartupLocation="CenterOwner">
@@ -82,6 +82,28 @@
 				<CheckBox Name="ChkEnableHoverDictionary"
 				          Content="Enable hover dictionary in reader"
 				          VerticalAlignment="Top"/>
+
+				<!-- Divider -->
+				<Border Height="1"
+				        Background="{DynamicResource BorderBrush}"
+				        Opacity="0.5"
+				        Margin="0,2,0,2"/>
+
+				<!-- Username -->
+				<StackPanel Spacing="6">
+					<TextBlock Text="Your name (used in reviews)"
+					           FontSize="14"
+					           FontWeight="SemiBold"
+					           Foreground="{DynamicResource TextFg}"/>
+					<TextBox Name="TxtUsername"
+					         MaxLength="64"
+					         Watermark="Enter your name…"/>
+					<TextBlock Name="TxtUsernameError"
+					           Text="Name cannot be empty."
+					           Foreground="#E05555"
+					           FontSize="12"
+					           IsVisible="False"/>
+				</StackPanel>
 			</StackPanel>
 		</Border>
 
