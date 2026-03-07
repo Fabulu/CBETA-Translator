@@ -29,6 +29,13 @@ public sealed class CurrentSegmentContext
     public string ZhText { get; set; } = "";
     public string EnText { get; set; } = "";
 
+    /// <summary>
+    /// Last ~4 chars of previous block + current block + first ~4 chars of next block.
+    /// Used for TM search so phrases spanning tag boundaries are matched without adding full-neighbor noise.
+    /// Falls back to ZhText when not set.
+    /// </summary>
+    public string ZhContextText { get; set; } = "";
+
     public TranslationEditMode Mode { get; set; } = TranslationEditMode.Body;
 }
 

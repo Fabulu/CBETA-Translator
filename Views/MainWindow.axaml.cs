@@ -366,6 +366,7 @@ public partial class MainWindow : Window
                     RelPath = _currentRelPath ?? "",
                     BlockNumber = ev.BlockNumber,
                     ZhText = ev.Zh,
+                    ZhContextText = ev.ZhContext,
                     EnText = ev.En,
                     ProjectionOffsetStart = ev.BlockStartOffset,
                     ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
@@ -529,6 +530,7 @@ public partial class MainWindow : Window
                 RelPath = _currentRelPath,
                 BlockNumber = ev.BlockNumber,
                 ZhText = ev.Zh,
+                ZhContextText = ev.ZhContext,
                 EnText = ev.En,
                 ProjectionOffsetStart = ev.BlockStartOffset,
                 ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
@@ -2152,7 +2154,8 @@ public partial class MainWindow : Window
         "CheckBorder","CheckBorderHover",
         "MenuBg","MenuItemHoverBg",
         "XmlViewerBg","XmlViewerBorder",
-        "NavStatusGreenBg","NavStatusYellowBg","NavStatusRedBg"
+        "NavStatusGreenBg","NavStatusYellowBg","NavStatusRedBg",
+        "SearchMatchFg","NoteMarkerCommunityFg"
     };
 
     private void ApplyTheme(bool dark)

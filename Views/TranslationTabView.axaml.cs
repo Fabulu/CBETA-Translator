@@ -26,6 +26,8 @@ namespace CbetaTranslator.App.Views;
 
 public partial class TranslationTabView : UserControl
 {
+    private const int AdjacentContextChars = 4;
+
     private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
     private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
@@ -950,9 +952,10 @@ public partial class TranslationTabView : UserControl
                 int zhStart = docText.IndexOf(zhText, StringComparison.Ordinal);
                 if (zhStart >= 0)
                 {
-                    // FindSharedChineseRanges(suggestionZh=currentZh, currentZh=bestMatchZh)
-                    // returns positions within currentZh where shared phrases appear
-                    var sharedInZh = FindSharedChineseRanges(zhText, best.SourceText);
+                    var sharedInZh = CjkMatchNormalizer.FindSharedRawRanges(
+                        zhText,
+                        best.SourceText,
+                        minPhraseLen: 2);
                     foreach (var r in sharedInZh)
                         ranges.Add((zhStart + r.Start, r.Length));
                 }
@@ -1330,13 +1333,6 @@ STRICT RULES:
         return false;
     }
 
-    private static bool IsChineseChar(char ch)
-    {
-        return (ch >= '\u3400' && ch <= '\u4DBF')
-            || (ch >= '\u4E00' && ch <= '\u9FFF')
-            || (ch >= '\uF900' && ch <= '\uFAFF');
-    }
-
     private sealed class ProjectionBlockInfo
     {
         public int BlockNumber { get; set; }
@@ -1442,6 +1438,8 @@ STRICT RULES:
         public int BlockNumber { get; init; }
         public string Zh { get; init; } = "";
         public string En { get; init; } = "";
+        /// <summary>Previous-tail + current + next-head ZH context (for TM/search cross-tag matching).</summary>
+        public string ZhContext { get; init; } = "";
         public int BlockStartOffset { get; init; }
         public int BlockEndOffsetExclusive { get; init; }
         public TranslationEditMode Mode { get; init; }
@@ -1464,11 +1462,20 @@ STRICT RULES:
 
             var b = blocks[ix];
 
+            // Build a wider ZH context (prev + current + next) for TM search.
+            // Phrases often span <lb> boundaries so the wider window improves match quality.
+            string prevZh = ix > 0 ? blocks[ix - 1].Zh ?? "" : "";
+            string nextZh = ix + 1 < blocks.Count ? blocks[ix + 1].Zh ?? "" : "";
+            string prevTail = LastChars(prevZh, AdjacentContextChars);
+            string nextHead = FirstChars(nextZh, AdjacentContextChars);
+            string zhContext = prevTail + (b.Zh ?? "") + nextHead;
+
             CurrentSegmentChanged?.Invoke(this, new CurrentProjectionSegmentChangedEventArgs
             {
                 BlockNumber = b.BlockNumber,
                 Zh = b.Zh ?? "",
                 En = b.En ?? "",
+                ZhContext = zhContext,
                 BlockStartOffset = b.BlockStartOffset,
                 BlockEndOffsetExclusive = b.BlockEndOffsetExclusive,
                 Mode = _currentMode
@@ -1730,7 +1737,10 @@ STRICT RULES:
             targetLength <= 0)
             return result;
 
-        var localRanges = FindSharedChineseRanges(suggestionZh, currentZh);
+        var localRanges = CjkMatchNormalizer.FindSharedRawRanges(
+            suggestionZh,
+            currentZh,
+            minPhraseLen: 2);
         foreach (var r in localRanges)
         {
             int absStart = targetStart + r.Start;
@@ -1745,91 +1755,18 @@ STRICT RULES:
         return MergeRanges(result);
     }
 
-    private static List<TextRange> FindSharedChineseRanges(string suggestionZh, string currentZh)
+    private static string FirstChars(string s, int count)
     {
-        var result = new List<TextRange>();
-        if (string.IsNullOrWhiteSpace(suggestionZh) || string.IsNullOrWhiteSpace(currentZh))
-            return result;
-
-        var candidates = ExtractChinesePhrases(currentZh)
-            .Where(x => x.Length >= 2)
-            .Distinct(StringComparer.Ordinal)
-            .OrderByDescending(x => x.Length)
-            .ToList();
-
-        var used = new bool[suggestionZh.Length];
-
-        foreach (var phrase in candidates)
-        {
-            int searchAt = 0;
-            while (searchAt < suggestionZh.Length)
-            {
-                int ix = suggestionZh.IndexOf(phrase, searchAt, StringComparison.Ordinal);
-                if (ix < 0)
-                    break;
-
-                bool overlaps = false;
-                for (int i = ix; i < ix + phrase.Length && i < used.Length; i++)
-                {
-                    if (used[i])
-                    {
-                        overlaps = true;
-                        break;
-                    }
-                }
-
-                if (!overlaps)
-                {
-                    for (int i = ix; i < ix + phrase.Length && i < used.Length; i++)
-                        used[i] = true;
-
-                    result.Add(new TextRange(ix, phrase.Length));
-                }
-
-                searchAt = ix + Math.Max(1, phrase.Length);
-            }
-        }
-
-        return result.OrderBy(x => x.Start).ToList();
+        if (string.IsNullOrEmpty(s) || count <= 0)
+            return "";
+        return s.Length <= count ? s : s[..count];
     }
 
-    private static List<string> ExtractChinesePhrases(string text)
+    private static string LastChars(string s, int count)
     {
-        var result = new List<string>();
-        if (string.IsNullOrWhiteSpace(text))
-            return result;
-
-        var runs = new List<string>();
-        var sb = new StringBuilder();
-
-        foreach (char ch in text)
-        {
-            if (IsChineseChar(ch))
-            {
-                sb.Append(ch);
-            }
-            else if (sb.Length > 0)
-            {
-                runs.Add(sb.ToString());
-                sb.Clear();
-            }
-        }
-
-        if (sb.Length > 0)
-            runs.Add(sb.ToString());
-
-        foreach (var run in runs)
-        {
-            for (int len = run.Length; len >= 2; len--)
-            {
-                for (int i = 0; i + len <= run.Length; i++)
-                {
-                    result.Add(run.Substring(i, len));
-                }
-            }
-        }
-
-        return result;
+        if (string.IsNullOrEmpty(s) || count <= 0)
+            return "";
+        return s.Length <= count ? s : s[^count..];
     }
 
     private static IReadOnlyList<TextRange> MergeRanges(List<TextRange> ranges)

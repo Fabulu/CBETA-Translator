@@ -20,6 +20,9 @@
 		
 		<!-- Use invariant globalization for self-contained builds to avoid ICU dependency -->
 		<InvariantGlobalization Condition="'$(RuntimeIdentifier)' != ''">true</InvariantGlobalization>
+
+		<!-- Keep run artifacts (handoffs, probe snippets) out of SDK default globs -->
+		<DefaultItemExcludes>$(DefaultItemExcludes);runs\**\*;runs/**</DefaultItemExcludes>
 	</PropertyGroup>
 
 	<ItemGroup>

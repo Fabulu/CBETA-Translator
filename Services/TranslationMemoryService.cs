@@ -112,8 +112,14 @@ public sealed class TranslationMemoryService
         if (rows.Count == 0)
             return result;
 
-        string zhRaw = ctx.ZhText ?? "";
-        string zh = Normalize(zhRaw);
+        // Score against BOTH the single current block and the wider context (prev+current+next).
+        // Taking the maximum preserves single-block exact-match ranking (still 100) while also
+        // finding entries that span lb-tag boundaries via the context score.
+        string currentZhRaw = ctx.ZhText ?? "";
+        string contextZhRaw = !string.IsNullOrEmpty(ctx.ZhContextText) ? ctx.ZhContextText : currentZhRaw;
+        string zhSingle = CjkMatchNormalizer.Normalize(currentZhRaw);
+        string zhContext = CjkMatchNormalizer.Normalize(contextZhRaw);
+        string zhExact   = zhSingle;   // used only for self-exclusion
         string currentRel = NormalizeRel(ctx.RelPath);
         int currentBlock = ctx.BlockNumber;
 
@@ -122,28 +128,39 @@ public sealed class TranslationMemoryService
 
         result = rows
             .Where(r => !string.IsNullOrWhiteSpace(r.SourceText))
-            .Where(r => Normalize(r.SourceText).Length >= minLen)
-            .Where(r => !IsExactCurrentSegment(r, trust, currentRel, currentBlock, zh))
+            .Where(r => CjkMatchNormalizer.Normalize(r.SourceText).Length >= minLen)
+            .Where(r => !IsExactCurrentSegment(r, trust, currentRel, currentBlock, zhExact))
             .Select(r =>
             {
-                string sourceNorm = Normalize(r.SourceText);
-                double score = Score(zh, sourceNorm);
+                string sourceNorm = CjkMatchNormalizer.Normalize(r.SourceText);
+                double singleScore = Score(zhSingle, sourceNorm);
+                double contextScore = Score(zhContext, sourceNorm);
+                double score = CombineSingleAndContextScores(singleScore, contextScore);
+                bool hasExplainableOverlap = CjkMatchNormalizer
+                    .FindSharedRawRanges(r.SourceText, currentZhRaw, minPhraseLen: 2)
+                    .Count > 0;
 
-                return new TranslationTmMatch
+                return new
                 {
-                    SourceText = r.SourceText,
-                    TargetText = r.TargetText,
-                    RelPath = r.RelPath,
-                    BlockNumber = r.BlockNumber,
-                    ReviewStatus = r.ReviewStatus,
-                    Translator = r.Translator,
-                    Trust = trust,
-                    Score = score
+                    Row = r,
+                    Score = score,
+                    HasExplainableOverlap = hasExplainableOverlap
                 };
             })
-            .Where(x => x.Score >= minScore)
+            .Where(x => x.Score >= minScore && x.HasExplainableOverlap)
+            .Select(x => new TranslationTmMatch
+            {
+                SourceText = x.Row.SourceText,
+                TargetText = x.Row.TargetText,
+                RelPath = x.Row.RelPath,
+                BlockNumber = x.Row.BlockNumber,
+                ReviewStatus = x.Row.ReviewStatus,
+                Translator = x.Row.Translator,
+                Trust = trust,
+                Score = x.Score
+            })
             .OrderByDescending(x => x.Score)
-            .ThenByDescending(x => Normalize(x.SourceText).Length)
+            .ThenByDescending(x => CjkMatchNormalizer.Normalize(x.SourceText).Length)
             .ThenBy(x => x.RelPath, StringComparer.OrdinalIgnoreCase)
             .ThenBy(x => x.BlockNumber)
             .Take(8)
@@ -160,7 +177,14 @@ public sealed class TranslationMemoryService
         string currentZh)
     {
         string rowRel = NormalizeRel(row.RelPath);
-        string rowZh = Normalize(row.SourceText);
+        string rowZh = CjkMatchNormalizer.Normalize(row.SourceText);
+
+        if (trust == TranslationResourceTrust.AiReference &&
+            !string.IsNullOrWhiteSpace(currentRel) &&
+            string.Equals(rowRel, currentRel, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
 
         if (trust == TranslationResourceTrust.Approved)
         {
@@ -185,24 +209,16 @@ public sealed class TranslationMemoryService
         return false;
     }
 
-    private static string Normalize(string? s)
-    {
-        if (string.IsNullOrWhiteSpace(s))
-            return "";
-
-        s = s.Normalize(NormalizationForm.FormKC);
-        s = s.Replace("\u3000", " ");
-
-        return s.Trim()
-                .Replace(" ", "")
-                .Replace("\t", "")
-                .Replace("\r", "")
-                .Replace("\n", "");
-    }
-
     private static string NormalizeRel(string? p)
     {
         return (p ?? "").Replace('\\', '/').TrimStart('/');
+    }
+
+    private static double CombineSingleAndContextScores(double singleScore, double contextScore)
+    {
+        // Context helps phrases split across neighboring tags, but single-line relevance remains primary.
+        double contextCapped = Math.Min(contextScore, singleScore + 18);
+        return Math.Max(singleScore, contextCapped);
     }
 
     private static double Score(string a, string b)

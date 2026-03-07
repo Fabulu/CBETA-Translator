@@ -145,6 +145,36 @@ public sealed class TranslationAssistantBuildService
                 await writer.WriteLineAsync(json);
                 written++;
             }
+
+            // Also store consecutive 2-unit pairs so phrases that span <lb> boundaries
+            // appear as TM entries in their own right (handles the "index side" of cross-line matching).
+            for (int i = 0; i + 1 < units.Count; i++)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var zh2 = NormalizeLine(units[i].Zh + units[i + 1].Zh);
+                var en2 = NormalizeLine(units[i].En + " " + units[i + 1].En);
+
+                if (!IsUsableReferencePair(zh2, en2))
+                    continue;
+
+                var row2 = new TmRow
+                {
+                    SourceText = zh2,
+                    TargetText = en2,
+                    RelPath = relPath,
+                    ReviewStatus = "AI baseline",
+                    Translator = "AutoImport"
+                };
+
+                var dedupeKey2 = BuildDedupeKey(row2);
+                if (!seen.Add(dedupeKey2))
+                    continue;
+
+                var json2 = JsonSerializer.Serialize(row2, JsonOpts);
+                await writer.WriteLineAsync(json2);
+                written++;
+            }
         }
 
         await writer.FlushAsync();
