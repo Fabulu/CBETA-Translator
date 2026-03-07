@@ -46,8 +46,15 @@ public sealed class SearchResultChild
     public SearchSide Side { get; set; }
     public SearchHit Hit { get; set; } = new();
 
+    public string SideLabel
+        => Side == SearchSide.Original ? "O: " : "T: ";
+
+    public string LeftText => Hit.Left ?? "";
+    public string MatchText => Hit.Match ?? "";
+    public string RightText => Hit.Right ?? "";
+
     public string RowText
-        => $"{(Side == SearchSide.Original ? "O" : "T")}: {Hit.Left}[{Hit.Match}]{Hit.Right}";
+        => $"{SideLabel}{LeftText}[{MatchText}]{RightText}";
 }
 
 // A small manifest for the bloom index on disk
@@ -74,4 +81,27 @@ public sealed class SearchIndexEntry
     public long LengthBytes { get; set; }
 
     public long BloomOffset { get; set; }       // offset in index.bin
+}
+
+// Sidecar manifest for searchable text blocks aligned by (relPath, side).
+// This intentionally duplicates file identity fields so the search verify path
+// can validate it is reading text for the exact file version.
+public sealed class SearchTextManifest
+{
+    public int Version { get; set; } = 1;
+    public string RootPath { get; set; } = "";
+    public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;
+    public string BuildGuid { get; set; } = "search-v1-text-sidecar";
+    public List<SearchTextEntry> Entries { get; set; } = new();
+}
+
+public sealed class SearchTextEntry
+{
+    public int Id { get; set; }
+    public string RelPath { get; set; } = "";
+    public SearchSide Side { get; set; }
+    public long LastWriteUtcTicks { get; set; }
+    public long LengthBytes { get; set; }
+    public long TextOffset { get; set; }
+    public int TextLengthBytes { get; set; }
 }

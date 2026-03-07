@@ -31,6 +31,9 @@ public partial class GitTabView : UserControl
     {
         "index.cache.json",
         "search.index.manifest.json",
+        "search.text.manifest.json",
+        "search.text.bin",
+        "search.index.bin",
         "index.debug.log",
         "*.log"
     };

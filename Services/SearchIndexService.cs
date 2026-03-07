@@ -19,6 +19,7 @@ public sealed class SearchIndexService : IDisposable
     public sealed class SearchIndexServiceOptions
     {
         public long MaxBloomCacheBytes { get; set; } = 128L * 1024 * 1024;
+        public long MaxVerifyTextCacheChars { get; set; } = 8L * 1024 * 1024;
 
         // HDD + 2MB files: IO-bound verification is common.
         // Too much parallelism can *thrash* an HDD (seeks).
@@ -45,26 +46,43 @@ public sealed class SearchIndexService : IDisposable
     private readonly LinkedList<(long key, ulong[] bits)> _bloomLru = new();
     private long _bloomCacheBytes = 0;
     private readonly object _bloomLock = new();
+    private readonly Dictionary<(string rel, SearchSide side, long ticks, long len), LinkedListNode<((string rel, SearchSide side, long ticks, long len) key, string text)>> _verifyTextCache
+        = new(new VerifyTextCacheKeyComparer());
+    private readonly LinkedList<((string rel, SearchSide side, long ticks, long len) key, string text)> _verifyTextLru = new();
+    private long _verifyTextCacheChars = 0;
+    private readonly object _verifyTextCacheLock = new();
 
     // Cached manifest + mmap (big real-world speed win for repeated searches)
     private readonly object _indexCacheLock = new();
     private SearchIndexManifest? _cachedManifest;
     private string? _cachedManifestPath;
     private DateTime _cachedManifestWriteUtc;
+    private SearchTextManifest? _cachedTextManifest;
+    private string? _cachedTextManifestPath;
+    private DateTime _cachedTextManifestWriteUtc;
 
     private MemoryMappedFile? _cachedMmf;
     private MemoryMappedViewAccessor? _cachedAccessor;
     private string? _cachedBinPath;
     private DateTime _cachedBinWriteUtc;
+    private MemoryMappedFile? _cachedTextMmf;
+    private string? _cachedTextBinPath;
+    private DateTime _cachedTextBinWriteUtc;
 
     private const string ManifestFileName = "search.index.manifest.json";
     private const string BinFileName = "search.index.bin";
+    // Searchable-text sidecar is versioned separately from bloom.
+    // If this sidecar is missing/corrupt/mismatched, search verify falls back to XML parse.
+    private const string TextManifestFileName = "search.text.manifest.json";
+    private const string TextBinFileName = "search.text.bin";
 
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    private const string BuildGuid = "search-v2-bloom-16384";
+    private const string BuildGuid = "search-v3-bloom-compact";
+    private const int TextManifestVersion = 1;
+    private const string TextBuildGuid = "search-v1-text-sidecar";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
@@ -335,15 +353,24 @@ public sealed class SearchIndexService : IDisposable
             _cachedManifest = null;
             _cachedManifestPath = null;
             _cachedManifestWriteUtc = default;
+            _cachedTextManifest = null;
+            _cachedTextManifestPath = null;
+            _cachedTextManifestWriteUtc = default;
 
             try { _cachedAccessor?.Dispose(); } catch { }
             try { _cachedMmf?.Dispose(); } catch { }
+            try { _cachedTextMmf?.Dispose(); } catch { }
 
             _cachedAccessor = null;
             _cachedMmf = null;
             _cachedBinPath = null;
             _cachedBinWriteUtc = default;
+            _cachedTextMmf = null;
+            _cachedTextBinPath = null;
+            _cachedTextBinWriteUtc = default;
         }
+
+        ClearVerifyTextCache();
     }
 
     private MemoryMappedViewAccessor GetOrCreateMappedAccessor(string binPath)
@@ -370,6 +397,28 @@ public sealed class SearchIndexService : IDisposable
             _cachedBinWriteUtc = writeUtc;
 
             return _cachedAccessor;
+        }
+    }
+
+    private MemoryMappedFile GetOrCreateTextMappedFile(string textBinPath, DateTime writeUtc)
+    {
+        var full = Path.GetFullPath(textBinPath);
+
+        lock (_indexCacheLock)
+        {
+            if (_cachedTextMmf != null &&
+                string.Equals(_cachedTextBinPath, full, StringComparison.OrdinalIgnoreCase) &&
+                _cachedTextBinWriteUtc == writeUtc)
+            {
+                return _cachedTextMmf;
+            }
+
+            try { _cachedTextMmf?.Dispose(); } catch { }
+
+            _cachedTextMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+            _cachedTextBinPath = full;
+            _cachedTextBinWriteUtc = writeUtc;
+            return _cachedTextMmf;
         }
     }
 
@@ -439,6 +488,8 @@ public sealed class SearchIndexService : IDisposable
 
     public string GetManifestPath(string root) => Path.Combine(root, ManifestFileName);
     public string GetBinPath(string root) => Path.Combine(root, BinFileName);
+    public string GetTextManifestPath(string root) => Path.Combine(root, TextManifestFileName);
+    public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
 
     public void ClearBloomCache()
     {
@@ -447,6 +498,16 @@ public sealed class SearchIndexService : IDisposable
             _bloomCache.Clear();
             _bloomLru.Clear();
             _bloomCacheBytes = 0;
+        }
+    }
+
+    public void ClearVerifyTextCache()
+    {
+        lock (_verifyTextCacheLock)
+        {
+            _verifyTextCache.Clear();
+            _verifyTextLru.Clear();
+            _verifyTextCacheChars = 0;
         }
     }
 
@@ -502,6 +563,118 @@ public sealed class SearchIndexService : IDisposable
             _bloomLru.RemoveLast();
             _bloomCache.Remove(last.Value.key);
             _bloomCacheBytes -= BloomBytes;
+        }
+    }
+
+    private string GetSearchableTextCached(
+        string root,
+        string relPath,
+        SearchSide side,
+        long lastWriteUtcTicks,
+        long lengthBytes,
+        SearchTextEntry? textEntry,
+        string absPath,
+        bool htmlDecodeIfAmpersandPresent)
+    {
+        var key = (rel: NormalizeRelKey(relPath), side, ticks: lastWriteUtcTicks, len: lengthBytes);
+
+        lock (_verifyTextCacheLock)
+        {
+            if (_verifyTextCache.TryGetValue(key, out var node))
+            {
+                _verifyTextLru.Remove(node);
+                _verifyTextLru.AddFirst(node);
+                return node.Value.text;
+            }
+        }
+
+        if (!TryReadSearchableTextFromSidecar(root, key, textEntry, out string searchable))
+        {
+            string xml;
+            try { xml = File.ReadAllText(absPath, Utf8NoBom); }
+            catch { return ""; }
+
+            try { searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecodeIfAmpersandPresent); }
+            catch { return ""; }
+        }
+
+        lock (_verifyTextCacheLock)
+        {
+            if (_verifyTextCache.TryGetValue(key, out var existing))
+            {
+                _verifyTextLru.Remove(existing);
+                _verifyTextLru.AddFirst(existing);
+                return existing.Value.text;
+            }
+
+            var node = new LinkedListNode<((string rel, SearchSide side, long ticks, long len) key, string text)>((key, searchable));
+            _verifyTextLru.AddFirst(node);
+            _verifyTextCache[key] = node;
+            _verifyTextCacheChars += searchable.Length;
+
+            EvictVerifyTextCacheIfNeeded();
+        }
+
+        return searchable;
+    }
+
+    private bool TryReadSearchableTextFromSidecar(
+        string root,
+        (string rel, SearchSide side, long ticks, long len) key,
+        SearchTextEntry? textEntry,
+        out string searchable)
+    {
+        searchable = "";
+        if (textEntry == null) return false;
+        if (textEntry.TextOffset < 0 || textEntry.TextLengthBytes < 0) return false;
+        if (!string.Equals(NormalizeRelKey(textEntry.RelPath), key.rel, StringComparison.OrdinalIgnoreCase)) return false;
+        if (textEntry.Side != key.side) return false;
+        if (textEntry.LastWriteUtcTicks != key.ticks || textEntry.LengthBytes != key.len) return false;
+        if (textEntry.TextLengthBytes == 0) return true;
+
+        try
+        {
+            string textBinPath = GetTextBinPath(root);
+            var full = Path.GetFullPath(textBinPath);
+            if (!File.Exists(full)) return false;
+
+            var fileLen = new FileInfo(full).Length;
+            long end = textEntry.TextOffset + textEntry.TextLengthBytes;
+            if (textEntry.TextOffset < 0 || end < textEntry.TextOffset || end > fileLen)
+                return false;
+
+            using var accessor = GetOrCreateTextMappedFile(full, File.GetLastWriteTimeUtc(full))
+                .CreateViewAccessor(textEntry.TextOffset, textEntry.TextLengthBytes, MemoryMappedFileAccess.Read);
+
+            var bytes = new byte[textEntry.TextLengthBytes];
+            accessor.ReadArray(0, bytes, 0, bytes.Length);
+            searchable = Utf8NoBom.GetString(bytes);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private void EvictVerifyTextCacheIfNeeded()
+    {
+        long max = Math.Max(0, Options.MaxVerifyTextCacheChars);
+
+        if (max == 0)
+        {
+            _verifyTextCache.Clear();
+            _verifyTextLru.Clear();
+            _verifyTextCacheChars = 0;
+            return;
+        }
+
+        while (_verifyTextCacheChars > max && _verifyTextLru.Last != null)
+        {
+            var last = _verifyTextLru.Last!;
+            _verifyTextLru.RemoveLast();
+            _verifyTextCache.Remove(last.Value.key);
+            _verifyTextCacheChars -= last.Value.text.Length;
         }
     }
 
@@ -678,6 +851,65 @@ public sealed class SearchIndexService : IDisposable
         }
     }
 
+    public async Task<SearchTextManifest?> TryLoadTextManifestAsync(string root)
+    {
+        try
+        {
+            var mp = GetTextManifestPath(root);
+            var bp = GetTextBinPath(root);
+
+            if (!File.Exists(mp) || !File.Exists(bp))
+                return null;
+
+            var mpFull = Path.GetFullPath(mp);
+            var mpWriteUtc = File.GetLastWriteTimeUtc(mpFull);
+
+            lock (_indexCacheLock)
+            {
+                if (_cachedTextManifest != null &&
+                    string.Equals(_cachedTextManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    _cachedTextManifestWriteUtc == mpWriteUtc)
+                {
+                    return _cachedTextManifest;
+                }
+            }
+
+            var json = await File.ReadAllTextAsync(mp, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json))
+                return null;
+
+            var man = JsonSerializer.Deserialize<SearchTextManifest>(json, JsonOpts);
+            if (man == null) return null;
+
+            if (!string.Equals(Path.GetFullPath(man.RootPath), Path.GetFullPath(root), StringComparison.OrdinalIgnoreCase))
+                return null;
+            if (man.Version != TextManifestVersion) return null;
+            if (!string.Equals(man.BuildGuid, TextBuildGuid, StringComparison.Ordinal)) return null;
+            if (man.Entries == null || man.Entries.Count == 0) return null;
+
+            var binLen = new FileInfo(bp).Length;
+            foreach (var e in man.Entries)
+            {
+                if (e.TextOffset < 0 || e.TextLengthBytes < 0) return null;
+                long end = e.TextOffset + e.TextLengthBytes;
+                if (end < e.TextOffset || end > binLen) return null;
+            }
+
+            lock (_indexCacheLock)
+            {
+                _cachedTextManifest = man;
+                _cachedTextManifestPath = mpFull;
+                _cachedTextManifestWriteUtc = mpWriteUtc;
+            }
+
+            return man;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     private async Task SaveManifestAtomicAsync(string root, SearchIndexManifest manifest, CancellationToken ct)
     {
         manifest.RootPath = root;
@@ -705,6 +937,38 @@ public sealed class SearchIndexService : IDisposable
                 _cachedManifest = manifest;
                 _cachedManifestPath = full;
                 _cachedManifestWriteUtc = writeUtc;
+            }
+        }
+        catch
+        {
+            // harmless
+        }
+    }
+
+    private async Task SaveTextManifestAtomicAsync(string root, SearchTextManifest manifest, CancellationToken ct)
+    {
+        manifest.RootPath = root;
+        manifest.BuiltUtc = DateTime.UtcNow;
+        manifest.Version = TextManifestVersion;
+        manifest.BuildGuid = TextBuildGuid;
+
+        var final = GetTextManifestPath(root);
+        var tmp = final + ".tmp";
+
+        var json = JsonSerializer.Serialize(manifest, JsonOpts);
+        await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct);
+
+        ReplaceFileAtomicWithRetry(tmp, final);
+
+        try
+        {
+            var full = Path.GetFullPath(final);
+            var writeUtc = File.GetLastWriteTimeUtc(full);
+            lock (_indexCacheLock)
+            {
+                _cachedTextManifest = manifest;
+                _cachedTextManifestPath = full;
+                _cachedTextManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -820,8 +1084,7 @@ public sealed class SearchIndexService : IDisposable
     {
         if (string.IsNullOrEmpty(text)) return;
 
-        // IMPORTANT: text already has normalized spaces (single ' ').
-        // We still include grams crossing spaces so bloom remains permissive.
+        // Standard grams (spaces preserved) — needed for English phrase search.
         for (int i = 0; i < text.Length; i++)
         {
             if (i + 2 <= text.Length)
@@ -829,6 +1092,23 @@ public sealed class SearchIndexService : IDisposable
 
             if (i + 3 <= text.Length)
                 BloomAdd(bits, text.AsSpan(i, 3));
+        }
+
+        // Compact grams (spaces + CJK punctuation stripped) — for CJK phrase search across <lb>
+        // boundaries.  lb-tags introduce newlines→spaces; CBETA punctuation is a modern editorial
+        // addition not present in the original text.  Stripping both lets cross-lb / cross-punct
+        // phrases be found.
+        string compact = CjkMatchNormalizer.Normalize(text);
+        if (compact.Length != text.Length)
+        {
+            for (int i = 0; i < compact.Length; i++)
+            {
+                if (i + 2 <= compact.Length)
+                    BloomAdd(bits, compact.AsSpan(i, 2));
+
+                if (i + 3 <= compact.Length)
+                    BloomAdd(bits, compact.AsSpan(i, 3));
+            }
         }
     }
 
@@ -884,10 +1164,15 @@ public sealed class SearchIndexService : IDisposable
                 InvalidateIndexCaches();
 
                 SearchIndexManifest? oldMan = null;
+                SearchTextManifest? oldTextMan = null;
                 string oldBinPath = GetBinPath(root);
+                string oldTextBinPath = GetTextBinPath(root);
 
                 if (!forceRebuild)
+                {
                     oldMan = await TryLoadAsync(root);
+                    oldTextMan = await TryLoadTextManifestAsync(root);
+                }
 
                 FileStream? oldFs = null;
                 if (!forceRebuild && oldMan != null && File.Exists(oldBinPath))
@@ -895,12 +1180,24 @@ public sealed class SearchIndexService : IDisposable
                     try { oldFs = new FileStream(oldBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
                     catch { oldFs = null; }
                 }
+                FileStream? oldTextFs = null;
+                if (!forceRebuild && oldTextMan != null && File.Exists(oldTextBinPath))
+                {
+                    try { oldTextFs = new FileStream(oldTextBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
+                    catch { oldTextFs = null; }
+                }
 
                 var oldMap = new Dictionary<(string rel, SearchSide side), SearchIndexEntry>(new RelSideComparer());
                 if (!forceRebuild && oldMan != null)
                 {
                     foreach (var e in oldMan.Entries)
                         oldMap[(e.RelPath, e.Side)] = e;
+                }
+                var oldTextMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
+                if (!forceRebuild && oldTextMan != null)
+                {
+                    foreach (var e in oldTextMan.Entries)
+                        oldTextMap[(e.RelPath, e.Side)] = e;
                 }
 
                 progress?.Report((0, 0, "Scanning filesystem..."));
@@ -933,17 +1230,29 @@ public sealed class SearchIndexService : IDisposable
                     BloomHashCount = BloomHashCount,
                     Version = 1,
                 };
+                var textManifest = new SearchTextManifest
+                {
+                    RootPath = root,
+                    BuiltUtc = DateTime.UtcNow,
+                    BuildGuid = TextBuildGuid,
+                    Version = TextManifestVersion,
+                };
 
                 var finalBin = GetBinPath(root);
                 var tmpBin = finalBin + ".tmp";
+                var finalTextBin = GetTextBinPath(root);
+                var tmpTextBin = finalTextBin + ".tmp";
 
                 try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
+                try { if (File.Exists(tmpTextBin)) File.Delete(tmpTextBin); } catch { }
 
                 try
                 {
                     using (var outFs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.Read))
+                    using (var outTextFs = new FileStream(tmpTextBin, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
-                        long offset = 0;
+                        long bloomOffset = 0;
+                        long textOffset = 0;
                         int id = 0;
                         int done = 0;
 
@@ -959,6 +1268,32 @@ public sealed class SearchIndexService : IDisposable
                                 dst.Write(buf);
                             }
                         }
+                        static bool CopyTextBlock(FileStream src, long srcOffset, int len, Stream dst)
+                        {
+                            if (len < 0 || srcOffset < 0) return false;
+                            if (len == 0) return true;
+
+                            src.Seek(srcOffset, SeekOrigin.Begin);
+                            var buf = new byte[64 * 1024];
+                            int remaining = len;
+                            while (remaining > 0)
+                            {
+                                int want = Math.Min(buf.Length, remaining);
+                                int read = src.Read(buf, 0, want);
+                                if (read <= 0) return false;
+                                dst.Write(buf, 0, read);
+                                remaining -= read;
+                            }
+                            return true;
+                        }
+
+                        static int WriteTextBlockUtf8(Stream dst, string text)
+                        {
+                            if (string.IsNullOrEmpty(text)) return 0;
+                            var bytes = SearchIndexService.Utf8NoBom.GetBytes(text);
+                            dst.Write(bytes, 0, bytes.Length);
+                            return bytes.Length;
+                        }
 
                         void IndexOne(string relKey, SearchSide side, string absPath, FileInfo fi)
                         {
@@ -967,7 +1302,12 @@ public sealed class SearchIndexService : IDisposable
                             long ticks = fi.LastWriteTimeUtc.Ticks;
                             long lenBytes = fi.Length;
 
-                            bool copied = false;
+                            bool copiedBloom = false;
+                            bool copiedText = false;
+                            int textLenBytes = 0;
+
+                            long entryBloomOffset = bloomOffset;
+                            long entryTextOffset = textOffset;
 
                             if (!forceRebuild && oldFs != null &&
                                 oldMap.TryGetValue((relKey, side), out var old) &&
@@ -976,19 +1316,37 @@ public sealed class SearchIndexService : IDisposable
                                 old.BloomOffset >= 0)
                             {
                                 CopyBloomBlock(oldFs, old.BloomOffset, outFs);
-                                copied = true;
+                                copiedBloom = true;
                             }
 
-                            if (!copied)
+                            if (!forceRebuild && oldTextFs != null &&
+                                oldTextMap.TryGetValue((relKey, side), out var oldText) &&
+                                oldText.LastWriteUtcTicks == ticks &&
+                                oldText.LengthBytes == lenBytes &&
+                                oldText.TextOffset >= 0 &&
+                                oldText.TextLengthBytes >= 0)
                             {
-                                var bits = new ulong[BloomUlongs];
+                                copiedText = CopyTextBlock(oldTextFs, oldText.TextOffset, oldText.TextLengthBytes, outTextFs);
+                                if (copiedText) textLenBytes = oldText.TextLengthBytes;
+                            }
 
+                            if (!copiedBloom || !copiedText)
+                            {
                                 // FAST extraction: no regex; optional html decode only when '&' appears
                                 string xml = File.ReadAllText(absPath, Utf8NoBom);
                                 string searchable = MakeSearchableTextFromXml_Fast(xml, Options.HtmlDecodeIfAmpersandPresent);
-                                BuildBloomFromText(bits, searchable);
 
-                                WriteBloom(outFs, bits);
+                                if (!copiedBloom)
+                                {
+                                    var bits = new ulong[BloomUlongs];
+                                    BuildBloomFromText(bits, searchable);
+                                    WriteBloom(outFs, bits);
+                                }
+
+                                if (!copiedText)
+                                {
+                                    textLenBytes = WriteTextBlockUtf8(outTextFs, searchable);
+                                }
                             }
 
                             manifest.Entries.Add(new SearchIndexEntry
@@ -998,10 +1356,22 @@ public sealed class SearchIndexService : IDisposable
                                 Side = side,
                                 LastWriteUtcTicks = ticks,
                                 LengthBytes = lenBytes,
-                                BloomOffset = offset
+                                BloomOffset = entryBloomOffset
                             });
 
-                            offset += BloomBytes;
+                            textManifest.Entries.Add(new SearchTextEntry
+                            {
+                                Id = id - 1,
+                                RelPath = relKey,
+                                Side = side,
+                                LastWriteUtcTicks = ticks,
+                                LengthBytes = lenBytes,
+                                TextOffset = entryTextOffset,
+                                TextLengthBytes = textLenBytes
+                            });
+
+                            bloomOffset += BloomBytes;
+                            textOffset += textLenBytes;
                             done++;
 
                             if (done % 200 == 0 || done == total)
@@ -1022,20 +1392,25 @@ public sealed class SearchIndexService : IDisposable
                         }
 
                         outFs.Flush(true);
+                        outTextFs.Flush(true);
                     }
                 }
                 catch
                 {
                     try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
+                    try { if (File.Exists(tmpTextBin)) File.Delete(tmpTextBin); } catch { }
                     throw;
                 }
                 finally
                 {
                     try { oldFs?.Dispose(); } catch { }
+                    try { oldTextFs?.Dispose(); } catch { }
                 }
 
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
+                ReplaceFileAtomicWithRetry(tmpTextBin, finalTextBin);
                 await SaveManifestAtomicAsync(root, manifest, ct);
+                await SaveTextManifestAtomicAsync(root, textManifest, ct);
 
                 // Warm mmap cache after rebuild so next search click is faster
                 try { _ = GetOrCreateMappedAccessor(finalBin); } catch { }
@@ -1061,6 +1436,9 @@ public sealed class SearchIndexService : IDisposable
         public int Groups { get; set; }
         public int TotalHits { get; set; }
         public string Phase { get; set; } = "";
+        public long CandidateMs { get; set; }
+        public long VerifyMs { get; set; }
+        public long TotalMs { get; set; }
     }
 
     private static void Dbg(string msg)
@@ -1088,11 +1466,20 @@ public sealed class SearchIndexService : IDisposable
         if (query.Length == 0)
             yield break;
 
-        var swTotal = System.Diagnostics.Stopwatch.StartNew();
-        Dbg($"SearchAllAsync START q='{query}' len={query.Length} includeO={includeOriginal} includeT={includeTranslated} entries={manifest?.Entries?.Count ?? 0}");
+        // CJK queries: strip spaces and CJK punctuation so phrases split across <lb> tag boundaries
+        // (and across modern editorial punctuation) are found.  CBETA punctuation is not original.
+        // English text relies on natural spaces from XML whitespace and keeps them.
+        string effectiveQuery = CjkMatchNormalizer.ContainsCjk(query)
+            ? CjkMatchNormalizer.Normalize(query)
+            : query;
+        if (effectiveQuery.Length == 0)
+            yield break;
 
-        bool useBloom = query.Length >= 2;
-        var grams = MakeQueryGrams(query);
+        var swTotal = System.Diagnostics.Stopwatch.StartNew();
+        Dbg($"SearchAllAsync START q='{query}' effectiveQ='{effectiveQuery}' len={effectiveQuery.Length} includeO={includeOriginal} includeT={includeTranslated} entries={manifest?.Entries?.Count ?? 0}");
+
+        bool useBloom = effectiveQuery.Length >= 2;
+        var grams = MakeQueryGrams(effectiveQuery);
 
         bool sideAllowed(SearchSide s)
             => (s == SearchSide.Original && includeOriginal) ||
@@ -1101,6 +1488,7 @@ public sealed class SearchIndexService : IDisposable
         progress?.Report(new SearchProgress { Phase = "Building candidates..." });
 
         var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var swCandidate = System.Diagnostics.Stopwatch.StartNew();
 
         // Hold gate only during candidate scan (bin access)
         await _indexIoGate.WaitAsync(ct);
@@ -1208,9 +1596,9 @@ public sealed class SearchIndexService : IDisposable
                             for (int i = 0; i < grams.Count; i++)
                             {
                                 var (n, start) = grams[i];
-                                if (start + n > query.Length) continue;
+                                if (start + n > effectiveQuery.Length) continue;
 
-                                if (!BloomMightContain(local.bits, query.AsSpan(start, n)))
+                                if (!BloomMightContain(local.bits, effectiveQuery.AsSpan(start, n)))
                                 {
                                     ok = false;
                                     break;
@@ -1243,6 +1631,7 @@ public sealed class SearchIndexService : IDisposable
         {
             _indexIoGate.Release();
         }
+        swCandidate.Stop();
 
         var candidateList = candidates.Keys
             .OrderBy(k => k, StringComparer.OrdinalIgnoreCase)
@@ -1262,12 +1651,30 @@ public sealed class SearchIndexService : IDisposable
         {
             Phase = useBloom ? "Candidate filtering done" : "Brute candidates (1-char search)",
             Candidates = totalDocsToVerify,
-            TotalDocsToVerify = totalDocsToVerify
+            TotalDocsToVerify = totalDocsToVerify,
+            CandidateMs = swCandidate.ElapsedMilliseconds,
+            TotalMs = swTotal.ElapsedMilliseconds
         });
 
         var outGroups = new ConcurrentBag<SearchResultGroup>();
         int verifiedDocs = 0;
         int totalHits = 0;
+        var entryMap = manifest.Entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
+        var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
+
+        try
+        {
+            var textManifest = await TryLoadTextManifestAsync(root);
+            if (textManifest?.Entries != null)
+            {
+                foreach (var e in textManifest.Entries)
+                    textEntryMap[(e.RelPath, e.Side)] = e;
+            }
+        }
+        catch
+        {
+            // Sidecar is optional. Fallback path keeps search correctness.
+        }
 
         var verifyPo = new ParallelOptions
         {
@@ -1298,7 +1705,19 @@ public sealed class SearchIndexService : IDisposable
             if ((mask & 1) != 0)
             {
                 string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                var hits = VerifyFileAllHits(abs, query, contextWidth, htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
+                textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                var hits = VerifyFileAllHits(
+                    root,
+                    relKey,
+                    SearchSide.Original,
+                    abs,
+                    metaOriginal?.LastWriteUtcTicks ?? 0,
+                    metaOriginal?.LengthBytes ?? 0,
+                    textOriginal,
+                    effectiveQuery,
+                    contextWidth,
+                    htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
                 Interlocked.Increment(ref verifiedDocs);
 
                 foreach (var h in hits)
@@ -1318,7 +1737,19 @@ public sealed class SearchIndexService : IDisposable
             if ((mask & 2) != 0)
             {
                 string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                var hits = VerifyFileAllHits(abs, query, contextWidth, htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
+                textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                var hits = VerifyFileAllHits(
+                    root,
+                    relKey,
+                    SearchSide.Translated,
+                    abs,
+                    metaTranslated?.LastWriteUtcTicks ?? 0,
+                    metaTranslated?.LengthBytes ?? 0,
+                    textTranslated,
+                    effectiveQuery,
+                    contextWidth,
+                    htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
                 Interlocked.Increment(ref verifiedDocs);
 
                 foreach (var h in hits)
@@ -1353,7 +1784,10 @@ public sealed class SearchIndexService : IDisposable
                     VerifiedDocs = v,
                     TotalDocsToVerify = totalDocsToVerify,
                     Groups = outGroups.Count,
-                    TotalHits = Volatile.Read(ref totalHits)
+                    TotalHits = Volatile.Read(ref totalHits),
+                    CandidateMs = swCandidate.ElapsedMilliseconds,
+                    VerifyMs = swVerify.ElapsedMilliseconds,
+                    TotalMs = swTotal.ElapsedMilliseconds
                 });
             }
         });
@@ -1372,7 +1806,10 @@ public sealed class SearchIndexService : IDisposable
             VerifiedDocs = verifiedDocs,
             TotalDocsToVerify = totalDocsToVerify,
             Groups = ordered.Count,
-            TotalHits = totalHits
+            TotalHits = totalHits,
+            CandidateMs = swCandidate.ElapsedMilliseconds,
+            VerifyMs = swVerify.ElapsedMilliseconds,
+            TotalMs = swTotal.ElapsedMilliseconds
         });
 
         Dbg($"Yield phase START groups={ordered.Count}");
@@ -1404,8 +1841,35 @@ public sealed class SearchIndexService : IDisposable
         }
     }
 
-    private static List<SearchHit> VerifyFileAllHits(
+    private sealed class VerifyTextCacheKeyComparer : IEqualityComparer<(string rel, SearchSide side, long ticks, long len)>
+    {
+        public bool Equals((string rel, SearchSide side, long ticks, long len) x, (string rel, SearchSide side, long ticks, long len) y)
+            => string.Equals(x.rel, y.rel, StringComparison.OrdinalIgnoreCase)
+               && x.side == y.side
+               && x.ticks == y.ticks
+               && x.len == y.len;
+
+        public int GetHashCode((string rel, SearchSide side, long ticks, long len) obj)
+        {
+            unchecked
+            {
+                int h = StringComparer.OrdinalIgnoreCase.GetHashCode(obj.rel ?? "");
+                h = (h * 397) ^ obj.side.GetHashCode();
+                h = (h * 397) ^ obj.ticks.GetHashCode();
+                h = (h * 397) ^ obj.len.GetHashCode();
+                return h;
+            }
+        }
+    }
+
+    private List<SearchHit> VerifyFileAllHits(
+        string root,
+        string relPath,
+        SearchSide side,
         string absPath,
+        long lastWriteUtcTicks,
+        long lengthBytes,
+        SearchTextEntry? textEntry,
         string query,
         int contextWidth,
         bool htmlDecodeIfAmpersandPresent)
@@ -1413,42 +1877,84 @@ public sealed class SearchIndexService : IDisposable
         var hits = new List<SearchHit>();
         if (!File.Exists(absPath)) return hits;
 
-        string xml;
-        try { xml = File.ReadAllText(absPath, Utf8NoBom); }
-        catch { return hits; }
+        if (lastWriteUtcTicks <= 0 || lengthBytes <= 0)
+        {
+            try
+            {
+                var fi = new FileInfo(absPath);
+                lastWriteUtcTicks = fi.LastWriteTimeUtc.Ticks;
+                lengthBytes = fi.Length;
+            }
+            catch
+            {
+                return hits;
+            }
+        }
 
-        string text;
-        try { text = MakeSearchableTextFromXml_Fast(xml, htmlDecodeIfAmpersandPresent); }
-        catch { return hits; }
+        string text = GetSearchableTextCached(
+            root,
+            relPath,
+            side,
+            lastWriteUtcTicks,
+            lengthBytes,
+            textEntry,
+            absPath,
+            htmlDecodeIfAmpersandPresent);
 
         if (string.IsNullOrEmpty(text)) return hits;
+
+        // CJK queries search in a compact (spaces + CJK-punct stripped) version of the text so
+        // that phrases split across <lb> boundaries and across editorial punctuation are found.
+        // KWIC (left/match/right) is then extracted from the *original* text via position mapping
+        // so that navigation and highlighting in the reader work correctly.
+        // English queries use the text as-is (spaces are meaningful word separators).
+        bool isCjk = CjkMatchNormalizer.ContainsCjk(query);
+        var normalizedText = isCjk ? CjkMatchNormalizer.NormalizeWithMap(text) : null;
+        string searchText = isCjk ? normalizedText!.Normalized : text;
 
         int idx = 0;
         while (true)
         {
-            idx = text.IndexOf(query, idx, StringComparison.OrdinalIgnoreCase);
+            idx = searchText.IndexOf(query, idx, StringComparison.OrdinalIgnoreCase);
             if (idx < 0) break;
 
-            int start = idx;
-            int end = idx + query.Length;
+            string left, match, right;
+            int hitIndex;
 
-            int leftStart = Math.Max(0, start - contextWidth);
-            int rightEnd = Math.Min(text.Length, end + contextWidth);
-
-            // Text is already whitespace-normalized: no Replace/Trim per-hit
-            string left = text.Substring(leftStart, start - leftStart);
-            string match = text.Substring(start, query.Length);
-            string right = text.Substring(end, rightEnd - end);
+            if (isCjk)
+            {
+                // Map compact positions back to the original text so KWIC retains original
+                // spacing/punctuation and can be matched against the rendered document.
+                int origStart = CjkMatchNormalizer.RawIndexFromNormalizedPos(normalizedText!, idx);
+                int origEnd   = CjkMatchNormalizer.RawIndexFromNormalizedPos(normalizedText!, idx + query.Length);
+                int leftStart = Math.Max(0, origStart - contextWidth);
+                int rightEnd  = Math.Min(text.Length, origEnd + contextWidth);
+                left     = text.Substring(leftStart, origStart - leftStart);
+                match    = text.Substring(origStart, origEnd - origStart);
+                right    = text.Substring(origEnd, rightEnd - origEnd);
+                hitIndex = origStart;
+            }
+            else
+            {
+                int start    = idx;
+                int end      = idx + query.Length;
+                int leftStart = Math.Max(0, start - contextWidth);
+                int rightEnd  = Math.Min(text.Length, end + contextWidth);
+                left     = text.Substring(leftStart, start - leftStart);
+                match    = text.Substring(start, query.Length);
+                right    = text.Substring(end, rightEnd - end);
+                hitIndex = start;
+            }
 
             hits.Add(new SearchHit
             {
-                Index = start,
+                Index = hitIndex,
                 Left = left,
                 Match = match,
                 Right = right
             });
 
-            idx = Math.Max(end, idx + 1);
+            idx = Math.Max(idx + query.Length, idx + 1);
         }
 
         return hits;

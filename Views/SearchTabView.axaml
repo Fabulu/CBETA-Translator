@@ -231,8 +231,19 @@
 					</TreeDataTemplate>
 
 					<DataTemplate DataType="models:SearchResultChild">
-						<TextBlock Text="{Binding RowText}"
-                                   TextWrapping="NoWrap"/>
+						<StackPanel Orientation="Horizontal" Spacing="0">
+							<TextBlock Text="{Binding SideLabel}"
+                                       Classes="muted"
+                                       TextWrapping="NoWrap"/>
+							<TextBlock Text="{Binding LeftText}"
+                                       TextWrapping="NoWrap"/>
+							<TextBlock Text="{Binding MatchText}"
+                                       TextWrapping="NoWrap"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+							<TextBlock Text="{Binding RightText}"
+                                       TextWrapping="NoWrap"/>
+						</StackPanel>
 					</DataTemplate>
 
 				</TreeView.DataTemplates>

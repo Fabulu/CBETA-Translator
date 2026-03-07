@@ -641,6 +641,7 @@ public partial class SearchTabView : UserControl
 
                 int totalHits = 0;
                 int totalGroups = 0;
+                long uiAppendMs = 0;
 
                 var localGroups = new List<SearchResultGroup>(256);
                 var pendingUiBatch = new List<SearchResultGroup>(16);
@@ -652,7 +653,9 @@ public partial class SearchTabView : UserControl
                         if (mySearchVer != Volatile.Read(ref _searchRunVersion))
                             return;
 
-                        SetProgress($"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}");
+                        string timing =
+                            $"  t[cand={p.CandidateMs:n0}ms ver={p.VerifyMs:n0}ms ui={uiAppendMs:n0}ms total={p.TotalMs:n0}ms]";
+                        SetProgress($"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}{timing}");
                     });
                 });
 
@@ -665,6 +668,7 @@ public partial class SearchTabView : UserControl
 
                     int snapshotGroups = totalGroups;
                     int snapshotHits = totalHits;
+                    var swUi = System.Diagnostics.Stopwatch.StartNew();
 
                     await Dispatcher.UIThread.InvokeAsync(() =>
                     {
@@ -677,6 +681,8 @@ public partial class SearchTabView : UserControl
                         if (forceSummary || batch.Length > 0)
                             SetSummary($"Results: files={snapshotGroups:n0}, hits={snapshotHits:n0}");
                     }, DispatcherPriority.Background);
+                    swUi.Stop();
+                    uiAppendMs += swUi.ElapsedMilliseconds;
                 }
 
                 await foreach (var g in _svc.SearchAllAsync(
