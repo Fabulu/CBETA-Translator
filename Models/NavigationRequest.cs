@@ -24,4 +24,21 @@ public sealed class NavigationRequest
 
     /// <summary>Right KWIC context used to disambiguate repeated occurrences.</summary>
     public string? RightContext { get; set; }
+
+    /// <summary>
+    /// Optional source-provided position hint (typically search-hit index in searchable text).
+    /// This is treated as a soft preference, not a strict offset.
+    /// </summary>
+    public int? AnchorStartHint { get; set; }
+
+    /// <summary>
+    /// Optional preferred occurrence index (0-based) for repeated identical matches.
+    /// TM flow can use block order as a stable tie-break signal when context is missing.
+    /// </summary>
+    public int? AnchorOccurrenceHint { get; set; }
+
+    /// <summary>
+    /// Optional auxiliary text used as a soft ranking signal when multiple candidates tie.
+    /// </summary>
+    public string? AnchorTextSignal { get; set; }
 }

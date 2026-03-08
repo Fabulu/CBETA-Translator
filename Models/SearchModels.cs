@@ -105,3 +105,22 @@ public sealed class SearchTextEntry
     public long TextOffset { get; set; }
     public int TextLengthBytes { get; set; }
 }
+
+// Optional Phase C artifact: compact-CJK 2-gram postings for short-query prefiltering.
+// Search must remain correct when this is missing or invalid (fallback to bloom+verify path).
+public sealed class SearchCjkBigramManifest
+{
+    public int Version { get; set; } = 1;
+    public string RootPath { get; set; } = "";
+    public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;
+    public string BuildGuid { get; set; } = "search-v1-cjk2-postings";
+    public int GramSize { get; set; } = 2;
+    public int EntryCount { get; set; }
+    public List<SearchCjkBigramPosting> Postings { get; set; } = new();
+}
+
+public sealed class SearchCjkBigramPosting
+{
+    public string Gram { get; set; } = "";
+    public List<int> EntryIds { get; set; } = new();
+}

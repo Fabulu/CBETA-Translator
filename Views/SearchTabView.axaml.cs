@@ -182,6 +182,7 @@ public partial class SearchTabView : UserControl
                 else if (sel is SearchResultChild c && !string.IsNullOrWhiteSpace(c.RelPath))
                 {
                     // Child double-click: carry the exact hit info for precise in-document navigation
+                    string anchorSignal = string.Concat(c.Hit.Left ?? "", c.Hit.Match ?? "", c.Hit.Right ?? "");
                     NavigationRequested?.Invoke(this, new NavigationRequest
                     {
                         RelPath = c.RelPath,
@@ -189,6 +190,11 @@ public partial class SearchTabView : UserControl
                         MatchText = c.Hit.Match,
                         LeftContext = c.Hit.Left,
                         RightContext = c.Hit.Right,
+                        // Search-hit index is from searchable text and may not be exact in rendered text,
+                        // but it is a stable tie-break hint for repeated phrases.
+                        AnchorStartHint = c.Hit.Index,
+                        // Full local KWIC window helps deterministic tie-break when contexts are sparse.
+                        AnchorTextSignal = string.IsNullOrWhiteSpace(anchorSignal) ? null : anchorSignal,
                     });
                 }
             };

@@ -35,6 +35,13 @@ public sealed class SearchIndexService : IDisposable
         // If you truly need entity-decoding for search, keep this true.
         // For CBETA bodies it’s often unnecessary; turning it off is faster.
         public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
+
+        // Phase C (optional): compact-CJK bigram postings prefilter.
+        // Guarded so behavior can be toggled without schema churn.
+        public bool EnableCjkBigramPrefilter { get; set; } = true;
+        public int CjkBigramPrefilterMinQueryLength { get; set; } = 2;
+        public int CjkBigramPrefilterMaxQueryLength { get; set; } = 4;
+        public double CjkBigramPrefilterMaxPassRatio { get; set; } = 0.85;
     }
 
     public SearchIndexServiceOptions Options { get; } = new();
@@ -60,6 +67,9 @@ public sealed class SearchIndexService : IDisposable
     private SearchTextManifest? _cachedTextManifest;
     private string? _cachedTextManifestPath;
     private DateTime _cachedTextManifestWriteUtc;
+    private SearchCjkBigramManifest? _cachedCjk2Manifest;
+    private string? _cachedCjk2ManifestPath;
+    private DateTime _cachedCjk2ManifestWriteUtc;
 
     private MemoryMappedFile? _cachedMmf;
     private MemoryMappedViewAccessor? _cachedAccessor;
@@ -75,6 +85,7 @@ public sealed class SearchIndexService : IDisposable
     // If this sidecar is missing/corrupt/mismatched, search verify falls back to XML parse.
     private const string TextManifestFileName = "search.text.manifest.json";
     private const string TextBinFileName = "search.text.bin";
+    private const string Cjk2ManifestFileName = "search.cjk2.manifest.json";
 
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
@@ -83,6 +94,8 @@ public sealed class SearchIndexService : IDisposable
     private const string BuildGuid = "search-v3-bloom-compact";
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
+    private const int Cjk2ManifestVersion = 1;
+    private const string Cjk2BuildGuid = "search-v1-cjk2-postings";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
@@ -356,6 +369,9 @@ public sealed class SearchIndexService : IDisposable
             _cachedTextManifest = null;
             _cachedTextManifestPath = null;
             _cachedTextManifestWriteUtc = default;
+            _cachedCjk2Manifest = null;
+            _cachedCjk2ManifestPath = null;
+            _cachedCjk2ManifestWriteUtc = default;
 
             try { _cachedAccessor?.Dispose(); } catch { }
             try { _cachedMmf?.Dispose(); } catch { }
@@ -490,6 +506,7 @@ public sealed class SearchIndexService : IDisposable
     public string GetBinPath(string root) => Path.Combine(root, BinFileName);
     public string GetTextManifestPath(string root) => Path.Combine(root, TextManifestFileName);
     public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
+    public string GetCjk2ManifestPath(string root) => Path.Combine(root, Cjk2ManifestFileName);
 
     public void ClearBloomCache()
     {
@@ -910,6 +927,70 @@ public sealed class SearchIndexService : IDisposable
         }
     }
 
+    public async Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root)
+    {
+        try
+        {
+            var mp = GetCjk2ManifestPath(root);
+            if (!File.Exists(mp))
+                return null;
+
+            var mpFull = Path.GetFullPath(mp);
+            var mpWriteUtc = File.GetLastWriteTimeUtc(mpFull);
+
+            lock (_indexCacheLock)
+            {
+                if (_cachedCjk2Manifest != null &&
+                    string.Equals(_cachedCjk2ManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    _cachedCjk2ManifestWriteUtc == mpWriteUtc)
+                {
+                    return _cachedCjk2Manifest;
+                }
+            }
+
+            var json = await File.ReadAllTextAsync(mp, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json))
+                return null;
+
+            var man = JsonSerializer.Deserialize<SearchCjkBigramManifest>(json, JsonOpts);
+            if (man == null) return null;
+
+            if (!string.Equals(Path.GetFullPath(man.RootPath), Path.GetFullPath(root), StringComparison.OrdinalIgnoreCase))
+                return null;
+            if (man.Version != Cjk2ManifestVersion) return null;
+            if (!string.Equals(man.BuildGuid, Cjk2BuildGuid, StringComparison.Ordinal)) return null;
+            if (man.GramSize != 2) return null;
+            if (man.Postings == null) return null;
+            if (man.EntryCount < 0) return null;
+
+            foreach (var p in man.Postings)
+            {
+                if (p == null) return null;
+                if (string.IsNullOrEmpty(p.Gram) || p.Gram.Length != 2) return null;
+                if (p.EntryIds == null) return null;
+
+                for (int i = 0; i < p.EntryIds.Count; i++)
+                {
+                    int id = p.EntryIds[i];
+                    if (id < 0 || id >= man.EntryCount) return null;
+                }
+            }
+
+            lock (_indexCacheLock)
+            {
+                _cachedCjk2Manifest = man;
+                _cachedCjk2ManifestPath = mpFull;
+                _cachedCjk2ManifestWriteUtc = mpWriteUtc;
+            }
+
+            return man;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     private async Task SaveManifestAtomicAsync(string root, SearchIndexManifest manifest, CancellationToken ct)
     {
         manifest.RootPath = root;
@@ -969,6 +1050,38 @@ public sealed class SearchIndexService : IDisposable
                 _cachedTextManifest = manifest;
                 _cachedTextManifestPath = full;
                 _cachedTextManifestWriteUtc = writeUtc;
+            }
+        }
+        catch
+        {
+            // harmless
+        }
+    }
+
+    private async Task SaveCjk2ManifestAtomicAsync(string root, SearchCjkBigramManifest manifest, CancellationToken ct)
+    {
+        manifest.RootPath = root;
+        manifest.BuiltUtc = DateTime.UtcNow;
+        manifest.Version = Cjk2ManifestVersion;
+        manifest.BuildGuid = Cjk2BuildGuid;
+
+        var final = GetCjk2ManifestPath(root);
+        var tmp = final + ".tmp";
+
+        var json = JsonSerializer.Serialize(manifest, JsonOpts);
+        await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct);
+
+        ReplaceFileAtomicWithRetry(tmp, final);
+
+        try
+        {
+            var full = Path.GetFullPath(final);
+            var writeUtc = File.GetLastWriteTimeUtc(full);
+            lock (_indexCacheLock)
+            {
+                _cachedCjk2Manifest = manifest;
+                _cachedCjk2ManifestPath = full;
+                _cachedCjk2ManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -1131,6 +1244,114 @@ public sealed class SearchIndexService : IDisposable
         }
 
         return grams;
+    }
+
+    private static List<string> MakeCompactQueryBigrams(string q)
+    {
+        var list = new List<string>();
+        if (string.IsNullOrEmpty(q) || q.Length < 2) return list;
+
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        for (int i = 0; i + 2 <= q.Length; i++)
+        {
+            string g = q.Substring(i, 2);
+            if (!seen.Add(g)) continue;
+            list.Add(g);
+        }
+        return list;
+    }
+
+    private static IEnumerable<string> EnumerateUniqueCompactBigrams(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            yield break;
+
+        string compact = CjkMatchNormalizer.Normalize(text);
+        if (compact.Length < 2)
+            yield break;
+
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        for (int i = 0; i + 2 <= compact.Length; i++)
+        {
+            string gram = compact.Substring(i, 2);
+            if (!seen.Add(gram)) continue;
+            yield return gram;
+        }
+    }
+
+    private SearchCjkBigramManifest BuildCjk2ManifestFromTextSidecar(
+        string root,
+        SearchIndexManifest indexManifest,
+        SearchTextManifest textManifest,
+        CancellationToken ct)
+    {
+        string textBinPath = GetTextBinPath(root);
+        if (!File.Exists(textBinPath))
+            throw new FileNotFoundException("search.text.bin not found for cjk2 postings build.", textBinPath);
+
+        var textById = new Dictionary<int, SearchTextEntry>();
+        foreach (var t in textManifest.Entries)
+            textById[t.Id] = t;
+
+        var postings = new Dictionary<string, List<int>>(StringComparer.Ordinal);
+
+        using var fs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        foreach (var e in indexManifest.Entries)
+        {
+            ct.ThrowIfCancellationRequested();
+
+            if (!textById.TryGetValue(e.Id, out var textEntry))
+                continue;
+            if (textEntry.TextLengthBytes <= 0)
+                continue;
+            if (textEntry.TextOffset < 0)
+                continue;
+
+            fs.Seek(textEntry.TextOffset, SeekOrigin.Begin);
+            var bytes = new byte[textEntry.TextLengthBytes];
+            int read = 0;
+            while (read < bytes.Length)
+            {
+                int r = fs.Read(bytes, read, bytes.Length - read);
+                if (r <= 0) break;
+                read += r;
+            }
+            if (read != bytes.Length)
+                continue;
+
+            string searchable = Utf8NoBom.GetString(bytes);
+            foreach (var gram in EnumerateUniqueCompactBigrams(searchable))
+            {
+                if (!postings.TryGetValue(gram, out var ids))
+                {
+                    ids = new List<int>();
+                    postings[gram] = ids;
+                }
+                ids.Add(e.Id);
+            }
+        }
+
+        var manifest = new SearchCjkBigramManifest
+        {
+            RootPath = root,
+            BuiltUtc = DateTime.UtcNow,
+            BuildGuid = Cjk2BuildGuid,
+            Version = Cjk2ManifestVersion,
+            GramSize = 2,
+            EntryCount = indexManifest.Entries.Count
+        };
+
+        foreach (var kv in postings.OrderBy(k => k.Key, StringComparer.Ordinal))
+        {
+            kv.Value.Sort();
+            manifest.Postings.Add(new SearchCjkBigramPosting
+            {
+                Gram = kv.Key,
+                EntryIds = kv.Value
+            });
+        }
+
+        return manifest;
     }
 
     // ---------------------------
@@ -1412,6 +1633,24 @@ public sealed class SearchIndexService : IDisposable
                 await SaveManifestAtomicAsync(root, manifest, ct);
                 await SaveTextManifestAtomicAsync(root, textManifest, ct);
 
+                // Phase C optional accelerator: compact-CJK bigram postings.
+                // If this build fails, search still works via bloom + verify fallback.
+                try
+                {
+                    var cjk2Manifest = BuildCjk2ManifestFromTextSidecar(root, manifest, textManifest, ct);
+                    await SaveCjk2ManifestAtomicAsync(root, cjk2Manifest, ct);
+                }
+                catch (Exception ex)
+                {
+                    Dbg($"CJK2 postings build skipped: {ex.Message}");
+                    try
+                    {
+                        var oldCjk2 = GetCjk2ManifestPath(root);
+                        if (File.Exists(oldCjk2)) File.Delete(oldCjk2);
+                    }
+                    catch { }
+                }
+
                 // Warm mmap cache after rebuild so next search click is faster
                 try { _ = GetOrCreateMappedAccessor(finalBin); } catch { }
 
@@ -1480,6 +1719,74 @@ public sealed class SearchIndexService : IDisposable
 
         bool useBloom = effectiveQuery.Length >= 2;
         var grams = MakeQueryGrams(effectiveQuery);
+        HashSet<int>? cjk2PrefilterIds = null;
+        bool useCjk2Prefilter =
+            Options.EnableCjkBigramPrefilter &&
+            CjkMatchNormalizer.ContainsCjk(query) &&
+            effectiveQuery.Length >= Math.Max(2, Options.CjkBigramPrefilterMinQueryLength) &&
+            effectiveQuery.Length <= Math.Max(2, Options.CjkBigramPrefilterMaxQueryLength);
+
+        if (useCjk2Prefilter)
+        {
+            try
+            {
+                var cjk2 = await TryLoadCjk2ManifestAsync(root);
+                if (cjk2 != null &&
+                    cjk2.EntryCount == (manifest.Entries?.Count ?? 0) &&
+                    cjk2.Postings != null)
+                {
+                    var postingMap = new Dictionary<string, List<int>>(StringComparer.Ordinal);
+                    foreach (var p in cjk2.Postings)
+                    {
+                        if (p == null || string.IsNullOrEmpty(p.Gram) || p.EntryIds == null) continue;
+                        postingMap[p.Gram] = p.EntryIds;
+                    }
+
+                    var qBigrams = MakeCompactQueryBigrams(effectiveQuery);
+                    if (qBigrams.Count > 0)
+                    {
+                        HashSet<int>? intersect = null;
+                        bool impossible = false;
+
+                        foreach (var g in qBigrams)
+                        {
+                            if (!postingMap.TryGetValue(g, out var ids) || ids.Count == 0)
+                            {
+                                impossible = true;
+                                break;
+                            }
+
+                            if (intersect == null) intersect = new HashSet<int>(ids);
+                            else intersect.IntersectWith(ids);
+
+                            if (intersect.Count == 0)
+                            {
+                                impossible = true;
+                                break;
+                            }
+                        }
+
+                        cjk2PrefilterIds = impossible ? new HashSet<int>() : (intersect ?? new HashSet<int>());
+                        Dbg($"CJK2 prefilter {(cjk2PrefilterIds.Count == 0 ? "EMPTY" : "ACTIVE")} qBigrams={qBigrams.Count} passIds={cjk2PrefilterIds.Count}");
+
+                        int entryCount = manifest.Entries?.Count ?? 0;
+                        if (cjk2PrefilterIds.Count > 0 && entryCount > 0)
+                        {
+                            double passRatio = (double)cjk2PrefilterIds.Count / entryCount;
+                            if (passRatio > Math.Clamp(Options.CjkBigramPrefilterMaxPassRatio, 0.01, 1.0))
+                            {
+                                Dbg($"CJK2 prefilter disabled (passRatio={passRatio:0.###} too broad).");
+                                cjk2PrefilterIds = null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Dbg($"CJK2 prefilter unavailable: {ex.Message}");
+            }
+        }
 
         bool sideAllowed(SearchSide s)
             => (s == SearchSide.Original && includeOriginal) ||
@@ -1527,6 +1834,10 @@ public sealed class SearchIndexService : IDisposable
                 {
                     Dbg($"Candidate phase bloom: bin missing '{binFull}'");
                 }
+                else if (cjk2PrefilterIds != null && cjk2PrefilterIds.Count == 0)
+                {
+                    Dbg("Candidate phase bloom skipped by empty CJK2 prefilter set.");
+                }
                 else
                 {
                     var swBloom = System.Diagnostics.Stopwatch.StartNew();
@@ -1565,6 +1876,7 @@ public sealed class SearchIndexService : IDisposable
                             if (!sideAllowed(e.Side)) return local;
                             if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return local;
                             if (relPathFilter != null && !relPathFilter(e.RelPath)) return local;
+                            if (cjk2PrefilterIds != null && !cjk2PrefilterIds.Contains(e.Id)) return local;
 
                             try
                             {

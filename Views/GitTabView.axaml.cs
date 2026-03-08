@@ -33,6 +33,7 @@ public partial class GitTabView : UserControl
         "search.index.manifest.json",
         "search.text.manifest.json",
         "search.text.bin",
+        "search.cjk2.manifest.json",
         "search.index.bin",
         "index.debug.log",
         "*.log"
@@ -77,6 +78,7 @@ public partial class GitTabView : UserControl
 
     private string? _lastContribBranch;
     private string? _lastCommunityBranch;
+    private string? _username;
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
@@ -218,6 +220,11 @@ public partial class GitTabView : UserControl
     {
         _selectedRelPath = string.IsNullOrWhiteSpace(relPath) ? null : NormalizeRel(relPath);
         UpdateSelectedLabel();
+    }
+
+    public void SetUsername(string? username)
+    {
+        _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
     private void UpdateSelectedLabel()
@@ -1028,7 +1035,7 @@ public partial class GitTabView : UserControl
 
             string msg = (_txtCommitMessage?.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(msg))
-                msg = "Translation update: " + Path.GetFileName(cbetaRel);
+                msg = BuildDefaultTranslationCommitMessage(cbetaRel);
 
             string branchName = MakeBranchName(cbetaRel);
 
@@ -1292,7 +1299,7 @@ public partial class GitTabView : UserControl
             string head = $"{prHeadOwner}:{_lastContribBranch}";
             string title = (_txtCommitMessage?.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(title))
-                title = "Translation update";
+                title = BuildDefaultPrTitle();
 
             string body =
                 "Created by CbetaTranslator.\n\n" +
@@ -1461,6 +1468,24 @@ public partial class GitTabView : UserControl
         return $"contrib/{core}/{ts}";
     }
 
+    private string BuildDefaultTranslationCommitMessage(string cbetaRel)
+    {
+        string fileName = Path.GetFileName((cbetaRel ?? "").Replace('/', Path.DirectorySeparatorChar));
+        if (string.IsNullOrWhiteSpace(fileName))
+            fileName = "selected-file";
+
+        return $"{GetUsernameForDefaults()}: Translation update: {fileName}";
+    }
+
+    private string BuildDefaultCommunityCommitMessage()
+        => $"{GetUsernameForDefaults()}: Community data: approved TM + termbase update";
+
+    private string BuildDefaultPrTitle()
+        => $"{GetUsernameForDefaults()}: Translation update";
+
+    private string GetUsernameForDefaults()
+        => string.IsNullOrWhiteSpace(_username) ? "User" : _username!.Trim();
+
     private static string NormalizeRel(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
 
@@ -1609,7 +1634,7 @@ public partial class GitTabView : UserControl
 
             string msg = (_txtCommitMessage?.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(msg))
-                msg = "Community data: approved TM + termbase update";
+                msg = BuildDefaultCommunityCommitMessage();
 
             string branchName = $"community/data/{DateTime.Now:yyyyMMdd-HHmmss}";
 

@@ -898,22 +898,31 @@ public partial class TranslationTabView : UserControl
         if (hits != null && !string.IsNullOrWhiteSpace(zhText))
         {
             string docText = _editor.Document?.Text ?? "";
-            int zhStart = docText.IndexOf(zhText, StringComparison.Ordinal);
-            if (zhStart >= 0)
+            int? preferredOccurrenceHint =
+                _lastAssistantSnapshot != null && _lastAssistantSnapshot.Segment.BlockNumber > 0
+                    ? _lastAssistantSnapshot.Segment.BlockNumber - 1
+                    : null;
+            var signalTerms = hits
+                .Select(h => h.SourceTerm)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+
+            if (TryFindSegmentRange(
+                docText,
+                zhText,
+                signalTerms,
+                tmSourceSignal: null,
+                preferredOffset: _editor.TextArea?.Caret?.Offset,
+                preferredOccurrenceHint: preferredOccurrenceHint,
+                anchorTextSignal: _lastAssistantSnapshot?.Segment?.ZhContextText,
+                out int zhStart,
+                out int zhLength))
             {
-                int zhEnd = zhStart + zhText.Length;
                 foreach (var hit in hits)
                 {
                     if (string.IsNullOrWhiteSpace(hit.SourceTerm)) continue;
-                    int from = zhStart;
-                    while (from < zhEnd)
-                    {
-                        int idx = docText.IndexOf(hit.SourceTerm, from,
-                            Math.Max(0, zhEnd - from), StringComparison.Ordinal);
-                        if (idx < 0) break;
-                        ranges.Add((idx, hit.SourceTerm.Length));
-                        from = idx + 1;
-                    }
+                    AddTermOccurrencesInSegment(ranges, docText, zhStart, zhLength, hit.SourceTerm);
                 }
             }
         }
@@ -949,11 +958,26 @@ public partial class TranslationTabView : UserControl
             if (best != null && !string.IsNullOrWhiteSpace(best.SourceText))
             {
                 string docText = _editor.Document?.Text ?? "";
-                int zhStart = docText.IndexOf(zhText, StringComparison.Ordinal);
-                if (zhStart >= 0)
+                int? preferredOccurrenceHint =
+                    _lastAssistantSnapshot != null && _lastAssistantSnapshot.Segment.BlockNumber > 0
+                        ? _lastAssistantSnapshot.Segment.BlockNumber - 1
+                        : null;
+                if (TryFindSegmentRange(
+                    docText,
+                    zhText,
+                    signalTerms: null,
+                    tmSourceSignal: best.SourceText,
+                    preferredOffset: _editor.TextArea?.Caret?.Offset,
+                    preferredOccurrenceHint: preferredOccurrenceHint,
+                    anchorTextSignal: _lastAssistantSnapshot?.Segment?.ZhContextText,
+                    out int zhStart,
+                    out int zhLength))
                 {
+                    // Anchor by the rendered ZH segment in the editor (not raw input ZH),
+                    // then map shared ranges inside that anchored segment.
+                    string anchoredZh = docText.Substring(zhStart, zhLength);
                     var sharedInZh = CjkMatchNormalizer.FindSharedRawRanges(
-                        zhText,
+                        anchoredZh,
                         best.SourceText,
                         minPhraseLen: 2);
                     foreach (var r in sharedInZh)
@@ -964,6 +988,220 @@ public partial class TranslationTabView : UserControl
 
         _tmSharedHighlighter.SetRanges(ranges);
         _editor.TextArea.TextView.Redraw();
+    }
+
+    private static bool TryFindSegmentRange(
+        string docText,
+        string segmentText,
+        IReadOnlyList<string>? signalTerms,
+        string? tmSourceSignal,
+        int? preferredOffset,
+        int? preferredOccurrenceHint,
+        string? anchorTextSignal,
+        out int start,
+        out int length)
+    {
+        start = -1;
+        length = 0;
+        if (string.IsNullOrEmpty(docText) || string.IsNullOrEmpty(segmentText))
+            return false;
+
+        var candidates = new List<(int start, int length)>();
+        var seen = new HashSet<(int start, int length)>();
+
+        int from = 0;
+        while (from < docText.Length)
+        {
+            int idx = docText.IndexOf(segmentText, from, StringComparison.Ordinal);
+            if (idx < 0) break;
+            var c = (idx, segmentText.Length);
+            if (seen.Add(c)) candidates.Add(c);
+            from = idx + 1;
+        }
+
+        bool cjkSeg = CjkMatchNormalizer.ContainsCjk(segmentText);
+        var nDoc = cjkSeg ? CjkMatchNormalizer.NormalizeWithMap(docText) : null;
+        string nSeg = cjkSeg ? CjkMatchNormalizer.Normalize(segmentText) : "";
+        if (cjkSeg && !string.IsNullOrEmpty(nSeg) && !string.IsNullOrEmpty(nDoc!.Normalized))
+        {
+            int nFrom = 0;
+            while (nFrom < nDoc.Normalized.Length)
+            {
+                int nIdx = nDoc.Normalized.IndexOf(nSeg, nFrom, StringComparison.Ordinal);
+                if (nIdx < 0) break;
+
+                int rawStart = CjkMatchNormalizer.RawIndexFromNormalizedPos(nDoc, nIdx);
+                int rawEnd = CjkMatchNormalizer.RawIndexFromNormalizedPos(nDoc, nIdx + nSeg.Length);
+                if (rawEnd > rawStart)
+                {
+                    var c = (rawStart, rawEnd - rawStart);
+                    if (seen.Add(c)) candidates.Add(c);
+                }
+
+                nFrom = nIdx + 1;
+            }
+        }
+
+        if (candidates.Count == 0)
+            return false;
+
+        int AnchorSharedScore(string segRaw, string? signal)
+        {
+            if (string.IsNullOrWhiteSpace(signal))
+                return 0;
+
+            if (CjkMatchNormalizer.ContainsCjk(segRaw) || CjkMatchNormalizer.ContainsCjk(signal))
+            {
+                int shared = 0;
+                var ranges = CjkMatchNormalizer.FindSharedRawRanges(segRaw, signal, minPhraseLen: 2);
+                for (int i = 0; i < ranges.Count; i++)
+                    shared += Math.Max(1, ranges[i].Length);
+                return shared;
+            }
+
+            return segRaw.Contains(signal, StringComparison.Ordinal) ? Math.Max(2, signal.Length) : 0;
+        }
+
+        (int score, int tmSharedTotal, int termSignalHits, int anchorSharedTotal, int proximity) Score((int start, int length) c)
+        {
+            int docLen = docText.Length;
+            int segStart = Math.Clamp(c.start, 0, Math.Max(0, docLen - 1));
+            int segEnd = Math.Clamp(segStart + c.length, 0, docLen);
+            if (segEnd <= segStart) return (int.MinValue / 4, 0, 0, 0, int.MaxValue);
+
+            string segRaw = docText.Substring(segStart, segEnd - segStart);
+            int score = 0;
+            int tmSharedTotal = 0;
+            int termSignalHits = 0;
+
+            if (signalTerms != null)
+            {
+                foreach (var term in signalTerms)
+                {
+                    if (string.IsNullOrWhiteSpace(term)) continue;
+                    if (!CjkMatchNormalizer.ContainsCjk(term))
+                    {
+                        if (segRaw.Contains(term, StringComparison.Ordinal))
+                        {
+                            score += 4;
+                            termSignalHits++;
+                        }
+                        continue;
+                    }
+
+                    string nTerm = CjkMatchNormalizer.Normalize(term);
+                    if (string.IsNullOrEmpty(nTerm)) continue;
+                    string nSegRaw = CjkMatchNormalizer.Normalize(segRaw);
+                    if (nSegRaw.Contains(nTerm, StringComparison.Ordinal))
+                    {
+                        score += 6;
+                        termSignalHits++;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(tmSourceSignal))
+            {
+                var shared = CjkMatchNormalizer.FindSharedRawRanges(segRaw, tmSourceSignal, minPhraseLen: 2);
+                foreach (var r in shared)
+                {
+                    int s = Math.Max(1, r.Length);
+                    score += s;
+                    tmSharedTotal += s;
+                }
+            }
+
+            int anchorSharedTotal = AnchorSharedScore(segRaw, anchorTextSignal);
+            score += anchorSharedTotal;
+
+            int proximity = preferredOffset.HasValue ? Math.Abs(segStart - preferredOffset.Value) : int.MaxValue;
+            return (score, tmSharedTotal, termSignalHits, anchorSharedTotal, proximity);
+        }
+
+        var orderedByStart = candidates
+            .OrderBy(c => c.start)
+            .ToList();
+
+        int OccurrenceProximity((int start, int length) c)
+        {
+            if (!preferredOccurrenceHint.HasValue)
+                return int.MaxValue;
+
+            for (int i = 0; i < orderedByStart.Count; i++)
+            {
+                if (orderedByStart[i].start == c.start && orderedByStart[i].length == c.length)
+                    return Math.Abs(i - preferredOccurrenceHint.Value);
+            }
+
+            return int.MaxValue;
+        }
+
+        // Deterministic tie-break: score first, then stronger secondary signals,
+        // then proximity hint (if available), then raw start.
+        var best = candidates
+            .Select(c => (candidate: c, key: Score(c)))
+            .OrderByDescending(x => x.key.score)
+            .ThenByDescending(x => x.key.tmSharedTotal)
+            .ThenByDescending(x => x.key.termSignalHits)
+            .ThenByDescending(x => x.key.anchorSharedTotal)
+            .ThenBy(x => OccurrenceProximity(x.candidate))
+            .ThenBy(x => x.key.proximity)
+            .ThenBy(x => x.candidate.start)
+            .First().candidate;
+
+        start = best.start;
+        length = best.length;
+        return true;
+    }
+
+    private static void AddTermOccurrencesInSegment(
+        List<(int Start, int Length)> ranges,
+        string docText,
+        int segmentStart,
+        int segmentLength,
+        string term)
+    {
+        if (string.IsNullOrWhiteSpace(term) || segmentLength <= 0)
+            return;
+
+        int segmentEnd = Math.Min(docText.Length, segmentStart + segmentLength);
+        if (segmentStart < 0 || segmentStart >= segmentEnd)
+            return;
+
+        if (!CjkMatchNormalizer.ContainsCjk(term))
+        {
+            int from = segmentStart;
+            while (from < segmentEnd)
+            {
+                int max = segmentEnd - from;
+                if (max <= 0) break;
+                int idx = docText.IndexOf(term, from, max, StringComparison.Ordinal);
+                if (idx < 0) break;
+                ranges.Add((idx, term.Length));
+                from = idx + 1;
+            }
+            return;
+        }
+
+        string segmentRaw = docText.Substring(segmentStart, segmentEnd - segmentStart);
+        var nSeg = CjkMatchNormalizer.NormalizeWithMap(segmentRaw);
+        string nTerm = CjkMatchNormalizer.Normalize(term);
+        if (string.IsNullOrEmpty(nSeg.Normalized) || string.IsNullOrEmpty(nTerm))
+            return;
+
+        int fromNorm = 0;
+        while (fromNorm < nSeg.Normalized.Length)
+        {
+            int nIdx = nSeg.Normalized.IndexOf(nTerm, fromNorm, StringComparison.Ordinal);
+            if (nIdx < 0) break;
+
+            int rawStartLocal = CjkMatchNormalizer.RawIndexFromNormalizedPos(nSeg, nIdx);
+            int rawEndLocal = CjkMatchNormalizer.RawIndexFromNormalizedPos(nSeg, nIdx + nTerm.Length);
+            if (rawEndLocal > rawStartLocal)
+                ranges.Add((segmentStart + rawStartLocal, rawEndLocal - rawStartLocal));
+
+            fromNorm = nIdx + 1;
+        }
     }
 
     private void JumpToChineseInEnglishLine()
@@ -1563,6 +1801,12 @@ STRICT RULES:
                             RelPath = capturedMatch.RelPath,
                             Side = SearchSide.Original,  // navigate to the Chinese source pane
                             MatchText = capturedMatch.SourceText,
+                            // Stable tie-break hint for repeated identical source segments.
+                            AnchorOccurrenceHint = capturedMatch.BlockNumber > 0 ? capturedMatch.BlockNumber - 1 : null,
+                            // Soft text signal used only to break ties when context is missing.
+                            AnchorTextSignal = string.IsNullOrWhiteSpace(snapshot.Segment?.ZhContextText)
+                                ? snapshot.Segment?.ZhText
+                                : snapshot.Segment?.ZhContextText,
                         });
                     }
                 },

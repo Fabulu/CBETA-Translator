@@ -552,7 +552,18 @@ public partial class MainWindow : Window
             MaybeAutoFillFromExactMatch(snapshot);
             _translationView.UpdateTermbaseHighlights(snapshot?.Terms, _currentSegmentContext?.ZhText);
             _translationView.UpdateTmSharedHighlights(snapshot?.ApprovedMatches, snapshot?.ReferenceMatches, _currentSegmentContext?.ZhText);
-            _readableView?.UpdateTermbaseHighlights(snapshot?.Terms, _currentSegmentContext?.ZhText);
+            int? readableOccurrenceHint =
+                _currentSegmentContext != null && _currentSegmentContext.BlockNumber > 0
+                    ? _currentSegmentContext.BlockNumber - 1
+                    : null;
+            string? readableAnchorSignal = string.IsNullOrWhiteSpace(_currentSegmentContext?.ZhContextText)
+                ? null
+                : _currentSegmentContext.ZhContextText;
+            _readableView?.UpdateTermbaseHighlights(
+                snapshot?.Terms,
+                _currentSegmentContext?.ZhText,
+                preferredOccurrenceHint: readableOccurrenceHint,
+                anchorTextSignal: readableAnchorSignal);
             await RefreshReviewBadgeAsync();
         }
         catch
@@ -1258,6 +1269,12 @@ public partial class MainWindow : Window
 
         if (_readableView != null)
             _readableView.DefaultResp = _config.Username ?? "";
+
+        try
+        {
+            _gitView?.SetUsername(_config.Username);
+        }
+        catch { }
     }
 
     // -------------------------

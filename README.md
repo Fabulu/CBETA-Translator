@@ -66,9 +66,9 @@ You can quickly narrow things down with:
 
 ### Translation status colors
 
-- üî¥ Red = not translated
-- üü° Yellow = partially translated
-- üü¢ Green = fully translated
+- ?? Red = not translated
+- ?? Yellow = partially translated
+- ?? Green = fully translated
 
 ---
 
@@ -81,7 +81,7 @@ The **Readable** view shows:
 - **Left:** Chinese
 - **Right:** English translation
 
-If a translation does not exist yet, you‚Äôll see Chinese on both sides.
+If a translation does not exist yet, youíll see Chinese on both sides.
 
 ### Linked reading (both sides stay in sync)
 
@@ -113,6 +113,8 @@ Example note format:
 <note type="community" resp="optional">Text</note>
 ```
 
+If you set your username in the app, it is used to prefill the note attribution (`resp`) when adding community notes.
+
 Nice community habit idea: if you submit a translation, add a short footnote near the beginning saying what method you used (manual, AI-assisted, which model/tool, how heavily edited, etc.). That makes review easier for everyone.
 
 ---
@@ -128,12 +130,28 @@ There is one main translation editing view, and it is built for actual work:
 - preserving the file structure as much as possible
 - avoiding accidental breakage
 
+The app tracks your username for translation accountability.
+
 When you save, the app automatically:
 
 - writes the file
 - refreshes the rendered view
 - updates caches
 - recalculates translation status
+
+Translated files also include a translator accountability footnote with your username and translated block range / blocks translated.
+
+### New translation workflow upgrades
+
+- Translation Assistant exists directly inside this view and supports translation memory (TM) + termbase + QA while you translate.
+- Translation Assistant panel supports:
+  - approved TM suggestions
+  - reference/AI TM suggestions
+  - termbase hits
+  - inline QA warnings
+- Double-click from Search **or** Translation Assistant opens the text at the exact spot in Readable view.
+- Segment review states are built in (`Approve`, `Needs work`, `Reject`) for cleaner team review flow.
+- Search/assistant navigation into this view is more robust for repeated phrases and cross-tag text.
 
 This is the core workflow of the app.
 
@@ -152,6 +170,14 @@ There is a built-in advanced search for the whole corpus:
 
 First-time indexing can take a bit (big corpus), but after that it is very fast.
 
+### New search upgrades
+
+- Match text is color-highlighted in search results (same visual style as Translation XML highlights).
+- Search now uses an on-disk text sidecar cache to speed up verify work, with safe fallback if cache data is missing/corrupt.
+- Optional short-CJK prefilter can reduce candidate work for short Chinese queries.
+- Progress text shows timing breakdown (`cand`, `ver`, `ui`, `total`) so bottlenecks are visible.
+- Double-click navigation/hit highlighting is more reliable when matches span line/tag boundaries.
+
 ---
 
 ## Git tab (send changes without terminal pain)
@@ -167,7 +193,12 @@ It can help you:
 - save your changes with a message
 - upload your changes
 - submit to the community repository on Github (This is called a pull request. I get to review it before it ends up public)
-- recover from local messes with a **Don‚Äôt Panic** button
+- recover from local messes with a **Donít Panic** button
+
+- Default update flow is the safe one: keep your local file edits while updating from remote.
+- A separate dangerous update option can discard local edits (with warning/confirmation).
+
+By default, the standard commit message now includes your username (still fully editable before commit).
 
 ### Git and GitHub account required
 
@@ -181,7 +212,7 @@ If you want to **submit translations**, you also need a **GitHub account**.
 
 - **Windows:** Download **Git for Windows** here: https://git-scm.com/download/win  
 - **macOS:** Download Git here: https://git-scm.com/download/mac  
-  (or install Apple‚Äôs command line tools by opening Terminal and running `xcode-select --install`)
+  (or install Appleís command line tools by opening Terminal and running `xcode-select --install`)
 - **Linux:** Download/install info here: https://git-scm.com/download/linux  
   (usually you install it with your package manager, like `apt`, `dnf`, or `pacman`)
 
@@ -213,7 +244,7 @@ sudo pacman -S git-credential-manager
 
 ## Performance (why it stays fast)
 
-This app is built for big text collections and uses caching so it doesn‚Äôt re-scan or re-render everything every time.
+This app is built for big text collections and uses caching so it doesnít re-scan or re-render everything every time.
 
 If it gets slow, that is a bug.
 
@@ -237,12 +268,12 @@ Pull requests are welcome.
 
 Main rules:
 
-- don‚Äôt break features
-- don‚Äôt break file structure
-- don‚Äôt add automatic ‚Äúcleanup‚Äù that rewrites tags
-- don‚Äôt make it slower without a good reason
+- donít break features
+- donít break file structure
+- donít add automatic ìcleanupî that rewrites tags
+- donít make it slower without a good reason
 
-If you‚Äôre unsure, open an issue first.
+If youíre unsure, open an issue first.
 
 ---
 
@@ -308,4 +339,4 @@ CBETA Translator is a practical tool for real translation work:
 
 Built for /r/zen by dota2nub.
 
-ü¶á Welcome to the canon.
+?? Welcome to the canon.
