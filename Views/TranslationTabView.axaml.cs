@@ -224,7 +224,15 @@ public partial class TranslationTabView : UserControl
             en = blocks[ix].En ?? "";
         }
 
-        // Use the selection as the primary text; fill both fields if we can identify the block
+        // If the user has a selection, use it for the appropriate field based on content
+        if (!string.IsNullOrWhiteSpace(selectedText))
+        {
+            if (ContainsChineseChar(selectedText))
+                zh = selectedText;
+            else
+                en = selectedText;
+        }
+
         var passage = new ScholarPassage
         {
             ZhText = zh,
