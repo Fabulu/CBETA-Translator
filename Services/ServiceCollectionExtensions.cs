@@ -33,6 +33,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITermbaseStorageService, TermbaseStorageService>();
         services.AddSingleton<ICommunityDataService, CommunityDataService>();
         services.AddSingleton<IMarkdownTranslationService, MarkdownTranslationService>();
+        services.AddSingleton<IScholarCollectionsService, ScholarCollectionsService>();
         return services;
     }
 }

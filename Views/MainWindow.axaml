@@ -135,6 +135,10 @@
 						<TabItem Header="Git">
 							<views:GitTabView Name="GitView"/>
 						</TabItem>
+
+						<TabItem Header="Scholar">
+							<views:ScholarTabView Name="ScholarView"/>
+						</TabItem>
 					</TabControl>
 
 					<Border Name="EmptyStateOverlay" IsVisible="True"

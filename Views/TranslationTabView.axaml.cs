@@ -80,6 +80,9 @@ public partial class TranslationTabView : UserControl
     public event EventHandler<string>? ReviewActionRequested;
     public event EventHandler? NextUnapprovedRequested;
 
+    /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
+    public event EventHandler<ScholarPassage>? AddToScholarRequested;
+
     public TranslationTabView()
     {
         _vm = new TranslationTabViewModel();
@@ -183,7 +186,53 @@ public partial class TranslationTabView : UserControl
 
             if (_editor.TextArea?.Caret != null)
                 _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegment();
+
+            _editor.ContextMenu = BuildScholarContextMenu();
         }
+    }
+
+    private ContextMenu BuildScholarContextMenu()
+    {
+        var menu = new ContextMenu();
+        var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
+        addItem.Click += (_, _) => OnAddToScholarCollection();
+        menu.Items.Add(addItem);
+        return menu;
+    }
+
+    private void OnAddToScholarCollection()
+    {
+        if (_editor == null) return;
+
+        string selectedText = _editor.SelectedText ?? "";
+        if (string.IsNullOrWhiteSpace(selectedText))
+        {
+            Status?.Invoke(this, "Select some text first, then right-click to add to Scholar.");
+            return;
+        }
+
+        // Try to determine current block's ZH and EN text from the projection format
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        int caret = _editor.CaretOffset;
+        int ix = FindBlockIndexAtOrAfterCaret(blocks, caret);
+
+        string zh = "";
+        string en = "";
+        if (ix >= 0 && ix < blocks.Count)
+        {
+            zh = blocks[ix].Zh ?? "";
+            en = blocks[ix].En ?? "";
+        }
+
+        // Use the selection as the primary text; fill both fields if we can identify the block
+        var passage = new ScholarPassage
+        {
+            ZhText = zh,
+            EnText = en,
+            SourceRelPath = _vm.CurrentOriginalPath ?? ""
+        };
+
+        AddToScholarRequested?.Invoke(this, passage);
     }
 
     private void WireEvents()

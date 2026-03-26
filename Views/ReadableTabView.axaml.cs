@@ -117,6 +117,9 @@ public partial class ReadableTabView : UserControl
 
     public event EventHandler<ReadableTabViewModel.MoveFootnoteRequest>? FootnoteMoveRequested;
 
+    /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
+    public event EventHandler<ScholarPassage>? AddToScholarRequested;
+
     // -------------------------
     // Status/log
     // -------------------------
@@ -243,8 +246,48 @@ public partial class ReadableTabView : UserControl
         _aeOrig = FindInnerTextEditor(_editorOriginal);
         _aeTran = FindInnerTextEditor(_editorTranslated);
 
-        if (_aeOrig != null) _aeOrig.IsReadOnly = true;
-        if (_aeTran != null) _aeTran.IsReadOnly = true;
+        if (_aeOrig != null)
+        {
+            _aeOrig.IsReadOnly = true;
+            _aeOrig.ContextMenu = BuildScholarContextMenu(isTranslated: false);
+        }
+        if (_aeTran != null)
+        {
+            _aeTran.IsReadOnly = true;
+            _aeTran.ContextMenu = BuildScholarContextMenu(isTranslated: true);
+        }
+    }
+
+    private ContextMenu BuildScholarContextMenu(bool isTranslated)
+    {
+        var menu = new ContextMenu();
+        var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
+        addItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated);
+        menu.Items.Add(addItem);
+        return menu;
+    }
+
+    private async Task OnAddToScholarCollectionAsync(bool isTranslated)
+    {
+        var editor = isTranslated ? _aeTran : _aeOrig;
+        if (editor == null) return;
+
+        string selectedText = editor.SelectedText ?? "";
+        if (string.IsNullOrWhiteSpace(selectedText))
+        {
+            Say("Select some text first, then right-click to add to Scholar.");
+            return;
+        }
+
+        var passage = new ScholarPassage
+        {
+            ZhText = isTranslated ? "" : selectedText,
+            EnText = isTranslated ? selectedText : "",
+            SourceRelPath = _vm.CurrentRelPathForZen ?? ""
+        };
+
+        AddToScholarRequested?.Invoke(this, passage);
+        await Task.CompletedTask;
     }
 
     private static TextEditor? FindInnerTextEditor(Control? root)

@@ -553,11 +553,20 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             dbg.AppendLine();
         }
 
+        // Capture original XML before we overwrite it, for reconciliation
+        var originalTranslatedXml = doc.TranslatedXml;
+
         string xml;
         try
         {
-            xml = SerializeWithDeclaration(tranDoc);
-            xml = InsertPrettyTagNewlines(xml); // cosmetic only
+            var serialized = SerializeWithDeclaration(tranDoc);
+            serialized = InsertPrettyTagNewlines(serialized); // cosmetic only
+
+            // Reconcile with original formatting to minimize diffs
+            if (!string.IsNullOrEmpty(originalTranslatedXml))
+                xml = ReconcileWithOriginalFormatting(originalTranslatedXml, serialized);
+            else
+                xml = serialized;
         }
         catch (Exception sx)
         {
@@ -1399,7 +1408,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             OmitXmlDeclaration = false, // always write declaration now
             Indent = false,
             NewLineChars = "\n",
-            NewLineHandling = NewLineHandling.Replace,
+            NewLineHandling = NewLineHandling.None,
             Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false)
         };
 
@@ -1436,6 +1445,16 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         return xml;
     }
+
+    /// <summary>
+    /// Reconciles newly serialized XML with the original string to preserve formatting
+    /// (indentation, line endings, whitespace) for all unchanged lines.
+    /// </summary>
+    private static string ReconcileWithOriginalFormatting(string originalXml, string newXml)
+        => XmlReconciliationHelper.ReconcileWithOriginalFormatting(originalXml, newXml);
+
+    private static string NormalizeForComparison(string line)
+        => XmlReconciliationHelper.NormalizeForComparison(line);
 
     // ============================================================
     // NODE PATHS

@@ -71,7 +71,7 @@ public sealed class MarkdownTranslationService : IMarkdownTranslationService
         if (string.IsNullOrWhiteSpace(originalXml))
             return "";
 
-        var doc = XDocument.Parse(originalXml);
+        var doc = XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace);
 
         var title = NormalizeSpace(
             (string?)doc.Descendants(Tei + "title").FirstOrDefault(t => (string?)t.Attribute("level") == "m")
