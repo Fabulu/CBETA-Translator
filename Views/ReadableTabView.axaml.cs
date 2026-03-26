@@ -1016,8 +1016,12 @@ public partial class ReadableTabView : UserControl
             // ignore clicks inside notes panel
             if (IsInsideControl(e.Source, _notesPanel)) return;
 
-            // swallow clicks while panel open unless we are in move mode
-            if (_notesPanel?.IsVisible == true && !_vm.AwaitingMoveTargetClick) return;
+            // close notes panel when clicking outside it (unless in move mode)
+            if (_notesPanel?.IsVisible == true && !_vm.AwaitingMoveTargetClick)
+            {
+                CancelMoveModeAndHideNotes();
+                return;
+            }
 
             if (IsInsideScrollbarStuff(e.Source)) return;
 
