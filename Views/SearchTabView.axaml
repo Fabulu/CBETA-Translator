@@ -1,7 +1,9 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:models="clr-namespace:CbetaTranslator.App.Models"
-             x:Class="CbetaTranslator.App.Views.SearchTabView">
+             xmlns:vm="using:CbetaTranslator.App.ViewModels"
+             x:Class="CbetaTranslator.App.Views.SearchTabView"
+             x:DataType="vm:SearchTabViewModel">
 
 	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
 
@@ -13,7 +15,7 @@
                 Padding="10"
                 CornerRadius="8">
 
-			<Grid RowDefinitions="Auto,Auto"
+			<Grid RowDefinitions="Auto,Auto,Auto"
                   ColumnDefinitions="*,Auto,Auto,Auto"
                   RowSpacing="8"
                   ColumnSpacing="8">
@@ -22,11 +24,23 @@
                          Grid.Row="0"
                          Grid.Column="0"
                          HorizontalAlignment="Stretch"
-                         Watermark="Search (CJK phrases, substrings)…"/>
+                         Text="{Binding Query}"
+                         Watermark="Search (CJK phrases, substrings)&#x2026;"
+                         ToolTip.Tip="Enter Chinese characters or phrases to search"/>
 
-				<Button Name="BtnSearch" Grid.Row="0" Grid.Column="1" Content="Search"/>
-				<Button Name="BtnCancel" Grid.Row="0" Grid.Column="2" Content="Cancel" IsEnabled="False"/>
-				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3" Content="Build/Update Index"/>
+				<Button Grid.Row="0" Grid.Column="1"
+                        Content="Search"
+                        Command="{Binding SearchCommand}"
+                        ToolTip.Tip="Search the corpus"/>
+				<Button Grid.Row="0" Grid.Column="2"
+                        Content="Cancel"
+                        IsEnabled="{Binding IsCancelEnabled}"
+                        Command="{Binding CancelSearchCommand}"
+                        ToolTip.Tip="Cancel current search"/>
+				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3"
+                        Content="Build/Update Index"
+                        Command="{Binding BuildIndexCommand}"
+                        ToolTip.Tip="Build or update the search index. Hold Shift and click to force a full rebuild."/>
 
 				<!-- Row 1 -->
 				<Grid Grid.Row="1"
@@ -36,15 +50,15 @@
                       ColumnSpacing="14">
 
 					<!-- Left cluster -->
-					<CheckBox Name="ChkOriginal"
-                              Grid.Column="0"
+					<CheckBox Grid.Column="0"
                               Content="Original"
-                              IsChecked="True"/>
+                              IsChecked="{Binding SearchOriginal}"
+                              ToolTip.Tip="Search in original Chinese texts"/>
 
-					<CheckBox Name="ChkTranslated"
-                              Grid.Column="1"
+					<CheckBox Grid.Column="1"
                               Content="Translated"
-                              IsChecked="False"/>
+                              IsChecked="{Binding SearchTranslated}"
+                              ToolTip.Tip="Search in translated English texts"/>
 
 					<TextBlock Grid.Column="2"
                                Text="Status:"
@@ -52,9 +66,11 @@
                                Margin="10,0,0,0"
                                Classes="muted"/>
 
-					<ComboBox Name="CmbStatus"
-                              Grid.Column="3"
-                              Width="160"/>
+					<ComboBox Grid.Column="3"
+                              Width="160"
+                              ItemsSource="{Binding StatusItems}"
+                              SelectedIndex="{Binding SelectedStatusIndex}"
+                              ToolTip.Tip="Filter results by translation status"/>
 
 					<TextBlock Grid.Column="4"
                                Text="Context:"
@@ -62,20 +78,29 @@
                                Margin="10,0,0,0"
                                Classes="muted"/>
 
-					<ComboBox Name="CmbContext"
-                              Grid.Column="5"
-                              Width="120"/>
-
-					<!-- Filler -->
-					<Border Grid.Column="8"/>
+					<ComboBox Grid.Column="5"
+                              Width="120"
+                              ItemsSource="{Binding ContextItems}"
+                              SelectedIndex="{Binding SelectedContextIndex}"
+                              ToolTip.Tip="Number of surrounding characters to show in results"/>
 
 					<!-- Right cluster (Zen-only) -->
-					<CheckBox Name="ChkZenOnly"
-                              Grid.Column="9"
-                              Content="Zen texts"
+					<CheckBox Grid.Column="8"
+                              Content="Zen Texts Only"
                               VerticalAlignment="Center"
-                              HorizontalAlignment="Right"/>
+                              HorizontalAlignment="Right"
+                              IsChecked="{Binding ZenOnly}"
+                              ToolTip.Tip="Search only in texts flagged as Zen/Chan Buddhist texts"/>
 				</Grid>
+
+				<!-- Validation message -->
+				<TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"
+                           Text="{Binding ValidationMessage}"
+                           Foreground="{DynamicResource ErrorFg}"
+                           FontSize="12"
+                           IsVisible="{Binding HasValidationError}"
+                           Margin="0,4,0,0"
+                           VerticalAlignment="Bottom"/>
 
 			</Grid>
 		</Border>
@@ -93,22 +118,22 @@
 			<DockPanel LastChildFill="True">
 
 				<!-- Left -->
-				<TextBlock Name="TxtSummary"
-                           DockPanel.Dock="Left"
+				<TextBlock DockPanel.Dock="Left"
                            VerticalAlignment="Center"
-                           Text="Ready."
+                           Text="{Binding SummaryText}"
                            Classes="muted"/>
 
 				<!-- Right -->
-				<Button Name="BtnExportTsv"
-                        DockPanel.Dock="Right"
-                        Content="Export TSV"
-                        IsEnabled="False"/>
+				<Button DockPanel.Dock="Right"
+                        Name="BtnExportTsv"
+                        Content="Export Results"
+                        IsEnabled="{Binding IsExportEnabled}"
+                        ToolTip.Tip="Export search results as a tab-separated values (.tsv) file"/>
 
 				<!-- Center (fills space) -->
-				<TextBlock Name="TxtProgress"
-                           Margin="20,0,20,0"
+				<TextBlock Margin="20,0,20,0"
                            VerticalAlignment="Center"
+                           Text="{Binding ProgressText}"
                            TextWrapping="Wrap"
                            Classes="muted"/>
 
@@ -125,20 +150,22 @@
                 CornerRadius="8"
                 Padding="8">
 
-			<Expander Name="ExpCooc" IsExpanded="False">
+			<Expander IsExpanded="False">
 
 				<Expander.Header>
 					<DockPanel LastChildFill="True">
-						<TextBlock Text="" DockPanel.Dock="Left" />
-						<ComboBox Name="CmbCoocMetric"
-                                  DockPanel.Dock="Right"
-                                  Width="220"/>
+						<TextBlock Text="Co-occurrence Analysis" DockPanel.Dock="Left" FontWeight="SemiBold"/>
+						<ComboBox DockPanel.Dock="Right"
+                                  Width="220"
+                                  ItemsSource="{Binding CoocMetricItems}"
+                                  SelectedIndex="{Binding SelectedCoocMetricIndex}"
+                                  ToolTip.Tip="Select statistical metric for co-occurrence analysis"/>
 					</DockPanel>
 				</Expander.Header>
 
 				<Grid MaxHeight="360">
 
-					<Grid Name="GridMetricView"
+					<Grid IsVisible="{Binding IsMetricViewVisible}"
                           ColumnDefinitions="*,*"
                           RowDefinitions="Auto,*"
                           ColumnSpacing="10"
@@ -148,8 +175,7 @@
                                     Grid.ColumnSpan="2"
                                     Orientation="Horizontal"
                                     Spacing="12">
-							<TextBlock Name="TxtCoocSummary"
-                                       Text="No data yet."
+							<TextBlock Text="{Binding CoocSummaryText}"
                                        Classes="muted"/>
 						</StackPanel>
 
@@ -159,10 +185,9 @@
                                 CornerRadius="6"
                                 Padding="8">
 							<StackPanel Spacing="6">
-								<TextBlock Name="TxtLeftTitle"
-                                           Text="Left"
+								<TextBlock Text="{Binding LeftTitle}"
                                            Classes="muted"/>
-								<ListBox Name="LstCoocChars" Height="220"/>
+								<ListBox ItemsSource="{Binding CoocChars}" Height="220"/>
 							</StackPanel>
 						</Border>
 
@@ -172,11 +197,10 @@
                                 CornerRadius="6"
                                 Padding="8">
 							<StackPanel Spacing="6">
-								<TextBlock Name="TxtRightTitle"
-                                           Text="Right"
+								<TextBlock Text="{Binding RightTitle}"
                                            Classes="muted"/>
-								<ListBox Name="LstCoocNgrams" Height="220"/>
-								<TextBlock Name="TxtZipf"
+								<ListBox ItemsSource="{Binding CoocNgrams}" Height="220"/>
+								<TextBlock Text="{Binding ZipfText}"
                                            TextWrapping="Wrap"
                                            Classes="muted"/>
 							</StackPanel>
@@ -185,8 +209,7 @@
 					</Grid>
 
 					<!-- Metric guide -->
-					<ScrollViewer Name="ScrollMetricGuide"
-                                  IsVisible="False"
+					<ScrollViewer IsVisible="{Binding IsMetricGuideVisible}"
                                   MaxHeight="360"
                                   VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled">
@@ -194,7 +217,7 @@
 						<Border Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="10">
-							<TextBlock Name="TxtMetricGuide"
+							<TextBlock Text="{Binding MetricGuideText}"
                                        TextWrapping="Wrap"/>
 						</Border>
 
@@ -216,39 +239,50 @@
                 CornerRadius="8"
                 Padding="8">
 
-			<TreeView Name="ResultsTree"
-                      Background="{DynamicResource ControlBg}"
-                      BorderBrush="{DynamicResource BorderBrush}"
-                      BorderThickness="1">
+			<Grid>
+				<TreeView Name="ResultsTree"
+                          ItemsSource="{Binding ResultGroups}"
+                          Background="{DynamicResource ControlBg}"
+                          BorderBrush="{DynamicResource BorderBrush}"
+                          BorderThickness="1">
 
-				<TreeView.DataTemplates>
+					<TreeView.DataTemplates>
 
-					<TreeDataTemplate DataType="models:SearchResultGroup"
-                                      ItemsSource="{Binding Children}">
-						<TextBlock Text="{Binding HeaderText}"
-                                   ToolTip.Tip="{Binding Tooltip}"
-                                   TextWrapping="NoWrap"/>
-					</TreeDataTemplate>
-
-					<DataTemplate DataType="models:SearchResultChild">
-						<StackPanel Orientation="Horizontal" Spacing="0">
-							<TextBlock Text="{Binding SideLabel}"
-                                       Classes="muted"
+						<TreeDataTemplate DataType="models:SearchResultGroup"
+                                          ItemsSource="{Binding Children}">
+							<TextBlock Text="{Binding HeaderText}"
+                                       ToolTip.Tip="{Binding Tooltip}"
                                        TextWrapping="NoWrap"/>
-							<TextBlock Text="{Binding LeftText}"
-                                       TextWrapping="NoWrap"/>
-							<TextBlock Text="{Binding MatchText}"
-                                       TextWrapping="NoWrap"
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
-							<TextBlock Text="{Binding RightText}"
-                                       TextWrapping="NoWrap"/>
-						</StackPanel>
-					</DataTemplate>
+						</TreeDataTemplate>
 
-				</TreeView.DataTemplates>
+						<DataTemplate DataType="models:SearchResultChild">
+							<StackPanel Orientation="Horizontal" Spacing="0">
+								<TextBlock Text="{Binding SideLabel}"
+                                           Classes="muted"
+                                           TextWrapping="NoWrap"/>
+								<TextBlock Text="{Binding LeftText}"
+                                           TextWrapping="NoWrap"/>
+								<TextBlock Text="{Binding MatchText}"
+                                           TextWrapping="NoWrap"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+								<TextBlock Text="{Binding RightText}"
+                                           TextWrapping="NoWrap"/>
+							</StackPanel>
+						</DataTemplate>
 
-			</TreeView>
+					</TreeView.DataTemplates>
+
+				</TreeView>
+
+				<Border Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Padding="20">
+					<TextBlock Text="Enter a search query above and press Search to find text across the corpus.&#x0a;If this is your first time, click 'Build/Update Index' first."
+                               TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"
+                               Classes="muted"/>
+				</Border>
+			</Grid>
 
 		</Border>
 

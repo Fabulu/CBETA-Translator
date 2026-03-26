@@ -62,6 +62,16 @@
 			<SolidColorBrush x:Key="Night_MenuBg" Color="#FF151515"/>
 			<SolidColorBrush x:Key="Night_MenuItemHoverBg" Color="#FF242424"/>
 
+			<SolidColorBrush x:Key="Night_PanelBg" Color="#FF1A1A1A"/>
+			<SolidColorBrush x:Key="Night_PanelBorder" Color="#FF2E2E2E"/>
+			<SolidColorBrush x:Key="Night_PanelAltBg" Color="#FF1E1E1E"/>
+			<SolidColorBrush x:Key="Night_ErrorFg" Color="#FFE05555"/>
+			<SolidColorBrush x:Key="Night_WarningFg" Color="#FFFFC107"/>
+			<SolidColorBrush x:Key="Night_SuccessFg" Color="#FF4CAF50"/>
+			<SolidColorBrush x:Key="Night_ErrorBg" Color="#FF3A1F1F"/>
+			<SolidColorBrush x:Key="Night_WarningBg" Color="#FF3A3418"/>
+			<SolidColorBrush x:Key="Night_SuccessBg" Color="#FF1F3A1F"/>
+
 			<!-- =========================
              LIGHT PALETTE
              ========================= -->
@@ -117,6 +127,16 @@
 
 			<SolidColorBrush x:Key="Light_MenuBg" Color="#FFFFFFFF"/>
 			<SolidColorBrush x:Key="Light_MenuItemHoverBg" Color="#FFEDEDED"/>
+
+			<SolidColorBrush x:Key="Light_PanelBg" Color="#FFFAFAFA"/>
+			<SolidColorBrush x:Key="Light_PanelBorder" Color="#FFDDDDDD"/>
+			<SolidColorBrush x:Key="Light_PanelAltBg" Color="#FFF5F5F5"/>
+			<SolidColorBrush x:Key="Light_ErrorFg" Color="#FFD32F2F"/>
+			<SolidColorBrush x:Key="Light_WarningFg" Color="#FFF57F17"/>
+			<SolidColorBrush x:Key="Light_SuccessFg" Color="#FF388E3C"/>
+			<SolidColorBrush x:Key="Light_ErrorBg" Color="#FFFFEBEE"/>
+			<SolidColorBrush x:Key="Light_WarningBg" Color="#FFFFFDE7"/>
+			<SolidColorBrush x:Key="Light_SuccessBg" Color="#FFE8F5E9"/>
 
 			<!-- =========================
              ACTIVE TOKENS (runtime swapped)
@@ -174,6 +194,16 @@
 
 			<SolidColorBrush x:Key="MenuBg" Color="#FF151515"/>
 			<SolidColorBrush x:Key="MenuItemHoverBg" Color="#FF242424"/>
+
+			<SolidColorBrush x:Key="PanelBg" Color="#FF1A1A1A"/>
+			<SolidColorBrush x:Key="PanelBorder" Color="#FF2E2E2E"/>
+			<SolidColorBrush x:Key="PanelAltBg" Color="#FF1E1E1E"/>
+			<SolidColorBrush x:Key="ErrorFg" Color="#FFE05555"/>
+			<SolidColorBrush x:Key="WarningFg" Color="#FFFFC107"/>
+			<SolidColorBrush x:Key="SuccessFg" Color="#FF4CAF50"/>
+			<SolidColorBrush x:Key="ErrorBg" Color="#FF3A1F1F"/>
+			<SolidColorBrush x:Key="WarningBg" Color="#FF3A3418"/>
+			<SolidColorBrush x:Key="SuccessBg" Color="#FF1F3A1F"/>
 
 			<!-- =========================
              DICT TOOLTIP TOKENS (ONLY KEYS THE BEHAVIORS USE)

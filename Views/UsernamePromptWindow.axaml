@@ -1,7 +1,9 @@
 <!-- Views/UsernamePromptWindow.axaml -->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
         x:Class="CbetaTranslator.App.Views.UsernamePromptWindow"
+        x:DataType="vm:UsernamePromptWindowViewModel"
         Width="400" Height="230"
         Background="{DynamicResource AppBg}"
         Title="Set Your Name"
@@ -33,22 +35,22 @@
 			           FontSize="12"
 			           Foreground="{DynamicResource TextMutedFg}"
 			           TextWrapping="Wrap"/>
-			<TextBox Name="TxtUsername"
-			         MaxLength="64"
-			         Watermark="Your name…"/>
-			<TextBlock Name="TxtError"
-			           Text="Please enter at least one character."
-			           Foreground="#E05555"
+			<TextBox MaxLength="64"
+			         Watermark="Your name…"
+			         Name="TxtUsername"
+			         Text="{Binding Username}"/>
+			<TextBlock Text="Please enter at least one character."
+			           Foreground="{DynamicResource ErrorFg}"
 			           FontSize="12"
-			           IsVisible="False"/>
+			           IsVisible="{Binding ShowError}"/>
 		</StackPanel>
 
 		<Button Grid.Row="1"
-		        Name="BtnOk"
 		        Content="Continue"
 		        Width="120" Height="32"
 		        Classes="primary"
-		        HorizontalAlignment="Right"/>
+		        HorizontalAlignment="Right"
+		        Command="{Binding CommitCommand}"/>
 	</Grid>
 
 </Window>

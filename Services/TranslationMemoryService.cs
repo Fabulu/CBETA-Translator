@@ -10,7 +10,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TranslationMemoryService
+public sealed class TranslationMemoryService : ITranslationMemoryService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {

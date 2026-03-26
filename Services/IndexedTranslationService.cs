@@ -100,7 +100,7 @@ public sealed class IndexedTranslationDocument
     public List<TranslationUnit> Units { get; } = new();
 }
 
-public sealed class IndexedTranslationService
+public sealed class IndexedTranslationService : IIndexedTranslationService
 {
     private static readonly XNamespace Tei = "http://www.tei-c.org/ns/1.0";
     private static readonly XNamespace Cb = "http://www.cbeta.org/ns/1.0";

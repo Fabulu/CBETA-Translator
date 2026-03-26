@@ -15,6 +15,8 @@ using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
+using CbetaTranslator.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,16 +41,12 @@ public partial class TranslationTabView : UserControl
     private TextBlock? _txtReviewState;
     private TextBlock? _txtProgress;
     private TextEditor? _editor;
+    private Border? _emptyState;
 
-    private TranslationEditMode _currentMode = TranslationEditMode.Body;
-    private string _currentProjection = "";
+    private readonly TranslationTabViewModel _vm;
 
-    private string? _origPath;
-    private string? _tranPath;
-
-    private bool _hoverDictionaryEnabled = true;
     private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
-    private readonly ICedictDictionary _cedict = new CedictDictionaryService();
+    private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
 
     public event EventHandler<TranslationEditMode>? ModeChanged;
     public event EventHandler? SaveRequested;
@@ -78,14 +76,26 @@ public partial class TranslationTabView : UserControl
     private StackPanel? _qaHost;
 
     private readonly List<IDisposable> _assistantHoverDisposables = new();
-    private Func<string, string>? _assistantTitleResolver;
-    private TranslationAssistantSnapshot? _lastAssistantSnapshot;
 
     public event EventHandler<string>? ReviewActionRequested;
     public event EventHandler? NextUnapprovedRequested;
 
     public TranslationTabView()
     {
+        _vm = new TranslationTabViewModel();
+        DataContext = _vm;
+
+        // Forward VM events to code-behind events (MainWindow subscribes to these)
+        _vm.ModeChanged += (_, mode) => ModeChanged?.Invoke(this, mode);
+        _vm.SaveRequested += (_, e) => SaveRequested?.Invoke(this, e);
+        _vm.RevertRequested += (_, e) => RevertRequested?.Invoke(this, e);
+        _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
+        _vm.BuildReferenceTmRequested += (_, e) => BuildReferenceTmRequested?.Invoke(this, e);
+        _vm.ManageTermsRequested += (_, e) => ManageTermsRequested?.Invoke(this, e);
+        _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
+        _vm.ReviewActionRequested += (_, action) => ReviewActionRequested?.Invoke(this, action);
+        _vm.NextUnapprovedRequested += (_, e) => NextUnapprovedRequested?.Invoke(this, e);
+
         AvaloniaXamlLoader.Load(this);
         FindControls();
         WireEvents();
@@ -138,6 +148,25 @@ public partial class TranslationTabView : UserControl
         _referenceTmHost = this.FindControl<StackPanel>("ReferenceTmHost");
         _termHost = this.FindControl<StackPanel>("TermHost");
         _qaHost = this.FindControl<StackPanel>("QaHost");
+
+        _emptyState = this.FindControl<Border>("TranslationEmptyState");
+
+        // Color-code review buttons
+        if (_btnApproveSegment != null)
+        {
+            _btnApproveSegment.Background = new SolidColorBrush(Color.Parse("#1F3A1F"));
+            _btnApproveSegment.Foreground = new SolidColorBrush(Color.Parse("#4CAF50"));
+        }
+        if (_btnNeedsWorkSegment != null)
+        {
+            _btnNeedsWorkSegment.Background = new SolidColorBrush(Color.Parse("#3A3418"));
+            _btnNeedsWorkSegment.Foreground = new SolidColorBrush(Color.Parse("#FFC107"));
+        }
+        if (_btnRejectSegment != null)
+        {
+            _btnRejectSegment.Background = new SolidColorBrush(Color.Parse("#3A1F1F"));
+            _btnRejectSegment.Foreground = new SolidColorBrush(Color.Parse("#E05555"));
+        }
 
         if (_editor != null)
         {
@@ -212,44 +241,16 @@ public partial class TranslationTabView : UserControl
 
     public void SetAssistantTitleResolver(Func<string, string>? resolver)
     {
-        _assistantTitleResolver = resolver;
-        if (_lastAssistantSnapshot != null)
-            RenderAssistantSnapshot(_lastAssistantSnapshot);
+        _vm.SetAssistantTitleResolver(resolver);
+        if (_vm.LastAssistantSnapshot != null)
+            RenderAssistantSnapshot(_vm.LastAssistantSnapshot);
     }
 
     public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc)
     {
-        if (_txtReviewState == null)
-            return;
-
-        status = (status ?? "").Trim().ToLowerInvariant();
-
-        if (string.IsNullOrWhiteSpace(status))
-        {
-            _txtReviewState.Text = "Unreviewed";
-            return;
-        }
-
-        string stateLabel = status switch
-        {
-            TranslationReviewStatuses.Approved => "Approved",
-            TranslationReviewStatuses.NeedsWork => "Needs work",
-            TranslationReviewStatuses.Rejected => "Rejected",
-            _ => status
-        };
-
-        if (!string.IsNullOrWhiteSpace(reviewer) && reviewedUtc.HasValue)
-        {
-            _txtReviewState.Text = $"{stateLabel} — {reviewer} — {reviewedUtc.Value.ToLocalTime():yyyy-MM-dd HH:mm}";
-        }
-        else if (!string.IsNullOrWhiteSpace(reviewer))
-        {
-            _txtReviewState.Text = $"{stateLabel} — {reviewer}";
-        }
-        else
-        {
-            _txtReviewState.Text = stateLabel;
-        }
+        _vm.SetCurrentReviewState(status, reviewer, reviewedUtc);
+        if (_txtReviewState != null)
+            _txtReviewState.Text = _vm.ReviewStateText;
     }
 
     private void UpdateAssistantVisibility()
@@ -270,29 +271,31 @@ public partial class TranslationTabView : UserControl
     }
 
     public string GetCurrentProjectionText()
-        => _editor?.Text ?? _currentProjection ?? "";
+        => _editor?.Text ?? _vm.CurrentProjection;
 
     public void SetCurrentFilePaths(string originalPath, string translatedPath)
     {
-        _origPath = originalPath;
-        _tranPath = translatedPath;
+        _vm.SetCurrentFilePaths(originalPath, translatedPath);
         UpdateModeInfo();
     }
 
     public void SetHoverDictionaryEnabled(bool enabled)
     {
-        _hoverDictionaryEnabled = enabled;
+        _vm.HoverDictionaryEnabled = enabled;
         ApplyHoverDictionarySetting();
-        ReattachAssistantHoverBehaviors();
+        if (_vm.LastAssistantSnapshot != null)
+            RenderAssistantSnapshot(_vm.LastAssistantSnapshot);
     }
 
     public void SetXml(string originalXml, string translatedXml)
     {
-        _currentProjection = translatedXml ?? "";
-        if (_editor != null) _editor.Text = _currentProjection;
+        _vm.CurrentProjection = translatedXml ?? "";
+        if (_editor != null) _editor.Text = _vm.CurrentProjection;
+        if (_emptyState != null) _emptyState.IsVisible = false;
         UpdateModeInfo();
         UpdateQuickInfo();
     }
+
 
     public string GetTranslatedXml() => GetCurrentProjectionText();
     public string GetTranslatedText() => GetCurrentProjectionText();
@@ -300,15 +303,14 @@ public partial class TranslationTabView : UserControl
 
     public void Clear()
     {
-        _currentProjection = "";
-        _origPath = null;
-        _tranPath = null;
+        _vm.Clear();
 
         if (_editor != null)
             _editor.Text = "";
 
+        if (_emptyState != null) _emptyState.IsVisible = true;
+
         SetAssistantSnapshot(null);
-        SetCurrentReviewState(null, null, null);
         UpdateModeInfo();
         UpdateModeButtons();
         UpdateQuickInfo();
@@ -316,61 +318,33 @@ public partial class TranslationTabView : UserControl
 
     private void SwitchMode(TranslationEditMode mode)
     {
-        if (_currentMode == mode) return;
+        if (_vm.CurrentMode == mode) return;
 
-        _currentMode = mode;
+        _vm.SwitchMode(mode);
+        // VM fires ModeChanged which is forwarded to our ModeChanged event
         UpdateModeInfo();
         UpdateModeButtons();
-
-        ModeChanged?.Invoke(this, mode);
     }
 
     private void UpdateModeButtons()
     {
-        if (_btnModeHead != null) _btnModeHead.IsEnabled = _currentMode != TranslationEditMode.Head;
-        if (_btnModeBody != null) _btnModeBody.IsEnabled = _currentMode != TranslationEditMode.Body;
-        if (_btnModeNotes != null) _btnModeNotes.IsEnabled = _currentMode != TranslationEditMode.Notes;
+        if (_btnModeHead != null) _btnModeHead.IsEnabled = _vm.IsModeHeadEnabled;
+        if (_btnModeBody != null) _btnModeBody.IsEnabled = _vm.IsModeBodyEnabled;
+        if (_btnModeNotes != null) _btnModeNotes.IsEnabled = _vm.IsModeNotesEnabled;
     }
 
     private void UpdateModeInfo()
     {
-        if (_txtModeInfo == null) return;
-
-        var modeText = _currentMode switch
-        {
-            TranslationEditMode.Head => "Head of File",
-            TranslationEditMode.Body => "Body of File",
-            TranslationEditMode.Notes => "Notes",
-            _ => "Translation Editor"
-        };
-
-        var fileLabel = string.IsNullOrWhiteSpace(_tranPath)
-            ? ""
-            : $" — {System.IO.Path.GetFileName(_tranPath)}";
-
-        _txtModeInfo.Text = $"{modeText}{fileLabel}";
+        _vm.UpdateModeInfo();
+        if (_txtModeInfo != null)
+            _txtModeInfo.Text = _vm.ModeInfoText;
     }
 
     private void UpdateQuickInfo()
     {
-        if (_txtQuickInfo == null)
-            return;
-
-        try
-        {
-            var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
-            int total = blocks.Count;
-            int emptyEn = blocks.Count(b => string.IsNullOrWhiteSpace(b.En));
-            int untranslated = blocks.Count(b => ShouldJumpToUntranslated(b));
-
-            _txtQuickInfo.Text = total > 0
-                ? $"Blocks: {total}  Empty EN: {emptyEn}  Untranslated: {untranslated}"
-                : "";
-        }
-        catch
-        {
-            _txtQuickInfo.Text = "";
-        }
+        _vm.UpdateQuickInfo(_editor?.Text ?? "");
+        if (_txtQuickInfo != null)
+            _txtQuickInfo.Text = _vm.QuickInfoText;
     }
 
     private void ApplyWrap()
@@ -384,7 +358,7 @@ public partial class TranslationTabView : UserControl
         if (_editor == null)
             return;
 
-        if (_hoverDictionaryEnabled)
+        if (_vm.HoverDictionaryEnabled)
             AttachHoverDictionary();
         else
             DetachHoverDictionary();
@@ -868,10 +842,9 @@ public partial class TranslationTabView : UserControl
 
     public void SetProgressStats(int approved, int needsWork, int total)
     {
-        if (_txtProgress == null) return;
-        _txtProgress.Text = total == 0
-            ? ""
-            : $"{approved}/{total} approved · {needsWork} needs work";
+        _vm.SetProgressStats(approved, needsWork, total);
+        if (_txtProgress != null)
+            _txtProgress.Text = _vm.ProgressText;
     }
 
     public bool IsEditorFocused()
@@ -899,8 +872,8 @@ public partial class TranslationTabView : UserControl
         {
             string docText = _editor.Document?.Text ?? "";
             int? preferredOccurrenceHint =
-                _lastAssistantSnapshot != null && _lastAssistantSnapshot.Segment.BlockNumber > 0
-                    ? _lastAssistantSnapshot.Segment.BlockNumber - 1
+                _vm.LastAssistantSnapshot != null && _vm.LastAssistantSnapshot.Segment.BlockNumber > 0
+                    ? _vm.LastAssistantSnapshot.Segment.BlockNumber - 1
                     : null;
             var signalTerms = hits
                 .Select(h => h.SourceTerm)
@@ -915,7 +888,7 @@ public partial class TranslationTabView : UserControl
                 tmSourceSignal: null,
                 preferredOffset: _editor.TextArea?.Caret?.Offset,
                 preferredOccurrenceHint: preferredOccurrenceHint,
-                anchorTextSignal: _lastAssistantSnapshot?.Segment?.ZhContextText,
+                anchorTextSignal: _vm.LastAssistantSnapshot?.Segment?.ZhContextText,
                 out int zhStart,
                 out int zhLength))
             {
@@ -959,8 +932,8 @@ public partial class TranslationTabView : UserControl
             {
                 string docText = _editor.Document?.Text ?? "";
                 int? preferredOccurrenceHint =
-                    _lastAssistantSnapshot != null && _lastAssistantSnapshot.Segment.BlockNumber > 0
-                        ? _lastAssistantSnapshot.Segment.BlockNumber - 1
+                    _vm.LastAssistantSnapshot != null && _vm.LastAssistantSnapshot.Segment.BlockNumber > 0
+                        ? _vm.LastAssistantSnapshot.Segment.BlockNumber - 1
                         : null;
                 if (TryFindSegmentRange(
                     docText,
@@ -969,7 +942,7 @@ public partial class TranslationTabView : UserControl
                     tmSourceSignal: best.SourceText,
                     preferredOffset: _editor.TextArea?.Caret?.Offset,
                     preferredOccurrenceHint: preferredOccurrenceHint,
-                    anchorTextSignal: _lastAssistantSnapshot?.Segment?.ZhContextText,
+                    anchorTextSignal: _vm.LastAssistantSnapshot?.Segment?.ZhContextText,
                     out int zhStart,
                     out int zhLength))
                 {
@@ -1447,6 +1420,20 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
+        if (e.Key == Key.A && e.KeyModifiers == KeyModifiers.Alt)
+        {
+            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Approved);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.N && e.KeyModifiers == KeyModifiers.Alt)
+        {
+            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.NeedsWork);
+            e.Handled = true;
+            return;
+        }
+
         if (e.Key == Key.F9)
         {
             ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.Approved);
@@ -1671,18 +1658,6 @@ STRICT RULES:
         }
     }
 
-    public sealed class CurrentProjectionSegmentChangedEventArgs : EventArgs
-    {
-        public int BlockNumber { get; init; }
-        public string Zh { get; init; } = "";
-        public string En { get; init; } = "";
-        /// <summary>Previous-tail + current + next-head ZH context (for TM/search cross-tag matching).</summary>
-        public string ZhContext { get; init; } = "";
-        public int BlockStartOffset { get; init; }
-        public int BlockEndOffsetExclusive { get; init; }
-        public TranslationEditMode Mode { get; init; }
-    }
-
     public event EventHandler<CurrentProjectionSegmentChangedEventArgs>? CurrentSegmentChanged;
 
     private void PublishCurrentSegment()
@@ -1716,7 +1691,7 @@ STRICT RULES:
                 ZhContext = zhContext,
                 BlockStartOffset = b.BlockStartOffset,
                 BlockEndOffsetExclusive = b.BlockEndOffsetExclusive,
-                Mode = _currentMode
+                Mode = _vm.CurrentMode
             });
         }
         catch
@@ -1726,7 +1701,7 @@ STRICT RULES:
 
     public void SetAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
     {
-        _lastAssistantSnapshot = snapshot;
+        _vm.LastAssistantSnapshot = snapshot;
         RenderAssistantSnapshot(snapshot);
     }
 
@@ -2043,23 +2018,11 @@ STRICT RULES:
     }
 
     private string ResolveAssistantTitle(string? relPath)
-    {
-        if (string.IsNullOrWhiteSpace(relPath))
-            return "";
-
-        if (_assistantTitleResolver != null)
-        {
-            var resolved = _assistantTitleResolver(relPath);
-            if (!string.IsNullOrWhiteSpace(resolved))
-                return resolved;
-        }
-
-        return relPath ?? "";
-    }
+        => _vm.ResolveAssistantTitle(relPath);
 
     private void AttachAssistantHover(TextEditor editor)
     {
-        if (!_hoverDictionaryEnabled)
+        if (!_vm.HoverDictionaryEnabled)
             return;
 
         try
@@ -2082,12 +2045,6 @@ STRICT RULES:
         _assistantHoverDisposables.Clear();
     }
 
-    private void ReattachAssistantHoverBehaviors()
-    {
-        if (_lastAssistantSnapshot != null)
-            RenderAssistantSnapshot(_lastAssistantSnapshot);
-    }
-
     private IBrush? GetResourceBrush(string key)
     {
         try
@@ -2104,11 +2061,12 @@ STRICT RULES:
 
     public void SetModeProjection(TranslationEditMode mode, string projectionText)
     {
-        _currentMode = mode;
-        _currentProjection = projectionText ?? "";
+        _vm.SetModeProjectionState(mode, projectionText);
 
         if (_editor != null)
-            _editor.Text = _currentProjection;
+            _editor.Text = _vm.CurrentProjection;
+
+        if (_emptyState != null) _emptyState.IsVisible = false;
 
         UpdateModeInfo();
         UpdateModeButtons();

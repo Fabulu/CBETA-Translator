@@ -4,16 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml;
 using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class IndexCacheService
+public sealed class IndexCacheService : IIndexCacheService
 {
+    private readonly ITranslationStatusService _statusService;
+
+    public IndexCacheService(ITranslationStatusService statusService)
+    {
+        _statusService = statusService ?? throw new ArgumentNullException(nameof(statusService));
+    }
+
     private const string CacheFileName = "index.cache.json";
 
     // Bump this string whenever you want to force rebuild even if cache exists.
@@ -153,106 +158,6 @@ public sealed class IndexCacheService
         return dict;
     }
 
-    private static readonly Regex CjkRegex = new Regex(
-        @"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]",
-        RegexOptions.Compiled);
-
-    private static bool FilesEqualFast(string a, string b)
-    {
-        var fa = new FileInfo(a);
-        var fb = new FileInfo(b);
-        if (fa.Length != fb.Length) return false;
-
-        const int Buf = 1024 * 64;
-        byte[] ba = new byte[Buf];
-        byte[] bb = new byte[Buf];
-
-        using var sa = File.OpenRead(a);
-        using var sb = File.OpenRead(b);
-
-        while (true)
-        {
-            int ra = sa.Read(ba, 0, Buf);
-            int rb = sb.Read(bb, 0, Buf);
-            if (ra != rb) return false;
-            if (ra == 0) return true;
-
-            for (int i = 0; i < ra; i++)
-                if (ba[i] != bb[i]) return false;
-        }
-    }
-
-    private static string ExtractBodyInnerXml(string xml)
-    {
-        if (string.IsNullOrEmpty(xml)) return "";
-
-        int iBody = xml.IndexOf("<body", StringComparison.OrdinalIgnoreCase);
-        if (iBody < 0) return "";
-
-        int iStart = xml.IndexOf('>', iBody);
-        if (iStart < 0) return "";
-
-        int iEnd = xml.IndexOf("</body>", iStart + 1, StringComparison.OrdinalIgnoreCase);
-        if (iEnd < 0) return "";
-
-        return xml.Substring(iStart + 1, iEnd - (iStart + 1));
-    }
-
-    private static TranslationStatus ComputeStatus(string origPath, string tranPath, string rootForLogs, string relKeyForLogs, bool verboseLog)
-    {
-        // missing translated => red
-        if (!File.Exists(tranPath))
-        {
-            if (verboseLog)
-                Log(rootForLogs, $"STATUS RED (missing tran) rel={relKeyForLogs} tranPath={tranPath}");
-            return TranslationStatus.Red;
-        }
-
-        // identical bytes => red
-        bool same;
-        try
-        {
-            same = FilesEqualFast(origPath, tranPath);
-        }
-        catch (Exception ex)
-        {
-            same = false;
-            if (verboseLog)
-                Log(rootForLogs, $"COMPARE FAILED rel={relKeyForLogs} ex={ex.GetType().Name}:{ex.Message}");
-        }
-
-        if (same)
-        {
-            if (verboseLog)
-                Log(rootForLogs, $"STATUS RED (bytes identical) rel={relKeyForLogs}");
-            return TranslationStatus.Red;
-        }
-
-        // different => yellow unless body has zero CJK => green
-        try
-        {
-            bool hasCjkText = BodyHasCjkTextNodesOnly(tranPath);
-
-            if (!hasCjkText)
-            {
-                if (verboseLog)
-                    Log(rootForLogs, $"STATUS GREEN (body text nodes have 0 CJK) rel={relKeyForLogs}");
-                return TranslationStatus.Green;
-            }
-
-        }
-        catch (Exception ex)
-        {
-            if (verboseLog)
-                Log(rootForLogs, $"BODY CHECK FAILED rel={relKeyForLogs} ex={ex.GetType().Name}:{ex.Message}");
-        }
-
-        if (verboseLog)
-            Log(rootForLogs, $"STATUS YELLOW (diff but body still has CJK) rel={relKeyForLogs}");
-
-        return TranslationStatus.Yellow;
-    }
-
     // Match both T047n1987A.xml and T47n1987A.xml and any similar “T*47*...n1987A...” path.
     private static bool IsDebugTarget(string relKey, string fileName)
     {
@@ -274,120 +179,8 @@ public sealed class IndexCacheService
         string relKeyForLogs,
         bool verboseLog = true)
     {
-        return ComputeStatus(origAbs, tranAbs, rootForLogs, relKeyForLogs, verboseLog);
+        return _statusService.ComputeStatusForPairLive(origAbs, tranAbs, rootForLogs, relKeyForLogs, verboseLog);
     }
-
-    private static bool BodyHasCjkTextNodesOnly(string xmlPath)
-    {
-        var settings = new XmlReaderSettings
-        {
-            DtdProcessing = DtdProcessing.Ignore,
-            IgnoreComments = true,
-            IgnoreProcessingInstructions = true,
-            IgnoreWhitespace = false,
-            CloseInput = true,
-        };
-
-        using var fs = File.OpenRead(xmlPath);
-        using var reader = XmlReader.Create(fs, settings);
-
-        bool inBody = false;
-
-        // Track whether we're currently inside a community note that should be ignored for CJK checks.
-        // Use a stack so nested elements are handled correctly.
-        var ignoreCjkStack = new Stack<bool>();
-
-        // Track current element stack for other exclusions like <g>
-        var elementStack = new Stack<string>();
-
-        while (reader.Read())
-        {
-            switch (reader.NodeType)
-            {
-                case XmlNodeType.Element:
-                    {
-                        var local = reader.LocalName;
-
-                        if (local.Equals("body", StringComparison.OrdinalIgnoreCase))
-                            inBody = true;
-
-                        elementStack.Push(local);
-
-                        // Determine whether this element introduces an "ignore CJK" region.
-                        bool parentIgnore = ignoreCjkStack.Count > 0 && ignoreCjkStack.Peek();
-
-                        bool ignoreHere = parentIgnore;
-
-                        // Ignore ONLY community notes (your example: <note type="community" ...>...</note>)
-                        if (!ignoreHere && local.Equals("note", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var typeAttr = reader.GetAttribute("type");
-                            if (!string.IsNullOrWhiteSpace(typeAttr) &&
-                                typeAttr.Equals("community", StringComparison.OrdinalIgnoreCase))
-                            {
-                                ignoreHere = true;
-                            }
-                        }
-
-                        ignoreCjkStack.Push(ignoreHere);
-
-                        if (reader.IsEmptyElement)
-                        {
-                            // pop immediately for <tag/>
-                            elementStack.Pop();
-                            ignoreCjkStack.Pop();
-
-                            // if this was <body/>, we are done (no CJK found)
-                            if (inBody && local.Equals("body", StringComparison.OrdinalIgnoreCase))
-                                return false;
-                        }
-
-                        break;
-                    }
-
-                case XmlNodeType.EndElement:
-                    {
-                        var local = reader.LocalName;
-
-                        if (elementStack.Count > 0) elementStack.Pop();
-                        if (ignoreCjkStack.Count > 0) ignoreCjkStack.Pop();
-
-                        if (local.Equals("body", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // finished scanning body, no CJK found in counted regions
-                            return false;
-                        }
-
-                        break;
-                    }
-
-                case XmlNodeType.Text:
-                case XmlNodeType.CDATA:
-                case XmlNodeType.SignificantWhitespace:
-                    {
-                        if (!inBody) break;
-
-                        // If we're inside a community note, ignore its content entirely.
-                        if (ignoreCjkStack.Count > 0 && ignoreCjkStack.Peek())
-                            break;
-
-                        // Keep your existing exclusion: ignore text inside <g>
-                        if (elementStack.Count > 0 &&
-                            elementStack.Peek().Equals("g", StringComparison.OrdinalIgnoreCase))
-                            break;
-
-                        var text = reader.Value;
-                        if (!string.IsNullOrEmpty(text) && CjkRegex.IsMatch(text))
-                            return true;
-
-                        break;
-                    }
-            }
-        }
-
-        return false;
-    }
-
 
     public Task<IndexCache> BuildAsync(
         string originalDir,
@@ -468,7 +261,7 @@ public sealed class IndexCacheService
                     catch { /* ignore */ }
                 }
 
-                var status = ComputeStatus(origAbs, tranAbs, root, relKey, verbose);
+                var status = _statusService.ComputeStatusForPairLive(origAbs, tranAbs, root, relKey, verbose);
 
                 entries.Add(new FileNavItem
                 {

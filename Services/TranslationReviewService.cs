@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TranslationReviewService
+public sealed class TranslationReviewService : ITranslationReviewService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {

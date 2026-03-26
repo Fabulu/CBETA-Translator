@@ -4,7 +4,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TranslationAssistantService
+public sealed class TranslationAssistantService : ITranslationAssistantService
 {
     private readonly TranslationMemoryService _tm = new();
     private readonly TermbaseService _terms = new();

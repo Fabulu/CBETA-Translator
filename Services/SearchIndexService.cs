@@ -14,7 +14,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class SearchIndexService : IDisposable
+public sealed class SearchIndexService : ISearchIndexService
 {
     public sealed class SearchIndexServiceOptions
     {

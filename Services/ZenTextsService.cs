@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class ZenTextsService
+public sealed class ZenTextsService : IZenTextsService
 {
     private const string FileName = "zen_texts.json";
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);

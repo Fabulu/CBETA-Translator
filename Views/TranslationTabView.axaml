@@ -1,7 +1,9 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
-             x:Class="CbetaTranslator.App.Views.TranslationTabView">
+             xmlns:vm="using:CbetaTranslator.App.ViewModels"
+             x:Class="CbetaTranslator.App.Views.TranslationTabView"
+             x:DataType="vm:TranslationTabViewModel">
 
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
@@ -21,31 +23,111 @@
 				Padding="8"
 				CornerRadius="6">
 
-			<Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
+			<Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="8">
 
-				<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-					<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
-						<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
-						<Button Name="BtnModeBody" Content="Body of File" ToolTip.Tip="Switch to body projection (Ctrl+2)"/>
-						<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)"/>
-						<Button Name="BtnFindChineseInEn"
-								Content="Find Chinese in EN"
-								ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete."/>
-					</StackPanel>
+				<!-- Row 0: toolbar groups + right-side checkboxes -->
+				<Grid Grid.Row="0" ColumnDefinitions="*,Auto">
 
-					<TextBlock Grid.Column="1"
-							   Name="TxtQuickInfo"
-							   Text=""
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Left"
-							   Opacity="0.8"
-							   TextTrimming="CharacterEllipsis"
-							   Margin="8,0,0,0"/>
+					<WrapPanel Grid.Column="0"
+							   Orientation="Horizontal"
+							   ItemSpacing="8"
+							   LineSpacing="8">
 
-					<StackPanel Grid.Column="2"
+						<!-- Group 1: Mode -->
+						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="Mode" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
+								<Button Name="BtnModeBody" Content="Body of File" ToolTip.Tip="Switch to body projection (Ctrl+2)"/>
+								<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)"/>
+							</StackPanel>
+						</Border>
+
+						<!-- Group 2: AI Translation -->
+						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="AI Translation" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Button Name="BtnCopyChunkPrompt"
+										Content="Copy for AI"
+										ToolTip.Tip="Copy up to N valid untranslated blocks from the caret (Ctrl+Shift+C)"/>
+								<Button Name="BtnPasteByNumber"
+										Content="Paste from AI"
+										ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
+								<TextBlock Text="Blocks:" VerticalAlignment="Center"/>
+								<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="4" ToolTip.Tip="How many blocks max to copy">
+									<ComboBoxItem Content="1"/>
+									<ComboBoxItem Content="10"/>
+									<ComboBoxItem Content="25"/>
+									<ComboBoxItem Content="50"/>
+									<ComboBoxItem Content="100"/>
+									<ComboBoxItem Content="150"/>
+								</ComboBox>
+								<Button Name="BtnNextUntranslated"
+										Content="Next untranslated"
+										ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block."/>
+								<TextBlock Text="Copy blocks -> paste in LLM -> copy response -> Paste from AI"
+										   VerticalAlignment="Center" Opacity="0.5" FontSize="11" Classes="muted"/>
+							</StackPanel>
+						</Border>
+
+						<!-- Group 3: Review -->
+						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="Review" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Button Name="BtnApproveSegment"
+										Content="Approve segment"
+										ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)"/>
+								<Button Name="BtnNeedsWorkSegment"
+										Content="Needs work"
+										ToolTip.Tip="Flag as needing more work (Alt+N / F10)"/>
+								<Button Name="BtnRejectSegment"
+										Content="Reject"
+										ToolTip.Tip="Mark the current segment as rejected (F11)"/>
+								<Button Name="BtnNextUnapproved"
+										Content="Next unapproved"
+										ToolTip.Tip="Jump to next segment that has not been approved yet"/>
+								<TextBlock Name="TxtReviewState"
+										   Text="Unreviewed"
+										   VerticalAlignment="Center"
+										   FontWeight="SemiBold"
+										   Margin="4,0,0,0"/>
+							</StackPanel>
+						</Border>
+
+						<!-- Group 4: File -->
+						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="File" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
+								<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
+								<Button Name="BtnUndo" Content="Undo" ToolTip.Tip="Undo (Ctrl+Z)"/>
+								<Button Name="BtnRedo" Content="Redo" ToolTip.Tip="Redo (Ctrl+Y)"/>
+							</StackPanel>
+						</Border>
+
+						<!-- Group 5: Tools -->
+						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="Tools" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Button Name="BtnBuildReferenceTm"
+										Content="Build Ref TM"
+										ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts"/>
+								<Button Name="BtnManageTerms"
+										Content="Manage Terms"
+										ToolTip.Tip="Open the termbase editor"/>
+								<Button Name="BtnFindChineseInEn"
+										Content="Find Chinese in EN"
+										ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete."/>
+							</StackPanel>
+						</Border>
+
+					</WrapPanel>
+
+					<StackPanel Grid.Column="1"
 								Orientation="Horizontal"
 								Spacing="12"
-								VerticalAlignment="Center">
+								VerticalAlignment="Top"
+								Margin="8,0,0,0">
 						<CheckBox Name="ChkWrap"
 								  Content="Wrap"
 								  IsChecked="True"
@@ -55,86 +137,19 @@
 								  IsChecked="True"
 								  ToolTip.Tip="Show or hide the translation assistant pane"/>
 					</StackPanel>
+
 				</Grid>
 
-				<WrapPanel Grid.Row="1"
-						   Orientation="Horizontal"
-						   ItemSpacing="6"
-						   LineSpacing="6"
-						   VerticalAlignment="Top">
+				<!-- Row 1: quick info -->
+				<TextBlock Grid.Row="1"
+						   Name="TxtQuickInfo"
+						   Text=""
+						   Opacity="0.8"
+						   TextTrimming="CharacterEllipsis"/>
 
-					<Button Name="BtnUndo" Content="↶" Width="32" ToolTip.Tip="Undo (Ctrl+Z)"/>
-					<Button Name="BtnRedo" Content="↷" Width="32" ToolTip.Tip="Redo (Ctrl+Y)"/>
-
-					<Border Width="8"/>
-
-					<TextBlock Text="Copy N:" VerticalAlignment="Center"/>
-					<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="4" ToolTip.Tip="How many blocks max to copy">
-						<ComboBoxItem Content="1"/>
-						<ComboBoxItem Content="10"/>
-						<ComboBoxItem Content="25"/>
-						<ComboBoxItem Content="50"/>
-						<ComboBoxItem Content="100"/>
-						<ComboBoxItem Content="150"/>
-					</ComboBox>
-
-					<Button Name="BtnCopyChunkPrompt"
-							Content="Copy N + prompt"
-							ToolTip.Tip="Copy up to N valid untranslated blocks from the caret (Ctrl+Shift+C)"/>
-
-					<Button Name="BtnPasteByNumber"
-							Content="Paste by block #"
-							ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
-
-					<Button Name="BtnNextUntranslated"
-							Content="Next untranslated"
-							ToolTip.Tip="Jump to next block with empty EN (F8). Alt+→ / Alt+← navigate any block."/>
-
-					<Border Width="8"/>
-
-					<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
-					<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
-					<Button Name="BtnBuildReferenceTm"
-							Content="Build Ref TM"
-							ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts"/>
-					<Button Name="BtnManageTerms"
-							Content="Manage Terms"
-							ToolTip.Tip="Open the termbase editor"/>
-				</WrapPanel>
-
-				<WrapPanel Grid.Row="2"
-						   Orientation="Horizontal"
-						   ItemSpacing="6"
-						   LineSpacing="6"
-						   VerticalAlignment="Top">
-
-					<TextBlock Text="Review:" VerticalAlignment="Center"/>
-
-					<TextBlock Name="TxtReviewState"
-							   Text="Unreviewed"
-							   VerticalAlignment="Center"
-							   FontWeight="SemiBold"
-							   Margin="0,0,8,0"/>
-
-					<Button Name="BtnApproveSegment"
-							Content="Approve segment"
-							ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)"/>
-
-					<Button Name="BtnNeedsWorkSegment"
-							Content="Needs work"
-							ToolTip.Tip="Flag as needing more work (Alt+N / F10)"/>
-
-					<Button Name="BtnRejectSegment"
-							Content="Reject"
-							ToolTip.Tip="Mark the current segment as rejected (F11)"/>
-
-					<Button Name="BtnNextUnapproved"
-							Content="Next unapproved"
-							ToolTip.Tip="Jump to next segment that has not been approved yet"/>
-				</WrapPanel>
-
+				<!-- Row 2: progress stats -->
 				<TextBlock Name="TxtProgress"
-						   Grid.Row="3"
+						   Grid.Row="2"
 						   Text=""
 						   Opacity="0.75"
 						   Classes="muted"
@@ -143,96 +158,110 @@
 			</Grid>
 		</Border>
 
-		<Border Grid.Row="1"
-				Margin="0,8,0,0"
-				Background="{DynamicResource XmlViewerBg}"
-				BorderBrush="{DynamicResource XmlViewerBorder}"
-				BorderThickness="1"
-				CornerRadius="6">
+		<Grid Grid.Row="1" Margin="0,8,0,0">
+			<!-- Empty-state overlay -->
+			<Border Name="TranslationEmptyState"
+					IsVisible="True"
+					Background="{DynamicResource AppBg}"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					ZIndex="10">
+				<TextBlock Text="Select a file from the sidebar to begin translating."
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Opacity="0.5"
+						   Classes="muted"/>
+			</Border>
 
-			<Grid RowDefinitions="Auto,*">
-				<Border Grid.Row="0"
-						BorderThickness="0,0,0,1"
-						BorderBrush="{DynamicResource XmlViewerBorder}"
-						Padding="8">
-					<TextBlock Name="TxtModeInfo" Text="Translation Editor"/>
-				</Border>
+			<Border Background="{DynamicResource XmlViewerBg}"
+					BorderBrush="{DynamicResource XmlViewerBorder}"
+					BorderThickness="1"
+					CornerRadius="6">
 
-				<Grid Grid.Row="1" Name="EditorAssistantGrid" ColumnDefinitions="*,8,360">
-
-					<Border Grid.Column="0" Padding="0">
-						<ae:TextEditor Name="EditorProjection"
-									   FontFamily="Consolas"
-									   ShowLineNumbers="False"
-									   WordWrap="True"
-									   HorizontalScrollBarVisibility="Auto"
-									   VerticalScrollBarVisibility="Auto"/>
-					</Border>
-
-					<GridSplitter Name="AssistantSplitter"
-								  Grid.Column="1"
-								  Width="8"
-								  ResizeDirection="Columns"
-								  ResizeBehavior="PreviousAndNext"
-								  Background="Transparent"/>
-
-					<Border Name="AssistantPane"
-							Grid.Column="2"
-							Padding="8"
-							Background="{DynamicResource ControlBg}"
+				<Grid RowDefinitions="Auto,*">
+					<Border Grid.Row="0"
+							BorderThickness="0,0,0,1"
 							BorderBrush="{DynamicResource XmlViewerBorder}"
-							BorderThickness="1,0,0,0">
-						<ScrollViewer HorizontalScrollBarVisibility="Disabled"
-									  VerticalScrollBarVisibility="Auto">
-							<StackPanel Spacing="10">
-
-								<TextBlock Text="Assistant" FontWeight="Bold"/>
-
-								<Border Padding="8"
-										CornerRadius="6"
-										BorderThickness="1"
-										BorderBrush="{DynamicResource BorderBrush}">
-									<StackPanel Spacing="6">
-										<TextBlock Text="Warnings / QA" FontWeight="Bold"/>
-										<StackPanel Name="QaHost" Spacing="10"/>
-									</StackPanel>
-								</Border>
-
-								<Border Padding="8"
-										CornerRadius="6"
-										BorderThickness="1"
-										BorderBrush="{DynamicResource BorderBrush}">
-									<StackPanel Spacing="6">
-										<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
-										<StackPanel Name="TermHost" Spacing="10"/>
-									</StackPanel>
-								</Border>
-
-								<Border Padding="8"
-										CornerRadius="6"
-										BorderThickness="1"
-										BorderBrush="{DynamicResource BorderBrush}">
-									<StackPanel Spacing="6">
-										<TextBlock Text="Approved TM" FontWeight="Bold"/>
-										<StackPanel Name="ApprovedTmHost" Spacing="10"/>
-									</StackPanel>
-								</Border>
-
-								<Border Padding="8"
-										CornerRadius="6"
-										BorderThickness="1"
-										BorderBrush="{DynamicResource BorderBrush}">
-									<StackPanel Spacing="6">
-										<TextBlock Text="Reference / AI" FontWeight="Bold"/>
-										<StackPanel Name="ReferenceTmHost" Spacing="10"/>
-									</StackPanel>
-								</Border>
-
-							</StackPanel>
-						</ScrollViewer>
+							Padding="8">
+						<TextBlock Name="TxtModeInfo" Text="Translation Editor"/>
 					</Border>
+
+					<Grid Grid.Row="1" Name="EditorAssistantGrid" ColumnDefinitions="*,8,360">
+
+						<Border Grid.Column="0" Padding="0">
+							<ae:TextEditor Name="EditorProjection"
+										   FontFamily="Consolas"
+										   ShowLineNumbers="False"
+										   WordWrap="True"
+										   HorizontalScrollBarVisibility="Auto"
+										   VerticalScrollBarVisibility="Auto"/>
+						</Border>
+
+						<GridSplitter Name="AssistantSplitter"
+									  Grid.Column="1"
+									  Width="8"
+									  ResizeDirection="Columns"
+									  ResizeBehavior="PreviousAndNext"
+									  Background="Transparent"/>
+
+						<Border Name="AssistantPane"
+								Grid.Column="2"
+								Padding="8"
+								Background="{DynamicResource ControlBg}"
+								BorderBrush="{DynamicResource XmlViewerBorder}"
+								BorderThickness="1,0,0,0">
+							<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+										  VerticalScrollBarVisibility="Auto">
+								<StackPanel Spacing="10">
+
+									<TextBlock Text="Assistant" FontWeight="Bold"/>
+
+									<Border Padding="8"
+											CornerRadius="6"
+											BorderThickness="1"
+											BorderBrush="{DynamicResource BorderBrush}">
+										<StackPanel Spacing="6">
+											<TextBlock Text="Warnings / QA" FontWeight="Bold"/>
+											<StackPanel Name="QaHost" Spacing="10"/>
+										</StackPanel>
+									</Border>
+
+									<Border Padding="8"
+											CornerRadius="6"
+											BorderThickness="1"
+											BorderBrush="{DynamicResource BorderBrush}">
+										<StackPanel Spacing="6">
+											<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+											<StackPanel Name="TermHost" Spacing="10"/>
+										</StackPanel>
+									</Border>
+
+									<Border Padding="8"
+											CornerRadius="6"
+											BorderThickness="1"
+											BorderBrush="{DynamicResource BorderBrush}">
+										<StackPanel Spacing="6">
+											<TextBlock Text="Approved TM" FontWeight="Bold"/>
+											<StackPanel Name="ApprovedTmHost" Spacing="10"/>
+										</StackPanel>
+									</Border>
+
+									<Border Padding="8"
+											CornerRadius="6"
+											BorderThickness="1"
+											BorderBrush="{DynamicResource BorderBrush}">
+										<StackPanel Spacing="6">
+											<TextBlock Text="Reference / AI" FontWeight="Bold"/>
+											<StackPanel Name="ReferenceTmHost" Spacing="10"/>
+										</StackPanel>
+									</Border>
+
+								</StackPanel>
+							</ScrollViewer>
+						</Border>
+					</Grid>
 				</Grid>
-			</Grid>
-		</Border>
+			</Border>
+		</Grid>
 	</Grid>
 </UserControl>

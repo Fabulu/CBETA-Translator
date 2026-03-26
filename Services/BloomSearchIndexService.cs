@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class BloomSearchIndexService
+public sealed class BloomSearchIndexService : IBloomSearchIndexService
 {
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
 
