@@ -10,6 +10,8 @@ namespace CbetaTranslator.App.Services;
 /// </summary>
 internal static class XmlReconciliationHelper
 {
+    private static readonly Regex s_whitespaceRun = new(@"\s+", RegexOptions.Compiled);
+
     /// <summary>
     /// Reconciles newly serialized XML with the original string to preserve formatting
     /// (indentation, line endings, whitespace) for all unchanged lines.
@@ -80,6 +82,6 @@ internal static class XmlReconciliationHelper
     internal static string NormalizeForComparison(string line)
     {
         var trimmed = line.Trim();
-        return Regex.Replace(trimmed, @"\s+", " ");
+        return s_whitespaceRun.Replace(trimmed, " ");
     }
 }

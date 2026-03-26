@@ -65,7 +65,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     public void SetRoot(string root)
     {
         _root = root;
-        _ = LoadAsync();
+        _ = SafeFireAndForget(LoadAsync());
     }
 
     // ----- Commands -----
@@ -131,7 +131,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         Collections.Add(c);
         SelectedCollection = c;
         IsEmptyState = false;
-        _ = SaveAsync();
+        _ = SafeFireAndForget(SaveAsync());
     }
 
     [RelayCommand]
@@ -141,7 +141,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         Collections.Remove(SelectedCollection);
         SelectedCollection = Collections.FirstOrDefault();
         IsEmptyState = Collections.Count == 0;
-        _ = SaveAsync();
+        _ = SafeFireAndForget(SaveAsync());
     }
 
     [RelayCommand]
@@ -151,7 +151,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedCollection.Passages.Remove(SelectedPassage);
         Passages.Remove(SelectedPassage);
         SelectedPassage = Passages.FirstOrDefault();
-        _ = SaveAsync();
+        _ = SafeFireAndForget(SaveAsync());
     }
 
     [RelayCommand]
@@ -244,5 +244,18 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedPassage = null;
         IsEmptyState = true;
         _root = null;
+    }
+
+    private async Task SafeFireAndForget(Task task)
+    {
+        try
+        {
+            await task;
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = "Error: " + ex.Message;
+            StatusChanged?.Invoke(this, StatusMessage);
+        }
     }
 }

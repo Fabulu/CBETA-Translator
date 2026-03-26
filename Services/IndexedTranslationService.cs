@@ -1412,8 +1412,6 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false)
         };
 
-        var sb = new StringBuilder();
-
         using (var sw = new Utf8StringWriter())
         using (var xw = XmlWriter.Create(sw, settings))
         {
