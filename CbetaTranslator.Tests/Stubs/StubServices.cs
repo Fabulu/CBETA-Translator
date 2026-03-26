@@ -217,3 +217,26 @@ public class StubTranslationReviewService : ITranslationReviewService
     public Task<TranslationReviewEntry?> GetLatestEntryAsync(string root, CurrentSegmentContext ctx, CancellationToken ct = default) => Task.FromResult<TranslationReviewEntry?>(null);
     public Task<int> RebuildApprovedTranslationMemoryAsync(string root, CancellationToken ct = default) => Task.FromResult(0);
 }
+
+// ---- IScholarCollectionsService ----
+
+public class StubScholarCollectionsService : IScholarCollectionsService
+{
+    public List<ScholarCollection> Collections { get; set; } = new();
+    public List<ScholarCollection>? LastSaved { get; private set; }
+    public bool ThrowOnLoad { get; set; }
+    public bool ThrowOnSave { get; set; }
+
+    public Task<List<ScholarCollection>> LoadAsync(string root, CancellationToken ct = default)
+    {
+        if (ThrowOnLoad) throw new InvalidOperationException("Load failed");
+        return Task.FromResult(new List<ScholarCollection>(Collections));
+    }
+
+    public Task SaveAsync(string root, List<ScholarCollection> collections, CancellationToken ct = default)
+    {
+        if (ThrowOnSave) throw new InvalidOperationException("Save failed");
+        LastSaved = new List<ScholarCollection>(collections);
+        return Task.CompletedTask;
+    }
+}

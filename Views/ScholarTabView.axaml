@@ -1,0 +1,127 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CbetaTranslator.App.ViewModels"
+             xmlns:models="using:CbetaTranslator.App.Models"
+             x:DataType="vm:ScholarTabViewModel"
+             x:Class="CbetaTranslator.App.Views.ScholarTabView">
+
+  <Grid ColumnDefinitions="300,Auto,*">
+
+    <!-- Left: Collections + Passages -->
+    <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto,*">
+
+      <!-- Collections header -->
+      <DockPanel Grid.Row="0" Margin="4">
+        <Button Content="+" DockPanel.Dock="Right" Command="{Binding AddCollectionCommand}"
+                ToolTip.Tip="Create new collection" Padding="8,3"/>
+        <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeleteCollectionCommand}"
+                ToolTip.Tip="Delete selected collection" Padding="8,3" Margin="0,0,4,0"/>
+        <TextBlock Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
+      </DockPanel>
+
+      <!-- Collections list -->
+      <ListBox Grid.Row="1" ItemsSource="{Binding Collections}"
+               SelectedItem="{Binding SelectedCollection}" Margin="4,0">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ScholarCollection">
+            <StackPanel>
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
+                         TextTrimming="CharacterEllipsis"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <!-- Passages header -->
+      <DockPanel Grid.Row="2" Margin="4">
+        <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
+                ToolTip.Tip="Remove selected passage" Padding="8,3"/>
+        <TextBlock Text="Passages" FontWeight="SemiBold" VerticalAlignment="Center"/>
+      </DockPanel>
+
+      <!-- Passages list (shows passages from selected collection) -->
+      <ListBox Grid.Row="3" Name="PassagesList" Margin="4,0"
+               ItemsSource="{Binding Passages}"
+               SelectedItem="{Binding SelectedPassage}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ScholarPassage">
+            <StackPanel Margin="2">
+              <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
+              <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
+                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
+              <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+
+    <!-- Splitter -->
+    <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
+
+    <!-- Right: Detail editor -->
+    <Border Grid.Column="2" CornerRadius="6" Padding="12" Margin="4">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+
+        <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
+
+        <!-- Source file -->
+        <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,8"/>
+
+        <!-- Chinese text -->
+        <Border Grid.Row="2" CornerRadius="4" Padding="8" Margin="0,0,0,8">
+          <ScrollViewer MaxHeight="200">
+            <TextBlock Name="TxtZhText" Text="" TextWrapping="Wrap" FontSize="14"/>
+          </ScrollViewer>
+        </Border>
+
+        <!-- English text -->
+        <Border Grid.Row="3" CornerRadius="4" Padding="8" Margin="0,0,0,8">
+          <ScrollViewer MaxHeight="200">
+            <TextBlock Name="TxtEnText" Text="" TextWrapping="Wrap" FontSize="14"/>
+          </ScrollViewer>
+        </Border>
+
+        <!-- Tags -->
+        <DockPanel Grid.Row="4" Margin="0,0,0,4">
+          <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
+          <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
+                   ToolTip.Tip="Tag this passage (e.g., enlightenment, lecture, master-on-master)"/>
+        </DockPanel>
+
+        <!-- Master Names -->
+        <DockPanel Grid.Row="5" Margin="0,0,0,4">
+          <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
+          <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
+                   ToolTip.Tip="Masters mentioned (e.g., Nanquan, Zhaozhou)"/>
+        </DockPanel>
+
+        <!-- Notes -->
+        <DockPanel Grid.Row="6" Margin="0,0,0,4">
+          <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
+          <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
+                   AcceptsReturn="True" TextWrapping="Wrap" Height="80"
+                   ToolTip.Tip="Your personal notes about this passage"/>
+        </DockPanel>
+
+        <!-- Actions -->
+        <StackPanel Grid.Row="7" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
+          <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"
+                  ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
+          <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- Empty state overlay -->
+    <Border Grid.ColumnSpan="3" Name="ScholarEmptyState" IsVisible="{Binding IsEmptyState}">
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
+        <TextBlock Text="Scholar's Collections" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        <TextBlock Text="Right-click text in the Reader or Translation tabs to add passages to collections."
+                   TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Classes="muted"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

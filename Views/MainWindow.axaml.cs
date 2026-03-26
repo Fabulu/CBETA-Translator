@@ -47,6 +47,7 @@ public partial class MainWindow : Window
     private TranslationTabView? _translationView;
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
+    private ScholarTabView? _scholarView;
 
     // ViewModel
     private MainWindowViewModel _vm = null!;
@@ -158,6 +159,7 @@ public partial class MainWindow : Window
         _translationView = Find<TranslationTabView>("TranslationView");
         _searchView = Find<SearchTabView>("SearchView");
         _gitView = Find<GitTabView>("GitView");
+        _scholarView = Find<ScholarTabView>("ScholarView");
     }
 
     private void CreateViewModel()
@@ -267,6 +269,10 @@ public partial class MainWindow : Window
         _vm.SetGitRepoRoot = root => _gitView?.SetCurrentRepoRoot(root);
         _vm.SetGitSelectedRelPath = rel => _gitView?.SetSelectedRelPath(rel);
         _vm.SetGitUsername = user => _gitView?.SetUsername(user);
+
+        // ScholarTabView bridges
+        _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
+        _vm.ClearScholar = () => _scholarView?.Clear();
 
         // Dialog bridges
         _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;
@@ -513,6 +519,33 @@ public partial class MainWindow : Window
             _gitView.RootCloned += async (_, repoRoot) =>
             {
                 await _vm.HandleRootClonedAsync(repoRoot, IsSecondaryWindow);
+            };
+        }
+
+        if (_scholarView != null)
+        {
+            _scholarView.Status += (_, msg) => _vm.SetStatus(msg);
+            _scholarView.NavigationRequested += (_, req) =>
+            {
+                _vm.HandleNavigationRequested(req);
+            };
+        }
+
+        if (_readableView != null)
+        {
+            _readableView.AddToScholarRequested += (_, passage) =>
+            {
+                _scholarView?.AddPassage(passage);
+                _vm.SetStatus("Passage added to Scholar collection.");
+            };
+        }
+
+        if (_translationView != null)
+        {
+            _translationView.AddToScholarRequested += (_, passage) =>
+            {
+                _scholarView?.AddPassage(passage);
+                _vm.SetStatus("Passage added to Scholar collection.");
             };
         }
 

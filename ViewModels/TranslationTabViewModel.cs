@@ -48,6 +48,9 @@ public partial class TranslationTabViewModel : ViewModelBase
     private string? _origPath;
     private string? _tranPath;
 
+    /// <summary>Current original file path (for Scholar context menu).</summary>
+    public string? CurrentOriginalPath => _origPath;
+
     // -------------------------
     // Projection text (maintained in parallel with editor)
     // -------------------------

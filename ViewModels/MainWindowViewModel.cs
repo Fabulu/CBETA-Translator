@@ -147,6 +147,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string?>? SetGitSelectedRelPath { get; set; }
     public Action<string?>? SetGitUsername { get; set; }
 
+    // ScholarTabView bridges
+    public Action<string>? SetScholarRoot { get; set; }
+    public Action? ClearScholar { get; set; }
+
     // Dialog bridges (code-behind provides UI dialogs)
     public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
     public Func<string, Task<bool>>? ConfirmNavigateIfDirtyDialogAsync { get; set; }
@@ -321,6 +325,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         SetGitRepoRoot?.Invoke(_root);
         SetSearchRootContext?.Invoke(_root, _originalDir, _translatedDir);
+        SetScholarRoot?.Invoke(_root);
 
         if (saveToConfig)
         {
@@ -683,6 +688,7 @@ public partial class MainWindowViewModel : ViewModelBase
         ClearReadable?.Invoke();
         ClearTranslation?.Invoke();
         ClearSearch?.Invoke();
+        ClearScholar?.Invoke();
 
         SetNavItemsSource?.Invoke(new List<FileNavItem>());
 
