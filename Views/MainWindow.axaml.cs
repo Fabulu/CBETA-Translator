@@ -1,11 +1,8 @@
-﻿// Views/MainWindow.axaml.cs
+// Views/MainWindow.axaml.cs
 //
-// INDEXED PROJECTION MainWindow
-// - Readable tab renders disk TEI only (original + translated).
-// - Translation tab edits KEY/ZH/EN projection via IndexedTranslationService.
-// - Save applies projection edits back into translated TEI (managed EN community notes).
-// - Community notes are inserted/deleted directly in translated XML on disk.
-// - If translated XML is missing, it is created from original XML.
+// Thin code-behind after Wave 5 MVVM extraction.
+// Responsibilities: control lookup, bridge wiring, dialogs, window chrome,
+// keyboard shortcuts, theme application, DispatcherTimers.
 
 using Avalonia;
 using Avalonia.Controls;
@@ -19,34 +16,24 @@ using Avalonia.Platform.Storage;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
-using CbetaTranslator.App.Text;
+using CbetaTranslator.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace CbetaTranslator.App.Views;
 
 public partial class MainWindow : Window
 {
-    private const string AppTitleBase = "CBETA Translator";
-
-    // UI
+    // UI controls
     private Button? _btnToggleNav, _btnOpenRoot, _btnSettings, _btnSave, _btnLicenses;
     private Button? _btnMinimize, _btnMaximize, _btnClose;
-    private Border? _navPanel, _topBar;
+    private Border? _navPanel, _topBar, _emptyStateOverlay;
 
     private ListBox? _filesList;
     private TextBox? _navSearch;
@@ -61,77 +48,31 @@ public partial class MainWindow : Window
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
 
-    // Services/state
-    private readonly IFileService _fileService = new FileService();
-    private readonly AppConfigService _configService = new();
-    private readonly IndexCacheService _indexCacheService = new();
-    private readonly RenderedDocumentCacheService _renderCache = new(maxEntries: 48);
-    private readonly ZenTextsService _zenTexts = new();
-    private readonly IndexedTranslationService _indexedTranslation = new();
+    // ViewModel
+    private MainWindowViewModel _vm = null!;
 
-    private IndexedTranslationDocument? _indexedDoc;
-    private TranslationEditMode _translationMode = TranslationEditMode.Body;
+    // Dirty timer
+    private DispatcherTimer? _dirtyTimer;
 
-    private AppConfig _config = new() { IsDarkTheme = true };
-
-    private string? _root, _originalDir, _translatedDir;
-    private string? _currentRelPath;
-
-    private List<FileNavItem> _allItems = new();
-    private List<FileNavItem> _filteredItems = new();
-    private readonly Dictionary<string, FileNavItem> _allItemsByRel = new(StringComparer.OrdinalIgnoreCase);
-
-    private CancellationTokenSource? _navSearchCts;
-    private CancellationTokenSource? _renderCts;
-
-    // Nav filter performance / race control
+    // Nav filter debounce
     private DispatcherTimer? _navFilterDebounce;
-    private int _navFilterVersion;
 
+    // Index cache save debounce
     private DispatcherTimer? _indexCacheSaveDebounce;
-    private bool _indexCacheDirty;
 
-    private string _rawOrigXml = "";
-    private string _rawTranXml = "";
-
+    // Suppress flags
     private bool _suppressNavSelectionChanged;
     private bool _suppressTabEvents;
-    private bool _suppressConfigSaves;
 
-    // Dirty tracking (projection text hash)
-    private string _baselineTranSha1 = "", _lastSeenTranSha1 = "";
-    private bool _dirty;
-    private DispatcherTimer? _dirtyTimer;
-    private int _lastTabIndex = -1;
-
-    // Translation assistant
-    private readonly TranslationAssistantService _translationAssistant = new();
-    private CancellationTokenSource? _assistantCts;
-    private readonly TranslationAssistantBuildService _translationAssistantBuilder = new();
-
-    private readonly TranslationReviewService _translationReview = new();
-    private CurrentSegmentContext? _currentSegmentContext;
-
-    // Termbase editor (non-modal — at most one instance per main window)
+    // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
     // -------------------------
     // Secondary-window support
     // -------------------------
 
-    /// <summary>
-    /// True when this window was opened as a satellite reader by
-    /// <see cref="Services.WindowNavigationService"/>. Secondary windows:
-    ///   • never save config or UI state to disk
-    ///   • skip the auto-load of the last root on startup
-    ///   • expose <see cref="OpenAtAsync"/> for programmatic navigation
-    /// </summary>
     public bool IsSecondaryWindow { get; private set; }
 
-    /// <summary>
-    /// Signalled when the window's asynchronous init (config load + theme) has finished.
-    /// <see cref="OpenAtAsync"/> awaits this before loading any root.
-    /// </summary>
     private readonly TaskCompletionSource _windowReady = new();
 
     // Parameterless ctor used by App.axaml.cs (main window) and Avalonia XAML loader.
@@ -144,38 +85,44 @@ public partial class MainWindow : Window
 
         InitializeComponent();
         FindControls();
+        CreateViewModel();
+        WireBridges();
         WireEvents();
         WireChildViewEvents();
 
-        SetStatus("Ready.");
-        UpdateSaveButtonState();
+        _vm.SetStatus("Ready.");
+        _vm.UpdateSaveButtonState();
 
-        _ = LoadConfigApplyThemeAndMaybeAutoloadAsync();
+        _ = LoadConfigAndAutoloadAsync();
         StartDirtyTimer();
 
         string closeWhat = isSecondaryWindow ? "close this window" : "close the app";
         Closing += async (_, e) =>
         {
-            if (!await ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
+            if (!await _vm.ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
         };
     }
 
-    /// <summary>
-    /// Loads <paramref name="root"/>, opens <paramref name="request"/>.RelPath in the
-    /// Reader tab, and scrolls to the exact hit. Intended for secondary windows only.
-    /// </summary>
     public async Task OpenAtAsync(string root, NavigationRequest request)
     {
-        // Wait for this window's async init (config load + theme) to finish.
         await _windowReady.Task;
 
-        await LoadRootAsync(root, saveToConfig: false);
-        SelectInNav(request.RelPath);
-        await LoadPairAsync(request.RelPath);
-        ForceTab(0); // switch to Reader tab
+        await _vm.OpenAtCoreAsync(root, request);
 
         if (_readableView != null && !string.IsNullOrEmpty(request.MatchText))
             await _readableView.NavigateToAsync(request);
+    }
+
+    private async Task LoadConfigAndAutoloadAsync()
+    {
+        try
+        {
+            await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
+        }
+        finally
+        {
+            _windowReady.TrySetResult();
+        }
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -194,6 +141,7 @@ public partial class MainWindow : Window
 
         _topBar = Find<Border>("TopBar");
         _navPanel = Find<Border>("NavPanel");
+        _emptyStateOverlay = Find<Border>("EmptyStateOverlay");
 
         _filesList = Find<ListBox>("FilesList");
         _navSearch = Find<TextBox>("NavSearch");
@@ -212,6 +160,184 @@ public partial class MainWindow : Window
         _gitView = Find<GitTabView>("GitView");
     }
 
+    private void CreateViewModel()
+    {
+        var sp = App.Services;
+        _vm = new MainWindowViewModel(
+            sp.GetRequiredService<IFileService>(),
+            sp.GetRequiredService<IAppConfigService>(),
+            sp.GetRequiredService<IIndexCacheService>(),
+            sp.GetRequiredService<IRenderedDocumentCacheService>(),
+            sp.GetRequiredService<IZenTextsService>(),
+            sp.GetRequiredService<IIndexedTranslationService>(),
+            sp.GetRequiredService<ITranslationAssistantService>(),
+            sp.GetRequiredService<ITranslationAssistantBuildService>(),
+            sp.GetRequiredService<ITranslationReviewService>());
+
+        DataContext = _vm;
+    }
+
+    private void WireBridges()
+    {
+        // StatusText -> TxtStatus (via property changed, or direct bridge)
+        _vm.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(MainWindowViewModel.StatusText))
+            {
+                if (_txtStatus != null) _txtStatus.Text = _vm.StatusText;
+            }
+            else if (e.PropertyName == nameof(MainWindowViewModel.StatusSeverity))
+            {
+                if (_txtStatus != null)
+                {
+                    var key = _vm.StatusSeverity switch
+                    {
+                        StatusSeverity.Error   => "ErrorFg",
+                        StatusSeverity.Warning => "WarningFg",
+                        StatusSeverity.Success => "SuccessFg",
+                        _                      => "TextMutedFg"
+                    };
+                    if (Application.Current?.Resources.TryGetValue(key, out var brush) == true && brush is Avalonia.Media.IBrush b)
+                        _txtStatus.Foreground = b;
+                }
+            }
+            else if (e.PropertyName == nameof(MainWindowViewModel.RootDisplayText))
+            {
+                if (_txtRoot != null) _txtRoot.Text = _vm.RootDisplayText;
+                if (_emptyStateOverlay != null)
+                    _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
+            }
+            else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
+            {
+                if (_txtCurrentFile != null) _txtCurrentFile.Text = _vm.CurrentFileText;
+            }
+            else if (e.PropertyName == nameof(MainWindowViewModel.WindowTitle))
+            {
+                Title = _vm.WindowTitle;
+            }
+        };
+
+        // ReadableTabView bridges
+        _vm.SetReadableRendered = (ro, rt) => _readableView?.SetRendered(ro, rt);
+        _vm.ClearReadable = () => _readableView?.Clear();
+        _vm.SetReadableHoverDict = enabled =>
+        {
+            try
+            {
+                var m = _readableView?.GetType().GetMethod("SetHoverDictionaryEnabled");
+                m?.Invoke(_readableView, new object[] { enabled });
+            }
+            catch { }
+        };
+        _vm.SetReadableZenContext = (rel, isZen) => _readableView?.SetZenContext(rel, isZen);
+        _vm.UpdateReadableTermHighlights = (hits, zh, hint, anchor) =>
+            _readableView?.UpdateTermbaseHighlights(hits, zh, preferredOccurrenceHint: hint, anchorTextSignal: anchor);
+        _vm.SetReadableDefaultResp = resp =>
+        {
+            if (_readableView != null) _readableView.DefaultResp = resp;
+        };
+
+        // TranslationTabView bridges
+        _vm.SetTranslationModeProjection = (mode, text) => _translationView?.SetModeProjection(mode, text);
+        _vm.GetTranslationProjectionText = () => _translationView?.GetCurrentProjectionText() ?? "";
+        _vm.ClearTranslation = () => _translationView?.Clear();
+        _vm.SetTranslationHoverDict = enabled => _translationView?.SetHoverDictionaryEnabled(enabled);
+        _vm.SetAssistantSnapshot = snapshot => _translationView?.SetAssistantSnapshot(snapshot);
+        _vm.SetCurrentReviewState = (status, reviewer, date) => _translationView?.SetCurrentReviewState(status, reviewer, date);
+        _vm.SetProgressStats = (a, n, t) => _translationView?.SetProgressStats(a, n, t);
+        _vm.FillEnForCurrentBlock = (en, block) => _translationView?.FillEnForCurrentBlock(en, block);
+        _vm.JumpToNextBlock = () => _translationView?.JumpToNextBlock();
+        _vm.JumpToPreviousBlock = () => _translationView?.JumpToPreviousBlock();
+        _vm.JumpToNextUnapproved = approved => _translationView?.JumpToNextUnapproved(approved);
+        _vm.IsTranslationEditorFocused = () => _translationView?.IsEditorFocused() ?? false;
+        _vm.GetAllBlockNumbers = () => _translationView?.GetAllBlockNumbers() ?? Array.Empty<int>();
+        _vm.UpdateTranslationTermHighlights = (hits, zh) => _translationView?.UpdateTermbaseHighlights(hits, zh);
+        _vm.UpdateTranslationTmSharedHighlights = (approved, reference, zh) =>
+            _translationView?.UpdateTmSharedHighlights(approved, reference, zh);
+        _vm.SetTranslationFilePaths = (orig, tran) => _translationView?.SetCurrentFilePaths(orig, tran);
+        _vm.SetAssistantTitleResolver = resolver => _translationView?.SetAssistantTitleResolver(resolver);
+
+        // SearchTabView bridges
+        _vm.SetSearchRootContext = (root, orig, tran) => _searchView?.SetRootContext(root, orig, tran);
+        _vm.SetSearchZenResolver = resolver => _searchView?.SetZenResolver(resolver);
+        _vm.SetSearchContext = (root, orig, tran, meta) => _searchView?.SetContext(root, orig, tran, fileMeta: meta);
+        _vm.ClearSearch = () => _searchView?.Clear();
+
+        // GitTabView bridges
+        _vm.SetGitRepoRoot = root => _gitView?.SetCurrentRepoRoot(root);
+        _vm.SetGitSelectedRelPath = rel => _gitView?.SetSelectedRelPath(rel);
+        _vm.SetGitUsername = user => _gitView?.SetUsername(user);
+
+        // Dialog bridges
+        _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;
+        _vm.ShowSettingsDialogAsync = ShowSettingsDialogAsync;
+        _vm.ShowUsernamePromptAsync = ShowUsernamePromptDialogAsync;
+        _vm.ShowLicensesAsync = ShowLicensesDialogAsync;
+        _vm.ShowYesNoDialogAsync = ShowYesNoAsync;
+
+        // Window bridges
+        _vm.SetWindowTitle = title => Title = title;
+        _vm.ApplyTheme = dark => ApplyTheme(dark);
+        _vm.SetSaveButtonEnabled = enabled => { if (_btnSave != null) _btnSave.IsEnabled = enabled; };
+        _vm.GetSelectedTabIndex = () => _tabs?.SelectedIndex ?? -1;
+        _vm.ForceTabIndex = idx => ForceTab(idx);
+        _vm.NavigateInReadable = async req =>
+        {
+            if (_readableView != null && !string.IsNullOrEmpty(req.MatchText))
+                await _readableView.NavigateToAsync(req);
+        };
+
+        // Nav bridges
+        _vm.SetNavItemsSource = items =>
+        {
+            try
+            {
+                _suppressNavSelectionChanged = true;
+                if (_filesList != null) _filesList.ItemsSource = items;
+            }
+            finally { _suppressNavSelectionChanged = false; }
+        };
+        _vm.SetNavSelectedItem = item =>
+        {
+            try
+            {
+                _suppressNavSelectionChanged = true;
+                if (_filesList != null) _filesList.SelectedItem = item;
+            }
+            finally { _suppressNavSelectionChanged = false; }
+        };
+        _vm.GetNavSelectedItem = () => _filesList?.SelectedItem as FileNavItem;
+        _vm.RestoreNavSearchFocus = () =>
+        {
+            if (_navSearch != null)
+                Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
+        };
+        _vm.IsNavSearchFocused = () => _navSearch != null && _navSearch.IsFocused;
+        _vm.GetNavSearchText = () => _navSearch?.Text ?? "";
+        _vm.GetShowFilenames = () => _chkShowFilenames != null && _chkShowFilenames.IsChecked == true;
+        _vm.GetZenOnly = () => _chkZenOnly != null && _chkZenOnly.IsChecked == true;
+        _vm.GetStatusFilterIndex = () => _cmbStatusFilter?.SelectedIndex ?? 0;
+
+        // Config loaded callback
+        _vm.OnConfigLoaded = config =>
+        {
+            if (_chkZenOnly != null) _chkZenOnly.IsChecked = config.ZenOnly;
+        };
+
+        // Index cache save debounce
+        _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
+
+        // Termbase editor
+        _vm.OpenTermbaseEditorRequested = root => _ = OpenTermbaseEditorWindowAsync(root);
+
+        // Wire assistant title resolver
+        _vm.SetAssistantTitleResolver?.Invoke(rel => _vm.ResolveAssistantTitle(rel));
+    }
+
+    // ===========================================================
+    // Events
+    // ===========================================================
+
     private void WireEvents()
     {
         if (_btnToggleNav != null)
@@ -222,12 +348,12 @@ public partial class MainWindow : Window
             };
         }
 
-        if (_btnOpenRoot != null) _btnOpenRoot.Click += OpenRoot_Click;
-        if (_btnSettings != null) _btnSettings.Click += OnSettingsClicked;
-        if (_btnLicenses != null) _btnLicenses.Click += Licenses_Click;
+        if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) => await _vm.OpenRootAsync();
+        if (_btnSettings != null) _btnSettings.Click += async (_, _) => await _vm.OpenSettingsAsync();
+        if (_btnLicenses != null) _btnLicenses.Click += async (_, _) => await _vm.OpenLicensesAsync();
 
         if (_btnSave != null)
-            _btnSave.Click += async (_, _) => await SaveTranslatedFromTabAsync();
+            _btnSave.Click += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
 
         if (_btnMinimize != null)
             _btnMinimize.Click += (_, _) => WindowState = WindowState.Minimized;
@@ -247,10 +373,10 @@ public partial class MainWindow : Window
             _tabs.SelectionChanged += async (_, _) =>
             {
                 if (_suppressTabEvents) return;
-                await OnTabSelectionChangedAsync();
-                UpdateSaveButtonState();
+                await _vm.OnTabSelectionChangedAsync();
+                _vm.UpdateSaveButtonState();
             };
-            _lastTabIndex = _tabs.SelectedIndex;
+            _vm.SetLastTabIndex(_tabs.SelectedIndex);
         }
 
         if (_navSearch != null)
@@ -267,7 +393,7 @@ public partial class MainWindow : Window
             _chkZenOnly.IsCheckedChanged += async (_, _) =>
             {
                 ScheduleApplyFilter(debounce: false);
-                await SaveUiStateAsync();
+                await _vm.SaveUiStateAsync();
             };
         }
 
@@ -279,7 +405,6 @@ public partial class MainWindow : Window
                 WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             };
         }
-
     }
 
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
@@ -301,184 +426,93 @@ public partial class MainWindow : Window
     {
         if (_readableView != null)
         {
-            _readableView.Status += (_, msg) => SetStatus(msg);
+            _readableView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _readableView.ZenFlagChanged += async (_, ev) =>
             {
-                try
-                {
-                    if (_root == null) return;
-                    await _zenTexts.SetZenAsync(_root, ev.RelPath, ev.IsZen);
-                    SetStatus(ev.IsZen ? "Marked as Zen text." : "Unmarked as Zen text.");
-                    await ApplyFilterSafeAsync();
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Zen toggle failed: " + ex.Message);
-                }
+                await _vm.HandleZenFlagChangedAsync(ev.RelPath, ev.IsZen);
             };
 
             _readableView.CommunityNoteInsertRequested += async (_, req) =>
             {
-                await OnCommunityNoteInsertRequestedAsync(req.XmlIndex, req.NoteText, req.Resp);
+                await _vm.OnCommunityNoteInsertRequestedAsync(req.XmlIndex, req.NoteText, req.Resp);
             };
 
             _readableView.CommunityNoteDeleteRequested += async (_, req) =>
             {
-                await OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
+                await _vm.OnCommunityNoteDeleteRequestedAsync(req.XmlStart, req.XmlEndExclusive);
             };
 
             _readableView.FootnoteMoveRequested += async (_, req) =>
             {
-                await OnFootnoteMoveRequestedAsync(req);
+                await _vm.OnFootnoteMoveRequestedAsync(req);
             };
         }
 
         if (_translationView != null)
         {
-            _translationView.SetAssistantTitleResolver(rel =>
-            {
-                var key = NormalizeRel(rel);
-
-                if (_allItemsByRel.TryGetValue(key, out var item))
-                {
-                    if (!string.IsNullOrWhiteSpace(item.Tooltip))
-                        return item.Tooltip;
-
-                    if (!string.IsNullOrWhiteSpace(item.DisplayShort))
-                        return item.DisplayShort;
-
-                    if (!string.IsNullOrWhiteSpace(item.FileName))
-                        return item.FileName;
-                }
-
-                return rel ?? "";
-            });
-
-            _translationView.SaveRequested += async (_, _) => await SaveTranslatedFromTabAsync();
-            _translationView.RevertRequested += async (_, _) => await RevertTranslatedXmlFromDiskAsync();
-            _translationView.Status += (_, msg) => SetStatus(msg);
+            _translationView.SaveRequested += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
+            _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
+            _translationView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _translationView.CurrentSegmentChanged += async (_, ev) =>
             {
-                _currentSegmentContext = new CurrentSegmentContext
-                {
-                    RelPath = _currentRelPath ?? "",
-                    BlockNumber = ev.BlockNumber,
-                    ZhText = ev.Zh,
-                    ZhContextText = ev.ZhContext,
-                    EnText = ev.En,
-                    ProjectionOffsetStart = ev.BlockStartOffset,
-                    ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
-                    Mode = ev.Mode
-                };
-
-                await RefreshReviewBadgeAsync();
-                await RefreshAssistantForCurrentSegmentAsync(ev);
+                await _vm.RefreshAssistantForCurrentSegmentAsync(ev);
             };
 
             _translationView.ReviewActionRequested += async (_, status) =>
             {
-                await HandleReviewActionAsync(status);
+                await _vm.HandleReviewActionAsync(status);
             };
 
             _translationView.BuildReferenceTmRequested += async (_, _) =>
             {
-                await BuildReferenceTmAsync();
+                await _vm.BuildReferenceTmAsync();
             };
 
             _translationView.ManageTermsRequested += async (_, _) =>
             {
-                await OpenTermbaseEditorAsync();
+                await _vm.OpenTermbaseEditorAsync();
             };
 
             _translationView.NextUnapprovedRequested += async (_, _) =>
             {
-                try
-                {
-                    if (_root == null || _currentRelPath == null) return;
-                    var map = await _translationReview.LoadLatestEntriesAsync(_root);
-                    var approvedBlocks = map.Values
-                        .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
-                                 && e.Mode == _translationMode.ToString()
-                                 && e.Status == TranslationReviewStatuses.Approved)
-                        .Select(e => e.BlockNumber)
-                        .ToHashSet();
-                    _translationView.JumpToNextUnapproved(approvedBlocks);
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Next unapproved failed: " + ex.Message);
-                }
+                await _vm.HandleNextUnapprovedAsync();
             };
 
             _translationView.ModeChanged += (_, mode) =>
             {
-                try
-                {
-                    if (_indexedDoc == null) return;
-
-                    var currentProjection = GetTranslationProjectionText();
-                    _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, currentProjection);
-
-                    _translationMode = mode;
-
-                    var nextProjection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-                    SetTranslationProjection(_translationMode, nextProjection);
-
-                    SetBaselineFromCurrentTranslatedEditorText();
-                    SetStatus("Translation mode: " + _translationMode);
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Mode switch failed: " + ex.Message);
-                }
+                _vm.HandleModeChanged(mode);
             };
 
             _translationView.NavigationRequested += (_, req) =>
             {
-                if (_root == null) return;
-                WindowNavigationService.OpenAndNavigate(_root, req);
+                _vm.HandleNavigationRequested(req);
             };
         }
 
         if (_searchView != null)
         {
-            _searchView.Status += (_, msg) => SetStatus(msg);
+            _searchView.Status += (_, msg) => _vm.SetStatus(msg);
             _searchView.NavigationRequested += (_, req) =>
             {
-                if (_root == null) return;
-                WindowNavigationService.OpenAndNavigate(_root, req);
+                _vm.HandleNavigationRequested(req);
             };
         }
 
         if (_gitView != null)
         {
-            _gitView.Status += (_, msg) => SetStatus(msg);
+            _gitView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {
-                try { return await EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }
-                catch (Exception ex) { SetStatus("Prepare translated XML failed: " + ex.Message); return false; }
+                try { return await _vm.EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }
+                catch (Exception ex) { _vm.SetStatus("Prepare translated XML failed: " + ex.Message); return false; }
             };
 
             _gitView.RootCloned += async (_, repoRoot) =>
             {
-                try
-                {
-                    if (!await ConfirmNavigateIfDirtyAsync("load a different root")) return;
-                    await LoadRootAsync(repoRoot, saveToConfig: true);
-                    // After a git clone/update, files on disk may differ from the cached statuses.
-                    // Recompute every file's status and refresh the nav so it reflects the new state.
-                    SetStatus("Refreshing nav statuses after git update…");
-                    await RefreshAllCachedStatusesAsync();
-                    await ApplyFilterSafeAsync();
-                    ForceTab(0);
-                }
-                catch (Exception ex)
-                {
-                    SetStatus("Failed to load cloned repo: " + ex.Message);
-                }
+                await _vm.HandleRootClonedAsync(repoRoot, IsSecondaryWindow);
             };
         }
 
@@ -493,12 +527,12 @@ public partial class MainWindow : Window
         if (e.Key == Key.A)
         {
             e.Handled = true;
-            _ = HandleReviewActionAsync(TranslationReviewStatuses.Approved);
+            _ = _vm.HandleReviewActionAsync(TranslationReviewStatuses.Approved);
         }
         else if (e.Key == Key.N)
         {
             e.Handled = true;
-            _ = HandleReviewActionAsync(TranslationReviewStatuses.NeedsWork);
+            _ = _vm.HandleReviewActionAsync(TranslationReviewStatuses.NeedsWork);
         }
         else if (e.Key == Key.Right && !(_translationView?.IsEditorFocused() ?? false))
         {
@@ -512,780 +546,22 @@ public partial class MainWindow : Window
         }
     }
 
-
-    private async Task RefreshAssistantForCurrentSegmentAsync(TranslationTabView.CurrentProjectionSegmentChangedEventArgs ev)
+    private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        try
-        {
-            if (_translationView == null) return;
-            if (_currentRelPath == null) return;
-
-            try { _assistantCts?.Cancel(); } catch { }
-            try { _assistantCts?.Dispose(); } catch { }
-            _assistantCts = new CancellationTokenSource();
-            var ct = _assistantCts.Token;
-
-            var ctx = new CurrentSegmentContext
-            {
-                RelPath = _currentRelPath,
-                BlockNumber = ev.BlockNumber,
-                ZhText = ev.Zh,
-                ZhContextText = ev.ZhContext,
-                EnText = ev.En,
-                ProjectionOffsetStart = ev.BlockStartOffset,
-                ProjectionOffsetEndExclusive = ev.BlockEndOffsetExclusive,
-                Mode = ev.Mode
-            };
-
-            _currentSegmentContext = ctx;
-
-            var snapshot = await _translationAssistant.BuildSnapshotAsync(
-                ctx,
-                _root,
-                _originalDir,
-                _translatedDir,
-                ct);
-
-            if (ct.IsCancellationRequested) return;
-
-            _translationView.SetAssistantSnapshot(snapshot);
-            MaybeAutoFillFromExactMatch(snapshot);
-            _translationView.UpdateTermbaseHighlights(snapshot?.Terms, _currentSegmentContext?.ZhText);
-            _translationView.UpdateTmSharedHighlights(snapshot?.ApprovedMatches, snapshot?.ReferenceMatches, _currentSegmentContext?.ZhText);
-            int? readableOccurrenceHint =
-                _currentSegmentContext != null && _currentSegmentContext.BlockNumber > 0
-                    ? _currentSegmentContext.BlockNumber - 1
-                    : null;
-            string? readableAnchorSignal = string.IsNullOrWhiteSpace(_currentSegmentContext?.ZhContextText)
-                ? null
-                : _currentSegmentContext.ZhContextText;
-            _readableView?.UpdateTermbaseHighlights(
-                snapshot?.Terms,
-                _currentSegmentContext?.ZhText,
-                preferredOccurrenceHint: readableOccurrenceHint,
-                anchorTextSignal: readableAnchorSignal);
-            await RefreshReviewBadgeAsync();
-        }
-        catch
-        {
-            // assistant errors must never break translation
-        }
+        if (_suppressNavSelectionChanged) return;
+        if (_filesList?.SelectedItem is not FileNavItem item) return;
+        await _vm.OnFileSelectedAsync(item);
     }
 
-    private void MaybeAutoFillFromExactMatch(TranslationAssistantSnapshot? snapshot)
-    {
-        if (snapshot == null) return;
-        if (!string.IsNullOrWhiteSpace(snapshot.Segment.EnText)) return;
-        var exact = snapshot.ApprovedMatches?.FirstOrDefault(m => m.Score >= 100);
-        if (exact == null) return;
-        _translationView?.FillEnForCurrentBlock(exact.TargetText, snapshot.Segment.BlockNumber);
-    }
-
-    private async Task RefreshProgressStatsAsync()
-    {
-        if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_currentRelPath))
-        {
-            _translationView?.SetProgressStats(0, 0, 0);
-            return;
-        }
-
-        var map = await _translationReview.LoadLatestEntriesAsync(_root);
-        var entries = map.Values
-            .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
-                     && e.Mode == _translationMode.ToString())
-            .ToList();
-        int approved = entries.Count(e => e.Status == TranslationReviewStatuses.Approved);
-        int needsWork = entries.Count(e => e.Status == TranslationReviewStatuses.NeedsWork);
-        int total = _translationView?.GetAllBlockNumbers().Count ?? 0;
-        _translationView?.SetProgressStats(approved, needsWork, total);
-    }
-
-    private async Task OnFootnoteMoveRequestedAsync(ReadableTabView.MoveFootnoteRequest req)
-    {
-        try
-        {
-            if (_currentRelPath == null || _translatedDir == null)
-            {
-                SetStatus("Move footnote ignored: no file selected.");
-                return;
-            }
-
-            await EnsureTranslatedXmlExistsForCurrentAsync();
-
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            var baseXml = ReadAllTextUtf8Strict(tranAbs);
-
-            int len = baseXml.Length;
-
-            int oldS = Math.Clamp(req.OldXmlStart, 0, len);
-            int oldE = Math.Clamp(req.OldXmlEndExclusive, 0, len);
-            if (oldE < oldS) (oldS, oldE) = (oldE, oldS);
-
-            if (oldE <= oldS)
-            {
-                SetStatus($"Move footnote ignored: invalid old span {req.OldXmlStart}..{req.OldXmlEndExclusive}");
-                return;
-            }
-
-            int newIndex = Math.Clamp(req.NewXmlIndex, 0, len);
-
-            // If the click maps INSIDE the old <note> span, that’s fine.
-            // We *interpret* it as “insert at the note’s anchor point”, i.e. the start of the element.
-            // (Inserting into note markup is never desirable.)
-            if (newIndex >= oldS && newIndex <= oldE)
-                newIndex = oldS;
-
-            // Extract original note XML snippet
-            string noteXml = baseXml.Substring(oldS, oldE - oldS);
-
-            // Sanity check: avoid deleting arbitrary XML if spans ever go wrong
-            if (!LooksLikeNoteElement(noteXml))
-            {
-                SetStatus("Move footnote refused: source span does not look like a <note> element.");
-                return;
-            }
-
-            // Remove old note first
-            string withoutOld = baseXml.Remove(oldS, oldE - oldS);
-
-            // Adjust insertion index AFTER the removal
-            int removedLen = oldE - oldS;
-            int adjustedNewIndex =
-                (newIndex <= oldS)
-                    ? newIndex
-                    : newIndex - removedLen;
-
-            adjustedNewIndex = Math.Clamp(adjustedNewIndex, 0, withoutOld.Length);
-
-            // Insert the cloned note element at the new location
-            string updated = withoutOld.Insert(adjustedNewIndex, noteXml);
-
-            await WriteTranslatedDiskAndRerenderAsync(
-                _currentRelPath,
-                updated,
-                $"moved footnote {oldS}..{oldE} -> {adjustedNewIndex}"
-            );
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Move footnote failed: " + ex.Message);
-        }
-    }
-    private static bool LooksLikeNoteElement(string xmlSnippet)
-    {
-        if (string.IsNullOrWhiteSpace(xmlSnippet)) return false;
-
-        var s = xmlSnippet.TrimStart();
-
-        // Allow whitespace before <note ...>
-        if (!s.StartsWith("<note", StringComparison.OrdinalIgnoreCase))
-            return false;
-
-        // Should contain a closing tag (renderer captures <note ...>...</note>)
-        if (s.IndexOf("</note>", StringComparison.OrdinalIgnoreCase) < 0)
-            return false;
-
-        return true;
-    }
-    private void ForceTab(int idx)
-    {
-        if (_tabs == null) return;
-        _suppressTabEvents = true;
-        try { _tabs.SelectedIndex = idx; }
-        finally { _suppressTabEvents = false; }
-    }
-
-    // =========================
-    // Community notes handlers (DISK-TEI ONLY)
-    // =========================
-
-    private async Task OnCommunityNoteInsertRequestedAsync(int xmlIndex, string noteText, string? resp)
-    {
-        try
-        {
-            if (_currentRelPath == null || _translatedDir == null)
-            {
-                SetStatus("Community insert ignored: no file selected.");
-                return;
-            }
-
-            await EnsureTranslatedXmlExistsForCurrentAsync();
-
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            var baseXml = ReadAllTextUtf8Strict(tranAbs);
-
-            int insertAt = Math.Clamp(xmlIndex, 0, baseXml.Length);
-            string noteXml = BuildCommunityNoteXml(noteText, resp);
-            string updated = baseXml.Insert(insertAt, noteXml);
-
-            await WriteTranslatedDiskAndRerenderAsync(_currentRelPath, updated, "community insert at " + insertAt);
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Community insert failed: " + ex.Message);
-        }
-    }
-
-    private async Task OnCommunityNoteDeleteRequestedAsync(int xmlStart, int xmlEndExclusive)
-    {
-        try
-        {
-            if (_currentRelPath == null || _translatedDir == null)
-            {
-                SetStatus("Community delete ignored: no file selected.");
-                return;
-            }
-
-            await EnsureTranslatedXmlExistsForCurrentAsync();
-
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            var baseXml = ReadAllTextUtf8Strict(tranAbs);
-
-            int s = Math.Clamp(xmlStart, 0, baseXml.Length);
-            int e = Math.Clamp(xmlEndExclusive, 0, baseXml.Length);
-            if (e < s) (s, e) = (e, s);
-
-            if (e <= s)
-            {
-                SetStatus("Community delete ignored: invalid range " + xmlStart + ".." + xmlEndExclusive);
-                return;
-            }
-
-            string updated = baseXml.Remove(s, e - s);
-            await WriteTranslatedDiskAndRerenderAsync(_currentRelPath, updated, "community delete " + s + ".." + e);
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Community delete failed: " + ex.Message);
-        }
-    }
-
-    private static string BuildCommunityNoteXml(string noteText, string? resp)
-    {
-        string inner = EscapeXmlText((noteText ?? "").Trim());
-        if (inner.Length == 0) inner = "…";
-
-        string respAttr = "";
-        if (!string.IsNullOrWhiteSpace(resp))
-        {
-            respAttr = " resp=\"" + EscapeXmlAttr(resp.Trim()) + "\"";
-        }
-
-        return "<note type=\"community\"" + respAttr + ">" + inner + "</note>";
-    }
-
-    private static string EscapeXmlText(string s)
-        => (s ?? "").Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
-
-    private static string EscapeXmlAttr(string s)
-        => EscapeXmlText(s).Replace("\"", "&quot;").Replace("'", "&apos;");
-
-    // =========================
-    // Translator annotation (auto-updated on every save)
-    // =========================
-
-    /// <summary>
-    /// Inserts or updates a "translated lines X-Y, Z-W" community annotation at the very beginning
-    /// of the translated XML.  If a matching annotation (resp == username, text starts with
-    /// "translated lines ") already exists near the top, it is replaced in-place; otherwise a new
-    /// one is inserted before the first rendered character.
-    /// Returns the (possibly modified) XML unchanged if nothing is translated or on any error.
-    /// </summary>
-    private static string ApplyTranslatorAnnotation(
-        string xml,
-        IReadOnlyList<int> changedBlocks,
-        string username)
-    {
-        // changedBlocks is pre-computed before BuildTranslatedXml resets dirty state.
-
-        RenderedDocument rendered;
-        try { rendered = CbetaTeiRenderer.Render(xml); }
-        catch { return xml; }
-
-        // Find existing translator annotation near the top of the document.
-        DocAnnotation? existing = null;
-        foreach (var ann in rendered.Annotations)
-        {
-            if (ann.Start > 500) break;
-            if (!ann.IsCommunity) continue;
-            if (!string.Equals(ann.Resp, username, StringComparison.OrdinalIgnoreCase)) continue;
-            if (!ann.Text.StartsWith("translated blocks ", StringComparison.OrdinalIgnoreCase)) continue;
-            if (!ann.HasXmlSpan) continue;
-            existing = ann;
-            break;
-        }
-
-        // Merge previously recorded blocks (from any earlier save) with the newly changed ones.
-        var allBlocks = new HashSet<int>(changedBlocks);
-        if (existing != null)
-            foreach (var n in ParseAnnotationBlockNumbers(existing.Text))
-                allBlocks.Add(n);
-
-        if (allBlocks.Count == 0) return xml;
-
-        var annotationText = FormatBlockRanges(allBlocks);
-
-        if (existing != null)
-        {
-            // Delete old note then re-insert at the exact same XML position.
-            xml = CommunityNoteXmlEditor.DeleteSpan(xml, existing.XmlStart, existing.XmlEndExclusive);
-            xml = CommunityNoteXmlEditor.InsertCommunityNote(xml, existing.XmlStart, annotationText, username);
-        }
-        else
-        {
-            // BaseToXmlIndex[0] is always 0 (before the <?xml?> declaration) — skip past the
-            // first rendered line so we land safely inside the body element.
-            int insertPos = 0;
-            if (rendered.BaseToXmlIndex is { Length: > 0 })
-            {
-                int firstNl = rendered.Text.IndexOf('\n');
-                int insertDisplay = (firstNl >= 0 && firstNl + 1 < rendered.Text.Length)
-                    ? firstNl + 1
-                    : Math.Max(1, rendered.Text.Length / 2);
-                int xmlIdx = rendered.DisplayIndexToXmlIndex(insertDisplay);
-                if (xmlIdx > 0) insertPos = xmlIdx;
-            }
-            xml = CommunityNoteXmlEditor.InsertCommunityNote(xml, insertPos, annotationText, username);
-        }
-
-        return xml;
-    }
-
-    /// <summary>
-    /// Returns 1-based block numbers (within the current mode's units) where the user
-    /// actually changed the English text compared to what was on disk when the file was opened.
-    /// Empty or whitespace-only translations are excluded.
-    /// </summary>
-    private static List<int> GetChangedBlockNumbers(IndexedTranslationDocument indexedDoc, TranslationEditMode mode)
-    {
-        var kindFilter = mode switch
-        {
-            TranslationEditMode.Head => CbetaTranslator.App.Services.TranslationUnitKind.Head,
-            TranslationEditMode.Notes => CbetaTranslator.App.Services.TranslationUnitKind.Note,
-            _ => CbetaTranslator.App.Services.TranslationUnitKind.Body
-        };
-
-        var units = indexedDoc.Units.Where(u => u.Kind == kindFilter).ToList();
-        var changed = new List<int>();
-
-        for (int i = 0; i < units.Count; i++)
-        {
-            var u = units[i];
-            if (string.IsNullOrWhiteSpace(u.En)) continue;
-            if (string.Equals(u.En.Trim(), u.EnBaseline.Trim(), StringComparison.Ordinal)) continue;
-            changed.Add(i + 1); // 1-based block number matching the UI
-        }
-
-        return changed;
-    }
-
-    /// <summary>
-    /// Parses block numbers out of "translated blocks 1-5, 7, 9-12" → {1,2,3,4,5,7,9,10,11,12}.
-    /// </summary>
-    private static IEnumerable<int> ParseAnnotationBlockNumbers(string text)
-    {
-        foreach (Match m in Regex.Matches(text, @"(\d+)(?:-(\d+))?"))
-        {
-            int start = int.Parse(m.Groups[1].Value);
-            int end = m.Groups[2].Success ? int.Parse(m.Groups[2].Value) : start;
-            for (int i = start; i <= end; i++)
-                yield return i;
-        }
-    }
-
-    /// <summary>
-    /// Formats a set of block numbers as "translated blocks 1-5, 7, 9-12".
-    /// </summary>
-    private static string FormatBlockRanges(IEnumerable<int> blocks)
-    {
-        var sorted = blocks.Distinct().OrderBy(x => x).ToList();
-        if (sorted.Count == 0) return "";
-
-        var ranges = new List<(int Start, int End)>();
-        int rs = sorted[0], re = sorted[0];
-        for (int i = 1; i < sorted.Count; i++)
-        {
-            if (sorted[i] == re + 1) { re = sorted[i]; }
-            else { ranges.Add((rs, re)); rs = re = sorted[i]; }
-        }
-        ranges.Add((rs, re));
-
-        var sb = new StringBuilder("translated blocks ");
-        for (int i = 0; i < ranges.Count; i++)
-        {
-            if (i > 0) sb.Append(", ");
-            var (s, e) = ranges[i];
-            if (s == e) sb.Append(s);
-            else sb.Append($"{s}-{e}");
-        }
-        return sb.ToString();
-    }
-
-    private async Task WriteTranslatedDiskAndRerenderAsync(string relPath, string updatedXml, string why)
-    {
-        if (_translatedDir == null) return;
-
-        EnsureXmlIsWellFormed(updatedXml, "Updated translated XML is not well-formed.");
-
-        var tranAbs = Path.Combine(_translatedDir, relPath);
-        var saveInfo = await AtomicWriteXmlAsync(tranAbs, updatedXml);
-
-        _rawTranXml = updatedXml;
-
-        try
-        {
-            _renderCache.Invalidate(tranAbs);
-        }
-        catch { }
-
-        if (string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
-        {
-            _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
-            var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-            SetTranslationProjection(_translationMode, projection);
-            SetBaselineFromCurrentTranslatedEditorText();
-        }
-
-        await RefreshReadableFromDiskOnlyAsync();
-        await RefreshFileStatusAsync(relPath);
-
-        SetStatus("OK: " + why + (saveInfo.BackupCreated ? " (backup updated)" : ""));
-    }
-
-    // =========================
-    // Root + config
-    // =========================
-
-    private async Task LoadConfigApplyThemeAndMaybeAutoloadAsync()
-    {
-        try
-        {
-            try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
-            catch { _config = new AppConfig { IsDarkTheme = true }; }
-
-            ApplyTheme(_config.IsDarkTheme);
-            ApplySettingsToChildViews();
-
-            // Secondary windows skip auto-load; OpenAtAsync handles the root/file explicitly.
-            if (IsSecondaryWindow) return;
-
-            // Require a username before proceeding.
-            if (string.IsNullOrWhiteSpace(_config.Username))
-            {
-                var prompt = new UsernamePromptWindow();
-                var name = await prompt.ShowDialog<string?>(this);
-                // name is guaranteed non-null/non-empty because the window cannot close otherwise.
-                _config.Username = name ?? "User";
-                await SafeSaveConfigAsync();
-                // Re-push now-valid username to child views (ApplySettingsToChildViews above ran before the prompt).
-                ApplySettingsToChildViews();
-            }
-
-            if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
-            {
-                _suppressConfigSaves = true;
-                try
-                {
-                    if (_chkZenOnly != null) _chkZenOnly.IsChecked = _config.ZenOnly;
-                }
-                finally
-                {
-                    _suppressConfigSaves = false;
-                }
-
-                SetStatus("Auto-loading last root…");
-                await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
-
-                if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
-                {
-                    var rel = NormalizeRel(_config.LastSelectedRelPath);
-                    SelectInNav(rel);
-                    await LoadPairAsync(rel);
-                }
-            }
-        }
-        finally
-        {
-            // Always signal ready so OpenAtAsync is never permanently blocked.
-            _windowReady.TrySetResult();
-        }
-    }
-
-    private async void OpenRoot_Click(object? sender, RoutedEventArgs e)
-    {
-        try
-        {
-            if (!await ConfirmNavigateIfDirtyAsync("open a different root")) return;
-            if (StorageProvider is null) { SetStatus("StorageProvider not available."); return; }
-
-            var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
-            {
-                Title = "Select CBETA root folder"
-            });
-
-            var folder = picked.FirstOrDefault();
-            if (folder is null) return;
-
-            await LoadRootAsync(folder.Path.LocalPath, saveToConfig: true);
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Open root failed: " + ex.Message);
-        }
-    }
-
-    private async Task LoadRootAsync(string rootPath, bool saveToConfig)
-    {
-        _root = rootPath;
-        _originalDir = AppPaths.GetOriginalDir(_root);
-        _translatedDir = AppPaths.GetTranslatedDir(_root);
-
-        _renderCache.Clear();
-
-        if (_txtRoot != null) _txtRoot.Text = _root;
-
-        if (!Directory.Exists(_originalDir))
-        {
-            SetStatus("Original folder missing: " + _originalDir);
-            return;
-        }
-
-        AppPaths.EnsureTranslatedDirExists(_root);
-
-        try
-        {
-            await _zenTexts.LoadAsync(_root);
-            _searchView?.SetZenResolver(rel => _zenTexts.IsZen(rel));
-        }
-        catch { }
-
-        _gitView?.SetCurrentRepoRoot(_root);
-        _searchView?.SetRootContext(_root, _originalDir, _translatedDir);
-
-        if (saveToConfig)
-        {
-            _config.TextRootPath = _root;
-            _config.ZenOnly = _chkZenOnly != null && _chkZenOnly.IsChecked == true;
-            _config.Version = Math.Max(_config.Version, 3);
-            await SafeSaveConfigAsync();
-        }
-
-        await LoadFileListFromCacheOrBuildAsync();
-    }
-
-    private async Task SafeSaveConfigAsync()
-    {
-        try { await _configService.SaveAsync(_config); }
-        catch { }
-    }
-
-    private async Task SaveUiStateAsync()
-    {
-        if (_suppressConfigSaves || IsSecondaryWindow) return;
-        if (_root == null) return;
-
-        _config.TextRootPath = _root;
-        _config.LastSelectedRelPath = _currentRelPath;
-        _config.ZenOnly = _chkZenOnly != null && _chkZenOnly.IsChecked == true;
-        _config.Version = Math.Max(_config.Version, 3);
-        await SafeSaveConfigAsync();
-    }
-
-    private async void Licenses_Click(object? sender, RoutedEventArgs e)
-    {
-        try { await new LicensesWindow(_root).ShowDialog(this); }
-        catch (Exception ex) { SetStatus("Failed to open licenses: " + ex.Message); }
-    }
-
-    private async void OnSettingsClicked(object? sender, RoutedEventArgs e)
-    {
-        try
-        {
-            var settingsWindow = new SettingsWindow(_config);
-            var result = await settingsWindow.ShowDialog<AppConfig?>(this);
-            if (result == null) return;
-
-            _config = result;
-            ApplyTheme(_config.IsDarkTheme);
-            ApplySettingsToChildViews();
-            await SafeSaveConfigAsync();
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Failed to open settings: " + ex.Message);
-        }
-    }
-
-    // =========================
-    // Index + filter
-    // =========================
-
-    private async Task LoadFileListFromCacheOrBuildAsync()
-    {
-        if (_root == null || _originalDir == null || _translatedDir == null || _filesList == null)
-            return;
-
-        ClearViews();
-
-        void WireSearchTab()
-        {
-            if (_searchView == null) return;
-
-            _searchView.SetContext(_root!, _originalDir!, _translatedDir!,
-                fileMeta: relKey =>
-                {
-                    _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
-                    return it != null ? (it.DisplayShort, it.Tooltip, it.Status) : (relKey, relKey, null);
-                });
-
-            _searchView.SetZenResolver(rel => _zenTexts.IsZen(rel));
-        }
-
-        try
-        {
-            var cache = await _indexCacheService.TryLoadAsync(_root);
-
-            if (cache?.Entries is { Count: > 0 })
-            {
-                _allItems = cache.Entries;
-                RebuildLookup();
-
-                await ApplyFilterSafeAsync();
-                WireSearchTab();
-
-                SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
-                return;
-            }
-
-            SetStatus("Building index cache…");
-
-            var progress = new Progress<(int done, int total)>(p =>
-            {
-                SetStatus("Indexing files… " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
-            });
-
-            IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _root, progress);
-            await _indexCacheService.SaveAsync(_root, built);
-
-            _allItems = built.Entries ?? new List<FileNavItem>();
-            RebuildLookup();
-
-            await ApplyFilterSafeAsync();
-            WireSearchTab();
-
-            SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Index load/build failed: " + ex.Message);
-        }
-    }
-
-    private async Task RefreshAllCachedStatusesAsync()
-    {
-        if (_root == null || _originalDir == null || _translatedDir == null) return;
-
-        bool changed = false;
-        int total = _allItems.Count;
-
-        var progress = new Progress<int>(done =>
-            SetStatus($"Refreshing nav statuses… {done:n0}/{total:n0}"));
-
-        await Task.Run(() =>
-        {
-            int done = 0;
-            foreach (var it in _allItems)
-            {
-                if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
-
-                var rel = NormalizeRel(it.RelPath);
-                var origAbs = Path.Combine(_originalDir, it.RelPath);
-                var tranAbs = Path.Combine(_translatedDir, it.RelPath);
-
-                var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, rel, verboseLog: false);
-                if (!Equals(it.Status, newStatus))
-                {
-                    it.Status = newStatus;
-                    changed = true;
-                }
-
-                done++;
-                if (done % 50 == 0)
-                    ((IProgress<int>)progress).Report(done);
-            }
-            ((IProgress<int>)progress).Report(done);
-        });
-
-        if (changed)
-        {
-            await _indexCacheService.SaveAsync(_root, new IndexCache { Entries = _allItems });
-        }
-    }
-
-    private void RebuildLookup()
-    {
-        _allItemsByRel.Clear();
-        foreach (var it in _allItems) _allItemsByRel[NormalizeRel(it.RelPath)] = it;
-    }
-
-    private static bool MatchesLocalText(FileNavItem it, string qLower)
-    {
-        if (qLower.Length == 0) return true;
-        return (it.RelPath ?? "").ToLowerInvariant().Contains(qLower)
-            || (it.FileName ?? "").ToLowerInvariant().Contains(qLower)
-            || (it.DisplayShort ?? "").ToLowerInvariant().Contains(qLower)
-            || (it.Tooltip ?? "").ToLowerInvariant().Contains(qLower);
-    }
-
-    private static bool MatchesStatusFilter(object? statusObj, int statusIdx)
-    {
-        if (statusIdx == 0) return true;
-        if (statusObj == null) return false;
-
-        string s = statusObj.ToString()?.ToLowerInvariant() ?? "";
-        return statusIdx switch
-        {
-            1 => s.Contains("green") || s.Contains("translated"),
-            2 => s.Contains("yellow") || s.Contains("partial"),
-            3 => s.Contains("red") || s.Contains("untranslated"),
-            _ => true
-        };
-    }
-
-    private void ApplySettingsToChildViews()
-    {
-        try
-        {
-            _translationView?.SetHoverDictionaryEnabled(_config.EnableHoverDictionary);
-        }
-        catch { }
-
-        try
-        {
-            var m = _readableView?.GetType().GetMethod("SetHoverDictionaryEnabled");
-            m?.Invoke(_readableView, new object[] { _config.EnableHoverDictionary });
-        }
-        catch { }
-
-        if (_readableView != null)
-            _readableView.DefaultResp = _config.Username ?? "";
-
-        try
-        {
-            _gitView?.SetUsername(_config.Username);
-        }
-        catch { }
-    }
-
-    // -------------------------
+    // ===========================================================
     // Nav filter scheduling / debounce
-    // -------------------------
+    // ===========================================================
 
     private void ScheduleApplyFilter(bool debounce)
     {
         if (!debounce)
         {
-            _ = ApplyFilterSafeAsync();
+            _ = _vm.ApplyFilterSafeAsync();
             return;
         }
 
@@ -1304,700 +580,36 @@ public partial class MainWindow : Window
     private void NavFilterDebounce_Tick(object? sender, EventArgs e)
     {
         _navFilterDebounce?.Stop();
-        _ = ApplyFilterSafeAsync();
+        _ = _vm.ApplyFilterSafeAsync();
     }
 
-    private async Task ApplyFilterSafeAsync()
+    // ===========================================================
+    // Index cache save debounce
+    // ===========================================================
+
+    private void ScheduleIndexCacheSave()
     {
-        try
+        _indexCacheSaveDebounce ??= new DispatcherTimer
         {
-            await ApplyFilterAsync();
-        }
-        catch (TaskCanceledException)
-        {
-            // expected during fast typing
-        }
-        catch (OperationCanceledException)
-        {
-            // expected during fast typing
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Filter failed: " + ex.Message);
-        }
+            Interval = TimeSpan.FromMilliseconds(500)
+        };
+
+        _indexCacheSaveDebounce.Tick -= IndexCacheSaveDebounce_Tick;
+        _indexCacheSaveDebounce.Tick += IndexCacheSaveDebounce_Tick;
+
+        _indexCacheSaveDebounce.Stop();
+        _indexCacheSaveDebounce.Start();
     }
 
-    private async Task ApplyFilterAsync()
+    private async void IndexCacheSaveDebounce_Tick(object? sender, EventArgs e)
     {
-        if (_filesList == null)
-            return;
-
-        int myVersion = Interlocked.Increment(ref _navFilterVersion);
-
-        try
-        {
-            try
-            {
-                _navSearchCts?.Cancel();
-                _navSearchCts?.Dispose();
-            }
-            catch
-            {
-                // ignore
-            }
-
-            _navSearchCts = new CancellationTokenSource();
-            var ct = _navSearchCts.Token;
-
-            bool restoreFocus = _navSearch != null && _navSearch.IsFocused;
-
-            string q = (_navSearch?.Text ?? "").Trim();
-            string qLower = q.ToLowerInvariant();
-
-            bool showFilenames = _chkShowFilenames != null && _chkShowFilenames.IsChecked == true;
-            bool zenOnly = _chkZenOnly != null && _chkZenOnly.IsChecked == true;
-            int statusIdx = _cmbStatusFilter?.SelectedIndex ?? 0;
-
-            string? selectedRel = (_filesList.SelectedItem as FileNavItem)?.RelPath ?? _currentRelPath;
-
-            var allSnapshot = _allItems.ToList();
-
-            var built = await Task.Run(() =>
-            {
-                ct.ThrowIfCancellationRequested();
-
-                IEnumerable<FileNavItem> seq = allSnapshot;
-
-                if (zenOnly)
-                    seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath) && _zenTexts.IsZen(it.RelPath));
-
-                if (statusIdx != 0)
-                    seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
-
-                if (q.Length > 0)
-                    seq = seq.Where(it => MatchesLocalText(it, qLower));
-
-                return seq.Select(it =>
-                {
-                    string label =
-                        showFilenames
-                            ? (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath)
-                            : (!string.IsNullOrWhiteSpace(it.DisplayShort) ? it.DisplayShort :
-                                (!string.IsNullOrWhiteSpace(it.FileName) ? it.FileName : it.RelPath));
-
-                    return new FileNavItem
-                    {
-                        RelPath = it.RelPath,
-                        FileName = it.FileName,
-                        DisplayShort = label,
-                        Tooltip = it.Tooltip,
-                        Status = it.Status,
-                    };
-                }).ToList();
-            }, ct);
-
-            if (ct.IsCancellationRequested) return;
-            if (myVersion != _navFilterVersion) return;
-
-            _filteredItems = built;
-
-            try
-            {
-                _suppressNavSelectionChanged = true;
-                _filesList.ItemsSource = _filteredItems;
-
-                if (!string.IsNullOrWhiteSpace(selectedRel))
-                {
-                    var match = _filteredItems.FirstOrDefault(x =>
-                        string.Equals(x.RelPath, selectedRel, StringComparison.OrdinalIgnoreCase));
-                    if (match != null) _filesList.SelectedItem = match;
-                }
-            }
-            finally
-            {
-                _suppressNavSelectionChanged = false;
-            }
-
-            if (restoreFocus && _navSearch != null)
-                Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
-        }
-        catch
-        {
-            throw;
-        }
+        _indexCacheSaveDebounce?.Stop();
+        await _vm.SaveIndexCacheIfDirtyAsync();
     }
 
-    private void SelectInNav(string relPath)
-    {
-        if (_filesList == null || string.IsNullOrWhiteSpace(relPath)) return;
-
-        var match = _filteredItems.FirstOrDefault(x => string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
-        if (match == null) return;
-
-        try { _suppressNavSelectionChanged = true; _filesList.SelectedItem = match; }
-        finally { _suppressNavSelectionChanged = false; }
-    }
-
-    private void ClearViews()
-    {
-        try { _navSearchCts?.Cancel(); } catch { }
-        try { _navSearchCts?.Dispose(); } catch { }
-        _navSearchCts = null;
-
-        try { _renderCts?.Cancel(); } catch { }
-        try { _renderCts?.Dispose(); } catch { }
-        _renderCts = null;
-
-        try { _navFilterDebounce?.Stop(); } catch { }
-
-        _rawOrigXml = "";
-        _rawTranXml = "";
-        _currentRelPath = null;
-        _indexedDoc = null;
-
-        _baselineTranSha1 = "";
-        _lastSeenTranSha1 = "";
-        _dirty = false;
-
-        if (_txtCurrentFile != null) _txtCurrentFile.Text = "";
-
-        _readableView?.Clear();
-        _translationView?.Clear();
-        _searchView?.Clear();
-
-        if (_filesList != null) _filesList.ItemsSource = null;
-
-        _readableView?.SetZenContext(null, false);
-
-        UpdateWindowTitle();
-        UpdateSaveButtonState();
-        _gitView?.SetSelectedRelPath(null);
-    }
-
-    private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (_suppressNavSelectionChanged) return;
-        if (_filesList?.SelectedItem is not FileNavItem item) return;
-        if (string.IsNullOrWhiteSpace(item.RelPath)) return;
-
-        if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
-        {
-            if (!await ConfirmNavigateIfDirtyAsync("switch files (" + _currentRelPath + " → " + item.RelPath + ")"))
-            {
-                var backRel = _currentRelPath;
-                Dispatcher.UIThread.Post(() =>
-                {
-                    try
-                    {
-                        _suppressNavSelectionChanged = true;
-                        var back = _filteredItems.FirstOrDefault(x => string.Equals(x.RelPath, backRel, StringComparison.OrdinalIgnoreCase));
-                        if (back != null && _filesList != null) _filesList.SelectedItem = back;
-                    }
-                    finally { _suppressNavSelectionChanged = false; }
-                }, DispatcherPriority.Background);
-                return;
-            }
-        }
-
-        await LoadPairAsync(item.RelPath);
-    }
-
-    // =========================
-    // Load/render (Readable = DISK XML ONLY)
-    // =========================
-
-    private async Task<string> ReadOriginalXmlAsync(string relPath)
-    {
-        if (_originalDir == null || string.IsNullOrWhiteSpace(relPath))
-            return "";
-
-        var path = Path.Combine(_originalDir, relPath);
-
-        try
-        {
-            if (!File.Exists(path)) return "";
-            return await File.ReadAllTextAsync(path, Encoding.UTF8);
-        }
-        catch
-        {
-            return "";
-        }
-    }
-
-    private string? TryReadTranslatedXmlFromDisk(string relPath)
-    {
-        if (_translatedDir == null) return null;
-
-        try
-        {
-            var tranAbs = Path.Combine(_translatedDir, relPath);
-            if (!File.Exists(tranAbs))
-                return null;
-
-            var text = File.ReadAllText(tranAbs, Encoding.UTF8);
-
-            if (TryParseXml(text, out _))
-                return text;
-
-            var bak = tranAbs + ".bak";
-            if (File.Exists(bak))
-            {
-                var bakText = File.ReadAllText(bak, Encoding.UTF8);
-                if (TryParseXml(bakText, out _))
-                {
-                    SetStatus("Translated XML was corrupted; loaded backup (.bak) instead.");
-                    return bakText;
-                }
-            }
-
-            SetStatus("Translated XML is malformed and no valid backup was found.");
-            return null;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    private async Task EnsureTranslatedXmlExistsForCurrentAsync()
-    {
-        if (_currentRelPath == null) return;
-        await EnsureTranslatedXmlExistsForRelPathAsync(_currentRelPath);
-    }
-
-    private async Task EnsureTranslatedXmlExistsForRelPathAsync(string relPath)
-    {
-        if (_originalDir == null || _translatedDir == null) return;
-
-        var tranAbs = Path.Combine(_translatedDir, relPath);
-        if (File.Exists(tranAbs)) return;
-
-        var origXml = await ReadOriginalXmlAsync(relPath);
-        if (string.IsNullOrWhiteSpace(origXml)) return;
-
-        EnsureXmlIsWellFormed(origXml, "Original XML is malformed; cannot create translated copy.");
-
-        await AtomicWriteXmlAsync(tranAbs, origXml);
-    }
-
-    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
-    {
-        if (_originalDir == null || _translatedDir == null)
-            return (RenderedDocument.Empty, RenderedDocument.Empty);
-
-        var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_translatedDir, relPath);
-
-        ct.ThrowIfCancellationRequested();
-
-        var stampOrig = FileStamp.FromFile(origAbs);
-        RenderedDocument ro;
-        if (!_renderCache.TryGet(stampOrig, out ro))
-        {
-            ct.ThrowIfCancellationRequested();
-            ro = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
-            _renderCache.Put(stampOrig, ro);
-        }
-
-        ct.ThrowIfCancellationRequested();
-
-        if (!File.Exists(tranAbs))
-        {
-            var rtFallback = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
-            return (ro, rtFallback);
-        }
-
-        var stampTran = FileStamp.FromFile(tranAbs);
-        RenderedDocument rt;
-        if (!_renderCache.TryGet(stampTran, out rt))
-        {
-            ct.ThrowIfCancellationRequested();
-            rt = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(tranAbs));
-            _renderCache.Put(stampTran, rt);
-        }
-
-        return (ro, rt);
-    }
-
-    private async Task LoadPairAsync(string relPath)
-    {
-        if (_originalDir == null || _translatedDir == null) return;
-
-        _renderCts?.Cancel();
-        _renderCts?.Dispose();
-        _renderCts = new CancellationTokenSource();
-        var ct = _renderCts.Token;
-
-        _currentRelPath = relPath;
-        _currentSegmentContext = null;
-
-        _readableView?.UpdateTermbaseHighlights(null, null);
-        _translationView?.UpdateTermbaseHighlights(null, null);
-        _translationView?.UpdateTmSharedHighlights(null, null, null);
-
-        if (_txtCurrentFile != null) _txtCurrentFile.Text = relPath;
-        _gitView?.SetSelectedRelPath(_currentRelPath);
-
-        SetStatus("Loading: " + relPath);
-
-        _rawOrigXml = await ReadOriginalXmlAsync(relPath);
-
-        await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
-
-        _rawTranXml = TryReadTranslatedXmlFromDisk(relPath) ?? _rawOrigXml;
-
-        _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
-
-        var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-        SetTranslationProjection(_translationMode, projection);
-
-        _baselineTranSha1 = Sha1Hex(projection);
-        _lastSeenTranSha1 = _baselineTranSha1;
-        _dirty = false;
-        UpdateWindowTitle();
-        UpdateSaveButtonState();
-
-        SetStatus("Rendering readable view…");
-
-        try
-        {
-            await RefreshAssistantFromEditorAsync();
-        }
-        catch
-        {
-        }
-
-        try
-        {
-            var swRender = Stopwatch.StartNew();
-
-            var (ro, rt) = await Task.Run(async () =>
-            {
-                ct.ThrowIfCancellationRequested();
-                return await RenderReadablePairDiskOnlyAsync(relPath, ct);
-            }, ct);
-
-            swRender.Stop();
-            if (ct.IsCancellationRequested) return;
-
-            await Dispatcher.UIThread.InvokeAsync(() =>
-            {
-                _readableView?.SetRendered(ro, rt);
-            });
-
-            try
-            {
-                bool isZen = _root != null && _zenTexts.IsZen(relPath);
-                _readableView?.SetZenContext(relPath, isZen);
-            }
-            catch { }
-
-            await SaveUiStateAsync();
-            SetStatus("Loaded. Segments: O=" + ro.Segments.Count.ToString("n0") +
-                      ", T=" + rt.Segments.Count.ToString("n0") +
-                      ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
-
-            await RefreshProgressStatsAsync();
-        }
-        catch (OperationCanceledException) { }
-        catch (Exception ex)
-        {
-            SetStatus("Render failed: " + ex.Message);
-        }
-    }
-    private async Task RefreshAssistantFromEditorAsync()
-    {
-        try
-        {
-            if (_translationView == null || _currentRelPath == null)
-                return;
-
-            var text = GetTranslationProjectionText();
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                _translationView.SetAssistantSnapshot(null);
-                _translationView.SetCurrentReviewState(null, null, null);
-                return;
-            }
-
-            var snapshot = await _translationAssistant.BuildSnapshotAsync(
-                new CurrentSegmentContext
-                {
-                    RelPath = _currentRelPath,
-                    BlockNumber = 0,
-                    ZhText = "",
-                    EnText = "",
-                    ProjectionOffsetStart = 0,
-                    ProjectionOffsetEndExclusive = 0,
-                    Mode = _translationMode
-                },
-                _root,
-                _originalDir,
-                _translatedDir);
-
-            _translationView.SetAssistantSnapshot(snapshot);
-            await RefreshReviewBadgeAsync();
-        }
-        catch
-        {
-            // assistant must never break file loading
-        }
-    }
-
-    private async Task RefreshReviewBadgeAsync()
-    {
-        try
-        {
-            if (_translationView == null)
-                return;
-
-            if (_root == null || _currentSegmentContext == null)
-            {
-                _translationView.SetCurrentReviewState(null, null, null);
-                return;
-            }
-
-            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
-            _translationView.SetCurrentReviewState(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
-        }
-        catch
-        {
-            _translationView?.SetCurrentReviewState(null, null, null);
-        }
-    }
-
-    private async Task HandleReviewActionAsync(string status)
-    {
-        try
-        {
-            if (_root == null)
-            {
-                SetStatus("Review failed: no root is loaded.");
-                return;
-            }
-
-            if (_translationView == null)
-            {
-                SetStatus("Review failed: translation view unavailable.");
-                return;
-            }
-
-            if (_currentSegmentContext == null)
-            {
-                SetStatus("Review failed: no current segment.");
-                return;
-            }
-
-            _currentSegmentContext.EnText = _currentSegmentContext.EnText ?? "";
-
-            await _translationReview.AppendReviewAsync(
-                _root,
-                _currentSegmentContext,
-                status,
-                reviewer: _config.Username ?? "User");
-
-            int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_root);
-
-            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
-            _translationView.SetCurrentReviewState(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
-
-            await RefreshAssistantForCurrentSegmentAsync(new TranslationTabView.CurrentProjectionSegmentChangedEventArgs
-            {
-                BlockNumber = _currentSegmentContext.BlockNumber,
-                Zh = _currentSegmentContext.ZhText,
-                En = _currentSegmentContext.EnText,
-                BlockStartOffset = _currentSegmentContext.ProjectionOffsetStart,
-                BlockEndOffsetExclusive = _currentSegmentContext.ProjectionOffsetEndExclusive,
-                Mode = _currentSegmentContext.Mode
-            });
-
-            SetStatus($"Segment <{_currentSegmentContext.BlockNumber}> marked {TranslationReviewStatuses.Normalize(status)}. Approved TM rows: {count:n0}.");
-
-            if (status == TranslationReviewStatuses.Approved)
-            {
-                var reviewMap = await _translationReview.LoadLatestEntriesAsync(_root);
-                var currentRel = NormalizeRel(_currentRelPath ?? "");
-                var approvedBlocks = reviewMap.Values
-                    .Where(e => NormalizeRel(e.RelPath) == currentRel
-                             && e.Mode == _currentSegmentContext.Mode.ToString()
-                             && e.Status == TranslationReviewStatuses.Approved)
-                    .Select(e => e.BlockNumber)
-                    .ToHashSet();
-                _translationView?.JumpToNextUnapproved(approvedBlocks);
-            }
-
-            await RefreshProgressStatsAsync();
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Review failed: " + ex.Message);
-        }
-    }
-
-    private async Task RefreshReadableFromDiskOnlyAsync()
-    {
-        if (_readableView == null || _currentRelPath == null || _originalDir == null || _translatedDir == null) return;
-
-        _renderCts?.Cancel();
-        _renderCts?.Dispose();
-        _renderCts = new CancellationTokenSource();
-        var ct = _renderCts.Token;
-
-        try
-        {
-            await EnsureTranslatedXmlExistsForCurrentAsync();
-
-            var (ro, rt) = await Task.Run(async () =>
-            {
-                ct.ThrowIfCancellationRequested();
-                return await RenderReadablePairDiskOnlyAsync(_currentRelPath, ct);
-            }, ct);
-
-            if (ct.IsCancellationRequested) return;
-
-            await Dispatcher.UIThread.InvokeAsync(() => _readableView.SetRendered(ro, rt));
-            SetStatus("Readable refreshed (disk XML).");
-        }
-        catch (OperationCanceledException) { }
-        catch (Exception ex) { SetStatus("Readable refresh failed: " + ex.Message); }
-    }
-
-    // =========================
-    // Save/revert (translation projection -> TEI)
-    // =========================
-
-    private async Task SaveTranslatedFromTabAsync()
-    {
-        try
-        {
-            if (_currentRelPath == null) { SetStatus("Nothing to save."); return; }
-            if (_translationView == null || _translatedDir == null) { SetStatus("Save unavailable."); return; }
-            if (_indexedDoc == null) { SetStatus("Translation index not loaded."); return; }
-
-            var editedProjection = GetTranslationProjectionText();
-
-            _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, editedProjection);
-
-            // Snapshot changed blocks NOW — BuildTranslatedXml resets IsDirty + syncs EnBaseline,
-            // so any check inside or after that call would always find zero changes.
-            var changedBlocks = string.IsNullOrWhiteSpace(_config.Username)
-                ? null
-                : GetChangedBlockNumbers(_indexedDoc, _translationMode);
-
-            var builtXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
-
-            if (changedBlocks != null && changedBlocks.Count > 0)
-                builtXml = ApplyTranslatorAnnotation(builtXml, changedBlocks, _config.Username);
-
-            var saveInfo = await AtomicWriteTranslatedXmlForCurrentAsync(builtXml);
-
-            _rawTranXml = builtXml;
-
-            await RefreshFileStatusAsync(_currentRelPath);
-
-            try
-            {
-                var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-                _renderCache.Invalidate(tranAbs);
-            }
-            catch { }
-
-            _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
-            var freshProjection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-            SetTranslationProjection(_translationMode, freshProjection);
-
-            _baselineTranSha1 = Sha1Hex(freshProjection);
-            _lastSeenTranSha1 = _baselineTranSha1;
-            _dirty = false;
-            UpdateWindowTitle();
-
-            await RefreshReadableFromDiskOnlyAsync();
-
-            var backupMsg = saveInfo.BackupCreated ? " backup=yes" : " backup=no";
-            SetStatus("Saved translated XML (" + updatedCount.ToString("n0") + " units updated)." + backupMsg);
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Save failed: " + ex.Message);
-        }
-    }
-
-    private async Task RevertTranslatedXmlFromDiskAsync()
-    {
-        try
-        {
-            if (_currentRelPath == null) { SetStatus("Nothing to revert."); return; }
-
-            _rawOrigXml = await ReadOriginalXmlAsync(_currentRelPath);
-            if (string.IsNullOrWhiteSpace(_rawOrigXml))
-            {
-                SetStatus("Revert failed: original XML could not be read.");
-                return;
-            }
-
-            _rawTranXml = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
-
-            EnsureXmlIsWellFormed(_rawOrigXml, "Original XML is malformed.");
-            EnsureXmlIsWellFormed(_rawTranXml, "Translated XML is malformed.");
-
-            _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
-            var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-            SetTranslationProjection(_translationMode, projection);
-
-            SetBaselineFromCurrentTranslatedEditorText();
-            await RefreshReadableFromDiskOnlyAsync();
-
-            SetStatus("Reverted translation editor to disk state.");
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Revert failed: " + ex.Message);
-        }
-    }
-
-    private async Task RefreshFileStatusAsync(string relPath)
-    {
-        if (_originalDir == null || _translatedDir == null || _root == null) return;
-
-        try
-        {
-            var origAbs = Path.Combine(_originalDir, relPath);
-            var tranAbs = Path.Combine(_translatedDir, relPath);
-            var relKey = NormalizeRel(relPath);
-
-            var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, relKey, verboseLog: false);
-
-            if (_allItemsByRel.TryGetValue(relKey, out var existing))
-            {
-                if (!Equals(existing.Status, newStatus))
-                {
-                    existing.Status = newStatus;
-                    MarkIndexCacheDirty();
-                }
-
-                await ApplyFilterSafeAsync();
-            }
-        }
-        catch { }
-    }
-
-    // =========================
-    // Tab + dirty tracking
-    // =========================
-
-    private void UpdateSaveButtonState()
-    {
-        if (_btnSave == null) return;
-
-        bool hasFile = _currentRelPath != null;
-        bool translationTabSelected = _tabs != null && _tabs.SelectedIndex == 1;
-        _btnSave.IsEnabled = hasFile && translationTabSelected;
-    }
-
-    private void SetStatus(string msg)
-    {
-        if (_txtStatus != null) _txtStatus.Text = msg;
-    }
+    // ===========================================================
+    // Dirty timer
+    // ===========================================================
 
     private void StartDirtyTimer()
     {
@@ -2009,117 +621,53 @@ public partial class MainWindow : Window
 
     private void DirtyTimer_Tick(object? sender, EventArgs e)
     {
-        if (_currentRelPath == null || _translationView == null) return;
-
-        string cur;
-        try { cur = GetTranslationProjectionText(); }
-        catch { return; }
-
-        var sha = Sha1Hex(cur);
-        if (sha == _lastSeenTranSha1) return;
-
-        _lastSeenTranSha1 = sha;
-        UpdateDirtyStateFromEditor(forceUi: true);
+        _vm.CheckDirtyTick();
     }
 
-    private void UpdateDirtyStateFromEditor(bool forceUi)
-    {
-        if (_translationView == null || _currentRelPath == null)
-        {
-            if (forceUi) UpdateWindowTitle();
-            return;
-        }
+    // ===========================================================
+    // Tab helpers
+    // ===========================================================
 
-        string cur;
-        try { cur = GetTranslationProjectionText(); }
-        catch { cur = ""; }
-
-        bool dirtyNow = Sha1Hex(cur) != (_baselineTranSha1 ?? "");
-        if (dirtyNow == _dirty && !forceUi) return;
-
-        _dirty = dirtyNow;
-        UpdateWindowTitle();
-    }
-
-    private void SetBaselineFromCurrentTranslatedEditorText()
-    {
-        if (_translationView == null) return;
-
-        string cur;
-        try { cur = GetTranslationProjectionText(); }
-        catch { cur = ""; }
-
-        _baselineTranSha1 = Sha1Hex(cur);
-        _lastSeenTranSha1 = _baselineTranSha1;
-        _dirty = false;
-        UpdateWindowTitle();
-    }
-
-    private void CaptureTranslationEditsToRaw()
-    {
-        if (_translationView == null || _indexedDoc == null) return;
-
-        try
-        {
-            var projection = GetTranslationProjectionText();
-            _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, projection);
-            _rawTranXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
-        }
-        catch
-        {
-            // ignore during navigation prompts
-        }
-    }
-
-    private async Task OnTabSelectionChangedAsync()
+    private void ForceTab(int idx)
     {
         if (_tabs == null) return;
+        _suppressTabEvents = true;
+        try { _tabs.SelectedIndex = idx; }
+        finally { _suppressTabEvents = false; }
+    }
 
-        int newIdx = _tabs.SelectedIndex;
-        int oldIdx = _lastTabIndex;
-        _lastTabIndex = newIdx;
+    // ===========================================================
+    // Dialogs
+    // ===========================================================
 
-        bool leavingTranslation = oldIdx == 1 && newIdx != 1;
-        if (leavingTranslation)
+    private async Task<string?> ShowFolderPickerDialogAsync()
+    {
+        if (StorageProvider is null) { _vm.SetStatus("StorageProvider not available."); return null; }
+
+        var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            CaptureTranslationEditsToRaw();
-            UpdateDirtyStateFromEditor(forceUi: true);
+            Title = "Select CBETA root folder"
+        });
 
-            if (_dirty)
-            {
-                if (!await ShowYesNoAsync("Unsaved changes", "You have unsaved changes.\n\nLeave the Translation tab anyway?"))
-                {
-                    _suppressTabEvents = true;
-                    try { _tabs.SelectedIndex = 1; }
-                    finally { _suppressTabEvents = false; }
-                    _lastTabIndex = 1;
-                    return;
-                }
-            }
-        }
-
-        UpdateSaveButtonState();
-        UpdateDirtyStateFromEditor(forceUi: true);
+        var folder = picked.FirstOrDefault();
+        return folder?.Path.LocalPath;
     }
 
-    private void UpdateWindowTitle()
+    private async Task<AppConfig?> ShowSettingsDialogAsync(AppConfig current)
     {
-        var file = _currentRelPath ?? "";
-        var star = _dirty ? "*" : "";
-        Title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " — " + file);
-
-        if (_txtCurrentFile != null)
-            _txtCurrentFile.Text = string.IsNullOrWhiteSpace(file) ? "" : (file + (_dirty ? "  *" : ""));
+        var settingsWindow = new SettingsWindow(current);
+        return await settingsWindow.ShowDialog<AppConfig?>(this);
     }
 
-    private async Task<bool> ConfirmNavigateIfDirtyAsync(string action)
+    private async Task<string?> ShowUsernamePromptDialogAsync()
     {
-        CaptureTranslationEditsToRaw();
-        UpdateDirtyStateFromEditor(forceUi: true);
+        var prompt = new UsernamePromptWindow();
+        return await prompt.ShowDialog<string?>(this);
+    }
 
-        if (!_dirty) return true;
-
-        return await ShowYesNoAsync("Unsaved changes", "You have unsaved changes.\n\nProceed to " + action + "?");
+    private async Task ShowLicensesDialogAsync(string? root)
+    {
+        await new LicensesWindow(root).ShowDialog(this);
     }
 
     private async Task<bool> ShowYesNoAsync(string title, string message)
@@ -2156,9 +704,57 @@ public partial class MainWindow : Window
         return await tcs.Task;
     }
 
-    // =========================
+    // ===========================================================
+    // Termbase editor window
+    // ===========================================================
+
+    private async Task OpenTermbaseEditorWindowAsync(string root)
+    {
+        try
+        {
+            if (_termbaseEditorWindow != null)
+            {
+                _termbaseEditorWindow.Activate();
+                return;
+            }
+
+            var path = Path.Combine(root, "termbase.json");
+
+            if (!File.Exists(path))
+            {
+                var starterJson =
+@"[
+  {
+    ""sourceTerm"": ""\u548c\u5c1a"",
+    ""preferredTarget"": ""the master"",
+    ""alternateTargets"": [""Venerable""],
+    ""status"": ""preferred"",
+    ""note"": ""do not leave as Chinese in EN""
+  }
+]";
+                await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
+            }
+
+            var win = new TermbaseEditorWindow(root)
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+
+            win.TermsSaved += (_, _) => _vm.HandleTermsSaved();
+            win.Closed += (_, _) => _termbaseEditorWindow = null;
+
+            _termbaseEditorWindow = win;
+            win.Show();
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open termbase editor failed: " + ex.Message);
+        }
+    }
+
+    // ===========================================================
     // Theme
-    // =========================
+    // ===========================================================
 
     private static readonly string[] ThemeTokens =
     {
@@ -2172,7 +768,10 @@ public partial class MainWindow : Window
         "MenuBg","MenuItemHoverBg",
         "XmlViewerBg","XmlViewerBorder",
         "NavStatusGreenBg","NavStatusYellowBg","NavStatusRedBg",
-        "SearchMatchFg","NoteMarkerCommunityFg"
+        "SearchMatchFg","NoteMarkerCommunityFg",
+        "PanelBg","PanelBorder","PanelAltBg",
+        "ErrorFg","WarningFg","SuccessFg",
+        "ErrorBg","WarningBg","SuccessBg"
     };
 
     private void ApplyTheme(bool dark)
@@ -2223,414 +822,6 @@ public partial class MainWindow : Window
             _filesList.ItemsSource = src;
             _filesList.SelectedItem = selected;
         }
-        catch
-        {
-            // ignore
-        }
-    }
-
-    // =========================
-    // Git helper
-    // =========================
-
-    private async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
-    {
-        if (_originalDir == null || _translatedDir == null) return false;
-
-        var origPath = Path.Combine(_originalDir, relPath);
-        if (!File.Exists(origPath)) return false;
-
-        if (saveCurrentEditor &&
-            _translationView != null &&
-            _indexedDoc != null &&
-            string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
-        {
-            try
-            {
-                var projection = GetTranslationProjectionText();
-                _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, projection);
-
-                var xml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
-                var tranAbs = Path.Combine(_translatedDir, relPath);
-
-                await AtomicWriteXmlAsync(tranAbs, xml);
-
-                _rawTranXml = xml;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
-        return File.Exists(Path.Combine(_translatedDir, relPath));
-    }
-
-    // =========================
-    // TranslationTabView projection helpers
-    // =========================
-
-    private void SetTranslationProjection(TranslationEditMode mode, string projectionText)
-    {
-        if (_translationView == null) return;
-
-        TrySetCurrentFilePaths();
-        _translationView.SetModeProjection(mode, projectionText ?? "");
-    }
-
-    private async Task OpenTermbaseEditorAsync()
-    {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(_root))
-            {
-                SetStatus("Cannot open termbase editor: no root is loaded.");
-                return;
-            }
-
-            // If the editor is already open, bring it to the front instead of opening a second one.
-            if (_termbaseEditorWindow != null)
-            {
-                _termbaseEditorWindow.Activate();
-                return;
-            }
-
-            var path = Path.Combine(_root, "termbase.json");
-
-            if (!File.Exists(path))
-            {
-                var starterJson =
-    @"[
-  {
-    ""sourceTerm"": ""和尚"",
-    ""preferredTarget"": ""the master"",
-    ""alternateTargets"": [""Venerable""],
-    ""status"": ""preferred"",
-    ""note"": ""do not leave as Chinese in EN""
-  }
-]";
-                await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
-            }
-
-            var win = new TermbaseEditorWindow(_root)
-            {
-                RequestedThemeVariant = this.ActualThemeVariant
-            };
-
-            // Refresh the assistant panel whenever the user saves inside the editor.
-            win.TermsSaved += (_, _) =>
-            {
-                SetStatus("Saved termbase.json");
-                _translationView?.SetAssistantSnapshot(null);
-            };
-
-            // Clear our reference once the window is closed so the next button click opens a fresh one.
-            win.Closed += (_, _) => _termbaseEditorWindow = null;
-
-            _termbaseEditorWindow = win;
-            win.Show();
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Open termbase editor failed: " + ex.Message);
-        }
-    }
-
-    private string GetTranslationProjectionText()
-    {
-        if (_translationView == null) return "";
-        return _translationView.GetCurrentProjectionText() ?? "";
-    }
-
-    private void TrySetCurrentFilePaths()
-    {
-        if (_translationView == null || _originalDir == null || _translatedDir == null || _currentRelPath == null) return;
-
-        try
-        {
-            var origAbs = Path.Combine(_originalDir, _currentRelPath);
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-            _translationView.SetCurrentFilePaths(origAbs, tranAbs);
-        }
         catch { }
-    }
-
-    // =========================
-    // Atomic XML save helpers
-    // =========================
-
-    private sealed class AtomicSaveInfo
-    {
-        public bool BackupCreated { get; init; }
-        public string FinalPath { get; init; } = "";
-        public string TempPath { get; init; } = "";
-        public string BackupPath { get; init; } = "";
-    }
-
-    private async Task<AtomicSaveInfo> AtomicWriteTranslatedXmlForCurrentAsync(string xml)
-    {
-        if (_currentRelPath == null) throw new InvalidOperationException("No file selected.");
-        if (_translatedDir == null) throw new InvalidOperationException("Translated directory not available.");
-
-        var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
-        return await AtomicWriteXmlAsync(tranAbs, xml);
-    }
-
-    private async Task<AtomicSaveInfo> AtomicWriteXmlAsync(string finalPath, string xml)
-    {
-        if (string.IsNullOrWhiteSpace(finalPath))
-            throw new ArgumentException("Target path is empty.", nameof(finalPath));
-
-        xml ??= "";
-
-        EnsureXmlIsWellFormed(xml, "XML validation failed before save.");
-
-        var dir = Path.GetDirectoryName(finalPath);
-        if (string.IsNullOrWhiteSpace(dir))
-            throw new InvalidOperationException("Could not resolve target directory.");
-
-        Directory.CreateDirectory(dir);
-
-        string tmpPath = finalPath + ".tmp";
-        string bakPath = finalPath + ".bak";
-
-        try
-        {
-            if (File.Exists(tmpPath))
-                File.Delete(tmpPath);
-        }
-        catch { }
-
-        await File.WriteAllTextAsync(tmpPath, xml, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
-
-        string tmpReadBack;
-        try
-        {
-            tmpReadBack = await File.ReadAllTextAsync(tmpPath, Encoding.UTF8);
-        }
-        catch (Exception ex)
-        {
-            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
-            throw new InvalidOperationException("Save failed while verifying temporary file: " + ex.Message, ex);
-        }
-
-        EnsureXmlIsWellFormed(tmpReadBack, "Temporary save file is malformed.");
-        if (!string.Equals(xml, tmpReadBack, StringComparison.Ordinal))
-        {
-            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
-            throw new InvalidOperationException("Temporary save file content mismatch after write verification.");
-        }
-
-        bool backupCreated = false;
-
-        if (File.Exists(finalPath))
-        {
-            try
-            {
-                if (File.Exists(bakPath))
-                    File.Delete(bakPath);
-
-                File.Move(finalPath, bakPath);
-                backupCreated = true;
-            }
-            catch (Exception ex)
-            {
-                try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
-                throw new InvalidOperationException("Could not create backup before save: " + ex.Message, ex);
-            }
-        }
-
-        try
-        {
-            File.Move(tmpPath, finalPath);
-        }
-        catch (Exception ex)
-        {
-            try
-            {
-                if (!File.Exists(finalPath) && File.Exists(bakPath))
-                    File.Move(bakPath, finalPath);
-            }
-            catch { }
-
-            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
-
-            throw new InvalidOperationException("Could not finalize save: " + ex.Message, ex);
-        }
-
-        try
-        {
-            var finalText = await File.ReadAllTextAsync(finalPath, Encoding.UTF8);
-            EnsureXmlIsWellFormed(finalText, "Final saved file is malformed.");
-        }
-        catch (Exception ex)
-        {
-            try
-            {
-                if (File.Exists(bakPath))
-                {
-                    if (File.Exists(finalPath)) File.Delete(finalPath);
-                    File.Move(bakPath, finalPath);
-                }
-            }
-            catch { }
-
-            throw new InvalidOperationException("Saved file failed verification and was rolled back if possible: " + ex.Message, ex);
-        }
-
-        return new AtomicSaveInfo
-        {
-            BackupCreated = backupCreated,
-            FinalPath = finalPath,
-            TempPath = tmpPath,
-            BackupPath = bakPath
-        };
-    }
-
-    private static void EnsureXmlIsWellFormed(string xml, string? prefix = null)
-    {
-        if (!TryParseXml(xml, out var error))
-        {
-            if (string.IsNullOrWhiteSpace(prefix))
-                throw new InvalidOperationException(error ?? "XML is not well-formed.");
-
-            throw new InvalidOperationException(prefix + " " + (error ?? "XML is not well-formed."));
-        }
-    }
-
-    private static bool TryParseXml(string xml, out string? error)
-    {
-        try
-        {
-            _ = XDocument.Parse(xml ?? "", LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo);
-            error = null;
-            return true;
-        }
-        catch (XmlException xex)
-        {
-            error = "XML parse error at line " + xex.LineNumber + ", pos " + xex.LinePosition + ": " + xex.Message;
-            return false;
-        }
-        catch (Exception ex)
-        {
-            error = ex.Message;
-            return false;
-        }
-    }
-
-    // =========================
-    // Utils
-    // =========================
-
-    private static string NormalizeRel(string p) => (p ?? "").Replace('\\', '/').TrimStart('/');
-
-    private static string Sha1Hex(string s)
-    {
-        try
-        {
-            using var sha1 = SHA1.Create();
-            var bytes = Encoding.UTF8.GetBytes(s ?? "");
-            return Convert.ToHexString(sha1.ComputeHash(bytes));
-        }
-        catch
-        {
-            return "sha1_err";
-        }
-    }
-
-    private static string SafeReadAllTextUtf8(string path)
-    {
-        try
-        {
-            if (File.Exists(path))
-                return File.ReadAllText(path, Encoding.UTF8);
-        }
-        catch { }
-        return "";
-    }
-
-    private static string ReadAllTextUtf8Strict(string path)
-    {
-        if (string.IsNullOrWhiteSpace(path))
-            throw new ArgumentException("Path is empty.", nameof(path));
-
-        if (!File.Exists(path))
-            throw new FileNotFoundException("File not found.", path);
-
-        return File.ReadAllText(path, Encoding.UTF8);
-    }
-
-    private void MarkIndexCacheDirty()
-    {
-        _indexCacheDirty = true;
-
-        _indexCacheSaveDebounce ??= new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMilliseconds(500)
-        };
-
-        _indexCacheSaveDebounce.Tick -= IndexCacheSaveDebounce_Tick;
-        _indexCacheSaveDebounce.Tick += IndexCacheSaveDebounce_Tick;
-
-        _indexCacheSaveDebounce.Stop();
-        _indexCacheSaveDebounce.Start();
-    }
-
-    private async void IndexCacheSaveDebounce_Tick(object? sender, EventArgs e)
-    {
-        try
-        {
-            _indexCacheSaveDebounce?.Stop();
-            if (!_indexCacheDirty) return;
-            if (_root == null) return;
-
-            _indexCacheDirty = false;
-
-            await _indexCacheService.SaveAsync(_root, new IndexCache
-            {
-                Entries = _allItems
-            });
-        }
-        catch
-        {
-            // ignore
-        }
-    }
-
-    private async Task BuildReferenceTmAsync()
-    {
-        try
-        {
-            if (_root == null || _originalDir == null || _translatedDir == null)
-            {
-                SetStatus("Cannot build reference TM: no root is loaded.");
-                return;
-            }
-
-            SetStatus("Building reference TM from Zen texts...");
-
-            var progress = new Progress<(int done, int total, string status)>(p =>
-            {
-                if (p.total > 0)
-                    SetStatus($"{p.status} ({p.done:n0}/{p.total:n0})");
-                else
-                    SetStatus(p.status);
-            });
-
-            int count = await _translationAssistantBuilder.BuildReferenceTranslationMemoryAsync(
-                _root,
-                _originalDir,
-                _translatedDir,
-                rel => _zenTexts.IsZen(rel),
-                progress);
-
-            SetStatus($"Built translation-memory.reference.jsonl with {count:n0} rows.");
-        }
-        catch (Exception ex)
-        {
-            SetStatus("Build reference TM failed: " + ex.Message);
-        }
     }
 }

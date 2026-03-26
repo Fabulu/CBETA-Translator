@@ -22,10 +22,12 @@
 		<InvariantGlobalization Condition="'$(RuntimeIdentifier)' != ''">true</InvariantGlobalization>
 
 		<!-- Keep run artifacts (handoffs, probe snippets) out of SDK default globs -->
-		<DefaultItemExcludes>$(DefaultItemExcludes);runs\**\*;runs/**</DefaultItemExcludes>
+		<DefaultItemExcludes>$(DefaultItemExcludes);runs\**\*;runs/**;CbetaTranslator.Tests\**\*;CbetaTranslator.Tests/**</DefaultItemExcludes>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
 		<PackageReference Include="Avalonia" Version="11.3.11" />
 		<PackageReference Include="Avalonia.AvaloniaEdit" Version="11.4.1" />
 		<PackageReference Include="Avalonia.Desktop" Version="11.3.11" />

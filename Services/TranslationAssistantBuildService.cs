@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TranslationAssistantBuildService
+public sealed class TranslationAssistantBuildService : ITranslationAssistantBuildService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {

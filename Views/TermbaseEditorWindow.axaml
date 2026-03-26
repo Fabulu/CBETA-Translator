@@ -1,7 +1,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
         x:Class="CbetaTranslator.App.Views.TermbaseEditorWindow"
+        x:DataType="vm:TermbaseEditorWindowViewModel"
         Width="1100"
         Height="720"
         Title="Manage Terms"
@@ -20,12 +22,13 @@
 			<Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
 				<TextBlock Text="Terms" FontWeight="Bold"/>
 
-				<TextBox Name="TxtSearch"
-						 Grid.Row="1"
+				<TextBox Grid.Row="1"
+						 Text="{Binding SearchQuery}"
 						 Watermark="Search source / preferred / note..."/>
 
-				<ListBox Name="LstTerms"
-						 Grid.Row="2">
+				<ListBox Grid.Row="2"
+						 ItemsSource="{Binding FilteredEntries}"
+						 SelectedItem="{Binding SelectedEntry}">
 					<ListBox.ItemTemplate>
 						<DataTemplate x:DataType="models:TermbaseEntry">
 							<Border Padding="6" Margin="0,0,0,4">
@@ -63,22 +66,22 @@
 					<TextBlock Text="Source term"
 							   VerticalAlignment="Center"/>
 					<TextBox Name="TxtSourceTerm"
-							 Grid.Column="1"/>
+							 Grid.Column="1"
+							 Text="{Binding SourceTerm}"/>
 				</Grid>
 
 				<Grid Grid.Row="2" ColumnDefinitions="140,*" ColumnSpacing="10">
 					<TextBlock Text="Preferred target"
 							   VerticalAlignment="Center"/>
-					<TextBox Name="TxtPreferredTarget"
-							 Grid.Column="1"/>
+					<TextBox Grid.Column="1"
+							 Text="{Binding PreferredTarget}"/>
 				</Grid>
 
 				<Grid Grid.Row="3" ColumnDefinitions="140,220,*" ColumnSpacing="10">
 					<TextBlock Text="Status"
 							   VerticalAlignment="Center"/>
-					<ComboBox Name="CmbStatus"
-							  Grid.Column="1"
-							  SelectedIndex="0">
+					<ComboBox Grid.Column="1"
+							  SelectedIndex="{Binding SelectedStatusIndex}">
 						<ComboBoxItem Content="preferred"/>
 						<ComboBoxItem Content="allowed"/>
 						<ComboBoxItem Content="deprecated"/>
@@ -90,8 +93,8 @@
 					<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
 						<TextBlock Text="Alternates"
 								   VerticalAlignment="Top"/>
-						<TextBox Name="TxtAlternates"
-								 Grid.Column="1"
+						<TextBox Grid.Column="1"
+								 Text="{Binding AlternatesText}"
 								 AcceptsReturn="True"
 								 TextWrapping="Wrap"
 								 MinHeight="90"
@@ -101,8 +104,8 @@
 					<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
 						<TextBlock Text="Note"
 								   VerticalAlignment="Top"/>
-						<TextBox Name="TxtNote"
-								 Grid.Column="1"
+						<TextBox Grid.Column="1"
+								 Text="{Binding NoteText}"
 								 AcceptsReturn="True"
 								 TextWrapping="Wrap"
 								 MinHeight="90"/>
@@ -110,8 +113,7 @@
 				</Grid>
 
 				<TextBlock Grid.Row="5"
-						   Name="TxtEditorStatus"
-						   Text=""
+						   Text="{Binding StatusMessage}"
 						   Opacity="0.8"/>
 			</Grid>
 		</Border>
@@ -126,23 +128,23 @@
 				CornerRadius="6"
 				Padding="10">
 			<Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto" ColumnSpacing="8">
-				<Button Name="BtnNew"
-						Content="New"/>
-				<Button Name="BtnDelete"
-						Grid.Column="1"
-						Content="Delete"/>
-				<Button Name="BtnDuplicate"
-						Grid.Column="2"
-						Content="Duplicate"/>
+				<Button Content="New"
+						Command="{Binding NewTermCommand}"/>
+				<Button Grid.Column="1"
+						Content="Delete"
+						Command="{Binding DeleteTermCommand}"/>
+				<Button Grid.Column="2"
+						Content="Duplicate"
+						Command="{Binding DuplicateTermCommand}"/>
 
-				<Button Name="BtnCancel"
-						Grid.Column="4"
+				<Button Grid.Column="4"
 						Content="Close"
-						MinWidth="100"/>
-				<Button Name="BtnSave"
-						Grid.Column="5"
+						MinWidth="100"
+						Command="{Binding CloseWindowCommand}"/>
+				<Button Grid.Column="5"
 						Content="Save"
-						MinWidth="100"/>
+						MinWidth="100"
+						Command="{Binding SaveCommand}"/>
 			</Grid>
 		</Border>
 

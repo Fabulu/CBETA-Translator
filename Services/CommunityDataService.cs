@@ -14,7 +14,7 @@ namespace CbetaTranslator.App.Services;
 /// Handles sort+dedup of community-shared data files (approved TM and termbase),
 /// including merge-from-upstream for local CRDT-style sync.
 /// </summary>
-public sealed class CommunityDataService
+public sealed class CommunityDataService : ICommunityDataService
 {
     private static readonly JsonSerializerOptions ReadOpts = new()
     {

@@ -16,6 +16,8 @@ using AvaloniaEdit.Rendering;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
+using CbetaTranslator.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,6 +30,11 @@ namespace CbetaTranslator.App.Views;
 public partial class ReadableTabView : UserControl
 {
     // -------------------------
+    // ViewModel
+    // -------------------------
+    private readonly ReadableTabViewModel _vm = new();
+
+    // -------------------------
     // Inner editors (read-only panes)
     // -------------------------
     private AnnotatedTextEditor? _editorOriginal;
@@ -37,17 +44,12 @@ public partial class ReadableTabView : UserControl
 
     // Hover dictionary (orig pane only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
-    private readonly ICedictDictionary _cedict = new CedictDictionaryService();
-    private bool _hoverDictionaryEnabled = true;
-
-    // Rendered docs (from disk)
-    private RenderedDocument _renderOrig = RenderedDocument.Empty;
-    private RenderedDocument _renderTran = RenderedDocument.Empty;
+    private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
 
     // -------------------------
     // Selection mirroring
     // -------------------------
-    private readonly ISelectionSyncService _selectionSync = new SelectionSyncService();
+    private readonly ISelectionSyncService _selectionSync = App.Services.GetRequiredService<ISelectionSyncService>();
     private DispatcherTimer? _selTimer;
     private bool _syncingSelection;
 
@@ -77,9 +79,6 @@ public partial class ReadableTabView : UserControl
     // Zen toggle
     // -------------------------
     private CheckBox? _chkZenText;
-    private bool _suppressZenEvents;
-    private string? _currentRelPathForZen;
-    public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
 
     // -------------------------
     // Notes panel + buttons
@@ -92,54 +91,45 @@ public partial class ReadableTabView : UserControl
     private Button? _btnDeleteCommunityNote;
     private Button? _btnMoveFootnote;
 
-    private DocAnnotation? _currentAnn;
-    private bool _currentAnnFromTranslatedPane;
+    private Border? _readableEmptyState;
 
     private MarkerColorizer? _markerColorizerOrig;
     private MarkerColorizer? _markerColorizerTran;
 
-    // Move mode state
-    private bool _awaitingMoveTargetClick;
-    private DocAnnotation? _moveSourceAnn;
+    // Local state kept in code-behind (UI suppression flags / hot-path counters)
+    private bool _suppressZenEvents;
+    private long _seq;
 
     // -------------------------
-    // Events to host
+    // Events to host (forwarded from VM)
     // -------------------------
     public event EventHandler<DocAnnotation>? NoteClicked;
     public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
+    public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
 
     /// <summary>Pre-filled value for the Resp field in the "Add community note" dialog.</summary>
-    public string DefaultResp { get; set; } = "";
+    public string DefaultResp
+    {
+        get => _vm.DefaultResp;
+        set => _vm.DefaultResp = value;
+    }
 
-    public sealed record MoveFootnoteRequest(
-        int OldXmlStart,
-        int OldXmlEndExclusive,
-        int NewXmlIndex,
-        string NoteText,
-        string? Resp,
-        bool SourceWasTranslatedPane
-    );
-
-    public event EventHandler<MoveFootnoteRequest>? FootnoteMoveRequested;
+    public event EventHandler<ReadableTabViewModel.MoveFootnoteRequest>? FootnoteMoveRequested;
 
     // -------------------------
     // Status/log
     // -------------------------
     public event EventHandler<string>? Status;
     private void Say(string msg) => Status?.Invoke(this, msg);
-    private long _seq;
-
-    // Pending refresh gate (host will rerender after disk write)
-    private bool _pendingRefresh;
-    private DateTime _pendingSinceUtc;
-    private const int PendingTimeoutMs = 2500;
 
     public ReadableTabView()
     {
+        DataContext = _vm;
         InitializeComponent();
         FindControls();
         WireEvents();
+        WireVmEvents();
 
         AttachedToVisualTree += (_, _) =>
         {
@@ -150,15 +140,76 @@ public partial class ReadableTabView : UserControl
             SetupHoverDictionary();
             StartSelectionTimer();
 
-            Dispatcher.UIThread.Post(UpdateButtonsState, DispatcherPriority.Background);
-            Log("ReadableTabView attached");
+            Dispatcher.UIThread.Post(() => _vm.UpdateButtonsState(), DispatcherPriority.Background);
+            _vm.Log("ReadableTabView attached");
         };
 
         DetachedFromVisualTree += (_, _) =>
         {
             StopSelectionTimer();
             DisposeHoverDictionary();
-            Log("ReadableTabView detached");
+            _vm.Log("ReadableTabView detached");
+        };
+    }
+
+    private void WireVmEvents()
+    {
+        // Forward VM events to host-facing events
+        _vm.ZenFlagChanged += (_, e) => ZenFlagChanged?.Invoke(this, e);
+        _vm.CommunityNoteInsertRequested += (_, e) => CommunityNoteInsertRequested?.Invoke(this, e);
+        _vm.CommunityNoteDeleteRequested += (_, e) => CommunityNoteDeleteRequested?.Invoke(this, e);
+        _vm.FootnoteMoveRequested += (_, e) =>
+            FootnoteMoveRequested?.Invoke(this, e);
+        _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
+
+        // Sync VM observable state to UI controls
+        _vm.PropertyChanged += (_, e) =>
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ReadableTabViewModel.NotesPanelVisible):
+                    if (_notesPanel != null) _notesPanel.IsVisible = _vm.NotesPanelVisible;
+                    break;
+                case nameof(ReadableTabViewModel.NotesHeaderText):
+                    if (_notesHeader != null) _notesHeader.Text = _vm.NotesHeaderText;
+                    break;
+                case nameof(ReadableTabViewModel.NotesBodyText):
+                    if (_notesBody != null) _notesBody.Text = _vm.NotesBodyText;
+                    break;
+                case nameof(ReadableTabViewModel.CanDeleteCommunityNote):
+                    if (_btnDeleteCommunityNote != null)
+                    {
+                        _btnDeleteCommunityNote.IsEnabled = _vm.CanDeleteCommunityNote;
+                        _btnDeleteCommunityNote.IsVisible = _vm.CanDeleteCommunityNote;
+                    }
+                    break;
+                case nameof(ReadableTabViewModel.CanMoveFootnote):
+                    if (_btnMoveFootnote != null)
+                        _btnMoveFootnote.IsVisible = _vm.CanMoveFootnote;
+                    break;
+                case nameof(ReadableTabViewModel.IsMoveFootnoteEnabled):
+                    if (_btnMoveFootnote != null)
+                        _btnMoveFootnote.IsEnabled = _vm.IsMoveFootnoteEnabled;
+                    break;
+                case nameof(ReadableTabViewModel.CanAddCommunityNote):
+                    if (_btnAddCommunityNote != null)
+                        _btnAddCommunityNote.IsEnabled = _vm.CanAddCommunityNote;
+                    break;
+                case nameof(ReadableTabViewModel.IsZenText):
+                    if (_chkZenText != null)
+                    {
+                        _chkZenText.IsChecked = _vm.IsZenText;
+                    }
+                    break;
+                case nameof(ReadableTabViewModel.IsZenEnabled):
+                    if (_chkZenText != null)
+                        _chkZenText.IsEnabled = _vm.IsZenEnabled;
+                    break;
+                case nameof(ReadableTabViewModel.IsEmptyState):
+                    if (_readableEmptyState != null)
+                        _readableEmptyState.IsVisible = _vm.IsEmptyState;
+                    break;
+            }
         };
     }
 
@@ -182,6 +233,7 @@ public partial class ReadableTabView : UserControl
         _btnMoveFootnote = this.FindControl<Button>("BtnMoveFootnote");
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
+        _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -262,8 +314,9 @@ public partial class ReadableTabView : UserControl
     // =========================
     public void Clear()
     {
-        _renderOrig = RenderedDocument.Empty;
-        _renderTran = RenderedDocument.Empty;
+        _vm.RenderOrig = RenderedDocument.Empty;
+        _vm.RenderTran = RenderedDocument.Empty;
+        _vm.IsEmptyState = true;
 
         try { UninstallMarkerColorizers(); } catch { }
 
@@ -279,14 +332,15 @@ public partial class ReadableTabView : UserControl
 
         CancelMoveModeAndHideNotes();
 
-        _pendingRefresh = false;
+        _vm.PendingRefresh = false;
         UpdateButtonsState();
     }
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
     {
-        _renderOrig = orig ?? RenderedDocument.Empty;
-        _renderTran = tran ?? RenderedDocument.Empty;
+        _vm.RenderOrig = orig ?? RenderedDocument.Empty;
+        _vm.RenderTran = tran ?? RenderedDocument.Empty;
+        _vm.IsEmptyState = false;
 
         FindControls();
         ResolveInnerEditors();
@@ -316,8 +370,8 @@ public partial class ReadableTabView : UserControl
             // remove any old transformers before swapping docs/text
             try { UninstallMarkerColorizers(); } catch { }
 
-            _aeOrig.Text = _renderOrig.Text ?? "";
-            _aeTran.Text = _renderTran.Text ?? "";
+            _aeOrig.Text = _vm.RenderOrig.Text ?? "";
+            _aeTran.Text = _vm.RenderTran.Text ?? "";
 
             // install colorizers for the NEW marker spans
             InstallMarkerColorizers();
@@ -387,16 +441,16 @@ public partial class ReadableTabView : UserControl
 
     public void SetHoverDictionaryEnabled(bool enabled)
     {
-        _hoverDictionaryEnabled = enabled;
+        _vm.HoverDictionaryEnabled = enabled;
         if (enabled) SetupHoverDictionary();
         else DisposeHoverDictionary();
     }
 
-    public bool GetHoverDictionaryEnabled() => _hoverDictionaryEnabled;
+    public bool GetHoverDictionaryEnabled() => _vm.HoverDictionaryEnabled;
 
     public void SetZenContext(string? relPath, bool isZen)
     {
-        _currentRelPathForZen = relPath;
+        _vm.CurrentRelPathForZen = relPath;
 
         if (_chkZenText == null) return;
 
@@ -427,7 +481,7 @@ public partial class ReadableTabView : UserControl
         await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
         await Task.Delay(150);
 
-        var doc = request.Side == SearchSide.Original ? _renderOrig : _renderTran;
+        var doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
         var editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
 
         if (doc == null || doc.IsEmpty || editor?.Document == null)
@@ -643,8 +697,8 @@ public partial class ReadableTabView : UserControl
     {
         if (_notesPanel == null || _notesBody == null || _notesHeader == null) return;
 
-        _currentAnn = ann;
-        _currentAnnFromTranslatedPane = fromTranslatedPane;
+        _vm.CurrentAnnotation = ann;
+        _vm.CurrentAnnotationFromTranslatedPane = fromTranslatedPane;
 
         CancelMoveMode(keepPanelOpen: true);
 
@@ -666,15 +720,15 @@ public partial class ReadableTabView : UserControl
 
         _notesPanel.IsVisible = false;
         _notesBody.Text = "";
-        _currentAnn = null;
-        _currentAnnFromTranslatedPane = false;
+        _vm.CurrentAnnotation = null;
+        _vm.CurrentAnnotationFromTranslatedPane = false;
 
         UpdateButtonsState();
     }
 
     private void UpdateButtonsState()
     {
-        if (_pendingRefresh)
+        if (_vm.PendingRefresh)
         {
             if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
             if (_btnDeleteCommunityNote != null) { _btnDeleteCommunityNote.IsEnabled = false; _btnDeleteCommunityNote.IsVisible = false; }
@@ -683,20 +737,20 @@ public partial class ReadableTabView : UserControl
         }
 
         if (_btnAddCommunityNote != null)
-            _btnAddCommunityNote.IsEnabled = !_renderTran.IsEmpty && _aeTran != null;
+            _btnAddCommunityNote.IsEnabled = !_vm.RenderTran.IsEmpty && _aeTran != null;
 
         if (_btnDeleteCommunityNote != null)
         {
-            bool canDelete = _currentAnn != null && TryGetXmlCommunitySpanStrict(_currentAnn, out var xs, out var xe) && xe > xs;
+            bool canDelete = _vm.CurrentAnnotation != null && TryGetXmlCommunitySpanStrict(_vm.CurrentAnnotation, out var xs, out var xe) && xe > xs;
             _btnDeleteCommunityNote.IsEnabled = canDelete;
             _btnDeleteCommunityNote.IsVisible = canDelete;
         }
 
         if (_btnMoveFootnote != null)
         {
-            bool canMove = _currentAnn != null && TryGetXmlSpanLoose(_currentAnn, out var xs, out var xe) && xe > xs;
+            bool canMove = _vm.CurrentAnnotation != null && TryGetXmlSpanLoose(_vm.CurrentAnnotation, out var xs, out var xe) && xe > xs;
             _btnMoveFootnote.IsVisible = canMove;
-            _btnMoveFootnote.IsEnabled = canMove && !_awaitingMoveTargetClick;
+            _btnMoveFootnote.IsEnabled = canMove && !_vm.AwaitingMoveTargetClick;
         }
     }
 
@@ -707,7 +761,7 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingRefresh) return;
+            if (_vm.PendingRefresh) return;
             if (_aeTran == null) ResolveInnerEditors();
             await TryAddCommunityNoteAtSelectionOrCaretAsync();
         }
@@ -721,7 +775,7 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingRefresh) return;
+            if (_vm.PendingRefresh) return;
             DeleteCurrentCommunityNote();
         }
         catch (Exception ex)
@@ -732,15 +786,15 @@ public partial class ReadableTabView : UserControl
 
     public async Task<(bool ok, string reason)> TryAddCommunityNoteAtSelectionOrCaretAsync()
     {
-        if (_pendingRefresh) return (false, "Pending refresh");
+        if (_vm.PendingRefresh) return (false, "Pending refresh");
         if (_notesPanel?.IsVisible == true) return (false, "Notes panel open");
         if (_aeTran == null) return (false, "_aeTran is null");
-        if (_renderTran.IsEmpty) return (false, "_renderTran empty");
+        if (_vm.RenderTran.IsEmpty) return (false, "_vm.RenderTran empty");
 
         int renderedIndex = GetSelectionMidpointOrCaretSafe(_aeTran);
         if (renderedIndex < 0) renderedIndex = 0;
 
-        if (!TryMapRenderedIndexToXmlIndex(_renderTran, renderedIndex, out int xmlIndex))
+        if (!TryMapRenderedIndexToXmlIndex(_vm.RenderTran, renderedIndex, out int xmlIndex))
             return (false, $"Cannot map display index {renderedIndex} to XML index");
 
         await PromptAddCommunityNoteAsync(xmlIndex);
@@ -749,9 +803,9 @@ public partial class ReadableTabView : UserControl
 
     private void DeleteCurrentCommunityNote()
     {
-        if (_pendingRefresh) return;
-        if (_currentAnn == null) return;
-        if (!TryGetXmlCommunitySpanStrict(_currentAnn, out int xs, out int xe)) return;
+        if (_vm.PendingRefresh) return;
+        if (_vm.CurrentAnnotation == null) return;
+        if (!TryGetXmlCommunitySpanStrict(_vm.CurrentAnnotation, out int xs, out int xe)) return;
 
         EnterPending($"delete xs={xs} xe={xe}");
         CommunityNoteDeleteRequested?.Invoke(this, (xs, xe));
@@ -780,7 +834,7 @@ public partial class ReadableTabView : UserControl
 
     private async Task PromptAddCommunityNoteAsync(int xmlIndex)
     {
-        if (_pendingRefresh) return;
+        if (_vm.PendingRefresh) return;
 
         var owner = TopLevel.GetTopLevel(this) as Window;
 
@@ -904,17 +958,17 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingRefresh) return;
-            if (_currentAnn == null) return;
+            if (_vm.PendingRefresh) return;
+            if (_vm.CurrentAnnotation == null) return;
 
-            if (!TryGetXmlSpanLoose(_currentAnn, out var xs, out var xe) || xe <= xs)
+            if (!TryGetXmlSpanLoose(_vm.CurrentAnnotation, out var xs, out var xe) || xe <= xs)
             {
                 Say("This note cannot be moved (missing XML span).");
                 return;
             }
 
-            _awaitingMoveTargetClick = true;
-            _moveSourceAnn = _currentAnn;
+            _vm.AwaitingMoveTargetClick = true;
+            _vm.MoveSourceAnnotation = _vm.CurrentAnnotation;
 
             if (_notesHeader != null)
                 _notesHeader.Text = "Note (click new location to move)";
@@ -930,13 +984,13 @@ public partial class ReadableTabView : UserControl
 
     private void CancelMoveMode(bool keepPanelOpen)
     {
-        _awaitingMoveTargetClick = false;
-        _moveSourceAnn = null;
+        _vm.AwaitingMoveTargetClick = false;
+        _vm.MoveSourceAnnotation = null;
 
-        if (keepPanelOpen && _notesHeader != null && _currentAnn != null)
+        if (keepPanelOpen && _notesHeader != null && _vm.CurrentAnnotation != null)
         {
-            var kind = TryGetXmlCommunitySpanStrict(_currentAnn, out _, out _) ? "Community" : "Note";
-            var resp = GetAnnotationResp(_currentAnn);
+            var kind = TryGetXmlCommunitySpanStrict(_vm.CurrentAnnotation, out _, out _) ? "Community" : "Note";
+            var resp = GetAnnotationResp(_vm.CurrentAnnotation);
             _notesHeader.Text = string.IsNullOrWhiteSpace(resp) ? kind : $"{kind} ({resp})";
         }
 
@@ -956,14 +1010,14 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
-            if (_pendingRefresh) return;
+            if (_vm.PendingRefresh) return;
             if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
 
             // ignore clicks inside notes panel
             if (IsInsideControl(e.Source, _notesPanel)) return;
 
             // swallow clicks while panel open unless we are in move mode
-            if (_notesPanel?.IsVisible == true && !_awaitingMoveTargetClick) return;
+            if (_notesPanel?.IsVisible == true && !_vm.AwaitingMoveTargetClick) return;
 
             if (IsInsideScrollbarStuff(e.Source)) return;
 
@@ -974,14 +1028,14 @@ public partial class ReadableTabView : UserControl
             var te = onOrig ? _aeOrig : _aeTran;
             if (te == null) return;
 
-            var doc = onOrig ? _renderOrig : _renderTran;
+            var doc = onOrig ? _vm.RenderOrig : _vm.RenderTran;
             if (doc.IsEmpty) return;
 
             _suppressMirrorForMarkerClickUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterMarkerClickMs);
             _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorAfterMarkerClickMs);
 
             // MOVE MODE:
-            if (_awaitingMoveTargetClick && _moveSourceAnn != null)
+            if (_vm.AwaitingMoveTargetClick && _vm.MoveSourceAnnotation != null)
             {
                 // DO NOT set e.Handled here.
                 // We must allow AvaloniaEdit/TextEditor to process the click and move the caret.
@@ -990,10 +1044,10 @@ public partial class ReadableTabView : UserControl
                 {
                     try
                     {
-                        if (_pendingRefresh) return;
-                        if (_moveSourceAnn == null) return;
+                        if (_vm.PendingRefresh) return;
+                        if (_vm.MoveSourceAnnotation == null) return;
 
-                        if (!TryGetXmlSpanLoose(_moveSourceAnn, out int oldXs, out int oldXe) || oldXe <= oldXs)
+                        if (!TryGetXmlSpanLoose(_vm.MoveSourceAnnotation, out int oldXs, out int oldXe) || oldXe <= oldXs)
                         {
                             Say("Move failed: source note missing XML span.");
                             CancelMoveMode(keepPanelOpen: true);
@@ -1011,17 +1065,17 @@ public partial class ReadableTabView : UserControl
                             return;
                         }
 
-                        var text = _moveSourceAnn.Text ?? "";
-                        var resp = GetAnnotationResp(_moveSourceAnn);
+                        var text = _vm.MoveSourceAnnotation.Text ?? "";
+                        var resp = GetAnnotationResp(_vm.MoveSourceAnnotation);
 
                         EnterPending($"move old {oldXs}..{oldXe} -> new {newXmlIndex}");
-                        FootnoteMoveRequested?.Invoke(this, new MoveFootnoteRequest(
+                        FootnoteMoveRequested?.Invoke(this, new ReadableTabViewModel.MoveFootnoteRequest(
                             OldXmlStart: oldXs,
                             OldXmlEndExclusive: oldXe,
                             NewXmlIndex: newXmlIndex,
                             NoteText: text,
                             Resp: resp,
-                            SourceWasTranslatedPane: _currentAnnFromTranslatedPane
+                            SourceWasTranslatedPane: _vm.CurrentAnnotationFromTranslatedPane
                         ));
 
                         CancelMoveModeAndHideNotes();
@@ -1041,7 +1095,7 @@ public partial class ReadableTabView : UserControl
             {
                 try
                 {
-                    if (_pendingRefresh) return;
+                    if (_vm.PendingRefresh) return;
 
                     int caret = GetCaretOffsetSafe(te);
                     if (caret < 0) return;
@@ -1161,11 +1215,11 @@ public partial class ReadableTabView : UserControl
 
     private void PollSelectionChanges()
     {
-        if (_pendingRefresh)
+        if (_vm.PendingRefresh)
         {
-            if ((DateTime.UtcNow - _pendingSinceUtc).TotalMilliseconds > PendingTimeoutMs)
+            if ((DateTime.UtcNow - _vm.PendingSinceUtc).TotalMilliseconds > ReadableTabViewModel.PendingTimeoutMs)
             {
-                _pendingRefresh = false;
+                _vm.PendingRefresh = false;
                 UpdateButtonsState();
             }
             return;
@@ -1177,7 +1231,7 @@ public partial class ReadableTabView : UserControl
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
 
         if (_aeOrig == null || _aeTran == null) return;
-        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+        if (_vm.RenderOrig.IsEmpty || _vm.RenderTran.IsEmpty) return;
 
         bool anyFocused =
             (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin) ||
@@ -1240,7 +1294,7 @@ public partial class ReadableTabView : UserControl
 
     private void RequestMirrorFromUserAction(bool sourceIsTranslated)
     {
-        if (_pendingRefresh) return;
+        if (_vm.PendingRefresh) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
         if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
 
@@ -1252,9 +1306,9 @@ public partial class ReadableTabView : UserControl
         {
             _mirrorQueued = false;
 
-            if (_pendingRefresh) return;
+            if (_vm.PendingRefresh) return;
             if (_syncingSelection) return;
-            if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+            if (_vm.RenderOrig.IsEmpty || _vm.RenderTran.IsEmpty) return;
             if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
             if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
 
@@ -1265,13 +1319,13 @@ public partial class ReadableTabView : UserControl
     private void MirrorSelectionOneWay(bool sourceIsTranslated)
     {
         if (_aeOrig == null || _aeTran == null) return;
-        if (_renderOrig.IsEmpty || _renderTran.IsEmpty) return;
+        if (_vm.RenderOrig.IsEmpty || _vm.RenderTran.IsEmpty) return;
 
         var srcEditor = sourceIsTranslated ? _aeTran : _aeOrig;
         var dstEditor = sourceIsTranslated ? _aeOrig : _aeTran;
 
-        var srcDoc = sourceIsTranslated ? _renderTran : _renderOrig;
-        var dstDoc = sourceIsTranslated ? _renderOrig : _renderTran;
+        var srcDoc = sourceIsTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        var dstDoc = sourceIsTranslated ? _vm.RenderOrig : _vm.RenderTran;
 
         int caret = GetCaretOffsetSafe(srcEditor);
         if (caret < 0) caret = 0;
@@ -1336,7 +1390,7 @@ public partial class ReadableTabView : UserControl
         _hoverDictOrig?.Dispose();
         _hoverDictOrig = null;
 
-        if (!_hoverDictionaryEnabled) return;
+        if (!_vm.HoverDictionaryEnabled) return;
         if (_aeOrig == null) return;
 
         try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict); }
@@ -1357,10 +1411,10 @@ public partial class ReadableTabView : UserControl
         try
         {
             if (_suppressZenEvents) return;
-            if (string.IsNullOrWhiteSpace(_currentRelPathForZen)) return;
+            if (string.IsNullOrWhiteSpace(_vm.CurrentRelPathForZen)) return;
 
             bool isZen = _chkZenText?.IsChecked == true;
-            ZenFlagChanged?.Invoke(this, (_currentRelPathForZen!, isZen));
+            ZenFlagChanged?.Invoke(this, (_vm.CurrentRelPathForZen!, isZen));
         }
         catch (Exception ex)
         {
@@ -1686,8 +1740,8 @@ public partial class ReadableTabView : UserControl
             if (_aeOrig?.TextArea?.TextView != null)
             {
                 _markerColorizerOrig ??= new MarkerColorizer(() =>
-                    _renderOrig.AnnotationMarkers != null
-                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_renderOrig.AnnotationMarkers
+                    _vm.RenderOrig.AnnotationMarkers != null
+                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_vm.RenderOrig.AnnotationMarkers
                         : Array.Empty<AnnotationMarkerInserter.MarkerSpan>());
 
                 var list = _aeOrig.TextArea.TextView.LineTransformers;
@@ -1704,8 +1758,8 @@ public partial class ReadableTabView : UserControl
             if (_aeTran?.TextArea?.TextView != null)
             {
                 _markerColorizerTran ??= new MarkerColorizer(() =>
-                    _renderTran.AnnotationMarkers != null
-                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_renderTran.AnnotationMarkers
+                    _vm.RenderTran.AnnotationMarkers != null
+                        ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_vm.RenderTran.AnnotationMarkers
                         : Array.Empty<AnnotationMarkerInserter.MarkerSpan>());
 
                 var list = _aeTran.TextArea.TextView.LineTransformers;
@@ -1812,8 +1866,8 @@ public partial class ReadableTabView : UserControl
     // =========================
     private void EnterPending(string why)
     {
-        _pendingRefresh = true;
-        _pendingSinceUtc = DateTime.UtcNow;
+        _vm.PendingRefresh = true;
+        _vm.PendingSinceUtc = DateTime.UtcNow;
 
         _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
         _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
@@ -1828,8 +1882,8 @@ public partial class ReadableTabView : UserControl
 
     private void ExitPending(string why)
     {
-        if (!_pendingRefresh) return;
-        _pendingRefresh = false;
+        if (!_vm.PendingRefresh) return;
+        _vm.PendingRefresh = false;
         UpdateButtonsState();
         Log("Pending exit: " + why);
     }

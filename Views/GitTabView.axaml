@@ -1,6 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="CbetaTranslator.App.Views.GitTabView">
+             xmlns:vm="using:CbetaTranslator.App.ViewModels"
+             x:Class="CbetaTranslator.App.Views.GitTabView"
+             x:DataType="vm:GitTabViewModel">
 
 	<UserControl.Styles>
 		<!-- Panic button styling -->
@@ -39,31 +41,35 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,8,*,Auto"
 		  ColumnDefinitions="*,Auto"
 		  Margin="12"
 		  RowSpacing="8"
 		  ColumnSpacing="8">
 
-		<!-- Repo location + clone/update controls -->
+		<!-- Row 0: Repo location + clone/update controls -->
 		<TextBlock Grid.Row="0"
 				   Grid.Column="0"
-				   Name="TxtDest"
-				   Text="Location:"
+				   Text="{Binding DestText}"
 				   VerticalAlignment="Center"/>
 
 		<StackPanel Grid.Row="0"
 					Grid.Column="1"
 					Orientation="Horizontal"
 					Spacing="8">
-			<Button Name="BtnPickDest" Content="Pick Location"/>
-			<Button Name="BtnGetFiles"
-					Content="Get Files"
+			<Button Content="Pick Location"
+					Command="{Binding PickDestCommand}"
+					IsEnabled="{Binding IsNotBusy}"/>
+			<Button Content="Get Files"
+					Command="{Binding GetFilesCommand}"
+					IsEnabled="{Binding IsNotBusy}"
 					ToolTip.Tip="Clone the repo if missing. If it already exists, does a safe update that keeps local file changes."/>
-			<Button Name="BtnCancel" Content="Cancel" IsEnabled="False"/>
+			<Button Content="Cancel"
+					Command="{Binding CancelCommand}"
+					IsEnabled="{Binding IsBusy}"/>
 		</StackPanel>
 
-		<!-- Super update buttons -->
+		<!-- Row 1: Super update buttons -->
 		<Border Grid.Row="1"
 				Grid.ColumnSpan="2"
 				CornerRadius="6"
@@ -81,82 +87,110 @@
 						   Classes="muted"/>
 
 				<StackPanel Orientation="Horizontal" Spacing="8">
-					<Button Name="BtnUpdateKeepLocal"
-							Classes="updateSafe"
+					<Button Classes="updateSafe"
 							Content="Update (Keep My Local Changes)"
+							Command="{Binding UpdateKeepLocalCommand}"
+							IsEnabled="{Binding IsNotBusy}"
 							ToolTip.Tip="Recommended. Backs up changed files, updates repo, then restores your local files."/>
 
-					<Button Name="BtnUpdateDiscardLocal"
-							Classes="updateDiscard"
+					<Button Classes="updateDiscard"
 							Content="Update (Discard Local Changes)"
+							Command="{Binding UpdateDiscardLocalCommand}"
+							IsEnabled="{Binding IsNotBusy}"
 							ToolTip.Tip="Dangerous. Throws away uncommitted local edits and updates to the latest files."/>
 				</StackPanel>
 			</StackPanel>
 		</Border>
 
+		<!-- Row 2: Selected file -->
 		<TextBlock Grid.Row="2"
 				   Grid.ColumnSpan="2"
-				   Name="TxtSelected"
-				   Text="Selected: (none)" />
+				   Text="{Binding SelectedText}" />
 
+		<!-- Row 3: Commit message -->
 		<StackPanel Grid.Row="3"
 					Grid.ColumnSpan="2"
 					Orientation="Vertical"
 					Spacing="4">
 			<TextBlock Text="Commit message"/>
-			<TextBox Name="TxtCommitMessage" Watermark="What did you change?" />
+			<TextBox Watermark="What did you change?"
+					 Text="{Binding CommitMessage, Mode=TwoWay}" />
 		</StackPanel>
 
-		<!-- Actions row -->
-		<StackPanel Grid.Row="4"
+		<!-- Row 4: Step flow indicator -->
+		<StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="4"
+					HorizontalAlignment="Left" Margin="0,4">
+			<TextBlock Text="Workflow:" VerticalAlignment="Center" Classes="muted" FontWeight="SemiBold"/>
+			<TextBlock Text="  1) Commit" VerticalAlignment="Center"/>
+			<TextBlock Text=" &#x2192; " VerticalAlignment="Center" Classes="muted"/>
+			<TextBlock Text="2) Authorize" VerticalAlignment="Center"/>
+			<TextBlock Text=" &#x2192; " VerticalAlignment="Center" Classes="muted"/>
+			<TextBlock Text="3) Push PR" VerticalAlignment="Center"/>
+		</StackPanel>
+
+		<!-- Row 5: Actions row -->
+		<StackPanel Grid.Row="5"
 					Grid.ColumnSpan="2"
 					Orientation="Horizontal"
 					Spacing="8">
-			<Button Name="BtnSendContribution" Content="1) Create local commit (single file)"/>
-			<Button Name="BtnAuth" Content="2) Authorize GitHub"/>
-			<Button Name="BtnPushPr" Content="3) Push + Create PR"/>
+			<Button Content="1) Create local commit (single file)"
+					Command="{Binding SendContributionCommand}"
+					IsEnabled="{Binding IsNotBusy}"
+					ToolTip.Tip="Stage and commit the currently selected translated file to a new branch"/>
+			<Button Content="2) Authorize GitHub"
+					Command="{Binding AuthorizeCommand}"
+					IsEnabled="{Binding IsNotBusy}"
+					ToolTip.Tip="Authenticate with GitHub using device code flow"/>
+			<Button Content="3) Push + Create PR"
+					Command="{Binding PushPrCommand}"
+					IsEnabled="{Binding IsNotBusy}"
+					ToolTip.Tip="Push your branch to GitHub and open a pull request"/>
 
-			<Button Name="BtnPanic"
-					Classes="panic"
-					Content="Don&#39;t Panic"
+			<Button Classes="panic"
+					Content="Discard All Changes"
+					Command="{Binding PanicResetCommand}"
+					IsEnabled="{Binding IsNotBusy}"
 					ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
 		</StackPanel>
 
-		<!-- Community Data -->
-		<Border Grid.Row="5"
-				Grid.ColumnSpan="2"
-				CornerRadius="6"
-				BorderThickness="1"
-				BorderBrush="{DynamicResource PanelBorder}"
-				Background="{DynamicResource PanelBg}"
-				Padding="10">
-			<StackPanel Orientation="Vertical" Spacing="8">
-				<TextBlock Text="Community Data (Approved TM + Termbase)"
-						   FontWeight="SemiBold"/>
-
+		<!-- Row 6: Community Data (collapsed by default) -->
+		<Expander Grid.Row="6" Grid.ColumnSpan="2" IsExpanded="False" Margin="0,4">
+			<Expander.Header>
+				<TextBlock Text="Community Data (Approved TM + Termbase)" FontWeight="SemiBold"/>
+			</Expander.Header>
+			<StackPanel Orientation="Vertical" Spacing="8" Margin="0,8,0,0">
 				<TextBlock Text="Commit your approved translations and termbase entries so others can benefit from them, or fetch what the community has contributed."
 						   TextWrapping="Wrap"
 						   Opacity="0.85"
 						   Classes="muted"/>
 
 				<StackPanel Orientation="Horizontal" Spacing="8">
-					<Button Name="BtnSendCommunityData"
-							Content="1) Commit Community Data"
+					<Button Content="A) Commit Community Data"
+							Command="{Binding SendCommunityDataCommand}"
+							IsEnabled="{Binding IsNotBusy}"
 							ToolTip.Tip="Sort, dedup, and commit translation-memory.approved.jsonl and termbase.json to a new branch."/>
 
-					<Button Name="BtnPushCommunityPr"
-							Content="3) Push + PR (Community Data)"
+					<Button Content="B) Push + PR (Community Data)"
+							Command="{Binding PushCommunityPrCommand}"
+							IsEnabled="{Binding IsNotBusy}"
 							ToolTip.Tip="Push the community data branch and open a pull request. Use '2) Authorize GitHub' above first."/>
 
-					<Button Name="BtnFetchMergeCommunity"
-							Content="Fetch + Merge Community Data"
+					<Button Content="Fetch + Merge Community Data"
+							Command="{Binding FetchMergeCommunityCommand}"
+							IsEnabled="{Binding IsNotBusy}"
 							ToolTip.Tip="Fetch origin/main and merge the community TM and termbase into your local files (last-write-wins)."/>
 				</StackPanel>
 			</StackPanel>
-		</Border>
+		</Expander>
 
-		<!-- Log -->
-		<Border Grid.Row="6"
+		<!-- Row 7: GridSplitter -->
+		<GridSplitter Grid.Row="7" Grid.ColumnSpan="2" Height="8"
+					  ResizeDirection="Rows" ResizeBehavior="PreviousAndNext"
+					  Background="Transparent" Cursor="SizeNS"
+					  ToolTip.Tip="Drag to resize log area"/>
+
+		<!-- Row 8: Log -->
+		<Border Grid.Row="8"
 				Grid.ColumnSpan="2"
 				CornerRadius="6"
 				BorderThickness="1"
@@ -172,14 +206,15 @@
 						 Padding="8"
 						 Background="Transparent"
 						 BorderThickness="0"
-						 FontFamily="Consolas"/>
+						 FontFamily="Consolas"
+						 Text="{Binding LogText}"/>
 			</ScrollViewer>
 		</Border>
 
-		<TextBlock Grid.Row="7"
+		<!-- Row 9: Progress -->
+		<TextBlock Grid.Row="9"
 				   Grid.ColumnSpan="2"
-				   Name="TxtProgress"
-				   Text="Ready."
+				   Text="{Binding ProgressText}"
 				   Opacity="0.8"
 				   Classes="muted"/>
 

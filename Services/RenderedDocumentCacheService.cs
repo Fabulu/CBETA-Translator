@@ -6,7 +6,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class RenderedDocumentCacheService
+public sealed class RenderedDocumentCacheService : IRenderedDocumentCacheService
 {
     private sealed class Entry
     {

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class MarkdownTranslationService
+public sealed class MarkdownTranslationService : IMarkdownTranslationService
 {
     public const string CurrentFormat = "cbeta-translation-md-v2";
 

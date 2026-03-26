@@ -5,7 +5,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TranslationQaService
+public sealed class TranslationQaService : ITranslationQaService
 {
     public List<QaIssue> Check(CurrentSegmentContext ctx, List<TermHit> terms)
     {

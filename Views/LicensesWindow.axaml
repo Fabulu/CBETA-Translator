@@ -1,6 +1,8 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
         x:Class="CbetaTranslator.App.Views.LicensesWindow"
+        x:DataType="vm:LicensesWindowViewModel"
         Width="980" Height="720"
         Background="{DynamicResource AppBg}"
         Title="Licenses &amp; Attributions"
@@ -25,28 +27,28 @@
 				CornerRadius="8"
 				Padding="10">
 
-			<TextBox Name="TxtLicenses"
-					 IsReadOnly="True"
+			<TextBox IsReadOnly="True"
 					 AcceptsReturn="True"
 					 TextWrapping="Wrap"
 					 Background="Transparent"
 					 BorderThickness="0"
 					 FontFamily="Consolas"
 					 ScrollViewer.VerticalScrollBarVisibility="Auto"
-					 ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+					 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					 Text="{Binding LicensesText}"/>
 		</Border>
 
 		<DockPanel Grid.Row="2" LastChildFill="False">
-			<TextBlock Name="TxtHint"
-					   DockPanel.Dock="Left"
+			<TextBlock DockPanel.Dock="Left"
 					   Classes="muted"
-					   VerticalAlignment="Center"/>
+					   VerticalAlignment="Center"
+					   Text="{Binding HintText}"/>
 
-			<Button Name="BtnClose"
-					DockPanel.Dock="Right"
+			<Button DockPanel.Dock="Right"
 					Width="120"
 					Height="34"
-					Content="Close"/>
+					Content="Close"
+					Command="{Binding CloseWindowCommand}"/>
 		</DockPanel>
 
 	</Grid>

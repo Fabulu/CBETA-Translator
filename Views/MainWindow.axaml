@@ -2,7 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
         x:Class="CbetaTranslator.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Width="1400"
         Height="900"
         Title="CBETA Translator">
@@ -21,10 +23,14 @@
 							Spacing="8"
 							DockPanel.Dock="Left">
 
-					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"/>
-					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Root"/>
-					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"/>
-					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"/>
+					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"
+							ToolTip.Tip="Toggle sidebar"/>
+					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open CBETA Folder"
+							ToolTip.Tip="Select the root folder containing CBETA XML files"/>
+					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"
+							ToolTip.Tip="Open application settings"/>
+					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"
+							ToolTip.Tip="View licenses and attributions"/>
 
 					<TextBlock Name="TxtRoot"
 							   Margin="10,0,0,0"
@@ -61,7 +67,8 @@
 						<ComboBox Name="CmbStatusFilter"
 								  Grid.Column="1"
 								  SelectedIndex="0"
-								  MinWidth="160">
+								  MinWidth="160"
+								  ToolTip.Tip="Filter files by translation status">
 							<ComboBoxItem Content="All"/>
 							<ComboBoxItem Content="Translated (Green)"/>
 							<ComboBoxItem Content="Partially translated (Yellow)"/>
@@ -71,15 +78,18 @@
 
 					<TextBox Name="NavSearch"
 							 Grid.Row="1"
-							 Watermark="Search (filename or title)…"/>
+							 Watermark="Search (filename or title)…"
+							 ToolTip.Tip="Filter by filename or title"/>
 
 					<StackPanel Grid.Row="2"
 								Orientation="Horizontal"
 								Spacing="10">
 						<CheckBox Name="ChkShowFilenames"
-								  Content="Show filenames"/>
+								  Content="Show filenames"
+								  ToolTip.Tip="Show technical filenames instead of titles"/>
 						<CheckBox Name="ChkZenOnly"
-								  Content="Zen texts"/>
+								  Content="Zen texts"
+								  ToolTip.Tip="Show only texts flagged as Zen/Chan"/>
 					</StackPanel>
 
 					<ListBox Name="FilesList"
@@ -108,23 +118,39 @@
 
 			<!-- Tabs -->
 			<Border Grid.Column="1" Margin="8">
-				<TabControl Name="MainTabs">
-					<TabItem Header="Readable">
-						<views:ReadableTabView Name="ReadableView"/>
-					</TabItem>
+				<Grid>
+					<TabControl Name="MainTabs">
+						<TabItem Header="Readable">
+							<views:ReadableTabView Name="ReadableView"/>
+						</TabItem>
 
-					<TabItem Header="Translate XML">
-						<views:TranslationTabView Name="TranslationView"/>
-					</TabItem>
+						<TabItem Header="Translate XML">
+							<views:TranslationTabView Name="TranslationView"/>
+						</TabItem>
 
-					<TabItem Header="Search">
-						<views:SearchTabView Name="SearchView"/>
-					</TabItem>
+						<TabItem Header="Search">
+							<views:SearchTabView Name="SearchView"/>
+						</TabItem>
 
-					<TabItem Header="Git">
-						<views:GitTabView Name="GitView"/>
-					</TabItem>
-				</TabControl>
+						<TabItem Header="Git">
+							<views:GitTabView Name="GitView"/>
+						</TabItem>
+					</TabControl>
+
+					<Border Name="EmptyStateOverlay" IsVisible="True"
+							Background="{DynamicResource AppBg}"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+									Spacing="12" MaxWidth="400">
+							<TextBlock Text="Welcome to CBETA Translator"
+									   FontSize="20" FontWeight="SemiBold"
+									   HorizontalAlignment="Center"/>
+							<TextBlock Text="Click 'Open CBETA Folder' above to select your CBETA root directory and begin translating."
+									   TextWrapping="Wrap" HorizontalAlignment="Center"
+									   TextAlignment="Center" Classes="muted"/>
+						</StackPanel>
+					</Border>
+				</Grid>
 			</Border>
 
 		</Grid>

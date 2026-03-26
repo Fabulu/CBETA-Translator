@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class TermbaseService
+public sealed class TermbaseService : ITermbaseService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {

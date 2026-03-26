@@ -6,7 +6,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public sealed class AppConfigService
+public sealed class AppConfigService : IAppConfigService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
