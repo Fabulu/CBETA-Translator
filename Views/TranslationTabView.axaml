@@ -18,142 +18,64 @@
 
 		<Border Grid.Row="0"
 				Background="{DynamicResource BarBg}"
-				BorderBrush="{DynamicResource BorderBrush}"
-				BorderThickness="1"
-				Padding="8"
-				CornerRadius="6">
+				Padding="6,4"
+				CornerRadius="4">
 
-			<Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="8">
+			<Grid RowDefinitions="Auto,Auto">
 
-				<!-- Row 0: toolbar groups + right-side checkboxes -->
-				<Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+				<!-- Row 0: all buttons in one compact line -->
+				<WrapPanel Grid.Row="0" Orientation="Horizontal">
+					<!-- Mode -->
+					<Button Name="BtnModeHead" Content="Head" ToolTip.Tip="Switch to header projection (Ctrl+1)" Padding="8,3"/>
+					<Button Name="BtnModeBody" Content="Body" ToolTip.Tip="Switch to body projection (Ctrl+2)" Padding="8,3"/>
+					<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)" Padding="8,3"/>
+					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
-					<WrapPanel Grid.Column="0"
-							   Orientation="Horizontal"
-							   ItemSpacing="8"
-							   LineSpacing="8">
+					<!-- AI Translation -->
+					<Button Name="BtnCopyChunkPrompt" Content="Copy for AI" ToolTip.Tip="Copy up to N valid untranslated blocks from the caret (Ctrl+Shift+C)" Padding="8,3"/>
+					<Button Name="BtnPasteByNumber" Content="Paste from AI" ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)" Padding="8,3"/>
+					<ComboBox Name="CmbChunkSize" Width="60" SelectedIndex="4" Padding="4,2" ToolTip.Tip="How many blocks max to copy">
+						<ComboBoxItem Content="1"/>
+						<ComboBoxItem Content="10"/>
+						<ComboBoxItem Content="25"/>
+						<ComboBoxItem Content="50"/>
+						<ComboBoxItem Content="100"/>
+						<ComboBoxItem Content="150"/>
+					</ComboBox>
+					<Button Name="BtnNextUntranslated" Content="Next ∅" ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block." Padding="8,3"/>
+					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
-						<!-- Group 1: Mode -->
-						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
-							<StackPanel Orientation="Horizontal" Spacing="6">
-								<TextBlock Text="Mode" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-								<Button Name="BtnModeHead" Content="Head of File" ToolTip.Tip="Switch to header projection (Ctrl+1)"/>
-								<Button Name="BtnModeBody" Content="Body of File" ToolTip.Tip="Switch to body projection (Ctrl+2)"/>
-								<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)"/>
-							</StackPanel>
-						</Border>
+					<!-- Review -->
+					<Button Name="BtnApproveSegment" Content="✓" ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)" Padding="8,3"/>
+					<Button Name="BtnNeedsWorkSegment" Content="⚠" ToolTip.Tip="Flag as needing more work (Alt+N / F10)" Padding="8,3"/>
+					<Button Name="BtnRejectSegment" Content="✗" ToolTip.Tip="Mark the current segment as rejected (F11)" Padding="8,3"/>
+					<Button Name="BtnNextUnapproved" Content="Next ?" ToolTip.Tip="Jump to next segment that has not been approved yet" Padding="8,3"/>
+					<TextBlock Name="TxtReviewState" Text="" VerticalAlignment="Center" FontWeight="SemiBold" Margin="4,0"/>
+					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
-						<!-- Group 2: AI Translation -->
-						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
-							<StackPanel Orientation="Horizontal" Spacing="6">
-								<TextBlock Text="AI Translation" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-								<Button Name="BtnCopyChunkPrompt"
-										Content="Copy for AI"
-										ToolTip.Tip="Copy up to N valid untranslated blocks from the caret (Ctrl+Shift+C)"/>
-								<Button Name="BtnPasteByNumber"
-										Content="Paste from AI"
-										ToolTip.Tip="Paste clipboard blocks and replace EN lines by matching block number (Ctrl+Shift+V)"/>
-								<TextBlock Text="Blocks:" VerticalAlignment="Center"/>
-								<ComboBox Name="CmbChunkSize" Width="72" SelectedIndex="4" ToolTip.Tip="How many blocks max to copy">
-									<ComboBoxItem Content="1"/>
-									<ComboBoxItem Content="10"/>
-									<ComboBoxItem Content="25"/>
-									<ComboBoxItem Content="50"/>
-									<ComboBoxItem Content="100"/>
-									<ComboBoxItem Content="150"/>
-								</ComboBox>
-								<Button Name="BtnNextUntranslated"
-										Content="Next untranslated"
-										ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block."/>
-								<TextBlock Text="Copy blocks -> paste in LLM -> copy response -> Paste from AI"
-										   VerticalAlignment="Center" Opacity="0.5" FontSize="11" Classes="muted"/>
-							</StackPanel>
-						</Border>
+					<!-- File -->
+					<Button Name="BtnSave" Content="Save" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)" Padding="8,3"/>
+					<Button Name="BtnRevert" Content="Revert" ToolTip.Tip="Reload projection from XML (Ctrl+R)" Padding="8,3"/>
+					<Button Name="BtnUndo" Content="↶" ToolTip.Tip="Undo (Ctrl+Z)" Padding="8,3" Width="28"/>
+					<Button Name="BtnRedo" Content="↷" ToolTip.Tip="Redo (Ctrl+Y)" Padding="8,3" Width="28"/>
+					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
-						<!-- Group 3: Review -->
-						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
-							<StackPanel Orientation="Horizontal" Spacing="6">
-								<TextBlock Text="Review" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-								<Button Name="BtnApproveSegment"
-										Content="Approve segment"
-										ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)"/>
-								<Button Name="BtnNeedsWorkSegment"
-										Content="Needs work"
-										ToolTip.Tip="Flag as needing more work (Alt+N / F10)"/>
-								<Button Name="BtnRejectSegment"
-										Content="Reject"
-										ToolTip.Tip="Mark the current segment as rejected (F11)"/>
-								<Button Name="BtnNextUnapproved"
-										Content="Next unapproved"
-										ToolTip.Tip="Jump to next segment that has not been approved yet"/>
-								<TextBlock Name="TxtReviewState"
-										   Text="Unreviewed"
-										   VerticalAlignment="Center"
-										   FontWeight="SemiBold"
-										   Margin="4,0,0,0"/>
-							</StackPanel>
-						</Border>
+					<!-- Tools -->
+					<Button Name="BtnBuildReferenceTm" Content="Build TM" ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts" Padding="8,3"/>
+					<Button Name="BtnManageTerms" Content="Terms" ToolTip.Tip="Open the termbase editor" Padding="8,3"/>
+					<Button Name="BtnFindChineseInEn" Content="Find CN" ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete." Padding="8,3"/>
+					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
-						<!-- Group 4: File -->
-						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
-							<StackPanel Orientation="Horizontal" Spacing="6">
-								<TextBlock Text="File" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-								<Button Name="BtnSave" Content="Save XML" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)"/>
-								<Button Name="BtnRevert" Content="Revert from XML" ToolTip.Tip="Reload projection from XML (Ctrl+R)"/>
-								<Button Name="BtnUndo" Content="Undo" ToolTip.Tip="Undo (Ctrl+Z)"/>
-								<Button Name="BtnRedo" Content="Redo" ToolTip.Tip="Redo (Ctrl+Y)"/>
-							</StackPanel>
-						</Border>
+					<!-- Toggles -->
+					<CheckBox Name="ChkWrap" Content="Wrap" IsChecked="True" ToolTip.Tip="Toggle line wrapping" Padding="4,2"/>
+					<CheckBox Name="ChkAssistantVisible" Content="Asst" IsChecked="True" ToolTip.Tip="Show or hide the translation assistant pane" Padding="4,2"/>
+				</WrapPanel>
 
-						<!-- Group 5: Tools -->
-						<Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="4" Padding="6">
-							<StackPanel Orientation="Horizontal" Spacing="6">
-								<TextBlock Text="Tools" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-								<Button Name="BtnBuildReferenceTm"
-										Content="Build Ref TM"
-										ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts"/>
-								<Button Name="BtnManageTerms"
-										Content="Manage Terms"
-										ToolTip.Tip="Open the termbase editor"/>
-								<Button Name="BtnFindChineseInEn"
-										Content="Find Chinese in EN"
-										ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete."/>
-							</StackPanel>
-						</Border>
-
-					</WrapPanel>
-
-					<StackPanel Grid.Column="1"
-								Orientation="Horizontal"
-								Spacing="12"
-								VerticalAlignment="Top"
-								Margin="8,0,0,0">
-						<CheckBox Name="ChkWrap"
-								  Content="Wrap"
-								  IsChecked="True"
-								  ToolTip.Tip="Toggle line wrapping"/>
-						<CheckBox Name="ChkAssistantVisible"
-								  Content="Assistant"
-								  IsChecked="True"
-								  ToolTip.Tip="Show or hide the translation assistant pane"/>
-					</StackPanel>
-
-				</Grid>
-
-				<!-- Row 1: quick info -->
-				<TextBlock Grid.Row="1"
-						   Name="TxtQuickInfo"
-						   Text=""
-						   Opacity="0.8"
-						   TextTrimming="CharacterEllipsis"/>
-
-				<!-- Row 2: progress stats -->
-				<TextBlock Name="TxtProgress"
-						   Grid.Row="2"
-						   Text=""
-						   Opacity="0.75"
-						   Classes="muted"
-						   FontSize="12"/>
+				<!-- Row 1: compact info line -->
+				<DockPanel Grid.Row="1" Margin="0,2,0,0">
+					<TextBlock Name="TxtProgress" DockPanel.Dock="Right" Opacity="0.7" Classes="muted" FontSize="11"/>
+					<TextBlock Name="TxtQuickInfo" Text="" Opacity="0.7" TextTrimming="CharacterEllipsis" FontSize="11"/>
+				</DockPanel>
 
 			</Grid>
 		</Border>
