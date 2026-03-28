@@ -20,7 +20,7 @@
 		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="FontFamily" Value="Consolas"/>
+			<Setter Property="FontFamily" Value="Consolas, Menlo, 'DejaVu Sans Mono', 'Noto Sans CJK SC', 'Source Han Sans SC', monospace"/>
 			<Setter Property="WordWrap" Value="True"/>
 			<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
 			<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
