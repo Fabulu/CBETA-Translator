@@ -1010,7 +1010,8 @@ public partial class ReadableTabView : UserControl
             Width = 520,
             Height = 360,
             Content = chrome,
-            WindowStartupLocation = owner != null ? WindowStartupLocation.CenterOwner : WindowStartupLocation.CenterScreen
+            WindowStartupLocation = owner != null ? WindowStartupLocation.CenterOwner : WindowStartupLocation.CenterScreen,
+            Topmost = false
         };
 
         win.RequestedThemeVariant =
