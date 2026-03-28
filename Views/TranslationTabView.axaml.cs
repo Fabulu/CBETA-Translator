@@ -108,6 +108,13 @@ public partial class TranslationTabView : UserControl
         UpdateModeInfo();
         ApplyHoverDictionarySetting();
         SetCurrentReviewState(null, null, null, null);
+
+        DetachedFromVisualTree += (_, _) =>
+        {
+            _hoverDictionaryBehavior?.Dispose();
+            _hoverDictionaryBehavior = null;
+            ClearAssistantHoverBehaviors();
+        };
     }
 
     private void FindControls()

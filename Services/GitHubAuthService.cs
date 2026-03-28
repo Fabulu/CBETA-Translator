@@ -25,13 +25,14 @@ public sealed record GitHubToken(
 
 public sealed record DeviceCodeReady(string UserCode, string VerificationUri);
 
-public interface IGitHubAuthService
+public interface IGitHubAuthService : IDisposable
 {
     Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null);
 }
 
-public sealed class GitHubAuthService : IGitHubAuthService
+public sealed class GitHubAuthService : IGitHubAuthService, IDisposable
 {
+    private bool _disposed;
     // NOTE: OAuth "Client ID" is PUBLIC by design. It's okay to ship it in the app.
     // Secret must NEVER be in the app. Device flow does not require the secret.
     private const string ClientId = "Ov23liMZASjsTTz3f2AX";
@@ -176,5 +177,14 @@ public sealed class GitHubAuthService : IGitHubAuthService
 
         log.Report("[error] authorization timed out.");
         return null;
+    }
+
+    public void Dispose()
+    {
+        if (!_disposed)
+        {
+            _http.Dispose();
+            _disposed = true;
+        }
     }
 }

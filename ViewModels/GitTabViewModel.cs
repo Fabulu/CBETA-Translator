@@ -247,10 +247,20 @@ public partial class GitTabViewModel : ViewModelBase
     private void Cancel()
     {
         try { _cts?.Cancel(); } catch { }
+        try { _cts?.Dispose(); } catch { }
         _cts = null;
 
         _git.TryCancelRunningProcess();
         SetButtonsBusy(false);
+    }
+
+    /// <summary>Cancel any in-flight operation, dispose the old CTS, and create a fresh one.</summary>
+    private void ResetCts()
+    {
+        _cts?.Cancel();
+        try { _cts?.Dispose(); } catch { }
+        _git.TryCancelRunningProcess();
+        _cts = new CancellationTokenSource();
     }
 
     [RelayCommand]
@@ -301,8 +311,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task GetOrUpdateFilesAsync(UpdateMode mode)
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -589,8 +598,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task PanicButtonAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -686,8 +694,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task SendContributionLocalAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -859,8 +866,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task AuthorizeGitHubAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -912,8 +918,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task PushAndCreatePrAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -1104,8 +1109,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareAllInternalAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -1444,8 +1448,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareCommunityDataInternalAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -1750,8 +1753,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareScholarCollectionsInternalAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
@@ -2013,8 +2015,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task FetchAndMergeCommunityDataAsync()
     {
-        CancelCommand.Execute(null);
-        _cts = new CancellationTokenSource();
+        ResetCts();
         var ct = _cts.Token;
 
         SetButtonsBusy(true);
