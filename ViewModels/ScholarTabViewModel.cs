@@ -180,7 +180,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         {
             var loaded = await _svc.LoadAsync(_root);
 
-            await Dispatcher.UIThread.InvokeAsync(() =>
+            await RunOnUiAsync(() =>
             {
                 _allCollections.Clear();
                 _allCollections.AddRange(loaded);
@@ -387,7 +387,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 }
             }
 
-            await Dispatcher.UIThread.InvokeAsync(() =>
+            await RunOnUiAsync(() =>
             {
                 RefreshCollectionsList();
                 IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
@@ -417,7 +417,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             var communityDir = ScholarCollectionsService.GetCommunityCollectionsDir(_root);
             var allUsers = await _svc.LoadAllCommunityJsonlAsync(communityDir);
 
-            await Dispatcher.UIThread.InvokeAsync(() =>
+            await RunOnUiAsync(() =>
             {
                 _allCommunityCollections.Clear();
 
@@ -1131,6 +1131,22 @@ public partial class ScholarTabViewModel : ViewModelBase
         foreach (var c in s)
             if (c >= 0x4E00 && c <= 0x9FFF) return true;
         return false;
+    }
+
+    private static async Task RunOnUiAsync(Action action)
+    {
+        try
+        {
+            if (Dispatcher.UIThread.CheckAccess())
+                action();
+            else
+                await Dispatcher.UIThread.InvokeAsync(action);
+        }
+        catch (InvalidOperationException)
+        {
+            // No UI thread (test context) — run directly
+            action();
+        }
     }
 
     private async Task SafeFireAndForget(Task task)
