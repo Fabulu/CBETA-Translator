@@ -609,10 +609,10 @@ public sealed class SearchIndexService : ISearchIndexService
         {
             string xml;
             try { xml = File.ReadAllText(absPath, Utf8NoBom); }
-            catch { return ""; }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Read failed for {absPath}: {ex.Message}"); return ""; }
 
             try { searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecodeIfAmpersandPresent); }
-            catch { return ""; }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Parse failed for {absPath}: {ex.Message}"); return ""; }
         }
 
         lock (_verifyTextCacheLock)

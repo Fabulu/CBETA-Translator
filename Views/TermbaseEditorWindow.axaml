@@ -56,7 +56,7 @@
 							Spacing="8">
 					<TextBlock Text="Community Termbases"
 							   FontWeight="Bold"
-							   Foreground="#88AAFF"/>
+							   Foreground="{DynamicResource AccentLinkFg}"/>
 					<Button Content="Adopt Term"
 							Command="{Binding AdoptSelectedTermCommand}"
 							FontSize="11"
@@ -84,7 +84,7 @@
 												   Opacity="0.85"
 												   TextWrapping="Wrap"/>
 									</StackPanel>
-									<TextBlock Foreground="#88AAFF"
+									<TextBlock Foreground="{DynamicResource AccentLinkFg}"
 											   FontSize="11"
 											   Opacity="0.9">
 										<TextBlock.Text>

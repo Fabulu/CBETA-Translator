@@ -928,7 +928,8 @@ public partial class MainWindow : Window
         "SearchMatchFg","NoteMarkerCommunityFg",
         "PanelBg","PanelBorder","PanelAltBg",
         "ErrorFg","WarningFg","SuccessFg",
-        "ErrorBg","WarningBg","SuccessBg"
+        "ErrorBg","WarningBg","SuccessBg",
+        "AccentLinkFg","TermbaseHighlightBg"
     };
 
     private void ApplyTheme(bool dark)

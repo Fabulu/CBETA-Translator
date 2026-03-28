@@ -490,7 +490,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                                 $"Failed to serialize XML after patching group {first.ElementStableKey} ({first.Kind}): {sx.Message}" +
                                 (!string.IsNullOrWhiteSpace(LastBuildTranslatedXmlDebugDumpPath)
                                     ? $"\n\nDebug dump written to: {LastBuildTranslatedXmlDebugDumpPath}"
-                                    : "\n\nDebug dump write to C:\\temp failed."),
+                                    : "\n\nDebug dump write to temp directory failed."),
                                 sx);
                         }
 
@@ -522,7 +522,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                             $"Context:\n{snippet}\n\n" +
                             (!string.IsNullOrWhiteSpace(LastBuildTranslatedXmlDebugDumpPath)
                                 ? $"Debug dump written to: {LastBuildTranslatedXmlDebugDumpPath}"
-                                : "Debug dump write to C:\\temp failed."),
+                                : "Debug dump write to temp directory failed."),
                             xex);
                     }
                 }
@@ -546,7 +546,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                     $"Failed rebuilding element {first.ElementStableKey} ({first.Kind}, line {first.LineNumber}): {ex.Message}" +
                     (!string.IsNullOrWhiteSpace(LastBuildTranslatedXmlDebugDumpPath)
                         ? $"\n\nDebug dump written to: {LastBuildTranslatedXmlDebugDumpPath}"
-                        : "\n\nDebug dump write to C:\\temp failed."),
+                        : "\n\nDebug dump write to temp directory failed."),
                     ex);
             }
 
@@ -587,7 +587,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 $"Failed to serialize final translated XML: {sx.Message}" +
                 (!string.IsNullOrWhiteSpace(LastBuildTranslatedXmlDebugDumpPath)
                     ? $"\n\nDebug dump written to: {LastBuildTranslatedXmlDebugDumpPath}"
-                    : "\n\nDebug dump write to C:\\temp failed."),
+                    : "\n\nDebug dump write to temp directory failed."),
                 sx);
         }
 
@@ -619,7 +619,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 $"Context:\n{snippet}\n\n" +
                 (!string.IsNullOrWhiteSpace(LastBuildTranslatedXmlDebugDumpPath)
                     ? $"Debug dump written to: {LastBuildTranslatedXmlDebugDumpPath}"
-                    : "Debug dump write to C:\\temp failed."),
+                    : "Debug dump write to temp directory failed."),
                 xex);
         }
 
@@ -1571,7 +1571,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     {
         try
         {
-            var dir = @"C:\temp";
+            var dir = Path.Combine(Path.GetTempPath(), "cbeta-debug");
             Directory.CreateDirectory(dir);
 
             var ts = DateTime.Now.ToString("yyyyMMdd-HHmmss-fff");

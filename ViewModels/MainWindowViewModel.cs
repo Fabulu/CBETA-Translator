@@ -233,7 +233,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
-            catch { _config = new AppConfig { IsDarkTheme = true }; }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Config load failed: {ex.Message}"); _config = new AppConfig { IsDarkTheme = true }; }
 
             ApplyTheme?.Invoke(_config.IsDarkTheme);
             ApplySettingsToChildViews();
@@ -325,7 +325,7 @@ public partial class MainWindowViewModel : ViewModelBase
             await _zenTexts.LoadAsync(_root);
             SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
         }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen texts load failed: {ex.Message}"); }
 
         SetGitRepoRoot?.Invoke(_root);
         SetSearchRootContext?.Invoke(_root, _originalDir, _translatedDir);
@@ -337,7 +337,7 @@ public partial class MainWindowViewModel : ViewModelBase
             var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
             await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
         }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Review aggregation refresh failed: {ex.Message}"); }
 
         if (saveToConfig)
         {
@@ -378,7 +378,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task SafeSaveConfigAsync()
     {
         try { await _configService.SaveAsync(_config); }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Config save failed: {ex.Message}"); }
     }
 
     public async Task SaveUiStateAsync()
@@ -770,7 +770,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private string? TryReadTranslatedXmlFromDisk(string relPath)
+    private async Task<string?> TryReadTranslatedXmlFromDiskAsync(string relPath)
     {
         if (_translatedDir == null) return null;
 
@@ -780,7 +780,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (!File.Exists(tranAbs))
                 return null;
 
-            var text = File.ReadAllText(tranAbs, Encoding.UTF8);
+            var text = await File.ReadAllTextAsync(tranAbs, Encoding.UTF8);
 
             if (TryParseXml(text, out _))
                 return text;
@@ -788,7 +788,7 @@ public partial class MainWindowViewModel : ViewModelBase
             var bak = tranAbs + ".bak";
             if (File.Exists(bak))
             {
-                var bakText = File.ReadAllText(bak, Encoding.UTF8);
+                var bakText = await File.ReadAllTextAsync(bak, Encoding.UTF8);
                 if (TryParseXml(bakText, out _))
                 {
                     SetStatus("Translated XML was corrupted; loaded backup (.bak) instead.");
@@ -890,7 +890,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
 
-        _rawTranXml = TryReadTranslatedXmlFromDisk(relPath) ?? _rawOrigXml;
+        _rawTranXml = await TryReadTranslatedXmlFromDiskAsync(relPath) ?? _rawOrigXml;
 
         _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
 
@@ -909,7 +909,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             await RefreshAssistantFromEditorAsync();
         }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Assistant refresh failed: {ex.Message}"); }
 
         try
         {
@@ -934,7 +934,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 bool isZen = _root != null && _zenTexts.IsZen(relPath);
                 SetReadableZenContext?.Invoke(relPath, isZen);
             }
-            catch { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen context set failed: {ex.Message}"); }
 
             await SaveUiStateAsync();
             SetStatus("Loaded. Segments: O=" + ro.Segments.Count.ToString("n0") +
@@ -1615,7 +1615,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 return;
             }
 
-            _rawTranXml = TryReadTranslatedXmlFromDisk(_currentRelPath) ?? _rawOrigXml;
+            _rawTranXml = await TryReadTranslatedXmlFromDiskAsync(_currentRelPath) ?? _rawOrigXml;
 
             EnsureXmlIsWellFormed(_rawOrigXml, "Original XML is malformed.");
             EnsureXmlIsWellFormed(_rawTranXml, "Translated XML is malformed.");
@@ -1900,7 +1900,7 @@ public partial class MainWindowViewModel : ViewModelBase
             var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
             await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
         }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Review aggregation failed: {ex.Message}"); }
     }
 
     // ===========================================================
@@ -2210,7 +2210,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             await _indexCacheService.SaveAsync(_root, new IndexCache { Entries = _allItems });
         }
-        catch { }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Index cache save failed: {ex.Message}"); }
     }
 
     // ===========================================================
