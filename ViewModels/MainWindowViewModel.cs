@@ -1661,7 +1661,12 @@ public partial class MainWindowViewModel : ViewModelBase
             _dirty = false;
             UpdateWindowTitle();
 
-            await RefreshReadableFromDiskOnlyAsync();
+            try { await RefreshReadableFromDiskOnlyAsync(); }
+            catch (Exception refreshEx)
+            {
+                // Post-save refresh can fail on Mac (file access timing) — don't alarm the user
+                System.Diagnostics.Debug.WriteLine($"[SaveXml] Post-save refresh failed (non-critical): {refreshEx.Message}");
+            }
 
             var backupMsg = saveInfo.BackupCreated ? " backup=yes" : " backup=no";
             SetStatus("Saved translated XML (" + updatedCount.ToString("n0") + " units updated)." + backupMsg);

@@ -556,11 +556,15 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         // Capture original XML before we overwrite it, for reconciliation
         var originalTranslatedXml = doc.TranslatedXml;
 
+        // Detect original line ending style to preserve in output
+        bool originalHasCrlf = originalTranslatedXml?.Contains("\r\n") ?? false;
+        string eol = originalHasCrlf ? "\r\n" : "\n";
+
         string xml;
         try
         {
-            var serialized = SerializeWithDeclaration(tranDoc);
-            serialized = InsertPrettyTagNewlines(serialized); // cosmetic only
+            var serialized = SerializeWithDeclaration(tranDoc, eol);
+            serialized = InsertPrettyTagNewlines(serialized, eol); // cosmetic only
 
             // Reconcile with original formatting to minimize diffs
             if (!string.IsNullOrEmpty(originalTranslatedXml))
@@ -1386,7 +1390,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         }
     }
 
-    private static string SerializeWithDeclaration(XDocument doc)
+    private static string SerializeWithDeclaration(XDocument doc, string eol = "\n")
     {
         // Force a sane XML declaration for string output that will later be written as UTF-8.
         // This prevents "Cannot switch to Unicode / no BOM" errors caused by utf-16 declarations.
@@ -1407,7 +1411,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         {
             OmitXmlDeclaration = false, // always write declaration now
             Indent = false,
-            NewLineChars = "\n",
+            NewLineChars = eol,
             NewLineHandling = NewLineHandling.None,
             Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false)
         };
@@ -1423,10 +1427,11 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         }
     }
 
-    private static string InsertPrettyTagNewlines(string xml)
+    private static string InsertPrettyTagNewlines(string xml, string eol = "\n")
     {
         if (string.IsNullOrEmpty(xml)) return xml;
 
+        // Use \n internally for regex, then normalize at the end
         xml = Regex.Replace(
             xml,
             @"(?<!\n)(?<tag><(?:lb|pb|milestone)\b[^>]*/>)",
@@ -1440,6 +1445,10 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             RegexOptions.IgnoreCase);
 
         xml = Regex.Replace(xml, @"\n{3,}", "\n\n");
+
+        // Normalize to target EOL if not plain LF
+        if (eol != "\n")
+            xml = xml.Replace("\r\n", "\n").Replace("\n", eol);
 
         return xml;
     }
