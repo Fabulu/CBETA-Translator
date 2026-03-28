@@ -1541,18 +1541,18 @@ public class ScholarTabViewModelTests
     {
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
-
-        // Select collection first so VM loads it
-        vm.SelectedCollection = vm.Collections[0];
-
-        // Set notes directly on the collection object (simulating pre-existing data)
-        vm.Collections[0].StudyNotes = "My research notes on this collection";
-
-        // Add a second collection and switch to it, then back
         vm.AddCollectionCommand.Execute(null);
-        vm.SelectedCollection = vm.Collections[1];
-        vm.SelectedCollection = vm.Collections[0];
 
+        // Select first collection and set notes via VM property (syncs to collection)
+        vm.SelectedCollection = vm.Collections[0];
+        vm.StudyNotes = "My research notes on this collection";
+
+        // Switch to second collection — notes should be saved back to first
+        vm.SelectedCollection = vm.Collections[1];
+        Assert.Equal("", vm.StudyNotes); // second collection has no notes
+
+        // Switch back — notes should reload from first collection
+        vm.SelectedCollection = vm.Collections[0];
         Assert.Equal("My research notes on this collection", vm.StudyNotes);
     }
 
