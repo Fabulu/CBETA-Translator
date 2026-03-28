@@ -215,8 +215,8 @@
           <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
         </StackPanel>
 
-        <!-- Translation Assistant -->
-        <Expander Grid.Row="9" Header="Translation Assistant" IsExpanded="False" Margin="0,8,0,0">
+        <!-- Scholar Assistant -->
+        <Expander Grid.Row="9" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
           <ScrollViewer MaxHeight="500">
             <StackPanel Spacing="8" Margin="4">
               <Border CornerRadius="4" Padding="6">
