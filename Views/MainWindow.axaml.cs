@@ -68,6 +68,12 @@ public partial class MainWindow : Window
     // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
+    // Tour overlay controls
+    private Canvas? _tourOverlayCanvas;
+    private TourSpotlightOverlay? _tourSpotlight;
+    private TourTooltipPanel? _tourTooltip;
+    private OnboardingTourService? _tourService;
+
     // Stored handler for static event (must unsubscribe on close to avoid leak)
     private EventHandler? _scholarDataChangedHandler;
 
@@ -144,6 +150,7 @@ public partial class MainWindow : Window
         try
         {
             await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
+            MaybeStartTour();
         }
         finally
         {
@@ -185,6 +192,10 @@ public partial class MainWindow : Window
         _searchView = Find<SearchTabView>("SearchView");
         _gitView = Find<GitTabView>("GitView");
         _scholarView = Find<ScholarTabView>("ScholarView");
+
+        _tourOverlayCanvas = Find<Canvas>("TourOverlayCanvas");
+        _tourSpotlight = Find<TourSpotlightOverlay>("TourSpotlight");
+        _tourTooltip = Find<TourTooltipPanel>("TourTooltip");
     }
 
     private void CreateViewModel()
@@ -203,6 +214,8 @@ public partial class MainWindow : Window
             sp.GetRequiredService<ISearchIndexService>());
 
         DataContext = _vm;
+
+        _tourService = sp.GetRequiredService<OnboardingTourService>();
     }
 
     private void WireBridges()
@@ -368,6 +381,9 @@ public partial class MainWindow : Window
 
         // Wire assistant title resolver
         _vm.SetAssistantTitleResolver?.Invoke(rel => _vm.ResolveAssistantTitle(rel));
+
+        // Tour: auto-index complete
+        _vm.OnAutoIndexCompleted = () => _tourService?.AdvanceIfWaitingFor("index-built");
     }
 
     // ===========================================================
@@ -387,6 +403,14 @@ public partial class MainWindow : Window
         if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) => await _vm.OpenRootAsync();
         if (_btnSettings != null) _btnSettings.Click += async (_, _) => await _vm.OpenSettingsAsync();
         if (_btnLicenses != null) _btnLicenses.Click += async (_, _) => await _vm.OpenLicensesAsync();
+
+        var btnGetStarted = Find<Button>("BtnGetStarted");
+        if (btnGetStarted != null)
+            btnGetStarted.Click += (_, _) => StartTour();
+
+        var btnOpenRootAlt = Find<Button>("BtnOpenRootAlt");
+        if (btnOpenRootAlt != null)
+            btnOpenRootAlt.Click += async (_, _) => await _vm.OpenRootAsync();
 
         if (_btnSave != null)
             _btnSave.Click += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
@@ -472,6 +496,29 @@ public partial class MainWindow : Window
                 WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             };
         }
+
+        // Tour tooltip buttons
+        if (_tourTooltip != null)
+        {
+            _tourTooltip.NextClicked += (_, _) => _tourService?.Next();
+            _tourTooltip.BackClicked += (_, _) => _tourService?.Previous();
+            _tourTooltip.SkipClicked += (_, _) => _tourService?.Skip();
+        }
+
+        // Tour service events
+        if (_tourService != null)
+        {
+            _tourService.StepChanged += (_, step) => Dispatcher.UIThread.Post(() => ShowTourStep(step));
+            _tourService.TourCompleted += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
+            _tourService.TourSkipped += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
+        }
+
+        // Recalculate tour spotlight on resize
+        ((AvaloniaObject)this).PropertyChanged += (_, e) =>
+        {
+            if (e.Property == ClientSizeProperty && _tourService is { IsActive: true, CurrentStep: not null })
+                ShowTourStep(_tourService.CurrentStep);
+        };
     }
 
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
@@ -593,6 +640,7 @@ public partial class MainWindow : Window
             _rootClonedHandler = async (_, repoRoot) =>
             {
                 await _vm.HandleRootClonedAsync(repoRoot, IsSecondaryWindow);
+                _tourService?.AdvanceIfWaitingFor("root-cloned");
             };
             _gitView.RootCloned += _rootClonedHandler;
 
@@ -1005,5 +1053,158 @@ public partial class MainWindow : Window
             _filesList.SelectedItem = selected;
         }
         catch { }
+    }
+
+    // ===========================================================
+    // Onboarding Tour
+    // ===========================================================
+
+    private void StartTour()
+    {
+        if (_tourService == null) return;
+
+        _tourService.Start();
+    }
+
+    private void ShowTourStep(Models.TourStep step)
+    {
+        if (_tourOverlayCanvas == null || _tourSpotlight == null || _tourTooltip == null || _tourService == null)
+            return;
+
+        // Switch tab if step requires it
+        if (step.SwitchToTabIndex.HasValue)
+            ForceTab(step.SwitchToTabIndex.Value);
+
+        _tourOverlayCanvas.IsVisible = true;
+
+        // Make spotlight fill the entire overlay canvas
+        _tourSpotlight.Width = Bounds.Width;
+        _tourSpotlight.Height = Bounds.Height;
+        Canvas.SetLeft(_tourSpotlight, 0);
+        Canvas.SetTop(_tourSpotlight, 0);
+
+        // Find target control bounds
+        Rect? targetBounds = null;
+        if (!string.IsNullOrEmpty(step.TargetControlName))
+        {
+            var target = this.FindControl<Control>(step.TargetControlName);
+            if (target != null && target.IsVisible)
+            {
+                var pt = target.TranslatePoint(new Point(0, 0), this);
+                if (pt.HasValue)
+                    targetBounds = new Rect(pt.Value, target.Bounds.Size);
+            }
+        }
+
+        _tourSpotlight.TargetBounds = targetBounds;
+
+        // Update tooltip content
+        _tourTooltip.Update(
+            step.Title,
+            step.Body,
+            _tourService.CurrentIndex,
+            _tourService.Steps.Count,
+            canGoBack: _tourService.CurrentIndex > 0);
+
+        // Position tooltip
+        PositionTooltip(step, targetBounds);
+
+        // Handle Wait steps: trigger async actions
+        if (step.Type == Models.TourStepType.Wait)
+            _ = HandleWaitStepAsync(step);
+    }
+
+    private void PositionTooltip(Models.TourStep step, Rect? targetBounds)
+    {
+        if (_tourTooltip == null) return;
+
+        // Force measure so we know the tooltip's desired size
+        _tourTooltip.Measure(new Size(400, double.PositiveInfinity));
+        var tooltipSize = _tourTooltip.DesiredSize;
+
+        double windowWidth = Bounds.Width;
+        double windowHeight = Bounds.Height;
+
+        double left, top;
+
+        if (step.Placement == Models.TourPlacement.Center || targetBounds == null)
+        {
+            // Center in window
+            left = (windowWidth - tooltipSize.Width) / 2;
+            top = (windowHeight - tooltipSize.Height) / 2;
+        }
+        else
+        {
+            var tb = targetBounds.Value;
+            const double margin = 16;
+
+            switch (step.Placement)
+            {
+                case Models.TourPlacement.Bottom:
+                    left = tb.X + (tb.Width - tooltipSize.Width) / 2;
+                    top = tb.Bottom + margin;
+                    break;
+                case Models.TourPlacement.Top:
+                    left = tb.X + (tb.Width - tooltipSize.Width) / 2;
+                    top = tb.Y - tooltipSize.Height - margin;
+                    break;
+                case Models.TourPlacement.Right:
+                    left = tb.Right + margin;
+                    top = tb.Y + (tb.Height - tooltipSize.Height) / 2;
+                    break;
+                case Models.TourPlacement.Left:
+                    left = tb.X - tooltipSize.Width - margin;
+                    top = tb.Y + (tb.Height - tooltipSize.Height) / 2;
+                    break;
+                default:
+                    left = (windowWidth - tooltipSize.Width) / 2;
+                    top = (windowHeight - tooltipSize.Height) / 2;
+                    break;
+            }
+        }
+
+        // Clamp to window bounds
+        left = Math.Max(16, Math.Min(left, windowWidth - tooltipSize.Width - 16));
+        top = Math.Max(16, Math.Min(top, windowHeight - tooltipSize.Height - 16));
+
+        Canvas.SetLeft(_tourTooltip, left);
+        Canvas.SetTop(_tourTooltip, top);
+    }
+
+    private async Task HandleWaitStepAsync(Models.TourStep step)
+    {
+        if (step.WaitForEvent == "git-check-complete")
+        {
+            // Check git availability in background, then auto-advance
+            await Task.Run(() =>
+            {
+                try { GitBinaryLocator.ResolveGitExecutablePath(); }
+                catch { }
+            });
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                _tourService?.AdvanceIfWaitingFor("git-check-complete"));
+        }
+    }
+
+    private async Task OnTourFinished()
+    {
+        if (_tourOverlayCanvas != null)
+            _tourOverlayCanvas.IsVisible = false;
+
+        _vm.Config.HasCompletedOnboarding = true;
+        await _vm.SafeSaveConfigAsync();
+    }
+
+    /// <summary>
+    /// Called after config is loaded and username prompt is done,
+    /// to check whether the onboarding tour should start.
+    /// </summary>
+    public void MaybeStartTour()
+    {
+        if (_vm.Config.HasCompletedOnboarding) return;
+        if (!string.IsNullOrWhiteSpace(_vm.Root)) return;
+        if (IsSecondaryWindow) return;
+
+        StartTour();
     }
 }
