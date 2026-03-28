@@ -19,7 +19,8 @@ public class GitTabViewModelTests
             new StubGitHubApiService(),
             new StubCommunityDataService(),
             new StubScholarCollectionsService(),
-            new StubTermbaseStorageService());
+            new StubTermbaseStorageService(),
+            new StubTranslationReviewService());
     }
 
     // ---- Initial state ----

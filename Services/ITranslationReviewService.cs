@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
@@ -27,4 +28,12 @@ public interface ITranslationReviewService
     Task<int> RebuildApprovedTranslationMemoryAsync(
         string root,
         CancellationToken ct = default);
+
+    Task WriteUserReviewJsonlAsync(string communityReviewsDir, string username, CancellationToken ct = default);
+
+    Task RefreshAggregationCacheAsync(string root, string? communityReviewsDir, CancellationToken ct = default);
+
+    SegmentReviewAggregation? GetAggregatedReview(string segmentKey);
+
+    static string GetCommunityReviewsDir(string repoRoot) => Path.Combine(repoRoot, "community", "reviews");
 }

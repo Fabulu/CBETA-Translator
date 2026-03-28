@@ -129,19 +129,14 @@
 		<!-- Row 5: Community Data (collapsed by default) -->
 		<Expander Grid.Row="5" Grid.ColumnSpan="2" IsExpanded="False" Margin="0,2">
 			<Expander.Header>
-				<TextBlock Text="Community Data (TM + Termbase)" FontWeight="SemiBold"/>
+				<TextBlock Text="Community Data" FontWeight="SemiBold"/>
 			</Expander.Header>
 			<StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
-				<Button Content="Share"
-						Command="{Binding ShareCommunityDataCommand}"
+				<Button Content="Share All"
+						Command="{Binding ShareAllCommand}"
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
-						ToolTip.Tip="Commit and push community TM + termbase to GitHub"/>
-				<Button Content="Share Collections"
-						Command="{Binding ShareScholarCollectionsCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3"
-						ToolTip.Tip="Commit and push your scholar collections to GitHub"/>
+						ToolTip.Tip="Share all community data (translations, termbase, collections, reviews) to GitHub"/>
 				<Button Content="Fetch + Merge"
 						Command="{Binding FetchMergeCommunityCommand}"
 						IsEnabled="{Binding IsNotBusy}"

@@ -106,7 +106,7 @@ public partial class TranslationTabView : UserControl
         UpdateAssistantVisibility();
         UpdateModeInfo();
         ApplyHoverDictionarySetting();
-        SetCurrentReviewState(null, null, null);
+        SetCurrentReviewState(null, null, null, null);
     }
 
     private void FindControls()
@@ -303,9 +303,9 @@ public partial class TranslationTabView : UserControl
             RenderAssistantSnapshot(_vm.LastAssistantSnapshot);
     }
 
-    public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc)
+    public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc, SegmentReviewAggregation? agg = null)
     {
-        _vm.SetCurrentReviewState(status, reviewer, reviewedUtc);
+        _vm.SetCurrentReviewState(status, reviewer, reviewedUtc, agg);
         if (_txtReviewState != null)
             _txtReviewState.Text = _vm.ReviewStateText;
     }
