@@ -15,7 +15,7 @@ public sealed record GitHubRepo(string name, string full_name, bool fork, string
 
 public sealed record GitHubPullRequestResponse(string html_url);
 
-public interface IGitHubApiService
+public interface IGitHubApiService : IDisposable
 {
     Task<GitHubUser?> GetMeAsync(string accessToken, CancellationToken ct);
 
@@ -34,9 +34,10 @@ public interface IGitHubApiService
         CancellationToken ct);
 }
 
-public sealed class GitHubApiService : IGitHubApiService
+public sealed class GitHubApiService : IGitHubApiService, IDisposable
 {
     private readonly HttpClient _http;
+    private bool _disposed;
 
     public GitHubApiService()
     {
@@ -173,5 +174,14 @@ public sealed class GitHubApiService : IGitHubApiService
 
         var pr = JsonSerializer.Deserialize<GitHubPullRequestResponse>(respJson);
         return pr?.html_url;
+    }
+
+    public void Dispose()
+    {
+        if (!_disposed)
+        {
+            _http.Dispose();
+            _disposed = true;
+        }
     }
 }

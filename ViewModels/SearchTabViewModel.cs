@@ -448,6 +448,7 @@ public partial class SearchTabViewModel : ViewModelBase
             return;
 
         try { _autoRerunCts?.Cancel(); } catch { }
+        try { _autoRerunCts?.Dispose(); } catch { }
         _autoRerunCts = new CancellationTokenSource();
         var token = _autoRerunCts.Token;
 
@@ -465,9 +466,11 @@ public partial class SearchTabViewModel : ViewModelBase
     private void Cancel()
     {
         try { _autoRerunCts?.Cancel(); } catch { }
+        try { _autoRerunCts?.Dispose(); } catch { }
         _autoRerunCts = null;
 
         try { _cts?.Cancel(); } catch { }
+        try { _cts?.Dispose(); } catch { }
         _cts = null;
 
         IsCancelEnabled = false;

@@ -68,6 +68,18 @@ public partial class MainWindow : Window
     // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
+    // Stored handler for static event (must unsubscribe on close to avoid leak)
+    private EventHandler? _scholarDataChangedHandler;
+
+    // Stored handlers for child view events (Issue 24: unsubscribe on close)
+    private EventHandler<ScholarPassage>? _readableAddToScholarHandler;
+    private EventHandler<ScholarPassage>? _translationAddToScholarHandler;
+    private EventHandler<ScholarPassage>? _searchAddToScholarHandler;
+    private EventHandler<string>? _scholarStatusHandler;
+    private EventHandler<string>? _gitStatusHandler;
+    private EventHandler<string>? _rootClonedHandler;
+    private EventHandler? _communityDataFetchedHandler;
+
     // -------------------------
     // Secondary-window support
     // -------------------------
@@ -102,6 +114,18 @@ public partial class MainWindow : Window
         {
             try { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); } catch { }
             if (!await _vm.ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
+
+            // Issue 2: Unsubscribe from static event to prevent leak
+            if (_scholarDataChangedHandler != null)
+                ScholarTabView.ScholarDataChanged -= _scholarDataChangedHandler;
+
+            // Issue 11: Stop DispatcherTimers
+            _dirtyTimer?.Stop();
+            _navFilterDebounce?.Stop();
+            _indexCacheSaveDebounce?.Stop();
+
+            // Issue 24: Unsubscribe child view events to prevent accumulation on window recreation
+            UnsubscribeChildViewEvents();
         };
     }
 
@@ -540,16 +564,18 @@ public partial class MainWindow : Window
             {
                 _vm.HandleNavigationRequested(req);
             };
-            _searchView.AddToScholarRequested += (_, passage) =>
+            _searchAddToScholarHandler = (_, passage) =>
             {
                 _scholarView?.AddPassage(passage);
                 _vm.SetStatus("Passage added to Scholar collection.");
             };
+            _searchView.AddToScholarRequested += _searchAddToScholarHandler;
         }
 
         if (_gitView != null)
         {
-            _gitView.Status += (_, msg) => _vm.SetStatus(msg);
+            _gitStatusHandler = (_, msg) => _vm.SetStatus(msg);
+            _gitView.Status += _gitStatusHandler;
 
             _gitView.GitHubAuthCompleted += async (_, args) =>
             {
@@ -563,19 +589,23 @@ public partial class MainWindow : Window
                 catch (Exception ex) { _vm.SetStatus("Prepare translated XML failed: " + ex.Message); return false; }
             };
 
-            _gitView.RootCloned += async (_, repoRoot) =>
+            _rootClonedHandler = async (_, repoRoot) =>
             {
                 await _vm.HandleRootClonedAsync(repoRoot, IsSecondaryWindow);
             };
-            _gitView.CommunityDataFetched += async (_, _) =>
+            _gitView.RootCloned += _rootClonedHandler;
+
+            _communityDataFetchedHandler = async (_, _) =>
             {
                 await _vm.RefreshReviewAggregationAsync();
             };
+            _gitView.CommunityDataFetched += _communityDataFetchedHandler;
         }
 
         if (_scholarView != null)
         {
-            _scholarView.Status += (_, msg) => _vm.SetStatus(msg);
+            _scholarStatusHandler = (_, msg) => _vm.SetStatus(msg);
+            _scholarView.Status += _scholarStatusHandler;
             _scholarView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
@@ -584,34 +614,61 @@ public partial class MainWindow : Window
             // Reload scholar data when ANY window (including secondary) adds a passage
             if (!IsSecondaryWindow)
             {
-                ScholarTabView.ScholarDataChanged += (sender, _) =>
+                _scholarDataChangedHandler = (sender, _) =>
                 {
                     // Only reload if the change came from a different view instance
                     if (sender != _scholarView && !string.IsNullOrWhiteSpace(_vm.Root))
                         _scholarView.SetRoot(_vm.Root);
                 };
+                ScholarTabView.ScholarDataChanged += _scholarDataChangedHandler;
             }
         }
 
         if (_readableView != null)
         {
-            _readableView.AddToScholarRequested += (_, passage) =>
+            _readableAddToScholarHandler = (_, passage) =>
             {
                 _scholarView?.AddPassage(passage);
                 _vm.SetStatus("Passage added to Scholar collection.");
             };
+            _readableView.AddToScholarRequested += _readableAddToScholarHandler;
         }
 
         if (_translationView != null)
         {
-            _translationView.AddToScholarRequested += (_, passage) =>
+            _translationAddToScholarHandler = (_, passage) =>
             {
                 _scholarView?.AddPassage(passage);
                 _vm.SetStatus("Passage added to Scholar collection.");
             };
+            _translationView.AddToScholarRequested += _translationAddToScholarHandler;
         }
 
         AddHandler(InputElement.KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
+    }
+
+    private void UnsubscribeChildViewEvents()
+    {
+        if (_readableView != null && _readableAddToScholarHandler != null)
+            _readableView.AddToScholarRequested -= _readableAddToScholarHandler;
+
+        if (_translationView != null && _translationAddToScholarHandler != null)
+            _translationView.AddToScholarRequested -= _translationAddToScholarHandler;
+
+        if (_searchView != null && _searchAddToScholarHandler != null)
+            _searchView.AddToScholarRequested -= _searchAddToScholarHandler;
+
+        if (_scholarView != null && _scholarStatusHandler != null)
+            _scholarView.Status -= _scholarStatusHandler;
+
+        if (_gitView != null)
+        {
+            if (_gitStatusHandler != null) _gitView.Status -= _gitStatusHandler;
+            if (_rootClonedHandler != null) _gitView.RootCloned -= _rootClonedHandler;
+            if (_communityDataFetchedHandler != null) _gitView.CommunityDataFetched -= _communityDataFetchedHandler;
+        }
+
+        RemoveHandler(InputElement.KeyDownEvent, OnWindowKeyDown);
     }
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
