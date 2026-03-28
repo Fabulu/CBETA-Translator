@@ -275,6 +275,7 @@ public partial class MainWindow : Window
         _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
         _vm.ClearScholar = () => _scholarView?.Clear();
         _vm.SetScholarUsername = user => _scholarView?.SetUsername(user);
+        _vm.SetScholarTranslationDirs = (orig, tran) => _scholarView?.SetTranslationDirs(orig, tran);
 
         // Dialog bridges
         _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;

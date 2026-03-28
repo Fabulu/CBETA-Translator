@@ -31,6 +31,18 @@ public partial class ScholarTabView : UserControl
     private List<TermbaseEntry>? _cachedTermbaseEntries;
     private string? _termbaseCacheRoot;
 
+    // Assistant panel
+    private readonly ITranslationAssistantService _assistantService = App.Services.GetRequiredService<ITranslationAssistantService>();
+    private string? _originalDir;
+    private string? _translatedDir;
+    private string? _lastRenderedPassageId;
+    private CancellationTokenSource? _assistantCts;
+
+    private StackPanel? _scholarQaHost;
+    private StackPanel? _scholarTermHost;
+    private StackPanel? _scholarApprovedTmHost;
+    private StackPanel? _scholarReferenceTmHost;
+
     public event EventHandler<string>? Status;
     public event EventHandler<NavigationRequest>? NavigationRequested;
 
@@ -47,10 +59,20 @@ public partial class ScholarTabView : UserControl
         _vm.PickExportFileAsync = PickExportFileAsync;
         _vm.PickImportFileAsync = PickImportFileAsync;
 
+        _scholarQaHost = this.FindControl<StackPanel>("ScholarQaHost");
+        _scholarTermHost = this.FindControl<StackPanel>("ScholarTermHost");
+        _scholarApprovedTmHost = this.FindControl<StackPanel>("ScholarApprovedTmHost");
+        _scholarReferenceTmHost = this.FindControl<StackPanel>("ScholarReferenceTmHost");
+
         WireViewEvents();
         SetupHoverDictionary();
 
-        DetachedFromVisualTree += (_, _) => DisposeHoverDictionary();
+        DetachedFromVisualTree += (_, _) =>
+        {
+            DisposeHoverDictionary();
+            _assistantCts?.Cancel();
+            _assistantCts?.Dispose();
+        };
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -74,6 +96,7 @@ public partial class ScholarTabView : UserControl
             if (e.PropertyName == nameof(ScholarTabViewModel.SelectedPassage))
             {
                 UpdateDetailFields();
+                _ = RefreshAssistantAsync();
                 if (_vm.SelectedPassage != null)
                 {
                     _suppressSelectionSync = true;
@@ -84,6 +107,7 @@ public partial class ScholarTabView : UserControl
             else if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCommunityPassage))
             {
                 UpdateCommunityDetailFields();
+                _ = RefreshAssistantAsync();
                 if (_vm.SelectedCommunityPassage != null)
                 {
                     _suppressSelectionSync = true;
@@ -280,17 +304,88 @@ public partial class ScholarTabView : UserControl
         return files.FirstOrDefault()?.Path.LocalPath;
     }
 
+    // ----- Assistant panel -----
+
+    private async Task RefreshAssistantAsync()
+    {
+        var passage = _vm.SelectedPassage ?? _vm.SelectedCommunityPassage;
+        if (passage == null || string.IsNullOrWhiteSpace(passage.ZhText))
+        {
+            AssistantPanelRenderer.RenderSnapshot(null,
+                _scholarQaHost, _scholarTermHost,
+                _scholarApprovedTmHost, _scholarReferenceTmHost);
+            _lastRenderedPassageId = null;
+            return;
+        }
+
+        if (passage.Id == _lastRenderedPassageId) return;
+
+        try
+        {
+            _assistantCts?.Cancel();
+            _assistantCts?.Dispose();
+            _assistantCts = new CancellationTokenSource();
+            var ct = _assistantCts.Token;
+
+            var ctx = new CurrentSegmentContext
+            {
+                RelPath = passage.SourceRelPath ?? "",
+                ZhText = passage.ZhText ?? "",
+                EnText = passage.EnText ?? "",
+                BlockNumber = 0,
+                Mode = TranslationEditMode.Body
+            };
+
+            var root = _vm.GetRoot();
+            var snapshot = await _assistantService.BuildSnapshotAsync(
+                ctx, root, _originalDir, _translatedDir, ct);
+
+            if (ct.IsCancellationRequested) return;
+
+            _lastRenderedPassageId = passage.Id;
+
+            AssistantPanelRenderer.RenderSnapshot(
+                snapshot,
+                _scholarQaHost, _scholarTermHost,
+                _scholarApprovedTmHost, _scholarReferenceTmHost,
+                brushResolver: GetAssistantBrush,
+                navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req));
+        }
+        catch { /* assistant must never break scholar */ }
+    }
+
+    private static IBrush? GetAssistantBrush(string key)
+    {
+        if (Avalonia.Application.Current?.TryFindResource(key, out var obj) == true && obj is IBrush brush)
+            return brush;
+        return null;
+    }
+
     // ----- Public API -----
+
+    public void SetTranslationDirs(string? origDir, string? tranDir)
+    {
+        _originalDir = origDir;
+        _translatedDir = tranDir;
+    }
 
     public void SetRoot(string root)
     {
         _cachedTermbaseEntries = null;
         _termbaseCacheRoot = null;
+        _lastRenderedPassageId = null;
         _vm.SetRoot(root);
     }
     public void SetUsername(string? username) => _vm.SetUsername(username);
 
-    public void Clear() => _vm.Clear();
+    public void Clear()
+    {
+        _assistantCts?.Cancel();
+        _assistantCts?.Dispose();
+        _assistantCts = null;
+        _lastRenderedPassageId = null;
+        _vm.Clear();
+    }
     public void ReloadCommunity() => _vm.LoadCommunityCommand.Execute(null);
 
     public void InvalidateTermbaseCache()
