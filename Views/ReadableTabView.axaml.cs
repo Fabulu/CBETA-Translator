@@ -766,7 +766,7 @@ public partial class ReadableTabView : UserControl
 
         CancelMoveMode(keepPanelOpen: true);
 
-        var kind = TryGetXmlCommunitySpanStrict(ann, out _, out _) ? "Community" : "Note";
+        var kind = GetAnnotationLabel(ann);
         var resp = GetAnnotationResp(ann);
         _notesHeader.Text = string.IsNullOrWhiteSpace(resp) ? kind : $"{kind} ({resp})";
 
@@ -1906,6 +1906,20 @@ public partial class ReadableTabView : UserControl
 
 
 
+
+    private static string GetAnnotationLabel(DocAnnotation ann)
+    {
+        if (TryGetXmlCommunitySpanStrict(ann, out _, out _))
+            return "Community Note";
+        // Use the same classification as marker coloring
+        var markerKind = AnnotationMarkerInserter.GetMarkerKind(ann);
+        return markerKind switch
+        {
+            AnnotationMarkerInserter.MarkerKind.Yuanwu => "Footnote",
+            AnnotationMarkerInserter.MarkerKind.Community => "Community Note",
+            _ => "CBETA Note"
+        };
+    }
 
     private static string? GetAnnotationResp(DocAnnotation ann)
     {

@@ -137,11 +137,11 @@
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
 						ToolTip.Tip="Share all community data (translations, termbase, collections, reviews) to GitHub"/>
-				<Button Content="Fetch + Merge"
+				<Button Content="Update"
 						Command="{Binding FetchMergeCommunityCommand}"
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
-						ToolTip.Tip="Fetch origin/main and merge the community TM, termbase, and scholar collections into your local files (last-write-wins)."/>
+						ToolTip.Tip="Download and merge the latest community data from other contributors"/>
 			</StackPanel>
 		</Expander>
 
