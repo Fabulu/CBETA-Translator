@@ -327,7 +327,7 @@ public class ScholarTabViewModelTests
         var passage = new ScholarPassage
         {
             Id = "p1",
-            ZhText = "this is a very long text that should be truncated to twenty characters",
+            ZhText = "this is a very long text that should be truncated to eighty characters and this part goes well beyond that limit to ensure truncation happens",
             SourceRelPath = "test.xml"
         };
         collection.Passages.Add(passage);
@@ -341,7 +341,7 @@ public class ScholarTabViewModelTests
         vm.NavigateToPassageCommand.Execute(null);
 
         Assert.NotNull(req);
-        Assert.Equal(20, req!.MatchText!.Length);
+        Assert.Equal(80, req!.MatchText!.Length);
     }
 
     // ---- DeletePassage ----
@@ -1541,10 +1541,16 @@ public class ScholarTabViewModelTests
     {
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
+
+        // Select collection first so VM loads it
+        vm.SelectedCollection = vm.Collections[0];
+
+        // Set notes directly on the collection object (simulating pre-existing data)
         vm.Collections[0].StudyNotes = "My research notes on this collection";
 
-        // Re-select to trigger loading
-        vm.SelectedCollection = null;
+        // Add a second collection and switch to it, then back
+        vm.AddCollectionCommand.Execute(null);
+        vm.SelectedCollection = vm.Collections[1];
         vm.SelectedCollection = vm.Collections[0];
 
         Assert.Equal("My research notes on this collection", vm.StudyNotes);
