@@ -1,13 +1,13 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.MasterDatesEditorDialog"
-        Width="650"
-        Height="500"
+        Width="700"
+        Height="560"
         Title="Master Dates"
         Background="{DynamicResource AppBg}"
         WindowStartupLocation="CenterOwner">
 
-  <Grid RowDefinitions="*,Auto" ColumnDefinitions="250,12,*" Margin="12">
+  <Grid RowDefinitions="*,Auto,Auto" ColumnDefinitions="250,12,*" Margin="12">
 
     <!-- Left pane: search + list -->
     <Border Grid.Row="0"
@@ -38,7 +38,7 @@
             BorderThickness="1"
             CornerRadius="6"
             Padding="12">
-      <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" RowSpacing="10">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" RowSpacing="10">
         <TextBlock Text="Edit Master" FontWeight="Bold"/>
 
         <Grid Grid.Row="1" ColumnDefinitions="100,*" ColumnSpacing="10">
@@ -59,15 +59,31 @@
           <TextBox Grid.Column="1" Name="TxtDeath" Watermark="Year (e.g. 790)"/>
         </Grid>
 
-        <TextBlock Grid.Row="4" Name="TxtStatus" Opacity="0.8"
+        <TextBlock Grid.Row="4" Name="TxtSource" Opacity="0.6" FontSize="11"/>
+
+        <TextBlock Grid.Row="5" Name="TxtStatus" Opacity="0.8"
                    VerticalAlignment="Bottom"/>
       </Grid>
     </Border>
 
-    <!-- Bottom buttons -->
+    <!-- Conflict warnings -->
     <Border Grid.Row="1"
             Grid.ColumnSpan="3"
-            Margin="0,12,0,0"
+            Margin="0,8,0,0"
+            IsVisible="False"
+            Name="ConflictBorder"
+            Background="#30FF8800"
+            BorderBrush="#80FF8800"
+            BorderThickness="1"
+            CornerRadius="4"
+            Padding="8">
+      <TextBlock Name="TxtConflicts" FontSize="11" TextWrapping="Wrap" Opacity="0.9"/>
+    </Border>
+
+    <!-- Bottom buttons -->
+    <Border Grid.Row="2"
+            Grid.ColumnSpan="3"
+            Margin="0,8,0,0"
             Background="{DynamicResource BarBg}"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1"

@@ -218,6 +218,7 @@ public partial class ScholarTabView : UserControl
         SetupHoverDictionary();
         _ = UpdateTermbaseHitsAsync(passage?.ZhText);
         RefreshLinksPanel();
+        RefreshLinkedTextsPanel();
     }
 
     private void UpdateCommunityDetailFields()
@@ -588,6 +589,79 @@ public partial class ScholarTabView : UserControl
         panel.ItemsSource = controls;
     }
 
+    // ----- Linked Texts -----
+
+    private void RefreshLinkedTextsPanel()
+    {
+        var panel = this.FindControl<ItemsControl>("PnlLinkedTexts");
+        if (panel == null) return;
+
+        var passage = _vm.SelectedPassage;
+        if (passage == null || passage.LinkedTexts.Count == 0)
+        {
+            panel.ItemsSource = null;
+            panel.IsVisible = false;
+            return;
+        }
+
+        var controls = new List<Control>();
+        foreach (var relPath in passage.LinkedTexts)
+        {
+            var capturedPath = relPath;
+            var fileName = System.IO.Path.GetFileNameWithoutExtension(relPath);
+
+            var nameText = new TextBlock
+            {
+                Text = fileName,
+                FontSize = 11,
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                Foreground = new SolidColorBrush(Color.FromRgb(100, 180, 255)),
+                TextDecorations = Avalonia.Media.TextDecorations.Underline
+            };
+            nameText.PointerPressed += (_, _) =>
+            {
+                NavigationRequested?.Invoke(this, new NavigationRequest
+                {
+                    RelPath = capturedPath,
+                    Side = SearchSide.Original
+                });
+            };
+
+            var deleteBtn = new Button
+            {
+                Content = "\u00d7",
+                Padding = new Thickness(2, 0),
+                MinWidth = 16,
+                MinHeight = 16,
+                FontSize = 10,
+                Margin = new Thickness(2, 0, 6, 0),
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+            };
+            deleteBtn.Click += async (_, _) =>
+            {
+                passage.LinkedTexts.Remove(capturedPath);
+                passage.ModifiedUtc = DateTimeOffset.UtcNow;
+                await _vm.SaveCurrentStateAsync();
+                RefreshLinkedTextsPanel();
+                Status?.Invoke(this, $"Removed link to '{fileName}'.");
+            };
+
+            var chip = new StackPanel
+            {
+                Orientation = Avalonia.Layout.Orientation.Horizontal,
+                Spacing = 2,
+                Margin = new Thickness(0, 1)
+            };
+            chip.Children.Add(nameText);
+            chip.Children.Add(deleteBtn);
+            controls.Add(chip);
+        }
+
+        panel.ItemsSource = controls;
+        panel.IsVisible = true;
+    }
+
     private async Task ShowLinkDialogAsync()
     {
         var fromPassage = _vm.SelectedPassage;
@@ -880,7 +954,9 @@ public partial class ScholarTabView : UserControl
         var topLevel = TopLevel.GetTopLevel(this) as Window;
         if (topLevel == null) return;
 
-        var dlg = new MasterDatesEditorDialog
+        var filePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
+        var repoRoot = _vm.GetRoot();
+        var dlg = new MasterDatesEditorDialog(filePath, repoRoot)
         {
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
@@ -1003,6 +1079,25 @@ public partial class ScholarTabView : UserControl
     {
         _cachedTermbaseEntries = null;
         _termbaseCacheRoot = null;
+    }
+
+    /// <summary>Returns the currently selected scholar passage, or null if none.</summary>
+    public ScholarPassage? GetSelectedPassage() => _vm.SelectedPassage;
+
+    /// <summary>Adds a linked text RelPath to the selected passage and saves.</summary>
+    public async Task AddLinkedTextAsync(string relPath)
+    {
+        var passage = _vm.SelectedPassage;
+        if (passage == null) return;
+
+        if (!passage.LinkedTexts.Contains(relPath))
+        {
+            passage.LinkedTexts.Add(relPath);
+            passage.ModifiedUtc = DateTimeOffset.UtcNow;
+            await _vm.SaveCurrentStateAsync();
+            RefreshLinkedTextsPanel();
+            Status?.Invoke(this, $"Linked '{System.IO.Path.GetFileNameWithoutExtension(relPath)}' to passage.");
+        }
     }
 
     /// <summary>Fires on ANY ScholarTabView instance after a passage is added and saved.

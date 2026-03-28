@@ -91,6 +91,8 @@
                            IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
                 <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
                            IsVisible="{Binding HasMasterNames}" TextTrimming="CharacterEllipsis"/>
+                <TextBlock Text="{Binding LinkedTextsSummary}" FontSize="10" Opacity="0.6"
+                           IsVisible="{Binding HasLinkedTexts}" TextTrimming="CharacterEllipsis"/>
               </StackPanel>
             </DockPanel>
           </DataTemplate>
@@ -180,15 +182,25 @@
         <TabControl Grid.Row="0">
           <TabItem Header="Detail">
             <ScrollViewer>
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="4">
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="4">
 
                 <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
 
                 <!-- Source file -->
-                <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,8"/>
+                <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,4"/>
+
+                <!-- Linked Texts -->
+                <ItemsControl Name="PnlLinkedTexts" Grid.Row="2" Margin="0,0,0,4"
+                              IsVisible="False">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
                 <!-- Chinese text (TextBox for hover dictionary support) -->
-                <Border Grid.Row="2" CornerRadius="4" Padding="8" Margin="0,0,0,4">
+                <Border Grid.Row="3" CornerRadius="4" Padding="8" Margin="0,0,0,4">
                   <ScrollViewer MaxHeight="200">
                     <TextBox Name="TxtZhText" Text="" TextWrapping="Wrap" FontSize="14"
                              IsReadOnly="True" BorderThickness="0" Background="Transparent"
@@ -197,7 +209,7 @@
                 </Border>
 
                 <!-- Termbase hits for current passage -->
-                <ItemsControl Name="PnlTermbaseHits" Grid.Row="3" Margin="8,0,0,8"
+                <ItemsControl Name="PnlTermbaseHits" Grid.Row="4" Margin="8,0,0,8"
                               IsVisible="False">
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -207,14 +219,14 @@
                 </ItemsControl>
 
                 <!-- English text -->
-                <Border Grid.Row="4" CornerRadius="4" Padding="8" Margin="0,0,0,8">
+                <Border Grid.Row="5" CornerRadius="4" Padding="8" Margin="0,0,0,8">
                   <ScrollViewer MaxHeight="200">
                     <TextBlock Name="TxtEnText" Text="" TextWrapping="Wrap" FontSize="14"/>
                   </ScrollViewer>
                 </Border>
 
                 <!-- Tags -->
-                <DockPanel Grid.Row="5" Margin="0,0,0,4">
+                <DockPanel Grid.Row="6" Margin="0,0,0,4">
                   <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
                   <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
                            IsEnabled="{Binding IsEditorEnabled}"
@@ -222,7 +234,7 @@
                 </DockPanel>
 
                 <!-- Master Names -->
-                <DockPanel Grid.Row="6" Margin="0,0,0,4">
+                <DockPanel Grid.Row="7" Margin="0,0,0,4">
                   <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
                   <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
                            IsEnabled="{Binding IsEditorEnabled}"
@@ -230,7 +242,7 @@
                 </DockPanel>
 
                 <!-- Notes -->
-                <DockPanel Grid.Row="7" Margin="0,0,0,4">
+                <DockPanel Grid.Row="8" Margin="0,0,0,4">
                   <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
                   <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
                            AcceptsReturn="True" TextWrapping="Wrap" Height="80"
@@ -239,7 +251,7 @@
                 </DockPanel>
 
                 <!-- Actions -->
-                <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
+                <StackPanel Grid.Row="9" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
                   <Button Name="BtnFindParallels" Content="Find Parallels"
                           ToolTip.Tip="Search the corpus for parallel passages" Padding="12,4"/>
                   <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"

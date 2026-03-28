@@ -37,6 +37,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IScholarExportService, ScholarExportService>();
         services.AddSingleton<IParallelPassageFinderService, ParallelPassageFinderService>();
         services.AddSingleton<IGrammarReferenceService, GrammarReferenceService>();
+        services.AddSingleton<IMasterDatesService, MasterDatesService>();
         return services;
     }
 }

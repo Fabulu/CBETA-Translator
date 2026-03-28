@@ -47,6 +47,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly IScholarCollectionsService _scholarSvc;
     private readonly ITermbaseStorageService _termbaseSvc;
     private readonly ITranslationReviewService _translationReview;
+    private readonly IMasterDatesService _masterDatesSvc;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -102,7 +103,8 @@ public partial class GitTabViewModel : ViewModelBase
         ICommunityDataService community,
         IScholarCollectionsService scholarSvc,
         ITermbaseStorageService termbaseSvc,
-        ITranslationReviewService translationReview)
+        ITranslationReviewService translationReview,
+        IMasterDatesService masterDatesSvc)
     {
         _git = git;
         _auth = auth;
@@ -111,6 +113,7 @@ public partial class GitTabViewModel : ViewModelBase
         _scholarSvc = scholarSvc;
         _termbaseSvc = termbaseSvc;
         _translationReview = translationReview;
+        _masterDatesSvc = masterDatesSvc;
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -1205,13 +1208,34 @@ public partial class GitTabViewModel : ViewModelBase
             var reviewJsonlRelPath = Path.Combine("community", "reviews", _githubLogin + ".jsonl").Replace('\\', '/');
             AppendLog($"[step] wrote review data to {reviewJsonlRelPath}");
 
+            // --- Write per-user master dates JSONL (custom entries only) ---
+            ProgressText = "Writing per-user master dates JSONL\u2026";
+            var communityMdDir = IMasterDatesService.GetCommunityMasterDatesDir(repoDir);
+            var customMasters = ExtractCustomMasterEntries(repoDir);
+            if (customMasters.Count > 0)
+            {
+                foreach (var cm in customMasters)
+                {
+                    cm.CreatedBy = _githubLogin;
+                    cm.WrittenUtc = DateTimeOffset.UtcNow;
+                }
+                await _masterDatesSvc.WriteMasterDatesJsonlAsync(communityMdDir, _githubLogin!, customMasters, ct);
+                var mdJsonlRelPath = Path.Combine("community", "master-dates", _githubLogin + ".jsonl").Replace('\\', '/');
+                AppendLog($"[step] wrote {customMasters.Count} custom master(s) to {mdJsonlRelPath}");
+            }
+            else
+            {
+                AppendLog("[info] no custom master dates to share (all entries are canonical)");
+            }
+
             // --- Ensure .gitattributes has merge=union for all community dirs ---
             var gitattribPath = Path.Combine(repoDir, ".gitattributes");
             string[] mergeRules =
             {
                 "community/termbases/*.jsonl merge=union",
                 "community/collections/*.jsonl merge=union",
-                "community/reviews/*.jsonl merge=union"
+                "community/reviews/*.jsonl merge=union",
+                "community/master-dates/*.jsonl merge=union"
             };
             bool gitattribChanged = false;
             string gitattribContent = File.Exists(gitattribPath)
@@ -1251,6 +1275,7 @@ public partial class GitTabViewModel : ViewModelBase
                     line.Contains("community/termbases/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/collections/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/reviews/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/master-dates/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains(".gitattributes", StringComparison.OrdinalIgnoreCase))
                 {
                     // Extract file path from porcelain line (first 3 chars are status + space)
@@ -2149,7 +2174,23 @@ public partial class GitTabViewModel : ViewModelBase
                 }
                 catch { AppendLog("[info] community/reviews/ not found in origin/main"); }
 
-                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
+                // Community master dates JSONL (per-user)
+                int communityMdJsonlCount = 0;
+                ProgressText = "Pulling community master dates\u2026";
+                AppendLog("[step] git checkout origin/main -- community/master-dates/");
+                try
+                {
+                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/master-dates/", null, ct);
+                    var communityMdDir = IMasterDatesService.GetCommunityMasterDatesDir(repoDir);
+                    if (Directory.Exists(communityMdDir))
+                    {
+                        communityMdJsonlCount = Directory.GetFiles(communityMdDir, "*.jsonl").Length;
+                        AppendLog($"[info] community master dates: {communityMdJsonlCount} user JSONL file(s)");
+                    }
+                }
+                catch { AppendLog("[info] community/master-dates/ not found in origin/main"); }
+
+                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && communityMdJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
                 {
                     ProgressText = "No community data found in origin/main.";
                     AppendLog("[info] origin/main has no community data files yet");
@@ -2470,6 +2511,62 @@ public partial class GitTabViewModel : ViewModelBase
         {
             // ignore temp cleanup failures
         }
+    }
+
+    /// <summary>
+    /// Extracts custom (non-base) master entries from the local master-dates.json for sharing.
+    /// </summary>
+    private static List<Models.MasterDateEntry> ExtractCustomMasterEntries(string repoDir)
+    {
+        var baseNames = MasterDatesService.LoadBaseNameSet();
+        var result = new List<Models.MasterDateEntry>();
+
+        try
+        {
+            var filePath = Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
+            if (!File.Exists(filePath))
+                return result;
+
+            var json = File.ReadAllText(filePath);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+
+            if (!root.TryGetProperty("masters", out var mastersEl))
+                return result;
+
+            foreach (var m in mastersEl.EnumerateArray())
+            {
+                var names = new List<string>();
+                if (m.TryGetProperty("names", out var namesEl))
+                {
+                    foreach (var n in namesEl.EnumerateArray())
+                    {
+                        var s = n.GetString();
+                        if (!string.IsNullOrEmpty(s)) names.Add(s);
+                    }
+                }
+
+                int floruit = m.TryGetProperty("floruit", out var f) ? f.GetInt32() : 0;
+                int death = m.TryGetProperty("death", out var d) ? d.GetInt32() : 0;
+
+                var entry = new Models.MasterDateEntry
+                {
+                    Names = names,
+                    Floruit = floruit,
+                    Death = death
+                };
+
+                // Only include if NOT a base entry
+                if (!MasterDatesService.OverlapsWithBase(entry, baseNames))
+                    result.Add(entry);
+            }
+        }
+        catch
+        {
+            // Non-fatal
+        }
+
+        return result;
     }
 
     // ----- Git process helpers -----

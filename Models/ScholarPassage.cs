@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -26,6 +27,9 @@ public sealed class ScholarPassage
     public string? Lineage { get; set; }
     public string? RhetoricalFunction { get; set; }
 
+    // Linked texts: RelPaths of text files this passage appears in
+    public List<string> LinkedTexts { get; set; } = new();
+
     // Display helpers (not serialized)
     [JsonIgnore]
     public string TagsSummary => Tags.Count > 0 ? "Tags: " + string.Join(", ", Tags) : "";
@@ -35,6 +39,10 @@ public sealed class ScholarPassage
     public string MasterNamesSummary => MasterNames.Count > 0 ? "Masters: " + string.Join(", ", MasterNames) : "";
     [JsonIgnore]
     public bool HasMasterNames => MasterNames.Count > 0;
+    [JsonIgnore]
+    public string LinkedTextsSummary => LinkedTexts.Count > 0 ? "Texts: " + string.Join(", ", LinkedTexts.Select(t => Path.GetFileNameWithoutExtension(t))) : "";
+    [JsonIgnore]
+    public bool HasLinkedTexts => LinkedTexts.Count > 0;
 }
 
 public sealed class ScholarCollection
