@@ -51,8 +51,14 @@
       </DockPanel>
 
       <!-- Passages filter -->
-      <TextBox Grid.Row="4" Watermark="Filter by tag, master, or text..."
-               Text="{Binding SearchFilter}" Margin="4,2"/>
+      <DockPanel Grid.Row="4" Margin="4,2">
+        <ComboBox DockPanel.Dock="Right" Width="80" Padding="4,2" Margin="2,0,0,0"
+                  ItemsSource="{Binding SearchFilterModes}"
+                  SelectedItem="{Binding SearchFilterMode}"
+                  ToolTip.Tip="Filter scope"/>
+        <TextBox Watermark="Filter passages..."
+                 Text="{Binding SearchFilter}"/>
+      </DockPanel>
 
       <!-- Passages list (shows passages from selected collection) -->
       <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0"
