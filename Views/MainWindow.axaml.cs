@@ -1066,6 +1066,16 @@ public partial class MainWindow : Window
         _tourService.Start();
     }
 
+    private Control? FindControlDeep(string name)
+    {
+        return this.FindControl<Control>(name)
+            ?? _readableView?.FindControl<Control>(name)
+            ?? _translationView?.FindControl<Control>(name)
+            ?? _searchView?.FindControl<Control>(name)
+            ?? _gitView?.FindControl<Control>(name)
+            ?? _scholarView?.FindControl<Control>(name);
+    }
+
     private void ShowTourStep(Models.TourStep step)
     {
         if (_tourOverlayCanvas == null || _tourSpotlight == null || _tourTooltip == null || _tourService == null)
@@ -1087,7 +1097,7 @@ public partial class MainWindow : Window
         Rect? targetBounds = null;
         if (!string.IsNullOrEmpty(step.TargetControlName))
         {
-            var target = this.FindControl<Control>(step.TargetControlName);
+            var target = FindControlDeep(step.TargetControlName);
             if (target != null && target.IsVisible)
             {
                 var pt = target.TranslatePoint(new Point(0, 0), this);
