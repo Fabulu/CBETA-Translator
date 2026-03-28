@@ -153,6 +153,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action? ClearScholar { get; set; }
     public Action<string?>? SetScholarUsername { get; set; }
     public Action<string?, string?>? SetScholarTranslationDirs { get; set; }
+    public Func<Task>? SaveScholarStateAsync { get; set; }
 
     // Dialog bridges (code-behind provides UI dialogs)
     public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
@@ -1763,6 +1764,13 @@ public partial class MainWindowViewModel : ViewModelBase
         int newIdx = GetSelectedTabIndex?.Invoke() ?? 0;
         int oldIdx = _lastTabIndex;
         _lastTabIndex = newIdx;
+
+        // Save scholar state silently when leaving the Scholar tab
+        bool leavingScholar = oldIdx == 4 && newIdx != 4;
+        if (leavingScholar)
+        {
+            try { if (SaveScholarStateAsync != null) await SaveScholarStateAsync(); } catch { }
+        }
 
         bool leavingTranslation = oldIdx == 1 && newIdx != 1;
         if (leavingTranslation)

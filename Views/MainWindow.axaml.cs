@@ -100,6 +100,7 @@ public partial class MainWindow : Window
         string closeWhat = isSecondaryWindow ? "close this window" : "close the app";
         Closing += async (_, e) =>
         {
+            try { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); } catch { }
             if (!await _vm.ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
         };
     }
@@ -276,6 +277,7 @@ public partial class MainWindow : Window
         _vm.ClearScholar = () => _scholarView?.Clear();
         _vm.SetScholarUsername = user => _scholarView?.SetUsername(user);
         _vm.SetScholarTranslationDirs = (orig, tran) => _scholarView?.SetTranslationDirs(orig, tran);
+        _vm.SaveScholarStateAsync = async () => { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); };
 
         // Dialog bridges
         _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;

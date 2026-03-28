@@ -75,6 +75,10 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _rhetoricalFunction = "";
 
+    // Whether the detail editor fields are enabled (false for community passages)
+    [ObservableProperty]
+    private bool _isEditorEnabled = true;
+
     // Study notes (per-collection)
     [ObservableProperty]
     private string _studyNotes = "";
@@ -134,6 +138,16 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         _svc = svc ?? throw new ArgumentNullException(nameof(svc));
         LoadFacetOptions();
+    }
+
+    // ----- Public API: save all current state (for tab switch / app close) -----
+
+    public async Task SaveCurrentStateAsync()
+    {
+        SyncEditorFieldsToPassage();
+        if (SelectedCollection != null)
+            SelectedCollection.StudyNotes = StudyNotes;
+        await SaveAsync();
     }
 
     // ----- Public wiring -----
@@ -612,10 +626,21 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     partial void OnSelectedCollectionChanging(ScholarCollection? value)
     {
-        // Save study notes back to the outgoing collection before switching
+        // Save passage edits back to the outgoing passage
+        if (SelectedPassage != null && SelectedCollection != null)
+        {
+            SyncEditorFieldsToPassage();
+        }
+
+        // Save study notes back to the outgoing collection
         if (SelectedCollection != null && SelectedCollection.StudyNotes != StudyNotes)
         {
             SelectedCollection.StudyNotes = StudyNotes;
+        }
+
+        // Persist everything
+        if (SelectedCollection != null)
+        {
             _ = SafeFireAndForget(SaveAsync());
         }
     }
@@ -624,6 +649,13 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         StudyNotes = value?.StudyNotes ?? "";
         RefreshPassagesList();
+    }
+
+    partial void OnStudyNotesChanged(string value)
+    {
+        // Keep in-memory collection in sync so study notes are never lost
+        if (SelectedCollection != null)
+            SelectedCollection.StudyNotes = value;
     }
 
     partial void OnSearchFilterChanged(string value)
@@ -789,8 +821,20 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
     }
 
+    partial void OnSelectedPassageChanging(ScholarPassage? value)
+    {
+        // Save current passage edits before switching to the new one
+        if (SelectedPassage != null && SelectedCollection != null)
+        {
+            SyncEditorFieldsToPassage();
+            _ = SafeFireAndForget(SaveAsync());
+        }
+    }
+
     partial void OnSelectedPassageChanged(ScholarPassage? value)
     {
+        IsEditorEnabled = true;
+
         if (value != null)
         {
             PassageNotes = value.Notes ?? "";
