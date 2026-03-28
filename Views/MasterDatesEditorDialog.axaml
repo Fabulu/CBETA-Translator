@@ -1,0 +1,85 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.MasterDatesEditorDialog"
+        Width="650"
+        Height="500"
+        Title="Master Dates"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="*,Auto" ColumnDefinitions="250,12,*" Margin="12">
+
+    <!-- Left pane: search + list -->
+    <Border Grid.Row="0"
+            Grid.Column="0"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="8">
+      <Grid RowDefinitions="Auto,*">
+        <TextBox Grid.Row="0" Name="TxtFilter" Watermark="Search masters..."
+                 Margin="0,0,0,8"/>
+        <ListBox Grid.Row="1" Name="MasterList"/>
+      </Grid>
+    </Border>
+
+    <GridSplitter Grid.Row="0"
+                  Grid.Column="1"
+                  Width="12"
+                  ResizeDirection="Columns"
+                  Background="Transparent"/>
+
+    <!-- Right pane: editor -->
+    <Border Grid.Row="0"
+            Grid.Column="2"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="12">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" RowSpacing="10">
+        <TextBlock Text="Edit Master" FontWeight="Bold"/>
+
+        <Grid Grid.Row="1" ColumnDefinitions="100,*" ColumnSpacing="10">
+          <TextBlock Text="Names" VerticalAlignment="Top"/>
+          <TextBox Grid.Column="1" Name="TxtNames"
+                   AcceptsReturn="True" TextWrapping="Wrap"
+                   MinHeight="90"
+                   Watermark="One name per line (Pinyin, Chinese variants)"/>
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnDefinitions="100,*" ColumnSpacing="10">
+          <TextBlock Text="Floruit" VerticalAlignment="Center"/>
+          <TextBox Grid.Column="1" Name="TxtFloruit" Watermark="Year (e.g. 700)"/>
+        </Grid>
+
+        <Grid Grid.Row="3" ColumnDefinitions="100,*" ColumnSpacing="10">
+          <TextBlock Text="Death" VerticalAlignment="Center"/>
+          <TextBox Grid.Column="1" Name="TxtDeath" Watermark="Year (e.g. 790)"/>
+        </Grid>
+
+        <TextBlock Grid.Row="4" Name="TxtStatus" Opacity="0.8"
+                   VerticalAlignment="Bottom"/>
+      </Grid>
+    </Border>
+
+    <!-- Bottom buttons -->
+    <Border Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Margin="0,12,0,0"
+            Background="{DynamicResource BarBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="10">
+      <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8">
+        <Button Content="New" Click="OnNewClick"/>
+        <Button Grid.Column="1" Content="Delete" Click="OnDeleteClick"/>
+        <Button Grid.Column="3" Content="Close" MinWidth="100" Click="OnCloseClick"/>
+        <Button Grid.Column="4" Content="Save" MinWidth="100" Click="OnSaveClick"/>
+      </Grid>
+    </Border>
+
+  </Grid>
+</Window>

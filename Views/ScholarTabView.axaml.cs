@@ -121,6 +121,13 @@ public partial class ScholarTabView : UserControl
             btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync();
         }
 
+        // Edit Master Dates button
+        var btnEditMasterDates = this.FindControl<Button>("BtnEditMasterDates");
+        if (btnEditMasterDates != null)
+        {
+            btnEditMasterDates.Click += async (_, _) => await OnEditMasterDatesClickedAsync();
+        }
+
         // Find Parallels button
         var btnFindParallels = this.FindControl<Button>("BtnFindParallels");
         if (btnFindParallels != null)
@@ -864,6 +871,26 @@ public partial class ScholarTabView : UserControl
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
         await dlg.ShowDialog(topLevel);
+    }
+
+    // ----- Edit Master Dates -----
+
+    private async Task OnEditMasterDatesClickedAsync()
+    {
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return;
+
+        var dlg = new MasterDatesEditorDialog
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        await dlg.ShowDialog(topLevel);
+
+        if (dlg.Saved)
+        {
+            _vm.InvalidateMasterDatesCache();
+            Status?.Invoke(this, "Master dates updated.");
+        }
     }
 
     // ----- Insert Reference -----
