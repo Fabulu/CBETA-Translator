@@ -20,6 +20,7 @@ public partial class SearchTabView : UserControl
 
     public event EventHandler<string>? Status;
     public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler<ScholarPassage>? AddToScholarRequested;
 
     public SearchTabView()
     {
@@ -67,6 +68,28 @@ public partial class SearchTabView : UserControl
             resultsTree.DoubleTapped += (_, _) =>
             {
                 _vm.HandleResultDoubleTap(resultsTree.SelectedItem);
+            };
+
+            var addToScholarItem = new MenuItem { Header = "Add to Scholar Collection" };
+            addToScholarItem.Click += (_, _) =>
+            {
+                if (resultsTree.SelectedItem is not SearchResultChild child) return;
+
+                var passage = new ScholarPassage
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    SourceRelPath = child.RelPath,
+                    ZhText = child.Side == SearchSide.Original ? child.MatchText : "",
+                    EnText = child.Side == SearchSide.Translated ? child.MatchText : "",
+                    AddedUtc = DateTimeOffset.UtcNow
+                };
+
+                AddToScholarRequested?.Invoke(this, passage);
+            };
+
+            resultsTree.ContextMenu = new ContextMenu
+            {
+                Items = { addToScholarItem }
             };
         }
 

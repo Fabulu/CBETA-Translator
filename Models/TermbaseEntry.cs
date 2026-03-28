@@ -10,5 +10,6 @@ public sealed class TermbaseEntry
     public List<string> AlternateTargets { get; set; } = new();
     public string Status { get; set; } = "preferred";
     public string Note { get; set; } = "";
+    public string? CreatedBy { get; set; }
     public DateTimeOffset? WrittenUtc { get; set; }
 }

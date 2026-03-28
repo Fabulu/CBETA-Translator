@@ -96,6 +96,8 @@ public partial class ScholarTabViewModel : ViewModelBase
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
+    public string? GetRoot() => _root;
+
     public void SetRoot(string root)
     {
         _root = root;

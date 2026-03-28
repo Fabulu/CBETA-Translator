@@ -28,6 +28,12 @@ public class StubTermbaseStorageService : ITermbaseStorageService
         LastSaved = new List<TermbaseEntry>(entries);
         return Task.CompletedTask;
     }
+
+    public Task WriteUserJsonlAsync(string communityDir, string username, List<TermbaseEntry> entries, CancellationToken ct = default)
+        => Task.CompletedTask;
+
+    public Task<Dictionary<string, List<TermbaseEntry>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
+        => Task.FromResult(new Dictionary<string, List<TermbaseEntry>>());
 }
 
 // ---- IGitRepoService ----

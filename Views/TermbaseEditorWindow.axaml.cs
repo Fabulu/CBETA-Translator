@@ -18,12 +18,13 @@ public partial class TermbaseEditorWindow : Window
     /// </summary>
     public event EventHandler? TermsSaved;
 
-    public TermbaseEditorWindow(string root)
+    public TermbaseEditorWindow(string root, string? username = null)
     {
         InitializeComponent();
 
         var storage = App.Services.GetRequiredService<ITermbaseStorageService>();
         _vm = new TermbaseEditorWindowViewModel(storage, root);
+        _vm.SetUsername(username);
         DataContext = _vm;
 
         _vm.CloseRequested = () => Close();

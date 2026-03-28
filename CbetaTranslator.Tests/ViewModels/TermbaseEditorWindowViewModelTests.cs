@@ -333,4 +333,218 @@ public class TermbaseEditorWindowViewModelTests
         Assert.Equal("b", vm.FilteredEntries[1].PreferredTarget);
         Assert.Equal("Zebra", vm.FilteredEntries[2].SourceTerm);
     }
+
+    // ---- 11. AdoptSelectedTerm — copies entry to local with user's CreatedBy ----
+
+    [Fact]
+    public void AdoptSelectedTerm_CopiesEntryToLocalWithUsersCreatedBy()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("Alice");
+
+        var communityEntry = new TermbaseEntry
+        {
+            SourceTerm = "\u4f5b",
+            PreferredTarget = "Buddha",
+            AlternateTargets = new List<string> { "Awakened One" },
+            Status = "preferred",
+            Note = "Original note",
+            CreatedBy = "Bob"
+        };
+
+        vm.SelectedCommunityEntry = communityEntry;
+        vm.AdoptSelectedTermCommand.Execute(null);
+
+        Assert.Single(vm.AllEntries);
+        var adopted = vm.AllEntries[0];
+        Assert.Equal("\u4f5b", adopted.SourceTerm);
+        Assert.Equal("Buddha", adopted.PreferredTarget);
+        Assert.Single(adopted.AlternateTargets);
+        Assert.Contains("Awakened One", adopted.AlternateTargets);
+        Assert.Equal("preferred", adopted.Status);
+        Assert.Equal("Original note", adopted.Note);
+        Assert.Equal("Alice", adopted.CreatedBy);
+        Assert.NotNull(adopted.WrittenUtc);
+        Assert.Contains("Adopted", vm.StatusMessage);
+    }
+
+    [Fact]
+    public void AdoptSelectedTerm_NullSelection_DoesNothing()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("Alice");
+        vm.SelectedCommunityEntry = null;
+
+        vm.AdoptSelectedTermCommand.Execute(null);
+
+        Assert.Empty(vm.AllEntries);
+    }
+
+    [Fact]
+    public void AdoptSelectedTerm_SelectsAdoptedEntry()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("Alice");
+
+        vm.SelectedCommunityEntry = new TermbaseEntry
+        {
+            SourceTerm = "Test",
+            PreferredTarget = "test"
+        };
+
+        vm.AdoptSelectedTermCommand.Execute(null);
+
+        Assert.NotNull(vm.SelectedEntry);
+        Assert.Equal("Test", vm.SelectedEntry!.SourceTerm);
+    }
+
+    // ---- 12. AdoptSelectedTerm — warns about duplicate SourceTerm ----
+
+    [Fact]
+    public void AdoptSelectedTerm_WarnsAboutDuplicateSourceTerm()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("Alice");
+
+        // Add an existing entry with the same SourceTerm
+        vm.AllEntries.Add(new TermbaseEntry
+        {
+            SourceTerm = "\u4f5b",
+            PreferredTarget = "Existing"
+        });
+
+        vm.SelectedCommunityEntry = new TermbaseEntry
+        {
+            SourceTerm = "\u4f5b",
+            PreferredTarget = "Buddha",
+            CreatedBy = "Bob"
+        };
+
+        vm.AdoptSelectedTermCommand.Execute(null);
+
+        // Should still adopt (adds it)
+        Assert.Equal(2, vm.AllEntries.Count);
+        // Status message should warn about duplicate
+        Assert.Contains("already exists", vm.StatusMessage);
+    }
+
+    [Fact]
+    public void AdoptSelectedTerm_NoDuplicate_NoWarning()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("Alice");
+
+        vm.SelectedCommunityEntry = new TermbaseEntry
+        {
+            SourceTerm = "Unique",
+            PreferredTarget = "unique",
+            CreatedBy = "Bob"
+        };
+
+        vm.AdoptSelectedTermCommand.Execute(null);
+
+        Assert.DoesNotContain("already exists", vm.StatusMessage);
+        Assert.Contains("Adopted", vm.StatusMessage);
+        Assert.Contains("Bob", vm.StatusMessage);
+    }
+
+    // ---- 13. CommunityFilter — filters by SourceTerm, PreferredTarget, author ----
+
+    [Fact]
+    public void CommunityFilter_FiltersBySourceTerm()
+    {
+        var vm = MakeVm();
+        vm.SetUsername("NotTheAuthor");
+
+        // Manually populate the community entries via reflection or direct list access
+        // We need to use the internal _allCommunityEntries list
+        var allCommunityField = typeof(TermbaseEditorWindowViewModel)
+            .GetField("_allCommunityEntries", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        Assert.NotNull(allCommunityField);
+
+        var allCommunity = (List<(string Author, TermbaseEntry Entry)>)allCommunityField!.GetValue(vm)!;
+        allCommunity.Add(("bob", new TermbaseEntry { SourceTerm = "Buddha", PreferredTarget = "Buddha", CreatedBy = "bob" }));
+        allCommunity.Add(("bob", new TermbaseEntry { SourceTerm = "Dharma", PreferredTarget = "Dharma", CreatedBy = "bob" }));
+        allCommunity.Add(("carol", new TermbaseEntry { SourceTerm = "Sangha", PreferredTarget = "Sangha", CreatedBy = "carol" }));
+
+        vm.HasCommunityEntries = true;
+
+        // Trigger refresh: set to something then clear to trigger both changes
+        vm.CommunityFilter = "x";
+        vm.CommunityFilter = "";
+        Assert.Equal(3, vm.CommunityEntries.Count);
+
+        // Filter by source term
+        vm.CommunityFilter = "Buddha";
+        Assert.Single(vm.CommunityEntries);
+        Assert.Equal("Buddha", vm.CommunityEntries[0].SourceTerm);
+    }
+
+    [Fact]
+    public void CommunityFilter_FiltersByPreferredTarget()
+    {
+        var vm = MakeVm();
+        var allCommunityField = typeof(TermbaseEditorWindowViewModel)
+            .GetField("_allCommunityEntries", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var allCommunity = (List<(string Author, TermbaseEntry Entry)>)allCommunityField!.GetValue(vm)!;
+
+        allCommunity.Add(("bob", new TermbaseEntry { SourceTerm = "A", PreferredTarget = "Apple" }));
+        allCommunity.Add(("bob", new TermbaseEntry { SourceTerm = "B", PreferredTarget = "Banana" }));
+        vm.HasCommunityEntries = true;
+
+        // Trigger initial refresh then filter
+        vm.CommunityFilter = "x";
+        vm.CommunityFilter = "Banana";
+        Assert.Single(vm.CommunityEntries);
+        Assert.Equal("B", vm.CommunityEntries[0].SourceTerm);
+    }
+
+    [Fact]
+    public void CommunityFilter_FiltersByAuthor()
+    {
+        var vm = MakeVm();
+        var allCommunityField = typeof(TermbaseEditorWindowViewModel)
+            .GetField("_allCommunityEntries", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var allCommunity = (List<(string Author, TermbaseEntry Entry)>)allCommunityField!.GetValue(vm)!;
+
+        allCommunity.Add(("bob", new TermbaseEntry { SourceTerm = "A", PreferredTarget = "a" }));
+        allCommunity.Add(("carol", new TermbaseEntry { SourceTerm = "B", PreferredTarget = "b" }));
+        vm.HasCommunityEntries = true;
+
+        // Trigger initial refresh then filter
+        vm.CommunityFilter = "x";
+        vm.CommunityFilter = "carol";
+        Assert.Single(vm.CommunityEntries);
+        Assert.Equal("B", vm.CommunityEntries[0].SourceTerm);
+    }
+
+    // ---- 14. HasCommunityEntries — correct boolean state ----
+
+    [Fact]
+    public void HasCommunityEntries_DefaultIsFalse()
+    {
+        var vm = MakeVm();
+        Assert.False(vm.HasCommunityEntries);
+    }
+
+    [Fact]
+    public void HasCommunityEntries_TrueWhenSet()
+    {
+        var vm = MakeVm();
+        vm.HasCommunityEntries = true;
+        Assert.True(vm.HasCommunityEntries);
+    }
+
+    [Fact]
+    public void HasCommunityEntries_FalseWhenNoCommunityEntries()
+    {
+        var vm = MakeVm();
+        var allCommunityField = typeof(TermbaseEditorWindowViewModel)
+            .GetField("_allCommunityEntries", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var allCommunity = (List<(string Author, TermbaseEntry Entry)>)allCommunityField!.GetValue(vm)!;
+
+        // Empty list
+        Assert.Empty(allCommunity);
+        Assert.False(vm.HasCommunityEntries);
+    }
 }

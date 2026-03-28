@@ -32,7 +32,8 @@ public partial class GitTabView : UserControl
             App.Services.GetRequiredService<IGitHubAuthService>(),
             App.Services.GetRequiredService<IGitHubApiService>(),
             App.Services.GetRequiredService<ICommunityDataService>(),
-            App.Services.GetRequiredService<IScholarCollectionsService>());
+            App.Services.GetRequiredService<IScholarCollectionsService>(),
+            App.Services.GetRequiredService<ITermbaseStorageService>());
 
         DataContext = _vm;
 

@@ -14,6 +14,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
 {
     private readonly ITermbaseStorageService _storage;
     private readonly string _root;
+    private string? _username;
 
     private bool _suppressFieldSync;
 
@@ -41,8 +42,21 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _statusMessage = "";
 
+    // Community termbases
+    [ObservableProperty]
+    private TermbaseEntry? _selectedCommunityEntry;
+
+    [ObservableProperty]
+    private string _communityFilter = "";
+
+    [ObservableProperty]
+    private bool _hasCommunityEntries;
+
     public ObservableCollection<TermbaseEntry> AllEntries { get; } = new();
     public ObservableCollection<TermbaseEntry> FilteredEntries { get; } = new();
+    public ObservableCollection<TermbaseEntry> CommunityEntries { get; } = new();
+
+    private readonly List<(string Author, TermbaseEntry Entry)> _allCommunityEntries = new();
 
     public bool Saved { get; private set; }
 
@@ -67,6 +81,11 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         _root = root ?? throw new ArgumentNullException(nameof(root));
     }
 
+    public void SetUsername(string? username)
+    {
+        _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+    }
+
     // ----- Generated partial methods for property change hooks -----
 
     partial void OnSearchQueryChanged(string value) => ApplyFilter();
@@ -81,6 +100,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     partial void OnSelectedStatusIndexChanged(int value) => PushFieldsIntoCurrentEntry();
     partial void OnAlternatesTextChanged(string value) => PushFieldsIntoCurrentEntry();
     partial void OnNoteTextChanged(string value) => PushFieldsIntoCurrentEntry();
+    partial void OnCommunityFilterChanged(string value) => RefreshCommunityList();
 
     // ----- Commands -----
 
@@ -103,6 +123,9 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
                 SelectedEntry = null;
 
             StatusMessage = $"Loaded {AllEntries.Count:n0} term(s).";
+
+            // Load community termbases after main load
+            await LoadCommunityAsync();
         }
         catch (Exception ex)
         {
@@ -206,6 +229,105 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     private void CloseWindow()
     {
         CloseRequested?.Invoke();
+    }
+
+    // ----- Community termbases -----
+
+    [RelayCommand]
+    private async Task LoadCommunityAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root)) return;
+
+        try
+        {
+            var communityDir = TermbaseStorageService.GetCommunityTermbasesDir(_root);
+            var allUsers = await _storage.LoadAllCommunityJsonlAsync(communityDir);
+
+            _allCommunityEntries.Clear();
+
+            foreach (var (username, entries) in allUsers)
+            {
+                // Skip current user's own entries
+                if (_username != null &&
+                    string.Equals(username, _username, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                foreach (var e in entries)
+                {
+                    if (string.IsNullOrWhiteSpace(e.CreatedBy))
+                        e.CreatedBy = username;
+
+                    _allCommunityEntries.Add((username, e));
+                }
+            }
+
+            HasCommunityEntries = _allCommunityEntries.Count > 0;
+            RefreshCommunityList();
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = "Community load failed: " + ex.Message;
+        }
+    }
+
+    [RelayCommand]
+    private void AdoptSelectedTerm()
+    {
+        if (SelectedCommunityEntry == null)
+            return;
+
+        var source = SelectedCommunityEntry;
+
+        // Check for duplicate
+        bool hasDuplicate = AllEntries.Any(e =>
+            string.Equals(e.SourceTerm, source.SourceTerm, StringComparison.Ordinal));
+
+        var adopted = new TermbaseEntry
+        {
+            SourceTerm = source.SourceTerm,
+            PreferredTarget = source.PreferredTarget,
+            AlternateTargets = (source.AlternateTargets ?? new List<string>()).ToList(),
+            Status = source.Status ?? "preferred",
+            Note = source.Note ?? "",
+            CreatedBy = _username,
+            WrittenUtc = DateTimeOffset.UtcNow
+        };
+
+        AllEntries.Add(adopted);
+        ApplyFilter();
+        SelectedEntry = adopted;
+
+        if (hasDuplicate)
+            StatusMessage = $"Adopted term \"{source.SourceTerm}\" (note: a term with this source already exists).";
+        else
+            StatusMessage = $"Adopted term \"{source.SourceTerm}\" from {source.CreatedBy ?? "community"}.";
+    }
+
+    private void RefreshCommunityList()
+    {
+        var prev = SelectedCommunityEntry;
+        CommunityEntries.Clear();
+
+        var filter = CommunityFilter?.Trim() ?? "";
+
+        foreach (var (author, e) in _allCommunityEntries)
+        {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                bool matches =
+                    (e.SourceTerm ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    (e.PreferredTarget ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    (author ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase);
+
+                if (!matches) continue;
+            }
+
+            CommunityEntries.Add(e);
+        }
+
+        SelectedCommunityEntry = (prev != null && CommunityEntries.Contains(prev))
+            ? prev
+            : CommunityEntries.FirstOrDefault();
     }
 
     // ----- Helpers -----
