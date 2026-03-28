@@ -35,6 +35,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMarkdownTranslationService, MarkdownTranslationService>();
         services.AddSingleton<IScholarCollectionsService, ScholarCollectionsService>();
         services.AddSingleton<IScholarExportService, ScholarExportService>();
+        services.AddSingleton<IParallelPassageFinderService, ParallelPassageFinderService>();
         return services;
     }
 }

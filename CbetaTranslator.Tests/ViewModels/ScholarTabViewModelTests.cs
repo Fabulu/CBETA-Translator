@@ -1026,6 +1026,298 @@ public class ScholarTabViewModelTests
         Assert.False(vm.HasCommunityCollections);
     }
 
+    // ---- Link management: CreateLinkAsync ----
+
+    [Fact]
+    public async Task CreateLinkAsync_AddsLinkToCollection()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+
+        Assert.Single(collection.Links);
+        Assert.Equal("p1", collection.Links[0].FromPassageId);
+        Assert.Equal("p2", collection.Links[0].ToPassageId);
+        Assert.Equal("quotes", collection.Links[0].RelationType);
+        Assert.NotEmpty(collection.Links[0].Id);
+    }
+
+    [Fact]
+    public async Task CreateLinkAsync_NoSelectedCollection_DoesNothing()
+    {
+        var vm = MakeVm();
+        vm.SelectedCollection = null;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+
+        // No crash, no links added
+    }
+
+    [Fact]
+    public async Task CreateLinkAsync_SetsCreatedUtc()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        vm.SelectedCollection = collection;
+
+        var before = DateTimeOffset.UtcNow;
+        await vm.CreateLinkAsync("p1", "p2", "alludes-to");
+        var after = DateTimeOffset.UtcNow;
+
+        Assert.InRange(collection.Links[0].CreatedUtc, before, after);
+    }
+
+    [Fact]
+    public async Task CreateLinkAsync_MultipleLinks_AllStored()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        await vm.CreateLinkAsync("p2", "p3", "comments-on");
+        await vm.CreateLinkAsync("p1", "p3", "parallels");
+
+        Assert.Equal(3, collection.Links.Count);
+    }
+
+    // ---- Link management: RemoveLinkAsync ----
+
+    [Fact]
+    public async Task RemoveLinkAsync_RemovesLinkById()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        Assert.Single(collection.Links);
+
+        var linkId = collection.Links[0].Id;
+        await vm.RemoveLinkAsync(linkId);
+
+        Assert.Empty(collection.Links);
+    }
+
+    [Fact]
+    public async Task RemoveLinkAsync_NonexistentId_DoesNothing()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        Assert.Single(collection.Links);
+
+        await vm.RemoveLinkAsync("nonexistent-id");
+
+        Assert.Single(collection.Links); // unchanged
+    }
+
+    [Fact]
+    public async Task RemoveLinkAsync_NoSelectedCollection_DoesNothing()
+    {
+        var vm = MakeVm();
+        vm.SelectedCollection = null;
+
+        await vm.RemoveLinkAsync("any-id"); // should not crash
+    }
+
+    [Fact]
+    public async Task RemoveLinkAsync_OnlyRemovesTargetLink()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        await vm.CreateLinkAsync("p2", "p3", "parallels");
+        Assert.Equal(2, collection.Links.Count);
+
+        var firstLinkId = collection.Links[0].Id;
+        await vm.RemoveLinkAsync(firstLinkId);
+
+        Assert.Single(collection.Links);
+        Assert.Equal("parallels", collection.Links[0].RelationType);
+    }
+
+    // ---- Link management: GetLinksForPassage ----
+
+    [Fact]
+    public async Task GetLinksForPassage_ReturnsLinksWherePassageIsFromOrTo()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        await vm.CreateLinkAsync("p2", "p3", "parallels");
+        await vm.CreateLinkAsync("p1", "p3", "alludes-to");
+
+        // p1 is From in two links
+        var p1Links = vm.GetLinksForPassage("p1");
+        Assert.Equal(2, p1Links.Count);
+
+        // p2 is From in one, To in another
+        var p2Links = vm.GetLinksForPassage("p2");
+        Assert.Equal(2, p2Links.Count);
+
+        // p3 is To in two links
+        var p3Links = vm.GetLinksForPassage("p3");
+        Assert.Equal(2, p3Links.Count);
+    }
+
+    [Fact]
+    public void GetLinksForPassage_NoLinks_ReturnsEmptyList()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        vm.SelectedCollection = vm.Collections[0];
+
+        var links = vm.GetLinksForPassage("any-id");
+
+        Assert.Empty(links);
+    }
+
+    [Fact]
+    public void GetLinksForPassage_NoSelectedCollection_ReturnsEmptyList()
+    {
+        var vm = MakeVm();
+        vm.SelectedCollection = null;
+
+        var links = vm.GetLinksForPassage("any-id");
+
+        Assert.Empty(links);
+    }
+
+    [Fact]
+    public async Task GetLinksForPassage_UnrelatedPassage_ReturnsEmpty()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+
+        var p3Links = vm.GetLinksForPassage("p3");
+        Assert.Empty(p3Links);
+    }
+
+    // ---- DeletePassage: orphan link cleanup ----
+
+    [Fact]
+    public async Task DeletePassage_CleansUpOrphanLinks()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        var p1 = new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" };
+        var p2 = new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" };
+        var p3 = new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" };
+        collection.Passages.Add(p1);
+        collection.Passages.Add(p2);
+        collection.Passages.Add(p3);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        await vm.CreateLinkAsync("p2", "p3", "parallels");
+        await vm.CreateLinkAsync("p1", "p3", "alludes-to");
+        Assert.Equal(3, collection.Links.Count);
+
+        // Delete p2 -- should remove links involving p2
+        vm.SelectedPassage = p2;
+        vm.DeletePassageCommand.Execute(null);
+
+        // Only the p1->p3 link should remain
+        Assert.Single(collection.Links);
+        Assert.Equal("alludes-to", collection.Links[0].RelationType);
+        Assert.Equal("p1", collection.Links[0].FromPassageId);
+        Assert.Equal("p3", collection.Links[0].ToPassageId);
+    }
+
+    [Fact]
+    public async Task DeletePassage_RemovesAllLinksWhenPassageIsInAllLinks()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        var p1 = new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" };
+        var p2 = new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" };
+        collection.Passages.Add(p1);
+        collection.Passages.Add(p2);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "quotes");
+        Assert.Single(collection.Links);
+
+        // Delete p1 -- the single link references p1
+        vm.SelectedPassage = p1;
+        vm.DeletePassageCommand.Execute(null);
+
+        Assert.Empty(collection.Links);
+    }
+
+    // ---- FindPassageById ----
+
+    [Fact]
+    public void FindPassageById_ReturnsCorrectPassage()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        var p1 = new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" };
+        var p2 = new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" };
+        collection.Passages.Add(p1);
+        collection.Passages.Add(p2);
+        vm.SelectedCollection = collection;
+
+        Assert.Same(p1, vm.FindPassageById("p1"));
+        Assert.Same(p2, vm.FindPassageById("p2"));
+        Assert.Null(vm.FindPassageById("nonexistent"));
+    }
+
+    [Fact]
+    public void FindPassageById_NoSelectedCollection_ReturnsNull()
+    {
+        var vm = MakeVm();
+        vm.SelectedCollection = null;
+
+        Assert.Null(vm.FindPassageById("any"));
+    }
+
     // ---- Mutual exclusion: selecting community clears user selection ----
     // Note: The current VM does not explicitly implement mutual exclusion between
     // user collections and community collections. They are independent panels.
