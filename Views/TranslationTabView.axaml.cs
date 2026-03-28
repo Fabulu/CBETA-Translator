@@ -47,6 +47,7 @@ public partial class TranslationTabView : UserControl
 
     private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
 
     public event EventHandler<TranslationEditMode>? ModeChanged;
     public event EventHandler? SaveRequested;
@@ -453,7 +454,7 @@ public partial class TranslationTabView : UserControl
             _hoverDictionaryBehavior?.Dispose();
             _hoverDictionaryBehavior = null;
 
-            _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict);
+            _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict, _grammar);
         }
         catch (Exception ex)
         {
@@ -1818,7 +1819,7 @@ STRICT RULES:
 
         try
         {
-            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict);
+            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict, _grammar);
             _assistantHoverDisposables.Add(behavior);
         }
         catch

@@ -45,6 +45,7 @@ public partial class ReadableTabView : UserControl
     // Hover dictionary (orig pane only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
 
     // -------------------------
     // Selection mirroring
@@ -1505,7 +1506,7 @@ public partial class ReadableTabView : UserControl
         if (!_vm.HoverDictionaryEnabled) return;
         if (_aeOrig == null) return;
 
-        try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict); }
+        try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict, _grammar); }
         catch (Exception ex) { Log("Hover dictionary failed: " + ex.Message); }
     }
 
