@@ -8,6 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Layout;
 using Avalonia.Platform.Storage;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
@@ -58,6 +59,7 @@ public partial class ScholarTabView : UserControl
 
         _vm.PickExportFileAsync = PickExportFileAsync;
         _vm.PickImportFileAsync = PickImportFileAsync;
+        _vm.PickExportFormatAsync = PickExportFormatAsync;
 
         _scholarQaHost = this.FindControl<StackPanel>("ScholarQaHost");
         _scholarTermHost = this.FindControl<StackPanel>("ScholarTermHost");
@@ -86,6 +88,20 @@ public partial class ScholarTabView : UserControl
             {
                 _vm.NavigateToPassageCommand.Execute(null);
             };
+
+            // Context menu with "Link to..." on passages list
+            var ctxMenu = new ContextMenu();
+            var linkMenuItem = new MenuItem { Header = "Link to..." };
+            linkMenuItem.Click += async (_, _) => await ShowLinkDialogAsync();
+            ctxMenu.Items.Add(linkMenuItem);
+            passagesList.ContextMenu = ctxMenu;
+        }
+
+        // Compare button
+        var btnCompare = this.FindControl<Button>("BtnCompare");
+        if (btnCompare != null)
+        {
+            btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
         }
 
         // Update detail text fields when selected passage changes
@@ -140,6 +156,7 @@ public partial class ScholarTabView : UserControl
 
         SetupHoverDictionary();
         _ = UpdateTermbaseHitsAsync(passage?.ZhText);
+        RefreshLinksPanel();
     }
 
     private void UpdateCommunityDetailFields()
@@ -302,6 +319,287 @@ public partial class ScholarTabView : UserControl
         });
 
         return files.FirstOrDefault()?.Path.LocalPath;
+    }
+
+    // ----- Export format picker -----
+
+    private async Task<ScholarExportFormat?> PickExportFormatAsync()
+    {
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return null;
+
+        var dlg = new ExportFormatDialog
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        var result = await dlg.ShowDialog<ScholarExportFormat?>(topLevel);
+        return result;
+    }
+
+    // ----- Compare -----
+
+    private async Task OnCompareClickedAsync()
+    {
+        var passagesList = this.FindControl<ListBox>("PassagesList");
+        if (passagesList == null) return;
+
+        var selected = passagesList.SelectedItems?
+            .OfType<ScholarPassage>()
+            .ToList();
+
+        if (selected == null || selected.Count < 2 || selected.Count > 4)
+        {
+            Status?.Invoke(this, "Select 2-4 passages (Ctrl+click) to compare.");
+            return;
+        }
+
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return;
+
+        var compareWindow = new ComparePassagesWindow(selected);
+        await compareWindow.ShowDialog(topLevel);
+    }
+
+    // ----- Links -----
+
+    private void RefreshLinksPanel()
+    {
+        var panel = this.FindControl<ItemsControl>("PnlLinks");
+        if (panel == null) return;
+
+        var passage = _vm.SelectedPassage;
+        if (passage == null || _vm.SelectedCollection == null)
+        {
+            panel.ItemsSource = null;
+            return;
+        }
+
+        var links = _vm.GetLinksForPassage(passage.Id);
+        if (links.Count == 0)
+        {
+            panel.ItemsSource = null;
+            return;
+        }
+
+        var controls = new List<Control>();
+        foreach (var link in links)
+        {
+            var otherPassageId = link.FromPassageId == passage.Id
+                ? link.ToPassageId
+                : link.FromPassageId;
+            var otherPassage = _vm.FindPassageById(otherPassageId);
+            var otherPreview = otherPassage != null
+                ? (otherPassage.ZhText.Length > 30 ? otherPassage.ZhText[..30] + "..." : otherPassage.ZhText)
+                : "(deleted)";
+
+            var relationChip = new Border
+            {
+                CornerRadius = new CornerRadius(8),
+                Background = new SolidColorBrush(Color.FromArgb(60, 100, 180, 255)),
+                Padding = new Thickness(6, 1),
+                Margin = new Thickness(0, 0, 4, 0),
+                Child = new TextBlock
+                {
+                    Text = link.RelationType,
+                    FontSize = 11,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                }
+            };
+
+            var previewText = new TextBlock
+            {
+                Text = otherPreview,
+                FontSize = 12,
+                TextTrimming = TextTrimming.CharacterEllipsis,
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand)
+            };
+
+            // Click to select the linked passage
+            if (otherPassage != null)
+            {
+                var captured = otherPassage;
+                previewText.PointerPressed += (_, _) =>
+                {
+                    _vm.SelectedPassage = captured;
+                };
+            }
+
+            var deleteBtn = new Button
+            {
+                Content = "\u00d7",
+                Padding = new Thickness(4, 0),
+                MinWidth = 20,
+                MinHeight = 20,
+                FontSize = 12,
+                Margin = new Thickness(4, 0, 0, 0),
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+            };
+            var capturedLinkId = link.Id;
+            deleteBtn.Click += async (_, _) =>
+            {
+                await _vm.RemoveLinkAsync(capturedLinkId);
+                RefreshLinksPanel();
+            };
+
+            var row = new StackPanel
+            {
+                Orientation = Avalonia.Layout.Orientation.Horizontal,
+                Spacing = 4,
+                Margin = new Thickness(0, 2)
+            };
+            row.Children.Add(relationChip);
+            row.Children.Add(previewText);
+            row.Children.Add(deleteBtn);
+
+            controls.Add(row);
+        }
+
+        panel.ItemsSource = controls;
+    }
+
+    private async Task ShowLinkDialogAsync()
+    {
+        var fromPassage = _vm.SelectedPassage;
+        if (fromPassage == null || _vm.SelectedCollection == null)
+        {
+            Status?.Invoke(this, "Select a passage first.");
+            return;
+        }
+
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return;
+
+        var otherPassages = _vm.SelectedCollection.Passages
+            .Where(p => p.Id != fromPassage.Id)
+            .ToList();
+
+        if (otherPassages.Count == 0)
+        {
+            Status?.Invoke(this, "Need at least two passages to create a link.");
+            return;
+        }
+
+        var dlg = new LinkPassageDialog(otherPassages)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        var result = await dlg.ShowDialog<(string PassageId, string RelationType)?>(topLevel);
+        if (result == null) return;
+
+        await _vm.CreateLinkAsync(fromPassage.Id, result.Value.PassageId, result.Value.RelationType);
+        RefreshLinksPanel();
+        Status?.Invoke(this, $"Link created: {result.Value.RelationType}");
+    }
+
+    // ----- Link dialog (kept in code-behind as it's pure UI) -----
+
+    private sealed class LinkPassageDialog : Window
+    {
+        private readonly ListBox _passageListBox;
+        private readonly ComboBox _relationCombo;
+
+        public LinkPassageDialog(List<ScholarPassage> passages)
+        {
+            Title = "Link to Passage";
+            Width = 400;
+            Height = 380;
+            CanResize = false;
+
+            var root = new Grid
+            {
+                RowDefinitions = new RowDefinitions("Auto,*,Auto,Auto"),
+                Margin = new Thickness(16),
+                RowSpacing = 10
+            };
+
+            var header = new TextBlock
+            {
+                Text = "Select target passage and relationship type",
+                FontSize = 14,
+                FontWeight = FontWeight.SemiBold
+            };
+
+            _passageListBox = new ListBox
+            {
+                ItemsSource = passages,
+                SelectedIndex = 0
+            };
+            _passageListBox.ItemTemplate = new Avalonia.Controls.Templates.FuncDataTemplate<ScholarPassage>((p, _) =>
+            {
+                var sp = new StackPanel { Margin = new Thickness(2) };
+                sp.Children.Add(new TextBlock
+                {
+                    Text = p.ZhText.Length > 40 ? p.ZhText[..40] + "..." : p.ZhText,
+                    FontWeight = FontWeight.SemiBold,
+                    TextTrimming = TextTrimming.CharacterEllipsis
+                });
+                sp.Children.Add(new TextBlock
+                {
+                    Text = p.SourceRelPath ?? "",
+                    FontSize = 10,
+                    Opacity = 0.5
+                });
+                return sp;
+            });
+
+            var relationPanel = new DockPanel { Margin = new Thickness(0, 4) };
+            var relationLabel = new TextBlock
+            {
+                Text = "Relation:",
+                VerticalAlignment = VerticalAlignment.Center,
+                Width = 70
+            };
+            _relationCombo = new ComboBox
+            {
+                ItemsSource = PassageLink.RelationTypes,
+                SelectedIndex = 0,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+            DockPanel.SetDock(relationLabel, Dock.Left);
+            relationPanel.Children.Add(relationLabel);
+            relationPanel.Children.Add(_relationCombo);
+
+            var buttons = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Spacing = 8
+            };
+
+            var btnCancel = new Button { Content = "Cancel", MinWidth = 80 };
+            btnCancel.Click += (_, _) => Close(null);
+
+            var btnOk = new Button { Content = "Link", MinWidth = 80 };
+            btnOk.Click += (_, _) =>
+            {
+                var selected = _passageListBox.SelectedItem as ScholarPassage;
+                var relation = _relationCombo.SelectedItem as string;
+                if (selected != null && !string.IsNullOrEmpty(relation))
+                    Close((selected.Id, relation));
+                else
+                    Close(null);
+            };
+
+            buttons.Children.Add(btnCancel);
+            buttons.Children.Add(btnOk);
+
+            root.Children.Add(header);
+            Grid.SetRow(header, 0);
+
+            root.Children.Add(_passageListBox);
+            Grid.SetRow(_passageListBox, 1);
+
+            root.Children.Add(relationPanel);
+            Grid.SetRow(relationPanel, 2);
+
+            root.Children.Add(buttons);
+            Grid.SetRow(buttons, 3);
+
+            Content = root;
+        }
     }
 
     // ----- Assistant panel -----

@@ -41,4 +41,5 @@ public sealed class ScholarCollection
     public DateTimeOffset? ModifiedUtc { get; set; }
     public string? CreatedBy { get; set; }
     public List<ScholarPassage> Passages { get; set; } = new();
+    public List<PassageLink> Links { get; set; } = new();
 }

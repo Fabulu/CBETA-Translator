@@ -1,0 +1,87 @@
+<!-- Views/ExportFormatDialog.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.ExportFormatDialog"
+        Width="350" Height="280"
+        Background="{DynamicResource AppBg}"
+        Title="Export Collection"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="20">
+
+		<TextBlock Grid.Row="0"
+				   Text="Choose export format"
+				   FontSize="15"
+				   FontWeight="SemiBold"
+				   Foreground="{DynamicResource TextFg}"
+				   Margin="0,0,0,14"/>
+
+		<StackPanel Grid.Row="1" Spacing="10">
+			<RadioButton Name="RbHtml"
+						 IsChecked="True"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+				<StackPanel Spacing="2">
+					<TextBlock Text="HTML" FontWeight="SemiBold"/>
+					<TextBlock Text="Rich formatted document with bilingual layout and cross-reference graph"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+				</StackPanel>
+			</RadioButton>
+
+			<RadioButton Name="RbMarkdown"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+				<StackPanel Spacing="2">
+					<TextBlock Text="Markdown" FontWeight="SemiBold"/>
+					<TextBlock Text="Academic writing format, easy to paste into papers"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+				</StackPanel>
+			</RadioButton>
+
+			<RadioButton Name="RbPlainText"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+				<StackPanel Spacing="2">
+					<TextBlock Text="Plain Text" FontWeight="SemiBold"/>
+					<TextBlock Text="Simple text, no formatting"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+				</StackPanel>
+			</RadioButton>
+		</StackPanel>
+
+		<StackPanel Grid.Row="2"
+					Orientation="Horizontal"
+					HorizontalAlignment="Right"
+					Spacing="10"
+					Margin="0,14,0,0">
+			<Button Content="Cancel"
+					Width="90" Height="32"
+					Name="BtnCancel"/>
+			<Button Content="Export"
+					Width="90" Height="32"
+					Classes="primary"
+					Name="BtnOk"/>
+		</StackPanel>
+	</Grid>
+
+</Window>

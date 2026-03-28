@@ -47,6 +47,8 @@
       <DockPanel Grid.Row="3" Margin="4">
         <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
                 ToolTip.Tip="Remove selected passage" Padding="8,3"/>
+        <Button Content="Compare" DockPanel.Dock="Right" Name="BtnCompare"
+                ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare" Padding="6,2" Margin="0,0,4,0"/>
         <TextBlock Text="Passages" FontWeight="SemiBold" VerticalAlignment="Center"/>
       </DockPanel>
 
@@ -62,6 +64,7 @@
 
       <!-- Passages list (shows passages from selected collection) -->
       <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0"
+               SelectionMode="Multiple"
                ItemsSource="{Binding Passages}"
                SelectedItem="{Binding SelectedPassage}">
         <ListBox.ItemTemplate>
@@ -159,7 +162,7 @@
 
     <!-- Right: Detail editor -->
     <Border Grid.Column="2" CornerRadius="6" Padding="12" Margin="4">
-      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
         <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
 
@@ -221,8 +224,19 @@
           <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
         </StackPanel>
 
+        <!-- Links -->
+        <Expander Grid.Row="9" Header="Links" IsExpanded="False" Margin="0,8,0,0" Name="LinksExpander">
+          <ItemsControl Name="PnlLinks">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Spacing="4"/>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </Expander>
+
         <!-- Scholar Assistant -->
-        <Expander Grid.Row="9" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
+        <Expander Grid.Row="10" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
           <ScrollViewer MaxHeight="500">
             <StackPanel Spacing="8" Margin="4">
               <Border CornerRadius="4" Padding="6">
