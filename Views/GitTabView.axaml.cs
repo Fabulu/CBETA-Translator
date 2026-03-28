@@ -139,6 +139,7 @@ public partial class GitTabView : UserControl
             Width = 600;
             Height = 340;
             CanResize = false;
+            Topmost = false;
 
             var root = new Grid
             {

@@ -506,6 +506,7 @@ public partial class ScholarTabView : UserControl
             Title = "Link to Passage";
             Width = 400;
             Height = 380;
+            Topmost = false;
             CanResize = false;
 
             var root = new Grid

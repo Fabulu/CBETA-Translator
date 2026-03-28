@@ -754,7 +754,8 @@ public partial class MainWindow : Window
             Width = 620,
             Height = 360,
             Content = panel,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Topmost = false
         };
         win.RequestedThemeVariant = this.ActualThemeVariant;
 
