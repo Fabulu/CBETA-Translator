@@ -126,9 +126,9 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "readable-tab",
-            Title = "The Reader View",
-            Body = "This is the Reader tab \u2014 it shows Chinese text on the left and English translation on the right, side by side.",
+            Id = "open-gateless-barrier",
+            Title = "Opening Your First Text",
+            Body = "We've opened the Gateless Barrier (\u7121\u9580\u95dc) by Wumen Huikai \u2014 one of the most famous Chan texts.\nYou'll see it in the Reader tab.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 0,
@@ -137,49 +137,50 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "linked-scrolling",
-            Title = "Linked Scrolling",
-            Body = "The Chinese and English panes scroll together. Click any sentence in Chinese to highlight the corresponding English, and vice versa.",
+            Id = "reader-panes",
+            Title = "Side-by-Side Reading",
+            Body = "Left pane = original Chinese. Right pane = English translation.\nThe splitter between them can be dragged to adjust the ratio. Click any sentence to highlight its counterpart on the other side.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "TwoPaneGrid"
         });
 
         Steps.Add(new TourStep
         {
             Id = "hover-dictionary",
-            Title = "Hover Dictionary",
-            Body = "Hover over any Chinese character to see its dictionary definition. This uses the CC-CEDICT dictionary built into the app.",
+            Title = "Built-in Dictionary",
+            Body = "Hover over any Chinese character to see its CC-CEDICT dictionary definition.\nLiterary Chinese particles (\u4e4b, \u4e4e, \u8005, \u4e5f) also show grammar notes explaining their function.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "EditorOriginal"
         });
 
         Steps.Add(new TourStep
         {
             Id = "community-notes",
             Title = "Community Notes",
-            Body = "You can add footnotes to any passage. Right-click on text in the reader to add a community note.",
+            Body = "Blue markers in the text are community notes \u2014 click one to read it.\nYou can add your own notes to any passage with this button.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnAddCommunityNote"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "footnote-colors",
+            Title = "Footnote Color Coding",
+            Body = "Yellow = original text footnotes from the source.\nGrey = CBETA editorial notes.\nBlue = community notes added by users like you.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
         {
-            Id = "zen-flag",
-            Title = "Zen Text Filter",
-            Body = "Use the 'Zen texts' checkbox in the sidebar to filter for Chan/Zen Buddhist texts specifically.",
+            Id = "right-click",
+            Title = "Right-Click to Collect",
+            Body = "Right-click selected text to add it to your Scholar collection for later study.\nThis works in the Reader, Translation, and Search tabs.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Right,
-            TargetControlName = "ChkZenOnly"
-        });
-
-        Steps.Add(new TourStep
-        {
-            Id = "status-colors",
-            Title = "Translation Status",
-            Body = "The colored indicators show translation progress at a glance. Use the status filter dropdown to find texts that need work.",
-            Type = TourStepType.Passive,
-            Placement = TourPlacement.Right,
-            TargetControlName = "CmbStatusFilter"
+            Placement = TourPlacement.Center
         });
 
         // ===== Phase 3: Translation (steps 12-18) =====
@@ -188,7 +189,7 @@ public sealed class OnboardingTourService
         {
             Id = "translate-tab",
             Title = "The Translation Editor",
-            Body = "Switch to the Translate XML tab to begin translating. This is where you write English translations for Chinese source text.",
+            Body = "This is where translations happen. The editor shows numbered blocks: Chinese on top, English below.\nNavigate between blocks with Alt+\u2190 and Alt+\u2192.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 1,
@@ -197,56 +198,62 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "translation-blocks",
-            Title = "Translation Blocks",
-            Body = "Each text is divided into blocks. The Chinese source appears on the left, and you type the English translation on the right.",
+            Id = "mode-buttons",
+            Title = "Text Sections",
+            Body = "Texts have three parts: Header (title), Body (main text), and Notes (footnotes).\nSwitch between them with these buttons or Ctrl+1 / Ctrl+2 / Ctrl+3.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnModeHead"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "translation-memory",
-            Title = "Translation Memory",
-            Body = "The assistant panel shows translation memory matches \u2014 previously translated similar passages. High-scoring matches can be auto-filled.",
+            Id = "copy-for-ai",
+            Title = "Copy for AI Translation",
+            Body = "Click 'Copy for AI' to copy untranslated blocks with instructions to your clipboard.\nPaste into ChatGPT, Claude, or DeepSeek. The AI returns formatted translations you can paste back.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnCopyChunkPrompt"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "review-workflow",
-            Title = "Review Workflow",
-            Body = "After translating, use Alt+A to approve a block or Alt+N to mark it as needing work. This helps track quality across the corpus.",
+            Id = "paste-from-ai",
+            Title = "Paste AI Translations",
+            Body = "After your AI translates, copy its output and click 'Paste from AI'.\nThe app matches block numbers automatically and catches errors like skipped or combined lines.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnPasteByNumber"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "termbase",
-            Title = "Terminology Database",
-            Body = "Press Ctrl+D to open the terminology database. Consistent terminology is key to quality translation.",
+            Id = "review-system",
+            Title = "Review and Approve",
+            Body = "After translating, review each block:\n\u2022 Alt+A = Approve (moves to next unreviewed)\n\u2022 Alt+N = Needs Work\nOther users will see who approved what.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnApproveSegment"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "assistant-panel",
+            Title = "Translation Assistant",
+            Body = "The assistant panel shows: recognized terminology, similar translations from the translation memory, and quality warnings.\nIt updates automatically as you navigate blocks.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Left,
+            TargetControlName = "AssistantPane"
         });
 
         Steps.Add(new TourStep
         {
             Id = "save-translation",
-            Title = "Saving Your Work",
-            Body = "Press F9 to save your translation. The app saves to markdown format \u2014 the XML is regenerated when needed.",
+            Title = "Save Your Work",
+            Body = "Ctrl+S saves your translation. The app writes clean TEI XML that preserves the original Chinese formatting.\nYour translator name is recorded automatically.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
-        });
-
-        Steps.Add(new TourStep
-        {
-            Id = "keyboard-shortcuts",
-            Title = "Keyboard Shortcuts",
-            Body = "Key shortcuts:\n\u2022 Alt+A \u2014 Approve block\n\u2022 Alt+N \u2014 Needs work\n\u2022 Alt+\u2190/\u2192 \u2014 Navigate blocks\n\u2022 F9 \u2014 Save\n\u2022 Ctrl+D \u2014 Dictionary",
-            Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnSave"
         });
 
         // ===== Phase 4: Research (steps 19-26) =====
@@ -254,37 +261,29 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "search-tab",
-            Title = "Corpus Search",
-            Body = "The Search tab lets you search across the entire CBETA corpus. Find parallel passages, track terminology usage, and discover related texts.",
+            Title = "Search the Corpus",
+            Body = "Search the entire corpus for Chinese text or English phrases.\nThe search works across line breaks \u2014 CBETA often splits Chinese sentences mid-word.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
-            TargetControlName = "SearchView"
+            TargetControlName = "TxtQuery"
         });
 
         Steps.Add(new TourStep
         {
             Id = "search-results",
-            Title = "Search Results",
-            Body = "Results show keyword-in-context (KWIC) snippets. Double-click any result to open it in a new window.",
+            Title = "Working with Results",
+            Body = "Results show KWIC context (text before and after the match).\nDouble-click any result to open that text in a new reader window. Right-click to add to Scholar.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
-        });
-
-        Steps.Add(new TourStep
-        {
-            Id = "search-cross-lb",
-            Title = "Cross-Line Matching",
-            Body = "Search works across line boundaries \u2014 it can find phrases that span multiple lines in the original text.",
-            Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "ResultsTree"
         });
 
         Steps.Add(new TourStep
         {
             Id = "scholar-tab",
-            Title = "Scholar Collections",
-            Body = "The Scholar tab helps you organize research. Collect passages, link related texts, and build study collections.",
+            Title = "Your Research Workspace",
+            Body = "The Scholar tab is your personal research workspace.\nCollect passages, organize by topic, compare texts, and export your findings.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 4,
@@ -293,38 +292,51 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "scholar-passages",
-            Title = "Collecting Passages",
-            Body = "Select text in the Reader or Search tab and use 'Add to Scholar' to collect passages for study.",
+            Id = "scholar-collections",
+            Title = "Collections",
+            Body = "Create named collections to organize your research.\nEach collection holds passages \u2014 snippets of Chinese + English text from anywhere in the corpus.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "PassagesList"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "adding-passages",
+            Title = "Adding Passages",
+            Body = "Right-click text in the Reader, Translation, or Search tabs to add it to a collection.\nMulti-block selections capture entire paragraphs. Master names (like \u8d99\u5dde, \u5357\u6cc9) are auto-detected.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
         {
-            Id = "scholar-linked-texts",
-            Title = "Linked Texts",
-            Body = "Right-click a file in the sidebar to link it to a scholar passage. This helps track intertextual references.",
+            Id = "passage-detail",
+            Title = "Passage Details",
+            Body = "Each passage has: tags, master names, notes, doctrinal categorization (Topic, Form, Lineage), and cross-reference links to other passages.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Left,
+            TargetControlName = "TxtZhText"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "parallel-passages",
-            Title = "Parallel Passages",
-            Body = "The app can detect parallel passages across texts \u2014 common in Buddhist literature where sutras were translated multiple times.",
+            Id = "scholar-tools",
+            Title = "Compare and Find Parallels",
+            Body = "Compare passages side-by-side with shared character highlighting.\nFind Parallels searches the corpus for similar text. Export to HTML with a knowledge graph.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnFindParallels"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "grammar-reference",
-            Title = "Grammar Reference",
-            Body = "Built-in classical Chinese grammar notes help with difficult constructions you encounter while reading.",
+            Id = "zen-dictionary",
+            Title = "Zen Dictionary",
+            Body = "The Zen Dictionary (Ctrl+D) manages translation terminology.\nSelect any term to see everywhere it appears across the corpus, sorted by historical date.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnDictionary"
         });
 
         // ===== Phase 5: Community (steps 27-30) =====
@@ -332,8 +344,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "git-tab",
-            Title = "Git Integration",
-            Body = "The Git tab lets you contribute translations back to the community. No terminal needed \u2014 everything is built in.",
+            Title = "Sharing Your Work",
+            Body = "The Git tab handles sharing. After you translate or research, share your work with the community.\nNo terminal needed \u2014 everything is built in.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -342,27 +354,29 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "github-auth",
-            Title = "GitHub Authentication",
-            Body = "Connect your GitHub account to push translations and open pull requests directly from the app.",
+            Id = "share-all",
+            Title = "Share Everything at Once",
+            Body = "'Share All' uploads everything in one click: your translations, dictionary entries, scholar collections, reviews, and custom master dates.\nEach person's data stays in their own file \u2014 no conflicts.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "GitView"
         });
 
         Steps.Add(new TourStep
         {
-            Id = "community-data",
-            Title = "Community Data Sync",
-            Body = "Share your approved translation memory and terminology with the community. Fetch others' contributions to improve your translations.",
+            Id = "update-community",
+            Title = "Get Others' Work",
+            Body = "'Update' downloads the latest work from other contributors.\nYou'll see their collections, terms, and reviews in the Community sections of the Scholar tab and Dictionary.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "GitView"
         });
 
         Steps.Add(new TourStep
         {
             Id = "tour-complete",
-            Title = "You're All Set!",
-            Body = "That covers the essentials. You can restart this tour anytime from Settings.\n\nHappy translating!",
+            Title = "You're Ready!",
+            Body = "You now know everything you need to read, translate, research, and share classical Chinese Buddhist texts.\n\nTo restart this tour later, go to Settings.\n\nHappy studying! \ud83d\udcda",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
