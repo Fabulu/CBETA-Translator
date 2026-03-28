@@ -16,13 +16,15 @@ public sealed class TranslationReviewService : ITranslationReviewService
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         PropertyNameCaseInsensitive = true,
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     private static readonly JsonSerializerOptions CompactOpts = new()
     {
         PropertyNameCaseInsensitive = true,
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     private Dictionary<string, SegmentReviewAggregation>? _aggregationCache;
@@ -258,18 +260,22 @@ public sealed class TranslationReviewService : ITranslationReviewService
 
         Directory.CreateDirectory(communityReviewsDir);
 
-        await using var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-        await using var writer = new StreamWriter(fs, new UTF8Encoding(false));
-
-        foreach (var entry in userEntries)
+        var tmpPath = fullPath + ".tmp";
+        await using (var fs = new FileStream(tmpPath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+        await using (var writer = new StreamWriter(fs, new UTF8Encoding(false)))
         {
-            ct.ThrowIfCancellationRequested();
-            var json = JsonSerializer.Serialize(entry, CompactOpts);
-            await writer.WriteLineAsync(json);
+            foreach (var entry in userEntries)
+            {
+                ct.ThrowIfCancellationRequested();
+                var json = JsonSerializer.Serialize(entry, CompactOpts);
+                await writer.WriteLineAsync(json);
+            }
+
+            await writer.FlushAsync();
+            await fs.FlushAsync(ct);
         }
 
-        await writer.FlushAsync();
-        await fs.FlushAsync(ct);
+        File.Move(tmpPath, fullPath, overwrite: true);
     }
 
     public async Task RefreshAggregationCacheAsync(string root, string? communityReviewsDir, CancellationToken ct = default)

@@ -10,7 +10,8 @@ public sealed class AppConfigService : IAppConfigService
 {
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
-        WriteIndented = true
+        WriteIndented = true,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     public string ConfigPath { get; }

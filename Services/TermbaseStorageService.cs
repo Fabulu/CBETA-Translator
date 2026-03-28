@@ -19,12 +19,14 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
 
     private static readonly JsonSerializerOptions WriteOpts = new()
     {
-        WriteIndented = true
+        WriteIndented = true,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     private static readonly JsonSerializerOptions CompactOpts = new()
     {
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     public async Task<List<TermbaseEntry>> LoadAsync(string root, CancellationToken ct = default)
@@ -92,7 +94,9 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
             .ToList();
 
         var json = JsonSerializer.Serialize(clean, WriteOpts);
-        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     public async Task WriteUserJsonlAsync(string communityDir, string username, List<TermbaseEntry> entries, CancellationToken ct = default)
@@ -121,7 +125,9 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
             sb.AppendLine(JsonSerializer.Serialize(e, CompactOpts));
         }
 
-        await File.WriteAllTextAsync(path, sb.ToString(), new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     public async Task<Dictionary<string, List<TermbaseEntry>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
