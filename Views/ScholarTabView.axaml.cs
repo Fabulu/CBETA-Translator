@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
@@ -388,26 +389,87 @@ public partial class ScholarTabView : UserControl
 
     // ----- Compare -----
 
+    private bool _compareMode;
+
     private async Task OnCompareClickedAsync()
     {
         var passagesList = this.FindControl<ListBox>("PassagesList");
         if (passagesList == null) return;
 
-        var selected = passagesList.SelectedItems?
-            .OfType<ScholarPassage>()
-            .ToList();
-
-        if (selected == null || selected.Count < 2 || selected.Count > 4)
+        if (!_compareMode)
         {
-            Status?.Invoke(this, "Select 2-4 passages (Ctrl+click) to compare.");
+            // Enter compare mode — show checkboxes
+            _compareMode = true;
+            passagesList.Tag = true; // Makes CheckBoxes visible via binding
+            var btnCompare = this.FindControl<Button>("BtnCompare");
+            if (btnCompare != null) btnCompare.Content = "Go Compare";
+            Status?.Invoke(this, "Check 2-4 passages, then click 'Go Compare'.");
+            return;
+        }
+
+        // Collect checked passages from the visual tree
+        var checked_ = new List<ScholarPassage>();
+        foreach (var container in passagesList.GetRealizedContainers())
+        {
+            var cb = FindCheckBox(container);
+            if (cb?.IsChecked == true && container.DataContext is ScholarPassage p)
+                checked_.Add(p);
+        }
+
+        // Exit compare mode
+        _compareMode = false;
+        passagesList.Tag = false;
+        var btn = this.FindControl<Button>("BtnCompare");
+        if (btn != null) btn.Content = "Compare";
+        ClearCheckboxes(passagesList);
+
+        if (checked_.Count < 2 || checked_.Count > 4)
+        {
+            Status?.Invoke(this, "Check 2-4 passages to compare.");
             return;
         }
 
         var topLevel = TopLevel.GetTopLevel(this) as Window;
         if (topLevel == null) return;
 
-        var compareWindow = new ComparePassagesWindow(selected);
+        var compareWindow = new ComparePassagesWindow(checked_);
+        compareWindow.Topmost = false;
         await compareWindow.ShowDialog(topLevel);
+    }
+
+    private static CheckBox? FindCheckBox(Control container)
+    {
+        if (container is CheckBox cb) return cb;
+        if (container is ContentPresenter cp && cp.Child is { } child)
+            return FindCheckBoxInVisual(child);
+        return FindCheckBoxInVisual(container);
+    }
+
+    private static CheckBox? FindCheckBoxInVisual(Control root)
+    {
+        if (root is CheckBox cb) return cb;
+        if (root is Panel panel)
+        {
+            foreach (var child in panel.Children)
+            {
+                if (child is CheckBox found) return found;
+                if (child is Panel sub)
+                {
+                    var result = FindCheckBoxInVisual(sub);
+                    if (result != null) return result;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static void ClearCheckboxes(ListBox list)
+    {
+        foreach (var container in list.GetRealizedContainers())
+        {
+            var cb = FindCheckBox(container);
+            if (cb != null) cb.IsChecked = false;
+        }
     }
 
     // ----- Links -----

@@ -62,24 +62,29 @@
                  Text="{Binding SearchFilter}"/>
       </DockPanel>
 
-      <!-- Passages list (shows passages from selected collection) -->
+      <!-- Passages list (single-select; checkboxes for Compare) -->
       <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0"
-               SelectionMode="Multiple"
                ItemsSource="{Binding Passages}"
                SelectedItem="{Binding SelectedPassage}">
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarPassage">
-            <StackPanel Margin="2">
-              <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
-                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
-              <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
-                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
-              <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
-              <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
-                         IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
-              <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
-                         IsVisible="{Binding HasMasterNames}" TextTrimming="CharacterEllipsis"/>
-            </StackPanel>
+            <DockPanel Margin="2">
+              <CheckBox DockPanel.Dock="Left" Name="CompareCheck"
+                        VerticalAlignment="Top" Margin="0,2,4,0"
+                        IsVisible="{Binding #PassagesList.Tag, FallbackValue=False}"
+                        ToolTip.Tip="Check to include in comparison"/>
+              <StackPanel>
+                <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                           TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
+                           TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
+                <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
+                           IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
+                <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
+                           IsVisible="{Binding HasMasterNames}" TextTrimming="CharacterEllipsis"/>
+              </StackPanel>
+            </DockPanel>
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
