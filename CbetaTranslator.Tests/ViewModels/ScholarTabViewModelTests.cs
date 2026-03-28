@@ -1704,6 +1704,182 @@ public class ScholarTabViewModelTests
         Assert.NotNull(vm.SelectedCollection);
         Assert.NotNull(vm.SelectedCommunityCollection);
     }
+
+    // ---- DetectMasterNames ----
+
+    private static List<MasterNameEntry> MakeTestMasterEntries() => new()
+    {
+        // Linji has Chinese (2+ chars) and pinyin (4+ chars)
+        new(new List<string> { "Linji Yixuan", "臨濟義玄", "臨濟" }),
+        // Zhaozhou
+        new(new List<string> { "Zhaozhou Congshen", "趙州從諗", "趙州" }),
+        // Short pinyin name (< 4 chars) should be skipped
+        new(new List<string> { "Mazu Daoyi", "馬祖道一", "Ma" }),
+    };
+
+    [Fact]
+    public void DetectMasterNames_FindsChineseNamesLongestFirst()
+    {
+        var entries = MakeTestMasterEntries();
+        var result = ScholarTabViewModel.DetectMasterNames(
+            "臨濟義玄是唐代禪師，趙州從諗也是。", null, entries);
+
+        Assert.Contains("Linji Yixuan", result);
+        Assert.Contains("Zhaozhou Congshen", result);
+    }
+
+    [Fact]
+    public void DetectMasterNames_FindsPinyinNamesInEnglishText()
+    {
+        var entries = MakeTestMasterEntries();
+        var result = ScholarTabViewModel.DetectMasterNames(
+            null, "The master Linji Yixuan taught in Hebei.", entries);
+
+        Assert.Contains("Linji Yixuan", result);
+    }
+
+    [Fact]
+    public void DetectMasterNames_SkipsSingleCharChineseNames()
+    {
+        // Create an entry with only a single CJK char name
+        var entries = new List<MasterNameEntry>
+        {
+            new(new List<string> { "SingleChar", "佛" })
+        };
+
+        var result = ScholarTabViewModel.DetectMasterNames("佛說法", null, entries);
+
+        // "佛" is only 1 CJK char, so it should be skipped (min 2 required)
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void DetectMasterNames_SkipsShortPinyinNames()
+    {
+        var entries = MakeTestMasterEntries();
+        // "Ma" is < 4 chars, should not match
+        var result = ScholarTabViewModel.DetectMasterNames(
+            null, "Ma went to the market with Mazu Daoyi.", entries);
+
+        // "Mazu Daoyi" (10 chars >= 4) matches, but "Ma" (2 chars < 4) does not
+        Assert.Contains("Mazu Daoyi", result);
+        Assert.Single(result); // only Mazu, not a separate "Ma" match
+    }
+
+    [Fact]
+    public void DetectMasterNames_ReturnsEmptyForTextWithNoMasters()
+    {
+        var entries = MakeTestMasterEntries();
+        var result = ScholarTabViewModel.DetectMasterNames(
+            "這是一段普通文字。", "This is ordinary text.", entries);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void DetectMasterNames_ReturnsEmptyForNullText()
+    {
+        var entries = MakeTestMasterEntries();
+        var result = ScholarTabViewModel.DetectMasterNames(null, null, entries);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void DetectMasterNames_NoDuplicatesWhenFoundInBothZhAndEn()
+    {
+        var entries = MakeTestMasterEntries();
+        // Linji appears in both Chinese and English
+        var result = ScholarTabViewModel.DetectMasterNames(
+            "臨濟義玄大師", "Master Linji Yixuan", entries);
+
+        // Should appear only once (canonical display name)
+        Assert.Single(result.Where(n => n == "Linji Yixuan"));
+    }
+
+    // ---- AutoTagMasterNames — doesn't add duplicates ----
+    // AutoTagMasterNames is private, so we test it indirectly via DetectMasterNames
+    // since the dedup logic is: "if (!passage.MasterNames.Contains(name, ...))"
+
+    [Fact]
+    public void DetectMasterNames_ReturnsDistinctNames()
+    {
+        // Entry where the same display name could be matched via both Chinese names
+        var entries = new List<MasterNameEntry>
+        {
+            new(new List<string> { "Linji Yixuan", "臨濟義玄", "臨濟" })
+        };
+
+        // Text contains both "臨濟義玄" and "臨濟" — both map to "Linji Yixuan"
+        var result = ScholarTabViewModel.DetectMasterNames(
+            "臨濟義玄禪師，即臨濟宗開山。", null, entries);
+
+        // Display name should appear at most once
+        Assert.Single(result);
+        Assert.Equal("Linji Yixuan", result[0]);
+    }
+
+    // ---- LinkedTexts property tests ----
+
+    [Fact]
+    public void LinkedTexts_DefaultIsEmptyList()
+    {
+        var passage = new ScholarPassage();
+        Assert.NotNull(passage.LinkedTexts);
+        Assert.Empty(passage.LinkedTexts);
+    }
+
+    [Fact]
+    public void LinkedTextsSummary_FormatsCorrectly()
+    {
+        var passage = new ScholarPassage
+        {
+            LinkedTexts = new List<string>
+            {
+                "xml-p5/T/T0001/T0001.xml",
+                "xml-p5/T/T0002/T0002.xml"
+            }
+        };
+
+        Assert.Equal("Texts: T0001, T0002", passage.LinkedTextsSummary);
+    }
+
+    [Fact]
+    public void LinkedTextsSummary_EmptyWhenNoLinkedTexts()
+    {
+        var passage = new ScholarPassage();
+        Assert.Equal("", passage.LinkedTextsSummary);
+    }
+
+    [Fact]
+    public void HasLinkedTexts_TrueWhenLinksExist()
+    {
+        var passage = new ScholarPassage
+        {
+            LinkedTexts = new List<string> { "xml-p5/T/T0001/T0001.xml" }
+        };
+
+        Assert.True(passage.HasLinkedTexts);
+    }
+
+    [Fact]
+    public void HasLinkedTexts_FalseWhenEmpty()
+    {
+        var passage = new ScholarPassage();
+        Assert.False(passage.HasLinkedTexts);
+    }
+
+    [Fact]
+    public void LinkedTexts_PreservedOnDeserialization()
+    {
+        // Verify backward compat: a passage without LinkedTexts in JSON gets empty list
+        var json = """{"Id":"abc","SourceRelPath":"","ZhText":"","EnText":"","Notes":"","Tags":[],"MasterNames":[],"AddedUtc":"2026-01-01T00:00:00+00:00"}""";
+        var passage = System.Text.Json.JsonSerializer.Deserialize<ScholarPassage>(json);
+
+        Assert.NotNull(passage);
+        Assert.NotNull(passage!.LinkedTexts);
+        Assert.Empty(passage.LinkedTexts);
+    }
 }
 
 // ---- Helper stub for export/import tracking ----
