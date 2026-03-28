@@ -29,6 +29,26 @@ public sealed class TranslationAssistantBuildService : ITranslationAssistantBuil
         public DateTimeOffset? WrittenUtc { get; set; }
     }
 
+    public Task<bool> IsReferenceStaleAsync(string root, string translatedDir)
+    {
+        var refPath = Path.Combine(root, "translation-memory.reference.jsonl");
+        if (!File.Exists(refPath))
+            return Task.FromResult(true);
+
+        if (string.IsNullOrWhiteSpace(translatedDir) || !Directory.Exists(translatedDir))
+            return Task.FromResult(true);
+
+        var refWriteUtc = File.GetLastWriteTimeUtc(refPath);
+
+        foreach (var f in Directory.EnumerateFiles(translatedDir, "*.xml", SearchOption.AllDirectories))
+        {
+            if (File.GetLastWriteTimeUtc(f) > refWriteUtc)
+                return Task.FromResult(true);
+        }
+
+        return Task.FromResult(false);
+    }
+
     public async Task<int> BuildReferenceTranslationMemoryAsync(
         string root,
         string originalDir,

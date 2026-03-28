@@ -38,6 +38,8 @@ public interface ISearchIndexService : IDisposable
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 
+    Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir);
+
     IAsyncEnumerable<SearchResultGroup> SearchAllAsync(
         string root,
         string originalDir,

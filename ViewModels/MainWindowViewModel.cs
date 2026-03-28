@@ -42,6 +42,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ITranslationAssistantService _translationAssistant;
     private readonly ITranslationAssistantBuildService _translationAssistantBuilder;
     private readonly ITranslationReviewService _translationReview;
+    private readonly ISearchIndexService _searchIndex;
 
     // ---- Internal state ----
     private IndexedTranslationDocument? _indexedDoc;
@@ -68,6 +69,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private CancellationTokenSource? _navSearchCts;
     private CancellationTokenSource? _renderCts;
     private CancellationTokenSource? _assistantCts;
+    private CancellationTokenSource? _autoIndexCts;
+    private bool _isAutoIndexing;
 
     // Nav filter performance / race control
     private int _navFilterVersion;
@@ -193,7 +196,8 @@ public partial class MainWindowViewModel : ViewModelBase
         IIndexedTranslationService indexedTranslation,
         ITranslationAssistantService translationAssistant,
         ITranslationAssistantBuildService translationAssistantBuilder,
-        ITranslationReviewService translationReview)
+        ITranslationReviewService translationReview,
+        ISearchIndexService searchIndex)
     {
         _fileService = fileService;
         _configService = configService;
@@ -204,6 +208,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _translationAssistant = translationAssistant;
         _translationAssistantBuilder = translationAssistantBuilder;
         _translationReview = translationReview;
+        _searchIndex = searchIndex;
     }
 
     // ===========================================================
@@ -348,6 +353,71 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         await LoadFileListFromCacheOrBuildAsync();
+
+        QueueAutoIndexBuild();
+    }
+
+    private void QueueAutoIndexBuild()
+    {
+        if (_root == null || _originalDir == null || _translatedDir == null) return;
+
+        _autoIndexCts?.Cancel();
+        try { _autoIndexCts?.Dispose(); } catch { }
+        _autoIndexCts = new CancellationTokenSource();
+        var ct = _autoIndexCts.Token;
+
+        var root = _root;
+        var origDir = _originalDir;
+        var tranDir = _translatedDir;
+
+        _ = Task.Run(async () =>
+        {
+            _isAutoIndexing = true;
+            try
+            {
+                // Search index
+                bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDir);
+                if (searchStale && !ct.IsCancellationRequested)
+                {
+                    Dispatcher.UIThread.Post(() => SetStatus("Auto-updating search index..."));
+
+                    var progress = new Progress<(int done, int total, string phase)>(t =>
+                        Dispatcher.UIThread.Post(() => SetStatus($"Indexing: {t.phase} ({t.done}/{t.total})")));
+
+                    await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDir,
+                        forceRebuild: false, progress, ct);
+
+                    if (!ct.IsCancellationRequested)
+                        Dispatcher.UIThread.Post(() => SetStatus("Search index ready."));
+                }
+
+                // TM Reference
+                bool tmStale = await _translationAssistantBuilder.IsReferenceStaleAsync(root, tranDir);
+                if (tmStale && !ct.IsCancellationRequested)
+                {
+                    Dispatcher.UIThread.Post(() => SetStatus("Auto-building reference TM..."));
+
+                    var tmProgress = new Progress<(int done, int total, string status)>(t =>
+                        Dispatcher.UIThread.Post(() => SetStatus($"Building TM: {t.status} ({t.done}/{t.total})")));
+
+                    await _translationAssistantBuilder.BuildReferenceTranslationMemoryAsync(
+                        root, origDir, tranDir,
+                        rel => _zenTexts.IsZen(rel), tmProgress, ct);
+
+                    if (!ct.IsCancellationRequested)
+                        Dispatcher.UIThread.Post(() => SetStatus("Reference TM ready."));
+                }
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                Dispatcher.UIThread.Post(() => SetStatus($"Auto-index: {ex.Message}"));
+            }
+            finally
+            {
+                _isAutoIndexing = false;
+            }
+        }, ct);
     }
 
     /// <summary>
@@ -1793,6 +1863,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
         UpdateSaveButtonState();
         UpdateDirtyStateFromEditor(forceUi: true);
+
+        if (!_isAutoIndexing)
+            QueueAutoIndexBuild();
     }
 
     public void SetLastTabIndex(int idx)

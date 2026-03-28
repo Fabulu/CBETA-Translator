@@ -199,7 +199,8 @@ public partial class MainWindow : Window
             sp.GetRequiredService<IIndexedTranslationService>(),
             sp.GetRequiredService<ITranslationAssistantService>(),
             sp.GetRequiredService<ITranslationAssistantBuildService>(),
-            sp.GetRequiredService<ITranslationReviewService>());
+            sp.GetRequiredService<ITranslationReviewService>(),
+            sp.GetRequiredService<ISearchIndexService>());
 
         DataContext = _vm;
     }
@@ -610,6 +611,10 @@ public partial class MainWindow : Window
             {
                 _vm.HandleNavigationRequested(req);
             };
+            _scholarView.DictionaryRequested += async (_, _) =>
+            {
+                await _vm.OpenTermbaseEditorAsync();
+            };
 
             // Reload scholar data when ANY window (including secondary) adds a passage
             if (!IsSecondaryWindow)
@@ -673,6 +678,14 @@ public partial class MainWindow : Window
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
     {
+        // Ctrl+D — open dictionary from any tab
+        if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.D)
+        {
+            e.Handled = true;
+            _ = _vm.OpenTermbaseEditorAsync();
+            return;
+        }
+
         if (e.KeyModifiers != KeyModifiers.Alt) return;
         if (_tabs?.SelectedIndex != 1) return; // only active on Translation tab
 
@@ -898,6 +911,17 @@ public partial class MainWindow : Window
                 _vm.HandleTermsSaved();
                 _scholarView?.InvalidateTermbaseCache();
             };
+            win.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
+            win.AddToScholarRequested += (_, hit) =>
+            {
+                var passage = new ScholarPassage
+                {
+                    ZhText = hit.ZhSnippet,
+                    SourceRelPath = hit.SourceRelPath,
+                };
+                _scholarView?.AddPassage(passage);
+                _vm.SetStatus("Corpus hit added to Scholar collection.");
+            };
             win.Closed += (_, _) => _termbaseEditorWindow = null;
 
             _termbaseEditorWindow = win;
@@ -905,7 +929,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            _vm.SetStatus("Open termbase editor failed: " + ex.Message);
+            _vm.SetStatus("Open dictionary failed: " + ex.Message);
         }
     }
 

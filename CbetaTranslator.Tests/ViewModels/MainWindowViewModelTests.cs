@@ -18,7 +18,8 @@ public class MainWindowViewModelTests
             new StubIndexedTranslationService(),
             new StubTranslationAssistantService(),
             new StubTranslationAssistantBuildService(),
-            new StubTranslationReviewService());
+            new StubTranslationReviewService(),
+            new StubSearchIndexService());
     }
 
     // ---- Initial state ----

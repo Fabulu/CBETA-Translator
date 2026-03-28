@@ -20,6 +20,8 @@
                 ToolTip.Tip="Import collections from file" Padding="6,2" Margin="0,0,4,0"/>
         <Button Content="Export" DockPanel.Dock="Right" Command="{Binding ExportCollectionsCommand}"
                 ToolTip.Tip="Export collections to file" Padding="6,2" Margin="0,0,4,0"/>
+        <Button Content="Dict" DockPanel.Dock="Right" Name="BtnDictionary"
+                ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="6,2" Margin="0,0,4,0"/>
         <Button Content="Vocab" DockPanel.Dock="Right" Name="BtnVocabulary"
                 ToolTip.Tip="Vocabulary frequency analysis" Padding="6,2" Margin="0,0,4,0"/>
         <TextBlock Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>

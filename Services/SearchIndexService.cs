@@ -508,6 +508,43 @@ public sealed class SearchIndexService : ISearchIndexService
     public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
     public string GetCjk2ManifestPath(string root) => Path.Combine(root, Cjk2ManifestFileName);
 
+    public async Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir)
+    {
+        var manifestPath = GetManifestPath(root);
+        if (!File.Exists(manifestPath))
+            return true;
+
+        SearchIndexManifest? manifest;
+        try { manifest = await TryLoadAsync(root); }
+        catch { return true; }
+
+        if (manifest == null)
+            return true;
+
+        var manifestWriteUtc = File.GetLastWriteTimeUtc(manifestPath);
+
+        // Check if any XML file is newer than the manifest
+        var dirs = new[] { originalDir, translatedDir };
+        int fileCount = 0;
+        foreach (var dir in dirs)
+        {
+            if (!Directory.Exists(dir)) continue;
+            foreach (var f in Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
+            {
+                fileCount++;
+                if (File.GetLastWriteTimeUtc(f) > manifestWriteUtc)
+                    return true;
+            }
+        }
+
+        // If file count differs significantly from manifest entries, consider stale.
+        // Each XML file can appear as both original and translated side, so compare loosely.
+        if (manifest.Entries.Count == 0 && fileCount > 0)
+            return true;
+
+        return false;
+    }
+
     public void ClearBloomCache()
     {
         lock (_bloomLock)

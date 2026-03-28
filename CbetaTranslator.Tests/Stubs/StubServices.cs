@@ -118,6 +118,8 @@ public class StubSearchIndexService : ISearchIndexService
     public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
     public Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root) => Task.FromResult<SearchCjkBigramManifest?>(null);
 
+    public Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir) => Task.FromResult(false);
+
     public Task BuildAsync(string root, string originalDir, string translatedDir, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
 
@@ -212,6 +214,7 @@ public class StubTranslationAssistantService : ITranslationAssistantService
 
 public class StubTranslationAssistantBuildService : ITranslationAssistantBuildService
 {
+    public Task<bool> IsReferenceStaleAsync(string root, string translatedDir) => Task.FromResult(false);
     public Task<int> BuildReferenceTranslationMemoryAsync(string root, string originalDir, string translatedDir, Func<string, bool> isZen, IProgress<(int done, int total, string status)>? progress = null, CancellationToken ct = default) => Task.FromResult(0);
     public Task AppendApprovedEntryAsync(string root, CurrentSegmentContext ctx, string reviewStatus = "Approved", string translator = "User", CancellationToken ct = default) => Task.CompletedTask;
 }
