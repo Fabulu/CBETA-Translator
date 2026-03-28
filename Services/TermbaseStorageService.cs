@@ -34,7 +34,7 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
 
         var path = GetPath(root);
         if (!File.Exists(path))
-            return new List<TermbaseEntry>();
+            return GetSeedEntries();
 
         string json = await File.ReadAllTextAsync(path, Encoding.UTF8, ct);
         if (string.IsNullOrWhiteSpace(json))
@@ -181,4 +181,25 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
     {
         return Path.Combine(root, "termbase.json");
     }
+
+    private static List<TermbaseEntry> GetSeedEntries() => new()
+    {
+        new TermbaseEntry
+        {
+            SourceTerm = "狗",
+            PreferredTarget = "dog",
+            Status = "preferred",
+            Note = "Example entry. Often appears in koans (e.g., Zhaozhou's 'Does a dog have Buddha-nature?').",
+            WrittenUtc = DateTimeOffset.UtcNow
+        },
+        new TermbaseEntry
+        {
+            SourceTerm = "佛性",
+            PreferredTarget = "Buddha-nature",
+            AlternateTargets = new List<string> { "Buddha nature", "buddhadhātu" },
+            Status = "preferred",
+            Note = "Core Mahāyāna concept. The innate potential for awakening present in all sentient beings.",
+            WrittenUtc = DateTimeOffset.UtcNow
+        }
+    };
 }
