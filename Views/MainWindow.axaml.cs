@@ -336,7 +336,7 @@ public partial class MainWindow : Window
         _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
 
         // Termbase editor
-        _vm.OpenTermbaseEditorRequested = root => _ = OpenTermbaseEditorWindowAsync(root);
+        _vm.OpenTermbaseEditorRequested = (root, username) => _ = OpenTermbaseEditorWindowAsync(root, username);
 
         // Wire assistant title resolver
         _vm.SetAssistantTitleResolver?.Invoke(rel => _vm.ResolveAssistantTitle(rel));
@@ -505,6 +505,11 @@ public partial class MainWindow : Window
             _searchView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
+            };
+            _searchView.AddToScholarRequested += (_, passage) =>
+            {
+                _scholarView?.AddPassage(passage);
+                _vm.SetStatus("Passage added to Scholar collection.");
             };
         }
 
@@ -749,7 +754,7 @@ public partial class MainWindow : Window
     // Termbase editor window
     // ===========================================================
 
-    private async Task OpenTermbaseEditorWindowAsync(string root)
+    private async Task OpenTermbaseEditorWindowAsync(string root, string? username = null)
     {
         try
         {
@@ -776,12 +781,16 @@ public partial class MainWindow : Window
                 await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
             }
 
-            var win = new TermbaseEditorWindow(root)
+            var win = new TermbaseEditorWindow(root, username)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            win.TermsSaved += (_, _) => _vm.HandleTermsSaved();
+            win.TermsSaved += (_, _) =>
+            {
+                _vm.HandleTermsSaved();
+                _scholarView?.InvalidateTermbaseCache();
+            };
             win.Closed += (_, _) => _termbaseEditorWindow = null;
 
             _termbaseEditorWindow = win;

@@ -1918,13 +1918,13 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        OpenTermbaseEditorRequested?.Invoke(_root);
+        OpenTermbaseEditorRequested?.Invoke(_root, _config.Username);
     }
 
     /// <summary>
     /// Event for code-behind to handle termbase editor window creation.
     /// </summary>
-    public Action<string>? OpenTermbaseEditorRequested { get; set; }
+    public Action<string, string?>? OpenTermbaseEditorRequested { get; set; }
 
     // ===========================================================
     // TranslationTabView projection helpers

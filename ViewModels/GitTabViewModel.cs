@@ -45,6 +45,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly IGitHubApiService _api;
     private readonly ICommunityDataService _community;
     private readonly IScholarCollectionsService _scholarSvc;
+    private readonly ITermbaseStorageService _termbaseSvc;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -97,13 +98,15 @@ public partial class GitTabViewModel : ViewModelBase
         IGitHubAuthService auth,
         IGitHubApiService api,
         ICommunityDataService community,
-        IScholarCollectionsService scholarSvc)
+        IScholarCollectionsService scholarSvc,
+        ITermbaseStorageService termbaseSvc)
     {
         _git = git;
         _auth = auth;
         _api = api;
         _community = community;
         _scholarSvc = scholarSvc;
+        _termbaseSvc = termbaseSvc;
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -1202,6 +1205,38 @@ public partial class GitTabViewModel : ViewModelBase
                 FireDeviceFlowCompleted();
             }
 
+            // --- Write per-user termbase JSONL ---
+            ProgressText = "Writing per-user termbase JSONL\u2026";
+            var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
+            var localTermbase = await _termbaseSvc.LoadAsync(repoDir, ct);
+            await _termbaseSvc.WriteUserJsonlAsync(communityTbDir, _githubLogin!, localTermbase, ct);
+            var tbJsonlRelPath = Path.Combine("community", "termbases", _githubLogin + ".jsonl").Replace('\\', '/');
+            AppendLog($"[step] wrote {localTermbase.Count} term(s) to {tbJsonlRelPath}");
+
+            // Ensure .gitattributes has merge=union for termbase JSONL
+            var gitattribPath = Path.Combine(repoDir, ".gitattributes");
+            const string tbJsonlMergeRule = "community/termbases/*.jsonl merge=union";
+            bool tbGitattribChanged = false;
+            if (File.Exists(gitattribPath))
+            {
+                var content = await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct);
+                if (!content.Contains(tbJsonlMergeRule, StringComparison.Ordinal))
+                {
+                    if (!content.EndsWith("\n", StringComparison.Ordinal))
+                        content += "\n";
+                    content += tbJsonlMergeRule + "\n";
+                    await File.WriteAllTextAsync(gitattribPath, content, new UTF8Encoding(false), ct);
+                    tbGitattribChanged = true;
+                    AppendLog("[step] appended termbase merge=union rule to .gitattributes");
+                }
+            }
+            else
+            {
+                await File.WriteAllTextAsync(gitattribPath, tbJsonlMergeRule + "\n", new UTF8Encoding(false), ct);
+                tbGitattribChanged = true;
+                AppendLog("[step] created .gitattributes with termbase merge=union rule");
+            }
+
             // --- Commit ---
             string originalBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
             AppendLog("[git] current branch: " + originalBranch);
@@ -1222,6 +1257,26 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Stage failed.";
                     AppendLog("[error] " + stage.Error);
                     return;
+                }
+            }
+
+            // Stage per-user termbase JSONL
+            ProgressText = "Staging " + tbJsonlRelPath + "\u2026";
+            AppendLog("[step] git add -- " + tbJsonlRelPath);
+            var stageTbJsonl = await _git.StagePathAsync(repoDir, tbJsonlRelPath, prog, ct);
+            if (!stageTbJsonl.Success)
+            {
+                AppendLog("[warn] failed to stage termbase JSONL: " + stageTbJsonl.Error);
+            }
+
+            // Stage .gitattributes if changed by termbase JSONL rule
+            if (tbGitattribChanged)
+            {
+                AppendLog("[step] git add -- .gitattributes (termbase rule)");
+                var stageAttr = await _git.StagePathAsync(repoDir, ".gitattributes", prog, ct);
+                if (!stageAttr.Success)
+                {
+                    AppendLog("[warn] failed to stage .gitattributes: " + stageAttr.Error);
                 }
             }
 
@@ -1739,7 +1794,30 @@ public partial class GitTabViewModel : ViewModelBase
                     AppendLog("[info] community/collections/ not found in origin/main (skipping JSONL pull)");
                 }
 
-                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
+                // Community termbases JSONL (per-user)
+                int communityTbJsonlCount = 0;
+                ProgressText = "Pulling community termbase JSONL files\u2026";
+                AppendLog("[step] git checkout origin/main -- community/termbases/");
+                try
+                {
+                    var checkoutTbResult = await RunGitOutputAsync(repoDir, "checkout origin/main -- community/termbases/", null, ct);
+                    var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
+                    if (Directory.Exists(communityTbDir))
+                    {
+                        communityTbJsonlCount = Directory.GetFiles(communityTbDir, "*.jsonl").Length;
+                        AppendLog($"[info] community termbases: {communityTbJsonlCount} user JSONL file(s)");
+                    }
+                    else
+                    {
+                        AppendLog("[info] no community/termbases/ directory found in origin/main");
+                    }
+                }
+                catch
+                {
+                    AppendLog("[info] community/termbases/ not found in origin/main (skipping termbase JSONL pull)");
+                }
+
+                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
                 {
                     ProgressText = "No community data found in origin/main.";
                     AppendLog("[info] origin/main has no community data files yet");
