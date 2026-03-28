@@ -34,6 +34,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ICommunityDataService, CommunityDataService>();
         services.AddSingleton<IMarkdownTranslationService, MarkdownTranslationService>();
         services.AddSingleton<IScholarCollectionsService, ScholarCollectionsService>();
+        services.AddSingleton<IScholarExportService, ScholarExportService>();
         return services;
     }
 }

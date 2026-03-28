@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
+        x:Class="CbetaTranslator.App.Views.ComparePassagesWindow"
+        x:DataType="vm:ComparePassagesViewModel"
+        Width="900"
+        Height="700"
+        Title="Compare Passages"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="*,Auto" Margin="12">
+
+		<ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled">
+			<ItemsControl Name="PassageItems" ItemsSource="{Binding Items}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate x:DataType="vm:ComparePassageItem">
+						<Border Background="{DynamicResource PanelBg}"
+								BorderBrush="{DynamicResource BorderBrush}"
+								BorderThickness="1"
+								CornerRadius="6"
+								Padding="14"
+								Margin="0,0,0,10">
+							<StackPanel Spacing="8">
+								<!-- Source title -->
+								<TextBlock Text="{Binding SourceTitle}"
+										   FontSize="12"
+										   Foreground="{DynamicResource TextMutedFg}"/>
+
+								<!-- ZH text (populated in code-behind with highlights) -->
+								<TextBlock Name="ZhTextBlock"
+										   Tag="{Binding}"
+										   FontSize="18"
+										   FontFamily="Noto Serif CJK SC, Source Han Serif SC, SimSun, serif"
+										   TextWrapping="Wrap"
+										   LineHeight="32"
+										   Foreground="{DynamicResource TextFg}"/>
+
+								<!-- EN text -->
+								<TextBlock Text="{Binding Passage.EnText}"
+										   FontSize="14"
+										   TextWrapping="Wrap"
+										   Foreground="{DynamicResource TextFg}"
+										   Margin="0,4,0,0"/>
+
+								<!-- Tags -->
+								<TextBlock Text="{Binding Passage.TagsSummary}"
+										   FontSize="11"
+										   Foreground="{DynamicResource TextMutedFg}"
+										   IsVisible="{Binding Passage.HasTags}"/>
+
+								<!-- Masters -->
+								<TextBlock Text="{Binding Passage.MasterNamesSummary}"
+										   FontSize="11"
+										   Foreground="{DynamicResource TextMutedFg}"
+										   IsVisible="{Binding Passage.HasMasterNames}"/>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+
+		<Button Grid.Row="1"
+				Content="Close"
+				Width="100" Height="32"
+				HorizontalAlignment="Right"
+				Margin="0,8,0,0"
+				Click="OnCloseClick"/>
+	</Grid>
+
+</Window>

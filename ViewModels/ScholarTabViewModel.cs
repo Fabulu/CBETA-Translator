@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Avalonia.Threading;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
+using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -86,6 +87,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public Func<Task<string?>>? PickExportFileAsync { get; set; }
     public Func<Task<string?>>? PickImportFileAsync { get; set; }
+    public Func<Task<ScholarExportFormat?>>? PickExportFormatAsync { get; set; }
 
     // ----- Events -----
 
@@ -198,8 +200,14 @@ public partial class ScholarTabViewModel : ViewModelBase
     private void DeletePassage()
     {
         if (SelectedPassage == null || SelectedCollection == null) return;
+        var deletedId = SelectedPassage.Id;
         SelectedCollection.Passages.Remove(SelectedPassage);
         Passages.Remove(SelectedPassage);
+
+        // Clean up orphan links referencing the deleted passage
+        SelectedCollection.Links.RemoveAll(l =>
+            l.FromPassageId == deletedId || l.ToPassageId == deletedId);
+
         SelectedPassage = Passages.FirstOrDefault();
         _ = SafeFireAndForget(SaveAsync());
     }
@@ -229,13 +237,41 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         try
         {
+            // Ask user for export format first
+            ScholarExportFormat? chosenFormat = null;
+            if (PickExportFormatAsync != null)
+                chosenFormat = await PickExportFormatAsync();
+
+            // null means user cancelled the format dialog — fall back to JSON export
+            // (also used when PickExportFormatAsync is not wired)
+
             var path = await PickExportFileAsync();
             if (string.IsNullOrWhiteSpace(path)) return;
 
             SyncEditorFieldsToPassage();
-            var list = _allCollections.ToList();
-            await _svc.ExportAsync(path, list);
-            StatusMessage = $"Exported {list.Count} collection(s) to {Path.GetFileName(path)}.";
+
+            if (chosenFormat != null)
+            {
+                // Rich export via ScholarExportService
+                var exportSvc = App.Services.GetRequiredService<IScholarExportService>();
+                var target = SelectedCollection;
+                if (target == null)
+                {
+                    StatusMessage = "Select a collection to export.";
+                    StatusChanged?.Invoke(this, StatusMessage);
+                    return;
+                }
+                await exportSvc.ExportAsync(path, target, chosenFormat.Value);
+                StatusMessage = $"Exported '{target.Name}' as {chosenFormat.Value} to {Path.GetFileName(path)}.";
+            }
+            else
+            {
+                // Default JSON export of all collections
+                var list = _allCollections.ToList();
+                await _svc.ExportAsync(path, list);
+                StatusMessage = $"Exported {list.Count} collection(s) to {Path.GetFileName(path)}.";
+            }
+
             StatusChanged?.Invoke(this, StatusMessage);
         }
         catch (Exception ex)
@@ -475,6 +511,45 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         StatusMessage = $"Adopted passage to '{targetCollection.Name}'.";
         StatusChanged?.Invoke(this, StatusMessage);
+    }
+
+    // ----- Link management -----
+
+    public async Task CreateLinkAsync(string fromId, string toId, string relationType)
+    {
+        if (SelectedCollection == null) return;
+
+        var link = new PassageLink
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            FromPassageId = fromId,
+            ToPassageId = toId,
+            RelationType = relationType,
+            CreatedUtc = DateTimeOffset.UtcNow
+        };
+
+        SelectedCollection.Links.Add(link);
+        await SaveAsync();
+    }
+
+    public async Task RemoveLinkAsync(string linkId)
+    {
+        if (SelectedCollection == null) return;
+        SelectedCollection.Links.RemoveAll(l => l.Id == linkId);
+        await SaveAsync();
+    }
+
+    public List<PassageLink> GetLinksForPassage(string passageId)
+    {
+        if (SelectedCollection == null) return new List<PassageLink>();
+        return SelectedCollection.Links
+            .Where(l => l.FromPassageId == passageId || l.ToPassageId == passageId)
+            .ToList();
+    }
+
+    public ScholarPassage? FindPassageById(string passageId)
+    {
+        return SelectedCollection?.Passages.FirstOrDefault(p => p.Id == passageId);
     }
 
     // ----- Public API -----
