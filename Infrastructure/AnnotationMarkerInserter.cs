@@ -114,7 +114,7 @@ public static class AnnotationMarkerInserter
     // Marker kind detection (GENERAL + SAFE)
     // =========================
 
-    private static MarkerKind GetMarkerKind(DocAnnotation ann)
+    public static MarkerKind GetMarkerKind(DocAnnotation ann)
     {
         if (ann == null) return MarkerKind.Normal;
 
