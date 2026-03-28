@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -31,6 +33,10 @@ public partial class ScholarTabView : UserControl
     private readonly ITermbaseStorageService _termbaseStorage = App.Services.GetRequiredService<ITermbaseStorageService>();
     private List<TermbaseEntry>? _cachedTermbaseEntries;
     private string? _termbaseCacheRoot;
+
+    // Parallel passage finder
+    private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
+    private CancellationTokenSource? _parallelCts;
 
     // Assistant panel
     private readonly ITranslationAssistantService _assistantService = App.Services.GetRequiredService<ITranslationAssistantService>();
@@ -74,6 +80,8 @@ public partial class ScholarTabView : UserControl
             DisposeHoverDictionary();
             _assistantCts?.Cancel();
             _assistantCts?.Dispose();
+            _parallelCts?.Cancel();
+            _parallelCts?.Dispose();
         };
     }
 
@@ -102,6 +110,43 @@ public partial class ScholarTabView : UserControl
         if (btnCompare != null)
         {
             btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
+        }
+
+        // Find Parallels button
+        var btnFindParallels = this.FindControl<Button>("BtnFindParallels");
+        if (btnFindParallels != null)
+        {
+            btnFindParallels.Click += async (_, _) => await OnFindParallelsClickedAsync(btnFindParallels);
+        }
+
+        // Insert Reference — populate list when flyout opens, handle selection
+        var refList = this.FindControl<ListBox>("ReferencePassageList");
+        if (refList != null)
+        {
+            refList.SelectionChanged += (_, _) =>
+            {
+                if (refList.SelectedItem is ScholarPassage p)
+                {
+                    InsertPassageReference(p);
+                    refList.SelectedItem = null;
+                    // Close the flyout
+                    var btn = this.FindControl<Button>("BtnInsertReference");
+                    if (btn?.Flyout is Flyout fly) fly.Hide();
+                }
+            };
+        }
+
+        var btnInsertRef = this.FindControl<Button>("BtnInsertReference");
+        if (btnInsertRef?.Flyout is Flyout flyout)
+        {
+            flyout.Opening += (_, _) =>
+            {
+                var list = this.FindControl<ListBox>("ReferencePassageList");
+                if (list != null && _vm.SelectedCollection != null)
+                {
+                    list.ItemsSource = _vm.SelectedCollection.Passages;
+                }
+            };
         }
 
         // Update detail text fields when selected passage changes
@@ -175,6 +220,10 @@ public partial class ScholarTabView : UserControl
         _vm.PassageNotes = passage?.Notes ?? "";
         _vm.PassageTags = passage != null ? string.Join(", ", passage.Tags) : "";
         _vm.PassageMasterNames = passage != null ? string.Join(", ", passage.MasterNames) : "";
+        _vm.DoctrinalTopic = passage?.DoctrinalTopic ?? "";
+        _vm.LiteraryForm = passage?.LiteraryForm ?? "";
+        _vm.Lineage = passage?.Lineage ?? "";
+        _vm.RhetoricalFunction = passage?.RhetoricalFunction ?? "";
 
         SetupHoverDictionary();
         _ = UpdateTermbaseHitsAsync(passage?.ZhText);
@@ -601,6 +650,127 @@ public partial class ScholarTabView : UserControl
 
             Content = root;
         }
+    }
+
+    // ----- Find Parallels -----
+
+    private async Task OnFindParallelsClickedAsync(Button anchorButton)
+    {
+        var passage = _vm.SelectedPassage ?? _vm.SelectedCommunityPassage;
+        if (passage == null || string.IsNullOrWhiteSpace(passage.ZhText))
+        {
+            Status?.Invoke(this, "Select a passage with Chinese text first.");
+            return;
+        }
+
+        var root = _vm.GetRoot();
+        if (string.IsNullOrWhiteSpace(root))
+        {
+            Status?.Invoke(this, "No corpus root loaded.");
+            return;
+        }
+
+        _parallelCts?.Cancel();
+        _parallelCts?.Dispose();
+        _parallelCts = new CancellationTokenSource();
+        var ct = _parallelCts.Token;
+
+        Status?.Invoke(this, "Searching for parallel passages...");
+
+        try
+        {
+            var origDir = _originalDir ?? Infrastructure.AppPaths.GetOriginalDir(root);
+            var tranDir = _translatedDir ?? Infrastructure.AppPaths.GetTranslatedDir(root);
+
+            var results = await _parallelFinder.FindParallelsAsync(
+                passage.ZhText, root, origDir, tranDir, ct);
+
+            if (ct.IsCancellationRequested) return;
+
+            if (results.Count == 0)
+            {
+                Status?.Invoke(this, "No parallel passages found.");
+                return;
+            }
+
+            Status?.Invoke(this, $"Found {results.Count} parallel passage(s).");
+
+            // Show results in a flyout
+            ShowParallelResultsFlyout(anchorButton, results);
+        }
+        catch (Exception ex)
+        {
+            if (!ct.IsCancellationRequested)
+                Status?.Invoke(this, "Parallel search failed: " + ex.Message);
+        }
+    }
+
+    private void ShowParallelResultsFlyout(Button anchor, List<ParallelPassageResult> results)
+    {
+        var listBox = new ListBox
+        {
+            MaxHeight = 400,
+            MinWidth = 350,
+            ItemsSource = results
+        };
+
+        listBox.ItemTemplate = new Avalonia.Controls.Templates.FuncDataTemplate<ParallelPassageResult>((r, _) =>
+        {
+            var sp = new StackPanel { Margin = new Thickness(2) };
+            var snippet = r.Snippet.Length > 50 ? r.Snippet[..50] + "..." : r.Snippet;
+            sp.Children.Add(new TextBlock
+            {
+                Text = snippet,
+                FontWeight = FontWeight.SemiBold,
+                TextTrimming = TextTrimming.CharacterEllipsis
+            });
+            sp.Children.Add(new TextBlock
+            {
+                Text = $"{r.RelPath}  (overlap: {r.OverlapScore}%)",
+                FontSize = 10,
+                Opacity = 0.6
+            });
+            return sp;
+        });
+
+        listBox.SelectionChanged += (_, _) =>
+        {
+            if (listBox.SelectedItem is ParallelPassageResult r)
+            {
+                NavigationRequested?.Invoke(this, new NavigationRequest
+                {
+                    RelPath = r.RelPath,
+                    MatchText = r.Snippet.Length > 30 ? r.Snippet[..30] : r.Snippet
+                });
+            }
+        };
+
+        var flyout = new Flyout
+        {
+            Content = listBox,
+            Placement = PlacementMode.BottomEdgeAlignedLeft
+        };
+
+        flyout.ShowAt(anchor);
+    }
+
+    // ----- Insert Reference -----
+
+    private void InsertPassageReference(ScholarPassage passage)
+    {
+        var txtStudyNotes = this.FindControl<TextBox>("TxtStudyNotes");
+        if (txtStudyNotes == null) return;
+
+        var reference = $"[[{passage.Id}]]";
+        var caretIndex = txtStudyNotes.CaretIndex;
+        var currentText = txtStudyNotes.Text ?? "";
+
+        if (caretIndex < 0 || caretIndex > currentText.Length)
+            caretIndex = currentText.Length;
+
+        var newText = currentText.Insert(caretIndex, reference);
+        txtStudyNotes.Text = newText;
+        txtStudyNotes.CaretIndex = caretIndex + reference.Length;
     }
 
     // ----- Assistant panel -----

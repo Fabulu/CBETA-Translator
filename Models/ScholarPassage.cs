@@ -20,6 +20,12 @@ public sealed class ScholarPassage
     public int? StartBlockNumber { get; set; }
     public int? EndBlockNumber { get; set; }
 
+    // Facet categorization
+    public string? DoctrinalTopic { get; set; }
+    public string? LiteraryForm { get; set; }
+    public string? Lineage { get; set; }
+    public string? RhetoricalFunction { get; set; }
+
     // Display helpers (not serialized)
     [JsonIgnore]
     public string TagsSummary => Tags.Count > 0 ? "Tags: " + string.Join(", ", Tags) : "";
@@ -42,4 +48,5 @@ public sealed class ScholarCollection
     public string? CreatedBy { get; set; }
     public List<ScholarPassage> Passages { get; set; } = new();
     public List<PassageLink> Links { get; set; } = new();
+    public string StudyNotes { get; set; } = "";
 }

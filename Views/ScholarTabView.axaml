@@ -162,81 +162,152 @@
 
     <!-- Right: Detail editor -->
     <Border Grid.Column="2" CornerRadius="6" Padding="12" Margin="4">
-      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+      <Grid RowDefinitions="*,Auto">
+        <!-- Tab area -->
+        <TabControl Grid.Row="0">
+          <TabItem Header="Detail">
+            <ScrollViewer>
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="4">
 
-        <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
+                <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
 
-        <!-- Source file -->
-        <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,8"/>
+                <!-- Source file -->
+                <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,8"/>
 
-        <!-- Chinese text (TextBox for hover dictionary support) -->
-        <Border Grid.Row="2" CornerRadius="4" Padding="8" Margin="0,0,0,4">
-          <ScrollViewer MaxHeight="200">
-            <TextBox Name="TxtZhText" Text="" TextWrapping="Wrap" FontSize="14"
-                     IsReadOnly="True" BorderThickness="0" Background="Transparent"
-                     Padding="0" Margin="0"/>
-          </ScrollViewer>
-        </Border>
+                <!-- Chinese text (TextBox for hover dictionary support) -->
+                <Border Grid.Row="2" CornerRadius="4" Padding="8" Margin="0,0,0,4">
+                  <ScrollViewer MaxHeight="200">
+                    <TextBox Name="TxtZhText" Text="" TextWrapping="Wrap" FontSize="14"
+                             IsReadOnly="True" BorderThickness="0" Background="Transparent"
+                             Padding="0" Margin="0"/>
+                  </ScrollViewer>
+                </Border>
 
-        <!-- Termbase hits for current passage -->
-        <ItemsControl Name="PnlTermbaseHits" Grid.Row="3" Margin="8,0,0,8"
-                      IsVisible="False">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <WrapPanel Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-        </ItemsControl>
+                <!-- Termbase hits for current passage -->
+                <ItemsControl Name="PnlTermbaseHits" Grid.Row="3" Margin="8,0,0,8"
+                              IsVisible="False">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
-        <!-- English text -->
-        <Border Grid.Row="4" CornerRadius="4" Padding="8" Margin="0,0,0,8">
-          <ScrollViewer MaxHeight="200">
-            <TextBlock Name="TxtEnText" Text="" TextWrapping="Wrap" FontSize="14"/>
-          </ScrollViewer>
-        </Border>
+                <!-- English text -->
+                <Border Grid.Row="4" CornerRadius="4" Padding="8" Margin="0,0,0,8">
+                  <ScrollViewer MaxHeight="200">
+                    <TextBlock Name="TxtEnText" Text="" TextWrapping="Wrap" FontSize="14"/>
+                  </ScrollViewer>
+                </Border>
 
-        <!-- Tags -->
-        <DockPanel Grid.Row="5" Margin="0,0,0,4">
-          <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
-          <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
-                   ToolTip.Tip="Tag this passage (e.g., enlightenment, lecture, master-on-master)"/>
-        </DockPanel>
+                <!-- Tags -->
+                <DockPanel Grid.Row="5" Margin="0,0,0,4">
+                  <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
+                  <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
+                           ToolTip.Tip="Tag this passage (e.g., enlightenment, lecture, master-on-master)"/>
+                </DockPanel>
 
-        <!-- Master Names -->
-        <DockPanel Grid.Row="6" Margin="0,0,0,4">
-          <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
-          <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
-                   ToolTip.Tip="Masters mentioned (e.g., Nanquan, Zhaozhou)"/>
-        </DockPanel>
+                <!-- Master Names -->
+                <DockPanel Grid.Row="6" Margin="0,0,0,4">
+                  <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
+                  <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
+                           ToolTip.Tip="Masters mentioned (e.g., Nanquan, Zhaozhou)"/>
+                </DockPanel>
 
-        <!-- Notes -->
-        <DockPanel Grid.Row="7" Margin="0,0,0,4">
-          <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
-          <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
-                   AcceptsReturn="True" TextWrapping="Wrap" Height="80"
-                   ToolTip.Tip="Your personal notes about this passage"/>
-        </DockPanel>
+                <!-- Notes -->
+                <DockPanel Grid.Row="7" Margin="0,0,0,4">
+                  <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
+                  <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
+                           AcceptsReturn="True" TextWrapping="Wrap" Height="80"
+                           ToolTip.Tip="Your personal notes about this passage"/>
+                </DockPanel>
 
-        <!-- Actions -->
-        <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
-          <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"
-                  ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
-          <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
-        </StackPanel>
+                <!-- Actions -->
+                <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
+                  <Button Name="BtnFindParallels" Content="Find Parallels"
+                          ToolTip.Tip="Search the corpus for parallel passages" Padding="12,4"/>
+                  <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"
+                          ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
+                  <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
+                </StackPanel>
+              </Grid>
+            </ScrollViewer>
+          </TabItem>
 
-        <!-- Links -->
-        <Expander Grid.Row="9" Header="Links" IsExpanded="False" Margin="0,8,0,0" Name="LinksExpander">
-          <ItemsControl Name="PnlLinks">
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <StackPanel Spacing="4"/>
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-          </ItemsControl>
-        </Expander>
+          <TabItem Header="Categories">
+            <ScrollViewer>
+              <StackPanel Spacing="12" Margin="8">
+                <DockPanel>
+                  <TextBlock Text="Doctrinal Topic" Width="130" VerticalAlignment="Center"/>
+                  <ComboBox IsEditable="True" ItemsSource="{Binding DoctrinalTopicOptions}"
+                            Text="{Binding DoctrinalTopic}" HorizontalAlignment="Stretch"
+                                    />
+                </DockPanel>
+                <DockPanel>
+                  <TextBlock Text="Literary Form" Width="130" VerticalAlignment="Center"/>
+                  <ComboBox IsEditable="True" ItemsSource="{Binding LiteraryFormOptions}"
+                            Text="{Binding LiteraryForm}" HorizontalAlignment="Stretch"
+                                    />
+                </DockPanel>
+                <DockPanel>
+                  <TextBlock Text="Lineage" Width="130" VerticalAlignment="Center"/>
+                  <ComboBox IsEditable="True" ItemsSource="{Binding LineageOptions}"
+                            Text="{Binding Lineage}" HorizontalAlignment="Stretch"
+                                    />
+                </DockPanel>
+                <DockPanel>
+                  <TextBlock Text="Rhetorical Function" Width="130" VerticalAlignment="Center"/>
+                  <ComboBox IsEditable="True" ItemsSource="{Binding RhetoricalFunctionOptions}"
+                            Text="{Binding RhetoricalFunction}" HorizontalAlignment="Stretch"
+                                    />
+                </DockPanel>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
 
-        <!-- Scholar Assistant -->
-        <Expander Grid.Row="10" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
+          <TabItem Header="Links">
+            <ScrollViewer>
+              <StackPanel Margin="8">
+                <ItemsControl Name="PnlLinks">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <StackPanel Spacing="4"/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                </ItemsControl>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+
+          <TabItem Header="Notes">
+            <Grid RowDefinitions="Auto,*" Margin="8">
+              <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+                <Button Name="BtnInsertReference" Content="Insert Reference"
+                        ToolTip.Tip="Insert a [[passage-id]] reference at cursor position" Padding="8,4">
+                  <Button.Flyout>
+                    <Flyout Placement="BottomEdgeAlignedLeft">
+                      <ListBox Name="ReferencePassageList" MaxHeight="300" MinWidth="300">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="models:ScholarPassage">
+                            <TextBlock Text="{Binding ZhText}" TextTrimming="CharacterEllipsis"
+                                       MaxLines="1" MaxWidth="280"/>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Flyout>
+                  </Button.Flyout>
+                </Button>
+              </StackPanel>
+              <TextBox Grid.Row="1" Name="TxtStudyNotes" Text="{Binding StudyNotes}"
+                       AcceptsReturn="True" TextWrapping="Wrap"
+                       Watermark="Collection study notes... Use Insert Reference to embed [[passage-id]] links."
+                       VerticalAlignment="Stretch"/>
+            </Grid>
+          </TabItem>
+        </TabControl>
+
+        <!-- Scholar Assistant stays outside TabControl, always visible -->
+        <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
           <ScrollViewer MaxHeight="500">
             <StackPanel Spacing="8" Margin="4">
               <Border CornerRadius="4" Padding="6">

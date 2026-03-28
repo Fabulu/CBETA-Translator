@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using CbetaTranslator.App.Models;
@@ -34,7 +35,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private string _collectionFilter = "";
 
     public static string[] SearchFilterModes { get; } =
-        { "All", "Tags", "Masters", "Chinese", "English", "Notes" };
+        { "All", "Tags", "Masters", "Chinese", "English", "Notes", "Topic", "Form", "Lineage", "Function" };
 
     [ObservableProperty]
     private ScholarCollection? _selectedCollection;
@@ -54,6 +55,29 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private string _passageMasterNames = "";
+
+    // Facet categorization fields
+    [ObservableProperty]
+    private string _doctrinalTopic = "";
+
+    [ObservableProperty]
+    private string _literaryForm = "";
+
+    [ObservableProperty]
+    private string _lineage = "";
+
+    [ObservableProperty]
+    private string _rhetoricalFunction = "";
+
+    // Study notes (per-collection)
+    [ObservableProperty]
+    private string _studyNotes = "";
+
+    // Facet dropdown options
+    public ObservableCollection<string> DoctrinalTopicOptions { get; } = new();
+    public ObservableCollection<string> LiteraryFormOptions { get; } = new();
+    public ObservableCollection<string> LineageOptions { get; } = new();
+    public ObservableCollection<string> RhetoricalFunctionOptions { get; } = new();
 
     // Community collections
     [ObservableProperty]
@@ -99,6 +123,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     public ScholarTabViewModel(IScholarCollectionsService svc)
     {
         _svc = svc ?? throw new ArgumentNullException(nameof(svc));
+        LoadFacetOptions();
     }
 
     // ----- Public wiring -----
@@ -577,6 +602,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     partial void OnSelectedCollectionChanged(ScholarCollection? value)
     {
+        StudyNotes = value?.StudyNotes ?? "";
         RefreshPassagesList();
     }
 
@@ -642,11 +668,19 @@ public partial class ScholarTabViewModel : ViewModelBase
                 "Chinese" => (p.ZhText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
                 "English" => (p.EnText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
                 "Notes" => (p.Notes ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "Topic" => (p.DoctrinalTopic ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "Form" => (p.LiteraryForm ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "Lineage" => (p.Lineage ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "Function" => (p.RhetoricalFunction ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
                 _ => p.Tags.Any(t => t.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
                      p.MasterNames.Any(m => m.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
                      (p.ZhText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
                      (p.EnText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                     (p.Notes ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase)
+                     (p.Notes ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.DoctrinalTopic ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.LiteraryForm ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.Lineage ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.RhetoricalFunction ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase)
             });
         }
 
@@ -663,14 +697,23 @@ public partial class ScholarTabViewModel : ViewModelBase
             PassageNotes = value.Notes ?? "";
             PassageTags = string.Join(", ", value.Tags ?? new List<string>());
             PassageMasterNames = string.Join(", ", value.MasterNames ?? new List<string>());
+            DoctrinalTopic = value.DoctrinalTopic ?? "";
+            LiteraryForm = value.LiteraryForm ?? "";
+            Lineage = value.Lineage ?? "";
+            RhetoricalFunction = value.RhetoricalFunction ?? "";
         }
         else
         {
             PassageNotes = "";
             PassageTags = "";
             PassageMasterNames = "";
+            DoctrinalTopic = "";
+            LiteraryForm = "";
+            Lineage = "";
+            RhetoricalFunction = "";
         }
     }
+
 
     // ----- Helpers -----
 
@@ -681,7 +724,54 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedPassage.Notes = PassageNotes ?? "";
         SelectedPassage.Tags = SplitCommaSeparated(PassageTags);
         SelectedPassage.MasterNames = SplitCommaSeparated(PassageMasterNames);
+        SelectedPassage.DoctrinalTopic = string.IsNullOrWhiteSpace(DoctrinalTopic) ? null : DoctrinalTopic.Trim();
+        SelectedPassage.LiteraryForm = string.IsNullOrWhiteSpace(LiteraryForm) ? null : LiteraryForm.Trim();
+        SelectedPassage.Lineage = string.IsNullOrWhiteSpace(Lineage) ? null : Lineage.Trim();
+        SelectedPassage.RhetoricalFunction = string.IsNullOrWhiteSpace(RhetoricalFunction) ? null : RhetoricalFunction.Trim();
         SelectedPassage.ModifiedUtc = DateTimeOffset.UtcNow;
+
+        // Sync study notes back to collection
+        if (SelectedCollection != null)
+            SelectedCollection.StudyNotes = StudyNotes ?? "";
+    }
+
+    private void LoadFacetOptions()
+    {
+        // Hardcoded defaults
+        string[] defaultDoctrinalTopics = { "Buddha-nature", "Emptiness", "Dependent origination", "Karma", "Nirvana", "Precepts", "Meditation", "Wisdom", "Compassion", "Mind-only", "Sudden awakening", "Gradual cultivation" };
+        string[] defaultLiteraryForms = { "Koan case", "Verse commentary", "Prose commentary", "Encounter dialogue", "Dharma talk", "Transmission record", "Sutra", "Letter", "Preface", "Biography" };
+        string[] defaultLineages = { "Linji/Rinzai", "Caodong/Soto", "Yunmen", "Fayan", "Guiyang", "Hongzhou", "Niutou", "Early Chan", "Pre-Chan" };
+        string[] defaultRhetoricalFunctions = { "Assertion", "Negation", "Paradox", "Question", "Narrative", "Exhortation", "Pedagogy", "Polemic" };
+
+        try
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var facetsPath = Path.Combine(baseDir, "Assets", "Data", "scholar-facets.json");
+            if (File.Exists(facetsPath))
+            {
+                var json = File.ReadAllText(facetsPath);
+                using var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+
+                if (root.TryGetProperty("doctrinalTopics", out var dt))
+                    defaultDoctrinalTopics = dt.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s.Length > 0).ToArray();
+                if (root.TryGetProperty("literaryForms", out var lf))
+                    defaultLiteraryForms = lf.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s.Length > 0).ToArray();
+                if (root.TryGetProperty("lineages", out var ln))
+                    defaultLineages = ln.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s.Length > 0).ToArray();
+                if (root.TryGetProperty("rhetoricalFunctions", out var rf))
+                    defaultRhetoricalFunctions = rf.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s.Length > 0).ToArray();
+            }
+        }
+        catch
+        {
+            // Fall through to defaults
+        }
+
+        foreach (var s in defaultDoctrinalTopics) DoctrinalTopicOptions.Add(s);
+        foreach (var s in defaultLiteraryForms) LiteraryFormOptions.Add(s);
+        foreach (var s in defaultLineages) LineageOptions.Add(s);
+        foreach (var s in defaultRhetoricalFunctions) RhetoricalFunctionOptions.Add(s);
     }
 
     private static List<string> SplitCommaSeparated(string? input)
