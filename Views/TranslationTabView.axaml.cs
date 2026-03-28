@@ -211,22 +211,42 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Try to determine current block's ZH and EN text from the projection format
         var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
-        int caret = _editor.CaretOffset;
-        int ix = FindBlockIndexAtOrAfterCaret(blocks, caret);
+        if (blocks.Count == 0) return;
 
-        string zh = "";
-        string en = "";
-        if (ix >= 0 && ix < blocks.Count)
+        // Find all blocks overlapping the selection
+        int selStart = _editor.SelectionStart;
+        int selEnd = selStart + _editor.SelectionLength;
+
+        var overlapping = new List<ProjectionBlockInfo>();
+        for (int i = 0; i < blocks.Count; i++)
         {
-            zh = blocks[ix].Zh ?? "";
-            en = blocks[ix].En ?? "";
+            var b = blocks[i];
+            if (b.BlockStartOffset < selEnd && b.BlockEndOffsetExclusive > selStart)
+                overlapping.Add(b);
         }
 
-        // If the user has a selection, use it for the appropriate field based on content
-        if (!string.IsNullOrWhiteSpace(selectedText))
+        string zh;
+        string en;
+        int? startBlock = null;
+        int? endBlock = null;
+
+        if (overlapping.Count > 0)
         {
+            // Multi-block (or single block): concatenate all overlapping blocks
+            zh = string.Join("\n", overlapping.Select(b => b.Zh ?? "").Where(s => !string.IsNullOrWhiteSpace(s)));
+            en = string.Join("\n", overlapping.Select(b => b.En ?? "").Where(s => !string.IsNullOrWhiteSpace(s)));
+            startBlock = overlapping[0].BlockNumber;
+            endBlock = overlapping[overlapping.Count - 1].BlockNumber;
+        }
+        else
+        {
+            // Fallback: selection is outside any block (e.g. header text)
+            int caret = _editor.CaretOffset;
+            int ix = FindBlockIndexAtOrAfterCaret(blocks, caret);
+            zh = ix >= 0 && ix < blocks.Count ? blocks[ix].Zh ?? "" : "";
+            en = ix >= 0 && ix < blocks.Count ? blocks[ix].En ?? "" : "";
+
             if (ContainsChineseChar(selectedText))
                 zh = selectedText;
             else
@@ -237,7 +257,9 @@ public partial class TranslationTabView : UserControl
         {
             ZhText = zh,
             EnText = en,
-            SourceRelPath = _vm.CurrentOriginalPath ?? ""
+            SourceRelPath = _vm.CurrentOriginalPath ?? "",
+            StartBlockNumber = startBlock,
+            EndBlockNumber = endBlock
         };
 
         AddToScholarRequested?.Invoke(this, passage);
@@ -1771,7 +1793,8 @@ STRICT RULES:
             titleResolver: rel => _vm.ResolveAssistantTitle(rel),
             brushResolver: key => GetResourceBrush(key),
             postProcessor: editor => AttachAssistantHover(editor),
-            navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req));
+            navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
+            addToScholarHandler: passage => AddToScholarRequested?.Invoke(this, passage));
     }
 
     private static string FirstChars(string s, int count)

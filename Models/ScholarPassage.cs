@@ -17,6 +17,8 @@ public sealed class ScholarPassage
     public DateTimeOffset AddedUtc { get; set; }
     public DateTimeOffset? ModifiedUtc { get; set; }
     public string? CreatedBy { get; set; }
+    public int? StartBlockNumber { get; set; }
+    public int? EndBlockNumber { get; set; }
 
     // Display helpers (not serialized)
     [JsonIgnore]

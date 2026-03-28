@@ -41,6 +41,7 @@ internal static class AssistantPanelRenderer
     /// <param name="brushResolver">Resolves a resource key to an IBrush.</param>
     /// <param name="postProcessor">Called on each TextEditor after creation (e.g. to attach hover).</param>
     /// <param name="navigationHandler">Attached as double-click handler on TM cards.</param>
+    /// <param name="addToScholarHandler">If set, a right-click context menu is added to TM/term cards to add passages to the scholar collection.</param>
     public static void RenderSnapshot(
         TranslationAssistantSnapshot? snapshot,
         StackPanel? qaHost,
@@ -50,7 +51,8 @@ internal static class AssistantPanelRenderer
         Func<string?, string>? titleResolver = null,
         Func<string, IBrush?>? brushResolver = null,
         Action<TextEditor>? postProcessor = null,
-        EventHandler<NavigationRequest>? navigationHandler = null)
+        EventHandler<NavigationRequest>? navigationHandler = null,
+        Action<ScholarPassage>? addToScholarHandler = null)
     {
         if (approvedTmHost != null) approvedTmHost.Children.Clear();
         if (referenceTmHost != null) referenceTmHost.Children.Clear();
@@ -63,19 +65,19 @@ internal static class AssistantPanelRenderer
         if (approvedTmHost != null)
         {
             foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
-                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler));
+                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
         }
 
         if (referenceTmHost != null)
         {
             foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
-                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler));
+                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
         }
 
         if (termHost != null)
         {
             foreach (var t in snapshot.Terms ?? new List<TermHit>())
-                termHost.Children.Add(BuildTermEntryControl(snapshot, t, brushResolver, postProcessor));
+                termHost.Children.Add(BuildTermEntryControl(snapshot, t, brushResolver, postProcessor, addToScholarHandler));
         }
 
         if (qaHost != null)
@@ -91,7 +93,8 @@ internal static class AssistantPanelRenderer
         Func<string?, string>? titleResolver = null,
         Func<string, IBrush?>? brushResolver = null,
         Action<TextEditor>? postProcessor = null,
-        EventHandler<NavigationRequest>? navigationHandler = null)
+        EventHandler<NavigationRequest>? navigationHandler = null,
+        Action<ScholarPassage>? addToScholarHandler = null)
     {
         string title = titleResolver?.Invoke(match.RelPath) ?? match.RelPath ?? "";
         string currentZh = snapshot.Segment?.ZhText ?? "";
@@ -137,6 +140,24 @@ internal static class AssistantPanelRenderer
                 RoutingStrategies.Tunnel);
         }
 
+        if (addToScholarHandler != null)
+        {
+            var menuItem = new MenuItem { Header = "Add to Scholar Collection" };
+            menuItem.Click += (_, _) =>
+            {
+                var passage = new ScholarPassage
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    ZhText = match.SourceText ?? "",
+                    EnText = match.TargetText ?? "",
+                    SourceRelPath = match.RelPath ?? "",
+                    AddedUtc = DateTimeOffset.UtcNow
+                };
+                addToScholarHandler(passage);
+            };
+            border.ContextMenu = new ContextMenu { Items = { menuItem } };
+        }
+
         return border;
     }
 
@@ -144,7 +165,8 @@ internal static class AssistantPanelRenderer
         TranslationAssistantSnapshot snapshot,
         TermHit term,
         Func<string, IBrush?>? brushResolver = null,
-        Action<TextEditor>? postProcessor = null)
+        Action<TextEditor>? postProcessor = null,
+        Action<ScholarPassage>? addToScholarHandler = null)
     {
         string currentZh = snapshot.Segment?.ZhText ?? "";
         string editorText = BuildTermEditorText(term);
@@ -152,7 +174,7 @@ internal static class AssistantPanelRenderer
 
         var editor = BuildAssistantEditor(editorText, ranges, minHeight: 70, maxHeight: 180, brushResolver, postProcessor);
 
-        return new Border
+        var border = new Border
         {
             BorderBrush = brushResolver?.Invoke("BorderBrush"),
             BorderThickness = new Thickness(1),
@@ -160,6 +182,26 @@ internal static class AssistantPanelRenderer
             Padding = new Thickness(6),
             Child = editor
         };
+
+        if (addToScholarHandler != null)
+        {
+            var menuItem = new MenuItem { Header = "Add to Scholar Collection" };
+            menuItem.Click += (_, _) =>
+            {
+                var passage = new ScholarPassage
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    ZhText = term.SourceTerm ?? "",
+                    EnText = term.PreferredTarget ?? "",
+                    SourceRelPath = "",
+                    AddedUtc = DateTimeOffset.UtcNow
+                };
+                addToScholarHandler(passage);
+            };
+            border.ContextMenu = new ContextMenu { Items = { menuItem } };
+        }
+
+        return border;
     }
 
     public static Control BuildQaEntryControl(

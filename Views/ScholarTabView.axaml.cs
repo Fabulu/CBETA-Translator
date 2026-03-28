@@ -349,7 +349,8 @@ public partial class ScholarTabView : UserControl
                 _scholarQaHost, _scholarTermHost,
                 _scholarApprovedTmHost, _scholarReferenceTmHost,
                 brushResolver: GetAssistantBrush,
-                navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req));
+                navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
+                addToScholarHandler: passage => AddPassage(passage));
         }
         catch { /* assistant must never break scholar */ }
     }

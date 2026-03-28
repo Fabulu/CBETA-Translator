@@ -205,9 +205,10 @@ public partial class ScholarTabViewModel : ViewModelBase
         NavigationRequested?.Invoke(this, new NavigationRequest
         {
             RelPath = SelectedPassage.SourceRelPath,
-            MatchText = SelectedPassage.ZhText.Length > 20
-                ? SelectedPassage.ZhText[..20]
-                : SelectedPassage.ZhText
+            MatchText = SelectedPassage.ZhText.Length > 80
+                ? SelectedPassage.ZhText[..80]
+                : SelectedPassage.ZhText,
+            AnchorStartHint = SelectedPassage.StartBlockNumber
         });
     }
 
