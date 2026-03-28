@@ -286,21 +286,57 @@ public partial class ReadableTabView : UserControl
         var otherEditor = isTranslated ? _aeOrig : _aeTran;
         string otherText = otherEditor?.SelectedText ?? "";
 
-        // If the other pane has no selection, try segment mapping
+        // If the other pane has no selection, try multi-segment mapping
         if (string.IsNullOrWhiteSpace(otherText) && otherEditor != null)
         {
             var srcDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
             var dstDoc = isTranslated ? _vm.RenderOrig : _vm.RenderTran;
 
-            int caret = GetCaretOffsetSafe(editor);
-            if (caret >= 0 && !srcDoc.IsEmpty && !dstDoc.IsEmpty
-                && _selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg))
+            int selStart = GetSelectionStartSafe(editor);
+            int selEnd = GetSelectionEndSafe(editor);
+            bool hasSelection = selEnd > selStart;
+
+            if (hasSelection && !srcDoc.IsEmpty && !dstDoc.IsEmpty)
             {
-                int len = otherEditor.Text?.Length ?? 0;
-                int s = Math.Clamp(dstSeg.Start, 0, len);
-                int e = Math.Clamp(dstSeg.EndExclusive, 0, len);
-                if (e > s)
-                    otherText = otherEditor.Text?.Substring(s, e - s) ?? "";
+                // Find all source segments overlapping the selection
+                var mappedParts = new List<string>();
+                foreach (var seg in srcDoc.Segments)
+                {
+                    if (seg.Start >= selEnd || seg.EndExclusive <= selStart)
+                        continue; // no overlap
+
+                    // This segment overlaps — find corresponding destination segment
+                    if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, seg.Start, out var dstSeg))
+                    {
+                        int dstLen = otherEditor.Text?.Length ?? 0;
+                        int s = Math.Clamp(dstSeg.Start, 0, dstLen);
+                        int e = Math.Clamp(dstSeg.EndExclusive, 0, dstLen);
+                        if (e > s)
+                        {
+                            string part = otherEditor.Text!.Substring(s, e - s);
+                            if (!string.IsNullOrWhiteSpace(part))
+                                mappedParts.Add(part);
+                        }
+                    }
+                }
+
+                if (mappedParts.Count > 0)
+                    otherText = string.Join("\n", mappedParts);
+            }
+
+            // Single-segment fallback (original behavior)
+            if (string.IsNullOrWhiteSpace(otherText))
+            {
+                int caret = GetCaretOffsetSafe(editor);
+                if (caret >= 0 && !srcDoc.IsEmpty && !dstDoc.IsEmpty
+                    && _selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg2))
+                {
+                    int len = otherEditor.Text?.Length ?? 0;
+                    int s = Math.Clamp(dstSeg2.Start, 0, len);
+                    int e = Math.Clamp(dstSeg2.EndExclusive, 0, len);
+                    if (e > s)
+                        otherText = otherEditor.Text?.Substring(s, e - s) ?? "";
+                }
             }
         }
 
