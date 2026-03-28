@@ -132,21 +132,21 @@
 				<TextBlock Text="Community Data (TM + Termbase)" FontWeight="SemiBold"/>
 			</Expander.Header>
 			<StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
-				<Button Content="A) Commit"
-						Command="{Binding SendCommunityDataCommand}"
+				<Button Content="Share"
+						Command="{Binding ShareCommunityDataCommand}"
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
-						ToolTip.Tip="Sort, dedup, and commit translation-memory.approved.jsonl and termbase.json to a new branch."/>
-				<Button Content="B) Push + PR"
-						Command="{Binding PushCommunityPrCommand}"
+						ToolTip.Tip="Commit and push community TM + termbase to GitHub"/>
+				<Button Content="Share Collections"
+						Command="{Binding ShareScholarCollectionsCommand}"
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
-						ToolTip.Tip="Push the community data branch and open a pull request. Use '2) Authorize GitHub' above first."/>
+						ToolTip.Tip="Commit and push your scholar collections to GitHub"/>
 				<Button Content="Fetch + Merge"
 						Command="{Binding FetchMergeCommunityCommand}"
 						IsEnabled="{Binding IsNotBusy}"
 						Padding="8,3"
-						ToolTip.Tip="Fetch origin/main and merge the community TM and termbase into your local files (last-write-wins)."/>
+						ToolTip.Tip="Fetch origin/main and merge the community TM, termbase, and scholar collections into your local files (last-write-wins)."/>
 			</StackPanel>
 		</Expander>
 

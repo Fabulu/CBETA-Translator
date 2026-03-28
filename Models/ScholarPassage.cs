@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace CbetaTranslator.App.Models;
 
@@ -14,6 +16,17 @@ public sealed class ScholarPassage
     public List<string> MasterNames { get; set; } = new();
     public DateTimeOffset AddedUtc { get; set; }
     public DateTimeOffset? ModifiedUtc { get; set; }
+    public string? CreatedBy { get; set; }
+
+    // Display helpers (not serialized)
+    [JsonIgnore]
+    public string TagsSummary => Tags.Count > 0 ? "Tags: " + string.Join(", ", Tags) : "";
+    [JsonIgnore]
+    public bool HasTags => Tags.Count > 0;
+    [JsonIgnore]
+    public string MasterNamesSummary => MasterNames.Count > 0 ? "Masters: " + string.Join(", ", MasterNames) : "";
+    [JsonIgnore]
+    public bool HasMasterNames => MasterNames.Count > 0;
 }
 
 public sealed class ScholarCollection
@@ -24,5 +37,6 @@ public sealed class ScholarCollection
     public List<string> Tags { get; set; } = new();
     public DateTimeOffset CreatedUtc { get; set; }
     public DateTimeOffset? ModifiedUtc { get; set; }
+    public string? CreatedBy { get; set; }
     public List<ScholarPassage> Passages { get; set; } = new();
 }

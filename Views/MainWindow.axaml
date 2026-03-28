@@ -25,7 +25,7 @@
 
 					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"
 							ToolTip.Tip="Toggle sidebar"/>
-					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open CBETA Folder"
+					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Folder"
 							ToolTip.Tip="Select the root folder containing CBETA XML files"/>
 					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"
 							ToolTip.Tip="Open application settings"/>
@@ -149,7 +149,7 @@
 							<TextBlock Text="Welcome to CBETA Translator"
 									   FontSize="20" FontWeight="SemiBold"
 									   HorizontalAlignment="Center"/>
-							<TextBlock Text="Click 'Open CBETA Folder' above to select your CBETA root directory and begin translating."
+							<TextBlock Text="Click 'Open Folder' above to select your CBETA root directory and begin translating."
 									   TextWrapping="Wrap" HorizontalAlignment="Center"
 									   TextAlignment="Center" Classes="muted"/>
 						</StackPanel>

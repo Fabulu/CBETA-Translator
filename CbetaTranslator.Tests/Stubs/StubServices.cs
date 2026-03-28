@@ -66,7 +66,7 @@ public class StubGitRepoService : IGitRepoService
 
 public class StubGitHubAuthService : IGitHubAuthService
 {
-    public Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct)
+    public Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null)
         => Task.FromResult<GitHubToken?>(null);
 }
 
@@ -89,6 +89,8 @@ public class StubCommunityDataService : ICommunityDataService
     public Task<int> MergeApprovedTmFromAsync(string localRoot, string upstreamTmPath, CancellationToken ct = default) => Task.FromResult(0);
     public Task<int> SortAndDedupTermbaseAsync(string root, CancellationToken ct = default) => Task.FromResult(0);
     public Task<int> MergeTermbaseFromAsync(string localRoot, string upstreamTermbasePath, CancellationToken ct = default) => Task.FromResult(0);
+    public Task<int> SortAndDedupScholarCollectionsAsync(string root, CancellationToken ct = default) => Task.FromResult(0);
+    public Task<int> MergeScholarCollectionsFromAsync(string localRoot, string upstreamPath, CancellationToken ct = default) => Task.FromResult(0);
 }
 
 // ---- ISearchIndexService ----
@@ -227,6 +229,9 @@ public class StubScholarCollectionsService : IScholarCollectionsService
     public bool ThrowOnLoad { get; set; }
     public bool ThrowOnSave { get; set; }
 
+    /// <summary>Data returned by LoadAllCommunityJsonlAsync.</summary>
+    public Dictionary<string, List<ScholarCollection>> CommunityData { get; set; } = new();
+
     public Task<List<ScholarCollection>> LoadAsync(string root, CancellationToken ct = default)
     {
         if (ThrowOnLoad) throw new InvalidOperationException("Load failed");
@@ -239,4 +244,9 @@ public class StubScholarCollectionsService : IScholarCollectionsService
         LastSaved = new List<ScholarCollection>(collections);
         return Task.CompletedTask;
     }
+
+    public Task ExportAsync(string filePath, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
+    public Task<List<ScholarCollection>> ImportAsync(string filePath, CancellationToken ct = default) => Task.FromResult(new List<ScholarCollection>());
+    public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
+    public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>(CommunityData));
 }

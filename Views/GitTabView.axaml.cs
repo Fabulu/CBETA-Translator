@@ -2,10 +2,12 @@ using System;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input.Platform;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using CbetaTranslator.App.Services;
 using CbetaTranslator.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,7 @@ namespace CbetaTranslator.App.Views;
 public partial class GitTabView : UserControl
 {
     private readonly GitTabViewModel _vm;
+    private DeviceCodeDialog? _activeDeviceCodeDialog;
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
@@ -28,7 +31,8 @@ public partial class GitTabView : UserControl
             App.Services.GetRequiredService<IGitRepoService>(),
             App.Services.GetRequiredService<IGitHubAuthService>(),
             App.Services.GetRequiredService<IGitHubApiService>(),
-            App.Services.GetRequiredService<ICommunityDataService>());
+            App.Services.GetRequiredService<ICommunityDataService>(),
+            App.Services.GetRequiredService<IScholarCollectionsService>());
 
         DataContext = _vm;
 
@@ -36,6 +40,8 @@ public partial class GitTabView : UserControl
         _vm.PickFolderAsync = PickFolderBridgeAsync;
         _vm.ConfirmAsync = ConfirmBridgeAsync;
         _vm.ScrollLogToEnd = ScrollLogToEnd;
+        _vm.ShowDeviceCodeAsync = ShowDeviceCodeBridgeAsync;
+        _vm.DeviceFlowCompleted += (_, _) => Dispatcher.UIThread.Post(() => _activeDeviceCodeDialog?.DismissIfOpen());
 
         // Forward VM events to code-behind events (for MainWindow)
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
@@ -51,6 +57,12 @@ public partial class GitTabView : UserControl
     public void SetCurrentRepoRoot(string? rootPath) => _vm.SetCurrentRepoRoot(rootPath);
     public void SetSelectedRelPath(string? relPath) => _vm.SetSelectedRelPath(relPath);
     public void SetUsername(string? username) => _vm.SetUsername(username);
+    public void LoadPersistedAuth(string? token, string? login) => _vm.LoadPersistedAuth(token, login);
+    public event EventHandler<(string Token, string Login)>? GitHubAuthCompleted
+    {
+        add => _vm.GitHubAuthCompleted += value;
+        remove => _vm.GitHubAuthCompleted -= value;
+    }
 
     // ----- Bridge implementations (UI concerns) -----
 
@@ -88,6 +100,29 @@ public partial class GitTabView : UserControl
         {
             try { txtLog.CaretIndex = txtLog.Text.Length; } catch { }
         }
+    }
+
+    private async Task ShowDeviceCodeBridgeAsync(string userCode, string verificationUri)
+    {
+        // Copy to clipboard
+        bool copiedOk = false;
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard != null)
+        {
+            try
+            {
+                await top.Clipboard.SetTextAsync(userCode);
+                copiedOk = true;
+            }
+            catch { }
+        }
+
+        // Show non-modal dialog
+        var owner = top as Window;
+        if (owner == null) return;
+        _activeDeviceCodeDialog?.DismissIfOpen();
+        _activeDeviceCodeDialog = new DeviceCodeDialog(userCode, copiedOk);
+        _activeDeviceCodeDialog.Show(owner);
     }
 
     // ----- Confirm dialog (kept in code-behind as it's pure UI) -----
