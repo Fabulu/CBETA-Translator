@@ -394,6 +394,10 @@ public partial class ScholarTabView : UserControl
         _termbaseCacheRoot = null;
     }
 
+    /// <summary>Fires on ANY ScholarTabView instance after a passage is added and saved.
+    /// Other windows can subscribe to reload their scholar data.</summary>
+    public static event EventHandler? ScholarDataChanged;
+
     public void AddPassage(ScholarPassage passage)
     {
         // If no collections, create a default one first
@@ -406,6 +410,12 @@ public partial class ScholarTabView : UserControl
         var target = _vm.SelectedCollection ?? (_vm.Collections.Count > 0 ? _vm.Collections[0] : null);
         if (target == null) return;
 
-        _ = _vm.AddPassageToCollectionAsync(target.Id, passage);
+        _ = AddPassageAndNotifyAsync(target.Id, passage);
+    }
+
+    private async Task AddPassageAndNotifyAsync(string collectionId, ScholarPassage passage)
+    {
+        await _vm.AddPassageToCollectionAsync(collectionId, passage);
+        ScholarDataChanged?.Invoke(this, EventArgs.Empty);
     }
 }
