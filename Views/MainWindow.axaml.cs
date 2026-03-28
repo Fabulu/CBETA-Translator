@@ -245,7 +245,7 @@ public partial class MainWindow : Window
         _vm.ClearTranslation = () => _translationView?.Clear();
         _vm.SetTranslationHoverDict = enabled => _translationView?.SetHoverDictionaryEnabled(enabled);
         _vm.SetAssistantSnapshot = snapshot => _translationView?.SetAssistantSnapshot(snapshot);
-        _vm.SetCurrentReviewState = (status, reviewer, date) => _translationView?.SetCurrentReviewState(status, reviewer, date);
+        _vm.SetCurrentReviewState = (status, reviewer, date, agg) => _translationView?.SetCurrentReviewState(status, reviewer, date, agg);
         _vm.SetProgressStats = (a, n, t) => _translationView?.SetProgressStats(a, n, t);
         _vm.FillEnForCurrentBlock = (en, block) => _translationView?.FillEnForCurrentBlock(en, block);
         _vm.JumpToNextBlock = () => _translationView?.JumpToNextBlock();
@@ -532,6 +532,10 @@ public partial class MainWindow : Window
             _gitView.RootCloned += async (_, repoRoot) =>
             {
                 await _vm.HandleRootClonedAsync(repoRoot, IsSecondaryWindow);
+            };
+            _gitView.CommunityDataFetched += async (_, _) =>
+            {
+                await _vm.RefreshReviewAggregationAsync();
             };
         }
 

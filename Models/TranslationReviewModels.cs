@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CbetaTranslator.App.Models;
 
@@ -40,4 +42,21 @@ public sealed class TranslationReviewEntry
 
     public string ZhHash { get; set; } = "";
     public string EnHash { get; set; } = "";
+}
+
+public sealed class SegmentReviewAggregation
+{
+    public string SegmentKey { get; set; } = "";
+    public Dictionary<string, TranslationReviewEntry> ByReviewer { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
+    public IEnumerable<string> ApprovedBy => ByReviewer
+        .Where(kv => kv.Value.Status == TranslationReviewStatuses.Approved)
+        .Select(kv => kv.Key);
+    public IEnumerable<string> NeedsWorkBy => ByReviewer
+        .Where(kv => kv.Value.Status == TranslationReviewStatuses.NeedsWork)
+        .Select(kv => kv.Key);
+    public IEnumerable<string> RejectedBy => ByReviewer
+        .Where(kv => kv.Value.Status == TranslationReviewStatuses.Rejected)
+        .Select(kv => kv.Key);
+    public int ApprovalCount => ApprovedBy.Count();
 }

@@ -123,7 +123,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action? ClearTranslation { get; set; }
     public Action<bool>? SetTranslationHoverDict { get; set; }
     public Action<TranslationAssistantSnapshot?>? SetAssistantSnapshot { get; set; }
-    public Action<string?, string?, DateTime?>? SetCurrentReviewState { get; set; }
+    public Action<string?, string?, DateTime?, SegmentReviewAggregation?>? SetCurrentReviewState { get; set; }
     public Action<int, int, int>? SetProgressStats { get; set; }
     public Action<string, int>? FillEnForCurrentBlock { get; set; }
     public Action? JumpToNextBlock { get; set; }
@@ -329,6 +329,13 @@ public partial class MainWindowViewModel : ViewModelBase
         SetSearchRootContext?.Invoke(_root, _originalDir, _translatedDir);
         SetScholarRoot?.Invoke(_root);
 
+        try
+        {
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
+            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+        }
+        catch { }
+
         if (saveToConfig)
         {
             _config.TextRootPath = _root;
@@ -434,6 +441,8 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         _config.GitHubAccessToken = token;
         _config.GitHubUsername = login;
+        if (string.IsNullOrWhiteSpace(_config.Username))
+            _config.Username = login;
         await SafeSaveConfigAsync();
     }
 
@@ -949,7 +958,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (string.IsNullOrWhiteSpace(text))
             {
                 SetAssistantSnapshot?.Invoke(null);
-                SetCurrentReviewState?.Invoke(null, null, null);
+                SetCurrentReviewState?.Invoke(null, null, null, null);
                 return;
             }
 
@@ -1075,16 +1084,19 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (_root == null || _currentSegmentContext == null)
             {
-                SetCurrentReviewState?.Invoke(null, null, null);
+                SetCurrentReviewState?.Invoke(null, null, null, null);
                 return;
             }
 
             var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
-            SetCurrentReviewState?.Invoke(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
+            var segKey = TranslationReviewService.BuildSegmentKey(
+                _currentSegmentContext.RelPath, _currentSegmentContext.Mode, _currentSegmentContext.BlockNumber);
+            var agg = _translationReview.GetAggregatedReview(segKey);
+            SetCurrentReviewState?.Invoke(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc, agg);
         }
         catch
         {
-            SetCurrentReviewState?.Invoke(null, null, null);
+            SetCurrentReviewState?.Invoke(null, null, null, null);
         }
     }
 
@@ -1114,8 +1126,14 @@ public partial class MainWindowViewModel : ViewModelBase
 
             int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_root);
 
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
+            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+
             var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
-            SetCurrentReviewState?.Invoke(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc);
+            var segKey = TranslationReviewService.BuildSegmentKey(
+                _currentSegmentContext.RelPath, _currentSegmentContext.Mode, _currentSegmentContext.BlockNumber);
+            var agg = _translationReview.GetAggregatedReview(segKey);
+            SetCurrentReviewState?.Invoke(latest?.Status, latest?.Reviewer, latest?.ReviewedUtc, agg);
 
             await RefreshAssistantForCurrentSegmentAsync(new CurrentProjectionSegmentChangedEventArgs
             {
@@ -1862,6 +1880,17 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             SetStatus("Failed to load cloned repo: " + ex.Message);
         }
+    }
+
+    public async Task RefreshReviewAggregationAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root)) return;
+        try
+        {
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
+            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+        }
+        catch { }
     }
 
     // ===========================================================

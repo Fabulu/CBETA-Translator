@@ -21,6 +21,7 @@ public partial class GitTabView : UserControl
 
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
+    public event EventHandler? CommunityDataFetched;
     public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabView()
@@ -33,7 +34,8 @@ public partial class GitTabView : UserControl
             App.Services.GetRequiredService<IGitHubApiService>(),
             App.Services.GetRequiredService<ICommunityDataService>(),
             App.Services.GetRequiredService<IScholarCollectionsService>(),
-            App.Services.GetRequiredService<ITermbaseStorageService>());
+            App.Services.GetRequiredService<ITermbaseStorageService>(),
+            App.Services.GetRequiredService<ITranslationReviewService>());
 
         DataContext = _vm;
 
@@ -47,6 +49,7 @@ public partial class GitTabView : UserControl
         // Forward VM events to code-behind events (for MainWindow)
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.RootCloned += (_, root) => RootCloned?.Invoke(this, root);
+        _vm.CommunityDataFetched += (_, _) => CommunityDataFetched?.Invoke(this, EventArgs.Empty);
         _vm.EnsureTranslatedForSelectedRequested += relPath =>
             EnsureTranslatedForSelectedRequested?.Invoke(relPath) ?? Task.FromResult(true);
 

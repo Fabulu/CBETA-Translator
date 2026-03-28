@@ -516,4 +516,81 @@ public class TranslationTabViewModelTests
 
         Assert.Contains("ProgressText", changed);
     }
+
+    // ---- SetCurrentReviewState with aggregation ----
+
+    [Fact]
+    public void SetCurrentReviewState_WithAggregation_ShowsMultiUserFormat()
+    {
+        var vm = MakeVm();
+
+        var agg = new SegmentReviewAggregation
+        {
+            SegmentKey = "test|Body|1",
+            ByReviewer = new Dictionary<string, TranslationReviewEntry>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["alice"] = new TranslationReviewEntry { Status = "approved", Reviewer = "alice" },
+                ["bob"] = new TranslationReviewEntry { Status = "needs-work", Reviewer = "bob" }
+            }
+        };
+
+        vm.SetCurrentReviewState("approved", "alice", DateTime.UtcNow, agg);
+
+        Assert.Contains("Approved", vm.ReviewStateText);
+        Assert.Contains("alice", vm.ReviewStateText);
+        Assert.Contains("Needs work", vm.ReviewStateText);
+        Assert.Contains("bob", vm.ReviewStateText);
+    }
+
+    [Fact]
+    public void SetCurrentReviewState_NullAggregation_FallsBackToSingleUserFormat()
+    {
+        var vm = MakeVm();
+
+        vm.SetCurrentReviewState("approved", "alice", new DateTime(2026, 1, 15, 10, 30, 0, DateTimeKind.Utc), null);
+
+        Assert.Contains("Approved", vm.ReviewStateText);
+        Assert.Contains("alice", vm.ReviewStateText);
+        // Should NOT contain multi-user format markers like parenthesized counts
+        Assert.DoesNotContain("(1)", vm.ReviewStateText);
+    }
+
+    [Fact]
+    public void SetCurrentReviewState_EmptyAggregation_ShowsUnreviewed()
+    {
+        var vm = MakeVm();
+
+        // Aggregation with no reviewers
+        var agg = new SegmentReviewAggregation { SegmentKey = "test|Body|1" };
+
+        // With only 0 reviewers in ByReviewer, Count <= 1, so it falls through
+        // to the single-user path. With null status, shows "Unreviewed".
+        vm.SetCurrentReviewState(null, null, null, agg);
+
+        Assert.Equal("Unreviewed", vm.ReviewStateText);
+    }
+
+    [Fact]
+    public void SetCurrentReviewState_SingleReviewerAggregation_FallsBackToSingleUserFormat()
+    {
+        var vm = MakeVm();
+
+        // Aggregation with exactly 1 reviewer — should NOT use multi-user format
+        var agg = new SegmentReviewAggregation
+        {
+            SegmentKey = "test|Body|1",
+            ByReviewer = new Dictionary<string, TranslationReviewEntry>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["alice"] = new TranslationReviewEntry { Status = "approved", Reviewer = "alice" }
+            }
+        };
+
+        vm.SetCurrentReviewState("approved", "alice", new DateTime(2026, 3, 1, 0, 0, 0, DateTimeKind.Utc), agg);
+
+        // Single reviewer path: "Approved — alice — date"
+        Assert.Contains("Approved", vm.ReviewStateText);
+        Assert.Contains("alice", vm.ReviewStateText);
+        // Should NOT use the multi-user "(1):" format
+        Assert.DoesNotContain("(1):", vm.ReviewStateText);
+    }
 }

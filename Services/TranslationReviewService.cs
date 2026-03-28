@@ -19,6 +19,14 @@ public sealed class TranslationReviewService : ITranslationReviewService
         WriteIndented = false
     };
 
+    private static readonly JsonSerializerOptions CompactOpts = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = false
+    };
+
+    private Dictionary<string, SegmentReviewAggregation>? _aggregationCache;
+
     private sealed class TmRow
     {
         public string SourceText { get; set; } = "";
@@ -192,6 +200,178 @@ public sealed class TranslationReviewService : ITranslationReviewService
         await fs.FlushAsync(ct);
 
         return approved.Count;
+    }
+
+    public async Task WriteUserReviewJsonlAsync(string communityReviewsDir, string username, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(communityReviewsDir))
+            throw new ArgumentException("Community reviews directory is required.", nameof(communityReviewsDir));
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username is required.", nameof(username));
+
+        var safeUsername = SanitizeFilename(username);
+        var path = Path.Combine(communityReviewsDir, safeUsername + ".jsonl");
+        var fullPath = Path.GetFullPath(path);
+        var fullDir = Path.GetFullPath(communityReviewsDir);
+        if (!fullPath.StartsWith(fullDir, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException("Username produces a path outside the community reviews directory.", nameof(username));
+
+        // Read ALL entries from the raw ledger, keep only this user's latest per segment.
+        // We don't use LoadLatestEntriesAsync because it deduplicates across all reviewers.
+        var localDir = Path.GetDirectoryName(communityReviewsDir);
+        var repoRoot = localDir != null ? Path.GetDirectoryName(localDir) : null;
+        if (string.IsNullOrWhiteSpace(repoRoot))
+            throw new InvalidOperationException("Cannot determine repo root from community reviews directory.");
+
+        var ledgerPath = GetLedgerPath(repoRoot);
+        var userLatest = new Dictionary<string, TranslationReviewEntry>(StringComparer.OrdinalIgnoreCase);
+        if (File.Exists(ledgerPath))
+        {
+            using var ledgerFs = new FileStream(ledgerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+            using var ledgerSr = new StreamReader(ledgerFs, Encoding.UTF8);
+            while (!ledgerSr.EndOfStream)
+            {
+                ct.ThrowIfCancellationRequested();
+                var line = await ledgerSr.ReadLineAsync();
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                try
+                {
+                    var row = JsonSerializer.Deserialize<TranslationReviewEntry>(line, JsonOpts);
+                    if (row == null) continue;
+                    if (!string.Equals(row.Reviewer, username, StringComparison.OrdinalIgnoreCase)) continue;
+                    row.Status = TranslationReviewStatuses.Normalize(row.Status);
+                    row.RelPath = NormalizeRel(row.RelPath);
+                    row.SegmentKey = string.IsNullOrWhiteSpace(row.SegmentKey)
+                        ? BuildSegmentKey(row.RelPath, row.Mode, row.BlockNumber)
+                        : row.SegmentKey;
+                    userLatest[row.SegmentKey] = row; // last entry per segment for this user
+                }
+                catch { }
+            }
+        }
+
+        var userEntries = userLatest.Values
+            .OrderBy(e => e.RelPath, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(e => e.Mode, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(e => e.BlockNumber)
+            .ToList();
+
+        Directory.CreateDirectory(communityReviewsDir);
+
+        await using var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+        await using var writer = new StreamWriter(fs, new UTF8Encoding(false));
+
+        foreach (var entry in userEntries)
+        {
+            ct.ThrowIfCancellationRequested();
+            var json = JsonSerializer.Serialize(entry, CompactOpts);
+            await writer.WriteLineAsync(json);
+        }
+
+        await writer.FlushAsync();
+        await fs.FlushAsync(ct);
+    }
+
+    public async Task RefreshAggregationCacheAsync(string root, string? communityReviewsDir, CancellationToken ct = default)
+    {
+        var agg = new Dictionary<string, SegmentReviewAggregation>(StringComparer.OrdinalIgnoreCase);
+
+        // 1. Load all community JSONL files
+        if (!string.IsNullOrWhiteSpace(communityReviewsDir) && Directory.Exists(communityReviewsDir))
+        {
+            foreach (var file in Directory.GetFiles(communityReviewsDir, "*.jsonl"))
+            {
+                ct.ThrowIfCancellationRequested();
+                await LoadEntriesIntoAggregation(file, agg, ct);
+            }
+        }
+
+        // 2. Load local ledger — entries here take precedence for same reviewer+segment
+        if (!string.IsNullOrWhiteSpace(root))
+        {
+            var ledgerPath = GetLedgerPath(root);
+            if (File.Exists(ledgerPath))
+                await LoadEntriesIntoAggregation(ledgerPath, agg, ct);
+        }
+
+        _aggregationCache = agg;
+    }
+
+    public SegmentReviewAggregation? GetAggregatedReview(string segmentKey)
+    {
+        if (_aggregationCache == null)
+            return null;
+        _aggregationCache.TryGetValue(segmentKey, out var result);
+        return result;
+    }
+
+    private static async Task LoadEntriesIntoAggregation(
+        string filePath,
+        Dictionary<string, SegmentReviewAggregation> agg,
+        CancellationToken ct)
+    {
+        if (!File.Exists(filePath))
+            return;
+
+        using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+        using var sr = new StreamReader(fs, Encoding.UTF8);
+
+        while (!sr.EndOfStream)
+        {
+            ct.ThrowIfCancellationRequested();
+
+            var line = await sr.ReadLineAsync();
+            if (string.IsNullOrWhiteSpace(line))
+                continue;
+
+            try
+            {
+                var entry = JsonSerializer.Deserialize<TranslationReviewEntry>(line, CompactOpts);
+                if (entry == null || string.IsNullOrWhiteSpace(entry.SegmentKey))
+                    continue;
+
+                entry.Status = TranslationReviewStatuses.Normalize(entry.Status);
+                entry.RelPath = NormalizeRel(entry.RelPath);
+                entry.SegmentKey = string.IsNullOrWhiteSpace(entry.SegmentKey)
+                    ? BuildSegmentKey(entry.RelPath, entry.Mode, entry.BlockNumber)
+                    : entry.SegmentKey;
+
+                if (!agg.TryGetValue(entry.SegmentKey, out var seg))
+                {
+                    seg = new SegmentReviewAggregation { SegmentKey = entry.SegmentKey };
+                    agg[entry.SegmentKey] = seg;
+                }
+
+                var reviewer = string.IsNullOrWhiteSpace(entry.Reviewer) ? "User" : entry.Reviewer.Trim();
+
+                if (seg.ByReviewer.TryGetValue(reviewer, out var existing))
+                {
+                    // Keep the latest by ReviewedUtc
+                    if (entry.ReviewedUtc >= existing.ReviewedUtc)
+                        seg.ByReviewer[reviewer] = entry;
+                }
+                else
+                {
+                    seg.ByReviewer[reviewer] = entry;
+                }
+            }
+            catch
+            {
+                // ignore broken rows
+            }
+        }
+    }
+
+    private static string SanitizeFilename(string name)
+    {
+        var invalid = Path.GetInvalidFileNameChars();
+        var sb = new StringBuilder(name.Length);
+        foreach (var ch in name)
+        {
+            if (Array.IndexOf(invalid, ch) < 0 && ch != '.' && ch != ' ')
+                sb.Append(ch);
+        }
+        return sb.Length > 0 ? sb.ToString() : "unknown";
     }
 
     public static string BuildSegmentKey(string? relPath, TranslationEditMode mode, int blockNumber)

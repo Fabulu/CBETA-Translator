@@ -130,9 +130,16 @@ public partial class TranslationTabViewModel : ViewModelBase
     // -------------------------
     // Review state display
     // -------------------------
-    public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc)
+    public void SetCurrentReviewState(string? status, string? reviewer, DateTime? reviewedUtc, SegmentReviewAggregation? agg = null)
     {
         status = (status ?? "").Trim().ToLowerInvariant();
+
+        // Multi-reviewer aggregation display
+        if (agg != null && agg.ByReviewer.Count > 1)
+        {
+            ReviewStateText = FormatAggregatedReview(agg);
+            return;
+        }
 
         if (string.IsNullOrWhiteSpace(status))
         {
@@ -160,6 +167,25 @@ public partial class TranslationTabViewModel : ViewModelBase
         {
             ReviewStateText = stateLabel;
         }
+    }
+
+    private static string FormatAggregatedReview(SegmentReviewAggregation agg)
+    {
+        var parts = new List<string>();
+
+        var approved = agg.ApprovedBy.ToList();
+        if (approved.Count > 0)
+            parts.Add($"Approved ({approved.Count}): {string.Join(", ", approved)}");
+
+        var needsWork = agg.NeedsWorkBy.ToList();
+        if (needsWork.Count > 0)
+            parts.Add($"Needs work ({needsWork.Count}): {string.Join(", ", needsWork)}");
+
+        var rejected = agg.RejectedBy.ToList();
+        if (rejected.Count > 0)
+            parts.Add($"Rejected ({rejected.Count}): {string.Join(", ", rejected)}");
+
+        return parts.Count > 0 ? string.Join(" | ", parts) : "Unreviewed";
     }
 
     // -------------------------
@@ -240,7 +266,7 @@ public partial class TranslationTabViewModel : ViewModelBase
         _origPath = null;
         _tranPath = null;
         LastAssistantSnapshot = null;
-        SetCurrentReviewState(null, null, null);
+        SetCurrentReviewState(null, null, null, null);
         UpdateModeInfo();
         UpdateModeButtons();
         QuickInfoText = "";

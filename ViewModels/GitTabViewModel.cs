@@ -46,6 +46,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly ICommunityDataService _community;
     private readonly IScholarCollectionsService _scholarSvc;
     private readonly ITermbaseStorageService _termbaseSvc;
+    private readonly ITranslationReviewService _translationReview;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -91,6 +92,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     public event EventHandler<string>? StatusChanged;
     public event EventHandler<string>? RootCloned;
+    public event EventHandler? CommunityDataFetched;
     public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabViewModel(
@@ -99,7 +101,8 @@ public partial class GitTabViewModel : ViewModelBase
         IGitHubApiService api,
         ICommunityDataService community,
         IScholarCollectionsService scholarSvc,
-        ITermbaseStorageService termbaseSvc)
+        ITermbaseStorageService termbaseSvc,
+        ITranslationReviewService translationReview)
     {
         _git = git;
         _auth = auth;
@@ -107,6 +110,7 @@ public partial class GitTabViewModel : ViewModelBase
         _community = community;
         _scholarSvc = scholarSvc;
         _termbaseSvc = termbaseSvc;
+        _translationReview = translationReview;
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -265,15 +269,9 @@ public partial class GitTabViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task ShareCommunityDataAsync()
+    private async Task ShareAllAsync()
     {
-        await ShareCommunityDataInternalAsync();
-    }
-
-    [RelayCommand]
-    private async Task ShareScholarCollectionsAsync()
-    {
-        await ShareScholarCollectionsInternalAsync();
+        await ShareAllInternalAsync();
     }
 
     [RelayCommand]
@@ -1099,6 +1097,324 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
+    // ----- Private: Unified Share All (TM + termbase + collections + reviews) -----
+
+    private async Task ShareAllInternalAsync()
+    {
+        CancelCommand.Execute(null);
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        SetButtonsBusy(true);
+        ClearLog();
+
+        try
+        {
+            var repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            {
+                ProgressText = "Repo not ready. Click Get/Update first.";
+                AppendLog("[error] repo not found / not a git working tree");
+                return;
+            }
+
+            ProgressText = "Checking git\u2026";
+            var gitOk = await _git.CheckGitAvailableAsync(ct);
+            if (!gitOk)
+            {
+                ProgressText = "Git not found.";
+                AppendLog("[error] git not found");
+                return;
+            }
+
+            var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+            // --- Auth (single auth block) ---
+            if (string.IsNullOrWhiteSpace(_githubAccessToken) || string.IsNullOrWhiteSpace(_githubLogin))
+            {
+                ProgressText = "Authorizing GitHub\u2026";
+                var token = await _auth.AuthorizeDeviceFlowAsync(prog, ct, MakeDeviceCodeCallback());
+                if (token == null)
+                {
+                    ProgressText = "Auth failed.";
+                    return;
+                }
+
+                _githubAccessToken = token.access_token;
+                var me = await _api.GetMeAsync(_githubAccessToken, ct);
+                _githubLogin = me?.login;
+
+                if (string.IsNullOrWhiteSpace(_githubLogin))
+                {
+                    ProgressText = "Auth ok but could not read username.";
+                    return;
+                }
+
+                AppendLog("[auth] user: " + _githubLogin);
+                GitHubAuthCompleted?.Invoke(this, (_githubAccessToken!, _githubLogin!));
+                FireDeviceFlowCompleted();
+            }
+
+            // --- TM dedup ---
+            var tmPath = Path.Combine(repoDir, CommunityTmFile);
+            if (File.Exists(tmPath))
+            {
+                ProgressText = "Sorting/deduping approved TM\u2026";
+                var kept = await _community.SortAndDedupApprovedTmAsync(repoDir, ct);
+                AppendLog($"[dedup] TM: {kept:n0} unique rows after dedup");
+            }
+
+            // --- Termbase dedup ---
+            var tbPath = Path.Combine(repoDir, CommunityTermbaseFile);
+            if (File.Exists(tbPath))
+            {
+                ProgressText = "Sorting/deduping termbase\u2026";
+                var kept = await _community.SortAndDedupTermbaseAsync(repoDir, ct);
+                AppendLog($"[dedup] termbase: {kept:n0} entries after dedup");
+            }
+
+            // --- Write per-user termbase JSONL ---
+            ProgressText = "Writing per-user termbase JSONL\u2026";
+            var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
+            var localTermbase = await _termbaseSvc.LoadAsync(repoDir, ct);
+            await _termbaseSvc.WriteUserJsonlAsync(communityTbDir, _githubLogin!, localTermbase, ct);
+            var tbJsonlRelPath = Path.Combine("community", "termbases", _githubLogin + ".jsonl").Replace('\\', '/');
+            AppendLog($"[step] wrote {localTermbase.Count} term(s) to {tbJsonlRelPath}");
+
+            // --- Scholar collections dedup ---
+            var scPath = Path.Combine(repoDir, ScholarCollectionsFile);
+            if (File.Exists(scPath))
+            {
+                ProgressText = "Sorting/deduping scholar collections\u2026";
+                var kept = await _community.SortAndDedupScholarCollectionsAsync(repoDir, ct);
+                AppendLog($"[dedup] scholar collections: {kept:n0} after dedup");
+            }
+
+            // --- Write per-user collections JSONL ---
+            ProgressText = "Writing per-user collections JSONL\u2026";
+            var communityCollDir = ScholarCollectionsService.GetCommunityCollectionsDir(repoDir);
+            var localCollections = await _scholarSvc.LoadAsync(repoDir, ct);
+            await _scholarSvc.WriteUserJsonlAsync(communityCollDir, _githubLogin!, localCollections, ct);
+            var collJsonlRelPath = Path.Combine("community", "collections", _githubLogin + ".jsonl").Replace('\\', '/');
+            AppendLog($"[step] wrote {localCollections.Count} collection(s) to {collJsonlRelPath}");
+
+            // --- Write per-user review JSONL ---
+            ProgressText = "Writing per-user review JSONL\u2026";
+            var communityReviewsDir = ITranslationReviewService.GetCommunityReviewsDir(repoDir);
+            await _translationReview.WriteUserReviewJsonlAsync(communityReviewsDir, _githubLogin!, ct);
+            var reviewJsonlRelPath = Path.Combine("community", "reviews", _githubLogin + ".jsonl").Replace('\\', '/');
+            AppendLog($"[step] wrote review data to {reviewJsonlRelPath}");
+
+            // --- Ensure .gitattributes has merge=union for all community dirs ---
+            var gitattribPath = Path.Combine(repoDir, ".gitattributes");
+            string[] mergeRules =
+            {
+                "community/termbases/*.jsonl merge=union",
+                "community/collections/*.jsonl merge=union",
+                "community/reviews/*.jsonl merge=union"
+            };
+            bool gitattribChanged = false;
+            string gitattribContent = File.Exists(gitattribPath)
+                ? await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct)
+                : "";
+
+            foreach (var rule in mergeRules)
+            {
+                if (!gitattribContent.Contains(rule, StringComparison.Ordinal))
+                {
+                    if (gitattribContent.Length > 0 && !gitattribContent.EndsWith("\n", StringComparison.Ordinal))
+                        gitattribContent += "\n";
+                    gitattribContent += rule + "\n";
+                    gitattribChanged = true;
+                }
+            }
+
+            if (gitattribChanged)
+            {
+                await File.WriteAllTextAsync(gitattribPath, gitattribContent, new UTF8Encoding(false), ct);
+                AppendLog("[step] updated .gitattributes with merge=union rules");
+            }
+
+            await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+            await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+
+            // --- Check git status for any community changes ---
+            var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            var changedFiles = new List<string>();
+
+            foreach (var line in status)
+            {
+                if (line.Contains(CommunityTmFile, StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains(CommunityTermbaseFile, StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains(ScholarCollectionsFile, StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/termbases/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/collections/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/reviews/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains(".gitattributes", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Extract file path from porcelain line (first 3 chars are status + space)
+                    var filePath = line.Length > 3 ? line.Substring(3).Trim().Trim('"') : line.Trim();
+                    if (!string.IsNullOrWhiteSpace(filePath) && !changedFiles.Contains(filePath))
+                        changedFiles.Add(filePath);
+                }
+            }
+
+            if (changedFiles.Count == 0 && !gitattribChanged)
+            {
+                ProgressText = "No changes in community data (already up to date).";
+                AppendLog("[warn] git status shows no changes for any community data files");
+                AppendLog("[hint] If you recently approved entries, they may already be committed.");
+                return;
+            }
+
+            // --- Stage, stash, branch, commit, push ---
+            string originalBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
+            AppendLog("[git] current branch: " + originalBranch);
+
+            string msg = CommitMessage.Trim();
+            if (string.IsNullOrWhiteSpace(msg))
+                msg = $"{GetUsernameForDefaults()}: Community data update (TM, termbase, collections, reviews)";
+
+            string branchName = $"community/data/{DateTime.Now:yyyyMMdd-HHmmss}";
+
+            // Stage all changed community files
+            foreach (var rel in changedFiles)
+            {
+                ProgressText = "Staging " + rel + "\u2026";
+                AppendLog("[step] git add -- " + rel);
+                var stage = await _git.StagePathAsync(repoDir, rel, prog, ct);
+                if (!stage.Success)
+                {
+                    AppendLog("[warn] failed to stage " + rel + ": " + stage.Error);
+                }
+            }
+
+            ProgressText = "Stashing other work\u2026";
+            AppendLog("[step] git stash push -u -k");
+            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-community-autostash", prog, ct);
+            if (!stash.Success)
+            {
+                ProgressText = "Stash failed.";
+                AppendLog("[error] " + stash.Error);
+                return;
+            }
+
+            ProgressText = "Creating branch\u2026";
+            AppendLog("[step] new branch: " + branchName);
+            var br = await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
+            if (!br.Success)
+            {
+                ProgressText = "Branch create failed.";
+                AppendLog("[error] " + br.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            ProgressText = "Committing\u2026";
+            AppendLog("[step] commit: " + msg);
+            var commit = await _git.CommitAsync(repoDir, msg, prog, ct);
+            if (!commit.Success)
+            {
+                ProgressText = "Commit failed.";
+                AppendLog("[error] " + commit.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            _lastCommunityBranch = branchName;
+
+            // --- Push ---
+            bool isUpstreamOwner = string.Equals(_githubLogin, UpstreamOwner, StringComparison.OrdinalIgnoreCase);
+
+            await ScrubTokenizedForkRemoteIfAny(repoDir, prog, ct);
+
+            string remoteName;
+            string remoteUrlClean;
+
+            if (isUpstreamOwner)
+            {
+                remoteName = "origin";
+                remoteUrlClean = RepoUrl;
+                AppendLog("[mode] upstream owner -> push to origin");
+            }
+            else
+            {
+                ProgressText = "Ensuring fork\u2026";
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                if (!forkExists)
+                {
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    if (!okFork)
+                    {
+                        ProgressText = "Fork failed.";
+                        AppendLog("[error] fork creation failed");
+                        await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                        return;
+                    }
+
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    if (!ready)
+                    {
+                        ProgressText = "Fork not ready yet.";
+                        await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                        return;
+                    }
+                }
+
+                remoteName = "fork";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+            }
+
+            var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
+            if (!rem.Success)
+            {
+                ProgressText = "Remote config failed.";
+                AppendLog("[error] " + rem.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
+
+            ProgressText = "Pushing community branch\u2026";
+            AppendLog("[step] push -u " + remoteName + " " + branchName);
+            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+            if (!push.Success)
+            {
+                ProgressText = "Push failed.";
+                AppendLog("[error] " + push.Error);
+                AppendPushFailureHints(push.Error);
+                await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+                return;
+            }
+
+            // --- Restore and finish ---
+            ProgressText = "Restoring other work\u2026";
+            await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
+
+            ProgressText = "All community data shared.";
+            AppendLog("[ok] committed and pushed all community data on branch: " + branchName);
+            AppendLog("[files] " + string.Join(", ", changedFiles));
+
+            StatusChanged?.Invoke(this, "Community data shared: " + branchName);
+        }
+        catch (OperationCanceledException)
+        {
+            ProgressText = "Canceled.";
+            AppendLog("[cancel] canceled");
+        }
+        catch (Exception ex)
+        {
+            ProgressText = "Failed: " + ex.Message;
+            AppendLog("[error] " + ex);
+        }
+        finally
+        {
+            SetButtonsBusy(false);
+        }
+    }
+
     // ----- Private: Community Data (combined share = commit + push) -----
 
     private async Task ShareCommunityDataInternalAsync()
@@ -1817,7 +2133,23 @@ public partial class GitTabViewModel : ViewModelBase
                     AppendLog("[info] community/termbases/ not found in origin/main (skipping termbase JSONL pull)");
                 }
 
-                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
+                // Community reviews JSONL (per-user)
+                int communityReviewJsonlCount = 0;
+                ProgressText = "Pulling community review files\u2026";
+                AppendLog("[step] git checkout origin/main -- community/reviews/");
+                try
+                {
+                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/reviews/", null, ct);
+                    var communityReviewsDir = ITranslationReviewService.GetCommunityReviewsDir(repoDir);
+                    if (Directory.Exists(communityReviewsDir))
+                    {
+                        communityReviewJsonlCount = Directory.GetFiles(communityReviewsDir, "*.jsonl").Length;
+                        AppendLog($"[info] community reviews: {communityReviewJsonlCount} user JSONL file(s)");
+                    }
+                }
+                catch { AppendLog("[info] community/reviews/ not found in origin/main"); }
+
+                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
                 {
                     ProgressText = "No community data found in origin/main.";
                     AppendLog("[info] origin/main has no community data files yet");
@@ -1829,6 +2161,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[note] Your local files have been updated. Save/reload the app to see new entries in the assistant.");
 
                 StatusChanged?.Invoke(this, $"Community merge done: {mergedTm:n0} TM rows, {mergedTb:n0} termbase entries, {mergedSc:n0} collections.");
+                CommunityDataFetched?.Invoke(this, EventArgs.Empty);
             }
             finally
             {

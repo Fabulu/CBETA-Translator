@@ -224,6 +224,9 @@ public class StubTranslationReviewService : ITranslationReviewService
     public Task<Dictionary<string, TranslationReviewEntry>> LoadLatestEntriesAsync(string root, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, TranslationReviewEntry>());
     public Task<TranslationReviewEntry?> GetLatestEntryAsync(string root, CurrentSegmentContext ctx, CancellationToken ct = default) => Task.FromResult<TranslationReviewEntry?>(null);
     public Task<int> RebuildApprovedTranslationMemoryAsync(string root, CancellationToken ct = default) => Task.FromResult(0);
+    public Task WriteUserReviewJsonlAsync(string communityReviewsDir, string username, CancellationToken ct = default) => Task.CompletedTask;
+    public Task RefreshAggregationCacheAsync(string root, string? communityReviewsDir, CancellationToken ct = default) => Task.CompletedTask;
+    public SegmentReviewAggregation? GetAggregatedReview(string segmentKey) => null;
 }
 
 // ---- IScholarCollectionsService ----
