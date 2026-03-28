@@ -547,6 +547,17 @@ public partial class MainWindow : Window
             {
                 _vm.HandleNavigationRequested(req);
             };
+
+            // Reload scholar data when ANY window (including secondary) adds a passage
+            if (!IsSecondaryWindow)
+            {
+                ScholarTabView.ScholarDataChanged += (sender, _) =>
+                {
+                    // Only reload if the change came from a different view instance
+                    if (sender != _scholarView && !string.IsNullOrWhiteSpace(_vm.Root))
+                        _scholarView.SetRoot(_vm.Root);
+                };
+            }
         }
 
         if (_readableView != null)
