@@ -259,3 +259,11 @@ public class StubScholarCollectionsService : IScholarCollectionsService
     public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
     public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>(CommunityData));
 }
+
+// ---- IMasterDatesService ----
+
+public class StubMasterDatesService : IMasterDatesService
+{
+    public Task WriteMasterDatesJsonlAsync(string communityDir, string username, List<MasterDateEntry> entries, CancellationToken ct = default) => Task.CompletedTask;
+    public Task<Dictionary<string, List<MasterDateEntry>>> LoadAllCommunityMasterDatesAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<MasterDateEntry>>());
+}

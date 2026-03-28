@@ -377,7 +377,38 @@ public partial class MainWindow : Window
             _btnClose.Click += (_, _) => Close();
 
         if (_filesList != null)
+        {
             _filesList.SelectionChanged += FilesList_SelectionChanged;
+
+            var mnuLinkToPassage = Find<MenuItem>("MnuLinkToPassage");
+            if (mnuLinkToPassage != null)
+            {
+                // Enable/disable based on whether a scholar passage is selected
+                if (_filesList.ContextMenu != null)
+                {
+                    _filesList.ContextMenu.Opening += (_, _) =>
+                    {
+                        mnuLinkToPassage.IsEnabled = _scholarView?.GetSelectedPassage() != null;
+                    };
+                }
+
+                mnuLinkToPassage.Click += async (_, _) =>
+                {
+                    var navItem = _filesList.SelectedItem as FileNavItem;
+                    if (navItem == null || string.IsNullOrWhiteSpace(navItem.RelPath)) return;
+
+                    if (_scholarView == null) return;
+                    var passage = _scholarView.GetSelectedPassage();
+                    if (passage == null)
+                    {
+                        _vm.SetStatus("No scholar passage selected.");
+                        return;
+                    }
+
+                    await _scholarView.AddLinkedTextAsync(navItem.RelPath);
+                };
+            }
+        }
 
         if (_tabs != null)
         {

@@ -121,6 +121,9 @@ public partial class ScholarTabViewModel : ViewModelBase
     private Dictionary<string, int>? _masterDatesLookup;
     private bool _masterDatesLoadAttempted;
 
+    // Raw master entries for auto-detection of master names in passages
+    private List<MasterNameEntry>? _masterEntries;
+
     // ----- Bridge delegates (wired by code-behind for file pickers) -----
 
     public Func<Task<string?>>? PickExportFileAsync { get; set; }
@@ -547,6 +550,9 @@ public partial class ScholarTabViewModel : ViewModelBase
             ModifiedUtc = null
         };
 
+        // Auto-detect and merge master names from passage text
+        AutoTagMasterNames(adopted);
+
         targetCollection.Passages.Add(adopted);
 
         // If the target collection is currently displayed, update the observable list
@@ -611,6 +617,10 @@ public partial class ScholarTabViewModel : ViewModelBase
         passage.Id = Guid.NewGuid().ToString("N");
         passage.AddedUtc = DateTimeOffset.UtcNow;
         passage.CreatedBy = _username;
+
+        // Auto-detect master names from passage text
+        AutoTagMasterNames(passage);
+
         collection.Passages.Add(passage);
 
         if (SelectedCollection?.Id == collectionId)
@@ -798,32 +808,136 @@ public partial class ScholarTabViewModel : ViewModelBase
                 return;
 
             _masterDatesLookup = new Dictionary<string, int>(StringComparer.Ordinal);
+            _masterEntries = new List<MasterNameEntry>();
+
+            var baseNames = new HashSet<string>(StringComparer.Ordinal);
 
             foreach (var master in mastersEl.EnumerateArray())
             {
                 int floruit = master.TryGetProperty("floruit", out var f) ? f.GetInt32() : 0;
-                if (floruit == 0) continue;
 
+                var names = new List<string>();
                 if (master.TryGetProperty("names", out var namesEl))
                 {
                     foreach (var nameEl in namesEl.EnumerateArray())
                     {
                         var name = nameEl.GetString();
-                        if (!string.IsNullOrEmpty(name) && !_masterDatesLookup.ContainsKey(name))
-                            _masterDatesLookup[name] = floruit;
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            names.Add(name);
+                            baseNames.Add(name);
+                        }
+                    }
+                }
+
+                if (names.Count > 0)
+                    _masterEntries.Add(new MasterNameEntry(names));
+
+                if (floruit == 0) continue;
+
+                foreach (var name in names)
+                {
+                    if (!_masterDatesLookup.ContainsKey(name))
+                        _masterDatesLookup[name] = floruit;
+                }
+            }
+
+            // Merge community master dates (new masters only; base entries win)
+            MergeCommunityMasterDates(baseNames);
+        }
+        catch
+        {
+            _masterDatesLookup = null;
+            _masterEntries = null;
+        }
+    }
+
+    private void MergeCommunityMasterDates(HashSet<string> baseNames)
+    {
+        if (string.IsNullOrWhiteSpace(_root) || _masterDatesLookup == null || _masterEntries == null)
+            return;
+
+        try
+        {
+            var communityDir = IMasterDatesService.GetCommunityMasterDatesDir(_root);
+            if (!Directory.Exists(communityDir))
+                return;
+
+            // Load synchronously (same pattern as base load above)
+            var allUsers = new Dictionary<string, List<Models.MasterDateEntry>>(StringComparer.OrdinalIgnoreCase);
+            var readOpts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+            foreach (var file in Directory.GetFiles(communityDir, "*.jsonl"))
+            {
+                var username = Path.GetFileNameWithoutExtension(file);
+                var entries = new List<Models.MasterDateEntry>();
+                var lines = File.ReadAllLines(file, System.Text.Encoding.UTF8);
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    try
+                    {
+                        var e = JsonSerializer.Deserialize<Models.MasterDateEntry>(line, readOpts);
+                        if (e != null) entries.Add(e);
+                    }
+                    catch { }
+                }
+                if (entries.Count > 0)
+                    allUsers[username] = entries;
+            }
+
+            // Track which community masters have been added (first user alphabetically wins)
+            var addedCommunityNames = new HashSet<string>(StringComparer.Ordinal);
+
+            foreach (var (_, entries) in allUsers.OrderBy(kv => kv.Key, StringComparer.OrdinalIgnoreCase))
+            {
+                foreach (var entry in entries)
+                {
+                    // Skip if overlaps with base
+                    if (MasterDatesService.OverlapsWithBase(entry, baseNames))
+                        continue;
+
+                    // Skip if already added by an earlier user (alphabetical wins)
+                    bool alreadyAdded = false;
+                    foreach (var name in entry.Names)
+                    {
+                        var trimmed = name.Trim();
+                        if (!string.IsNullOrEmpty(trimmed) && addedCommunityNames.Contains(trimmed))
+                        {
+                            alreadyAdded = true;
+                            break;
+                        }
+                    }
+                    if (alreadyAdded) continue;
+
+                    // Add new community master to the lookup + master entries
+                    var cleanNames = entry.Names
+                        .Select(n => n.Trim())
+                        .Where(n => n.Length > 0)
+                        .ToList();
+
+                    if (cleanNames.Count > 0)
+                        _masterEntries.Add(new MasterNameEntry(cleanNames));
+
+                    foreach (var name in cleanNames)
+                    {
+                        addedCommunityNames.Add(name);
+                        if (entry.Floruit > 0 && !_masterDatesLookup.ContainsKey(name))
+                            _masterDatesLookup[name] = entry.Floruit;
                     }
                 }
             }
         }
         catch
         {
-            _masterDatesLookup = null;
+            // Community merge failure is non-fatal
         }
     }
 
     public void InvalidateMasterDatesCache()
     {
         _masterDatesLookup = null;
+        _masterEntries = null;
         _masterDatesLoadAttempted = false;
     }
 
@@ -948,6 +1062,77 @@ public partial class ScholarTabViewModel : ViewModelBase
         _root = null;
     }
 
+    // ----- Master name auto-detection -----
+
+    /// <summary>
+    /// Scans passage ZhText and EnText for known master names and adds any
+    /// newly detected names to the passage's MasterNames list (preserving
+    /// any names already present, e.g. manually set or adopted from community).
+    /// </summary>
+    private void AutoTagMasterNames(ScholarPassage passage)
+    {
+        EnsureMasterDatesLoaded();
+        if (_masterEntries == null || _masterEntries.Count == 0) return;
+
+        var detected = DetectMasterNames(passage.ZhText, passage.EnText, _masterEntries);
+        foreach (var name in detected)
+        {
+            if (!passage.MasterNames.Contains(name, StringComparer.OrdinalIgnoreCase))
+                passage.MasterNames.Add(name);
+        }
+    }
+
+    /// <summary>
+    /// Detects Zen master names in Chinese and English text by matching against
+    /// the master-dates.json entries. Returns canonical display names (pinyin).
+    /// </summary>
+    internal static List<string> DetectMasterNames(string? zhText, string? enText, List<MasterNameEntry> masterEntries)
+    {
+        var found = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // Chinese name matching — longest match first to avoid partial matches
+        if (!string.IsNullOrWhiteSpace(zhText))
+        {
+            var chineseCandidates = masterEntries
+                .SelectMany(e => e.Names
+                    .Where(n => n.Length >= 2 && ContainsChinese(n))
+                    .Select(n => (Name: n, DisplayName: e.Names[0])))
+                .OrderByDescending(c => c.Name.Length)
+                .ToList();
+
+            foreach (var (name, display) in chineseCandidates)
+            {
+                if (zhText.Contains(name, StringComparison.Ordinal))
+                    found.Add(display);
+            }
+        }
+
+        // Pinyin name matching in English text — case-insensitive, min 4 chars
+        if (!string.IsNullOrWhiteSpace(enText))
+        {
+            var pinyinCandidates = masterEntries
+                .SelectMany(e => e.Names
+                    .Where(n => !ContainsChinese(n) && n.Length >= 4)
+                    .Select(n => (Name: n, DisplayName: e.Names[0])))
+                .ToList();
+
+            foreach (var (name, display) in pinyinCandidates)
+            {
+                if (enText.Contains(name, StringComparison.OrdinalIgnoreCase))
+                    found.Add(display);
+            }
+        }
+
+        return found.ToList();
+    }
+
+    private static bool ContainsChinese(string s)
+    {
+        foreach (var c in s)
+            if (c >= 0x4E00 && c <= 0x9FFF) return true;
+        return false;
+    }
+
     private async Task SafeFireAndForget(Task task)
     {
         try
@@ -959,5 +1144,19 @@ public partial class ScholarTabViewModel : ViewModelBase
             StatusMessage = "Error: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
         }
+    }
+}
+
+/// <summary>
+/// Holds all name variants for a single master (pinyin + Chinese).
+/// Names[0] is the canonical pinyin display name.
+/// </summary>
+internal sealed class MasterNameEntry
+{
+    public List<string> Names { get; }
+
+    public MasterNameEntry(List<string> names)
+    {
+        Names = names;
     }
 }

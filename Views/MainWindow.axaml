@@ -98,6 +98,13 @@
 							 BorderBrush="{DynamicResource BorderBrush}"
 							 BorderThickness="1">
 
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem Name="MnuLinkToPassage" Header="Link to selected passage"
+										  ToolTip.Tip="Add this text to the selected scholar passage's linked texts"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+
 						<ListBox.ItemTemplate>
 							<DataTemplate x:DataType="models:FileNavItem">
 								<Border CornerRadius="6"
