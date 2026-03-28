@@ -68,36 +68,73 @@ public sealed class GitHubApiService : IGitHubApiService, IDisposable
         return s.Length <= max ? s : s.Substring(0, max) + "\n…(truncated)…";
     }
 
-    public async Task<GitHubUser?> GetMeAsync(string accessToken, CancellationToken ct)
+    private async Task<T?> RetryAsync<T>(Func<Task<T?>> action, int maxRetries = 3) where T : class
     {
-        SetAuth(accessToken);
-
-        using var resp = await _http.GetAsync("user", ct);
-        if (!resp.IsSuccessStatusCode) return null;
-
-        var json = await resp.Content.ReadAsStringAsync(ct);
-        return JsonSerializer.Deserialize<GitHubUser>(json);
+        for (int i = 0; i < maxRetries; i++)
+        {
+            try { return await action(); }
+            catch (HttpRequestException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+            catch (TaskCanceledException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+        }
+        return null;
     }
 
-    public async Task<bool> ForkExistsAsync(string accessToken, string owner, string repo, CancellationToken ct)
+    private async Task<bool> RetryBoolAsync(Func<Task<bool>> action, int maxRetries = 3)
     {
-        SetAuth(accessToken);
-
-        using var resp = await _http.GetAsync($"repos/{Uri.EscapeDataString(owner)}/{Uri.EscapeDataString(repo)}", ct);
-        if (resp.StatusCode == HttpStatusCode.NotFound) return false;
-        return resp.IsSuccessStatusCode;
+        for (int i = 0; i < maxRetries; i++)
+        {
+            try { return await action(); }
+            catch (HttpRequestException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+            catch (TaskCanceledException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+        }
+        return false;
     }
 
-    public async Task<bool> CreateForkAsync(string accessToken, string upstreamOwner, string upstreamRepo, CancellationToken ct)
+    private async Task<string?> RetryStringAsync(Func<Task<string?>> action, int maxRetries = 3)
     {
-        SetAuth(accessToken);
+        for (int i = 0; i < maxRetries; i++)
+        {
+            try { return await action(); }
+            catch (HttpRequestException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+            catch (TaskCanceledException) when (i < maxRetries - 1) { await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, i))); }
+        }
+        return null;
+    }
 
-        using var resp = await _http.PostAsync(
-            $"repos/{Uri.EscapeDataString(upstreamOwner)}/{Uri.EscapeDataString(upstreamRepo)}/forks",
-            new StringContent("{}", Encoding.UTF8, "application/json"),
-            ct);
+    public Task<GitHubUser?> GetMeAsync(string accessToken, CancellationToken ct)
+    {
+        return RetryAsync<GitHubUser>(async () =>
+        {
+            SetAuth(accessToken);
+            using var resp = await _http.GetAsync("user", ct);
+            if (!resp.IsSuccessStatusCode) return null;
+            var json = await resp.Content.ReadAsStringAsync(ct);
+            return JsonSerializer.Deserialize<GitHubUser>(json);
+        });
+    }
 
-        return resp.IsSuccessStatusCode || resp.StatusCode == HttpStatusCode.Accepted;
+    public Task<bool> ForkExistsAsync(string accessToken, string owner, string repo, CancellationToken ct)
+    {
+        return RetryBoolAsync(async () =>
+        {
+            SetAuth(accessToken);
+            using var resp = await _http.GetAsync($"repos/{Uri.EscapeDataString(owner)}/{Uri.EscapeDataString(repo)}", ct);
+            if (resp.StatusCode == HttpStatusCode.NotFound) return false;
+            return resp.IsSuccessStatusCode;
+        });
+    }
+
+    public Task<bool> CreateForkAsync(string accessToken, string upstreamOwner, string upstreamRepo, CancellationToken ct)
+    {
+        return RetryBoolAsync(async () =>
+        {
+            SetAuth(accessToken);
+            using var resp = await _http.PostAsync(
+                $"repos/{Uri.EscapeDataString(upstreamOwner)}/{Uri.EscapeDataString(upstreamRepo)}/forks",
+                new StringContent("{}", Encoding.UTF8, "application/json"),
+                ct);
+            return resp.IsSuccessStatusCode || resp.StatusCode == HttpStatusCode.Accepted;
+        });
     }
 
     public async Task<bool> WaitForForkAsync(string accessToken, string owner, string repo, TimeSpan timeout, IProgress<string> log, CancellationToken ct)
@@ -117,7 +154,23 @@ public sealed class GitHubApiService : IGitHubApiService, IDisposable
         return false;
     }
 
-    public async Task<string?> CreatePullRequestAsync(
+    public Task<string?> CreatePullRequestAsync(
+        string accessToken,
+        string upstreamOwner,
+        string upstreamRepo,
+        string head,
+        string baseBranch,
+        string title,
+        string body,
+        CancellationToken ct)
+    {
+        return RetryStringAsync(async () =>
+        {
+            return await CreatePullRequestCoreAsync(accessToken, upstreamOwner, upstreamRepo, head, baseBranch, title, body, ct);
+        });
+    }
+
+    private async Task<string?> CreatePullRequestCoreAsync(
         string accessToken,
         string upstreamOwner,
         string upstreamRepo,

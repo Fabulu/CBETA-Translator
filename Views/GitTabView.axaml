@@ -168,10 +168,23 @@
 						 Padding="8"
 						 Background="Transparent"
 						 BorderThickness="0"
-						 FontFamily="Consolas"
+						 FontFamily="Consolas, Menlo, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
 						 Text="{Binding LogText}"/>
 			</ScrollViewer>
 		</Border>
+
+		<!-- Empty state overlay -->
+		<Panel Grid.Row="7" Grid.ColumnSpan="2"
+			   IsVisible="{Binding !LogText.Length}"
+			   IsHitTestVisible="False">
+			<TextBlock Text="Open a text corpus folder to get started.&#x0a;Use the Git tab to share your work."
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   TextAlignment="Center"
+					   Opacity="0.5"
+					   FontSize="14"
+					   Margin="0,40,0,0"/>
+		</Panel>
 
 		<!-- Row 8: Progress -->
 		<TextBlock Grid.Row="8"

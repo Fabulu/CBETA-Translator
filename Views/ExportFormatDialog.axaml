@@ -76,11 +76,13 @@
 					Margin="0,14,0,0">
 			<Button Content="Cancel"
 					Width="90" Height="32"
-					Name="BtnCancel"/>
+					Name="BtnCancel"
+					ToolTip.Tip="Cancel export"/>
 			<Button Content="Export"
 					Width="90" Height="32"
 					Classes="primary"
-					Name="BtnOk"/>
+					Name="BtnOk"
+					ToolTip.Tip="Export in the selected format"/>
 		</StackPanel>
 	</Grid>
 

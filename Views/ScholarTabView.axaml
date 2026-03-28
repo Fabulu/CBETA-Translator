@@ -50,7 +50,7 @@
         <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
                 ToolTip.Tip="Remove selected passage" Padding="8,3"/>
         <Button Content="Compare" DockPanel.Dock="Right" Name="BtnCompare"
-                ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare" Padding="6,2" Margin="0,0,4,0"/>
+                ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare (Ctrl+Shift+C)" Padding="6,2" Margin="0,0,4,0"/>
         <TextBlock Text="Passages" FontWeight="SemiBold" VerticalAlignment="Center"/>
       </DockPanel>
 
@@ -86,7 +86,8 @@
                            TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
                            TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
+                <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"
+                           TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding SourceRelPath}"/>
                 <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
                            IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
                 <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
@@ -104,9 +105,15 @@
               IsVisible="{Binding HasCommunityCollections}"/>
 
       <!-- Community Collections header -->
-      <TextBlock Grid.Row="7" Text="Community Collections" FontWeight="SemiBold"
-                 Foreground="#88AAFF" Margin="4,4,4,0"
-                 IsVisible="{Binding HasCommunityCollections}"/>
+      <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="4,4,4,0" Spacing="6"
+                  IsVisible="{Binding HasCommunityCollections}">
+        <TextBlock Text="Community Collections" FontWeight="SemiBold"
+                   Foreground="{DynamicResource AccentLinkFg}"/>
+        <Border Background="{DynamicResource AccentLinkFg}" CornerRadius="8" Padding="6,1" VerticalAlignment="Center">
+          <TextBlock Text="{Binding CommunityCollections.Count}" FontSize="10" FontWeight="Bold"
+                     Foreground="{DynamicResource AppBg}"/>
+        </Border>
+      </StackPanel>
 
       <!-- Community filter -->
       <TextBox Grid.Row="8" Watermark="Filter community..."
@@ -124,7 +131,7 @@
               <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
               <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
                          TextTrimming="CharacterEllipsis"/>
-              <TextBlock FontSize="10" Foreground="#88AAFF"
+              <TextBlock FontSize="10" Foreground="{DynamicResource AccentLinkFg}"
                          IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                 <TextBlock.Text>
                   <MultiBinding StringFormat="by {0}">
@@ -149,7 +156,8 @@
                          TextTrimming="CharacterEllipsis" MaxLines="1"/>
               <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
                          TextTrimming="CharacterEllipsis" MaxLines="1"/>
-              <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
+              <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"
+                         TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding SourceRelPath}"/>
             </StackPanel>
           </DataTemplate>
         </ListBox.ItemTemplate>
@@ -253,11 +261,11 @@
                 <!-- Actions -->
                 <StackPanel Grid.Row="9" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
                   <Button Name="BtnFindParallels" Content="Find Parallels"
-                          ToolTip.Tip="Search the corpus for parallel passages" Padding="12,4"/>
+                          ToolTip.Tip="Search the corpus for parallel passages (Ctrl+Shift+P)" Padding="12,4"/>
                   <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"
                           ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
                   <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"
-                          IsEnabled="{Binding IsEditorEnabled}"/>
+                          IsEnabled="{Binding IsEditorEnabled}" ToolTip.Tip="Save passage edits"/>
                 </StackPanel>
               </Grid>
             </ScrollViewer>

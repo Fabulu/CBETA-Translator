@@ -90,10 +90,10 @@
             CornerRadius="6"
             Padding="10">
       <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8">
-        <Button Content="New" Click="OnNewClick"/>
-        <Button Grid.Column="1" Content="Delete" Click="OnDeleteClick"/>
-        <Button Grid.Column="3" Content="Close" MinWidth="100" Click="OnCloseClick"/>
-        <Button Grid.Column="4" Content="Save" MinWidth="100" Click="OnSaveClick"/>
+        <Button Content="New" Click="OnNewClick" ToolTip.Tip="Create a new master entry"/>
+        <Button Grid.Column="1" Content="Delete" Click="OnDeleteClick" ToolTip.Tip="Delete the selected master entry"/>
+        <Button Grid.Column="3" Content="Close" MinWidth="100" Click="OnCloseClick" ToolTip.Tip="Close without saving"/>
+        <Button Grid.Column="4" Content="Save" MinWidth="100" Click="OnSaveClick" ToolTip.Tip="Save all changes"/>
       </Grid>
     </Border>
 

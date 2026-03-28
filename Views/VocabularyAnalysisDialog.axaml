@@ -11,7 +11,7 @@
   <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
 
     <TextBox Grid.Row="0" Name="TxtFilter" Watermark="Filter phrases..."
-             Margin="0,0,0,8"/>
+             Margin="0,0,0,8" ToolTip.Tip="Type to filter vocabulary phrases"/>
 
     <!-- Column headers -->
     <Grid Grid.Row="1" ColumnDefinitions="*,80,80" Margin="4,0,4,4">
@@ -42,7 +42,7 @@
 
     <Button Grid.Row="3" Content="Close" Width="100" Height="32"
             HorizontalAlignment="Right" Margin="0,8,0,0"
-            Click="OnCloseClick"/>
+            Click="OnCloseClick" ToolTip.Tip="Close this dialog"/>
   </Grid>
 
 </Window>

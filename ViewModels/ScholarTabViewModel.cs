@@ -54,6 +54,12 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _statusMessage = "";
 
+    /// <summary>
+    /// Injected by the view to show a yes/no confirmation dialog.
+    /// Parameters: (title, message) => true if confirmed.
+    /// </summary>
+    public Func<string, string, Task<bool>>? ConfirmAsync { get; set; }
+
     // Editor fields (bound to detail panel)
     [ObservableProperty]
     private string _passageNotes = "";
@@ -248,9 +254,10 @@ public partial class ScholarTabViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void DeleteCollection()
+    private async Task DeleteCollectionAsync()
     {
         if (SelectedCollection == null) return;
+        if (ConfirmAsync != null && !await ConfirmAsync("Delete Collection", $"Delete '{SelectedCollection.Name}'? This cannot be undone.")) return;
         _allCollections.Remove(SelectedCollection);
         Collections.Remove(SelectedCollection);
         SelectedCollection = Collections.FirstOrDefault();
@@ -259,9 +266,10 @@ public partial class ScholarTabViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void DeletePassage()
+    private async Task DeletePassageAsync()
     {
         if (SelectedPassage == null || SelectedCollection == null) return;
+        if (ConfirmAsync != null && !await ConfirmAsync("Delete Passage", "Delete this passage? This cannot be undone.")) return;
         var deletedId = SelectedPassage.Id;
         var deletedRelPath = SelectedPassage.SourceRelPath;
         SelectedCollection.Passages.Remove(SelectedPassage);

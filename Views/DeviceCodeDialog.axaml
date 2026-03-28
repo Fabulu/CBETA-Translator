@@ -29,7 +29,7 @@
 			           FontSize="28"
 			           FontWeight="Bold"
 			           FontFamily="Consolas, Courier New, monospace"
-			           Foreground="#88AAFF"
+			           Foreground="{DynamicResource AccentLinkFg}"
 			           HorizontalAlignment="Center"/>
 			<TextBlock Name="TxtInstruction"
 			           Text="Your code has been copied to the clipboard."

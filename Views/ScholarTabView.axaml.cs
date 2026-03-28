@@ -67,6 +67,7 @@ public partial class ScholarTabView : UserControl
 
         _vm.PickExportFileAsync = PickExportFileAsync;
         _vm.PickImportFileAsync = PickImportFileAsync;
+        _vm.ConfirmAsync = ShowYesNoAsync;
         _vm.PickExportFormatAsync = PickExportFormatAsync;
 
         _scholarQaHost = this.FindControl<StackPanel>("ScholarQaHost");
@@ -91,6 +92,32 @@ public partial class ScholarTabView : UserControl
 
     private void WireViewEvents()
     {
+        // Keyboard shortcuts
+        KeyDown += (_, e) =>
+        {
+            if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift))
+            {
+                if (e.Key == Key.C)
+                {
+                    var btnCompare = this.FindControl<Button>("BtnCompare");
+                    if (btnCompare != null)
+                    {
+                        btnCompare.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+                        e.Handled = true;
+                    }
+                }
+                else if (e.Key == Key.P)
+                {
+                    var btnParallels = this.FindControl<Button>("BtnFindParallels");
+                    if (btnParallels != null)
+                    {
+                        btnParallels.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+                        e.Handled = true;
+                    }
+                }
+            }
+        };
+
         var passagesList = this.FindControl<ListBox>("PassagesList");
         if (passagesList != null)
         {
@@ -118,7 +145,7 @@ public partial class ScholarTabView : UserControl
         var btnVocab = this.FindControl<Button>("BtnVocabulary");
         if (btnVocab != null)
         {
-            btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync();
+            btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync(btnVocab);
         }
 
         // Edit Master Dates button
@@ -270,7 +297,9 @@ public partial class ScholarTabView : UserControl
 
     // ----- Termbase highlighting -----
 
-    private static readonly IBrush TermbaseGoldBg = new SolidColorBrush(Color.FromArgb(90, 255, 185, 0));
+    private static IBrush TermbaseGoldBg =>
+        Application.Current?.FindResource("TermbaseHighlightBg") as IBrush
+        ?? new SolidColorBrush(Color.FromArgb(90, 255, 185, 0));
 
     private async Task UpdateTermbaseHitsAsync(string? zhText)
     {
@@ -350,6 +379,50 @@ public partial class ScholarTabView : UserControl
                 hits.Add(entry);
         }
         return hits;
+    }
+
+    // ----- Confirmation dialog -----
+
+    private async Task<bool> ShowYesNoAsync(string title, string message)
+    {
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return true; // no window => allow action
+
+        var dlg = new Window
+        {
+            Title = title,
+            Width = 380,
+            Height = 160,
+            CanResize = false,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Background = Application.Current?.FindResource("AppBg") as IBrush
+        };
+
+        var result = false;
+        var btnYes = new Button { Content = "Yes", Width = 80, Height = 32 };
+        var btnNo = new Button { Content = "No", Width = 80, Height = 32 };
+        btnYes.Click += (_, _) => { result = true; dlg.Close(); };
+        btnNo.Click += (_, _) => { result = false; dlg.Close(); };
+
+        dlg.Content = new StackPanel
+        {
+            Margin = new Thickness(20),
+            Spacing = 16,
+            Children =
+            {
+                new TextBlock { Text = message, TextWrapping = Avalonia.Media.TextWrapping.Wrap },
+                new StackPanel
+                {
+                    Orientation = Avalonia.Layout.Orientation.Horizontal,
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+                    Spacing = 10,
+                    Children = { btnNo, btnYes }
+                }
+            }
+        };
+
+        await dlg.ShowDialog(topLevel);
+        return result;
     }
 
     // ----- File pickers -----
@@ -829,6 +902,7 @@ public partial class ScholarTabView : UserControl
         _parallelCts = new CancellationTokenSource();
         var ct = _parallelCts.Token;
 
+        anchorButton.IsEnabled = false;
         Status?.Invoke(this, "Searching for parallel passages...");
 
         try
@@ -856,6 +930,10 @@ public partial class ScholarTabView : UserControl
         {
             if (!ct.IsCancellationRequested)
                 Status?.Invoke(this, "Parallel search failed: " + ex.Message);
+        }
+        finally
+        {
+            anchorButton.IsEnabled = true;
         }
     }
 
@@ -910,7 +988,7 @@ public partial class ScholarTabView : UserControl
 
     // ----- Vocabulary Analysis -----
 
-    private async Task OnVocabularyClickedAsync()
+    private async Task OnVocabularyClickedAsync(Button? vocabButton = null)
     {
         // Collect passages from selected collection, or all collections
         var passages = new List<ScholarPassage>();
@@ -930,21 +1008,29 @@ public partial class ScholarTabView : UserControl
             return;
         }
 
-        var items = VocabularyAnalysisService.Analyze(passages);
-        if (items.Count == 0)
+        if (vocabButton != null) vocabButton.IsEnabled = false;
+        try
         {
-            Status?.Invoke(this, "No vocabulary patterns found.");
-            return;
+            var items = VocabularyAnalysisService.Analyze(passages);
+            if (items.Count == 0)
+            {
+                Status?.Invoke(this, "No vocabulary patterns found.");
+                return;
+            }
+
+            var topLevel = TopLevel.GetTopLevel(this) as Window;
+            if (topLevel == null) return;
+
+            var dlg = new VocabularyAnalysisDialog(items)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+            await dlg.ShowDialog(topLevel);
         }
-
-        var topLevel = TopLevel.GetTopLevel(this) as Window;
-        if (topLevel == null) return;
-
-        var dlg = new VocabularyAnalysisDialog(items)
+        finally
         {
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-        await dlg.ShowDialog(topLevel);
+            if (vocabButton != null) vocabButton.IsEnabled = true;
+        }
     }
 
     // ----- Edit Master Dates -----

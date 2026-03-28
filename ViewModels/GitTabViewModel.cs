@@ -1085,7 +1085,7 @@ public partial class GitTabViewModel : ViewModelBase
             {
                 Process.Start(new ProcessStartInfo { FileName = prUrl, UseShellExecute = true });
             }
-            catch { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[GitTabViewModel] Open PR URL failed: {ex.Message}"); }
 
             StatusChanged?.Invoke(this, "PR created: " + prUrl);
         }
