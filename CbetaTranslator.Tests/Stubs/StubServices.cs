@@ -74,6 +74,7 @@ public class StubGitHubAuthService : IGitHubAuthService
 {
     public Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null)
         => Task.FromResult<GitHubToken?>(null);
+    public void Dispose() { }
 }
 
 // ---- IGitHubApiService ----
@@ -85,6 +86,7 @@ public class StubGitHubApiService : IGitHubApiService
     public Task<bool> CreateForkAsync(string accessToken, string upstreamOwner, string upstreamRepo, CancellationToken ct) => Task.FromResult(true);
     public Task<bool> WaitForForkAsync(string accessToken, string owner, string repo, TimeSpan timeout, IProgress<string> log, CancellationToken ct) => Task.FromResult(true);
     public Task<string?> CreatePullRequestAsync(string accessToken, string upstreamOwner, string upstreamRepo, string head, string baseBranch, string title, string body, CancellationToken ct) => Task.FromResult<string?>(null);
+    public void Dispose() { }
 }
 
 // ---- ICommunityDataService ----
