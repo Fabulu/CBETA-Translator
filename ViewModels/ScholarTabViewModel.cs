@@ -821,6 +821,12 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
     }
 
+    public void InvalidateMasterDatesCache()
+    {
+        _masterDatesLookup = null;
+        _masterDatesLoadAttempted = false;
+    }
+
     partial void OnSelectedPassageChanging(ScholarPassage? value)
     {
         // Save current passage edits before switching to the new one

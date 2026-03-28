@@ -60,6 +60,8 @@
                   ItemsSource="{Binding SearchFilterModes}"
                   SelectedItem="{Binding SearchFilterMode}"
                   ToolTip.Tip="Filter scope"/>
+        <Button DockPanel.Dock="Right" Name="BtnEditMasterDates" Content="&#x270E;"
+                ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" Margin="2,0,0,0"/>
         <ComboBox DockPanel.Dock="Right" Width="90" Padding="4,2" Margin="2,0,0,0"
                   ItemsSource="{Binding SortModes}"
                   SelectedItem="{Binding SortMode}"
