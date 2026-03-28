@@ -225,6 +225,9 @@ public partial class ScholarTabView : UserControl
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
 
+        // Disable editor fields for community passages (read-only)
+        _vm.IsEditorEnabled = false;
+
         // Update editor fields to show community passage metadata (read-only context)
         _vm.PassageNotes = passage?.Notes ?? "";
         _vm.PassageTags = passage != null ? string.Join(", ", passage.Tags) : "";
@@ -947,6 +950,8 @@ public partial class ScholarTabView : UserControl
         _originalDir = origDir;
         _translatedDir = tranDir;
     }
+
+    public async Task SaveCurrentStateAsync() => await _vm.SaveCurrentStateAsync();
 
     public void SetRoot(string root)
     {

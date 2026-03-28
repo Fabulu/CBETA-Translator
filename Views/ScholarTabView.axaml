@@ -215,6 +215,7 @@
                 <DockPanel Grid.Row="5" Margin="0,0,0,4">
                   <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
                   <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
+                           IsEnabled="{Binding IsEditorEnabled}"
                            ToolTip.Tip="Tag this passage (e.g., enlightenment, lecture, master-on-master)"/>
                 </DockPanel>
 
@@ -222,6 +223,7 @@
                 <DockPanel Grid.Row="6" Margin="0,0,0,4">
                   <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
                   <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
+                           IsEnabled="{Binding IsEditorEnabled}"
                            ToolTip.Tip="Masters mentioned (e.g., Nanquan, Zhaozhou)"/>
                 </DockPanel>
 
@@ -230,6 +232,7 @@
                   <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
                   <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
                            AcceptsReturn="True" TextWrapping="Wrap" Height="80"
+                           IsEnabled="{Binding IsEditorEnabled}"
                            ToolTip.Tip="Your personal notes about this passage"/>
                 </DockPanel>
 
@@ -239,7 +242,8 @@
                           ToolTip.Tip="Search the corpus for parallel passages" Padding="12,4"/>
                   <Button Content="Navigate to Source" Command="{Binding NavigateToPassageCommand}"
                           ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
-                  <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
+                  <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"
+                          IsEnabled="{Binding IsEditorEnabled}"/>
                 </StackPanel>
               </Grid>
             </ScrollViewer>
@@ -252,25 +256,25 @@
                   <TextBlock Text="Doctrinal Topic" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding DoctrinalTopicOptions}"
                             Text="{Binding DoctrinalTopic}" HorizontalAlignment="Stretch"
-                                    />
+                            IsEnabled="{Binding IsEditorEnabled}"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Literary Form" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding LiteraryFormOptions}"
                             Text="{Binding LiteraryForm}" HorizontalAlignment="Stretch"
-                                    />
+                            IsEnabled="{Binding IsEditorEnabled}"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Lineage" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding LineageOptions}"
                             Text="{Binding Lineage}" HorizontalAlignment="Stretch"
-                                    />
+                            IsEnabled="{Binding IsEditorEnabled}"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Rhetorical Function" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding RhetoricalFunctionOptions}"
                             Text="{Binding RhetoricalFunction}" HorizontalAlignment="Stretch"
-                                    />
+                            IsEnabled="{Binding IsEditorEnabled}"/>
                 </DockPanel>
               </StackPanel>
             </ScrollViewer>
