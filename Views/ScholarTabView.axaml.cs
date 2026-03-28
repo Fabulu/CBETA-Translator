@@ -28,6 +28,7 @@ public partial class ScholarTabView : UserControl
 
     // Hover dictionary
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
     private HoverDictionaryBehaviorTextBox? _hoverDict;
 
     // Termbase highlighting
@@ -111,6 +112,13 @@ public partial class ScholarTabView : UserControl
         if (btnCompare != null)
         {
             btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
+        }
+
+        // Vocabulary button
+        var btnVocab = this.FindControl<Button>("BtnVocabulary");
+        if (btnVocab != null)
+        {
+            btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync();
         }
 
         // Find Parallels button
@@ -239,7 +247,7 @@ public partial class ScholarTabView : UserControl
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         if (txtZhText == null) return;
 
-        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict); }
+        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar); }
         catch { /* dictionary not available */ }
     }
 
@@ -814,6 +822,45 @@ public partial class ScholarTabView : UserControl
         };
 
         flyout.ShowAt(anchor);
+    }
+
+    // ----- Vocabulary Analysis -----
+
+    private async Task OnVocabularyClickedAsync()
+    {
+        // Collect passages from selected collection, or all collections
+        var passages = new List<ScholarPassage>();
+        if (_vm.SelectedCollection != null)
+        {
+            passages.AddRange(_vm.SelectedCollection.Passages);
+        }
+        else
+        {
+            foreach (var c in _vm.Collections)
+                passages.AddRange(c.Passages);
+        }
+
+        if (passages.Count == 0)
+        {
+            Status?.Invoke(this, "No passages to analyze.");
+            return;
+        }
+
+        var items = VocabularyAnalysisService.Analyze(passages);
+        if (items.Count == 0)
+        {
+            Status?.Invoke(this, "No vocabulary patterns found.");
+            return;
+        }
+
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel == null) return;
+
+        var dlg = new VocabularyAnalysisDialog(items)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        await dlg.ShowDialog(topLevel);
     }
 
     // ----- Insert Reference -----

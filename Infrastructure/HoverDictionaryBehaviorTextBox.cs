@@ -23,6 +23,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
 {
     private readonly TextBox _tb;
     private readonly ICedictDictionary _cedict;
+    private readonly IGrammarReferenceService? _grammar;
     private readonly DispatcherTimer _debounce;
     private readonly ToolTip _tip;
 
@@ -43,10 +44,12 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
 
-    public HoverDictionaryBehaviorTextBox(TextBox textBox, ICedictDictionary cedict)
+    public HoverDictionaryBehaviorTextBox(TextBox textBox, ICedictDictionary cedict,
+        IGrammarReferenceService? grammar = null)
     {
         _tb = textBox ?? throw new ArgumentNullException(nameof(textBox));
         _cedict = cedict ?? throw new ArgumentNullException(nameof(cedict));
+        _grammar = grammar;
 
         _tip = new ToolTip
         {
@@ -288,6 +291,23 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
             return;
         }
 
+        // No CEDICT match — check if it's a grammar particle
+        if (_grammar != null)
+        {
+            var grammarInfo = _grammar.Lookup(ch);
+            if (grammarInfo != null)
+            {
+                string head = ch.ToString();
+                if (_lastKeyShown == head && _lastOffset == offset)
+                    return;
+
+                _lastKeyShown = head;
+                _lastOffset = offset;
+                ShowTooltip(BuildGrammarOnlyTooltip(grammarInfo));
+                return;
+            }
+        }
+
         HideTooltip();
     }
 
@@ -482,7 +502,45 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
         if (match.Entries.Count > MaxEntriesShown)
             lines.Add(MakeLine($"…and {match.Entries.Count - MaxEntriesShown} more", metaFg, false));
 
+        // Append grammar info if the headword is a single character
+        if (_grammar != null && match.Headword.Length == 1)
+        {
+            var grammarInfo = _grammar.Lookup(match.Headword[0]);
+            if (grammarInfo != null)
+                AppendGrammarLines(lines, grammarInfo, metaFg, senseFg);
+        }
+
         return BuildTooltipContainer(lines);
+    }
+
+    private Control BuildGrammarOnlyTooltip(GrammarParticleInfo info)
+    {
+        var headFg = ResBrush("DictHeadwordFg", ThemeFallbackHead());
+        var senseFg = ResBrush("DictSenseFg", ThemeFallbackSense());
+        var metaFg = ResBrush("DictMetaFg", ThemeFallbackMeta());
+
+        var lines = new List<TextBlock>
+        {
+            MakeLine(info.Character.ToString(), headFg, true, 21)
+        };
+
+        AppendGrammarLines(lines, info, metaFg, senseFg);
+        return BuildTooltipContainer(lines);
+    }
+
+    private static void AppendGrammarLines(List<TextBlock> lines, GrammarParticleInfo info,
+        IBrush metaFg, IBrush senseFg)
+    {
+        lines.Add(MakeLine(" ", metaFg, false));
+        lines.Add(MakeLine($"Grammar functions of {info.Character}:", metaFg, true, 13));
+
+        foreach (var func in info.Functions)
+        {
+            var text = $"\u2022 {func.Role}: {func.Gloss}";
+            if (!string.IsNullOrEmpty(func.Example))
+                text += $" ({func.Example} \u2192 {func.ExampleGloss})";
+            lines.Add(MakeLine(text, senseFg, false, 12));
+        }
     }
 
     private Control BuildTooltipContainer(IEnumerable<TextBlock> lines)

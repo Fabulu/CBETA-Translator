@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="using:CbetaTranslator.App.Services"
+        x:Class="CbetaTranslator.App.Views.VocabularyAnalysisDialog"
+        Width="600"
+        Height="500"
+        Title="Vocabulary Analysis"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+
+    <TextBox Grid.Row="0" Name="TxtFilter" Watermark="Filter phrases..."
+             Margin="0,0,0,8"/>
+
+    <!-- Column headers -->
+    <Grid Grid.Row="1" ColumnDefinitions="*,80,80" Margin="4,0,4,4">
+      <TextBlock Grid.Column="0" Text="Phrase" FontWeight="SemiBold" FontSize="12"/>
+      <TextBlock Grid.Column="1" Text="Count" FontWeight="SemiBold" FontSize="12"
+                 HorizontalAlignment="Right"/>
+      <TextBlock Grid.Column="2" Text="Passages" FontWeight="SemiBold" FontSize="12"
+                 HorizontalAlignment="Right"/>
+    </Grid>
+
+    <!-- Items list -->
+    <ListBox Grid.Row="2" Name="VocabList"
+             BorderThickness="1"
+             BorderBrush="{DynamicResource BorderBrush}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="svc:VocabularyItem">
+          <Grid ColumnDefinitions="*,80,80">
+            <TextBlock Grid.Column="0" Text="{Binding Phrase}" FontSize="16"
+                       FontWeight="SemiBold"/>
+            <TextBlock Grid.Column="1" Text="{Binding Count}" FontSize="13"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="{Binding PassageCount}" FontSize="13"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <Button Grid.Row="3" Content="Close" Width="100" Height="32"
+            HorizontalAlignment="Right" Margin="0,8,0,0"
+            Click="OnCloseClick"/>
+  </Grid>
+
+</Window>

@@ -34,8 +34,14 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _collectionFilter = "";
 
+    [ObservableProperty]
+    private string _sortMode = "Default";
+
     public static string[] SearchFilterModes { get; } =
         { "All", "Tags", "Masters", "Chinese", "English", "Notes", "Topic", "Form", "Lineage", "Function" };
+
+    public static string[] SortModes { get; } =
+        { "Default", "A-Z (Chinese)", "Chronological" };
 
     [ObservableProperty]
     private ScholarCollection? _selectedCollection;
@@ -106,6 +112,10 @@ public partial class ScholarTabViewModel : ViewModelBase
     // Backing list for collection filtering
     private readonly List<ScholarCollection> _allCollections = new();
     private readonly List<(string Author, ScholarCollection Collection)> _allCommunityCollections = new();
+
+    // Master dates for chronological sort
+    private Dictionary<string, int>? _masterDatesLookup;
+    private bool _masterDatesLoadAttempted;
 
     // ----- Bridge delegates (wired by code-behind for file pickers) -----
 
@@ -616,6 +626,11 @@ public partial class ScholarTabViewModel : ViewModelBase
         RefreshPassagesList();
     }
 
+    partial void OnSortModeChanged(string value)
+    {
+        RefreshPassagesList();
+    }
+
     partial void OnCollectionFilterChanged(string value)
     {
         RefreshCollectionsList();
@@ -684,10 +699,84 @@ public partial class ScholarTabViewModel : ViewModelBase
             });
         }
 
-        foreach (var p in passages)
+        // Apply sort mode
+        var sortMode = SortMode ?? "Default";
+        var sorted = sortMode switch
+        {
+            "A-Z (Chinese)" => passages.OrderBy(p => p.ZhText ?? "", StringComparer.Ordinal),
+            "Chronological" => passages.OrderBy(p => GetChronologicalKey(p)),
+            _ => passages
+        };
+
+        foreach (var p in sorted)
             Passages.Add(p);
 
         SelectedPassage = Passages.FirstOrDefault();
+    }
+
+    private int GetChronologicalKey(ScholarPassage passage)
+    {
+        EnsureMasterDatesLoaded();
+        if (_masterDatesLookup == null || _masterDatesLookup.Count == 0)
+            return int.MaxValue;
+
+        // Check each master name for a match
+        foreach (var name in passage.MasterNames)
+        {
+            if (_masterDatesLookup.TryGetValue(name, out var year))
+                return year;
+        }
+
+        // Also check ZhText for master name mentions
+        foreach (var (masterName, year) in _masterDatesLookup)
+        {
+            if ((passage.ZhText ?? "").Contains(masterName, StringComparison.Ordinal))
+                return year;
+        }
+
+        return int.MaxValue;
+    }
+
+    private void EnsureMasterDatesLoaded()
+    {
+        if (_masterDatesLoadAttempted) return;
+        _masterDatesLoadAttempted = true;
+
+        try
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
+            if (!File.Exists(path))
+                return;
+
+            var json = File.ReadAllText(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+
+            if (!root.TryGetProperty("masters", out var mastersEl))
+                return;
+
+            _masterDatesLookup = new Dictionary<string, int>(StringComparer.Ordinal);
+
+            foreach (var master in mastersEl.EnumerateArray())
+            {
+                int floruit = master.TryGetProperty("floruit", out var f) ? f.GetInt32() : 0;
+                if (floruit == 0) continue;
+
+                if (master.TryGetProperty("names", out var namesEl))
+                {
+                    foreach (var nameEl in namesEl.EnumerateArray())
+                    {
+                        var name = nameEl.GetString();
+                        if (!string.IsNullOrEmpty(name) && !_masterDatesLookup.ContainsKey(name))
+                            _masterDatesLookup[name] = floruit;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            _masterDatesLookup = null;
+        }
     }
 
     partial void OnSelectedPassageChanged(ScholarPassage? value)
