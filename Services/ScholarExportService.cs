@@ -92,7 +92,7 @@ public sealed class ScholarExportService : IScholarExportService
         }
 
         // Links section
-        var links = collection.Links;
+        var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
             sb.AppendLine("<hr>");
@@ -239,6 +239,13 @@ public sealed class ScholarExportService : IScholarExportService
         return passageId;
     }
 
+    private static bool IsValidLink(ScholarCollection collection, PassageLink link)
+    {
+        bool fromExists = collection.Passages.Any(p => p.Id == link.FromPassageId);
+        bool toExists = collection.Passages.Any(p => p.Id == link.ToPassageId);
+        return fromExists && toExists;
+    }
+
     private const string HtmlCss = @"
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -365,7 +372,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         }
 
         // Links section
-        var links = collection.Links;
+        var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
             sb.AppendLine("## Cross-References");
@@ -434,7 +441,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         }
 
         // Links
-        var links = collection.Links;
+        var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
             sb.AppendLine("Cross-References");

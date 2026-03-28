@@ -19,7 +19,8 @@ public sealed class MasterDatesService : IMasterDatesService
 
     private static readonly JsonSerializerOptions CompactOpts = new()
     {
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     public async Task WriteMasterDatesJsonlAsync(string communityDir, string username, List<MasterDateEntry> entries, CancellationToken ct = default)

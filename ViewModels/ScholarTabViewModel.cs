@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using CbetaTranslator.App.Models;
@@ -17,6 +18,7 @@ namespace CbetaTranslator.App.ViewModels;
 public partial class ScholarTabViewModel : ViewModelBase
 {
     private readonly IScholarCollectionsService _svc;
+    private readonly SemaphoreSlim _saveLock = new(1, 1);
     private string? _root;
     private string? _username;
 
@@ -203,20 +205,28 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(_root)) return;
 
-        // Sync editor fields back to selected passage before saving
-        SyncEditorFieldsToPassage();
-
+        await _saveLock.WaitAsync();
         try
         {
-            var list = _allCollections.ToList();
-            await _svc.SaveAsync(_root, list);
-            StatusMessage = "Saved.";
-            StatusChanged?.Invoke(this, StatusMessage);
+            // Sync editor fields back to selected passage before saving
+            SyncEditorFieldsToPassage();
+
+            try
+            {
+                var list = _allCollections.ToList();
+                await _svc.SaveAsync(_root, list);
+                StatusMessage = "Saved.";
+                StatusChanged?.Invoke(this, StatusMessage);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Save failed: " + ex.Message;
+                StatusChanged?.Invoke(this, StatusMessage);
+            }
         }
-        catch (Exception ex)
+        finally
         {
-            StatusMessage = "Save failed: " + ex.Message;
-            StatusChanged?.Invoke(this, StatusMessage);
+            _saveLock.Release();
         }
     }
 
@@ -253,12 +263,20 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (SelectedPassage == null || SelectedCollection == null) return;
         var deletedId = SelectedPassage.Id;
+        var deletedRelPath = SelectedPassage.SourceRelPath;
         SelectedCollection.Passages.Remove(SelectedPassage);
         Passages.Remove(SelectedPassage);
 
         // Clean up orphan links referencing the deleted passage
         SelectedCollection.Links.RemoveAll(l =>
             l.FromPassageId == deletedId || l.ToPassageId == deletedId);
+
+        // Clean up LinkedTexts referencing the deleted passage's source
+        if (!string.IsNullOrEmpty(deletedRelPath))
+        {
+            foreach (var p in SelectedCollection.Passages)
+                p.LinkedTexts.Remove(deletedRelPath);
+        }
 
         SelectedPassage = Passages.FirstOrDefault();
         _ = SafeFireAndForget(SaveAsync());
@@ -1026,8 +1044,9 @@ public partial class ScholarTabViewModel : ViewModelBase
                     defaultRhetoricalFunctions = rf.EnumerateArray().Select(e => e.GetString() ?? "").Where(s => s.Length > 0).ToArray();
             }
         }
-        catch
+        catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"LoadFacetOptions: failed to load scholar-facets.json, using defaults. {ex.Message}");
             // Fall through to defaults
         }
 

@@ -18,12 +18,14 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
 
     private static readonly JsonSerializerOptions WriteOpts = new()
     {
-        WriteIndented = true
+        WriteIndented = true,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     private static readonly JsonSerializerOptions CompactOpts = new()
     {
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     public async Task<List<ScholarCollection>> LoadAsync(string root, CancellationToken ct = default)
@@ -57,7 +59,9 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         Directory.CreateDirectory(root);
 
         var json = JsonSerializer.Serialize(collections, WriteOpts);
-        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     public async Task ExportAsync(string filePath, List<ScholarCollection> collections, CancellationToken ct = default)
@@ -73,7 +77,9 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
             Directory.CreateDirectory(dir);
 
         var json = JsonSerializer.Serialize(collections, WriteOpts);
-        await File.WriteAllTextAsync(filePath, json, new UTF8Encoding(false), ct);
+        var tmpPath = filePath + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, filePath, overwrite: true);
     }
 
     public async Task<List<ScholarCollection>> ImportAsync(string filePath, CancellationToken ct = default)
@@ -117,7 +123,9 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
             sb.AppendLine(JsonSerializer.Serialize(c, CompactOpts));
         }
 
-        await File.WriteAllTextAsync(path, sb.ToString(), new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     public async Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)

@@ -23,12 +23,14 @@ public sealed class CommunityDataService : ICommunityDataService
 
     private static readonly JsonSerializerOptions WriteOpts = new()
     {
-        WriteIndented = false
+        WriteIndented = false,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     private static readonly JsonSerializerOptions TermbaseWriteOpts = new()
     {
-        WriteIndented = true
+        WriteIndented = true,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
     // Shared TmRow shape across all three TM services — must match their serialized fields.
@@ -150,7 +152,9 @@ public sealed class CommunityDataService : ICommunityDataService
             sb.AppendLine(JsonSerializer.Serialize(row, WriteOpts));
         }
 
-        await File.WriteAllTextAsync(path, sb.ToString(), new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     private static string MakeTmKey(TmRow r)
@@ -238,7 +242,9 @@ public sealed class CommunityDataService : ICommunityDataService
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
         var json = JsonSerializer.Serialize(entries, TermbaseWriteOpts);
-        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     // -----------------------------------------------------------------------
@@ -381,7 +387,9 @@ public sealed class CommunityDataService : ICommunityDataService
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
         var json = JsonSerializer.Serialize(collections, TermbaseWriteOpts);
-        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     // -----------------------------------------------------------------------
