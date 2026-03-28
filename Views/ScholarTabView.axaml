@@ -153,7 +153,7 @@
 
     <!-- Right: Detail editor -->
     <Border Grid.Column="2" CornerRadius="6" Padding="12" Margin="4">
-      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
         <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
 
@@ -214,6 +214,38 @@
                   ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
           <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"/>
         </StackPanel>
+
+        <!-- Translation Assistant -->
+        <Expander Grid.Row="9" Header="Translation Assistant" IsExpanded="False" Margin="0,8,0,0">
+          <ScrollViewer MaxHeight="500">
+            <StackPanel Spacing="8" Margin="4">
+              <Border CornerRadius="4" Padding="6">
+                <StackPanel>
+                  <TextBlock Text="Warnings / QA" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <StackPanel Name="ScholarQaHost"/>
+                </StackPanel>
+              </Border>
+              <Border CornerRadius="4" Padding="6">
+                <StackPanel>
+                  <TextBlock Text="Recognized Terms" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <StackPanel Name="ScholarTermHost"/>
+                </StackPanel>
+              </Border>
+              <Border CornerRadius="4" Padding="6">
+                <StackPanel>
+                  <TextBlock Text="Approved TM" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <StackPanel Name="ScholarApprovedTmHost"/>
+                </StackPanel>
+              </Border>
+              <Border CornerRadius="4" Padding="6">
+                <StackPanel>
+                  <TextBlock Text="Reference / AI" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <StackPanel Name="ScholarReferenceTmHost"/>
+                </StackPanel>
+              </Border>
+            </StackPanel>
+          </ScrollViewer>
+        </Expander>
       </Grid>
     </Border>
 

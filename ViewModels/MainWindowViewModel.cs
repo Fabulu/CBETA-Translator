@@ -152,6 +152,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string>? SetScholarRoot { get; set; }
     public Action? ClearScholar { get; set; }
     public Action<string?>? SetScholarUsername { get; set; }
+    public Action<string?, string?>? SetScholarTranslationDirs { get; set; }
 
     // Dialog bridges (code-behind provides UI dialogs)
     public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
@@ -328,6 +329,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SetGitRepoRoot?.Invoke(_root);
         SetSearchRootContext?.Invoke(_root, _originalDir, _translatedDir);
         SetScholarRoot?.Invoke(_root);
+        SetScholarTranslationDirs?.Invoke(_originalDir, _translatedDir);
 
         try
         {
