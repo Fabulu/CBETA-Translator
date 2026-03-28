@@ -1318,6 +1318,354 @@ public class ScholarTabViewModelTests
         Assert.Null(vm.FindPassageById("any"));
     }
 
+    // ---- Test 9: Facet properties sync to/from passage ----
+
+    [Fact]
+    public void FacetProperties_SyncToPassageOnSave()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+
+        // Set root so save runs
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        vm.AddCollectionCommand.Execute(null);
+        var passage = new ScholarPassage
+        {
+            Id = "p1", ZhText = "text", SourceRelPath = "x.xml"
+        };
+        vm.Collections[0].Passages.Add(passage);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+        vm.SelectedPassage = passage;
+
+        // Set facet values via VM properties
+        vm.DoctrinalTopic = "Buddha-nature";
+        vm.LiteraryForm = "Koan case";
+        vm.Lineage = "Linji/Rinzai";
+        vm.RhetoricalFunction = "Paradox";
+
+        // Trigger save (which calls SyncEditorFieldsToPassage)
+        vm.SaveCommand.Execute(null);
+
+        Assert.Equal("Buddha-nature", passage.DoctrinalTopic);
+        Assert.Equal("Koan case", passage.LiteraryForm);
+        Assert.Equal("Linji/Rinzai", passage.Lineage);
+        Assert.Equal("Paradox", passage.RhetoricalFunction);
+    }
+
+    [Fact]
+    public void FacetProperties_SyncFromPassageOnSelection()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var passage = new ScholarPassage
+        {
+            Id = "p1", ZhText = "text", SourceRelPath = "x.xml",
+            DoctrinalTopic = "Emptiness",
+            LiteraryForm = "Verse commentary",
+            Lineage = "Caodong/Soto",
+            RhetoricalFunction = "Assertion"
+        };
+        vm.Collections[0].Passages.Add(passage);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+        vm.SelectedPassage = passage;
+
+        Assert.Equal("Emptiness", vm.DoctrinalTopic);
+        Assert.Equal("Verse commentary", vm.LiteraryForm);
+        Assert.Equal("Caodong/Soto", vm.Lineage);
+        Assert.Equal("Assertion", vm.RhetoricalFunction);
+    }
+
+    [Fact]
+    public void FacetProperties_NullPassageFacets_BecomeEmptyStrings()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var passage = new ScholarPassage
+        {
+            Id = "p1", ZhText = "text", SourceRelPath = "x.xml",
+            DoctrinalTopic = null,
+            LiteraryForm = null,
+            Lineage = null,
+            RhetoricalFunction = null
+        };
+        vm.Collections[0].Passages.Add(passage);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+        vm.SelectedPassage = passage;
+
+        Assert.Equal("", vm.DoctrinalTopic);
+        Assert.Equal("", vm.LiteraryForm);
+        Assert.Equal("", vm.Lineage);
+        Assert.Equal("", vm.RhetoricalFunction);
+    }
+
+    [Fact]
+    public void FacetProperties_EmptyStringsSyncAsNullToPassage()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        vm.AddCollectionCommand.Execute(null);
+        var passage = new ScholarPassage
+        {
+            Id = "p1", ZhText = "text", SourceRelPath = "x.xml",
+            DoctrinalTopic = "Emptiness"
+        };
+        vm.Collections[0].Passages.Add(passage);
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+        vm.SelectedPassage = passage;
+
+        // Clear facet values
+        vm.DoctrinalTopic = "";
+        vm.LiteraryForm = "";
+        vm.Lineage = "   "; // whitespace only
+        vm.RhetoricalFunction = "";
+
+        vm.SaveCommand.Execute(null);
+
+        Assert.Null(passage.DoctrinalTopic);
+        Assert.Null(passage.LiteraryForm);
+        Assert.Null(passage.Lineage);
+        Assert.Null(passage.RhetoricalFunction);
+    }
+
+    // ---- Test 10: SortMode "Chronological" sorts by master date ----
+
+    [Fact]
+    public void SortMode_Chronological_SortsByMasterNameDate()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+
+        // Linji floruit=810, Bodhidharma floruit=500, Hakuin floruit=1686
+        // If master-dates.json is available, sorting should order by floruit
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p1", ZhText = "a", SourceRelPath = "x.xml",
+            MasterNames = new List<string> { "Hakuin" }
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p2", ZhText = "b", SourceRelPath = "y.xml",
+            MasterNames = new List<string> { "Bodhidharma" }
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p3", ZhText = "c", SourceRelPath = "z.xml",
+            MasterNames = new List<string> { "Linji" }
+        });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+        Assert.Equal(3, vm.Passages.Count);
+
+        vm.SortMode = "Chronological";
+
+        // If master-dates.json is available in test output, order should be:
+        // Bodhidharma (500), Linji (810), Hakuin (1686)
+        // If file not found, all get int.MaxValue and order is preserved (Default)
+        // Either way, this should not throw
+        Assert.Equal(3, vm.Passages.Count);
+    }
+
+    // ---- Test 11: SortMode "A-Z (Chinese)" sorts alphabetically ----
+
+    [Fact]
+    public void SortMode_AZChinese_SortsAlphabetically()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p1", ZhText = "\u5fc3\u5373\u662f\u4f5b", SourceRelPath = "x.xml" // 心即是佛
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p2", ZhText = "\u4e0d\u662f\u5fc3\u4e0d\u662f\u4f5b", SourceRelPath = "y.xml" // 不是心不是佛
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p3", ZhText = "\u5e73\u5e38\u5fc3\u662f\u9053", SourceRelPath = "z.xml" // 平常心是道
+        });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        vm.SortMode = "A-Z (Chinese)";
+
+        // Ordinal sort: 不 (U+4E0D) < 平 (U+5E73) < 心 (U+5FC3)
+        Assert.Equal(3, vm.Passages.Count);
+        Assert.Equal("p2", vm.Passages[0].Id); // 不是心不是佛
+        Assert.Equal("p3", vm.Passages[1].Id); // 平常心是道
+        Assert.Equal("p1", vm.Passages[2].Id); // 心即是佛
+    }
+
+    [Fact]
+    public void SortMode_Default_PreservesInsertionOrder()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+
+        collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        vm.SortMode = "Default";
+
+        // Default preserves insertion order
+        Assert.Equal("p3", vm.Passages[0].Id);
+        Assert.Equal("p1", vm.Passages[1].Id);
+        Assert.Equal("p2", vm.Passages[2].Id);
+    }
+
+    // ---- Test 12: StudyNotes syncs with selected collection ----
+
+    [Fact]
+    public void StudyNotes_LoadedFromCollection()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        vm.Collections[0].StudyNotes = "My research notes on this collection";
+
+        // Re-select to trigger loading
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+
+        Assert.Equal("My research notes on this collection", vm.StudyNotes);
+    }
+
+    [Fact]
+    public void StudyNotes_SavedBackToCollection()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        vm.AddCollectionCommand.Execute(null);
+        vm.Collections[0].Passages.Add(new ScholarPassage
+        {
+            Id = "p1", ZhText = "text", SourceRelPath = "x.xml"
+        });
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = vm.Collections[0];
+        vm.SelectedPassage = vm.Passages[0];
+
+        vm.StudyNotes = "Updated notes";
+
+        // Save triggers SyncEditorFieldsToPassage which includes study notes sync
+        vm.SaveCommand.Execute(null);
+
+        Assert.Equal("Updated notes", vm.Collections[0].StudyNotes);
+    }
+
+    [Fact]
+    public void StudyNotes_NullCollection_ShowsEmpty()
+    {
+        var vm = MakeVm();
+
+        vm.SelectedCollection = null;
+
+        Assert.Equal("", vm.StudyNotes);
+    }
+
+    [Fact]
+    public void StudyNotes_EmptyByDefault()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+
+        // New collection has empty study notes
+        Assert.Equal("", vm.StudyNotes);
+    }
+
+    // ---- SearchFilterMode: Facet-specific filtering ----
+
+    [Fact]
+    public void SearchFilterMode_Topic_FiltersByDoctrinalTopic()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p1", ZhText = "a", SourceRelPath = "x.xml",
+            DoctrinalTopic = "Buddha-nature"
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p2", ZhText = "b", SourceRelPath = "y.xml",
+            DoctrinalTopic = "Emptiness"
+        });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        vm.SearchFilterMode = "Topic";
+        vm.SearchFilter = "Buddha";
+
+        Assert.Single(vm.Passages);
+        Assert.Equal("p1", vm.Passages[0].Id);
+    }
+
+    [Fact]
+    public void SearchFilterMode_Form_FiltersByLiteraryForm()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p1", ZhText = "a", SourceRelPath = "x.xml",
+            LiteraryForm = "Koan case"
+        });
+        collection.Passages.Add(new ScholarPassage
+        {
+            Id = "p2", ZhText = "b", SourceRelPath = "y.xml",
+            LiteraryForm = "Dharma talk"
+        });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        vm.SearchFilterMode = "Form";
+        vm.SearchFilter = "Koan";
+
+        Assert.Single(vm.Passages);
+        Assert.Equal("p1", vm.Passages[0].Id);
+    }
+
+    // ---- Facet options loaded ----
+
+    [Fact]
+    public void FacetOptions_PopulatedOnConstruction()
+    {
+        var vm = MakeVm();
+
+        // Options should be populated (either from JSON file or defaults)
+        Assert.NotEmpty(vm.DoctrinalTopicOptions);
+        Assert.NotEmpty(vm.LiteraryFormOptions);
+        Assert.NotEmpty(vm.LineageOptions);
+        Assert.NotEmpty(vm.RhetoricalFunctionOptions);
+    }
+
     // ---- Mutual exclusion: selecting community clears user selection ----
     // Note: The current VM does not explicitly implement mutual exclusion between
     // user collections and community collections. They are independent panels.

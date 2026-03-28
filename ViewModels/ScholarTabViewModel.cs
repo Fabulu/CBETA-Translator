@@ -610,6 +610,16 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     // ----- Selection sync -----
 
+    partial void OnSelectedCollectionChanging(ScholarCollection? value)
+    {
+        // Save study notes back to the outgoing collection before switching
+        if (SelectedCollection != null && SelectedCollection.StudyNotes != StudyNotes)
+        {
+            SelectedCollection.StudyNotes = StudyNotes;
+            _ = SafeFireAndForget(SaveAsync());
+        }
+    }
+
     partial void OnSelectedCollectionChanged(ScholarCollection? value)
     {
         StudyNotes = value?.StudyNotes ?? "";
