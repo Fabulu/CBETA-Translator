@@ -416,9 +416,16 @@ public partial class MainWindowViewModel : ViewModelBase
             finally
             {
                 _isAutoIndexing = false;
+                Dispatcher.UIThread.Post(() => OnAutoIndexCompleted?.Invoke());
             }
         }, ct);
     }
+
+    /// <summary>
+    /// Bridge callback fired when auto-index build completes (search index + reference TM).
+    /// Used by the onboarding tour to advance past the "Building Index" step.
+    /// </summary>
+    public Action? OnAutoIndexCompleted { get; set; }
 
     /// <summary>
     /// Bridge to get the ZenOnly checkbox state from code-behind.

@@ -19,6 +19,9 @@ public partial class SettingsWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool _showUsernameError;
 
+    [ObservableProperty]
+    private bool _restartTourRequested;
+
     private readonly AppConfig _template;
 
     /// <summary>
@@ -57,6 +60,9 @@ public partial class SettingsWindowViewModel : ViewModelBase
             ZenOnly = _template.ZenOnly,
             EnableHoverDictionary = EnableHoverDictionary,
             Username = name,
+            GitHubAccessToken = _template.GitHubAccessToken,
+            GitHubUsername = _template.GitHubUsername,
+            HasCompletedOnboarding = RestartTourRequested ? false : _template.HasCompletedOnboarding,
             Version = _template.Version
         };
 

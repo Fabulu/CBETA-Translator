@@ -11,6 +11,15 @@
 
 	<Grid RowDefinitions="Auto,*,Auto">
 
+		<!-- Tour overlay (highest ZIndex, spans entire window) -->
+		<Canvas Name="TourOverlayCanvas"
+				Grid.RowSpan="3"
+				ZIndex="1000"
+				IsVisible="False">
+			<views:TourSpotlightOverlay Name="TourSpotlight"/>
+			<views:TourTooltipPanel Name="TourTooltip"/>
+		</Canvas>
+
 		<!-- Top Bar -->
 		<Border Grid.Row="0"
 				Name="TopBar"
@@ -152,13 +161,34 @@
 							Background="{DynamicResource AppBg}"
 							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-									Spacing="12" MaxWidth="400">
+									Spacing="16" MaxWidth="400">
 							<TextBlock Text="Welcome to CBETA Translator"
 									   FontSize="20" FontWeight="SemiBold"
-									   HorizontalAlignment="Center"/>
-							<TextBlock Text="Click 'Open Folder' above to select your CBETA root directory and begin translating."
+									   HorizontalAlignment="Center"
+									   Foreground="{DynamicResource TextFg}"/>
+							<TextBlock Text="Get started with the guided tour, or open an existing folder if you already have texts."
 									   TextWrapping="Wrap" HorizontalAlignment="Center"
 									   TextAlignment="Center" Classes="muted"/>
+							<StackPanel Orientation="Horizontal"
+										HorizontalAlignment="Center"
+										Spacing="12">
+								<Button Name="BtnGetStarted"
+										Content="Get Started"
+										Width="140" Height="36"
+										FontSize="14" FontWeight="SemiBold"
+										Background="{DynamicResource SelectionBg}"
+										Foreground="{DynamicResource SelectionFg}"
+										BorderBrush="{DynamicResource BorderBrush}"
+										BorderThickness="1"/>
+								<Button Name="BtnOpenRootAlt"
+										Content="Open Folder"
+										Width="140" Height="36"
+										FontSize="14"
+										Background="{DynamicResource BtnBg}"
+										Foreground="{DynamicResource BtnFg}"
+										BorderBrush="{DynamicResource BorderBrush}"
+										BorderThickness="1"/>
+							</StackPanel>
 						</StackPanel>
 					</Border>
 				</Grid>

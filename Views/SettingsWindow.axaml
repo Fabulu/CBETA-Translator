@@ -109,6 +109,22 @@
 					           FontSize="12"
 					           IsVisible="{Binding ShowUsernameError}"/>
 				</StackPanel>
+
+				<!-- Divider -->
+				<Border Height="1"
+				        Background="{DynamicResource BorderBrush}"
+				        Opacity="0.5"
+				        Margin="0,2,0,2"/>
+
+				<!-- Onboarding tour -->
+				<StackPanel Spacing="6">
+					<TextBlock Text="Onboarding Tour"
+					           FontSize="14"
+					           FontWeight="SemiBold"
+					           Foreground="{DynamicResource TextFg}"/>
+					<CheckBox Content="Restart onboarding tour on next launch"
+					          IsChecked="{Binding RestartTourRequested}"/>
+				</StackPanel>
 			</StackPanel>
 		</Border>
 

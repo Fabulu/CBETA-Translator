@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CbetaTranslator.App.Views.TourTooltipPanel"
+             MaxWidth="400">
+
+	<UserControl.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+
+		<Style Selector="Button:pointerover">
+			<Setter Property="Background" Value="{DynamicResource BtnBgHover}"/>
+		</Style>
+
+		<Style Selector="Button:pressed">
+			<Setter Property="Background" Value="{DynamicResource BtnBgPressed}"/>
+		</Style>
+
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Border Background="{DynamicResource ControlBg}"
+	        BorderBrush="{DynamicResource BorderBrush}"
+	        BorderThickness="1"
+	        CornerRadius="8"
+	        Padding="20"
+	        BoxShadow="0 4 16 0 #40000000"
+	        MinWidth="300"
+	        MaxWidth="400">
+
+		<StackPanel Spacing="12">
+
+			<!-- Title -->
+			<TextBlock Name="TxtTitle"
+			           FontSize="16"
+			           FontWeight="Bold"
+			           Foreground="{DynamicResource TextFg}"
+			           TextWrapping="Wrap"/>
+
+			<!-- Body -->
+			<TextBlock Name="TxtBody"
+			           FontSize="13"
+			           Foreground="{DynamicResource TextFg}"
+			           TextWrapping="Wrap"
+			           LineHeight="20"/>
+
+			<!-- Progress -->
+			<TextBlock Name="TxtProgress"
+			           FontSize="11"
+			           Foreground="{DynamicResource TextMutedFg}"/>
+
+			<!-- Buttons -->
+			<Grid ColumnDefinitions="Auto,*,Auto,Auto">
+				<Button Name="BtnSkip"
+				        Grid.Column="0"
+				        Content="Skip Tour"
+				        Height="30"
+				        Padding="12,4"
+				        FontSize="12"/>
+
+				<Button Name="BtnBack"
+				        Grid.Column="2"
+				        Content="Back"
+				        Height="30"
+				        Padding="12,4"
+				        Margin="0,0,8,0"
+				        FontSize="12"/>
+
+				<Button Name="BtnNext"
+				        Grid.Column="3"
+				        Content="Next"
+				        Height="30"
+				        Padding="16,4"
+				        Classes="primary"
+				        FontSize="12"/>
+			</Grid>
+
+		</StackPanel>
+	</Border>
+</UserControl>
