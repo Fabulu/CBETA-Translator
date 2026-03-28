@@ -27,7 +27,13 @@ public partial class ScholarTabViewModel : ViewModelBase
     private string _searchFilter = "";
 
     [ObservableProperty]
+    private string _searchFilterMode = "All";
+
+    [ObservableProperty]
     private string _collectionFilter = "";
+
+    public static string[] SearchFilterModes { get; } =
+        { "All", "Tags", "Masters", "Chinese", "English", "Notes" };
 
     [ObservableProperty]
     private ScholarCollection? _selectedCollection;
@@ -504,6 +510,11 @@ public partial class ScholarTabViewModel : ViewModelBase
         RefreshPassagesList();
     }
 
+    partial void OnSearchFilterModeChanged(string value)
+    {
+        RefreshPassagesList();
+    }
+
     partial void OnCollectionFilterChanged(string value)
     {
         RefreshCollectionsList();
@@ -548,12 +559,20 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         if (!string.IsNullOrEmpty(filter))
         {
-            passages = passages.Where(p =>
-                p.Tags.Any(t => t.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
-                p.MasterNames.Any(m => m.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
-                p.ZhText.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                p.EnText.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                p.Notes.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            var mode = SearchFilterMode ?? "All";
+            passages = passages.Where(p => mode switch
+            {
+                "Tags" => p.Tags.Any(t => t.Contains(filter, StringComparison.OrdinalIgnoreCase)),
+                "Masters" => p.MasterNames.Any(m => m.Contains(filter, StringComparison.OrdinalIgnoreCase)),
+                "Chinese" => (p.ZhText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "English" => (p.EnText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                "Notes" => (p.Notes ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase),
+                _ => p.Tags.Any(t => t.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
+                     p.MasterNames.Any(m => m.Contains(filter, StringComparison.OrdinalIgnoreCase)) ||
+                     (p.ZhText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.EnText ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                     (p.Notes ?? "").Contains(filter, StringComparison.OrdinalIgnoreCase)
+            });
         }
 
         foreach (var p in passages)
