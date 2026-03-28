@@ -269,10 +269,12 @@ public partial class MainWindow : Window
         _vm.SetGitRepoRoot = root => _gitView?.SetCurrentRepoRoot(root);
         _vm.SetGitSelectedRelPath = rel => _gitView?.SetSelectedRelPath(rel);
         _vm.SetGitUsername = user => _gitView?.SetUsername(user);
+        _vm.LoadGitPersistedAuth = (token, login) => _gitView?.LoadPersistedAuth(token, login);
 
         // ScholarTabView bridges
         _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
         _vm.ClearScholar = () => _scholarView?.Clear();
+        _vm.SetScholarUsername = user => _scholarView?.SetUsername(user);
 
         // Dialog bridges
         _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;
@@ -509,6 +511,12 @@ public partial class MainWindow : Window
         if (_gitView != null)
         {
             _gitView.Status += (_, msg) => _vm.SetStatus(msg);
+
+            _gitView.GitHubAuthCompleted += async (_, args) =>
+            {
+                try { await _vm.HandleGitHubAuthCompletedAsync(args.Token, args.Login); }
+                catch { }
+            };
 
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {

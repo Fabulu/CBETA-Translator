@@ -93,6 +93,9 @@ public partial class ReadableTabView : UserControl
 
     private Border? _readableEmptyState;
 
+    // Navigation highlight: cleared on next user click
+    private TextEditor? _navHighlightEditor;
+
     private MarkerColorizer? _markerColorizerOrig;
     private MarkerColorizer? _markerColorizerTran;
 
@@ -279,10 +282,32 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
+        // Get text from the other pane (selection sync may have mirrored it)
+        var otherEditor = isTranslated ? _aeOrig : _aeTran;
+        string otherText = otherEditor?.SelectedText ?? "";
+
+        // If the other pane has no selection, try segment mapping
+        if (string.IsNullOrWhiteSpace(otherText) && otherEditor != null)
+        {
+            var srcDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+            var dstDoc = isTranslated ? _vm.RenderOrig : _vm.RenderTran;
+
+            int caret = GetCaretOffsetSafe(editor);
+            if (caret >= 0 && !srcDoc.IsEmpty && !dstDoc.IsEmpty
+                && _selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg))
+            {
+                int len = otherEditor.Text?.Length ?? 0;
+                int s = Math.Clamp(dstSeg.Start, 0, len);
+                int e = Math.Clamp(dstSeg.EndExclusive, 0, len);
+                if (e > s)
+                    otherText = otherEditor.Text?.Substring(s, e - s) ?? "";
+            }
+        }
+
         var passage = new ScholarPassage
         {
-            ZhText = isTranslated ? "" : selectedText,
-            EnText = isTranslated ? selectedText : "",
+            ZhText = isTranslated ? otherText : selectedText,
+            EnText = isTranslated ? selectedText : otherText,
             SourceRelPath = _vm.CurrentRelPathForZen ?? ""
         };
 
@@ -559,13 +584,9 @@ public partial class ReadableTabView : UserControl
         var line = editor.Document.GetLineByOffset(safeStart);
         editor.ScrollToLine(line.LineNumber);
 
-        // Clear the highlight after a short pause (skip if user has started interacting).
-        await Task.Delay(8000);
-        try
-        {
-            editor.TextArea.Selection = Selection.Create(editor.TextArea, 0, 0);
-        }
-        catch { }
+        // Keep the highlight visible indefinitely — it will be cleared on user click
+        // (see OnPointerPressed_ClearNavHighlight).
+        _navHighlightEditor = editor;
     }
 
     /// <summary>
@@ -1053,6 +1074,13 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
+            // Clear persistent navigation highlight on any click
+            if (_navHighlightEditor != null)
+            {
+                try { _navHighlightEditor.TextArea.Selection = Selection.Create(_navHighlightEditor.TextArea, 0, 0); } catch { }
+                _navHighlightEditor = null;
+            }
+
             if (_vm.PendingRefresh) return;
             if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
 

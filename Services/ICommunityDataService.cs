@@ -9,4 +9,6 @@ public interface ICommunityDataService
     Task<int> MergeApprovedTmFromAsync(string localRoot, string upstreamTmPath, CancellationToken ct = default);
     Task<int> SortAndDedupTermbaseAsync(string root, CancellationToken ct = default);
     Task<int> MergeTermbaseFromAsync(string localRoot, string upstreamTermbasePath, CancellationToken ct = default);
+    Task<int> SortAndDedupScholarCollectionsAsync(string root, CancellationToken ct = default);
+    Task<int> MergeScholarCollectionsFromAsync(string localRoot, string upstreamPath, CancellationToken ct = default);
 }

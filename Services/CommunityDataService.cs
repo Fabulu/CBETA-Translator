@@ -242,6 +242,149 @@ public sealed class CommunityDataService : ICommunityDataService
     }
 
     // -----------------------------------------------------------------------
+    // Scholar Collections
+    // -----------------------------------------------------------------------
+
+    private const string ScholarCollectionsFileName = "scholar-collections.json";
+
+    /// <summary>
+    /// Sort + dedup scholar collections in place.
+    /// Passages deduped by Id (keep newest by ModifiedUtc ?? AddedUtc).
+    /// Collections deduped by Id (keep newest by ModifiedUtc ?? CreatedUtc).
+    /// Returns the number of kept collections.
+    /// </summary>
+    public async Task<int> SortAndDedupScholarCollectionsAsync(string root, CancellationToken ct = default)
+    {
+        var path = Path.Combine(root, ScholarCollectionsFileName);
+        if (!File.Exists(path))
+            return 0;
+
+        var collections = await LoadScholarCollectionsAsync(path, ct);
+        var deduped = DedupScholarCollections(collections);
+
+        await WriteScholarCollectionsAsync(path, deduped, ct);
+        return deduped.Count;
+    }
+
+    /// <summary>
+    /// Merge upstream scholar collections into local.
+    /// Collections deduped by Id (keep newest). Passages within each collection
+    /// are unioned and deduped by Id (keep newest).
+    /// Returns the number of kept collections.
+    /// </summary>
+    public async Task<int> MergeScholarCollectionsFromAsync(
+        string localRoot,
+        string upstreamPath,
+        CancellationToken ct = default)
+    {
+        var localPath = Path.Combine(localRoot, ScholarCollectionsFileName);
+
+        var local = File.Exists(localPath)
+            ? await LoadScholarCollectionsAsync(localPath, ct)
+            : new List<Models.ScholarCollection>();
+
+        var upstream = File.Exists(upstreamPath)
+            ? await LoadScholarCollectionsAsync(upstreamPath, ct)
+            : new List<Models.ScholarCollection>();
+
+        // Merge: for collections with same Id, merge their passages then keep the one with newer timestamp
+        var byId = new Dictionary<string, Models.ScholarCollection>(StringComparer.Ordinal);
+
+        foreach (var c in local.Concat(upstream))
+        {
+            if (string.IsNullOrWhiteSpace(c.Id))
+                continue;
+
+            if (byId.TryGetValue(c.Id, out var existing))
+            {
+                // Merge passages from both into the winner
+                var mergedPassages = DedupPassages(existing.Passages.Concat(c.Passages));
+                var winnerTs = GetCollectionTimestamp(c);
+                var existingTs = GetCollectionTimestamp(existing);
+
+                if (winnerTs > existingTs)
+                {
+                    c.Passages = mergedPassages;
+                    byId[c.Id] = c;
+                }
+                else
+                {
+                    existing.Passages = mergedPassages;
+                }
+            }
+            else
+            {
+                c.Passages = DedupPassages(c.Passages);
+                byId[c.Id] = c;
+            }
+        }
+
+        var result = byId.Values
+            .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(c => c.Id, StringComparer.Ordinal)
+            .ToList();
+
+        await WriteScholarCollectionsAsync(localPath, result, ct);
+        return result.Count;
+    }
+
+    private static async Task<List<Models.ScholarCollection>> LoadScholarCollectionsAsync(string path, CancellationToken ct)
+    {
+        try
+        {
+            var json = await File.ReadAllTextAsync(path, Encoding.UTF8, ct);
+            if (string.IsNullOrWhiteSpace(json))
+                return new List<Models.ScholarCollection>();
+
+            return JsonSerializer.Deserialize<List<Models.ScholarCollection>>(json, ReadOpts)
+                ?? new List<Models.ScholarCollection>();
+        }
+        catch
+        {
+            return new List<Models.ScholarCollection>();
+        }
+    }
+
+    private static List<Models.ScholarCollection> DedupScholarCollections(List<Models.ScholarCollection> collections)
+    {
+        return collections
+            .Where(c => !string.IsNullOrWhiteSpace(c.Id))
+            .GroupBy(c => c.Id, StringComparer.Ordinal)
+            .Select(g =>
+            {
+                var winner = g.OrderByDescending(c => GetCollectionTimestamp(c)).First();
+                // Merge passages from all duplicates
+                winner.Passages = DedupPassages(g.SelectMany(c => c.Passages));
+                return winner;
+            })
+            .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(c => c.Id, StringComparer.Ordinal)
+            .ToList();
+    }
+
+    private static List<Models.ScholarPassage> DedupPassages(IEnumerable<Models.ScholarPassage> passages)
+    {
+        return passages
+            .Where(p => !string.IsNullOrWhiteSpace(p.Id))
+            .GroupBy(p => p.Id, StringComparer.Ordinal)
+            .Select(g => g.OrderByDescending(p => p.ModifiedUtc ?? p.AddedUtc).First())
+            .OrderBy(p => p.SourceRelPath, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(p => p.AddedUtc)
+            .ToList();
+    }
+
+    private static DateTimeOffset GetCollectionTimestamp(Models.ScholarCollection c)
+        => c.ModifiedUtc ?? c.CreatedUtc;
+
+    private static async Task WriteScholarCollectionsAsync(string path, List<Models.ScholarCollection> collections, CancellationToken ct)
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+
+        var json = JsonSerializer.Serialize(collections, TermbaseWriteOpts);
+        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+    }
+
+    // -----------------------------------------------------------------------
     // Helpers
     // -----------------------------------------------------------------------
 

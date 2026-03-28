@@ -7,8 +7,8 @@
 
   <Grid ColumnDefinitions="300,Auto,*">
 
-    <!-- Left: Collections + Passages -->
-    <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto,*">
+    <!-- Left: Collections + Passages + Community -->
+    <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto">
 
       <!-- Collections header -->
       <DockPanel Grid.Row="0" Margin="4">
@@ -16,11 +16,19 @@
                 ToolTip.Tip="Create new collection" Padding="8,3"/>
         <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeleteCollectionCommand}"
                 ToolTip.Tip="Delete selected collection" Padding="8,3" Margin="0,0,4,0"/>
+        <Button Content="Import" DockPanel.Dock="Right" Command="{Binding ImportCollectionsCommand}"
+                ToolTip.Tip="Import collections from file" Padding="6,2" Margin="0,0,4,0"/>
+        <Button Content="Export" DockPanel.Dock="Right" Command="{Binding ExportCollectionsCommand}"
+                ToolTip.Tip="Export collections to file" Padding="6,2" Margin="0,0,4,0"/>
         <TextBlock Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
       </DockPanel>
 
+      <!-- Collections filter -->
+      <TextBox Grid.Row="1" Watermark="Filter collections..."
+               Text="{Binding CollectionFilter}" Margin="4,2"/>
+
       <!-- Collections list -->
-      <ListBox Grid.Row="1" ItemsSource="{Binding Collections}"
+      <ListBox Grid.Row="2" ItemsSource="{Binding Collections}"
                SelectedItem="{Binding SelectedCollection}" Margin="4,0">
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarCollection">
@@ -28,22 +36,88 @@
               <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
               <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
                          TextTrimming="CharacterEllipsis"/>
+              <TextBlock Text="{Binding CreatedBy}" Classes="muted" FontSize="10"
+                         IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
             </StackPanel>
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
 
       <!-- Passages header -->
-      <DockPanel Grid.Row="2" Margin="4">
+      <DockPanel Grid.Row="3" Margin="4">
         <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
                 ToolTip.Tip="Remove selected passage" Padding="8,3"/>
         <TextBlock Text="Passages" FontWeight="SemiBold" VerticalAlignment="Center"/>
       </DockPanel>
 
+      <!-- Passages filter -->
+      <TextBox Grid.Row="4" Watermark="Filter by tag, master, or text..."
+               Text="{Binding SearchFilter}" Margin="4,2"/>
+
       <!-- Passages list (shows passages from selected collection) -->
-      <ListBox Grid.Row="3" Name="PassagesList" Margin="4,0"
+      <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0"
                ItemsSource="{Binding Passages}"
                SelectedItem="{Binding SelectedPassage}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ScholarPassage">
+            <StackPanel Margin="2">
+              <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
+              <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
+                         TextTrimming="CharacterEllipsis" MaxLines="1"/>
+              <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"/>
+              <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
+                         IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
+              <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
+                         IsVisible="{Binding HasMasterNames}" TextTrimming="CharacterEllipsis"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <!-- Community separator -->
+      <Border Grid.Row="6" Height="1" Background="Gray" Margin="4,8"
+              IsVisible="{Binding HasCommunityCollections}"/>
+
+      <!-- Community Collections header -->
+      <TextBlock Grid.Row="7" Text="Community Collections" FontWeight="SemiBold"
+                 Foreground="#88AAFF" Margin="4,4,4,0"
+                 IsVisible="{Binding HasCommunityCollections}"/>
+
+      <!-- Community filter -->
+      <TextBox Grid.Row="8" Watermark="Filter community..."
+               Text="{Binding CommunityFilter}" Margin="4,2"
+               IsVisible="{Binding HasCommunityCollections}"/>
+
+      <!-- Community collections list -->
+      <ListBox Grid.Row="9" Name="CommunityCollectionsList" Margin="4,0" MaxHeight="180"
+               ItemsSource="{Binding CommunityCollections}"
+               SelectedItem="{Binding SelectedCommunityCollection}"
+               IsVisible="{Binding HasCommunityCollections}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ScholarCollection">
+            <StackPanel>
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
+                         TextTrimming="CharacterEllipsis"/>
+              <TextBlock FontSize="10" Foreground="#88AAFF"
+                         IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <TextBlock.Text>
+                  <MultiBinding StringFormat="by {0}">
+                    <Binding Path="CreatedBy"/>
+                  </MultiBinding>
+                </TextBlock.Text>
+              </TextBlock>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <!-- Community passages list -->
+      <ListBox Grid.Row="10" Name="CommunityPassagesList" Margin="4,0" MaxHeight="150"
+               ItemsSource="{Binding CommunityPassages}"
+               SelectedItem="{Binding SelectedCommunityPassage}"
+               IsVisible="{Binding HasCommunityCollections}">
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarPassage">
             <StackPanel Margin="2">

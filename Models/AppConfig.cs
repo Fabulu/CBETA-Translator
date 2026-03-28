@@ -12,6 +12,9 @@ namespace CbetaTranslator.App.Models
 
         public string? Username { get; set; }
 
+        public string? GitHubAccessToken { get; set; }
+        public string? GitHubUsername { get; set; }
+
         public int Version { get; set; } = 3;
     }
 }

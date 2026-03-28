@@ -23,9 +23,11 @@ public sealed record GitHubToken(
     string scope
 );
 
+public sealed record DeviceCodeReady(string UserCode, string VerificationUri);
+
 public interface IGitHubAuthService
 {
-    Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct);
+    Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null);
 }
 
 public sealed class GitHubAuthService : IGitHubAuthService
@@ -51,7 +53,7 @@ public sealed class GitHubAuthService : IGitHubAuthService
         _http.DefaultRequestHeaders.UserAgent.ParseAdd("CbetaTranslator-App");
     }
 
-    public async Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct)
+    public async Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null)
     {
         if (string.IsNullOrWhiteSpace(ClientId))
         {
@@ -89,6 +91,8 @@ public sealed class GitHubAuthService : IGitHubAuthService
         log.Report($"[auth] Go to: {device.verification_uri}");
         log.Report($"[auth] Enter code: {device.user_code}");
         log.Report("[auth] Opening browser…");
+
+        onDeviceCodeReady?.Invoke(new DeviceCodeReady(device.user_code, device.verification_uri));
 
         try
         {

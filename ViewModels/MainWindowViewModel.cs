@@ -146,10 +146,12 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string?>? SetGitRepoRoot { get; set; }
     public Action<string?>? SetGitSelectedRelPath { get; set; }
     public Action<string?>? SetGitUsername { get; set; }
+    public Action<string?, string?>? LoadGitPersistedAuth { get; set; }
 
     // ScholarTabView bridges
     public Action<string>? SetScholarRoot { get; set; }
     public Action? ClearScholar { get; set; }
+    public Action<string?>? SetScholarUsername { get; set; }
 
     // Dialog bridges (code-behind provides UI dialogs)
     public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
@@ -419,11 +421,20 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableDefaultResp?.Invoke(_config.Username ?? ""); } catch { }
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
+        try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
+        try { SetScholarUsername?.Invoke(_config.Username); } catch { }
     }
 
     public void UpdateConfig(AppConfig config)
     {
         _config = config;
+    }
+
+    public async Task HandleGitHubAuthCompletedAsync(string token, string login)
+    {
+        _config.GitHubAccessToken = token;
+        _config.GitHubUsername = login;
+        await SafeSaveConfigAsync();
     }
 
     // ===========================================================

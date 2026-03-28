@@ -1,0 +1,58 @@
+<!-- Views/DeviceCodeDialog.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.DeviceCodeDialog"
+        Width="420" Height="220"
+        Background="{DynamicResource AppBg}"
+        Title="GitHub Authorization"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="*,Auto" Margin="24">
+
+		<StackPanel Grid.Row="0" Spacing="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock Name="TxtCode"
+			           Text=""
+			           FontSize="28"
+			           FontWeight="Bold"
+			           FontFamily="Consolas, Courier New, monospace"
+			           Foreground="#88AAFF"
+			           HorizontalAlignment="Center"/>
+			<TextBlock Name="TxtInstruction"
+			           Text="Your code has been copied to the clipboard."
+			           FontSize="13"
+			           Foreground="{DynamicResource TextFg}"
+			           HorizontalAlignment="Center"
+			           TextWrapping="Wrap"
+			           TextAlignment="Center"/>
+			<TextBlock Text="Paste it on the GitHub page that just opened."
+			           FontSize="12"
+			           Foreground="{DynamicResource TextMutedFg}"
+			           HorizontalAlignment="Center"
+			           TextWrapping="Wrap"
+			           TextAlignment="Center"/>
+		</StackPanel>
+
+		<Button Grid.Row="1"
+		        Content="OK"
+		        Width="100" Height="32"
+		        Classes="primary"
+		        HorizontalAlignment="Right"
+		        IsDefault="True"
+		        Name="BtnOk"/>
+	</Grid>
+
+</Window>
