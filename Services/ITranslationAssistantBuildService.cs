@@ -7,6 +7,8 @@ namespace CbetaTranslator.App.Services;
 
 public interface ITranslationAssistantBuildService
 {
+    Task<bool> IsReferenceStaleAsync(string root, string translatedDir);
+
     Task<int> BuildReferenceTranslationMemoryAsync(
         string root,
         string originalDir,

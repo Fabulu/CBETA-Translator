@@ -61,8 +61,8 @@
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Tools -->
-					<Button Name="BtnBuildReferenceTm" Content="Build TM" ToolTip.Tip="Build translation memory reference from Zen-flagged translated texts" Padding="8,3"/>
-					<Button Name="BtnManageTerms" Content="Terms" ToolTip.Tip="Open the termbase editor" Padding="8,3"/>
+					<Button Name="BtnBuildReferenceTm" Content="Force Rebuild TM" ToolTip.Tip="Force a full rebuild of the reference translation memory. The TM is auto-built when translated texts change." Padding="8,3"/>
+					<Button Name="BtnManageTerms" Content="Dictionary" ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="8,3"/>
 					<Button Name="BtnFindChineseInEn" Content="Find CN" ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete." Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 

@@ -6,7 +6,7 @@
         x:DataType="vm:TermbaseEditorWindowViewModel"
         Width="1100"
         Height="720"
-        Title="Manage Terms"
+        Title="Zen Dictionary"
         WindowStartupLocation="CenterOwner">
 
 	<Grid RowDefinitions="*,Auto" ColumnDefinitions="320,12,*" Margin="12">
@@ -107,71 +107,106 @@
 					  ResizeDirection="Columns"
 					  Background="Transparent"/>
 
-		<!-- Right: editor -->
+		<!-- Right: editor + corpus usage -->
 		<Border Grid.Row="0"
 				Grid.Column="2"
 				Background="{DynamicResource ControlBg}"
 				BorderBrush="{DynamicResource BorderBrush}"
 				BorderThickness="1"
 				CornerRadius="6"
-				Padding="12">
-			<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10">
-				<TextBlock Text="Edit Term" FontWeight="Bold"/>
+				Padding="4">
+			<TabControl>
+				<TabItem Header="Edit Term">
+					<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10" Margin="8">
+						<TextBlock Text="Edit Term" FontWeight="Bold"/>
 
-				<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
-					<TextBlock Text="Source term"
-							   VerticalAlignment="Center"/>
-					<TextBox Name="TxtSourceTerm"
-							 Grid.Column="1"
-							 Text="{Binding SourceTerm}"/>
-				</Grid>
+						<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Source term"
+									   VerticalAlignment="Center"/>
+							<TextBox Name="TxtSourceTerm"
+									 Grid.Column="1"
+									 Text="{Binding SourceTerm}"/>
+						</Grid>
 
-				<Grid Grid.Row="2" ColumnDefinitions="140,*" ColumnSpacing="10">
-					<TextBlock Text="Preferred target"
-							   VerticalAlignment="Center"/>
-					<TextBox Grid.Column="1"
-							 Text="{Binding PreferredTarget}"/>
-				</Grid>
+						<Grid Grid.Row="2" ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Preferred target"
+									   VerticalAlignment="Center"/>
+							<TextBox Grid.Column="1"
+									 Text="{Binding PreferredTarget}"/>
+						</Grid>
 
-				<Grid Grid.Row="3" ColumnDefinitions="140,220,*" ColumnSpacing="10">
-					<TextBlock Text="Status"
-							   VerticalAlignment="Center"/>
-					<ComboBox Grid.Column="1"
-							  SelectedIndex="{Binding SelectedStatusIndex}">
-						<ComboBoxItem Content="preferred"/>
-						<ComboBoxItem Content="allowed"/>
-						<ComboBoxItem Content="deprecated"/>
-						<ComboBoxItem Content="forbidden"/>
-					</ComboBox>
-				</Grid>
+						<Grid Grid.Row="3" ColumnDefinitions="140,220,*" ColumnSpacing="10">
+							<TextBlock Text="Status"
+									   VerticalAlignment="Center"/>
+							<ComboBox Grid.Column="1"
+									  SelectedIndex="{Binding SelectedStatusIndex}">
+								<ComboBoxItem Content="preferred"/>
+								<ComboBoxItem Content="allowed"/>
+								<ComboBoxItem Content="deprecated"/>
+								<ComboBoxItem Content="forbidden"/>
+							</ComboBox>
+						</Grid>
 
-				<Grid Grid.Row="4" RowDefinitions="Auto,Auto,*" RowSpacing="10">
-					<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
-						<TextBlock Text="Alternates"
-								   VerticalAlignment="Top"/>
-						<TextBox Grid.Column="1"
-								 Text="{Binding AlternatesText}"
-								 AcceptsReturn="True"
-								 TextWrapping="Wrap"
-								 MinHeight="90"
-								 Watermark="One alternate per line"/>
+						<Grid Grid.Row="4" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+							<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+								<TextBlock Text="Alternates"
+										   VerticalAlignment="Top"/>
+								<TextBox Grid.Column="1"
+										 Text="{Binding AlternatesText}"
+										 AcceptsReturn="True"
+										 TextWrapping="Wrap"
+										 MinHeight="90"
+										 Watermark="One alternate per line"/>
+							</Grid>
+
+							<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
+								<TextBlock Text="Note"
+										   VerticalAlignment="Top"/>
+								<TextBox Grid.Column="1"
+										 Text="{Binding NoteText}"
+										 AcceptsReturn="True"
+										 TextWrapping="Wrap"
+										 MinHeight="90"/>
+							</Grid>
+						</Grid>
+
+						<TextBlock Grid.Row="5"
+								   Text="{Binding StatusMessage}"
+								   Opacity="0.8"/>
 					</Grid>
+				</TabItem>
 
-					<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
-						<TextBlock Text="Note"
-								   VerticalAlignment="Top"/>
-						<TextBox Grid.Column="1"
-								 Text="{Binding NoteText}"
-								 AcceptsReturn="True"
-								 TextWrapping="Wrap"
-								 MinHeight="90"/>
+				<TabItem Header="Corpus Usage">
+					<Grid RowDefinitions="Auto,*" Margin="4">
+						<TextBlock Grid.Row="0" Text="{Binding CorpusStatusText}" Classes="muted" Margin="4"/>
+						<ListBox Grid.Row="1" Name="CorpusHitsList" ItemsSource="{Binding CorpusUsageHits}">
+							<ListBox.ItemTemplate>
+								<DataTemplate x:DataType="models:CorpusUsageHit">
+									<Border Padding="6" Margin="0,0,0,4">
+										<StackPanel Spacing="2">
+											<TextBlock Text="{Binding ZhSnippet}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+											<TextBlock Text="{Binding DisplayName}" Opacity="0.7" FontSize="11"/>
+											<StackPanel Orientation="Horizontal" Spacing="8">
+												<TextBlock Text="{Binding MasterName}" FontSize="11"
+														   Foreground="{DynamicResource AccentLinkFg}"
+														   IsVisible="{Binding MasterName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+												<TextBlock Text="{Binding DateDisplay}" FontSize="11" Opacity="0.6"
+														   IsVisible="{Binding DateDisplay, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+											</StackPanel>
+										</StackPanel>
+									</Border>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+							<ListBox.ContextMenu>
+								<ContextMenu>
+									<MenuItem Name="MnuNavigateToHit" Header="Navigate to Source"/>
+									<MenuItem Name="MnuAddToScholar" Header="Add to Scholar"/>
+								</ContextMenu>
+							</ListBox.ContextMenu>
+						</ListBox>
 					</Grid>
-				</Grid>
-
-				<TextBlock Grid.Row="5"
-						   Text="{Binding StatusMessage}"
-						   Opacity="0.8"/>
-			</Grid>
+				</TabItem>
+			</TabControl>
 		</Border>
 
 		<!-- Bottom buttons -->

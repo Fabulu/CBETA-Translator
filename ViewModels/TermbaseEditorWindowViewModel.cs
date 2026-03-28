@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -15,6 +16,13 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     private readonly ITermbaseStorageService _storage;
     private readonly string _root;
     private string? _username;
+
+    // Corpus usage search
+    private ISearchIndexService? _searchIndex;
+    private string? _originalDir;
+    private string? _translatedDir;
+    private readonly Dictionary<string, List<CorpusUsageHit>> _corpusCache = new(StringComparer.Ordinal);
+    private CancellationTokenSource? _corpusCts;
 
     private bool _suppressFieldSync;
 
@@ -52,6 +60,15 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool _hasCommunityEntries;
 
+    // Corpus usage
+    [ObservableProperty]
+    private bool _isCorpusSearching;
+
+    [ObservableProperty]
+    private string _corpusStatusText = "";
+
+    public ObservableCollection<CorpusUsageHit> CorpusUsageHits { get; } = new();
+
     public ObservableCollection<TermbaseEntry> AllEntries { get; } = new();
     public ObservableCollection<TermbaseEntry> FilteredEntries { get; } = new();
     public ObservableCollection<TermbaseEntry> CommunityEntries { get; } = new();
@@ -86,6 +103,16 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
+    /// <summary>
+    /// Provide search context so corpus usage tab can find occurrences.
+    /// </summary>
+    public void SetSearchContext(ISearchIndexService searchIndex, string originalDir, string translatedDir)
+    {
+        _searchIndex = searchIndex;
+        _originalDir = originalDir;
+        _translatedDir = translatedDir;
+    }
+
     // ----- Generated partial methods for property change hooks -----
 
     partial void OnSearchQueryChanged(string value) => ApplyFilter();
@@ -93,6 +120,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     partial void OnSelectedEntryChanged(TermbaseEntry? value)
     {
         LoadEntryIntoFields(value);
+        _ = SearchCorpusForSelectedTermAsync();
     }
 
     partial void OnSourceTermChanged(string value) => PushFieldsIntoCurrentEntry();
@@ -328,6 +356,134 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         SelectedCommunityEntry = (prev != null && CommunityEntries.Contains(prev))
             ? prev
             : CommunityEntries.FirstOrDefault();
+    }
+
+    // ----- Corpus usage search -----
+
+    private async Task SearchCorpusForSelectedTermAsync()
+    {
+        var term = SelectedEntry?.SourceTerm?.Trim();
+
+        // Cancel any in-flight search
+        _corpusCts?.Cancel();
+        _corpusCts = null;
+
+        if (string.IsNullOrWhiteSpace(term))
+        {
+            CorpusUsageHits.Clear();
+            CorpusStatusText = "";
+            return;
+        }
+
+        // Check cache
+        if (_corpusCache.TryGetValue(term, out var cached))
+        {
+            CorpusUsageHits.Clear();
+            foreach (var h in cached) CorpusUsageHits.Add(h);
+            CorpusStatusText = $"{cached.Count:n0} occurrence(s) found.";
+            return;
+        }
+
+        if (_searchIndex == null || string.IsNullOrWhiteSpace(_originalDir) || string.IsNullOrWhiteSpace(_translatedDir))
+        {
+            CorpusUsageHits.Clear();
+            CorpusStatusText = "Corpus search requires a built search index.";
+            return;
+        }
+
+        var cts = new CancellationTokenSource();
+        _corpusCts = cts;
+
+        IsCorpusSearching = true;
+        CorpusStatusText = $"Searching for \"{term}\"...";
+        CorpusUsageHits.Clear();
+
+        try
+        {
+            var manifest = await _searchIndex.TryLoadAsync(_root);
+            if (manifest == null)
+            {
+                CorpusStatusText = "No search index found. Build one from the Search tab first.";
+                return;
+            }
+
+            var hits = new List<CorpusUsageHit>();
+
+            await foreach (var group in _searchIndex.SearchAllAsync(
+                _root, _originalDir, _translatedDir, manifest,
+                term,
+                includeOriginal: true,
+                includeTranslated: false,
+                fileMeta: _ => ("", "", null),
+                contextWidth: 40,
+                ct: cts.Token))
+            {
+                if (cts.Token.IsCancellationRequested) break;
+
+                foreach (var child in group.Children.Take(3))
+                {
+                    var snippet = $"{child.LeftText}{child.MatchText}{child.RightText}";
+                    if (snippet.Length > 120) snippet = snippet[..120] + "\u2026";
+
+                    hits.Add(new CorpusUsageHit
+                    {
+                        ZhSnippet = snippet,
+                        SourceRelPath = group.RelPath,
+                        DisplayName = !string.IsNullOrEmpty(group.DisplayName) ? group.DisplayName : group.RelPath,
+                    });
+                }
+
+                // Cap at 50 hits total
+                if (hits.Count >= 50) break;
+            }
+
+            if (cts.Token.IsCancellationRequested) return;
+
+            _corpusCache[term] = hits;
+
+            CorpusUsageHits.Clear();
+            foreach (var h in hits) CorpusUsageHits.Add(h);
+            CorpusStatusText = $"{hits.Count:n0} occurrence(s) found.";
+        }
+        catch (OperationCanceledException)
+        {
+            // Cancelled — ignore
+        }
+        catch (Exception ex)
+        {
+            CorpusStatusText = "Search error: " + ex.Message;
+        }
+        finally
+        {
+            IsCorpusSearching = false;
+        }
+    }
+
+    /// <summary>
+    /// Fired when user double-clicks a corpus hit. MainWindow subscribes to navigate.
+    /// </summary>
+    public event EventHandler<NavigationRequest>? CorpusNavigationRequested;
+
+    internal void RaiseCorpusNavigation(CorpusUsageHit hit)
+    {
+        if (string.IsNullOrWhiteSpace(hit.SourceRelPath)) return;
+
+        CorpusNavigationRequested?.Invoke(this, new NavigationRequest
+        {
+            RelPath = hit.SourceRelPath,
+            Side = SearchSide.Original,
+            MatchText = SelectedEntry?.SourceTerm ?? "",
+        });
+    }
+
+    /// <summary>
+    /// Fired when user wants to add a corpus hit to Scholar.
+    /// </summary>
+    public event EventHandler<CorpusUsageHit>? AddToScholarRequested;
+
+    internal void RaiseAddToScholar(CorpusUsageHit hit)
+    {
+        AddToScholarRequested?.Invoke(this, hit);
     }
 
     // ----- Helpers -----

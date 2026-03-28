@@ -54,6 +54,7 @@ public partial class ScholarTabView : UserControl
 
     public event EventHandler<string>? Status;
     public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler? DictionaryRequested;
 
     public ScholarTabView()
     {
@@ -146,6 +147,13 @@ public partial class ScholarTabView : UserControl
         if (btnVocab != null)
         {
             btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync(btnVocab);
+        }
+
+        // Dictionary button
+        var btnDict = this.FindControl<Button>("BtnDictionary");
+        if (btnDict != null)
+        {
+            btnDict.Click += (_, _) => DictionaryRequested?.Invoke(this, EventArgs.Empty);
         }
 
         // Edit Master Dates button

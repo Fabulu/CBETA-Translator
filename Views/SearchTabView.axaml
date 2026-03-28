@@ -38,9 +38,9 @@
                         Command="{Binding CancelSearchCommand}"
                         ToolTip.Tip="Cancel current search"/>
 				<Button Name="BtnBuildIndex" Grid.Row="0" Grid.Column="3"
-                        Content="Build/Update Index"
+                        Content="Force Rebuild Index"
                         Command="{Binding BuildIndexCommand}"
-                        ToolTip.Tip="Build or update the search index. Hold Shift and click to force a full rebuild."/>
+                        ToolTip.Tip="Force a full rebuild of the search index. The index is auto-built when the corpus changes."/>
 
 				<!-- Row 1 -->
 				<Grid Grid.Row="1"
@@ -278,7 +278,7 @@
 				<Border Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Padding="20">
-					<TextBlock Text="Enter a search query above and press Search to find text across the corpus.&#x0a;If this is your first time, click 'Build/Update Index' first."
+					<TextBlock Text="Enter a search query above and press Search to find text across the corpus.&#x0a;The search index is built automatically when you open a corpus."
                                TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"
                                Classes="muted"/>
 				</Border>
