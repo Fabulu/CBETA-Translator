@@ -8,7 +8,7 @@
   <Grid ColumnDefinitions="300,Auto,*">
 
     <!-- Left: Collections + Passages + Community -->
-    <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto">
+    <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto">
 
       <!-- Collections header -->
       <DockPanel Grid.Row="0" Margin="4">
@@ -130,6 +130,22 @@
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
+
+      <!-- Adopt passage panel -->
+      <DockPanel Grid.Row="11" Margin="4,4,4,2"
+                 IsVisible="{Binding SelectedCommunityPassage, Converter={x:Static ObjectConverters.IsNotNull}}">
+        <Button Content="Adopt" DockPanel.Dock="Right" Command="{Binding AdoptSelectedPassageCommand}"
+                ToolTip.Tip="Copy this passage into the selected local collection" Padding="8,3"/>
+        <ComboBox ItemsSource="{Binding Collections}"
+                  SelectedItem="{Binding AdoptTargetCollection}"
+                  Margin="0,0,4,0" HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="models:ScholarCollection">
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </DockPanel>
     </Grid>
 
     <!-- Splitter -->

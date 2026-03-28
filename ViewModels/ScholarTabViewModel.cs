@@ -61,6 +61,10 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private bool _hasCommunityCollections;
 
+    // Target collection for adopting community passages
+    [ObservableProperty]
+    private ScholarCollection? _adoptTargetCollection;
+
     // ----- Collections -----
 
     public ObservableCollection<ScholarCollection> Collections { get; } = new();
@@ -405,6 +409,65 @@ public partial class ScholarTabViewModel : ViewModelBase
             CommunityPassages.Add(p);
 
         SelectedCommunityPassage = CommunityPassages.FirstOrDefault();
+    }
+
+    [RelayCommand]
+    private async Task AdoptSelectedPassageAsync()
+    {
+        if (SelectedCommunityPassage == null)
+        {
+            StatusMessage = "No community passage selected.";
+            StatusChanged?.Invoke(this, StatusMessage);
+            return;
+        }
+
+        // If no collections exist, create a default one
+        if (_allCollections.Count == 0)
+        {
+            AddCollection();
+        }
+
+        var target = AdoptTargetCollection ?? SelectedCollection ?? Collections.FirstOrDefault();
+        if (target == null)
+        {
+            StatusMessage = "Select a target collection first.";
+            StatusChanged?.Invoke(this, StatusMessage);
+            return;
+        }
+
+        await AdoptPassageToCollectionAsync(SelectedCommunityPassage, target);
+    }
+
+    public async Task AdoptPassageToCollectionAsync(ScholarPassage sourcePassage, ScholarCollection targetCollection)
+    {
+        // Deep copy
+        var adopted = new ScholarPassage
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            SourceRelPath = sourcePassage.SourceRelPath,
+            ZhText = sourcePassage.ZhText,
+            EnText = sourcePassage.EnText,
+            Notes = sourcePassage.Notes,
+            Tags = new List<string>(sourcePassage.Tags),
+            MasterNames = new List<string>(sourcePassage.MasterNames),
+            CreatedBy = _username,
+            AddedUtc = DateTimeOffset.UtcNow,
+            ModifiedUtc = null
+        };
+
+        targetCollection.Passages.Add(adopted);
+
+        // If the target collection is currently displayed, update the observable list
+        if (SelectedCollection?.Id == targetCollection.Id)
+        {
+            Passages.Add(adopted);
+        }
+
+        IsEmptyState = false;
+        await SaveAsync();
+
+        StatusMessage = $"Adopted passage to '{targetCollection.Name}'.";
+        StatusChanged?.Invoke(this, StatusMessage);
     }
 
     // ----- Public API -----
