@@ -1270,6 +1270,11 @@ public partial class MainWindow : Window
         if (_vm.Config.HasCompletedOnboarding) return;
         if (IsSecondaryWindow) return;
 
+        // Don't start tour if launched via deep link — the user wants to go somewhere specific
+        var hasDeepLink = App.StartupArgs?.Any(a =>
+            a.StartsWith("cbeta://", StringComparison.OrdinalIgnoreCase)) == true;
+        if (hasDeepLink) return;
+
         // If root already loaded (returning user who requested tour restart),
         // skip setup steps and go straight to feature walkthrough
         if (!string.IsNullOrWhiteSpace(_vm.Root))
