@@ -276,11 +276,37 @@ public partial class ReadableTabView : UserControl
             if (string.IsNullOrWhiteSpace(relPath)) return;
 
             var editor = isTranslated ? _aeTran : _aeOrig;
-            string? highlight = editor?.SelectedText;
-            if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
-
+            var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
             var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
-            var uri = CbetaUriParser.BuildUri(relPath, highlight, side);
+
+            string? fromLb = null;
+            string? toLb = null;
+            string? highlight = null;
+
+            if (editor != null && doc != null && !doc.IsEmpty)
+            {
+                int selStart = GetSelectionStartSafe(editor);
+                int selEnd = GetSelectionEndSafe(editor);
+                bool hasSelection = selEnd > selStart;
+
+                if (hasSelection)
+                {
+                    var startSeg = doc.FindSegmentAtOrBefore(selStart);
+                    var endSeg = doc.FindSegmentAtOrBefore(selEnd - 1);
+
+                    fromLb = ExtractLbNValue(startSeg?.Key);
+                    toLb = ExtractLbNValue(endSeg?.Key);
+
+                    // Fall back to highlight text if lb extraction fails
+                    if (fromLb == null)
+                    {
+                        highlight = editor.SelectedText;
+                        if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                    }
+                }
+            }
+
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb, toLb, highlight, side);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -612,6 +638,32 @@ public partial class ReadableTabView : UserControl
         if (doc == null || doc.IsEmpty || editor?.Document == null)
             return;
 
+        // --- lb-based navigation (preferred for deep links with from/to params) ---
+        if (!string.IsNullOrEmpty(request.FromLb))
+        {
+            var (lbStart, lbLength) = ResolveLbRange(doc, request.FromLb, request.ToLb);
+            if (lbStart >= 0 && lbLength > 0)
+            {
+                _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
+                _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+
+                int lbDocLen = editor.Document.TextLength;
+                int lbSafeStart = Math.Clamp(lbStart, 0, Math.Max(0, lbDocLen - 1));
+                int lbSafeEnd = Math.Clamp(lbSafeStart + lbLength, 0, lbDocLen);
+
+                editor.TextArea.Caret.Offset = lbSafeStart;
+                editor.TextArea.Selection = Selection.Create(editor.TextArea, lbSafeStart, lbSafeEnd);
+
+                var lbLine = editor.Document.GetLineByOffset(lbSafeStart);
+                editor.ScrollToLine(lbLine.LineNumber);
+
+                _navHighlightEditor = editor;
+                return;
+            }
+            // lb keys not found — fall through to text-based matching if MatchText is available
+        }
+
+        // --- text-based navigation (fallback for search results, old URLs, etc.) ---
         if (string.IsNullOrEmpty(request.MatchText))
             return;
 
@@ -650,6 +702,66 @@ public partial class ReadableTabView : UserControl
     /// Finds the best-scoring match range in the rendered text.
     /// Strategy:
     /// 1) Try exact raw substring matching first (preserves existing behavior).
+    /// <summary>
+    /// Resolves an lb-based range to rendered text offsets.
+    /// Looks up segments by key "lb|{fromLb}" and optionally "lb|{toLb}".
+    /// Returns (start, length) in rendered text coordinates, or (-1, 0) if not found.
+    /// </summary>
+    private static (int start, int length) ResolveLbRange(
+        RenderedDocument doc, string fromLb, string? toLb)
+    {
+        // Try finding the segment with and without edition suffix
+        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg))
+            return (-1, 0);
+
+        int rangeStart = startSeg.Start;
+        int rangeEnd = startSeg.EndExclusive;
+
+        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+        {
+            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
+                rangeEnd = endSeg.EndExclusive;
+        }
+
+        return (rangeStart, rangeEnd - rangeStart);
+    }
+
+    /// <summary>
+    /// Attempts to find a segment by lb n-value, trying both bare key "lb|{nValue}"
+    /// and common edition suffixes like "lb|{nValue}|CB".
+    /// </summary>
+    private static bool TryFindSegmentByLb(
+        RenderedDocument doc, string nValue, out RenderSegment seg)
+    {
+        // Try bare key first
+        if (doc.TryGetSegmentByKey("lb|" + nValue, out seg))
+            return true;
+
+        // Try with common edition suffixes
+        foreach (var suffix in new[] { "CB", "CBETA", "T", "X", "J" })
+        {
+            if (doc.TryGetSegmentByKey("lb|" + nValue + "|" + suffix, out seg))
+                return true;
+        }
+
+        // Brute-force: scan segments for any key containing this n-value
+        foreach (var s in doc.Segments)
+        {
+            if (s.Key.StartsWith("lb|", StringComparison.Ordinal))
+            {
+                var parts = s.Key.Split('|');
+                if (parts.Length >= 2 && parts[1] == nValue)
+                {
+                    seg = s;
+                    return true;
+                }
+            }
+        }
+
+        seg = default;
+        return false;
+    }
+
     /// 2) If not found, use compact-CJK normalized matching and map back to raw offsets
     ///    so cross-tag / cross-line CJK hits can still be highlighted.
     /// </summary>
@@ -1603,6 +1715,18 @@ public partial class ReadableTabView : UserControl
             return sel.SurroundingSegment.Offset + sel.SurroundingSegment.Length;
         }
         catch { return 0; }
+    }
+
+    /// <summary>
+    /// Extracts the lb n-value from a segment key like "lb|0001a01" or "lb|0001a01|CB".
+    /// Returns null if the key is null or not an lb-type key.
+    /// </summary>
+    private static string? ExtractLbNValue(string? segmentKey)
+    {
+        if (string.IsNullOrEmpty(segmentKey)) return null;
+        if (!segmentKey.StartsWith("lb|", StringComparison.Ordinal)) return null;
+        var parts = segmentKey.Split('|');
+        return parts.Length >= 2 ? parts[1] : null;
     }
 
     // =========================

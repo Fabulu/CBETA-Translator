@@ -145,7 +145,7 @@ public partial class ScholarTabView : UserControl
                 if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
 
                 var uri = CbetaUriParser.BuildUri(
-                    passage.SourceRelPath, highlight,
+                    passage.SourceRelPath, highlightText: highlight,
                     blockNumber: passage.StartBlockNumber);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)

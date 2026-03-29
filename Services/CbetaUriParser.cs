@@ -6,7 +6,7 @@ namespace CbetaTranslator.App.Services;
 
 /// <summary>
 /// Converts between <c>cbeta://</c> deep-link URIs and <see cref="NavigationRequest"/> objects.
-/// URI format: <c>cbeta://T/T48/T48n2005.xml?highlight=...&amp;side=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
+/// URI format: <c>cbeta://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
 /// </summary>
 public static class CbetaUriParser
 {
@@ -48,6 +48,12 @@ public static class CbetaUriParser
             RelPath = relPath,
         };
 
+        if (query.TryGetValue("from", out var fromLb) && !string.IsNullOrEmpty(fromLb))
+            request.FromLb = fromLb;
+
+        if (query.TryGetValue("to", out var toLb) && !string.IsNullOrEmpty(toLb))
+            request.ToLb = toLb;
+
         if (query.TryGetValue("highlight", out var highlight))
             request.MatchText = highlight;
 
@@ -78,6 +84,8 @@ public static class CbetaUriParser
     /// </summary>
     public static string BuildUri(
         string relPath,
+        string? fromLb = null,
+        string? toLb = null,
         string? highlightText = null,
         SearchSide side = SearchSide.Original,
         string? leftContext = null,
@@ -91,6 +99,13 @@ public static class CbetaUriParser
         var baseUri = Scheme + "://" + relPath;
 
         var queryParts = new List<string>();
+
+        if (!string.IsNullOrEmpty(fromLb))
+        {
+            queryParts.Add("from=" + Uri.EscapeDataString(fromLb));
+            if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+                queryParts.Add("to=" + Uri.EscapeDataString(toLb));
+        }
 
         if (!string.IsNullOrEmpty(highlightText))
         {
