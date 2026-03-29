@@ -272,7 +272,11 @@ public partial class MainWindowViewModel : ViewModelBase
                 SetStatus("Auto-loading last root...");
                 await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
 
-                if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
+                // Skip auto-loading last file if a deep link will navigate us elsewhere
+                var hasDeepLink = App.StartupArgs?.Any(a =>
+                    a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase)) == true;
+
+                if (!hasDeepLink && !string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
                 {
                     var rel = NormalizeRel(_config.LastSelectedRelPath);
                     _suppressNavSelection = true;
