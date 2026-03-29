@@ -41,7 +41,7 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,8,*,Auto"
+	<Grid RowDefinitions="Auto,Auto,Auto,8,*,Auto"
 		  ColumnDefinitions="*,Auto"
 		  Margin="8"
 		  RowSpacing="4"
@@ -60,94 +60,93 @@
 				IsEnabled="{Binding IsNotBusy}"
 				Padding="8,3"/>
 
-		<!-- Row 1: TWO BIG PRIMARY BUTTONS — Share and Update -->
-		<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="12" Margin="0,4">
-			<Button Content="Share"
-					Command="{Binding ShareAllCommand}"
-					IsEnabled="{Binding IsNotBusy}"
-					FontSize="16"
-					FontWeight="Bold"
-					Padding="24,10"
-					ToolTip.Tip="Share all community data (translations, termbase, collections, reviews) to GitHub"/>
-			<Button Content="Update"
-					Command="{Binding FetchMergeCommunityCommand}"
-					IsEnabled="{Binding IsNotBusy}"
-					FontSize="16"
-					FontWeight="Bold"
-					Padding="24,10"
-					ToolTip.Tip="Download and merge the latest community data from other contributors"/>
-		</StackPanel>
+		<!-- Row 1: ONE BIG SYNC BUTTON — centered, prominent -->
+		<Button Grid.Row="1" Grid.ColumnSpan="2"
+				Content="Sync"
+				Command="{Binding SyncCommand}"
+				IsEnabled="{Binding IsNotBusy}"
+				FontSize="20"
+				FontWeight="Bold"
+				Padding="48,14"
+				HorizontalAlignment="Center"
+				Margin="0,8"
+				ToolTip.Tip="One click: shares your work (translations, termbase, collections, reviews) and pulls the latest from other contributors. If no repo exists, clones it first."/>
 
-		<!-- Row 2: Selected file -->
-		<TextBlock Grid.Row="2"
-				   Grid.ColumnSpan="2"
-				   Text="{Binding SelectedText}" />
-
-		<!-- Row 3: Commit message -->
-		<TextBox Grid.Row="3"
-				 Grid.ColumnSpan="2"
-				 Watermark="Commit message — What did you change?"
-				 Text="{Binding CommitMessage, Mode=TwoWay}" />
-
-		<!-- Row 4: Advanced (collapsed by default) — all other buttons -->
-		<Expander Grid.Row="4" Grid.ColumnSpan="2" IsExpanded="False" Margin="0,2">
+		<!-- Row 2: Advanced (collapsed by default) — all other buttons -->
+		<Expander Grid.Row="2" Grid.ColumnSpan="2" IsExpanded="False" Margin="0,2">
 			<Expander.Header>
 				<TextBlock Text="Advanced" FontWeight="SemiBold"/>
 			</Expander.Header>
-			<WrapPanel Orientation="Horizontal" Margin="0,4,0,0">
-				<Button Content="Get Files"
-						Command="{Binding GetFilesCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3"
-						ToolTip.Tip="Clone the repo if missing. If it already exists, does a safe update that keeps local file changes."/>
-				<Button Content="Cancel"
-						Command="{Binding CancelCommand}"
-						IsEnabled="{Binding IsBusy}"
-						Padding="8,3" Margin="6,0,0,0"/>
-				<Button Classes="updateSafe"
-						Content="Update (Keep Local)"
-						Command="{Binding UpdateKeepLocalCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,4" Margin="6,0,0,0"
-						ToolTip.Tip="Recommended. Backs up changed files, updates repo, then restores your local files."/>
-				<Button Classes="updateDiscard"
-						Content="Update (Discard Local)"
-						Command="{Binding UpdateDiscardLocalCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,4" Margin="6,0,0,0"
-						ToolTip.Tip="Dangerous. Throws away uncommitted local edits and updates to the latest files."/>
-				<Button Content="1) Commit"
-						Command="{Binding SendContributionCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3" Margin="6,0,0,0"
-						ToolTip.Tip="Stage and commit the currently selected translated file to a new branch"/>
-				<Button Content="2) Authorize"
-						Command="{Binding AuthorizeCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3" Margin="6,0,0,0"
-						ToolTip.Tip="Authenticate with GitHub using device code flow"/>
-				<Button Content="3) Push PR"
-						Command="{Binding PushPrCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3" Margin="6,0,0,0"
-						ToolTip.Tip="Push your branch to GitHub and open a pull request"/>
-				<Button Classes="panic"
-						Content="Discard All"
-						Command="{Binding PanicResetCommand}"
-						IsEnabled="{Binding IsNotBusy}"
-						Padding="8,3" Margin="12,0,0,0"
-						ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
-			</WrapPanel>
+			<StackPanel Spacing="6" Margin="0,4,0,0">
+				<!-- Selected file + commit message for translation PR workflow -->
+				<TextBlock Text="{Binding SelectedText}" />
+				<TextBox Watermark="Commit message — What did you change?"
+						 Text="{Binding CommitMessage, Mode=TwoWay}" />
+				<WrapPanel Orientation="Horizontal">
+					<Button Content="Get Files"
+							Command="{Binding GetFilesCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3"
+							ToolTip.Tip="Clone the repo if missing. If it already exists, does a safe update that keeps local file changes."/>
+					<Button Content="Cancel"
+							Command="{Binding CancelCommand}"
+							IsEnabled="{Binding IsBusy}"
+							Padding="8,3" Margin="6,0,0,0"/>
+					<Button Classes="updateSafe"
+							Content="Update (Keep Local)"
+							Command="{Binding UpdateKeepLocalCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,4" Margin="6,0,0,0"
+							ToolTip.Tip="Recommended. Backs up changed files, updates repo, then restores your local files."/>
+					<Button Classes="updateDiscard"
+							Content="Update (Discard Local)"
+							Command="{Binding UpdateDiscardLocalCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,4" Margin="6,0,0,0"
+							ToolTip.Tip="Dangerous. Throws away uncommitted local edits and updates to the latest files."/>
+					<Button Content="Share"
+							Command="{Binding ShareAllCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="6,0,0,0"
+							ToolTip.Tip="Share all community data to GitHub (without fetching)"/>
+					<Button Content="Fetch + Merge"
+							Command="{Binding FetchMergeCommunityCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="6,0,0,0"
+							ToolTip.Tip="Download and merge community data (without sharing)"/>
+					<Button Content="1) Commit"
+							Command="{Binding SendContributionCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="6,0,0,0"
+							ToolTip.Tip="Stage and commit the currently selected translated file to a new branch"/>
+					<Button Content="2) Authorize"
+							Command="{Binding AuthorizeCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="6,0,0,0"
+							ToolTip.Tip="Authenticate with GitHub using device code flow"/>
+					<Button Content="3) Push PR"
+							Command="{Binding PushPrCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="6,0,0,0"
+							ToolTip.Tip="Push your branch to GitHub and open a pull request"/>
+					<Button Classes="panic"
+							Content="Discard All"
+							Command="{Binding PanicResetCommand}"
+							IsEnabled="{Binding IsNotBusy}"
+							Padding="8,3" Margin="12,0,0,0"
+							ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
+				</WrapPanel>
+			</StackPanel>
 		</Expander>
 
-		<!-- Row 5: GridSplitter -->
-		<GridSplitter Grid.Row="5" Grid.ColumnSpan="2" Height="8"
+		<!-- Row 3: GridSplitter -->
+		<GridSplitter Grid.Row="3" Grid.ColumnSpan="2" Height="8"
 					  ResizeDirection="Rows" ResizeBehavior="PreviousAndNext"
 					  Background="Transparent" Cursor="SizeNorthSouth"
 					  ToolTip.Tip="Drag to resize log area"/>
 
-		<!-- Row 6: Log -->
-		<Border Grid.Row="6"
+		<!-- Row 4: Log -->
+		<Border Grid.Row="4"
 				Grid.ColumnSpan="2"
 				CornerRadius="6"
 				BorderThickness="1"
@@ -169,7 +168,7 @@
 		</Border>
 
 		<!-- Empty state overlay -->
-		<Panel Grid.Row="6" Grid.ColumnSpan="2"
+		<Panel Grid.Row="4" Grid.ColumnSpan="2"
 			   IsVisible="{Binding !LogText.Length}"
 			   IsHitTestVisible="False">
 			<TextBlock Text="Open a text corpus folder to get started.&#x0a;Use the Git tab to share your work."
@@ -181,8 +180,8 @@
 					   Margin="0,40,0,0"/>
 		</Panel>
 
-		<!-- Row 7: Progress -->
-		<TextBlock Grid.Row="7"
+		<!-- Row 5: Progress -->
+		<TextBlock Grid.Row="5"
 				   Grid.ColumnSpan="2"
 				   Text="{Binding ProgressText}"
 				   Opacity="0.8"
