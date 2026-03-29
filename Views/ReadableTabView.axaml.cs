@@ -268,6 +268,26 @@ public partial class ReadableTabView : UserControl
         var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
         addItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated);
         menu.Items.Add(addItem);
+
+        var copyLinkItem = new MenuItem { Header = "Copy Link" };
+        copyLinkItem.Click += async (_, _) =>
+        {
+            var relPath = _vm.CurrentRelPathForZen;
+            if (string.IsNullOrWhiteSpace(relPath)) return;
+
+            var editor = isTranslated ? _aeTran : _aeOrig;
+            string? highlight = editor?.SelectedText;
+            if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+
+            var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
+            var uri = CbetaUriParser.BuildUri(relPath, highlight, side);
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+                await top.Clipboard.SetTextAsync(uri);
+            Say("Link copied to clipboard.");
+        };
+        menu.Items.Add(copyLinkItem);
+
         return menu;
     }
 

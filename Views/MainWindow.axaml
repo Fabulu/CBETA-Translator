@@ -111,6 +111,8 @@
 							<ContextMenu>
 								<MenuItem Name="MnuLinkToPassage" Header="Link to selected passage"
 										  ToolTip.Tip="Add this text to the selected scholar passage's linked texts"/>
+								<MenuItem Name="MnuCopyLink" Header="Copy Link"
+										  ToolTip.Tip="Copy a cbeta:// link for this file to the clipboard"/>
 							</ContextMenu>
 						</ListBox.ContextMenu>
 

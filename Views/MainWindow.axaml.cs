@@ -458,6 +458,22 @@ public partial class MainWindow : Window
                     await _scholarView.AddLinkedTextAsync(navItem.RelPath);
                 };
             }
+
+            var mnuCopyLink = Find<MenuItem>("MnuCopyLink");
+            if (mnuCopyLink != null)
+            {
+                mnuCopyLink.Click += async (_, _) =>
+                {
+                    var navItem = _filesList.SelectedItem as FileNavItem;
+                    if (navItem == null || string.IsNullOrWhiteSpace(navItem.RelPath)) return;
+
+                    var uri = CbetaUriParser.BuildUri(navItem.RelPath);
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null)
+                        await top.Clipboard.SetTextAsync(uri);
+                    _vm.SetStatus("Link copied to clipboard.");
+                };
+            }
         }
 
         if (_tabs != null)
