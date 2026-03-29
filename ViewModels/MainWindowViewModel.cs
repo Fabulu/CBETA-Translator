@@ -91,6 +91,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private CurrentSegmentContext? _currentSegmentContext;
 
     private bool _suppressConfigSaves;
+    private bool _suppressNavSelection;
 
     // ---- Observable properties ----
 
@@ -274,7 +275,9 @@ public partial class MainWindowViewModel : ViewModelBase
                 if (!string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
                 {
                     var rel = NormalizeRel(_config.LastSelectedRelPath);
+                    _suppressNavSelection = true;
                     SelectInNav(rel);
+                    _suppressNavSelection = false;
                     await LoadPairAsync(rel);
                 }
             }
@@ -825,6 +828,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task OnFileSelectedAsync(FileNavItem item)
     {
         if (string.IsNullOrWhiteSpace(item.RelPath)) return;
+        if (_suppressNavSelection) return; // Autoload in progress — don't double-load
 
         if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
