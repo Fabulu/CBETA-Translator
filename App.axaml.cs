@@ -15,23 +15,12 @@ namespace CbetaTranslator.App;
 public partial class App : Application
 {
     public static IServiceProvider Services { get; private set; } = null!;
-
-    /// <summary>
-    /// Single-instance manager created in <see cref="Program.Main"/>.
-    /// </summary>
     public static SingleInstanceManager? SingleInstance { get; set; }
-
-    /// <summary>
-    /// Command-line arguments captured in <see cref="Program.Main"/>.
-    /// </summary>
     public static string[]? StartupArgs { get; set; }
 
     public override void Initialize()
     {
-
         AvaloniaXamlLoader.Load(this);
-
-
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -42,34 +31,67 @@ public partial class App : Application
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow();
+            // Check for deep link BEFORE creating any window
+            var startupUri = StartupArgs?.FirstOrDefault(a =>
+                a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 
-            // Defer non-critical startup tasks to avoid blocking window display
-            Dispatcher.UIThread.Post(() =>
+            if (!string.IsNullOrEmpty(startupUri))
             {
-                try { TryAutoRegisterProtocol(); } catch { }
-                try { HandleStartupUri(); } catch { }
-                try
+                // Deep link launch: don't show a primary window at all.
+                // Create a hidden one (Avalonia requires MainWindow to be set).
+                var hiddenWindow = new MainWindow();
+                hiddenWindow.ShowInTaskbar = false;
+                hiddenWindow.Opacity = 0;
+                hiddenWindow.Width = 1;
+                hiddenWindow.Height = 1;
+                hiddenWindow.WindowStartupLocation = Avalonia.Controls.WindowStartupLocation.Manual;
+                hiddenWindow.Position = new Avalonia.PixelPoint(-9999, -9999);
+                desktop.MainWindow = hiddenWindow;
+                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnLastWindowClose;
+
+                // Handle the deep link immediately (no 5-second delay)
+                Dispatcher.UIThread.Post(async () =>
                 {
-                    if (SingleInstance != null)
-                    {
-                        SingleInstance.UriReceived += uri =>
-                        {
-                            try { HandleDeepLink(uri); } catch { }
-                        };
-                        SingleInstance.StartListening();
-                    }
-                }
-                catch { }
-            }, DispatcherPriority.Background);
+                    try { TryAutoRegisterProtocol(); } catch { }
+                    try { await HandleDeepLinkAsync(startupUri); } catch { }
+                    SetupPipeListener();
+                }, DispatcherPriority.Background);
+            }
+            else
+            {
+                // Normal launch: show the primary window
+                desktop.MainWindow = new MainWindow();
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    try { TryAutoRegisterProtocol(); } catch { }
+                    SetupPipeListener();
+                }, DispatcherPriority.Background);
+            }
         }
 
         base.OnFrameworkInitializationCompleted();
     }
 
+    private void SetupPipeListener()
+    {
+        try
+        {
+            if (SingleInstance != null)
+            {
+                SingleInstance.UriReceived += uri =>
+                {
+                    try { Dispatcher.UIThread.Post(async () => await HandleDeepLinkAsync(uri)); }
+                    catch { }
+                };
+                SingleInstance.StartListening();
+            }
+        }
+        catch { }
+    }
+
     private void TryAutoRegisterProtocol()
     {
-        // Run entirely in background to never block startup
         _ = System.Threading.Tasks.Task.Run(async () =>
         {
             try
@@ -93,66 +115,32 @@ public partial class App : Application
         });
     }
 
-    private void HandleStartupUri()
-    {
-        var uri = StartupArgs?.FirstOrDefault(a =>
-            a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
-
-        if (!string.IsNullOrEmpty(uri))
-        {
-            // Hide the primary window — the deep link will open a secondary window
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
-                && desktop.MainWindow != null)
-            {
-                desktop.MainWindow.ShowInTaskbar = false;
-                desktop.MainWindow.WindowState = Avalonia.Controls.WindowState.Minimized;
-                desktop.MainWindow.Hide();
-
-                // When all secondary windows close, also close the hidden primary
-                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnLastWindowClose;
-            }
-
-            // Defer deep link handling to let primary window finish initialization
-            _ = System.Threading.Tasks.Task.Run(async () =>
-            {
-                await System.Threading.Tasks.Task.Delay(5000); // Wait for primary window to be ready
-                HandleDeepLink(uri);
-            });
-        }
-    }
-
-    private void HandleDeepLink(string uri)
+    private async System.Threading.Tasks.Task HandleDeepLinkAsync(string uri)
     {
         var request = CbetaUriParser.TryParse(uri);
-        if (request == null)
-            return;
+        if (request == null) return;
 
-        Dispatcher.UIThread.Post(async () =>
+        try
         {
-            try
+            string? root = null;
+            var configService = Services.GetService<IAppConfigService>();
+            if (configService is AppConfigService acs)
             {
-                // Read the text root from config (async, no UI thread blocking)
-                var configService = Services.GetService<IAppConfigService>();
-                string? root = null;
-                if (configService is AppConfigService acs)
-                {
-                    var config = await acs.TryLoadAsync();
-                    root = config?.TextRootPath;
-                }
-
-                if (string.IsNullOrEmpty(root))
-                {
-                    Debug.WriteLine("Cannot handle deep link: no TextRootPath configured.");
-                    return;
-                }
-
-                // Open in a secondary window to avoid conflicting with primary window state
-                WindowNavigationService.OpenAndNavigate(root, request);
+                var config = await acs.TryLoadAsync();
+                root = config?.TextRootPath;
             }
-            catch (Exception ex)
+
+            if (string.IsNullOrEmpty(root))
             {
-                Debug.WriteLine("Deep link handling failed: " + ex.Message);
+                Debug.WriteLine("Cannot handle deep link: no TextRootPath configured.");
+                return;
             }
-        }, DispatcherPriority.Background);
+
+            WindowNavigationService.OpenAndNavigate(root, request);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Deep link handling failed: " + ex.Message);
+        }
     }
 }
