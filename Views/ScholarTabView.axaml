@@ -37,7 +37,8 @@
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarCollection">
             <StackPanel>
-              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                         TextTrimming="CharacterEllipsis"/>
               <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
                          TextTrimming="CharacterEllipsis"/>
               <TextBlock Text="{Binding CreatedBy}" Classes="muted" FontSize="10"
@@ -110,6 +111,7 @@
       <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="4,4,4,0" Spacing="6"
                   IsVisible="{Binding HasCommunityCollections}">
         <TextBlock Text="Community Collections" FontWeight="SemiBold"
+                   TextTrimming="CharacterEllipsis"
                    Foreground="{DynamicResource AccentLinkFg}"/>
         <Border Background="{DynamicResource AccentLinkFg}" CornerRadius="8" Padding="6,1" VerticalAlignment="Center">
           <TextBlock Text="{Binding CommunityCollections.Count}" FontSize="10" FontWeight="Bold"
@@ -130,7 +132,8 @@
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarCollection">
             <StackPanel>
-              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                         TextTrimming="CharacterEllipsis"/>
               <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
                          TextTrimming="CharacterEllipsis"/>
               <TextBlock FontSize="10" Foreground="{DynamicResource AccentLinkFg}"

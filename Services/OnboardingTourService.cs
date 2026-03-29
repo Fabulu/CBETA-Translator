@@ -75,7 +75,7 @@ public sealed class OnboardingTourService
         {
             Id = "welcome",
             Title = "Welcome to CBETA Translator",
-            Body = "This tool helps you read, translate, and study classical Chinese Buddhist texts from the CBETA corpus.\n\nLet's get you set up \u2014 it only takes a minute.",
+            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from the CBETA corpus.\n\nLet's get you set up \u2014 it only takes a minute.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -94,7 +94,7 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "We're downloading the CBETA Zen text collection. This may take a few minutes \u2014 it's a comprehensive library of classical Chinese texts with existing translations.\n\nGrab a cup of tea. \u2615",
+            Body = "Switching to the Git tab.\n\nWe're downloading the CBETA Zen text collection. This may take a few minutes \u2014 it's a comprehensive library of classical Chinese texts with existing translations.\n\nGrab a cup of tea. \u2615",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView",
@@ -106,7 +106,7 @@ public sealed class OnboardingTourService
         {
             Id = "building-index",
             Title = "Building Search Index...",
-            Body = "The app is building a search index so you can search across the entire corpus. This takes a moment.\n\nDid you know? The CBETA corpus contains thousands of Buddhist texts digitized from woodblock prints.",
+            Body = "The app is building a search index so you can search across the entire corpus. This takes a moment.\n\nDid you know? The CBETA corpus contains thousands of Zen texts digitized from woodblock prints.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Center,
             WaitForEvent = "index-built"
@@ -116,7 +116,7 @@ public sealed class OnboardingTourService
         {
             Id = "sidebar",
             Title = "Your Text Library",
-            Body = "Here are all the texts in the collection.\n\n\ud83d\udd34 Red = not yet translated\n\ud83d\udfe1 Yellow = partially translated\n\ud83d\udfe2 Green = fully translated\n\nClick any text to start reading.",
+            Body = "Here are all the texts in the collection.\n\nRed = not yet translated\nYellow = partially translated\nGreen = fully translated\n\nClick any text to start reading.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
             TargetControlName = "FilesList"
@@ -128,7 +128,7 @@ public sealed class OnboardingTourService
         {
             Id = "open-gateless-barrier",
             Title = "Opening Your First Text",
-            Body = "We've opened the Gateless Barrier (\u7121\u9580\u95dc) by Wumen Huikai \u2014 one of the most famous Chan texts.\nYou'll see it in the Reader tab.",
+            Body = "We've opened the Gateless Barrier (\u7121\u9580\u95dc) by Wumen Huikai \u2014 one of the most famous Zen texts.\nYou'll see it in the Reader tab.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 0,
@@ -189,7 +189,7 @@ public sealed class OnboardingTourService
         {
             Id = "translate-tab",
             Title = "The Translation Editor",
-            Body = "This is where translations happen. The editor shows numbered blocks: Chinese on top, English below.\nNavigate between blocks with Alt+\u2190 and Alt+\u2192.",
+            Body = "Switching to the Translation tab.\n\nThis is where translations happen. The editor shows numbered blocks: Chinese on top, English below.\nNavigate between blocks with Alt+\u2190 and Alt+\u2192.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 1,
@@ -210,7 +210,7 @@ public sealed class OnboardingTourService
         {
             Id = "copy-for-ai",
             Title = "Copy for AI Translation",
-            Body = "Click 'Copy for AI' to copy untranslated blocks with instructions to your clipboard.\nPaste into ChatGPT, Claude, or DeepSeek. The AI returns formatted translations you can paste back.",
+            Body = "Select any block, or just click 'Copy for AI' to automatically grab up to 100 untranslated blocks with instructions.\n\nPaste into ChatGPT, Claude, or DeepSeek. The AI returns numbered translations.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnCopyChunkPrompt"
@@ -220,7 +220,7 @@ public sealed class OnboardingTourService
         {
             Id = "paste-from-ai",
             Title = "Paste AI Translations",
-            Body = "After your AI translates, copy its output and click 'Paste from AI'.\nThe app matches block numbers automatically and catches errors like skipped or combined lines.",
+            Body = "Copy the AI's output and click 'Paste from AI'. No need to select anything \u2014 the app matches block numbers automatically, in any order.\n\nIt catches errors like skipped or combined lines.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnPasteByNumber"
@@ -262,7 +262,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-tab",
             Title = "Search the Corpus",
-            Body = "Search the entire corpus for Chinese text or English phrases.\nThe search works across line breaks \u2014 CBETA often splits Chinese sentences mid-word.",
+            Body = "Switching to the Search tab.\n\nSearch the entire corpus for Chinese text or English phrases.\nThe search works across line breaks \u2014 CBETA often splits Chinese sentences mid-word.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
@@ -283,7 +283,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tab",
             Title = "Your Research Workspace",
-            Body = "The Scholar tab is your personal research workspace.\nCollect passages, organize by topic, compare texts, and export your findings.",
+            Body = "Switching to the Scholar tab.\n\nThe Scholar tab is your personal research workspace.\nCollect passages, organize by topic, compare texts, and export your findings.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 4,
@@ -354,7 +354,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-tab",
             Title = "Sync Your Work",
-            Body = "Click Sync to share your work and get the latest texts and community data. That's it \u2014 one button does everything.",
+            Body = "Switching to the Git tab.\n\nClick Sync to share your work and get the latest texts and community data. That's it \u2014 one button does everything.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -375,7 +375,7 @@ public sealed class OnboardingTourService
         {
             Id = "tour-complete",
             Title = "You're Ready!",
-            Body = "You now know everything you need to read, translate, research, and share classical Chinese Buddhist texts.\n\nTo restart this tour later, go to Settings.\n\nHappy studying! \ud83d\udcda",
+            Body = "You now know everything you need to read, translate, research, and share classical Chinese Zen texts.\n\nTo restart this tour later, go to Settings.\n\nHappy studying! \ud83d\udcda",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
