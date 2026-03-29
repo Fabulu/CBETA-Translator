@@ -125,6 +125,9 @@
 							   TextAlignment="Center" Classes="muted"/>
 				</StackPanel>
 			</Border>
+
+			<!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
+			<Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
 		</Grid>
 
 		<!-- Row 2: notes panel -->

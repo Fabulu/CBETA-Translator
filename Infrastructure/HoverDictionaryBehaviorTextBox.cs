@@ -25,7 +25,11 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private readonly ICedictDictionary _cedict;
     private readonly IGrammarReferenceService? _grammar;
     private readonly DispatcherTimer _debounce;
-    private readonly ToolTip _tip;
+
+    // Overlay-based popup (no ToolTip = no flicker)
+    private readonly Panel _overlayHost;
+    private readonly Border _popupBorder;
+    private bool _isTooltipVisible;
 
     private bool _isDisposed;
     private Point _lastPoint;
@@ -48,24 +52,22 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private const int MaxSensesPerEntry = 3;
 
     public HoverDictionaryBehaviorTextBox(TextBox textBox, ICedictDictionary cedict,
-        IGrammarReferenceService? grammar = null)
+        IGrammarReferenceService? grammar = null, Panel? overlayHost = null)
     {
         _tb = textBox ?? throw new ArgumentNullException(nameof(textBox));
         _cedict = cedict ?? throw new ArgumentNullException(nameof(cedict));
         _grammar = grammar;
+        _overlayHost = overlayHost ?? throw new ArgumentNullException(nameof(overlayHost));
 
-        _tip = new ToolTip
+        _popupBorder = new Border
         {
-            Padding = new Thickness(0),
+            IsHitTestVisible = false,
+            IsVisible = false,
             Background = Brushes.Transparent,
             BorderThickness = new Thickness(0),
-            IsHitTestVisible = false,
-            Content = null
+            Padding = new Thickness(0),
         };
-        _tip.Classes.Add("dictTip");
-
-        ToolTip.SetShowDelay(_tb, 0);
-        ToolTip.SetTip(_tb, _tip);
+        _overlayHost.Children.Add(_popupBorder);
 
         _debounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(DebounceMs) };
         _debounce.Tick += Debounce_Tick;
@@ -115,7 +117,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
 
         HideTooltip();
 
-        try { ToolTip.SetTip(_tb, null); } catch { }
+        try { _overlayHost.Children.Remove(_popupBorder); } catch { }
     }
 
     private void OnAttached(object? sender, VisualTreeAttachmentEventArgs e)
@@ -166,7 +168,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private void RootPointerMoved(object? sender, PointerEventArgs e)
     {
         if (_isDisposed) return;
-        if (!ToolTip.GetIsOpen(_tb)) return;
+        if (!_isTooltipVisible) return;
 
         // Don't hide tooltip within 200ms of showing — prevents flicker loop
         if ((DateTime.UtcNow - _tooltipShowTime).TotalMilliseconds < MinTooltipVisibleMs)
@@ -179,7 +181,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private void RootPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (_isDisposed) return;
-        if (!ToolTip.GetIsOpen(_tb)) return;
+        if (!_isTooltipVisible) return;
 
         if (!IsPointerOverTextBox(e))
             HideTooltip();
@@ -438,20 +440,46 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
 
     private void ShowTooltip(Control content)
     {
-        _tip.Padding = new Thickness(0);
-        _tip.Background = Brushes.Transparent;
-        _tip.BorderThickness = new Thickness(0);
-        _tip.Content = content;
-        ToolTip.SetIsOpen(_tb, true);
+        _popupBorder.Child = content;
+        PositionPopup();
+        _popupBorder.IsVisible = true;
+        _isTooltipVisible = true;
         _tooltipShowTime = DateTime.UtcNow;
     }
 
     private void HideTooltip()
     {
-        ToolTip.SetIsOpen(_tb, false);
-        _tip.Content = null;
+        _popupBorder.IsVisible = false;
+        _isTooltipVisible = false;
+        _popupBorder.Child = null;
         _lastKeyShown = null;
         _lastOffset = -1;
+    }
+
+    private void PositionPopup()
+    {
+        if (!_hasLastPoint) return;
+
+        var pointInOverlay = _tb.TranslatePoint(_lastPoint, _overlayHost);
+        if (!pointInOverlay.HasValue) return;
+
+        // Measure content to know its size
+        _popupBorder.Measure(new Size(520, double.PositiveInfinity));
+        var size = _popupBorder.DesiredSize;
+
+        double x = pointInOverlay.Value.X + 16;
+        double y = pointInOverlay.Value.Y + 20;
+
+        // Clamp to overlay bounds
+        double maxX = _overlayHost.Bounds.Width - size.Width - 8;
+        double maxY = _overlayHost.Bounds.Height - size.Height - 8;
+        if (x > maxX) x = Math.Max(0, pointInOverlay.Value.X - size.Width - 8);
+        if (y > maxY) y = Math.Max(0, pointInOverlay.Value.Y - size.Height - 8);
+        x = Math.Max(0, x);
+        y = Math.Max(0, y);
+
+        Canvas.SetLeft(_popupBorder, x);
+        Canvas.SetTop(_popupBorder, y);
     }
 
     private Control BuildLoadingTooltip()

@@ -30,6 +30,7 @@ public partial class ScholarTabView : UserControl
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
     private HoverDictionaryBehaviorTextBox? _hoverDict;
+    private Canvas? _dictOverlayCanvas;
 
     // Termbase highlighting
     private readonly ITermbaseStorageService _termbaseStorage = App.Services.GetRequiredService<ITermbaseStorageService>();
@@ -75,6 +76,8 @@ public partial class ScholarTabView : UserControl
         _scholarTermHost = this.FindControl<StackPanel>("ScholarTermHost");
         _scholarApprovedTmHost = this.FindControl<StackPanel>("ScholarApprovedTmHost");
         _scholarReferenceTmHost = this.FindControl<StackPanel>("ScholarReferenceTmHost");
+
+        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
         WireViewEvents();
         SetupHoverDictionary();
@@ -323,7 +326,7 @@ public partial class ScholarTabView : UserControl
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         if (txtZhText == null) return;
 
-        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar); }
+        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar, _dictOverlayCanvas); }
         catch { /* dictionary not available */ }
     }
 
