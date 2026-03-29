@@ -37,7 +37,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private string? _lastKeyShown;
 
     private DateTime _tooltipShowTime;
-    private const int MinTooltipVisibleMs = 200;
+    private const int MinTooltipVisibleMs = 500;
 
     private bool _loadKickoff;
     private CancellationTokenSource? _loadCts;
@@ -240,7 +240,11 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         var pEd = top.TranslatePoint(pTop, _ed);
         if (!pEd.HasValue) return false;
 
-        return IsInsideBounds(_ed.Bounds, pEd.Value);
+        // Add 10px hysteresis margin to prevent flicker at edges
+        const double margin = 10;
+        return pEd.Value.X >= -margin && pEd.Value.Y >= -margin &&
+               pEd.Value.X < _ed.Bounds.Width + margin &&
+               pEd.Value.Y < _ed.Bounds.Height + margin;
     }
 
     // ==================== TEXTVIEW SCROLL HOOK ====================
