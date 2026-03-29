@@ -12,21 +12,32 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        var singleInstance = new SingleInstanceManager();
+        SingleInstanceManager? singleInstance = null;
 
-        if (!singleInstance.TryAcquireOrForward(args))
+        try
         {
-            // Another instance is already running; we forwarded our URI. Exit.
-            singleInstance.Dispose();
-            return;
+            singleInstance = new SingleInstanceManager();
+
+            if (!singleInstance.TryAcquireOrForward(args))
+            {
+                // Another instance is already running; we forwarded our URI. Exit.
+                singleInstance.Dispose();
+                return;
+            }
+
+            App.SingleInstance = singleInstance;
+        }
+        catch
+        {
+            // Single-instance check failed — proceed anyway.
+            // Deep links from second instances won't work, but the app will launch.
         }
 
-        App.SingleInstance = singleInstance;
         App.StartupArgs = args;
 
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 
-        singleInstance.Dispose();
+        try { singleInstance?.Dispose(); } catch { }
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.

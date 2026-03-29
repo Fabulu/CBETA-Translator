@@ -44,18 +44,21 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow();
 
-            // Auto-register cbeta:// protocol handler on first launch
-            TryAutoRegisterProtocol();
-
-            // Handle cbeta:// URI passed on the command line (e.g. OS launched us with a deep link)
-            HandleStartupUri();
-
-            // Start listening for URIs forwarded from second instances
-            if (SingleInstance != null)
+            // Defer non-critical startup tasks to avoid blocking window display
+            Dispatcher.UIThread.Post(() =>
             {
-                SingleInstance.UriReceived += HandleDeepLink;
-                SingleInstance.StartListening();
-            }
+                try { TryAutoRegisterProtocol(); } catch { }
+                try { HandleStartupUri(); } catch { }
+                try
+                {
+                    if (SingleInstance != null)
+                    {
+                        SingleInstance.UriReceived += HandleDeepLink;
+                        SingleInstance.StartListening();
+                    }
+                }
+                catch { }
+            }, DispatcherPriority.Background);
         }
 
         base.OnFrameworkInitializationCompleted();
