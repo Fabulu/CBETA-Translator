@@ -21,6 +21,7 @@ using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using CbetaTranslator.App.Text;
+using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -381,8 +382,17 @@ public partial class MainWindowViewModel : ViewModelBase
             _isAutoIndexing = true;
             try
             {
+                // Preload CEDICT dictionary in background so first file load is fast
+                try
+                {
+                    var cedict = App.Services.GetService<ICedictDictionary>();
+                    if (cedict != null)
+                        await cedict.EnsureLoadedAsync(ct);
+                }
+                catch { }
+
                 // Let the initial file load finish before competing for disk I/O
-                await Task.Delay(2000, ct);
+                await Task.Delay(3000, ct);
 
                 // Search index
                 bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDir);
@@ -995,12 +1005,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
         SetStatus("Rendering readable view...");
 
-        try
-        {
-            await RefreshAssistantFromEditorAsync();
-        }
-        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Assistant refresh failed: {ex.Message}"); }
-
+        // Render the readable view FIRST (user sees this tab immediately)
+        // Assistant build is deferred to AFTER render to avoid I/O contention
         try
         {
             var swRender = System.Diagnostics.Stopwatch.StartNew();
@@ -1038,6 +1044,13 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             SetStatus("Render failed: " + ex.Message);
         }
+
+        // Assistant refresh AFTER readable render (lower priority, avoids I/O contention)
+        try
+        {
+            await RefreshAssistantFromEditorAsync();
+        }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Assistant refresh failed: {ex.Message}"); }
     }
 
     private async Task RefreshAssistantFromEditorAsync()
