@@ -1145,43 +1145,57 @@ public partial class MainWindow : Window
     {
         if (_tourTooltip == null) return;
 
-        // Force measure so we know the tooltip's desired size
-        _tourTooltip.Measure(new Size(400, double.PositiveInfinity));
+        // Use ClientSize (visible area, excludes title bar) for accurate positioning
+        double windowWidth = ClientSize.Width;
+        double windowHeight = ClientSize.Height;
+
+        // Limit tooltip height to 40% of window to prevent overflow on small screens
+        double maxTooltipHeight = Math.Max(150, windowHeight * 0.4);
+        _tourTooltip.MaxHeight = maxTooltipHeight;
+        _tourTooltip.Measure(new Size(Math.Min(400, windowWidth - 32), maxTooltipHeight));
         var tooltipSize = _tourTooltip.DesiredSize;
 
-        double windowWidth = Bounds.Width;
-        double windowHeight = Bounds.Height;
-
         double left, top;
+        const double pad = 12;
 
         if (step.Placement == Models.TourPlacement.Center || targetBounds == null)
         {
-            // Center in window
             left = (windowWidth - tooltipSize.Width) / 2;
             top = (windowHeight - tooltipSize.Height) / 2;
         }
         else
         {
             var tb = targetBounds.Value;
-            const double margin = 16;
 
             switch (step.Placement)
             {
                 case Models.TourPlacement.Bottom:
                     left = tb.X + (tb.Width - tooltipSize.Width) / 2;
-                    top = tb.Bottom + margin;
+                    top = tb.Bottom + pad;
+                    // If it would go off bottom, flip to top
+                    if (top + tooltipSize.Height > windowHeight - pad)
+                        top = tb.Y - tooltipSize.Height - pad;
                     break;
                 case Models.TourPlacement.Top:
                     left = tb.X + (tb.Width - tooltipSize.Width) / 2;
-                    top = tb.Y - tooltipSize.Height - margin;
+                    top = tb.Y - tooltipSize.Height - pad;
+                    // If it would go off top, flip to bottom
+                    if (top < pad)
+                        top = tb.Bottom + pad;
                     break;
                 case Models.TourPlacement.Right:
-                    left = tb.Right + margin;
+                    left = tb.Right + pad;
                     top = tb.Y + (tb.Height - tooltipSize.Height) / 2;
+                    // If it would go off right, flip to left
+                    if (left + tooltipSize.Width > windowWidth - pad)
+                        left = tb.X - tooltipSize.Width - pad;
                     break;
                 case Models.TourPlacement.Left:
-                    left = tb.X - tooltipSize.Width - margin;
+                    left = tb.X - tooltipSize.Width - pad;
                     top = tb.Y + (tb.Height - tooltipSize.Height) / 2;
+                    // If it would go off left, flip to right
+                    if (left < pad)
+                        left = tb.Right + pad;
                     break;
                 default:
                     left = (windowWidth - tooltipSize.Width) / 2;
@@ -1190,9 +1204,9 @@ public partial class MainWindow : Window
             }
         }
 
-        // Clamp to window bounds
-        left = Math.Max(16, Math.Min(left, windowWidth - tooltipSize.Width - 16));
-        top = Math.Max(16, Math.Min(top, windowHeight - tooltipSize.Height - 16));
+        // Final clamp: ensure tooltip is always fully within visible window area
+        left = Math.Max(pad, Math.Min(left, windowWidth - tooltipSize.Width - pad));
+        top = Math.Max(pad, Math.Min(top, windowHeight - tooltipSize.Height - pad));
 
         Canvas.SetLeft(_tourTooltip, left);
         Canvas.SetTop(_tourTooltip, top);
