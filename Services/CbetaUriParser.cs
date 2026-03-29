@@ -93,7 +93,13 @@ public static class CbetaUriParser
         var queryParts = new List<string>();
 
         if (!string.IsNullOrEmpty(highlightText))
-            queryParts.Add("highlight=" + Uri.EscapeDataString(highlightText));
+        {
+            // Truncate highlight to keep URLs short — 60 chars is enough to find the right spot
+            var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
+            // Also strip newlines — they bloat the URL and aren't needed for matching
+            truncated = truncated.Replace("\n", "").Replace("\r", "");
+            queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
+        }
 
         if (side != SearchSide.Original)
             queryParts.Add("side=" + Uri.EscapeDataString(side.ToString()));
