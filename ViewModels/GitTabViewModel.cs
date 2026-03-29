@@ -332,28 +332,37 @@ public partial class GitTabViewModel : ViewModelBase
             AppendLog("[sync] Note: share phase had an error: " + shareError);
         }
 
-        // Phase 4: Check for uncommitted translation changes and auto-PR
+        // Phase 4: If the currently selected file has translation changes, create a PR for it only
         try
         {
-            var status = await _git.GetStatusPorcelainAsync(repoDir, _cts?.Token ?? CancellationToken.None);
-            var hasTranslationChanges = status.Any(line =>
-                line.Contains(RepoTranslatedRoot + "/", StringComparison.OrdinalIgnoreCase) ||
-                line.Contains(RepoTranslatedRoot + "\\", StringComparison.OrdinalIgnoreCase));
-
-            if (hasTranslationChanges && !string.IsNullOrWhiteSpace(_githubLogin))
+            if (!string.IsNullOrWhiteSpace(_selectedRelPath) && !string.IsNullOrWhiteSpace(_githubLogin))
             {
-                var ct = _cts?.Token ?? CancellationToken.None;
-                var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+                var selectedRepoRel = NormalizeRel($"{RepoTranslatedRoot}/{_selectedRelPath}");
+                var status = await _git.GetStatusPorcelainAsync(repoDir, _cts?.Token ?? CancellationToken.None);
+                var hasSelectedFileChanges = status.Any(line =>
+                    line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
 
-                AppendLog("\n[sync] Translation changes detected — creating pull request...");
-                ProgressText = "Submitting translation changes...";
+                if (hasSelectedFileChanges)
+                {
+                    var ct = _cts?.Token ?? CancellationToken.None;
+                    var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-                // Stage all changed translation files
-                await _git.StagePathAsync(repoDir, RepoTranslatedRoot + "/", prog, ct);
+                    AppendLog($"\n[sync] Translation change detected in {_selectedRelPath} — creating pull request...");
+                    ProgressText = "Submitting translation for " + _selectedRelPath + "...";
+
+                    // Ensure translated XML exists for the selected file
+                    if (EnsureTranslatedForSelectedRequested != null)
+                    {
+                        foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                            await fn(_selectedRelPath);
+                    }
+
+                    // Stage ONLY the selected file
+                    await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
 
                 // Create branch + commit
                 var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
-                var msg = $"{_githubLogin}: Translation update";
+                var msg = $"{_githubLogin}: {Path.GetFileNameWithoutExtension(_selectedRelPath)} translation update";
 
                 await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
                 await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
@@ -379,6 +388,7 @@ public partial class GitTabViewModel : ViewModelBase
                 catch { }
 
                 AppendLog("[sync] Translation PR created.");
+                }
             }
         }
         catch (OperationCanceledException) { return; }
