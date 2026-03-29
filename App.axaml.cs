@@ -153,7 +153,12 @@ public partial class App : Application
             var root = mainWin.ViewModel?.Root;
             if (string.IsNullOrEmpty(root))
             {
-                Debug.WriteLine("Deep link: primary window never loaded a root. Giving up.");
+                // No texts downloaded yet — show a friendly message
+                Dispatcher.UIThread.Post(() =>
+                {
+                    mainWin.ViewModel?.SetStatus(
+                        "Someone shared a link with you! To view it, first download the text collection using the Git tab's Sync button.");
+                });
                 return;
             }
 
