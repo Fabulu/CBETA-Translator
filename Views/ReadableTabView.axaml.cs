@@ -641,7 +641,14 @@ public partial class ReadableTabView : UserControl
         // --- lb-based navigation (preferred for deep links with from/to params) ---
         if (!string.IsNullOrEmpty(request.FromLb))
         {
+            System.Diagnostics.Debug.WriteLine($"[DeepLink] FromLb={request.FromLb}, ToLb={request.ToLb}");
+            System.Diagnostics.Debug.WriteLine($"[DeepLink] Doc has {doc.Segments.Count} segments, text length={doc.Text?.Length ?? 0}");
+            // Dump first 10 segment keys for debugging
+            for (int i = 0; i < Math.Min(10, doc.Segments.Count); i++)
+                System.Diagnostics.Debug.WriteLine($"[DeepLink]   Segment[{i}]: Key={doc.Segments[i].Key} Start={doc.Segments[i].Start}");
+
             var (lbStart, lbLength) = ResolveLbRange(doc, request.FromLb, request.ToLb);
+            System.Diagnostics.Debug.WriteLine($"[DeepLink] ResolveLbRange result: start={lbStart}, length={lbLength}");
             if (lbStart >= 0 && lbLength > 0)
             {
                 _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
