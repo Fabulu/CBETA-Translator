@@ -132,6 +132,28 @@ public partial class ScholarTabView : UserControl
             var linkMenuItem = new MenuItem { Header = "Link to..." };
             linkMenuItem.Click += async (_, _) => await ShowLinkDialogAsync();
             ctxMenu.Items.Add(linkMenuItem);
+
+            var copyLinkItem = new MenuItem { Header = "Copy Link" };
+            copyLinkItem.Click += async (_, _) =>
+            {
+                var passage = _vm.SelectedPassage;
+                if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
+
+                string? highlight = passage.ZhText;
+                if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
+                    highlight = highlight.Substring(0, 80);
+                if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+
+                var uri = CbetaUriParser.BuildUri(
+                    passage.SourceRelPath, highlight,
+                    blockNumber: passage.StartBlockNumber);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(uri);
+                Status?.Invoke(this, "Link copied to clipboard.");
+            };
+            ctxMenu.Items.Add(copyLinkItem);
+
             passagesList.ContextMenu = ctxMenu;
         }
 

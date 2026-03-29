@@ -208,6 +208,33 @@ public partial class TranslationTabView : UserControl
         var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
         addItem.Click += (_, _) => OnAddToScholarCollection();
         menu.Items.Add(addItem);
+
+        var copyLinkItem = new MenuItem { Header = "Copy Link" };
+        copyLinkItem.Click += async (_, _) =>
+        {
+            var relPath = _vm.CurrentOriginalPath;
+            if (string.IsNullOrWhiteSpace(relPath) || _editor == null) return;
+
+            string? highlight = _editor.SelectedText;
+            if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+
+            int? blockNumber = null;
+            var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+            if (blocks.Count > 0)
+            {
+                int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+                if (ix >= 0 && ix < blocks.Count)
+                    blockNumber = blocks[ix].BlockNumber;
+            }
+
+            var uri = CbetaUriParser.BuildUri(relPath, highlight, blockNumber: blockNumber);
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+                await top.Clipboard.SetTextAsync(uri);
+            Status?.Invoke(this, "Link copied to clipboard.");
+        };
+        menu.Items.Add(copyLinkItem);
+
         return menu;
     }
 

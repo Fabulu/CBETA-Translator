@@ -87,9 +87,23 @@ public partial class SearchTabView : UserControl
                 AddToScholarRequested?.Invoke(this, passage);
             };
 
+            var copyLinkItem = new MenuItem { Header = "Copy Link" };
+            copyLinkItem.Click += async (_, _) =>
+            {
+                if (resultsTree.SelectedItem is not SearchResultChild child) return;
+
+                var uri = CbetaUriParser.BuildUri(
+                    child.RelPath, child.MatchText, child.Side,
+                    child.LeftText, child.RightText);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(uri);
+                Status?.Invoke(this, "Link copied to clipboard.");
+            };
+
             resultsTree.ContextMenu = new ContextMenu
             {
-                Items = { addToScholarItem }
+                Items = { addToScholarItem, copyLinkItem }
             };
         }
 
