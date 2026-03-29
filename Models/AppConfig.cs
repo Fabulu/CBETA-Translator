@@ -17,6 +17,8 @@ namespace CbetaTranslator.App.Models
 
         public bool HasCompletedOnboarding { get; set; }
 
+        public bool HasRegisteredProtocolHandler { get; set; }
+
         public int Version { get; set; } = 3;
     }
 }
