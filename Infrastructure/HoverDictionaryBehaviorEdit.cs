@@ -54,7 +54,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private bool _rootHooked;
 
     // knobs (snappy)
-    private const int DebounceMs = 70;
+    private const int DebounceMs = 35;
     private const int MaxLenDefault = 19;
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
