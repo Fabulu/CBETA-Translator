@@ -10,7 +10,7 @@ namespace CbetaTranslator.App.Services;
 /// <summary>
 /// Mutex-based single-instance detection with named-pipe IPC.
 /// The first instance acquires the mutex and listens for URIs on a named pipe.
-/// Subsequent instances forward their <c>cbeta://</c> URI argument and exit.
+/// Subsequent instances forward their <c>zen://</c> URI argument and exit.
 /// </summary>
 public sealed class SingleInstanceManager : IDisposable
 {
@@ -28,7 +28,7 @@ public sealed class SingleInstanceManager : IDisposable
 
     /// <summary>
     /// Tries to become the single instance. If another instance already owns the mutex,
-    /// forwards the first <c>cbeta://</c> argument via named pipe and returns <c>false</c>.
+    /// forwards the first <c>zen://</c> argument via named pipe and returns <c>false</c>.
     /// </summary>
     /// <returns><c>true</c> if this is the first instance; <c>false</c> if a URI was forwarded.</returns>
     public bool TryAcquireOrForward(string[] args)
@@ -57,7 +57,7 @@ public sealed class SingleInstanceManager : IDisposable
             return true;
         }
 
-        // Second instance — forward the cbeta:// URI to the first instance and signal exit.
+        // Second instance — forward the zen:// URI to the first instance and signal exit.
         var cbetaArg = args.FirstOrDefault(a =>
             a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 

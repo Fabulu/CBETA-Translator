@@ -6,18 +6,18 @@ using System.Runtime.InteropServices;
 namespace CbetaTranslator.App.Services;
 
 /// <summary>
-/// Registers and unregisters the <c>cbeta://</c> protocol handler with the OS.
+/// Registers and unregisters the <c>zen://</c> protocol handler with the OS.
 /// Windows: HKCU\Software\Classes\cbeta (no admin required).
 /// Linux: ~/.local/share/applications/ desktop file + xdg-mime.
 /// macOS: logs a warning (requires Info.plist in the app bundle).
 /// </summary>
 public static class ProtocolRegistrationService
 {
-    private const string ProtocolName = "cbeta";
-    private const string Description = "CBETA Translator Deep Link";
+    private const string ProtocolName = "zen";
+    private const string Description = "Zen Text Deep Link";
 
     /// <summary>
-    /// Returns <c>true</c> if the <c>cbeta://</c> protocol handler appears to be registered.
+    /// Returns <c>true</c> if the <c>zen://</c> protocol handler appears to be registered.
     /// </summary>
     public static bool IsRegistered()
     {
@@ -34,7 +34,7 @@ public static class ProtocolRegistrationService
     }
 
     /// <summary>
-    /// Registers the <c>cbeta://</c> protocol handler for the current user.
+    /// Registers the <c>zen://</c> protocol handler for the current user.
     /// </summary>
     public static void Register()
     {
@@ -57,7 +57,7 @@ public static class ProtocolRegistrationService
     }
 
     /// <summary>
-    /// Removes the <c>cbeta://</c> protocol handler registration for the current user.
+    /// Removes the <c>zen://</c> protocol handler registration for the current user.
     /// </summary>
     public static void Unregister()
     {
@@ -122,7 +122,7 @@ public static class ProtocolRegistrationService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to register cbeta:// protocol on Windows: " + ex.Message);
+            Debug.WriteLine("Failed to register zen:// protocol on Windows: " + ex.Message);
         }
     }
 
@@ -135,7 +135,7 @@ public static class ProtocolRegistrationService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to unregister cbeta:// protocol on Windows: " + ex.Message);
+            Debug.WriteLine("Failed to unregister zen:// protocol on Windows: " + ex.Message);
         }
     }
 
@@ -175,12 +175,12 @@ public static class ProtocolRegistrationService
                 "Exec=" + exePath + " %u\n" +
                 "StartupNotify=false\n" +
                 "Terminal=false\n" +
-                "MimeType=x-scheme-handler/cbeta;\n";
+                "MimeType=x-scheme-handler/zen;\n";
 
             File.WriteAllText(desktopPath, content);
 
             // Register with xdg-mime
-            var psi = new ProcessStartInfo("xdg-mime", "default cbeta-translator.desktop x-scheme-handler/cbeta")
+            var psi = new ProcessStartInfo("xdg-mime", "default cbeta-translator.desktop x-scheme-handler/zen")
             {
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
@@ -191,7 +191,7 @@ public static class ProtocolRegistrationService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to register cbeta:// protocol on Linux: " + ex.Message);
+            Debug.WriteLine("Failed to register zen:// protocol on Linux: " + ex.Message);
         }
     }
 
@@ -205,7 +205,7 @@ public static class ProtocolRegistrationService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to unregister cbeta:// protocol on Linux: " + ex.Message);
+            Debug.WriteLine("Failed to unregister zen:// protocol on Linux: " + ex.Message);
         }
     }
 
@@ -232,7 +232,7 @@ public static class ProtocolRegistrationService
             var exePath = GetExePath();
             if (string.IsNullOrEmpty(exePath)) return;
 
-            // Create a minimal .app bundle wrapper that handles cbeta:// URLs
+            // Create a minimal .app bundle wrapper that handles zen:// URLs
             var appDir = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 "Applications", "CbetaTranslatorLink.app");
@@ -253,7 +253,7 @@ public static class ProtocolRegistrationService
                 "    <key>CFBundleURLTypes</key>\n" +
                 "    <array><dict>\n" +
                 "        <key>CFBundleURLName</key><string>CBETA Deep Link</string>\n" +
-                "        <key>CFBundleURLSchemes</key><array><string>cbeta</string></array>\n" +
+                "        <key>CFBundleURLSchemes</key><array><string>zen</string></array>\n" +
                 "    </dict></array>\n" +
                 "</dict>\n</plist>\n";
             File.WriteAllText(Path.Combine(contentsDir, "Info.plist"), plist);
@@ -284,11 +284,11 @@ public static class ProtocolRegistrationService
             using var lsProc = Process.Start(lsregister);
             lsProc?.WaitForExit(5000);
 
-            Debug.WriteLine("Registered cbeta:// protocol handler via " + appDir);
+            Debug.WriteLine("Registered zen:// protocol handler via " + appDir);
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Failed to register cbeta:// protocol on macOS: " + ex.Message);
+            Debug.WriteLine("Failed to register zen:// protocol on macOS: " + ex.Message);
         }
     }
 

@@ -5,15 +5,15 @@ using CbetaTranslator.App.Models;
 namespace CbetaTranslator.App.Services;
 
 /// <summary>
-/// Converts between <c>cbeta://</c> deep-link URIs and <see cref="NavigationRequest"/> objects.
-/// URI format: <c>cbeta://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
+/// Converts between <c>zen://</c> deep-link URIs and <see cref="NavigationRequest"/> objects.
+/// URI format: <c>zen://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
 /// </summary>
 public static class CbetaUriParser
 {
-    public const string Scheme = "cbeta";
+    public const string Scheme = "zen";
 
     /// <summary>
-    /// Attempts to parse a <c>cbeta://</c> URI into a <see cref="NavigationRequest"/>.
+    /// Attempts to parse a <c>zen://</c> URI into a <see cref="NavigationRequest"/>.
     /// Returns <c>null</c> if the URI is malformed or uses a different scheme.
     /// </summary>
     public static NavigationRequest? TryParse(string uri)
@@ -79,7 +79,7 @@ public static class CbetaUriParser
     }
 
     /// <summary>
-    /// Builds a <c>cbeta://</c> URI from the given parameters.
+    /// Builds a <c>zen://</c> URI from the given parameters.
     /// All values are URI-encoded with <see cref="Uri.EscapeDataString"/>.
     /// </summary>
     public static string BuildUri(
@@ -95,7 +95,7 @@ public static class CbetaUriParser
         // Normalize path separators to forward slashes
         relPath = relPath.Replace('\\', '/');
 
-        // cbeta://T/T48/T48n2005.xml
+        // zen://T/T48/T48n2005.xml
         var baseUri = Scheme + "://" + relPath;
 
         var queryParts = new List<string>();

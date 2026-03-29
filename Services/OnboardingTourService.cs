@@ -343,7 +343,7 @@ public sealed class OnboardingTourService
         {
             Id = "deep-links",
             Title = "Share Links to Any Passage",
-            Body = "Right-click any text, search result, or file to copy a cbeta:// deep link.\nShare it with colleagues \u2014 clicking the link opens this exact passage in the app.",
+            Body = "Right-click any text, search result, or file to copy a zen:// deep link.\nShare it with colleagues \u2014 clicking the link opens this exact passage in the app.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });

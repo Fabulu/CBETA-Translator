@@ -19,7 +19,7 @@ public class CbetaUriParserTests
     public void TryParse_ValidUri_AllParams_ReturnsCorrectRequest()
     {
         // Use lowercase first segment because Uri.Host lowercases it
-        var uri = "cbeta://t/T48/T48n2005.xml?highlight=hello&side=Translated&lctx=left&rctx=right&block=42";
+        var uri = "zen://t/T48/T48n2005.xml?highlight=hello&side=Translated&lctx=left&rctx=right&block=42";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -36,9 +36,9 @@ public class CbetaUriParserTests
     public void TryParse_HostIsLowercased_BugDocumentation()
     {
         // This test documents the bug: Uri.Host lowercases the first segment.
-        // "T" in "cbeta://T/T48/..." becomes "t" after parsing.
+        // "T" in "zen://T/T48/..." becomes "t" after parsing.
         // This can break case-sensitive file lookups on Linux.
-        var uri = "cbeta://T/T48/T48n2005.xml";
+        var uri = "zen://T/T48/T48n2005.xml";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -53,7 +53,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_FileOnlyUri_NoQueryParams_Works()
     {
-        var uri = "cbeta://T/T48/T48n2005.xml";
+        var uri = "zen://T/T48/T48n2005.xml";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -75,7 +75,7 @@ public class CbetaUriParserTests
         // Build the URI using BuildUri to ensure correct encoding, then parse it back
         var cjkText = "\u4f5b\u8aaa"; // 佛說
         var encoded = Uri.EscapeDataString(cjkText);
-        var uri = $"cbeta://T/T01/T01n0001.xml?highlight={encoded}";
+        var uri = $"zen://T/T01/T01n0001.xml?highlight={encoded}";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -101,10 +101,10 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_EmptyCbetaUri_ReturnsNullOrEmptyPath()
     {
-        // "cbeta://" parses as valid URI with empty host — relPath ends up "/"
+        // "zen://" parses as valid URI with empty host — relPath ends up "/"
         // which is not a usable file path, but the parser does not reject it.
         // This documents current behavior; ideally it should return null.
-        var result = CbetaUriParser.TryParse("cbeta://");
+        var result = CbetaUriParser.TryParse("zen://");
 
         // Current behavior: returns a NavigationRequest with RelPath="/"
         // This is a minor gap — caller must validate RelPath before use.
@@ -133,7 +133,7 @@ public class CbetaUriParserTests
     {
         var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml");
 
-        Assert.Equal("cbeta://T/T48/T48n2005.xml", uri);
+        Assert.Equal("zen://T/T48/T48n2005.xml", uri);
     }
 
     // ---- 7. BuildUri — with highlight produces encoded URI ----
@@ -143,7 +143,7 @@ public class CbetaUriParserTests
     {
         var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", highlightText: "hello world");
 
-        Assert.StartsWith("cbeta://T/T48/T48n2005.xml?highlight=", uri);
+        Assert.StartsWith("zen://T/T48/T48n2005.xml?highlight=", uri);
         Assert.Contains("hello%20world", uri);
     }
 
@@ -158,7 +158,7 @@ public class CbetaUriParserTests
         // URI should not contain raw CJK characters
         Assert.DoesNotContain(cjkText, uri);
         // But it should start with the expected base
-        Assert.StartsWith("cbeta://T/T12/T12n0366.xml?highlight=", uri);
+        Assert.StartsWith("zen://T/T12/T12n0366.xml?highlight=", uri);
     }
 
     // ---- 9. BuildUri — with all params produces correct URI ----
@@ -244,7 +244,7 @@ public class CbetaUriParserTests
     {
         var uri = CbetaUriParser.BuildUri(@"T\T48\T48n2005.xml");
 
-        Assert.Equal("cbeta://T/T48/T48n2005.xml", uri);
+        Assert.Equal("zen://T/T48/T48n2005.xml", uri);
         Assert.DoesNotContain("\\", uri);
     }
 
@@ -263,7 +263,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_SideParam_CaseInsensitive()
     {
-        var uri = "cbeta://T/T48/T48n2005.xml?side=translated";
+        var uri = "zen://T/T48/T48n2005.xml?side=translated";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -274,7 +274,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_InvalidSide_DefaultsToOriginal()
     {
-        var uri = "cbeta://T/T48/T48n2005.xml?side=invalid";
+        var uri = "zen://T/T48/T48n2005.xml?side=invalid";
 
         var result = CbetaUriParser.TryParse(uri);
 
@@ -285,7 +285,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_InvalidBlock_IgnoredGracefully()
     {
-        var uri = "cbeta://T/T48/T48n2005.xml?block=notanumber";
+        var uri = "zen://T/T48/T48n2005.xml?block=notanumber";
 
         var result = CbetaUriParser.TryParse(uri);
 
