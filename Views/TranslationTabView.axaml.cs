@@ -87,6 +87,12 @@ public partial class TranslationTabView : UserControl
     /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
 
+    /// <summary>
+    /// Delegate that resolves the lb n-value for a given block number.
+    /// Wired by MainWindow from the current IndexedTranslationDocument.
+    /// </summary>
+    public Func<int, string?>? ResolveLbForBlock { get; set; }
+
     public TranslationTabView()
     {
         _vm = new TranslationTabViewModel();
@@ -219,15 +225,34 @@ public partial class TranslationTabView : UserControl
             if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
 
             int? blockNumber = null;
+            string? fromLb = null;
+            string? toLb = null;
             var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
             if (blocks.Count > 0)
             {
                 int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
                 if (ix >= 0 && ix < blocks.Count)
+                {
                     blockNumber = blocks[ix].BlockNumber;
+                    fromLb = ResolveLbForBlock?.Invoke(blocks[ix].BlockNumber);
+                }
+
+                // If there's a selection spanning multiple blocks, get toLb from last block
+                int selStart = _editor.SelectionStart;
+                int selEnd = selStart + _editor.SelectionLength;
+                if (selEnd > selStart)
+                {
+                    int ixEnd = FindBlockIndexAtOrAfterCaret(blocks, selEnd - 1);
+                    if (ixEnd >= 0 && ixEnd < blocks.Count && ixEnd != ix)
+                        toLb = ResolveLbForBlock?.Invoke(blocks[ixEnd].BlockNumber);
+                }
             }
 
-            var uri = CbetaUriParser.BuildUri(relPath, highlightText: highlight, blockNumber: blockNumber);
+            // Fall back to highlight text if lb extraction fails
+            if (fromLb == null && highlight != null && highlight.Length > 60)
+                highlight = highlight.Substring(0, 60);
+
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, blockNumber: blockNumber);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -291,13 +316,19 @@ public partial class TranslationTabView : UserControl
                 en = selectedText;
         }
 
+        // Resolve lb values from block numbers via delegate
+        string? fromLb = startBlock.HasValue ? ResolveLbForBlock?.Invoke(startBlock.Value) : null;
+        string? toLb = endBlock.HasValue ? ResolveLbForBlock?.Invoke(endBlock.Value) : null;
+
         var passage = new ScholarPassage
         {
             ZhText = zh,
             EnText = en,
             SourceRelPath = _vm.CurrentOriginalPath ?? "",
             StartBlockNumber = startBlock,
-            EndBlockNumber = endBlock
+            EndBlockNumber = endBlock,
+            FromLb = fromLb,
+            ToLb = toLb
         };
 
         AddToScholarRequested?.Invoke(this, passage);

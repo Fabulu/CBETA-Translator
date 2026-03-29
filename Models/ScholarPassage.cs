@@ -20,6 +20,8 @@ public sealed class ScholarPassage
     public string? CreatedBy { get; set; }
     public int? StartBlockNumber { get; set; }
     public int? EndBlockNumber { get; set; }
+    public string? FromLb { get; set; }
+    public string? ToLb { get; set; }
 
     // Facet categorization
     public string? DoctrinalTopic { get; set; }
