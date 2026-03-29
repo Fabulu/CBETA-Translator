@@ -49,6 +49,7 @@ public partial class TranslationTabView : UserControl
     private CancellationTokenSource? _publishDebounce;
 
     private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
+    private Canvas? _dictOverlayCanvas;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
 
@@ -170,6 +171,7 @@ public partial class TranslationTabView : UserControl
         _qaHost = this.FindControl<StackPanel>("QaHost");
 
         _emptyState = this.FindControl<Border>("TranslationEmptyState");
+        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
         // Color-code review buttons
         if (_btnApproveSegment != null)
@@ -522,7 +524,7 @@ public partial class TranslationTabView : UserControl
             _hoverDictionaryBehavior?.Dispose();
             _hoverDictionaryBehavior = null;
 
-            _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict, _grammar);
+            _hoverDictionaryBehavior = new HoverDictionaryBehaviorEdit(_editor, _cedict, _grammar, _dictOverlayCanvas);
         }
         catch (Exception ex)
         {
@@ -1903,7 +1905,7 @@ STRICT RULES:
 
         try
         {
-            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict, _grammar);
+            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict, _grammar, _dictOverlayCanvas);
             _assistantHoverDisposables.Add(behavior);
         }
         catch

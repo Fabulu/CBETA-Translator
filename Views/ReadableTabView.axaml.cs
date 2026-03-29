@@ -44,6 +44,7 @@ public partial class ReadableTabView : UserControl
 
     // Hover dictionary (orig pane only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
+    private Canvas? _dictOverlayCanvas;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
 
@@ -241,6 +242,7 @@ public partial class ReadableTabView : UserControl
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
+        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -1652,7 +1654,7 @@ public partial class ReadableTabView : UserControl
         if (!_vm.HoverDictionaryEnabled) return;
         if (_aeOrig == null) return;
 
-        try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict, _grammar); }
+        try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_aeOrig, _cedict, _grammar, _dictOverlayCanvas); }
         catch (Exception ex) { Log("Hover dictionary failed: " + ex.Message); }
     }
 

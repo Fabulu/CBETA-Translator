@@ -81,6 +81,9 @@
 		</Border>
 
 		<Grid Grid.Row="1" Margin="0,8,0,0">
+			<!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
+			<Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
+
 			<!-- Empty-state overlay -->
 			<Border Name="TranslationEmptyState"
 					IsVisible="True"
