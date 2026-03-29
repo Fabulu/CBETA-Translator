@@ -53,7 +53,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private bool _rootHooked;
 
     // knobs (snappy)
-    private const int DebounceMs = 70;
+    private const int DebounceMs = 150;
     private const int MaxLenDefault = 19;
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
@@ -305,7 +305,10 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         _lastPointInTextView = p;
         _hasLastPoint = true;
 
-        if (!IsInsideBounds(tv.Bounds, p))
+        // Use hysteresis margin to prevent flicker at character boundaries
+        const double margin = 5;
+        var inflated = new Avalonia.Rect(-margin, -margin, tv.Bounds.Width + margin * 2, tv.Bounds.Height + margin * 2);
+        if (!IsInsideBounds(inflated, p))
         {
             ResetHoverState();
             HideTooltip();
