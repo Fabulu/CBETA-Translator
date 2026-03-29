@@ -51,6 +51,7 @@ public partial class MainWindow : Window
 
     // ViewModel
     private MainWindowViewModel _vm = null!;
+    public MainWindowViewModel? ViewModel => _vm;
 
     // Dirty timer
     private DispatcherTimer? _dirtyTimer;

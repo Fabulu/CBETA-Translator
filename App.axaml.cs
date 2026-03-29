@@ -31,43 +31,24 @@ public partial class App : Application
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Check for deep link BEFORE creating any window
+            // Always create and show the primary window (normal flow)
+            desktop.MainWindow = new MainWindow();
+
+            // Check for deep link after window is created
             var startupUri = StartupArgs?.FirstOrDefault(a =>
                 a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 
-            if (!string.IsNullOrEmpty(startupUri))
+            Dispatcher.UIThread.Post(async () =>
             {
-                // Deep link launch: don't show a primary window at all.
-                // Create a hidden one (Avalonia requires MainWindow to be set).
-                var hiddenWindow = new MainWindow();
-                hiddenWindow.ShowInTaskbar = false;
-                hiddenWindow.Opacity = 0;
-                hiddenWindow.Width = 1;
-                hiddenWindow.Height = 1;
-                hiddenWindow.WindowStartupLocation = Avalonia.Controls.WindowStartupLocation.Manual;
-                hiddenWindow.Position = new Avalonia.PixelPoint(-9999, -9999);
-                desktop.MainWindow = hiddenWindow;
-                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnLastWindowClose;
+                try { TryAutoRegisterProtocol(); } catch { }
+                SetupPipeListener();
 
-                // Handle the deep link immediately (no 5-second delay)
-                Dispatcher.UIThread.Post(async () =>
+                // If launched via deep link, navigate in the primary window directly
+                if (!string.IsNullOrEmpty(startupUri))
                 {
-                    try { TryAutoRegisterProtocol(); } catch { }
-                    try { await HandleDeepLinkAsync(startupUri); } catch { }
-                    SetupPipeListener();
-                }, DispatcherPriority.Background);
-            }
-            else
-            {
-                // Normal launch: show the primary window
-                desktop.MainWindow = new MainWindow();
-
-                Dispatcher.UIThread.Post(() =>
-                {
-                    try { TryAutoRegisterProtocol(); } catch { }
-                    SetupPipeListener();
-                }, DispatcherPriority.Background);
-            }
+                    try { await HandleDeepLinkInPrimaryAsync(startupUri); } catch { }
+                }
+            }, DispatcherPriority.Background);
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -141,6 +122,47 @@ public partial class App : Application
         catch (Exception ex)
         {
             Debug.WriteLine("Deep link handling failed: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Handles a deep link by navigating the primary window directly.
+    /// Waits for the primary window to finish loading before navigating.
+    /// </summary>
+    private async System.Threading.Tasks.Task HandleDeepLinkInPrimaryAsync(string uri)
+    {
+        var request = CbetaUriParser.TryParse(uri);
+        if (request == null) return;
+
+        try
+        {
+            if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop
+                || desktop.MainWindow is not Views.MainWindow mainWin)
+                return;
+
+            // Wait for the primary window to finish its initial load
+            // (config, auto-load, index build, etc.)
+            // Poll until Root is set (config loaded and auto-loaded)
+            for (int i = 0; i < 30; i++) // max 15 seconds
+            {
+                await System.Threading.Tasks.Task.Delay(500);
+                if (!string.IsNullOrWhiteSpace(mainWin.ViewModel?.Root))
+                    break;
+            }
+
+            var root = mainWin.ViewModel?.Root;
+            if (string.IsNullOrEmpty(root))
+            {
+                Debug.WriteLine("Deep link: primary window never loaded a root. Giving up.");
+                return;
+            }
+
+            // Navigate in the primary window
+            await mainWin.OpenAtAsync(root, request);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Deep link in primary failed: " + ex.Message);
         }
     }
 }
