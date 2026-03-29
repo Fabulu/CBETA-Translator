@@ -88,6 +88,15 @@ public sealed class ScholarExportService : IScholarExportService
             if (!string.IsNullOrWhiteSpace(p.Notes))
                 sb.AppendLine($"<div class=\"notes\">{Esc(p.Notes)}</div>");
 
+            var cats = BuildCategoryList(p);
+            if (cats.Count > 0)
+            {
+                sb.AppendLine("<div class=\"tags\">");
+                foreach (var c in cats)
+                    sb.AppendLine($"<span class=\"chip\" style=\"background:#3A4A3A;color:#88EE88;\">{Esc(c)}</span>");
+                sb.AppendLine("</div>");
+            }
+
             sb.AppendLine("</div>");
         }
 
@@ -366,6 +375,10 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             if (!string.IsNullOrWhiteSpace(p.Notes))
                 sb.AppendLine($"**Notes:** {p.Notes}");
 
+            var cats = BuildCategoryList(p);
+            if (cats.Count > 0)
+                sb.AppendLine($"**Categories:** {string.Join(" · ", cats)}");
+
             sb.AppendLine();
             sb.AppendLine("---");
             sb.AppendLine();
@@ -437,6 +450,10 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             if (!string.IsNullOrWhiteSpace(p.Notes))
                 sb.AppendLine($"Notes: {p.Notes}");
 
+            var cats = BuildCategoryList(p);
+            if (cats.Count > 0)
+                sb.AppendLine($"Categories: {string.Join(", ", cats)}");
+
             sb.AppendLine();
         }
 
@@ -461,6 +478,16 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
     }
 
     // ── Helpers ──────────────────────────────────────────────────────
+
+    private static List<string> BuildCategoryList(ScholarPassage p)
+    {
+        var cats = new List<string>();
+        if (!string.IsNullOrWhiteSpace(p.DoctrinalTopic)) cats.Add($"Topic: {p.DoctrinalTopic}");
+        if (!string.IsNullOrWhiteSpace(p.LiteraryForm)) cats.Add($"Form: {p.LiteraryForm}");
+        if (!string.IsNullOrWhiteSpace(p.Lineage)) cats.Add($"Lineage: {p.Lineage}");
+        if (!string.IsNullOrWhiteSpace(p.RhetoricalFunction)) cats.Add($"Function: {p.RhetoricalFunction}");
+        return cats;
+    }
 
     private static string ExtractSourceTitle(string relPath)
     {

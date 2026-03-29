@@ -303,24 +303,28 @@ public sealed class CommunityDataService : ICommunityDataService
 
             if (byId.TryGetValue(c.Id, out var existing))
             {
-                // Merge passages from both into the winner
+                // Merge passages and links from both into the winner
                 var mergedPassages = DedupPassages(existing.Passages.Concat(c.Passages));
+                var mergedLinks = DedupLinks(existing.Links.Concat(c.Links));
                 var winnerTs = GetCollectionTimestamp(c);
                 var existingTs = GetCollectionTimestamp(existing);
 
                 if (winnerTs > existingTs)
                 {
                     c.Passages = mergedPassages;
+                    c.Links = mergedLinks;
                     byId[c.Id] = c;
                 }
                 else
                 {
                     existing.Passages = mergedPassages;
+                    existing.Links = mergedLinks;
                 }
             }
             else
             {
                 c.Passages = DedupPassages(c.Passages);
+                c.Links = DedupLinks(c.Links);
                 byId[c.Id] = c;
             }
         }
@@ -376,6 +380,17 @@ public sealed class CommunityDataService : ICommunityDataService
             .Select(g => g.OrderByDescending(p => p.ModifiedUtc ?? p.AddedUtc).First())
             .OrderBy(p => p.SourceRelPath, StringComparer.OrdinalIgnoreCase)
             .ThenBy(p => p.AddedUtc)
+            .ToList();
+    }
+
+    private static List<Models.PassageLink> DedupLinks(IEnumerable<Models.PassageLink> links)
+    {
+        return links
+            .Where(l => !string.IsNullOrWhiteSpace(l.Id))
+            .GroupBy(l => l.Id, StringComparer.Ordinal)
+            .Select(g => g.OrderByDescending(l => l.CreatedUtc).First())
+            .OrderBy(l => l.FromPassageId, StringComparer.Ordinal)
+            .ThenBy(l => l.ToPassageId, StringComparer.Ordinal)
             .ToList();
     }
 

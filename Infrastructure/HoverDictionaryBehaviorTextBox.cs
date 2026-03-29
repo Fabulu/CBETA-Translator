@@ -196,10 +196,16 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
         try { pTop = e.GetPosition(top); }
         catch { return false; }
 
-        var pTb = top.TranslatePoint(pTop, _tb);
-        if (!pTb.HasValue) return false;
-
-        return pTb.Value.X >= 0 && pTb.Value.Y >= 0 && pTb.Value.X < _tb.Bounds.Width && pTb.Value.Y < _tb.Bounds.Height;
+        // Use Avalonia's hit testing — properly accounts for ScrollViewer clipping
+        try
+        {
+            var hit = top.InputHitTest(pTop);
+            if (hit == null) return false;
+            if (hit == _tb) return true;
+            if (hit is Visual v && _tb.IsVisualAncestorOf(v)) return true;
+            return false;
+        }
+        catch { return false; }
     }
 
     private void OnPointerMoved(object? sender, PointerEventArgs e)
