@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CbetaTranslator.App.Views;
@@ -44,6 +45,8 @@ public partial class TranslationTabView : UserControl
     private Border? _emptyState;
 
     private readonly TranslationTabViewModel _vm;
+
+    private CancellationTokenSource? _publishDebounce;
 
     private HoverDictionaryBehaviorEdit? _hoverDictionaryBehavior;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
@@ -193,7 +196,7 @@ public partial class TranslationTabView : UserControl
             };
 
             if (_editor.TextArea?.Caret != null)
-                _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegment();
+                _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegmentDebounced();
 
             _editor.ContextMenu = BuildScholarContextMenu();
         }
@@ -1747,10 +1750,26 @@ STRICT RULES:
 
     public event EventHandler<CurrentProjectionSegmentChangedEventArgs>? CurrentSegmentChanged;
 
+    private void PublishCurrentSegmentDebounced()
+    {
+        _publishDebounce?.Cancel();
+        _publishDebounce = new CancellationTokenSource();
+        var token = _publishDebounce.Token;
+        _ = Task.Delay(300, token).ContinueWith(t =>
+        {
+            if (!t.IsCanceled)
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => PublishCurrentSegment());
+        }, TaskScheduler.Default);
+    }
+
     private void PublishCurrentSegment()
     {
         try
         {
+            // Clear stale assistant content immediately for responsive visual feedback
+            _vm.LastAssistantSnapshot = null;
+            RenderAssistantSnapshot(null);
+
             if (_editor == null) return;
 
             var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
