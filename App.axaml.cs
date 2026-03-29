@@ -100,6 +100,18 @@ public partial class App : Application
 
         if (!string.IsNullOrEmpty(uri))
         {
+            // Hide the primary window — the deep link will open a secondary window
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                && desktop.MainWindow != null)
+            {
+                desktop.MainWindow.ShowInTaskbar = false;
+                desktop.MainWindow.WindowState = Avalonia.Controls.WindowState.Minimized;
+                desktop.MainWindow.Hide();
+
+                // When all secondary windows close, also close the hidden primary
+                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnLastWindowClose;
+            }
+
             // Defer deep link handling to let primary window finish initialization
             _ = System.Threading.Tasks.Task.Run(async () =>
             {
