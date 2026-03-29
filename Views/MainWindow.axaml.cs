@@ -133,6 +133,31 @@ public partial class MainWindow : Window
             // Issue 24: Unsubscribe child view events to prevent accumulation on window recreation
             UnsubscribeChildViewEvents();
         };
+
+        // Ensure maximize respects taskbar / screen working area
+        PropertyChanged += (_, e) =>
+        {
+            if (e.Property == WindowStateProperty && WindowState == WindowState.Maximized)
+            {
+                var screen = Screens?.Primary;
+                if (screen != null)
+                {
+                    var wa = screen.WorkingArea;
+                    var scaling = screen.Scaling;
+                    var maxW = wa.Width / scaling;
+                    var maxH = wa.Height / scaling;
+                    if (Height > maxH + 10 || Position.Y < wa.Y / scaling)
+                    {
+                        Dispatcher.UIThread.Post(() =>
+                        {
+                            Position = new Avalonia.PixelPoint(wa.X, wa.Y);
+                            Width = maxW;
+                            Height = maxH;
+                        });
+                    }
+                }
+            }
+        };
     }
 
     public async Task OpenAtAsync(string root, NavigationRequest request)
