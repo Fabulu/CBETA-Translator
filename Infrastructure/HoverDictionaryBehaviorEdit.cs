@@ -36,6 +36,9 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private int _lastOffset = -1;
     private string? _lastKeyShown;
 
+    private DateTime _tooltipShowTime;
+    private const int MinTooltipVisibleMs = 200;
+
     private bool _loadKickoff;
     private CancellationTokenSource? _loadCts;
 
@@ -201,6 +204,10 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     {
         if (_isDisposed) return;
         if (!ToolTip.GetIsOpen(_ed)) return;
+
+        // Don't hide tooltip within 200ms of showing — prevents flicker loop
+        if ((DateTime.UtcNow - _tooltipShowTime).TotalMilliseconds < MinTooltipVisibleMs)
+            return;
 
         if (!IsPointerOverEditor(e))
         {
@@ -548,6 +555,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         _tip.Content = content;
 
         ToolTip.SetIsOpen(_ed, true);
+        _tooltipShowTime = DateTime.UtcNow;
     }
 
     private void HideTooltip()

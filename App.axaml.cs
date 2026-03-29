@@ -96,7 +96,14 @@ public partial class App : Application
             a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 
         if (!string.IsNullOrEmpty(uri))
-            HandleDeepLink(uri);
+        {
+            // Defer deep link handling to let primary window finish initialization
+            _ = System.Threading.Tasks.Task.Run(async () =>
+            {
+                await System.Threading.Tasks.Task.Delay(5000); // Wait for primary window to be ready
+                HandleDeepLink(uri);
+            });
+        }
     }
 
     private void HandleDeepLink(string uri)
