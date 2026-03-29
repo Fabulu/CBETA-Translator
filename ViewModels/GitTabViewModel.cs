@@ -296,25 +296,15 @@ public partial class GitTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task SyncAsync()
     {
+        // Phase 1: Clone or update repo texts (safe, keeps local changes)
+        await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+
+        // Check repo is available after clone/update
         var repoDir = GetTargetRepoDir();
-        var repoExists = Directory.Exists(repoDir) && Directory.Exists(Path.Combine(repoDir, ".git"));
+        if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+            return; // Clone/update failed or was canceled
 
-        if (!repoExists)
-        {
-            // No repo — clone first, then try sync again
-            await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
-
-            // After clone, check if repo is now available for sharing
-            repoDir = GetTargetRepoDir();
-            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
-                return; // Clone failed or was canceled
-        }
-
-        // Repo exists — Share All first, then Fetch+Merge
-        // Each sub-method manages its own busy state, CTS, and log.
-        // We call them sequentially; the second call will clear the log from the first.
-        // This is intentional: the user sees the final fetch result.
-
+        // Phase 2: Share all community data
         string? shareError = null;
         try
         {
@@ -326,6 +316,7 @@ public partial class GitTabViewModel : ViewModelBase
             shareError = ex.Message;
         }
 
+        // Phase 3: Fetch + merge others' community data
         try
         {
             await FetchAndMergeCommunityDataAsync();

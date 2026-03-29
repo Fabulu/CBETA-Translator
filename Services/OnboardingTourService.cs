@@ -345,7 +345,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-tab",
             Title = "Sync Your Work",
-            Body = "The Git tab has one button: Sync. One click shares your translations, dictionary entries, collections, and reviews \u2014 then pulls the latest from other contributors.\nNo terminal needed. Everything is built in.",
+            Body = "Click Sync to share your work and get the latest texts and community data. That's it \u2014 one button does everything.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -355,8 +355,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "git-advanced",
-            Title = "Advanced: Translation PRs",
-            Body = "The Advanced section (collapsed by default) has tools for submitting translation pull requests and managing repo updates.\nMost users never need it \u2014 Sync handles everyday sharing.",
+            Title = "Advanced Section",
+            Body = "Advanced section has tools for submitting translation pull requests. Most users never need it.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView"
