@@ -46,7 +46,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private IInputElement? _root;
     private bool _rootHooked;
 
-    private const int DebounceMs = 70;
+    private const int DebounceMs = 35;
     private const int MaxLenDefault = 19;
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
