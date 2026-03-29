@@ -1273,7 +1273,7 @@ public partial class MainWindow : Window
 
         // Don't start tour if launched via deep link — the user wants to go somewhere specific
         var hasDeepLink = App.StartupArgs?.Any(a =>
-            a.StartsWith("cbeta://", StringComparison.OrdinalIgnoreCase)) == true;
+            a.StartsWith("zen://", StringComparison.OrdinalIgnoreCase)) == true;
         if (hasDeepLink) return;
 
         // If root already loaded (returning user who requested tour restart),
