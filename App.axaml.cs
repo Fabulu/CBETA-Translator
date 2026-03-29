@@ -112,16 +112,16 @@ public partial class App : Application
         if (request == null)
             return;
 
-        Dispatcher.UIThread.Post(() =>
+        Dispatcher.UIThread.Post(async () =>
         {
             try
             {
-                // Read the text root from the current config
+                // Read the text root from config (async, no UI thread blocking)
                 var configService = Services.GetService<IAppConfigService>();
                 string? root = null;
                 if (configService is AppConfigService acs)
                 {
-                    var config = acs.TryLoadAsync().GetAwaiter().GetResult();
+                    var config = await acs.TryLoadAsync();
                     root = config?.TextRootPath;
                 }
 
@@ -131,7 +131,18 @@ public partial class App : Application
                     return;
                 }
 
-                WindowNavigationService.OpenAndNavigate(root, request);
+                // Navigate in primary window instead of opening a secondary window
+                // This avoids modal conflicts between windows
+                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                    && desktop.MainWindow is Views.MainWindow mainWin)
+                {
+                    mainWin.Activate(); // Bring to front
+                    await mainWin.OpenAtAsync(root, request);
+                }
+                else
+                {
+                    WindowNavigationService.OpenAndNavigate(root, request);
+                }
             }
             catch (Exception ex)
             {
