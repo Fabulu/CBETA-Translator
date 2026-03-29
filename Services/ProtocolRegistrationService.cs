@@ -27,7 +27,9 @@ public static class ProtocolRegistrationService
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             return IsRegisteredLinux();
 
-        // macOS — cannot check easily
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            return IsRegisteredMacOS();
+
         return false;
     }
 
@@ -50,9 +52,7 @@ public static class ProtocolRegistrationService
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            Debug.WriteLine(
-                "macOS protocol registration requires Info.plist configuration in the app bundle. "
-                + "Automatic registration is not supported.");
+            RegisterMacOS();
         }
     }
 
@@ -207,5 +207,95 @@ public static class ProtocolRegistrationService
         {
             Debug.WriteLine("Failed to unregister cbeta:// protocol on Linux: " + ex.Message);
         }
+    }
+
+    // ===== macOS =====
+
+    private static bool IsRegisteredMacOS()
+    {
+        try
+        {
+            // Check if a handler script exists
+            var handlerPath = GetMacHandlerScriptPath();
+            return File.Exists(handlerPath);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static void RegisterMacOS()
+    {
+        try
+        {
+            var exePath = GetExePath();
+            if (string.IsNullOrEmpty(exePath)) return;
+
+            // Create a minimal .app bundle wrapper that handles cbeta:// URLs
+            var appDir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                "Applications", "CbetaTranslatorLink.app");
+            var contentsDir = Path.Combine(appDir, "Contents");
+            var macosDir = Path.Combine(contentsDir, "MacOS");
+
+            Directory.CreateDirectory(macosDir);
+
+            // Write Info.plist with URL handler
+            var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n" +
+                "<plist version=\"1.0\">\n<dict>\n" +
+                "    <key>CFBundleName</key><string>CBETA Translator Link</string>\n" +
+                "    <key>CFBundleIdentifier</key><string>com.cbeta.translator.link</string>\n" +
+                "    <key>CFBundleVersion</key><string>1.0</string>\n" +
+                "    <key>CFBundlePackageType</key><string>APPL</string>\n" +
+                "    <key>CFBundleExecutable</key><string>open-cbeta</string>\n" +
+                "    <key>CFBundleURLTypes</key>\n" +
+                "    <array><dict>\n" +
+                "        <key>CFBundleURLName</key><string>CBETA Deep Link</string>\n" +
+                "        <key>CFBundleURLSchemes</key><array><string>cbeta</string></array>\n" +
+                "    </dict></array>\n" +
+                "</dict>\n</plist>\n";
+            File.WriteAllText(Path.Combine(contentsDir, "Info.plist"), plist);
+
+            // Write launcher script that forwards the URL to the real app
+            var script = "#!/bin/bash\n" +
+                "exec \"" + exePath + "\" \"$@\"\n";
+            var scriptPath = Path.Combine(macosDir, "open-cbeta");
+            File.WriteAllText(scriptPath, script);
+
+            // Make executable
+            var chmod = new ProcessStartInfo("chmod", "+x \"" + scriptPath + "\"")
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            using var chmodProc = Process.Start(chmod);
+            chmodProc?.WaitForExit(5000);
+
+            // Register with LaunchServices
+            var lsregister = new ProcessStartInfo(
+                "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister",
+                "-R \"" + appDir + "\"")
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            using var lsProc = Process.Start(lsregister);
+            lsProc?.WaitForExit(5000);
+
+            Debug.WriteLine("Registered cbeta:// protocol handler via " + appDir);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Failed to register cbeta:// protocol on macOS: " + ex.Message);
+        }
+    }
+
+    private static string GetMacHandlerScriptPath()
+    {
+        return Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+            "Applications", "CbetaTranslatorLink.app", "Contents", "MacOS", "open-cbeta");
     }
 }
