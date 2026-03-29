@@ -70,6 +70,24 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _passageMasterNames = "";
 
+    // Bubble collections for tags and masters
+    public ObservableCollection<string> TagBubbles { get; } = new();
+    public ObservableCollection<string> MasterBubbles { get; } = new();
+
+    /// <summary>All known master display names (pinyin) for autocomplete.</summary>
+    private List<string>? _cachedMasterDisplayNames;
+    public List<string> AllMasterDisplayNames
+    {
+        get
+        {
+            if (_cachedMasterDisplayNames != null) return _cachedMasterDisplayNames;
+            EnsureMasterDatesLoaded();
+            _cachedMasterDisplayNames = _masterEntries?.Select(e => e.Names[0]).OrderBy(n => n).ToList()
+                                        ?? new List<string>();
+            return _cachedMasterDisplayNames;
+        }
+    }
+
     // Facet categorization fields
     [ObservableProperty]
     private string _doctrinalTopic = "";
@@ -875,6 +893,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         {
             _masterDatesLookup = null;
             _masterEntries = null;
+            _cachedMasterDisplayNames = null;
         }
     }
 
@@ -990,6 +1009,15 @@ public partial class ScholarTabViewModel : ViewModelBase
             LiteraryForm = value.LiteraryForm ?? "";
             Lineage = value.Lineage ?? "";
             RhetoricalFunction = value.RhetoricalFunction ?? "";
+
+            // Populate bubble collections
+            TagBubbles.Clear();
+            foreach (var t in value.Tags ?? new List<string>())
+                if (!string.IsNullOrWhiteSpace(t)) TagBubbles.Add(t.Trim());
+
+            MasterBubbles.Clear();
+            foreach (var m in value.MasterNames ?? new List<string>())
+                if (!string.IsNullOrWhiteSpace(m)) MasterBubbles.Add(m.Trim());
         }
         else
         {
@@ -1000,6 +1028,8 @@ public partial class ScholarTabViewModel : ViewModelBase
             LiteraryForm = "";
             Lineage = "";
             RhetoricalFunction = "";
+            TagBubbles.Clear();
+            MasterBubbles.Clear();
         }
     }
 
@@ -1022,6 +1052,52 @@ public partial class ScholarTabViewModel : ViewModelBase
         // Sync study notes back to collection
         if (SelectedCollection != null)
             SelectedCollection.StudyNotes = StudyNotes ?? "";
+    }
+
+    public void AddTag(string tag)
+    {
+        tag = tag.Trim();
+        if (string.IsNullOrWhiteSpace(tag)) return;
+        if (TagBubbles.Contains(tag, StringComparer.OrdinalIgnoreCase)) return;
+        TagBubbles.Add(tag);
+        PassageTags = string.Join(", ", TagBubbles);
+        SyncEditorFieldsToPassage();
+        _ = SafeFireAndForget(SaveAsync());
+    }
+
+    public void RemoveTag(string tag)
+    {
+        var existing = TagBubbles.FirstOrDefault(t => string.Equals(t, tag, StringComparison.OrdinalIgnoreCase));
+        if (existing != null)
+        {
+            TagBubbles.Remove(existing);
+            PassageTags = string.Join(", ", TagBubbles);
+            SyncEditorFieldsToPassage();
+            _ = SafeFireAndForget(SaveAsync());
+        }
+    }
+
+    public void AddMaster(string name)
+    {
+        name = name.Trim();
+        if (string.IsNullOrWhiteSpace(name)) return;
+        if (MasterBubbles.Contains(name, StringComparer.OrdinalIgnoreCase)) return;
+        MasterBubbles.Add(name);
+        PassageMasterNames = string.Join(", ", MasterBubbles);
+        SyncEditorFieldsToPassage();
+        _ = SafeFireAndForget(SaveAsync());
+    }
+
+    public void RemoveMaster(string name)
+    {
+        var existing = MasterBubbles.FirstOrDefault(m => string.Equals(m, name, StringComparison.OrdinalIgnoreCase));
+        if (existing != null)
+        {
+            MasterBubbles.Remove(existing);
+            PassageMasterNames = string.Join(", ", MasterBubbles);
+            SyncEditorFieldsToPassage();
+            _ = SafeFireAndForget(SaveAsync());
+        }
     }
 
     private void LoadFacetOptions()

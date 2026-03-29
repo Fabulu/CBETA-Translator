@@ -8,7 +8,8 @@
   <Grid ColumnDefinitions="300,Auto,*">
 
     <!-- Left: Collections + Passages + Community -->
-    <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto">
+    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto" MinHeight="400">
 
       <!-- Collections header -->
       <DockPanel Grid.Row="0" Margin="4">
@@ -184,6 +185,7 @@
         </ComboBox>
       </DockPanel>
     </Grid>
+    </ScrollViewer>
 
     <!-- Splitter -->
     <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
@@ -241,21 +243,66 @@
                   </ScrollViewer>
                 </Border>
 
-                <!-- Tags -->
-                <DockPanel Grid.Row="6" Margin="0,0,0,4">
-                  <TextBlock Text="Tags:" Width="100" VerticalAlignment="Center"/>
-                  <TextBox Text="{Binding PassageTags}" Watermark="comma-separated tags"
-                           IsEnabled="{Binding IsEditorEnabled}"
-                           ToolTip.Tip="Tag this passage (e.g., enlightenment, lecture, master-on-master)"/>
-                </DockPanel>
+                <!-- Tags (bubble chips) -->
+                <StackPanel Grid.Row="6" Margin="0,0,0,4" Spacing="4"
+                            IsEnabled="{Binding IsEditorEnabled}">
+                  <TextBlock Text="Tags:" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,2"/>
+                  <ItemsControl Name="TagBubblesHost" ItemsSource="{Binding TagBubbles}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="x:String">
+                        <Border Background="{DynamicResource SystemAccentColorLight2}" CornerRadius="10"
+                                Padding="8,3" Margin="0,0,4,4" VerticalAlignment="Center">
+                          <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock Text="{Binding}" FontSize="12" VerticalAlignment="Center"
+                                       Foreground="White"/>
+                            <Button Content="&#x2715;" Padding="2,0" FontSize="10"
+                                    Background="Transparent" Foreground="White"
+                                    Name="BtnRemoveTag" Tag="{Binding}"
+                                    ToolTip.Tip="Remove tag"/>
+                          </StackPanel>
+                        </Border>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <TextBox Name="TxtAddTag" Watermark="Add tag (Enter to add)..."
+                           ToolTip.Tip="Type a tag and press Enter"/>
+                </StackPanel>
 
-                <!-- Master Names -->
-                <DockPanel Grid.Row="7" Margin="0,0,0,4">
-                  <TextBlock Text="Masters:" Width="100" VerticalAlignment="Center"/>
-                  <TextBox Text="{Binding PassageMasterNames}" Watermark="comma-separated master names"
-                           IsEnabled="{Binding IsEditorEnabled}"
-                           ToolTip.Tip="Masters mentioned (e.g., Nanquan, Zhaozhou)"/>
-                </DockPanel>
+                <!-- Master Names (bubble chips + autocomplete) -->
+                <StackPanel Grid.Row="7" Margin="0,0,0,4" Spacing="4"
+                            IsEnabled="{Binding IsEditorEnabled}">
+                  <TextBlock Text="Masters:" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,2"/>
+                  <ItemsControl Name="MasterBubblesHost" ItemsSource="{Binding MasterBubbles}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="x:String">
+                        <Border Background="{DynamicResource SystemAccentColor}" CornerRadius="10"
+                                Padding="8,3" Margin="0,0,4,4" VerticalAlignment="Center">
+                          <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock Text="{Binding}" FontSize="12" VerticalAlignment="Center"
+                                       Foreground="White"/>
+                            <Button Content="&#x2715;" Padding="2,0" FontSize="10"
+                                    Background="Transparent" Foreground="White"
+                                    Name="BtnRemoveMaster" Tag="{Binding}"
+                                    ToolTip.Tip="Remove master"/>
+                          </StackPanel>
+                        </Border>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (type to search)..."
+                                   FilterMode="Contains" MinimumPrefixLength="1"
+                                   ToolTip.Tip="Type to search the 156 Zen masters database"/>
+                </StackPanel>
 
                 <!-- Notes -->
                 <DockPanel Grid.Row="8" Margin="0,0,0,4">
@@ -352,7 +399,7 @@
         </TabControl>
 
         <!-- Scholar Assistant stays outside TabControl, always visible -->
-        <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
+        <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="True" Margin="0,8,0,0">
           <ScrollViewer MaxHeight="500">
             <StackPanel Spacing="8" Margin="4">
               <Border CornerRadius="4" Padding="6">
@@ -386,7 +433,8 @@
     </Border>
 
     <!-- Empty state overlay -->
-    <Border Grid.ColumnSpan="3" Name="ScholarEmptyState" IsVisible="{Binding IsEmptyState}">
+    <Border Grid.ColumnSpan="3" Name="ScholarEmptyState" IsVisible="{Binding IsEmptyState}"
+            Background="{DynamicResource AppBg}">
       <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
         <TextBlock Text="Scholar's Collections" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
         <TextBlock Text="Right-click text in the Reader or Translation tabs to add passages to collections."

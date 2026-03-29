@@ -37,14 +37,21 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         if (!File.Exists(path))
             return new List<ScholarCollection>();
 
-        string json = await File.ReadAllTextAsync(path, Encoding.UTF8, ct);
-        if (string.IsNullOrWhiteSpace(json))
+        try
+        {
+            string json = await File.ReadAllTextAsync(path, Encoding.UTF8, ct);
+            if (string.IsNullOrWhiteSpace(json))
+                return new List<ScholarCollection>();
+
+            return JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
+                   ?? new List<ScholarCollection>();
+        }
+        catch (OperationCanceledException) { throw; }
+        catch
+        {
+            // Corrupted JSON should not crash the app — return empty and let user re-create
             return new List<ScholarCollection>();
-
-        var collections = JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
-                          ?? new List<ScholarCollection>();
-
-        return collections;
+        }
     }
 
     public async Task SaveAsync(string root, List<ScholarCollection> collections, CancellationToken ct = default)

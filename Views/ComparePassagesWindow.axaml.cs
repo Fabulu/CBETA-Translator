@@ -45,7 +45,7 @@ public partial class ComparePassagesWindow : Window
             var textBlock = FindChildByName<TextBlock>(container, "ZhTextBlock");
             if (textBlock == null) continue;
 
-            BuildHighlightedInlines(textBlock, item.Passage.ZhText, item.SharedZhRanges);
+            BuildHighlightedInlines(textBlock, item.Passage.ZhText ?? "", item.SharedZhRanges);
         }
     }
 

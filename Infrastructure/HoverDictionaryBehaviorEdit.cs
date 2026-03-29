@@ -234,10 +234,16 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         try { pTop = e.GetPosition(top); }
         catch { return false; }
 
-        var pEd = top.TranslatePoint(pTop, _ed);
-        if (!pEd.HasValue) return false;
-
-        return IsInsideBounds(_ed.Bounds, pEd.Value);
+        // Use Avalonia's hit testing — properly accounts for clipping
+        try
+        {
+            var hit = top.InputHitTest(pTop);
+            if (hit == null) return false;
+            if (hit == _ed) return true;
+            if (hit is Visual v && _ed.IsVisualAncestorOf(v)) return true;
+            return false;
+        }
+        catch { return false; }
     }
 
     // ==================== TEXTVIEW SCROLL HOOK ====================

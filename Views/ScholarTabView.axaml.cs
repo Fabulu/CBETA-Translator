@@ -85,10 +85,10 @@ public partial class ScholarTabView : UserControl
         DetachedFromVisualTree += (_, _) =>
         {
             DisposeHoverDictionary();
-            _assistantCts?.Cancel();
-            _assistantCts?.Dispose();
-            _parallelCts?.Cancel();
-            _parallelCts?.Dispose();
+            try { _assistantCts?.Cancel(); } catch (ObjectDisposedException) { }
+            try { _assistantCts?.Dispose(); } catch (ObjectDisposedException) { }
+            try { _parallelCts?.Cancel(); } catch (ObjectDisposedException) { }
+            try { _parallelCts?.Dispose(); } catch (ObjectDisposedException) { }
         };
     }
 
@@ -270,6 +270,68 @@ public partial class ScholarTabView : UserControl
                 }
             }
         };
+
+        // Tag bubble: Enter to add, X buttons to remove
+        var txtAddTag = this.FindControl<TextBox>("TxtAddTag");
+        if (txtAddTag != null)
+        {
+            txtAddTag.KeyDown += (_, e) =>
+            {
+                if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(txtAddTag.Text))
+                {
+                    _vm.AddTag(txtAddTag.Text);
+                    txtAddTag.Text = "";
+                    e.Handled = true;
+                }
+            };
+        }
+
+        // Tag bubble remove buttons — use AddHandler on the ItemsControl
+        var tagBubblesHost = this.FindControl<ItemsControl>("TagBubblesHost");
+        if (tagBubblesHost != null)
+        {
+            tagBubblesHost.AddHandler(Button.ClickEvent, (sender, e) =>
+            {
+                if (e.Source is Button btn && btn.Name == "BtnRemoveTag" && btn.Tag is string tag)
+                    _vm.RemoveTag(tag);
+            });
+        }
+
+        // Master autocomplete: populate items, add on selection or Enter
+        var acbMaster = this.FindControl<AutoCompleteBox>("AcbAddMaster");
+        if (acbMaster != null)
+        {
+            acbMaster.ItemsSource = _vm.AllMasterDisplayNames;
+            acbMaster.SelectionChanged += (_, _) =>
+            {
+                if (acbMaster.SelectedItem is string name && !string.IsNullOrWhiteSpace(name))
+                {
+                    _vm.AddMaster(name);
+                    acbMaster.Text = "";
+                    acbMaster.SelectedItem = null;
+                }
+            };
+            acbMaster.KeyDown += (_, e) =>
+            {
+                if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(acbMaster.Text))
+                {
+                    _vm.AddMaster(acbMaster.Text);
+                    acbMaster.Text = "";
+                    e.Handled = true;
+                }
+            };
+        }
+
+        // Master bubble remove buttons
+        var masterBubblesHost = this.FindControl<ItemsControl>("MasterBubblesHost");
+        if (masterBubblesHost != null)
+        {
+            masterBubblesHost.AddHandler(Button.ClickEvent, (sender, e) =>
+            {
+                if (e.Source is Button btn && btn.Name == "BtnRemoveMaster" && btn.Tag is string name)
+                    _vm.RemoveMaster(name);
+            });
+        }
     }
 
     private void UpdateDetailFields()
@@ -527,7 +589,11 @@ public partial class ScholarTabView : UserControl
     private async Task OnCompareClickedAsync()
     {
         var passagesList = this.FindControl<ListBox>("PassagesList");
-        if (passagesList == null) return;
+        if (passagesList == null)
+        {
+            _compareMode = false;
+            return;
+        }
 
         if (!_compareMode)
         {
@@ -938,10 +1004,11 @@ public partial class ScholarTabView : UserControl
             return;
         }
 
-        _parallelCts?.Cancel();
-        _parallelCts?.Dispose();
+        var oldParallelCts = _parallelCts;
+        oldParallelCts?.Cancel();
         _parallelCts = new CancellationTokenSource();
         var ct = _parallelCts.Token;
+        try { oldParallelCts?.Dispose(); } catch (ObjectDisposedException) { }
 
         anchorButton.IsEnabled = false;
         Status?.Invoke(this, "Searching for parallel passages...");
@@ -1133,10 +1200,12 @@ public partial class ScholarTabView : UserControl
 
         try
         {
-            _assistantCts?.Cancel();
-            _assistantCts?.Dispose();
+            var oldCts = _assistantCts;
+            oldCts?.Cancel();
             _assistantCts = new CancellationTokenSource();
             var ct = _assistantCts.Token;
+            // Dispose old CTS after cancellation propagates (avoids ObjectDisposedException)
+            try { oldCts?.Dispose(); } catch (ObjectDisposedException) { }
 
             var ctx = new CurrentSegmentContext
             {
@@ -1179,6 +1248,7 @@ public partial class ScholarTabView : UserControl
     {
         _originalDir = origDir;
         _translatedDir = tranDir;
+        _lastRenderedPassageId = null; // Force re-render with new dirs
     }
 
     public async Task SaveCurrentStateAsync() => await _vm.SaveCurrentStateAsync();
@@ -1194,8 +1264,8 @@ public partial class ScholarTabView : UserControl
 
     public void Clear()
     {
-        _assistantCts?.Cancel();
-        _assistantCts?.Dispose();
+        try { _assistantCts?.Cancel(); } catch (ObjectDisposedException) { }
+        try { _assistantCts?.Dispose(); } catch (ObjectDisposedException) { }
         _assistantCts = null;
         _lastRenderedPassageId = null;
         _vm.Clear();
