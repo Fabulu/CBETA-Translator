@@ -34,7 +34,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
     private int _lastOffset = -1;
 
     private DateTime _tooltipShowTime;
-    private const int MinTooltipVisibleMs = 500;
+    private const int MinTooltipVisibleMs = 0;
 
     private CancellationTokenSource? _loadCts;
     private bool _loadKickoff;

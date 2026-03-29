@@ -37,7 +37,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private string? _lastKeyShown;
 
     private DateTime _tooltipShowTime;
-    private const int MinTooltipVisibleMs = 500;
+    private const int MinTooltipVisibleMs = 0;
 
     private bool _loadKickoff;
     private CancellationTokenSource? _loadCts;
@@ -53,7 +53,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private bool _rootHooked;
 
     // knobs (snappy)
-    private const int DebounceMs = 150;
+    private const int DebounceMs = 70;
     private const int MaxLenDefault = 19;
     private const int MaxEntriesShown = 10;
     private const int MaxSensesPerEntry = 3;
@@ -240,11 +240,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         var pEd = top.TranslatePoint(pTop, _ed);
         if (!pEd.HasValue) return false;
 
-        // Add 10px hysteresis margin to prevent flicker at edges
-        const double margin = 10;
-        return pEd.Value.X >= -margin && pEd.Value.Y >= -margin &&
-               pEd.Value.X < _ed.Bounds.Width + margin &&
-               pEd.Value.Y < _ed.Bounds.Height + margin;
+        return IsInsideBounds(_ed.Bounds, pEd.Value);
     }
 
     // ==================== TEXTVIEW SCROLL HOOK ====================
@@ -305,10 +301,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
         _lastPointInTextView = p;
         _hasLastPoint = true;
 
-        // Use hysteresis margin to prevent flicker at character boundaries
-        const double margin = 5;
-        var inflated = new Avalonia.Rect(-margin, -margin, tv.Bounds.Width + margin * 2, tv.Bounds.Height + margin * 2);
-        if (!IsInsideBounds(inflated, p))
+        if (!IsInsideBounds(tv.Bounds, p))
         {
             ResetHoverState();
             HideTooltip();
