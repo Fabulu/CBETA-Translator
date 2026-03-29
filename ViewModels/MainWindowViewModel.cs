@@ -1037,7 +1037,7 @@ public partial class MainWindowViewModel : ViewModelBase
                       ", T=" + rt.Segments.Count.ToString("n0") +
                       ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
 
-            await RefreshProgressStatsAsync();
+            _ = RefreshProgressStatsAsync(); // Don't await — don't freeze UI
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
@@ -1045,12 +1045,12 @@ public partial class MainWindowViewModel : ViewModelBase
             SetStatus("Render failed: " + ex.Message);
         }
 
-        // Assistant refresh AFTER readable render (lower priority, avoids I/O contention)
-        try
+        // Assistant + progress stats refresh in background (don't freeze UI)
+        _ = Task.Run(async () =>
         {
-            await RefreshAssistantFromEditorAsync();
-        }
-        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Assistant refresh failed: {ex.Message}"); }
+            try { await RefreshAssistantFromEditorAsync(); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Assistant refresh failed: {ex.Message}"); }
+        });
     }
 
     private async Task RefreshAssistantFromEditorAsync()
