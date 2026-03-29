@@ -500,7 +500,7 @@ public partial class TranslationTabView : UserControl
     private void ApplyWrap()
     {
         if (_editor != null)
-            _editor.WordWrap = _chkWrap?.IsChecked == true;
+            _editor.WordWrap = _chkWrap?.IsChecked ?? true; // Default to wrap if checkbox not ready
     }
 
     private void ApplyHoverDictionarySetting()
