@@ -297,6 +297,7 @@ public partial class MainWindow : Window
             _translationView?.UpdateTmSharedHighlights(approved, reference, zh);
         _vm.SetTranslationFilePaths = (orig, tran) => _translationView?.SetCurrentFilePaths(orig, tran);
         _vm.SetAssistantTitleResolver = resolver => _translationView?.SetAssistantTitleResolver(resolver);
+        _vm.SignalCoreLoadComplete = () => _windowReady.TrySetResult();
 
         // SearchTabView bridges
         _vm.SetSearchRootContext = (root, orig, tran) => _searchView?.SetRootContext(root, orig, tran);
@@ -1212,8 +1213,20 @@ public partial class MainWindow : Window
     public void MaybeStartTour()
     {
         if (_vm.Config.HasCompletedOnboarding) return;
-        if (!string.IsNullOrWhiteSpace(_vm.Root)) return;
         if (IsSecondaryWindow) return;
+
+        // If root already loaded (returning user who requested tour restart),
+        // skip setup steps and go straight to feature walkthrough
+        if (!string.IsNullOrWhiteSpace(_vm.Root))
+        {
+            _tourService?.Start(startIndex: 5); // Skip to "sidebar" step
+            if (_tourService?.IsActive == true)
+            {
+                _tourOverlayCanvas.IsVisible = true;
+                _emptyStateOverlay.IsVisible = false;
+            }
+            return;
+        }
 
         StartTour();
     }

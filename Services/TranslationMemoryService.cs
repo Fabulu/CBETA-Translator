@@ -17,6 +17,16 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         PropertyNameCaseInsensitive = true
     };
 
+    // In-memory TM file cache — avoids re-reading JSONL on every block change.
+    // Auto-invalidates when the file's last-write timestamp changes.
+    private string? _approvedCachePath;
+    private DateTime _approvedCacheTime;
+    private List<TmRow>? _approvedCacheRows;
+
+    private string? _referenceCachePath;
+    private DateTime _referenceCacheTime;
+    private List<TmRow>? _referenceCacheRows;
+
     private sealed class TmRow
     {
         public string SourceText { get; set; } = "";
@@ -72,42 +82,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         if (!File.Exists(path))
             return result;
 
-        var rows = new List<TmRow>();
-
-        try
-        {
-            using var fs = new FileStream(
-                path,
-                FileMode.Open,
-                FileAccess.Read,
-                FileShare.ReadWrite | FileShare.Delete);
-
-            using var sr = new StreamReader(fs, Encoding.UTF8);
-
-            while (!sr.EndOfStream)
-            {
-                ct.ThrowIfCancellationRequested();
-
-                var line = await sr.ReadLineAsync();
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
-
-                try
-                {
-                    var row = JsonSerializer.Deserialize<TmRow>(line, JsonOpts);
-                    if (row != null)
-                        rows.Add(row);
-                }
-                catch
-                {
-                    // ignore bad rows
-                }
-            }
-        }
-        catch
-        {
-            return result;
-        }
+        var rows = await LoadRowsCachedAsync(path, trust, ct);
 
         if (rows.Count == 0)
             return result;
@@ -167,6 +142,87 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
             .ToList();
 
         return result;
+    }
+
+    private async Task<List<TmRow>> LoadRowsCachedAsync(
+        string path, TranslationResourceTrust trust, CancellationToken ct)
+    {
+        bool isApproved = trust == TranslationResourceTrust.Approved;
+
+        // Check cache — pick the right slot based on trust level
+        string? cachedPath = isApproved ? _approvedCachePath : _referenceCachePath;
+        DateTime cachedTime = isApproved ? _approvedCacheTime : _referenceCacheTime;
+        List<TmRow>? cachedRows = isApproved ? _approvedCacheRows : _referenceCacheRows;
+
+        try
+        {
+            var lastWrite = File.GetLastWriteTimeUtc(path);
+            if (cachedRows != null &&
+                string.Equals(cachedPath, path, StringComparison.OrdinalIgnoreCase) &&
+                lastWrite == cachedTime)
+            {
+                return cachedRows;
+            }
+        }
+        catch { /* fall through to disk read */ }
+
+        var rows = new List<TmRow>();
+
+        try
+        {
+            using var fs = new FileStream(
+                path,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.ReadWrite | FileShare.Delete);
+
+            using var sr = new StreamReader(fs, Encoding.UTF8);
+
+            while (!sr.EndOfStream)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var line = await sr.ReadLineAsync();
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                try
+                {
+                    var row = JsonSerializer.Deserialize<TmRow>(line, JsonOpts);
+                    if (row != null)
+                        rows.Add(row);
+                }
+                catch
+                {
+                    // ignore bad rows
+                }
+            }
+        }
+        catch
+        {
+            return rows;
+        }
+
+        // Update cache
+        try
+        {
+            var writeTime = File.GetLastWriteTimeUtc(path);
+            if (isApproved)
+            {
+                _approvedCachePath = path;
+                _approvedCacheTime = writeTime;
+                _approvedCacheRows = rows;
+            }
+            else
+            {
+                _referenceCachePath = path;
+                _referenceCacheTime = writeTime;
+                _referenceCacheRows = rows;
+            }
+        }
+        catch { /* non-critical */ }
+
+        return rows;
     }
 
     private static bool IsExactCurrentSegment(
