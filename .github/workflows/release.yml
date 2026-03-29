@@ -75,8 +75,8 @@ jobs:
         shell: bash
         run: |
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
-          mkdir -p "$PUB/assets/dict"
-          cp -R "Assets/Dict/." "$PUB/assets/dict/"
+          mkdir -p "$PUB/Assets/Dict"
+          cp -R "Assets/Dict/." "$PUB/Assets/Dict/"
 
       - name: Copy project license files into publish
         shell: bash
