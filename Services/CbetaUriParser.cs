@@ -27,9 +27,17 @@ public static class CbetaUriParser
         if (!string.Equals(parsed.Scheme, Scheme, StringComparison.OrdinalIgnoreCase))
             return null;
 
-        // Host + AbsolutePath gives us the relative path.
-        // cbeta://T/T48/T48n2005.xml → Host="T", AbsolutePath="/T48/T48n2005.xml"
-        var relPath = parsed.Host + parsed.AbsolutePath;
+        // Extract path directly from the original string to preserve case.
+        // System.Uri lowercases the Host component, breaking CBETA paths like "T/T48/..."
+        var schemePrefix = Scheme + "://";
+        var pathStart = uri.IndexOf(schemePrefix, StringComparison.OrdinalIgnoreCase);
+        if (pathStart < 0) return null;
+        pathStart += schemePrefix.Length;
+        var queryStart = uri.IndexOf('?', pathStart);
+        var relPath = queryStart >= 0
+            ? uri.Substring(pathStart, queryStart - pathStart)
+            : uri.Substring(pathStart);
+        relPath = Uri.UnescapeDataString(relPath).TrimStart('/');
         if (string.IsNullOrEmpty(relPath))
             return null;
 
