@@ -53,7 +53,10 @@ public partial class App : Application
                 {
                     if (SingleInstance != null)
                     {
-                        SingleInstance.UriReceived += HandleDeepLink;
+                        SingleInstance.UriReceived += uri =>
+                        {
+                            try { HandleDeepLink(uri); } catch { }
+                        };
                         SingleInstance.StartListening();
                     }
                 }
@@ -131,18 +134,8 @@ public partial class App : Application
                     return;
                 }
 
-                // Navigate in primary window instead of opening a secondary window
-                // This avoids modal conflicts between windows
-                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
-                    && desktop.MainWindow is Views.MainWindow mainWin)
-                {
-                    mainWin.Activate(); // Bring to front
-                    await mainWin.OpenAtAsync(root, request);
-                }
-                else
-                {
-                    WindowNavigationService.OpenAndNavigate(root, request);
-                }
+                // Open in a secondary window to avoid conflicting with primary window state
+                WindowNavigationService.OpenAndNavigate(root, request);
             }
             catch (Exception ex)
             {
