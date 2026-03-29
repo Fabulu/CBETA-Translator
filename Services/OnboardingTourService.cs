@@ -344,8 +344,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "git-tab",
-            Title = "Sharing Your Work",
-            Body = "The Git tab handles sharing. After you translate or research, share your work with the community.\nNo terminal needed \u2014 everything is built in.",
+            Title = "Sync Your Work",
+            Body = "The Git tab has one button: Sync. One click shares your translations, dictionary entries, collections, and reviews \u2014 then pulls the latest from other contributors.\nNo terminal needed. Everything is built in.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -354,19 +354,9 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "share-all",
-            Title = "Share Everything at Once",
-            Body = "'Share All' uploads everything in one click: your translations, dictionary entries, scholar collections, reviews, and custom master dates.\nEach person's data stays in their own file \u2014 no conflicts.",
-            Type = TourStepType.Passive,
-            Placement = TourPlacement.Bottom,
-            TargetControlName = "GitView"
-        });
-
-        Steps.Add(new TourStep
-        {
-            Id = "update-community",
-            Title = "Get Others' Work",
-            Body = "'Update' downloads the latest work from other contributors.\nYou'll see their collections, terms, and reviews in the Community sections of the Scholar tab and Dictionary.",
+            Id = "git-advanced",
+            Title = "Advanced: Translation PRs",
+            Body = "The Advanced section (collapsed by default) has tools for submitting translation pull requests and managing repo updates.\nMost users never need it \u2014 Sync handles everyday sharing.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView"

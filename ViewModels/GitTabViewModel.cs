@@ -294,6 +294,59 @@ public partial class GitTabViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task SyncAsync()
+    {
+        var repoDir = GetTargetRepoDir();
+        var repoExists = Directory.Exists(repoDir) && Directory.Exists(Path.Combine(repoDir, ".git"));
+
+        if (!repoExists)
+        {
+            // No repo — clone first, then try sync again
+            await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+
+            // After clone, check if repo is now available for sharing
+            repoDir = GetTargetRepoDir();
+            if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+                return; // Clone failed or was canceled
+        }
+
+        // Repo exists — Share All first, then Fetch+Merge
+        // Each sub-method manages its own busy state, CTS, and log.
+        // We call them sequentially; the second call will clear the log from the first.
+        // This is intentional: the user sees the final fetch result.
+
+        string? shareError = null;
+        try
+        {
+            await ShareAllInternalAsync();
+        }
+        catch (OperationCanceledException) { return; }
+        catch (Exception ex)
+        {
+            shareError = ex.Message;
+        }
+
+        try
+        {
+            await FetchAndMergeCommunityDataAsync();
+        }
+        catch (OperationCanceledException) { return; }
+        catch (Exception ex)
+        {
+            AppendLog("[sync] Fetch+merge error: " + ex.Message);
+        }
+
+        if (shareError != null)
+        {
+            AppendLog("[sync] Note: share phase had an error: " + shareError);
+        }
+
+        AppendLog("\n[sync] Sync finished.");
+        ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
+        StatusChanged?.Invoke(this, ProgressText);
+    }
+
+    [RelayCommand]
     private async Task PanicResetAsync()
     {
         await PanicButtonAsync();
