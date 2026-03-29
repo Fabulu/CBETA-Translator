@@ -66,24 +66,28 @@ public partial class App : Application
 
     private void TryAutoRegisterProtocol()
     {
-        try
+        // Run entirely in background to never block startup
+        _ = System.Threading.Tasks.Task.Run(async () =>
         {
-            var configService = Services.GetService<IAppConfigService>();
-            if (configService is AppConfigService acs)
+            try
             {
-                var config = acs.TryLoadAsync().GetAwaiter().GetResult();
-                if (config != null && !config.HasRegisteredProtocolHandler)
+                var configService = Services.GetService<IAppConfigService>();
+                if (configService is AppConfigService acs)
                 {
-                    ProtocolRegistrationService.Register();
-                    config.HasRegisteredProtocolHandler = true;
-                    acs.SaveAsync(config).GetAwaiter().GetResult();
+                    var config = await acs.TryLoadAsync();
+                    if (config != null && !config.HasRegisteredProtocolHandler)
+                    {
+                        ProtocolRegistrationService.Register();
+                        config.HasRegisteredProtocolHandler = true;
+                        await acs.SaveAsync(config);
+                    }
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("Protocol auto-registration failed: " + ex.Message);
-        }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Protocol auto-registration failed: " + ex.Message);
+            }
+        });
     }
 
     private void HandleStartupUri()
