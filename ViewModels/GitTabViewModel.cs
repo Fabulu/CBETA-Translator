@@ -332,6 +332,61 @@ public partial class GitTabViewModel : ViewModelBase
             AppendLog("[sync] Note: share phase had an error: " + shareError);
         }
 
+        // Phase 4: Check for uncommitted translation changes and auto-PR
+        try
+        {
+            var status = await _git.GetStatusPorcelainAsync(repoDir, _cts?.Token ?? CancellationToken.None);
+            var hasTranslationChanges = status.Any(line =>
+                line.Contains(RepoTranslatedRoot + "/", StringComparison.OrdinalIgnoreCase) ||
+                line.Contains(RepoTranslatedRoot + "\\", StringComparison.OrdinalIgnoreCase));
+
+            if (hasTranslationChanges && !string.IsNullOrWhiteSpace(_githubLogin))
+            {
+                var ct = _cts?.Token ?? CancellationToken.None;
+                var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
+
+                AppendLog("\n[sync] Translation changes detected — creating pull request...");
+                ProgressText = "Submitting translation changes...";
+
+                // Stage all changed translation files
+                await _git.StagePathAsync(repoDir, RepoTranslatedRoot + "/", prog, ct);
+
+                // Create branch + commit
+                var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
+                var msg = $"{_githubLogin}: Translation update";
+
+                await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+                await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+                await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+
+                var currentBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
+                var stash = await _git.StashKeepIndexAsync(repoDir, "sync-auto-stash", prog, ct);
+                await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
+                if (stash.Success)
+                    await _git.StashPopAsync(repoDir, prog, ct);
+                await _git.CommitAsync(repoDir, msg, prog, ct);
+
+                _lastContribBranch = branchName;
+
+                // Push + create PR (uses _lastContribBranch)
+                await PushAndCreatePrAsync();
+
+                // Restore original branch
+                try
+                {
+                    await _git.SwitchBranchAsync(repoDir, currentBranch ?? "main", prog, ct);
+                }
+                catch { }
+
+                AppendLog("[sync] Translation PR created.");
+            }
+        }
+        catch (OperationCanceledException) { return; }
+        catch (Exception ex)
+        {
+            AppendLog("[sync] Translation PR step failed (non-critical): " + ex.Message);
+        }
+
         AppendLog("\n[sync] Sync finished.");
         ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
         StatusChanged?.Invoke(this, ProgressText);
