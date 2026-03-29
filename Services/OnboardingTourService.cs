@@ -339,7 +339,16 @@ public sealed class OnboardingTourService
             TargetControlName = "BtnDictionary"
         });
 
-        // ===== Phase 5: Community (steps 27-30) =====
+        Steps.Add(new TourStep
+        {
+            Id = "deep-links",
+            Title = "Share Links to Any Passage",
+            Body = "Right-click any text, search result, or file to copy a cbeta:// deep link.\nShare it with colleagues \u2014 clicking the link opens this exact passage in the app.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        // ===== Phase 5: Community =====
 
         Steps.Add(new TourStep
         {
