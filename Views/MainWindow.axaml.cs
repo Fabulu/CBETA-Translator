@@ -359,7 +359,7 @@ public partial class MainWindow : Window
         _vm.ForceTabIndex = idx => ForceTab(idx);
         _vm.NavigateInReadable = async req =>
         {
-            if (_readableView != null && !string.IsNullOrEmpty(req.MatchText))
+            if (_readableView != null && (!string.IsNullOrEmpty(req.MatchText) || !string.IsNullOrEmpty(req.FromLb)))
                 await _readableView.NavigateToAsync(req);
         };
 
