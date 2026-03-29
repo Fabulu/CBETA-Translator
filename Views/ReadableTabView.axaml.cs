@@ -1922,7 +1922,7 @@ public partial class ReadableTabView : UserControl
                 var fg = m.Kind switch
                 {
                     AnnotationMarkerInserter.MarkerKind.Yuanwu =>
-                        Brush("NoteMarkerYuanwuFg", Brushes.Goldenrod),
+                        Brush("NoteMarkerYuanwuFg", Brushes.DarkOrange),
 
                     AnnotationMarkerInserter.MarkerKind.Community =>
                         Brush("NoteMarkerCommunityFg", Brushes.DodgerBlue),

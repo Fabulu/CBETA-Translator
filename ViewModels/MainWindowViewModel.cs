@@ -289,6 +289,12 @@ public partial class MainWindowViewModel : ViewModelBase
     /// </summary>
     public Action<AppConfig>? OnConfigLoaded { get; set; }
 
+    /// <summary>
+    /// Invoked after the fast phase of LoadPairAsync completes (projection editor ready).
+    /// Code-behind uses this to signal the window as ready before the slow readable render.
+    /// </summary>
+    public Action? SignalCoreLoadComplete { get; set; }
+
     [RelayCommand]
     public async Task OpenRootAsync()
     {
@@ -375,6 +381,9 @@ public partial class MainWindowViewModel : ViewModelBase
             _isAutoIndexing = true;
             try
             {
+                // Let the initial file load finish before competing for disk I/O
+                await Task.Delay(2000, ct);
+
                 // Search index
                 bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDir);
                 if (searchStale && !ct.IsCancellationRequested)
@@ -980,6 +989,10 @@ public partial class MainWindowViewModel : ViewModelBase
         UpdateWindowTitle();
         UpdateSaveButtonState();
 
+        // Signal that core data (projection editor) is ready — allows the window
+        // to appear immediately while the slower readable render continues below.
+        SignalCoreLoadComplete?.Invoke();
+
         SetStatus("Rendering readable view...");
 
         try
@@ -1080,6 +1093,9 @@ public partial class MainWindowViewModel : ViewModelBase
             try { _assistantCts?.Dispose(); } catch { }
             _assistantCts = new CancellationTokenSource();
             var ct = _assistantCts.Token;
+
+            // Clear stale assistant content immediately so the user doesn't see old data
+            SetAssistantSnapshot?.Invoke(null);
 
             var ctx = new CurrentSegmentContext
             {

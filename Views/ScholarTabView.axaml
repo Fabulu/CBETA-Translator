@@ -33,7 +33,7 @@
 
       <!-- Collections list -->
       <ListBox Grid.Row="2" ItemsSource="{Binding Collections}"
-               SelectedItem="{Binding SelectedCollection}" Margin="4,0">
+               SelectedItem="{Binding SelectedCollection}" Margin="4,0" MaxHeight="200">
         <ListBox.ItemTemplate>
           <DataTemplate x:DataType="models:ScholarCollection">
             <StackPanel>
@@ -73,7 +73,7 @@
       </DockPanel>
 
       <!-- Passages list (single-select; checkboxes for Compare) -->
-      <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0"
+      <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0" MaxHeight="250"
                ItemsSource="{Binding Passages}"
                SelectedItem="{Binding SelectedPassage}">
         <ListBox.ItemTemplate>

@@ -54,10 +54,12 @@
 			<!-- Annotation legend -->
 			<StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center" Margin="16,0,0,0">
 				<TextBlock Text="Markers:" Classes="muted" VerticalAlignment="Center" FontSize="11"/>
-				<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2"/>
-				<TextBlock Text="Note" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
-				<Border Background="Goldenrod" Width="10" Height="10" CornerRadius="2" Margin="6,0,0,0"/>
-				<TextBlock Text="Scholarly" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
+				<Border Background="Gray" Width="10" Height="10" CornerRadius="2"/>
+				<TextBlock Text="CBETA" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
+				<Border Background="DarkOrange" Width="10" Height="10" CornerRadius="2" Margin="6,0,0,0"/>
+				<TextBlock Text="Footnote" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
+				<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2" Margin="6,0,0,0"/>
+				<TextBlock Text="Community" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
 			</StackPanel>
 
 			<!-- Hover dictionary hint -->

@@ -20,10 +20,10 @@ public sealed class OnboardingTourService
         BuildSteps();
     }
 
-    public void Start()
+    public void Start(int startIndex = 0)
     {
         IsActive = true;
-        CurrentIndex = 0;
+        CurrentIndex = Math.Max(0, Math.Min(startIndex, Steps.Count - 1));
         StepChanged?.Invoke(this, CurrentStep!);
     }
 
@@ -169,7 +169,7 @@ public sealed class OnboardingTourService
         {
             Id = "footnote-colors",
             Title = "Footnote Color Coding",
-            Body = "Yellow = original text footnotes from the source.\nGrey = CBETA editorial notes.\nBlue = community notes added by users like you.",
+            Body = "Orange = original text footnotes from the source.\nGrey = CBETA editorial notes.\nBlue = community notes added by users like you.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
