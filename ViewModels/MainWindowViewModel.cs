@@ -982,13 +982,21 @@ public partial class MainWindowViewModel : ViewModelBase
 
         SetStatus("Loading: " + relPath);
 
-        _rawOrigXml = await ReadOriginalXmlAsync(relPath);
+        // Run XML I/O + index build off the UI thread to keep the app responsive
+        var (origXml, tranXml, indexedDoc) = await Task.Run(async () =>
+        {
+            var orig = await ReadOriginalXmlAsync(relPath);
+            await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
+            var tran = await TryReadTranslatedXmlFromDiskAsync(relPath) ?? orig;
+            var doc = _indexedTranslation.BuildIndex(orig, tran);
+            return (orig, tran, doc);
+        }, ct);
 
-        await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
+        if (ct.IsCancellationRequested) return;
 
-        _rawTranXml = await TryReadTranslatedXmlFromDiskAsync(relPath) ?? _rawOrigXml;
-
-        _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
+        _rawOrigXml = origXml;
+        _rawTranXml = tranXml;
+        _indexedDoc = indexedDoc;
 
         var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
         SetTranslationProjection(_translationMode, projection);
