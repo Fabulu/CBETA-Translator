@@ -26,6 +26,18 @@ public sealed class NavigationRequest
     public string? RightContext { get; set; }
 
     /// <summary>
+    /// TEI &lt;lb&gt; n-value of the first line in the selection (e.g. "0001a01").
+    /// When set, navigation uses segment-key lookup instead of text search.
+    /// </summary>
+    public string? FromLb { get; set; }
+
+    /// <summary>
+    /// TEI &lt;lb&gt; n-value of the last line in the selection (optional).
+    /// If null or same as <see cref="FromLb"/>, only one line is targeted.
+    /// </summary>
+    public string? ToLb { get; set; }
+
+    /// <summary>
     /// Optional source-provided position hint (typically search-hit index in searchable text).
     /// This is treated as a soft preference, not a strict offset.
     /// </summary>

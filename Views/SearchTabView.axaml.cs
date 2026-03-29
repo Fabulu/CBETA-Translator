@@ -93,8 +93,8 @@ public partial class SearchTabView : UserControl
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
 
                 var uri = CbetaUriParser.BuildUri(
-                    child.RelPath, child.MatchText, child.Side,
-                    child.LeftText, child.RightText);
+                    child.RelPath, highlightText: child.MatchText, side: child.Side,
+                    leftContext: child.LeftText, rightContext: child.RightText);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(uri);

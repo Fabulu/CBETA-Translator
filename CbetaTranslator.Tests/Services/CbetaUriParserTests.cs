@@ -194,7 +194,7 @@ public class CbetaUriParserTests
         var rctx = "right context";
         var block = 99;
 
-        var uri = CbetaUriParser.BuildUri(relPath, highlight, side, lctx, rctx, block);
+        var uri = CbetaUriParser.BuildUri(relPath, highlightText: highlight, side: side, leftContext: lctx, rightContext: rctx, blockNumber: block);
         var result = CbetaUriParser.TryParse(uri);
 
         Assert.NotNull(result);

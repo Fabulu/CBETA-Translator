@@ -227,7 +227,7 @@ public partial class TranslationTabView : UserControl
                     blockNumber = blocks[ix].BlockNumber;
             }
 
-            var uri = CbetaUriParser.BuildUri(relPath, highlight, blockNumber: blockNumber);
+            var uri = CbetaUriParser.BuildUri(relPath, highlightText: highlight, blockNumber: blockNumber);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
