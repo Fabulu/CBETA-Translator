@@ -291,11 +291,8 @@ public partial class ReadableTabView : UserControl
 
                 if (hasSelection)
                 {
-                    var startSeg = doc.FindSegmentAtOrBefore(selStart);
-                    var endSeg = doc.FindSegmentAtOrBefore(selEnd - 1);
-
-                    fromLb = ExtractLbNValue(startSeg?.Key);
-                    toLb = ExtractLbNValue(endSeg?.Key);
+                    fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+                    toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
 
                     // Fall back to highlight text if lb extraction fails
                     if (fromLb == null)
@@ -393,6 +390,16 @@ public partial class ReadableTabView : UserControl
             EnText = isTranslated ? selectedText : otherText,
             SourceRelPath = _vm.CurrentRelPathForZen ?? ""
         };
+
+        // Capture lb values for zen:// link generation
+        var lbDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        if (lbDoc != null && !lbDoc.IsEmpty)
+        {
+            int lbSelStart = GetSelectionStartSafe(editor);
+            int lbSelEnd = GetSelectionEndSafe(editor);
+            passage.FromLb = LbHelper.FindNearestLbNValue(lbDoc, lbSelStart);
+            passage.ToLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lbSelStart, lbSelEnd - 1));
+        }
 
         AddToScholarRequested?.Invoke(this, passage);
         await Task.CompletedTask;
@@ -1729,12 +1736,7 @@ public partial class ReadableTabView : UserControl
     /// Returns null if the key is null or not an lb-type key.
     /// </summary>
     private static string? ExtractLbNValue(string? segmentKey)
-    {
-        if (string.IsNullOrEmpty(segmentKey)) return null;
-        if (!segmentKey.StartsWith("lb|", StringComparison.Ordinal)) return null;
-        var parts = segmentKey.Split('|');
-        return parts.Length >= 2 ? parts[1] : null;
-    }
+        => LbHelper.ExtractLbNValue(segmentKey);
 
     // =========================
     // Scroll helpers

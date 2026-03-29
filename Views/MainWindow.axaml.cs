@@ -646,6 +646,23 @@ public partial class MainWindow : Window
             {
                 _vm.HandleNavigationRequested(req);
             };
+
+            _translationView.ResolveLbForBlock = blockNumber =>
+            {
+                var doc = _vm.IndexedDoc;
+                if (doc == null) return null;
+                var mode = _vm.TranslationMode;
+                var wantedKind = mode switch
+                {
+                    TranslationEditMode.Head => CbetaTranslator.App.Services.TranslationUnitKind.Head,
+                    TranslationEditMode.Notes => CbetaTranslator.App.Services.TranslationUnitKind.Note,
+                    _ => CbetaTranslator.App.Services.TranslationUnitKind.Body
+                };
+                var unit = doc.Units
+                    .Where(u => u.Kind == wantedKind)
+                    .FirstOrDefault(u => u.Index == blockNumber);
+                return CbetaTranslator.App.Services.TranslationUnit.GetLbNValueForUnit(unit);
+            };
         }
 
         if (_searchView != null)

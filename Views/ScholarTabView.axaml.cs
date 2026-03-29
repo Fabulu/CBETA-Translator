@@ -139,13 +139,21 @@ public partial class ScholarTabView : UserControl
                 var passage = _vm.SelectedPassage;
                 if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
 
-                string? highlight = passage.ZhText;
-                if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
-                    highlight = highlight.Substring(0, 80);
-                if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                string? highlight = null;
+                // Prefer lb-based links; fall back to highlight text
+                if (string.IsNullOrWhiteSpace(passage.FromLb))
+                {
+                    highlight = passage.ZhText;
+                    if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
+                        highlight = highlight.Substring(0, 80);
+                    if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                }
 
                 var uri = CbetaUriParser.BuildUri(
-                    passage.SourceRelPath, highlightText: highlight,
+                    passage.SourceRelPath,
+                    fromLb: passage.FromLb,
+                    toLb: passage.ToLb,
+                    highlightText: highlight,
                     blockNumber: passage.StartBlockNumber);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)

@@ -89,6 +89,12 @@ public sealed class TranslationUnit
 
     // True only when user actually edited this line in the projection
     public bool IsDirty { get; set; }
+
+    /// <summary>
+    /// Extracts the lb n-value from this unit's TrailingLbTemplate, if present.
+    /// </summary>
+    public static string? GetLbNValueForUnit(TranslationUnit? unit)
+        => unit?.TrailingLbTemplate?.Attribute("n")?.Value;
 }
 
 public sealed class IndexedTranslationDocument
