@@ -33,10 +33,29 @@ public sealed class SingleInstanceManager : IDisposable
     /// <returns><c>true</c> if this is the first instance; <c>false</c> if a URI was forwarded.</returns>
     public bool TryAcquireOrForward(string[] args)
     {
-        _mutex = new Mutex(true, MutexName, out bool createdNew);
+        try
+        {
+            _mutex = new Mutex(true, MutexName, out bool createdNew);
 
-        if (createdNew)
+            if (createdNew)
+                return true;
+
+            // The mutex exists — try to acquire it in case the previous owner crashed
+            try
+            {
+                if (_mutex.WaitOne(500))
+                    return true; // Previous instance was dead (abandoned mutex), we now own it
+            }
+            catch (AbandonedMutexException)
+            {
+                return true; // Previous instance crashed, we now own the mutex
+            }
+        }
+        catch (Exception)
+        {
+            // Mutex creation failed entirely — proceed as single instance
             return true;
+        }
 
         // Second instance — forward the cbeta:// URI to the first instance and signal exit.
         var cbetaArg = args.FirstOrDefault(a =>
