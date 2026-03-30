@@ -183,7 +183,50 @@ public sealed class OnboardingTourService
             Placement = TourPlacement.Center
         });
 
-        // ===== Phase 3: Translation (steps 12-18) =====
+        // ===== Phase 2b: Coding / Tagging (steps 12-15) =====
+
+        Steps.Add(new TourStep
+        {
+            Id = "coding-mode",
+            Title = "Coding Mode",
+            Body = "Press F2 to enter Coding Mode — a keyboard-driven QDA workflow for systematic Zen text analysis.\nTag passages, track themes, and build a structured reading of any text.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            SwitchToTabIndex = 0,
+            TargetControlName = "BtnCodingModeCompact"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "tag-editor",
+            Title = "Tag Vocabulary Editor",
+            Body = "Click the pencil icon to open the Tag Editor. Create hierarchical tags, assign colors from a 15-color auto-palette, and drag tags into code bar slots for quick access.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnEditTags"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "code-bar",
+            Title = "Code Bar Shortcuts",
+            Body = "Press 1–9 to apply the corresponding tag. Shift+1–9 switches pages (up to 18 pages = 162 tags).\nW selects a block, E/Q expand or shrink the selection, Tab skips to the next untagged block.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "CodeBarSlots"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "community-tags",
+            Title = "View Community Tags",
+            Body = "Use the user picker to view other scholars' tagging work on the same text.\nSwitch back to \"My Tags\" to resume your own coding session.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "CmbTagUser"
+        });
+
+        // ===== Phase 3: Translation (steps 16-22) =====
 
         Steps.Add(new TourStep
         {
@@ -256,7 +299,7 @@ public sealed class OnboardingTourService
             TargetControlName = "BtnSave"
         });
 
-        // ===== Phase 4: Research (steps 19-26) =====
+        // ===== Phase 4: Research (steps 23-30) =====
 
         Steps.Add(new TourStep
         {

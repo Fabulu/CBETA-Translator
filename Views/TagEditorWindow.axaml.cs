@@ -493,6 +493,7 @@ public partial class TagEditorWindow : Window
         _vocabulary.Tags.Remove(tag);
 
         // Also remove from any code bar page slots
+        var emptyPages = new List<int>();
         foreach (var kvp in _vocabulary.Pages)
         {
             var slots = kvp.Value;
@@ -501,7 +502,15 @@ public partial class TagEditorWindow : Window
                 if (slots[i] == tag.Id)
                     slots[i] = null;
             }
+
+            // Track pages that are now fully empty (all null slots)
+            if (slots.All(s => s == null))
+                emptyPages.Add(kvp.Key);
         }
+
+        // Remove fully-empty pages to keep the page count accurate
+        foreach (var p in emptyPages)
+            _vocabulary.Pages.Remove(p);
 
         RefreshTree();
         SetStatus($"Deleted tag \"{tag.DisplayName}\".");
