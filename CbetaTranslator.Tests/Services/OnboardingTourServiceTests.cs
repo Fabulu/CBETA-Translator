@@ -184,12 +184,12 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count is 30 ----
+    // ---- 10. Steps count is 34 (30 original + 4 coding/tagging) ----
 
     [Fact]
-    public void Steps_Count_Is30()
+    public void Steps_Count_Is34()
     {
-        Assert.Equal(30, _svc.Steps.Count);
+        Assert.Equal(34, _svc.Steps.Count);
     }
 
     // ---- 11. All steps have non-empty Title and Body ----

@@ -2520,6 +2520,13 @@ public partial class ReadableTabView : UserControl
     public void SetTagVocabulary(TagVocabulary? vocab)
     {
         _tagVocabulary = vocab;
+
+        // Clamp _codeBarPage so it never exceeds the vocabulary's max page.
+        // This prevents "Page 3/1" after the user deletes pages in the editor.
+        int maxPage = vocab?.Pages.Count > 0 ? vocab.Pages.Keys.Max() : 1;
+        if (_codeBarPage > maxPage)
+            _codeBarPage = 1;
+
         if (_codingModeActive)
             RefreshCodeBar();
     }
@@ -3145,6 +3152,11 @@ public partial class ReadableTabView : UserControl
         int maxPage = _tagVocabulary?.Pages.Count > 0
             ? _tagVocabulary.Pages.Keys.Max()
             : 1;
+
+        // Clamp current page to valid range
+        if (_codeBarPage > maxPage)
+            _codeBarPage = 1;
+
         _txtCodeBarPage.Text = $"Page {_codeBarPage}/{maxPage}";
 
         _codeBarSlots.Children.Clear();
