@@ -118,6 +118,10 @@ public partial class ReadableTabView : UserControl
     private TagVocabulary? _tagVocabulary;
     private readonly List<DocumentTag> _appliedTags = new();
     private TagHighlightTransformer? _tagHighlighter;
+    private ComboBox? _cmbTagUser;
+    private Dictionary<string, List<DocumentTag>>? _communityTags;
+    private Dictionary<string, TagVocabulary>? _communityVocabularies;
+    private string? _selectedTagUser; // null = "Me" (own tags)
 
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
     private bool _suppressZenEvents;
@@ -274,6 +278,7 @@ public partial class ReadableTabView : UserControl
         _txtCodeBarStatus = this.FindControl<TextBlock>("TxtCodeBarStatus");
         _btnCodingMode = this.FindControl<ToggleButton>("BtnCodingMode");
         _btnCodingModeCompact = this.FindControl<ToggleButton>("BtnCodingModeCompact");
+        _cmbTagUser = this.FindControl<ComboBox>("CmbTagUser");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -479,6 +484,8 @@ public partial class ReadableTabView : UserControl
             _btnCodingMode.IsCheckedChanged += (_, _) => SetCodingModeActive(_btnCodingMode.IsChecked == true);
         if (_btnCodingModeCompact != null)
             _btnCodingModeCompact.IsCheckedChanged += (_, _) => SetCodingModeActive(_btnCodingModeCompact.IsChecked == true);
+        if (_cmbTagUser != null)
+            _cmbTagUser.SelectionChanged += OnTagUserSelectionChanged;
 
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -2523,8 +2530,123 @@ public partial class ReadableTabView : UserControl
 
     public void SetCommunityTags(Dictionary<string, List<DocumentTag>>? communityTags)
     {
-        // Community tags are informational; currently stored but not rendered differently.
-        // Could be extended later.
+        _communityTags = communityTags;
+        RefreshTagUserComboBox();
+    }
+
+    public void SetCommunityVocabularies(Dictionary<string, TagVocabulary>? communityVocabs)
+    {
+        _communityVocabularies = communityVocabs;
+    }
+
+    private void RefreshTagUserComboBox()
+    {
+        if (_cmbTagUser == null) return;
+
+        var items = new List<string> { "My Tags" };
+        if (_communityTags != null)
+        {
+            foreach (var user in _communityTags.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
+                items.Add(user);
+        }
+
+        _cmbTagUser.ItemsSource = items;
+
+        // Preserve selection or default to "My Tags"
+        if (_selectedTagUser != null && items.Contains(_selectedTagUser))
+            _cmbTagUser.SelectedItem = _selectedTagUser;
+        else
+            _cmbTagUser.SelectedIndex = 0;
+    }
+
+    private void OnTagUserSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (_cmbTagUser == null) return;
+
+        var selected = _cmbTagUser.SelectedItem as string;
+        if (selected == "My Tags" || selected == null)
+        {
+            // Show own tags
+            _selectedTagUser = null;
+            RefreshTagHighlights();
+            RefreshCodeBarStatus();
+        }
+        else
+        {
+            // Show another user's tags
+            _selectedTagUser = selected;
+            ShowCommunityUserTags(selected);
+        }
+    }
+
+    private void ShowCommunityUserTags(string username)
+    {
+        if (_communityTags == null || !_communityTags.TryGetValue(username, out var allUserTags))
+        {
+            ClearTagHighlights();
+            if (_txtCodeBarStatus != null)
+                _txtCodeBarStatus.Text = $"No tags from {username}";
+            return;
+        }
+
+        // Filter to current file
+        var relPath = _vm.CurrentRelPathForZen;
+        var forFile = allUserTags
+            .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        // Get the community user's vocabulary for colors
+        TagVocabulary? userVocab = null;
+        _communityVocabularies?.TryGetValue(username, out userVocab);
+
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea?.TextView == null || doc == null || doc.IsEmpty)
+        {
+            ClearTagHighlights();
+            return;
+        }
+
+        if (_tagHighlighter == null)
+        {
+            _tagHighlighter = new TagHighlightTransformer();
+            editor.TextArea.TextView.LineTransformers.Add(_tagHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length, Color TagColor)>();
+        foreach (var tag in forFile)
+        {
+            if (string.IsNullOrEmpty(tag.FromLb)) continue;
+
+            Color color = Color.FromRgb(52, 152, 219);
+            if (userVocab != null)
+            {
+                var def = userVocab.Tags.Find(d => d.Id == tag.TagId);
+                if (def != null)
+                {
+                    try { color = Color.Parse(def.Color); } catch { }
+                }
+            }
+
+            if (!TryFindSegmentByLb(doc, tag.FromLb, out var startSeg)) continue;
+            int rangeStart = startSeg.Start;
+            int rangeEnd = startSeg.EndExclusive;
+
+            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
+            {
+                if (TryFindSegmentByLb(doc, tag.ToLb, out var endSeg))
+                    rangeEnd = endSeg.EndExclusive;
+            }
+
+            if (rangeEnd > rangeStart)
+                ranges.Add((rangeStart, rangeEnd - rangeStart, color));
+        }
+
+        _tagHighlighter.SetRanges(ranges);
+        editor.TextArea.TextView.Redraw();
+
+        if (_txtCodeBarStatus != null)
+            _txtCodeBarStatus.Text = $"Viewing {username}'s tags ({forFile.Count} on this file)";
     }
 
     private void SetCodingModeActive(bool active)
@@ -2780,6 +2902,7 @@ public partial class ReadableTabView : UserControl
     private void CodingApplyTag(int slotIndex)
     {
         if (_tagVocabulary == null) return;
+        if (_selectedTagUser != null) return; // Can't tag while viewing someone else's tags
 
         var tagDef = GetTagDefinitionForSlot(slotIndex);
         if (tagDef == null)
@@ -3033,6 +3156,13 @@ public partial class ReadableTabView : UserControl
 
     private void RefreshTagHighlights()
     {
+        // If viewing another user's tags, don't overwrite with own
+        if (_selectedTagUser != null)
+        {
+            ShowCommunityUserTags(_selectedTagUser);
+            return;
+        }
+
         var editor = _aeOrig;
         if (editor?.TextArea?.TextView == null) return;
         var doc = _vm.RenderOrig;

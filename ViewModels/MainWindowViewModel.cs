@@ -130,6 +130,8 @@ public partial class MainWindowViewModel : ViewModelBase
     // ReadableTabView coding mode bridges
     public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
     public Action<List<DocumentTag>?>? SetReadableAppliedTags { get; set; }
+    public Action<Dictionary<string, List<DocumentTag>>?>? SetReadableCommunityTags { get; set; }
+    public Action<Dictionary<string, TagVocabulary>?>? SetReadableCommunityVocabularies { get; set; }
 
     // TranslationTabView bridges
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
@@ -1244,6 +1246,22 @@ public partial class MainWindowViewModel : ViewModelBase
                 .ToList();
 
             await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(forFile));
+
+            // Load community tags (other users) for the user picker
+            try
+            {
+                var communityTags = await _documentTagService.LoadAllCommunityTagsAsync(_root);
+                var communityVocabs = await _documentTagService.LoadAllCommunityVocabulariesAsync(_root);
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    SetReadableCommunityTags?.Invoke(communityTags);
+                    SetReadableCommunityVocabularies?.Invoke(communityVocabs);
+                });
+            }
+            catch (Exception ex2)
+            {
+                System.Diagnostics.Debug.WriteLine($"[Tags] Community load failed: {ex2.Message}");
+            }
         }
         catch (Exception ex)
         {
