@@ -59,6 +59,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private string? _root, _originalDir, _translatedDir;
     public string? Root => _root;
+    public string? Username => _config.Username;
     public string? OriginalDir => _originalDir;
     public string? TranslatedDir => _translatedDir;
 
@@ -1276,6 +1277,13 @@ public partial class MainWindowViewModel : ViewModelBase
             var username = _config.Username;
             if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
 
+            // Safety: if _appliedTags was never loaded from disk (race with LoadAndPushTagsForCurrentFileAsync),
+            // load them first to avoid overwriting existing tags with only the new one.
+            if (_appliedTags.Count == 0)
+            {
+                _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+            }
+
             tag.CreatedBy = username;
             _appliedTags.Add(tag);
             await _documentTagService.SaveUserTagsAsync(_root, username, _appliedTags);
@@ -1299,6 +1307,26 @@ public partial class MainWindowViewModel : ViewModelBase
         catch (Exception ex)
         {
             SetStatus("Vocabulary save failed: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Reloads the tag vocabulary from disk and pushes it to the Reader view.
+    /// Called after TagEditorWindow saves.
+    /// </summary>
+    public async Task ReloadTagVocabularyAsync()
+    {
+        try
+        {
+            var username = _config.Username;
+            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+
+            _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
+            await Dispatcher.UIThread.InvokeAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Reload tag vocabulary failed: " + ex.Message);
         }
     }
 

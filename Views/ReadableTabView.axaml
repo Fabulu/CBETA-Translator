@@ -156,6 +156,14 @@
 							   FontSize="11"
 							   Opacity="0.6"
 							   Margin="10,0,0,0"/>
+					<Button Name="BtnEditTags"
+								Content="&#x270E;"
+								DockPanel.Dock="Right"
+								Padding="6,2"
+								FontSize="11"
+								Focusable="False"
+								Margin="6,0,0,0"
+								ToolTip.Tip="Edit tag vocabulary"/>
 					<ToggleButton Name="BtnCodingMode"
 								  Content="Coding (F2)"
 								  DockPanel.Dock="Right"

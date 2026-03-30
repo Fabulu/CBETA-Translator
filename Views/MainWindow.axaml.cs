@@ -69,6 +69,9 @@ public partial class MainWindow : Window
     // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
+    // Tag editor (non-modal -- at most one instance per main window)
+    private TagEditorWindow? _tagEditorWindow;
+
     // Tour overlay controls
     private Canvas? _tourOverlayCanvas;
     private TourSpotlightOverlay? _tourSpotlight;
@@ -614,6 +617,11 @@ public partial class MainWindow : Window
             {
                 await _vm.OnTagAppliedAsync(tag);
             };
+
+            _readableView.TagEditorRequested += (_, _) =>
+            {
+                _ = OpenTagEditorWindowAsync();
+            };
         }
 
         if (_translationView != null)
@@ -1048,6 +1056,43 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             _vm.SetStatus("Open dictionary failed: " + ex.Message);
+        }
+    }
+
+    // ===========================================================
+    // Tag editor window
+    // ===========================================================
+
+    private async Task OpenTagEditorWindowAsync()
+    {
+        try
+        {
+            if (_tagEditorWindow != null)
+            {
+                _tagEditorWindow.Activate();
+                return;
+            }
+
+            var root = _vm.Root;
+            if (string.IsNullOrEmpty(root)) return;
+
+            var win = new TagEditorWindow(root, _vm.Username)
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+
+            win.VocabularySaved += async (_, _) =>
+            {
+                await _vm.ReloadTagVocabularyAsync();
+            };
+            win.Closed += (_, _) => _tagEditorWindow = null;
+
+            _tagEditorWindow = win;
+            win.Show();
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open tag editor failed: " + ex.Message);
         }
     }
 

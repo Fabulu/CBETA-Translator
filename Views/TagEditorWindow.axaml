@@ -1,0 +1,158 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:CbetaTranslator.App.Views"
+        x:Class="CbetaTranslator.App.Views.TagEditorWindow"
+        Width="750"
+        Height="550"
+        Title="Tag Vocabulary Editor"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid RowDefinitions="*,Auto" ColumnDefinitions="250,12,*" Margin="12">
+
+		<!-- Left panel: filter + tree + buttons -->
+		<Border Grid.Row="0"
+				Grid.Column="0"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="8">
+			<Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+				<TextBlock Text="Tags" FontWeight="Bold"/>
+
+				<TextBox Grid.Row="1"
+						 Name="TxtFilter"
+						 Watermark="Filter tags..."/>
+
+				<TreeView Grid.Row="2"
+						  Name="TagTree"
+						  SelectionMode="Single">
+					<TreeView.ItemTemplate>
+						<TreeDataTemplate x:DataType="views:TagTreeNode" ItemsSource="{Binding Children}">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<Border Width="12" Height="12"
+										CornerRadius="2"
+										Background="{Binding ColorBrush}"/>
+								<TextBlock Text="{Binding Tag.DisplayName}"/>
+							</StackPanel>
+						</TreeDataTemplate>
+					</TreeView.ItemTemplate>
+				</TreeView>
+
+				<StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="6">
+					<Button Name="BtnNewTag" Content="+ New" Padding="8,4"
+							ToolTip.Tip="Add a new root-level tag"/>
+					<Button Name="BtnNewChild" Content="+ Child" Padding="8,4"
+							ToolTip.Tip="Add a child tag under the selected tag"/>
+					<Button Name="BtnDeleteTag" Content="-" Padding="8,4" MinWidth="32"
+							ToolTip.Tip="Delete selected tag (children are reparented)"/>
+				</StackPanel>
+			</Grid>
+		</Border>
+
+		<GridSplitter Grid.Row="0"
+					  Grid.Column="1"
+					  Width="12"
+					  ResizeDirection="Columns"
+					  Background="Transparent"/>
+
+		<!-- Right panel: properties + code bar assignment -->
+		<Border Grid.Row="0"
+				Grid.Column="2"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="12">
+			<ScrollViewer VerticalScrollBarVisibility="Auto">
+				<StackPanel Spacing="14">
+
+					<TextBlock Text="Tag Properties" FontWeight="Bold" FontSize="14"/>
+
+					<!-- Name -->
+					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+						<TextBlock Text="Name" VerticalAlignment="Center"/>
+						<TextBox Grid.Column="1" Name="TxtName"/>
+					</Grid>
+
+					<!-- Color -->
+					<Grid ColumnDefinitions="100,Auto,*" ColumnSpacing="10">
+						<TextBlock Text="Color" VerticalAlignment="Center"/>
+						<Border Grid.Column="1" Name="SwatchPreview"
+								Width="16" Height="16"
+								CornerRadius="3"
+								Background="#3498DB"/>
+						<TextBox Grid.Column="2" Name="TxtColor"
+								 Watermark="#RRGGBB" MaxLength="7"/>
+					</Grid>
+
+					<!-- Parent -->
+					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+						<TextBlock Text="Parent" VerticalAlignment="Center"/>
+						<ComboBox Grid.Column="1" Name="CmbParent" MinWidth="160"/>
+					</Grid>
+
+					<!-- Description -->
+					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+						<TextBlock Text="Description" VerticalAlignment="Top" Margin="0,4,0,0"/>
+						<TextBox Grid.Column="1" Name="TxtDescription"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 MinHeight="60"/>
+					</Grid>
+
+					<Border Height="1" Background="{DynamicResource BorderBrush}" Margin="0,6"/>
+
+					<TextBlock Text="Code Bar Assignment" FontWeight="Bold" FontSize="14"/>
+
+					<!-- Page + Slot selectors -->
+					<StackPanel Orientation="Horizontal" Spacing="10">
+						<TextBlock Text="Page:" VerticalAlignment="Center"/>
+						<ComboBox Name="CmbPage" MinWidth="60"/>
+						<TextBlock Text="Slot:" VerticalAlignment="Center"/>
+						<ComboBox Name="CmbSlot" MinWidth="60"/>
+						<Button Name="BtnAssignSlot" Content="Assign" Padding="8,4"
+								ToolTip.Tip="Assign the selected tag to the chosen page/slot"/>
+						<Button Name="BtnRemoveSlot" Content="Remove" Padding="8,4"
+								ToolTip.Tip="Remove the tag from the chosen page/slot"/>
+					</StackPanel>
+
+					<!-- Slot preview -->
+					<StackPanel Orientation="Horizontal" Spacing="4" Name="SlotPreview"
+								Margin="0,4,0,0"/>
+
+					<!-- Validation message -->
+					<TextBlock Name="TxtStatus" Text="" Opacity="0.8" FontSize="11"/>
+
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
+
+		<!-- Bottom buttons -->
+		<Border Grid.Row="1"
+				Grid.ColumnSpan="3"
+				Margin="0,12,0,0"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="10">
+			<Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8">
+				<Button Name="BtnDeleteBottom" Content="Delete" Padding="8,4"
+						ToolTip.Tip="Delete selected tag"/>
+
+				<Button Grid.Column="2"
+						Name="BtnClose"
+						Content="Close"
+						MinWidth="100"
+						Padding="8,4"/>
+				<Button Grid.Column="3"
+						Name="BtnSave"
+						Content="Save"
+						MinWidth="100"
+						Padding="8,4"/>
+			</Grid>
+		</Border>
+
+	</Grid>
+</Window>
