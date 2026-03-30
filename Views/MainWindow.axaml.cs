@@ -306,6 +306,8 @@ public partial class MainWindow : Window
         };
         _vm.SetReadableTagVocabulary = vocab => _readableView?.SetTagVocabulary(vocab);
         _vm.SetReadableAppliedTags = tags => _readableView?.SetAppliedTags(tags);
+        _vm.SetReadableCommunityTags = tags => _readableView?.SetCommunityTags(tags);
+        _vm.SetReadableCommunityVocabularies = vocabs => _readableView?.SetCommunityVocabularies(vocabs);
 
         // TranslationTabView bridges
         _vm.SetTranslationModeProjection = (mode, text) => _translationView?.SetModeProjection(mode, text);

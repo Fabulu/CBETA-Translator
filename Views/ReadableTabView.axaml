@@ -164,6 +164,13 @@
 								  Focusable="False"
 								  Margin="6,0,0,0"
 								  ToolTip.Tip="Toggle coding mode for keyboard-driven tagging (F2)"/>
+					<ComboBox Name="CmbTagUser"
+							  DockPanel.Dock="Right"
+							  MinWidth="100" Padding="4,2"
+							  FontSize="11"
+							  Focusable="False"
+							  Margin="6,0,0,0"
+							  ToolTip.Tip="Whose tags to display"/>
 					<StackPanel Name="CodeBarSlots" Orientation="Horizontal" Spacing="4"
 								VerticalAlignment="Center"/>
 				</DockPanel>
