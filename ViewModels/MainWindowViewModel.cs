@@ -44,6 +44,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ITranslationAssistantBuildService _translationAssistantBuilder;
     private readonly ITranslationReviewService _translationReview;
     private readonly ISearchIndexService _searchIndex;
+    private readonly IDocumentTagService _documentTagService;
+
+    // Coding mode state
+    private TagVocabulary? _tagVocabulary;
+    private List<DocumentTag> _appliedTags = new();
 
     // ---- Internal state ----
     private IndexedTranslationDocument? _indexedDoc;
@@ -122,6 +127,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<IReadOnlyList<TermHit>?, string?, int?, string?>? UpdateReadableTermHighlights { get; set; }
     public Action<string>? SetReadableDefaultResp { get; set; }
 
+    // ReadableTabView coding mode bridges
+    public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
+    public Action<List<DocumentTag>?>? SetReadableAppliedTags { get; set; }
+
     // TranslationTabView bridges
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
     public Func<string>? GetTranslationProjectionText { get; set; }
@@ -199,7 +208,8 @@ public partial class MainWindowViewModel : ViewModelBase
         ITranslationAssistantService translationAssistant,
         ITranslationAssistantBuildService translationAssistantBuilder,
         ITranslationReviewService translationReview,
-        ISearchIndexService searchIndex)
+        ISearchIndexService searchIndex,
+        IDocumentTagService documentTagService)
     {
         _fileService = fileService;
         _configService = configService;
@@ -211,6 +221,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _translationAssistantBuilder = translationAssistantBuilder;
         _translationReview = translationReview;
         _searchIndex = searchIndex;
+        _documentTagService = documentTagService;
     }
 
     // ===========================================================
@@ -1054,6 +1065,7 @@ public partial class MainWindowViewModel : ViewModelBase
                       ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
 
             _ = RefreshProgressStatsAsync(); // Don't await — don't freeze UI
+            _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
@@ -1201,6 +1213,75 @@ public partial class MainWindowViewModel : ViewModelBase
         int needsWork = entries.Count(e => e.Status == TranslationReviewStatuses.NeedsWork);
         int total = GetAllBlockNumbers?.Invoke()?.Count ?? 0;
         SetProgressStats?.Invoke(approved, needsWork, total);
+    }
+
+    // ===========================================================
+    // Coding Mode — Tag loading, saving, and event handling
+    // ===========================================================
+
+    private async Task LoadAndPushTagsForCurrentFileAsync()
+    {
+        try
+        {
+            var username = _config.Username;
+            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username))
+            {
+                await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(null));
+                return;
+            }
+
+            // Load vocabulary (once, then cached)
+            if (_tagVocabulary == null)
+            {
+                _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
+                await Dispatcher.UIThread.InvokeAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
+            }
+
+            // Load all user tags and filter to current file
+            _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+            var forFile = _appliedTags
+                .Where(t => string.Equals(t.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(forFile));
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[Tags] Load failed: {ex.Message}");
+        }
+    }
+
+    public async Task OnTagAppliedAsync(DocumentTag tag)
+    {
+        try
+        {
+            var username = _config.Username;
+            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+
+            tag.CreatedBy = username;
+            _appliedTags.Add(tag);
+            await _documentTagService.SaveUserTagsAsync(_root, username, _appliedTags);
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Tag save failed: " + ex.Message);
+        }
+    }
+
+    public async Task SaveTagVocabularyAsync(TagVocabulary vocab)
+    {
+        try
+        {
+            var username = _config.Username;
+            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+
+            _tagVocabulary = vocab;
+            await _documentTagService.SaveVocabularyAsync(_root, username, vocab);
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Vocabulary save failed: " + ex.Message);
+        }
     }
 
     private async Task RefreshReviewBadgeAsync()
