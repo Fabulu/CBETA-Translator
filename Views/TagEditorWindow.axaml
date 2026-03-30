@@ -89,7 +89,8 @@
 					<!-- Parent -->
 					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
 						<TextBlock Text="Parent" VerticalAlignment="Center"/>
-						<ComboBox Grid.Column="1" Name="CmbParent" MinWidth="160"/>
+						<ComboBox Grid.Column="1" Name="CmbParent" MinWidth="160"
+								 ToolTip.Tip="Select parent tag (leave empty for root-level)"/>
 					</Grid>
 
 					<!-- Description -->
@@ -108,9 +109,11 @@
 					<!-- Page + Slot selectors -->
 					<StackPanel Orientation="Horizontal" Spacing="10">
 						<TextBlock Text="Page:" VerticalAlignment="Center"/>
-						<ComboBox Name="CmbPage" MinWidth="60"/>
+						<ComboBox Name="CmbPage" MinWidth="60"
+								 ToolTip.Tip="Code bar page number (1-18)"/>
 						<TextBlock Text="Slot:" VerticalAlignment="Center"/>
-						<ComboBox Name="CmbSlot" MinWidth="60"/>
+						<ComboBox Name="CmbSlot" MinWidth="60"
+								 ToolTip.Tip="Slot position on code bar (1-9)"/>
 						<Button Name="BtnAssignSlot" Content="Assign" Padding="8,4"
 								ToolTip.Tip="Assign the selected tag to the chosen page/slot"/>
 						<Button Name="BtnRemoveSlot" Content="Remove" Padding="8,4"
@@ -145,12 +148,14 @@
 						Name="BtnClose"
 						Content="Close"
 						MinWidth="100"
-						Padding="8,4"/>
+						Padding="8,4"
+						ToolTip.Tip="Close without saving"/>
 				<Button Grid.Column="3"
 						Name="BtnSave"
 						Content="Save"
 						MinWidth="100"
-						Padding="8,4"/>
+						Padding="8,4"
+						ToolTip.Tip="Save all tag vocabulary changes"/>
 			</Grid>
 		</Border>
 

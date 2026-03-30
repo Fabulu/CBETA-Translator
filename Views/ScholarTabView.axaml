@@ -333,25 +333,29 @@
                   <TextBlock Text="Doctrinal Topic" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding DoctrinalTopicOptions}"
                             Text="{Binding DoctrinalTopic}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"/>
+                            IsEnabled="{Binding IsEditorEnabled}"
+                            ToolTip.Tip="Classify the primary doctrinal topic of this passage"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Literary Form" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding LiteraryFormOptions}"
                             Text="{Binding LiteraryForm}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"/>
+                            IsEnabled="{Binding IsEditorEnabled}"
+                            ToolTip.Tip="Classify the literary form of this passage"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Lineage" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding LineageOptions}"
                             Text="{Binding Lineage}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"/>
+                            IsEnabled="{Binding IsEditorEnabled}"
+                            ToolTip.Tip="Specify the Zen lineage associated with this passage"/>
                 </DockPanel>
                 <DockPanel>
                   <TextBlock Text="Rhetorical Function" Width="130" VerticalAlignment="Center"/>
                   <ComboBox IsEditable="True" ItemsSource="{Binding RhetoricalFunctionOptions}"
                             Text="{Binding RhetoricalFunction}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"/>
+                            IsEnabled="{Binding IsEditorEnabled}"
+                            ToolTip.Tip="Describe the rhetorical function of this passage"/>
                 </DockPanel>
               </StackPanel>
             </ScrollViewer>
