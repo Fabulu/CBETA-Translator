@@ -237,7 +237,8 @@ public partial class MainWindow : Window
             sp.GetRequiredService<ITranslationAssistantService>(),
             sp.GetRequiredService<ITranslationAssistantBuildService>(),
             sp.GetRequiredService<ITranslationReviewService>(),
-            sp.GetRequiredService<ISearchIndexService>());
+            sp.GetRequiredService<ISearchIndexService>(),
+            sp.GetRequiredService<IDocumentTagService>());
 
         DataContext = _vm;
 
@@ -303,6 +304,8 @@ public partial class MainWindow : Window
         {
             if (_readableView != null) _readableView.DefaultResp = resp;
         };
+        _vm.SetReadableTagVocabulary = vocab => _readableView?.SetTagVocabulary(vocab);
+        _vm.SetReadableAppliedTags = tags => _readableView?.SetAppliedTags(tags);
 
         // TranslationTabView bridges
         _vm.SetTranslationModeProjection = (mode, text) => _translationView?.SetModeProjection(mode, text);
@@ -603,6 +606,11 @@ public partial class MainWindow : Window
             _readableView.FootnoteMoveRequested += async (_, req) =>
             {
                 await _vm.OnFootnoteMoveRequestedAsync(req);
+            };
+
+            _readableView.TagApplied += async (_, tag) =>
+            {
+                await _vm.OnTagAppliedAsync(tag);
             };
         }
 

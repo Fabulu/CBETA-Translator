@@ -101,6 +101,24 @@ public partial class ReadableTabView : UserControl
     private MarkerColorizer? _markerColorizerOrig;
     private MarkerColorizer? _markerColorizerTran;
 
+    // -------------------------
+    // Coding mode
+    // -------------------------
+    private Border? _codeBarPanel;
+    private StackPanel? _codingToggleRow;
+    private StackPanel? _codeBarSlots;
+    private TextBlock? _txtCodeBarPage;
+    private TextBlock? _txtCodeBarStatus;
+    private ToggleButton? _btnCodingMode;
+    private ToggleButton? _btnCodingModeCompact;
+
+    private bool _codingModeActive;
+    private bool _spaceHeld;
+    private int _codeBarPage = 1;
+    private TagVocabulary? _tagVocabulary;
+    private readonly List<DocumentTag> _appliedTags = new();
+    private TagHighlightTransformer? _tagHighlighter;
+
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
     private bool _suppressZenEvents;
     private long _seq;
@@ -124,6 +142,11 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
+
+    // Coding mode events
+    public event EventHandler<DocumentTag>? TagApplied;
+    public event EventHandler<DocumentTag>? TagRemoved;
+    public event EventHandler? CodingModeToggled;
 
     // -------------------------
     // Status/log
@@ -243,6 +266,14 @@ public partial class ReadableTabView : UserControl
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+
+        _codeBarPanel = this.FindControl<Border>("CodeBarPanel");
+        _codingToggleRow = this.FindControl<StackPanel>("CodingToggleRow");
+        _codeBarSlots = this.FindControl<StackPanel>("CodeBarSlots");
+        _txtCodeBarPage = this.FindControl<TextBlock>("TxtCodeBarPage");
+        _txtCodeBarStatus = this.FindControl<TextBlock>("TxtCodeBarStatus");
+        _btnCodingMode = this.FindControl<ToggleButton>("BtnCodingMode");
+        _btnCodingModeCompact = this.FindControl<ToggleButton>("BtnCodingModeCompact");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -443,6 +474,16 @@ public partial class ReadableTabView : UserControl
         if (_btnCloseNotes != null)
             _btnCloseNotes.Click += (_, _) => CancelMoveModeAndHideNotes();
 
+        // Coding mode toggle buttons
+        if (_btnCodingMode != null)
+            _btnCodingMode.IsCheckedChanged += (_, _) => SetCodingModeActive(_btnCodingMode.IsChecked == true);
+        if (_btnCodingModeCompact != null)
+            _btnCodingModeCompact.IsCheckedChanged += (_, _) => SetCodingModeActive(_btnCodingModeCompact.IsChecked == true);
+
+        // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
+        AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
+        AddHandler(InputElement.KeyUpEvent, OnCodingKeyUp_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
+
         RewireButtons();
     }
 
@@ -479,6 +520,9 @@ public partial class ReadableTabView : UserControl
         _vm.IsEmptyState = true;
 
         try { UninstallMarkerColorizers(); } catch { }
+
+        // Clear tag highlights (stale from previous file)
+        ClearTagHighlights();
 
         if (_aeOrig != null) _aeOrig.Text = "";
         if (_aeTran != null) _aeTran.Text = "";
@@ -2451,6 +2495,624 @@ public partial class ReadableTabView : UserControl
                 ranges.Add((segmentStart + rawStartLocal, rawEndLocal - rawStartLocal));
 
             fromNorm = nIdx + 1;
+        }
+    }
+
+    // =========================
+    // Coding Mode
+    // =========================
+
+    public bool IsCodingModeActive => _codingModeActive;
+
+    public void SetTagVocabulary(TagVocabulary? vocab)
+    {
+        _tagVocabulary = vocab;
+        if (_codingModeActive)
+            RefreshCodeBar();
+    }
+
+    public void SetAppliedTags(List<DocumentTag>? tags)
+    {
+        _appliedTags.Clear();
+        if (tags != null)
+            _appliedTags.AddRange(tags);
+        RefreshTagHighlights();
+        if (_codingModeActive)
+            RefreshCodeBarStatus();
+    }
+
+    public void SetCommunityTags(Dictionary<string, List<DocumentTag>>? communityTags)
+    {
+        // Community tags are informational; currently stored but not rendered differently.
+        // Could be extended later.
+    }
+
+    private void SetCodingModeActive(bool active)
+    {
+        _codingModeActive = active;
+
+        if (_codeBarPanel != null)
+            _codeBarPanel.IsVisible = active;
+        if (_codingToggleRow != null)
+            _codingToggleRow.IsVisible = !active;
+
+        // Sync both toggle buttons
+        if (_btnCodingMode != null && _btnCodingMode.IsChecked != active)
+            _btnCodingMode.IsChecked = active;
+        if (_btnCodingModeCompact != null && _btnCodingModeCompact.IsChecked != active)
+            _btnCodingModeCompact.IsChecked = active;
+
+        if (active)
+        {
+            RefreshCodeBar();
+            RefreshTagHighlights();
+        }
+        else
+        {
+            _spaceHeld = false;
+            ClearTagHighlights();
+        }
+
+        CodingModeToggled?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnCodingKeyDown_Tunnel(object? sender, KeyEventArgs e)
+    {
+        // F2 toggles coding mode regardless
+        if (e.Key == Key.F2)
+        {
+            SetCodingModeActive(!_codingModeActive);
+            e.Handled = true;
+            return;
+        }
+
+        if (!_codingModeActive) return;
+
+        // Track space held state (only in coding mode)
+        if (e.Key == Key.Space)
+            _spaceHeld = true;
+        if (_vm.PendingRefresh) return;
+
+        // Only handle coding keys when a text editor is focused (not buttons/textboxes)
+        bool origFocused = _aeOrig != null && (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin);
+        bool tranFocused = _aeTran != null && (_aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin);
+        if (!origFocused && !tranFocused) return;
+
+        var mods = e.KeyModifiers;
+
+        switch (e.Key)
+        {
+            case Key.W:
+                if (mods == KeyModifiers.None) { CodingSelectCurrentBlock(); e.Handled = true; }
+                break;
+
+            case Key.E:
+                if (mods == KeyModifiers.None) { CodingExpandForward(); e.Handled = true; }
+                else if (mods == KeyModifiers.Shift) { CodingExpandBackward(); e.Handled = true; }
+                break;
+
+            case Key.Q:
+                if (mods == KeyModifiers.None) { CodingShrinkBackward(); e.Handled = true; }
+                else if (mods == KeyModifiers.Shift) { CodingShrinkForward(); e.Handled = true; }
+                break;
+
+            case Key.Tab:
+                if (mods == KeyModifiers.None) { CodingSkipToNextUntagged(); e.Handled = true; }
+                break;
+
+            case Key.D1: case Key.D2: case Key.D3: case Key.D4: case Key.D5:
+            case Key.D6: case Key.D7: case Key.D8: case Key.D9:
+                int slot = e.Key - Key.D1; // 0-8
+                if (mods == KeyModifiers.Shift)
+                {
+                    int requestedPage = slot + 1;
+                    int totalPages = _tagVocabulary?.Pages.Count ?? 0;
+                    if (totalPages > 0 && requestedPage > totalPages)
+                    {
+                        if (_txtCodeBarStatus != null)
+                            _txtCodeBarStatus.Text = $"No page {requestedPage} (max {totalPages})";
+                    }
+                    else
+                    {
+                        _codeBarPage = requestedPage;
+                        RefreshCodeBar();
+                    }
+                    e.Handled = true;
+                }
+                else if (mods == KeyModifiers.None)
+                {
+                    CodingApplyTag(slot);
+                    e.Handled = true;
+                }
+                break;
+        }
+    }
+
+    private void OnCodingKeyUp_Tunnel(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Space && _codingModeActive)
+            _spaceHeld = false;
+    }
+
+    // --- Block selection operations ---
+
+    private int FindSegmentIndex(int offset)
+    {
+        var doc = _vm.RenderOrig;
+        if (doc == null || doc.IsEmpty) return -1;
+        var seg = doc.FindSegmentAtOrBefore(offset);
+        if (seg == null) return -1;
+        return doc.Segments.IndexOf(seg.Value);
+    }
+
+    private void CodingSelectCurrentBlock()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int caret = GetCaretOffsetSafe(editor);
+        var seg = doc.FindSegmentAtOrBefore(caret);
+        if (seg == null) return;
+
+        int len = (editor.Text ?? "").Length;
+        int s = Math.Clamp(seg.Value.Start, 0, len);
+        int e = Math.Clamp(seg.Value.EndExclusive, 0, len);
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, s, e);
+        editor.TextArea.Caret.Offset = s;
+
+        RefreshCodeBarStatus();
+    }
+
+    private void CodingExpandForward()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selEnd = GetSelectionEndSafe(editor);
+        int selStart = GetSelectionStartSafe(editor);
+
+        // Find the segment at or after current selection end
+        int idx = FindSegmentIndex(selEnd);
+        if (idx < 0) return;
+
+        // If selection end is at or past current segment end, go to next
+        var curSeg = doc.Segments[idx];
+        if (selEnd >= curSeg.EndExclusive && idx + 1 < doc.Segments.Count)
+            idx++;
+
+        if (idx >= doc.Segments.Count) return;
+
+        int len = (editor.Text ?? "").Length;
+        int newEnd = Math.Clamp(doc.Segments[idx].EndExclusive, 0, len);
+        int s = Math.Clamp(selStart, 0, len);
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, s, newEnd);
+        editor.TextArea.Caret.Offset = s;
+
+        RefreshCodeBarStatus();
+    }
+
+    private void CodingShrinkBackward()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selEnd = GetSelectionEndSafe(editor);
+        int selStart = GetSelectionStartSafe(editor);
+
+        // Find segment before current selection end
+        int idx = FindSegmentIndex(Math.Max(0, selEnd - 1));
+        if (idx < 0) return;
+
+        // Move end back to current segment's start
+        var seg = doc.Segments[idx];
+        int newEnd = seg.Start;
+        if (newEnd <= selStart) return; // can't shrink below start
+
+        int len = (editor.Text ?? "").Length;
+        int s = Math.Clamp(selStart, 0, len);
+        int e = Math.Clamp(newEnd, 0, len);
+        if (e <= s) return;
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, s, e);
+        editor.TextArea.Caret.Offset = s;
+
+        RefreshCodeBarStatus();
+    }
+
+    private void CodingExpandBackward()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selStart = GetSelectionStartSafe(editor);
+        int selEnd = GetSelectionEndSafe(editor);
+
+        // Find segment at or before selection start
+        int idx = FindSegmentIndex(selStart);
+        if (idx < 0) return;
+
+        // If at segment start, move to previous segment
+        var curSeg = doc.Segments[idx];
+        if (selStart <= curSeg.Start && idx > 0)
+            idx--;
+
+        int len = (editor.Text ?? "").Length;
+        int newStart = Math.Clamp(doc.Segments[idx].Start, 0, len);
+        int e = Math.Clamp(selEnd, 0, len);
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, newStart, e);
+        editor.TextArea.Caret.Offset = newStart;
+
+        RefreshCodeBarStatus();
+    }
+
+    private void CodingShrinkForward()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selStart = GetSelectionStartSafe(editor);
+        int selEnd = GetSelectionEndSafe(editor);
+
+        // Find segment at selection start, move start to next segment
+        int idx = FindSegmentIndex(selStart);
+        if (idx < 0 || idx + 1 >= doc.Segments.Count) return;
+
+        var nextSeg = doc.Segments[idx + 1];
+        int newStart = nextSeg.Start;
+        if (newStart >= selEnd) return; // can't shrink past end
+
+        int len = (editor.Text ?? "").Length;
+        int s = Math.Clamp(newStart, 0, len);
+        int e = Math.Clamp(selEnd, 0, len);
+        if (e <= s) return;
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, s, e);
+        editor.TextArea.Caret.Offset = s;
+
+        RefreshCodeBarStatus();
+    }
+
+    // --- Tag application ---
+
+    private void CodingApplyTag(int slotIndex)
+    {
+        if (_tagVocabulary == null) return;
+
+        var tagDef = GetTagDefinitionForSlot(slotIndex);
+        if (tagDef == null)
+        {
+            if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = $"Slot {slotIndex + 1}: empty";
+            return;
+        }
+
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selStart = GetSelectionStartSafe(editor);
+        int selEnd = GetSelectionEndSafe(editor);
+        if (selEnd <= selStart)
+        {
+            if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "Select a block first (W key)";
+            return;
+        }
+
+        string? fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+        string? toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
+        if (fromLb == null)
+        {
+            if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "No lb segment found";
+            return;
+        }
+
+        var tag = new DocumentTag
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            RelPath = _vm.CurrentRelPathForZen ?? "",
+            FromLb = fromLb,
+            ToLb = toLb ?? fromLb,
+            TagId = tagDef.Id,
+            CreatedUtc = DateTimeOffset.UtcNow
+        };
+
+        _appliedTags.Add(tag);
+        RefreshTagHighlights();
+        RefreshCodeBarStatus();
+
+        TagApplied?.Invoke(this, tag);
+
+        // Auto-advance to next untagged block unless Space is held
+        if (!_spaceHeld)
+        {
+            Dispatcher.UIThread.Post(() => CodingSkipToNextUntagged(), DispatcherPriority.Background);
+        }
+    }
+
+    private TagDefinition? GetTagDefinitionForSlot(int slotIndex)
+    {
+        if (_tagVocabulary == null) return null;
+        if (!_tagVocabulary.Pages.TryGetValue(_codeBarPage, out var pageSlots))
+            return null;
+        if (slotIndex < 0 || slotIndex >= pageSlots.Length) return null;
+
+        var tagId = pageSlots[slotIndex];
+        if (string.IsNullOrEmpty(tagId)) return null;
+
+        return _tagVocabulary.Tags.Find(t => t.Id == tagId);
+    }
+
+    // --- Tab: skip to next untagged ---
+
+    private void CodingSkipToNextUntagged()
+    {
+        var editor = _aeOrig;
+        var doc = _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        int selEnd = GetSelectionEndSafe(editor);
+        var taggedLbs = BuildTaggedLbSet(doc);
+
+        // Scan segments starting after selection end
+        for (int i = 0; i < doc.Segments.Count; i++)
+        {
+            var seg = doc.Segments[i];
+            if (seg.Start < selEnd) continue;
+
+            var nValue = LbHelper.ExtractLbNValue(seg.Key);
+            if (nValue != null && !taggedLbs.Contains(nValue))
+            {
+                // Found an untagged block - select it
+                int len = (editor.Text ?? "").Length;
+                int s = Math.Clamp(seg.Start, 0, len);
+                int e = Math.Clamp(seg.EndExclusive, 0, len);
+                editor.TextArea.Selection = Selection.Create(editor.TextArea, s, e);
+                editor.TextArea.Caret.Offset = s;
+
+                // Scroll to it
+                try
+                {
+                    var line = editor.Document.GetLineByOffset(s);
+                    editor.ScrollToLine(line.LineNumber);
+                }
+                catch { }
+
+                RefreshCodeBarStatus();
+                return;
+            }
+        }
+
+        // Wrap around from beginning
+        for (int i = 0; i < doc.Segments.Count; i++)
+        {
+            var seg = doc.Segments[i];
+            if (seg.Start >= selEnd) break; // we already scanned these
+
+            var nValue = LbHelper.ExtractLbNValue(seg.Key);
+            if (nValue != null && !taggedLbs.Contains(nValue))
+            {
+                int len = (editor.Text ?? "").Length;
+                int s = Math.Clamp(seg.Start, 0, len);
+                int e = Math.Clamp(seg.EndExclusive, 0, len);
+                editor.TextArea.Selection = Selection.Create(editor.TextArea, s, e);
+                editor.TextArea.Caret.Offset = s;
+
+                try
+                {
+                    var line = editor.Document.GetLineByOffset(s);
+                    editor.ScrollToLine(line.LineNumber);
+                }
+                catch { }
+
+                RefreshCodeBarStatus();
+                return;
+            }
+        }
+
+        if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "All blocks tagged!";
+    }
+
+    /// <summary>
+    /// Collects all lb n-values covered by the given tags, including intermediate blocks
+    /// for multi-block tag ranges.
+    /// </summary>
+    private HashSet<string> BuildTaggedLbSet(RenderedDocument? doc)
+    {
+        var tagged = new HashSet<string>(StringComparer.Ordinal);
+        if (doc == null || doc.IsEmpty) return tagged;
+
+        foreach (var t in _appliedTags)
+        {
+            if (string.IsNullOrEmpty(t.FromLb)) continue;
+
+            // Find start and end segment indices for this tag range
+            if (!TryFindSegmentByLb(doc, t.FromLb, out var startSeg)) continue;
+            int startIdx = doc.Segments.IndexOf(startSeg);
+            if (startIdx < 0) continue;
+
+            int endIdx = startIdx;
+            if (!string.IsNullOrEmpty(t.ToLb) && t.ToLb != t.FromLb)
+            {
+                if (TryFindSegmentByLb(doc, t.ToLb, out var endSeg))
+                {
+                    int ei = doc.Segments.IndexOf(endSeg);
+                    if (ei >= 0) endIdx = ei;
+                }
+            }
+
+            // Add all lb n-values from startIdx to endIdx inclusive
+            for (int i = startIdx; i <= endIdx && i < doc.Segments.Count; i++)
+            {
+                var nVal = LbHelper.ExtractLbNValue(doc.Segments[i].Key);
+                if (nVal != null) tagged.Add(nVal);
+            }
+        }
+
+        return tagged;
+    }
+
+    // --- Code bar rendering ---
+
+    private void RefreshCodeBar()
+    {
+        if (_codeBarSlots == null || _txtCodeBarPage == null) return;
+
+        int totalPages = _tagVocabulary?.Pages.Count ?? 0;
+        if (totalPages == 0) totalPages = 1;
+        _txtCodeBarPage.Text = $"Page {_codeBarPage}/{totalPages}";
+
+        _codeBarSlots.Children.Clear();
+
+        for (int slot = 0; slot < 9; slot++)
+        {
+            var tagDef = GetTagDefinitionForSlot(slot);
+            string label = tagDef != null ? $"{slot + 1}: {tagDef.DisplayName}" : $"{slot + 1}: \u2014";
+
+            Color bgColor;
+            if (tagDef != null)
+            {
+                try { bgColor = Color.Parse(tagDef.Color); }
+                catch { bgColor = Color.FromRgb(52, 152, 219); } // default blue
+            }
+            else
+            {
+                bgColor = Color.FromArgb(40, 128, 128, 128); // dim gray for empty
+            }
+
+            var chip = new Border
+            {
+                Background = new SolidColorBrush(Color.FromArgb(180, bgColor.R, bgColor.G, bgColor.B)),
+                CornerRadius = new CornerRadius(4),
+                Padding = new Thickness(6, 2),
+                Child = new TextBlock
+                {
+                    Text = label,
+                    FontSize = 11,
+                    Foreground = Brushes.White,
+                    VerticalAlignment = VerticalAlignment.Center
+                }
+            };
+
+            _codeBarSlots.Children.Add(chip);
+        }
+
+        RefreshCodeBarStatus();
+    }
+
+    private void RefreshCodeBarStatus()
+    {
+        if (_txtCodeBarStatus == null) return;
+
+        var doc = _vm.RenderOrig;
+        if (doc == null || doc.IsEmpty)
+        {
+            _txtCodeBarStatus.Text = "";
+            return;
+        }
+
+        // Count total lb segments and tagged ones
+        int totalBlocks = 0;
+        int taggedBlocks = 0;
+
+        var taggedLbs = BuildTaggedLbSet(doc);
+
+        foreach (var seg in doc.Segments)
+        {
+            var nVal = LbHelper.ExtractLbNValue(seg.Key);
+            if (nVal == null) continue;
+            totalBlocks++;
+            if (taggedLbs.Contains(nVal)) taggedBlocks++;
+        }
+
+        _txtCodeBarStatus.Text = $"{taggedBlocks}/{totalBlocks} tagged";
+    }
+
+    // --- Tag highlight rendering ---
+
+    private void RefreshTagHighlights()
+    {
+        var editor = _aeOrig;
+        if (editor?.TextArea?.TextView == null) return;
+        var doc = _vm.RenderOrig;
+        if (doc == null || doc.IsEmpty) { ClearTagHighlights(); return; }
+
+        if (_tagHighlighter == null)
+        {
+            _tagHighlighter = new TagHighlightTransformer();
+            editor.TextArea.TextView.LineTransformers.Add(_tagHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length, Color TagColor)>();
+        foreach (var tag in _appliedTags)
+        {
+            if (string.IsNullOrEmpty(tag.FromLb)) continue;
+
+            // Find the tag definition color
+            Color color = Color.FromRgb(52, 152, 219); // default blue
+            if (_tagVocabulary != null)
+            {
+                var def = _tagVocabulary.Tags.Find(d => d.Id == tag.TagId);
+                if (def != null)
+                {
+                    try { color = Color.Parse(def.Color); } catch { }
+                }
+            }
+
+            // Find rendered range for this lb range
+            if (!TryFindSegmentByLb(doc, tag.FromLb, out var startSeg)) continue;
+            int rangeStart = startSeg.Start;
+            int rangeEnd = startSeg.EndExclusive;
+
+            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
+            {
+                if (TryFindSegmentByLb(doc, tag.ToLb, out var endSeg))
+                    rangeEnd = endSeg.EndExclusive;
+            }
+
+            if (rangeEnd > rangeStart)
+                ranges.Add((rangeStart, rangeEnd - rangeStart, color));
+        }
+
+        _tagHighlighter.SetRanges(ranges);
+        editor.TextArea.TextView.Redraw();
+    }
+
+    private void ClearTagHighlights()
+    {
+        if (_tagHighlighter == null) return;
+        _tagHighlighter.SetRanges(new List<(int, int, Color)>());
+        try
+        {
+            _aeOrig?.TextArea?.TextView?.LineTransformers.Remove(_tagHighlighter);
+        }
+        catch { }
+        _aeOrig?.TextArea?.TextView?.Redraw();
+        _tagHighlighter = null;
+    }
+
+    private sealed class TagHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length, Color TagColor)> _ranges = new();
+
+        public void SetRanges(IEnumerable<(int Start, int Length, Color TagColor)> ranges)
+        {
+            _ranges = ranges.ToList();
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            foreach (var (start, length, tagColor) in _ranges)
+            {
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+
+                var brush = new SolidColorBrush(Color.FromArgb(77, tagColor.R, tagColor.G, tagColor.B)); // ~30% opacity
+                ChangeLinePart(s, e, el =>
+                    el.TextRunProperties.SetBackgroundBrush(brush));
+            }
         }
     }
 

@@ -130,9 +130,58 @@
 			<Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
 		</Grid>
 
-		<!-- Row 2: notes panel -->
-		<Border Grid.Row="2"
-				Name="NotesPanel"
+		<!-- Row 2: coding mode bar + notes panel -->
+
+		<!-- Coding Mode toggle button - always visible -->
+		<StackPanel Grid.Row="2" Orientation="Vertical" Spacing="0">
+
+			<!-- Code bar - visible only in coding mode -->
+			<Border Name="CodeBarPanel" IsVisible="False"
+					Background="{DynamicResource ControlBg}"
+					BorderBrush="{DynamicResource BorderBrush}"
+					BorderThickness="1"
+					CornerRadius="6"
+					Padding="6,4"
+					Margin="0,4,0,0">
+				<DockPanel LastChildFill="True">
+					<TextBlock Name="TxtCodeBarPage" Text="Page 1"
+							   DockPanel.Dock="Left"
+							   VerticalAlignment="Center"
+							   FontSize="11" FontWeight="SemiBold"
+							   Margin="0,0,10,0"
+							   Opacity="0.7"/>
+					<TextBlock Name="TxtCodeBarStatus" Text=""
+							   DockPanel.Dock="Right"
+							   VerticalAlignment="Center"
+							   FontSize="11"
+							   Opacity="0.6"
+							   Margin="10,0,0,0"/>
+					<ToggleButton Name="BtnCodingMode"
+								  Content="Coding (F2)"
+								  DockPanel.Dock="Right"
+								  Padding="8,2"
+								  FontSize="11"
+								  Focusable="False"
+								  Margin="6,0,0,0"
+								  ToolTip.Tip="Toggle coding mode for keyboard-driven tagging (F2)"/>
+					<StackPanel Name="CodeBarSlots" Orientation="Horizontal" Spacing="4"
+								VerticalAlignment="Center"/>
+				</DockPanel>
+			</Border>
+
+			<!-- Coding Mode toggle when NOT in coding mode (compact) -->
+			<StackPanel Name="CodingToggleRow" Orientation="Horizontal" Margin="0,4,0,0"
+						HorizontalAlignment="Left">
+				<ToggleButton Name="BtnCodingModeCompact"
+							  Content="Coding (F2)"
+							  Padding="8,2"
+							  FontSize="11"
+							  Focusable="False"
+							  ToolTip.Tip="Toggle coding mode for keyboard-driven tagging (F2)"/>
+			</StackPanel>
+
+		<!-- Notes panel -->
+		<Border Name="NotesPanel"
 				IsVisible="False"
 				Background="{DynamicResource ControlBg}"
 				BorderBrush="{DynamicResource BorderBrush}"
@@ -197,6 +246,8 @@
 			</Grid>
 
 		</Border>
+
+		</StackPanel> <!-- end coding mode + notes wrapper -->
 
 	</Grid>
 </UserControl>
