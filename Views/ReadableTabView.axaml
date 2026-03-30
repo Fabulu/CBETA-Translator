@@ -141,7 +141,7 @@
 					BorderBrush="{DynamicResource BorderBrush}"
 					BorderThickness="1"
 					CornerRadius="6"
-					Padding="6,4"
+					Padding="6,5"
 					Margin="0,4,0,0">
 				<DockPanel LastChildFill="True">
 					<TextBlock Name="TxtCodeBarPage" Text="Page 1"
@@ -157,13 +157,13 @@
 							   Opacity="0.6"
 							   Margin="10,0,0,0"/>
 					<Button Name="BtnEditTags"
-								Content="&#x270E;"
+								Content="&#x270E; Edit Tags"
 								DockPanel.Dock="Right"
 								Padding="6,2"
 								FontSize="11"
 								Focusable="False"
 								Margin="6,0,0,0"
-								ToolTip.Tip="Edit tag vocabulary"/>
+								ToolTip.Tip="Open tag vocabulary editor to create, edit, and assign tags to code bar slots"/>
 					<ToggleButton Name="BtnCodingMode"
 								  Content="Coding (F2)"
 								  DockPanel.Dock="Right"
@@ -171,10 +171,10 @@
 								  FontSize="11"
 								  Focusable="False"
 								  Margin="6,0,0,0"
-								  ToolTip.Tip="Toggle coding mode for keyboard-driven tagging (F2)"/>
+								  ToolTip.Tip="Toggle coding mode (F2). Keys: W=select block, 1-9=apply tag, E=expand, Q=shrink, Tab=next untagged, hold Space+number=multi-tag"/>
 					<ComboBox Name="CmbTagUser"
 							  DockPanel.Dock="Right"
-							  MinWidth="100" Padding="4,2"
+							  MinWidth="120" Padding="4,2"
 							  FontSize="11"
 							  Focusable="False"
 							  Margin="6,0,0,0"
@@ -192,7 +192,7 @@
 							  Padding="8,2"
 							  FontSize="11"
 							  Focusable="False"
-							  ToolTip.Tip="Toggle coding mode for keyboard-driven tagging (F2)"/>
+							  ToolTip.Tip="Toggle coding mode (F2). Keys: W=select block, 1-9=apply tag, E=expand, Q=shrink, Tab=next untagged, hold Space+number=multi-tag"/>
 			</StackPanel>
 
 		<!-- Notes panel -->

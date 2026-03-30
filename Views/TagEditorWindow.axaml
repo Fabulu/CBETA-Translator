@@ -30,8 +30,10 @@
 					<TreeView.ItemTemplate>
 						<TreeDataTemplate x:DataType="views:TagTreeNode" ItemsSource="{Binding Children}">
 							<StackPanel Orientation="Horizontal" Spacing="6">
-								<Border Width="12" Height="12"
+								<Border Width="14" Height="14"
 										CornerRadius="2"
+										BorderBrush="{DynamicResource BorderBrush}"
+										BorderThickness="1"
 										Background="{Binding ColorBrush}"/>
 								<TextBlock Text="{Binding Tag.DisplayName}"/>
 							</StackPanel>
@@ -70,31 +72,33 @@
 					<TextBlock Text="Tag Properties" FontWeight="Bold" FontSize="14"/>
 
 					<!-- Name -->
-					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+					<Grid ColumnDefinitions="120,*" ColumnSpacing="10">
 						<TextBlock Text="Name" VerticalAlignment="Center"/>
 						<TextBox Grid.Column="1" Name="TxtName"/>
 					</Grid>
 
 					<!-- Color -->
-					<Grid ColumnDefinitions="100,Auto,*" ColumnSpacing="10">
+					<Grid ColumnDefinitions="120,Auto,*" ColumnSpacing="10">
 						<TextBlock Text="Color" VerticalAlignment="Center"/>
 						<Border Grid.Column="1" Name="SwatchPreview"
-								Width="16" Height="16"
+								Width="22" Height="22"
 								CornerRadius="3"
+								BorderBrush="{DynamicResource BorderBrush}"
+								BorderThickness="1"
 								Background="#3498DB"/>
 						<TextBox Grid.Column="2" Name="TxtColor"
 								 Watermark="#RRGGBB" MaxLength="7"/>
 					</Grid>
 
 					<!-- Parent -->
-					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+					<Grid ColumnDefinitions="120,*" ColumnSpacing="10">
 						<TextBlock Text="Parent" VerticalAlignment="Center"/>
 						<ComboBox Grid.Column="1" Name="CmbParent" MinWidth="160"
 								 ToolTip.Tip="Select parent tag (leave empty for root-level)"/>
 					</Grid>
 
 					<!-- Description -->
-					<Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+					<Grid ColumnDefinitions="120,*" ColumnSpacing="10">
 						<TextBlock Text="Description" VerticalAlignment="Top" Margin="0,4,0,0"/>
 						<TextBox Grid.Column="1" Name="TxtDescription"
 								 AcceptsReturn="True"

@@ -114,6 +114,7 @@ public partial class ReadableTabView : UserControl
 
     private bool _codingModeActive;
     private bool _spaceHeld;
+    private bool _codingHintShown;
     private int _codeBarPage = 1;
     private TagVocabulary? _tagVocabulary;
     private readonly List<DocumentTag> _appliedTags = new();
@@ -2573,6 +2574,7 @@ public partial class ReadableTabView : UserControl
         {
             // Show own tags
             _selectedTagUser = null;
+            if (_codeBarSlots != null) _codeBarSlots.Opacity = 1.0;
             RefreshTagHighlights();
             RefreshCodeBarStatus();
         }
@@ -2651,7 +2653,11 @@ public partial class ReadableTabView : UserControl
         editor.TextArea.TextView.Redraw();
 
         if (_txtCodeBarStatus != null)
-            _txtCodeBarStatus.Text = $"Viewing {username}'s tags ({forFile.Count} on this file)";
+            _txtCodeBarStatus.Text = $"Viewing {username}'s tags ({forFile.Count} on this file) \u2014 read-only";
+
+        // Dim the code bar slots to visually signal read-only state
+        if (_codeBarSlots != null)
+            _codeBarSlots.Opacity = 0.35;
     }
 
     private void SetCodingModeActive(bool active)
@@ -2673,6 +2679,26 @@ public partial class ReadableTabView : UserControl
         {
             RefreshCodeBar();
             RefreshTagHighlights();
+
+            // Guide first-time users when no tags are configured
+            bool hasSlots = _tagVocabulary?.Pages.Values.Any(p => p.Any(s => s != null)) == true;
+            if (_tagVocabulary == null || _tagVocabulary.Tags.Count == 0)
+            {
+                if (_txtCodeBarStatus != null)
+                    _txtCodeBarStatus.Text = "No tags defined. Click \"Edit Tags\" to create your tag vocabulary.";
+            }
+            else if (!hasSlots)
+            {
+                if (_txtCodeBarStatus != null)
+                    _txtCodeBarStatus.Text = "Tags exist but none assigned to code bar. Click \"Edit Tags\" to assign slots.";
+            }
+
+            // Show keyboard hint once per session via main status bar
+            if (!_codingHintShown)
+            {
+                _codingHintShown = true;
+                Status?.Invoke(this, "Coding mode: W=select block, 1-9=apply tag, E/Q=expand/shrink, Tab=next untagged, hold Space+number=multi-tag");
+            }
         }
         else
         {
@@ -2736,7 +2762,12 @@ public partial class ReadableTabView : UserControl
                     int maxPage = _tagVocabulary?.Pages.Count > 0
                         ? _tagVocabulary.Pages.Keys.Max()
                         : 0;
-                    if (maxPage > 0 && requestedPage > maxPage)
+                    if (maxPage <= 0)
+                    {
+                        if (_txtCodeBarStatus != null)
+                            _txtCodeBarStatus.Text = "No pages defined yet";
+                    }
+                    else if (requestedPage > maxPage)
                     {
                         if (_txtCodeBarStatus != null)
                             _txtCodeBarStatus.Text = $"No page {requestedPage} (max {maxPage})";
@@ -2759,8 +2790,13 @@ public partial class ReadableTabView : UserControl
 
     private void OnCodingKeyUp_Tunnel(object? sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Space && _codingModeActive)
+        if (_codingModeActive && _spaceHeld)
+        {
+            // Clear _spaceHeld on any KeyUp. This prevents a stuck state if the
+            // Space KeyUp was missed (e.g. user released Space while another
+            // window had focus, or while a non-editor control was focused).
             _spaceHeld = false;
+        }
     }
 
     // --- Block selection operations ---
@@ -2778,7 +2814,11 @@ public partial class ReadableTabView : UserControl
     {
         var editor = _aeOrig;
         var doc = _vm.RenderOrig;
-        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty)
+        {
+            if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "No document loaded";
+            return;
+        }
 
         int caret = GetCaretOffsetSafe(editor);
         var seg = doc.FindSegmentAtOrBefore(caret);
@@ -2908,8 +2948,18 @@ public partial class ReadableTabView : UserControl
 
     private void CodingApplyTag(int slotIndex)
     {
-        if (_tagVocabulary == null) return;
-        if (_selectedTagUser != null) return; // Can't tag while viewing someone else's tags
+        if (_tagVocabulary == null)
+        {
+            if (_txtCodeBarStatus != null)
+                _txtCodeBarStatus.Text = "No tag vocabulary loaded. Click \"Edit Tags\" to create one.";
+            return;
+        }
+        if (_selectedTagUser != null)
+        {
+            if (_txtCodeBarStatus != null)
+                _txtCodeBarStatus.Text = $"Viewing {_selectedTagUser}'s tags (read-only). Switch to \"My Tags\" to code.";
+            return;
+        }
 
         var tagDef = GetTagDefinitionForSlot(slotIndex);
         if (tagDef == null)
@@ -2952,9 +3002,12 @@ public partial class ReadableTabView : UserControl
         RefreshTagHighlights();
         RefreshCodeBarStatus();
 
+        // Confirm application in the main status bar
+        Status?.Invoke(this, $"Tagged \"{tagDef.DisplayName}\" at {fromLb}");
+
         TagApplied?.Invoke(this, tag);
 
-        // Auto-advance to next untagged block unless Space is held
+        // Auto-advance to next untagged block unless Space is held (hold Space to multi-tag)
         if (!_spaceHeld)
         {
             Dispatcher.UIThread.Post(() => CodingSkipToNextUntagged(), DispatcherPriority.Background);
@@ -3112,16 +3165,21 @@ public partial class ReadableTabView : UserControl
                 bgColor = Color.FromArgb(40, 128, 128, 128); // dim gray for empty
             }
 
+            var chipBg = Color.FromArgb(180, bgColor.R, bgColor.G, bgColor.B);
+            // Use dark text on light backgrounds for readability
+            var chipFg = (0.299 * chipBg.R + 0.587 * chipBg.G + 0.114 * chipBg.B) > 160
+                ? Brushes.Black : Brushes.White;
+
             var chip = new Border
             {
-                Background = new SolidColorBrush(Color.FromArgb(180, bgColor.R, bgColor.G, bgColor.B)),
+                Background = new SolidColorBrush(chipBg),
                 CornerRadius = new CornerRadius(4),
                 Padding = new Thickness(6, 2),
                 Child = new TextBlock
                 {
                     Text = label,
                     FontSize = 11,
-                    Foreground = Brushes.White,
+                    Foreground = chipFg,
                     VerticalAlignment = VerticalAlignment.Center
                 }
             };
@@ -3135,6 +3193,9 @@ public partial class ReadableTabView : UserControl
     private void RefreshCodeBarStatus()
     {
         if (_txtCodeBarStatus == null) return;
+
+        // When viewing another user's tags, don't overwrite their status line
+        if (_selectedTagUser != null) return;
 
         var doc = _vm.RenderOrig;
         if (doc == null || doc.IsEmpty)
@@ -3157,7 +3218,34 @@ public partial class ReadableTabView : UserControl
             if (taggedLbs.Contains(nVal)) taggedBlocks++;
         }
 
-        _txtCodeBarStatus.Text = $"{taggedBlocks}/{totalBlocks} tagged";
+        // Count orphaned tags (applied tags whose definition was deleted)
+        int orphanCount = 0;
+        if (_tagVocabulary != null)
+        {
+            var knownIds = new HashSet<string>(_tagVocabulary.Tags.Select(t => t.Id));
+            orphanCount = _appliedTags.Count(t => !knownIds.Contains(t.TagId));
+        }
+
+        // Build a richer status: show progress + selection info + orphan warning
+        string status = $"{taggedBlocks}/{totalBlocks} tagged";
+
+        if (orphanCount > 0)
+            status += $"  |  {orphanCount} orphaned tag(s)";
+
+        var editor = _aeOrig;
+        if (editor?.TextArea != null)
+        {
+            int selStart = GetSelectionStartSafe(editor);
+            int selEnd = GetSelectionEndSafe(editor);
+            if (selEnd > selStart)
+            {
+                var fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+                if (fromLb != null)
+                    status += $"  |  Selected: {fromLb}";
+            }
+        }
+
+        _txtCodeBarStatus.Text = status;
     }
 
     // --- Tag highlight rendering ---
@@ -3232,22 +3320,25 @@ public partial class ReadableTabView : UserControl
 
     private sealed class TagHighlightTransformer : DocumentColorizingTransformer
     {
-        private List<(int Start, int Length, Color TagColor)> _ranges = new();
+        private List<(int Start, int Length, IBrush Brush)> _ranges = new();
 
         public void SetRanges(IEnumerable<(int Start, int Length, Color TagColor)> ranges)
         {
-            _ranges = ranges.ToList();
+            // Pre-compute brushes once when ranges change, not on every ColorizeLine call.
+            _ranges = ranges
+                .Select(r => (r.Start, r.Length,
+                    (IBrush)new SolidColorBrush(Color.FromArgb(77, r.TagColor.R, r.TagColor.G, r.TagColor.B))))
+                .ToList();
         }
 
         protected override void ColorizeLine(DocumentLine line)
         {
-            foreach (var (start, length, tagColor) in _ranges)
+            foreach (var (start, length, brush) in _ranges)
             {
                 int s = Math.Max(start, line.Offset);
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
 
-                var brush = new SolidColorBrush(Color.FromArgb(77, tagColor.R, tagColor.G, tagColor.B)); // ~30% opacity
                 ChangeLinePart(s, e, el =>
                     el.TextRunProperties.SetBackgroundBrush(brush));
             }
