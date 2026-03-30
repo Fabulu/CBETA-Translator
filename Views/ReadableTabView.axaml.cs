@@ -151,6 +151,7 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<DocumentTag>? TagApplied;
     public event EventHandler<DocumentTag>? TagRemoved;
     public event EventHandler? CodingModeToggled;
+    public event EventHandler? TagEditorRequested;
 
     // -------------------------
     // Status/log
@@ -486,6 +487,10 @@ public partial class ReadableTabView : UserControl
             _btnCodingModeCompact.IsCheckedChanged += (_, _) => SetCodingModeActive(_btnCodingModeCompact.IsChecked == true);
         if (_cmbTagUser != null)
             _cmbTagUser.SelectionChanged += OnTagUserSelectionChanged;
+
+        var btnEditTags = this.FindControl<Button>("BtnEditTags");
+        if (btnEditTags != null)
+            btnEditTags.Click += (_, _) => TagEditorRequested?.Invoke(this, EventArgs.Empty);
 
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -2728,11 +2733,13 @@ public partial class ReadableTabView : UserControl
                 if (mods == KeyModifiers.Shift)
                 {
                     int requestedPage = slot + 1;
-                    int totalPages = _tagVocabulary?.Pages.Count ?? 0;
-                    if (totalPages > 0 && requestedPage > totalPages)
+                    int maxPage = _tagVocabulary?.Pages.Count > 0
+                        ? _tagVocabulary.Pages.Keys.Max()
+                        : 0;
+                    if (maxPage > 0 && requestedPage > maxPage)
                     {
                         if (_txtCodeBarStatus != null)
-                            _txtCodeBarStatus.Text = $"No page {requestedPage} (max {totalPages})";
+                            _txtCodeBarStatus.Text = $"No page {requestedPage} (max {maxPage})";
                     }
                     else
                     {
@@ -3082,9 +3089,10 @@ public partial class ReadableTabView : UserControl
     {
         if (_codeBarSlots == null || _txtCodeBarPage == null) return;
 
-        int totalPages = _tagVocabulary?.Pages.Count ?? 0;
-        if (totalPages == 0) totalPages = 1;
-        _txtCodeBarPage.Text = $"Page {_codeBarPage}/{totalPages}";
+        int maxPage = _tagVocabulary?.Pages.Count > 0
+            ? _tagVocabulary.Pages.Keys.Max()
+            : 1;
+        _txtCodeBarPage.Text = $"Page {_codeBarPage}/{maxPage}";
 
         _codeBarSlots.Children.Clear();
 
