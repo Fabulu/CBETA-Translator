@@ -49,6 +49,7 @@ public partial class MainWindowViewModel : ViewModelBase
     // Coding mode state
     private TagVocabulary? _tagVocabulary;
     private List<DocumentTag> _appliedTags = new();
+    private readonly SemaphoreSlim _tagSaveLock = new(1, 1);
 
     // ---- Internal state ----
     private IndexedTranslationDocument? _indexedDoc;
@@ -1240,11 +1241,21 @@ public partial class MainWindowViewModel : ViewModelBase
                 await Dispatcher.UIThread.InvokeAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
             }
 
-            // Load all user tags and filter to current file
-            _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
-            var forFile = _appliedTags
-                .Where(t => string.Equals(t.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+            // Load all user tags and filter to current file.
+            // Lock to prevent racing with OnTagAppliedAsync which also mutates _appliedTags.
+            List<DocumentTag> forFile;
+            await _tagSaveLock.WaitAsync();
+            try
+            {
+                _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+                forFile = _appliedTags
+                    .Where(t => string.Equals(t.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+            finally
+            {
+                _tagSaveLock.Release();
+            }
 
             await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(forFile));
 
@@ -1277,16 +1288,24 @@ public partial class MainWindowViewModel : ViewModelBase
             var username = _config.Username;
             if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
 
-            // Safety: if _appliedTags was never loaded from disk (race with LoadAndPushTagsForCurrentFileAsync),
-            // load them first to avoid overwriting existing tags with only the new one.
-            if (_appliedTags.Count == 0)
+            await _tagSaveLock.WaitAsync();
+            try
             {
-                _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
-            }
+                // Safety: if _appliedTags was never loaded from disk (race with LoadAndPushTagsForCurrentFileAsync),
+                // load them first to avoid overwriting existing tags with only the new one.
+                if (_appliedTags.Count == 0)
+                {
+                    _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+                }
 
-            tag.CreatedBy = username;
-            _appliedTags.Add(tag);
-            await _documentTagService.SaveUserTagsAsync(_root, username, _appliedTags);
+                tag.CreatedBy = username;
+                _appliedTags.Add(tag);
+                await _documentTagService.SaveUserTagsAsync(_root, username, _appliedTags);
+            }
+            finally
+            {
+                _tagSaveLock.Release();
+            }
         }
         catch (Exception ex)
         {

@@ -182,7 +182,7 @@ public partial class TagEditorWindow : Window
         var lookup = new Dictionary<string, TagTreeNode>();
         foreach (var tag in _vocabulary.Tags.OrderBy(t => t.SortOrder))
         {
-            lookup[tag.Id] = new TagTreeNode { Tag = tag };
+            lookup[tag.Id] = new TagTreeNode { Tag = tag, IsExpanded = true };
         }
 
         var roots = new ObservableCollection<TagTreeNode>();
@@ -573,21 +573,26 @@ public partial class TagEditorWindow : Window
             if (tagId != null)
                 tagLookup.TryGetValue(tagId, out tag);
 
+            var bgColor = tag != null ? ParseColorSafe(tag.Color) : Color.Parse("#333333");
+            // Use dark text on light backgrounds for readability
+            var fgColor = (0.299 * bgColor.R + 0.587 * bgColor.G + 0.114 * bgColor.B) > 160
+                ? Colors.Black : Colors.White;
+
             var chip = new Border
             {
                 Width = 28,
                 Height = 20,
                 CornerRadius = new CornerRadius(3),
-                Background = tag != null
-                    ? new SolidColorBrush(ParseColorSafe(tag.Color))
-                    : new SolidColorBrush(Color.Parse("#333333")),
+                BorderThickness = new Thickness(1),
+                BorderBrush = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0)),
+                Background = new SolidColorBrush(bgColor),
                 Child = new TextBlock
                 {
                     Text = (i + 1).ToString(),
                     FontSize = 10,
                     HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                     VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                    Foreground = new SolidColorBrush(Colors.White)
+                    Foreground = new SolidColorBrush(fgColor)
                 }
             };
 
