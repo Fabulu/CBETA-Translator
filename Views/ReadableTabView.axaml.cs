@@ -2125,10 +2125,18 @@ public partial class ReadableTabView : UserControl
             int lineStart = line.Offset;
             int lineEnd = line.EndOffset;
 
-            for (int i = 0; i < markers.Count; i++)
+            // Binary search for first marker that could overlap this line
+            int lo = 0, hi = markers.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (markers[mid].EndExclusive <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+
+            for (int i = lo; i < markers.Count; i++)
             {
                 var m = markers[i];
-                if (m.EndExclusive <= lineStart) continue;
                 if (m.Start >= lineEnd) break;
 
                 var fg = m.Kind switch
@@ -3336,47 +3344,76 @@ public partial class ReadableTabView : UserControl
 
         public void SetRanges(IEnumerable<(int Start, int Length, Color TagColor)> ranges)
         {
-            // Pre-compute brushes once when ranges change, not on every ColorizeLine call.
             _ranges = ranges
                 .Select(r => (r.Start, r.Length,
                     (IBrush)new SolidColorBrush(Color.FromArgb(77, r.TagColor.R, r.TagColor.G, r.TagColor.B))))
+                .OrderBy(r => r.Start)
                 .ToList();
         }
 
         protected override void ColorizeLine(DocumentLine line)
         {
-            foreach (var (start, length, brush) in _ranges)
+            int lo = LowerBound(_ranges, line.Offset);
+            for (int i = lo; i < _ranges.Count; i++)
             {
+                var (start, length, brush) = _ranges[i];
+                if (start >= line.Offset + line.Length) break;
                 int s = Math.Max(start, line.Offset);
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
-
                 ChangeLinePart(s, e, el =>
                     el.TextRunProperties.SetBackgroundBrush(brush));
             }
+        }
+
+        private static int LowerBound(List<(int Start, int Length, IBrush Brush)> ranges, int lineStart)
+        {
+            int lo = 0, hi = ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (ranges[mid].Start + ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
         }
     }
 
     private sealed class TermbaseHighlightTransformer : DocumentColorizingTransformer
     {
         private List<(int Start, int Length)> _ranges = new();
+        private static readonly SolidColorBrush s_termBrush = new(Color.FromArgb(90, 255, 185, 0));
 
         public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
         {
-            _ranges = ranges.ToList();
+            _ranges = ranges.OrderBy(r => r.Start).ToList();
         }
 
         protected override void ColorizeLine(DocumentLine line)
         {
-            foreach (var (start, length) in _ranges)
+            int lo = LowerBound(_ranges, line.Offset);
+            for (int i = lo; i < _ranges.Count; i++)
             {
+                var (start, length) = _ranges[i];
+                if (start >= line.Offset + line.Length) break;
                 int s = Math.Max(start, line.Offset);
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
                 ChangeLinePart(s, e, el =>
-                    el.TextRunProperties.SetBackgroundBrush(
-                        new SolidColorBrush(Color.FromArgb(90, 255, 185, 0))));
+                    el.TextRunProperties.SetBackgroundBrush(s_termBrush));
             }
+        }
+
+        private static int LowerBound(List<(int Start, int Length)> ranges, int lineStart)
+        {
+            int lo = 0, hi = ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (ranges[mid].Start + ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
         }
     }
 }

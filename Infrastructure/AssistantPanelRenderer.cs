@@ -713,6 +713,7 @@ internal static class AssistantPanelRenderer
     internal sealed class SharedChineseColorizer : DocumentColorizingTransformer
     {
         private readonly IReadOnlyList<AssistantTextRange> _ranges;
+        private Typeface? _cachedSemiBold;
 
         public SharedChineseColorizer(IReadOnlyList<AssistantTextRange> ranges)
         {
@@ -737,14 +738,14 @@ internal static class AssistantPanelRenderer
 
             var fg = Brush("NoteMarkerCommunityFg", Avalonia.Media.Brushes.DodgerBlue);
 
-            for (int i = 0; i < _ranges.Count; i++)
+            // Binary search for first range that could overlap this line
+            int lo = LowerBound(_ranges, lineStart);
+
+            for (int i = lo; i < _ranges.Count; i++)
             {
                 var r = _ranges[i];
                 int rStart = r.Start;
                 int rEnd = r.Start + r.Length;
-
-                if (rEnd <= lineStart)
-                    continue;
 
                 if (rStart >= lineEnd)
                     break;
@@ -758,14 +759,26 @@ internal static class AssistantPanelRenderer
                 ChangeLinePart(s, e, el =>
                 {
                     el.TextRunProperties.SetForegroundBrush(fg);
-                    el.TextRunProperties.SetTypeface(
-                        new Typeface(
-                            el.TextRunProperties.Typeface.FontFamily,
-                            el.TextRunProperties.Typeface.Style,
-                            FontWeight.SemiBold,
-                            el.TextRunProperties.Typeface.Stretch));
+                    _cachedSemiBold ??= new Typeface(
+                        el.TextRunProperties.Typeface.FontFamily,
+                        el.TextRunProperties.Typeface.Style,
+                        FontWeight.SemiBold,
+                        el.TextRunProperties.Typeface.Stretch);
+                    el.TextRunProperties.SetTypeface(_cachedSemiBold.Value);
                 });
             }
+        }
+
+        private static int LowerBound(IReadOnlyList<AssistantTextRange> ranges, int lineStart)
+        {
+            int lo = 0, hi = ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (ranges[mid].Start + ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
         }
     }
 }
