@@ -1187,7 +1187,7 @@ public partial class MainWindowViewModel : ViewModelBase
             // Service calls used ConfigureAwait(false), so we may be on a
             // thread-pool thread here.  Marshal back to the UI thread for
             // all control-touching work.
-            await Dispatcher.UIThread.InvokeAsync(async () =>
+            await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 SetAssistantSnapshot?.Invoke(snapshot);
                 MaybeAutoFillFromExactMatch(snapshot);
@@ -1206,9 +1206,9 @@ public partial class MainWindowViewModel : ViewModelBase
                     _currentSegmentContext?.ZhText,
                     readableOccurrenceHint,
                     readableAnchorSignal);
-
-                await RefreshReviewBadgeAsync();
             });
+
+            await RefreshReviewBadgeAsync();
         }
         catch
         {
