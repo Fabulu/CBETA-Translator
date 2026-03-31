@@ -671,8 +671,11 @@ public partial class MainWindowViewModel : ViewModelBase
                     it.Status = newStatus;
                     changed = true;
                 }
-                it.TranslatedMtimeTicks = currentMtime;
-                changed = true;
+                if (it.TranslatedMtimeTicks != currentMtime)
+                {
+                    it.TranslatedMtimeTicks = currentMtime;
+                    changed = true;
+                }
 
                 done++;
                 if (done % 50 == 0)
