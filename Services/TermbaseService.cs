@@ -43,7 +43,7 @@ public sealed class TermbaseService : ITermbaseService
         string rawJson;
         try
         {
-            rawJson = await File.ReadAllTextAsync(path, ct);
+            rawJson = await File.ReadAllTextAsync(path, ct).ConfigureAwait(false);
         }
         catch
         {

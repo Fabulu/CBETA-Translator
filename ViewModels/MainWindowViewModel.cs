@@ -1180,29 +1180,35 @@ public partial class MainWindowViewModel : ViewModelBase
                 _root,
                 _originalDir,
                 _translatedDir,
-                ct);
+                ct).ConfigureAwait(false);
 
             if (ct.IsCancellationRequested) return;
 
-            SetAssistantSnapshot?.Invoke(snapshot);
-            MaybeAutoFillFromExactMatch(snapshot);
-            UpdateTranslationTermHighlights?.Invoke(snapshot?.Terms, _currentSegmentContext?.ZhText);
-            UpdateTranslationTmSharedHighlights?.Invoke(snapshot?.ApprovedMatches, snapshot?.ReferenceMatches, _currentSegmentContext?.ZhText);
+            // Service calls used ConfigureAwait(false), so we may be on a
+            // thread-pool thread here.  Marshal back to the UI thread for
+            // all control-touching work.
+            await Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                SetAssistantSnapshot?.Invoke(snapshot);
+                MaybeAutoFillFromExactMatch(snapshot);
+                UpdateTranslationTermHighlights?.Invoke(snapshot?.Terms, _currentSegmentContext?.ZhText);
+                UpdateTranslationTmSharedHighlights?.Invoke(snapshot?.ApprovedMatches, snapshot?.ReferenceMatches, _currentSegmentContext?.ZhText);
 
-            int? readableOccurrenceHint =
-                _currentSegmentContext != null && _currentSegmentContext.BlockNumber > 0
-                    ? _currentSegmentContext.BlockNumber - 1
-                    : null;
-            string? readableAnchorSignal = string.IsNullOrWhiteSpace(_currentSegmentContext?.ZhContextText)
-                ? null
-                : _currentSegmentContext.ZhContextText;
-            UpdateReadableTermHighlights?.Invoke(
-                snapshot?.Terms,
-                _currentSegmentContext?.ZhText,
-                readableOccurrenceHint,
-                readableAnchorSignal);
+                int? readableOccurrenceHint =
+                    _currentSegmentContext != null && _currentSegmentContext.BlockNumber > 0
+                        ? _currentSegmentContext.BlockNumber - 1
+                        : null;
+                string? readableAnchorSignal = string.IsNullOrWhiteSpace(_currentSegmentContext?.ZhContextText)
+                    ? null
+                    : _currentSegmentContext.ZhContextText;
+                UpdateReadableTermHighlights?.Invoke(
+                    snapshot?.Terms,
+                    _currentSegmentContext?.ZhText,
+                    readableOccurrenceHint,
+                    readableAnchorSignal);
 
-            await RefreshReviewBadgeAsync();
+                await RefreshReviewBadgeAsync();
+            });
         }
         catch
         {
