@@ -82,7 +82,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         if (!File.Exists(path))
             return result;
 
-        var rows = await LoadRowsCachedAsync(path, trust, ct);
+        var rows = await LoadRowsCachedAsync(path, trust, ct).ConfigureAwait(false);
 
         if (rows.Count == 0)
             return result;
@@ -101,7 +101,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         int minLen = 2;
         double minScore = trust == TranslationResourceTrust.Approved ? 18 : 30;
 
-        result = rows
+        result = await Task.Run(() => rows
             .Where(r => !string.IsNullOrWhiteSpace(r.SourceText))
             .Where(r => CjkMatchNormalizer.Normalize(r.SourceText).Length >= minLen)
             .Where(r => !IsExactCurrentSegment(r, trust, currentRel, currentBlock, zhExact))
@@ -139,7 +139,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
             .ThenBy(x => x.RelPath, StringComparer.OrdinalIgnoreCase)
             .ThenBy(x => x.BlockNumber)
             .Take(8)
-            .ToList();
+            .ToList(), ct).ConfigureAwait(false);
 
         return result;
     }
@@ -182,7 +182,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
             {
                 ct.ThrowIfCancellationRequested();
 
-                var line = await sr.ReadLineAsync();
+                var line = await sr.ReadLineAsync().ConfigureAwait(false);
                 if (string.IsNullOrWhiteSpace(line))
                     continue;
 

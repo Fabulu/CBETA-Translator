@@ -17,9 +17,13 @@ public sealed class TranslationAssistantService : ITranslationAssistantService
         string? translatedDir,
         CancellationToken ct = default)
     {
-        var approved = await _tm.FindApprovedMatchesAsync(ctx, root, translatedDir, ct);
-        var reference = await _tm.FindReferenceMatchesAsync(ctx, root, translatedDir, ct);
-        var terms = await _terms.FindTermsAsync(ctx, root, ct);
+        var approvedTask = _tm.FindApprovedMatchesAsync(ctx, root, translatedDir, ct);
+        var referenceTask = _tm.FindReferenceMatchesAsync(ctx, root, translatedDir, ct);
+        var termsTask = _terms.FindTermsAsync(ctx, root, ct);
+        await Task.WhenAll(approvedTask, referenceTask, termsTask).ConfigureAwait(false);
+        var approved = approvedTask.Result;
+        var reference = referenceTask.Result;
+        var terms = termsTask.Result;
         var qa = _qa.Check(ctx, terms);
 
         return new TranslationAssistantSnapshot
