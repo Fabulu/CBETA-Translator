@@ -22,7 +22,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISearchIndexBuilder>(sp => new SearchIndexBuilder(sp.GetRequiredService<ISearchIndexService>()));
         services.AddSingleton<ISearchEngine>(sp => new SearchEngine(sp.GetRequiredService<ISearchIndexService>()));
         services.AddSingleton<ICooccurrenceService, CooccurrenceService>();
-        services.AddSingleton<IBloomSearchIndexService, BloomSearchIndexService>();
         services.AddSingleton<IZenTextsService, ZenTextsService>();
         services.AddSingleton<ITranslationAssistantService, TranslationAssistantService>();
         services.AddSingleton<ITranslationAssistantBuildService, TranslationAssistantBuildService>();

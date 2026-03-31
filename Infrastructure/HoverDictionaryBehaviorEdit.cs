@@ -49,6 +49,12 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     private readonly Border _popupBorder;
     private bool _isTooltipVisible;
 
+    // Pooled tooltip UI elements — reuse instead of creating new ones per hover
+    private readonly StackPanel _pooledPanel;
+    private readonly Border _pooledContainer;
+    private readonly List<TextBlock> _textBlockPool = new(15);
+    private const int PoolSize = 15;
+
     // Root-level guard to prevent sticky tooltip when leaving the editor (e.g., navbar)
     private IInputElement? _root;
     private bool _rootHooked;
@@ -76,6 +82,21 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
             Padding = new Thickness(0),
         };
         _overlayHost.Children.Add(_popupBorder);
+
+        // Pre-allocate pooled tooltip UI
+        _pooledPanel = new StackPanel { Spacing = 2 };
+        _pooledContainer = new Border
+        {
+            Background = Brushes.Transparent,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(10),
+            MaxWidth = 520,
+            IsHitTestVisible = false,
+            Child = _pooledPanel,
+        };
+        for (int i = 0; i < PoolSize; i++)
+            _textBlockPool.Add(new TextBlock { TextWrapping = TextWrapping.Wrap });
 
         _debounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(DebounceMs) };
         _debounce.Tick += Debounce_Tick;
@@ -562,7 +583,7 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
     {
         _popupBorder.IsVisible = false;
         _isTooltipVisible = false;
-        _popupBorder.Child = null;
+        // Don't null out Child — pooled container is reused across hovers
     }
 
     private void PositionPopup()
@@ -692,23 +713,37 @@ public sealed class HoverDictionaryBehaviorEdit : IDisposable
 
     private Control BuildTooltipContainer(IEnumerable<TextBlock> lines)
     {
-        var panel = new StackPanel { Spacing = 2 };
-        foreach (var l in lines) panel.Children.Add(l);
+        // Reuse pooled panel and textblock instances to avoid allocations on every hover
+        _pooledPanel.Children.Clear();
 
         var bg = ResBrush("DictTipBg", ThemeFallbackBg());
         var br = ResBrush("DictTipBorder", ThemeFallbackBorder());
 
-        return new Border
+        int idx = 0;
+        foreach (var source in lines)
         {
-            Background = bg,
-            BorderBrush = br,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(8),
-            Padding = new Thickness(10),
-            Child = panel,
-            MaxWidth = 520,
-            IsHitTestVisible = false
-        };
+            TextBlock tb;
+            if (idx < _textBlockPool.Count)
+            {
+                tb = _textBlockPool[idx];
+                tb.Text = source.Text;
+                tb.Foreground = source.Foreground;
+                tb.FontWeight = source.FontWeight;
+                tb.FontSize = source.FontSize;
+                tb.IsVisible = true;
+            }
+            else
+            {
+                // Overflow beyond pool — use the source directly (rare)
+                tb = source;
+            }
+            _pooledPanel.Children.Add(tb);
+            idx++;
+        }
+
+        _pooledContainer.Background = bg;
+        _pooledContainer.BorderBrush = br;
+        return _pooledContainer;
     }
 
     private static TextBlock MakeLine(string text, IBrush fg, bool isBold, double fontSize = 14)
