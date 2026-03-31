@@ -2816,9 +2816,19 @@ public partial class ReadableTabView : UserControl
 
     // --- Block selection operations ---
 
-    private int FindSegmentIndex(int offset)
+    private (TextEditor? editor, RenderedDocument? doc) GetActiveCodingEditorAndDoc()
     {
-        var doc = _vm.RenderOrig;
+        bool origFocused = _aeOrig != null && (_aeOrig.IsFocused || _aeOrig.IsKeyboardFocusWithin);
+        bool tranFocused = _aeTran != null && (_aeTran.IsFocused || _aeTran.IsKeyboardFocusWithin);
+
+        if (tranFocused && !origFocused)
+            return (_aeTran, _vm.RenderTran);
+
+        return (_aeOrig, _vm.RenderOrig);
+    }
+
+    private int FindSegmentIndex(int offset, RenderedDocument? doc)
+    {
         if (doc == null || doc.IsEmpty) return -1;
         var seg = doc.FindSegmentAtOrBefore(offset);
         if (seg == null) return -1;
@@ -2827,8 +2837,7 @@ public partial class ReadableTabView : UserControl
 
     private void CodingSelectCurrentBlock()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty)
         {
             if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "No document loaded";
@@ -2850,15 +2859,14 @@ public partial class ReadableTabView : UserControl
 
     private void CodingExpandForward()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selEnd = GetSelectionEndSafe(editor);
         int selStart = GetSelectionStartSafe(editor);
 
         // Find the segment at or after current selection end
-        int idx = FindSegmentIndex(selEnd);
+        int idx = FindSegmentIndex(selEnd, doc);
         if (idx < 0) return;
 
         // If selection end is at or past current segment end, go to next
@@ -2879,15 +2887,14 @@ public partial class ReadableTabView : UserControl
 
     private void CodingShrinkBackward()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selEnd = GetSelectionEndSafe(editor);
         int selStart = GetSelectionStartSafe(editor);
 
         // Find segment before current selection end
-        int idx = FindSegmentIndex(Math.Max(0, selEnd - 1));
+        int idx = FindSegmentIndex(Math.Max(0, selEnd - 1), doc);
         if (idx < 0) return;
 
         // Move end back to current segment's start
@@ -2907,15 +2914,14 @@ public partial class ReadableTabView : UserControl
 
     private void CodingExpandBackward()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selStart = GetSelectionStartSafe(editor);
         int selEnd = GetSelectionEndSafe(editor);
 
         // Find segment at or before selection start
-        int idx = FindSegmentIndex(selStart);
+        int idx = FindSegmentIndex(selStart, doc);
         if (idx < 0) return;
 
         // If at segment start, move to previous segment
@@ -2934,15 +2940,14 @@ public partial class ReadableTabView : UserControl
 
     private void CodingShrinkForward()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selStart = GetSelectionStartSafe(editor);
         int selEnd = GetSelectionEndSafe(editor);
 
         // Find segment at selection start, move start to next segment
-        int idx = FindSegmentIndex(selStart);
+        int idx = FindSegmentIndex(selStart, doc);
         if (idx < 0 || idx + 1 >= doc.Segments.Count) return;
 
         var nextSeg = doc.Segments[idx + 1];
@@ -2983,8 +2988,7 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selStart = GetSelectionStartSafe(editor);
@@ -3002,6 +3006,9 @@ public partial class ReadableTabView : UserControl
             if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "No lb segment found";
             return;
         }
+
+        // Snap outward to encompass partially overlapping existing tags
+        (fromLb, toLb) = SnapToExistingTagBoundaries(doc, fromLb, toLb ?? fromLb);
 
         var tag = new DocumentTag
         {
@@ -3042,12 +3049,69 @@ public partial class ReadableTabView : UserControl
         return _tagVocabulary.Tags.Find(t => t.Id == tagId);
     }
 
+    /// <summary>
+    /// Snap selection outward to encompass any existing tags that partially overlap.
+    /// Prevents creating tags that straddle existing tag boundaries.
+    /// </summary>
+    private (string fromLb, string toLb) SnapToExistingTagBoundaries(
+        RenderedDocument doc, string fromLb, string toLb)
+    {
+        if (_appliedTags.Count == 0) return (fromLb, toLb);
+
+        // Build segment-index lookup for the selection
+        if (!TryFindSegmentByLb(doc, fromLb, out var selStartSeg)) return (fromLb, toLb);
+        if (!TryFindSegmentByLb(doc, toLb, out var selEndSeg)) return (fromLb, toLb);
+
+        int selStartIdx = doc.Segments.IndexOf(selStartSeg);
+        int selEndIdx = doc.Segments.IndexOf(selEndSeg);
+        if (selStartIdx < 0 || selEndIdx < 0) return (fromLb, toLb);
+
+        bool changed = true;
+        while (changed)
+        {
+            changed = false;
+            foreach (var tag in _appliedTags)
+            {
+                if (string.IsNullOrEmpty(tag.FromLb)) continue;
+                if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStartSeg)) continue;
+                int tagStartIdx = doc.Segments.IndexOf(tagStartSeg);
+                if (tagStartIdx < 0) continue;
+
+                string tagToLb = !string.IsNullOrEmpty(tag.ToLb) ? tag.ToLb : tag.FromLb;
+                int tagEndIdx = tagStartIdx;
+                if (TryFindSegmentByLb(doc, tagToLb, out var tagEndSeg))
+                {
+                    int ei = doc.Segments.IndexOf(tagEndSeg);
+                    if (ei >= 0) tagEndIdx = ei;
+                }
+
+                // Check overlap: does the tag range intersect the selection range?
+                if (tagStartIdx <= selEndIdx && tagEndIdx >= selStartIdx)
+                {
+                    if (tagStartIdx < selStartIdx)
+                    {
+                        selStartIdx = tagStartIdx;
+                        fromLb = LbHelper.ExtractLbNValue(doc.Segments[selStartIdx].Key) ?? fromLb;
+                        changed = true;
+                    }
+                    if (tagEndIdx > selEndIdx)
+                    {
+                        selEndIdx = tagEndIdx;
+                        toLb = LbHelper.ExtractLbNValue(doc.Segments[selEndIdx].Key) ?? toLb;
+                        changed = true;
+                    }
+                }
+            }
+        }
+
+        return (fromLb, toLb);
+    }
+
     // --- Tab: skip to next untagged ---
 
     private void CodingSkipToNextUntagged()
     {
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
         if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
 
         int selEnd = GetSelectionEndSafe(editor);
@@ -3252,14 +3316,14 @@ public partial class ReadableTabView : UserControl
         if (orphanCount > 0)
             status += $"  |  {orphanCount} orphaned tag(s)";
 
-        var editor = _aeOrig;
-        if (editor?.TextArea != null)
+        var (activeEditor, activeDoc) = GetActiveCodingEditorAndDoc();
+        if (activeEditor?.TextArea != null && activeDoc != null)
         {
-            int selStart = GetSelectionStartSafe(editor);
-            int selEnd = GetSelectionEndSafe(editor);
+            int selStart = GetSelectionStartSafe(activeEditor);
+            int selEnd = GetSelectionEndSafe(activeEditor);
             if (selEnd > selStart)
             {
-                var fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+                var fromLb = LbHelper.FindNearestLbNValue(activeDoc, selStart);
                 if (fromLb != null)
                     status += $"  |  Selected: {fromLb}";
             }
