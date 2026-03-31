@@ -263,6 +263,13 @@ public sealed class IndexCacheService : IIndexCacheService
 
                 var status = _statusService.ComputeStatusForPairLive(origAbs, tranAbs, root, relKey, verbose);
 
+                long mtimeTicks = 0;
+                if (File.Exists(tranAbs))
+                {
+                    try { mtimeTicks = File.GetLastWriteTimeUtc(tranAbs).Ticks; }
+                    catch { }
+                }
+
                 entries.Add(new FileNavItem
                 {
                     RelPath = rel,
@@ -270,6 +277,7 @@ public sealed class IndexCacheService : IIndexCacheService
                     DisplayShort = shortLabel,
                     Tooltip = tooltip,
                     Status = status,
+                    TranslatedMtimeTicks = mtimeTicks,
                 });
 
                 if (progress != null && (i % 50 == 0 || i == total - 1))

@@ -64,27 +64,324 @@ internal static class AssistantPanelRenderer
 
         if (approvedTmHost != null)
         {
-            foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
-                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
+            var matches = snapshot.ApprovedMatches ?? new List<TranslationTmMatch>();
+            if (matches.Count > 0)
+                approvedTmHost.Children.Add(BuildConsolidatedTmSection(snapshot, matches, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
         }
 
         if (referenceTmHost != null)
         {
-            foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
-                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
+            var matches = snapshot.ReferenceMatches ?? new List<TranslationTmMatch>();
+            if (matches.Count > 0)
+                referenceTmHost.Children.Add(BuildConsolidatedTmSection(snapshot, matches, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
         }
 
         if (termHost != null)
         {
-            foreach (var t in snapshot.Terms ?? new List<TermHit>())
-                termHost.Children.Add(BuildTermEntryControl(snapshot, t, brushResolver, postProcessor, addToScholarHandler));
+            var terms = snapshot.Terms ?? new List<TermHit>();
+            if (terms.Count > 0)
+                termHost.Children.Add(BuildConsolidatedTermSection(snapshot, terms, brushResolver, postProcessor, addToScholarHandler));
         }
 
         if (qaHost != null)
         {
-            foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
-                qaHost.Children.Add(BuildQaEntryControl(q, brushResolver, postProcessor));
+            var issues = snapshot.QaIssues ?? new List<QaIssue>();
+            if (issues.Count > 0)
+                qaHost.Children.Add(BuildConsolidatedQaSection(issues, brushResolver, postProcessor));
         }
+    }
+
+    private const string SectionSeparator = "────────────────────\n";
+
+    /// <summary>
+    /// Builds a single consolidated Border+TextEditor for all TM matches in a section,
+    /// instead of one TextEditor per match. Dramatically reduces control count.
+    /// </summary>
+    private static Control BuildConsolidatedTmSection(
+        TranslationAssistantSnapshot snapshot,
+        List<TranslationTmMatch> matches,
+        Func<string?, string>? titleResolver,
+        Func<string, IBrush?>? brushResolver,
+        Action<TextEditor>? postProcessor,
+        EventHandler<NavigationRequest>? navigationHandler,
+        Action<ScholarPassage>? addToScholarHandler)
+    {
+        string currentZh = snapshot.Segment?.ZhText ?? "";
+        var combinedSb = new StringBuilder();
+        var allRanges = new List<AssistantTextRange>();
+        // Map from (startOffset, endOffset) to the match, for double-click and context menu.
+        var matchMap = new List<(int Start, int End, TranslationTmMatch Match)>();
+
+        for (int i = 0; i < matches.Count; i++)
+        {
+            var m = matches[i];
+            int entryStart = combinedSb.Length;
+
+            string title = titleResolver?.Invoke(m.RelPath) ?? m.RelPath ?? "";
+            string entryText = BuildTmEditorText(m, title);
+            combinedSb.Append(entryText);
+
+            // Build highlight ranges for this entry, offset by entryStart.
+            var entryRanges = BuildTmHighlightRanges(entryText, m.SourceText ?? "", currentZh);
+            foreach (var r in entryRanges)
+                allRanges.Add(new AssistantTextRange(r.Start + entryStart, r.Length));
+
+            int entryEnd = combinedSb.Length;
+            matchMap.Add((entryStart, entryEnd, m));
+
+            if (i < matches.Count - 1)
+            {
+                combinedSb.Append('\n');
+                combinedSb.Append(SectionSeparator);
+            }
+        }
+
+        string combinedText = combinedSb.ToString();
+        var mergedRanges = allRanges.Count > 0 ? MergeRanges(allRanges) : (IReadOnlyList<AssistantTextRange>)Array.Empty<AssistantTextRange>();
+        var editor = BuildAssistantEditor(combinedText, mergedRanges, minHeight: 90, maxHeight: 600, brushResolver, postProcessor);
+
+        var border = new Border
+        {
+            BorderBrush = brushResolver?.Invoke("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor,
+        };
+
+        // Double-click navigation: find which match the click offset falls into.
+        if (navigationHandler != null)
+        {
+            border.AddHandler(
+                InputElement.PointerPressedEvent,
+                (object? _, PointerPressedEventArgs e) =>
+                {
+                    if (e.ClickCount >= 2)
+                    {
+                        var hit = FindMatchAtPointer(editor, e, matchMap);
+                        if (hit != null && !string.IsNullOrWhiteSpace(hit.RelPath) && !string.IsNullOrWhiteSpace(hit.SourceText))
+                        {
+                            navigationHandler.Invoke(border, new NavigationRequest
+                            {
+                                RelPath = hit.RelPath,
+                                Side = SearchSide.Original,
+                                MatchText = hit.SourceText,
+                                AnchorOccurrenceHint = hit.BlockNumber > 0 ? hit.BlockNumber - 1 : null,
+                                AnchorTextSignal = string.IsNullOrWhiteSpace(snapshot.Segment?.ZhContextText)
+                                    ? snapshot.Segment?.ZhText
+                                    : snapshot.Segment?.ZhContextText,
+                            });
+                        }
+                    }
+                },
+                RoutingStrategies.Tunnel);
+        }
+
+        // Context menu: "Add to Scholar Collection" using the match under the pointer.
+        if (addToScholarHandler != null)
+        {
+            border.ContextMenu = new ContextMenu();
+            border.ContextMenu.Opening += (_, _) =>
+            {
+                border.ContextMenu.Items.Clear();
+                // Determine which match region the caret is in.
+                var caretMatch = FindMatchAtCaret(editor, matchMap);
+                if (caretMatch != null)
+                {
+                    var menuItem = new MenuItem { Header = "Add to Scholar Collection" };
+                    var captured = caretMatch;
+                    menuItem.Click += (_, _) =>
+                    {
+                        addToScholarHandler(new ScholarPassage
+                        {
+                            Id = Guid.NewGuid().ToString("N"),
+                            ZhText = captured.SourceText ?? "",
+                            EnText = captured.TargetText ?? "",
+                            SourceRelPath = captured.RelPath ?? "",
+                            AddedUtc = DateTimeOffset.UtcNow
+                        });
+                    };
+                    border.ContextMenu.Items.Add(menuItem);
+                }
+            };
+        }
+
+        return border;
+    }
+
+    /// <summary>
+    /// Builds a single consolidated Border+TextEditor for all term hits.
+    /// </summary>
+    private static Control BuildConsolidatedTermSection(
+        TranslationAssistantSnapshot snapshot,
+        List<TermHit> terms,
+        Func<string, IBrush?>? brushResolver,
+        Action<TextEditor>? postProcessor,
+        Action<ScholarPassage>? addToScholarHandler)
+    {
+        string currentZh = snapshot.Segment?.ZhText ?? "";
+        var combinedSb = new StringBuilder();
+        var allRanges = new List<AssistantTextRange>();
+        var termMap = new List<(int Start, int End, TermHit Term)>();
+
+        for (int i = 0; i < terms.Count; i++)
+        {
+            var t = terms[i];
+            int entryStart = combinedSb.Length;
+
+            string entryText = BuildTermEditorText(t);
+            combinedSb.Append(entryText);
+
+            var entryRanges = BuildSingleLineChineseHighlightRanges(entryText, t.SourceTerm ?? "", currentZh);
+            foreach (var r in entryRanges)
+                allRanges.Add(new AssistantTextRange(r.Start + entryStart, r.Length));
+
+            int entryEnd = combinedSb.Length;
+            termMap.Add((entryStart, entryEnd, t));
+
+            if (i < terms.Count - 1)
+            {
+                combinedSb.Append('\n');
+                combinedSb.Append(SectionSeparator);
+            }
+        }
+
+        string combinedText = combinedSb.ToString();
+        var mergedRanges = allRanges.Count > 0 ? MergeRanges(allRanges) : (IReadOnlyList<AssistantTextRange>)Array.Empty<AssistantTextRange>();
+        var editor = BuildAssistantEditor(combinedText, mergedRanges, minHeight: 70, maxHeight: 500, brushResolver, postProcessor);
+
+        var border = new Border
+        {
+            BorderBrush = brushResolver?.Invoke("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor,
+        };
+
+        if (addToScholarHandler != null)
+        {
+            border.ContextMenu = new ContextMenu();
+            border.ContextMenu.Opening += (_, _) =>
+            {
+                border.ContextMenu.Items.Clear();
+                int caretOffset = editor.TextArea?.Caret?.Offset ?? 0;
+                TermHit? caretTerm = null;
+                foreach (var (start, end, term) in termMap)
+                {
+                    if (caretOffset >= start && caretOffset <= end)
+                    {
+                        caretTerm = term;
+                        break;
+                    }
+                }
+                if (caretTerm != null)
+                {
+                    var menuItem = new MenuItem { Header = "Add to Scholar Collection" };
+                    var captured = caretTerm;
+                    menuItem.Click += (_, _) =>
+                    {
+                        addToScholarHandler(new ScholarPassage
+                        {
+                            Id = Guid.NewGuid().ToString("N"),
+                            ZhText = captured.SourceTerm ?? "",
+                            EnText = captured.PreferredTarget ?? "",
+                            SourceRelPath = "",
+                            AddedUtc = DateTimeOffset.UtcNow
+                        });
+                    };
+                    border.ContextMenu.Items.Add(menuItem);
+                }
+            };
+        }
+
+        return border;
+    }
+
+    /// <summary>
+    /// Builds a single consolidated Border+TextEditor for all QA issues.
+    /// </summary>
+    private static Control BuildConsolidatedQaSection(
+        List<QaIssue> issues,
+        Func<string, IBrush?>? brushResolver,
+        Action<TextEditor>? postProcessor)
+    {
+        var combinedSb = new StringBuilder();
+        for (int i = 0; i < issues.Count; i++)
+        {
+            combinedSb.Append($"[{issues[i].Severity}] {issues[i].Message}");
+            if (i < issues.Count - 1)
+            {
+                combinedSb.Append('\n');
+                combinedSb.Append(SectionSeparator);
+            }
+        }
+
+        var editor = BuildAssistantEditor(
+            combinedSb.ToString(),
+            Array.Empty<AssistantTextRange>(),
+            minHeight: 56,
+            maxHeight: 400,
+            brushResolver,
+            postProcessor);
+
+        return new Border
+        {
+            BorderBrush = brushResolver?.Invoke("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(6),
+            Child = editor,
+        };
+    }
+
+    /// <summary>
+    /// Given a pointer event on a consolidated TM editor, determines which match the click falls into.
+    /// </summary>
+    private static TranslationTmMatch? FindMatchAtPointer(
+        TextEditor editor,
+        PointerPressedEventArgs e,
+        List<(int Start, int End, TranslationTmMatch Match)> matchMap)
+    {
+        try
+        {
+            var textView = editor.TextArea?.TextView;
+            if (textView == null) return null;
+
+            var pos = e.GetPosition(textView);
+            var vp = textView.GetPosition(pos);
+            if (vp == null) return null;
+
+            int offset = editor.Document?.GetOffset(vp.Value.Location) ?? -1;
+            if (offset < 0) return null;
+
+            foreach (var (start, end, match) in matchMap)
+            {
+                if (offset >= start && offset <= end)
+                    return match;
+            }
+        }
+        catch
+        {
+            // Position mapping can fail if click is outside text bounds.
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Finds which match the caret is currently positioned in (for context menu).
+    /// </summary>
+    private static TranslationTmMatch? FindMatchAtCaret(
+        TextEditor editor,
+        List<(int Start, int End, TranslationTmMatch Match)> matchMap)
+    {
+        int caretOffset = editor.TextArea?.Caret?.Offset ?? 0;
+        foreach (var (start, end, match) in matchMap)
+        {
+            if (caretOffset >= start && caretOffset <= end)
+                return match;
+        }
+        return null;
     }
 
     public static Control BuildTmEntryControl(

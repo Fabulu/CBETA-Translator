@@ -651,12 +651,28 @@ public partial class MainWindowViewModel : ViewModelBase
                 var origAbs = Path.Combine(_originalDir, it.RelPath);
                 var tranAbs = Path.Combine(_translatedDir, it.RelPath);
 
+                // Incremental: skip re-parse when translated file mtime unchanged
+                long currentMtime = 0;
+                if (File.Exists(tranAbs))
+                {
+                    try { currentMtime = File.GetLastWriteTimeUtc(tranAbs).Ticks; }
+                    catch { }
+                }
+                if (currentMtime == it.TranslatedMtimeTicks && it.TranslatedMtimeTicks != 0)
+                {
+                    done++;
+                    if (done % 50 == 0) ((IProgress<int>)progress).Report(done);
+                    continue;
+                }
+
                 var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, rel, verboseLog: false);
                 if (!Equals(it.Status, newStatus))
                 {
                     it.Status = newStatus;
                     changed = true;
                 }
+                it.TranslatedMtimeTicks = currentMtime;
+                changed = true;
 
                 done++;
                 if (done % 50 == 0)
@@ -1920,6 +1936,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
             var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, relKey, verboseLog: false);
 
+            long mtimeTicks = 0;
+            if (File.Exists(tranAbs))
+            {
+                try { mtimeTicks = File.GetLastWriteTimeUtc(tranAbs).Ticks; }
+                catch { }
+            }
+
             if (_allItemsByRel.TryGetValue(relKey, out var existing))
             {
                 if (!Equals(existing.Status, newStatus))
@@ -1927,6 +1950,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     existing.Status = newStatus;
                     MarkIndexCacheDirty();
                 }
+                existing.TranslatedMtimeTicks = mtimeTicks;
 
                 await ApplyFilterSafeAsync();
             }
