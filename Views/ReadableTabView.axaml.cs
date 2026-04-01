@@ -155,6 +155,7 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<DocumentTag>? TagRemoved;
     public event EventHandler? CodingModeToggled;
     public event EventHandler? TagEditorRequested;
+    public event EventHandler<TagVocabulary>? VocabularyChanged;
 
     // -------------------------
     // Status/log
@@ -2590,7 +2591,7 @@ public partial class ReadableTabView : UserControl
         if (_cmbTagUser == null) return;
 
         var selected = _cmbTagUser.SelectedItem as string;
-        if (selected == null || selected.StartsWith("My Tags", StringComparison.Ordinal))
+        if (selected == null || _cmbTagUser.SelectedIndex == 0)
         {
             // Show own tags
             _selectedTagUser = null;
@@ -3041,6 +3042,7 @@ public partial class ReadableTabView : UserControl
             _txtCodeBarStatus.Text = $"Assigned \"{tagName}\" to slot {slotIndex + 1} on page {_codeBarPage}";
 
         RefreshCodeBar();
+        VocabularyChanged?.Invoke(this, _tagVocabulary);
     }
 
     private TagDefinition? GetTagDefinitionForSlot(int slotIndex)
