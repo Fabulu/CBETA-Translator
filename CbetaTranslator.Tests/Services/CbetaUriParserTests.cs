@@ -289,6 +289,36 @@ public class CbetaUriParserTests
         Assert.Null(result.AnchorStartHint);
     }
 
+    // ---- BuildShareableUrl tests ----
+
+    [Fact]
+    public void BuildShareableUrl_FileOnly_ReturnsCleanUrl()
+    {
+        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml");
+        Assert.Equal("https://readzen.pages.dev/T48n2005", url);
+    }
+
+    [Fact]
+    public void BuildShareableUrl_WithLbRange_AppendsRange()
+    {
+        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01", "0001a03");
+        Assert.Equal("https://readzen.pages.dev/T48n2005/0001a01-0001a03", url);
+    }
+
+    [Fact]
+    public void BuildShareableUrl_SingleLb_NoRange()
+    {
+        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01");
+        Assert.Equal("https://readzen.pages.dev/T48n2005/0001a01", url);
+    }
+
+    [Fact]
+    public void BuildShareableUrl_WithSide_AppendsQuery()
+    {
+        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", side: SearchSide.Translated);
+        Assert.Contains("?side=Translated", url);
+    }
+
     [Fact]
     public void BuildUri_DefaultSide_NotIncludedInUri()
     {

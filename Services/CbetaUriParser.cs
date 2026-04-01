@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
@@ -11,6 +12,9 @@ namespace CbetaTranslator.App.Services;
 public static class CbetaUriParser
 {
     public const string Scheme = "zen";
+
+    /// <summary>Base URL for shareable HTTPS links (e.g. for Reddit/Discord).</summary>
+    public const string ShareableBase = "https://readzen.pages.dev/";
 
     /// <summary>
     /// Attempts to parse a <c>zen://</c> URI into a <see cref="NavigationRequest"/>.
@@ -132,6 +136,46 @@ public static class CbetaUriParser
             baseUri += "?" + string.Join("&", queryParts);
 
         return baseUri;
+    }
+
+    /// <summary>
+    /// Builds a shareable HTTPS URL for the given file and optional line-break range.
+    /// Format: <c>https://readzen.pages.dev/{fileId}/{fromLb}-{toLb}?side=...&amp;highlight=...</c>
+    /// </summary>
+    public static string BuildShareableUrl(
+        string relPath,
+        string? fromLb = null,
+        string? toLb = null,
+        string? highlightText = null,
+        SearchSide side = SearchSide.Original)
+    {
+        // Extract file ID from relPath: "T/T48/T48n2005.xml" → "T48n2005"
+        var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
+        var url = ShareableBase + Uri.EscapeDataString(fileName);
+
+        // Append lb range as path segment
+        if (!string.IsNullOrEmpty(fromLb))
+        {
+            var range = fromLb;
+            if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+                range += "-" + toLb;
+            url += "/" + range;
+        }
+
+        // Optional query params
+        var queryParts = new List<string>();
+        if (side != SearchSide.Original)
+            queryParts.Add("side=" + Uri.EscapeDataString(side.ToString()));
+        if (!string.IsNullOrEmpty(highlightText))
+        {
+            var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
+            truncated = truncated.Replace("\n", "").Replace("\r", "");
+            queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
+        }
+        if (queryParts.Count > 0)
+            url += "?" + string.Join("&", queryParts);
+
+        return url;
     }
 
     /// <summary>

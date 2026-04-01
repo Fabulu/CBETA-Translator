@@ -165,6 +165,33 @@ public partial class ScholarTabView : UserControl
             };
             ctxMenu.Items.Add(copyLinkItem);
 
+            var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
+            copyRedditLink.Click += async (_, _) =>
+            {
+                var passage = _vm.SelectedPassage;
+                if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
+
+                string? highlight = null;
+                if (string.IsNullOrWhiteSpace(passage.FromLb))
+                {
+                    highlight = passage.ZhText;
+                    if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
+                        highlight = highlight.Substring(0, 80);
+                    if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                }
+
+                var url = CbetaUriParser.BuildShareableUrl(
+                    passage.SourceRelPath,
+                    fromLb: passage.FromLb,
+                    toLb: passage.ToLb,
+                    highlightText: highlight);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(url);
+                Status?.Invoke(this, "Reddit link copied to clipboard.");
+            };
+            ctxMenu.Items.Add(copyRedditLink);
+
             passagesList.ContextMenu = ctxMenu;
         }
 
