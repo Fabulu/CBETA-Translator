@@ -39,6 +39,13 @@ public static class LbHelper
             if (nValue != null) return nValue;
         }
 
+        // Scan forwards — covers text before the first <lb> (e.g., START segment)
+        for (int i = segIdx + 1; i < doc.Segments.Count; i++)
+        {
+            nValue = ExtractLbNValue(doc.Segments[i].Key);
+            if (nValue != null) return nValue;
+        }
+
         return null;
     }
 }
