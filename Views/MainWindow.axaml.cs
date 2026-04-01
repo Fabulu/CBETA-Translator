@@ -332,6 +332,9 @@ public partial class MainWindow : Window
             _translationView?.UpdateTmSharedHighlights(approved, reference, zh);
         _vm.SetTranslationFilePaths = (orig, tran) => _translationView?.SetCurrentFilePaths(orig, tran);
         _vm.SetAssistantTitleResolver = resolver => _translationView?.SetAssistantTitleResolver(resolver);
+        _vm.SetTranslationSourceOptions = options => _translationView?.SetTranslationSourceOptions(options);
+        _vm.SetTranslationSourceIndex = index => _translationView?.SetTranslationSourceIndex(index);
+        _vm.SetTranslationEditorReadOnly = readOnly => _translationView?.SetEditorReadOnly(readOnly);
         _vm.SignalCoreLoadComplete = () => _windowReady.TrySetResult();
 
         // SearchTabView bridges
@@ -674,6 +677,11 @@ public partial class MainWindow : Window
             _translationView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
+            };
+
+            _translationView.TranslationSourceChanged += async (_, idx) =>
+            {
+                await _vm.SwitchTranslationSourceAsync(idx);
             };
 
             _translationView.ResolveLbForBlock = blockNumber =>

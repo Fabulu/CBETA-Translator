@@ -37,6 +37,7 @@ public partial class TranslationTabView : UserControl
     private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment, _btnNextUnapproved;
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
+    private ComboBox? _cmbTranslationSource;
     private TextBlock? _txtModeInfo;
     private TextBlock? _txtQuickInfo;
     private TextBlock? _txtReviewState;
@@ -87,6 +88,9 @@ public partial class TranslationTabView : UserControl
 
     /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
+
+    /// <summary>Fired when the user selects a different translation source.</summary>
+    public event EventHandler<int>? TranslationSourceChanged;
 
     /// <summary>
     /// Delegate that resolves the lb n-value for a given block number.
@@ -151,6 +155,7 @@ public partial class TranslationTabView : UserControl
         _btnNextUnapproved = this.FindControl<Button>("BtnNextUnapproved");
 
         _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
+        _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
         _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
 
@@ -384,6 +389,15 @@ public partial class TranslationTabView : UserControl
         {
             _chkAssistantVisible.Checked += (_, _) => UpdateAssistantVisibility();
             _chkAssistantVisible.Unchecked += (_, _) => UpdateAssistantVisibility();
+        }
+
+        if (_cmbTranslationSource != null)
+        {
+            _cmbTranslationSource.SelectionChanged += (_, _) =>
+            {
+                if (_cmbTranslationSource.SelectedIndex >= 0)
+                    TranslationSourceChanged?.Invoke(this, _cmbTranslationSource.SelectedIndex);
+            };
         }
 
         AddHandler(KeyDownEvent, OnKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel);
@@ -999,6 +1013,35 @@ public partial class TranslationTabView : UserControl
 
     public bool IsEditorFocused()
         => _editor?.IsFocused == true || _editor?.TextArea?.IsFocused == true;
+
+    /// <summary>
+    /// Populates the translation source ComboBox with available options.
+    /// </summary>
+    public void SetTranslationSourceOptions(List<string> options)
+    {
+        if (_cmbTranslationSource == null) return;
+        _cmbTranslationSource.ItemsSource = options;
+        if (_cmbTranslationSource.SelectedIndex < 0)
+            _cmbTranslationSource.SelectedIndex = 0;
+    }
+
+    /// <summary>
+    /// Programmatically sets the selected translation source index.
+    /// </summary>
+    public void SetTranslationSourceIndex(int index)
+    {
+        if (_cmbTranslationSource != null && index >= 0)
+            _cmbTranslationSource.SelectedIndex = index;
+    }
+
+    /// <summary>
+    /// Sets the projection editor to read-only or editable.
+    /// </summary>
+    public void SetEditorReadOnly(bool readOnly)
+    {
+        if (_editor != null)
+            _editor.IsReadOnly = readOnly;
+    }
 
     // -------------------------
     // Termbase highlighting (projection editor)

@@ -73,6 +73,8 @@
 
 				<!-- Row 1: compact info line -->
 				<DockPanel Grid.Row="1" Margin="0,2,0,0">
+					<ComboBox Name="CmbTranslationSource" DockPanel.Dock="Right" MinWidth="140" FontSize="11" Margin="6,0,0,0"
+							  ToolTip.Tip="Select whose translation to view/edit"/>
 					<TextBlock Name="TxtProgress" DockPanel.Dock="Right" Opacity="0.7" Classes="muted" FontSize="11"/>
 					<TextBlock Name="TxtQuickInfo" Text="" Opacity="0.7" TextTrimming="CharacterEllipsis" FontSize="11"/>
 				</DockPanel>

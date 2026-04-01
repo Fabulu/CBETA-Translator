@@ -59,6 +59,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public AppConfig Config => _config;
 
     private string? _root, _originalDir, _translatedDir;
+    private string? _userTranslatedDir;   // community/translations/{username}/
+    private string? _activeTranslatedDir; // currently selected dir (user, community, or other user)
     public string? Root => _root;
     public string? Username => _config.Username;
     public string? OriginalDir => _originalDir;
@@ -137,6 +139,9 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<List<DocumentTag>?, TagVocabulary?>? SetSearchTagFilterData { get; set; }
 
     // TranslationTabView bridges
+    public Action<List<string>>? SetTranslationSourceOptions { get; set; }
+    public Action<int>? SetTranslationSourceIndex { get; set; }
+    public Action<bool>? SetTranslationEditorReadOnly { get; set; }
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
     public Func<string>? GetTranslationProjectionText { get; set; }
     public Action? ClearTranslation { get; set; }
@@ -343,6 +348,10 @@ public partial class MainWindowViewModel : ViewModelBase
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
 
+        _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, _config.Username ?? "User");
+        _activeTranslatedDir = _userTranslatedDir; // default to user's own
+        // Note: user dir is created on-demand by GetWritePath() when user first saves
+
         _renderCache.Clear();
 
         RootDisplayText = _root;
@@ -385,6 +394,7 @@ public partial class MainWindowViewModel : ViewModelBase
         await LoadFileListFromCacheOrBuildAsync();
 
         QueueAutoIndexBuild();
+        RefreshTranslationSources();
     }
 
     private void QueueAutoIndexBuild()
@@ -650,7 +660,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 var rel = NormalizeRel(it.RelPath);
                 var origAbs = Path.Combine(_originalDir, it.RelPath);
-                var tranAbs = Path.Combine(_translatedDir, it.RelPath);
+                var tranAbs = FindTranslatedPath(it.RelPath) ?? Path.Combine(_translatedDir, it.RelPath);
 
                 // Incremental: skip re-parse when translated file mtime unchanged
                 long currentMtime = 0;
@@ -911,12 +921,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task<string?> TryReadTranslatedXmlFromDiskAsync(string relPath)
     {
-        if (_translatedDir == null) return null;
+        if (_activeTranslatedDir == null && _translatedDir == null) return null;
 
         try
         {
-            var tranAbs = Path.Combine(_translatedDir, relPath);
-            if (!File.Exists(tranAbs))
+            var tranAbs = FindTranslatedPath(relPath);
+            if (tranAbs == null)
                 return null;
 
             var text = await File.ReadAllTextAsync(tranAbs, Encoding.UTF8);
@@ -952,26 +962,35 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task EnsureTranslatedXmlExistsForRelPathAsync(string relPath)
     {
-        if (_originalDir == null || _translatedDir == null) return;
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
-        var tranAbs = Path.Combine(_translatedDir, relPath);
-        if (File.Exists(tranAbs)) return;
+        // Check if a translated file already exists in active or community dir
+        if (FindTranslatedPath(relPath) != null) return;
 
-        var origXml = await ReadOriginalXmlAsync(relPath);
-        if (string.IsNullOrWhiteSpace(origXml)) return;
-
-        EnsureXmlIsWellFormed(origXml, "Original XML is malformed; cannot create translated copy.");
-
-        await AtomicWriteXmlAsync(tranAbs, origXml);
+        // For per-user translations: only create in community dir (shared baseline).
+        // User dir files are created on first explicit save, not on open.
+        if (_translatedDir != null)
+        {
+            var communityPath = Path.Combine(_translatedDir, relPath);
+            if (!File.Exists(communityPath))
+            {
+                var origXml = await ReadOriginalXmlAsync(relPath);
+                if (string.IsNullOrWhiteSpace(origXml)) return;
+                EnsureXmlIsWellFormed(origXml, "Original XML is malformed; cannot create translated copy.");
+                var dir = Path.GetDirectoryName(communityPath);
+                if (dir != null) Directory.CreateDirectory(dir);
+                await AtomicWriteXmlAsync(communityPath, origXml);
+            }
+        }
     }
 
     private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
     {
-        if (_originalDir == null || _translatedDir == null)
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null))
             return (RenderedDocument.Empty, RenderedDocument.Empty);
 
         var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = Path.Combine(_translatedDir, relPath);
+        var tranAbs = FindTranslatedPath(relPath);
 
         ct.ThrowIfCancellationRequested();
 
@@ -986,7 +1005,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         ct.ThrowIfCancellationRequested();
 
-        if (!File.Exists(tranAbs))
+        if (tranAbs == null || !File.Exists(tranAbs))
         {
             var rtFallback = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
             return (ro, rtFallback);
@@ -1006,7 +1025,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task LoadPairAsync(string relPath)
     {
-        if (_originalDir == null || _translatedDir == null) return;
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
         _renderCts?.Cancel();
         _renderCts?.Dispose();
@@ -1520,7 +1539,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_currentRelPath == null || _translatedDir == null)
+            if (_currentRelPath == null || (_activeTranslatedDir == null && _translatedDir == null))
             {
                 SetStatus("Community insert ignored: no file selected.");
                 return;
@@ -1528,7 +1547,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var tranAbs = FindTranslatedPath(_currentRelPath) ?? GetWritePath(_currentRelPath);
             var baseXml = ReadAllTextUtf8Strict(tranAbs);
 
             int insertAt = Math.Clamp(xmlIndex, 0, baseXml.Length);
@@ -1547,7 +1566,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_currentRelPath == null || _translatedDir == null)
+            if (_currentRelPath == null || (_activeTranslatedDir == null && _translatedDir == null))
             {
                 SetStatus("Community delete ignored: no file selected.");
                 return;
@@ -1555,7 +1574,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var tranAbs = FindTranslatedPath(_currentRelPath) ?? GetWritePath(_currentRelPath);
             var baseXml = ReadAllTextUtf8Strict(tranAbs);
 
             int s = Math.Clamp(xmlStart, 0, baseXml.Length);
@@ -1581,7 +1600,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_currentRelPath == null || _translatedDir == null)
+            if (_currentRelPath == null || (_activeTranslatedDir == null && _translatedDir == null))
             {
                 SetStatus("Move footnote ignored: no file selected.");
                 return;
@@ -1589,7 +1608,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var tranAbs = FindTranslatedPath(_currentRelPath) ?? GetWritePath(_currentRelPath);
             var baseXml = ReadAllTextUtf8Strict(tranAbs);
 
             int len = baseXml.Length;
@@ -1792,11 +1811,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task WriteTranslatedDiskAndRerenderAsync(string relPath, string updatedXml, string why)
     {
-        if (_translatedDir == null) return;
+        if (_activeTranslatedDir == null && _translatedDir == null) return;
 
         EnsureXmlIsWellFormed(updatedXml, "Updated translated XML is not well-formed.");
 
-        var tranAbs = Path.Combine(_translatedDir, relPath);
+        var tranAbs = GetWritePath(relPath);
         var saveInfo = await AtomicWriteXmlAsync(tranAbs, updatedXml);
 
         _rawTranXml = updatedXml;
@@ -1819,7 +1838,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task RefreshReadableFromDiskOnlyAsync()
     {
-        if (_currentRelPath == null || _originalDir == null || _translatedDir == null) return;
+        if (_currentRelPath == null || _originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
         _renderCts?.Cancel();
         _renderCts?.Dispose();
@@ -1855,7 +1874,8 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             if (_currentRelPath == null) { SetStatus("Nothing to save."); return; }
-            if (_translatedDir == null) { SetStatus("Save unavailable."); return; }
+            if (_activeTranslatedDir == null && _translatedDir == null) { SetStatus("Save unavailable."); return; }
+            if (IsActiveTranslationReadOnly) { SetStatus("Cannot save: viewing another user's translation (read-only)."); return; }
             if (_indexedDoc == null) { SetStatus("Translation index not loaded."); return; }
 
             var editedProjection = GetTranslationProjectionText?.Invoke() ?? "";
@@ -1879,7 +1899,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             try
             {
-                var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+                var tranAbs = GetWritePath(_currentRelPath);
                 _renderCache.Invalidate(tranAbs);
             }
             catch { }
@@ -1949,7 +1969,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             var origAbs = Path.Combine(_originalDir, relPath);
-            var tranAbs = Path.Combine(_translatedDir, relPath);
+            var tranAbs = FindTranslatedPath(relPath) ?? Path.Combine(_translatedDir, relPath);
             var relKey = NormalizeRel(relPath);
 
             var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, relKey, verboseLog: false);
@@ -2161,7 +2181,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
     {
-        if (_originalDir == null || _translatedDir == null) return false;
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return false;
 
         var origPath = Path.Combine(_originalDir, relPath);
         if (!File.Exists(origPath)) return false;
@@ -2176,7 +2196,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, projection);
 
                 var xml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
-                var tranAbs = Path.Combine(_translatedDir, relPath);
+                var tranAbs = GetWritePath(relPath);
 
                 await AtomicWriteXmlAsync(tranAbs, xml);
 
@@ -2190,7 +2210,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
-        return File.Exists(Path.Combine(_translatedDir, relPath));
+        return FindTranslatedPath(relPath) != null;
     }
 
     public async Task HandleRootClonedAsync(string repoRoot, bool isSecondaryWindow)
@@ -2295,12 +2315,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void TrySetCurrentFilePaths()
     {
-        if (_originalDir == null || _translatedDir == null || _currentRelPath == null) return;
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null) || _currentRelPath == null) return;
 
         try
         {
             var origAbs = Path.Combine(_originalDir, _currentRelPath);
-            var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+            var tranAbs = FindTranslatedPath(_currentRelPath) ?? GetWritePath(_currentRelPath);
             SetTranslationFilePaths?.Invoke(origAbs, tranAbs);
         }
         catch { }
@@ -2328,6 +2348,121 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         SetStatus("Saved termbase.json");
         SetAssistantSnapshot?.Invoke(null);
+    }
+
+    // ===========================================================
+    // Per-user translation directories
+    // ===========================================================
+
+    private List<string> _translationSourceOptions = new();
+    private int _translationSourceIndex;
+
+    /// <summary>
+    /// For reads: check active dir first, then community dir as fallback.
+    /// </summary>
+    private string? FindTranslatedPath(string relPath)
+    {
+        if (_activeTranslatedDir != null)
+        {
+            var activePath = Path.Combine(_activeTranslatedDir, relPath);
+            if (File.Exists(activePath)) return activePath;
+        }
+        if (_translatedDir != null && _activeTranslatedDir != _translatedDir)
+        {
+            var communityPath = Path.Combine(_translatedDir, relPath);
+            if (File.Exists(communityPath)) return communityPath;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// For writes: to active dir, creating subdirs as needed.
+    /// </summary>
+    private string GetWritePath(string relPath)
+    {
+        var dir = _activeTranslatedDir ?? _translatedDir;
+        var path = Path.Combine(dir!, relPath);
+        var parentDir = Path.GetDirectoryName(path);
+        if (parentDir != null && !Directory.Exists(parentDir))
+            Directory.CreateDirectory(parentDir);
+        return path;
+    }
+
+    /// <summary>
+    /// Populates the translation source ComboBox with "My Translation", "Community",
+    /// and any other users' translation directories found on disk.
+    /// </summary>
+    public void RefreshTranslationSources()
+    {
+        var options = new List<string> { $"My Translation ({_config.Username})", "Community" };
+
+        if (_root != null)
+        {
+            var communityTransDir = Path.Combine(_root, "community", "translations");
+            if (Directory.Exists(communityTransDir))
+            {
+                foreach (var dir in Directory.GetDirectories(communityTransDir))
+                {
+                    var username = Path.GetFileName(dir);
+                    if (!string.Equals(username, AppPaths.SanitizeUsername(_config.Username ?? ""), StringComparison.OrdinalIgnoreCase))
+                        options.Add(username);
+                }
+            }
+        }
+
+        _translationSourceOptions = options;
+        SetTranslationSourceOptions?.Invoke(options);
+    }
+
+    /// <summary>
+    /// Switches the active translation source: 0 = My Translation, 1 = Community, 2+ = other user (read-only).
+    /// </summary>
+    public async Task SwitchTranslationSourceAsync(int index)
+    {
+        if (index < 0 || index >= _translationSourceOptions.Count) return;
+
+        _translationSourceIndex = index;
+
+        if (index == 0) // My Translation
+            _activeTranslatedDir = _userTranslatedDir;
+        else if (index == 1) // Community
+            _activeTranslatedDir = _translatedDir;
+        else // Other user (read-only)
+        {
+            var username = _translationSourceOptions[index];
+            _activeTranslatedDir = AppPaths.GetUserTranslatedDir(_root!, username);
+        }
+
+        SetTranslationEditorReadOnly?.Invoke(IsActiveTranslationReadOnly);
+
+        // Reload current file with new source
+        if (_currentRelPath != null)
+            await LoadPairAsync(_currentRelPath);
+    }
+
+    /// <summary>
+    /// True when viewing another user's translation (read-only).
+    /// </summary>
+    public bool IsActiveTranslationReadOnly => _translationSourceIndex >= 2;
+
+    /// <summary>
+    /// Copies the current file's translation from the active source to the user's own directory.
+    /// </summary>
+    public async Task CopyCurrentTranslationToMyDirAsync()
+    {
+        if (_currentRelPath == null || _userTranslatedDir == null) return;
+        var sourcePath = FindTranslatedPath(_currentRelPath);
+        if (sourcePath == null) { SetStatus("No translation to copy."); return; }
+
+        var destPath = Path.Combine(_userTranslatedDir, _currentRelPath);
+        var destDir = Path.GetDirectoryName(destPath);
+        if (destDir != null) Directory.CreateDirectory(destDir);
+
+        File.Copy(sourcePath, destPath, overwrite: true);
+        SetStatus("Copied translation to your workspace.");
+
+        // Switch to user's translation and reload
+        await SwitchTranslationSourceAsync(0);
     }
 
     // ===========================================================
@@ -2359,9 +2494,9 @@ public partial class MainWindowViewModel : ViewModelBase
     private async Task<AtomicSaveInfo> AtomicWriteTranslatedXmlForCurrentAsync(string xml)
     {
         if (_currentRelPath == null) throw new InvalidOperationException("No file selected.");
-        if (_translatedDir == null) throw new InvalidOperationException("Translated directory not available.");
+        if (_activeTranslatedDir == null && _translatedDir == null) throw new InvalidOperationException("Translated directory not available.");
 
-        var tranAbs = Path.Combine(_translatedDir, _currentRelPath);
+        var tranAbs = GetWritePath(_currentRelPath);
         return await AtomicWriteXmlAsync(tranAbs, xml);
     }
 
