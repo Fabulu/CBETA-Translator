@@ -18,9 +18,11 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
+using CbetaTranslator.App.Text;
 using CbetaTranslator.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -636,6 +638,11 @@ public partial class MainWindow : Window
             {
                 OpenCompareTagsWindow(data);
             };
+
+            _readableView.CompareTranslationsRequested += (_, _) =>
+            {
+                _ = OpenCompareTranslationsWindowAsync();
+            };
         }
 
         if (_translationView != null)
@@ -1140,6 +1147,129 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             _vm.SetStatus("Open tag comparison failed: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Shows a picker dialog for two translation sources, then opens a 3-pane comparison window
+    /// with the original Chinese text and both selected translations.
+    /// </summary>
+    private async Task OpenCompareTranslationsWindowAsync()
+    {
+        try
+        {
+            var sources = _vm.GetTranslationSourceLabels();
+            if (sources.Count < 2)
+            {
+                _vm.SetStatus("Need at least 2 translation sources to compare.");
+                return;
+            }
+
+            if (_vm.CurrentRelPath == null)
+            {
+                _vm.SetStatus("No file loaded.");
+                return;
+            }
+
+            // Build picker dialog with two ComboBoxes
+            var dialog = new Window
+            {
+                Title = "Select Translations to Compare",
+                Width = 400,
+                Height = 220,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                CanResize = false,
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+
+            var sourceList = new List<string>(sources);
+
+            var cmbA = new ComboBox { ItemsSource = sourceList, SelectedIndex = 0, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
+            var cmbB = new ComboBox { ItemsSource = sourceList, SelectedIndex = Math.Min(1, sourceList.Count - 1), MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
+
+            var btnOk = new Button { Content = "Compare", HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0, 16, 0, 0), Padding = new Thickness(20, 6) };
+
+            var panel = new StackPanel
+            {
+                Margin = new Thickness(20),
+                Children =
+                {
+                    new TextBlock { Text = "Translation A:", FontWeight = FontWeight.Bold },
+                    cmbA,
+                    new TextBlock { Text = "Translation B:", FontWeight = FontWeight.Bold, Margin = new Thickness(0, 12, 0, 0) },
+                    cmbB,
+                    btnOk
+                }
+            };
+
+            dialog.Content = panel;
+
+            var tcs = new TaskCompletionSource<(int, int)?>();
+            btnOk.Click += (_, _) =>
+            {
+                tcs.TrySetResult((cmbA.SelectedIndex, cmbB.SelectedIndex));
+                dialog.Close();
+            };
+            dialog.Closed += (_, _) => tcs.TrySetResult(null);
+
+            dialog.Show(this);
+            var result = await tcs.Task;
+
+            if (result == null) return;
+            var (indexA, indexB) = result.Value;
+
+            if (indexA == indexB)
+            {
+                _vm.SetStatus("Please select two different translation sources.");
+                return;
+            }
+
+            // Render original
+            var origDir = _vm.OriginalDir;
+            if (origDir == null) return;
+            var origPath = Path.Combine(origDir, _vm.CurrentRelPath);
+            if (!File.Exists(origPath))
+            {
+                _vm.SetStatus("Original file not found.");
+                return;
+            }
+            var origXml = await File.ReadAllTextAsync(origPath, Encoding.UTF8);
+            var origDoc = CbetaTeiRenderer.Render(origXml);
+
+            // Render translation A
+            var transADoc = _vm.RenderTranslationSource(indexA);
+            if (transADoc == null)
+            {
+                _vm.SetStatus($"Translation A ({sourceList[indexA]}) not available for this file.");
+                return;
+            }
+
+            // Render translation B
+            var transBDoc = _vm.RenderTranslationSource(indexB);
+            if (transBDoc == null)
+            {
+                _vm.SetStatus($"Translation B ({sourceList[indexB]}) not available for this file.");
+                return;
+            }
+
+            var data = new CompareTranslationsRequestData(
+                _vm.CurrentRelPath,
+                origDoc,
+                transADoc,
+                sourceList[indexA],
+                transBDoc,
+                sourceList[indexB]);
+
+            var win = new CompareTranslationsWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            win.LoadComparison(data);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open translation comparison failed: " + ex.Message);
         }
     }
 

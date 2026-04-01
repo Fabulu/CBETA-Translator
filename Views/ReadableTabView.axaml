@@ -180,6 +180,14 @@
 							Focusable="False"
 							Margin="4,0,0,0"
 							ToolTip.Tip="Open a 3-pane window comparing your tags with the selected user's tags"/>
+					<Button Name="BtnCompareTranslations"
+							Content="Compare Translations"
+							DockPanel.Dock="Right"
+							Padding="6,2"
+							FontSize="11"
+							Focusable="False"
+							Margin="4,0,0,0"
+							ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
 					<ComboBox Name="CmbTagUser"
 							  DockPanel.Dock="Right"
 							  MinWidth="120" Padding="4,2"
