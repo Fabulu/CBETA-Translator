@@ -60,6 +60,16 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool _hasCommunityEntries;
 
+    [ObservableProperty]
+    private int _selectedCommunityUserIndex;
+
+    private List<string> _communityUsernames = new() { "All Users" };
+    public List<string> CommunityUsernames
+    {
+        get => _communityUsernames;
+        set { _communityUsernames = value; OnPropertyChanged(); }
+    }
+
     // Corpus usage
     [ObservableProperty]
     private bool _isCorpusSearching;
@@ -129,6 +139,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     partial void OnAlternatesTextChanged(string value) => PushFieldsIntoCurrentEntry();
     partial void OnNoteTextChanged(string value) => PushFieldsIntoCurrentEntry();
     partial void OnCommunityFilterChanged(string value) => RefreshCommunityList();
+    partial void OnSelectedCommunityUserIndexChanged(int value) => RefreshCommunityList();
 
     // ----- Commands -----
 
@@ -290,6 +301,17 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             }
 
             HasCommunityEntries = _allCommunityEntries.Count > 0;
+
+            var usernames = _allCommunityEntries
+                .Select(x => x.Author)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(u => u, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+            var items = new List<string> { "All Users" };
+            items.AddRange(usernames);
+            CommunityUsernames = items;
+            SelectedCommunityUserIndex = 0;
+
             RefreshCommunityList();
         }
         catch (Exception ex)
@@ -338,8 +360,15 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
 
         var filter = CommunityFilter?.Trim() ?? "";
 
+        string? selectedUser = _selectedCommunityUserIndex > 0 && _selectedCommunityUserIndex < _communityUsernames.Count
+            ? _communityUsernames[_selectedCommunityUserIndex]
+            : null;
+
         foreach (var (author, e) in _allCommunityEntries)
         {
+            if (selectedUser != null && !string.Equals(author, selectedUser, StringComparison.OrdinalIgnoreCase))
+                continue;
+
             if (!string.IsNullOrEmpty(filter))
             {
                 bool matches =

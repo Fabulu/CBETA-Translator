@@ -120,10 +120,17 @@
         </Border>
       </StackPanel>
 
-      <!-- Community filter -->
-      <TextBox Grid.Row="8" Watermark="Filter community..."
-               Text="{Binding CommunityFilter}" Margin="4,2"
-               IsVisible="{Binding HasCommunityCollections}"/>
+      <!-- Community user picker + filter -->
+      <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="4" Margin="4,2"
+                  IsVisible="{Binding HasCommunityCollections}">
+        <ComboBox ItemsSource="{Binding CommunityUsernames}"
+                  SelectedIndex="{Binding SelectedCommunityUserIndex}"
+                  MinWidth="100" FontSize="11"
+                  ToolTip.Tip="Filter by community user"/>
+        <TextBox Watermark="Filter..."
+                 Text="{Binding CommunityFilter}"
+                 MinWidth="80"/>
+      </StackPanel>
 
       <!-- Community collections list -->
       <ListBox Grid.Row="9" Name="CommunityCollectionsList" Margin="4,0" MaxHeight="180"

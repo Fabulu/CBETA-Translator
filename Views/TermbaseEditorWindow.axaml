@@ -63,10 +63,15 @@
 							Padding="8,2"/>
 				</StackPanel>
 
-				<TextBox Grid.Row="5"
-						 IsVisible="{Binding HasCommunityEntries}"
-						 Text="{Binding CommunityFilter}"
-						 Watermark="Filter community terms..."/>
+				<StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="4"
+						   IsVisible="{Binding HasCommunityEntries}">
+					<ComboBox ItemsSource="{Binding CommunityUsernames}"
+							  SelectedIndex="{Binding SelectedCommunityUserIndex}"
+							  MinWidth="100" FontSize="11"
+							  ToolTip.Tip="Filter by community user"/>
+					<TextBox Text="{Binding CommunityFilter}"
+							 Watermark="Filter..." MinWidth="80"/>
+				</StackPanel>
 
 				<ListBox Grid.Row="6"
 						 IsVisible="{Binding HasCommunityEntries}"

@@ -303,6 +303,9 @@ internal static class AssistantPanelRenderer
         if (!string.IsNullOrWhiteSpace(t.Note))
             sb.AppendLine($"Note: {t.Note}");
 
+        if (!string.IsNullOrWhiteSpace(t.CreatedBy))
+            sb.AppendLine($"By: {t.CreatedBy}");
+
         return sb.ToString().TrimEnd();
     }
 
