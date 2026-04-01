@@ -33,19 +33,17 @@ public class CbetaUriParserTests
     }
 
     [Fact]
-    public void TryParse_HostIsLowercased_BugDocumentation()
+    public void TryParse_HostCasePreserved()
     {
-        // This test documents the bug: Uri.Host lowercases the first segment.
-        // "T" in "zen://T/T48/..." becomes "t" after parsing.
-        // This can break case-sensitive file lookups on Linux.
+        // The parser extracts the path directly from the original string,
+        // bypassing System.Uri.Host which would lowercase "T" to "t".
         var uri = "zen://T/T48/T48n2005.xml";
 
         var result = CbetaUriParser.TryParse(uri);
 
         Assert.NotNull(result);
-        // The host "T" is lowercased to "t" by System.Uri — this is the bug
-        Assert.Equal("t/T48/T48n2005.xml", result.RelPath);
-        Assert.NotEqual("T/T48/T48n2005.xml", result.RelPath); // Proves the bug
+        // Case is preserved — the fix avoids System.Uri.Host lowercasing
+        Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
     }
 
     // ---- 2. TryParse — file-only URI (no query params) works ----
@@ -58,8 +56,8 @@ public class CbetaUriParserTests
         var result = CbetaUriParser.TryParse(uri);
 
         Assert.NotNull(result);
-        // Host lowercased by System.Uri (see bug documentation test)
-        Assert.Equal("t/T48/T48n2005.xml", result.RelPath);
+        // Case is preserved by the parser
+        Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
         Assert.Null(result.MatchText);
         Assert.Equal(SearchSide.Original, result.Side);
         Assert.Null(result.LeftContext);
@@ -207,19 +205,17 @@ public class CbetaUriParserTests
     }
 
     [Fact]
-    public void RoundTrip_UppercaseFirstSegment_LosesCase()
+    public void RoundTrip_UppercaseFirstSegment_PreservesCase()
     {
-        // Documents that round-trip breaks when first path segment is uppercase,
-        // because System.Uri lowercases the Host component.
+        // Round-trip now preserves case because the parser extracts the path
+        // directly from the original URI string, not from System.Uri.Host.
         var relPath = "T/T48/T48n2005.xml";
 
         var uri = CbetaUriParser.BuildUri(relPath);
         var result = CbetaUriParser.TryParse(uri);
 
         Assert.NotNull(result);
-        // Round-trip DOES NOT preserve case of first segment — this is the bug
-        Assert.NotEqual(relPath, result.RelPath);
-        Assert.Equal("t/T48/T48n2005.xml", result.RelPath);
+        Assert.Equal(relPath, result.RelPath);
     }
 
     [Fact]
@@ -251,13 +247,13 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CaseInsensitiveScheme_Works()
     {
-        var uri = "CBETA://T/T48/T48n2005.xml";
+        // The scheme is "zen" — test that "ZEN://" (uppercase) still works
+        var uri = "ZEN://T/T48/T48n2005.xml";
 
         var result = CbetaUriParser.TryParse(uri);
 
         Assert.NotNull(result);
-        // Host lowercased by System.Uri
-        Assert.Equal("t/T48/T48n2005.xml", result.RelPath);
+        Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
     }
 
     [Fact]

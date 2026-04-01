@@ -424,9 +424,9 @@ public class ScholarExportServiceTests : IDisposable
         await _svc.ExportAsync(path, collection, ScholarExportFormat.Html);
         var html = await File.ReadAllTextAsync(path);
 
-        // The SVG should be generated but the orphan link should not produce a <line>
-        // because the IDs don't match any passage
-        Assert.Contains("<svg", html);
+        // Orphan links are filtered out by IsValidLink, so no cross-references
+        // section (and thus no SVG) is rendered when all links are invalid
+        Assert.DoesNotContain("<svg", html);
         Assert.DoesNotContain("<line", html);
     }
 
