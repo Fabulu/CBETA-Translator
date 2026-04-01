@@ -151,6 +151,9 @@ public partial class SearchTabView : UserControl
     public void SetZenResolver(Func<string, bool> isZenResolver)
         => _vm.SetZenResolver(isZenResolver);
 
+    public void SetTagFilterData(List<DocumentTag>? tags, TagVocabulary? vocab)
+        => _vm.SetTagFilterData(tags, vocab);
+
     public void Clear()
         => _vm.Clear();
 }

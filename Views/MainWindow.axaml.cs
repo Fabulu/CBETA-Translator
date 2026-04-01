@@ -311,6 +311,7 @@ public partial class MainWindow : Window
         _vm.SetReadableAppliedTags = tags => _readableView?.SetAppliedTags(tags);
         _vm.SetReadableCommunityTags = tags => _readableView?.SetCommunityTags(tags);
         _vm.SetReadableCommunityVocabularies = vocabs => _readableView?.SetCommunityVocabularies(vocabs);
+        _vm.SetSearchTagFilterData = (tags, vocab) => _searchView?.SetTagFilterData(tags, vocab);
 
         // TranslationTabView bridges
         _vm.SetTranslationModeProjection = (mode, text) => _translationView?.SetModeProjection(mode, text);
@@ -626,6 +627,11 @@ public partial class MainWindow : Window
             _readableView.VocabularyChanged += async (_, vocab) =>
             {
                 await _vm.SaveTagVocabularyAsync(vocab);
+            };
+
+            _readableView.CompareTagsRequested += (_, data) =>
+            {
+                OpenCompareTagsWindow(data);
             };
         }
 
@@ -1098,6 +1104,34 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             _vm.SetStatus("Open tag editor failed: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Opens a non-modal 3-pane window comparing the current user's tags with another user's tags.
+    /// </summary>
+    private void OpenCompareTagsWindow(CompareTagsRequestData data)
+    {
+        try
+        {
+            var win = new CompareTagsWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            win.LoadComparison(
+                data.Title,
+                data.Doc,
+                data.MyUsername,
+                data.MyTags,
+                data.MyVocab,
+                data.OtherUsername,
+                data.OtherTags,
+                data.OtherVocab);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open tag comparison failed: " + ex.Message);
         }
     }
 

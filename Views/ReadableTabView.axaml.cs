@@ -157,6 +157,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler? TagEditorRequested;
     public event EventHandler<TagVocabulary>? VocabularyChanged;
 
+    /// <summary>Fired when user clicks Compare to open a 3-pane tag comparison window.</summary>
+    public event EventHandler<CompareTagsRequestData>? CompareTagsRequested;
+
     // -------------------------
     // Status/log
     // -------------------------
@@ -495,6 +498,10 @@ public partial class ReadableTabView : UserControl
         var btnEditTags = this.FindControl<Button>("BtnEditTags");
         if (btnEditTags != null)
             btnEditTags.Click += (_, _) => TagEditorRequested?.Invoke(this, EventArgs.Empty);
+
+        var btnCompareTags = this.FindControl<Button>("BtnCompareTags");
+        if (btnCompareTags != null)
+            btnCompareTags.Click += OnCompareTagsClicked;
 
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -2605,6 +2612,56 @@ public partial class ReadableTabView : UserControl
             _selectedTagUser = selected;
             ShowCommunityUserTags(selected);
         }
+    }
+
+    private void OnCompareTagsClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        // Determine the other user to compare against
+        string? otherUser = _selectedTagUser;
+        if (string.IsNullOrWhiteSpace(otherUser))
+        {
+            // If "My Tags" is selected, pick the first community user if available
+            if (_communityTags != null && _communityTags.Count > 0)
+                otherUser = _communityTags.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase).First();
+        }
+
+        if (string.IsNullOrWhiteSpace(otherUser)) return;
+
+        var doc = _vm.RenderOrig;
+        if (doc.IsEmpty) return;
+
+        var relPath = _vm.CurrentRelPathForZen;
+        var myUsername = DefaultResp;
+
+        // Filter my tags to current file
+        var myTagsForFile = _appliedTags
+            .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        // Get other user's tags for current file
+        List<DocumentTag> otherTagsForFile = new();
+        if (_communityTags != null && _communityTags.TryGetValue(otherUser, out var allOtherTags))
+        {
+            otherTagsForFile = allOtherTags
+                .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        // Get vocabularies
+        TagVocabulary? otherVocab = null;
+        _communityVocabularies?.TryGetValue(otherUser, out otherVocab);
+
+        var data = new CompareTagsRequestData(
+            relPath ?? "Unknown",
+            doc,
+            string.IsNullOrWhiteSpace(myUsername) ? "Me" : myUsername,
+            myTagsForFile,
+            _tagVocabulary,
+            otherUser,
+            otherTagsForFile,
+            otherVocab);
+
+        CompareTagsRequested?.Invoke(this, data);
     }
 
     private void ShowCommunityUserTags(string username)

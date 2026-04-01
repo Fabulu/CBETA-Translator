@@ -134,6 +134,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<List<DocumentTag>?>? SetReadableAppliedTags { get; set; }
     public Action<Dictionary<string, List<DocumentTag>>?>? SetReadableCommunityTags { get; set; }
     public Action<Dictionary<string, TagVocabulary>?>? SetReadableCommunityVocabularies { get; set; }
+    public Action<List<DocumentTag>?, TagVocabulary?>? SetSearchTagFilterData { get; set; }
 
     // TranslationTabView bridges
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
@@ -1282,7 +1283,11 @@ public partial class MainWindowViewModel : ViewModelBase
                 _tagSaveLock.Release();
             }
 
-            await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(forFile));
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                SetReadableAppliedTags?.Invoke(forFile);
+                SetSearchTagFilterData?.Invoke(_appliedTags, _tagVocabulary);
+            });
 
             // Load community tags (other users) for the user picker
             try
