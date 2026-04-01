@@ -121,6 +121,7 @@ public partial class TagEditorWindow : Window
             _tagTree.SelectionChanged += (_, _) => OnSelectionChanged();
             _tagTree.PointerPressed += OnTreePointerPressed;
             _tagTree.PointerMoved += OnTreePointerMoved;
+            _tagTree.PointerReleased += (_, _) => { _dragStartPoint = null; _dragCandidate = null; };
         }
 
         // Filter

@@ -622,6 +622,11 @@ public partial class MainWindow : Window
             {
                 _ = OpenTagEditorWindowAsync();
             };
+
+            _readableView.VocabularyChanged += async (_, vocab) =>
+            {
+                await _vm.SaveTagVocabularyAsync(vocab);
+            };
         }
 
         if (_translationView != null)
