@@ -1412,6 +1412,8 @@ public partial class GitTabViewModel : ViewModelBase
                     line.Contains("community/collections/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/reviews/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/master-dates/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/tags/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/tag-vocabularies/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains(".gitattributes", StringComparison.OrdinalIgnoreCase))
                 {
                     // Extract file path from porcelain line (first 3 chars are status + space)
