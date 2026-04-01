@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -362,6 +363,16 @@ public partial class GitTabViewModel : ViewModelBase
 
                     // Stage ONLY the selected file
                     await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
+
+                    // Also stage the user's personal translation copy if it exists
+                    var sanitizedUser = AppPaths.SanitizeUsername(_username ?? _githubLogin!);
+                    var userTransRelPath = Path.Combine("community", "translations", sanitizedUser, _selectedRelPath).Replace('\\', '/');
+                    var userTransFullPath = Path.Combine(repoDir, userTransRelPath);
+                    if (File.Exists(userTransFullPath))
+                    {
+                        await _git.StagePathAsync(repoDir, userTransRelPath, prog, ct);
+                        AppendLog("[sync] staged user translation: " + userTransRelPath);
+                    }
 
                 // Create branch + commit
                 var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
@@ -1414,6 +1425,7 @@ public partial class GitTabViewModel : ViewModelBase
                     line.Contains("community/master-dates/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/tags/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains("community/tag-vocabularies/", StringComparison.OrdinalIgnoreCase) ||
+                    line.Contains("community/translations/", StringComparison.OrdinalIgnoreCase) ||
                     line.Contains(".gitattributes", StringComparison.OrdinalIgnoreCase))
                 {
                     // Extract file path from porcelain line (first 3 chars are status + space)
@@ -2346,7 +2358,23 @@ public partial class GitTabViewModel : ViewModelBase
                 }
                 catch { AppendLog("[info] community/tag-vocabularies/ not found in origin/main"); }
 
-                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && communityMdJsonlCount == 0 && communityTagJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
+                // Community translations (per-user)
+                int communityTransUserCount = 0;
+                ProgressText = "Pulling community translations\u2026";
+                AppendLog("[step] git checkout origin/main -- community/translations/");
+                try
+                {
+                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/translations/", null, ct);
+                    var communityTransDir = Path.Combine(repoDir, "community", "translations");
+                    if (Directory.Exists(communityTransDir))
+                    {
+                        communityTransUserCount = Directory.GetDirectories(communityTransDir).Length;
+                        AppendLog($"[info] community translations: {communityTransUserCount} user dir(s)");
+                    }
+                }
+                catch { AppendLog("[info] community/translations/ not found in origin/main"); }
+
+                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && communityMdJsonlCount == 0 && communityTagJsonlCount == 0 && communityTransUserCount == 0 && showTm == null && showTb == null && showSc == null)
                 {
                     ProgressText = "No community data found in origin/main.";
                     AppendLog("[info] origin/main has no community data files yet");

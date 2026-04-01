@@ -159,6 +159,7 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when user clicks Compare to open a 3-pane tag comparison window.</summary>
     public event EventHandler<CompareTagsRequestData>? CompareTagsRequested;
+    public event EventHandler<CompareTranslationsRequestData>? CompareTranslationsRequested;
 
     // -------------------------
     // Status/log
@@ -357,6 +358,13 @@ public partial class ReadableTabView : UserControl
         };
         menu.Items.Add(copyLinkItem);
 
+        if (_codingModeActive)
+        {
+            var addTaggedItem = new MenuItem { Header = "Add Tagged Segment to Scholar" };
+            addTaggedItem.Click += (_, _) => OnAddTaggedSegmentToScholar();
+            menu.Items.Add(addTaggedItem);
+        }
+
         return menu;
     }
 
@@ -502,6 +510,10 @@ public partial class ReadableTabView : UserControl
         var btnCompareTags = this.FindControl<Button>("BtnCompareTags");
         if (btnCompareTags != null)
             btnCompareTags.Click += OnCompareTagsClicked;
+
+        var btnCompareTranslations = this.FindControl<Button>("BtnCompareTranslations");
+        if (btnCompareTranslations != null)
+            btnCompareTranslations.Click += (_, _) => CompareTranslationsRequested?.Invoke(this, null!);
 
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -843,6 +855,30 @@ public partial class ReadableTabView : UserControl
 
         seg = default;
         return false;
+    }
+
+    /// <summary>
+    /// Extracts rendered text spanning from <paramref name="fromLb"/> to <paramref name="toLb"/> (inclusive).
+    /// Returns empty string if the document is empty or the segments cannot be found.
+    /// </summary>
+    private static string ExtractTextBetweenLbs(RenderedDocument doc, string fromLb, string? toLb)
+    {
+        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb)) return "";
+
+        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) return "";
+        int start = startSeg.Start;
+        int end = startSeg.EndExclusive;
+
+        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+        {
+            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
+                end = endSeg.EndExclusive;
+        }
+
+        var text = doc.Text ?? "";
+        start = Math.Clamp(start, 0, text.Length);
+        end = Math.Clamp(end, 0, text.Length);
+        return end > start ? text.Substring(start, end - start) : "";
     }
 
     /// 2) If not found, use compact-CJK normalized matching and map back to raw offsets
@@ -2790,6 +2826,14 @@ public partial class ReadableTabView : UserControl
                 if (mods == KeyModifiers.None) { CodingSkipToNextUntagged(); e.Handled = true; }
                 break;
 
+            case Key.N:
+                if (mods == KeyModifiers.None)
+                {
+                    OnAddTaggedSegmentToScholar();
+                    e.Handled = true;
+                }
+                break;
+
             case Key.D1: case Key.D2: case Key.D3: case Key.D4: case Key.D5:
             case Key.D6: case Key.D7: case Key.D8: case Key.D9:
                 int slot = e.Key - Key.D1; // 0-8
@@ -3062,6 +3106,76 @@ public partial class ReadableTabView : UserControl
         {
             Dispatcher.UIThread.Post(() => CodingSkipToNextUntagged(), DispatcherPriority.Background);
         }
+    }
+
+    /// <summary>
+    /// Creates a ScholarPassage from the tag overlapping the caret and raises
+    /// <see cref="AddToScholarRequested"/>. The passage is pre-populated with
+    /// the tag's lb range, Chinese/English text, and the tag name.
+    /// </summary>
+    private void OnAddTaggedSegmentToScholar()
+    {
+        var (editor, doc) = GetActiveCodingEditorAndDoc();
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        // Find which tag overlaps the current caret position
+        int caret = GetCaretOffsetSafe(editor);
+        DocumentTag? overlappingTag = null;
+
+        foreach (var tag in _appliedTags)
+        {
+            if (string.IsNullOrEmpty(tag.FromLb)) continue;
+            if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
+
+            int tagEnd = tagStart.EndExclusive;
+            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
+            {
+                if (TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
+                    tagEnd = tagEndSeg.EndExclusive;
+            }
+
+            if (caret >= tagStart.Start && caret < tagEnd)
+            {
+                overlappingTag = tag;
+                break;
+            }
+        }
+
+        if (overlappingTag == null)
+        {
+            if (_txtCodeBarStatus != null)
+                _txtCodeBarStatus.Text = "Place cursor inside a tagged segment first";
+            return;
+        }
+
+        // Extract text from both panes using the tag's lb range
+        string zhText = ExtractTextBetweenLbs(_vm.RenderOrig, overlappingTag.FromLb, overlappingTag.ToLb);
+        string enText = ExtractTextBetweenLbs(_vm.RenderTran, overlappingTag.FromLb, overlappingTag.ToLb);
+
+        // Resolve tag display name
+        string tagName = "";
+        if (_tagVocabulary != null)
+        {
+            var def = _tagVocabulary.Tags.Find(t => t.Id == overlappingTag.TagId);
+            if (def != null) tagName = def.DisplayName;
+        }
+
+        var passage = new ScholarPassage
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            SourceRelPath = _vm.CurrentRelPathForZen ?? "",
+            ZhText = zhText,
+            EnText = enText,
+            FromLb = overlappingTag.FromLb,
+            ToLb = overlappingTag.ToLb,
+            Tags = string.IsNullOrWhiteSpace(tagName) ? new() : new List<string> { tagName },
+            AddedUtc = DateTimeOffset.UtcNow
+        };
+
+        AddToScholarRequested?.Invoke(this, passage);
+
+        if (_txtCodeBarStatus != null)
+            _txtCodeBarStatus.Text = $"Added tagged segment \"{tagName}\" to Scholar collection";
     }
 
     private void QuickAssignTagToSlot(int slotIndex)

@@ -2446,6 +2446,51 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool IsActiveTranslationReadOnly => _translationSourceIndex >= 2;
 
     /// <summary>
+    /// Returns the current list of translation source labels (e.g. "My Translation (user)", "Community", other usernames).
+    /// </summary>
+    public IReadOnlyList<string> GetTranslationSourceLabels() => _translationSourceOptions;
+
+    /// <summary>
+    /// Renders the translation for the current file from the specified source index.
+    /// Returns null if the source or file is unavailable.
+    /// </summary>
+    public RenderedDocument? RenderTranslationSource(int sourceIndex)
+    {
+        if (_currentRelPath == null || _originalDir == null || _root == null)
+            return null;
+
+        string? translatedDir;
+        if (sourceIndex == 0) // My Translation
+            translatedDir = _userTranslatedDir;
+        else if (sourceIndex == 1) // Community
+            translatedDir = _translatedDir;
+        else if (sourceIndex >= 2 && sourceIndex < _translationSourceOptions.Count) // Other user
+        {
+            var username = _translationSourceOptions[sourceIndex];
+            translatedDir = AppPaths.GetUserTranslatedDir(_root, username);
+        }
+        else
+            return null;
+
+        if (translatedDir == null) return null;
+
+        var filePath = Path.Combine(translatedDir, _currentRelPath);
+        if (!File.Exists(filePath))
+        {
+            // Fallback: try the community dir if not found in the selected dir
+            if (_translatedDir != null && translatedDir != _translatedDir)
+            {
+                filePath = Path.Combine(_translatedDir, _currentRelPath);
+                if (!File.Exists(filePath)) return null;
+            }
+            else
+                return null;
+        }
+
+        return CbetaTeiRenderer.Render(SafeReadAllTextUtf8(filePath));
+    }
+
+    /// <summary>
     /// Copies the current file's translation from the active source to the user's own directory.
     /// </summary>
     public async Task CopyCurrentTranslationToMyDirAsync()
