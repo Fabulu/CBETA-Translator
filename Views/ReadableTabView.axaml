@@ -172,6 +172,14 @@
 								  Focusable="False"
 								  Margin="6,0,0,0"
 								  ToolTip.Tip="Toggle coding mode (F2). Keys: W=select block, 1-9=apply tag, E=expand, Q=shrink, Tab=next untagged, hold Space+number=multi-tag"/>
+					<Button Name="BtnCompareTags"
+							Content="Compare"
+							DockPanel.Dock="Right"
+							Padding="6,2"
+							FontSize="11"
+							Focusable="False"
+							Margin="4,0,0,0"
+							ToolTip.Tip="Open a 3-pane window comparing your tags with the selected user's tags"/>
 					<ComboBox Name="CmbTagUser"
 							  DockPanel.Dock="Right"
 							  MinWidth="120" Padding="4,2"

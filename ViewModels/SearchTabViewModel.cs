@@ -47,6 +47,10 @@ public partial class SearchTabViewModel : ViewModelBase
     // Zen flag lookup (provided by MainWindow via SetZenResolver)
     private Func<string, bool>? _isZen;
 
+    // Tag filter
+    private List<string> _tagFilterItems = new() { "All Tags" };
+    private Dictionary<string, HashSet<string>>? _tagsByName; // tagName → set of RelPaths
+
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
 
     // ----- Observable properties -----
@@ -86,6 +90,9 @@ public partial class SearchTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private int _selectedStatusIndex;
+
+    [ObservableProperty]
+    private int _selectedTagFilterIndex;
 
     [ObservableProperty]
     private int _selectedContextIndex = 1;
@@ -148,6 +155,12 @@ public partial class SearchTabViewModel : ViewModelBase
         "80 chars"
     };
 
+    public List<string> TagFilterItems
+    {
+        get => _tagFilterItems;
+        set { _tagFilterItems = value; OnPropertyChanged(); }
+    }
+
     public string[] CoocMetricItems { get; } = new[]
     {
         "Top co-occurrences (overview)",
@@ -165,6 +178,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
     partial void OnZenOnlyChanged(bool value) => _ = TriggerAutoRerunAsync();
     partial void OnSelectedStatusIndexChanged(int value) => _ = TriggerAutoRerunAsync();
+    partial void OnSelectedTagFilterIndexChanged(int value) => _ = TriggerAutoRerunAsync();
     partial void OnSelectedContextIndexChanged(int value) => _ = TriggerAutoRerunAsync();
     partial void OnSearchOriginalChanged(bool value) => _ = TriggerAutoRerunAsync();
     partial void OnSearchTranslatedChanged(bool value) => _ = TriggerAutoRerunAsync();
@@ -211,6 +225,40 @@ public partial class SearchTabViewModel : ViewModelBase
         _isZen = resolver;
     }
 
+    /// <summary>
+    /// Populates the tag filter ComboBox with the current user's tag vocabulary and applied tags.
+    /// Called by MainWindow after loading tags.
+    /// </summary>
+    public void SetTagFilterData(List<DocumentTag>? tags, TagVocabulary? vocab)
+    {
+        var items = new List<string> { "All Tags" };
+        _tagsByName = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+        if (tags != null && vocab != null)
+        {
+            var tagLookup = new Dictionary<string, string>();
+            foreach (var t in vocab.Tags)
+                tagLookup[t.Id] = t.DisplayName;
+
+            foreach (var tag in tags)
+            {
+                if (!tagLookup.TryGetValue(tag.TagId, out var name)) continue;
+                if (!_tagsByName.TryGetValue(name, out var paths))
+                {
+                    paths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    _tagsByName[name] = paths;
+                }
+                paths.Add(tag.RelPath);
+            }
+
+            foreach (var name in _tagsByName.Keys.OrderBy(k => k))
+                items.Add(name);
+        }
+
+        TagFilterItems = items;
+        SelectedTagFilterIndex = 0;
+    }
+
     public void Clear()
     {
         Cancel();
@@ -233,6 +281,9 @@ public partial class SearchTabViewModel : ViewModelBase
         _lastContextWidth = 40;
 
         ZenOnly = false;
+        _tagsByName = null;
+        TagFilterItems = new List<string> { "All Tags" };
+        SelectedTagFilterIndex = 0;
         ClearCoocUi();
     }
 
@@ -409,16 +460,32 @@ public partial class SearchTabViewModel : ViewModelBase
 
     private Func<string, bool>? BuildRelPathFilter(bool zenOnly)
     {
-        if (!zenOnly) return null;
-        if (_isZen == null) return null;
+        Func<string, bool>? zenFilter = null;
+        if (zenOnly && _isZen != null)
+        {
+            var isZen = _isZen;
+            zenFilter = rel =>
+            {
+                if (string.IsNullOrWhiteSpace(rel)) return false;
+                rel = rel.Replace('\\', '/').TrimStart('/');
+                return isZen(rel);
+            };
+        }
+
+        HashSet<string>? taggedPaths = null;
+        if (SelectedTagFilterIndex > 0 && _tagsByName != null)
+        {
+            var tagName = _tagFilterItems[SelectedTagFilterIndex];
+            _tagsByName.TryGetValue(tagName, out taggedPaths);
+        }
+
+        if (zenFilter == null && taggedPaths == null) return null;
 
         return rel =>
         {
-            if (string.IsNullOrWhiteSpace(rel))
-                return false;
-
-            rel = rel.Replace('\\', '/').TrimStart('/');
-            return _isZen(rel);
+            if (zenFilter != null && !zenFilter(rel)) return false;
+            if (taggedPaths != null && !taggedPaths.Contains(rel)) return false;
+            return true;
         };
     }
 

@@ -48,6 +48,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly ITermbaseStorageService _termbaseSvc;
     private readonly ITranslationReviewService _translationReview;
     private readonly IMasterDatesService _masterDatesSvc;
+    private readonly IDocumentTagService _tagService;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -104,7 +105,8 @@ public partial class GitTabViewModel : ViewModelBase
         IScholarCollectionsService scholarSvc,
         ITermbaseStorageService termbaseSvc,
         ITranslationReviewService translationReview,
-        IMasterDatesService masterDatesSvc)
+        IMasterDatesService masterDatesSvc,
+        IDocumentTagService tagService)
     {
         _git = git;
         _auth = auth;
@@ -114,6 +116,7 @@ public partial class GitTabViewModel : ViewModelBase
         _termbaseSvc = termbaseSvc;
         _translationReview = translationReview;
         _masterDatesSvc = masterDatesSvc;
+        _tagService = tagService;
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -1341,6 +1344,25 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[info] no custom master dates to share (all entries are canonical)");
             }
 
+            // --- Share tags ---
+            try
+            {
+                var localTags = await _tagService.LoadUserTagsAsync(repoDir, _githubLogin!, ct);
+                if (localTags.Count > 0)
+                {
+                    await _tagService.WriteUserCommunityTagsAsync(repoDir, _githubLogin!, localTags, ct);
+                    AppendLog($"[step] wrote {localTags.Count} tags to community/tags/{_githubLogin}.jsonl");
+                }
+
+                var vocab = await _tagService.LoadVocabularyAsync(repoDir, _githubLogin!, ct);
+                if (vocab?.Tags.Count > 0)
+                {
+                    await _tagService.WriteUserCommunityVocabularyAsync(repoDir, _githubLogin!, vocab, ct);
+                    AppendLog($"[step] wrote tag vocabulary to community/tag-vocabularies/{_githubLogin}.json");
+                }
+            }
+            catch (Exception ex) { AppendLog($"[warn] tag share failed: {ex.Message}"); }
+
             // --- Ensure .gitattributes has merge=union for all community dirs ---
             var gitattribPath = Path.Combine(repoDir, ".gitattributes");
             string[] mergeRules =
@@ -1348,7 +1370,8 @@ public partial class GitTabViewModel : ViewModelBase
                 "community/termbases/*.jsonl merge=union",
                 "community/collections/*.jsonl merge=union",
                 "community/reviews/*.jsonl merge=union",
-                "community/master-dates/*.jsonl merge=union"
+                "community/master-dates/*.jsonl merge=union",
+                "community/tags/*.jsonl merge=union"
             };
             bool gitattribChanged = false;
             string gitattribContent = File.Exists(gitattribPath)
@@ -2300,7 +2323,28 @@ public partial class GitTabViewModel : ViewModelBase
                 }
                 catch { AppendLog("[info] community/master-dates/ not found in origin/main"); }
 
-                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && communityMdJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
+                // Community tags
+                int communityTagJsonlCount = 0;
+                AppendLog("[step] git checkout origin/main -- community/tags/");
+                try
+                {
+                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/tags/", null, ct);
+                    var communityTagsDir = DocumentTagService.GetCommunityTagsDir(repoDir);
+                    if (Directory.Exists(communityTagsDir))
+                    {
+                        communityTagJsonlCount = Directory.GetFiles(communityTagsDir, "*.jsonl").Length;
+                        AppendLog($"[info] community tags: {communityTagJsonlCount} user JSONL file(s)");
+                    }
+                }
+                catch { AppendLog("[info] community/tags/ not found in origin/main"); }
+
+                try
+                {
+                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/tag-vocabularies/", null, ct);
+                }
+                catch { AppendLog("[info] community/tag-vocabularies/ not found in origin/main"); }
+
+                if (mergedTm == 0 && mergedTb == 0 && mergedSc == 0 && communityJsonlCount == 0 && communityTbJsonlCount == 0 && communityReviewJsonlCount == 0 && communityMdJsonlCount == 0 && communityTagJsonlCount == 0 && showTm == null && showTb == null && showSc == null)
                 {
                     ProgressText = "No community data found in origin/main.";
                     AppendLog("[info] origin/main has no community data files yet");

@@ -46,7 +46,7 @@
 				<Grid Grid.Row="1"
                       Grid.Column="0"
                       Grid.ColumnSpan="4"
-                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
                       ColumnSpacing="14">
 
 					<!-- Left cluster -->
@@ -73,19 +73,32 @@
                               ToolTip.Tip="Filter results by translation status"/>
 
 					<TextBlock Grid.Column="4"
-                               Text="Context:"
+                               Text="Tag:"
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"
                                Classes="muted"/>
 
 					<ComboBox Grid.Column="5"
+                              Name="CmbTagFilter"
+                              MinWidth="120"
+                              ItemsSource="{Binding TagFilterItems}"
+                              SelectedIndex="{Binding SelectedTagFilterIndex}"
+                              ToolTip.Tip="Filter results to files tagged with a specific tag"/>
+
+					<TextBlock Grid.Column="6"
+                               Text="Context:"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"
+                               Classes="muted"/>
+
+					<ComboBox Grid.Column="7"
                               Width="120"
                               ItemsSource="{Binding ContextItems}"
                               SelectedIndex="{Binding SelectedContextIndex}"
                               ToolTip.Tip="Number of surrounding characters to show in results"/>
 
 					<!-- Right cluster (Zen-only) -->
-					<CheckBox Grid.Column="8"
+					<CheckBox Grid.Column="10"
                               Content="Zen Texts Only"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"

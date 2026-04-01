@@ -21,7 +21,8 @@ public class GitTabViewModelTests
             new StubScholarCollectionsService(),
             new StubTermbaseStorageService(),
             new StubTranslationReviewService(),
-            new StubMasterDatesService());
+            new StubMasterDatesService(),
+            new StubDocumentTagService());
     }
 
     // ---- Initial state ----
