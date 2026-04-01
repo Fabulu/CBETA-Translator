@@ -61,6 +61,7 @@ public sealed class TermHit
     public List<string> AlternateTargets { get; set; } = new();
     public string Status { get; set; } = ""; // preferred / allowed / deprecated / forbidden
     public string Note { get; set; } = "";
+    public string? CreatedBy { get; set; }
 }
 
 public sealed class QaIssue

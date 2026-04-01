@@ -11,4 +11,9 @@ public interface ITermbaseService
         CurrentSegmentContext ctx,
         string? root,
         CancellationToken ct = default);
+
+    Task<List<TermHit>> FindCommunityTermsAsync(
+        CurrentSegmentContext ctx,
+        string? root,
+        CancellationToken ct = default);
 }

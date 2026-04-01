@@ -12,6 +12,11 @@ namespace CbetaTranslator.App.Services;
 
 public sealed class TermbaseService : ITermbaseService
 {
+    private readonly ITermbaseStorageService _storage;
+
+    public TermbaseService() : this(new TermbaseStorageService()) { }
+    public TermbaseService(ITermbaseStorageService storage) { _storage = storage; }
+
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         PropertyNameCaseInsensitive = true
@@ -95,5 +100,44 @@ public sealed class TermbaseService : ITermbaseService
              .Replace("\n", "");
 
         return s.Trim();
+    }
+
+    public async Task<List<TermHit>> FindCommunityTermsAsync(
+        CurrentSegmentContext ctx, string? root, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root) || string.IsNullOrWhiteSpace(ctx.ZhText))
+            return new();
+
+        var communityDir = TermbaseStorageService.GetCommunityTermbasesDir(root);
+        if (!Directory.Exists(communityDir)) return new();
+
+        var allCommunity = await _storage.LoadAllCommunityJsonlAsync(communityDir, ct).ConfigureAwait(false);
+        var zh = NormalizeForMatch(ctx.ZhText);
+        var results = new List<TermHit>();
+
+        foreach (var (username, entries) in allCommunity)
+        {
+            foreach (var entry in entries)
+            {
+                if (string.IsNullOrWhiteSpace(entry.SourceTerm)) continue;
+                if (!zh.Contains(NormalizeForMatch(entry.SourceTerm), StringComparison.Ordinal)) continue;
+
+                results.Add(new TermHit
+                {
+                    SourceTerm = entry.SourceTerm,
+                    PreferredTarget = entry.PreferredTarget,
+                    AlternateTargets = entry.AlternateTargets ?? new(),
+                    Status = entry.Status,
+                    Note = entry.Note,
+                    CreatedBy = entry.CreatedBy ?? username
+                });
+            }
+        }
+
+        return results
+            .GroupBy(t => t.SourceTerm, StringComparer.Ordinal)
+            .Select(g => g.First())
+            .OrderByDescending(t => t.SourceTerm.Length)
+            .ToList();
     }
 }

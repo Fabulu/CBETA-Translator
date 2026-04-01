@@ -128,6 +128,21 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private bool _hasCommunityCollections;
 
+    [ObservableProperty]
+    private int _selectedCommunityUserIndex;
+
+    private List<string> _communityUsernames = new() { "All Users" };
+    public List<string> CommunityUsernames
+    {
+        get => _communityUsernames;
+        set { _communityUsernames = value; OnPropertyChanged(); }
+    }
+
+    partial void OnSelectedCommunityUserIndexChanged(int value)
+    {
+        RefreshCommunityCollectionsList();
+    }
+
     // Target collection for adopting community passages
     [ObservableProperty]
     private ScholarCollection? _adoptTargetCollection;
@@ -483,6 +498,18 @@ public partial class ScholarTabViewModel : ViewModelBase
 
                 HasCommunityCollections = _allCommunityCollections.Count > 0;
                 IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
+
+                // Populate user picker
+                var usernames = _allCommunityCollections
+                    .Select(x => x.Author)
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .OrderBy(u => u, StringComparer.OrdinalIgnoreCase)
+                    .ToList();
+                var items = new List<string> { "All Users" };
+                items.AddRange(usernames);
+                CommunityUsernames = items;
+                SelectedCommunityUserIndex = 0;
+
                 RefreshCommunityCollectionsList();
             });
         }
@@ -515,8 +542,16 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         var filter = CommunityFilter?.Trim() ?? "";
 
+        string? selectedUser = _selectedCommunityUserIndex > 0 && _selectedCommunityUserIndex < _communityUsernames.Count
+            ? _communityUsernames[_selectedCommunityUserIndex]
+            : null;
+
         foreach (var (author, c) in _allCommunityCollections)
         {
+            // Filter by selected user
+            if (selectedUser != null && !string.Equals(author, selectedUser, StringComparison.OrdinalIgnoreCase))
+                continue;
+
             if (!string.IsNullOrEmpty(filter))
             {
                 bool matches =
