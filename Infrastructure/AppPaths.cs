@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 namespace CbetaTranslator.App.Infrastructure;
 
@@ -25,4 +26,21 @@ public partial class AppPaths
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
     }
+
+    /// <summary>
+    /// Sanitizes a username for use as a filesystem directory name.
+    /// Only allows letters, digits, hyphens, and underscores.
+    /// </summary>
+    public static string SanitizeUsername(string username)
+    {
+        var safe = string.Concat(username.Where(c =>
+            char.IsLetterOrDigit(c) || c == '-' || c == '_'));
+        return string.IsNullOrWhiteSpace(safe) ? "User" : safe;
+    }
+
+    /// <summary>
+    /// Returns the per-user translation directory: community/translations/{sanitized-username}/
+    /// </summary>
+    public static string GetUserTranslatedDir(string root, string username)
+        => Path.Combine(root, "community", "translations", SanitizeUsername(username));
 }
