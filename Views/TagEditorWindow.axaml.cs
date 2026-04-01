@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using CbetaTranslator.App.Models;
@@ -46,6 +47,11 @@ public partial class TagEditorWindow : Window
     private ComboBox? _cmbSlot;
     private StackPanel? _slotPreview;
     private TextBlock? _txtStatus;
+    private WrapPanel? _colorPalette;
+
+    // Drag-and-drop state
+    private Point? _dragStartPoint;
+    private TagTreeNode? _dragCandidate;
 
     /// <summary>
     /// Fired after a successful save. MainWindow subscribes to reload the vocabulary.
@@ -90,6 +96,9 @@ public partial class TagEditorWindow : Window
         _cmbSlot = this.FindControl<ComboBox>("CmbSlot");
         _slotPreview = this.FindControl<StackPanel>("SlotPreview");
         _txtStatus = this.FindControl<TextBlock>("TxtStatus");
+        _colorPalette = this.FindControl<WrapPanel>("ColorPalette");
+
+        BuildColorSwatches();
 
         // Page combo: 1-18
         if (_cmbPage != null)
@@ -108,7 +117,11 @@ public partial class TagEditorWindow : Window
 
         // Tree selection
         if (_tagTree != null)
+        {
             _tagTree.SelectionChanged += (_, _) => OnSelectionChanged();
+            _tagTree.PointerPressed += OnTreePointerPressed;
+            _tagTree.PointerMoved += OnTreePointerMoved;
+        }
 
         // Filter
         if (_txtFilter != null)
@@ -316,6 +329,7 @@ public partial class TagEditorWindow : Window
             if (_txtDescription != null) _txtDescription.Text = tag.Description ?? "";
 
             UpdateSwatchPreview(tag.Color);
+            HighlightSelectedSwatch(tag.Color);
             PopulateParentCombo(tag);
         }
         finally
@@ -608,6 +622,34 @@ public partial class TagEditorWindow : Window
             if (tag != null)
                 ToolTip.SetTip(chip, tag.DisplayName);
 
+            DragDrop.SetAllowDrop(chip, true);
+            int capturedSlot = i;
+            chip.AddHandler(DragDrop.DropEvent, (_, args) =>
+            {
+                if (args.Data.Contains("TagId"))
+                {
+                    var dragTagId = args.Data.Get("TagId") as string;
+                    if (!string.IsNullOrEmpty(dragTagId))
+                    {
+                        int dropPage = (_cmbPage?.SelectedItem as int?) ?? 1;
+                        if (!_vocabulary.Pages.TryGetValue(dropPage, out var dropSlots))
+                        {
+                            dropSlots = new string?[9];
+                            _vocabulary.Pages[dropPage] = dropSlots;
+                        }
+                        if (dropSlots.Length < 9)
+                        {
+                            var newSlots = new string?[9];
+                            Array.Copy(dropSlots, newSlots, dropSlots.Length);
+                            dropSlots = newSlots;
+                            _vocabulary.Pages[dropPage] = dropSlots;
+                        }
+                        dropSlots[capturedSlot] = dragTagId;
+                        RefreshSlotPreview();
+                    }
+                }
+            });
+
             _slotPreview.Children.Add(chip);
         }
     }
@@ -638,6 +680,78 @@ public partial class TagEditorWindow : Window
         {
             SetStatus("Save failed: " + ex.Message);
         }
+    }
+
+    // ── Color palette swatches ─────────────────────────────────────────
+
+    private void BuildColorSwatches()
+    {
+        if (_colorPalette == null) return;
+        _colorPalette.Children.Clear();
+
+        foreach (var hex in Palette)
+        {
+            var color = Color.Parse(hex);
+            var swatch = new Border
+            {
+                Width = 24, Height = 24,
+                CornerRadius = new CornerRadius(4),
+                Background = new SolidColorBrush(color),
+                BorderThickness = new Thickness(2),
+                BorderBrush = Brushes.Transparent,
+                Margin = new Thickness(2),
+                Cursor = new Cursor(StandardCursorType.Hand),
+            };
+            ToolTip.SetTip(swatch, hex);
+
+            var capturedHex = hex;
+            swatch.PointerPressed += (_, _) =>
+            {
+                if (_txtColor != null) _txtColor.Text = capturedHex;
+                HighlightSelectedSwatch(capturedHex);
+            };
+
+            _colorPalette.Children.Add(swatch);
+        }
+    }
+
+    private void HighlightSelectedSwatch(string hex)
+    {
+        if (_colorPalette == null) return;
+        foreach (var child in _colorPalette.Children)
+        {
+            if (child is Border b)
+            {
+                var tip = ToolTip.GetTip(b) as string;
+                b.BorderBrush = string.Equals(tip, hex, StringComparison.OrdinalIgnoreCase)
+                    ? Brushes.White
+                    : Brushes.Transparent;
+            }
+        }
+    }
+
+    // ── Drag-and-drop tag assignment ────────────────────────────────────
+
+    private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        _dragStartPoint = e.GetPosition(_tagTree);
+        _dragCandidate = _tagTree?.SelectedItem as TagTreeNode;
+    }
+
+    private async void OnTreePointerMoved(object? sender, PointerEventArgs e)
+    {
+        if (_dragStartPoint == null || _dragCandidate == null) return;
+
+        var pos = e.GetPosition(_tagTree);
+        var delta = pos - _dragStartPoint.Value;
+        if (Math.Abs(delta.X) < 5 && Math.Abs(delta.Y) < 5) return;
+
+        _dragStartPoint = null;
+        var data = new DataObject();
+        data.Set("TagId", _dragCandidate.Tag.Id);
+
+        await DragDrop.DoDragDrop(e, data, DragDropEffects.Copy);
+        _dragCandidate = null;
     }
 
     // ── Helpers ─────────────────────────────────────────────────────────
