@@ -33,8 +33,11 @@ public partial class AppPaths
     /// </summary>
     public static string SanitizeUsername(string username)
     {
-        var safe = string.Concat(username.Where(c =>
-            char.IsLetterOrDigit(c) || c == '-' || c == '_'));
+        var safe = string.Concat(username.Select(c =>
+            char.IsLetterOrDigit(c) || c == '-' || c == '_' ? c : '-'));
+        // Collapse consecutive hyphens
+        while (safe.Contains("--")) safe = safe.Replace("--", "-");
+        safe = safe.Trim('-');
         return string.IsNullOrWhiteSpace(safe) ? "User" : safe;
     }
 
