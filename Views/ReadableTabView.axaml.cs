@@ -119,6 +119,8 @@ public partial class ReadableTabView : UserControl
     private TagVocabulary? _tagVocabulary;
     private readonly List<DocumentTag> _appliedTags = new();
     private TagHighlightTransformer? _tagHighlighter;
+    private TagHighlightTransformer? _tagHighlighterTran;
+    private string? _lastAppliedTagId;
     private ComboBox? _cmbTagUser;
     private Dictionary<string, List<DocumentTag>>? _communityTags;
     private Dictionary<string, TagVocabulary>? _communityVocabularies;
@@ -2564,7 +2566,10 @@ public partial class ReadableTabView : UserControl
     {
         if (_cmbTagUser == null) return;
 
-        var items = new List<string> { "My Tags" };
+        var username = DefaultResp;
+        var myLabel = !string.IsNullOrWhiteSpace(username) ? $"My Tags ({username})" : "My Tags";
+
+        var items = new List<string> { myLabel };
         if (_communityTags != null)
         {
             foreach (var user in _communityTags.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
@@ -2585,7 +2590,7 @@ public partial class ReadableTabView : UserControl
         if (_cmbTagUser == null) return;
 
         var selected = _cmbTagUser.SelectedItem as string;
-        if (selected == "My Tags" || selected == null)
+        if (selected == null || selected.StartsWith("My Tags", StringComparison.Ordinal))
         {
             // Show own tags
             _selectedTagUser = null;
@@ -2621,51 +2626,10 @@ public partial class ReadableTabView : UserControl
         TagVocabulary? userVocab = null;
         _communityVocabularies?.TryGetValue(username, out userVocab);
 
-        var editor = _aeOrig;
-        var doc = _vm.RenderOrig;
-        if (editor?.TextArea?.TextView == null || doc == null || doc.IsEmpty)
-        {
-            ClearTagHighlights();
-            return;
-        }
-
-        if (_tagHighlighter == null)
-        {
-            _tagHighlighter = new TagHighlightTransformer();
-            editor.TextArea.TextView.LineTransformers.Add(_tagHighlighter);
-        }
-
-        var ranges = new List<(int Start, int Length, Color TagColor)>();
-        foreach (var tag in forFile)
-        {
-            if (string.IsNullOrEmpty(tag.FromLb)) continue;
-
-            Color color = Color.FromRgb(52, 152, 219);
-            if (userVocab != null)
-            {
-                var def = userVocab.Tags.Find(d => d.Id == tag.TagId);
-                if (def != null)
-                {
-                    try { color = Color.Parse(def.Color); } catch { }
-                }
-            }
-
-            if (!TryFindSegmentByLb(doc, tag.FromLb, out var startSeg)) continue;
-            int rangeStart = startSeg.Start;
-            int rangeEnd = startSeg.EndExclusive;
-
-            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
-            {
-                if (TryFindSegmentByLb(doc, tag.ToLb, out var endSeg))
-                    rangeEnd = endSeg.EndExclusive;
-            }
-
-            if (rangeEnd > rangeStart)
-                ranges.Add((rangeStart, rangeEnd - rangeStart, color));
-        }
-
-        _tagHighlighter.SetRanges(ranges);
-        editor.TextArea.TextView.Redraw();
+        // Build tag color map and apply to both editors
+        var tagColorMap = BuildTagColorMap(forFile, userVocab);
+        ApplyTagHighlightsToEditor(_aeOrig, _vm.RenderOrig, tagColorMap, ref _tagHighlighter);
+        ApplyTagHighlightsToEditor(_aeTran, _vm.RenderTran, tagColorMap, ref _tagHighlighterTran);
 
         if (_txtCodeBarStatus != null)
             _txtCodeBarStatus.Text = $"Viewing {username}'s tags ({forFile.Count} on this file) \u2014 read-only";
@@ -2792,6 +2756,11 @@ public partial class ReadableTabView : UserControl
                         _codeBarPage = requestedPage;
                         RefreshCodeBar();
                     }
+                    e.Handled = true;
+                }
+                else if (mods == (KeyModifiers.Control | KeyModifiers.Shift))
+                {
+                    QuickAssignTagToSlot(slot);
                     e.Handled = true;
                 }
                 else if (mods == KeyModifiers.None)
@@ -3021,6 +2990,7 @@ public partial class ReadableTabView : UserControl
         };
 
         _appliedTags.Add(tag);
+        _lastAppliedTagId = tagDef.Id;
         RefreshTagHighlights();
         RefreshCodeBarStatus();
 
@@ -3034,6 +3004,43 @@ public partial class ReadableTabView : UserControl
         {
             Dispatcher.UIThread.Post(() => CodingSkipToNextUntagged(), DispatcherPriority.Background);
         }
+    }
+
+    private void QuickAssignTagToSlot(int slotIndex)
+    {
+        if (_lastAppliedTagId == null || _tagVocabulary == null)
+        {
+            if (_txtCodeBarStatus != null)
+                _txtCodeBarStatus.Text = "Apply a tag first, then Ctrl+Shift+N to assign it to slot N";
+            return;
+        }
+
+        if (!_tagVocabulary.Tags.Any(t => t.Id == _lastAppliedTagId))
+        {
+            if (_txtCodeBarStatus != null) _txtCodeBarStatus.Text = "Last tag no longer exists";
+            return;
+        }
+
+        if (!_tagVocabulary.Pages.TryGetValue(_codeBarPage, out var slots))
+        {
+            slots = new string?[9];
+            _tagVocabulary.Pages[_codeBarPage] = slots;
+        }
+        if (slots.Length < 9)
+        {
+            var newSlots = new string?[9];
+            Array.Copy(slots, newSlots, slots.Length);
+            slots = newSlots;
+            _tagVocabulary.Pages[_codeBarPage] = slots;
+        }
+
+        slots[slotIndex] = _lastAppliedTagId;
+
+        var tagName = _tagVocabulary.Tags.Find(t => t.Id == _lastAppliedTagId)?.DisplayName ?? "?";
+        if (_txtCodeBarStatus != null)
+            _txtCodeBarStatus.Text = $"Assigned \"{tagName}\" to slot {slotIndex + 1} on page {_codeBarPage}";
+
+        RefreshCodeBar();
     }
 
     private TagDefinition? GetTagDefinitionForSlot(int slotIndex)
@@ -3343,41 +3350,70 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        var editor = _aeOrig;
-        if (editor?.TextArea?.TextView == null) return;
-        var doc = _vm.RenderOrig;
-        if (doc == null || doc.IsEmpty) { ClearTagHighlights(); return; }
+        // Compute tag color map from applied tags (lb-based, document-independent)
+        var tagColorMap = BuildTagColorMap(_appliedTags, _tagVocabulary);
 
-        if (_tagHighlighter == null)
-        {
-            _tagHighlighter = new TagHighlightTransformer();
-            editor.TextArea.TextView.LineTransformers.Add(_tagHighlighter);
-        }
+        // Apply to original (Chinese) editor
+        ApplyTagHighlightsToEditor(_aeOrig, _vm.RenderOrig, tagColorMap, ref _tagHighlighter);
 
-        var ranges = new List<(int Start, int Length, Color TagColor)>();
-        foreach (var tag in _appliedTags)
+        // Apply to translated (English) editor
+        ApplyTagHighlightsToEditor(_aeTran, _vm.RenderTran, tagColorMap, ref _tagHighlighterTran);
+    }
+
+    private static List<(string FromLb, string? ToLb, Color TagColor)> BuildTagColorMap(
+        List<DocumentTag> tags, TagVocabulary? vocab)
+    {
+        var result = new List<(string, string?, Color)>();
+        foreach (var tag in tags)
         {
             if (string.IsNullOrEmpty(tag.FromLb)) continue;
 
-            // Find the tag definition color
             Color color = Color.FromRgb(52, 152, 219); // default blue
-            if (_tagVocabulary != null)
+            if (vocab != null)
             {
-                var def = _tagVocabulary.Tags.Find(d => d.Id == tag.TagId);
+                var def = vocab.Tags.Find(d => d.Id == tag.TagId);
                 if (def != null)
                 {
                     try { color = Color.Parse(def.Color); } catch { }
                 }
             }
 
-            // Find rendered range for this lb range
-            if (!TryFindSegmentByLb(doc, tag.FromLb, out var startSeg)) continue;
+            result.Add((tag.FromLb, tag.ToLb, color));
+        }
+        return result;
+    }
+
+    private void ApplyTagHighlightsToEditor(
+        TextEditor? editor, RenderedDocument? doc,
+        List<(string FromLb, string? ToLb, Color TagColor)> tagColorMap,
+        ref TagHighlightTransformer? highlighter)
+    {
+        if (editor?.TextArea?.TextView == null || doc == null || doc.IsEmpty)
+        {
+            if (highlighter != null)
+            {
+                highlighter.SetRanges(Array.Empty<(int, int, Color)>());
+                try { editor?.TextArea?.TextView?.Redraw(); } catch { }
+            }
+            return;
+        }
+
+        if (highlighter == null)
+        {
+            highlighter = new TagHighlightTransformer();
+            editor.TextArea.TextView.LineTransformers.Add(highlighter);
+        }
+
+        var ranges = new List<(int Start, int Length, Color TagColor)>();
+        foreach (var (fromLb, toLb, color) in tagColorMap)
+        {
+            if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) continue;
             int rangeStart = startSeg.Start;
             int rangeEnd = startSeg.EndExclusive;
 
-            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
+            if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
             {
-                if (TryFindSegmentByLb(doc, tag.ToLb, out var endSeg))
+                if (TryFindSegmentByLb(doc, toLb, out var endSeg))
                     rangeEnd = endSeg.EndExclusive;
             }
 
@@ -3385,21 +3421,27 @@ public partial class ReadableTabView : UserControl
                 ranges.Add((rangeStart, rangeEnd - rangeStart, color));
         }
 
-        _tagHighlighter.SetRanges(ranges);
+        highlighter.SetRanges(ranges);
         editor.TextArea.TextView.Redraw();
     }
 
     private void ClearTagHighlights()
     {
-        if (_tagHighlighter == null) return;
-        _tagHighlighter.SetRanges(new List<(int, int, Color)>());
-        try
+        if (_tagHighlighter != null)
         {
-            _aeOrig?.TextArea?.TextView?.LineTransformers.Remove(_tagHighlighter);
+            _tagHighlighter.SetRanges(new List<(int, int, Color)>());
+            try { _aeOrig?.TextArea?.TextView?.LineTransformers.Remove(_tagHighlighter); } catch { }
+            _aeOrig?.TextArea?.TextView?.Redraw();
+            _tagHighlighter = null;
         }
-        catch { }
-        _aeOrig?.TextArea?.TextView?.Redraw();
-        _tagHighlighter = null;
+
+        if (_tagHighlighterTran != null)
+        {
+            _tagHighlighterTran.SetRanges(new List<(int, int, Color)>());
+            try { _aeTran?.TextArea?.TextView?.LineTransformers.Remove(_tagHighlighterTran); } catch { }
+            _aeTran?.TextArea?.TextView?.Redraw();
+            _tagHighlighterTran = null;
+        }
     }
 
     private sealed class TagHighlightTransformer : DocumentColorizingTransformer

@@ -78,17 +78,23 @@
 					</Grid>
 
 					<!-- Color -->
-					<Grid ColumnDefinitions="120,Auto,*" ColumnSpacing="10">
-						<TextBlock Text="Color" VerticalAlignment="Center"/>
-						<Border Grid.Column="1" Name="SwatchPreview"
-								Width="22" Height="22"
-								CornerRadius="3"
-								BorderBrush="{DynamicResource BorderBrush}"
-								BorderThickness="1"
-								Background="#3498DB"/>
-						<TextBox Grid.Column="2" Name="TxtColor"
-								 Watermark="#RRGGBB" MaxLength="7"/>
-					</Grid>
+					<StackPanel Spacing="6">
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Color" VerticalAlignment="Center" Width="120"/>
+							<Border Name="SwatchPreview"
+									Width="22" Height="22"
+									CornerRadius="3"
+									BorderBrush="{DynamicResource BorderBrush}"
+									BorderThickness="1"
+									Background="#3498DB"/>
+						</StackPanel>
+						<WrapPanel Name="ColorPalette" Margin="0,2,0,0"/>
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Custom:" VerticalAlignment="Center" Width="120"/>
+							<TextBox Name="TxtColor"
+									 Watermark="#RRGGBB" MaxLength="7" MinWidth="100"/>
+						</StackPanel>
+					</StackPanel>
 
 					<!-- Parent -->
 					<Grid ColumnDefinitions="120,*" ColumnSpacing="10">
