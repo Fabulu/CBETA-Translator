@@ -514,6 +514,22 @@ public partial class MainWindow : Window
                     _vm.SetStatus("Link copied to clipboard.");
                 };
             }
+
+            var mnuCopyRedditLink = Find<MenuItem>("MnuCopyRedditLink");
+            if (mnuCopyRedditLink != null)
+            {
+                mnuCopyRedditLink.Click += async (_, _) =>
+                {
+                    var navItem = _filesList.SelectedItem as FileNavItem;
+                    if (navItem == null || string.IsNullOrWhiteSpace(navItem.RelPath)) return;
+
+                    var url = CbetaUriParser.BuildShareableUrl(navItem.RelPath);
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null)
+                        await top.Clipboard.SetTextAsync(url);
+                    _vm.SetStatus("Reddit link copied to clipboard.");
+                };
+            }
         }
 
         if (_tabs != null)

@@ -358,6 +358,47 @@ public partial class ReadableTabView : UserControl
         };
         menu.Items.Add(copyLinkItem);
 
+        var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
+        copyRedditLink.Click += async (_, _) =>
+        {
+            var relPath = _vm.CurrentRelPathForZen;
+            if (string.IsNullOrWhiteSpace(relPath)) return;
+
+            var editor = isTranslated ? _aeTran : _aeOrig;
+            var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+            var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
+
+            string? fromLb = null;
+            string? toLb = null;
+            string? highlight = null;
+
+            if (editor != null && doc != null && !doc.IsEmpty)
+            {
+                int selStart = GetSelectionStartSafe(editor);
+                int selEnd = GetSelectionEndSafe(editor);
+                bool hasSelection = selEnd > selStart;
+
+                if (hasSelection)
+                {
+                    fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+                    toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
+
+                    if (fromLb == null)
+                    {
+                        highlight = editor.SelectedText;
+                        if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                    }
+                }
+            }
+
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side);
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+                await top.Clipboard.SetTextAsync(url);
+            Say("Reddit link copied to clipboard.");
+        };
+        menu.Items.Add(copyRedditLink);
+
         if (_codingModeActive)
         {
             var addTaggedItem = new MenuItem { Header = "Add Tagged Segment to Scholar" };

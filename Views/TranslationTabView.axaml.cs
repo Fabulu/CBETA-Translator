@@ -267,6 +267,45 @@ public partial class TranslationTabView : UserControl
         };
         menu.Items.Add(copyLinkItem);
 
+        var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
+        copyRedditLink.Click += async (_, _) =>
+        {
+            var relPath = _vm.CurrentOriginalPath;
+            if (string.IsNullOrWhiteSpace(relPath) || _editor == null) return;
+
+            string? highlight = _editor.SelectedText;
+            if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+
+            string? fromLb = null;
+            string? toLb = null;
+            var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+            if (blocks.Count > 0)
+            {
+                int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+                if (ix >= 0 && ix < blocks.Count)
+                    fromLb = ResolveLbForBlock?.Invoke(blocks[ix].BlockNumber);
+
+                int selStart = _editor.SelectionStart;
+                int selEnd = selStart + _editor.SelectionLength;
+                if (selEnd > selStart)
+                {
+                    int ixEnd = FindBlockIndexAtOrAfterCaret(blocks, selEnd - 1);
+                    if (ixEnd >= 0 && ixEnd < blocks.Count && ixEnd != ix)
+                        toLb = ResolveLbForBlock?.Invoke(blocks[ixEnd].BlockNumber);
+                }
+            }
+
+            if (fromLb == null && highlight != null && highlight.Length > 60)
+                highlight = highlight.Substring(0, 60);
+
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight);
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+                await top.Clipboard.SetTextAsync(url);
+            Status?.Invoke(this, "Reddit link copied to clipboard.");
+        };
+        menu.Items.Add(copyRedditLink);
+
         return menu;
     }
 

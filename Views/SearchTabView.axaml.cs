@@ -101,9 +101,22 @@ public partial class SearchTabView : UserControl
                 Status?.Invoke(this, "Link copied to clipboard.");
             };
 
+            var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
+            copyRedditLink.Click += async (_, _) =>
+            {
+                if (resultsTree.SelectedItem is not SearchResultChild child) return;
+
+                var url = CbetaUriParser.BuildShareableUrl(
+                    child.RelPath, highlightText: child.MatchText, side: child.Side);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(url);
+                Status?.Invoke(this, "Reddit link copied to clipboard.");
+            };
+
             resultsTree.ContextMenu = new ContextMenu
             {
-                Items = { addToScholarItem, copyLinkItem }
+                Items = { addToScholarItem, copyLinkItem, copyRedditLink }
             };
         }
 
