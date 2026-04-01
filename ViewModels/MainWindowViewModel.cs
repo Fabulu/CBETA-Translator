@@ -1341,6 +1341,10 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             SetStatus("Tag save failed: " + ex.Message);
         }
+
+        // Update search tab tag filter with latest tags
+        await Dispatcher.UIThread.InvokeAsync(() =>
+            SetSearchTagFilterData?.Invoke(_appliedTags, _tagVocabulary));
     }
 
     public async Task SaveTagVocabularyAsync(TagVocabulary vocab)
