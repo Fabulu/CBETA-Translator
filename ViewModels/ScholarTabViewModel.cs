@@ -654,7 +654,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     // ----- Link management -----
 
-    public async Task CreateLinkAsync(string fromId, string toId, string relationType)
+    public async Task CreateLinkAsync(string fromId, string toId, string relationType, string? note = null)
     {
         if (SelectedCollection == null) return;
 
@@ -664,6 +664,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             FromPassageId = fromId,
             ToPassageId = toId,
             RelationType = relationType,
+            Note = note,
             CreatedUtc = DateTimeOffset.UtcNow
         };
 

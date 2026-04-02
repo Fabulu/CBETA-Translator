@@ -12,5 +12,5 @@ public sealed class PassageLink
     public DateTimeOffset CreatedUtc { get; set; }
 
     public static string[] RelationTypes { get; } =
-        { "quotes", "alludes-to", "comments-on", "contradicts", "parallels", "responds-to" };
+        { "quotes", "alludes-to", "comments-on", "contradicts", "parallels", "responds-to", "is-variant-of", "translates", "summarizes" };
 }
