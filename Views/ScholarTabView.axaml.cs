@@ -184,7 +184,8 @@ public partial class ScholarTabView : UserControl
                     passage.SourceRelPath,
                     fromLb: passage.FromLb,
                     toLb: passage.ToLb,
-                    highlightText: highlight);
+                    highlightText: highlight,
+                    side: SearchSide.Translated);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(url);

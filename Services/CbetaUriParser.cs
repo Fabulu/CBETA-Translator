@@ -162,10 +162,12 @@ public static class CbetaUriParser
             url += "/" + range;
         }
 
+        // Side as path segment (cleaner than query param)
+        if (side != SearchSide.Original)
+            url += "/en";
+
         // Optional query params
         var queryParts = new List<string>();
-        if (side != SearchSide.Original)
-            queryParts.Add("side=" + Uri.EscapeDataString(side.ToString()));
         if (!string.IsNullOrEmpty(highlightText))
         {
             var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
