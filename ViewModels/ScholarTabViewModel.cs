@@ -692,6 +692,14 @@ public partial class ScholarTabViewModel : ViewModelBase
         return SelectedCollection?.Passages.FirstOrDefault(p => p.Id == passageId);
     }
 
+    public void SelectPassageById(string passageId)
+    {
+        if (SelectedCollection == null) return;
+        var passage = SelectedCollection.Passages.FirstOrDefault(p => p.Id == passageId);
+        if (passage != null)
+            SelectedPassage = passage;
+    }
+
     // ----- Public API -----
 
     public async Task AddPassageToCollectionAsync(string collectionId, ScholarPassage passage)

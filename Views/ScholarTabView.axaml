@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CbetaTranslator.App.ViewModels"
              xmlns:models="using:CbetaTranslator.App.Models"
+             xmlns:local="using:CbetaTranslator.App.Views"
              x:DataType="vm:ScholarTabViewModel"
              x:Class="CbetaTranslator.App.Views.ScholarTabView">
 
@@ -375,6 +376,15 @@
             </TabItem.Header>
             <ScrollViewer>
               <StackPanel Margin="8">
+                <!-- Link Statistics -->
+                <Expander Header="Statistics" IsExpanded="True" Margin="0,0,0,8">
+                    <StackPanel Spacing="6">
+                        <StackPanel Name="PnlLinkStats" Spacing="3"/>
+                        <TextBlock Name="TxtLinkCoverage" FontSize="11" Classes="muted"/>
+                    </StackPanel>
+                </Expander>
+                <Button Name="BtnAddLink" Content="+ Link" Padding="8,3" FontSize="11"
+                        IsEnabled="{Binding IsEditorEnabled}" Margin="0,0,0,4"/>
                 <TextBlock Name="TxtLinksEmpty"
                            Text="No links yet. Right-click a passage and choose 'Link to...' to connect related passages."
                            TextWrapping="Wrap" Classes="muted" FontSize="11"
@@ -388,6 +398,17 @@
                 </ItemsControl>
               </StackPanel>
             </ScrollViewer>
+          </TabItem>
+
+          <TabItem Header="Graph">
+            <Grid RowDefinitions="Auto,*">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8,4">
+                    <Button Name="BtnGraphRelayout" Content="Re-layout" Padding="8,3" FontSize="11"/>
+                    <TextBlock Name="TxtGraphInfo" VerticalAlignment="Center" Classes="muted" FontSize="11"/>
+                </StackPanel>
+                <local:LinkNetworkGraphControl Grid.Row="1" Name="GraphControl"
+                    ClipToBounds="True" Margin="4"/>
+            </Grid>
           </TabItem>
 
           <TabItem Header="Notes">
