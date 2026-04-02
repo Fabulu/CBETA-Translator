@@ -313,10 +313,11 @@ public class CbetaUriParserTests
     }
 
     [Fact]
-    public void BuildShareableUrl_WithSide_AppendsQuery()
+    public void BuildShareableUrl_WithSide_AppendsEnPath()
     {
         var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", side: SearchSide.Translated);
-        Assert.Contains("?side=Translated", url);
+        Assert.EndsWith("/en", url);
+        Assert.DoesNotContain("?side=", url);
     }
 
     [Fact]
