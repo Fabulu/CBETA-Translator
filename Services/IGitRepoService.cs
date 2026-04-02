@@ -22,7 +22,19 @@ public interface IGitRepoService
 
     Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct);
 
-    Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
+    /// <summary>
+    /// Ensures git user.name and user.email are configured locally.
+    /// If <paramref name="username"/> is provided, it is used for user.name and email;
+    /// otherwise falls back to "CbetaTranslator" / "cbeta-translator@cbeta-translator.local".
+    /// </summary>
+    /// <remarks>
+    /// Security: username is self-declared (from AppConfig), not verified.
+    /// Git commits can be attributed to any name — this is inherent to git.
+    /// GitHub PRs are verified via OAuth token (GitHubAccessToken).
+    /// Community data files include CreatedBy field — also self-declared.
+    /// Mitigation: GitHub PR author is verified; community data merges should be reviewed.
+    /// </remarks>
+    Task EnsureUserIdentityAsync(string repoDir, string? username, IProgress<string> progress, CancellationToken ct);
 
     Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct);
 

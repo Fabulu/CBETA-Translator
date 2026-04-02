@@ -59,7 +59,7 @@ public class StubGitRepoService : IGitRepoService
     public Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
     public Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct) => Task.FromResult("main");
-    public Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.CompletedTask;
+    public Task EnsureUserIdentityAsync(string repoDir, string? username, IProgress<string> progress, CancellationToken ct) => Task.CompletedTask;
     public Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> StashAllAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));

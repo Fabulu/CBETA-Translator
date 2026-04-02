@@ -19,6 +19,8 @@ namespace CbetaTranslator.App.Models
 
         public bool HasRegisteredProtocolHandler { get; set; }
 
+        public bool EnableStudyPanel { get; set; }
+
         public int Version { get; set; } = 3;
     }
 }

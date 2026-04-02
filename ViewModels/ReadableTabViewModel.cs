@@ -36,6 +36,12 @@ public partial class ReadableTabViewModel : ViewModelBase
     private bool _notesPanelVisible;
 
     [ObservableProperty]
+    private bool _studyPanelVisible;
+
+    /// <summary>Holds the last study panel snapshot so it can be re-rendered when the panel is toggled on.</summary>
+    public TranslationAssistantSnapshot? LastStudySnapshot { get; set; }
+
+    [ObservableProperty]
     private string _notesHeaderText = "Note";
 
     [ObservableProperty]

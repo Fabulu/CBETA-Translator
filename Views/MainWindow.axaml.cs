@@ -309,6 +309,8 @@ public partial class MainWindow : Window
         {
             if (_readableView != null) _readableView.DefaultResp = resp;
         };
+        _vm.SetReadableStudySnapshot = snapshot => _readableView?.SetStudyPanelSnapshot(snapshot);
+        _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
         _vm.SetReadableTagVocabulary = vocab => _readableView?.SetTagVocabulary(vocab);
         _vm.SetReadableAppliedTags = tags => _readableView?.SetAppliedTags(tags);
         _vm.SetReadableCommunityTags = tags => _readableView?.SetCommunityTags(tags);
@@ -659,6 +661,20 @@ public partial class MainWindow : Window
             {
                 _ = OpenCompareTranslationsWindowAsync();
             };
+
+            _readableView.StudyPanelContextChanged += async (_, ctx) =>
+            {
+                await _vm.RefreshReaderStudyPanelAsync(ctx);
+            };
+
+            _readableView.StudyPanelVisibilityChanged += (_, visible) =>
+            {
+                _vm.Config.EnableStudyPanel = visible;
+                _ = _vm.SafeSaveConfigAsync();
+                // Auto-collapse nav sidebar when study panel opens to give more reading space
+                if (visible && _navPanel != null)
+                    _navPanel.IsVisible = false;
+            };
         }
 
         if (_translationView != null)
@@ -862,11 +878,7 @@ public partial class MainWindow : Window
             e.Handled = true;
             _ = _vm.HandleReviewActionAsync(TranslationReviewStatuses.Approved);
         }
-        else if (e.Key == Key.N)
-        {
-            e.Handled = true;
-            _ = _vm.HandleReviewActionAsync(TranslationReviewStatuses.NeedsWork);
-        }
+        // Alt+N (needs-work) removed — button hidden, shortcut disabled
         else if (e.Key == Key.Right && !(_translationView?.IsEditorFocused() ?? false))
         {
             e.Handled = true;
@@ -1254,17 +1266,17 @@ public partial class MainWindow : Window
 
             // Render translation A
             var transADoc = _vm.RenderTranslationSource(indexA);
-            if (transADoc == null)
+            if (transADoc == null || transADoc.IsEmpty)
             {
-                _vm.SetStatus($"Translation A ({sourceList[indexA]}) not available for this file.");
+                _vm.SetStatus($"Translation A ({sourceList[indexA]}) is empty or not found for this file.");
                 return;
             }
 
             // Render translation B
             var transBDoc = _vm.RenderTranslationSource(indexB);
-            if (transBDoc == null)
+            if (transBDoc == null || transBDoc.IsEmpty)
             {
-                _vm.SetStatus($"Translation B ({sourceList[indexB]}) not available for this file.");
+                _vm.SetStatus($"Translation B ({sourceList[indexB]}) is empty or not found for this file.");
                 return;
             }
 

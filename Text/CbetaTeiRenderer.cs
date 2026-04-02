@@ -119,6 +119,7 @@ public static class CbetaTeiRenderer
 
         int teiHeaderDepth = 0;
         int backDepth = 0; // when >0, we do not render text to sb, but we still parse notes
+        int muluDepth = 0; // when >0, suppress text inside <cb:mulu> (TOC metadata, duplicates <head>)
 
         bool lastWasNewline = false;       // for main sb
         bool noteLastWasNewline = false;   // for noteSb
@@ -144,7 +145,7 @@ public static class CbetaTeiRenderer
             if (relLt < 0)
             {
                 // trailing text
-                if (teiHeaderDepth == 0 && backDepth == 0 && !inNoteCapture)
+                if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && !inNoteCapture)
                     AppendText(sb, baseToXml, s.Slice(i), absStartXmlIndex: i, ref lastWasNewline);
                 else if (inNoteCapture)
                     AppendText(noteSb, map: null, s.Slice(i), absStartXmlIndex: i, ref noteLastWasNewline);
@@ -162,7 +163,7 @@ public static class CbetaTeiRenderer
                 {
                     AppendText(noteSb, map: null, rawText, absStartXmlIndex: i, ref noteLastWasNewline);
                 }
-                else if (teiHeaderDepth == 0 && backDepth == 0)
+                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
                 {
                     AppendText(sb, baseToXml, rawText, absStartXmlIndex: i, ref lastWasNewline);
                 }
@@ -176,7 +177,7 @@ public static class CbetaTeiRenderer
                 var tail = s.Slice(lt);
                 if (inNoteCapture)
                     AppendText(noteSb, map: null, tail, absStartXmlIndex: lt, ref noteLastWasNewline);
-                else if (teiHeaderDepth == 0 && backDepth == 0)
+                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
                     AppendText(sb, baseToXml, tail, absStartXmlIndex: lt, ref lastWasNewline);
                 break;
             }
@@ -195,6 +196,9 @@ public static class CbetaTeiRenderer
 
                     if (EqualsIgnoreCase(tagName, "back"))
                         backDepth = Math.Max(0, backDepth - 1);
+
+                    if (EqualsIgnoreCase(tagName, "cb:mulu"))
+                        muluDepth = Math.Max(0, muluDepth - 1);
 
                     // finish note capture
                     if (EqualsIgnoreCase(tagName, "note") && inNoteCapture)
@@ -237,6 +241,8 @@ public static class CbetaTeiRenderer
                         teiHeaderDepth++;
                     else if (EqualsIgnoreCase(tagName, "back"))
                         backDepth++;
+                    else if (EqualsIgnoreCase(tagName, "cb:mulu"))
+                        muluDepth++;
 
                     // If we're capturing a note and we hit any start-tag: treat as a soft separator
                     if (inNoteCapture)

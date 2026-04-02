@@ -145,9 +145,9 @@ public partial class App : Application
             // Wait for the primary window to finish its initial load
             // (config, auto-load, index build, etc.)
             // Poll until Root is set (config loaded and auto-loaded)
-            for (int i = 0; i < 30; i++) // max 15 seconds
+            for (int i = 0; i < 30; i++) // max ~21 seconds
             {
-                await System.Threading.Tasks.Task.Delay(500);
+                await System.Threading.Tasks.Task.Delay(700);
                 if (!string.IsNullOrWhiteSpace(mainWin.ViewModel?.Root))
                     break;
             }

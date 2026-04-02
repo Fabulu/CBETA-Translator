@@ -229,7 +229,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 _allCollections.AddRange(loaded);
                 RefreshCollectionsList();
 
-                IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
+                RefreshIsEmptyState();
                 StatusMessage = $"Loaded {_allCollections.Count} collection(s).";
                 StatusChanged?.Invoke(this, StatusMessage);
             });
@@ -299,7 +299,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         _allCollections.Remove(SelectedCollection);
         Collections.Remove(SelectedCollection);
         SelectedCollection = Collections.FirstOrDefault();
-        IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
+        RefreshIsEmptyState();
         _ = SafeFireAndForget(SaveAsync());
     }
 
@@ -454,7 +454,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             await RunOnUiAsync(() =>
             {
                 RefreshCollectionsList();
-                IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
+                RefreshIsEmptyState();
             });
 
             await SaveAsync();
@@ -502,7 +502,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 }
 
                 HasCommunityCollections = _allCommunityCollections.Count > 0;
-                IsEmptyState = _allCollections.Count == 0 && !HasCommunityCollections;
+                RefreshIsEmptyState();
 
                 // Populate user picker
                 var usernames = _allCommunityCollections
@@ -1203,6 +1203,16 @@ public partial class ScholarTabViewModel : ViewModelBase
         HasCommunityCollections = false;
         IsEmptyState = true;
         _root = null;
+    }
+
+    /// <summary>
+    /// Recomputes IsEmptyState from the current data.
+    /// Empty = no local collections (or all empty) AND no community collections.
+    /// </summary>
+    private void RefreshIsEmptyState()
+    {
+        bool hasAnyLocal = _allCollections.Count > 0;
+        IsEmptyState = !hasAnyLocal && !HasCommunityCollections;
     }
 
     // ----- Master name auto-detection -----
