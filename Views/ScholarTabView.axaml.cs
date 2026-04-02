@@ -377,6 +377,9 @@ public partial class ScholarTabView : UserControl
         _ = UpdateTermbaseHitsAsync(passage?.ZhText);
         RefreshLinksPanel();
         RefreshLinkedTextsPanel();
+
+        var categoriesEmpty = this.FindControl<TextBlock>("TxtCategoriesEmpty");
+        if (categoriesEmpty != null) categoriesEmpty.IsVisible = passage == null;
     }
 
     private void UpdateCommunityDetailFields()
@@ -704,16 +707,24 @@ public partial class ScholarTabView : UserControl
     private void RefreshLinksPanel()
     {
         var panel = this.FindControl<ItemsControl>("PnlLinks");
+        var emptyText = this.FindControl<TextBlock>("TxtLinksEmpty");
+        var tabHeader = this.FindControl<TextBlock>("TxtLinksTabHeader");
         if (panel == null) return;
 
         var passage = _vm.SelectedPassage;
         if (passage == null || _vm.SelectedCollection == null)
         {
             panel.ItemsSource = null;
+            if (emptyText != null) emptyText.IsVisible = true;
+            if (tabHeader != null) tabHeader.Text = "Links";
             return;
         }
 
         var links = _vm.GetLinksForPassage(passage.Id);
+
+        if (emptyText != null) emptyText.IsVisible = links.Count == 0;
+        if (tabHeader != null) tabHeader.Text = links.Count > 0 ? $"Links ({links.Count})" : "Links";
+
         if (links.Count == 0)
         {
             panel.ItemsSource = null;
@@ -762,6 +773,12 @@ public partial class ScholarTabView : UserControl
                 {
                     _vm.SelectedPassage = captured;
                 };
+                // Double-click to navigate to source
+                previewText.DoubleTapped += (_, _) =>
+                {
+                    _vm.SelectedPassage = captured;
+                    _vm.NavigateToPassageCommand.Execute(null);
+                };
             }
 
             var deleteBtn = new Button
@@ -783,13 +800,35 @@ public partial class ScholarTabView : UserControl
 
             var row = new StackPanel
             {
-                Orientation = Avalonia.Layout.Orientation.Horizontal,
-                Spacing = 4,
+                Orientation = Avalonia.Layout.Orientation.Vertical,
+                Spacing = 2,
                 Margin = new Thickness(0, 2)
             };
-            row.Children.Add(relationChip);
-            row.Children.Add(previewText);
-            row.Children.Add(deleteBtn);
+
+            var topRow = new StackPanel
+            {
+                Orientation = Avalonia.Layout.Orientation.Horizontal,
+                Spacing = 4
+            };
+            topRow.Children.Add(relationChip);
+            topRow.Children.Add(previewText);
+            topRow.Children.Add(deleteBtn);
+            row.Children.Add(topRow);
+
+            // Show note if present
+            if (!string.IsNullOrWhiteSpace(link.Note))
+            {
+                var noteText = new TextBlock
+                {
+                    Text = link.Note,
+                    FontSize = 11,
+                    Opacity = 0.7,
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = 300,
+                    Margin = new Thickness(14, 0, 0, 0)
+                };
+                row.Children.Add(noteText);
+            }
 
             controls.Add(row);
         }
@@ -897,10 +936,10 @@ public partial class ScholarTabView : UserControl
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
 
-        var result = await dlg.ShowDialog<(string PassageId, string RelationType)?>(topLevel);
+        var result = await dlg.ShowDialog<(string PassageId, string RelationType, string? Note)?>(topLevel);
         if (result == null) return;
 
-        await _vm.CreateLinkAsync(fromPassage.Id, result.Value.PassageId, result.Value.RelationType);
+        await _vm.CreateLinkAsync(fromPassage.Id, result.Value.PassageId, result.Value.RelationType, result.Value.Note);
         RefreshLinksPanel();
         Status?.Invoke(this, $"Link created: {result.Value.RelationType}");
     }
@@ -911,18 +950,19 @@ public partial class ScholarTabView : UserControl
     {
         private readonly ListBox _passageListBox;
         private readonly ComboBox _relationCombo;
+        private readonly TextBox _noteBox;
 
         public LinkPassageDialog(List<ScholarPassage> passages)
         {
             Title = "Link to Passage";
             Width = 400;
-            Height = 380;
+            Height = 430;
             Topmost = false;
             CanResize = false;
 
             var root = new Grid
             {
-                RowDefinitions = new RowDefinitions("Auto,*,Auto,Auto"),
+                RowDefinitions = new RowDefinitions("Auto,*,Auto,Auto,Auto"),
                 Margin = new Thickness(16),
                 RowSpacing = 10
             };
@@ -974,6 +1014,14 @@ public partial class ScholarTabView : UserControl
             relationPanel.Children.Add(relationLabel);
             relationPanel.Children.Add(_relationCombo);
 
+            _noteBox = new TextBox
+            {
+                Watermark = "Note (optional)",
+                AcceptsReturn = true,
+                MaxHeight = 60,
+                TextWrapping = TextWrapping.Wrap
+            };
+
             var buttons = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
@@ -990,7 +1038,7 @@ public partial class ScholarTabView : UserControl
                 var selected = _passageListBox.SelectedItem as ScholarPassage;
                 var relation = _relationCombo.SelectedItem as string;
                 if (selected != null && !string.IsNullOrEmpty(relation))
-                    Close((selected.Id, relation));
+                    Close((selected.Id, relation, string.IsNullOrWhiteSpace(_noteBox.Text) ? (string?)null : _noteBox.Text?.Trim()));
                 else
                     Close(null);
             };
@@ -1007,8 +1055,11 @@ public partial class ScholarTabView : UserControl
             root.Children.Add(relationPanel);
             Grid.SetRow(relationPanel, 2);
 
+            root.Children.Add(_noteBox);
+            Grid.SetRow(_noteBox, 3);
+
             root.Children.Add(buttons);
-            Grid.SetRow(buttons, 3);
+            Grid.SetRow(buttons, 4);
 
             Content = root;
         }
