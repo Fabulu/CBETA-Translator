@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace CbetaTranslator.App.Services;
@@ -153,13 +154,25 @@ public static class ProtocolRegistrationService
 
     private static bool IsRegisteredLinux()
     {
-        return File.Exists(GetDesktopFilePath());
+        try
+        {
+            var desktopPath = GetDesktopFilePath();
+            if (!File.Exists(desktopPath))
+                return false;
+
+            var defaultHandler = RunAndCapture("xdg-mime", "query default x-scheme-handler/zen");
+            return string.Equals(defaultHandler, Path.GetFileName(desktopPath), StringComparison.OrdinalIgnoreCase);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private static void RegisterLinux()
     {
-        var exePath = GetExePath();
-        if (string.IsNullOrEmpty(exePath))
+        var execLine = GetLinuxExecLine();
+        if (string.IsNullOrEmpty(execLine))
             return;
 
         try
@@ -172,22 +185,16 @@ public static class ProtocolRegistrationService
                 "[Desktop Entry]\n" +
                 "Type=Application\n" +
                 "Name=CBETA Translator\n" +
-                "Exec=" + exePath + " %u\n" +
+                "NoDisplay=true\n" +
+                "Exec=" + execLine + " %u\n" +
                 "StartupNotify=false\n" +
                 "Terminal=false\n" +
                 "MimeType=x-scheme-handler/zen;\n";
 
             File.WriteAllText(desktopPath, content);
 
-            // Register with xdg-mime
-            var psi = new ProcessStartInfo("xdg-mime", "default cbeta-translator.desktop x-scheme-handler/zen")
-            {
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-            };
-            using var proc = Process.Start(psi);
-            proc?.WaitForExit(5000);
+            RunAndCapture("xdg-mime", "default cbeta-translator.desktop x-scheme-handler/zen");
+            TryRun("update-desktop-database", QuoteDesktopArgument(appsDir));
         }
         catch (Exception ex)
         {
@@ -202,11 +209,75 @@ public static class ProtocolRegistrationService
             var desktopPath = GetDesktopFilePath();
             if (File.Exists(desktopPath))
                 File.Delete(desktopPath);
+
+            TryRun("update-desktop-database", QuoteDesktopArgument(Path.GetDirectoryName(desktopPath)!));
         }
         catch (Exception ex)
         {
             Debug.WriteLine("Failed to unregister zen:// protocol on Linux: " + ex.Message);
         }
+    }
+
+    private static string? GetLinuxExecLine()
+    {
+        var exePath = GetExePath();
+        if (!string.IsNullOrWhiteSpace(exePath) &&
+            !Path.GetFileName(exePath).Equals("dotnet", StringComparison.OrdinalIgnoreCase))
+        {
+            return QuoteDesktopArgument(exePath);
+        }
+
+        var baseDir = AppContext.BaseDirectory;
+        var appHostCandidates = new[]
+        {
+            Path.Combine(baseDir, "CbetaTranslator.App"),
+            Path.Combine(baseDir, "publish", "linux-x64", "CbetaTranslator.App"),
+            Path.Combine(baseDir, "publish", "linux-arm64", "CbetaTranslator.App"),
+        };
+
+        var appHost = appHostCandidates.FirstOrDefault(File.Exists);
+        if (!string.IsNullOrWhiteSpace(appHost))
+            return QuoteDesktopArgument(appHost);
+
+        var dllPath = Path.Combine(baseDir, "CbetaTranslator.App.dll");
+        if (File.Exists(dllPath))
+            return QuoteDesktopArgument("dotnet") + " " + QuoteDesktopArgument(dllPath);
+
+        return null;
+    }
+
+    private static string RunAndCapture(string fileName, string arguments)
+    {
+        var psi = new ProcessStartInfo(fileName, arguments)
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+        };
+        using var proc = Process.Start(psi);
+        if (proc == null)
+            return "";
+
+        var stdout = proc.StandardOutput.ReadToEnd();
+        _ = proc.StandardError.ReadToEnd();
+        proc.WaitForExit(5000);
+        return stdout.Trim();
+    }
+
+    private static void TryRun(string fileName, string arguments)
+    {
+        try
+        {
+            _ = RunAndCapture(fileName, arguments);
+        }
+        catch
+        {
+        }
+    }
+
+    private static string QuoteDesktopArgument(string value)
+    {
+        return "\"" + value.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
     }
 
     // ===== macOS =====

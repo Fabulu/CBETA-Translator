@@ -80,10 +80,10 @@ public partial class App : Application
                 var configService = Services.GetService<IAppConfigService>();
                 if (configService is AppConfigService acs)
                 {
-                    var config = await acs.TryLoadAsync();
+                    var config = await acs.TryLoadAsync() ?? new AppConfig();
                     // Always re-register if the current scheme isn't registered
                     // (handles scheme rename from cbeta:// to zen://)
-                    if (config != null && (!config.HasRegisteredProtocolHandler || !ProtocolRegistrationService.IsRegistered()))
+                    if (!config.HasRegisteredProtocolHandler || !ProtocolRegistrationService.IsRegistered())
                     {
                         ProtocolRegistrationService.Register();
                         config.HasRegisteredProtocolHandler = true;
