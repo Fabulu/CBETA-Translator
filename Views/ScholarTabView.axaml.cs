@@ -53,6 +53,15 @@ public partial class ScholarTabView : UserControl
     private StackPanel? _scholarApprovedTmHost;
     private StackPanel? _scholarReferenceTmHost;
 
+    // Graph + link stats controls
+    private LinkNetworkGraphControl? _graphControl;
+    private Button? _btnGraphRelayout;
+    private TextBlock? _txtGraphInfo;
+    private StackPanel? _pnlLinkStats;
+    private TextBlock? _txtLinkCoverage;
+    private Button? _btnAddLink;
+    private readonly LinkGraphViewModel _graphVm = new();
+
     public event EventHandler<string>? Status;
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
@@ -78,6 +87,30 @@ public partial class ScholarTabView : UserControl
         _scholarReferenceTmHost = this.FindControl<StackPanel>("ScholarReferenceTmHost");
 
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+
+        // Graph + link stats controls
+        _graphControl = this.FindControl<LinkNetworkGraphControl>("GraphControl");
+        _btnGraphRelayout = this.FindControl<Button>("BtnGraphRelayout");
+        _txtGraphInfo = this.FindControl<TextBlock>("TxtGraphInfo");
+        _pnlLinkStats = this.FindControl<StackPanel>("PnlLinkStats");
+        _txtLinkCoverage = this.FindControl<TextBlock>("TxtLinkCoverage");
+        _btnAddLink = this.FindControl<Button>("BtnAddLink");
+
+        if (_graphControl != null)
+        {
+            _graphControl.NodeSelected += (_, passageId) => _vm.SelectPassageById(passageId);
+            _graphControl.NodeDoubleClicked += (_, passageId) =>
+            {
+                _vm.SelectPassageById(passageId);
+                _vm.NavigateToPassageCommand.Execute(null);
+            };
+        }
+
+        if (_btnGraphRelayout != null)
+            _btnGraphRelayout.Click += (_, _) => RefreshGraph();
+
+        if (_btnAddLink != null)
+            _btnAddLink.Click += async (_, _) => await ShowLinkDialogAsync();
 
         WireViewEvents();
         SetupHoverDictionary();
@@ -834,6 +867,74 @@ public partial class ScholarTabView : UserControl
         }
 
         panel.ItemsSource = controls;
+        RefreshLinkStats();
+        RefreshGraph();
+    }
+
+    private void RefreshLinkStats()
+    {
+        if (_pnlLinkStats == null) return;
+        _pnlLinkStats.Children.Clear();
+
+        var collection = _vm.SelectedCollection;
+        if (collection == null) return;
+
+        var links = collection.Links ?? new();
+        var passages = collection.Passages;
+
+        if (links.Count == 0)
+        {
+            if (_txtLinkCoverage != null) _txtLinkCoverage.Text = "";
+            return;
+        }
+
+        // By relation type
+        var byType = links.GroupBy(l => l.RelationType ?? "unknown")
+            .OrderByDescending(g => g.Count())
+            .ToList();
+
+        foreach (var group in byType)
+        {
+            var colorHex = LinkGraphViewModel.RelationColors.GetValueOrDefault(group.Key, "#9E9E9E");
+            Color.TryParse(colorHex, out var color);
+            var row = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, Spacing = 6 };
+            row.Children.Add(new Border
+            {
+                Width = Math.Max(20, group.Count() * 20),
+                Height = 14,
+                CornerRadius = new CornerRadius(3),
+                Background = new SolidColorBrush(color)
+            });
+            row.Children.Add(new TextBlock
+            {
+                Text = $"{group.Key} ({group.Count()})",
+                FontSize = 11,
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+            });
+            _pnlLinkStats.Children.Add(row);
+        }
+
+        // Coverage
+        var linkedIds = new HashSet<string>();
+        foreach (var l in links) { linkedIds.Add(l.FromPassageId ?? ""); linkedIds.Add(l.ToPassageId ?? ""); }
+        linkedIds.Remove("");
+        int total = passages.Count;
+        int linked = linkedIds.Count(id => passages.Any(p => p.Id == id));
+        int orphans = total - linked;
+
+        if (_txtLinkCoverage != null)
+            _txtLinkCoverage.Text = $"{linked}/{total} passages linked ({(total > 0 ? linked * 100 / total : 0)}%) \u00b7 {orphans} orphans";
+    }
+
+    private void RefreshGraph()
+    {
+        if (_vm.SelectedCollection == null) return;
+        _graphVm.BuildGraph(_vm.SelectedCollection.Passages, _vm.SelectedCollection.Links ?? new());
+        _graphVm.RunLayout(80, _graphControl?.Bounds.Width > 0 ? _graphControl.Bounds.Width : 500,
+                                _graphControl?.Bounds.Height > 0 ? _graphControl.Bounds.Height : 400);
+        _graphControl?.SetViewModel(_graphVm);
+        if (_txtGraphInfo != null)
+            _txtGraphInfo.Text = $"{_graphVm.Nodes.Count} passages, {_graphVm.Edges.Count} links";
     }
 
     // ----- Linked Texts -----
