@@ -1913,4 +1913,8 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
         => Task.FromResult(new List<ScholarCollection>(ImportResult));
     public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
     public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>());
+    public Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default)
+        => Task.FromResult(new List<ScholarCollection>());
+    public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
+        => Task.CompletedTask;
 }

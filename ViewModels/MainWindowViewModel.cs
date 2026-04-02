@@ -562,6 +562,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
         try { SetScholarUsername?.Invoke(_config.Username); } catch { }
+        try { _translationAssistant.SetUsername(_config.Username); } catch { }
     }
 
     public void UpdateConfig(AppConfig config)

@@ -13,9 +13,18 @@ namespace CbetaTranslator.App.Services;
 public sealed class TermbaseService : ITermbaseService
 {
     private readonly ITermbaseStorageService _storage;
+    private string? _username;
 
     public TermbaseService() : this(new TermbaseStorageService()) { }
     public TermbaseService(ITermbaseStorageService storage) { _storage = storage; }
+
+    /// <summary>
+    /// Sets the current username so FindTermsAsync can resolve the per-user termbase file.
+    /// </summary>
+    public void SetUsername(string? username)
+    {
+        _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+    }
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -41,7 +50,18 @@ public sealed class TermbaseService : ITermbaseService
         if (string.IsNullOrWhiteSpace(root))
             return result;
 
-        var path = Path.Combine(root, "termbase.json");
+        // Try user's personal termbase first, fall back to shared
+        string path;
+        if (_username != null)
+        {
+            var userPath = ITermbaseStorageService.GetUserPath(root, _username);
+            path = File.Exists(userPath) ? userPath : Path.Combine(root, "termbase.json");
+        }
+        else
+        {
+            path = Path.Combine(root, "termbase.json");
+        }
+
         if (!File.Exists(path))
             return result;
 

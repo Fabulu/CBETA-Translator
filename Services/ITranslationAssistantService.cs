@@ -6,6 +6,11 @@ namespace CbetaTranslator.App.Services;
 
 public interface ITranslationAssistantService
 {
+    /// <summary>
+    /// Sets the current username so the termbase service resolves the per-user file.
+    /// </summary>
+    void SetUsername(string? username);
+
     Task<TranslationAssistantSnapshot> BuildSnapshotAsync(
         CurrentSegmentContext ctx,
         string? root,

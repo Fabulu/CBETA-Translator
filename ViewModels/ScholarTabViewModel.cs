@@ -219,7 +219,9 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         try
         {
-            var loaded = await _svc.LoadAsync(_root);
+            var loaded = !string.IsNullOrWhiteSpace(_username)
+                ? await _svc.LoadUserAsync(_root, _username)
+                : await _svc.LoadAsync(_root);
 
             await RunOnUiAsync(() =>
             {
@@ -253,7 +255,10 @@ public partial class ScholarTabViewModel : ViewModelBase
             try
             {
                 var list = _allCollections.ToList();
-                await _svc.SaveAsync(_root, list);
+                if (!string.IsNullOrWhiteSpace(_username))
+                    await _svc.SaveUserAsync(_root, _username, list);
+                else
+                    await _svc.SaveAsync(_root, list);
                 StatusMessage = "Saved.";
                 StatusChanged?.Invoke(this, StatusMessage);
             }

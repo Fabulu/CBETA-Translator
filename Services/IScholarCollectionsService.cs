@@ -15,5 +15,8 @@ public interface IScholarCollectionsService
     Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default);
     Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default);
 
+    Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default);
+    Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default);
+
     static string GetCommunityCollectionsDir(string repoRoot) => System.IO.Path.Combine(repoRoot, "community", "collections");
 }

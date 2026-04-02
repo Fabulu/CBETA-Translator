@@ -29,6 +29,19 @@ public class StubTermbaseStorageService : ITermbaseStorageService
         return Task.CompletedTask;
     }
 
+    public Task<List<TermbaseEntry>> LoadUserAsync(string root, string username, CancellationToken ct = default)
+    {
+        if (ThrowOnLoad) throw new InvalidOperationException("Load failed");
+        return Task.FromResult(new List<TermbaseEntry>(Entries));
+    }
+
+    public Task SaveUserAsync(string root, string username, IEnumerable<TermbaseEntry> entries, CancellationToken ct = default)
+    {
+        if (ThrowOnSave) throw new InvalidOperationException("Save failed");
+        LastSaved = new List<TermbaseEntry>(entries);
+        return Task.CompletedTask;
+    }
+
     public Task WriteUserJsonlAsync(string communityDir, string username, List<TermbaseEntry> entries, CancellationToken ct = default)
         => Task.CompletedTask;
 
@@ -208,6 +221,7 @@ public class StubIndexedTranslationService : IIndexedTranslationService
 
 public class StubTranslationAssistantService : ITranslationAssistantService
 {
+    public void SetUsername(string? username) { }
     public Task<TranslationAssistantSnapshot> BuildSnapshotAsync(CurrentSegmentContext ctx, string? root, string? originalDir, string? translatedDir, CancellationToken ct = default)
         => Task.FromResult(new TranslationAssistantSnapshot());
 }
@@ -263,6 +277,17 @@ public class StubScholarCollectionsService : IScholarCollectionsService
     public Task<List<ScholarCollection>> ImportAsync(string filePath, CancellationToken ct = default) => Task.FromResult(new List<ScholarCollection>());
     public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
     public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>(CommunityData));
+    public Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default)
+    {
+        if (ThrowOnLoad) throw new InvalidOperationException("Load failed");
+        return Task.FromResult(new List<ScholarCollection>(Collections));
+    }
+    public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
+    {
+        if (ThrowOnSave) throw new InvalidOperationException("Save failed");
+        LastSaved = new List<ScholarCollection>(collections);
+        return Task.CompletedTask;
+    }
 }
 
 // ---- IMasterDatesService ----

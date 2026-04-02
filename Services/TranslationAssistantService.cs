@@ -13,6 +13,11 @@ public sealed class TranslationAssistantService : ITranslationAssistantService
     private readonly TermbaseService _terms = new();
     private readonly TranslationQaService _qa = new();
 
+    /// <summary>
+    /// Sets the current username so the termbase service resolves the per-user file.
+    /// </summary>
+    public void SetUsername(string? username) => _terms.SetUsername(username);
+
     public async Task<TranslationAssistantSnapshot> BuildSnapshotAsync(
         CurrentSegmentContext ctx,
         string? root,

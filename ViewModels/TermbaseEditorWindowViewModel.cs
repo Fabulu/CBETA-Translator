@@ -148,7 +148,9 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     {
         try
         {
-            var entries = await _storage.LoadAsync(_root);
+            var entries = _username != null
+                ? await _storage.LoadUserAsync(_root, _username)
+                : await _storage.LoadAsync(_root);
 
             AllEntries.Clear();
             foreach (var entry in entries ?? new List<TermbaseEntry>())
@@ -195,7 +197,10 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
                 return;
             }
 
-            await _storage.SaveAsync(_root, cleaned);
+            if (_username != null)
+                await _storage.SaveUserAsync(_root, _username, cleaned);
+            else
+                await _storage.SaveAsync(_root, cleaned);
 
             AllEntries.Clear();
             foreach (var entry in cleaned)

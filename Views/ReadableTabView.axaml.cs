@@ -309,6 +309,14 @@ public partial class ReadableTabView : UserControl
         }
     }
 
+    private void RebuildContextMenus()
+    {
+        if (_aeOrig != null)
+            _aeOrig.ContextMenu = BuildScholarContextMenu(isTranslated: false);
+        if (_aeTran != null)
+            _aeTran.ContextMenu = BuildScholarContextMenu(isTranslated: true);
+    }
+
     private ContextMenu BuildScholarContextMenu(bool isTranslated)
     {
         var menu = new ContextMenu();
@@ -404,6 +412,14 @@ public partial class ReadableTabView : UserControl
             var addTaggedItem = new MenuItem { Header = "Add Tagged Segment to Scholar" };
             addTaggedItem.Click += (_, _) => OnAddTaggedSegmentToScholar();
             menu.Items.Add(addTaggedItem);
+
+            // When viewing another user's tags, offer to adopt the tag under caret
+            if (_selectedTagUser != null)
+            {
+                var adoptItem = new MenuItem { Header = "Adopt This Tag to My Tags" };
+                adoptItem.Click += (_, _) => OnAdoptCommunityTag(isTranslated);
+                menu.Items.Add(adoptItem);
+            }
         }
 
         return menu;
@@ -2682,12 +2698,14 @@ public partial class ReadableTabView : UserControl
             if (_codeBarSlots != null) _codeBarSlots.Opacity = 1.0;
             RefreshTagHighlights();
             RefreshCodeBarStatus();
+            RebuildContextMenus();
         }
         else
         {
             // Show another user's tags
             _selectedTagUser = selected;
             ShowCommunityUserTags(selected);
+            RebuildContextMenus();
         }
     }
 
@@ -3217,6 +3235,124 @@ public partial class ReadableTabView : UserControl
 
         if (_txtCodeBarStatus != null)
             _txtCodeBarStatus.Text = $"Added tagged segment \"{tagName}\" to Scholar collection";
+    }
+
+    /// <summary>
+    /// Adopts a community tag under the caret to the current user's own tags.
+    /// Finds the overlapping tag from the selected community user, creates a
+    /// copy with a new ID, and fires <see cref="TagApplied"/> so it gets persisted.
+    /// If the tag definition doesn't exist in the user's vocabulary, it is added.
+    /// </summary>
+    private void OnAdoptCommunityTag(bool isTranslated)
+    {
+        if (_selectedTagUser == null || _communityTags == null) return;
+        if (!_communityTags.TryGetValue(_selectedTagUser, out var allUserTags)) return;
+
+        var editor = isTranslated ? _aeTran : _aeOrig;
+        var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        if (editor?.TextArea == null || doc == null || doc.IsEmpty) return;
+
+        // Filter community tags to current file
+        var relPath = _vm.CurrentRelPathForZen;
+        var forFile = allUserTags
+            .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (forFile.Count == 0)
+        {
+            Say("No community tags on this file to adopt.");
+            return;
+        }
+
+        // Find which community tag overlaps the caret
+        int caret = GetCaretOffsetSafe(editor);
+        DocumentTag? overlapping = null;
+
+        foreach (var tag in forFile)
+        {
+            if (string.IsNullOrEmpty(tag.FromLb)) continue;
+            if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
+
+            int tagEnd = tagStart.EndExclusive;
+            if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
+            {
+                if (TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
+                    tagEnd = tagEndSeg.EndExclusive;
+            }
+
+            if (caret >= tagStart.Start && caret < tagEnd)
+            {
+                overlapping = tag;
+                break;
+            }
+        }
+
+        if (overlapping == null)
+        {
+            Say("Place cursor inside a highlighted tag to adopt it.");
+            return;
+        }
+
+        // Resolve tag definition name from community vocabulary
+        string tagName = overlapping.TagId;
+        TagDefinition? communityDef = null;
+        if (_communityVocabularies != null && _communityVocabularies.TryGetValue(_selectedTagUser, out var otherVocab))
+        {
+            communityDef = otherVocab.Tags.Find(t => t.Id == overlapping.TagId);
+            if (communityDef != null) tagName = communityDef.DisplayName;
+        }
+
+        // Ensure the tag definition exists in the user's own vocabulary
+        if (_tagVocabulary != null && communityDef != null)
+        {
+            var existing = _tagVocabulary.Tags.Find(t =>
+                string.Equals(t.Name, communityDef.Name, StringComparison.OrdinalIgnoreCase));
+
+            if (existing == null)
+            {
+                // Copy the tag definition into user's vocabulary
+                var newDef = new TagDefinition
+                {
+                    Id = communityDef.Id,
+                    Name = communityDef.Name,
+                    Color = communityDef.Color,
+                    Description = communityDef.Description,
+                    ParentId = communityDef.ParentId,
+                    CreatedUtc = DateTimeOffset.UtcNow
+                };
+                _tagVocabulary.Tags.Add(newDef);
+                VocabularyChanged?.Invoke(this, _tagVocabulary);
+            }
+        }
+
+        // Check for duplicate: same file, same tag, same lb range already in user's tags
+        bool alreadyExists = _appliedTags.Any(t =>
+            string.Equals(t.RelPath, overlapping.RelPath, StringComparison.OrdinalIgnoreCase) &&
+            t.TagId == overlapping.TagId &&
+            t.FromLb == overlapping.FromLb &&
+            t.ToLb == overlapping.ToLb);
+
+        if (alreadyExists)
+        {
+            Say($"Tag \"{tagName}\" already exists in your tags for this range.");
+            return;
+        }
+
+        // Create adopted tag with new ID
+        var adopted = new DocumentTag
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            RelPath = overlapping.RelPath,
+            FromLb = overlapping.FromLb,
+            ToLb = overlapping.ToLb,
+            TagId = overlapping.TagId,
+            CreatedUtc = DateTimeOffset.UtcNow
+        };
+
+        _appliedTags.Add(adopted);
+        TagApplied?.Invoke(this, adopted);
+
+        Say($"Adopted tag \"{tagName}\" from {_selectedTagUser}.");
     }
 
     private void QuickAssignTagToSlot(int slotIndex)
