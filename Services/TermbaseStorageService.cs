@@ -168,6 +168,68 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
         return result;
     }
 
+    public async Task<List<TermbaseEntry>> LoadUserAsync(string root, string username, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root))
+            throw new ArgumentException("Root is required.", nameof(root));
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username is required.", nameof(username));
+
+        var userPath = ITermbaseStorageService.GetUserPath(root, username);
+        if (File.Exists(userPath))
+        {
+            var json = await File.ReadAllTextAsync(userPath, Encoding.UTF8, ct);
+            if (!string.IsNullOrWhiteSpace(json))
+            {
+                var entries = JsonSerializer.Deserialize<List<TermbaseEntry>>(json, ReadOpts) ?? new();
+                return entries
+                    .OrderBy(x => x.SourceTerm, StringComparer.Ordinal)
+                    .ToList();
+            }
+        }
+
+        // Fall back to shared termbase
+        return await LoadAsync(root, ct);
+    }
+
+    public async Task SaveUserAsync(string root, string username, IEnumerable<TermbaseEntry> entries, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root))
+            throw new ArgumentException("Root is required.", nameof(root));
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username is required.", nameof(username));
+        if (entries == null)
+            throw new ArgumentNullException(nameof(entries));
+
+        var dir = ITermbaseStorageService.GetCommunityTermbasesDir(root);
+        Directory.CreateDirectory(dir);
+        var path = ITermbaseStorageService.GetUserPath(root, username);
+
+        var clean = entries
+            .Select(e => new TermbaseEntry
+            {
+                SourceTerm = e.SourceTerm?.Trim() ?? "",
+                PreferredTarget = e.PreferredTarget?.Trim() ?? "",
+                Status = string.IsNullOrWhiteSpace(e.Status) ? "preferred" : e.Status.Trim(),
+                Note = e.Note?.Trim() ?? "",
+                AlternateTargets = (e.AlternateTargets ?? new List<string>())
+                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                    .Select(x => x.Trim())
+                    .Distinct(StringComparer.Ordinal)
+                    .ToList(),
+                CreatedBy = e.CreatedBy,
+                WrittenUtc = e.WrittenUtc
+            })
+            .Where(e => !string.IsNullOrWhiteSpace(e.SourceTerm))
+            .OrderBy(e => e.SourceTerm, StringComparer.Ordinal)
+            .ToList();
+
+        var json = JsonSerializer.Serialize(clean, WriteOpts);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
+    }
+
     public static string GetCommunityTermbasesDir(string repoRoot)
         => Path.Combine(repoRoot, "community", "termbases");
 

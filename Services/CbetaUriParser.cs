@@ -1,13 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
 /// <summary>
 /// Converts between <c>zen://</c> deep-link URIs and <see cref="NavigationRequest"/> objects.
-/// URI format: <c>zen://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
+/// <para>
+/// Clean format: <c>zen://T48n2005/0292a26-0292a29/en?highlight=...&amp;lctx=...&amp;rctx=...&amp;block=...</c>
+/// </para>
+/// <para>
+/// Legacy format (still parsed for backward compatibility):
+/// <c>zen://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...</c>
+/// </para>
 /// </summary>
 public static class CbetaUriParser
 {
@@ -17,7 +25,29 @@ public static class CbetaUriParser
     public const string ShareableBase = "https://readzen.pages.dev/";
 
     /// <summary>
+    /// Converts a compact file ID (e.g. "T48n2005") to its relative path (e.g. "T/T48/T48n2005.xml").
+    /// Returns <c>null</c> if the file ID does not contain an 'n' separator.
+    /// </summary>
+    public static string? FileIdToRelPath(string fileId)
+    {
+        var nIdx = fileId.IndexOf('n');
+        if (nIdx < 1) return null;
+        var volume = fileId[..nIdx];
+        var canon = Regex.Replace(volume, "[0-9]", "");
+        if (string.IsNullOrEmpty(canon)) return null;
+        return $"{canon}/{volume}/{fileId}.xml";
+    }
+
+    /// <summary>
+    /// Extracts the file ID from a relative path (e.g. "T/T48/T48n2005.xml" becomes "T48n2005").
+    /// </summary>
+    public static string RelPathToFileId(string relPath)
+        => Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
+
+    /// <summary>
     /// Attempts to parse a <c>zen://</c> URI into a <see cref="NavigationRequest"/>.
+    /// Supports both the clean format (<c>zen://T48n2005/0292a26-0292a29/en</c>)
+    /// and the legacy format (<c>zen://T/T48/T48n2005.xml?from=...&amp;side=...</c>).
     /// Returns <c>null</c> if the URI is malformed or uses a different scheme.
     /// </summary>
     public static NavigationRequest? TryParse(string uri)
@@ -31,21 +61,36 @@ public static class CbetaUriParser
         if (!string.Equals(parsed.Scheme, Scheme, StringComparison.OrdinalIgnoreCase))
             return null;
 
-        // Extract path directly from the original string to preserve case.
-        // System.Uri lowercases the Host component, breaking CBETA paths like "T/T48/..."
+        // Extract everything after "zen://" from the original string to preserve case.
         var schemePrefix = Scheme + "://";
         var pathStart = uri.IndexOf(schemePrefix, StringComparison.OrdinalIgnoreCase);
         if (pathStart < 0) return null;
         pathStart += schemePrefix.Length;
-        var queryStart = uri.IndexOf('?', pathStart);
-        var relPath = queryStart >= 0
-            ? uri.Substring(pathStart, queryStart - pathStart)
-            : uri.Substring(pathStart);
+
+        var afterScheme = uri.Substring(pathStart);
+
+        // Detect legacy format: contains ".xml" in the path portion
+        var qIdx = afterScheme.IndexOf('?');
+        var pathPart = qIdx >= 0 ? afterScheme[..qIdx] : afterScheme;
+
+        if (pathPart.Contains(".xml", StringComparison.OrdinalIgnoreCase))
+            return TryParseLegacy(afterScheme, parsed.Query);
+
+        return TryParseClean(afterScheme);
+    }
+
+    /// <summary>
+    /// Parses the legacy format: <c>zen://T/T48/T48n2005.xml?from=...&amp;side=...</c>
+    /// </summary>
+    private static NavigationRequest? TryParseLegacy(string afterScheme, string queryString)
+    {
+        var qIdx = afterScheme.IndexOf('?');
+        var relPath = qIdx >= 0 ? afterScheme[..qIdx] : afterScheme;
         relPath = Uri.UnescapeDataString(relPath).TrimStart('/');
         if (string.IsNullOrEmpty(relPath))
             return null;
 
-        var query = ParseQueryString(parsed.Query);
+        var query = ParseQueryString(queryString);
 
         var request = new NavigationRequest
         {
@@ -83,8 +128,86 @@ public static class CbetaUriParser
     }
 
     /// <summary>
-    /// Builds a <c>zen://</c> URI from the given parameters.
-    /// All values are URI-encoded with <see cref="Uri.EscapeDataString"/>.
+    /// Parses the clean format: <c>zen://T48n2005/0292a26-0292a29/en?highlight=...</c>
+    /// </summary>
+    private static NavigationRequest? TryParseClean(string afterScheme)
+    {
+        var qIdx = afterScheme.IndexOf('?');
+        var pathPart = qIdx >= 0 ? afterScheme[..qIdx] : afterScheme;
+        var queryPart = qIdx >= 0 ? afterScheme[(qIdx + 1)..] : "";
+
+        var parts = pathPart.Split('/').Where(s => !string.IsNullOrEmpty(s)).ToArray();
+        if (parts.Length == 0) return null;
+
+        var fileId = parts[0];
+        var relPath = FileIdToRelPath(fileId);
+        if (relPath == null) return null;
+
+        string? fromLb = null, toLb = null;
+        var side = SearchSide.Original;
+
+        if (parts.Length >= 2)
+        {
+            var segment = parts[1];
+            if (segment.Equals("en", StringComparison.OrdinalIgnoreCase) ||
+                segment.Equals("tran", StringComparison.OrdinalIgnoreCase))
+            {
+                side = SearchSide.Translated;
+            }
+            else
+            {
+                var bounds = segment.Split('-');
+                fromLb = bounds[0];
+                if (bounds.Length > 1) toLb = bounds[1];
+            }
+        }
+
+        if (parts.Length >= 3)
+        {
+            var segment = parts[2];
+            if (segment.Equals("en", StringComparison.OrdinalIgnoreCase) ||
+                segment.Equals("tran", StringComparison.OrdinalIgnoreCase))
+            {
+                side = SearchSide.Translated;
+            }
+        }
+
+        var request = new NavigationRequest
+        {
+            RelPath = relPath,
+            Side = side,
+        };
+
+        if (!string.IsNullOrEmpty(fromLb))
+            request.FromLb = fromLb;
+        if (!string.IsNullOrEmpty(toLb))
+            request.ToLb = toLb;
+
+        // Parse query params
+        var query = ParseQueryString("?" + queryPart);
+
+        if (query.TryGetValue("highlight", out var highlight))
+            request.MatchText = highlight;
+
+        if (query.TryGetValue("lctx", out var lctx))
+            request.LeftContext = lctx;
+
+        if (query.TryGetValue("rctx", out var rctx))
+            request.RightContext = rctx;
+
+        if (query.TryGetValue("block", out var blockStr)
+            && int.TryParse(blockStr, out var block))
+        {
+            request.AnchorStartHint = block;
+        }
+
+        return request;
+    }
+
+    /// <summary>
+    /// Builds a <c>zen://</c> URI in the clean format.
+    /// Examples: <c>zen://T48n2005</c>, <c>zen://T48n2005/0292a26-0292a29/en</c>.
+    /// Query parameters are used only for highlight, lctx, rctx, and block.
     /// </summary>
     public static string BuildUri(
         string relPath,
@@ -96,20 +219,21 @@ public static class CbetaUriParser
         string? rightContext = null,
         int? blockNumber = null)
     {
-        // Normalize path separators to forward slashes
-        relPath = relPath.Replace('\\', '/');
-
-        // zen://T/T48/T48n2005.xml
-        var baseUri = Scheme + "://" + relPath;
-
-        var queryParts = new List<string>();
+        var fileId = RelPathToFileId(relPath);
+        var uri = Scheme + "://" + fileId;
 
         if (!string.IsNullOrEmpty(fromLb))
         {
-            queryParts.Add("from=" + Uri.EscapeDataString(fromLb));
+            var range = fromLb;
             if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
-                queryParts.Add("to=" + Uri.EscapeDataString(toLb));
+                range += "-" + toLb;
+            uri += "/" + range;
         }
+
+        if (side != SearchSide.Original)
+            uri += "/en";
+
+        var queryParts = new List<string>();
 
         if (!string.IsNullOrEmpty(highlightText))
         {
@@ -119,9 +243,6 @@ public static class CbetaUriParser
             truncated = truncated.Replace("\n", "").Replace("\r", "");
             queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
         }
-
-        if (side != SearchSide.Original)
-            queryParts.Add("side=" + Uri.EscapeDataString(side.ToString()));
 
         if (!string.IsNullOrEmpty(leftContext))
             queryParts.Add("lctx=" + Uri.EscapeDataString(leftContext));
@@ -133,9 +254,9 @@ public static class CbetaUriParser
             queryParts.Add("block=" + blockNumber.Value.ToString());
 
         if (queryParts.Count > 0)
-            baseUri += "?" + string.Join("&", queryParts);
+            uri += "?" + string.Join("&", queryParts);
 
-        return baseUri;
+        return uri;
     }
 
     /// <summary>

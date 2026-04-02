@@ -85,8 +85,13 @@ public sealed class DocumentTagService : IDocumentTagService
         if (string.IsNullOrWhiteSpace(username))
             throw new ArgumentException("Username is required.", nameof(username));
 
-        var path = GetTagsPath(root);
-        return await LoadTagsJsonlAsync(path, ct);
+        // Try per-user community path first, fall back to legacy shared file
+        var userPath = GetUserTagsPath(root, username);
+        if (File.Exists(userPath))
+            return await LoadTagsJsonlAsync(userPath, ct);
+
+        var legacyPath = GetTagsPath(root);
+        return await LoadTagsJsonlAsync(legacyPath, ct);
     }
 
     public async Task SaveUserTagsAsync(string root, string username, List<DocumentTag> tags, CancellationToken ct = default)
@@ -98,9 +103,11 @@ public sealed class DocumentTagService : IDocumentTagService
         if (tags == null)
             throw new ArgumentNullException(nameof(tags));
 
-        var path = GetTagsPath(root);
-        Directory.CreateDirectory(root);
+        // Always save to per-user community path
+        var dir = GetCommunityTagsDir(root);
+        Directory.CreateDirectory(dir);
 
+        var path = GetUserTagsPath(root, username);
         await WriteTagsJsonlAsync(path, tags, ct);
     }
 
@@ -281,8 +288,13 @@ public sealed class DocumentTagService : IDocumentTagService
     public static string GetVocabularyPath(string root)
         => Path.Combine(root, "tag-vocabulary.json");
 
+    /// <summary>Legacy shared tags path (pre-per-user migration).</summary>
     public static string GetTagsPath(string root)
         => Path.Combine(root, "document-tags.jsonl");
+
+    /// <summary>Per-user tags path under the community directory.</summary>
+    public static string GetUserTagsPath(string root, string username)
+        => Path.Combine(GetCommunityTagsDir(root), SanitizeFilename(username) + ".jsonl");
 
     public static string GetCommunityTagsDir(string root)
         => Path.Combine(root, "community", "tags");

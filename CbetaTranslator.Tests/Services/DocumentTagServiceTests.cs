@@ -225,7 +225,7 @@ public class DocumentTagServiceTests : IDisposable
         Assert.Equal("dt3", loaded[1].Id);
     }
 
-    // ── 9. SaveUserTagsAsync — writes JSONL (one JSON object per line) ──
+    // ── 9. SaveUserTagsAsync — writes JSONL to per-user community path ──
 
     [Fact]
     public async Task SaveUserTagsAsync_WritesJsonl()
@@ -238,7 +238,8 @@ public class DocumentTagServiceTests : IDisposable
 
         await _svc.SaveUserTagsAsync(_tempDir, Username, tags);
 
-        var path = DocumentTagService.GetTagsPath(_tempDir);
+        // SaveUserTagsAsync now writes to per-user community path
+        var path = DocumentTagService.GetUserTagsPath(_tempDir, Username);
         Assert.True(File.Exists(path));
 
         var lines = await File.ReadAllLinesAsync(path, Encoding.UTF8);
@@ -408,5 +409,60 @@ public class DocumentTagServiceTests : IDisposable
     {
         await Assert.ThrowsAsync<ArgumentNullException>(
             () => _svc.SaveUserTagsAsync(_tempDir, Username, null!));
+    }
+
+    // ── 20. LoadUserTagsAsync — prefers per-user path over legacy ──────
+
+    [Fact]
+    public async Task LoadUserTagsAsync_PrefersPerUserPath_OverLegacy()
+    {
+        // Write different tags to legacy and per-user paths
+        var legacyTag = MakeSampleTag("legacy1", "tag1");
+        var legacyPath = DocumentTagService.GetTagsPath(_tempDir);
+        await File.WriteAllTextAsync(legacyPath, JsonSerializer.Serialize(legacyTag) + "\n", Encoding.UTF8);
+
+        var userTag = MakeSampleTag("user1", "tag2");
+        var userPath = DocumentTagService.GetUserTagsPath(_tempDir, Username);
+        Directory.CreateDirectory(Path.GetDirectoryName(userPath)!);
+        await File.WriteAllTextAsync(userPath, JsonSerializer.Serialize(userTag) + "\n", Encoding.UTF8);
+
+        var loaded = await _svc.LoadUserTagsAsync(_tempDir, Username);
+
+        // Should load from per-user path, not legacy
+        Assert.Single(loaded);
+        Assert.Equal("user1", loaded[0].Id);
+    }
+
+    // ── 21. LoadUserTagsAsync — falls back to legacy when no per-user ──
+
+    [Fact]
+    public async Task LoadUserTagsAsync_FallsBackToLegacy_WhenNoPerUserFile()
+    {
+        var legacyTag = MakeSampleTag("legacy1", "tag1");
+        var legacyPath = DocumentTagService.GetTagsPath(_tempDir);
+        await File.WriteAllTextAsync(legacyPath, JsonSerializer.Serialize(legacyTag) + "\n", Encoding.UTF8);
+
+        // Do NOT create per-user file
+        var loaded = await _svc.LoadUserTagsAsync(_tempDir, Username);
+
+        Assert.Single(loaded);
+        Assert.Equal("legacy1", loaded[0].Id);
+    }
+
+    // ── 22. SaveUserTagsAsync — writes to per-user community path ──────
+
+    [Fact]
+    public async Task SaveUserTagsAsync_WritesToPerUserPath()
+    {
+        var tags = new List<DocumentTag> { MakeSampleTag("dt1", "tag1") };
+
+        await _svc.SaveUserTagsAsync(_tempDir, Username, tags);
+
+        var userPath = DocumentTagService.GetUserTagsPath(_tempDir, Username);
+        Assert.True(File.Exists(userPath));
+
+        // Legacy path should NOT be created
+        var legacyPath = DocumentTagService.GetTagsPath(_tempDir);
+        Assert.False(File.Exists(legacyPath));
     }
 }

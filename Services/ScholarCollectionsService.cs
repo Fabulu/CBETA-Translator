@@ -173,6 +173,61 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         return result;
     }
 
+    public static string GetUserPath(string root, string username)
+        => Path.Combine(GetCommunityCollectionsDir(root), SanitizeFilename(username) + ".jsonl");
+
+    public async Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root))
+            throw new ArgumentException("Root is required.", nameof(root));
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username is required.", nameof(username));
+
+        // Try user file first
+        var userPath = GetUserPath(root, username);
+        if (File.Exists(userPath))
+        {
+            var collections = new List<ScholarCollection>();
+            var lines = await File.ReadAllLinesAsync(userPath, Encoding.UTF8, ct);
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                try
+                {
+                    var c = JsonSerializer.Deserialize<ScholarCollection>(line, ReadOpts);
+                    if (c != null) collections.Add(c);
+                }
+                catch { }
+            }
+            return collections;
+        }
+
+        // Fall back to shared file
+        return await LoadAsync(root, ct);
+    }
+
+    public async Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root))
+            throw new ArgumentException("Root is required.", nameof(root));
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username is required.", nameof(username));
+        if (collections == null)
+            throw new ArgumentNullException(nameof(collections));
+
+        var dir = GetCommunityCollectionsDir(root);
+        Directory.CreateDirectory(dir);
+        var path = GetUserPath(root, username);
+
+        var sb = new StringBuilder();
+        foreach (var c in collections)
+            sb.AppendLine(JsonSerializer.Serialize(c, CompactOpts));
+
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
+    }
+
     public static string GetCommunityCollectionsDir(string repoRoot)
         => Path.Combine(repoRoot, "community", "collections");
 
