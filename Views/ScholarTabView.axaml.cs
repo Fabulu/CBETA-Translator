@@ -1331,17 +1331,31 @@ public partial class ScholarTabView : UserControl
 
     public void AddPassage(ScholarPassage passage)
     {
-        // If no collections, create a default one first
+        _ = AddPassageAsync(passage);
+    }
+
+    private async Task AddPassageAsync(ScholarPassage passage)
+    {
+        // Ensure root is set (may not be if scholar tab was never visited)
+        if (string.IsNullOrWhiteSpace(_vm.GetRoot()))
+        {
+            System.Diagnostics.Debug.WriteLine("[Scholar] AddPassage: root not set, cannot save");
+            return;
+        }
+
+        // If no collections, create a default one first and wait for its save
         if (_vm.Collections.Count == 0)
         {
             _vm.AddCollectionCommand.Execute(null);
+            // Give the fire-and-forget save a moment to complete
+            await Task.Delay(100);
         }
 
         // Add to selected collection (or first one)
         var target = _vm.SelectedCollection ?? (_vm.Collections.Count > 0 ? _vm.Collections[0] : null);
         if (target == null) return;
 
-        _ = AddPassageAndNotifyAsync(target.Id, passage);
+        await AddPassageAndNotifyAsync(target.Id, passage);
     }
 
     private async Task AddPassageAndNotifyAsync(string collectionId, ScholarPassage passage)
