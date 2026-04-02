@@ -126,6 +126,21 @@ public partial class ReadableTabView : UserControl
     private Dictionary<string, TagVocabulary>? _communityVocabularies;
     private string? _selectedTagUser; // null = "Me" (own tags)
 
+    // -------------------------
+    // Study panel
+    // -------------------------
+    private Grid? _readerOuterGrid;
+    private Border? _studyPanel;
+    private GridSplitter? _studyPanelSplitter;
+    private CheckBox? _chkStudyPanel;
+    private StackPanel? _studyTermHost;
+    private StackPanel? _studyTmHost;
+    private TextBlock? _txtStudySegmentZh;
+    private TextBlock? _txtStudySegmentEn;
+    private string? _lastStudySegmentKey;
+    private readonly List<IDisposable> _studyHoverDisposables = new();
+    private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
+
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
     private bool _suppressZenEvents;
     private long _seq;
@@ -160,6 +175,12 @@ public partial class ReadableTabView : UserControl
     /// <summary>Fired when user clicks Compare to open a 3-pane tag comparison window.</summary>
     public event EventHandler<CompareTagsRequestData>? CompareTagsRequested;
     public event EventHandler<CompareTranslationsRequestData>? CompareTranslationsRequested;
+
+    /// <summary>Fired when the study panel's segment context changes (caret moved to new segment).</summary>
+    public event EventHandler<CurrentSegmentContext>? StudyPanelContextChanged;
+
+    /// <summary>Fired when study panel visibility changes (for config persistence).</summary>
+    public event EventHandler<bool>? StudyPanelVisibilityChanged;
 
     // -------------------------
     // Status/log
@@ -288,6 +309,15 @@ public partial class ReadableTabView : UserControl
         _btnCodingMode = this.FindControl<ToggleButton>("BtnCodingMode");
         _btnCodingModeCompact = this.FindControl<ToggleButton>("BtnCodingModeCompact");
         _cmbTagUser = this.FindControl<ComboBox>("CmbTagUser");
+
+        _readerOuterGrid = this.FindControl<Grid>("ReaderOuterGrid");
+        _studyPanel = this.FindControl<Border>("StudyPanel");
+        _studyPanelSplitter = this.FindControl<GridSplitter>("StudyPanelSplitter");
+        _chkStudyPanel = this.FindControl<CheckBox>("ChkStudyPanel");
+        _studyTermHost = this.FindControl<StackPanel>("StudyTermHost");
+        _studyTmHost = this.FindControl<StackPanel>("StudyTmHost");
+        _txtStudySegmentZh = this.FindControl<TextBlock>("TxtStudySegmentZh");
+        _txtStudySegmentEn = this.FindControl<TextBlock>("TxtStudySegmentEn");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -549,6 +579,12 @@ public partial class ReadableTabView : UserControl
         if (_chkZenText != null)
             _chkZenText.IsCheckedChanged += ChkZenText_IsCheckedChanged;
 
+        if (_chkStudyPanel != null)
+        {
+            _chkStudyPanel.Checked += (_, _) => UpdateStudyPanelVisibility();
+            _chkStudyPanel.Unchecked += (_, _) => UpdateStudyPanelVisibility();
+        }
+
         if (_btnCloseNotes != null)
             _btnCloseNotes.Click += (_, _) => CancelMoveModeAndHideNotes();
 
@@ -627,6 +663,11 @@ public partial class ReadableTabView : UserControl
         SetZenContext(null, isZen: false);
 
         CancelMoveModeAndHideNotes();
+
+        _lastStudySegmentKey = null;
+        _vm.LastStudySnapshot = null;
+        _termHitRanges = null;
+        ClearStudyHoverBehaviors();
 
         _vm.PendingRefresh = false;
         UpdateButtonsState();
@@ -1437,7 +1478,6 @@ public partial class ReadableTabView : UserControl
             if (_notesPanel?.IsVisible == true && !_vm.AwaitingMoveTargetClick)
             {
                 CancelMoveModeAndHideNotes();
-                return;
             }
 
             if (IsInsideScrollbarStuff(e.Source)) return;
@@ -1520,6 +1560,13 @@ public partial class ReadableTabView : UserControl
 
                     int caret = GetCaretOffsetSafe(te);
                     if (caret < 0) return;
+
+                    // Term click: if caret is inside a highlighted termbase range, show the term info
+                    if (onOrig && TryResolveTermHitAtOffset(caret, out var termHit))
+                    {
+                        ShowTermInNotesPanel(termHit);
+                        return;
+                    }
 
                     if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
                         return;
@@ -1684,6 +1731,10 @@ public partial class ReadableTabView : UserControl
 
         bool sourceIsTranslated = DetermineSourcePane(origSelChanged || origCaretChanged, tranSelChanged || tranCaretChanged);
         RequestMirrorFromUserAction(sourceIsTranslated);
+
+        // Study panel: check if segment under caret changed
+        if (_vm.StudyPanelVisible && (origCaretChanged || origSelChanged || tranCaretChanged))
+            DeriveReaderSegmentContext();
     }
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)
@@ -2375,6 +2426,7 @@ public partial class ReadableTabView : UserControl
         }
 
         var ranges = new List<(int Start, int Length)>();
+        var hitRanges = new List<(int Start, int Length, TermHit Hit)>();
 
         if (hits != null && !string.IsNullOrWhiteSpace(currentZhText))
         {
@@ -2399,13 +2451,56 @@ public partial class ReadableTabView : UserControl
                 foreach (var hit in hits)
                 {
                     if (string.IsNullOrWhiteSpace(hit.SourceTerm)) continue;
+                    int countBefore = ranges.Count;
                     AddTermOccurrencesInSegment(ranges, docText, zhStart, zhLength, hit.SourceTerm);
+                    for (int i = countBefore; i < ranges.Count; i++)
+                        hitRanges.Add((ranges[i].Start, ranges[i].Length, hit));
                 }
             }
         }
 
+        _termHitRanges = hitRanges;
         _termHighlighter.SetRanges(ranges);
         editor.TextArea.TextView.Redraw();
+    }
+
+    private bool TryResolveTermHitAtOffset(int offset, out TermHit hit)
+    {
+        hit = null!;
+        if (_termHitRanges == null || _termHitRanges.Count == 0) return false;
+
+        foreach (var (start, length, h) in _termHitRanges)
+        {
+            if (offset >= start && offset < start + length)
+            {
+                hit = h;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void ShowTermInNotesPanel(TermHit hit)
+    {
+        if (_notesPanel == null || _notesHeader == null || _notesBody == null) return;
+
+        _notesHeader.Text = $"Term: {hit.SourceTerm}";
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine($"Preferred: {hit.PreferredTarget}");
+        if (hit.AlternateTargets.Count > 0)
+            sb.AppendLine($"Alternates: {string.Join(", ", hit.AlternateTargets)}");
+        if (!string.IsNullOrWhiteSpace(hit.Status))
+            sb.AppendLine($"Status: {hit.Status}");
+        if (!string.IsNullOrWhiteSpace(hit.Note))
+            sb.AppendLine($"Note: {hit.Note}");
+        if (!string.IsNullOrWhiteSpace(hit.CreatedBy))
+            sb.AppendLine($"By: {hit.CreatedBy}");
+
+        _notesBody.Text = sb.ToString().TrimEnd();
+        _vm.CanDeleteCommunityNote = false;
+        _vm.CanMoveFootnote = false;
+        _notesPanel.IsVisible = true;
     }
 
     private static bool TryFindSegmentRange(
@@ -3871,5 +3966,189 @@ public partial class ReadableTabView : UserControl
             }
             return lo;
         }
+    }
+
+    // =========================
+    // Study panel
+    // =========================
+
+    private void UpdateStudyPanelVisibility()
+    {
+        bool visible = _chkStudyPanel?.IsChecked == true;
+        _vm.StudyPanelVisible = visible;
+
+        if (_studyPanel != null)
+            _studyPanel.IsVisible = visible;
+        if (_studyPanelSplitter != null)
+            _studyPanelSplitter.IsVisible = visible;
+
+        if (_readerOuterGrid != null && _readerOuterGrid.ColumnDefinitions.Count >= 3)
+        {
+            _readerOuterGrid.ColumnDefinitions[1].Width = visible ? new GridLength(8) : new GridLength(0);
+            _readerOuterGrid.ColumnDefinitions[2].Width = visible ? new GridLength(320) : new GridLength(0);
+        }
+
+        StudyPanelVisibilityChanged?.Invoke(this, visible);
+
+        // If just opened, derive context immediately (don't wait for poll timer)
+        if (visible)
+        {
+            if (_vm.LastStudySnapshot != null)
+                RenderStudyPanelSnapshot(_vm.LastStudySnapshot);
+            else if (!_vm.RenderOrig.IsEmpty)
+                DeriveReaderSegmentContext();
+        }
+    }
+
+    /// <summary>Sets study panel visibility from config (called by host during init).</summary>
+    public void SetStudyPanelVisible(bool visible)
+    {
+        if (_chkStudyPanel != null)
+            _chkStudyPanel.IsChecked = visible;
+        UpdateStudyPanelVisibility();
+    }
+
+    /// <summary>Called by host when a new study snapshot is ready.</summary>
+    public void SetStudyPanelSnapshot(TranslationAssistantSnapshot? snapshot)
+    {
+        _vm.LastStudySnapshot = snapshot;
+        if (_vm.StudyPanelVisible)
+            RenderStudyPanelSnapshot(snapshot);
+    }
+
+    private void RenderStudyPanelSnapshot(TranslationAssistantSnapshot? snapshot)
+    {
+        ClearStudyHoverBehaviors();
+
+        // Update segment preview
+        if (_txtStudySegmentZh != null)
+            _txtStudySegmentZh.Text = snapshot?.Segment?.ZhText ?? "";
+        if (_txtStudySegmentEn != null)
+            _txtStudySegmentEn.Text = !string.IsNullOrWhiteSpace(snapshot?.Segment?.EnText)
+                ? snapshot!.Segment.EnText
+                : "(no translation)";
+
+        AssistantPanelRenderer.RenderSnapshot(
+            snapshot,
+            qaHost: null,
+            termHost: _studyTermHost,
+            approvedTmHost: _studyTmHost,
+            referenceTmHost: _studyTmHost,
+            brushResolver: key => GetResourceBrush(key),
+            postProcessor: editor => AttachStudyHover(editor));
+    }
+
+    private void AttachStudyHover(TextEditor editor)
+    {
+        if (!_vm.HoverDictionaryEnabled) return;
+        try
+        {
+            var behavior = new HoverDictionaryBehaviorEdit(editor, _cedict, _grammar, _dictOverlayCanvas);
+            _studyHoverDisposables.Add(behavior);
+        }
+        catch { }
+    }
+
+    private void ClearStudyHoverBehaviors()
+    {
+        foreach (var d in _studyHoverDisposables)
+        {
+            try { d.Dispose(); } catch { }
+        }
+        _studyHoverDisposables.Clear();
+    }
+
+    private IBrush? GetResourceBrush(string key)
+    {
+        try
+        {
+            if (Application.Current?.TryFindResource(key, out var obj) == true && obj is IBrush brush)
+                return brush;
+        }
+        catch { }
+        return null;
+    }
+
+    private void DeriveReaderSegmentContext()
+    {
+        if (_aeOrig == null || _vm.RenderOrig.IsEmpty) return;
+
+        int caret = GetCaretOffsetSafe(_aeOrig);
+        if (caret < 0) caret = 0;
+        var seg = _vm.RenderOrig.FindSegmentAtOrBefore(caret);
+
+        // Fallback: if no segments, extract text around caret
+        if (seg == null)
+        {
+            string docText = _vm.RenderOrig.Text ?? "";
+            if (string.IsNullOrEmpty(docText)) return;
+            int start = Math.Max(0, caret - 40);
+            int end = Math.Min(docText.Length, caret + 40);
+            string fallbackZh = docText[start..end];
+            string fallbackKey = $"caret|{caret}";
+            if (fallbackKey == _lastStudySegmentKey) return;
+            _lastStudySegmentKey = fallbackKey;
+            StudyPanelContextChanged?.Invoke(this, new CurrentSegmentContext
+            {
+                RelPath = _vm.CurrentRelPathForZen ?? "",
+                ZhText = fallbackZh,
+                ZhContextText = fallbackZh
+            });
+            return;
+        }
+
+        string segKey = seg.Value.Key;
+        if (segKey == _lastStudySegmentKey) return; // still in same segment
+        _lastStudySegmentKey = segKey;
+
+        string zhText = ExtractSegmentText(_vm.RenderOrig, seg.Value);
+        string enText = "";
+        if (_vm.RenderTran.TryGetSegmentByKey(segKey, out var tranSeg))
+            enText = ExtractSegmentText(_vm.RenderTran, tranSeg);
+
+        // Build context: prev tail + current + next head
+        var segs = _vm.RenderOrig.Segments;
+        int idx = -1;
+        for (int i = 0; i < segs.Count; i++)
+        {
+            if (segs[i].Key == segKey) { idx = i; break; }
+        }
+        if (idx < 0) idx = 0;
+
+        string prevTail = idx > 0
+            ? LastCharsStudy(ExtractSegmentText(_vm.RenderOrig, segs[idx - 1]), 4)
+            : "";
+        string nextHead = idx < segs.Count - 1
+            ? FirstCharsStudy(ExtractSegmentText(_vm.RenderOrig, segs[idx + 1]), 4)
+            : "";
+
+        var ctx = new CurrentSegmentContext
+        {
+            RelPath = _vm.CurrentRelPathForZen ?? "",
+            BlockNumber = idx,
+            ZhText = zhText,
+            EnText = enText,
+            ZhContextText = prevTail + zhText + nextHead
+        };
+
+        StudyPanelContextChanged?.Invoke(this, ctx);
+    }
+
+    private static string ExtractSegmentText(RenderedDocument doc, RenderSegment seg)
+    {
+        if (doc.Text == null || doc.Text.Length < seg.EndExclusive) return "";
+        return doc.Text[seg.Start..seg.EndExclusive];
+    }
+
+    private static string FirstCharsStudy(string s, int count)
+    {
+        if (string.IsNullOrEmpty(s) || count <= 0) return "";
+        return s.Length <= count ? s : s[..count];
+    }
+
+    private static string LastCharsStudy(string s, int count)
+    {
+        if (string.IsNullOrEmpty(s) || count <= 0) return "";
+        return s.Length <= count ? s : s[^count..];
     }
 }

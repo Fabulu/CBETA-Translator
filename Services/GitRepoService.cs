@@ -72,8 +72,16 @@ public sealed class GitRepoService : IGitRepoService
         return (r.ExitCode != 0 || string.IsNullOrWhiteSpace(s)) ? "HEAD" : s;
     }
 
-    public async Task EnsureUserIdentityAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
+    public async Task EnsureUserIdentityAsync(string repoDir, string? username, IProgress<string> progress, CancellationToken ct)
     {
+        // Use the provided username if available, otherwise fall back to defaults.
+        // Security note: username is self-declared (AppConfig), not verified.
+        // GitHub PRs are verified via OAuth token; community data merges should be reviewed.
+        var desiredName = string.IsNullOrWhiteSpace(username) ? "CbetaTranslator" : username.Trim();
+        var desiredEmail = string.IsNullOrWhiteSpace(username)
+            ? "cbeta-translator@cbeta-translator.local"
+            : $"{username.Trim()}@cbeta-translator.local";
+
         string name = await GetConfigAsync(repoDir, "user.name", ct);
         string email = await GetConfigAsync(repoDir, "user.email", ct);
 
@@ -85,14 +93,14 @@ public sealed class GitRepoService : IGitRepoService
 
         if (string.IsNullOrWhiteSpace(name))
         {
-            progress.Report("[git] setting local user.name = CbetaTranslator");
-            await RunGitAsync(repoDir, "config user.name \"CbetaTranslator\"", progress, ct);
+            progress.Report($"[git] setting local user.name = {desiredName}");
+            await RunGitAsync(repoDir, $"config user.name \"{EscapeCommitMessage(desiredName)}\"", progress, ct);
         }
 
         if (string.IsNullOrWhiteSpace(email))
         {
-            progress.Report("[git] setting local user.email = cbeta-translator@local");
-            await RunGitAsync(repoDir, "config user.email \"cbeta-translator@local\"", progress, ct);
+            progress.Report($"[git] setting local user.email = {desiredEmail}");
+            await RunGitAsync(repoDir, $"config user.email \"{EscapeCommitMessage(desiredEmail)}\"", progress, ct);
         }
     }
 

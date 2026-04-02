@@ -79,6 +79,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private CancellationTokenSource? _navSearchCts;
     private CancellationTokenSource? _renderCts;
     private CancellationTokenSource? _assistantCts;
+    private CancellationTokenSource? _readerStudyCts;
     private CancellationTokenSource? _autoIndexCts;
     private bool _isAutoIndexing;
 
@@ -130,6 +131,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string?, bool>? SetReadableZenContext { get; set; }
     public Action<IReadOnlyList<TermHit>?, string?, int?, string?>? UpdateReadableTermHighlights { get; set; }
     public Action<string>? SetReadableDefaultResp { get; set; }
+    public Action<TranslationAssistantSnapshot?>? SetReadableStudySnapshot { get; set; }
+    public Action<bool>? SetReadableStudyPanelVisible { get; set; }
 
     // ReadableTabView coding mode bridges
     public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
@@ -558,6 +561,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try { SetTranslationHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
+        try { SetReadableStudyPanelVisible?.Invoke(_config.EnableStudyPanel); } catch { }
         try { SetReadableDefaultResp?.Invoke(_config.Username ?? ""); } catch { }
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
@@ -1182,6 +1186,9 @@ public partial class MainWindowViewModel : ViewModelBase
             // Clear stale assistant content immediately so the user doesn't see old data
             SetAssistantSnapshot?.Invoke(null);
 
+            // Clear stale review state immediately so previous block's status doesn't linger
+            SetCurrentReviewState?.Invoke(null, null, null, null);
+
             var ctx = new CurrentSegmentContext
             {
                 RelPath = _currentRelPath,
@@ -1234,6 +1241,38 @@ public partial class MainWindowViewModel : ViewModelBase
         catch
         {
             // assistant errors must never break translation
+        }
+    }
+
+    /// <summary>
+    /// Builds a study panel snapshot for the reader tab when the user moves
+    /// to a different segment in the original pane.
+    /// </summary>
+    public async Task RefreshReaderStudyPanelAsync(CurrentSegmentContext ctx)
+    {
+        try
+        {
+            try { _readerStudyCts?.Cancel(); } catch { }
+            try { _readerStudyCts?.Dispose(); } catch { }
+            _readerStudyCts = new CancellationTokenSource();
+            var ct = _readerStudyCts.Token;
+
+            SetReadableStudySnapshot?.Invoke(null); // clear stale
+
+            var snapshot = await _translationAssistant.BuildSnapshotAsync(
+                ctx, _root, _originalDir, _translatedDir, ct)
+                .ConfigureAwait(false);
+
+            if (ct.IsCancellationRequested) return;
+
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                SetReadableStudySnapshot?.Invoke(snapshot);
+            });
+        }
+        catch
+        {
+            // study panel errors must never break reader
         }
     }
 

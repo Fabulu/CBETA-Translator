@@ -44,6 +44,23 @@
 						ToolTip.Tip="Add a community note at the current cursor position"/>
 			</StackPanel>
 
+			<Button Name="BtnCompareTranslations"
+					DockPanel.Dock="Right"
+					Content="Compare Translations"
+					Padding="6,2"
+					FontSize="11"
+					Focusable="False"
+					Margin="4,0,0,0"
+					ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
+
+			<CheckBox Name="ChkStudyPanel"
+					  DockPanel.Dock="Right"
+					  Content="Study"
+					  VerticalAlignment="Center"
+					  Focusable="False"
+					  Margin="8,0,0,0"
+					  ToolTip.Tip="Show or hide the study panel with terms, TM matches, and contextual info"/>
+
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
 					  Content="Zen Texts Only"
@@ -71,63 +88,123 @@
 			<Border/>
 		</DockPanel>
 
-		<!-- Row 1: two readable panes + empty state overlay -->
+		<!-- Row 1: two readable panes + study panel + empty state overlay -->
 		<Grid Grid.Row="1">
-			<Grid Name="TwoPaneGrid" ColumnDefinitions="1*,Auto,2*" Margin="0">
+			<Grid Name="ReaderOuterGrid" ColumnDefinitions="*,0,0">
+				<!-- Column 0: existing two-pane content -->
+				<Grid Grid.Column="0">
+					<Grid Name="TwoPaneGrid" ColumnDefinitions="1*,Auto,2*" Margin="0">
 
-				<Border Grid.Column="0"
-						Background="{DynamicResource XmlViewerBg}"
-						BorderBrush="{DynamicResource XmlViewerBorder}"
-						BorderThickness="1"
-						CornerRadius="6">
-					<Grid RowDefinitions="Auto,*">
-						<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
-							<TextBlock Text="Original (read-only)" Classes="muted"/>
+						<Border Grid.Column="0"
+								Background="{DynamicResource XmlViewerBg}"
+								BorderBrush="{DynamicResource XmlViewerBorder}"
+								BorderThickness="1"
+								CornerRadius="6">
+							<Grid RowDefinitions="Auto,*">
+								<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
+									<TextBlock Text="Original (read-only)" Classes="muted"/>
+								</Border>
+
+								<local:AnnotatedTextEditor Name="EditorOriginal"
+														   Grid.Row="1"/>
+							</Grid>
 						</Border>
 
-						<local:AnnotatedTextEditor Name="EditorOriginal"
-												   Grid.Row="1"/>
-					</Grid>
-				</Border>
+						<GridSplitter Grid.Column="1"
+									  Width="6"
+									  Background="{DynamicResource SplitterBrush}"
+									  ResizeDirection="Columns"
+									  ResizeBehavior="PreviousAndNext"/>
 
-				<GridSplitter Grid.Column="1"
-							  Width="6"
-							  Background="{DynamicResource SplitterBrush}"
+						<Border Grid.Column="2"
+								Background="{DynamicResource XmlViewerBg}"
+								BorderBrush="{DynamicResource XmlViewerBorder}"
+								BorderThickness="1"
+								CornerRadius="6">
+							<Grid RowDefinitions="Auto,*">
+								<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
+									<TextBlock Text="Translated (readable view)" Classes="muted"/>
+								</Border>
+
+								<local:AnnotatedTextEditor Name="EditorTranslated"
+														   Grid.Row="1"/>
+							</Grid>
+						</Border>
+
+					</Grid>
+
+					<!-- Empty state overlay -->
+					<Border Name="ReadableEmptyState" IsVisible="True"
+							Background="{DynamicResource AppBg}"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
+							<TextBlock Text="No file loaded" FontSize="18" FontWeight="SemiBold"
+									   HorizontalAlignment="Center"/>
+							<TextBlock Text="Select a file from the sidebar to begin reading."
+									   TextWrapping="Wrap" HorizontalAlignment="Center"
+									   TextAlignment="Center" Classes="muted"/>
+						</StackPanel>
+					</Border>
+
+					<!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
+					<Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
+				</Grid>
+
+				<!-- Column 1: study panel splitter -->
+				<GridSplitter Name="StudyPanelSplitter"
+							  Grid.Column="1" Width="8"
+							  IsVisible="False"
 							  ResizeDirection="Columns"
-							  ResizeBehavior="PreviousAndNext"/>
+							  ResizeBehavior="PreviousAndNext"
+							  Background="Transparent"/>
 
-				<Border Grid.Column="2"
-						Background="{DynamicResource XmlViewerBg}"
+				<!-- Column 2: study panel -->
+				<Border Name="StudyPanel"
+						Grid.Column="2"
+						IsVisible="False"
+						Padding="8"
+						Background="{DynamicResource ControlBg}"
 						BorderBrush="{DynamicResource XmlViewerBorder}"
-						BorderThickness="1"
-						CornerRadius="6">
-					<Grid RowDefinitions="Auto,*">
-						<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
-							<TextBlock Text="Translated (readable view)" Classes="muted"/>
-						</Border>
+						BorderThickness="1,0,0,0">
+					<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+								  VerticalScrollBarVisibility="Auto">
+						<StackPanel Spacing="10">
+							<TextBlock Text="Study Panel" FontWeight="Bold"/>
 
-						<local:AnnotatedTextEditor Name="EditorTranslated"
-												   Grid.Row="1"/>
-					</Grid>
+							<Border Padding="8" CornerRadius="6"
+									BorderThickness="1"
+									BorderBrush="{DynamicResource BorderBrush}">
+								<StackPanel Spacing="6">
+									<TextBlock Text="Segment" FontWeight="Bold"/>
+									<TextBlock Name="TxtStudySegmentZh"
+											   TextWrapping="Wrap" FontSize="13"/>
+									<TextBlock Name="TxtStudySegmentEn"
+											   TextWrapping="Wrap" FontSize="12"
+											   Opacity="0.8"/>
+								</StackPanel>
+							</Border>
+
+							<Border Padding="8" CornerRadius="6"
+									BorderThickness="1"
+									BorderBrush="{DynamicResource BorderBrush}">
+								<StackPanel Spacing="6">
+									<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+									<StackPanel Name="StudyTermHost" Spacing="10"/>
+								</StackPanel>
+							</Border>
+
+							<Border Padding="8" CornerRadius="6"
+									BorderThickness="1"
+									BorderBrush="{DynamicResource BorderBrush}">
+								<StackPanel Spacing="6">
+									<TextBlock Text="Translation Memory" FontWeight="Bold"/>
+									<StackPanel Name="StudyTmHost" Spacing="10"/>
+								</StackPanel>
+							</Border>
+						</StackPanel>
+					</ScrollViewer>
 				</Border>
-
 			</Grid>
-
-			<!-- Empty state overlay -->
-			<Border Name="ReadableEmptyState" IsVisible="True"
-					Background="{DynamicResource AppBg}"
-					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-					<TextBlock Text="No file loaded" FontSize="18" FontWeight="SemiBold"
-							   HorizontalAlignment="Center"/>
-					<TextBlock Text="Select a file from the sidebar to begin reading."
-							   TextWrapping="Wrap" HorizontalAlignment="Center"
-							   TextAlignment="Center" Classes="muted"/>
-				</StackPanel>
-			</Border>
-
-			<!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
-			<Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
 		</Grid>
 
 		<!-- Row 2: coding mode bar + notes panel -->
@@ -180,14 +257,6 @@
 							Focusable="False"
 							Margin="4,0,0,0"
 							ToolTip.Tip="Open a 3-pane window comparing your tags with the selected user's tags"/>
-					<Button Name="BtnCompareTranslations"
-							Content="Compare Translations"
-							DockPanel.Dock="Right"
-							Padding="6,2"
-							FontSize="11"
-							Focusable="False"
-							Margin="4,0,0,0"
-							ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
 					<ComboBox Name="CmbTagUser"
 							  DockPanel.Dock="Right"
 							  MinWidth="120" Padding="4,2"

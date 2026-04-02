@@ -378,7 +378,7 @@ public partial class GitTabViewModel : ViewModelBase
                 var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
                 var msg = $"{_githubLogin}: {Path.GetFileNameWithoutExtension(_selectedRelPath)} translation update";
 
-                await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+                await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
                 await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
                 await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
 
@@ -889,7 +889,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
             await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
-            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
 
@@ -1408,7 +1408,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
             await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
-            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             // --- Check git status for any community changes ---
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
@@ -1651,7 +1651,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
             await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
-            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
 
@@ -1937,7 +1937,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
             await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
-            await _git.EnsureUserIdentityAsync(repoDir, prog, ct);
+            await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             // --- Auth ---
             if (string.IsNullOrWhiteSpace(_githubAccessToken) || string.IsNullOrWhiteSpace(_githubLogin))

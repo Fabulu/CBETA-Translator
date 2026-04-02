@@ -1659,12 +1659,7 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        if (e.Key == Key.N && e.KeyModifiers == KeyModifiers.Alt)
-        {
-            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.NeedsWork);
-            e.Handled = true;
-            return;
-        }
+        // Alt+N (needs-work) removed — button hidden, shortcut disabled
 
         if (e.Key == Key.F9)
         {
@@ -1673,12 +1668,7 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        if (e.Key == Key.F10)
-        {
-            ReviewActionRequested?.Invoke(this, TranslationReviewStatuses.NeedsWork);
-            e.Handled = true;
-            return;
-        }
+        // F10 (needs-work) removed — button hidden, shortcut disabled
 
         if (e.Key == Key.F11)
         {
