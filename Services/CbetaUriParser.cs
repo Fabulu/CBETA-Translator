@@ -55,6 +55,19 @@ public static class CbetaUriParser
         if (string.IsNullOrWhiteSpace(uri))
             return null;
 
+        // Convert shareable HTTPS URLs to zen:// format before parsing.
+        // e.g. https://readzen.pages.dev/#/T48n2005/0292b29?side=Translated
+        //    → zen://T48n2005/0292b29?side=Translated
+        if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
+            uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
+        {
+            int hashIdx = uri.IndexOf("#/", StringComparison.Ordinal);
+            if (hashIdx >= 0)
+            {
+                uri = Scheme + "://" + uri[(hashIdx + 2)..];
+            }
+        }
+
         if (!Uri.TryCreate(uri, UriKind.Absolute, out var parsed))
             return null;
 

@@ -2002,8 +2002,6 @@ public partial class ReadableTabView : UserControl
         var textView = ed.TextArea?.TextView;
         if (textView == null) return;
 
-        textView.EnsureVisualLines();
-
         try
         {
             if (ed.TextArea != null)
@@ -2011,22 +2009,30 @@ public partial class ReadableTabView : UserControl
         }
         catch { }
 
-        var caretPos = ed.TextArea?.Caret.Position;
-        if (caretPos == null) return;
+        // Use ScrollTo first to ensure the target line's visual lines are materialized.
+        // This avoids stale layout metrics from GetVisualPosition/TranslatePoint when
+        // the caret is outside the currently rendered viewport (especially scrolling UP).
+        var docLine = ed.Document?.GetLineByOffset(Math.Clamp(caretOffset, 0, ed.Document.TextLength));
+        if (docLine == null) return;
 
-        var loc = textView.GetVisualPosition(caretPos.Value, VisualYPosition.LineTop);
-        var p = textView.TranslatePoint(loc, sv);
-        if (p == null) return;
+        ed.ScrollTo(docLine.LineNumber, 0);
 
-        double caretY = p.Value.Y;
+        // Now the target line is visible. Re-query the scroll viewer and use
+        // GetVisualTopByDocumentLine for an absolute document-space Y coordinate
+        // that doesn't depend on TranslatePoint viewport-relative translation.
+        textView.EnsureVisualLines();
 
-        bool looksLikeViewportCoords =
-            caretY >= -viewportH * 0.25 &&
-            caretY <= viewportH * 1.25;
+        double absoluteY;
+        try
+        {
+            absoluteY = textView.GetVisualTopByDocumentLine(docLine.LineNumber);
+        }
+        catch
+        {
+            return; // line not yet laid out — ScrollTo already made it visible, good enough
+        }
 
-        double desiredY = looksLikeViewportCoords
-            ? sv.Offset.Y + (caretY - (viewportH / 2.0))
-            : caretY - (viewportH / 2.0);
+        double desiredY = absoluteY - (viewportH / 3.0); // bias toward upper third
 
         if (!double.IsNaN(extentH) && !double.IsInfinity(extentH) && extentH > 0)
         {

@@ -36,7 +36,8 @@ public partial class App : Application
 
             // Check for deep link after window is created
             var startupUri = StartupArgs?.FirstOrDefault(a =>
-                a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
+                a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase) ||
+                a.StartsWith(CbetaUriParser.ShareableBase, StringComparison.OrdinalIgnoreCase));
 
             Dispatcher.UIThread.Post(async () =>
             {
@@ -147,7 +148,7 @@ public partial class App : Application
             // Poll until Root is set (config loaded and auto-loaded)
             for (int i = 0; i < 30; i++) // max ~21 seconds
             {
-                await System.Threading.Tasks.Task.Delay(700);
+                await System.Threading.Tasks.Task.Delay(500);
                 if (!string.IsNullOrWhiteSpace(mainWin.ViewModel?.Root))
                     break;
             }
