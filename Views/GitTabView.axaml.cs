@@ -60,6 +60,13 @@ public partial class GitTabView : UserControl
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
+    /// <summary>Programmatically triggers the Sync command (e.g., from the onboarding tour).</summary>
+    public void TriggerSync()
+    {
+        if (_vm.SyncCommand.CanExecute(null))
+            _vm.SyncCommand.Execute(null);
+    }
+
     public void SetCurrentRepoRoot(string? rootPath) => _vm.SetCurrentRepoRoot(rootPath);
     public void SetSelectedRelPath(string? relPath) => _vm.SetSelectedRelPath(relPath);
     public void SetUsername(string? username) => _vm.SetUsername(username);

@@ -55,6 +55,39 @@ public class TourStepTests
         Assert.Contains(TourPlacement.Center, values);
     }
 
+    // ---- ActionButtonLabel defaults to null ----
+
+    [Fact]
+    public void TourStep_ActionButtonLabel_DefaultsToNull()
+    {
+        var step = new TourStep();
+        Assert.Null(step.ActionButtonLabel);
+    }
+
+    // ---- CanSkipWait defaults to false ----
+
+    [Fact]
+    public void TourStep_CanSkipWait_DefaultsToFalse()
+    {
+        var step = new TourStep();
+        Assert.False(step.CanSkipWait);
+    }
+
+    // ---- ActionButtonLabel and CanSkipWait are settable ----
+
+    [Fact]
+    public void TourStep_ActionButtonLabel_And_CanSkipWait_AreSettable()
+    {
+        var step = new TourStep
+        {
+            ActionButtonLabel = "Sync Now",
+            CanSkipWait = true
+        };
+
+        Assert.Equal("Sync Now", step.ActionButtonLabel);
+        Assert.True(step.CanSkipWait);
+    }
+
     // ---- Additional: TourStep properties are settable ----
 
     [Fact]
