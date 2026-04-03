@@ -20,9 +20,18 @@ public class PassageLinkTests
     }
 
     [Fact]
-    public void RelationTypes_HasExactlySixEntries()
+    public void RelationTypes_HasExactlyNineEntries()
     {
-        Assert.Equal(6, PassageLink.RelationTypes.Length);
+        Assert.Equal(9, PassageLink.RelationTypes.Length);
+    }
+
+    [Theory]
+    [InlineData("is-variant-of")]
+    [InlineData("translates")]
+    [InlineData("summarizes")]
+    public void RelationTypes_ContainsNewTypes(string relationType)
+    {
+        Assert.Contains(relationType, PassageLink.RelationTypes);
     }
 
     [Fact]
