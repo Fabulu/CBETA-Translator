@@ -714,6 +714,7 @@ public partial class MainWindow : Window
     {
         if (_readableView != null)
         {
+            _readableView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _readableView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _readableView.ZenFlagChanged += async (_, ev) =>
@@ -778,6 +779,7 @@ public partial class MainWindow : Window
 
         if (_translationView != null)
         {
+            _translationView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _translationView.SaveRequested += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
             _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
             _translationView.Status += (_, msg) => _vm.SetStatus(msg);
@@ -842,6 +844,7 @@ public partial class MainWindow : Window
 
         if (_searchView != null)
         {
+            _searchView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _searchView.Status += (_, msg) => _vm.SetStatus(msg);
             _searchView.NavigationRequested += (_, req) =>
             {

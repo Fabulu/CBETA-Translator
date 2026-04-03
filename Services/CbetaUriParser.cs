@@ -141,7 +141,29 @@ public static class CbetaUriParser
     }
 
     /// <summary>
-    /// Parses the clean format: <c>zen://T48n2005/0292a26-0292a29/en?highlight=...</c>
+    /// Returns <c>true</c> if the segment looks like a TEI lb n-value (e.g. "0292b28", "0001a01-0001a03").
+    /// Pattern: starts with 4 digits followed by a lowercase letter and at least 2 more digits.
+    /// </summary>
+    private static bool IsLbSegment(string segment)
+    {
+        // A range like "0292a26-0292a29" also counts — check the first part before any dash.
+        var first = segment.Split('-')[0];
+        return first.Length >= 7
+            && char.IsDigit(first[0]) && char.IsDigit(first[1])
+            && char.IsDigit(first[2]) && char.IsDigit(first[3])
+            && char.IsLetter(first[4]) && char.IsLower(first[4])
+            && char.IsDigit(first[5]) && char.IsDigit(first[6]);
+    }
+
+    /// <summary>
+    /// Returns <c>true</c> if the segment is a recognised side alias ("en" or "tran").
+    /// </summary>
+    private static bool IsSideSegment(string segment)
+        => segment.Equals("en", StringComparison.OrdinalIgnoreCase)
+        || segment.Equals("tran", StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// Parses the clean format: <c>zen://T48n2005/0292a26-0292a29/en/bob?highlight=...</c>
     /// </summary>
     private static NavigationRequest? TryParseClean(string afterScheme)
     {
@@ -158,30 +180,28 @@ public static class CbetaUriParser
 
         string? fromLb = null, toLb = null;
         var side = SearchSide.Original;
+        string? user = null;
 
-        if (parts.Length >= 2)
+        // Walk remaining segments: each is lb-range, side, or user (last unrecognised segment).
+        for (int i = 1; i < parts.Length; i++)
         {
-            var segment = parts[1];
-            if (segment.Equals("en", StringComparison.OrdinalIgnoreCase) ||
-                segment.Equals("tran", StringComparison.OrdinalIgnoreCase))
+            var seg = parts[i];
+            if (IsSideSegment(seg))
             {
                 side = SearchSide.Translated;
             }
-            else
+            else if (IsLbSegment(seg))
             {
-                var bounds = segment.Split('-');
+                var bounds = seg.Split('-');
                 fromLb = bounds[0];
                 if (bounds.Length > 1) toLb = bounds[1];
             }
-        }
-
-        if (parts.Length >= 3)
-        {
-            var segment = parts[2];
-            if (segment.Equals("en", StringComparison.OrdinalIgnoreCase) ||
-                segment.Equals("tran", StringComparison.OrdinalIgnoreCase))
+            else
             {
-                side = SearchSide.Translated;
+                // Anything else that's the last segment is the user.
+                // If it's not last, ignore (defensive).
+                if (i == parts.Length - 1)
+                    user = Uri.UnescapeDataString(seg);
             }
         }
 
@@ -189,6 +209,7 @@ public static class CbetaUriParser
         {
             RelPath = relPath,
             Side = side,
+            User = user,
         };
 
         if (!string.IsNullOrEmpty(fromLb))
@@ -230,7 +251,8 @@ public static class CbetaUriParser
         SearchSide side = SearchSide.Original,
         string? leftContext = null,
         string? rightContext = null,
-        int? blockNumber = null)
+        int? blockNumber = null,
+        string? user = null)
     {
         var fileId = RelPathToFileId(relPath);
         var uri = Scheme + "://" + fileId;
@@ -245,6 +267,9 @@ public static class CbetaUriParser
 
         if (side != SearchSide.Original)
             uri += "/en";
+
+        if (!string.IsNullOrEmpty(user))
+            uri += "/" + Uri.EscapeDataString(user);
 
         var queryParts = new List<string>();
 
@@ -281,7 +306,8 @@ public static class CbetaUriParser
         string? fromLb = null,
         string? toLb = null,
         string? highlightText = null,
-        SearchSide side = SearchSide.Original)
+        SearchSide side = SearchSide.Original,
+        string? user = null)
     {
         // Extract file ID from relPath: "T/T48/T48n2005.xml" → "T48n2005"
         var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
@@ -299,6 +325,10 @@ public static class CbetaUriParser
         // Side as path segment (cleaner than query param)
         if (side != SearchSide.Original)
             url += "/en";
+
+        // User as last path segment
+        if (!string.IsNullOrEmpty(user))
+            url += "/" + Uri.EscapeDataString(user);
 
         // Optional query params
         var queryParts = new List<string>();
@@ -374,6 +404,7 @@ public static class CbetaUriParser
                     Kind = DeepLinkKind.Scholar,
                     ScholarCollectionId = segments.Length >= 2 ? Uri.UnescapeDataString(segments[1]) : null,
                     ScholarPassageId = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
+                    ScholarUser = segments.Length >= 4 ? Uri.UnescapeDataString(segments[3]) : null,
                 };
 
             case "search":
@@ -386,11 +417,15 @@ public static class CbetaUriParser
 
             case "tags":
                 if (segments.Length < 2) return null;
+                // User as path segment (preferred), with ?user= query param as fallback
+                string? tagsUser = segments.Length >= 3
+                    ? Uri.UnescapeDataString(segments[2])
+                    : (query.TryGetValue("user", out var tu) ? tu : null);
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Tags,
                     TagsRelPath = FileIdToRelPath(segments[1]),
-                    TagsUser = query.TryGetValue("user", out var tu) ? tu : null,
+                    TagsUser = tagsUser,
                 };
 
             case "term":
@@ -414,10 +449,15 @@ public static class CbetaUriParser
     public static string BuildDictUri(string term)
         => $"{Scheme}://dict/{Uri.EscapeDataString(term)}";
 
-    public static string BuildScholarUri(string collectionId, string? passageId = null)
-        => passageId != null
+    public static string BuildScholarUri(string collectionId, string? passageId = null, string? user = null)
+    {
+        var uri = passageId != null
             ? $"{Scheme}://scholar/{collectionId}/{passageId}"
             : $"{Scheme}://scholar/{collectionId}";
+        if (!string.IsNullOrEmpty(user))
+            uri += "/" + Uri.EscapeDataString(user);
+        return uri;
+    }
 
     public static string BuildSearchUri(string query, string? corpus = null)
         => corpus != null
@@ -426,7 +466,7 @@ public static class CbetaUriParser
 
     public static string BuildTagsUri(string fileId, string? user = null)
         => user != null
-            ? $"{Scheme}://tags/{fileId}?user={Uri.EscapeDataString(user)}"
+            ? $"{Scheme}://tags/{fileId}/{Uri.EscapeDataString(user)}"
             : $"{Scheme}://tags/{fileId}";
 
     public static string BuildTermUri(string term)
@@ -439,10 +479,15 @@ public static class CbetaUriParser
     public static string BuildShareableDictUrl(string term)
         => $"{ShareableBase}#/dict/{Uri.EscapeDataString(term)}";
 
-    public static string BuildShareableScholarUrl(string collectionId, string? passageId = null)
-        => passageId != null
+    public static string BuildShareableScholarUrl(string collectionId, string? passageId = null, string? user = null)
+    {
+        var url = passageId != null
             ? $"{ShareableBase}#/scholar/{collectionId}/{passageId}"
             : $"{ShareableBase}#/scholar/{collectionId}";
+        if (!string.IsNullOrEmpty(user))
+            url += "/" + Uri.EscapeDataString(user);
+        return url;
+    }
 
     public static string BuildShareableSearchUrl(string query, string? corpus = null)
         => corpus != null
@@ -451,7 +496,7 @@ public static class CbetaUriParser
 
     public static string BuildShareableTagsUrl(string fileId, string? user = null)
         => user != null
-            ? $"{ShareableBase}#/tags/{fileId}?user={Uri.EscapeDataString(user)}"
+            ? $"{ShareableBase}#/tags/{fileId}/{Uri.EscapeDataString(user)}"
             : $"{ShareableBase}#/tags/{fileId}";
 
     public static string BuildShareableTermUrl(string term)

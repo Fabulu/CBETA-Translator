@@ -98,6 +98,9 @@ public partial class TranslationTabView : UserControl
     /// </summary>
     public Func<int, string?>? ResolveLbForBlock { get; set; }
 
+    /// <summary>Returns the currently active translation user (null = community).</summary>
+    public Func<string?>? GetTranslationUser { get; set; }
+
     public TranslationTabView()
     {
         _vm = new TranslationTabViewModel();
@@ -259,7 +262,8 @@ public partial class TranslationTabView : UserControl
             if (fromLb == null && highlight != null && highlight.Length > 60)
                 highlight = highlight.Substring(0, 60);
 
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, blockNumber: blockNumber);
+            var user = GetTranslationUser?.Invoke();
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, blockNumber: blockNumber, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -298,7 +302,8 @@ public partial class TranslationTabView : UserControl
             if (fromLb == null && highlight != null && highlight.Length > 60)
                 highlight = highlight.Substring(0, 60);
 
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight);
+            var userR = GetTranslationUser?.Invoke();
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);
