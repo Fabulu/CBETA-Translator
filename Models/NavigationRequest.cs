@@ -53,4 +53,10 @@ public sealed class NavigationRequest
     /// Optional auxiliary text used as a soft ranking signal when multiple candidates tie.
     /// </summary>
     public string? AnchorTextSignal { get; set; }
+
+    /// <summary>
+    /// Optional user whose translation is being linked to.
+    /// When set, deep links carry per-user context; when null, the link is community/global.
+    /// </summary>
+    public string? User { get; set; }
 }

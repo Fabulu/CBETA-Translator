@@ -15,6 +15,7 @@ public sealed class DeepLinkRequest
     // Scholar
     public string? ScholarCollectionId { get; init; }
     public string? ScholarPassageId { get; init; }
+    public string? ScholarUser { get; init; }
 
     // Search
     public string? SearchQuery { get; init; }

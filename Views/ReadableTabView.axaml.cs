@@ -157,6 +157,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
     public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;
 
+    /// <summary>Returns the currently active translation user (null = community).</summary>
+    public Func<string?>? GetTranslationUser { get; set; }
+
     /// <summary>Pre-filled value for the Resp field in the "Add community note" dialog.</summary>
     public string DefaultResp
     {
@@ -395,7 +398,8 @@ public partial class ReadableTabView : UserControl
                 }
             }
 
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb, toLb, highlight, side);
+            var user = isTranslated ? GetTranslationUser?.Invoke() : null;
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -436,7 +440,8 @@ public partial class ReadableTabView : UserControl
                 }
             }
 
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side);
+            var userR = isTranslated ? GetTranslationUser?.Invoke() : null;
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);

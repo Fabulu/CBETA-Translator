@@ -22,6 +22,9 @@ public partial class SearchTabView : UserControl
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
 
+    /// <summary>Returns the currently active translation user (null = community).</summary>
+    public Func<string?>? GetTranslationUser { get; set; }
+
     public SearchTabView()
     {
         InitializeComponent();
@@ -92,9 +95,10 @@ public partial class SearchTabView : UserControl
             {
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
 
+                var user = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
                 var uri = CbetaUriParser.BuildUri(
                     child.RelPath, highlightText: child.MatchText, side: child.Side,
-                    leftContext: child.LeftText, rightContext: child.RightText);
+                    leftContext: child.LeftText, rightContext: child.RightText, user: user);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(uri);
@@ -106,8 +110,9 @@ public partial class SearchTabView : UserControl
             {
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
 
+                var userR = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
                 var url = CbetaUriParser.BuildShareableUrl(
-                    child.RelPath, highlightText: child.MatchText, side: child.Side);
+                    child.RelPath, highlightText: child.MatchText, side: child.Side, user: userR);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(url);

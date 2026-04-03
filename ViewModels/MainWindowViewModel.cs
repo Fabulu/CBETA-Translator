@@ -2486,6 +2486,19 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool IsActiveTranslationReadOnly => _translationSourceIndex >= 2;
 
     /// <summary>
+    /// Returns the user whose translation is currently active.
+    /// Index 0 = current user's own translation, index 1 = community (null), index 2+ = other user's name.
+    /// </summary>
+    public string? GetActiveTranslationUser()
+    {
+        if (_translationSourceIndex == 0) return _config.Username;
+        if (_translationSourceIndex == 1) return null; // community
+        if (_translationSourceIndex >= 2 && _translationSourceIndex < _translationSourceOptions.Count)
+            return _translationSourceOptions[_translationSourceIndex];
+        return null;
+    }
+
+    /// <summary>
     /// Returns the current list of translation source labels (e.g. "My Translation (user)", "Community", other usernames).
     /// </summary>
     public IReadOnlyList<string> GetTranslationSourceLabels() => _translationSourceOptions;
