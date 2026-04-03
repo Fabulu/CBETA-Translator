@@ -36,8 +36,7 @@ public partial class App : Application
 
             // Check for deep link after window is created
             var startupUri = StartupArgs?.FirstOrDefault(a =>
-                a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase) ||
-                a.StartsWith(CbetaUriParser.ShareableBase, StringComparison.OrdinalIgnoreCase));
+                CbetaUriParser.TryParseDeepLink(a) != null);
 
             Dispatcher.UIThread.Post(async () =>
             {
@@ -101,26 +100,38 @@ public partial class App : Application
 
     private async System.Threading.Tasks.Task HandleDeepLinkAsync(string uri)
     {
-        var request = CbetaUriParser.TryParse(uri);
-        if (request == null) return;
+        var deepLink = CbetaUriParser.TryParseDeepLink(uri);
+        if (deepLink == null) return;
 
         try
         {
-            string? root = null;
-            var configService = Services.GetService<IAppConfigService>();
-            if (configService is AppConfigService acs)
+            if (deepLink.Kind == DeepLinkKind.Passage && deepLink.Passage != null)
             {
-                var config = await acs.TryLoadAsync();
-                root = config?.TextRootPath;
-            }
+                string? root = null;
+                var configService = Services.GetService<IAppConfigService>();
+                if (configService is AppConfigService acs)
+                {
+                    var config = await acs.TryLoadAsync();
+                    root = config?.TextRootPath;
+                }
 
-            if (string.IsNullOrEmpty(root))
+                if (string.IsNullOrEmpty(root))
+                {
+                    Debug.WriteLine("Cannot handle deep link: no TextRootPath configured.");
+                    return;
+                }
+
+                WindowNavigationService.OpenAndNavigate(root, deepLink.Passage);
+            }
+            else
             {
-                Debug.WriteLine("Cannot handle deep link: no TextRootPath configured.");
-                return;
+                // Non-passage deep links: route to the primary window
+                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                    && desktop.MainWindow is Views.MainWindow mainWin)
+                {
+                    await mainWin.HandleDeepLinkAsync(deepLink);
+                }
             }
-
-            WindowNavigationService.OpenAndNavigate(root, request);
         }
         catch (Exception ex)
         {
@@ -134,8 +145,8 @@ public partial class App : Application
     /// </summary>
     private async System.Threading.Tasks.Task HandleDeepLinkInPrimaryAsync(string uri)
     {
-        var request = CbetaUriParser.TryParse(uri);
-        if (request == null) return;
+        var deepLink = CbetaUriParser.TryParseDeepLink(uri);
+        if (deepLink == null) return;
 
         try
         {
@@ -165,8 +176,16 @@ public partial class App : Application
                 return;
             }
 
-            // Navigate in the primary window
-            await mainWin.OpenAtAsync(root, request);
+            if (deepLink.Kind == DeepLinkKind.Passage && deepLink.Passage != null)
+            {
+                // Navigate in the primary window (existing passage behavior)
+                await mainWin.OpenAtAsync(root, deepLink.Passage);
+            }
+            else
+            {
+                // Non-passage deep links
+                await mainWin.HandleDeepLinkAsync(deepLink);
+            }
         }
         catch (Exception ex)
         {

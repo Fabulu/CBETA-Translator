@@ -480,4 +480,208 @@ public class CbetaUriParserTests
         Assert.EndsWith("/en", url);
         Assert.DoesNotContain("?side=", url);
     }
+
+    // ==== TryParseDeepLink ====
+
+    [Fact]
+    public void TryParseDeepLink_Null_ReturnsNull()
+    {
+        Assert.Null(CbetaUriParser.TryParseDeepLink(null));
+    }
+
+    [Fact]
+    public void TryParseDeepLink_Empty_ReturnsNull()
+    {
+        Assert.Null(CbetaUriParser.TryParseDeepLink(""));
+    }
+
+    [Fact]
+    public void TryParseDeepLink_PassageLink_ReturnsPassageKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://T48n2005/0292b28");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Passage, result.Kind);
+        Assert.NotNull(result.Passage);
+        Assert.Equal("T/T48/T48n2005.xml", result.Passage.RelPath);
+        Assert.Equal("0292b28", result.Passage.FromLb);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_HttpsPassageLink_ReturnsPassageKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("https://readzen.pages.dev/#/T48n2005/0292b28");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Passage, result.Kind);
+        Assert.NotNull(result.Passage);
+        Assert.Equal("T/T48/T48n2005.xml", result.Passage.RelPath);
+        Assert.Equal("0292b28", result.Passage.FromLb);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_DictLink_ReturnsDictionaryKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://dict/\u4f5b");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u4f5b", result.DictTerm);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_DictLink_DecodesUri()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://dict/%E4%BD%9B");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u4f5b", result.DictTerm);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_ScholarLink_ReturnsScholarKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col1/pass1");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Scholar, result.Kind);
+        Assert.Equal("col1", result.ScholarCollectionId);
+        Assert.Equal("pass1", result.ScholarPassageId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_ScholarLink_CollectionOnly()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col1");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Scholar, result.Kind);
+        Assert.Equal("col1", result.ScholarCollectionId);
+        Assert.Null(result.ScholarPassageId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_SearchLink_ReturnsSearchKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=\u7121\u9580\u95dc&corpus=T");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("\u7121\u9580\u95dc", result.SearchQuery);
+        Assert.Equal("T", result.SearchCorpus);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_SearchLink_QueryOnly()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("test", result.SearchQuery);
+        Assert.Null(result.SearchCorpus);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TagsLink_ReturnsTagsKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
+        Assert.Equal("alice", result.TagsUser);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TagsLink_NoUser()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
+        Assert.Null(result.TagsUser);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TermLink_ReturnsTermbaseKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://term/\u822c\u82e5");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
+        Assert.Equal("\u822c\u82e5", result.TermbaseEntry);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_HttpsDict_Works()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("https://readzen.pages.dev/#/dict/\u4f5b");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u4f5b", result.DictTerm);
+    }
+
+    // ==== Deep-link builder round-trips ====
+
+    [Fact]
+    public void BuildDictUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildDictUri("\u4f5b");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u4f5b", result.DictTerm);
+    }
+
+    [Fact]
+    public void BuildScholarUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildScholarUri("c1", "p1");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Scholar, result.Kind);
+        Assert.Equal("c1", result.ScholarCollectionId);
+        Assert.Equal("p1", result.ScholarPassageId);
+    }
+
+    [Fact]
+    public void BuildSearchUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildSearchUri("test", "T");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("test", result.SearchQuery);
+        Assert.Equal("T", result.SearchCorpus);
+    }
+
+    [Fact]
+    public void BuildTagsUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
+        Assert.Equal("alice", result.TagsUser);
+    }
+
+    [Fact]
+    public void BuildTermUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildTermUri("\u822c\u82e5");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
+        Assert.Equal("\u822c\u82e5", result.TermbaseEntry);
+    }
 }

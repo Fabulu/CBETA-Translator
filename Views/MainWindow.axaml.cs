@@ -176,6 +176,102 @@ public partial class MainWindow : Window
             await _readableView.NavigateToAsync(request);
     }
 
+    /// <summary>
+    /// Routes a non-passage deep link to the appropriate tab/handler.
+    /// </summary>
+    public async Task HandleDeepLinkAsync(DeepLinkRequest request)
+    {
+        await _windowReady.Task;
+
+        switch (request.Kind)
+        {
+            case DeepLinkKind.Dictionary:
+                HandleDictDeepLink(request.DictTerm);
+                break;
+            case DeepLinkKind.Scholar:
+                await HandleScholarDeepLinkAsync(request.ScholarCollectionId, request.ScholarPassageId);
+                break;
+            case DeepLinkKind.Search:
+                HandleSearchDeepLink(request.SearchQuery);
+                break;
+            case DeepLinkKind.Tags:
+                HandleTagsDeepLink(request.TagsRelPath, request.TagsUser);
+                break;
+            case DeepLinkKind.Termbase:
+                HandleTermbaseDeepLink(request.TermbaseEntry);
+                break;
+        }
+    }
+
+    private void HandleDictDeepLink(string? term)
+    {
+        if (string.IsNullOrWhiteSpace(term))
+        {
+            _vm.SetStatus("Dictionary link: no term specified.", StatusSeverity.Warning);
+            return;
+        }
+        // Switch to reader tab (where hover dictionary is available)
+        ForceTab(0);
+        _vm.SetStatus($"Dictionary: \"{term}\" \u2014 hover over Chinese text in the reader to see definitions.", StatusSeverity.Info);
+    }
+
+    private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId)
+    {
+        if (string.IsNullOrWhiteSpace(collectionId))
+        {
+            _vm.SetStatus("Scholar link: no collection specified.", StatusSeverity.Warning);
+            return;
+        }
+        // Switch to scholar tab (index 4)
+        ForceTab(4);
+
+        if (_scholarView != null)
+        {
+            var vm = (ScholarTabViewModel)_scholarView.DataContext!;
+            bool found = await vm.TryNavigateToPassageAsync(collectionId, passageId);
+            if (!found)
+                _vm.SetStatus("This scholar passage isn't available. The person who shared this link may not have synced their data yet.", StatusSeverity.Warning);
+        }
+    }
+
+    private void HandleSearchDeepLink(string? query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            _vm.SetStatus("Search link: no query specified.", StatusSeverity.Warning);
+            return;
+        }
+        // Switch to search tab (index 2)
+        ForceTab(2);
+        if (_searchView != null)
+        {
+            _searchView.SetSearchTextAndExecute(query);
+        }
+        _vm.SetStatus($"Searching: \"{query}\"");
+    }
+
+    private void HandleTagsDeepLink(string? relPath, string? user)
+    {
+        if (string.IsNullOrWhiteSpace(relPath))
+        {
+            _vm.SetStatus("Tags link: no file specified.", StatusSeverity.Warning);
+            return;
+        }
+        // Switch to reader tab and select the file
+        ForceTab(0);
+        _vm.SetStatus($"Tags: opened {relPath}" + (user != null ? $" (user: {user})" : ""), StatusSeverity.Info);
+    }
+
+    private void HandleTermbaseDeepLink(string? entry)
+    {
+        if (string.IsNullOrWhiteSpace(entry))
+        {
+            _vm.SetStatus("Termbase link: no term specified.", StatusSeverity.Warning);
+            return;
+        }
+        _vm.SetStatus($"Termbase: \"{entry}\" \u2014 open the termbase editor to find this entry.", StatusSeverity.Info);
+    }
+
     private async Task LoadConfigAndAutoloadAsync()
     {
         try
