@@ -844,6 +844,14 @@ public partial class ReadableTabView : UserControl
                 int lbSafeStart = Math.Clamp(lbStart, 0, Math.Max(0, lbDocLen - 1));
                 int lbSafeEnd = Math.Clamp(lbSafeStart + lbLength, 0, lbDocLen);
 
+                // Trim trailing newlines from selection range
+                string lbDocText = editor.Document.Text ?? "";
+                while (lbSafeEnd > lbSafeStart && lbSafeEnd <= lbDocText.Length &&
+                       (lbDocText[lbSafeEnd - 1] == '\n' || lbDocText[lbSafeEnd - 1] == '\r'))
+                {
+                    lbSafeEnd--;
+                }
+
                 editor.TextArea.Caret.Offset = lbSafeStart;
                 editor.TextArea.Selection = Selection.Create(editor.TextArea, lbSafeStart, lbSafeEnd);
 
@@ -878,6 +886,14 @@ public partial class ReadableTabView : UserControl
         int docLen = editor.Document.TextLength;
         int safeStart = Math.Clamp(hit.start, 0, Math.Max(0, docLen - 1));
         int safeEnd = Math.Clamp(safeStart + hit.length, 0, docLen);
+
+        // Trim trailing newlines from selection range
+        string fbDocText = editor.Document.Text ?? "";
+        while (safeEnd > safeStart && safeEnd <= fbDocText.Length &&
+               (fbDocText[safeEnd - 1] == '\n' || fbDocText[safeEnd - 1] == '\r'))
+        {
+            safeEnd--;
+        }
 
         editor.TextArea.Caret.Offset = safeStart;
         editor.TextArea.Selection = Selection.Create(editor.TextArea, safeStart, safeEnd);

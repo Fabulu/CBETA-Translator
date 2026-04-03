@@ -314,6 +314,151 @@ public static class CbetaUriParser
         return url;
     }
 
+    // ---------------------------------------------------------------
+    //  Deep-link parsing (supports dict, scholar, search, tags, term)
+    // ---------------------------------------------------------------
+
+    /// <summary>
+    /// Parses any <c>zen://</c> or shareable HTTPS URL into a <see cref="DeepLinkRequest"/>.
+    /// Recognises keyword-prefixed paths (<c>zen://dict/…</c>, <c>zen://scholar/…</c>, etc.)
+    /// and falls back to passage-based parsing via <see cref="TryParse"/> for file IDs.
+    /// Returns <c>null</c> if the URI is malformed.
+    /// </summary>
+    public static DeepLinkRequest? TryParseDeepLink(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+            return null;
+
+        var uri = raw;
+
+        // Convert shareable HTTPS URLs to zen:// format
+        if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
+            uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
+        {
+            int hashIdx = uri.IndexOf("#/", StringComparison.Ordinal);
+            if (hashIdx >= 0)
+                uri = Scheme + "://" + uri[(hashIdx + 2)..];
+        }
+
+        // Must start with zen://
+        var schemePrefix = Scheme + "://";
+        var prefixIdx = uri.IndexOf(schemePrefix, StringComparison.OrdinalIgnoreCase);
+        if (prefixIdx < 0)
+            return null;
+
+        var afterScheme = uri[(prefixIdx + schemePrefix.Length)..];
+
+        // Split path from query
+        var qIdx = afterScheme.IndexOf('?');
+        var pathPart = qIdx >= 0 ? afterScheme[..qIdx] : afterScheme;
+        var queryPart = qIdx >= 0 ? afterScheme[(qIdx + 1)..] : "";
+        var query = ParseQueryString("?" + queryPart);
+
+        var segments = pathPart.Split('/', StringSplitOptions.RemoveEmptyEntries);
+        if (segments.Length == 0)
+            return null;
+
+        switch (segments[0].ToLowerInvariant())
+        {
+            case "dict":
+                if (segments.Length < 2) return null;
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Dictionary,
+                    DictTerm = Uri.UnescapeDataString(segments[1]),
+                };
+
+            case "scholar":
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Scholar,
+                    ScholarCollectionId = segments.Length >= 2 ? Uri.UnescapeDataString(segments[1]) : null,
+                    ScholarPassageId = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
+                };
+
+            case "search":
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Search,
+                    SearchQuery = query.TryGetValue("q", out var sq) ? sq : null,
+                    SearchCorpus = query.TryGetValue("corpus", out var sc) ? sc : null,
+                };
+
+            case "tags":
+                if (segments.Length < 2) return null;
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Tags,
+                    TagsRelPath = FileIdToRelPath(segments[1]),
+                    TagsUser = query.TryGetValue("user", out var tu) ? tu : null,
+                };
+
+            case "term":
+                if (segments.Length < 2) return null;
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Termbase,
+                    TermbaseEntry = Uri.UnescapeDataString(segments[1]),
+                };
+        }
+
+        // No keyword match — fall through to passage parsing
+        var nav = TryParse(raw);
+        return nav != null ? new DeepLinkRequest { Kind = DeepLinkKind.Passage, Passage = nav } : null;
+    }
+
+    // ---------------------------------------------------------------
+    //  zen:// URI builders for new deep-link kinds
+    // ---------------------------------------------------------------
+
+    public static string BuildDictUri(string term)
+        => $"{Scheme}://dict/{Uri.EscapeDataString(term)}";
+
+    public static string BuildScholarUri(string collectionId, string? passageId = null)
+        => passageId != null
+            ? $"{Scheme}://scholar/{collectionId}/{passageId}"
+            : $"{Scheme}://scholar/{collectionId}";
+
+    public static string BuildSearchUri(string query, string? corpus = null)
+        => corpus != null
+            ? $"{Scheme}://search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
+            : $"{Scheme}://search?q={Uri.EscapeDataString(query)}";
+
+    public static string BuildTagsUri(string fileId, string? user = null)
+        => user != null
+            ? $"{Scheme}://tags/{fileId}?user={Uri.EscapeDataString(user)}"
+            : $"{Scheme}://tags/{fileId}";
+
+    public static string BuildTermUri(string term)
+        => $"{Scheme}://term/{Uri.EscapeDataString(term)}";
+
+    // ---------------------------------------------------------------
+    //  Shareable HTTPS URL builders for new deep-link kinds
+    // ---------------------------------------------------------------
+
+    public static string BuildShareableDictUrl(string term)
+        => $"{ShareableBase}#/dict/{Uri.EscapeDataString(term)}";
+
+    public static string BuildShareableScholarUrl(string collectionId, string? passageId = null)
+        => passageId != null
+            ? $"{ShareableBase}#/scholar/{collectionId}/{passageId}"
+            : $"{ShareableBase}#/scholar/{collectionId}";
+
+    public static string BuildShareableSearchUrl(string query, string? corpus = null)
+        => corpus != null
+            ? $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
+            : $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}";
+
+    public static string BuildShareableTagsUrl(string fileId, string? user = null)
+        => user != null
+            ? $"{ShareableBase}#/tags/{fileId}?user={Uri.EscapeDataString(user)}"
+            : $"{ShareableBase}#/tags/{fileId}";
+
+    public static string BuildShareableTermUrl(string term)
+        => $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}";
+
+    // ---------------------------------------------------------------
+
     /// <summary>
     /// Minimal query-string parser that avoids System.Web.HttpUtility
     /// (which may break under InvariantGlobalization).

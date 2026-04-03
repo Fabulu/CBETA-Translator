@@ -169,4 +169,14 @@ public partial class SearchTabView : UserControl
 
     public void Clear()
         => _vm.Clear();
+
+    /// <summary>
+    /// Sets the search query text and immediately executes the search.
+    /// Used by deep link routing.
+    /// </summary>
+    public void SetSearchTextAndExecute(string query)
+    {
+        _vm.Query = query;
+        _vm.SearchCommand.Execute(null);
+    }
 }

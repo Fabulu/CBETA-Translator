@@ -700,6 +700,29 @@ public partial class ScholarTabViewModel : ViewModelBase
             SelectedPassage = passage;
     }
 
+    /// <summary>
+    /// Navigates to a specific collection (and optionally passage) by ID.
+    /// Used by deep link routing. Returns false if the collection was not found.
+    /// </summary>
+    public async Task<bool> TryNavigateToPassageAsync(string collectionId, string? passageId)
+    {
+        // Ensure collections are loaded
+        if (_allCollections.Count == 0 && !string.IsNullOrWhiteSpace(_root))
+            await LoadAsync();
+
+        var collection = _allCollections.FirstOrDefault(c => c.Id == collectionId);
+        if (collection == null) return false;
+
+        SelectedCollection = collection;
+
+        if (!string.IsNullOrWhiteSpace(passageId))
+        {
+            SelectPassageById(passageId);
+            return SelectedPassage?.Id == passageId;
+        }
+        return true;
+    }
+
     // ----- Public API -----
 
     public async Task AddPassageToCollectionAsync(string collectionId, ScholarPassage passage)
