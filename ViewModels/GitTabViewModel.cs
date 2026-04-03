@@ -1564,6 +1564,47 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
+            // --- Auto-create PR for community data (auto-merged by GitHub Action) ---
+            if (!isUpstreamOwner && _githubAccessToken != null)
+            {
+                try
+                {
+                    ProgressText = "Creating community data PR\u2026";
+                    string prHead = $"{_githubLogin}:{branchName}";
+                    string prTitle = $"Community data: {_githubLogin}";
+                    string prBody =
+                        $"Auto-generated community data sync from **{_githubLogin}**.\n\n" +
+                        $"Branch: `{branchName}`\n" +
+                        "Files: " + string.Join(", ", changedFiles.Select(f => $"`{f}`")) + "\n\n" +
+                        "_This PR will be auto-merged if it only modifies per-user community files._";
+
+                    var prUrl = await _api.CreatePullRequestAsync(
+                        _githubAccessToken,
+                        UpstreamOwner,
+                        UpstreamRepo,
+                        prHead,
+                        "main",
+                        prTitle,
+                        prBody,
+                        ct);
+
+                    if (!string.IsNullOrWhiteSpace(prUrl))
+                    {
+                        AppendLog("[ok] PR created: " + prUrl);
+                        AppendLog("[info] This PR will be auto-merged by the repository's GitHub Action.");
+                    }
+                    else
+                    {
+                        AppendLog("[warn] PR creation returned empty URL — data was pushed but PR may need manual creation.");
+                    }
+                }
+                catch (Exception prEx)
+                {
+                    AppendLog("[warn] PR creation failed: " + prEx.Message);
+                    AppendLog("[info] Data was pushed to your fork. You can create a PR manually on GitHub.");
+                }
+            }
+
             // --- Restore and finish ---
             ProgressText = "Restoring other work\u2026";
             await SafeRestoreAsync(repoDir, originalBranch, prog, ct);
