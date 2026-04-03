@@ -198,7 +198,8 @@ public partial class MainWindow : Window
                 HandleTagsDeepLink(request.TagsRelPath, request.TagsUser);
                 break;
             case DeepLinkKind.Termbase:
-                HandleTermbaseDeepLink(request.TermbaseEntry);
+                // Merged with Dictionary — fall through
+                HandleDictDeepLink(request.TermbaseEntry ?? request.DictTerm);
                 break;
         }
     }
@@ -212,7 +213,7 @@ public partial class MainWindow : Window
         }
         // Switch to reader tab (where hover dictionary is available)
         ForceTab(0);
-        _vm.SetStatus($"Dictionary: \"{term}\" \u2014 hover over Chinese text in the reader to see definitions.", StatusSeverity.Info);
+        _vm.SetStatus($"Dictionary: \"{term}\" \u2014 check the Study Panel or hover dictionary for definitions.", StatusSeverity.Info);
     }
 
     private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId)

@@ -606,13 +606,13 @@ public class CbetaUriParserTests
     }
 
     [Fact]
-    public void TryParseDeepLink_TermLink_ReturnsTermbaseKind()
+    public void TryParseDeepLink_TermLink_ReturnsDictionaryKind()
     {
         var result = CbetaUriParser.TryParseDeepLink("zen://term/\u822c\u82e5");
 
         Assert.NotNull(result);
-        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
-        Assert.Equal("\u822c\u82e5", result.TermbaseEntry);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u822c\u82e5", result.DictTerm);
     }
 
     [Fact]
@@ -681,7 +681,7 @@ public class CbetaUriParserTests
         var result = CbetaUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
-        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
-        Assert.Equal("\u822c\u82e5", result.TermbaseEntry);
+        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
+        Assert.Equal("\u822c\u82e5", result.DictTerm);
     }
 }

@@ -394,11 +394,11 @@ public static class CbetaUriParser
                 };
 
             case "term":
-                if (segments.Length < 2) return null;
+                // Termbase merged with dictionary — both route to Dictionary kind
                 return new DeepLinkRequest
                 {
-                    Kind = DeepLinkKind.Termbase,
-                    TermbaseEntry = Uri.UnescapeDataString(segments[1]),
+                    Kind = DeepLinkKind.Dictionary,
+                    DictTerm = segments.Length > 1 ? Uri.UnescapeDataString(segments[1]) : null,
                 };
         }
 
