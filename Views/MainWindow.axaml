@@ -7,7 +7,7 @@
         x:DataType="vm:MainWindowViewModel"
         Width="1400"
         Height="900"
-        Title="CBETA Translator">
+        Title="Read Zen">
 
 	<Grid RowDefinitions="Auto,*,Auto">
 
@@ -32,14 +32,14 @@
 							Spacing="8"
 							DockPanel.Dock="Left">
 
-					<Button Name="BtnToggleNav" Width="40" Height="32" Content="☰"
-							ToolTip.Tip="Toggle sidebar"/>
-					<Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Folder"
-							ToolTip.Tip="Select the root folder containing CBETA XML files"/>
-					<Button Name="BtnSettings" Width="110" Height="32" Content="⚙ Settings"
-							ToolTip.Tip="Open application settings"/>
-					<Button Name="BtnLicenses" Width="110" Height="32" Content="ⓘ Licenses"
-							ToolTip.Tip="View licenses and attributions"/>
+                    <Button Name="BtnToggleNav" Width="40" Height="32" Content="Menu"
+                            ToolTip.Tip="Toggle sidebar"/>
+                    <Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Folder"
+                            ToolTip.Tip="Select the root folder containing CBETA XML files"/>
+                    <Button Name="BtnSettings" Width="110" Height="32" Content="Settings"
+                            ToolTip.Tip="Open application settings"/>
+                    <Button Name="BtnLicenses" Width="110" Height="32" Content="Licenses"
+                            ToolTip.Tip="View licenses and attributions"/>
 
 					<TextBlock Name="TxtRoot"
 							   Margin="10,0,0,0"
@@ -85,10 +85,10 @@
 						</ComboBox>
 					</Grid>
 
-					<TextBox Name="NavSearch"
-							 Grid.Row="1"
-							 Watermark="Search (filename or title)…"
-							 ToolTip.Tip="Filter by filename or title"/>
+                    <TextBox Name="NavSearch"
+                             Grid.Row="1"
+                             Watermark="Search (filename or title)..."
+                             ToolTip.Tip="Filter by filename or title"/>
 
 					<StackPanel Grid.Row="2"
 								Orientation="Horizontal"
@@ -140,11 +140,11 @@
 			<Border Grid.Column="1" Margin="8">
 				<Grid>
 					<TabControl Name="MainTabs">
-						<TabItem Header="Readable">
+						<TabItem Header="Reader">
 							<views:ReadableTabView Name="ReadableView"/>
 						</TabItem>
 
-						<TabItem Header="Translate XML">
+						<TabItem Header="Translate">
 							<views:TranslationTabView Name="TranslationView"/>
 						</TabItem>
 
@@ -152,7 +152,7 @@
 							<views:SearchTabView Name="SearchView"/>
 						</TabItem>
 
-						<TabItem Header="Git">
+						<TabItem Header="Community">
 							<views:GitTabView Name="GitView"/>
 						</TabItem>
 
@@ -166,7 +166,7 @@
 							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
 									Spacing="16" MaxWidth="400">
-							<TextBlock Text="Welcome to CBETA Translator"
+							<TextBlock Text="Welcome to Read Zen"
 									   FontSize="20" FontWeight="SemiBold"
 									   HorizontalAlignment="Center"
 									   Foreground="{DynamicResource TextFg}"/>
@@ -209,3 +209,4 @@
 
 	</Grid>
 </Window>
+

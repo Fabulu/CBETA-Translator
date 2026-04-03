@@ -25,20 +25,6 @@
 			<Setter Property="Opacity" Value="0.90"/>
 		</Style>
 
-		<!-- Primary "safe update" button (keep local changes) -->
-		<Style Selector="Button.updateSafe">
-			<Setter Property="FontWeight" Value="SemiBold"/>
-			<Setter Property="CornerRadius" Value="6"/>
-			<Setter Property="Padding" Value="12,7"/>
-		</Style>
-
-		<!-- Danger-ish update button (discard local changes) -->
-		<Style Selector="Button.updateDiscard">
-			<Setter Property="CornerRadius" Value="6"/>
-			<Setter Property="Padding" Value="12,7"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="BorderBrush" Value="#AA9A6A00"/>
-		</Style>
 	</UserControl.Styles>
 
 	<Grid RowDefinitions="Auto,Auto,Auto,8,*,Auto"
@@ -88,40 +74,7 @@
 				<TextBlock Text="Advanced" FontWeight="SemiBold"/>
 			</Expander.Header>
 			<StackPanel Spacing="6" Margin="0,4,0,0">
-				<!-- Translation PR workflow -->
-				<TextBlock Text="{Binding SelectedText}" />
-				<TextBox Watermark="Commit message — What did you change?"
-						 Text="{Binding CommitMessage, Mode=TwoWay}" />
 				<WrapPanel Orientation="Horizontal">
-					<Button Content="1) Commit"
-							Command="{Binding SendContributionCommand}"
-							IsEnabled="{Binding IsNotBusy}"
-							Padding="8,3"
-							ToolTip.Tip="Stage and commit the currently selected translated file to a new branch"/>
-					<Button Content="2) Authorize"
-							Command="{Binding AuthorizeCommand}"
-							IsEnabled="{Binding IsNotBusy}"
-							Padding="8,3" Margin="6,0,0,0"
-							ToolTip.Tip="Authenticate with GitHub using device code flow"/>
-					<Button Content="3) Push PR"
-							Command="{Binding PushPrCommand}"
-							IsEnabled="{Binding IsNotBusy}"
-							Padding="8,3" Margin="6,0,0,0"
-							ToolTip.Tip="Push your branch to GitHub and open a pull request"/>
-					<Separator Width="16" Background="Transparent"/>
-					<Button Classes="updateSafe"
-							Content="Update (Keep Local)"
-							Command="{Binding UpdateKeepLocalCommand}"
-							IsEnabled="{Binding IsNotBusy}"
-							Padding="8,4"
-							ToolTip.Tip="Backs up changed files, updates repo, then restores your local files."/>
-					<Button Classes="updateDiscard"
-							Content="Update (Discard Local)"
-							Command="{Binding UpdateDiscardLocalCommand}"
-							IsEnabled="{Binding IsNotBusy}"
-							Padding="8,4" Margin="6,0,0,0"
-							ToolTip.Tip="Dangerous. Throws away uncommitted local edits and updates to the latest files."/>
-					<Separator Width="16" Background="Transparent"/>
 					<Button Classes="panic"
 							Content="Discard All"
 							Command="{Binding PanicResetCommand}"
@@ -131,7 +84,6 @@
 				</WrapPanel>
 			</StackPanel>
 		</Expander>
-
 		<!-- Row 3: GridSplitter -->
 		<GridSplitter Grid.Row="3" Grid.ColumnSpan="2" Height="8"
 					  ResizeDirection="Rows" ResizeBehavior="PreviousAndNext"
@@ -164,7 +116,7 @@
 		<Panel Grid.Row="4" Grid.ColumnSpan="2"
 			   IsVisible="{Binding !LogText.Length}"
 			   IsHitTestVisible="False">
-			<TextBlock Text="Open a text corpus folder to get started.&#x0a;Use the Git tab to share your work."
+			<TextBlock Text="Open a text corpus folder to get started.&#x0a;Use the Community tab to share your work."
 					   HorizontalAlignment="Center"
 					   VerticalAlignment="Center"
 					   TextAlignment="Center"
@@ -182,3 +134,4 @@
 
 	</Grid>
 </UserControl>
+

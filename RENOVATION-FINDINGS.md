@@ -1,4 +1,4 @@
-# CBETA Translator App - Renovation Findings & Blueprint
+﻿# Read Zen App - Renovation Findings & Blueprint
 
 **Source:** Dry-run performed on a stale copy (64 commits behind) at `C:\programmieren\CbetaReaderMVVM\CbetaTranslator.App`. Everything below was validated against that older snapshot. The real app has evolved significantly -- many files, services, views, and features may have been added, renamed, or restructured. All findings must be re-verified against the current codebase before acting on them.
 
@@ -183,3 +183,4 @@ The real app is 64 commits ahead. Expect:
 - Different file organization
 
 **Everything in this document must be re-verified against the current codebase before implementation.**
+

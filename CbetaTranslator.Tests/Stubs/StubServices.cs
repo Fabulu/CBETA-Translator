@@ -302,12 +302,33 @@ public class StubMasterDatesService : IMasterDatesService
 
 public class StubDocumentTagService : IDocumentTagService
 {
-    public Task<TagVocabulary> LoadVocabularyAsync(string root, string username, CancellationToken ct = default) => Task.FromResult(new TagVocabulary());
-    public Task SaveVocabularyAsync(string root, string username, TagVocabulary vocab, CancellationToken ct = default) => Task.CompletedTask;
-    public Task<List<DocumentTag>> LoadUserTagsAsync(string root, string username, CancellationToken ct = default) => Task.FromResult(new List<DocumentTag>());
-    public Task SaveUserTagsAsync(string root, string username, List<DocumentTag> tags, CancellationToken ct = default) => Task.CompletedTask;
-    public Task<Dictionary<string, List<DocumentTag>>> LoadAllCommunityTagsAsync(string root, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<DocumentTag>>());
-    public Task<Dictionary<string, TagVocabulary>> LoadAllCommunityVocabulariesAsync(string root, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, TagVocabulary>());
+    public TagVocabulary Vocabulary { get; set; } = new();
+    public List<DocumentTag> UserTags { get; set; } = new();
+    public Dictionary<string, List<DocumentTag>> CommunityTags { get; set; } = new();
+    public Dictionary<string, TagVocabulary> CommunityVocabularies { get; set; } = new();
+
+    public Task<TagVocabulary> LoadVocabularyAsync(string root, string username, CancellationToken ct = default) => Task.FromResult(Vocabulary);
+    public Task SaveVocabularyAsync(string root, string username, TagVocabulary vocab, CancellationToken ct = default)
+    {
+        Vocabulary = vocab;
+        return Task.CompletedTask;
+    }
+
+    public Task<List<DocumentTag>> LoadUserTagsAsync(string root, string username, CancellationToken ct = default)
+        => Task.FromResult(new List<DocumentTag>(UserTags));
+
+    public Task SaveUserTagsAsync(string root, string username, List<DocumentTag> tags, CancellationToken ct = default)
+    {
+        UserTags = new List<DocumentTag>(tags);
+        return Task.CompletedTask;
+    }
+
+    public Task<Dictionary<string, List<DocumentTag>>> LoadAllCommunityTagsAsync(string root, CancellationToken ct = default)
+        => Task.FromResult(CommunityTags.ToDictionary(kv => kv.Key, kv => new List<DocumentTag>(kv.Value), StringComparer.OrdinalIgnoreCase));
+
+    public Task<Dictionary<string, TagVocabulary>> LoadAllCommunityVocabulariesAsync(string root, CancellationToken ct = default)
+        => Task.FromResult(new Dictionary<string, TagVocabulary>(CommunityVocabularies, StringComparer.OrdinalIgnoreCase));
+
     public Task WriteUserCommunityTagsAsync(string root, string username, List<DocumentTag> tags, CancellationToken ct = default) => Task.CompletedTask;
     public Task WriteUserCommunityVocabularyAsync(string root, string username, TagVocabulary vocab, CancellationToken ct = default) => Task.CompletedTask;
 }

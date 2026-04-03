@@ -45,6 +45,9 @@ public sealed class ScholarPassage
     public string LinkedTextsSummary => LinkedTexts.Count > 0 ? "Texts: " + string.Join(", ", LinkedTexts.Select(t => Path.GetFileNameWithoutExtension(t))) : "";
     [JsonIgnore]
     public bool HasLinkedTexts => LinkedTexts.Count > 0;
+
+    [JsonIgnore]
+    public bool IsSelectedForCompare { get; set; }
 }
 
 public sealed class ScholarCollection

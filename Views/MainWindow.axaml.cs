@@ -198,7 +198,7 @@ public partial class MainWindow : Window
                 HandleTagsDeepLink(request.TagsRelPath, request.TagsUser);
                 break;
             case DeepLinkKind.Termbase:
-                // Merged with Dictionary — fall through
+                // Merged with Dictionary  -  fall through
                 HandleDictDeepLink(request.TermbaseEntry ?? request.DictTerm);
                 break;
         }
@@ -405,6 +405,14 @@ public partial class MainWindow : Window
         _vm.SetReadableDefaultResp = resp =>
         {
             if (_readableView != null) _readableView.DefaultResp = resp;
+        };
+        _vm.SetReadableTagCompareIdentity = username =>
+        {
+            if (_readableView != null) _readableView.CurrentTagCompareIdentity = username;
+        };
+        _vm.SetReadableTagUsername = username =>
+        {
+            if (_readableView != null) _readableView.CurrentTagUsername = username;
         };
         _vm.SetReadableStudySnapshot = snapshot => _readableView?.SetStudyPanelSnapshot(snapshot);
         _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
@@ -884,7 +892,7 @@ public partial class MainWindow : Window
 
             _communityDataFetchedHandler = async (_, _) =>
             {
-                await _vm.RefreshReviewAggregationAsync();
+                await _vm.RefreshCommunityDataForCurrentFileAsync();
             };
             _gitView.CommunityDataFetched += _communityDataFetchedHandler;
         }
@@ -964,7 +972,7 @@ public partial class MainWindow : Window
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
     {
-        // Ctrl+D — open dictionary from any tab
+        // Ctrl+D  -  open dictionary from any tab
         if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.D)
         {
             e.Handled = true;
@@ -980,7 +988,7 @@ public partial class MainWindow : Window
             e.Handled = true;
             _ = _vm.HandleReviewActionAsync(TranslationReviewStatuses.Approved);
         }
-        // Alt+N (needs-work) removed — button hidden, shortcut disabled
+        // Alt+N (needs-work) removed  -  button hidden, shortcut disabled
         else if (e.Key == Key.Right && !(_translationView?.IsEditorFocused() ?? false))
         {
             e.Handled = true;
@@ -1093,7 +1101,7 @@ public partial class MainWindow : Window
 
         var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            Title = "Select CBETA root folder"
+            Title = "Select Read Zen texts folder"
         });
 
         var folder = picked.FirstOrDefault();
@@ -1643,11 +1651,12 @@ public partial class MainWindow : Window
         await _vm.SafeSaveConfigAsync();
     }
 
-    private void OnTourActionClicked()
+    private async void OnTourActionClicked()
     {
         if (_tourService?.CurrentStep?.Id == "download-texts")
         {
-            _gitView?.TriggerSync();
+            if (_gitView != null)
+                await _gitView.TriggerInitialDownloadAsync();
         }
     }
 
@@ -1660,7 +1669,7 @@ public partial class MainWindow : Window
         if (_vm.Config.HasCompletedOnboarding) return;
         if (IsSecondaryWindow) return;
 
-        // Don't start tour if launched via deep link — the user wants to go somewhere specific
+        // Don't start tour if launched via deep link  -  the user wants to go somewhere specific
         var hasDeepLink = App.StartupArgs?.Any(a =>
             a.StartsWith("zen://", StringComparison.OrdinalIgnoreCase)) == true;
         if (hasDeepLink) return;

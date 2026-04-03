@@ -207,7 +207,7 @@ jobs:
           $tag = "${{ github.ref_name }}"
           $rid = "${{ matrix.rid }}"
           $pub = "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
-          $out = "CbetaTranslator-$rid-$tag"
+          $out = "ReadZen-$rid-$tag"
           New-Item -ItemType Directory -Force dist | Out-Null
 
           $zipPath = "dist\$out.zip"
@@ -223,7 +223,7 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           RID="${{ matrix.rid }}"
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
-          OUT="CbetaTranslator-${RID}-${TAG}"
+          OUT="ReadZen-${RID}-${TAG}"
 
           mkdir -p dist
 

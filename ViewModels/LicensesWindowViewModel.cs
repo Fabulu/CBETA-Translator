@@ -49,7 +49,7 @@ public partial class LicensesWindowViewModel : ViewModelBase
 
         var sb = new StringBuilder();
 
-        sb.AppendLine("CBETA Translator - Licenses & Attributions");
+        sb.AppendLine("Read Zen - Licenses & Attributions");
         sb.AppendLine("===========================================");
         sb.AppendLine();
 
@@ -93,8 +93,8 @@ public partial class LicensesWindowViewModel : ViewModelBase
 
         LicensesText = sb.ToString();
 
-        string rootInfo = string.IsNullOrWhiteSpace(root) ? "(no CBETA root loaded)" : root!;
-        HintText = $"CBETA root: {rootInfo}";
+        string rootInfo = string.IsNullOrWhiteSpace(root) ? "(no text root loaded)" : root!;
+        HintText = $"Text root: {rootInfo}";
     }
 
     private static string SafeReadCedictHeader(string dictPath)

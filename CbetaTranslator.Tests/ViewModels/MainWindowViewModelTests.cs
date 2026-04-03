@@ -1,3 +1,4 @@
+using System.IO;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.ViewModels;
 using CbetaTranslator.Tests.Stubs;
@@ -7,7 +8,7 @@ namespace CbetaTranslator.Tests.ViewModels;
 
 public class MainWindowViewModelTests
 {
-    private static MainWindowViewModel MakeVm()
+    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null)
     {
         return new MainWindowViewModel(
             new StubFileService(),
@@ -20,7 +21,7 @@ public class MainWindowViewModelTests
             new StubTranslationAssistantBuildService(),
             new StubTranslationReviewService(),
             new StubSearchIndexService(),
-            new StubDocumentTagService());
+            documentTagService ?? new StubDocumentTagService());
     }
 
     // ---- Initial state ----
@@ -33,7 +34,7 @@ public class MainWindowViewModelTests
         Assert.Equal("Ready.", vm.StatusText);
         Assert.Equal("", vm.RootDisplayText);
         Assert.Equal("", vm.CurrentFileText);
-        Assert.Contains("CBETA Translator", vm.WindowTitle);
+        Assert.Contains("Read Zen", vm.WindowTitle);
         Assert.False(vm.IsDirty);
         Assert.Null(vm.Root);
         Assert.Null(vm.CurrentRelPath);
@@ -60,7 +61,7 @@ public class MainWindowViewModelTests
 
         vm.UpdateWindowTitle();
 
-        Assert.Equal("CBETA Translator", vm.WindowTitle);
+        Assert.Equal("Read Zen", vm.WindowTitle);
         Assert.Equal("", vm.CurrentFileText);
     }
 
@@ -74,7 +75,7 @@ public class MainWindowViewModelTests
         vm.UpdateWindowTitle();
 
         Assert.NotNull(received);
-        Assert.Contains("CBETA Translator", received!);
+        Assert.Contains("Read Zen", received!);
     }
 
     // ---- NormalizeRel ----
@@ -226,5 +227,161 @@ public class MainWindowViewModelTests
     {
         var vm = MakeVm();
         Assert.Empty(vm.AllItemsByRel);
+    }
+
+    [Fact]
+    public async Task HandleGitHubAuthCompletedAsync_MigratesLegacyUserTranslationDirToGitHubFolder()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+
+        var legacyDir = Path.Combine(root, "community", "translations", "Alice");
+        Directory.CreateDirectory(Path.Combine(legacyDir, "T01"));
+        var legacyFile = Path.Combine(legacyDir, "T01", "test.xml");
+        await File.WriteAllTextAsync(legacyFile, "<xml>legacy</xml>");
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            await vm.HandleGitHubAuthCompletedAsync("ghp_test", "octocat");
+
+            var githubFile = Path.Combine(root, "community", "translations", "octocat", "T01", "test.xml");
+            Assert.True(File.Exists(githubFile));
+            Assert.False(Directory.Exists(legacyDir));
+            Assert.Equal("octocat", vm.GetActiveTranslationUser());
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task RefreshTranslationSources_UsesGitHubFolderAsCurrentUserIdentity()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "alice"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            var labels = vm.GetTranslationSourceLabels();
+
+            Assert.DoesNotContain("octocat", labels);
+            Assert.Contains("alice", labels);
+            Assert.Contains("otheruser", labels);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task HandleGitHubAuthCompletedAsync_ConflictingLegacyFolderIsDeletedAndGitHubFolderWins()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+
+        var legacyDir = Path.Combine(root, "community", "translations", "Alice");
+        var githubDir = Path.Combine(root, "community", "translations", "octocat");
+        Directory.CreateDirectory(Path.Combine(legacyDir, "T01"));
+        Directory.CreateDirectory(Path.Combine(githubDir, "T01"));
+        await File.WriteAllTextAsync(Path.Combine(legacyDir, "T01", "test.xml"), "<xml>legacy</xml>");
+        await File.WriteAllTextAsync(Path.Combine(githubDir, "T01", "test.xml"), "<xml>github</xml>");
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            await vm.HandleGitHubAuthCompletedAsync("ghp_test", "octocat");
+
+            Assert.False(Directory.Exists(legacyDir));
+            var githubFile = Path.Combine(githubDir, "T01", "test.xml");
+            Assert.Equal("<xml>github</xml>", await File.ReadAllTextAsync(githubFile));
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+    [Fact]
+    public async Task RefreshCommunityTagDataAsync_FiltersOutCurrentUserIdentities()
+    {
+        var tagService = new StubDocumentTagService
+        {
+            CommunityTags = new Dictionary<string, List<DocumentTag>>
+            {
+                ["Alice"] = new(),
+                ["octocat"] = new(),
+                ["otheruser"] = new() { new DocumentTag { RelPath = "T01/test.xml", TagId = "tag" } }
+            },
+            CommunityVocabularies = new Dictionary<string, TagVocabulary>
+            {
+                ["Alice"] = new(),
+                ["octocat"] = new(),
+                ["otheruser"] = new()
+            }
+        };
+        var vm = MakeVm(tagService);
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+
+        Dictionary<string, List<DocumentTag>>? capturedTags = null;
+        Dictionary<string, TagVocabulary>? capturedVocabs = null;
+
+        try
+        {
+            vm.SetReadableCommunityTags = tags => capturedTags = tags;
+            vm.SetReadableCommunityVocabularies = vocabs => capturedVocabs = vocabs;
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            await vm.RefreshCommunityTagDataAsync();
+
+            Assert.NotNull(capturedTags);
+            Assert.NotNull(capturedVocabs);
+            Assert.DoesNotContain("Alice", capturedTags!.Keys);
+            Assert.DoesNotContain("octocat", capturedTags.Keys);
+            Assert.Equal(new[] { "otheruser" }, capturedTags.Keys.OrderBy(x => x));
+            Assert.DoesNotContain("Alice", capturedVocabs!.Keys);
+            Assert.DoesNotContain("octocat", capturedVocabs.Keys);
+            Assert.Equal(new[] { "otheruser" }, capturedVocabs.Keys.OrderBy(x => x));
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+    [Fact]
+    public void ApplySettingsToChildViews_PrefersGitHubLoginForReadableTagCompareIdentity()
+    {
+        var vm = MakeVm();
+        string? compareIdentity = null;
+        string? tagUsername = null;
+
+        vm.SetReadableTagCompareIdentity = value => compareIdentity = value;
+        vm.SetReadableTagUsername = value => tagUsername = value;
+        vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+
+        vm.ApplySettingsToChildViews();
+
+        Assert.Equal("octocat", compareIdentity);
+        Assert.Equal("Alice", tagUsername);
     }
 }

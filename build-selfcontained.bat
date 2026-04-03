@@ -1,5 +1,5 @@
-@echo off
-echo Building CBETA Translator in self-contained mode...
+﻿@echo off
+echo Building Read Zen in self-contained mode...
 echo.
 
 REM Clean previous builds
@@ -25,3 +25,4 @@ echo.
 echo The CbetaZenTexts folder contains the CBETA XML database (~500MB+)
 echo and must be copied separately to the application directory.
 pause
+

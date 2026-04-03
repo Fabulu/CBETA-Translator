@@ -1,21 +1,21 @@
-# Building CBETA Translator as Self-Contained Executable
+﻿# Building Read Zen as Self-Contained Executable
 
-This guide explains how to build CBETA Translator as a single self-contained executable that only requires the Rust DLL to run.
+This guide explains how to build Read Zen as a single self-contained executable that only requires the Rust DLL to run.
 
-## 🎯 What Self-Contained Means
+## ðŸŽ¯ What Self-Contained Means
 
 - **Single executable**: All .NET dependencies are bundled into one `.exe` file
 - **No .NET runtime required**: Users don't need to install .NET 8.0
 - **Only external dependency**: Just the Rust DLL (`cbeta-gui-dll.dll`) needs to be shipped separately
 - **Portable**: Can be copied to any Windows machine and run
 
-## 📋 Prerequisites
+## ðŸ“‹ Prerequisites
 
 - .NET 8.0 SDK (for building only)
 - Visual Studio 2022 or VS Code (optional)
 - Rust DLL (`cbeta-gui-dll.dll`) in the output directory
 
-## 🚀 Quick Build
+## ðŸš€ Quick Build
 
 ### Method 1: Using the Build Script (Recommended)
 
@@ -38,27 +38,27 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 
 ### Method 3: Using Visual Studio
 
-1. Right-click the project → **Publish**
+1. Right-click the project â†’ **Publish**
 2. Select **Folder** target
 3. Choose **win-x64** runtime
 4. Set **Deployment mode** to **Self-contained**
 5. Enable **Produce single file**
 6. Click **Publish**
 
-## 📁 Output Structure
+## ðŸ“ Output Structure
 
 After building, you'll have:
 
 ```
 bin\SelfContained\
-├── CbetaTranslator.App.exe    # ~46MB single executable
-├── Assets\
-│   └── Dict\
-│       └── cedict_ts.u8      # Dictionary file (embedded)
-└── cbeta-gui-dll.dll         # Rust DLL (you must add this)
+â”œâ”€â”€ CbetaTranslator.App.exe    # ~46MB single executable
+â”œâ”€â”€ Assets\
+â”‚   â””â”€â”€ Dict\
+â”‚       â””â”€â”€ cedict_ts.u8      # Dictionary file (embedded)
+â””â”€â”€ cbeta-gui-dll.dll         # Rust DLL (you must add this)
 ```
 
-## ⚠️ **IMPORTANT: Additional Data Required**
+## âš ï¸ **IMPORTANT: Additional Data Required**
 
 The self-contained executable **does NOT include the CBETA XML database**. You must also provide:
 
@@ -72,14 +72,14 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 ### Complete Deployment Structure:
 ```
 [Application Directory]\
-├── CbetaTranslator.App.exe          # ~46MB self-contained exe
-├── cbeta-gui-dll.dll                # ~5MB Rust DLL
-└── CbetaZenTexts\                   # ~500MB+ CBETA database
-    ├── xml-p5\                      # Original XML files
-    ├── xml-p5t\                     # Translated XML files  
-    ├── md-p5t\                      # Markdown translations
-    ├── canons.json                  # Canon metadata
-    └── index.cache.json             # Search index
+â”œâ”€â”€ CbetaTranslator.App.exe          # ~46MB self-contained exe
+â”œâ”€â”€ cbeta-gui-dll.dll                # ~5MB Rust DLL
+â””â”€â”€ CbetaZenTexts\                   # ~500MB+ CBETA database
+    â”œâ”€â”€ xml-p5\                      # Original XML files
+    â”œâ”€â”€ xml-p5t\                     # Translated XML files  
+    â”œâ”€â”€ md-p5t\                      # Markdown translations
+    â”œâ”€â”€ canons.json                  # Canon metadata
+    â””â”€â”€ index.cache.json             # Search index
 ```
 
 ### Why Not Include CbetaZenTexts in Self-Contained Build?
@@ -88,7 +88,7 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 - **Flexibility**: Users can choose which canons to include
 - **Build time**: Including 5,000+ files would make builds extremely slow
 
-## ⚙️ Configuration Details
+## âš™ï¸ Configuration Details
 
 The project file (`CbetaTranslator.App.csproj`) includes these key settings:
 
@@ -107,7 +107,7 @@ The project file (`CbetaTranslator.App.csproj`) includes these key settings:
 - **Reflection-heavy code**: Buddhist metadata service uses reflection
 - **Stability**: Full framework inclusion prevents runtime issues
 
-## 🔧 Deployment
+## ðŸ”§ Deployment
 
 ### For Distribution
 
@@ -122,7 +122,7 @@ The project file (`CbetaTranslator.App.csproj`) includes these key settings:
 - **Rust DLL**: ~5MB (separate)
 - **Total**: ~60MB
 
-## 🐛 Troubleshooting
+## ðŸ› Troubleshooting
 
 ### Common Issues
 
@@ -150,15 +150,16 @@ dir bin\SelfContained\CbetaTranslator.App.exe
 dir bin\SelfContained\Assets\Dict\cedict_ts.u8
 ```
 
-## 🔄 Development vs Production
+## ðŸ”„ Development vs Production
 
 - **Development**: Use regular Debug/Release builds for faster iteration
 - **Production**: Use self-contained builds for distribution
 - **Testing**: Test self-contained builds before distribution
 
-## 📝 Notes
+## ðŸ“ Notes
 
 - The self-contained build includes the Chinese dictionary (`cedict_ts.u8`) automatically
 - Build time is longer due to framework bundling (~20-30 seconds)
 - Startup time may be slightly slower due to decompression
 - Memory usage is comparable to regular builds
+
