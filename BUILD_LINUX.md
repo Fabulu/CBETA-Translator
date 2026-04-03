@@ -1,4 +1,4 @@
-# Linux Build Instructions for CBETA Translator
+﻿# Linux Build Instructions for Read Zen
 
 ## Prerequisites
 
@@ -95,3 +95,4 @@ Install .NET SDK 8.0 as shown in prerequisites, then restart your terminal.
 - Launch via:
   `./run-cbeta-selfcontained.sh linux-x64`
 - If your `dotnet` comes from Snap, use a non-snap SDK for Linux self-contained publish.
+

@@ -16,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Avalonia;
 using Avalonia.Threading;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
@@ -31,7 +32,7 @@ public enum StatusSeverity { Info, Success, Warning, Error }
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private const string AppTitleBase = "CBETA Translator";
+    private const string AppTitleBase = "Read Zen";
 
     // ---- Services (injected) ----
     private readonly IFileService _fileService;
@@ -121,7 +122,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _windowTitle = AppTitleBase;
 
     // ===========================================================
-    // Bridge delegates — wired by code-behind to tab view methods
+    // Bridge delegates Ã¢â‚¬â€ wired by code-behind to tab view methods
     // ===========================================================
 
     // ReadableTabView bridges
@@ -131,6 +132,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string?, bool>? SetReadableZenContext { get; set; }
     public Action<IReadOnlyList<TermHit>?, string?, int?, string?>? UpdateReadableTermHighlights { get; set; }
     public Action<string>? SetReadableDefaultResp { get; set; }
+    public Action<string>? SetReadableTagCompareIdentity { get; set; }
+    public Action<string?>? SetReadableTagUsername { get; set; }
     public Action<TranslationAssistantSnapshot?>? SetReadableStudySnapshot { get; set; }
     public Action<bool>? SetReadableStudyPanelVisible { get; set; }
 
@@ -351,7 +354,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
 
-        _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, _config.Username ?? "User");
+        _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
         _activeTranslatedDir = _userTranslatedDir; // default to user's own
         // Note: user dir is created on-demand by GetWritePath() when user first saves
 
@@ -563,6 +566,8 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableStudyPanelVisible?.Invoke(_config.EnableStudyPanel); } catch { }
         try { SetReadableDefaultResp?.Invoke(_config.Username ?? ""); } catch { }
+        try { SetReadableTagCompareIdentity?.Invoke(_config.GitHubUsername ?? GetCurrentTagUsername() ?? ""); } catch { }
+        try { SetReadableTagUsername?.Invoke(GetCurrentTagUsername()); } catch { }
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
         try { SetScholarUsername?.Invoke(_config.Username); } catch { }
@@ -576,10 +581,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task HandleGitHubAuthCompletedAsync(string token, string login)
     {
+        var previousFolderKey = GetTranslationFolderKey(_config);
         _config.GitHubAccessToken = token;
         _config.GitHubUsername = login;
         if (string.IsNullOrWhiteSpace(_config.Username))
             _config.Username = login;
+        await RefreshUserTranslationDirectoryAsync(previousFolderKey);
+        ApplySettingsToChildViews();
         await SafeSaveConfigAsync();
     }
 
@@ -882,7 +890,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task OnFileSelectedAsync(FileNavItem item)
     {
         if (string.IsNullOrWhiteSpace(item.RelPath)) return;
-        if (_suppressNavSelection) return; // Autoload in progress — don't double-load
+        if (_suppressNavSelection) return; // Autoload in progress Ã¢â‚¬â€ don't double-load
 
         if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
@@ -1074,7 +1082,7 @@ public partial class MainWindowViewModel : ViewModelBase
         UpdateWindowTitle();
         UpdateSaveButtonState();
 
-        // Signal that core data (projection editor) is ready — allows the window
+        // Signal that core data (projection editor) is ready Ã¢â‚¬â€ allows the window
         // to appear immediately while the slower readable render continues below.
         SignalCoreLoadComplete?.Invoke();
 
@@ -1112,7 +1120,7 @@ public partial class MainWindowViewModel : ViewModelBase
                       ", T=" + rt.Segments.Count.ToString("n0") +
                       ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
 
-            _ = RefreshProgressStatsAsync(); // Don't await — don't freeze UI
+            _ = RefreshProgressStatsAsync(); // Don't await Ã¢â‚¬â€ don't freeze UI
             _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
         }
         catch (OperationCanceledException) { }
@@ -1305,7 +1313,7 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     // ===========================================================
-    // Coding Mode — Tag loading, saving, and event handling
+    // Coding Mode Ã¢â‚¬â€ Tag loading, saving, and event handling
     // ===========================================================
 
     private async Task LoadAndPushTagsForCurrentFileAsync()
@@ -1315,7 +1323,7 @@ public partial class MainWindowViewModel : ViewModelBase
             var username = _config.Username;
             if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username))
             {
-                await Dispatcher.UIThread.InvokeAsync(() => SetReadableAppliedTags?.Invoke(null));
+                await InvokeUiActionAsync(() => SetReadableAppliedTags?.Invoke(null));
                 return;
             }
 
@@ -1323,7 +1331,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (_tagVocabulary == null)
             {
                 _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
-                await Dispatcher.UIThread.InvokeAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
+                await InvokeUiActionAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
             }
 
             // Load all user tags and filter to current file.
@@ -1342,32 +1350,69 @@ public partial class MainWindowViewModel : ViewModelBase
                 _tagSaveLock.Release();
             }
 
-            await Dispatcher.UIThread.InvokeAsync(() =>
+            await InvokeUiActionAsync(() =>
             {
                 SetReadableAppliedTags?.Invoke(forFile);
                 SetSearchTagFilterData?.Invoke(_appliedTags, _tagVocabulary);
             });
 
-            // Load community tags (other users) for the user picker
-            try
-            {
-                var communityTags = await _documentTagService.LoadAllCommunityTagsAsync(_root);
-                var communityVocabs = await _documentTagService.LoadAllCommunityVocabulariesAsync(_root);
-                await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    SetReadableCommunityTags?.Invoke(communityTags);
-                    SetReadableCommunityVocabularies?.Invoke(communityVocabs);
-                });
-            }
-            catch (Exception ex2)
-            {
-                System.Diagnostics.Debug.WriteLine($"[Tags] Community load failed: {ex2.Message}");
-            }
+            await RefreshCommunityTagDataAsync();
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[Tags] Load failed: {ex.Message}");
         }
+    }
+
+    public async Task RefreshCommunityDataForCurrentFileAsync()
+    {
+        await RefreshReviewAggregationAsync();
+
+        if (!string.IsNullOrWhiteSpace(_currentRelPath))
+            await LoadAndPushTagsForCurrentFileAsync();
+    }
+
+    public async Task RefreshCommunityTagDataAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root))
+            return;
+
+        try
+        {
+            var communityTags = await _documentTagService.LoadAllCommunityTagsAsync(_root);
+            var communityVocabs = await _documentTagService.LoadAllCommunityVocabulariesAsync(_root);
+            var identityKeys = GetCurrentTagIdentityKeys();
+
+            foreach (var key in identityKeys)
+            {
+                communityTags.Remove(key);
+                communityVocabs.Remove(key);
+            }
+
+            await InvokeUiActionAsync(() =>
+            {
+                SetReadableCommunityTags?.Invoke(communityTags);
+                SetReadableCommunityVocabularies?.Invoke(communityVocabs);
+            });
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[Tags] Community load failed: {ex.Message}");
+        }
+    }
+
+    private string? GetCurrentTagUsername()
+        => string.IsNullOrWhiteSpace(_config.Username) ? null : _config.Username.Trim();
+
+    private HashSet<string> GetCurrentTagIdentityKeys()
+    {
+        var keys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var tagUsername = GetCurrentTagUsername();
+        if (!string.IsNullOrWhiteSpace(tagUsername))
+            keys.Add(tagUsername);
+        if (!string.IsNullOrWhiteSpace(_config.GitHubUsername))
+            keys.Add(_config.GitHubUsername.Trim());
+        return keys;
     }
 
     public async Task OnTagAppliedAsync(DocumentTag tag)
@@ -1434,7 +1479,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
 
             _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
-            await Dispatcher.UIThread.InvokeAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
+            await InvokeUiActionAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
         }
         catch (Exception ex)
         {
@@ -1956,7 +2001,7 @@ public partial class MainWindowViewModel : ViewModelBase
             try { await RefreshReadableFromDiskOnlyAsync(); }
             catch (Exception refreshEx)
             {
-                // Post-save refresh can fail on Mac (file access timing) — don't alarm the user
+                // Post-save refresh can fail on Mac (file access timing) Ã¢â‚¬â€ don't alarm the user
                 System.Diagnostics.Debug.WriteLine($"[SaveXml] Post-save refresh failed (non-critical): {refreshEx.Message}");
             }
 
@@ -2116,7 +2161,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var file = _currentRelPath ?? "";
         var star = _dirty ? "*" : "";
-        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " — " + file);
+        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " Ã¢â‚¬â€ " + file);
         WindowTitle = title;
         SetWindowTitle?.Invoke(title);
 
@@ -2434,7 +2479,8 @@ public partial class MainWindowViewModel : ViewModelBase
     /// </summary>
     public void RefreshTranslationSources()
     {
-        var options = new List<string> { $"My Translation ({_config.Username})", "Community" };
+        var displayName = string.IsNullOrWhiteSpace(_config.Username) ? (_config.GitHubUsername ?? "User") : _config.Username;
+        var options = new List<string> { $"My Translation ({displayName})", "Community" };
 
         if (_root != null)
         {
@@ -2444,7 +2490,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 foreach (var dir in Directory.GetDirectories(communityTransDir))
                 {
                     var username = Path.GetFileName(dir);
-                    if (!string.Equals(username, AppPaths.SanitizeUsername(_config.Username ?? ""), StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(username, GetTranslationFolderKey(_config), StringComparison.OrdinalIgnoreCase))
                         options.Add(username);
                 }
             }
@@ -2491,7 +2537,7 @@ public partial class MainWindowViewModel : ViewModelBase
     /// </summary>
     public string? GetActiveTranslationUser()
     {
-        if (_translationSourceIndex == 0) return _config.Username;
+        if (_translationSourceIndex == 0) return _config.GitHubUsername ?? _config.Username;
         if (_translationSourceIndex == 1) return null; // community
         if (_translationSourceIndex >= 2 && _translationSourceIndex < _translationSourceOptions.Count)
             return _translationSourceOptions[_translationSourceIndex];
@@ -2795,6 +2841,17 @@ public partial class MainWindowViewModel : ViewModelBase
         return "";
     }
 
+    private static async Task InvokeUiActionAsync(Action action)
+    {
+        if (Application.Current == null)
+        {
+            action();
+            return;
+        }
+
+        await Dispatcher.UIThread.InvokeAsync(action);
+    }
+
     private static string ReadAllTextUtf8Strict(string path)
     {
         if (string.IsNullOrWhiteSpace(path))
@@ -2804,5 +2861,59 @@ public partial class MainWindowViewModel : ViewModelBase
             throw new FileNotFoundException("File not found.", path);
 
         return File.ReadAllText(path, Encoding.UTF8);
+    }
+
+    private static string GetTranslationFolderKey(AppConfig config)
+    {
+        if (!string.IsNullOrWhiteSpace(config.GitHubUsername))
+            return AppPaths.SanitizeUsername(config.GitHubUsername);
+        if (!string.IsNullOrWhiteSpace(config.Username))
+            return AppPaths.SanitizeUsername(config.Username);
+        return "User";
+    }
+
+    private async Task RefreshUserTranslationDirectoryAsync(string? previousFolderKey)
+    {
+        if (string.IsNullOrWhiteSpace(_root))
+            return;
+
+        var canonicalKey = GetTranslationFolderKey(_config);
+        var canonicalDir = AppPaths.GetUserTranslatedDir(_root, canonicalKey);
+        var previousKey = string.IsNullOrWhiteSpace(previousFolderKey) ? null : AppPaths.SanitizeUsername(previousFolderKey);
+        var previousDir = string.IsNullOrWhiteSpace(previousKey) || string.Equals(previousKey, canonicalKey, StringComparison.OrdinalIgnoreCase)
+            ? null
+            : AppPaths.GetUserTranslatedDir(_root, previousKey);
+
+        if (!string.IsNullOrWhiteSpace(previousDir) && Directory.Exists(previousDir))
+        {
+            if (!Directory.Exists(canonicalDir))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(canonicalDir)!);
+                Directory.Move(previousDir, canonicalDir);
+            }
+            else
+            {
+                foreach (var sourceFile in Directory.GetFiles(previousDir, "*", SearchOption.AllDirectories))
+                {
+                    var relative = Path.GetRelativePath(previousDir, sourceFile);
+                    var destFile = Path.Combine(canonicalDir, relative);
+                    var destDir = Path.GetDirectoryName(destFile);
+                    if (destDir != null && !Directory.Exists(destDir))
+                        Directory.CreateDirectory(destDir);
+                    if (!File.Exists(destFile))
+                        File.Copy(sourceFile, destFile);
+                }
+
+                Directory.Delete(previousDir, recursive: true);
+            }
+        }
+
+        _userTranslatedDir = canonicalDir;
+        if (_translationSourceIndex == 0 || string.IsNullOrWhiteSpace(_activeTranslatedDir))
+            _activeTranslatedDir = _userTranslatedDir;
+        RefreshTranslationSources();
+
+        if (!string.IsNullOrWhiteSpace(_currentRelPath) && _translationSourceIndex == 0)
+            await LoadPairAsync(_currentRelPath);
     }
 }

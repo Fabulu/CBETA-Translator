@@ -273,6 +273,38 @@ public class ScholarTabViewModelTests
         Assert.Single(vm.Passages); // Passages observable was updated
     }
 
+    [Fact]
+    public async Task EnsureWritableCollectionAsync_CreatesAndSavesWhenEmpty()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        var collection = await vm.EnsureWritableCollectionAsync();
+
+        Assert.NotNull(collection);
+        Assert.Single(vm.Collections);
+        Assert.Equal(collection, vm.SelectedCollection);
+        Assert.NotNull(svc.LastSaved);
+    }
+
+    [Fact]
+    public async Task EnsureWritableCollectionAsync_ReusesExistingSelectedCollection()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        vm.AddCollectionCommand.Execute(null);
+        var selected = vm.SelectedCollection;
+
+        var collection = await vm.EnsureWritableCollectionAsync();
+
+        Assert.Same(selected, collection);
+        Assert.Single(vm.Collections);
+    }
+
     // ---- NavigateToPassage ----
 
     [Fact]
@@ -1489,15 +1521,15 @@ public class ScholarTabViewModelTests
 
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p1", ZhText = "\u5fc3\u5373\u662f\u4f5b", SourceRelPath = "x.xml" // 心即是佛
+            Id = "p1", ZhText = "\u5fc3\u5373\u662f\u4f5b", SourceRelPath = "x.xml" // ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº
         });
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p2", ZhText = "\u4e0d\u662f\u5fc3\u4e0d\u662f\u4f5b", SourceRelPath = "y.xml" // 不是心不是佛
+            Id = "p2", ZhText = "\u4e0d\u662f\u5fc3\u4e0d\u662f\u4f5b", SourceRelPath = "y.xml" // ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº
         });
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p3", ZhText = "\u5e73\u5e38\u5fc3\u662f\u9053", SourceRelPath = "z.xml" // 平常心是道
+            Id = "p3", ZhText = "\u5e73\u5e38\u5fc3\u662f\u9053", SourceRelPath = "z.xml" // ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¹Ãƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ
         });
 
         vm.SelectedCollection = null;
@@ -1505,11 +1537,11 @@ public class ScholarTabViewModelTests
 
         vm.SortMode = "A-Z (Chinese)";
 
-        // Ordinal sort: 不 (U+4E0D) < 平 (U+5E73) < 心 (U+5FC3)
+        // Ordinal sort: ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â (U+4E0D) < ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¹Ãƒâ€šÃ‚Â³ (U+5E73) < ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ (U+5FC3)
         Assert.Equal(3, vm.Passages.Count);
-        Assert.Equal("p2", vm.Passages[0].Id); // 不是心不是佛
-        Assert.Equal("p3", vm.Passages[1].Id); // 平常心是道
-        Assert.Equal("p1", vm.Passages[2].Id); // 心即是佛
+        Assert.Equal("p2", vm.Passages[0].Id); // ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº
+        Assert.Equal("p3", vm.Passages[1].Id); // ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¹Ãƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ
+        Assert.Equal("p1", vm.Passages[2].Id); // ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¿Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº
     }
 
     [Fact]
@@ -1547,11 +1579,11 @@ public class ScholarTabViewModelTests
         vm.SelectedCollection = vm.Collections[0];
         vm.StudyNotes = "My research notes on this collection";
 
-        // Switch to second collection — notes should be saved back to first
+        // Switch to second collection ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â notes should be saved back to first
         vm.SelectedCollection = vm.Collections[1];
         Assert.Equal("", vm.StudyNotes); // second collection has no notes
 
-        // Switch back — notes should reload from first collection
+        // Switch back ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â notes should reload from first collection
         vm.SelectedCollection = vm.Collections[0];
         Assert.Equal("My research notes on this collection", vm.StudyNotes);
     }
@@ -1716,11 +1748,11 @@ public class ScholarTabViewModelTests
     private static List<MasterNameEntry> MakeTestMasterEntries() => new()
     {
         // Linji has Chinese (2+ chars) and pinyin (4+ chars)
-        new(new List<string> { "Linji Yixuan", "臨濟義玄", "臨濟" }),
+        new(new List<string> { "Linji Yixuan", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" }),
         // Zhaozhou
-        new(new List<string> { "Zhaozhou Congshen", "趙州從諗", "趙州" }),
+        new(new List<string> { "Zhaozhou Congshen", "ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¾Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â«ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â", "ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾" }),
         // Short pinyin name (< 4 chars) should be skipped
-        new(new List<string> { "Mazu Daoyi", "馬祖道一", "Ma" }),
+        new(new List<string> { "Mazu Daoyi", "ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬", "Ma" }),
     };
 
     [Fact]
@@ -1728,7 +1760,7 @@ public class ScholarTabViewModelTests
     {
         var entries = MakeTestMasterEntries();
         var result = ScholarTabViewModel.DetectMasterNames(
-            "臨濟義玄是唐代禪師，趙州從諗也是。", null, entries);
+            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â»Ãƒâ€šÃ‚Â£ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼Ãƒâ€¦Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¾Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â«ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¹Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", null, entries);
 
         Assert.Contains("Linji Yixuan", result);
         Assert.Contains("Zhaozhou Congshen", result);
@@ -1750,12 +1782,12 @@ public class ScholarTabViewModelTests
         // Create an entry with only a single CJK char name
         var entries = new List<MasterNameEntry>
         {
-            new(new List<string> { "SingleChar", "佛" })
+            new(new List<string> { "SingleChar", "ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº" })
         };
 
-        var result = ScholarTabViewModel.DetectMasterNames("佛說法", null, entries);
+        var result = ScholarTabViewModel.DetectMasterNames("ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚ÂªÃƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â³ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢", null, entries);
 
-        // "佛" is only 1 CJK char, so it should be skipped (min 2 required)
+        // "ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº" is only 1 CJK char, so it should be skipped (min 2 required)
         Assert.Empty(result);
     }
 
@@ -1777,7 +1809,7 @@ public class ScholarTabViewModelTests
     {
         var entries = MakeTestMasterEntries();
         var result = ScholarTabViewModel.DetectMasterNames(
-            "這是一段普通文字。", "This is ordinary text.", entries);
+            "ÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â®Ãƒâ€šÃ‚ÂµÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢Ãƒâ€šÃ‚Â®ÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â­ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", "This is ordinary text.", entries);
 
         Assert.Empty(result);
     }
@@ -1797,13 +1829,13 @@ public class ScholarTabViewModelTests
         var entries = MakeTestMasterEntries();
         // Linji appears in both Chinese and English
         var result = ScholarTabViewModel.DetectMasterNames(
-            "臨濟義玄大師", "Master Linji Yixuan", entries);
+            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¤Ãƒâ€šÃ‚Â§ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«", "Master Linji Yixuan", entries);
 
         // Should appear only once (canonical display name)
         Assert.Single(result.Where(n => n == "Linji Yixuan"));
     }
 
-    // ---- AutoTagMasterNames — doesn't add duplicates ----
+    // ---- AutoTagMasterNames ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â doesn't add duplicates ----
     // AutoTagMasterNames is private, so we test it indirectly via DetectMasterNames
     // since the dedup logic is: "if (!passage.MasterNames.Contains(name, ...))"
 
@@ -1813,12 +1845,12 @@ public class ScholarTabViewModelTests
         // Entry where the same display name could be matched via both Chinese names
         var entries = new List<MasterNameEntry>
         {
-            new(new List<string> { "Linji Yixuan", "臨濟義玄", "臨濟" })
+            new(new List<string> { "Linji Yixuan", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" })
         };
 
-        // Text contains both "臨濟義玄" and "臨濟" — both map to "Linji Yixuan"
+        // Text contains both "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾" and "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â both map to "Linji Yixuan"
         var result = ScholarTabViewModel.DetectMasterNames(
-            "臨濟義玄禪師，即臨濟宗開山。", null, entries);
+            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼Ãƒâ€¦Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â®ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â±Ãƒâ€šÃ‚Â±ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", null, entries);
 
         // Display name should appear at most once
         Assert.Single(result);
@@ -1886,6 +1918,24 @@ public class ScholarTabViewModelTests
         Assert.NotNull(passage!.LinkedTexts);
         Assert.Empty(passage.LinkedTexts);
     }
+    [Fact]
+    public async Task EnsureWritableCollectionAsync_CreatesAndSelectsCollectionWhenEmpty()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        var collection = await vm.EnsureWritableCollectionAsync();
+
+        Assert.NotNull(collection);
+        Assert.Single(vm.Collections);
+        Assert.Equal(collection, vm.SelectedCollection);
+        Assert.False(vm.IsEmptyState);
+        Assert.NotNull(svc.LastSaved);
+    }
+
 }
 
 // ---- Helper stub for export/import tracking ----

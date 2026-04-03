@@ -264,7 +264,7 @@ public partial class ScholarTabView : UserControl
             btnFindParallels.Click += async (_, _) => await OnFindParallelsClickedAsync(btnFindParallels);
         }
 
-        // Insert Reference — populate list when flyout opens, handle selection
+        // Insert Reference ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â populate list when flyout opens, handle selection
         var refList = this.FindControl<ListBox>("ReferencePassageList");
         if (refList != null)
         {
@@ -347,7 +347,7 @@ public partial class ScholarTabView : UserControl
             };
         }
 
-        // Tag bubble remove buttons — use AddHandler on the ItemsControl
+        // Tag bubble remove buttons ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â use AddHandler on the ItemsControl
         var tagBubblesHost = this.FindControl<ItemsControl>("TagBubblesHost");
         if (tagBubblesHost != null)
         {
@@ -661,7 +661,7 @@ public partial class ScholarTabView : UserControl
 
         if (!_compareMode)
         {
-            // Enter compare mode — show checkboxes
+            // Enter compare mode ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â show checkboxes
             _compareMode = true;
             passagesList.Tag = true; // Makes CheckBoxes visible via binding
             var btnCompare = this.FindControl<Button>("BtnCompare");
@@ -670,21 +670,15 @@ public partial class ScholarTabView : UserControl
             return;
         }
 
-        // Collect checked passages from the visual tree
-        var checked_ = new List<ScholarPassage>();
-        foreach (var container in passagesList.GetRealizedContainers())
-        {
-            var cb = FindCheckBox(container);
-            if (cb?.IsChecked == true && container.DataContext is ScholarPassage p)
-                checked_.Add(p);
-        }
-
+        // Collect checked passages from the bound models so virtualization does not lose off-screen selections.
+        var checked_ = _vm.Passages.Where(p => p.IsSelectedForCompare).ToList();
         // Exit compare mode
         _compareMode = false;
         passagesList.Tag = false;
         var btn = this.FindControl<Button>("BtnCompare");
         if (btn != null) btn.Content = "Compare";
-        ClearCheckboxes(passagesList);
+        foreach (var passage in _vm.Passages)
+            passage.IsSelectedForCompare = false;
 
         if (checked_.Count < 2 || checked_.Count > 4)
         {
@@ -699,43 +693,6 @@ public partial class ScholarTabView : UserControl
         compareWindow.Topmost = false;
         await compareWindow.ShowDialog(topLevel);
     }
-
-    private static CheckBox? FindCheckBox(Control container)
-    {
-        if (container is CheckBox cb) return cb;
-        if (container is ContentPresenter cp && cp.Child is { } child)
-            return FindCheckBoxInVisual(child);
-        return FindCheckBoxInVisual(container);
-    }
-
-    private static CheckBox? FindCheckBoxInVisual(Control root)
-    {
-        if (root is CheckBox cb) return cb;
-        if (root is Panel panel)
-        {
-            foreach (var child in panel.Children)
-            {
-                if (child is CheckBox found) return found;
-                if (child is Panel sub)
-                {
-                    var result = FindCheckBoxInVisual(sub);
-                    if (result != null) return result;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static void ClearCheckboxes(ListBox list)
-    {
-        foreach (var container in list.GetRealizedContainers())
-        {
-            var cb = FindCheckBox(container);
-            if (cb != null) cb.IsChecked = false;
-        }
-    }
-
-    // ----- Links -----
 
     private void RefreshLinksPanel()
     {
@@ -1495,16 +1452,7 @@ public partial class ScholarTabView : UserControl
             return;
         }
 
-        // If no collections, create a default one first and wait for its save
-        if (_vm.Collections.Count == 0)
-        {
-            _vm.AddCollectionCommand.Execute(null);
-            // Give the fire-and-forget save a moment to complete
-            await Task.Delay(100);
-        }
-
-        // Add to selected collection (or first one)
-        var target = _vm.SelectedCollection ?? (_vm.Collections.Count > 0 ? _vm.Collections[0] : null);
+        var target = await _vm.EnsureWritableCollectionAsync();
         if (target == null) return;
 
         await AddPassageAndNotifyAsync(target.Id, passage);

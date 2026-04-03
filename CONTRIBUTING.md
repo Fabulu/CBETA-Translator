@@ -1,4 +1,4 @@
-# Contributing to CBETA Translator
+﻿# Contributing to Read Zen
 
 Thank you for your interest in contributing.
 
@@ -9,7 +9,7 @@ This project focuses on:
 - Community note integration
 - Git-based translation collaboration
 
-## 🚀 Getting Started
+## ðŸš€ Getting Started
 
 1. Fork the repository
 2. Clone your fork
@@ -17,7 +17,7 @@ This project focuses on:
 4. Make your changes
 5. Submit a Pull Request
 
-## 📂 Project Structure
+## ðŸ“‚ Project Structure
 
 CbetaTranslator.App/
 - Views/               UI
@@ -26,7 +26,7 @@ CbetaTranslator.App/
 - Models/              Domain models
 - Assets/Dict/         Dictionary files
 
-## 🧠 Translation Contributions
+## ðŸ§  Translation Contributions
 
 Translation changes should:
 
@@ -37,7 +37,7 @@ Translation changes should:
 
 One file per PR is preferred.
 
-## 🛠 Build Requirements
+## ðŸ›  Build Requirements
 
 - .NET 8 SDK
 - Windows, Linux, or macOS
@@ -49,24 +49,25 @@ dotnet publish -c Release -r win-x64 --self-contained true
 ```
 
 
-## 🧪 Code Guidelines
+## ðŸ§ª Code Guidelines
 
 - Keep rendering logic deterministic
 - Avoid blocking UI thread
 - No unnecessary allocations in hot paths
 - Preserve segment mapping correctness
 
-## 📌 Pull Request Rules
+## ðŸ“Œ Pull Request Rules
 
 - Clear title
 - Clear commit message
 - Describe what changed and why
 - Do not bundle unrelated changes
 
-## 📣 Discussion
+## ðŸ“£ Discussion
 
 If you're unsure about an architectural change, open an Issue first.
 
 We aim to keep this project stable and predictable.
+
 
 

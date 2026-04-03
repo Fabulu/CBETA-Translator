@@ -85,6 +85,7 @@
               <CheckBox DockPanel.Dock="Left" Name="CompareCheck"
                         VerticalAlignment="Top" Margin="0,2,4,0"
                         IsVisible="{Binding #PassagesList.Tag, FallbackValue=False}"
+                        IsChecked="{Binding IsSelectedForCompare, Mode=TwoWay}"
                         ToolTip.Tip="Check to include in comparison"/>
               <StackPanel>
                 <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"

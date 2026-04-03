@@ -203,6 +203,49 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public string? GetRoot() => _root;
 
+    public async Task<ScholarCollection> EnsureDefaultCollectionAsync()
+    {
+        if (_allCollections.Count > 0)
+            return _allCollections[0];
+
+        var collection = new ScholarCollection
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            Name = "New Collection",
+            CreatedUtc = DateTimeOffset.UtcNow,
+            CreatedBy = _username
+        };
+
+        _allCollections.Add(collection);
+        Collections.Add(collection);
+        SelectedCollection = collection;
+        IsEmptyState = false;
+        await SaveAsync();
+        return collection;
+    }
+
+
+    public async Task<ScholarCollection?> EnsureWritableCollectionAsync()
+    {
+        if (SelectedCollection != null)
+            return SelectedCollection;
+        if (Collections.Count > 0)
+        {
+            SelectedCollection = Collections[0];
+            return SelectedCollection;
+        }
+        if (_allCollections.Count > 0)
+        {
+            SelectedCollection = _allCollections[0];
+            if (!Collections.Contains(SelectedCollection))
+                Collections.Add(SelectedCollection);
+            IsEmptyState = false;
+            return SelectedCollection;
+        }
+
+        return await EnsureDefaultCollectionAsync();
+    }
+
     public void SetRoot(string root)
     {
         _root = root;
@@ -274,21 +317,26 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
     }
 
-    [RelayCommand]
-    private void AddCollection()
+    private ScholarCollection CreateCollection()
     {
-        var c = new ScholarCollection
+        return new ScholarCollection
         {
             Id = Guid.NewGuid().ToString("N"),
             Name = "New Collection",
             CreatedUtc = DateTimeOffset.UtcNow,
             CreatedBy = _username
         };
+    }
+
+    [RelayCommand]
+    private async Task AddCollectionAsync()
+    {
+        var c = CreateCollection();
         _allCollections.Add(c);
         Collections.Add(c);
         SelectedCollection = c;
         IsEmptyState = false;
-        _ = SafeFireAndForget(SaveAsync());
+        await SaveAsync();
     }
 
     [RelayCommand]
@@ -358,7 +406,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             if (PickExportFormatAsync != null)
                 chosenFormat = await PickExportFormatAsync();
 
-            // null means user cancelled the format dialog — fall back to JSON export
+            // null means user cancelled the format dialog ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â fall back to JSON export
             // (also used when PickExportFormatAsync is not wired)
 
             var path = await PickExportFileAsync();
@@ -603,7 +651,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         // If no collections exist, create a default one
         if (_allCollections.Count == 0)
         {
-            AddCollection();
+            await EnsureWritableCollectionAsync();
         }
 
         var target = AdoptTargetCollection ?? SelectedCollection ?? Collections.FirstOrDefault();
@@ -1275,7 +1323,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         var found = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        // Chinese name matching — longest match first to avoid partial matches
+        // Chinese name matching ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â longest match first to avoid partial matches
         if (!string.IsNullOrWhiteSpace(zhText))
         {
             var chineseCandidates = masterEntries
@@ -1292,7 +1340,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             }
         }
 
-        // Pinyin name matching in English text — case-insensitive, min 4 chars
+        // Pinyin name matching in English text ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â case-insensitive, min 4 chars
         if (!string.IsNullOrWhiteSpace(enText))
         {
             var pinyinCandidates = masterEntries
@@ -1329,7 +1377,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
         catch (InvalidOperationException)
         {
-            // No UI thread (test context) — run directly
+            // No UI thread (test context) ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â run directly
             action();
         }
     }

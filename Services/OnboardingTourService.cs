@@ -74,7 +74,7 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "welcome",
-            Title = "Welcome to CBETA Translator",
+            Title = "Welcome to Read Zen",
             Body = "This tool helps you read, translate, and study classical Chinese Zen texts from the CBETA corpus.\n\nLet's get you set up \u2014 it only takes a minute.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
@@ -94,13 +94,13 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Click the 'Sync' button to download the CBETA Zen text collection. This only happens once.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
+            Body = "Choose where to store the Read Zen text collection, then download it. This only happens once.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView",
             SwitchToTabIndex = 3,
             WaitForEvent = "root-cloned",
-            ActionButtonLabel = "Sync Now",
+            ActionButtonLabel = "Choose Folder + Download",
             CanSkipWait = true
         });
 
@@ -202,7 +202,7 @@ public sealed class OnboardingTourService
         {
             Id = "coding-mode",
             Title = "Coding Mode",
-            Body = "Press F2 to enter Coding Mode — a keyboard-driven QDA workflow for systematic Zen text analysis.\nTag passages, track themes, and build a structured reading of any text.",
+            Body = "Press F2 to enter Coding Mode - a keyboard-driven QDA workflow for systematic Zen text analysis.\nTag passages, track themes, and build a structured reading of any text.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 0,
@@ -223,7 +223,7 @@ public sealed class OnboardingTourService
         {
             Id = "code-bar",
             Title = "Code Bar Shortcuts",
-            Body = "Press 1–9 to apply the corresponding tag. Shift+1–9 switches pages (up to 18 pages = 162 tags).\nW selects a block, E/Q expand or shrink the selection, Tab skips to the next untagged block.",
+            Body = "Press 1-9 to apply the corresponding tag. Shift+1-9 switches pages (up to 18 pages = 162 tags).\nW selects a block, E/Q expand or shrink the selection, Tab skips to the next untagged block.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "CodeBarSlots"

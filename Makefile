@@ -1,4 +1,4 @@
-# Simple Makefile for CBETA Translator Linux builds
+﻿# Simple Makefile for Read Zen Linux builds
 
 .PHONY: build release run clean publish-debug publish-release publish-single-file install-deps help
 
@@ -40,7 +40,7 @@ clean:
 
 # Show help
 help:
-	@echo "CBETA Translator Linux Build Commands:"
+	@echo "Read Zen Linux Build Commands:"
 	@echo "  build               - Development build (Debug)"
 	@echo "  release             - Development build (Release)"
 	@echo "  run                 - Run development build"
@@ -50,3 +50,4 @@ help:
 	@echo "  install-deps        - Install .NET SDK 8 dependency"
 	@echo "  clean               - Clean build artifacts"
 	@echo "  help                - Show this help message"
+

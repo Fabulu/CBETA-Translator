@@ -1,7 +1,7 @@
-# Patterns from the QDA Tool Build
+﻿# Patterns from the QDA Tool Build
 
 Notes on code patterns, architecture decisions, and agent workflows used during the
-QDA tool build (2026-03-28/30). Many of these transfer directly to CBETA Translator.
+QDA tool build (2026-03-28/30). Many of these transfer directly to Read Zen.
 
 ## Agent Workflow Pattern
 
@@ -9,29 +9,29 @@ The most effective pattern for large feature batches:
 
 ```
 Recon agents (explore codebase, web search)
-  ↓
-Opus Architect (consolidates findings → implementation plan)
-  ↓
+  â†“
+Opus Architect (consolidates findings â†’ implementation plan)
+  â†“
 Implementer agents (parallel where possible, waves when dependencies exist)
-  ↓
+  â†“
 Opus Reviewer (code review, finds bugs)
-  ↓
+  â†“
 Opus QA (traces scenarios through actual code paths)
-  ↓
+  â†“
 Fix agent (addresses reviewer + QA findings)
-  ↓
+  â†“
 Test writer (writes xUnit tests against the implemented code)
-  ↓
+  â†“
 Commit
 ```
 
 **Key learnings:**
 - Parallel implementers work when they touch different files. Conflicts happen when
-  two agents modify the same file — merge manually after.
+  two agents modify the same file â€” merge manually after.
 - Recons before architecture prevent wasted implementation effort.
 - The reviewer + QA combo catches different things: reviewer finds code-level bugs,
   QA finds workflow-level issues.
-- Always run `dotnet build` and `dotnet test` after agents land — they sometimes
+- Always run `dotnet build` and `dotnet test` after agents land â€” they sometimes
   produce code that compiles individually but conflicts with other agents' changes.
 
 ## Architecture: MVVM with Code-Behind
@@ -56,15 +56,15 @@ VM methods, VM fires events that Views handle. Works well in practice.
 When MainWindow.axaml.cs hit 2,852 lines, we split it:
 
 ```
-MainWindow.axaml.cs           — constructor, lifecycle, file dialogs
-MainWindow.MediaPlayer.cs     — LibVLC, timeline, subtitles, media keys
-MainWindow.Coding.cs           — QWEASD selection, suggestions, coding
-MainWindow.CodeTree.cs         — code bar, drag-drop, tree context menus
+MainWindow.axaml.cs           â€” constructor, lifecycle, file dialogs
+MainWindow.MediaPlayer.cs     â€” LibVLC, timeline, subtitles, media keys
+MainWindow.Coding.cs           â€” QWEASD selection, suggestions, coding
+MainWindow.CodeTree.cs         â€” code bar, drag-drop, tree context menus
 ```
 
 All declare `partial class MainWindow`. C# merges them at compile time. Fields
 defined in any file are accessible from all others. This is the correct approach
-for Avalonia code-behind — don't fight it, split it.
+for Avalonia code-behind â€” don't fight it, split it.
 
 ## SQLite Schema Migration Pattern
 
@@ -98,7 +98,7 @@ Local AI that gets smarter as you code, with zero cloud/model dependencies:
 5. Group by code, return top 3 codes above 40% threshold
 
 **Incremental updates** (added in performance sprint):
-- `AddPassage()`: tokenize one segment, update IDF, add vector — O(T) not O(N×T)
+- `AddPassage()`: tokenize one segment, update IDF, add vector â€” O(T) not O(NÃ—T)
 - `RemovePassage()`: remove vector, update IDF
 - Accept slightly stale IDF (fine for ranking)
 
@@ -108,15 +108,15 @@ SuggestAsync runs on ThreadPool via Task.Run. InvalidateIndex called from UI thr
 ## QDPX (REFI-QDA) Import/Export
 
 The universal QDA interchange format. A ZIP containing:
-- `project.qde` — XML in namespace `urn:QDA-XML:project:1.0`
-- `Sources/*.txt` — plain text source documents
+- `project.qde` â€” XML in namespace `urn:QDA-XML:project:1.0`
+- `Sources/*.txt` â€” plain text source documents
 
 Key mappings:
-- Our `Code` → `<Code guid name color isCodable>`
-- Our `CodedSegment` → `<PlainTextSelection startPosition endPosition>` + `<Coding><CodeRef><SelectionRef>`
-- Our `Memo` → `<Note>` with `<PlainTextContent>`
-- Code hierarchy → nested `<Code>` elements
-- Colors: our `#RRGGBB` → QDPX `#AARRGGBB` (prepend FF)
+- Our `Code` â†’ `<Code guid name color isCodable>`
+- Our `CodedSegment` â†’ `<PlainTextSelection startPosition endPosition>` + `<Coding><CodeRef><SelectionRef>`
+- Our `Memo` â†’ `<Note>` with `<PlainTextContent>`
+- Code hierarchy â†’ nested `<Code>` elements
+- Colors: our `#RRGGBB` â†’ QDPX `#AARRGGBB` (prepend FF)
 
 ~200 lines total for both export and import. Uses System.Xml.Linq + System.IO.Compression.
 
@@ -125,14 +125,14 @@ Key mappings:
 The killer feature. All single keys, active when text is selected:
 
 ```
-  Q  W  E     — shrink sentence / whole paragraph / expand sentence
-  A  S  D     — shrink word / snap to sentence / expand word
-  Shift+      — adjust START instead of END
-  Tab         — skip to next uncoded sentence
-  B           — bookmark + advance
-  N           — annotate (create memo on selection)
-  1-9         — apply code from current page
-  Space hold  — suppress auto-advance for multi-coding
+  Q  W  E     â€” shrink sentence / whole paragraph / expand sentence
+  A  S  D     â€” shrink word / snap to sentence / expand word
+  Shift+      â€” adjust START instead of END
+  Tab         â€” skip to next uncoded sentence
+  B           â€” bookmark + advance
+  N           â€” annotate (create memo on selection)
+  1-9         â€” apply code from current page
+  Space hold  â€” suppress auto-advance for multi-coding
 ```
 
 Implementation: tunnel KeyDown handler on the AvaloniaEdit editor, checks
@@ -141,18 +141,18 @@ MainWindow.Coding.cs.
 
 **Media player reuses the same layout:**
 ```
-  S           — play/pause
-  A/D         — skip ±5 seconds
-  Q/E         — previous/next subtitle
-  W           — mark start/end
-  1-9         — apply code to marked time range
-  Shift+A/D   — nudge mark start ±1sec
-  Ctrl+A/D    — nudge mark end ±1sec
+  S           â€” play/pause
+  A/D         â€” skip Â±5 seconds
+  Q/E         â€” previous/next subtitle
+  W           â€” mark start/end
+  1-9         â€” apply code to marked time range
+  Shift+A/D   â€” nudge mark start Â±1sec
+  Ctrl+A/D    â€” nudge mark end Â±1sec
 ```
 
-Same hand, same position, same mental model — just operating on time instead of text.
+Same hand, same position, same mental model â€” just operating on time instead of text.
 
-## Code Pages (18 × 9 slots)
+## Code Pages (18 Ã— 9 slots)
 
 For projects with 50+ codes, 9 quick-access slots aren't enough:
 - Shift+1-9 switches to code pages 1-9
@@ -184,9 +184,9 @@ Compare two coders' work:
 1. Load second coder's .qdpx or .qda into a temp database
 2. Match codes by name (case-insensitive)
 3. Match documents by filename (extension-stripped)
-4. For each matched doc × code: discretize into 10-char windows
+4. For each matched doc Ã— code: discretize into 10-char windows
 5. Count agreement (both coded / neither coded / disagreement)
-6. Calculate κ = (P_observed - P_expected) / (1 - P_expected)
+6. Calculate Îº = (P_observed - P_expected) / (1 - P_expected)
 
 ~130 lines. The 10-char window approach is standard in QDA literature.
 
@@ -195,11 +195,11 @@ Compare two coders' work:
 Audio/video coding without building a media engine:
 - LibVLCSharp wraps VLC's native player
 - `_vlcPlayer.Play(media)` / `.Pause()` / `.SeekTo(timespan)`
-- TimeChanged event fires on background thread → dispatch to UI via Dispatcher.UIThread.Post
+- TimeChanged event fires on background thread â†’ dispatch to UI via Dispatcher.UIThread.Post
 - SRT/VTT parsed on import, character-to-timestamp mappings stored in DB
-- Bidirectional: click text → seek media, click timeline → highlight text
+- Bidirectional: click text â†’ seek media, click timeline â†’ highlight text
 
-**Key gotcha:** Don't `using var media = new Media(...)` — VLC references it async
+**Key gotcha:** Don't `using var media = new Media(...)` â€” VLC references it async
 after Play(). Store as a field, dispose explicitly.
 
 ## Dark Mode via Theme Resources
@@ -226,9 +226,9 @@ makes dark mode look broken.
 
 ## Test Strategy
 
-- **FakeProjectDatabase** — full in-memory IProjectDatabase implementation (~400 lines)
+- **FakeProjectDatabase** â€” full in-memory IProjectDatabase implementation (~400 lines)
   with proper cascade deletes. Enables testing everything without SQLite.
-- **Test per feature area** — DatabaseTests, ViewModelTests, ServiceTests, ModelTests,
+- **Test per feature area** â€” DatabaseTests, ViewModelTests, ServiceTests, ModelTests,
   MediaPlayerTests, NewFeaturesTests, PolishSprintTests
 - **249 tests, all passing in <1 second**
 - **Can't test:** UI code-behind (AvaloniaEdit, dialogs, drag-drop). Accept this.
@@ -248,3 +248,4 @@ Built in one conversation session:
 - 13 NuGet dependencies
 
 From empty directory to feature-competitive with $1,400/yr NVivo.
+

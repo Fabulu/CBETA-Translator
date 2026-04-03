@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -166,6 +166,12 @@ public partial class ReadableTabView : UserControl
         get => _vm.DefaultResp;
         set => _vm.DefaultResp = value;
     }
+
+
+    public string? CurrentTagUsername { get; set; }
+
+    public string CurrentTagCompareIdentity { get; set; } = "";
+
 
     public event EventHandler<ReadableTabViewModel.MoveFootnoteRequest>? FootnoteMoveRequested;
 
@@ -502,7 +508,7 @@ public partial class ReadableTabView : UserControl
                     if (seg.Start >= selEnd || seg.EndExclusive <= selStart)
                         continue; // no overlap
 
-                    // This segment overlaps — find corresponding destination segment
+                    // This segment overlaps ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â find corresponding destination segment
                     if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, seg.Start, out var dstSeg))
                     {
                         int dstLen = otherEditor.Text?.Length ?? 0;
@@ -874,7 +880,7 @@ public partial class ReadableTabView : UserControl
                 _navHighlightEditor = editor;
                 return;
             }
-            // lb keys not found — fall through to text-based matching if MatchText is available
+            // lb keys not found ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â fall through to text-based matching if MatchText is available
         }
 
         // --- text-based navigation (fallback for search results, old URLs, etc.) ---
@@ -911,11 +917,11 @@ public partial class ReadableTabView : UserControl
         editor.TextArea.Caret.Offset = safeStart;
         editor.TextArea.Selection = Selection.Create(editor.TextArea, safeStart, safeEnd);
 
-        // Caret.Offset assignment does not always scroll — scroll explicitly too.
+        // Caret.Offset assignment does not always scroll ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â scroll explicitly too.
         var line = editor.Document.GetLineByOffset(safeStart);
         editor.ScrollToLine(line.LineNumber);
 
-        // Keep the highlight visible indefinitely — it will be cleared on user click
+        // Keep the highlight visible indefinitely ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â it will be cleared on user click
         // (see OnPointerPressed_ClearNavHighlight).
         _navHighlightEditor = editor;
     }
@@ -2061,7 +2067,7 @@ public partial class ReadableTabView : UserControl
         }
         catch
         {
-            return; // line not yet laid out — ScrollTo already made it visible, good enough
+            return; // line not yet laid out ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ScrollTo already made it visible, good enough
         }
 
         double desiredY = absoluteY - (viewportH / 3.0); // bias toward upper third
@@ -2800,7 +2806,7 @@ public partial class ReadableTabView : UserControl
     {
         if (_cmbTagUser == null) return;
 
-        var username = DefaultResp;
+        var username = CurrentTagUsername;
         var myLabel = !string.IsNullOrWhiteSpace(username) ? $"My Tags ({username})" : "My Tags";
 
         var items = new List<string> { myLabel };
@@ -2844,38 +2850,35 @@ public partial class ReadableTabView : UserControl
 
     private void OnCompareTagsClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        // Determine the other user to compare against
         string? otherUser = _selectedTagUser;
         if (string.IsNullOrWhiteSpace(otherUser))
         {
-            // If "My Tags" is selected, pick the first community user if available
-            if (_communityTags != null && _communityTags.Count > 0)
-                otherUser = _communityTags.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase).First();
+            Status?.Invoke(this, "Choose a community tag source before comparing.");
+            return;
         }
-
-        if (string.IsNullOrWhiteSpace(otherUser)) return;
 
         var doc = _vm.RenderOrig;
         if (doc.IsEmpty) return;
 
         var relPath = _vm.CurrentRelPathForZen;
-        var myUsername = DefaultResp;
+        var myUsername = !string.IsNullOrWhiteSpace(CurrentTagCompareIdentity)
+            ? CurrentTagCompareIdentity
+            : (CurrentTagUsername ?? DefaultResp);
 
-        // Filter my tags to current file
         var myTagsForFile = _appliedTags
             .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
             .ToList();
 
-        // Get other user's tags for current file
-        List<DocumentTag> otherTagsForFile = new();
-        if (_communityTags != null && _communityTags.TryGetValue(otherUser, out var allOtherTags))
+        if (_communityTags == null || !_communityTags.TryGetValue(otherUser, out var allOtherTags))
         {
-            otherTagsForFile = allOtherTags
-                .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+            Status?.Invoke(this, "The selected community tag source is no longer available.");
+            return;
         }
 
-        // Get vocabularies
+        var otherTagsForFile = allOtherTags
+            .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
         TagVocabulary? otherVocab = null;
         _communityVocabularies?.TryGetValue(otherUser, out otherVocab);
 

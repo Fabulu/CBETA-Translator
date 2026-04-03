@@ -4,7 +4,7 @@
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
 ![Releases](https://img.shields.io/badge/Releases-GitHub-black)
 
-# CBETA Translator
+# Read Zen
 *A fast desktop app for reading, translating, and contributing CBETA texts*
 
 > Read. Translate. Annotate. Search. Commit.  
@@ -14,7 +14,7 @@
 
 ## What this is
 
-**CBETA Translator** is a cross-platform desktop app (Windows / Linux / macOS) for working with CBETA texts, especially Zen material.
+**Read Zen** is a cross-platform desktop app (Windows / Linux / macOS) for working with CBETA texts, especially Zen material.
 
 It is built for people who want to:
 
@@ -81,7 +81,7 @@ The **Readable** view shows:
 - **Left:** Chinese
 - **Right:** English translation
 
-If a translation does not exist yet, youíll see Chinese on both sides.
+If a translation does not exist yet, you‚Äôll see Chinese on both sides.
 
 ### Linked reading (both sides stay in sync)
 
@@ -193,7 +193,7 @@ It can help you:
 - save your changes with a message
 - upload your changes
 - submit to the community repository on Github (This is called a pull request. I get to review it before it ends up public)
-- recover from local messes with a **Donít Panic** button
+- recover from local messes with a **Don‚Äôt Panic** button
 
 - Default update flow is the safe one: keep your local file edits while updating from remote.
 - A separate dangerous update option can discard local edits (with warning/confirmation).
@@ -212,7 +212,7 @@ If you want to **submit translations**, you also need a **GitHub account**.
 
 - **Windows:** Download **Git for Windows** here: https://git-scm.com/download/win  
 - **macOS:** Download Git here: https://git-scm.com/download/mac  
-  (or install Appleís command line tools by opening Terminal and running `xcode-select --install`)
+  (or install Apple‚Äôs command line tools by opening Terminal and running `xcode-select --install`)
 - **Linux:** Download/install info here: https://git-scm.com/download/linux  
   (usually you install it with your package manager, like `apt`, `dnf`, or `pacman`)
 
@@ -244,7 +244,7 @@ sudo pacman -S git-credential-manager
 
 ## Performance (why it stays fast)
 
-This app is built for big text collections and uses caching so it doesnít re-scan or re-render everything every time.
+This app is built for big text collections and uses caching so it doesn‚Äôt re-scan or re-render everything every time.
 
 If it gets slow, that is a bug.
 
@@ -268,18 +268,18 @@ Pull requests are welcome.
 
 Main rules:
 
-- donít break features
-- donít break file structure
-- donít add automatic ìcleanupî that rewrites tags
-- donít make it slower without a good reason
+- don‚Äôt break features
+- don‚Äôt break file structure
+- don‚Äôt add automatic ‚Äúcleanup‚Äù that rewrites tags
+- don‚Äôt make it slower without a good reason
 
-If youíre unsure, open an issue first.
+If you‚Äôre unsure, open an issue first.
 
 ---
 
 ## Legal
 
-CBETA Translator is licensed under the **MIT License**.
+Read Zen is licensed under the **MIT License**.
 
 Other data/licenses:
 
@@ -329,7 +329,7 @@ If it is missing, copy it manually.
 
 ## Final words
 
-CBETA Translator is a practical tool for real translation work:
+Read Zen is a practical tool for real translation work:
 
 - read side by side
 - translate and clean machine output

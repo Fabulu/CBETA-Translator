@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -189,6 +190,50 @@ public partial class GitTabViewModel : ViewModelBase
         TryRestoreLastBranchFromDisk();
     }
 
+    public async Task StartInitialDownloadAsync()
+    {
+        try
+        {
+            if (PickFolderAsync == null)
+            {
+                ProgressText = "Folder picker not available.";
+                return;
+            }
+
+            var pickedPath = await PickFolderAsync();
+            if (pickedPath == null)
+            {
+                ProgressText = "Canceled.";
+                StatusChanged?.Invoke(this, "Canceled.");
+                return;
+            }
+
+            var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
+
+            if (!string.IsNullOrWhiteSpace(resolvedRepo))
+            {
+                _currentRepoRoot = resolvedRepo;
+                _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+            }
+            else
+            {
+                _currentRepoRoot = null;
+                _baseDestFolder = pickedPath;
+            }
+
+            UpdateDestLabel();
+            TryRestoreLastBranchFromDisk();
+            StatusChanged?.Invoke(this, "Location updated.");
+
+            await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+        }
+        catch (Exception ex)
+        {
+            ProgressText = "Initial download failed: " + ex.Message;
+            StatusChanged?.Invoke(this, "Initial download failed: " + ex.Message);
+        }
+    }
+
     // ----- Commands -----
 
     [RelayCommand]
@@ -351,7 +396,7 @@ public partial class GitTabViewModel : ViewModelBase
                     var ct = _cts?.Token ?? CancellationToken.None;
                     var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-                    AppendLog($"\n[sync] Translation change detected in {_selectedRelPath} — creating pull request...");
+                    AppendLog($"\n[sync] Translation change detected in {_selectedRelPath} - creating pull request...");
                     ProgressText = "Submitting translation for " + _selectedRelPath + "...";
 
                     // Ensure translated XML exists for the selected file
@@ -361,18 +406,8 @@ public partial class GitTabViewModel : ViewModelBase
                             await fn(_selectedRelPath);
                     }
 
-                    // Stage ONLY the selected file
+                    // Stage ONLY the selected translated file. The per-user community copy is handled by ShareAllInternalAsync().
                     await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
-
-                    // Also stage the user's personal translation copy if it exists
-                    var sanitizedUser = AppPaths.SanitizeUsername(_username ?? _githubLogin!);
-                    var userTransRelPath = Path.Combine("community", "translations", sanitizedUser, _selectedRelPath).Replace('\\', '/');
-                    var userTransFullPath = Path.Combine(repoDir, userTransRelPath);
-                    if (File.Exists(userTransFullPath))
-                    {
-                        await _git.StagePathAsync(repoDir, userTransRelPath, prog, ct);
-                        AppendLog("[sync] staged user translation: " + userTransRelPath);
-                    }
 
                 // Create branch + commit
                 var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
@@ -1181,7 +1216,7 @@ public partial class GitTabViewModel : ViewModelBase
                 title = BuildDefaultPrTitle();
 
             string body =
-                "Created by CbetaTranslator.\n\n" +
+                "Created by Read Zen.\n\n" +
                 $"Branch: `{_lastContribBranch}`";
 
             var prUrl = await _api.CreatePullRequestAsync(
@@ -1285,6 +1320,9 @@ public partial class GitTabViewModel : ViewModelBase
                 FireDeviceFlowCompleted();
             }
 
+
+            var preShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
+
             // --- TM dedup ---
             var tmPath = Path.Combine(repoDir, CommunityTmFile);
             if (File.Exists(tmPath))
@@ -1384,7 +1422,6 @@ public partial class GitTabViewModel : ViewModelBase
                 "community/master-dates/*.jsonl merge=union",
                 "community/tags/*.jsonl merge=union"
             };
-            bool gitattribChanged = false;
             string gitattribContent = File.Exists(gitattribPath)
                 ? await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct)
                 : "";
@@ -1396,11 +1433,13 @@ public partial class GitTabViewModel : ViewModelBase
                     if (gitattribContent.Length > 0 && !gitattribContent.EndsWith("\n", StringComparison.Ordinal))
                         gitattribContent += "\n";
                     gitattribContent += rule + "\n";
-                    gitattribChanged = true;
                 }
             }
 
-            if (gitattribChanged)
+            var currentGitattributes = File.Exists(gitattribPath)
+                ? await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct)
+                : "";
+            if (!string.Equals(currentGitattributes, gitattribContent, StringComparison.Ordinal))
             {
                 await File.WriteAllTextAsync(gitattribPath, gitattribContent, new UTF8Encoding(false), ct);
                 AppendLog("[step] updated .gitattributes with merge=union rules");
@@ -1410,36 +1449,34 @@ public partial class GitTabViewModel : ViewModelBase
             await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
             await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
-            // --- Check git status for any community changes ---
+            // --- Check git status for community changes authored by this share ---
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
             var changedFiles = new List<string>();
+            var postShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
+
+            foreach (var relPath in preShareFingerprints.Keys.Union(postShareFingerprints.Keys, StringComparer.OrdinalIgnoreCase))
+            {
+                preShareFingerprints.TryGetValue(relPath, out var before);
+                postShareFingerprints.TryGetValue(relPath, out var after);
+                if (!string.Equals(before, after, StringComparison.Ordinal) && !changedFiles.Contains(relPath))
+                    changedFiles.Add(relPath);
+            }
 
             foreach (var line in status)
             {
-                if (line.Contains(CommunityTmFile, StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains(CommunityTermbaseFile, StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains(ScholarCollectionsFile, StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/termbases/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/collections/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/reviews/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/master-dates/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/tags/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/tag-vocabularies/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains("community/translations/", StringComparison.OrdinalIgnoreCase) ||
-                    line.Contains(".gitattributes", StringComparison.OrdinalIgnoreCase))
-                {
-                    // Extract file path from porcelain line (first 3 chars are status + space)
-                    var filePath = line.Length > 3 ? line.Substring(3).Trim().Trim('"') : line.Trim();
-                    if (!string.IsNullOrWhiteSpace(filePath) && !changedFiles.Contains(filePath))
-                        changedFiles.Add(filePath);
-                }
+                var filePath = NormalizePorcelainPath(line);
+
+                if (string.IsNullOrWhiteSpace(filePath))
+                    continue;
+                if (IsTrackedCommunitySharePath(filePath) && !changedFiles.Contains(filePath))
+                    changedFiles.Add(filePath);
             }
 
-            if (changedFiles.Count == 0 && !gitattribChanged)
+            if (changedFiles.Count == 0)
             {
                 ProgressText = "No changes in community data (already up to date).";
-                AppendLog("[warn] git status shows no changes for any community data files");
-                AppendLog("[hint] If you recently approved entries, they may already be committed.");
+                AppendLog("[warn] share produced no user-authored community changes to commit");
+                AppendLog("[hint] Fetched upstream community files are intentionally skipped.");
                 return;
             }
 
@@ -1449,7 +1486,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             string msg = CommitMessage.Trim();
             if (string.IsNullOrWhiteSpace(msg))
-                msg = $"{GetUsernameForDefaults()}: Community data update (TM, termbase, collections, reviews)";
+                msg = $"{GetUsernameForDefaults()}: Community data update";
 
             string branchName = $"community/data/{DateTime.Now:yyyyMMdd-HHmmss}";
 
@@ -1595,7 +1632,7 @@ public partial class GitTabViewModel : ViewModelBase
                     }
                     else
                     {
-                        AppendLog("[warn] PR creation returned empty URL — data was pushed but PR may need manual creation.");
+                        AppendLog("[warn] PR creation returned empty URL; data was pushed but PR may need manual creation.");
                     }
                 }
                 catch (Exception prEx)
@@ -2016,8 +2053,8 @@ public partial class GitTabViewModel : ViewModelBase
 
             // --- Ensure .gitattributes has merge=union for JSONL ---
             var gitattribPath = Path.Combine(repoDir, ".gitattributes");
-            const string jsonlMergeRule = "community/collections/*.jsonl merge=union";
             bool gitattribChanged = false;
+            const string jsonlMergeRule = "community/collections/*.jsonl merge=union";
             if (File.Exists(gitattribPath))
             {
                 var content = await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct);
@@ -2027,7 +2064,6 @@ public partial class GitTabViewModel : ViewModelBase
                         content += "\n";
                     content += jsonlMergeRule + "\n";
                     await File.WriteAllTextAsync(gitattribPath, content, new UTF8Encoding(false), ct);
-                    gitattribChanged = true;
                     AppendLog("[step] appended merge=union rule to .gitattributes");
                 }
             }
@@ -2305,7 +2341,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/collections/");
                 try
                 {
-                    var checkoutResult = await RunGitOutputAsync(repoDir, "checkout origin/main -- community/collections/", null, ct);
+                    var checkoutResult = await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/collections/");
                     // checkoutResult may be null even on success (checkout writes to working tree, not stdout)
                     var communityCollDir = ScholarCollectionsService.GetCommunityCollectionsDir(repoDir);
                     if (Directory.Exists(communityCollDir))
@@ -2329,7 +2365,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/termbases/");
                 try
                 {
-                    var checkoutTbResult = await RunGitOutputAsync(repoDir, "checkout origin/main -- community/termbases/", null, ct);
+                    var checkoutTbResult = await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/termbases/");
                     var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
                     if (Directory.Exists(communityTbDir))
                     {
@@ -2352,7 +2388,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/reviews/");
                 try
                 {
-                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/reviews/", null, ct);
+                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/reviews/");
                     var communityReviewsDir = ITranslationReviewService.GetCommunityReviewsDir(repoDir);
                     if (Directory.Exists(communityReviewsDir))
                     {
@@ -2368,7 +2404,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/master-dates/");
                 try
                 {
-                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/master-dates/", null, ct);
+                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/master-dates/");
                     var communityMdDir = IMasterDatesService.GetCommunityMasterDatesDir(repoDir);
                     if (Directory.Exists(communityMdDir))
                     {
@@ -2383,7 +2419,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/tags/");
                 try
                 {
-                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/tags/", null, ct);
+                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/tags/");
                     var communityTagsDir = DocumentTagService.GetCommunityTagsDir(repoDir);
                     if (Directory.Exists(communityTagsDir))
                     {
@@ -2395,7 +2431,7 @@ public partial class GitTabViewModel : ViewModelBase
 
                 try
                 {
-                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/tag-vocabularies/", null, ct);
+                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/tag-vocabularies/");
                 }
                 catch { AppendLog("[info] community/tag-vocabularies/ not found in origin/main"); }
 
@@ -2405,7 +2441,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[step] git checkout origin/main -- community/translations/");
                 try
                 {
-                    await RunGitOutputAsync(repoDir, "checkout origin/main -- community/translations/", null, ct);
+                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/translations/");
                     var communityTransDir = Path.Combine(repoDir, "community", "translations");
                     if (Directory.Exists(communityTransDir))
                     {
@@ -2718,6 +2754,77 @@ public partial class GitTabViewModel : ViewModelBase
     private static string NormalizeRel(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
 
+    private static string NormalizePorcelainPath(string line)
+    {
+        var filePath = line.Length > 3 ? line.Substring(3).Trim().Trim('\"') : line.Trim();
+        if (filePath.Contains(" -> ", StringComparison.Ordinal))
+            filePath = filePath.Split(new[] { " -> " }, StringSplitOptions.None).Last();
+        return NormalizeRel(filePath);
+    }
+
+    private Dictionary<string, string?> CaptureCommunityShareFingerprints(string repoDir)
+    {
+        var trackedPaths = GetTrackedCommunitySharePaths(repoDir);
+        var fingerprints = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var relPath in trackedPaths)
+        {
+            var fullPath = Path.Combine(repoDir, relPath.Replace('/', Path.DirectorySeparatorChar));
+            fingerprints[relPath] = File.Exists(fullPath)
+                ? ComputeCommunityShareFingerprint(fullPath)
+                : null;
+        }
+
+        return fingerprints;
+    }
+
+    private HashSet<string> GetTrackedCommunitySharePaths(string repoDir)
+    {
+        var trackedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            NormalizeRel(CommunityTmFile),
+            NormalizeRel(CommunityTermbaseFile),
+            NormalizeRel(ScholarCollectionsFile),
+            ".gitattributes"
+        };
+
+        if (string.IsNullOrWhiteSpace(_githubLogin))
+            return trackedPaths;
+
+        var login = _githubLogin.Trim();
+        trackedPaths.Add($"community/termbases/{login}.jsonl");
+        trackedPaths.Add($"community/collections/{login}.jsonl");
+        trackedPaths.Add($"community/reviews/{login}.jsonl");
+        trackedPaths.Add($"community/master-dates/{login}.jsonl");
+        trackedPaths.Add($"community/tags/{login}.jsonl");
+        trackedPaths.Add($"community/tag-vocabularies/{login}.json");
+
+        var translationUserDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(login));
+        if (Directory.Exists(translationUserDir))
+        {
+            foreach (var fullPath in Directory.EnumerateFiles(translationUserDir, "*", SearchOption.AllDirectories))
+                trackedPaths.Add(NormalizeRel(Path.GetRelativePath(repoDir, fullPath)));
+        }
+
+        return trackedPaths;
+    }
+
+    private bool IsTrackedCommunitySharePath(string relPath)
+    {
+        var normalized = NormalizeRel(relPath);
+        return !string.IsNullOrWhiteSpace(normalized) &&
+               GetTrackedCommunitySharePaths(GetTargetRepoDir()).Contains(normalized);
+    }
+
+    private static string? ComputeCommunityShareFingerprint(string fullPath)
+    {
+        if (!File.Exists(fullPath))
+            return null;
+
+        using var stream = File.OpenRead(fullPath);
+        return Convert.ToHexString(SHA256.HashData(stream));
+    }
+
     private static string CreateBackupDir()
     {
         var dir = Path.Combine(Path.GetTempPath(), "CbetaTranslator", "git-keep-local", Guid.NewGuid().ToString("N"));
@@ -2889,6 +2996,71 @@ public partial class GitTabViewModel : ViewModelBase
         {
             return new GitRunResult(false, ex.Message);
         }
+    }
+
+    private static async Task<string?> RunGitArgsAsync(
+        string repoDir,
+        CancellationToken ct,
+        params string[] args)
+    {
+        var psi = new ProcessStartInfo
+        {
+            FileName = GitBinaryLocator.ResolveGitExecutablePath(),
+            WorkingDirectory = repoDir,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8
+        };
+
+        foreach (var arg in args.Where(a => !string.IsNullOrWhiteSpace(a)))
+            psi.ArgumentList.Add(arg);
+
+        GitBinaryLocator.EnrichProcessStartInfoForBundledGit(psi);
+
+        try
+        {
+            psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
+        }
+        catch { }
+
+        using var p = new Process { StartInfo = psi };
+        var sbOut = new StringBuilder();
+
+        if (!p.Start())
+            return null;
+
+        using var reg = ct.Register(() =>
+        {
+            try { if (!p.HasExited) p.Kill(entireProcessTree: true); } catch { }
+        });
+
+        Task readOut = Task.Run(async () =>
+        {
+            while (!p.StandardOutput.EndOfStream)
+            {
+                var line = await p.StandardOutput.ReadLineAsync();
+                if (line != null)
+                    sbOut.AppendLine(line);
+            }
+        });
+
+        Task readErr = Task.Run(async () =>
+        {
+            while (!p.StandardError.EndOfStream)
+                await p.StandardError.ReadLineAsync();
+        });
+
+        await Task.WhenAll(readOut, readErr);
+        await p.WaitForExitAsync(ct);
+
+        if (p.ExitCode != 0)
+            return null;
+
+        var output = sbOut.ToString();
+        return string.IsNullOrWhiteSpace(output) ? null : output;
     }
 
     private static async Task<string?> RunGitOutputAsync(

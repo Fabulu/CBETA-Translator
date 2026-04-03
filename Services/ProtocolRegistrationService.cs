@@ -75,9 +75,9 @@ public static class ProtocolRegistrationService
         }
     }
 
-    // ─── Windows ────────────────────────────────────────────────────────
+    // â”€â”€â”€ Windows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-#pragma warning disable CA1416 // Platform compatibility — guarded by RuntimeInformation checks
+#pragma warning disable CA1416 // Platform compatibility â€” guarded by RuntimeInformation checks
 
     private static string GetExePath()
     {
@@ -142,7 +142,7 @@ public static class ProtocolRegistrationService
 
 #pragma warning restore CA1416
 
-    // ─── Linux ──────────────────────────────────────────────────────────
+    // â”€â”€â”€ Linux â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private static string GetDesktopFilePath()
     {
@@ -184,7 +184,7 @@ public static class ProtocolRegistrationService
             var content =
                 "[Desktop Entry]\n" +
                 "Type=Application\n" +
-                "Name=CBETA Translator\n" +
+                "Name=Read Zen\n" +
                 "NoDisplay=true\n" +
                 "Exec=" + execLine + " %u\n" +
                 "StartupNotify=false\n" +
@@ -316,14 +316,14 @@ public static class ProtocolRegistrationService
             var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n" +
                 "<plist version=\"1.0\">\n<dict>\n" +
-                "    <key>CFBundleName</key><string>CBETA Translator Link</string>\n" +
+                "    <key>CFBundleName</key><string>Read Zen Link</string>\n" +
                 "    <key>CFBundleIdentifier</key><string>com.cbeta.translator.link</string>\n" +
                 "    <key>CFBundleVersion</key><string>1.0</string>\n" +
                 "    <key>CFBundlePackageType</key><string>APPL</string>\n" +
                 "    <key>CFBundleExecutable</key><string>open-cbeta</string>\n" +
                 "    <key>CFBundleURLTypes</key>\n" +
                 "    <array><dict>\n" +
-                "        <key>CFBundleURLName</key><string>CBETA Deep Link</string>\n" +
+                "        <key>CFBundleURLName</key><string>Read Zen Link</string>\n" +
                 "        <key>CFBundleURLSchemes</key><array><string>zen</string></array>\n" +
                 "    </dict></array>\n" +
                 "</dict>\n</plist>\n";
@@ -370,3 +370,4 @@ public static class ProtocolRegistrationService
             "Applications", "CbetaTranslatorLink.app", "Contents", "MacOS", "open-cbeta");
     }
 }
+

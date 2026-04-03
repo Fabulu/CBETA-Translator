@@ -10,7 +10,7 @@ public class LicensesWindowViewModelTests
     {
         var vm = new LicensesWindowViewModel(null);
 
-        Assert.Contains("(no CBETA root loaded)", vm.HintText);
+        Assert.Contains("(no text root loaded)", vm.HintText);
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public class LicensesWindowViewModelTests
         var vm = new LicensesWindowViewModel(null);
 
         Assert.False(string.IsNullOrWhiteSpace(vm.LicensesText));
-        Assert.Contains("CBETA Translator", vm.LicensesText);
+        Assert.Contains("Read Zen", vm.LicensesText);
         Assert.Contains("Licenses & Attributions", vm.LicensesText);
     }
 
