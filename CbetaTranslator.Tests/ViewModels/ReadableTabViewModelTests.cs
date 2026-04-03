@@ -430,4 +430,70 @@ public class ReadableTabViewModelTests
 
         Assert.True(vm.PendingRefresh);
     }
+
+    // ---- Study panel ----
+
+    [Fact]
+    public void InitialState_StudyPanelVisible_IsFalse()
+    {
+        var vm = MakeVm();
+        Assert.False(vm.StudyPanelVisible);
+    }
+
+    [Fact]
+    public void StudyPanelVisible_CanBeToggled()
+    {
+        var vm = MakeVm();
+
+        vm.StudyPanelVisible = true;
+        Assert.True(vm.StudyPanelVisible);
+
+        vm.StudyPanelVisible = false;
+        Assert.False(vm.StudyPanelVisible);
+    }
+
+    [Fact]
+    public void StudyPanelVisible_PropertyChanged_Fires()
+    {
+        var vm = MakeVm();
+        var changed = new List<string>();
+        vm.PropertyChanged += (_, e) => changed.Add(e.PropertyName!);
+
+        vm.StudyPanelVisible = true;
+
+        Assert.Contains("StudyPanelVisible", changed);
+    }
+
+    [Fact]
+    public void LastStudySnapshot_DefaultsToNull()
+    {
+        var vm = MakeVm();
+        Assert.Null(vm.LastStudySnapshot);
+    }
+
+    [Fact]
+    public void LastStudySnapshot_CanBeSet()
+    {
+        var vm = MakeVm();
+        var snapshot = new TranslationAssistantSnapshot();
+
+        vm.LastStudySnapshot = snapshot;
+
+        Assert.Same(snapshot, vm.LastStudySnapshot);
+    }
+
+    [Fact]
+    public void Clear_ResetsStudyState()
+    {
+        var vm = MakeVm();
+        vm.StudyPanelVisible = true;
+        vm.LastStudySnapshot = new TranslationAssistantSnapshot();
+
+        vm.Clear();
+
+        // Clear() does NOT reset study panel state — it preserves StudyPanelVisible
+        // and LastStudySnapshot across clear operations (by design).
+        Assert.True(vm.StudyPanelVisible);
+        Assert.NotNull(vm.LastStudySnapshot);
+    }
 }
