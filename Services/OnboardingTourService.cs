@@ -94,19 +94,21 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Switching to the Git tab.\n\nWe're downloading the CBETA Zen text collection. This may take a few minutes \u2014 it's a comprehensive library of classical Chinese texts with existing translations.\n\nGrab a cup of tea. \u2615",
+            Body = "Click the 'Sync' button to download the CBETA Zen text collection. This only happens once.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView",
             SwitchToTabIndex = 3,
-            WaitForEvent = "root-cloned"
+            WaitForEvent = "root-cloned",
+            ActionButtonLabel = "Sync Now",
+            CanSkipWait = true
         });
 
         Steps.Add(new TourStep
         {
             Id = "building-index",
             Title = "Building Search Index...",
-            Body = "The app is building a search index so you can search across the entire corpus. This takes a moment.\n\nDid you know? The CBETA corpus contains thousands of Zen texts digitized from woodblock prints.",
+            Body = "Building a search index across the entire corpus. This runs automatically and takes a moment.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Center,
             WaitForEvent = "index-built"
@@ -157,6 +159,17 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "study-panel",
+            Title = "Study Panel",
+            Body = "Check the 'Study' checkbox in the Reader toolbar to open the Study Panel.\nIt shows live dictionary lookups at your caret position, translation memory matches, and termbase hits \u2014 all updating as you read.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Right,
+            TargetControlName = "ChkStudyPanel",
+            SwitchToTabIndex = 0
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "community-notes",
             Title = "Community Notes",
             Body = "Blue markers in the text are community notes \u2014 click one to read it.\nYou can add your own notes to any passage with this button.",
@@ -178,7 +191,7 @@ public sealed class OnboardingTourService
         {
             Id = "right-click",
             Title = "Right-Click to Collect",
-            Body = "Right-click selected text to add it to your Scholar collection for later study.\nThis works in the Reader, Translation, and Search tabs.",
+            Body = "Right-click selected text to add it to your Scholar collection, create deep links, or copy shareable URLs.\nThis works in the Reader, Translation, and Search tabs.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -283,7 +296,7 @@ public sealed class OnboardingTourService
         {
             Id = "assistant-panel",
             Title = "Translation Assistant",
-            Body = "The assistant panel shows: recognized terminology, similar translations from the translation memory, and quality warnings.\nIt updates automatically as you navigate blocks.",
+            Body = "The assistant panel shows: recognized terminology, similar translations from the translation memory, and quality warnings.\nIt updates automatically as you navigate blocks.\n\nIn the Reader tab, toggle the Study checkbox for similar lookups as you read, including live dictionary entries.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Left,
             TargetControlName = "AssistantPane"
@@ -345,9 +358,28 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "graph-and-stats",
+            Title = "Graph & Link Statistics",
+            Body = "Switch to the Graph tab to see your collected passages as a network diagram \u2014 nodes are passages, edges are links colored by relation type.\nThe Links tab shows statistics: relation type distribution, coverage, and orphan passages.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 4
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "adding-passages",
             Title = "Adding Passages",
-            Body = "Right-click text in the Reader, Translation, or Search tabs to add it to a collection.\nMulti-block selections capture entire paragraphs. Master names (like \u8d99\u5dde, \u5357\u6cc9) are auto-detected.",
+            Body = "Right-click text in the Reader, Translation, or Search tabs to add it to a collection.\nMulti-block selections capture entire paragraphs. Master names (like \u8d99\u5dde, \u5357\u6cc9) are auto-detected.\nUse the context menu to also create deep links or copy shareable URLs.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "context-menu-links",
+            Title = "Context Menu & Inline Links",
+            Body = "Right-click any passage to create cross-reference links, add to collections, or copy deep links.\nIn the Links tab, click '+ Link' to connect passages with semantic relations like 'quotes', 'parallels', or 'contradicts'.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -365,11 +397,11 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "scholar-tools",
-            Title = "Compare and Find Parallels",
-            Body = "Compare passages side-by-side with shared character highlighting.\nFind Parallels searches the corpus for similar text. Export to HTML with a knowledge graph.",
+            Title = "Compare, Graph, and Statistics",
+            Body = "Compare passages side-by-side with shared character highlighting.\nSwitch to the Graph tab to visualize your passage network. The Links tab shows relation-type statistics and coverage.\n\nUse '+ Link' in the Links tab to connect related passages.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Bottom,
-            TargetControlName = "BtnFindParallels"
+            Placement = TourPlacement.Center,
+            TargetControlName = null
         });
 
         Steps.Add(new TourStep
@@ -386,7 +418,7 @@ public sealed class OnboardingTourService
         {
             Id = "deep-links",
             Title = "Share Links to Any Passage",
-            Body = "Right-click any text, search result, or file to copy a zen:// deep link.\nShare it with colleagues \u2014 clicking the link opens this exact passage in the app.",
+            Body = "Right-click any text, search result, or file to copy a zen:// deep link.\nLink types: dictionary lookups, scholar collections, corpus searches, and tagged passages.\nShare with colleagues \u2014 clicking opens the exact resource in the app.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });

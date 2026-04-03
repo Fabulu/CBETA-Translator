@@ -675,6 +675,8 @@ public partial class MainWindow : Window
             _tourTooltip.NextClicked += (_, _) => _tourService?.Next();
             _tourTooltip.BackClicked += (_, _) => _tourService?.Previous();
             _tourTooltip.SkipClicked += (_, _) => _tourService?.Skip();
+            _tourTooltip.ActionClicked += (_, _) => OnTourActionClicked();
+            _tourTooltip.SkipWaitClicked += (_, _) => _tourService?.Next();
         }
 
         // Tour service events
@@ -1531,7 +1533,9 @@ public partial class MainWindow : Window
             step.Body,
             _tourService.CurrentIndex,
             _tourService.Steps.Count,
-            canGoBack: _tourService.CurrentIndex > 0);
+            canGoBack: _tourService.CurrentIndex > 0,
+            actionButtonLabel: step.ActionButtonLabel,
+            canSkipWait: step.CanSkipWait);
 
         // Position tooltip
         PositionTooltip(step, targetBounds);
@@ -1634,6 +1638,14 @@ public partial class MainWindow : Window
 
         _vm.Config.HasCompletedOnboarding = true;
         await _vm.SafeSaveConfigAsync();
+    }
+
+    private void OnTourActionClicked()
+    {
+        if (_tourService?.CurrentStep?.Id == "download-texts")
+        {
+            _gitView?.TriggerSync();
+        }
     }
 
     /// <summary>

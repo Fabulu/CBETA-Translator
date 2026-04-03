@@ -50,6 +50,25 @@
 			           TextWrapping="Wrap"
 			           LineHeight="20"/>
 
+			<!-- Action button (e.g. "Sync Now") — visible only when step has ActionButtonLabel -->
+			<Button Name="BtnAction"
+			        IsVisible="False"
+			        Height="32"
+			        Padding="16,4"
+			        Classes="primary"
+			        FontSize="13"
+			        HorizontalAlignment="Left"/>
+
+			<!-- Skip wait link — visible only when step has CanSkipWait -->
+			<TextBlock Name="TxtSkipWait"
+			           IsVisible="False"
+			           Text="Skip"
+			           FontSize="12"
+			           Foreground="{DynamicResource SelectionBg}"
+			           TextDecorations="Underline"
+			           Cursor="Hand"
+			           HorizontalAlignment="Left"/>
+
 			<!-- Progress -->
 			<TextBlock Name="TxtProgress"
 			           FontSize="11"

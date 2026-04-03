@@ -13,4 +13,10 @@ public sealed class TourStep
     public TourPlacement Placement { get; set; } = TourPlacement.Bottom;
     public int? SwitchToTabIndex { get; set; }
     public string? WaitForEvent { get; set; }
+
+    /// <summary>If set, shows an action button in the tour tooltip (e.g., "Sync Now").</summary>
+    public string? ActionButtonLabel { get; set; }
+
+    /// <summary>If true, shows a "Skip" link in the tour tooltip for Wait-type steps.</summary>
+    public bool CanSkipWait { get; set; }
 }
