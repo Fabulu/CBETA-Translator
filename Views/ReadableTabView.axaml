@@ -174,6 +174,17 @@
 							<Border Padding="8" CornerRadius="6"
 									BorderThickness="1"
 									BorderBrush="{DynamicResource BorderBrush}">
+								<StackPanel Spacing="4">
+									<TextBlock Text="Dictionary" FontWeight="Bold"/>
+									<TextBlock Name="TxtStudyDictHeadword" FontSize="18" FontWeight="SemiBold"/>
+									<TextBlock Name="TxtStudyDictPinyin" FontSize="12" Opacity="0.8"/>
+									<StackPanel Name="StudyDictSenses" Spacing="2"/>
+								</StackPanel>
+							</Border>
+
+							<Border Padding="8" CornerRadius="6"
+									BorderThickness="1"
+									BorderBrush="{DynamicResource BorderBrush}">
 								<StackPanel Spacing="6">
 									<TextBlock Text="Segment" FontWeight="Bold"/>
 									<TextBlock Name="TxtStudySegmentZh"

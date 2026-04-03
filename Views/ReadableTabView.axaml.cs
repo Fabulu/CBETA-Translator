@@ -138,6 +138,10 @@ public partial class ReadableTabView : UserControl
     private TextBlock? _txtStudySegmentZh;
     private TextBlock? _txtStudySegmentEn;
     private string? _lastStudySegmentKey;
+    private TextBlock? _txtStudyDictHeadword;
+    private TextBlock? _txtStudyDictPinyin;
+    private StackPanel? _studyDictSenses;
+    private string? _lastStudyDictKey;
     private readonly List<IDisposable> _studyHoverDisposables = new();
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
 
@@ -318,6 +322,9 @@ public partial class ReadableTabView : UserControl
         _studyTmHost = this.FindControl<StackPanel>("StudyTmHost");
         _txtStudySegmentZh = this.FindControl<TextBlock>("TxtStudySegmentZh");
         _txtStudySegmentEn = this.FindControl<TextBlock>("TxtStudySegmentEn");
+        _txtStudyDictHeadword = this.FindControl<TextBlock>("TxtStudyDictHeadword");
+        _txtStudyDictPinyin = this.FindControl<TextBlock>("TxtStudyDictPinyin");
+        _studyDictSenses = this.FindControl<StackPanel>("StudyDictSenses");
 
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
@@ -665,6 +672,7 @@ public partial class ReadableTabView : UserControl
         CancelMoveModeAndHideNotes();
 
         _lastStudySegmentKey = null;
+        _lastStudyDictKey = null;
         _vm.LastStudySnapshot = null;
         _termHitRanges = null;
         ClearStudyHoverBehaviors();
@@ -1751,6 +1759,9 @@ public partial class ReadableTabView : UserControl
         // Study panel: check if segment under caret changed
         if (_vm.StudyPanelVisible && (origCaretChanged || origSelChanged || tranCaretChanged))
             DeriveReaderSegmentContext();
+
+        if (_vm.StudyPanelVisible)
+            UpdateStudyDictionary();
     }
 
     private bool DetermineSourcePane(bool origChanged, bool tranChanged)
@@ -4019,6 +4030,8 @@ public partial class ReadableTabView : UserControl
                 RenderStudyPanelSnapshot(_vm.LastStudySnapshot);
             else if (!_vm.RenderOrig.IsEmpty)
                 DeriveReaderSegmentContext();
+
+            UpdateStudyDictionary();
         }
     }
 
@@ -4078,6 +4091,65 @@ public partial class ReadableTabView : UserControl
             try { d.Dispose(); } catch { }
         }
         _studyHoverDisposables.Clear();
+    }
+
+    private void UpdateStudyDictionary()
+    {
+        if (_aeOrig == null || !_vm.StudyPanelVisible) return;
+        if (_txtStudyDictHeadword == null) return;
+
+        string docText = _aeOrig.Document?.Text ?? "";
+        if (string.IsNullOrEmpty(docText)) return;
+
+        int caret = GetCaretOffsetSafe(_aeOrig);
+        if (caret < 0 || caret >= docText.Length) return;
+
+        // Check if character at caret is CJK
+        char ch = docText[caret];
+        if (!IsCjkChar(ch))
+        {
+            // Try one position back (caret might be after the character)
+            if (caret > 0 && IsCjkChar(docText[caret - 1]))
+                caret--;
+            else
+                return;
+        }
+
+        if (_cedict.TryLookupLongest(docText, caret, out var match))
+        {
+            string key = match.Headword + "|" + caret;
+            if (key == _lastStudyDictKey) return;
+            _lastStudyDictKey = key;
+
+            _txtStudyDictHeadword.Text = match.Headword;
+
+            // Build pinyin from all entries
+            var pinyinSet = match.Entries.Select(e => e.Pinyin).Distinct().ToList();
+            _txtStudyDictPinyin!.Text = string.Join(" / ", pinyinSet);
+
+            // Build senses list
+            _studyDictSenses!.Children.Clear();
+            foreach (var entry in match.Entries.Take(8))
+            {
+                foreach (var sense in entry.Senses.Take(4))
+                {
+                    _studyDictSenses.Children.Add(new TextBlock
+                    {
+                        Text = "\u00b7 " + sense,
+                        FontSize = 11,
+                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        Opacity = 0.85
+                    });
+                }
+            }
+        }
+    }
+
+    private static bool IsCjkChar(char c)
+    {
+        return (c >= '\u4E00' && c <= '\u9FFF')   // CJK Unified
+            || (c >= '\u3400' && c <= '\u4DBF')   // CJK Extension A
+            || (c >= '\uF900' && c <= '\uFAFF');  // CJK Compat
     }
 
     private IBrush? GetResourceBrush(string key)
