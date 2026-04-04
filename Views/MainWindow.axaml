@@ -1,4 +1,4 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
@@ -24,21 +24,21 @@
 		<Border Grid.Row="0"
 				Name="TopBar"
 				Background="{DynamicResource BarBg}"
-				Padding="10">
+				Padding="8">
 
 			<DockPanel LastChildFill="True">
 
 				<StackPanel Orientation="Horizontal"
-							Spacing="8"
+							Spacing="6"
 							DockPanel.Dock="Left">
 
-                    <Button Name="BtnToggleNav" Width="40" Height="32" Content="&#x2630;"
+                    <Button Name="BtnToggleNav" Width="34" Height="28" FontSize="13" Content="&#x2630;"
                             ToolTip.Tip="Toggle sidebar"/>
-                    <Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Folder"
+                    <Button Name="BtnOpenRoot" Width="118" Height="28" FontSize="12" Content="Open Folder"
                             ToolTip.Tip="Select the root folder containing CBETA XML files"/>
-                    <Button Name="BtnSettings" Width="110" Height="32" Content="Settings"
+                    <Button Name="BtnSettings" Width="94" Height="28" FontSize="12" Content="Settings"
                             ToolTip.Tip="Open application settings"/>
-                    <Button Name="BtnLicenses" Width="110" Height="32" Content="Licenses"
+                    <Button Name="BtnLicenses" Width="94" Height="28" FontSize="12" Content="Licenses"
                             ToolTip.Tip="View licenses and attributions"/>
 
 					<TextBlock Name="TxtRoot"
@@ -61,13 +61,13 @@
 			<Border Name="NavPanel"
 					Grid.Column="0"
 					Background="{DynamicResource NavBg}"
-					Width="320">
+					Width="284">
 
-				<Grid Margin="8"
+				<Grid Margin="6"
 					  RowDefinitions="Auto,Auto,Auto,*"
-					  RowSpacing="8">
+					  RowSpacing="6">
 
-					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="6">
 						<TextBlock Text="Files"
 								   FontWeight="Bold"
 								   Classes="muted"
@@ -76,7 +76,7 @@
 						<ComboBox Name="CmbStatusFilter"
 								  Grid.Column="1"
 								  SelectedIndex="0"
-								  MinWidth="160"
+								  MinWidth="136" FontSize="12"
 								  ToolTip.Tip="Filter files by translation status">
 							<ComboBoxItem Content="All"/>
 							<ComboBoxItem Content="Translated (Green)"/>
@@ -92,7 +92,7 @@
 
 					<StackPanel Grid.Row="2"
 								Orientation="Horizontal"
-								Spacing="10">
+								Spacing="8">
 						<CheckBox Name="ChkShowFilenames"
 								  Content="Show filenames"
 								  ToolTip.Tip="Show technical filenames instead of titles"/>
@@ -117,16 +117,16 @@
 										  ToolTip.Tip="Copy a shareable HTTPS link for this file to the clipboard"/>
 							</ContextMenu>
 						</ListBox.ContextMenu>
-
-						<ListBox.ItemTemplate>
+`t`t`t`t`t`t`t`t<ListBox.ItemTemplate>
 							<DataTemplate x:DataType="models:FileNavItem">
 								<Border CornerRadius="6"
-										Padding="6"
-										Margin="4"
+										Padding="4"
+										Margin="2"
 										Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
 									<TextBlock Text="{Binding DisplayShort}"
 											   ToolTip.Tip="{Binding Tooltip}"
-											   TextWrapping="NoWrap"/>
+											   TextWrapping="NoWrap"
+											   FontSize="12"/>
 								</Border>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
@@ -209,5 +209,3 @@
 
 	</Grid>
 </Window>
-
-

@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
 using Xunit;
@@ -114,7 +115,7 @@ public class TaggingAndPerfTests
         var input = new List<AssistantTextRange>
         {
             new(0, 5),   // [0..5)
-            new(3, 5),   // [3..8)  — overlaps with first
+            new(3, 5),   // [3..8) overlaps with first
         };
 
         var result = AssistantPanelRenderer.MergeRanges(input);
@@ -183,8 +184,58 @@ public class TaggingAndPerfTests
         Assert.Equal(10, result[0].Length);
     }
 
+    [Fact]
+    public void RenderSnapshot_NullSnapshot_ClearsHostsWithoutPlaceholders()
+    {
+        var qaHost = new StackPanel();
+        var termHost = new StackPanel();
+        var approvedHost = new StackPanel();
+        var referenceHost = new StackPanel();
+
+        qaHost.Children.Add(new TextBlock { Text = "stale" });
+        termHost.Children.Add(new TextBlock { Text = "stale" });
+        approvedHost.Children.Add(new TextBlock { Text = "stale" });
+        referenceHost.Children.Add(new TextBlock { Text = "stale" });
+
+        AssistantPanelRenderer.RenderSnapshot(null, qaHost, termHost, approvedHost, referenceHost);
+
+        Assert.Empty(qaHost.Children);
+        Assert.Empty(termHost.Children);
+        Assert.Empty(approvedHost.Children);
+        Assert.Empty(referenceHost.Children);
+    }
+
+    [Fact]
+    public void RenderSnapshot_EmptySnapshot_AddsEmptyPlaceholders()
+    {
+        var snapshot = new TranslationAssistantSnapshot
+        {
+            Segment = new CurrentSegmentContext { RelPath = "T/T01/T01n0001.xml", ZhText = "test", EnText = "", BlockNumber = 1 },
+            ApprovedMatches = new List<TranslationTmMatch>(),
+            ReferenceMatches = new List<TranslationTmMatch>(),
+            Terms = new List<TermHit>(),
+            QaIssues = new List<QaIssue>()
+        };
+
+        var qaHost = new StackPanel();
+        var termHost = new StackPanel();
+        var approvedHost = new StackPanel();
+        var referenceHost = new StackPanel();
+
+        AssistantPanelRenderer.RenderSnapshot(snapshot, qaHost, termHost, approvedHost, referenceHost);
+
+        Assert.Single(qaHost.Children);
+        Assert.Single(termHost.Children);
+        Assert.Single(approvedHost.Children);
+        Assert.Single(referenceHost.Children);
+        Assert.Contains("No approved TM matches", ((TextBlock)((Border)approvedHost.Children[0]).Child!).Text);
+        Assert.Contains("No reference TM matches", ((TextBlock)((Border)referenceHost.Children[0]).Child!).Text);
+        Assert.Contains("No terminology hits", ((TextBlock)((Border)termHost.Children[0]).Child!).Text);
+        Assert.Contains("No QA issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
+    }
+
     // ======================================================================
-    // 4. TranslationAssistantService — parallel lookups
+    // 4. TranslationAssistantService - parallel lookups
     // ======================================================================
 
     [Fact]
@@ -334,3 +385,4 @@ public class TaggingAndPerfTests
         Assert.Equal(TranslationStatus.Red, item.Status);
     }
 }
+

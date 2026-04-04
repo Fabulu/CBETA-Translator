@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -18,7 +18,7 @@ public class ScholarTabViewModelTests
         return new ScholarTabViewModel(svc ?? new StubScholarCollectionsService(), config);
     }
 
-    // ---- Constructor ----
+   
 
     [Fact]
     public void Constructor_ThrowsOnNullService()
@@ -26,7 +26,7 @@ public class ScholarTabViewModelTests
         Assert.Throws<ArgumentNullException>(() => new ScholarTabViewModel(null!));
     }
 
-    // ---- Initial state ----
+   
 
     [Fact]
     public void InitialState_IsEmptyStateTrue()
@@ -68,7 +68,7 @@ public class ScholarTabViewModelTests
         Assert.Null(vm.SelectedPassage);
     }
 
-    // ---- AddCollection ----
+   
 
     [Fact]
     public void AddCollection_CreatesNewCollection()
@@ -115,7 +115,7 @@ public class ScholarTabViewModelTests
         Assert.NotEqual(vm.Collections[0].Id, vm.Collections[1].Id);
     }
 
-    // ---- DeleteCollection ----
+   
 
     [Fact]
     public void DeleteCollection_RemovesSelected()
@@ -157,7 +157,7 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
         vm.AddCollectionCommand.Execute(null);
-        // Select the first one
+       
         vm.SelectedCollection = vm.Collections[0];
 
         vm.DeleteCollectionCommand.Execute(null);
@@ -166,7 +166,7 @@ public class ScholarTabViewModelTests
         Assert.NotNull(vm.SelectedCollection);
     }
 
-    // ---- SelectedCollection changes update Passages ----
+   
 
     [Fact]
     public void SelectedCollection_UpdatesPassagesDisplay()
@@ -175,7 +175,7 @@ public class ScholarTabViewModelTests
         vm.AddCollectionCommand.Execute(null);
         var collection = vm.Collections[0];
 
-        // Add passages directly to the collection model
+       
         collection.Passages.Add(new ScholarPassage
         {
             Id = "p1",
@@ -189,7 +189,7 @@ public class ScholarTabViewModelTests
             SourceRelPath = "test2.xml"
         });
 
-        // Trigger re-selection to refresh Passages
+       
         vm.SelectedCollection = null;
         vm.SelectedCollection = collection;
 
@@ -212,7 +212,7 @@ public class ScholarTabViewModelTests
         Assert.Empty(vm.Passages);
     }
 
-    // ---- AddPassageToCollectionAsync ----
+   
 
     [Fact]
     public async Task AddPassageToCollection_AddsPassageAndSaves()
@@ -222,7 +222,7 @@ public class ScholarTabViewModelTests
         vm.AddCollectionCommand.Execute(null);
         var collectionId = vm.Collections[0].Id;
 
-        // Set _root via reflection so SaveAsync actually runs
+       
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
@@ -237,9 +237,9 @@ public class ScholarTabViewModelTests
         await vm.AddPassageToCollectionAsync(collectionId, passage);
 
         Assert.Single(vm.Collections[0].Passages);
-        Assert.NotEmpty(passage.Id); // ID was assigned
+        Assert.NotEmpty(passage.Id);
         Assert.False(vm.IsEmptyState);
-        Assert.NotNull(svc.LastSaved); // Save was triggered
+        Assert.NotNull(svc.LastSaved);
     }
 
     [Fact]
@@ -260,7 +260,7 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
         var collectionId = vm.Collections[0].Id;
-        // SelectedCollection is already set to the new collection
+       
 
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -274,7 +274,7 @@ public class ScholarTabViewModelTests
 
         await vm.AddPassageToCollectionAsync(collectionId, passage);
 
-        Assert.Single(vm.Passages); // Passages observable was updated
+        Assert.Single(vm.Passages);
     }
 
 
@@ -365,7 +365,7 @@ public class ScholarTabViewModelTests
         Assert.Single(vm.Collections);
     }
 
-    // ---- NavigateToPassage ----
+   
 
     [Fact]
     public void NavigateToPassage_FiresNavigationRequested()
@@ -381,7 +381,7 @@ public class ScholarTabViewModelTests
         };
         collection.Passages.Add(passage);
 
-        // Re-select to populate Passages
+       
         vm.SelectedCollection = null;
         vm.SelectedCollection = collection;
         vm.SelectedPassage = passage;
@@ -436,7 +436,7 @@ public class ScholarTabViewModelTests
         Assert.Equal(80, req!.MatchText!.Length);
     }
 
-    // ---- DeletePassage ----
+   
 
     [Fact]
     public void DeletePassage_RemovesFromCollectionAndPassages()
@@ -462,10 +462,10 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.SelectedPassage = null;
 
-        vm.DeletePassageCommand.Execute(null); // should not throw
+        vm.DeletePassageCommand.Execute(null);
     }
 
-    // ---- Clear ----
+   
 
     [Fact]
     public void Clear_ResetsEverything()
@@ -484,7 +484,7 @@ public class ScholarTabViewModelTests
         Assert.True(vm.IsEmptyState);
     }
 
-    // ---- SelectedPassage syncs editor fields ----
+   
 
     [Fact]
     public void SelectedPassage_SyncsEditorFields()
@@ -539,7 +539,7 @@ public class ScholarTabViewModelTests
         Assert.Equal("", vm.PassageMasterNames);
     }
 
-    // ---- SearchFilter: Tag matching ----
+   
 
     [Fact]
     public void SearchFilter_FiltersByTagMatch()
@@ -551,7 +551,7 @@ public class ScholarTabViewModelTests
         collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml", Tags = new List<string> { "zen" } });
         collection.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "c", SourceRelPath = "z.xml", Tags = new List<string> { "dharma", "zen" } });
 
-        // Re-select to populate passages
+       
         vm.SelectedCollection = null;
         vm.SelectedCollection = collection;
         Assert.Equal(3, vm.Passages.Count);
@@ -562,7 +562,7 @@ public class ScholarTabViewModelTests
         Assert.All(vm.Passages, p => Assert.Contains("dharma", p.Tags));
     }
 
-    // ---- SearchFilter: Master name matching ----
+   
 
     [Fact]
     public void SearchFilter_FiltersByMasterNameMatch()
@@ -583,7 +583,7 @@ public class ScholarTabViewModelTests
         Assert.Equal("p1", vm.Passages[0].Id);
     }
 
-    // ---- SearchFilter: ZhText/EnText content matching ----
+   
 
     [Fact]
     public void SearchFilter_FiltersByZhTextContent()
@@ -621,13 +621,13 @@ public class ScholarTabViewModelTests
         Assert.Equal("p1", vm.Passages[0].Id);
     }
 
-    // ---- CollectionFilter: Name matching ----
+   
 
     [Fact]
     public void CollectionFilter_FiltersByCollectionName()
     {
         var vm = MakeVm();
-        // Manually add collections with distinct names
+       
         vm.AddCollectionCommand.Execute(null);
         vm.Collections[0].Name = "Zen Koans";
         vm.AddCollectionCommand.Execute(null);
@@ -639,7 +639,7 @@ public class ScholarTabViewModelTests
         Assert.Equal("Zen Koans", vm.Collections[0].Name);
     }
 
-    // ---- Empty filter shows all items ----
+   
 
     [Fact]
     public void SearchFilter_EmptyShowsAllPassages()
@@ -676,7 +676,7 @@ public class ScholarTabViewModelTests
         Assert.Equal(2, vm.Collections.Count);
     }
 
-    // ---- Clearing filter restores all items ----
+   
 
     [Fact]
     public void SearchFilter_ClearingFilterRestoresAllPassages()
@@ -699,7 +699,7 @@ public class ScholarTabViewModelTests
         Assert.Equal(3, vm.Passages.Count);
     }
 
-    // ---- Author fields (CreatedBy) ----
+   
 
     [Fact]
     public void AddCollection_SetsCreatedByFromUsername()
@@ -741,8 +741,8 @@ public class ScholarTabViewModelTests
     {
         var vm = MakeVm();
 
-        // Set username, then add collection to verify it takes effect
-        vm.SetUsername("  Alice  "); // should be trimmed
+       
+        vm.SetUsername("  Alice  ");
         vm.AddCollectionCommand.Execute(null);
 
         Assert.Equal("Alice", vm.Collections[0].CreatedBy);
@@ -772,7 +772,7 @@ public class ScholarTabViewModelTests
         Assert.Null(vm.Collections[0].CreatedBy);
     }
 
-    // ---- Export/Import ----
+   
 
     [Fact]
     public async Task ExportCollections_CallsServiceExport()
@@ -926,7 +926,7 @@ public class ScholarTabViewModelTests
         };
 
         var vm = new ScholarTabViewModel(trackingSvc);
-        // Set root so save works
+       
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
@@ -935,7 +935,7 @@ public class ScholarTabViewModelTests
 
         await vm.ImportCollectionsCommand.ExecuteAsync(null);
 
-        // The imported collection should be in _allCollections (reflected through Collections)
+       
         Assert.Single(vm.Collections);
         Assert.Equal("Imported Collection", vm.Collections[0].Name);
     }
@@ -962,7 +962,7 @@ public class ScholarTabViewModelTests
         Assert.Contains("not available", vm.StatusMessage);
     }
 
-    // ---- Community: LoadCommunityAsync ----
+   
 
     [Fact]
     public async Task LoadCommunityAsync_PopulatesCommunityCollections()
@@ -990,7 +990,7 @@ public class ScholarTabViewModelTests
         var vm = MakeVm(svc);
         vm.SetUsername("alice");
 
-        // Set root via reflection to enable LoadCommunityAsync
+       
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
@@ -1028,7 +1028,7 @@ public class ScholarTabViewModelTests
 
         await vm.LoadCommunityCommand.ExecuteAsync(null);
 
-        // Alice's own collection should be excluded
+       
         Assert.Single(vm.CommunityCollections);
         Assert.Equal("Bob's Collection", vm.CommunityCollections[0].Name);
     }
@@ -1084,7 +1084,7 @@ public class ScholarTabViewModelTests
         };
 
         var vm = MakeVm(svc);
-        vm.SetUsername("alice"); // lowercase
+        vm.SetUsername("alice");
 
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -1092,12 +1092,12 @@ public class ScholarTabViewModelTests
 
         await vm.LoadCommunityCommand.ExecuteAsync(null);
 
-        // "Alice" should be excluded even though username is "alice"
+       
         Assert.Single(vm.CommunityCollections);
         Assert.Equal("Bob's", vm.CommunityCollections[0].Name);
     }
 
-    // ---- Community: CommunityFilter ----
+   
 
     [Fact]
     public async Task CommunityFilter_FiltersByNameAuthorDescription()
@@ -1128,26 +1128,26 @@ public class ScholarTabViewModelTests
         await vm.LoadCommunityCommand.ExecuteAsync(null);
         Assert.Equal(3, vm.CommunityCollections.Count);
 
-        // Filter by name
+       
         vm.CommunityFilter = "Zen";
-        Assert.Equal(2, vm.CommunityCollections.Count); // "Zen Koans" and "Meditation Guide" (description has "Zen")
+        Assert.Equal(2, vm.CommunityCollections.Count);
 
-        // Filter by author
+       
         vm.CommunityFilter = "carol";
         Assert.Single(vm.CommunityCollections);
         Assert.Equal("Meditation Guide", vm.CommunityCollections[0].Name);
 
-        // Filter by description
+       
         vm.CommunityFilter = "Amitabha";
         Assert.Single(vm.CommunityCollections);
         Assert.Equal("Pure Land", vm.CommunityCollections[0].Name);
 
-        // Clear filter restores all
+       
         vm.CommunityFilter = "";
         Assert.Equal(3, vm.CommunityCollections.Count);
     }
 
-    // ---- Community: Selecting community collection populates CommunityPassages ----
+   
 
     [Fact]
     public async Task SelectingCommunityCollection_PopulatesCommunityPassages()
@@ -1181,13 +1181,13 @@ public class ScholarTabViewModelTests
 
         await vm.LoadCommunityCommand.ExecuteAsync(null);
 
-        // After load, first community collection should be auto-selected
+       
         Assert.NotNull(vm.SelectedCommunityCollection);
         Assert.Equal(2, vm.CommunityPassages.Count);
         Assert.NotNull(vm.SelectedCommunityPassage);
     }
 
-    // ---- Community: HasCommunityCollections ----
+   
 
     [Fact]
     public async Task HasCommunityCollections_TrueWhenDataExists()
@@ -1210,7 +1210,7 @@ public class ScholarTabViewModelTests
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
 
-        Assert.False(vm.HasCommunityCollections); // initially false
+        Assert.False(vm.HasCommunityCollections);
 
         await vm.LoadCommunityCommand.ExecuteAsync(null);
 
@@ -1237,7 +1237,7 @@ public class ScholarTabViewModelTests
         Assert.False(vm.HasCommunityCollections);
     }
 
-    // ---- Clear resets community state ----
+   
 
     [Fact]
     public async Task Clear_ResetsAllCommunityState()
@@ -1281,7 +1281,7 @@ public class ScholarTabViewModelTests
         Assert.False(vm.HasCommunityCollections);
     }
 
-    // ---- Link management: CreateLinkAsync ----
+   
 
     [Fact]
     public async Task CreateLinkAsync_AddsLinkToCollection()
@@ -1311,7 +1311,7 @@ public class ScholarTabViewModelTests
 
         await vm.CreateLinkAsync("p1", "p2", "quotes");
 
-        // No crash, no links added
+       
     }
 
     [Fact]
@@ -1349,7 +1349,7 @@ public class ScholarTabViewModelTests
         Assert.Equal(3, collection.Links.Count);
     }
 
-    // ---- Link management: RemoveLinkAsync ----
+   
 
     [Fact]
     public async Task RemoveLinkAsync_RemovesLinkById()
@@ -1385,7 +1385,7 @@ public class ScholarTabViewModelTests
 
         await vm.RemoveLinkAsync("nonexistent-id");
 
-        Assert.Single(collection.Links); // unchanged
+        Assert.Single(collection.Links);
     }
 
     [Fact]
@@ -1394,7 +1394,7 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.SelectedCollection = null;
 
-        await vm.RemoveLinkAsync("any-id"); // should not crash
+        await vm.RemoveLinkAsync("any-id");
     }
 
     [Fact]
@@ -1419,7 +1419,7 @@ public class ScholarTabViewModelTests
         Assert.Equal("parallels", collection.Links[0].RelationType);
     }
 
-    // ---- Link management: GetLinksForPassage ----
+   
 
     [Fact]
     public async Task GetLinksForPassage_ReturnsLinksWherePassageIsFromOrTo()
@@ -1436,15 +1436,15 @@ public class ScholarTabViewModelTests
         await vm.CreateLinkAsync("p2", "p3", "parallels");
         await vm.CreateLinkAsync("p1", "p3", "alludes-to");
 
-        // p1 is From in two links
+       
         var p1Links = vm.GetLinksForPassage("p1");
         Assert.Equal(2, p1Links.Count);
 
-        // p2 is From in one, To in another
+       
         var p2Links = vm.GetLinksForPassage("p2");
         Assert.Equal(2, p2Links.Count);
 
-        // p3 is To in two links
+       
         var p3Links = vm.GetLinksForPassage("p3");
         Assert.Equal(2, p3Links.Count);
     }
@@ -1489,7 +1489,7 @@ public class ScholarTabViewModelTests
         Assert.Empty(p3Links);
     }
 
-    // ---- DeletePassage: orphan link cleanup ----
+   
 
     [Fact]
     public async Task DeletePassage_CleansUpOrphanLinks()
@@ -1511,11 +1511,11 @@ public class ScholarTabViewModelTests
         await vm.CreateLinkAsync("p1", "p3", "alludes-to");
         Assert.Equal(3, collection.Links.Count);
 
-        // Delete p2 -- should remove links involving p2
+       
         vm.SelectedPassage = p2;
         vm.DeletePassageCommand.Execute(null);
 
-        // Only the p1->p3 link should remain
+       
         Assert.Single(collection.Links);
         Assert.Equal("alludes-to", collection.Links[0].RelationType);
         Assert.Equal("p1", collection.Links[0].FromPassageId);
@@ -1538,14 +1538,14 @@ public class ScholarTabViewModelTests
         await vm.CreateLinkAsync("p1", "p2", "quotes");
         Assert.Single(collection.Links);
 
-        // Delete p1 -- the single link references p1
+       
         vm.SelectedPassage = p1;
         vm.DeletePassageCommand.Execute(null);
 
         Assert.Empty(collection.Links);
     }
 
-    // ---- FindPassageById ----
+   
 
     [Fact]
     public void FindPassageById_ReturnsCorrectPassage()
@@ -1573,7 +1573,7 @@ public class ScholarTabViewModelTests
         Assert.Null(vm.FindPassageById("any"));
     }
 
-    // ---- Test 9: Facet properties sync to/from passage ----
+   
 
     [Fact]
     public void FacetProperties_SyncToPassageOnSave()
@@ -1581,7 +1581,7 @@ public class ScholarTabViewModelTests
         var svc = new StubScholarCollectionsService();
         var vm = MakeVm(svc);
 
-        // Set root so save runs
+       
         var rootField = typeof(ScholarTabViewModel).GetField("_root",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
@@ -1596,13 +1596,13 @@ public class ScholarTabViewModelTests
         vm.SelectedCollection = vm.Collections[0];
         vm.SelectedPassage = passage;
 
-        // Set facet values via VM properties
+       
         vm.DoctrinalTopic = "Buddha-nature";
         vm.LiteraryForm = "Koan case";
         vm.Lineage = "Linji/Rinzai";
         vm.RhetoricalFunction = "Paradox";
 
-        // Trigger save (which calls SyncEditorFieldsToPassage)
+       
         vm.SaveCommand.Execute(null);
 
         Assert.Equal("Buddha-nature", passage.DoctrinalTopic);
@@ -1679,10 +1679,10 @@ public class ScholarTabViewModelTests
         vm.SelectedCollection = vm.Collections[0];
         vm.SelectedPassage = passage;
 
-        // Clear facet values
+       
         vm.DoctrinalTopic = "";
         vm.LiteraryForm = "";
-        vm.Lineage = "   "; // whitespace only
+        vm.Lineage = "   ";
         vm.RhetoricalFunction = "";
 
         vm.SaveCommand.Execute(null);
@@ -1693,7 +1693,7 @@ public class ScholarTabViewModelTests
         Assert.Null(passage.RhetoricalFunction);
     }
 
-    // ---- Test 10: SortMode "Chronological" sorts by master date ----
+   
 
     [Fact]
     public void SortMode_Chronological_SortsByMasterNameDate()
@@ -1702,8 +1702,8 @@ public class ScholarTabViewModelTests
         vm.AddCollectionCommand.Execute(null);
         var collection = vm.Collections[0];
 
-        // Linji floruit=810, Bodhidharma floruit=500, Hakuin floruit=1686
-        // If master-dates.json is available, sorting should order by floruit
+       
+       
         collection.Passages.Add(new ScholarPassage
         {
             Id = "p1", ZhText = "a", SourceRelPath = "x.xml",
@@ -1726,14 +1726,14 @@ public class ScholarTabViewModelTests
 
         vm.SortMode = "Chronological";
 
-        // If master-dates.json is available in test output, order should be:
-        // Bodhidharma (500), Linji (810), Hakuin (1686)
-        // If file not found, all get int.MaxValue and order is preserved (Default)
-        // Either way, this should not throw
+       
+       
+       
+       
         Assert.Equal(3, vm.Passages.Count);
     }
 
-    // ---- Test 11: SortMode "A-Z (Chinese)" sorts alphabetically ----
+   
 
     [Fact]
     public void SortMode_AZChinese_SortsAlphabetically()
@@ -1744,15 +1744,15 @@ public class ScholarTabViewModelTests
 
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p1", ZhText = "\u5fc3\u5373\u662f\u4f5b", SourceRelPath = "x.xml" // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âº
+            Id = "p1", ZhText = "\u5fc3\u5373\u662f\u4f5b", SourceRelPath = "x.xml"
         });
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p2", ZhText = "\u4e0d\u662f\u5fc3\u4e0d\u662f\u4f5b", SourceRelPath = "y.xml" // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âº
+            Id = "p2", ZhText = "\u4e0d\u662f\u5fc3\u4e0d\u662f\u4f5b", SourceRelPath = "y.xml"
         });
         collection.Passages.Add(new ScholarPassage
         {
-            Id = "p3", ZhText = "\u5e73\u5e38\u5fc3\u662f\u9053", SourceRelPath = "z.xml" // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“
+            Id = "p3", ZhText = "\u5e73\u5e38\u5fc3\u662f\u9053", SourceRelPath = "z.xml"
         });
 
         vm.SelectedCollection = null;
@@ -1760,11 +1760,11 @@ public class ScholarTabViewModelTests
 
         vm.SortMode = "A-Z (Chinese)";
 
-        // Ordinal sort: ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â (U+4E0D) < ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ (U+5E73) < ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ (U+5FC3)
+       
         Assert.Equal(3, vm.Passages.Count);
-        Assert.Equal("p2", vm.Passages[0].Id); // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âº
-        Assert.Equal("p3", vm.Passages[1].Id); // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“
-        Assert.Equal("p1", vm.Passages[2].Id); // ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âº
+        Assert.Equal("p2", vm.Passages[0].Id);
+        Assert.Equal("p3", vm.Passages[1].Id);
+        Assert.Equal("p1", vm.Passages[2].Id);
     }
 
     [Fact]
@@ -1783,13 +1783,13 @@ public class ScholarTabViewModelTests
 
         vm.SortMode = "Default";
 
-        // Default preserves insertion order
+       
         Assert.Equal("p3", vm.Passages[0].Id);
         Assert.Equal("p1", vm.Passages[1].Id);
         Assert.Equal("p2", vm.Passages[2].Id);
     }
 
-    // ---- Test 12: StudyNotes syncs with selected collection ----
+   
 
     [Fact]
     public void StudyNotes_LoadedFromCollection()
@@ -1798,15 +1798,15 @@ public class ScholarTabViewModelTests
         vm.AddCollectionCommand.Execute(null);
         vm.AddCollectionCommand.Execute(null);
 
-        // Select first collection and set notes via VM property (syncs to collection)
+       
         vm.SelectedCollection = vm.Collections[0];
         vm.StudyNotes = "My research notes on this collection";
 
-        // Switch to second collection ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â notes should be saved back to first
+       
         vm.SelectedCollection = vm.Collections[1];
-        Assert.Equal("", vm.StudyNotes); // second collection has no notes
+        Assert.Equal("", vm.StudyNotes);
 
-        // Switch back ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â notes should reload from first collection
+       
         vm.SelectedCollection = vm.Collections[0];
         Assert.Equal("My research notes on this collection", vm.StudyNotes);
     }
@@ -1831,7 +1831,7 @@ public class ScholarTabViewModelTests
 
         vm.StudyNotes = "Updated notes";
 
-        // Save triggers SyncEditorFieldsToPassage which includes study notes sync
+       
         vm.SaveCommand.Execute(null);
 
         Assert.Equal("Updated notes", vm.Collections[0].StudyNotes);
@@ -1853,11 +1853,11 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
 
-        // New collection has empty study notes
+       
         Assert.Equal("", vm.StudyNotes);
     }
 
-    // ---- SearchFilterMode: Facet-specific filtering ----
+   
 
     [Fact]
     public void SearchFilterMode_Topic_FiltersByDoctrinalTopic()
@@ -1913,24 +1913,24 @@ public class ScholarTabViewModelTests
         Assert.Equal("p1", vm.Passages[0].Id);
     }
 
-    // ---- Facet options loaded ----
+   
 
     [Fact]
     public void FacetOptions_PopulatedOnConstruction()
     {
         var vm = MakeVm();
 
-        // Options should be populated (either from JSON file or defaults)
+       
         Assert.NotEmpty(vm.DoctrinalTopicOptions);
         Assert.NotEmpty(vm.LiteraryFormOptions);
         Assert.NotEmpty(vm.LineageOptions);
         Assert.NotEmpty(vm.RhetoricalFunctionOptions);
     }
 
-    // ---- Mutual exclusion: selecting community clears user selection ----
-    // Note: The current VM does not explicitly implement mutual exclusion between
-    // user collections and community collections. They are independent panels.
-    // This test verifies they are independent (both can have selections).
+   
+   
+   
+   
 
     [Fact]
     public async Task UserAndCommunitySelections_AreIndependent()
@@ -1953,20 +1953,20 @@ public class ScholarTabViewModelTests
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         rootField!.SetValue(vm, "/test-root");
 
-        // Add user collection
+       
         vm.AddCollectionCommand.Execute(null);
         Assert.NotNull(vm.SelectedCollection);
 
-        // Load community
+       
         await vm.LoadCommunityCommand.ExecuteAsync(null);
         Assert.NotNull(vm.SelectedCommunityCollection);
 
-        // Both should be selected independently
+       
         Assert.NotNull(vm.SelectedCollection);
         Assert.NotNull(vm.SelectedCommunityCollection);
     }
 
-    // ---- DetectMasterNames ----
+   
 
     private const string LinjiLong = "\u81e8\u6fdf\u7fa9\u7384";
     private const string LinjiShort = "\u81e8\u6fdf";
@@ -2051,12 +2051,12 @@ public class ScholarTabViewModelTests
         var result = ScholarTabViewModel.DetectMasterNames(
             $"{LinjiLong}\u958b\u793a\u5927\u773e", "Master Linji Yixuan", entries);
 
-        Assert.Single(result.Where(n => n == "Linji Yixuan"));
+        Assert.Single(result, n => n == "Linji Yixuan");
     }
 
-    // ---- AutoTagMasterNames doesn't add duplicates ----
-    // AutoTagMasterNames is private, so we test it indirectly via DetectMasterNames
-    // since the dedup logic is: "if (!passage.MasterNames.Contains(name, ...))"
+   
+   
+   
 
     [Fact]
     public void DetectMasterNames_ReturnsDistinctNames()
@@ -2072,7 +2072,7 @@ public class ScholarTabViewModelTests
         Assert.Single(result);
         Assert.Equal("Linji Yixuan", result[0]);
     }
-    // ---- LinkedTexts property tests ----
+   
 
     [Fact]
     public void LinkedTexts_DefaultIsEmptyList()
@@ -2125,7 +2125,7 @@ public class ScholarTabViewModelTests
     [Fact]
     public void LinkedTexts_PreservedOnDeserialization()
     {
-        // Verify backward compat: a passage without LinkedTexts in JSON gets empty list
+       
         var json = """{"Id":"abc","SourceRelPath":"","ZhText":"","EnText":"","Notes":"","Tags":[],"MasterNames":[],"AddedUtc":"2026-01-01T00:00:00+00:00"}""";
         var passage = System.Text.Json.JsonSerializer.Deserialize<ScholarPassage>(json);
 
@@ -2237,6 +2237,7 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
         => Task.CompletedTask;
 }
+
 
 
 

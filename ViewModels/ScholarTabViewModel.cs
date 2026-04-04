@@ -321,6 +321,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 NormalizeOwnedCollections(list);
                 if (!string.IsNullOrWhiteSpace(_username))
                 {
+                    if (string.IsNullOrWhiteSpace(_root)) throw new InvalidOperationException("Scholar root is not set.");
                     await _svc.SaveUserAsync(_root, _username, list);
                     if (_loadedFromLegacyIdentity && !string.IsNullOrWhiteSpace(_loadedLegacyUsername))
                     {
@@ -335,6 +336,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 }
                 else
                 {
+                    if (string.IsNullOrWhiteSpace(_root)) throw new InvalidOperationException("Scholar root is not set.");
                     await _svc.SaveAsync(_root, list);
                     StatusMessage = "Saved.";
                 }
@@ -583,6 +585,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         try
         {
+            if (string.IsNullOrWhiteSpace(_root)) return;
             var communityDir = ScholarCollectionsService.GetCommunityCollectionsDir(_root);
             var allUsers = await _svc.LoadAllCommunityJsonlAsync(communityDir);
             var identityKeys = GetCurrentIdentityKeys();
@@ -652,8 +655,8 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         var filter = CommunityFilter?.Trim() ?? "";
 
-        string? selectedUser = _selectedCommunityUserIndex > 0 && _selectedCommunityUserIndex < _communityUsernames.Count
-            ? _communityUsernames[_selectedCommunityUserIndex]
+        string? selectedUser = SelectedCommunityUserIndex > 0 && SelectedCommunityUserIndex < _communityUsernames.Count
+            ? _communityUsernames[SelectedCommunityUserIndex]
             : null;
 
         foreach (var (author, c) in _allCommunityCollections)

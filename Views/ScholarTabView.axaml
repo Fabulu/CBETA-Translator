@@ -77,18 +77,18 @@
             <StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,4">
               <TextBox Watermark="Filter passages..."
                        Text="{Binding SearchFilter}"/>
-              <StackPanel Orientation="Horizontal" Spacing="6">
-                <ComboBox Width="110" Padding="4,2"
+              <WrapPanel Orientation="Horizontal" ItemHeight="32" Margin="0,0,0,2">
+                <ComboBox Width="104" Padding="4,2"
                           ItemsSource="{Binding SortModes}"
                           SelectedItem="{Binding SortMode}"
                           ToolTip.Tip="Sort order"/>
-                <ComboBox Width="110" Padding="4,2"
+                <ComboBox Width="104" Padding="4,2"
                           ItemsSource="{Binding SearchFilterModes}"
                           SelectedItem="{Binding SearchFilterMode}"
                           ToolTip.Tip="Filter scope"/>
                 <Button Name="BtnEditMasterDates" Content="Edit Dates"
-                        ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2"/>
-              </StackPanel>
+                        ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" MinWidth="92"/>
+              </WrapPanel>
             </StackPanel>
 
             <ListBox Grid.Row="2" Name="PassagesList"
@@ -497,6 +497,7 @@
     </Border>
   </Grid>
 </UserControl>
+
 
 
 

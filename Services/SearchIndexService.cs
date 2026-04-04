@@ -315,7 +315,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if (max <= 0) return "";
             int n = (int)Math.Round(12.0 * v / max);
             n = Math.Clamp(n, 0, 12);
-            return new string('█', n);
+            return new string('#', n);
         }
 
         int maxC = left.Count > 0 ? left.Max(r => r.Freq) : 0;
@@ -331,7 +331,7 @@ public sealed class SearchIndexService : ISearchIndexService
             ngByFile.TryGetValue(r.Key, out var byFile);
             double share = DominanceShare(byFile, r.Freq);
             int bars = Math.Clamp((int)Math.Round(12 * share), 0, 12);
-            return $"{r.Key}:{share * 100:0.#}% {new string('█', bars)}";
+            return $"{r.Key}:{share * 100:0.#}% {new string('#', bars)}";
         }).ToArray();
 
         string domLine = domTop.Length > 0 ? ("Dominance (top-file share): " + string.Join("  ", domTop)) : "";
@@ -1863,8 +1863,10 @@ public sealed class SearchIndexService : ISearchIndexService
         if (effectiveQuery.Length == 0)
             yield break;
 
+        var entries = manifest.Entries ?? new List<SearchIndexEntry>();
+
         var swTotal = System.Diagnostics.Stopwatch.StartNew();
-        Dbg($"SearchAllAsync START q='{query}' effectiveQ='{effectiveQuery}' len={effectiveQuery.Length} includeO={includeOriginal} includeT={includeTranslated} entries={manifest?.Entries?.Count ?? 0}");
+        Dbg($"SearchAllAsync START q='{query}' effectiveQ='{effectiveQuery}' len={effectiveQuery.Length} includeO={includeOriginal} includeT={includeTranslated} entries={entries.Count}");
 
         bool useBloom = effectiveQuery.Length >= 2;
         var grams = MakeQueryGrams(effectiveQuery);
@@ -1881,7 +1883,7 @@ public sealed class SearchIndexService : ISearchIndexService
             {
                 var cjk2 = await TryLoadCjk2ManifestAsync(root);
                 if (cjk2 != null &&
-                    cjk2.EntryCount == (manifest.Entries?.Count ?? 0) &&
+                    cjk2.EntryCount == entries.Count &&
                     cjk2.Postings != null)
                 {
                     var postingMap = new Dictionary<string, List<int>>(StringComparer.Ordinal);
@@ -1918,7 +1920,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         cjk2PrefilterIds = impossible ? new HashSet<int>() : (intersect ?? new HashSet<int>());
                         Dbg($"CJK2 prefilter {(cjk2PrefilterIds.Count == 0 ? "EMPTY" : "ACTIVE")} qBigrams={qBigrams.Count} passIds={cjk2PrefilterIds.Count}");
 
-                        int entryCount = manifest.Entries?.Count ?? 0;
+                        int entryCount = entries.Count;
                         if (cjk2PrefilterIds.Count > 0 && entryCount > 0)
                         {
                             double passRatio = (double)cjk2PrefilterIds.Count / entryCount;
@@ -1955,7 +1957,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if (!useBloom)
             {
                 int seen = 0;
-                foreach (var e in manifest.Entries)
+                foreach (var e in entries)
                 {
                     ct.ThrowIfCancellationRequested();
 
@@ -2008,7 +2010,7 @@ public sealed class SearchIndexService : ISearchIndexService
                     Dbg($"Candidate phase bloom: Parallel.ForEach START dop={po.MaxDegreeOfParallelism}, grams={grams.Count}");
 
                     Parallel.ForEach(
-                        manifest.Entries,
+                        entries,
                         po,
                         localInit: () =>
                         {
@@ -2120,7 +2122,7 @@ public sealed class SearchIndexService : ISearchIndexService
         var outGroups = new ConcurrentBag<SearchResultGroup>();
         int verifiedDocs = 0;
         int totalHits = 0;
-        var entryMap = manifest.Entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
+        var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
         var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
 
         try

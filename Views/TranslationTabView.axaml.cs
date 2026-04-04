@@ -425,14 +425,12 @@ public partial class TranslationTabView : UserControl
 
         if (_chkWrap != null)
         {
-            _chkWrap.Checked += (_, _) => ApplyWrap();
-            _chkWrap.Unchecked += (_, _) => ApplyWrap();
+            _chkWrap.IsCheckedChanged += (_, _) => ApplyWrap();
         }
 
         if (_chkAssistantVisible != null)
         {
-            _chkAssistantVisible.Checked += (_, _) => UpdateAssistantVisibility();
-            _chkAssistantVisible.Unchecked += (_, _) => UpdateAssistantVisibility();
+            _chkAssistantVisible.IsCheckedChanged += (_, _) => UpdateAssistantVisibility();
         }
 
         if (_cmbTranslationSource != null)
@@ -1138,7 +1136,7 @@ public partial class TranslationTabView : UserControl
         }
 
         _projectionTermHighlighter.SetRanges(ranges);
-        _editor.TextArea.TextView.Redraw();
+        _editor.TextArea?.TextView?.Redraw();
     }
 
     private TmSharedHighlightTransformer? _tmSharedHighlighter;
@@ -1197,7 +1195,7 @@ public partial class TranslationTabView : UserControl
         }
 
         _tmSharedHighlighter.SetRanges(ranges);
-        _editor.TextArea.TextView.Redraw();
+        _editor.TextArea?.TextView?.Redraw();
     }
 
     private static bool TryFindSegmentRange(
