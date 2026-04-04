@@ -22,6 +22,8 @@ public sealed class ScholarPassage
     public int? EndBlockNumber { get; set; }
     public string? FromLb { get; set; }
     public string? ToLb { get; set; }
+    public SearchSide PreferredSide { get; set; } = SearchSide.Original;
+    public string? TranslationUser { get; set; }
 
     // Facet categorization
     public string? DoctrinalTopic { get; set; }

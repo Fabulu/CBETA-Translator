@@ -57,7 +57,7 @@ public static class CbetaUriParser
 
         // Convert shareable HTTPS URLs to zen:// format before parsing.
         // e.g. https://readzen.pages.dev/#/T48n2005/0292b29?side=Translated
-        //    → zen://T48n2005/0292b29?side=Translated
+        //    â†’ zen://T48n2005/0292b29?side=Translated
         if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
             uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
         {
@@ -65,6 +65,16 @@ public static class CbetaUriParser
             if (hashIdx >= 0)
             {
                 uri = Scheme + "://" + uri[(hashIdx + 2)..];
+            }
+            else if (Uri.TryCreate(uri, UriKind.Absolute, out var shareable))
+            {
+                var path = shareable.AbsolutePath.Trim('/');
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    uri = Scheme + "://" + path;
+                    if (!string.IsNullOrWhiteSpace(shareable.Query))
+                        uri += shareable.Query;
+                }
             }
         }
 
@@ -146,7 +156,7 @@ public static class CbetaUriParser
     /// </summary>
     private static bool IsLbSegment(string segment)
     {
-        // A range like "0292a26-0292a29" also counts — check the first part before any dash.
+        // A range like "0292a26-0292a29" also counts â€” check the first part before any dash.
         var first = segment.Split('-')[0];
         return first.Length >= 7
             && char.IsDigit(first[0]) && char.IsDigit(first[1])
@@ -275,9 +285,9 @@ public static class CbetaUriParser
 
         if (!string.IsNullOrEmpty(highlightText))
         {
-            // Truncate highlight to keep URLs short — 60 chars is enough to find the right spot
+            // Truncate highlight to keep URLs short â€” 60 chars is enough to find the right spot
             var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
-            // Also strip newlines — they bloat the URL and aren't needed for matching
+            // Also strip newlines â€” they bloat the URL and aren't needed for matching
             truncated = truncated.Replace("\n", "").Replace("\r", "");
             queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
         }
@@ -309,7 +319,7 @@ public static class CbetaUriParser
         SearchSide side = SearchSide.Original,
         string? user = null)
     {
-        // Extract file ID from relPath: "T/T48/T48n2005.xml" → "T48n2005"
+        // Extract file ID from relPath: "T/T48/T48n2005.xml" â†’ "T48n2005"
         var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
         var url = ShareableBase + Uri.EscapeDataString(fileName);
 
@@ -350,7 +360,7 @@ public static class CbetaUriParser
 
     /// <summary>
     /// Parses any <c>zen://</c> or shareable HTTPS URL into a <see cref="DeepLinkRequest"/>.
-    /// Recognises keyword-prefixed paths (<c>zen://dict/…</c>, <c>zen://scholar/…</c>, etc.)
+    /// Recognises keyword-prefixed paths (<c>zen://dict/â€¦</c>, <c>zen://scholar/â€¦</c>, etc.)
     /// and falls back to passage-based parsing via <see cref="TryParse"/> for file IDs.
     /// Returns <c>null</c> if the URI is malformed.
     /// </summary>
@@ -429,7 +439,7 @@ public static class CbetaUriParser
                 };
 
             case "term":
-                // Termbase merged with dictionary — both route to Dictionary kind
+                // Termbase merged with dictionary â€” both route to Dictionary kind
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Dictionary,
@@ -437,7 +447,7 @@ public static class CbetaUriParser
                 };
         }
 
-        // No keyword match — fall through to passage parsing
+        // No keyword match â€” fall through to passage parsing
         var nav = TryParse(raw);
         return nav != null ? new DeepLinkRequest { Kind = DeepLinkKind.Passage, Passage = nav } : null;
     }

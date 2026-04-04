@@ -399,7 +399,6 @@ public partial class ReadableTabView : UserControl
                     fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
                     toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
 
-                    // Fall back to highlight text if lb extraction fails
                     if (fromLb == null)
                     {
                         highlight = editor.SelectedText;
@@ -465,7 +464,6 @@ public partial class ReadableTabView : UserControl
             addTaggedItem.Click += (_, _) => OnAddTaggedSegmentToScholar();
             menu.Items.Add(addTaggedItem);
 
-            // When viewing another user's tags, offer to adopt the tag under caret
             if (_selectedTagUser != null)
             {
                 var adoptItem = new MenuItem { Header = "Adopt This Tag to My Tags" };
@@ -489,11 +487,9 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        // Get text from the other pane (selection sync may have mirrored it)
         var otherEditor = isTranslated ? _aeOrig : _aeTran;
         string otherText = otherEditor?.SelectedText ?? "";
 
-        // If the other pane has no selection, try multi-segment mapping
         if (string.IsNullOrWhiteSpace(otherText) && otherEditor != null)
         {
             var srcDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
@@ -505,13 +501,11 @@ public partial class ReadableTabView : UserControl
 
             if (hasSelection && !srcDoc.IsEmpty && !dstDoc.IsEmpty)
             {
-                // Find all source segments overlapping the selection
                 var mappedParts = new List<string>();
                 foreach (var seg in srcDoc.Segments)
                 {
                     if (seg.Start >= selEnd || seg.EndExclusive <= selStart)
-                        continue; // no overlap
-                    // This segment overlaps; find the corresponding destination segment
+                        continue;
                     if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, seg.Start, out var dstSeg))
                     {
                         int dstLen = otherEditor.Text?.Length ?? 0;
@@ -530,7 +524,6 @@ public partial class ReadableTabView : UserControl
                     otherText = string.Join("\n", mappedParts);
             }
 
-            // Single-segment fallback (original behavior)
             if (string.IsNullOrWhiteSpace(otherText))
             {
                 int caret = GetCaretOffsetSafe(editor);
@@ -546,22 +539,67 @@ public partial class ReadableTabView : UserControl
             }
         }
 
-        var passage = new ScholarPassage
-        {
-            ZhText = isTranslated ? otherText : selectedText,
-            EnText = isTranslated ? selectedText : otherText,
-            SourceRelPath = _vm.CurrentRelPathForZen ?? ""
-        };
-
-        // Capture lb values for zen:// link generation
-        var lbDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        string? fromLb = null;
+        string? toLb = null;
+        var lbDoc = _vm.RenderOrig;
         if (lbDoc != null && !lbDoc.IsEmpty)
         {
             int lbSelStart = GetSelectionStartSafe(editor);
             int lbSelEnd = GetSelectionEndSafe(editor);
-            passage.FromLb = LbHelper.FindNearestLbNValue(lbDoc, lbSelStart);
-            passage.ToLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lbSelStart, lbSelEnd - 1));
+
+            if (isTranslated && !_vm.RenderTran.IsEmpty)
+            {
+                var mappedSegments = new List<RenderSegment>();
+                foreach (var seg in _vm.RenderTran.Segments)
+                {
+                    if (seg.Start >= lbSelEnd || seg.EndExclusive <= lbSelStart)
+                        continue;
+                    if (_selectionSync.TryGetDestinationSegment(_vm.RenderTran, lbDoc, seg.Start, out var dstSeg))
+                        mappedSegments.Add(dstSeg);
+                }
+
+                if (mappedSegments.Count > 0)
+                {
+                    mappedSegments.Sort((a, b) => a.Start.CompareTo(b.Start));
+                    fromLb = LbHelper.FindNearestLbNValue(lbDoc, mappedSegments[0].Start);
+                    var lastSeg = mappedSegments[^1];
+                    toLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lastSeg.Start, lastSeg.EndExclusive - 1));
+                }
+            }
+            else
+            {
+                fromLb = LbHelper.FindNearestLbNValue(lbDoc, lbSelStart);
+                toLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lbSelStart, lbSelEnd - 1));
+            }
         }
+
+        if (!string.IsNullOrWhiteSpace(fromLb))
+        {
+            var zhByLb = ExtractTextBetweenLbs(_vm.RenderOrig, fromLb, toLb);
+            if (!string.IsNullOrWhiteSpace(zhByLb))
+            {
+                if (isTranslated) otherText = zhByLb;
+                else selectedText = zhByLb;
+            }
+
+            var enByLb = ExtractTextBetweenLbs(_vm.RenderTran, fromLb, toLb);
+            if (!string.IsNullOrWhiteSpace(enByLb))
+            {
+                if (isTranslated) selectedText = enByLb;
+                else otherText = enByLb;
+            }
+        }
+
+        var passage = new ScholarPassage
+        {
+            ZhText = isTranslated ? otherText : selectedText,
+            EnText = isTranslated ? selectedText : otherText,
+            SourceRelPath = _vm.CurrentRelPathForZen ?? "",
+            FromLb = fromLb,
+            ToLb = toLb,
+            PreferredSide = isTranslated ? SearchSide.Translated : SearchSide.Original,
+            TranslationUser = isTranslated ? GetTranslationUser?.Invoke() : null
+        };
 
         AddToScholarRequested?.Invoke(this, passage);
         await Task.CompletedTask;
@@ -980,7 +1018,6 @@ public partial class ReadableTabView : UserControl
     private static (int start, int length) ResolveLbRange(
         RenderedDocument doc, string fromLb, string? toLb)
     {
-        // Try finding the segment with and without edition suffix
         if (!TryFindSegmentByLb(doc, fromLb, out var startSeg))
             return (-1, 0);
 
@@ -992,8 +1029,39 @@ public partial class ReadableTabView : UserControl
             if (TryFindSegmentByLb(doc, toLb, out var endSeg))
                 rangeEnd = endSeg.EndExclusive;
         }
+        else if (rangeEnd <= rangeStart)
+        {
+            rangeEnd = FindSingleLbRangeEnd(doc, startSeg, rangeStart);
+        }
+
+        if (rangeEnd <= rangeStart)
+            return (-1, 0);
 
         return (rangeStart, rangeEnd - rangeStart);
+    }
+
+    private static int FindSingleLbRangeEnd(RenderedDocument doc, RenderSegment startSeg, int rangeStart)
+    {
+        int segIndex = doc.Segments.IndexOf(startSeg);
+        if (segIndex < 0)
+            return Math.Max(rangeStart, doc.Text?.Length ?? rangeStart);
+
+        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
+        {
+            var seg = doc.Segments[i];
+            var lb = LbHelper.ExtractLbNValue(seg.Key);
+            if (!string.IsNullOrWhiteSpace(lb) && seg.Start > rangeStart)
+                return seg.Start;
+        }
+
+        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
+        {
+            var seg = doc.Segments[i];
+            if (seg.EndExclusive > rangeStart)
+                return seg.EndExclusive;
+        }
+
+        return Math.Max(rangeStart, doc.Text?.Length ?? rangeStart);
     }
 
     /// <summary>
