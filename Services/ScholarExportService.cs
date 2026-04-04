@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.Csv => BuildDelimited(collection, ","),
             ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
             ScholarExportFormat.BibTex => BuildBibTex(collection),
+            ScholarExportFormat.CslJson => BuildCslJson(collection),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
 
@@ -610,6 +612,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
     private static string FormatTimestamp(DateTimeOffset? value) =>
         value.HasValue ? FormatTimestamp(value.Value) : "";
 
+    private static string FormatIsoTimestamp(DateTimeOffset value) =>
+        value == default ? string.Empty : value.ToUniversalTime().ToString("O");
+
+    private static string? FormatIsoTimestamp(DateTimeOffset? value) =>
+        value.HasValue ? FormatIsoTimestamp(value.Value) : null;
     private static string FormatLineBreakRange(string? fromLb, string? toLb)
     {
         if (string.IsNullOrWhiteSpace(fromLb))
@@ -782,6 +789,67 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
     private static string CollapseWhitespace(string value) =>
         string.Join(" ", value.Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+    private static string BuildCslJson(ScholarCollection collection)
+    {
+        var items = new List<Dictionary<string, object?>>();
+
+        for (int i = 0; i < collection.Passages.Count; i++)
+        {
+            var passage = collection.Passages[i];
+            var item = new Dictionary<string, object?>
+            {
+                ["id"] = BuildBibTexKey(collection, passage, i + 1),
+                ["type"] = "manuscript",
+                ["title"] = BuildBibTexTitle(passage, i + 1),
+                ["URL"] = BuildShareUrl(passage),
+                ["abstract"] = string.IsNullOrWhiteSpace(BuildBibTexAbstract(passage)) ? null : BuildBibTexAbstract(passage),
+                ["keyword"] = BuildBibTexKeywords(collection, passage),
+                ["note"] = BuildBibTexNote(collection, passage),
+                ["container-title"] = collection.Name,
+                ["collection-title"] = collection.Name,
+                ["source"] = ExtractSourceTitle(passage.SourceRelPath),
+                ["readzen:collectionId"] = collection.Id,
+                ["readzen:passageId"] = passage.Id,
+                ["readzen:sourceRelPath"] = passage.SourceRelPath,
+                ["readzen:fromLb"] = passage.FromLb,
+                ["readzen:toLb"] = passage.ToLb,
+                ["readzen:startBlock"] = passage.StartBlockNumber,
+                ["readzen:endBlock"] = passage.EndBlockNumber,
+                ["readzen:zenUrl"] = BuildZenLink(passage),
+                ["readzen:createdBy"] = passage.CreatedBy,
+                ["readzen:addedUtc"] = FormatIsoTimestamp(passage.AddedUtc),
+                ["readzen:modifiedUtc"] = FormatIsoTimestamp(passage.ModifiedUtc),
+                ["readzen:collectionCreatedBy"] = collection.CreatedBy,
+                ["readzen:collectionCreatedUtc"] = FormatIsoTimestamp(collection.CreatedUtc),
+                ["readzen:collectionModifiedUtc"] = FormatIsoTimestamp(collection.ModifiedUtc),
+                ["readzen:tags"] = passage.Tags.Count > 0 ? passage.Tags : null,
+                ["readzen:masterNames"] = passage.MasterNames.Count > 0 ? passage.MasterNames : null,
+                ["readzen:linkedTexts"] = passage.LinkedTexts.Count > 0 ? passage.LinkedTexts : null,
+                ["readzen:doctrinalTopic"] = passage.DoctrinalTopic,
+                ["readzen:literaryForm"] = passage.LiteraryForm,
+                ["readzen:lineage"] = passage.Lineage,
+                ["readzen:rhetoricalFunction"] = passage.RhetoricalFunction,
+                ["readzen:zhText"] = string.IsNullOrWhiteSpace(passage.ZhText) ? null : passage.ZhText,
+                ["readzen:enText"] = string.IsNullOrWhiteSpace(passage.EnText) ? null : passage.EnText,
+            };
+
+            if (passage.AddedUtc != default)
+            {
+                item["issued"] = new Dictionary<string, object?>
+                {
+                    ["raw"] = FormatIsoTimestamp(passage.AddedUtc)
+                };
+            }
+
+            items.Add(item.Where(kvp => kvp.Value != null && (!(kvp.Value is string s) || !string.IsNullOrWhiteSpace(s))).ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
+        }
+
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+        return JsonSerializer.Serialize(items, options);
+    }
     private static string BuildDelimited(ScholarCollection collection, string delimiter)
     {
         var sb = new StringBuilder();

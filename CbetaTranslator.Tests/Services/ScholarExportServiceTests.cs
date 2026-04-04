@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -613,7 +614,7 @@ public class ScholarExportServiceTests : IDisposable
                 {
                     Id = "p1",
                     SourceRelPath = "xml-p5/T/T0200.xml",
-                    ZhText = "ÃƒÂ§Ã‚Â¥Ã¢â‚¬â€œÃƒÂ¥Ã‚Â¸Ã‚Â«ÃƒÂ¨Ã‚Â¥Ã‚Â¿ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬Å¾Ã‚Â",
+                    ZhText = "ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¥Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¾ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â",
                     EnText = "What is the ancestor's meaning?",
                     Notes = "Needs {careful} escaping",
                     Tags = new List<string> { "koan" },
@@ -674,6 +675,85 @@ public class ScholarExportServiceTests : IDisposable
         Assert.DoesNotContain("keywords =", bib);
         Assert.DoesNotContain("abstract =", bib);
         Assert.Contains("note = {Collection: Sparse; Path: xml-p5/T/T0300.xml}", bib);
+    }
+
+    [Fact]
+    public async Task CslJsonExport_ProducesArrayOfPassageItemsWithStableIds()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-csl",
+            Name = "CSL Collection",
+            Tags = new List<string> { "zen", "citation" },
+            CreatedBy = "owner",
+            CreatedUtc = new DateTimeOffset(2026, 4, 1, 9, 0, 0, TimeSpan.Zero),
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0400.xml",
+                    ZhText = "趙州問答",
+                    EnText = "Zhaozhou dialogue",
+                    Notes = "Export to Zotero",
+                    Tags = new List<string> { "koan" },
+                    MasterNames = new List<string> { "Zhaozhou Congshen" },
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    StartBlockNumber = 5,
+                    AddedUtc = new DateTimeOffset(2026, 4, 2, 10, 0, 0, TimeSpan.Zero)
+                }
+            }
+        };
+
+        var path = TempFile("export.csl.json");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.CslJson);
+        var json = await File.ReadAllTextAsync(path);
+        using var doc = JsonDocument.Parse(json);
+        var root = doc.RootElement;
+
+        Assert.Equal(JsonValueKind.Array, root.ValueKind);
+        Assert.Single(root.EnumerateArray());
+        var item = root[0];
+        Assert.Equal("readzen:col-csl:T0400:0292a26:1", item.GetProperty("id").GetString());
+        Assert.Equal("manuscript", item.GetProperty("type").GetString());
+        Assert.Equal("Passage from T0400 0292a26 - 0292a29", item.GetProperty("title").GetString());
+        Assert.Equal("https://readzen.pages.dev/T0400/0292a26-0292a29", item.GetProperty("URL").GetString());
+        Assert.Equal("zen://T0400/0292a26-0292a29?block=5", item.GetProperty("readzen:zenUrl").GetString());
+        Assert.Equal("col-csl", item.GetProperty("readzen:collectionId").GetString());
+        Assert.Equal("p1", item.GetProperty("readzen:passageId").GetString());
+        Assert.Equal("xml-p5/T/T0400.xml", item.GetProperty("readzen:sourceRelPath").GetString());
+        Assert.Equal("koan", item.GetProperty("readzen:tags")[0].GetString());
+        Assert.Equal("Zhaozhou Congshen", item.GetProperty("readzen:masterNames")[0].GetString());
+    }
+
+    [Fact]
+    public async Task CslJsonExport_OmitsUnsupportedAuthorAndEmptyOptionalFields()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-csl-empty",
+            Name = "Sparse CSL",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0500.xml"
+                }
+            }
+        };
+
+        var path = TempFile("sparse.csl.json");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.CslJson);
+        var json = await File.ReadAllTextAsync(path);
+        using var doc = JsonDocument.Parse(json);
+        var item = doc.RootElement[0];
+
+        Assert.False(item.TryGetProperty("author", out _));
+        Assert.False(item.TryGetProperty("readzen:tags", out _));
+        Assert.False(item.TryGetProperty("abstract", out _));
+        Assert.Equal("Collection: Sparse CSL; Path: xml-p5/T/T0500.xml", item.GetProperty("note").GetString());
     }
     // ---- Invalid format ----
 
