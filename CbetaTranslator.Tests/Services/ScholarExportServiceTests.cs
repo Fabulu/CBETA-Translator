@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
@@ -840,6 +841,137 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("[Add analysis here.]", draft);
         Assert.DoesNotContain("- Anchor:", draft);
     }
+
+    [Fact]
+    public async Task ReaderTagBundleExport_IncludesVocabularyDocumentTagsAndSkippedItems()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-reader",
+            Name = "Reader Interchange",
+            CreatedBy = "tester",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0001.xml",
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    ZhText = "\u7b2c\u4e00\u6bb5\u4e2d\u6587",
+                    EnText = "First English passage",
+                    Tags = new List<string> { "Dharma", "Practice" },
+                    AddedUtc = new DateTimeOffset(2026, 4, 4, 10, 0, 0, TimeSpan.Zero)
+                },
+                new ScholarPassage
+                {
+                    Id = "p2",
+                    SourceRelPath = "xml-p5/T/T0002.xml",
+                    Tags = new List<string> { "Missing Anchor" }
+                },
+                new ScholarPassage
+                {
+                    Id = "p3",
+                    SourceRelPath = "xml-p5/T/T0003.xml",
+                    FromLb = "0300b02",
+                    Tags = new List<string>()
+                }
+            }
+        };
+
+        var path = TempFile("reader-tags.bundle.json");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.ReaderTagBundle);
+
+        using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(path));
+        var root = doc.RootElement;
+
+        Assert.Equal("readzen-reader-tags-bundle/v1", root.GetProperty("format").GetString());
+        Assert.Equal(2, root.GetProperty("summary").GetProperty("document_tag_count").GetInt32());
+        Assert.Equal(2, root.GetProperty("vocabulary").GetProperty("tags").GetArrayLength());
+        Assert.Equal(2, root.GetProperty("document_tags").GetArrayLength());
+        Assert.Equal(2, root.GetProperty("skipped_items").GetArrayLength());
+
+        var firstTag = root.GetProperty("document_tags")[0];
+        Assert.Equal("xml-p5/T/T0001.xml", firstTag.GetProperty("rel_path").GetString());
+        Assert.Equal("0292a26", firstTag.GetProperty("from_lb").GetString());
+        Assert.Equal("0292a29", firstTag.GetProperty("to_lb").GetString());
+        Assert.Equal("dharma", firstTag.GetProperty("tag_id").GetString());
+        Assert.True(firstTag.GetProperty("synthesized_tag_id").GetBoolean());
+
+        var skippedReasons = root.GetProperty("skipped_items").EnumerateArray()
+            .Select(x => x.GetProperty("reason").GetString())
+            .ToList();
+        Assert.Contains("missing_from_lb", skippedReasons);
+        Assert.Contains("no_tags", skippedReasons);
+    }
+
+    [Fact]
+    public async Task ReaderTagTsvExport_WritesVocabularySidecar()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-tsv",
+            Name = "Reader TSV",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0100.xml",
+                    FromLb = "0001a01",
+                    Tags = new List<string> { "Zen" },
+                    AddedUtc = new DateTimeOffset(2026, 4, 4, 11, 0, 0, TimeSpan.Zero)
+                }
+            }
+        };
+
+        var path = TempFile("reader-tags.tsv");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.ReaderTagTsv);
+
+        var tsv = await File.ReadAllTextAsync(path);
+        Assert.Contains("rel_path\tfrom_lb\tto_lb\ttag_id", tsv);
+        Assert.Contains("xml-p5/T/T0100.xml", tsv);
+        Assert.Contains("zen", tsv);
+
+        var sidecarPath = Path.Combine(Path.GetDirectoryName(path)!, Path.GetFileNameWithoutExtension(path) + ".vocabulary.json");
+        Assert.True(File.Exists(sidecarPath));
+
+        using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(sidecarPath));
+        Assert.Equal("readzen-reader-tag-vocabulary/v1", doc.RootElement.GetProperty("format").GetString());
+        Assert.Single(doc.RootElement.GetProperty("tags").EnumerateArray());
+        Assert.Equal("zen", doc.RootElement.GetProperty("tags")[0].GetProperty("id").GetString());
+    }
+
+    [Fact]
+    public async Task ReaderTagBundleExport_DisambiguatesCollidingSynthesizedIds()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-collision",
+            Name = "Collision Test",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0200.xml",
+                    FromLb = "0002a01",
+                    Tags = new List<string> { "Foo Bar", "Foo-Bar" }
+                }
+            }
+        };
+
+        var path = TempFile("reader-tags-collision.json");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.ReaderTagBundle);
+
+        using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(path));
+        var ids = doc.RootElement.GetProperty("vocabulary").GetProperty("tags").EnumerateArray()
+            .Select(x => x.GetProperty("id").GetString())
+            .ToList();
+
+        Assert.Contains("foo-bar", ids);
+        Assert.Contains("foo-bar-2", ids);
+    }
     // ---- Invalid format ----
 
     [Fact]
@@ -878,5 +1010,4 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("\u4f5b\u6cd5\u50e7", text);
     }
 }
-
 

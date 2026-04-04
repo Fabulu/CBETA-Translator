@@ -15,6 +15,18 @@ public sealed class ScholarExportService : IScholarExportService
 {
     public async Task ExportAsync(string filePath, ScholarCollection collection, ScholarExportFormat format, CancellationToken ct = default)
     {
+        if (format == ScholarExportFormat.ReaderTagTsv)
+        {
+            var exportData = BuildReaderTagExportData(collection);
+            var tsv = BuildReaderTagTsv(exportData);
+            await File.WriteAllTextAsync(filePath, tsv, Encoding.UTF8, ct);
+
+            var vocabularyPath = BuildReaderTagVocabularySidecarPath(filePath);
+            var vocabularyJson = BuildReaderTagVocabularyJson(collection, exportData);
+            await File.WriteAllTextAsync(vocabularyPath, vocabularyJson, Encoding.UTF8, ct);
+            return;
+        }
+
         var content = format switch
         {
             ScholarExportFormat.Html => BuildHtml(collection),
@@ -22,6 +34,7 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.PlainText => BuildPlainText(collection),
             ScholarExportFormat.Csv => BuildDelimited(collection, ","),
             ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
+            ScholarExportFormat.ReaderTagBundle => BuildReaderTagBundle(collection),
             ScholarExportFormat.BibTex => BuildBibTex(collection),
             ScholarExportFormat.CslJson => BuildCslJson(collection),
             ScholarExportFormat.PaperDraft => BuildPaperDraft(collection),
@@ -64,6 +77,370 @@ public sealed class ScholarExportService : IScholarExportService
         "zen_link",
         "share_url"
     };
+    private static readonly string[] ReaderTagHeaders =
+    {
+        "rel_path",
+        "from_lb",
+        "to_lb",
+        "tag_id",
+        "tag_name",
+        "created_by",
+        "created_utc",
+        "modified_utc",
+        "source_collection_id",
+        "source_collection_name",
+        "source_passage_id",
+        "zh_preview",
+        "en_preview",
+        "zen_link",
+        "share_url"
+    };
+
+    private sealed record ReaderTagVocabularyEntry(
+        string Id,
+        string Name,
+        string? ParentId,
+        string Color,
+        string? Description,
+        int SortOrder,
+        string CreatedUtc,
+        bool Synthesized);
+
+    private sealed record ReaderTagDocumentRecord(
+        string Id,
+        string RelPath,
+        string FromLb,
+        string ToLb,
+        string TagId,
+        string TagName,
+        string? CreatedBy,
+        string CreatedUtc,
+        string? ModifiedUtc,
+        string SourceCollectionId,
+        string SourceCollectionName,
+        string SourcePassageId,
+        string? ZhPreview,
+        string? EnPreview,
+        string? ZenLink,
+        string? ShareUrl,
+        bool SynthesizedTagId);
+
+    private sealed record ReaderTagSkippedItem(
+        string SourcePassageId,
+        string? TagName,
+        string Reason,
+        string? SourceRelPath,
+        string? FromLb,
+        string? ToLb);
+
+    private sealed record ReaderTagExportData(
+        List<ReaderTagVocabularyEntry> VocabularyTags,
+        List<ReaderTagDocumentRecord> DocumentTags,
+        List<ReaderTagSkippedItem> SkippedItems);
+    private static string BuildReaderTagBundle(ScholarCollection collection)
+    {
+        var exportData = BuildReaderTagExportData(collection);
+        var payload = new Dictionary<string, object?>
+        {
+            ["format"] = "readzen-reader-tags-bundle/v1",
+            ["exported_utc"] = FormatIsoTimestamp(DateTimeOffset.UtcNow),
+            ["source"] = new Dictionary<string, object?>
+            {
+                ["kind"] = "scholar-collection",
+                ["collection_id"] = collection.Id,
+                ["collection_name"] = collection.Name,
+            },
+            ["summary"] = new Dictionary<string, object?>
+            {
+                ["document_tag_count"] = exportData.DocumentTags.Count,
+                ["vocabulary_tag_count"] = exportData.VocabularyTags.Count,
+                ["skipped_item_count"] = exportData.SkippedItems.Count,
+            },
+            ["vocabulary"] = new Dictionary<string, object?>
+            {
+                ["tags"] = exportData.VocabularyTags.Select(tag => new Dictionary<string, object?>
+                {
+                    ["id"] = tag.Id,
+                    ["name"] = tag.Name,
+                    ["parent_id"] = tag.ParentId,
+                    ["color"] = tag.Color,
+                    ["description"] = tag.Description,
+                    ["sort_order"] = tag.SortOrder,
+                    ["created_utc"] = tag.CreatedUtc,
+                    ["synthesized"] = tag.Synthesized,
+                }).ToList(),
+                ["pages"] = new Dictionary<string, object?>(),
+            },
+            ["document_tags"] = exportData.DocumentTags.Select(tag => new Dictionary<string, object?>
+            {
+                ["id"] = tag.Id,
+                ["rel_path"] = tag.RelPath,
+                ["from_lb"] = tag.FromLb,
+                ["to_lb"] = tag.ToLb,
+                ["tag_id"] = tag.TagId,
+                ["tag_name"] = tag.TagName,
+                ["created_by"] = tag.CreatedBy,
+                ["created_utc"] = tag.CreatedUtc,
+                ["modified_utc"] = tag.ModifiedUtc,
+                ["source_collection_id"] = tag.SourceCollectionId,
+                ["source_collection_name"] = tag.SourceCollectionName,
+                ["source_passage_id"] = tag.SourcePassageId,
+                ["zh_preview"] = tag.ZhPreview,
+                ["en_preview"] = tag.EnPreview,
+                ["zen_link"] = tag.ZenLink,
+                ["share_url"] = tag.ShareUrl,
+                ["synthesized_tag_id"] = tag.SynthesizedTagId,
+            }).ToList(),
+            ["skipped_items"] = exportData.SkippedItems.Select(item => new Dictionary<string, object?>
+            {
+                ["source_passage_id"] = item.SourcePassageId,
+                ["tag_name"] = item.TagName,
+                ["reason"] = item.Reason,
+                ["source_rel_path"] = item.SourceRelPath,
+                ["from_lb"] = item.FromLb,
+                ["to_lb"] = item.ToLb,
+            }).ToList(),
+        };
+
+        return JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true });
+    }
+
+    private static ReaderTagExportData BuildReaderTagExportData(ScholarCollection collection)
+    {
+        var vocabulary = new Dictionary<string, ReaderTagVocabularyEntry>(StringComparer.OrdinalIgnoreCase);
+        var documentTags = new List<ReaderTagDocumentRecord>();
+        var skippedItems = new List<ReaderTagSkippedItem>();
+        var sortOrder = 0;
+
+        foreach (var passage in collection.Passages)
+        {
+            if (passage.Tags == null || passage.Tags.Count == 0)
+            {
+                skippedItems.Add(new ReaderTagSkippedItem(
+                    passage.Id,
+                    null,
+                    "no_tags",
+                    NullIfWhiteSpace(passage.SourceRelPath),
+                    passage.FromLb,
+                    passage.ToLb));
+                continue;
+            }
+
+            if (string.IsNullOrWhiteSpace(passage.SourceRelPath))
+            {
+                foreach (var tagName in passage.Tags.Where(static t => !string.IsNullOrWhiteSpace(t)).DefaultIfEmpty(string.Empty))
+                {
+                    skippedItems.Add(new ReaderTagSkippedItem(
+                        passage.Id,
+                        NullIfWhiteSpace(tagName),
+                        "missing_source_rel_path",
+                        null,
+                        passage.FromLb,
+                        passage.ToLb));
+                }
+                continue;
+            }
+
+            if (string.IsNullOrWhiteSpace(passage.FromLb))
+            {
+                foreach (var tagName in passage.Tags.Where(static t => !string.IsNullOrWhiteSpace(t)).DefaultIfEmpty(string.Empty))
+                {
+                    skippedItems.Add(new ReaderTagSkippedItem(
+                        passage.Id,
+                        NullIfWhiteSpace(tagName),
+                        "missing_from_lb",
+                        passage.SourceRelPath,
+                        passage.FromLb,
+                        passage.ToLb));
+                }
+                continue;
+            }
+
+            var toLb = string.IsNullOrWhiteSpace(passage.ToLb) ? passage.FromLb! : passage.ToLb!;
+            foreach (var rawTagName in passage.Tags.Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                var tagName = rawTagName?.Trim();
+                if (string.IsNullOrWhiteSpace(tagName))
+                {
+                    skippedItems.Add(new ReaderTagSkippedItem(
+                        passage.Id,
+                        null,
+                        "blank_tag_name",
+                        passage.SourceRelPath,
+                        passage.FromLb,
+                        toLb));
+                    continue;
+                }
+
+                var tagId = BuildUniqueReaderTagId(tagName, vocabulary);
+                if (!vocabulary.ContainsKey(tagId))
+                {
+                    sortOrder++;
+                    vocabulary[tagId] = new ReaderTagVocabularyEntry(
+                        tagId,
+                        tagName,
+                        null,
+                        "#3498DB",
+                        "Synthesized from Scholar passage tags for Reader interchange.",
+                        sortOrder,
+                        FormatIsoTimestamp(ResolveReaderTagCreatedUtc(collection, passage)),
+                        true);
+                }
+
+                documentTags.Add(new ReaderTagDocumentRecord(
+                    $"readzen-scholar-{SanitizeBibTexKeySegment(collection.Id)}-{SanitizeBibTexKeySegment(passage.Id)}-{SanitizeBibTexKeySegment(tagId)}",
+                    passage.SourceRelPath,
+                    passage.FromLb!,
+                    toLb,
+                    tagId,
+                    tagName,
+                    passage.CreatedBy ?? collection.CreatedBy,
+                    FormatIsoTimestamp(ResolveReaderTagCreatedUtc(collection, passage)),
+                    FormatIsoTimestamp(passage.ModifiedUtc),
+                    collection.Id,
+                    collection.Name,
+                    passage.Id,
+                    BuildPreview(passage.ZhText),
+                    BuildPreview(passage.EnText),
+                    BuildZenLink(passage),
+                    BuildShareUrl(passage),
+                    true));
+            }
+        }
+
+        return new ReaderTagExportData(
+            vocabulary.Values.OrderBy(v => v.SortOrder).ToList(),
+            documentTags,
+            skippedItems);
+    }
+
+    private static string BuildReaderTagTsv(ReaderTagExportData exportData)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine(string.Join("\t", ReaderTagHeaders.Select(header => EscapeDelimited(header, "\t"))));
+
+        foreach (var tag in exportData.DocumentTags)
+        {
+            var row = new[]
+            {
+                tag.RelPath,
+                tag.FromLb,
+                tag.ToLb,
+                tag.TagId,
+                tag.TagName,
+                tag.CreatedBy ?? string.Empty,
+                tag.CreatedUtc,
+                tag.ModifiedUtc ?? string.Empty,
+                tag.SourceCollectionId,
+                tag.SourceCollectionName,
+                tag.SourcePassageId,
+                tag.ZhPreview ?? string.Empty,
+                tag.EnPreview ?? string.Empty,
+                tag.ZenLink ?? string.Empty,
+                tag.ShareUrl ?? string.Empty,
+            };
+
+            sb.AppendLine(string.Join("\t", row.Select(value => EscapeDelimited(value, "\t"))));
+        }
+
+        return sb.ToString();
+    }
+
+    private static string BuildReaderTagVocabularyJson(ScholarCollection collection, ReaderTagExportData exportData)
+    {
+        var payload = new Dictionary<string, object?>
+        {
+            ["format"] = "readzen-reader-tag-vocabulary/v1",
+            ["exported_utc"] = FormatIsoTimestamp(DateTimeOffset.UtcNow),
+            ["source"] = new Dictionary<string, object?>
+            {
+                ["kind"] = "scholar-collection",
+                ["collection_id"] = collection.Id,
+                ["collection_name"] = collection.Name,
+            },
+            ["tags"] = exportData.VocabularyTags.Select(tag => new Dictionary<string, object?>
+            {
+                ["id"] = tag.Id,
+                ["name"] = tag.Name,
+                ["parent_id"] = tag.ParentId,
+                ["color"] = tag.Color,
+                ["description"] = tag.Description,
+                ["sort_order"] = tag.SortOrder,
+                ["created_utc"] = tag.CreatedUtc,
+                ["synthesized"] = tag.Synthesized,
+            }).ToList(),
+            ["pages"] = new Dictionary<string, object?>(),
+        };
+
+        return JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true });
+    }
+
+    private static string BuildReaderTagVocabularySidecarPath(string filePath)
+    {
+        var directory = Path.GetDirectoryName(filePath) ?? string.Empty;
+        var fileName = Path.GetFileNameWithoutExtension(filePath);
+        return Path.Combine(directory, fileName + ".vocabulary.json");
+    }
+
+    private static DateTimeOffset ResolveReaderTagCreatedUtc(ScholarCollection collection, ScholarPassage passage)
+    {
+        if (passage.AddedUtc != default)
+            return passage.AddedUtc;
+        if (collection.CreatedUtc != default)
+            return collection.CreatedUtc;
+        return DateTimeOffset.UtcNow;
+    }
+
+    private static string BuildUniqueReaderTagId(string tagName, Dictionary<string, ReaderTagVocabularyEntry> vocabulary)
+    {
+        var baseId = BuildReaderTagId(tagName);
+        if (!vocabulary.TryGetValue(baseId, out var existing) || string.Equals(existing.Name, tagName, StringComparison.OrdinalIgnoreCase))
+            return baseId;
+
+        var suffix = 2;
+        while (true)
+        {
+            var candidate = $"{baseId}-{suffix}";
+            if (!vocabulary.TryGetValue(candidate, out existing) || string.Equals(existing.Name, tagName, StringComparison.OrdinalIgnoreCase))
+                return candidate;
+            suffix++;
+        }
+    }
+    private static string BuildReaderTagId(string tagName)
+    {
+        var normalized = tagName.Trim().ToLowerInvariant();
+        var sb = new StringBuilder(normalized.Length);
+        var previousWasSeparator = false;
+
+        foreach (var c in normalized)
+        {
+            if (char.IsLetterOrDigit(c))
+            {
+                sb.Append(c);
+                previousWasSeparator = false;
+            }
+            else if (!previousWasSeparator)
+            {
+                sb.Append('-');
+                previousWasSeparator = true;
+            }
+        }
+
+        var result = sb.ToString().Trim('-');
+        return string.IsNullOrWhiteSpace(result) ? "scholar-tag" : result;
+    }
+
+    private static string? NullIfWhiteSpace(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
+
+    private static string? BuildPreview(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+
+        var collapsed = CollapseWhitespace(value);
+        return collapsed.Length <= 120 ? collapsed : collapsed[..120] + "...";
+    }
+
     private static string BuildHtml(ScholarCollection collection)
     {
         var sb = new StringBuilder();

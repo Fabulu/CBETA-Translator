@@ -658,6 +658,56 @@ public partial class ScholarTabView : UserControl
                     new FilePickerFileType("TSV") { Patterns = new[] { "*.tsv", "*.tab" } }
                 }
             },
+            ScholarExportFormat.ReaderTagBundle => new FilePickerSaveOptions
+            {
+                Title = "Export Reader Tag Bundle",
+                SuggestedFileName = baseName + ".reader-tags.json",
+                DefaultExtension = "json",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Reader Tag Bundle JSON") { Patterns = new[] { "*.reader-tags.json", "*.json" } }
+                }
+            },
+            ScholarExportFormat.ReaderTagTsv => new FilePickerSaveOptions
+            {
+                Title = "Export Reader Tags TSV",
+                SuggestedFileName = baseName + ".reader-tags.tsv",
+                DefaultExtension = "tsv",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Reader Tags TSV") { Patterns = new[] { "*.reader-tags.tsv", "*.tsv" } }
+                }
+            },
+            ScholarExportFormat.BibTex => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as BibTeX",
+                SuggestedFileName = baseName + ".bib",
+                DefaultExtension = "bib",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("BibTeX") { Patterns = new[] { "*.bib" } }
+                }
+            },
+            ScholarExportFormat.CslJson => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as CSL-JSON",
+                SuggestedFileName = baseName + ".csl.json",
+                DefaultExtension = "json",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("CSL-JSON") { Patterns = new[] { "*.csl.json", "*.json" } }
+                }
+            },
+            ScholarExportFormat.PaperDraft => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as Paper Draft",
+                SuggestedFileName = baseName + "-draft.md",
+                DefaultExtension = "md",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Markdown") { Patterns = new[] { "*.md", "*.markdown" } }
+                }
+            },
             _ => new FilePickerSaveOptions
             {
                 Title = "Export Scholar Collections as JSON",
@@ -1525,7 +1575,6 @@ public partial class ScholarTabView : UserControl
         ScholarDataChanged?.Invoke(this, EventArgs.Empty);
     }
 }
-
 
 
 

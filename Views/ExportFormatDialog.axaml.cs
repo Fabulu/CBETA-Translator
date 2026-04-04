@@ -23,30 +23,31 @@ public partial class ExportFormatDialog : Window
 
     private ScholarExportFormat GetSelectedFormat()
     {
-        var rbJson = this.FindControl<RadioButton>("RbJson");
-        var rbPaperDraft = this.FindControl<RadioButton>("RbPaperDraft");
-        var rbCslJson = this.FindControl<RadioButton>("RbCslJson");
-        var rbBibTex = this.FindControl<RadioButton>("RbBibTex");
-        var rbCsv = this.FindControl<RadioButton>("RbCsv");
-        var rbTsv = this.FindControl<RadioButton>("RbTsv");
-        var rbMarkdown = this.FindControl<RadioButton>("RbMarkdown");
-        var rbPlainText = this.FindControl<RadioButton>("RbPlainText");
-
-        if (rbJson?.IsChecked == true)
+        if (IsChecked("RbJson"))
             return ScholarExportFormat.Json;
-        if (rbBibTex?.IsChecked == true)
+        if (IsChecked("RbPaperDraft"))
+            return ScholarExportFormat.PaperDraft;
+        if (IsChecked("RbCslJson"))
+            return ScholarExportFormat.CslJson;
+        if (IsChecked("RbBibTex"))
             return ScholarExportFormat.BibTex;
-        if (rbCsv?.IsChecked == true)
+        if (IsChecked("RbReaderTagBundle"))
+            return ScholarExportFormat.ReaderTagBundle;
+        if (IsChecked("RbReaderTagTsv"))
+            return ScholarExportFormat.ReaderTagTsv;
+        if (IsChecked("RbCsv"))
             return ScholarExportFormat.Csv;
-        if (rbTsv?.IsChecked == true)
+        if (IsChecked("RbTsv"))
             return ScholarExportFormat.Tsv;
-        if (rbMarkdown?.IsChecked == true)
+        if (IsChecked("RbMarkdown"))
             return ScholarExportFormat.Markdown;
-        if (rbPlainText?.IsChecked == true)
+        if (IsChecked("RbPlainText"))
             return ScholarExportFormat.PlainText;
 
         return ScholarExportFormat.Html;
     }
+
+    private bool IsChecked(string name) => this.FindControl<RadioButton>(name)?.IsChecked == true;
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }
