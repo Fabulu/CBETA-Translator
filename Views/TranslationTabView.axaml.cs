@@ -1,4 +1,4 @@
-﻿// Views/TranslationTabView.axaml.cs
+// Views/TranslationTabView.axaml.cs
 // Projection editor for IndexedTranslationService (Head / Body / Notes)
 
 using Avalonia;
@@ -263,7 +263,7 @@ public partial class TranslationTabView : UserControl
                 highlight = highlight.Substring(0, 60);
 
             var user = GetTranslationUser?.Invoke();
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, blockNumber: blockNumber, user: user);
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, side: SearchSide.Translated, blockNumber: blockNumber, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -303,7 +303,7 @@ public partial class TranslationTabView : UserControl
                 highlight = highlight.Substring(0, 60);
 
             var userR = GetTranslationUser?.Invoke();
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, user: userR);
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, side: SearchSide.Translated, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);
@@ -763,7 +763,7 @@ public partial class TranslationTabView : UserControl
             _editor.Focus();
         }
 
-        Status?.Invoke(this, $"Copied {copied} block(s): <{firstBlock.BlockNumber}>–<{lastBlock.BlockNumber}> + prompt.");
+        Status?.Invoke(this, $"Copied {copied} block(s): <{firstBlock.BlockNumber}>-<{lastBlock.BlockNumber}> + prompt.");
     }
 
     private async Task PasteByMatchingBlockNumberAsync()
@@ -896,7 +896,7 @@ public partial class TranslationTabView : UserControl
         if (firstReparsed != null)
             SelectAndRevealBlock(firstReparsed);
 
-        Status?.Invoke(this, $"Pasted {pastedBlocks.Count} block(s): <{minNum}>–<{maxNum}> (ZH validated).");
+        Status?.Invoke(this, $"Pasted {pastedBlocks.Count} block(s): <{minNum}>-<{maxNum}> (ZH validated).");
     }
 
     private void JumpToNextUntranslated()
@@ -1664,7 +1664,7 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // Alt+N (needs-work) removed — button hidden, shortcut disabled
+        // Alt+N (needs-work) removed - button hidden, shortcut disabled
 
         if (e.Key == Key.F9)
         {
@@ -1673,7 +1673,7 @@ public partial class TranslationTabView : UserControl
             return;
         }
 
-        // F10 (needs-work) removed — button hidden, shortcut disabled
+        // F10 (needs-work) removed - button hidden, shortcut disabled
 
         if (e.Key == Key.F11)
         {
@@ -1717,7 +1717,7 @@ STRICT RULES:
 - Do NOT add or remove blocks.
 - Do NOT use angle brackets < or > in EN text.
 - Output ONLY one markdown code block.
-- Translate common Zen honorifics/titles like 「和尚」 as “the master” (or “Venerable”) in EN, not left as Chinese.
+- Translate common Zen honorifics/titles like ""heshang"" as ""the master"" (or ""Venerable"") in EN, not left as Chinese.
 
 ```markdown
 {selectedProjection}

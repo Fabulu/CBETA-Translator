@@ -415,12 +415,19 @@ public partial class ScholarTabViewModel : ViewModelBase
     private void NavigateToPassage()
     {
         if (SelectedPassage == null) return;
+        var side = SelectedPassage.PreferredSide;
+        var matchText = side == SearchSide.Translated ? SelectedPassage.EnText : SelectedPassage.ZhText;
+        if (matchText.Length > 80)
+            matchText = matchText[..80];
+
         NavigationRequested?.Invoke(this, new NavigationRequest
         {
             RelPath = SelectedPassage.SourceRelPath,
-            MatchText = SelectedPassage.ZhText.Length > 80
-                ? SelectedPassage.ZhText[..80]
-                : SelectedPassage.ZhText,
+            Side = side,
+            User = side == SearchSide.Translated ? SelectedPassage.TranslationUser : null,
+            MatchText = matchText,
+            FromLb = SelectedPassage.FromLb,
+            ToLb = SelectedPassage.ToLb,
             AnchorStartHint = SelectedPassage.StartBlockNumber
         });
     }
@@ -1498,7 +1505,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         var found = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        // Chinese name matching ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â longest match first to avoid partial matches
+        // Chinese name matching - longest match first to avoid partial matches
         if (!string.IsNullOrWhiteSpace(zhText))
         {
             var chineseCandidates = masterEntries
@@ -1515,7 +1522,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             }
         }
 
-        // Pinyin name matching in English text ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â case-insensitive, min 4 chars
+        // Pinyin name matching in English text - case-insensitive, min 4 chars
         if (!string.IsNullOrWhiteSpace(enText))
         {
             var pinyinCandidates = masterEntries
@@ -1552,7 +1559,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
         catch (InvalidOperationException)
         {
-            // No UI thread (test context) ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â run directly
+            // No UI thread (test context) - run directly
             action();
         }
     }
