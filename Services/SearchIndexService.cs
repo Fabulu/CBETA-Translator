@@ -33,7 +33,7 @@ public sealed class SearchIndexService : ISearchIndexService
         public int ReplaceDelayMs { get; set; } = 80;
 
         // If you truly need entity-decoding for search, keep this true.
-        // For CBETA bodies it’s often unnecessary; turning it off is faster.
+        // For CBETA bodies it's often unnecessary; turning it off is faster.
         public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
 
         // Phase C (optional): compact-CJK bigram postings prefilter.
@@ -830,7 +830,7 @@ public sealed class SearchIndexService : ISearchIndexService
         public static string GetStringAndRelease(StringBuilder sb)
         {
             string s = sb.ToString();
-            if (sb.Capacity <= 256 * 1024) // don’t hold giant buffers
+            if (sb.Capacity <= 256 * 1024) // don't hold giant buffers
                 _cached = sb;
             return s;
         }
@@ -1234,7 +1234,7 @@ public sealed class SearchIndexService : ISearchIndexService
     {
         if (string.IsNullOrEmpty(text)) return;
 
-        // Standard grams (spaces preserved) — needed for English phrase search.
+        // Standard grams (spaces preserved) - needed for English phrase search.
         for (int i = 0; i < text.Length; i++)
         {
             if (i + 2 <= text.Length)
@@ -1244,8 +1244,8 @@ public sealed class SearchIndexService : ISearchIndexService
                 BloomAdd(bits, text.AsSpan(i, 3));
         }
 
-        // Compact grams (spaces + CJK punctuation stripped) — for CJK phrase search across <lb>
-        // boundaries.  lb-tags introduce newlines→spaces; CBETA punctuation is a modern editorial
+        // Compact grams (spaces + CJK punctuation stripped) - for CJK phrase search across <lb>
+        // boundaries. lb-tags introduce newlines to spaces; CBETA punctuation is a modern editorial
         // addition not present in the original text.  Stripping both lets cross-lb / cross-punct
         // phrases be found.
         string compact = CjkMatchNormalizer.Normalize(text);
@@ -1756,6 +1756,86 @@ public sealed class SearchIndexService : ISearchIndexService
         return children;
     }
 
+    public static List<SearchHit> BuildCounterpartHitsFromIndexedUnits(
+        IndexedTranslationDocument doc,
+        string query,
+        SearchSide primarySide,
+        int neededCount,
+        int contextWidth)
+    {
+        if (doc == null || neededCount <= 0)
+            return new List<SearchHit>();
+
+        bool isCjkQuery = CjkMatchNormalizer.ContainsCjk(query);
+        string effectiveQuery = isCjkQuery ? CjkMatchNormalizer.Normalize(query ?? string.Empty) : (query ?? string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(effectiveQuery))
+            return new List<SearchHit>();
+
+        var hits = new List<SearchHit>(neededCount);
+        foreach (var unit in doc.Units)
+        {
+            string primaryText = primarySide == SearchSide.Original ? unit.Zh ?? string.Empty : unit.En ?? string.Empty;
+            if (!TextContainsQuery(primaryText, effectiveQuery, isCjkQuery))
+                continue;
+
+            string counterpartText = primarySide == SearchSide.Original ? unit.En ?? string.Empty : unit.Zh ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(counterpartText))
+                continue;
+
+            hits.Add(BuildCounterpartSnippet(counterpartText, contextWidth));
+            if (hits.Count >= neededCount)
+                break;
+        }
+
+        return hits;
+    }
+
+    private static bool TextContainsQuery(string text, string effectiveQuery, bool isCjkQuery)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return false;
+
+        if (isCjkQuery)
+            return CjkMatchNormalizer.Normalize(text).Contains(effectiveQuery, StringComparison.Ordinal);
+
+        return text.Contains(effectiveQuery, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static SearchHit BuildCounterpartSnippet(string text, int contextWidth)
+    {
+        string collapsed = CollapseWhitespace(text);
+        if (collapsed.Length == 0)
+            return new SearchHit();
+
+        int maxLen = Math.Max(20, contextWidth * 2);
+        string snippet = collapsed.Length > maxLen ? collapsed[..maxLen] + "..." : collapsed;
+        return new SearchHit { Left = string.Empty, Match = snippet, Right = string.Empty };
+    }
+
+    private static string CollapseWhitespace(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return string.Empty;
+
+        var sb = new StringBuilder(text.Length);
+        bool prevWs = false;
+        foreach (char ch in text)
+        {
+            if (char.IsWhiteSpace(ch))
+            {
+                if (!prevWs)
+                    sb.Append(' ');
+                prevWs = true;
+            }
+            else
+            {
+                sb.Append(ch);
+                prevWs = false;
+            }
+        }
+
+        return sb.ToString().Trim();
+    }
     public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(
     string root,
     string originalDir,
@@ -2127,9 +2207,25 @@ public sealed class SearchIndexService : ISearchIndexService
                 Interlocked.Add(ref totalHits, hitsT);
             }
 
+            var displayOriginalHits = originalHits;
+            var displayTranslatedHits = translatedHits;
+
+            if (originalHits.Count > 0 && translatedHits.Count == 0)
+            {
+                var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Original, originalHits.Count, contextWidth);
+                if (counterpart.Count > 0)
+                    displayTranslatedHits = counterpart;
+            }
+            else if (translatedHits.Count > 0 && originalHits.Count == 0)
+            {
+                var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Translated, translatedHits.Count, contextWidth);
+                if (counterpart.Count > 0)
+                    displayOriginalHits = counterpart;
+            }
+
             group.HitsOriginal = hitsO;
             group.HitsTranslated = hitsT;
-            group.Children.AddRange(BuildResultChildren(relKey, originalHits, translatedHits));
+            group.Children.AddRange(BuildResultChildren(relKey, displayOriginalHits, displayTranslatedHits));
 
             if (group.Children.Count > 0)
                 outGroups.Add(group);
@@ -2203,6 +2299,32 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    private static List<SearchHit> TryBuildCounterpartHitsForDisplay(
+        string originalDir,
+        string translatedDir,
+        string relKey,
+        string effectiveQuery,
+        SearchSide primarySide,
+        int neededCount,
+        int contextWidth)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(originalDir) || string.IsNullOrWhiteSpace(translatedDir))
+                return new List<SearchHit>();
+
+            string origAbs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+            string tranAbs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+            string originalXml = File.ReadAllText(origAbs, Utf8NoBom);
+            string translatedXml = File.ReadAllText(tranAbs, Utf8NoBom);
+            var indexed = new IndexedTranslationService().BuildIndex(originalXml, translatedXml);
+            return BuildCounterpartHitsFromIndexedUnits(indexed, effectiveQuery, primarySide, neededCount, contextWidth);
+        }
+        catch
+        {
+            return new List<SearchHit>();
+        }
+    }
     private sealed class VerifyTextCacheKeyComparer : IEqualityComparer<(string rel, SearchSide side, long ticks, long len)>
     {
         public bool Equals((string rel, SearchSide side, long ticks, long len) x, (string rel, SearchSide side, long ticks, long len) y)
