@@ -640,8 +640,7 @@ public partial class ReadableTabView : UserControl
 
         if (_chkStudyPanel != null)
         {
-            _chkStudyPanel.Checked += (_, _) => UpdateStudyPanelVisibility();
-            _chkStudyPanel.Unchecked += (_, _) => UpdateStudyPanelVisibility();
+            _chkStudyPanel.IsCheckedChanged += (_, _) => UpdateStudyPanelVisibility();
         }
 
         if (_btnCloseNotes != null)
@@ -969,8 +968,9 @@ public partial class ReadableTabView : UserControl
         if (string.IsNullOrEmpty(request.MatchText))
             return;
 
+        string docText = doc.Text ?? string.Empty;
         var hit = FindBestMatchRange(
-            doc.Text,
+            docText,
             request.MatchText,
             request.LeftContext,
             request.RightContext,
@@ -2615,7 +2615,7 @@ public partial class ReadableTabView : UserControl
 
         _termHitRanges = hitRanges;
         _termHighlighter.SetRanges(ranges);
-        editor.TextArea.TextView.Redraw();
+        editor.TextArea?.TextView?.Redraw();
     }
 
     private bool TryResolveTermHitAtOffset(int offset, out TermHit hit)
@@ -2973,7 +2973,7 @@ public partial class ReadableTabView : UserControl
         var relPath = _vm.CurrentRelPathForZen;
         var myUsername = !string.IsNullOrWhiteSpace(CurrentTagCompareIdentity)
             ? CurrentTagCompareIdentity
-            : (CurrentTagUsername ?? DefaultResp);
+            : (!string.IsNullOrWhiteSpace(CurrentTagUsername) ? CurrentTagUsername : "Me");
 
         var myTagsForFile = _appliedTags
             .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
