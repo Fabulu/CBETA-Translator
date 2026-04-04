@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -64,4 +64,19 @@ public sealed class ScholarCollection
     public List<ScholarPassage> Passages { get; set; } = new();
     public List<PassageLink> Links { get; set; } = new();
     public string StudyNotes { get; set; } = "";
+    public ScholarGraphLayout GraphLayout { get; set; } = new();
+}
+
+public sealed class ScholarGraphLayout
+{
+    public Dictionary<string, GraphNodeLayout> NodePositions { get; set; } = new(StringComparer.Ordinal);
+    public double OffsetX { get; set; }
+    public double OffsetY { get; set; }
+    public double Zoom { get; set; } = 1.0;
+}
+
+public sealed class GraphNodeLayout
+{
+    public double X { get; set; }
+    public double Y { get; set; }
 }

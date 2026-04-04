@@ -8,191 +8,183 @@
 
   <Grid ColumnDefinitions="300,Auto,*">
 
-    <!-- Left: Collections + Passages + Community -->
-    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
-    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,*,Auto" MinHeight="400">
-
-      <!-- Collections header -->
-      <DockPanel Grid.Row="0" Margin="4">
-        <Button Content="+" DockPanel.Dock="Right" Command="{Binding AddCollectionCommand}"
-                ToolTip.Tip="Create new collection" Padding="8,3"/>
-        <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeleteCollectionCommand}"
-                ToolTip.Tip="Delete selected collection" Padding="8,3" Margin="0,0,4,0"/>
-        <Button Content="Import" DockPanel.Dock="Right" Command="{Binding ImportCollectionsCommand}"
-                ToolTip.Tip="Import collections from file" Padding="6,2" Margin="0,0,4,0"/>
-        <Button Content="Export" DockPanel.Dock="Right" Command="{Binding ExportCollectionsCommand}"
-                ToolTip.Tip="Export collections to file" Padding="6,2" Margin="0,0,4,0"/>
-        <Button Content="Dict" DockPanel.Dock="Right" Name="BtnDictionary"
-                ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="6,2" Margin="0,0,4,0"/>
-        <Button Content="Vocab" DockPanel.Dock="Right" Name="BtnVocabulary"
-                ToolTip.Tip="Vocabulary frequency analysis" Padding="6,2" Margin="0,0,4,0"/>
-        <TextBlock Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
-      </DockPanel>
-
-      <!-- Collections filter -->
-      <TextBox Grid.Row="1" Watermark="Filter collections..."
-               Text="{Binding CollectionFilter}" Margin="4,2"/>
-
-      <!-- Collections list -->
-      <ListBox Grid.Row="2" ItemsSource="{Binding Collections}"
-               SelectedItem="{Binding SelectedCollection}" Margin="4,0" MaxHeight="200">
-        <ListBox.ItemTemplate>
-          <DataTemplate x:DataType="models:ScholarCollection">
-            <StackPanel>
-              <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
-                         TextTrimming="CharacterEllipsis"/>
-              <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
-                         TextTrimming="CharacterEllipsis"/>
-              <TextBlock Text="{Binding CreatedBy}" Classes="muted" FontSize="10"
-                         IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-            </StackPanel>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
-
-      <!-- Passages header -->
-      <DockPanel Grid.Row="3" Margin="4">
-        <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
-                ToolTip.Tip="Remove selected passage" Padding="8,3"/>
-        <Button Content="Compare" DockPanel.Dock="Right" Name="BtnCompare"
-                ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare (Ctrl+Shift+C)" Padding="6,2" Margin="0,0,4,0"/>
-        <TextBlock Text="Passages" FontWeight="SemiBold" VerticalAlignment="Center"/>
-      </DockPanel>
-
-      <!-- Passages filter -->
-      <DockPanel Grid.Row="4" Margin="4,2">
-        <ComboBox DockPanel.Dock="Right" Width="80" Padding="4,2" Margin="2,0,0,0"
-                  ItemsSource="{Binding SearchFilterModes}"
-                  SelectedItem="{Binding SearchFilterMode}"
-                  ToolTip.Tip="Filter scope"/>
-        <Button DockPanel.Dock="Right" Name="BtnEditMasterDates" Content="&#x270E;"
-                ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" Margin="2,0,0,0"/>
-        <ComboBox DockPanel.Dock="Right" Width="90" Padding="4,2" Margin="2,0,0,0"
-                  ItemsSource="{Binding SortModes}"
-                  SelectedItem="{Binding SortMode}"
-                  ToolTip.Tip="Sort order"/>
-        <TextBox Watermark="Filter passages..."
-                 Text="{Binding SearchFilter}"/>
-      </DockPanel>
-
-      <!-- Passages list (single-select; checkboxes for Compare) -->
-      <ListBox Grid.Row="5" Name="PassagesList" Margin="4,0" MaxHeight="250"
-               ItemsSource="{Binding Passages}"
-               SelectedItem="{Binding SelectedPassage}">
-        <ListBox.ItemTemplate>
-          <DataTemplate x:DataType="models:ScholarPassage">
-            <DockPanel Margin="2">
-              <CheckBox DockPanel.Dock="Left" Name="CompareCheck"
-                        VerticalAlignment="Top" Margin="0,2,4,0"
-                        IsVisible="{Binding #PassagesList.Tag, FallbackValue=False}"
-                        IsChecked="{Binding IsSelectedForCompare, Mode=TwoWay}"
-                        ToolTip.Tip="Check to include in comparison"/>
-              <StackPanel>
-                <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
-                           TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
-                           TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"
-                           TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding SourceRelPath}"/>
-                <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
-                           IsVisible="{Binding HasTags}" TextTrimming="CharacterEllipsis"/>
-                <TextBlock Text="{Binding MasterNamesSummary}" FontSize="10" Opacity="0.6"
-                           IsVisible="{Binding HasMasterNames}" TextTrimming="CharacterEllipsis"/>
-                <TextBlock Text="{Binding LinkedTextsSummary}" FontSize="10" Opacity="0.6"
-                           IsVisible="{Binding HasLinkedTexts}" TextTrimming="CharacterEllipsis"/>
-              </StackPanel>
+    <!-- Left: mode-based navigator -->
+    <Border Grid.Column="0" Margin="4">
+      <TabControl TabStripPlacement="Top">
+        <TabItem Header="Collections">
+          <Grid RowDefinitions="Auto,Auto,*" Margin="4">
+            <DockPanel Grid.Row="0" Margin="0,0,0,4">
+              <Button Content="+" DockPanel.Dock="Right" Command="{Binding AddCollectionCommand}"
+                      ToolTip.Tip="Create new collection" Padding="8,3"/>
+              <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeleteCollectionCommand}"
+                      ToolTip.Tip="Delete selected collection" Padding="8,3" Margin="0,0,4,0"/>
+              <Button Content="Import" DockPanel.Dock="Right" Command="{Binding ImportCollectionsCommand}"
+                      ToolTip.Tip="Import collections from file" Padding="6,2" Margin="0,0,4,0"/>
+              <Button Content="Export" DockPanel.Dock="Right" Command="{Binding ExportCollectionsCommand}"
+                      ToolTip.Tip="Export collections to file" Padding="6,2" Margin="0,0,4,0"/>
+              <Button Content="Dict" DockPanel.Dock="Right" Name="BtnDictionary"
+                      ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="6,2" Margin="0,0,4,0"/>
+              <Button Content="Vocab" DockPanel.Dock="Right" Name="BtnVocabulary"
+                      ToolTip.Tip="Vocabulary frequency analysis" Padding="6,2" Margin="0,0,4,0"/>
+              <TextBlock Text="Your Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
             </DockPanel>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
 
-      <!-- Community Collections (collapsed by default) -->
-      <Expander Grid.Row="6" IsExpanded="False" Margin="4,8,4,2"
-                IsVisible="{Binding HasCommunityCollections}">
-        <Expander.Header>
-          <StackPanel Orientation="Horizontal" Spacing="6">
-            <TextBlock Text="Community Collections" FontWeight="SemiBold"
-                       Foreground="{DynamicResource AccentLinkFg}"/>
-            <Border Background="{DynamicResource AccentLinkFg}" CornerRadius="8" Padding="6,1" VerticalAlignment="Center">
-              <TextBlock Text="{Binding CommunityCollections.Count}" FontSize="10" FontWeight="Bold"
-                         Foreground="{DynamicResource AppBg}"/>
-            </Border>
-          </StackPanel>
-        </Expander.Header>
-        <StackPanel Spacing="4">
-          <!-- Community user picker + filter -->
-          <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,2">
-            <ComboBox ItemsSource="{Binding CommunityUsernames}"
-                      SelectedIndex="{Binding SelectedCommunityUserIndex}"
-                      MinWidth="100" FontSize="11"
-                      ToolTip.Tip="Filter by community user"/>
-            <TextBox Watermark="Filter..."
-                     Text="{Binding CommunityFilter}"
-                     MinWidth="80"/>
-          </StackPanel>
+            <TextBox Grid.Row="1" Watermark="Filter collections..."
+                     Text="{Binding CollectionFilter}" Margin="0,0,0,4"/>
 
-          <!-- Community collections list -->
-          <ListBox Name="CommunityCollectionsList" Margin="0" MaxHeight="180"
-                   ItemsSource="{Binding CommunityCollections}"
-                   SelectedItem="{Binding SelectedCommunityCollection}">
-            <ListBox.ItemTemplate>
-              <DataTemplate x:DataType="models:ScholarCollection">
-                <StackPanel>
-                  <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
-                             TextTrimming="CharacterEllipsis"/>
-                  <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
-                             TextTrimming="CharacterEllipsis"/>
-                  <TextBlock FontSize="10" Foreground="{DynamicResource AccentLinkFg}"
-                             IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                    <TextBlock.Text>
-                      <MultiBinding StringFormat="by {0}">
-                        <Binding Path="CreatedBy"/>
-                      </MultiBinding>
-                    </TextBlock.Text>
-                  </TextBlock>
-                </StackPanel>
-              </DataTemplate>
-            </ListBox.ItemTemplate>
-          </ListBox>
-
-          <!-- Community passages list -->
-          <ListBox Name="CommunityPassagesList" Margin="0" MaxHeight="150"
-                   ItemsSource="{Binding CommunityPassages}"
-                   SelectedItem="{Binding SelectedCommunityPassage}">
-            <ListBox.ItemTemplate>
-              <DataTemplate x:DataType="models:ScholarPassage">
-                <StackPanel Margin="2">
-                  <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
-                             TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                  <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
-                             TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                  <TextBlock Text="{Binding SourceRelPath}" Opacity="0.4" FontSize="10"
-                             TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding SourceRelPath}"/>
-                </StackPanel>
-              </DataTemplate>
-            </ListBox.ItemTemplate>
-          </ListBox>
-
-          <!-- Adopt passage panel -->
-          <DockPanel Margin="0,4,0,2"
-                     IsVisible="{Binding SelectedCommunityPassage, Converter={x:Static ObjectConverters.IsNotNull}}">
-            <Button Content="Adopt" DockPanel.Dock="Right" Command="{Binding AdoptSelectedPassageCommand}"
-                    ToolTip.Tip="Copy this passage into the selected local collection" Padding="8,3"/>
-            <ComboBox ItemsSource="{Binding Collections}"
-                      SelectedItem="{Binding AdoptTargetCollection}"
-                      Margin="0,0,4,0" HorizontalAlignment="Stretch">
-              <ComboBox.ItemTemplate>
+            <ListBox Grid.Row="2"
+                     ItemsSource="{Binding Collections}"
+                     SelectedItem="{Binding SelectedCollection}">
+              <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:ScholarCollection">
-                  <TextBlock Text="{Binding Name}"/>
+                  <StackPanel Margin="2">
+                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                               TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
+                               TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                    <TextBlock Text="{Binding CreatedBy}" Classes="muted" FontSize="10"
+                               IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                  </StackPanel>
                 </DataTemplate>
-              </ComboBox.ItemTemplate>
-            </ComboBox>
-          </DockPanel>
-        </StackPanel>
-      </Expander>
-    </Grid>
-    </ScrollViewer>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </Grid>
+        </TabItem>
 
+        <TabItem Header="Passages">
+          <Grid RowDefinitions="Auto,Auto,*" Margin="4">
+            <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,4">
+              <DockPanel>
+                <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
+                        ToolTip.Tip="Remove selected passage" Padding="8,3"/>
+                <Button Content="Compare" DockPanel.Dock="Right" Name="BtnCompare"
+                        ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare (Ctrl+Shift+C)" Padding="6,2" Margin="0,0,4,0"/>
+                <TextBlock Text="Working Collection" FontWeight="SemiBold" VerticalAlignment="Center"/>
+              </DockPanel>
+
+              <ComboBox ItemsSource="{Binding Collections}"
+                        SelectedItem="{Binding SelectedCollection}"
+                        HorizontalAlignment="Stretch"
+                        ToolTip.Tip="Choose the collection you want to work in">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:ScholarCollection">
+                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,4">
+              <TextBox Watermark="Filter passages..."
+                       Text="{Binding SearchFilter}"/>
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <ComboBox Width="110" Padding="4,2"
+                          ItemsSource="{Binding SortModes}"
+                          SelectedItem="{Binding SortMode}"
+                          ToolTip.Tip="Sort order"/>
+                <ComboBox Width="110" Padding="4,2"
+                          ItemsSource="{Binding SearchFilterModes}"
+                          SelectedItem="{Binding SearchFilterMode}"
+                          ToolTip.Tip="Filter scope"/>
+                <Button Name="BtnEditMasterDates" Content="Edit Dates"
+                        ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2"/>
+              </StackPanel>
+            </StackPanel>
+
+            <ListBox Grid.Row="2" Name="PassagesList"
+                     ItemsSource="{Binding Passages}"
+                     SelectedItem="{Binding SelectedPassage}">
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:ScholarPassage">
+                  <DockPanel Margin="2" ToolTip.Tip="{Binding SourceRelPath}">
+                    <CheckBox DockPanel.Dock="Left" Name="CompareCheck"
+                              VerticalAlignment="Top" Margin="0,2,6,0"
+                              IsVisible="{Binding #PassagesList.Tag, FallbackValue=False}"
+                              IsChecked="{Binding IsSelectedForCompare, Mode=TwoWay}"
+                              ToolTip.Tip="Check to include in comparison"/>
+                    <StackPanel Spacing="2">
+                      <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                                 TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                      <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
+                                 TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                    </StackPanel>
+                  </DockPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </Grid>
+        </TabItem>
+
+        <TabItem Header="Community" IsVisible="{Binding HasCommunityCollections}">
+          <Grid RowDefinitions="Auto,*,Auto,*,Auto" Margin="4">
+            <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,4">
+              <TextBlock Text="Community Collections" FontWeight="SemiBold"/>
+              <TextBox Watermark="Filter collections..."
+                       Text="{Binding CommunityFilter}"/>
+              <ComboBox ItemsSource="{Binding CommunityUsernames}"
+                        SelectedIndex="{Binding SelectedCommunityUserIndex}"
+                        MinWidth="120" FontSize="11"
+                        ToolTip.Tip="Filter by community user"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="1" Name="CommunityCollectionsList"
+                     ItemsSource="{Binding CommunityCollections}"
+                     SelectedItem="{Binding SelectedCommunityCollection}">
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:ScholarCollection">
+                  <StackPanel Margin="2">
+                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                               TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Text="{Binding Description}" Classes="muted" FontSize="11"
+                               TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                    <TextBlock FontSize="10" Foreground="{DynamicResource AccentLinkFg}"
+                               IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                      <TextBlock.Text>
+                        <MultiBinding StringFormat="by {0}">
+                          <Binding Path="CreatedBy"/>
+                        </MultiBinding>
+                      </TextBlock.Text>
+                    </TextBlock>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Grid.Row="2" Text="Passages" FontWeight="SemiBold" Margin="0,8,0,4"/>
+
+            <ListBox Grid.Row="3" Name="CommunityPassagesList"
+                     ItemsSource="{Binding CommunityPassages}"
+                     SelectedItem="{Binding SelectedCommunityPassage}">
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:ScholarPassage">
+                  <StackPanel Margin="2" Spacing="2" ToolTip.Tip="{Binding SourceRelPath}">
+                    <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                               TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                    <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="11"
+                               TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+
+            <DockPanel Grid.Row="4" Margin="0,8,0,0"
+                       IsVisible="{Binding SelectedCommunityPassage, Converter={x:Static ObjectConverters.IsNotNull}}">
+              <Button Content="Adopt" DockPanel.Dock="Right" Command="{Binding AdoptSelectedPassageCommand}"
+                      ToolTip.Tip="Copy this passage into the selected local collection" Padding="8,3"/>
+              <ComboBox ItemsSource="{Binding Collections}"
+                        SelectedItem="{Binding AdoptTargetCollection}"
+                        Margin="0,0,4,0" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:ScholarCollection">
+                    <TextBlock Text="{Binding Name}"/>
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
+            </DockPanel>
+          </Grid>
+        </TabItem>
+      </TabControl>
+    </Border>
     <!-- Splitter -->
     <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
@@ -202,7 +194,17 @@
         <!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
         <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500" Grid.RowSpan="2"/>
         <!-- Tab area -->
-        <TabControl Grid.Row="0">
+        <Grid Grid.Row="0" RowDefinitions="Auto,*">
+          <DockPanel Grid.Row="0" Margin="0,0,0,8" LastChildFill="False">
+            <TextBlock Text="Scholar Workspace" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <TextBlock DockPanel.Dock="Right" Text="Switching items autosaves. Save Current forces it now."
+                       Classes="muted" FontSize="11" VerticalAlignment="Center" Margin="8,0,8,0"/>
+            <Button Name="BtnSaveCurrent" DockPanel.Dock="Right" Content="Save Current"
+                    Padding="12,4"
+                    ToolTip.Tip="Persist the selected passage, collection notes, categories, links, and graph layout now."/>
+          </DockPanel>
+
+          <TabControl Grid.Row="1">
           <TabItem Header="Detail">
             <ScrollViewer>
               <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="4">
@@ -367,6 +369,9 @@
                             IsEnabled="{Binding IsEditorEnabled}"
                             ToolTip.Tip="Describe the rhetorical function of this passage"/>
                 </DockPanel>
+                <Button Content="Save Categories" Command="{Binding SaveCommand}"
+                        HorizontalAlignment="Right" Padding="12,4" Margin="0,8,0,0"
+                        IsEnabled="{Binding IsEditorEnabled}"/>
               </StackPanel>
             </ScrollViewer>
           </TabItem>
@@ -384,8 +389,12 @@
                         <TextBlock Name="TxtLinkCoverage" FontSize="11" Classes="muted"/>
                     </StackPanel>
                 </Expander>
-                <Button Name="BtnAddLink" Content="+ Link" Padding="8,3" FontSize="11"
-                        IsEnabled="{Binding IsEditorEnabled}" Margin="0,0,0,4"/>
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,4">
+                  <Button Name="BtnAddLink" Content="+ Link" Padding="8,3" FontSize="11"
+                          IsEnabled="{Binding IsEditorEnabled}"/>
+                  <Button Content="Save Links" Command="{Binding SaveCommand}" Padding="8,3" FontSize="11"
+                          IsEnabled="{Binding IsEditorEnabled}"/>
+                </StackPanel>
                 <TextBlock Name="TxtLinksEmpty"
                            Text="No links yet. Right-click a passage and choose 'Link to...' to connect related passages."
                            TextWrapping="Wrap" Classes="muted" FontSize="11"
@@ -405,6 +414,7 @@
             <Grid RowDefinitions="Auto,*">
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8,4">
                     <Button Name="BtnGraphRelayout" Content="Re-layout" Padding="8,3" FontSize="11"/>
+                    <Button Name="BtnSaveGraph" Content="Save Layout" Padding="8,3" FontSize="11"/>
                     <TextBlock Name="TxtGraphInfo" VerticalAlignment="Center" Classes="muted" FontSize="11"/>
                 </StackPanel>
                 <local:LinkNetworkGraphControl Grid.Row="1" Name="GraphControl"
@@ -413,7 +423,7 @@
           </TabItem>
 
           <TabItem Header="Notes">
-            <Grid RowDefinitions="Auto,*" Margin="8">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
               <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
                 <Button Name="BtnInsertReference" Content="Insert Reference"
                         ToolTip.Tip="Insert a [[passage-id]] reference at cursor position" Padding="8,4">
@@ -435,9 +445,12 @@
                        AcceptsReturn="True" TextWrapping="Wrap"
                        Watermark="Collection study notes... Use Insert Reference to embed [[passage-id]] links."
                        VerticalAlignment="Stretch"/>
+              <Button Grid.Row="2" Content="Save Notes" Command="{Binding SaveCommand}"
+                      HorizontalAlignment="Right" Padding="12,4" Margin="0,8,0,0"/>
             </Grid>
           </TabItem>
         </TabControl>
+        </Grid>
 
         <!-- Scholar Assistant stays outside TabControl, always visible -->
         <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
@@ -484,3 +497,9 @@
     </Border>
   </Grid>
 </UserControl>
+
+
+
+
+
+

@@ -128,6 +128,45 @@ public class LinkGraphViewModel
         }
     }
 
+    public void ApplyLayout(ScholarGraphLayout? layout)
+    {
+        if (layout == null)
+            return;
+
+        OffsetX = layout.OffsetX;
+        OffsetY = layout.OffsetY;
+        Zoom = layout.Zoom > 0 ? layout.Zoom : 1.0;
+
+        foreach (var node in Nodes)
+        {
+            if (layout.NodePositions.TryGetValue(node.PassageId, out var pos))
+            {
+                node.X = pos.X;
+                node.Y = pos.Y;
+            }
+        }
+    }
+
+    public ScholarGraphLayout CaptureLayout()
+    {
+        var layout = new ScholarGraphLayout
+        {
+            OffsetX = OffsetX,
+            OffsetY = OffsetY,
+            Zoom = Zoom
+        };
+
+        foreach (var node in Nodes)
+        {
+            layout.NodePositions[node.PassageId] = new GraphNodeLayout
+            {
+                X = node.X,
+                Y = node.Y
+            };
+        }
+
+        return layout;
+    }
     public GraphNode? HitTest(double canvasX, double canvasY, double nodeRadius = 15)
     {
         // Convert canvas coords to graph coords
