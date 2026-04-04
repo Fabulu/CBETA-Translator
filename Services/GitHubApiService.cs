@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -46,7 +46,7 @@ public sealed class GitHubApiService : IGitHubApiService, IDisposable
             BaseAddress = new Uri("https://api.github.com/")
         };
 
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("CbetaTranslator-App");
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd("ReadZen-App");
         _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
     }
 

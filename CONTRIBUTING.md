@@ -1,4 +1,4 @@
-﻿# Contributing to Read Zen
+# Contributing to Read Zen
 
 Thank you for your interest in contributing.
 
@@ -19,7 +19,7 @@ This project focuses on:
 
 ## ðŸ“‚ Project Structure
 
-CbetaTranslator.App/
+ReadZen/
 - Views/               UI
 - Services/            File, Index, Cache services
 - Text/                TEI rendering logic

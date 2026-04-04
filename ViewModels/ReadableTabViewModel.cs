@@ -83,7 +83,6 @@ public partial class ReadableTabViewModel : ViewModelBase
     // -------------------------
     // Events to host
     // -------------------------
-    public event EventHandler<DocAnnotation>? NoteClicked;
     public event EventHandler<(int XmlIndex, string NoteText, string? Resp)>? CommunityNoteInsertRequested;
     public event EventHandler<(int XmlStart, int XmlEndExclusive)>? CommunityNoteDeleteRequested;
     public event EventHandler<(string RelPath, bool IsZen)>? ZenFlagChanged;

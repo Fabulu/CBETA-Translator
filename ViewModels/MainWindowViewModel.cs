@@ -1001,10 +1001,10 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private async Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
+    private Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null))
-            return (RenderedDocument.Empty, RenderedDocument.Empty);
+            return Task.FromResult((RenderedDocument.Empty, RenderedDocument.Empty));
 
         var origAbs = Path.Combine(_originalDir, relPath);
         var tranAbs = FindTranslatedPath(relPath);
@@ -1025,7 +1025,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (tranAbs == null || !File.Exists(tranAbs))
         {
             var rtFallback = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
-            return (ro, rtFallback);
+            return Task.FromResult((ro, rtFallback));
         }
 
         var stampTran = FileStamp.FromFile(tranAbs);
@@ -1037,7 +1037,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _renderCache.Put(stampTran, rt);
         }
 
-        return (ro, rt);
+        return Task.FromResult((ro, rt));
     }
 
     public async Task LoadPairAsync(string relPath)
@@ -1976,7 +1976,7 @@ public partial class MainWindowViewModel : ViewModelBase
             var builtXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
 
             if (changedBlocks != null && changedBlocks.Count > 0)
-                builtXml = ApplyTranslatorAnnotation(builtXml, changedBlocks, _config.Username);
+                builtXml = ApplyTranslatorAnnotation(builtXml, changedBlocks, _config.GitHubUsername ?? _config.Username ?? "User");
 
             var saveInfo = await AtomicWriteTranslatedXmlForCurrentAsync(builtXml);
 
@@ -2371,7 +2371,7 @@ public partial class MainWindowViewModel : ViewModelBase
     // Termbase editor
     // ===========================================================
 
-    public async Task OpenTermbaseEditorAsync()
+    public Task OpenTermbaseEditorAsync()
     {
         // This remains partially in code-behind because it creates a Window.
         // VM signals intent; code-behind creates the TermbaseEditorWindow.
@@ -2379,10 +2379,11 @@ public partial class MainWindowViewModel : ViewModelBase
         if (string.IsNullOrWhiteSpace(_root))
         {
             SetStatus("Cannot open termbase editor: no root is loaded.");
-            return;
+            return Task.CompletedTask;
         }
 
         OpenTermbaseEditorRequested?.Invoke(_root, _config.Username);
+        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -2945,3 +2946,4 @@ public partial class MainWindowViewModel : ViewModelBase
             await LoadPairAsync(_currentRelPath);
     }
 }
+

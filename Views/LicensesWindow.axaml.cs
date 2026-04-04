@@ -6,6 +6,10 @@ namespace CbetaTranslator.App.Views;
 
 public partial class LicensesWindow : Window
 {
+    public LicensesWindow() : this(null)
+    {
+    }
+
     public LicensesWindow(string? root)
     {
         InitializeComponent();
@@ -15,3 +19,4 @@ public partial class LicensesWindow : Window
         DataContext = vm;
     }
 }
+

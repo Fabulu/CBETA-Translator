@@ -1,4 +1,4 @@
-﻿# Linux Build Instructions for Read Zen
+# Linux Build Instructions for Read Zen
 
 ## Prerequisites
 

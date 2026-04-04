@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -81,7 +81,7 @@ public partial class TagEditorWindow : Window
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
-    // ── Control wiring ──────────────────────────────────────────────────
+    // â”€â”€ Control wiring â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void WireControls()
     {
@@ -170,7 +170,7 @@ public partial class TagEditorWindow : Window
         if (btnSave != null) btnSave.Click += async (_, _) => await OnSaveAsync();
     }
 
-    // ── Load ────────────────────────────────────────────────────────────
+    // â”€â”€ Load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private async Task LoadAsync()
     {
@@ -189,7 +189,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // ── Tree building ───────────────────────────────────────────────────
+    // â”€â”€ Tree building â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void BuildTree()
     {
@@ -255,7 +255,7 @@ public partial class TagEditorWindow : Window
         return null;
     }
 
-    // ── Filter ──────────────────────────────────────────────────────────
+    // â”€â”€ Filter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void ApplyFilter()
     {
@@ -301,7 +301,7 @@ public partial class TagEditorWindow : Window
         return result;
     }
 
-    // ── Selection ───────────────────────────────────────────────────────
+    // â”€â”€ Selection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnSelectionChanged()
     {
@@ -388,7 +388,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // ── Property changes ────────────────────────────────────────────────
+    // â”€â”€ Property changes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnNameChanged()
     {
@@ -455,7 +455,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // ── CRUD ────────────────────────────────────────────────────────────
+    // â”€â”€ CRUD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnNewTag()
     {
@@ -531,7 +531,7 @@ public partial class TagEditorWindow : Window
         SetStatus($"Deleted tag \"{tag.DisplayName}\".");
     }
 
-    // ── Code bar assignment ─────────────────────────────────────────────
+    // â”€â”€ Code bar assignment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnAssignToSlot()
     {
@@ -661,7 +661,7 @@ public partial class TagEditorWindow : Window
         catch { return Colors.Gray; }
     }
 
-    // ── Save ────────────────────────────────────────────────────────────
+    // â”€â”€ Save â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private async Task OnSaveAsync()
     {
@@ -683,7 +683,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // ── Color palette swatches ─────────────────────────────────────────
+    // â”€â”€ Color palette swatches â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void BuildColorSwatches()
     {
@@ -731,7 +731,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // ── Drag-and-drop tag assignment ────────────────────────────────────
+    // â”€â”€ Drag-and-drop tag assignment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
     {
@@ -755,7 +755,7 @@ public partial class TagEditorWindow : Window
         _dragCandidate = null;
     }
 
-    // ── Helpers ─────────────────────────────────────────────────────────
+    // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private void SetStatus(string msg)
     {
@@ -805,3 +805,4 @@ public class TagTreeNode : INotifyPropertyChanged
     private void OnPropertyChanged(string name) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 }
+
