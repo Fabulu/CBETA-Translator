@@ -78,14 +78,7 @@ public partial class SearchTabView : UserControl
             {
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
 
-                var passage = new ScholarPassage
-                {
-                    Id = Guid.NewGuid().ToString("N"),
-                    SourceRelPath = child.RelPath,
-                    ZhText = child.Side == SearchSide.Original ? child.MatchText : "",
-                    EnText = child.Side == SearchSide.Translated ? child.MatchText : "",
-                    AddedUtc = DateTimeOffset.UtcNow
-                };
+                var passage = child.ToScholarPassage();
 
                 AddToScholarRequested?.Invoke(this, passage);
             };

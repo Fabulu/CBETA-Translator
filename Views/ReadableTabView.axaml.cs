@@ -81,6 +81,8 @@ public partial class ReadableTabView : UserControl
     // Zen toggle
     // -------------------------
     private CheckBox? _chkZenText;
+    private ComboBox? _cmbTranslationSource;
+    private bool _suppressTranslationSourceEvents;
 
     // -------------------------
     // Notes panel + buttons
@@ -187,7 +189,8 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when user clicks Compare to open a 3-pane tag comparison window.</summary>
     public event EventHandler<CompareTagsRequestData>? CompareTagsRequested;
-    public event EventHandler<CompareTranslationsRequestData>? CompareTranslationsRequested;
+    public event EventHandler? CompareTranslationsRequested;
+    public event EventHandler<int>? TranslationSourceChanged;
 
     /// <summary>Fired when the study panel's segment context changes (caret moved to new segment).</summary>
     public event EventHandler<CurrentSegmentContext>? StudyPanelContextChanged;
@@ -311,6 +314,7 @@ public partial class ReadableTabView : UserControl
         _btnMoveFootnote = this.FindControl<Button>("BtnMoveFootnote");
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
+        _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
@@ -507,8 +511,7 @@ public partial class ReadableTabView : UserControl
                 {
                     if (seg.Start >= selEnd || seg.EndExclusive <= selStart)
                         continue; // no overlap
-
-                    // This segment overlaps ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â find corresponding destination segment
+                    // This segment overlaps; find the corresponding destination segment
                     if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, seg.Start, out var dstSeg))
                     {
                         int dstLen = otherEditor.Text?.Length ?? 0;
@@ -624,8 +627,17 @@ public partial class ReadableTabView : UserControl
 
         var btnCompareTranslations = this.FindControl<Button>("BtnCompareTranslations");
         if (btnCompareTranslations != null)
-            btnCompareTranslations.Click += (_, _) => CompareTranslationsRequested?.Invoke(this, null!);
+            btnCompareTranslations.Click += (_, _) => CompareTranslationsRequested?.Invoke(this, EventArgs.Empty);
 
+
+        if (_cmbTranslationSource != null)
+        {
+            _cmbTranslationSource.SelectionChanged += (_, _) =>
+            {
+                if (!_suppressTranslationSourceEvents && _cmbTranslationSource.SelectedIndex >= 0)
+                    TranslationSourceChanged?.Invoke(this, _cmbTranslationSource.SelectedIndex);
+            };
+        }
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
         AddHandler(InputElement.KeyUpEvent, OnCodingKeyUp_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -795,6 +807,38 @@ public partial class ReadableTabView : UserControl
         }
     }
 
+
+    public void SetTranslationSourceOptions(List<string> options)
+    {
+        if (_cmbTranslationSource == null) return;
+
+        _suppressTranslationSourceEvents = true;
+        try
+        {
+            _cmbTranslationSource.ItemsSource = options;
+            if (_cmbTranslationSource.SelectedIndex < 0 && options.Count > 0)
+                _cmbTranslationSource.SelectedIndex = 0;
+        }
+        finally
+        {
+            _suppressTranslationSourceEvents = false;
+        }
+    }
+
+    public void SetTranslationSourceIndex(int index)
+    {
+        if (_cmbTranslationSource == null || index < 0) return;
+
+        _suppressTranslationSourceEvents = true;
+        try
+        {
+            _cmbTranslationSource.SelectedIndex = index;
+        }
+        finally
+        {
+            _suppressTranslationSourceEvents = false;
+        }
+    }
     public void SetHoverDictionaryEnabled(bool enabled)
     {
         _vm.HoverDictionaryEnabled = enabled;
@@ -880,7 +924,7 @@ public partial class ReadableTabView : UserControl
                 _navHighlightEditor = editor;
                 return;
             }
-            // lb keys not found ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â fall through to text-based matching if MatchText is available
+            // lb keys not found; fall through to text-based matching if MatchText is available
         }
 
         // --- text-based navigation (fallback for search results, old URLs, etc.) ---
@@ -916,12 +960,10 @@ public partial class ReadableTabView : UserControl
 
         editor.TextArea.Caret.Offset = safeStart;
         editor.TextArea.Selection = Selection.Create(editor.TextArea, safeStart, safeEnd);
-
-        // Caret.Offset assignment does not always scroll ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â scroll explicitly too.
+        // Caret.Offset assignment does not always scroll, so scroll explicitly too.
         var line = editor.Document.GetLineByOffset(safeStart);
         editor.ScrollToLine(line.LineNumber);
-
-        // Keep the highlight visible indefinitely ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â it will be cleared on user click
+        // Keep the highlight visible until the next user click.
         // (see OnPointerPressed_ClearNavHighlight).
         _navHighlightEditor = editor;
     }
@@ -2067,7 +2109,7 @@ public partial class ReadableTabView : UserControl
         }
         catch
         {
-            return; // line not yet laid out ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ScrollTo already made it visible, good enough
+            return; // line not yet laid out; ScrollTo already made it visible.
         }
 
         double desiredY = absoluteY - (viewportH / 3.0); // bias toward upper third

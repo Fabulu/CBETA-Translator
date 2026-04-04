@@ -18,9 +18,15 @@ namespace CbetaTranslator.App.ViewModels;
 public partial class ScholarTabViewModel : ViewModelBase
 {
     private readonly IScholarCollectionsService _svc;
+    private readonly IAppConfigService? _configService;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private string? _root;
     private string? _username;
+    private string? _legacyUsername;
+    private string? _preferredUsername;
+    private bool _configLoadAttempted;
+    private bool _loadedFromLegacyIdentity;
+    private string? _loadedLegacyUsername;
 
     // ----- Observable properties -----
 
@@ -178,9 +184,10 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     // ----- Constructor -----
 
-    public ScholarTabViewModel(IScholarCollectionsService svc)
+    public ScholarTabViewModel(IScholarCollectionsService svc, IAppConfigService? configService = null)
     {
         _svc = svc ?? throw new ArgumentNullException(nameof(svc));
+        _configService = configService;
         LoadFacetOptions();
     }
 
@@ -198,13 +205,22 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public void SetUsername(string? username)
     {
-        _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+        _preferredUsername = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+        var changed = ApplyIdentity(_preferredUsername, null);
+        if (changed && !string.IsNullOrWhiteSpace(_root))
+        {
+            _ = SafeFireAndForget(LoadAsync());
+            _ = SafeFireAndForget(LoadCommunityAsync());
+        }
     }
 
     public string? GetRoot() => _root;
 
     public async Task<ScholarCollection> EnsureDefaultCollectionAsync()
     {
+        if (!await EnsureStorageContextAsync())
+            throw new InvalidOperationException("Scholar storage is not initialized.");
+
         if (_allCollections.Count > 0)
             return _allCollections[0];
 
@@ -243,6 +259,9 @@ public partial class ScholarTabViewModel : ViewModelBase
             return SelectedCollection;
         }
 
+        if (!await EnsureStorageContextAsync())
+            return null;
+
         return await EnsureDefaultCollectionAsync();
     }
 
@@ -258,13 +277,12 @@ public partial class ScholarTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task LoadAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root)) return;
+        if (!await EnsureStorageContextAsync()) return;
 
         try
         {
-            var loaded = !string.IsNullOrWhiteSpace(_username)
-                ? await _svc.LoadUserAsync(_root, _username)
-                : await _svc.LoadAsync(_root);
+            var loaded = await LoadOwnedCollectionsAsync();
+            NormalizeOwnedCollections(loaded);
 
             await RunOnUiAsync(() =>
             {
@@ -273,7 +291,9 @@ public partial class ScholarTabViewModel : ViewModelBase
                 RefreshCollectionsList();
 
                 RefreshIsEmptyState();
-                StatusMessage = $"Loaded {_allCollections.Count} collection(s).";
+                StatusMessage = _loadedFromLegacyIdentity && !string.IsNullOrWhiteSpace(_loadedLegacyUsername)
+                    ? $"Loaded {_allCollections.Count} collection(s) from legacy identity '{_loadedLegacyUsername}'. Next save will write canonical GitHub identity '{_username}'."
+                    : $"Loaded {_allCollections.Count} collection(s).";
                 StatusChanged?.Invoke(this, StatusMessage);
             });
         }
@@ -287,7 +307,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task SaveAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root)) return;
+        if (!await EnsureStorageContextAsync()) return;
 
         await _saveLock.WaitAsync();
         try
@@ -298,11 +318,26 @@ public partial class ScholarTabViewModel : ViewModelBase
             try
             {
                 var list = _allCollections.ToList();
+                NormalizeOwnedCollections(list);
                 if (!string.IsNullOrWhiteSpace(_username))
+                {
                     await _svc.SaveUserAsync(_root, _username, list);
+                    if (_loadedFromLegacyIdentity && !string.IsNullOrWhiteSpace(_loadedLegacyUsername))
+                    {
+                        StatusMessage = $"Saved under GitHub identity '{_username}' using legacy Scholar data from '{_loadedLegacyUsername}'.";
+                        _loadedFromLegacyIdentity = false;
+                        _loadedLegacyUsername = null;
+                    }
+                    else
+                    {
+                        StatusMessage = "Saved.";
+                    }
+                }
                 else
+                {
                     await _svc.SaveAsync(_root, list);
-                StatusMessage = "Saved.";
+                    StatusMessage = "Saved.";
+                }
                 StatusChanged?.Invoke(this, StatusMessage);
             }
             catch (Exception ex)
@@ -537,12 +572,13 @@ public partial class ScholarTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task LoadCommunityAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root)) return;
+        if (!await EnsureStorageContextAsync()) return;
 
         try
         {
             var communityDir = ScholarCollectionsService.GetCommunityCollectionsDir(_root);
             var allUsers = await _svc.LoadAllCommunityJsonlAsync(communityDir);
+            var identityKeys = GetCurrentIdentityKeys();
 
             await RunOnUiAsync(() =>
             {
@@ -551,8 +587,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 foreach (var (username, collections) in allUsers)
                 {
                     // Skip current user's own collections
-                    if (_username != null &&
-                        string.Equals(username, _username, StringComparison.OrdinalIgnoreCase))
+                    if (identityKeys.Contains(username))
                         continue;
 
                     foreach (var c in collections)
@@ -790,6 +825,9 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public async Task AddPassageToCollectionAsync(string collectionId, ScholarPassage passage)
     {
+        if (!await EnsureStorageContextAsync())
+            return;
+
         var collection = Collections.FirstOrDefault(c => c.Id == collectionId);
         if (collection == null) return;
 
@@ -1298,6 +1336,12 @@ public partial class ScholarTabViewModel : ViewModelBase
         HasCommunityCollections = false;
         IsEmptyState = true;
         _root = null;
+        _username = null;
+        _legacyUsername = null;
+        _preferredUsername = null;
+        _configLoadAttempted = false;
+        _loadedFromLegacyIdentity = false;
+        _loadedLegacyUsername = null;
     }
 
     /// <summary>
@@ -1308,6 +1352,122 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         bool hasAnyLocal = _allCollections.Count > 0;
         IsEmptyState = !hasAnyLocal && !HasCommunityCollections;
+    }
+
+
+    public async Task<bool> EnsureStorageContextAsync()
+    {
+        await EnsureConfigInitializedAsync();
+
+        if (!string.IsNullOrWhiteSpace(_root))
+            return true;
+
+        StatusMessage = "Scholar save unavailable: no text root is configured.";
+        StatusChanged?.Invoke(this, StatusMessage);
+        return false;
+    }
+
+    private async Task EnsureConfigInitializedAsync()
+    {
+        if (_configLoadAttempted || _configService == null)
+            return;
+
+        _configLoadAttempted = true;
+
+        try
+        {
+            var cfg = await _configService.TryLoadAsync();
+            if (cfg == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(_root) && !string.IsNullOrWhiteSpace(cfg.TextRootPath))
+                _root = cfg.TextRootPath.Trim();
+
+            ApplyIdentity(
+                string.IsNullOrWhiteSpace(_preferredUsername) ? cfg.Username : _preferredUsername,
+                cfg.GitHubUsername);
+        }
+        catch
+        {
+            // Config fallback is optional; explicit SetRoot/SetUsername can still initialize the VM.
+        }
+    }
+
+    private bool ApplyIdentity(string? username, string? githubUsername)
+    {
+        string? preferred = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+        string? github = string.IsNullOrWhiteSpace(githubUsername) ? null : githubUsername.Trim();
+
+        var nextUsername = !string.IsNullOrWhiteSpace(github) ? github : preferred;
+        var nextLegacy = !string.IsNullOrWhiteSpace(github) &&
+                         !string.IsNullOrWhiteSpace(preferred) &&
+                         !string.Equals(github, preferred, StringComparison.OrdinalIgnoreCase)
+            ? preferred
+            : null;
+
+        bool changed =
+            !string.Equals(_username, nextUsername, StringComparison.Ordinal) ||
+            !string.Equals(_legacyUsername, nextLegacy, StringComparison.Ordinal);
+
+        _username = nextUsername;
+        _legacyUsername = nextLegacy;
+        return changed;
+    }
+
+    private async Task<List<ScholarCollection>> LoadOwnedCollectionsAsync()
+    {
+        _loadedFromLegacyIdentity = false;
+        _loadedLegacyUsername = null;
+
+        if (string.IsNullOrWhiteSpace(_root))
+            return new List<ScholarCollection>();
+
+        if (string.IsNullOrWhiteSpace(_username))
+            return await _svc.LoadAsync(_root);
+
+        if (!string.IsNullOrWhiteSpace(_legacyUsername))
+        {
+            var canonicalPath = ScholarCollectionsService.GetUserPath(_root, _username);
+            var legacyPath = ScholarCollectionsService.GetUserPath(_root, _legacyUsername);
+
+            if (!File.Exists(canonicalPath) && File.Exists(legacyPath))
+            {
+                _loadedFromLegacyIdentity = true;
+                _loadedLegacyUsername = _legacyUsername;
+                return await _svc.LoadUserAsync(_root, _legacyUsername);
+            }
+        }
+
+        return await _svc.LoadUserAsync(_root, _username);
+    }
+
+    private HashSet<string> GetCurrentIdentityKeys()
+    {
+        var keys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (!string.IsNullOrWhiteSpace(_username))
+            keys.Add(_username);
+        if (!string.IsNullOrWhiteSpace(_legacyUsername))
+            keys.Add(_legacyUsername);
+        return keys;
+    }
+
+    private void NormalizeOwnedCollections(IEnumerable<ScholarCollection> collections)
+    {
+        if (collections == null || string.IsNullOrWhiteSpace(_username))
+            return;
+
+        var identityKeys = GetCurrentIdentityKeys();
+        foreach (var collection in collections)
+        {
+            if (string.IsNullOrWhiteSpace(collection.CreatedBy) || identityKeys.Contains(collection.CreatedBy))
+                collection.CreatedBy = _username;
+
+            foreach (var passage in collection.Passages)
+            {
+                if (string.IsNullOrWhiteSpace(passage.CreatedBy) || identityKeys.Contains(passage.CreatedBy))
+                    passage.CreatedBy = _username;
+            }
+        }
     }
 
     // ----- Master name auto-detection -----

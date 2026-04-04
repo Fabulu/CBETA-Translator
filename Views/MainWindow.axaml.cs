@@ -442,7 +442,9 @@ public partial class MainWindow : Window
         _vm.SetTranslationFilePaths = (orig, tran) => _translationView?.SetCurrentFilePaths(orig, tran);
         _vm.SetAssistantTitleResolver = resolver => _translationView?.SetAssistantTitleResolver(resolver);
         _vm.SetTranslationSourceOptions = options => _translationView?.SetTranslationSourceOptions(options);
+        _vm.SetReadableTranslationSourceOptions = options => _readableView?.SetTranslationSourceOptions(options);
         _vm.SetTranslationSourceIndex = index => _translationView?.SetTranslationSourceIndex(index);
+        _vm.SetReadableTranslationSourceIndex = index => _readableView?.SetTranslationSourceIndex(index);
         _vm.SetTranslationEditorReadOnly = readOnly => _translationView?.SetEditorReadOnly(readOnly);
         _vm.SignalCoreLoadComplete = () => _windowReady.TrySetResult();
 
@@ -770,6 +772,11 @@ public partial class MainWindow : Window
                 _ = OpenCompareTranslationsWindowAsync();
             };
 
+            _readableView.TranslationSourceChanged += async (_, idx) =>
+            {
+                await _vm.SwitchTranslationSourceAsync(idx);
+            };
+
             _readableView.StudyPanelContextChanged += async (_, ctx) =>
             {
                 await _vm.RefreshReaderStudyPanelAsync(ctx);
@@ -858,10 +865,9 @@ public partial class MainWindow : Window
             {
                 _vm.HandleNavigationRequested(req);
             };
-            _searchAddToScholarHandler = (_, passage) =>
+            _searchAddToScholarHandler = async (_, passage) =>
             {
-                _scholarView?.AddPassage(passage);
-                _vm.SetStatus("Passage added to Scholar collection.");
+                await HandleAddToScholarAsync(passage);
             };
             _searchView.AddToScholarRequested += _searchAddToScholarHandler;
         }
@@ -931,20 +937,18 @@ public partial class MainWindow : Window
 
         if (_readableView != null)
         {
-            _readableAddToScholarHandler = (_, passage) =>
+            _readableAddToScholarHandler = async (_, passage) =>
             {
-                _scholarView?.AddPassage(passage);
-                _vm.SetStatus("Passage added to Scholar collection.");
+                await HandleAddToScholarAsync(passage);
             };
             _readableView.AddToScholarRequested += _readableAddToScholarHandler;
         }
 
         if (_translationView != null)
         {
-            _translationAddToScholarHandler = (_, passage) =>
+            _translationAddToScholarHandler = async (_, passage) =>
             {
-                _scholarView?.AddPassage(passage);
-                _vm.SetStatus("Passage added to Scholar collection.");
+                await HandleAddToScholarAsync(passage);
             };
             _translationView.AddToScholarRequested += _translationAddToScholarHandler;
         }
@@ -952,6 +956,30 @@ public partial class MainWindow : Window
         AddHandler(InputElement.KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
     }
 
+    private void EnsureScholarContextReady()
+    {
+        if (_scholarView == null) return;
+        if (!string.IsNullOrWhiteSpace(_vm.Root))
+            _scholarView.SetRoot(_vm.Root);
+        _scholarView.SetUsername(_vm.Config.GitHubUsername ?? _vm.Config.Username);
+        _scholarView.SetTranslationDirs(_vm.OriginalDir, _vm.TranslatedDir);
+    }
+
+    private async Task HandleAddToScholarAsync(ScholarPassage passage)
+    {
+        if (_scholarView == null)
+        {
+            _vm.SetStatus("Scholar is unavailable.");
+            return;
+        }
+
+        EnsureScholarContextReady();
+
+        if (await _scholarView.TryAddPassageAsync(passage))
+            _vm.SetStatus("Passage added to Scholar collection.");
+        else
+            _vm.SetStatus("Could not add passage to Scholar collection.");
+    }
     private void UnsubscribeChildViewEvents()
     {
         if (_readableView != null && _readableAddToScholarHandler != null)
@@ -1327,9 +1355,11 @@ public partial class MainWindow : Window
             };
 
             var sourceList = new List<string>(sources);
+            var activeIndex = Math.Clamp(_vm.GetActiveTranslationSourceIndex(), 0, sourceList.Count - 1);
+            var fallbackIndex = Enumerable.Range(0, sourceList.Count).FirstOrDefault(i => i != activeIndex);
 
-            var cmbA = new ComboBox { ItemsSource = sourceList, SelectedIndex = 0, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
-            var cmbB = new ComboBox { ItemsSource = sourceList, SelectedIndex = Math.Min(1, sourceList.Count - 1), MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
+            var cmbA = new ComboBox { ItemsSource = sourceList, SelectedIndex = activeIndex, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
+            var cmbB = new ComboBox { ItemsSource = sourceList, SelectedIndex = fallbackIndex, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
 
             var btnOk = new Button { Content = "Compare", HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0, 16, 0, 0), Padding = new Thickness(20, 6) };
 

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Reflection;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.ViewModels;
 using CbetaTranslator.Tests.Stubs;
@@ -24,8 +25,6 @@ public class MainWindowViewModelTests
             documentTagService ?? new StubDocumentTagService());
     }
 
-    // ---- Initial state ----
-
     [Fact]
     public void InitialState_HasDefaults()
     {
@@ -40,8 +39,6 @@ public class MainWindowViewModelTests
         Assert.Null(vm.CurrentRelPath);
     }
 
-    // ---- SetStatus ----
-
     [Fact]
     public void SetStatus_UpdatesStatusText()
     {
@@ -51,8 +48,6 @@ public class MainWindowViewModelTests
 
         Assert.Equal("Loading...", vm.StatusText);
     }
-
-    // ---- UpdateWindowTitle ----
 
     [Fact]
     public void UpdateWindowTitle_NoFile_ShowsBaseTitle()
@@ -78,7 +73,19 @@ public class MainWindowViewModelTests
         Assert.Contains("Read Zen", received!);
     }
 
-    // ---- NormalizeRel ----
+    [Fact]
+    public void UpdateWindowTitle_WithFile_UsesCleanSeparator()
+    {
+        var vm = MakeVm();
+        typeof(MainWindowViewModel)
+            .GetField("_currentRelPath", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .SetValue(vm, "T01/test.xml");
+
+        vm.UpdateWindowTitle();
+
+        Assert.Equal("Read Zen - T01/test.xml", vm.WindowTitle);
+        Assert.Equal("T01/test.xml", vm.CurrentFileText);
+    }
 
     [Fact]
     public void NormalizeRel_ConvertsBackslashesAndTrimsLeadingSlash()
@@ -93,8 +100,6 @@ public class MainWindowViewModelTests
     {
         Assert.Equal("", MainWindowViewModel.NormalizeRel(null!));
     }
-
-    // ---- PropertyChanged ----
 
     [Fact]
     public void PropertyChanged_FiredForStatusText()
@@ -131,8 +136,6 @@ public class MainWindowViewModelTests
 
         Assert.Contains("RootDisplayText", changed);
     }
-
-    // ---- SetStatus with severity ----
 
     [Fact]
     public void SetStatus_DefaultSeverity_SetsStatusSeverityToInfo()
@@ -204,16 +207,12 @@ public class MainWindowViewModelTests
         Assert.Equal(severity, vm.StatusSeverity);
     }
 
-    // ---- Config ----
-
     [Fact]
     public void Config_HasDefaultDarkTheme()
     {
         var vm = MakeVm();
         Assert.True(vm.Config.IsDarkTheme);
     }
-
-    // ---- FilteredItems ----
 
     [Fact]
     public void FilteredItems_InitiallyEmpty()
@@ -289,6 +288,36 @@ public class MainWindowViewModelTests
     }
 
     [Fact]
+    public async Task RefreshTranslationSources_PushesReaderSourceOptionsAndIndex()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        List<string>? readerOptions = null;
+        int? readerIndex = null;
+
+        try
+        {
+            vm.SetReadableTranslationSourceOptions = options => readerOptions = new List<string>(options);
+            vm.SetReadableTranslationSourceIndex = index => readerIndex = index;
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            Assert.NotNull(readerOptions);
+            Assert.Equal(vm.GetTranslationSourceLabels(), readerOptions);
+            Assert.Equal(0, readerIndex);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task HandleGitHubAuthCompletedAsync_ConflictingLegacyFolderIsDeletedAndGitHubFolderWins()
     {
         var vm = MakeVm();
@@ -319,6 +348,7 @@ public class MainWindowViewModelTests
                 Directory.Delete(root, recursive: true);
         }
     }
+
     [Fact]
     public async Task RefreshCommunityTagDataAsync_FiltersOutCurrentUserIdentities()
     {
@@ -368,6 +398,7 @@ public class MainWindowViewModelTests
                 Directory.Delete(root, recursive: true);
         }
     }
+
     [Fact]
     public void ApplySettingsToChildViews_PrefersGitHubLoginForReadableTagCompareIdentity()
     {
@@ -415,6 +446,37 @@ public class MainWindowViewModelTests
             await vm.SwitchTranslationSourceAsync(2);
             Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), rootContextTranslatedDir);
             Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), searchContextTranslatedDir);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task SwitchTranslationSourceAsync_UpdatesReaderSourceIndexBridge()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        var seenIndexes = new List<int>();
+
+        try
+        {
+            vm.SetReadableTranslationSourceIndex = index => seenIndexes.Add(index);
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            await vm.SwitchTranslationSourceAsync(2);
+
+            Assert.Contains(0, seenIndexes);
+            Assert.Contains(2, seenIndexes);
+            Assert.Equal(2, vm.GetActiveTranslationSourceIndex());
         }
         finally
         {

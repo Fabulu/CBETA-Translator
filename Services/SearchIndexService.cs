@@ -1,4 +1,4 @@
-﻿// Services/SearchIndexService.cs
+// Services/SearchIndexService.cs
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -1724,6 +1724,38 @@ public sealed class SearchIndexService : ISearchIndexService
         try { Console.WriteLine(line); } catch { }
     }
 
+    public static List<SearchResultChild> BuildResultChildren(
+        string relPath,
+        IReadOnlyList<SearchHit> originalHits,
+        IReadOnlyList<SearchHit> translatedHits)
+    {
+        var children = new List<SearchResultChild>(originalHits.Count + translatedHits.Count);
+
+        for (int i = 0; i < originalHits.Count; i++)
+        {
+            children.Add(new SearchResultChild
+            {
+                RelPath = relPath,
+                Side = SearchSide.Original,
+                Hit = originalHits[i],
+                SecondaryHit = i < translatedHits.Count ? translatedHits[i] : null
+            });
+        }
+
+        for (int i = 0; i < translatedHits.Count; i++)
+        {
+            children.Add(new SearchResultChild
+            {
+                RelPath = relPath,
+                Side = SearchSide.Translated,
+                Hit = translatedHits[i],
+                SecondaryHit = i < originalHits.Count ? originalHits[i] : null
+            });
+        }
+
+        return children;
+    }
+
     public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(
     string root,
     string originalDir,
@@ -2050,13 +2082,15 @@ public sealed class SearchIndexService : ISearchIndexService
 
             int hitsO = 0;
             int hitsT = 0;
+            var originalHits = new List<SearchHit>();
+            var translatedHits = new List<SearchHit>();
 
             if ((mask & 1) != 0)
             {
                 string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
                 entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
                 textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
-                var hits = VerifyFileAllHits(
+                originalHits = VerifyFileAllHits(
                     root,
                     relKey,
                     SearchSide.Original,
@@ -2068,19 +2102,8 @@ public sealed class SearchIndexService : ISearchIndexService
                     contextWidth,
                     htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
                 Interlocked.Increment(ref verifiedDocs);
-
-                foreach (var h in hits)
-                {
-                    hitsO++;
-                    Interlocked.Increment(ref totalHits);
-
-                    group.Children.Add(new SearchResultChild
-                    {
-                        RelPath = relKey,
-                        Side = SearchSide.Original,
-                        Hit = h
-                    });
-                }
+                hitsO = originalHits.Count;
+                Interlocked.Add(ref totalHits, hitsO);
             }
 
             if ((mask & 2) != 0)
@@ -2088,7 +2111,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
                 entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
                 textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
-                var hits = VerifyFileAllHits(
+                translatedHits = VerifyFileAllHits(
                     root,
                     relKey,
                     SearchSide.Translated,
@@ -2100,23 +2123,13 @@ public sealed class SearchIndexService : ISearchIndexService
                     contextWidth,
                     htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
                 Interlocked.Increment(ref verifiedDocs);
-
-                foreach (var h in hits)
-                {
-                    hitsT++;
-                    Interlocked.Increment(ref totalHits);
-
-                    group.Children.Add(new SearchResultChild
-                    {
-                        RelPath = relKey,
-                        Side = SearchSide.Translated,
-                        Hit = h
-                    });
-                }
+                hitsT = translatedHits.Count;
+                Interlocked.Add(ref totalHits, hitsT);
             }
 
             group.HitsOriginal = hitsO;
             group.HitsTranslated = hitsT;
+            group.Children.AddRange(BuildResultChildren(relKey, originalHits, translatedHits));
 
             if (group.Children.Count > 0)
                 outGroups.Add(group);
