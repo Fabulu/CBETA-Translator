@@ -2,7 +2,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.ExportFormatDialog"
-        Width="360" Height="490"
+        Width="360" Height="560"
         Background="{DynamicResource AppBg}"
         Title="Export Scholar Data"
         CanResize="False"
@@ -98,6 +98,18 @@
 				<StackPanel Spacing="2">
 					<TextBlock Text="BibTeX (.bib)" FontWeight="SemiBold"/>
 					<TextBlock Text="One @misc entry per passage in the selected collection"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+				</StackPanel>
+			</RadioButton>
+
+			<RadioButton Name="RbCslJson"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+				<StackPanel Spacing="2">
+					<TextBlock Text="CSL-JSON (.json)" FontWeight="SemiBold"/>
+					<TextBlock Text="Citation-manager export with one item per passage in the selected collection"
 							   FontSize="11"
 							   Foreground="{DynamicResource TextMutedFg}"
 							   TextWrapping="Wrap"/>
