@@ -717,9 +717,70 @@ public class ScholarTabViewModelTests
         var trackingVm = new ScholarTabViewModel(trackingSvc);
         trackingVm.AddCollectionCommand.Execute(null);
 
-        trackingVm.PickExportFileAsync = () => Task.FromResult<string?>("/tmp/export.json");
+        trackingVm.PickExportFileAsync = (_, _) => Task.FromResult<string?>("/tmp/export.json");
 
         await trackingVm.ExportCollectionsCommand.ExecuteAsync(null);
+
+        Assert.True(trackingSvc.ExportWasCalled);
+        Assert.Equal("/tmp/export.json", trackingSvc.LastExportPath);
+    }
+
+
+    [Fact]
+    public async Task ExportCollections_CancelledFormat_DoesNotExport()
+    {
+        var trackingSvc = new TrackingScholarCollectionsService();
+        var vm = new ScholarTabViewModel(trackingSvc)
+        {
+            PickExportFileAsync = (_, _) => Task.FromResult<string?>("/tmp/should-not-export.json"),
+            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(null)
+        };
+
+        await vm.ExportCollectionsCommand.ExecuteAsync(null);
+
+        Assert.False(trackingSvc.ExportWasCalled);
+        Assert.Contains("cancelled", vm.StatusMessage, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task ExportCollections_RichFormatWithoutSelectedCollection_BlocksBeforePicker()
+    {
+        var trackingSvc = new TrackingScholarCollectionsService();
+        var vm = new ScholarTabViewModel(trackingSvc)
+        {
+            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.Html)
+        };
+
+        var pickerCalled = false;
+        vm.PickExportFileAsync = (_, _) =>
+        {
+            pickerCalled = true;
+            return Task.FromResult<string?>("/tmp/export.html");
+        };
+
+        await vm.ExportCollectionsCommand.ExecuteAsync(null);
+
+        Assert.False(pickerCalled);
+        Assert.Contains("Select a collection", vm.StatusMessage);
+    }
+
+    [Fact]
+    public async Task ExportCollections_JsonFormat_UsesJsonExportPath()
+    {
+        var trackingSvc = new TrackingScholarCollectionsService();
+        var vm = new ScholarTabViewModel(trackingSvc)
+        {
+            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.Json),
+            PickExportFileAsync = (format, name) =>
+            {
+                Assert.Equal(ScholarExportFormat.Json, format);
+                Assert.Null(name);
+                return Task.FromResult<string?>("/tmp/export.json");
+            }
+        };
+        vm.AddCollectionCommand.Execute(null);
+
+        await vm.ExportCollectionsCommand.ExecuteAsync(null);
 
         Assert.True(trackingSvc.ExportWasCalled);
         Assert.Equal("/tmp/export.json", trackingSvc.LastExportPath);
@@ -1968,3 +2029,5 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
         => Task.CompletedTask;
 }
+
+

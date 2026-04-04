@@ -384,4 +384,101 @@ public class MainWindowViewModelTests
         Assert.Equal("octocat", compareIdentity);
         Assert.Equal("Alice", tagUsername);
     }
+
+    [Fact]
+    public async Task SwitchTranslationSourceAsync_UpdatesSearchContextToMatchActiveTranslationSource()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        string? rootContextTranslatedDir = null;
+        string? searchContextTranslatedDir = null;
+
+        try
+        {
+            vm.SetSearchRootContext = (_, _, translatedDir) => rootContextTranslatedDir = translatedDir;
+            vm.SetSearchContext = (_, _, translatedDir, _) => searchContextTranslatedDir = translatedDir;
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            Assert.Equal(Path.Combine(root, "community", "translations", "octocat"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(root, "community", "translations", "octocat"), searchContextTranslatedDir);
+
+            await vm.SwitchTranslationSourceAsync(1);
+            Assert.Equal(Path.Combine(root, "xml-p5t"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(root, "xml-p5t"), searchContextTranslatedDir);
+
+            await vm.SwitchTranslationSourceAsync(2);
+            Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), searchContextTranslatedDir);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task LoadConfigApplyThemeAndMaybeAutoloadAsync_DoesNotPromptForUsernameWhenMissing()
+    {
+        var configService = new StubAppConfigService
+        {
+            ConfigToReturn = new AppConfig { IsDarkTheme = true }
+        };
+        var vm = new MainWindowViewModel(
+            new StubFileService(),
+            configService,
+            new StubIndexCacheService(),
+            new StubRenderedDocumentCacheService(),
+            new StubZenTextsService(),
+            new StubIndexedTranslationService(),
+            new StubTranslationAssistantService(),
+            new StubTranslationAssistantBuildService(),
+            new StubTranslationReviewService(),
+            new StubSearchIndexService(),
+            new StubDocumentTagService());
+
+        var promptCalls = 0;
+        vm.ShowUsernamePromptAsync = () =>
+        {
+            promptCalls++;
+            return Task.FromResult<string?>("Alice");
+        };
+
+        await vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(isSecondaryWindow: false);
+
+        Assert.Equal(0, promptCalls);
+        Assert.Null(vm.Config.Username);
+    }
+
+    [Fact]
+    public async Task HandleGitHubAuthCompletedAsync_WithNoLegacyFolder_DoesNotCreateUserTranslationDirectory()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig());
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            await vm.HandleGitHubAuthCompletedAsync("ghp_test", "octocat");
+
+            var githubDir = Path.Combine(root, "community", "translations", "octocat");
+            Assert.False(Directory.Exists(githubDir));
+            Assert.Equal("octocat", vm.Config.Username);
+            Assert.Equal("octocat", vm.GetActiveTranslationUser());
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
 }

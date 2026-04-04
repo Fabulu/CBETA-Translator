@@ -877,6 +877,12 @@ public partial class MainWindow : Window
                 catch { }
             };
 
+            _gitView.PrepareCommunityShareRequested += async () =>
+            {
+                try { await _vm.EnsureUserTranslationDirectoryCanonicalizedForSyncAsync(); }
+                catch (Exception ex) { _vm.SetStatus("Prepare sync migration failed: " + ex.Message); throw; }
+            };
+
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {
                 try { return await _vm.EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }

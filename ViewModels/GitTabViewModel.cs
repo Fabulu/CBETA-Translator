@@ -97,6 +97,7 @@ public partial class GitTabViewModel : ViewModelBase
     public event EventHandler<string>? StatusChanged;
     public event EventHandler<string>? RootCloned;
     public event EventHandler? CommunityDataFetched;
+    public event Func<Task>? PrepareCommunityShareRequested;
     public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabViewModel(
@@ -1263,6 +1264,15 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
+    private async Task PrepareCommunityShareAsync()
+    {
+        if (PrepareCommunityShareRequested == null)
+            return;
+
+        foreach (var fn in PrepareCommunityShareRequested.GetInvocationList().Cast<Func<Task>>())
+            await fn();
+    }
+
     // ----- Private: Unified Share All (TM + termbase + collections + reviews) -----
 
     private async Task ShareAllInternalAsync()
@@ -1320,6 +1330,8 @@ public partial class GitTabViewModel : ViewModelBase
                 FireDeviceFlowCompleted();
             }
 
+
+            await PrepareCommunityShareAsync();
 
             var preShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
 

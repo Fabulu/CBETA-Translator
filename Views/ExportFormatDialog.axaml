@@ -2,9 +2,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.ExportFormatDialog"
-        Width="350" Height="280"
+        Width="360" Height="340"
         Background="{DynamicResource AppBg}"
-        Title="Export Collection"
+        Title="Export Scholar Data"
         CanResize="False"
         WindowStartupLocation="CenterOwner">
 
@@ -62,6 +62,18 @@
 				<StackPanel Spacing="2">
 					<TextBlock Text="Plain Text" FontWeight="SemiBold"/>
 					<TextBlock Text="Simple text, no formatting"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+				</StackPanel>
+			</RadioButton>
+
+			<RadioButton Name="RbJson"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+				<StackPanel Spacing="2">
+					<TextBlock Text="JSON (all collections)" FontWeight="SemiBold"/>
+					<TextBlock Text="Structured archive export of every collection"
 							   FontSize="11"
 							   Foreground="{DynamicResource TextMutedFg}"
 							   TextWrapping="Wrap"/>
