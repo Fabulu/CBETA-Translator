@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,7 +25,7 @@ public interface IGitRepoService
     /// <summary>
     /// Ensures git user.name and user.email are configured locally.
     /// If <paramref name="username"/> is provided, it is used for user.name and email;
-    /// otherwise falls back to "CbetaTranslator" / "cbeta-translator@cbeta-translator.local".
+    /// otherwise falls back to "ReadZen" / "readzen@readzen.local".
     /// </summary>
     /// <remarks>
     /// Security: username is self-declared (from AppConfig), not verified.

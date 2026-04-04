@@ -14,8 +14,8 @@ namespace CbetaTranslator.App.Services;
 /// </summary>
 public sealed class SingleInstanceManager : IDisposable
 {
-    private const string MutexName = "CbetaTranslator_SingleInstance";
-    private const string PipeName = "CbetaTranslator_DeepLink";
+    private const string MutexName = "ReadZen_SingleInstance";
+    private const string PipeName = "ReadZen_DeepLink";
 
     private Mutex? _mutex;
     private CancellationTokenSource? _cts;
@@ -40,7 +40,7 @@ public sealed class SingleInstanceManager : IDisposable
             if (createdNew)
                 return true;
 
-            // The mutex exists — try to acquire it in case the previous owner crashed
+            // The mutex exists â€” try to acquire it in case the previous owner crashed
             try
             {
                 if (_mutex.WaitOne(500))
@@ -53,11 +53,11 @@ public sealed class SingleInstanceManager : IDisposable
         }
         catch (Exception)
         {
-            // Mutex creation failed entirely — proceed as single instance
+            // Mutex creation failed entirely â€” proceed as single instance
             return true;
         }
 
-        // Second instance — forward the zen:// URI to the first instance and signal exit.
+        // Second instance â€” forward the zen:// URI to the first instance and signal exit.
         var cbetaArg = args.FirstOrDefault(a =>
             a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 
@@ -113,7 +113,7 @@ public sealed class SingleInstanceManager : IDisposable
                 }
                 catch
                 {
-                    // Pipe error — brief pause then retry.
+                    // Pipe error â€” brief pause then retry.
                     try { await Task.Delay(500, token); } catch { break; }
                 }
             }

@@ -182,7 +182,6 @@ public partial class ReadableTabView : UserControl
 
     // Coding mode events
     public event EventHandler<DocumentTag>? TagApplied;
-    public event EventHandler<DocumentTag>? TagRemoved;
     public event EventHandler? CodingModeToggled;
     public event EventHandler? TagEditorRequested;
     public event EventHandler<TagVocabulary>? VocabularyChanged;

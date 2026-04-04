@@ -19,12 +19,12 @@ namespace CbetaTranslator.App.ViewModels;
 
 public partial class GitTabViewModel : ViewModelBase
 {
-    private const string RepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
-    private const string RepoFolderName = "CbetaZenTexts";
+    private const string RepoUrl = "https://github.com/Fabulu/ReadZen.git";
+    private const string RepoFolderName = "ReadZen";
 
     private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
-    private const string UpstreamRepo = "CbetaZenTexts";
+    private const string UpstreamRepo = "ReadZen";
 
     private const string CommunityTmFile = "translation-memory.approved.jsonl";
     private const string CommunityTermbaseFile = "termbase.json";
@@ -313,6 +313,12 @@ public partial class GitTabViewModel : ViewModelBase
         _cts = new CancellationTokenSource();
     }
 
+    private CancellationToken BeginOperation()
+    {
+        ResetCts();
+        return _cts?.Token ?? CancellationToken.None;
+    }
+
     [RelayCommand]
     private async Task SendContributionAsync()
     {
@@ -470,8 +476,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task GetOrUpdateFilesAsync(UpdateMode mode)
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -757,8 +762,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task PanicButtonAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -853,8 +857,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task SendContributionLocalAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -1025,8 +1028,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task AuthorizeGitHubAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -1077,8 +1079,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task PushAndCreatePrAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -1277,8 +1278,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareAllInternalAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -1684,8 +1684,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareCommunityDataInternalAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -1989,8 +1988,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task ShareScholarCollectionsInternalAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -2250,8 +2248,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task FetchAndMergeCommunityDataAsync()
     {
-        ResetCts();
-        var ct = _cts.Token;
+        var ct = BeginOperation();
 
         SetButtonsBusy(true);
         ClearLog();
@@ -3218,3 +3215,4 @@ public partial class GitTabViewModel : ViewModelBase
         catch { return (p ?? "").Trim(); }
     }
 }
+

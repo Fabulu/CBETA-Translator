@@ -12,6 +12,10 @@ namespace CbetaTranslator.App.Views;
 
 public partial class TermbaseEditorWindow : Window
 {
+    public TermbaseEditorWindow() : this(string.Empty, null)
+    {
+    }
+
     private readonly TermbaseEditorWindowViewModel _vm;
 
     public bool Saved => _vm.Saved;
@@ -89,3 +93,4 @@ public partial class TermbaseEditorWindow : Window
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }
+

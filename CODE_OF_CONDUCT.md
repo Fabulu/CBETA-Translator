@@ -1,8 +1,8 @@
-﻿# Code of Conduct
+# Code of Conduct
 
 ## Our Goal
 
-CbetaZenTexts and Read Zen exist to make the CBETA canon more accessible through collaborative translation.
+The ReadZen repository and Read Zen app exist to make the CBETA canon more accessible through collaborative translation.
 
 We want a space that is:
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -77,10 +77,10 @@ public sealed class GitRepoService : IGitRepoService
         // Use the provided username if available, otherwise fall back to defaults.
         // Security note: username is self-declared (AppConfig), not verified.
         // GitHub PRs are verified via OAuth token; community data merges should be reviewed.
-        var desiredName = string.IsNullOrWhiteSpace(username) ? "CbetaTranslator" : username.Trim();
+        var desiredName = string.IsNullOrWhiteSpace(username) ? "ReadZen" : username.Trim();
         var desiredEmail = string.IsNullOrWhiteSpace(username)
-            ? "cbeta-translator@cbeta-translator.local"
-            : $"{username.Trim()}@cbeta-translator.local";
+            ? "readzen@readzen.local"
+            : $"{username.Trim()}@readzen.local";
 
         string name = await GetConfigAsync(repoDir, "user.name", ct);
         string email = await GetConfigAsync(repoDir, "user.email", ct);

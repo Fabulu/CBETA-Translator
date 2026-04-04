@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
@@ -51,7 +51,7 @@ public sealed class GitHubAuthService : IGitHubAuthService, IDisposable
     {
         _http = new HttpClient();
         _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("CbetaTranslator-App");
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd("ReadZen-App");
     }
 
     public async Task<GitHubToken?> AuthorizeDeviceFlowAsync(IProgress<string> log, CancellationToken ct, Action<DeviceCodeReady>? onDeviceCodeReady = null)

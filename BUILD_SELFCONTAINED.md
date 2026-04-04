@@ -1,4 +1,4 @@
-﻿# Building Read Zen as Self-Contained Executable
+# Building Read Zen as Self-Contained Executable
 
 This guide explains how to build Read Zen as a single self-contained executable that only requires the Rust DLL to run.
 
@@ -63,7 +63,7 @@ bin\SelfContained\
 The self-contained executable **does NOT include the CBETA XML database**. You must also provide:
 
 ### Required External Data:
-1. **CbetaZenTexts folder** (~500MB+)
+1. **ReadZen folder** (~500MB+)
    - Contains 4,990 XML files in `xml-p5/` subfolder
    - Translation files in `xml-p5t/` and `md-p5t/`
    - Index files and metadata
@@ -74,7 +74,7 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 [Application Directory]\
 â”œâ”€â”€ CbetaTranslator.App.exe          # ~46MB self-contained exe
 â”œâ”€â”€ cbeta-gui-dll.dll                # ~5MB Rust DLL
-â””â”€â”€ CbetaZenTexts\                   # ~500MB+ CBETA database
+â””â”€â”€ ReadZen\                   # ~500MB+ CBETA database
     â”œâ”€â”€ xml-p5\                      # Original XML files
     â”œâ”€â”€ xml-p5t\                     # Translated XML files  
     â”œâ”€â”€ md-p5t\                      # Markdown translations
@@ -82,7 +82,7 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
     â””â”€â”€ index.cache.json             # Search index
 ```
 
-### Why Not Include CbetaZenTexts in Self-Contained Build?
+### Why Not Include ReadZen in Self-Contained Build?
 - **Size**: The XML database is ~500MB+ vs 46MB exe
 - **Updates**: Database can be updated independently of app
 - **Flexibility**: Users can choose which canons to include

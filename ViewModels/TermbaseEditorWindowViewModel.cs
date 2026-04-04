@@ -365,8 +365,8 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
 
         var filter = CommunityFilter?.Trim() ?? "";
 
-        string? selectedUser = _selectedCommunityUserIndex > 0 && _selectedCommunityUserIndex < _communityUsernames.Count
-            ? _communityUsernames[_selectedCommunityUserIndex]
+        string? selectedUser = SelectedCommunityUserIndex > 0 && SelectedCommunityUserIndex < _communityUsernames.Count
+            ? _communityUsernames[SelectedCommunityUserIndex]
             : null;
 
         foreach (var (author, e) in _allCommunityEntries)
@@ -481,7 +481,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         }
         catch (OperationCanceledException)
         {
-            // Cancelled — ignore
+            // Cancelled - ignore
         }
         catch (Exception ex)
         {
@@ -639,3 +639,4 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         return entry;
     }
 }
+
