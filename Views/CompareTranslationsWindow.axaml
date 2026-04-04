@@ -8,7 +8,7 @@
     <Window.Styles>
         <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
     </Window.Styles>
-    <Grid RowDefinitions="Auto,*">
+    <Grid Name="RootGrid" RowDefinitions="Auto,*">
         <!-- Header: shows file name -->
         <DockPanel Grid.Row="0" Margin="8">
             <TextBlock Name="TxtHeader" FontWeight="Bold" FontSize="14"
@@ -54,5 +54,6 @@
                 </Grid>
             </Border>
         </Grid>
+        <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
     </Grid>
 </Window>
