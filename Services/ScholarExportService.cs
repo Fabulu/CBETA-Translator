@@ -19,12 +19,47 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.Html => BuildHtml(collection),
             ScholarExportFormat.Markdown => BuildMarkdown(collection),
             ScholarExportFormat.PlainText => BuildPlainText(collection),
+            ScholarExportFormat.Csv => BuildDelimited(collection, ","),
+            ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
 
         await File.WriteAllTextAsync(filePath, content, Encoding.UTF8, ct);
     }
 
+    private static readonly string[] DelimitedHeaders =
+    {
+        "collection_id",
+        "collection_name",
+        "collection_description",
+        "collection_tags",
+        "collection_created_by",
+        "collection_created_utc",
+        "collection_modified_utc",
+        "study_notes",
+        "passage_id",
+        "source_title",
+        "source_rel_path",
+        "zh_text",
+        "en_text",
+        "notes",
+        "tags",
+        "master_names",
+        "doctrinal_topic",
+        "literary_form",
+        "lineage",
+        "rhetorical_function",
+        "linked_texts",
+        "from_lb",
+        "to_lb",
+        "start_block",
+        "end_block",
+        "created_by",
+        "added_utc",
+        "modified_utc",
+        "zen_link",
+        "share_url"
+    };
     private static string BuildHtml(ScholarCollection collection)
     {
         var sb = new StringBuilder();
@@ -392,7 +427,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
             var cats = BuildCategoryList(p);
             if (cats.Count > 0)
-                sb.AppendLine($"**Categories:** {string.Join(" · ", cats)}");
+                sb.AppendLine($"**Categories:** {string.Join(" ? ", cats)}");
 
             sb.AppendLine();
             sb.AppendLine("---");
@@ -616,6 +651,78 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             toLb: passage.ToLb);
     }
 
+    private static string BuildDelimited(ScholarCollection collection, string delimiter)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine(string.Join(delimiter, DelimitedHeaders.Select(h => EscapeDelimited(h, delimiter))));
+
+        foreach (var passage in collection.Passages)
+        {
+            var row = new[]
+            {
+                collection.Id,
+                collection.Name,
+                collection.Description,
+                string.Join(" | ", collection.Tags),
+                collection.CreatedBy ?? string.Empty,
+                FormatTimestamp(collection.CreatedUtc),
+                FormatTimestamp(collection.ModifiedUtc),
+                collection.StudyNotes,
+                passage.Id,
+                ExtractSourceTitle(passage.SourceRelPath),
+                passage.SourceRelPath,
+                passage.ZhText,
+                passage.EnText,
+                passage.Notes,
+                string.Join(" | ", passage.Tags),
+                string.Join(" | ", passage.MasterNames),
+                passage.DoctrinalTopic ?? string.Empty,
+                passage.LiteraryForm ?? string.Empty,
+                passage.Lineage ?? string.Empty,
+                passage.RhetoricalFunction ?? string.Empty,
+                string.Join(" | ", passage.LinkedTexts),
+                passage.FromLb ?? string.Empty,
+                passage.ToLb ?? string.Empty,
+                passage.StartBlockNumber?.ToString() ?? string.Empty,
+                passage.EndBlockNumber?.ToString() ?? string.Empty,
+                passage.CreatedBy ?? string.Empty,
+                FormatTimestamp(passage.AddedUtc),
+                FormatTimestamp(passage.ModifiedUtc),
+                BuildZenLink(passage) ?? string.Empty,
+                BuildShareUrl(passage) ?? string.Empty,
+            };
+
+            sb.AppendLine(string.Join(delimiter, row.Select(v => EscapeDelimited(v, delimiter))));
+        }
+
+        if (collection.Passages.Count == 0)
+        {
+            var emptyRow = new[]
+            {
+                collection.Id,
+                collection.Name,
+                collection.Description,
+                string.Join(" | ", collection.Tags),
+                collection.CreatedBy ?? string.Empty,
+                FormatTimestamp(collection.CreatedUtc),
+                FormatTimestamp(collection.ModifiedUtc),
+                collection.StudyNotes
+            }.Concat(Enumerable.Repeat(string.Empty, DelimitedHeaders.Length - 8));
+            sb.AppendLine(string.Join(delimiter, emptyRow.Select(v => EscapeDelimited(v, delimiter))));
+        }
+
+        return sb.ToString();
+    }
+
+    private static string EscapeDelimited(string? value, string delimiter)
+    {
+        var text = value ?? string.Empty;
+        var normalized = text.Replace("\r\n", "\n").Replace("\r", "\n");
+        var needsQuotes = normalized.Contains('"') || normalized.Contains('\n') || normalized.Contains(delimiter, StringComparison.Ordinal);
+        if (!needsQuotes)
+            return normalized;
+        return '"' + normalized.Replace("\"", "\"\"") + '"';
+    }
     private static string ExtractSourceTitle(string relPath)
     {
         if (string.IsNullOrEmpty(relPath))
