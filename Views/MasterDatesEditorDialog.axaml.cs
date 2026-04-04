@@ -56,11 +56,14 @@ public partial class MasterDatesEditorDialog : Window
             masterList.ItemTemplate = new Avalonia.Controls.Templates.FuncDataTemplate<MasterEntry>(
                 (entry, _) =>
                 {
+                    if (entry == null)
+                        return new TextBlock { Text = "(missing master entry)", Opacity = 0.6 };
+
                     var sp = new StackPanel { Spacing = 1 };
 
                     var nameBlock = new TextBlock
                     {
-                        Text = entry.PrimaryName,
+                        Text = string.IsNullOrWhiteSpace(entry.PrimaryName) ? "(unnamed)" : entry.PrimaryName,
                         FontWeight = FontWeight.SemiBold
                     };
 
@@ -88,7 +91,7 @@ public partial class MasterDatesEditorDialog : Window
                     else if (entry.IsCommunity) detailParts.Add($"[community: {entry.CreatedBy ?? "?"}]");
                     else detailParts.Add("[custom]");
 
-                    if (entry.HasConflict) detailParts.Add("⚠ conflict");
+                    if (entry.HasConflict) detailParts.Add("[conflict]");
 
                     sp.Children.Add(new TextBlock
                     {
@@ -579,3 +582,4 @@ public partial class MasterDatesEditorDialog : Window
         public List<MasterEntry> Masters { get; set; } = new();
     }
 }
+

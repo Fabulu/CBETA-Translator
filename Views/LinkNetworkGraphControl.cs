@@ -1,4 +1,4 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
@@ -28,6 +28,7 @@ public class LinkNetworkGraphControl : Control
 
     public event EventHandler<string>? NodeSelected; // PassageId
     public event EventHandler<string>? NodeDoubleClicked; // PassageId
+    public event EventHandler? GraphChanged;
 
     static LinkNetworkGraphControl()
     {
@@ -151,9 +152,12 @@ public class LinkNetworkGraphControl : Control
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
+        bool changed = _isDraggingNode || _isDraggingBackground;
         _isDraggingNode = false;
         _isDraggingBackground = false;
         _dragNode = null;
+        if (changed)
+            GraphChanged?.Invoke(this, EventArgs.Empty);
     }
 
     protected override void OnPointerWheelChanged(PointerWheelEventArgs e)
@@ -163,6 +167,7 @@ public class LinkNetworkGraphControl : Control
         double delta = e.Delta.Y > 0 ? 1.15 : 0.87;
         _vm.Zoom = Math.Max(0.3, Math.Min(3.0, _vm.Zoom * delta));
         InvalidateVisual();
+        GraphChanged?.Invoke(this, EventArgs.Empty);
         e.Handled = true;
     }
 }
