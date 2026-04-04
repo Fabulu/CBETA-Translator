@@ -24,6 +24,7 @@ public partial class ExportFormatDialog : Window
     private ScholarExportFormat GetSelectedFormat()
     {
         var rbJson = this.FindControl<RadioButton>("RbJson");
+        var rbBibTex = this.FindControl<RadioButton>("RbBibTex");
         var rbCsv = this.FindControl<RadioButton>("RbCsv");
         var rbTsv = this.FindControl<RadioButton>("RbTsv");
         var rbMarkdown = this.FindControl<RadioButton>("RbMarkdown");
@@ -31,6 +32,8 @@ public partial class ExportFormatDialog : Window
 
         if (rbJson?.IsChecked == true)
             return ScholarExportFormat.Json;
+        if (rbBibTex?.IsChecked == true)
+            return ScholarExportFormat.BibTex;
         if (rbCsv?.IsChecked == true)
             return ScholarExportFormat.Csv;
         if (rbTsv?.IsChecked == true)
