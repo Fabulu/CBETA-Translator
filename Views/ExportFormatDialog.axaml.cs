@@ -23,9 +23,12 @@ public partial class ExportFormatDialog : Window
 
     private ScholarExportFormat GetSelectedFormat()
     {
+        var rbJson = this.FindControl<RadioButton>("RbJson");
         var rbMarkdown = this.FindControl<RadioButton>("RbMarkdown");
         var rbPlainText = this.FindControl<RadioButton>("RbPlainText");
 
+        if (rbJson?.IsChecked == true)
+            return ScholarExportFormat.Json;
         if (rbMarkdown?.IsChecked == true)
             return ScholarExportFormat.Markdown;
         if (rbPlainText?.IsChecked == true)

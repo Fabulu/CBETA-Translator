@@ -167,7 +167,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     // ----- Bridge delegates (wired by code-behind for file pickers) -----
 
-    public Func<Task<string?>>? PickExportFileAsync { get; set; }
+    public Func<ScholarExportFormat, string?, Task<string?>>? PickExportFileAsync { get; set; }
     public Func<Task<string?>>? PickImportFileAsync { get; set; }
     public Func<Task<ScholarExportFormat?>>? PickExportFormatAsync { get; set; }
 
@@ -401,39 +401,54 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         try
         {
-            // Ask user for export format first
-            ScholarExportFormat? chosenFormat = null;
+            var chosenFormat = ScholarExportFormat.Json;
             if (PickExportFormatAsync != null)
-                chosenFormat = await PickExportFormatAsync();
-
-            // null means user cancelled the format dialog ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â fall back to JSON export
-            // (also used when PickExportFormatAsync is not wired)
-
-            var path = await PickExportFileAsync();
-            if (string.IsNullOrWhiteSpace(path)) return;
-
-            SyncEditorFieldsToPassage();
-
-            if (chosenFormat != null)
             {
-                // Rich export via ScholarExportService
-                var exportSvc = App.Services.GetRequiredService<IScholarExportService>();
-                var target = SelectedCollection;
+                var pickedFormat = await PickExportFormatAsync();
+                if (pickedFormat == null)
+                {
+                    StatusMessage = "Export cancelled.";
+                    StatusChanged?.Invoke(this, StatusMessage);
+                    return;
+                }
+
+                chosenFormat = pickedFormat.Value;
+            }
+
+            ScholarCollection? target = null;
+            if (chosenFormat != ScholarExportFormat.Json)
+            {
+                target = SelectedCollection;
                 if (target == null)
                 {
                     StatusMessage = "Select a collection to export.";
                     StatusChanged?.Invoke(this, StatusMessage);
                     return;
                 }
-                await exportSvc.ExportAsync(path, target, chosenFormat.Value);
-                StatusMessage = $"Exported '{target.Name}' as {chosenFormat.Value} to {Path.GetFileName(path)}.";
             }
-            else
+
+            var suggestedName = chosenFormat == ScholarExportFormat.Json ? null : target?.Name;
+            var path = await PickExportFileAsync(chosenFormat, suggestedName);
+            if (string.IsNullOrWhiteSpace(path))
             {
-                // Default JSON export of all collections
+                StatusMessage = "Export cancelled.";
+                StatusChanged?.Invoke(this, StatusMessage);
+                return;
+            }
+
+            SyncEditorFieldsToPassage();
+
+            if (chosenFormat == ScholarExportFormat.Json)
+            {
                 var list = _allCollections.ToList();
                 await _svc.ExportAsync(path, list);
                 StatusMessage = $"Exported {list.Count} collection(s) to {Path.GetFileName(path)}.";
+            }
+            else
+            {
+                var exportSvc = App.Services.GetRequiredService<IScholarExportService>();
+                await exportSvc.ExportAsync(path, target!, chosenFormat);
+                StatusMessage = $"Exported '{target!.Name}' as {chosenFormat} to {Path.GetFileName(path)}.";
             }
 
             StatusChanged?.Invoke(this, StatusMessage);
@@ -1409,3 +1424,5 @@ internal sealed class MasterNameEntry
         Names = names;
     }
 }
+
+

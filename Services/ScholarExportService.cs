@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,8 +25,6 @@ public sealed class ScholarExportService : IScholarExportService
         await File.WriteAllTextAsync(filePath, content, Encoding.UTF8, ct);
     }
 
-    // ── HTML ─────────────────────────────────────────────────────────
-
     private static string BuildHtml(ScholarCollection collection)
     {
         var sb = new StringBuilder();
@@ -45,6 +44,8 @@ public sealed class ScholarExportService : IScholarExportService
         if (!string.IsNullOrWhiteSpace(collection.Description))
             sb.AppendLine($"<p class=\"subtitle\">{Esc(collection.Description)}</p>");
 
+        AppendHtmlMetadataList(sb, BuildCollectionMetadata(collection), "collection-meta");
+
         if (collection.Tags.Count > 0)
         {
             sb.AppendLine("<div class=\"tags\">");
@@ -55,13 +56,13 @@ public sealed class ScholarExportService : IScholarExportService
 
         sb.AppendLine("<hr>");
 
-        // Passage cards
         for (int i = 0; i < collection.Passages.Count; i++)
         {
             var p = collection.Passages[i];
             sb.AppendLine($"<div class=\"card\" id=\"passage-{Esc(p.Id)}\">");
             sb.AppendLine($"<div class=\"card-header\">Passage {i + 1}</div>");
             sb.AppendLine($"<div class=\"source\">{Esc(ExtractSourceTitle(p.SourceRelPath))}</div>");
+            AppendHtmlMetadataList(sb, BuildPassageMetadata(p), "meta-list");
 
             if (!string.IsNullOrWhiteSpace(p.ZhText))
                 sb.AppendLine($"<div class=\"zh\">{Esc(p.ZhText)}</div>");
@@ -93,14 +94,13 @@ public sealed class ScholarExportService : IScholarExportService
             {
                 sb.AppendLine("<div class=\"tags\">");
                 foreach (var c in cats)
-                    sb.AppendLine($"<span class=\"chip\" style=\"background:#3A4A3A;color:#88EE88;\">{Esc(c)}</span>");
+                    sb.AppendLine($"<span class=\"chip category-chip\">{Esc(c)}</span>");
                 sb.AppendLine("</div>");
             }
 
             sb.AppendLine("</div>");
         }
 
-        // Links section
         var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
@@ -108,20 +108,16 @@ public sealed class ScholarExportService : IScholarExportService
             sb.AppendLine("<h2>Cross-References</h2>");
 
             if (collection.Passages.Count <= 20)
-            {
                 sb.AppendLine(BuildLinkSvg(collection));
-            }
             else
-            {
                 sb.AppendLine(BuildLinkTable(collection));
-            }
 
             sb.AppendLine("<div class=\"links-list\">");
             foreach (var link in links)
             {
                 var fromLabel = FindPassageLabel(collection, link.FromPassageId);
                 var toLabel = FindPassageLabel(collection, link.ToPassageId);
-                sb.AppendLine($"<div class=\"link-entry\">");
+                sb.AppendLine("<div class=\"link-entry\">");
                 sb.AppendLine($"<a href=\"#passage-{Esc(link.FromPassageId)}\">{Esc(fromLabel)}</a>");
                 sb.AppendLine($" <span class=\"relation\">{Esc(link.RelationType)}</span> ");
                 sb.AppendLine($"<a href=\"#passage-{Esc(link.ToPassageId)}\">{Esc(toLabel)}</a>");
@@ -143,8 +139,8 @@ public sealed class ScholarExportService : IScholarExportService
         var links = collection.Links ?? new List<PassageLink>();
         if (passages.Count == 0) return "";
 
-        int width = 600;
-        int height = 600;
+        const int width = 600;
+        const int height = 600;
         int cx = width / 2;
         int cy = height / 2;
         int radius = Math.Min(cx, cy) - 60;
@@ -153,7 +149,6 @@ public sealed class ScholarExportService : IScholarExportService
         for (int i = 0; i < passages.Count; i++)
             idToIndex[passages[i].Id] = i;
 
-        // Node positions in a circle
         var positions = new (double x, double y)[passages.Count];
         for (int i = 0; i < passages.Count; i++)
         {
@@ -174,7 +169,6 @@ public sealed class ScholarExportService : IScholarExportService
         var sb = new StringBuilder();
         sb.AppendLine($"<svg viewBox=\"0 0 {width} {height}\" width=\"{width}\" height=\"{height}\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;margin:20px auto;\">");
 
-        // Edges
         foreach (var link in links)
         {
             if (!idToIndex.TryGetValue(link.FromPassageId, out int fi)) continue;
@@ -186,20 +180,16 @@ public sealed class ScholarExportService : IScholarExportService
             sb.AppendLine($"<line x1=\"{x1:F1}\" y1=\"{y1:F1}\" x2=\"{x2:F1}\" y2=\"{y2:F1}\" stroke=\"{color}\" stroke-width=\"2\" opacity=\"0.7\"/>");
         }
 
-        // Nodes
         for (int i = 0; i < passages.Count; i++)
         {
             var (x, y) = positions[i];
-            string label = passages[i].ZhText.Length > 10
-                ? passages[i].ZhText.Substring(0, 10)
-                : passages[i].ZhText;
+            string label = passages[i].ZhText.Length > 10 ? passages[i].ZhText[..10] : passages[i].ZhText;
 
             sb.AppendLine($"<circle cx=\"{x:F1}\" cy=\"{y:F1}\" r=\"22\" fill=\"#3A3F4B\" stroke=\"#888\" stroke-width=\"1.5\"/>");
             sb.AppendLine($"<text x=\"{x:F1}\" y=\"{y + 35:F1}\" text-anchor=\"middle\" font-size=\"11\" fill=\"#CCC\">{Esc(label)}</text>");
             sb.AppendLine($"<text x=\"{x:F1}\" y=\"{y + 4:F1}\" text-anchor=\"middle\" font-size=\"11\" fill=\"#FFF\">{i + 1}</text>");
         }
 
-        // Legend
         int ly = 20;
         foreach (var kv in relationColors)
         {
@@ -241,10 +231,11 @@ public sealed class ScholarExportService : IScholarExportService
             if (collection.Passages[i].Id == passageId)
             {
                 var zh = collection.Passages[i].ZhText;
-                string preview = zh.Length > 15 ? zh.Substring(0, 15) + "..." : zh;
+                string preview = zh.Length > 15 ? zh[..15] + "..." : zh;
                 return $"#{i + 1} {preview}";
             }
         }
+
         return passageId;
     }
 
@@ -258,7 +249,7 @@ public sealed class ScholarExportService : IScholarExportService
     private const string HtmlCss = @"
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: -apple-system, BlinkMacSystemFont, ""Segoe UI"", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: #1E1E2E;
     color: #CDD6F4;
     max-width: 900px;
@@ -279,8 +270,29 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 }
 .card-header { font-weight: 600; font-size: 0.85em; color: #888; margin-bottom: 6px; }
 .source { font-size: 0.85em; color: #8888AA; margin-bottom: 10px; }
+.collection-meta,
+.meta-list {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+.collection-meta li,
+.meta-list li {
+    font-size: 0.82em;
+    color: #9BA3C7;
+    margin: 2px 0;
+}
+.meta-label {
+    color: #C6D0F5;
+    font-weight: 600;
+}
+.meta-link {
+    color: #7AABFF;
+    text-decoration: none;
+}
+.meta-link:hover { text-decoration: underline; }
 .zh {
-    font-family: ""Noto Serif CJK SC"", ""Source Han Serif SC"", ""SimSun"", serif;
+    font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'SimSun', serif;
     font-size: 1.3em;
     line-height: 1.8;
     color: #E0E0F0;
@@ -298,6 +310,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 }
 .tag-chip { background: #3A4A5A; color: #88BBEE; }
 .master-chip { background: #4A3A5A; color: #CC88EE; }
+.category-chip { background: #3A4A3A; color: #88EE88; }
 .notes {
     font-size: 0.9em;
     color: #909098;
@@ -327,8 +340,6 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 .links-table a:hover { text-decoration: underline; }
 ";
 
-    // ── Markdown ─────────────────────────────────────────────────────
-
     private static string BuildMarkdown(ScholarCollection collection)
     {
         var sb = new StringBuilder();
@@ -341,6 +352,10 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             sb.AppendLine();
         }
 
+        AppendMarkdownMetadata(sb, BuildCollectionMetadata(collection));
+        if (sb.Length > 0)
+            sb.AppendLine();
+
         sb.AppendLine("---");
         sb.AppendLine();
 
@@ -350,11 +365,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             sb.AppendLine($"## Passage {i + 1}");
             sb.AppendLine();
             sb.AppendLine($"**Source:** {ExtractSourceTitle(p.SourceRelPath)}");
+            AppendMarkdownMetadata(sb, BuildPassageMetadata(p));
             sb.AppendLine();
 
             if (!string.IsNullOrWhiteSpace(p.ZhText))
             {
-                // Quote each line of ZH text
                 foreach (var line in p.ZhText.Split('\n'))
                     sb.AppendLine($"> {line.TrimEnd('\r')}");
                 sb.AppendLine();
@@ -377,14 +392,13 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
             var cats = BuildCategoryList(p);
             if (cats.Count > 0)
-                sb.AppendLine($"**Categories:** {string.Join(" · ", cats)}");
+                sb.AppendLine($"**Categories:** {string.Join(" � ", cats)}");
 
             sb.AppendLine();
             sb.AppendLine("---");
             sb.AppendLine();
         }
 
-        // Links section
         var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
@@ -407,8 +421,6 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         return sb.ToString();
     }
 
-    // ── Plain Text ───────────────────────────────────────────────────
-
     private static string BuildPlainText(ScholarCollection collection)
     {
         var sb = new StringBuilder();
@@ -422,11 +434,16 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             sb.AppendLine();
         }
 
+        AppendPlainTextMetadata(sb, BuildCollectionMetadata(collection));
+        if (sb.Length > 0)
+            sb.AppendLine();
+
         for (int i = 0; i < collection.Passages.Count; i++)
         {
             var p = collection.Passages[i];
             sb.AppendLine($"Passage {i + 1}");
             sb.AppendLine($"Source: {ExtractSourceTitle(p.SourceRelPath)}");
+            AppendPlainTextMetadata(sb, BuildPassageMetadata(p));
             sb.AppendLine();
 
             if (!string.IsNullOrWhiteSpace(p.ZhText))
@@ -457,7 +474,6 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             sb.AppendLine();
         }
 
-        // Links
         var links = collection.Links?.Where(l => IsValidLink(collection, l)).ToList();
         if (links != null && links.Count > 0)
         {
@@ -477,8 +493,6 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         return sb.ToString();
     }
 
-    // ── Helpers ──────────────────────────────────────────────────────
-
     private static List<string> BuildCategoryList(ScholarPassage p)
     {
         var cats = new List<string>();
@@ -489,6 +503,119 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         return cats;
     }
 
+    private static List<KeyValuePair<string, string>> BuildCollectionMetadata(ScholarCollection collection)
+    {
+        var items = new List<KeyValuePair<string, string>>();
+        AddMetadata(items, "Created by", collection.CreatedBy);
+        AddMetadata(items, "Created", FormatTimestamp(collection.CreatedUtc));
+        AddMetadata(items, "Modified", FormatTimestamp(collection.ModifiedUtc));
+        return items;
+    }
+
+    private static List<KeyValuePair<string, string>> BuildPassageMetadata(ScholarPassage passage)
+    {
+        var items = new List<KeyValuePair<string, string>>();
+        AddMetadata(items, "Created by", passage.CreatedBy);
+        AddMetadata(items, "Path", passage.SourceRelPath);
+        AddMetadata(items, "Line breaks", FormatLineBreakRange(passage.FromLb, passage.ToLb));
+        AddMetadata(items, "Blocks", FormatBlockRange(passage.StartBlockNumber, passage.EndBlockNumber));
+        AddMetadata(items, "Added", FormatTimestamp(passage.AddedUtc));
+        AddMetadata(items, "Modified", FormatTimestamp(passage.ModifiedUtc));
+
+        var zenLink = BuildZenLink(passage);
+        if (!string.IsNullOrWhiteSpace(zenLink))
+            items.Add(new KeyValuePair<string, string>("Zen link", zenLink));
+
+        var shareUrl = BuildShareUrl(passage);
+        if (!string.IsNullOrWhiteSpace(shareUrl))
+            items.Add(new KeyValuePair<string, string>("Share URL", shareUrl));
+
+        return items;
+    }
+
+    private static void AppendHtmlMetadataList(StringBuilder sb, List<KeyValuePair<string, string>> items, string cssClass)
+    {
+        if (items.Count == 0)
+            return;
+
+        sb.AppendLine($"<ul class=\"{cssClass}\">");
+        foreach (var item in items)
+        {
+            var isLink = item.Key.EndsWith("link", StringComparison.OrdinalIgnoreCase) || item.Key.EndsWith("URL", StringComparison.OrdinalIgnoreCase);
+            var value = isLink
+                ? $"<a class=\"meta-link\" href=\"{Esc(item.Value)}\">{Esc(item.Value)}</a>"
+                : Esc(item.Value);
+            sb.AppendLine($"<li><span class=\"meta-label\">{Esc(item.Key)}:</span> {value}</li>");
+        }
+        sb.AppendLine("</ul>");
+    }
+
+    private static void AppendMarkdownMetadata(StringBuilder sb, List<KeyValuePair<string, string>> items)
+    {
+        foreach (var item in items)
+            sb.AppendLine($"**{item.Key}:** {item.Value}");
+    }
+
+    private static void AppendPlainTextMetadata(StringBuilder sb, List<KeyValuePair<string, string>> items)
+    {
+        foreach (var item in items)
+            sb.AppendLine($"{item.Key}: {item.Value}");
+    }
+
+    private static void AddMetadata(List<KeyValuePair<string, string>> items, string label, string? value)
+    {
+        if (!string.IsNullOrWhiteSpace(value))
+            items.Add(new KeyValuePair<string, string>(label, value));
+    }
+
+    private static string FormatTimestamp(DateTimeOffset value) =>
+        value == default ? "" : value.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss 'UTC'");
+
+    private static string FormatTimestamp(DateTimeOffset? value) =>
+        value.HasValue ? FormatTimestamp(value.Value) : "";
+
+    private static string FormatLineBreakRange(string? fromLb, string? toLb)
+    {
+        if (string.IsNullOrWhiteSpace(fromLb))
+            return "";
+        if (string.IsNullOrWhiteSpace(toLb) || string.Equals(fromLb, toLb, StringComparison.Ordinal))
+            return fromLb;
+        return $"{fromLb} - {toLb}";
+    }
+
+    private static string FormatBlockRange(int? startBlockNumber, int? endBlockNumber)
+    {
+        if (!startBlockNumber.HasValue)
+            return "";
+        if (!endBlockNumber.HasValue || startBlockNumber.Value == endBlockNumber.Value)
+            return startBlockNumber.Value.ToString();
+        return $"{startBlockNumber.Value} - {endBlockNumber.Value}";
+    }
+
+    private static string? BuildZenLink(ScholarPassage passage)
+    {
+        if (string.IsNullOrWhiteSpace(passage.SourceRelPath))
+            return null;
+
+        var block = passage.StartBlockNumber ?? passage.EndBlockNumber;
+        return CbetaUriParser.BuildUri(
+            passage.SourceRelPath,
+            fromLb: passage.FromLb,
+            toLb: passage.ToLb,
+            blockNumber: block);
+    }
+
+    private static string? BuildShareUrl(ScholarPassage passage)
+    {
+        if (string.IsNullOrWhiteSpace(passage.SourceRelPath))
+            return null;
+
+        return CbetaUriParser.BuildShareableUrl(
+            passage.SourceRelPath,
+            fromLb: passage.FromLb,
+            toLb: passage.ToLb);
+    }
+
     private static string ExtractSourceTitle(string relPath)
     {
         if (string.IsNullOrEmpty(relPath))
@@ -497,18 +624,14 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         var fileName = relPath;
         int lastSlash = relPath.LastIndexOfAny(new[] { '/', '\\' });
         if (lastSlash >= 0 && lastSlash < relPath.Length - 1)
-            fileName = relPath.Substring(lastSlash + 1);
+            fileName = relPath[(lastSlash + 1)..];
 
         int dotIdx = fileName.LastIndexOf('.');
         if (dotIdx > 0)
-            fileName = fileName.Substring(0, dotIdx);
+            fileName = fileName[..dotIdx];
 
         return fileName;
     }
 
-    private static string Esc(string s) =>
-        s.Replace("&", "&amp;")
-         .Replace("<", "&lt;")
-         .Replace(">", "&gt;")
-         .Replace("\"", "&quot;");
+    private static string Esc(string s) => WebUtility.HtmlEncode(s);
 }

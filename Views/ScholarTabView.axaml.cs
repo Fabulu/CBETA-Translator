@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -594,24 +595,64 @@ public partial class ScholarTabView : UserControl
 
     // ----- File pickers -----
 
-    private async Task<string?> PickExportFileAsync()
+    private async Task<string?> PickExportFileAsync(ScholarExportFormat format, string? collectionName)
     {
         var topLevel = TopLevel.GetTopLevel(this);
         if (topLevel == null) return null;
 
-        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
-        {
-            Title = "Export Scholar Collections",
-            SuggestedFileName = "scholar-collections.json",
-            FileTypeChoices = new[]
-            {
-                new FilePickerFileType("JSON") { Patterns = new[] { "*.json" } }
-            }
-        });
+        var baseName = string.IsNullOrWhiteSpace(collectionName)
+            ? "scholar-collections"
+            : string.Concat(collectionName.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries)).Trim();
+        if (string.IsNullOrWhiteSpace(baseName))
+            baseName = "scholar-collections";
 
+        var options = format switch
+        {
+            ScholarExportFormat.Html => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as HTML",
+                SuggestedFileName = baseName + ".html",
+                DefaultExtension = "html",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("HTML") { Patterns = new[] { "*.html", "*.htm" } }
+                }
+            },
+            ScholarExportFormat.Markdown => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as Markdown",
+                SuggestedFileName = baseName + ".md",
+                DefaultExtension = "md",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Markdown") { Patterns = new[] { "*.md", "*.markdown" } }
+                }
+            },
+            ScholarExportFormat.PlainText => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as Plain Text",
+                SuggestedFileName = baseName + ".txt",
+                DefaultExtension = "txt",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Plain Text") { Patterns = new[] { "*.txt" } }
+                }
+            },
+            _ => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collections as JSON",
+                SuggestedFileName = "scholar-collections.json",
+                DefaultExtension = "json",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("JSON") { Patterns = new[] { "*.json" } }
+                }
+            }
+        };
+
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(options);
         return file?.Path.LocalPath;
     }
-
     private async Task<string?> PickImportFileAsync()
     {
         var topLevel = TopLevel.GetTopLevel(this);
@@ -1464,3 +1505,6 @@ public partial class ScholarTabView : UserControl
         ScholarDataChanged?.Invoke(this, EventArgs.Empty);
     }
 }
+
+
+

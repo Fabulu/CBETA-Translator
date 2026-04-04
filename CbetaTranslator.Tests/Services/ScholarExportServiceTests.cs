@@ -448,6 +448,90 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("responds-to", html);
     }
 
+
+    [Fact]
+    public async Task HtmlExport_IncludesCollectionAndPassageProvenance()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-prov",
+            Name = "Provenance Collection",
+            CreatedBy = "tester",
+            CreatedUtc = new DateTimeOffset(2026, 2, 3, 4, 5, 6, TimeSpan.Zero),
+            ModifiedUtc = new DateTimeOffset(2026, 2, 4, 5, 6, 7, TimeSpan.Zero),
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T1234.xml",
+                    ZhText = "Chinese text",
+                    CreatedBy = "alice",
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    StartBlockNumber = 12,
+                    EndBlockNumber = 14,
+                    AddedUtc = new DateTimeOffset(2026, 2, 5, 6, 7, 8, TimeSpan.Zero),
+                    ModifiedUtc = new DateTimeOffset(2026, 2, 6, 7, 8, 9, TimeSpan.Zero)
+                }
+            }
+        };
+
+        var path = TempFile("provenance.html");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.Html);
+        var html = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("Created by", html);
+        Assert.Contains("tester", html);
+        Assert.Contains("2026-02-03 04:05:06 UTC", html);
+        Assert.Contains("alice", html);
+        Assert.Contains("xml-p5/T/T1234.xml", html);
+        Assert.Contains("0292a26 - 0292a29", html);
+        Assert.Contains("12 - 14", html);
+        Assert.Contains("2026-02-05 06:07:08 UTC", html);
+        Assert.Contains("zen://T1234/0292a26-0292a29?block=12", html);
+        Assert.Contains("https://readzen.pages.dev/T1234/0292a26-0292a29", html);
+    }
+
+    [Fact]
+    public async Task MarkdownAndPlainTextExport_OmitUnsetProvenanceFieldsCleanly()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-clean",
+            Name = "Clean Collection",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0001.xml",
+                    ZhText = "Chinese text"
+                }
+            }
+        };
+
+        var markdownPath = TempFile("clean.md");
+        var textPath = TempFile("clean.txt");
+
+        await _svc.ExportAsync(markdownPath, collection, ScholarExportFormat.Markdown);
+        await _svc.ExportAsync(textPath, collection, ScholarExportFormat.PlainText);
+
+        var md = await File.ReadAllTextAsync(markdownPath);
+        var plain = await File.ReadAllTextAsync(textPath);
+
+        Assert.Contains("**Path:** xml-p5/T/T0001.xml", md);
+        Assert.Contains("**Zen link:** zen://T0001", md);
+        Assert.DoesNotContain("**Modified:**", md);
+        Assert.DoesNotContain("**Blocks:**", md);
+        Assert.DoesNotContain("**Line breaks:**", md);
+
+        Assert.Contains("Path: xml-p5/T/T0001.xml", plain);
+        Assert.Contains("Zen link: zen://T0001", plain);
+        Assert.DoesNotContain("Modified:", plain);
+        Assert.DoesNotContain("Blocks:", plain);
+        Assert.DoesNotContain("Line breaks:", plain);
+    }
     // ---- Invalid format ----
 
     [Fact]
@@ -486,3 +570,4 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("\u4f5b\u6cd5\u50e7", text);
     }
 }
+

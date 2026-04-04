@@ -274,14 +274,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (isSecondaryWindow) return;
 
-            if (string.IsNullOrWhiteSpace(_config.Username))
-            {
-                var name = await (ShowUsernamePromptAsync?.Invoke() ?? Task.FromResult<string?>(null));
-                _config.Username = name ?? "User";
-                await SafeSaveConfigAsync();
-                ApplySettingsToChildViews();
-            }
-
             if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
             {
                 _suppressConfigSaves = true;
@@ -378,7 +370,7 @@ public partial class MainWindowViewModel : ViewModelBase
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen texts load failed: {ex.Message}"); }
 
         SetGitRepoRoot?.Invoke(_root);
-        SetSearchRootContext?.Invoke(_root, _originalDir, _translatedDir);
+        PushSearchContext();
         SetScholarRoot?.Invoke(_root);
         SetScholarTranslationDirs?.Invoke(_originalDir, _translatedDir);
 
@@ -579,6 +571,15 @@ public partial class MainWindowViewModel : ViewModelBase
         _config = config;
     }
 
+    public async Task EnsureUserTranslationDirectoryCanonicalizedForSyncAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_config.GitHubUsername))
+            return;
+
+        await RefreshUserTranslationDirectoryAsync(_config.Username);
+        ApplySettingsToChildViews();
+    }
+
     public async Task HandleGitHubAuthCompletedAsync(string token, string login)
     {
         var previousFolderKey = GetTranslationFolderKey(_config);
@@ -604,7 +605,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         void WireSearchTab()
         {
-            SetSearchContext?.Invoke(_root!, _originalDir!, _translatedDir!,
+            SetSearchContext?.Invoke(_root!, _originalDir!, GetSearchTranslatedDir(),
                 relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
@@ -2520,6 +2521,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         SetTranslationEditorReadOnly?.Invoke(IsActiveTranslationReadOnly);
+        PushSearchContext();
 
         // Reload current file with new source
         if (_currentRelPath != null)
@@ -2548,6 +2550,24 @@ public partial class MainWindowViewModel : ViewModelBase
     /// Returns the current list of translation source labels (e.g. "My Translation (user)", "Community", other usernames).
     /// </summary>
     public IReadOnlyList<string> GetTranslationSourceLabels() => _translationSourceOptions;
+
+    private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
+
+    private void PushSearchContext()
+    {
+        if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_originalDir) || string.IsNullOrWhiteSpace(_translatedDir))
+            return;
+
+        var searchTranslatedDir = GetSearchTranslatedDir();
+        SetSearchRootContext?.Invoke(_root, _originalDir, searchTranslatedDir);
+        SetSearchContext?.Invoke(_root, _originalDir, searchTranslatedDir,
+            relKey =>
+            {
+                _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
+                return it != null ? (it.DisplayShort, it.Tooltip, it.Status) : (relKey, relKey, null);
+            });
+        SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
+    }
 
     /// <summary>
     /// Renders the translation for the current file from the specified source index.
