@@ -24,6 +24,7 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
             ScholarExportFormat.BibTex => BuildBibTex(collection),
             ScholarExportFormat.CslJson => BuildCslJson(collection),
+            ScholarExportFormat.PaperDraft => BuildPaperDraft(collection),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
 
@@ -850,6 +851,145 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         };
         return JsonSerializer.Serialize(items, options);
     }
+    private static string BuildPaperDraft(ScholarCollection collection)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("---");
+        sb.AppendLine($"title: \"{EscapeYaml(collection.Name)}\"");
+        sb.AppendLine($"collection_id: \"{EscapeYaml(collection.Id)}\"");
+        if (!string.IsNullOrWhiteSpace(collection.CreatedBy))
+            sb.AppendLine($"created_by: \"{EscapeYaml(collection.CreatedBy)}\"");
+        if (collection.CreatedUtc != default)
+            sb.AppendLine($"created_utc: \"{FormatIsoTimestamp(collection.CreatedUtc)}\"");
+        if (collection.ModifiedUtc.HasValue)
+            sb.AppendLine($"modified_utc: \"{FormatIsoTimestamp(collection.ModifiedUtc)}\"");
+        sb.AppendLine("export_format: \"paper-draft\"");
+        sb.AppendLine("---");
+        sb.AppendLine();
+
+        sb.AppendLine($"# {collection.Name}");
+        sb.AppendLine();
+        if (!string.IsNullOrWhiteSpace(collection.Description))
+        {
+            sb.AppendLine(collection.Description);
+            sb.AppendLine();
+        }
+
+        sb.AppendLine("Research draft scaffold from the selected collection. This is an editable outline, not a finished paper.");
+        sb.AppendLine();
+        sb.AppendLine("Claim to develop:");
+        sb.AppendLine();
+        sb.AppendLine("Why this evidence matters:");
+        sb.AppendLine();
+
+        var groups = collection.Passages
+            .Select((passage, index) => new DraftPassageGroup(Group: GetDraftGroupLabel(passage), Passage: passage, OriginalIndex: index))
+            .GroupBy(x => x.Group)
+            .OrderBy(g => string.Equals(g.Key, "Untagged Passages", StringComparison.Ordinal) ? 1 : 0)
+            .ThenBy(g => g.Key, StringComparer.OrdinalIgnoreCase);
+
+        foreach (var group in groups)
+        {
+            sb.AppendLine($"## {group.Key}");
+            sb.AppendLine();
+
+            foreach (var entry in group.OrderBy(x => x.Passage.SourceRelPath, StringComparer.OrdinalIgnoreCase)
+                                       .ThenBy(x => x.Passage.FromLb ?? string.Empty, StringComparer.OrdinalIgnoreCase)
+                                       .ThenBy(x => x.Passage.StartBlockNumber ?? int.MaxValue)
+                                       .ThenBy(x => x.OriginalIndex))
+            {
+                AppendPaperDraftPassage(sb, entry.Passage, entry.OriginalIndex + 1);
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    private static void AppendPaperDraftPassage(StringBuilder sb, ScholarPassage passage, int index)
+    {
+        sb.AppendLine($"### Passage {index}. {BuildDraftPassageLabel(passage, index)}");
+        sb.AppendLine();
+
+        if (!string.IsNullOrWhiteSpace(passage.ZhText))
+        {
+            sb.AppendLine("> Chinese");
+            foreach (var line in passage.ZhText.Split('\n'))
+                sb.AppendLine($"> {line.TrimEnd('\r')}");
+            sb.AppendLine(">");
+        }
+
+        if (!string.IsNullOrWhiteSpace(passage.EnText))
+        {
+            sb.AppendLine("> Translation");
+            foreach (var line in passage.EnText.Split('\n'))
+                sb.AppendLine($"> {line.TrimEnd('\r')}");
+            sb.AppendLine();
+        }
+
+        sb.AppendLine("Interpretive note:");
+        sb.AppendLine(string.IsNullOrWhiteSpace(passage.Notes) ? "[Add analysis here.]" : passage.Notes);
+        sb.AppendLine();
+
+        if (passage.Tags.Count > 0)
+            sb.AppendLine($"Tags: {string.Join(", ", passage.Tags)}");
+        if (passage.MasterNames.Count > 0)
+            sb.AppendLine($"Masters: {string.Join(", ", passage.MasterNames)}");
+        var cats = BuildCategoryList(passage);
+        if (cats.Count > 0)
+            sb.AppendLine($"Facets: {string.Join("; ", cats)}");
+        sb.AppendLine();
+
+        sb.AppendLine("Citation:");
+        sb.AppendLine($"- Source: {ExtractSourceTitle(passage.SourceRelPath)}");
+        sb.AppendLine($"- Path: {passage.SourceRelPath}");
+        var lineBreaks = FormatLineBreakRange(passage.FromLb, passage.ToLb);
+        if (!string.IsNullOrWhiteSpace(lineBreaks))
+            sb.AppendLine($"- Anchor: lb {lineBreaks}");
+        var blocks = FormatBlockRange(passage.StartBlockNumber, passage.EndBlockNumber);
+        if (!string.IsNullOrWhiteSpace(blocks))
+            sb.AppendLine($"- Blocks: {blocks}");
+        if (!string.IsNullOrWhiteSpace(passage.CreatedBy))
+            sb.AppendLine($"- Created by: {passage.CreatedBy}");
+        if (passage.AddedUtc != default)
+            sb.AppendLine($"- Added: {FormatTimestamp(passage.AddedUtc)}");
+        if (passage.ModifiedUtc.HasValue)
+            sb.AppendLine($"- Modified: {FormatTimestamp(passage.ModifiedUtc)}");
+        var zenLink = BuildZenLink(passage);
+        if (!string.IsNullOrWhiteSpace(zenLink))
+            sb.AppendLine($"- Zen link: {zenLink}");
+        var shareUrl = BuildShareUrl(passage);
+        if (!string.IsNullOrWhiteSpace(shareUrl))
+            sb.AppendLine($"- Share URL: {shareUrl}");
+        sb.AppendLine();
+    }
+
+    private static string GetDraftGroupLabel(ScholarPassage passage)
+    {
+        if (!string.IsNullOrWhiteSpace(passage.DoctrinalTopic))
+            return passage.DoctrinalTopic;
+        if (passage.Tags.Count > 0 && !string.IsNullOrWhiteSpace(passage.Tags[0]))
+            return passage.Tags[0];
+        if (passage.MasterNames.Count > 0 && !string.IsNullOrWhiteSpace(passage.MasterNames[0]))
+            return passage.MasterNames[0];
+        return "Untagged Passages";
+    }
+
+    private static string BuildDraftPassageLabel(ScholarPassage passage, int index)
+    {
+        if (!string.IsNullOrWhiteSpace(passage.ZhText))
+            return CollapseWhitespace(passage.ZhText).Length > 24 ? CollapseWhitespace(passage.ZhText)[..24] + "..." : CollapseWhitespace(passage.ZhText);
+        if (passage.Tags.Count > 0 && !string.IsNullOrWhiteSpace(passage.Tags[0]))
+            return passage.Tags[0];
+        var source = ExtractSourceTitle(passage.SourceRelPath);
+        var range = FormatLineBreakRange(passage.FromLb, passage.ToLb);
+        if (!string.IsNullOrWhiteSpace(range))
+            return $"{source} {range}";
+        return $"{source} #{index}";
+    }
+
+    private static string EscapeYaml(string value) => value.Replace("\\", "\\\\").Replace("\"", "\\\"");
+
+    private readonly record struct DraftPassageGroup(string Group, ScholarPassage Passage, int OriginalIndex);
     private static string BuildDelimited(ScholarCollection collection, string delimiter)
     {
         var sb = new StringBuilder();

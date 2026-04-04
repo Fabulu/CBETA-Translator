@@ -614,7 +614,7 @@ public class ScholarExportServiceTests : IDisposable
                 {
                     Id = "p1",
                     SourceRelPath = "xml-p5/T/T0200.xml",
-                    ZhText = "ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¥Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¾ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â",
+                    ZhText = "ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â«ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â",
                     EnText = "What is the ancestor's meaning?",
                     Notes = "Needs {careful} escaping",
                     Tags = new List<string> { "koan" },
@@ -693,7 +693,7 @@ public class ScholarExportServiceTests : IDisposable
                 {
                     Id = "p1",
                     SourceRelPath = "xml-p5/T/T0400.xml",
-                    ZhText = "趙州問答",
+                    ZhText = "è¶™å·žå•ç­”",
                     EnText = "Zhaozhou dialogue",
                     Notes = "Export to Zotero",
                     Tags = new List<string> { "koan" },
@@ -754,6 +754,91 @@ public class ScholarExportServiceTests : IDisposable
         Assert.False(item.TryGetProperty("readzen:tags", out _));
         Assert.False(item.TryGetProperty("abstract", out _));
         Assert.Equal("Collection: Sparse CSL; Path: xml-p5/T/T0500.xml", item.GetProperty("note").GetString());
+    }
+
+    [Fact]
+    public async Task PaperDraftExport_ProducesSectionedDraftWithCitationBlocks()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-draft",
+            Name = "Draft Collection",
+            Description = "Collected koan material.",
+            CreatedBy = "owner",
+            CreatedUtc = new DateTimeOffset(2026, 4, 10, 9, 0, 0, TimeSpan.Zero),
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0600.xml",
+                    ZhText = "第一則話頭",
+                    EnText = "First case",
+                    Notes = "Develop this into an argument.",
+                    Tags = new List<string> { "koan" },
+                    DoctrinalTopic = "Nonduality",
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    StartBlockNumber = 2,
+                    CreatedBy = "alice",
+                    AddedUtc = new DateTimeOffset(2026, 4, 11, 10, 0, 0, TimeSpan.Zero)
+                },
+                new ScholarPassage
+                {
+                    Id = "p2",
+                    SourceRelPath = "xml-p5/T/T0601.xml",
+                    ZhText = "第二則話頭",
+                    EnText = "Second case",
+                    MasterNames = new List<string> { "Zhaozhou Congshen" }
+                }
+            }
+        };
+
+        var path = TempFile("draft.md");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.PaperDraft);
+        var draft = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("export_format: \"paper-draft\"", draft);
+        Assert.Contains("# Draft Collection", draft);
+        Assert.Contains("Research draft scaffold from the selected collection.", draft);
+        Assert.Contains("## Nonduality", draft);
+        Assert.Contains("## Zhaozhou Congshen", draft);
+        Assert.Contains("### Passage 1. 第一則話頭", draft);
+        Assert.Contains("> Chinese", draft);
+        Assert.Contains("> Translation", draft);
+        Assert.Contains("Interpretive note:", draft);
+        Assert.Contains("Develop this into an argument.", draft);
+        Assert.Contains("Citation:", draft);
+        Assert.Contains("- Anchor: lb 0292a26 - 0292a29", draft);
+        Assert.Contains("- Zen link: zen://T0600/0292a26-0292a29?block=2", draft);
+        Assert.Contains("- Share URL: https://readzen.pages.dev/T0600/0292a26-0292a29", draft);
+    }
+
+    [Fact]
+    public async Task PaperDraftExport_UsesPlaceholderWhenNotesAreMissing()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-draft-empty",
+            Name = "Sparse Draft",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0700.xml",
+                    ZhText = "無備註段落"
+                }
+            }
+        };
+
+        var path = TempFile("sparse-draft.md");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.PaperDraft);
+        var draft = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("## Untagged Passages", draft);
+        Assert.Contains("[Add analysis here.]", draft);
+        Assert.DoesNotContain("- Anchor:", draft);
     }
     // ---- Invalid format ----
 

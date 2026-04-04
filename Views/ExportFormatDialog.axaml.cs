@@ -24,6 +24,7 @@ public partial class ExportFormatDialog : Window
     private ScholarExportFormat GetSelectedFormat()
     {
         var rbJson = this.FindControl<RadioButton>("RbJson");
+        var rbPaperDraft = this.FindControl<RadioButton>("RbPaperDraft");
         var rbCslJson = this.FindControl<RadioButton>("RbCslJson");
         var rbBibTex = this.FindControl<RadioButton>("RbBibTex");
         var rbCsv = this.FindControl<RadioButton>("RbCsv");
