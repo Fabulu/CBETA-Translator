@@ -85,6 +85,32 @@ internal static class AssistantPanelRenderer
             foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
                 qaHost.Children.Add(BuildQaEntryControl(q, brushResolver, postProcessor));
         }
+
+        AddEmptyPlaceholderIfNeeded(approvedTmHost, "No approved TM matches for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(referenceTmHost, "No reference TM matches for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(termHost, "No terminology hits for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(qaHost, "No QA issues for this passage.", brushResolver);
+    }
+
+    private static void AddEmptyPlaceholderIfNeeded(StackPanel? host, string text, Func<string, IBrush?>? brushResolver)
+    {
+        if (host == null || host.Children.Count > 0)
+            return;
+
+        host.Children.Add(new Border
+        {
+            BorderBrush = brushResolver?.Invoke("BorderBrush"),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(8, 6),
+            Child = new TextBlock
+            {
+                Text = text,
+                FontSize = 11,
+                TextWrapping = TextWrapping.Wrap,
+                Foreground = brushResolver?.Invoke("TextMutedFg") ?? Brushes.Gray
+            }
+        });
     }
 
     public static Control BuildTmEntryControl(
@@ -475,3 +501,4 @@ internal static class AssistantPanelRenderer
         }
     }
 }
+

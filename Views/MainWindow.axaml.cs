@@ -1260,29 +1260,25 @@ public partial class MainWindow : Window
     // ===========================================================
     // Tag editor window
     // ===========================================================
-
-    private async Task OpenTagEditorWindowAsync()
+    private Task OpenTagEditorWindowAsync()
     {
         try
         {
             if (_tagEditorWindow != null)
             {
                 _tagEditorWindow.Activate();
-                return;
+                return Task.CompletedTask;
             }
 
             var root = _vm.Root;
-            if (string.IsNullOrEmpty(root)) return;
+            if (string.IsNullOrEmpty(root)) return Task.CompletedTask;
 
             var win = new TagEditorWindow(root, _vm.Username)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            win.VocabularySaved += async (_, _) =>
-            {
-                await _vm.ReloadTagVocabularyAsync();
-            };
+            win.VocabularySaved += async (_, _) => await _vm.ReloadTagVocabularyAsync();
             win.Closed += (_, _) => _tagEditorWindow = null;
 
             _tagEditorWindow = win;
@@ -1292,6 +1288,8 @@ public partial class MainWindow : Window
         {
             _vm.SetStatus("Open tag editor failed: " + ex.Message);
         }
+
+        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -1717,8 +1715,8 @@ public partial class MainWindow : Window
             _tourService?.Start(startIndex: 5); // Skip to "sidebar" step
             if (_tourService?.IsActive == true)
             {
-                _tourOverlayCanvas.IsVisible = true;
-                _emptyStateOverlay.IsVisible = false;
+                if (_tourOverlayCanvas != null) _tourOverlayCanvas.IsVisible = true;
+                if (_emptyStateOverlay != null) _emptyStateOverlay.IsVisible = false;
             }
             return;
         }

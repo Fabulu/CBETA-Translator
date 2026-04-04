@@ -8,7 +8,9 @@
         Background="{DynamicResource AppBg}"
         WindowStartupLocation="CenterOwner">
 
-  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+  <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="12">
+
+    <Canvas Name="DictOverlayCanvas" Grid.RowSpan="5" IsHitTestVisible="False" ZIndex="100"/>
 
     <TextBox Grid.Row="0" Name="TxtFilter" Watermark="Filter phrases..."
              Margin="0,0,0,8" ToolTip.Tip="Type to filter vocabulary phrases"/>
@@ -40,9 +42,25 @@
       </ListBox.ItemTemplate>
     </ListBox>
 
-    <Button Grid.Row="3" Content="Close" Width="100" Height="32"
+
+    <Border Grid.Row="3" Margin="0,8,0,0" Padding="8"
+            BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"
+            IsVisible="True">
+      <Grid RowDefinitions="Auto,Auto">
+        <TextBlock Text="Phrase Preview" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+        <TextBox Grid.Row="1" Name="TxtPreviewPhrase" Text="" IsReadOnly="True"
+                 BorderThickness="0" Background="Transparent" TextWrapping="Wrap"
+                 FontSize="16"/>
+      </Grid>
+    </Border>
+
+    <Button Grid.Row="4" Content="Close" Width="100" Height="32"
             HorizontalAlignment="Right" Margin="0,8,0,0"
             Click="OnCloseClick" ToolTip.Tip="Close this dialog"/>
   </Grid>
 
 </Window>
+
+
+
+

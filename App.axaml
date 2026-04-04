@@ -1,4 +1,4 @@
-<Application xmlns="https://github.com/avaloniaui"
+﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="CbetaTranslator.App.App"
              RequestedThemeVariant="Default">
@@ -353,6 +353,10 @@
 		<Style Selector="TabItem">
 			<Setter Property="Background" Value="{DynamicResource TabBg}"/>
 			<Setter Property="Foreground" Value="{DynamicResource TabFg}"/>
+			<Setter Property="FontSize" Value="11.5"/>
+			<Setter Property="Padding" Value="8,3"/>
+			<Setter Property="MinHeight" Value="0"/>
+			<Setter Property="MinWidth" Value="0"/>
 		</Style>
 
 		<Style Selector="TabItem:pointerover">
