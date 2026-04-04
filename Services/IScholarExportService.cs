@@ -4,7 +4,7 @@ using CbetaTranslator.App.Models;
 
 namespace CbetaTranslator.App.Services;
 
-public enum ScholarExportFormat { Json, Html, Markdown, PlainText, Csv, Tsv }
+public enum ScholarExportFormat { Json, Html, Markdown, PlainText, Csv, Tsv, BibTex }
 
 public interface IScholarExportService
 {

@@ -21,6 +21,7 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.PlainText => BuildPlainText(collection),
             ScholarExportFormat.Csv => BuildDelimited(collection, ","),
             ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
+            ScholarExportFormat.BibTex => BuildBibTex(collection),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
 
@@ -651,6 +652,136 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             toLb: passage.ToLb);
     }
 
+    private static string BuildBibTex(ScholarCollection collection)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine($"% Read Zen Scholar export: {collection.Name}");
+        if (!string.IsNullOrWhiteSpace(collection.Description))
+            sb.AppendLine($"% Description: {collection.Description.Replace("\r", " ").Replace("\n", " ")}");
+        sb.AppendLine();
+
+        for (int i = 0; i < collection.Passages.Count; i++)
+        {
+            if (i > 0)
+                sb.AppendLine();
+            AppendBibTexEntry(sb, collection, collection.Passages[i], i + 1);
+        }
+
+        return sb.ToString();
+    }
+
+    private static void AppendBibTexEntry(StringBuilder sb, ScholarCollection collection, ScholarPassage passage, int index)
+    {
+        var key = BuildBibTexKey(collection, passage, index);
+        sb.AppendLine($"@misc{{{key},");
+        AppendBibTexField(sb, "title", BuildBibTexTitle(passage, index), true);
+        AppendBibTexField(sb, "howpublished", BuildZenLink(passage));
+        AppendBibTexField(sb, "url", BuildShareUrl(passage));
+        AppendBibTexField(sb, "keywords", BuildBibTexKeywords(collection, passage));
+        AppendBibTexField(sb, "note", BuildBibTexNote(collection, passage));
+        AppendBibTexField(sb, "abstract", BuildBibTexAbstract(passage));
+        sb.AppendLine("}");
+    }
+
+    private static void AppendBibTexField(StringBuilder sb, string name, string? value, bool required = false)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            if (!required)
+                return;
+            value = string.Empty;
+        }
+
+        sb.AppendLine($"  {name} = {{{EscapeBibTex(value)}}},");
+    }
+
+    private static string BuildBibTexKey(ScholarCollection collection, ScholarPassage passage, int index)
+    {
+        var fileId = SanitizeBibTexKeySegment(ExtractSourceTitle(passage.SourceRelPath));
+        var range = passage.FromLb ?? passage.StartBlockNumber?.ToString() ?? passage.Id;
+        return $"readzen:{SanitizeBibTexKeySegment(collection.Id)}:{fileId}:{SanitizeBibTexKeySegment(range)}:{index}";
+    }
+
+    private static string BuildBibTexTitle(ScholarPassage passage, int index)
+    {
+        var source = ExtractSourceTitle(passage.SourceRelPath);
+        var range = FormatLineBreakRange(passage.FromLb, passage.ToLb);
+        if (!string.IsNullOrWhiteSpace(range))
+            return $"Passage from {source} {range}";
+        var blocks = FormatBlockRange(passage.StartBlockNumber, passage.EndBlockNumber);
+        if (!string.IsNullOrWhiteSpace(blocks))
+            return $"Passage from {source} blocks {blocks}";
+        return $"Passage from {source} #{index}";
+    }
+
+    private static string BuildBibTexKeywords(ScholarCollection collection, ScholarPassage passage)
+    {
+        var keywords = collection.Tags
+            .Concat(passage.Tags)
+            .Concat(passage.MasterNames)
+            .Concat(BuildCategoryList(passage))
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+        return string.Join(", ", keywords);
+    }
+
+    private static string BuildBibTexNote(ScholarCollection collection, ScholarPassage passage)
+    {
+        var parts = new List<string>
+        {
+            $"Collection: {collection.Name}",
+            $"Path: {passage.SourceRelPath}"
+        };
+
+        var lineBreaks = FormatLineBreakRange(passage.FromLb, passage.ToLb);
+        if (!string.IsNullOrWhiteSpace(lineBreaks))
+            parts.Add($"Line breaks: {lineBreaks}");
+
+        var blocks = FormatBlockRange(passage.StartBlockNumber, passage.EndBlockNumber);
+        if (!string.IsNullOrWhiteSpace(blocks))
+            parts.Add($"Blocks: {blocks}");
+
+        if (passage.MasterNames.Count > 0)
+            parts.Add($"Masters: {string.Join(", ", passage.MasterNames)}");
+        if (passage.Tags.Count > 0)
+            parts.Add($"Tags: {string.Join(", ", passage.Tags)}");
+        if (!string.IsNullOrWhiteSpace(passage.Notes))
+            parts.Add($"Notes: {CollapseWhitespace(passage.Notes)}");
+
+        return string.Join("; ", parts);
+    }
+
+    private static string BuildBibTexAbstract(ScholarPassage passage)
+    {
+        if (!string.IsNullOrWhiteSpace(passage.EnText))
+            return CollapseWhitespace(passage.EnText);
+        if (!string.IsNullOrWhiteSpace(passage.ZhText))
+            return CollapseWhitespace(passage.ZhText);
+        return string.Empty;
+    }
+
+    private static string EscapeBibTex(string value)
+    {
+        return value
+            .Replace("\\", "\\\\")
+            .Replace("{", "\\{")
+            .Replace("}", "\\}")
+            .Replace("\r\n", " ")
+            .Replace("\n", " ")
+            .Replace("\r", " ");
+    }
+
+    private static string SanitizeBibTexKeySegment(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return "unknown";
+
+        var cleaned = new string(value.Where(c => char.IsLetterOrDigit(c) || c is ':' or '-' or '_' or '.').ToArray());
+        return string.IsNullOrWhiteSpace(cleaned) ? "unknown" : cleaned;
+    }
+
+    private static string CollapseWhitespace(string value) =>
+        string.Join(" ", value.Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
     private static string BuildDelimited(ScholarCollection collection, string delimiter)
     {
         var sb = new StringBuilder();

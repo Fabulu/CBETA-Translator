@@ -597,6 +597,84 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("col-tsv\tEmpty Structured", tsv);
         Assert.DoesNotContain(",", tsv.Split('\n')[0]);
     }
+
+    [Fact]
+    public async Task BibTexExport_ProducesOneMiscEntryPerPassageWithCitationFields()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-bib",
+            Name = "Citation Collection",
+            Description = "For citations",
+            Tags = new List<string> { "zen", "citation" },
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0200.xml",
+                    ZhText = "ÃƒÂ§Ã‚Â¥Ã¢â‚¬â€œÃƒÂ¥Ã‚Â¸Ã‚Â«ÃƒÂ¨Ã‚Â¥Ã‚Â¿ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬Å¾Ã‚Â",
+                    EnText = "What is the ancestor's meaning?",
+                    Notes = "Needs {careful} escaping",
+                    Tags = new List<string> { "koan" },
+                    MasterNames = new List<string> { "Zhaozhou Congshen" },
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    StartBlockNumber = 4,
+                    CreatedBy = "alice"
+                },
+                new ScholarPassage
+                {
+                    Id = "p2",
+                    SourceRelPath = "xml-p5/T/T0200.xml",
+                    EnText = "Second passage",
+                    StartBlockNumber = 8
+                }
+            }
+        };
+
+        var path = TempFile("export.bib");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.BibTex);
+        var bib = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("@misc{readzen:col-bib:T0200:0292a26:1,", bib);
+        Assert.Contains("@misc{readzen:col-bib:T0200:8:2,", bib);
+        Assert.Contains("title = {Passage from T0200 0292a26 - 0292a29}", bib);
+        Assert.DoesNotContain("author =", bib);
+        Assert.Contains("howpublished = {zen://T0200/0292a26-0292a29?block=4}", bib);
+        Assert.Contains("url = {https://readzen.pages.dev/T0200/0292a26-0292a29}", bib);
+        Assert.Contains("keywords = {zen, citation, koan, Zhaozhou Congshen}", bib);
+        Assert.Contains("note = {Collection: Citation Collection; Path: xml-p5/T/T0200.xml; Line breaks: 0292a26 - 0292a29; Blocks: 4; Masters: Zhaozhou Congshen; Tags: koan; Notes: Needs \\{careful\\} escaping}", bib);
+        Assert.Contains("abstract = {What is the ancestor's meaning?}", bib);
+    }
+
+    [Fact]
+    public async Task BibTexExport_OmitsOptionalEmptyFieldsCleanly()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-bib-empty",
+            Name = "Sparse",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0300.xml"
+                }
+            }
+        };
+
+        var path = TempFile("sparse.bib");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.BibTex);
+        var bib = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("@misc{readzen:col-bib-empty:T0300:p1:1,", bib);
+        Assert.DoesNotContain("author =", bib);
+        Assert.DoesNotContain("keywords =", bib);
+        Assert.DoesNotContain("abstract =", bib);
+        Assert.Contains("note = {Collection: Sparse; Path: xml-p5/T/T0300.xml}", bib);
+    }
     // ---- Invalid format ----
 
     [Fact]
