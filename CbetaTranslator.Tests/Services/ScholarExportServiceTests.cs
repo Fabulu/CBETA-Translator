@@ -532,6 +532,71 @@ public class ScholarExportServiceTests : IDisposable
         Assert.DoesNotContain("Blocks:", plain);
         Assert.DoesNotContain("Line breaks:", plain);
     }
+
+    [Fact]
+    public async Task CsvExport_ProducesStructuredSpreadsheetRows()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-csv",
+            Name = "Structured Export",
+            Description = "Spreadsheet friendly",
+            Tags = new List<string> { "zen", "export" },
+            CreatedBy = "tester",
+            CreatedUtc = new DateTimeOffset(2026, 3, 1, 10, 0, 0, TimeSpan.Zero),
+            StudyNotes = "Use in article draft.",
+            Passages =
+            {
+                new ScholarPassage
+                {
+                    Id = "p1",
+                    SourceRelPath = "xml-p5/T/T0100.xml",
+                    ZhText = "Line 1, with comma",
+                    EnText = "Line 1\nwith newline",
+                    Notes = "Quoted \"note\"",
+                    Tags = new List<string> { "dharma", "practice" },
+                    MasterNames = new List<string> { "Huineng" },
+                    FromLb = "0292a26",
+                    ToLb = "0292a29",
+                    StartBlockNumber = 8,
+                    EndBlockNumber = 9,
+                    CreatedBy = "alice",
+                    AddedUtc = new DateTimeOffset(2026, 3, 2, 11, 0, 0, TimeSpan.Zero)
+                }
+            }
+        };
+
+        var path = TempFile("export.csv");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.Csv);
+        var csv = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("collection_id,collection_name,collection_description", csv);
+        Assert.Contains("col-csv", csv);
+        Assert.Contains("\"Line 1, with comma\"", csv);
+        Assert.Contains("\"Line 1\nwith newline\"", csv);
+        Assert.Contains("\"Quoted \"\"note\"\"\"", csv);
+        Assert.Contains("zen://T0100/0292a26-0292a29?block=8", csv);
+        Assert.Contains("https://readzen.pages.dev/T0100/0292a26-0292a29", csv);
+    }
+
+    [Fact]
+    public async Task TsvExport_UsesTabsAndKeepsEmptyCollectionRow()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "col-tsv",
+            Name = "Empty Structured",
+            CreatedUtc = new DateTimeOffset(2026, 3, 1, 10, 0, 0, TimeSpan.Zero)
+        };
+
+        var path = TempFile("export.tsv");
+        await _svc.ExportAsync(path, collection, ScholarExportFormat.Tsv);
+        var tsv = await File.ReadAllTextAsync(path);
+
+        Assert.Contains("collection_id\tcollection_name\tcollection_description", tsv);
+        Assert.Contains("col-tsv\tEmpty Structured", tsv);
+        Assert.DoesNotContain(",", tsv.Split('\n')[0]);
+    }
     // ---- Invalid format ----
 
     [Fact]
@@ -570,4 +635,5 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("\u4f5b\u6cd5\u50e7", text);
     }
 }
+
 

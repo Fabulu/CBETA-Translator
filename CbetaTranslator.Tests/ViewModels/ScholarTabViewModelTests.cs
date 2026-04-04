@@ -1806,14 +1806,17 @@ public class ScholarTabViewModelTests
 
     // ---- DetectMasterNames ----
 
+    private const string LinjiLong = "\u81e8\u6fdf\u7fa9\u7384";
+    private const string LinjiShort = "\u81e8\u6fdf";
+    private const string ZhaozhouLong = "\u8d99\u5dde\u4ece\u8c0c";
+    private const string ZhaozhouShort = "\u8d99\u5dde";
+    private const string MazuLong = "\u99ac\u7956\u9053\u4e00";
+
     private static List<MasterNameEntry> MakeTestMasterEntries() => new()
     {
-        // Linji has Chinese (2+ chars) and pinyin (4+ chars)
-        new(new List<string> { "Linji Yixuan", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" }),
-        // Zhaozhou
-        new(new List<string> { "Zhaozhou Congshen", "ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¾Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â«ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â", "ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾" }),
-        // Short pinyin name (< 4 chars) should be skipped
-        new(new List<string> { "Mazu Daoyi", "ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÆ’Ã‚Â©Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬", "Ma" }),
+        new(new List<string> { "Linji Yixuan", LinjiLong, LinjiShort }),
+        new(new List<string> { "Zhaozhou Congshen", ZhaozhouLong, ZhaozhouShort }),
+        new(new List<string> { "Mazu Daoyi", MazuLong, "Ma" }),
     };
 
     [Fact]
@@ -1821,7 +1824,7 @@ public class ScholarTabViewModelTests
     {
         var entries = MakeTestMasterEntries();
         var result = ScholarTabViewModel.DetectMasterNames(
-            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¥ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â»Ãƒâ€šÃ‚Â£ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼Ãƒâ€¦Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¶ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¾Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â«ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¹Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", null, entries);
+            $"{LinjiLong}\u793a\u773e\u5f8c\uff0c{ZhaozhouLong}\u53c8\u5f8c\u7e7c\u4e4b\u3002", null, entries);
 
         Assert.Contains("Linji Yixuan", result);
         Assert.Contains("Zhaozhou Congshen", result);
@@ -1840,15 +1843,12 @@ public class ScholarTabViewModelTests
     [Fact]
     public void DetectMasterNames_SkipsSingleCharChineseNames()
     {
-        // Create an entry with only a single CJK char name
         var entries = new List<MasterNameEntry>
         {
-            new(new List<string> { "SingleChar", "ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº" })
+            new(new List<string> { "SingleChar", "\u4f5b" })
         };
 
-        var result = ScholarTabViewModel.DetectMasterNames("ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚ÂªÃƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â³ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢", null, entries);
-
-        // "ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº" is only 1 CJK char, so it should be skipped (min 2 required)
+        var result = ScholarTabViewModel.DetectMasterNames("\u4f5b\u8aaa\u6cd5", null, entries);
         Assert.Empty(result);
     }
 
@@ -1856,13 +1856,11 @@ public class ScholarTabViewModelTests
     public void DetectMasterNames_SkipsShortPinyinNames()
     {
         var entries = MakeTestMasterEntries();
-        // "Ma" is < 4 chars, should not match
         var result = ScholarTabViewModel.DetectMasterNames(
             null, "Ma went to the market with Mazu Daoyi.", entries);
 
-        // "Mazu Daoyi" (10 chars >= 4) matches, but "Ma" (2 chars < 4) does not
         Assert.Contains("Mazu Daoyi", result);
-        Assert.Single(result); // only Mazu, not a separate "Ma" match
+        Assert.Single(result);
     }
 
     [Fact]
@@ -1870,7 +1868,7 @@ public class ScholarTabViewModelTests
     {
         var entries = MakeTestMasterEntries();
         var result = ScholarTabViewModel.DetectMasterNames(
-            "ÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¦Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚Â¯ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â¸ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â®Ãƒâ€šÃ‚ÂµÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢Ãƒâ€šÃ‚Â®ÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â­ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", "This is ordinary text.", entries);
+            "\u666e\u901a\u6587\u5b57\u6c92\u6709\u7956\u5e2b\u540d\u865f", "This is ordinary text.", entries);
 
         Assert.Empty(result);
     }
@@ -1888,36 +1886,30 @@ public class ScholarTabViewModelTests
     public void DetectMasterNames_NoDuplicatesWhenFoundInBothZhAndEn()
     {
         var entries = MakeTestMasterEntries();
-        // Linji appears in both Chinese and English
         var result = ScholarTabViewModel.DetectMasterNames(
-            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¤Ãƒâ€šÃ‚Â§ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«", "Master Linji Yixuan", entries);
+            $"{LinjiLong}\u958b\u793a\u5927\u773e", "Master Linji Yixuan", entries);
 
-        // Should appear only once (canonical display name)
         Assert.Single(result.Where(n => n == "Linji Yixuan"));
     }
 
-    // ---- AutoTagMasterNames ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â doesn't add duplicates ----
+    // ---- AutoTagMasterNames doesn't add duplicates ----
     // AutoTagMasterNames is private, so we test it indirectly via DetectMasterNames
     // since the dedup logic is: "if (!passage.MasterNames.Contains(name, ...))"
 
     [Fact]
     public void DetectMasterNames_ReturnsDistinctNames()
     {
-        // Entry where the same display name could be matched via both Chinese names
         var entries = new List<MasterNameEntry>
         {
-            new(new List<string> { "Linji Yixuan", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾", "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" })
+            new(new List<string> { "Linji Yixuan", LinjiLong, LinjiShort })
         };
 
-        // Text contains both "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾" and "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸" ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â both map to "Linji Yixuan"
         var result = ScholarTabViewModel.DetectMasterNames(
-            "ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¾Ãƒâ€šÃ‚Â©ÃƒÆ’Ã‚Â§Ãƒâ€¦Ã‚Â½ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼Ãƒâ€¦Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¿Ãƒâ€¦Ã‚Â¸ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â®ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â©ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â±Ãƒâ€šÃ‚Â±ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡", null, entries);
+            $"{LinjiLong}\u8207{LinjiShort}\u7686\u6307\u540c\u4e00\u4eba", null, entries);
 
-        // Display name should appear at most once
         Assert.Single(result);
         Assert.Equal("Linji Yixuan", result[0]);
     }
-
     // ---- LinkedTexts property tests ----
 
     [Fact]
@@ -2029,5 +2021,6 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
         => Task.CompletedTask;
 }
+
 
 

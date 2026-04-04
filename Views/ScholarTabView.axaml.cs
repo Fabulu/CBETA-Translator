@@ -638,6 +638,26 @@ public partial class ScholarTabView : UserControl
                     new FilePickerFileType("Plain Text") { Patterns = new[] { "*.txt" } }
                 }
             },
+            ScholarExportFormat.Csv => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as CSV",
+                SuggestedFileName = baseName + ".csv",
+                DefaultExtension = "csv",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("CSV") { Patterns = new[] { "*.csv" } }
+                }
+            },
+            ScholarExportFormat.Tsv => new FilePickerSaveOptions
+            {
+                Title = "Export Scholar Collection as TSV",
+                SuggestedFileName = baseName + ".tsv",
+                DefaultExtension = "tsv",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("TSV") { Patterns = new[] { "*.tsv", "*.tab" } }
+                }
+            },
             _ => new FilePickerSaveOptions
             {
                 Title = "Export Scholar Collections as JSON",
@@ -1505,6 +1525,7 @@ public partial class ScholarTabView : UserControl
         ScholarDataChanged?.Invoke(this, EventArgs.Empty);
     }
 }
+
 
 
 

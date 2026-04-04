@@ -24,11 +24,17 @@ public partial class ExportFormatDialog : Window
     private ScholarExportFormat GetSelectedFormat()
     {
         var rbJson = this.FindControl<RadioButton>("RbJson");
+        var rbCsv = this.FindControl<RadioButton>("RbCsv");
+        var rbTsv = this.FindControl<RadioButton>("RbTsv");
         var rbMarkdown = this.FindControl<RadioButton>("RbMarkdown");
         var rbPlainText = this.FindControl<RadioButton>("RbPlainText");
 
         if (rbJson?.IsChecked == true)
             return ScholarExportFormat.Json;
+        if (rbCsv?.IsChecked == true)
+            return ScholarExportFormat.Csv;
+        if (rbTsv?.IsChecked == true)
+            return ScholarExportFormat.Tsv;
         if (rbMarkdown?.IsChecked == true)
             return ScholarExportFormat.Markdown;
         if (rbPlainText?.IsChecked == true)
