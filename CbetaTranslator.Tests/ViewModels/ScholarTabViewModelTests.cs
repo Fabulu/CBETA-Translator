@@ -787,6 +787,50 @@ public class ScholarTabViewModelTests
     }
 
 
+
+    [Fact]
+    public async Task ExportCollections_ReaderTagBundleFormat_UsesRichExportPath()
+    {
+        var trackingSvc = new TrackingScholarCollectionsService();
+        var vm = new ScholarTabViewModel(trackingSvc)
+        {
+            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.ReaderTagBundle),
+            PickExportFileAsync = (format, name) =>
+            {
+                Assert.Equal(ScholarExportFormat.ReaderTagBundle, format);
+                Assert.Equal("New Collection", name);
+                return Task.FromResult<string?>("/tmp/reader-tags.json");
+            }
+        };
+        vm.AddCollectionCommand.Execute(null);
+
+        await vm.ExportCollectionsCommand.ExecuteAsync(null);
+
+        Assert.False(trackingSvc.ExportWasCalled);
+        Assert.Contains("Export failed", vm.StatusMessage);
+    }
+
+    [Fact]
+    public async Task ExportCollections_ReaderTagTsvFormat_UsesRichExportPath()
+    {
+        var trackingSvc = new TrackingScholarCollectionsService();
+        var vm = new ScholarTabViewModel(trackingSvc)
+        {
+            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.ReaderTagTsv),
+            PickExportFileAsync = (format, name) =>
+            {
+                Assert.Equal(ScholarExportFormat.ReaderTagTsv, format);
+                Assert.Equal("New Collection", name);
+                return Task.FromResult<string?>("/tmp/reader-tags.tsv");
+            }
+        };
+        vm.AddCollectionCommand.Execute(null);
+
+        await vm.ExportCollectionsCommand.ExecuteAsync(null);
+
+        Assert.False(trackingSvc.ExportWasCalled);
+        Assert.Contains("Export failed", vm.StatusMessage);
+    }
     [Fact]
     public async Task ExportCollections_PaperDraftFormat_UsesRichExportPath()
     {
@@ -2043,6 +2087,5 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
         => Task.CompletedTask;
 }
-
 
 

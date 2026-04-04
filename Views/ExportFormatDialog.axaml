@@ -2,7 +2,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CbetaTranslator.App.Views.ExportFormatDialog"
-        Width="360" Height="640"
+        Width="360" Height="760"
         Background="{DynamicResource AppBg}"
         Title="Export Scholar Data"
         CanResize="False"
@@ -30,114 +30,142 @@
 				   Foreground="{DynamicResource TextFg}"
 				   Margin="0,0,0,14"/>
 
-		<StackPanel Grid.Row="1" Spacing="10">
-			<RadioButton Name="RbHtml"
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+			<StackPanel Spacing="10">
+				<RadioButton Name="RbHtml"
 						 IsChecked="True"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="HTML" FontWeight="SemiBold"/>
-					<TextBlock Text="Rich formatted document with bilingual layout and cross-reference graph"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="HTML" FontWeight="SemiBold"/>
+						<TextBlock Text="Rich formatted document with bilingual layout and cross-reference graph"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbMarkdown"
+				<RadioButton Name="RbMarkdown"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="Markdown" FontWeight="SemiBold"/>
-					<TextBlock Text="Academic writing format, easy to paste into papers"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="Markdown" FontWeight="SemiBold"/>
+						<TextBlock Text="Academic writing format, easy to paste into papers"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbPlainText"
+				<RadioButton Name="RbPlainText"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="Plain Text" FontWeight="SemiBold"/>
-					<TextBlock Text="Simple text, no formatting"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="Plain Text" FontWeight="SemiBold"/>
+						<TextBlock Text="Simple text, no formatting"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbCsv"
+				<RadioButton Name="RbCsv"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="CSV" FontWeight="SemiBold"/>
-					<TextBlock Text="Spreadsheet export with one row per passage"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="CSV" FontWeight="SemiBold"/>
+						<TextBlock Text="Spreadsheet export with one row per passage"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbTsv"
+				<RadioButton Name="RbTsv"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="TSV" FontWeight="SemiBold"/>
-					<TextBlock Text="Tab-separated export for research tools and spreadsheet cleanup"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="TSV" FontWeight="SemiBold"/>
+						<TextBlock Text="Tab-separated export for research tools and spreadsheet cleanup"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbPaperDraft"
+				<RadioButton Name="RbReaderTagBundle"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="Paper Draft (.md)" FontWeight="SemiBold"/>
-					<TextBlock Text="Editable research draft scaffold from the selected collection, not a finished paper"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
-			<RadioButton Name="RbBibTex"
-						 GroupName="Format"
-						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="BibTeX (.bib)" FontWeight="SemiBold"/>
-					<TextBlock Text="One @misc entry per passage in the selected collection"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
+					<StackPanel Spacing="2">
+						<TextBlock Text="Reader Tags Bundle (.json)" FontWeight="SemiBold"/>
+						<TextBlock Text="Structured Reader tag interchange for the selected collection, with vocabulary and skipped-item report"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
 
-			<RadioButton Name="RbCslJson"
+				<RadioButton Name="RbReaderTagTsv"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="CSL-JSON (.json)" FontWeight="SemiBold"/>
-					<TextBlock Text="Citation-manager export with one item per passage in the selected collection"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
-			<RadioButton Name="RbJson"
+					<StackPanel Spacing="2">
+						<TextBlock Text="Reader Tags TSV (.tsv)" FontWeight="SemiBold"/>
+						<TextBlock Text="Reader-oriented tag rows plus a companion vocabulary JSON sidecar in the same folder"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbPaperDraft"
 						 GroupName="Format"
 						 Foreground="{DynamicResource TextFg}">
-				<StackPanel Spacing="2">
-					<TextBlock Text="JSON (all collections)" FontWeight="SemiBold"/>
-					<TextBlock Text="Structured archive export of every collection"
-							   FontSize="11"
-							   Foreground="{DynamicResource TextMutedFg}"
-							   TextWrapping="Wrap"/>
-				</StackPanel>
-			</RadioButton>
-		</StackPanel>
+					<StackPanel Spacing="2">
+						<TextBlock Text="Paper Draft (.md)" FontWeight="SemiBold"/>
+						<TextBlock Text="Editable research draft scaffold from the selected collection, not a finished paper"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbBibTex"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="BibTeX (.bib)" FontWeight="SemiBold"/>
+						<TextBlock Text="One @misc entry per passage in the selected collection"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbCslJson"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="CSL-JSON (.json)" FontWeight="SemiBold"/>
+						<TextBlock Text="Citation-manager export with one item per passage in the selected collection"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbJson"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="JSON (all collections)" FontWeight="SemiBold"/>
+						<TextBlock Text="Structured archive export of every collection"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+			</StackPanel>
+		</ScrollViewer>
 
 		<StackPanel Grid.Row="2"
 					Orientation="Horizontal"
@@ -157,4 +185,3 @@
 	</Grid>
 
 </Window>
-
