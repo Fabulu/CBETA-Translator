@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
@@ -32,7 +32,7 @@
 							Spacing="8"
 							DockPanel.Dock="Left">
 
-                    <Button Name="BtnToggleNav" Width="40" Height="32" Content="Menu"
+                    <Button Name="BtnToggleNav" Width="40" Height="32" Content="&#x2630;"
                             ToolTip.Tip="Toggle sidebar"/>
                     <Button Name="BtnOpenRoot" Width="140" Height="32" Content="Open Folder"
                             ToolTip.Tip="Select the root folder containing CBETA XML files"/>
@@ -209,4 +209,5 @@
 
 	</Grid>
 </Window>
+
 

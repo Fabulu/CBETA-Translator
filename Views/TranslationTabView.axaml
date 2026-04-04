@@ -42,13 +42,13 @@
 						<ComboBoxItem Content="100"/>
 						<ComboBoxItem Content="150"/>
 					</ComboBox>
-					<Button Name="BtnNextUntranslated" Content="Next Empty" ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block." Padding="8,3"/>
+					<Button Name="BtnNextUntranslated" Content="Next &#x2205;" ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block." Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Review -->
-					<Button Name="BtnApproveSegment" Content="Approve" ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)" Padding="8,3"/>
-					<Button Name="BtnNeedsWorkSegment" Content="Needs Work" ToolTip.Tip="Flag as needing more work (Alt+N / F10)" Padding="8,3" IsVisible="False"/>
-					<Button Name="BtnRejectSegment" Content="Reject" ToolTip.Tip="Mark the current segment as rejected (F11)" Padding="8,3"/>
+					<Button Name="BtnApproveSegment" Content="&#x2713;" ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)" Padding="8,3"/>
+					<Button Name="BtnNeedsWorkSegment" Content="&#x26A0;" ToolTip.Tip="Flag as needing more work (Alt+N / F10)" Padding="8,3" IsVisible="False"/>
+					<Button Name="BtnRejectSegment" Content="&#x2717;" ToolTip.Tip="Mark the current segment as rejected (F11)" Padding="8,3"/>
 					<Button Name="BtnNextUnapproved" Content="Next ?" ToolTip.Tip="Jump to next segment that has not been approved yet" Padding="8,3"/>
 					<ScrollViewer MaxHeight="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="4,0">
 						<TextBlock Name="TxtReviewState" Text="" FontWeight="SemiBold" TextWrapping="Wrap"/>
@@ -57,9 +57,9 @@
 
 					<!-- File -->
 					<Button Name="BtnSave" Content="Save" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)" Padding="8,3"/>
-					<Button Name="BtnRevert" Content="Revert" ToolTip.Tip="Reload projection from XML (Ctrl+R)" Padding="8,3"/>
-					<Button Name="BtnUndo" Content="Undo" ToolTip.Tip="Undo (Ctrl+Z)" Padding="8,3" Width="28"/>
-					<Button Name="BtnRedo" Content="Redo" ToolTip.Tip="Redo (Ctrl+Y)" Padding="8,3" Width="28"/>
+					<Button Name="BtnRevert" Content="&#x21BA;" ToolTip.Tip="Reload projection from XML (Ctrl+R)" Padding="8,3" Width="32"/>
+					<Button Name="BtnUndo" Content="&#x21B6;" ToolTip.Tip="Undo (Ctrl+Z)" Padding="8,3" Width="32"/>
+					<Button Name="BtnRedo" Content="&#x21B7;" ToolTip.Tip="Redo (Ctrl+Y)" Padding="8,3" Width="32"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Tools -->
@@ -194,4 +194,5 @@
 		</Grid>
 	</Grid>
 </UserControl>
+
 

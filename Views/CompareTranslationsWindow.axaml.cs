@@ -1,10 +1,12 @@
-using System;
+﻿using System;
 using Avalonia.Controls;
 using Avalonia.Media;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
+using CbetaTranslator.App.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CbetaTranslator.App.Views;
 
@@ -16,6 +18,10 @@ namespace CbetaTranslator.App.Views;
 /// </summary>
 public partial class CompareTranslationsWindow : Window
 {
+    private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
+    private HoverDictionaryBehaviorEdit? _hoverDictOrig;
+    private Canvas? _dictOverlayCanvas;
     private TextEditor? _edOriginal, _edTransA, _edTransB;
     private TextBlock? _txtHeader, _txtPaneAHeader, _txtPaneBHeader;
     private RenderedDocument? _docOriginal, _docTransA, _docTransB;
@@ -24,6 +30,8 @@ public partial class CompareTranslationsWindow : Window
     public CompareTranslationsWindow()
     {
         InitializeComponent();
+        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+        Closed += (_, _) => DisposeHoverDictionary();
     }
 
     /// <summary>
@@ -43,17 +51,30 @@ public partial class CompareTranslationsWindow : Window
         _txtPaneAHeader = this.FindControl<TextBlock>("TxtPaneAHeader");
         _txtPaneBHeader = this.FindControl<TextBlock>("TxtPaneBHeader");
 
-        if (_txtHeader != null) _txtHeader.Text = $"Compare Translations \u2014 {data.Title}";
+        if (_txtHeader != null) _txtHeader.Text = $"Compare Translations — {data.Title}";
         if (_txtPaneAHeader != null) _txtPaneAHeader.Text = data.TranslationALabel;
         if (_txtPaneBHeader != null) _txtPaneBHeader.Text = data.TranslationBLabel;
 
-        // Each pane gets its OWN document text
         if (_edOriginal != null) { _edOriginal.Text = _docOriginal.Text ?? ""; ConfigureEditor(_edOriginal); }
         if (_edTransA != null) { _edTransA.Text = _docTransA.Text ?? ""; ConfigureEditor(_edTransA); }
         if (_edTransB != null) { _edTransB.Text = _docTransB.Text ?? ""; ConfigureEditor(_edTransB); }
 
-        // Wire selection mirroring using segment key matching
         WireSelectionMirroring();
+        SetupHoverDictionary();
+    }
+
+    private void SetupHoverDictionary()
+    {
+        DisposeHoverDictionary();
+        if (_edOriginal == null || _dictOverlayCanvas == null) return;
+        try { _hoverDictOrig = new HoverDictionaryBehaviorEdit(_edOriginal, _cedict, _grammar, _dictOverlayCanvas); }
+        catch { _hoverDictOrig = null; }
+    }
+
+    private void DisposeHoverDictionary()
+    {
+        try { _hoverDictOrig?.Dispose(); } catch { }
+        _hoverDictOrig = null;
     }
 
     private static void ConfigureEditor(TextEditor ed)
@@ -71,11 +92,6 @@ public partial class CompareTranslationsWindow : Window
         WireMirror(_edTransB, _docTransB, _edOriginal, _docOriginal, _edTransA, _docTransA);
     }
 
-    /// <summary>
-    /// Wires caret movement in <paramref name="source"/> so that when the caret moves,
-    /// the segment at the caret offset is found in <paramref name="sourceDoc"/>, and the
-    /// same segment key is looked up in the other two documents to mirror the selection.
-    /// </summary>
     private void WireMirror(
         TextEditor? source, RenderedDocument? sourceDoc,
         TextEditor? target1, RenderedDocument? targetDoc1,
@@ -94,11 +110,7 @@ public partial class CompareTranslationsWindow : Window
                 if (seg == null) return;
 
                 string key = seg.Value.Key;
-
-                // Select the segment in the source pane
                 SelectSegment(source, seg.Value.Start, seg.Value.EndExclusive);
-
-                // Find same key in target docs using key matching with lb fallback
                 SelectByKey(target1, targetDoc1, key);
                 SelectByKey(target2, targetDoc2, key);
             }
@@ -106,26 +118,19 @@ public partial class CompareTranslationsWindow : Window
         };
     }
 
-    /// <summary>
-    /// Finds a segment in <paramref name="doc"/> by exact key match, falling back to
-    /// lb n-value matching with common edition suffixes if the exact key is not found.
-    /// </summary>
     private static void SelectByKey(TextEditor? ed, RenderedDocument? doc, string key)
     {
         if (ed?.TextArea == null || doc == null) return;
 
-        // Exact key match
         if (doc.TryGetSegmentByKey(key, out var seg))
         {
             SelectSegment(ed, seg.Start, seg.EndExclusive);
             return;
         }
 
-        // Fallback: try matching by lb n-value with common edition suffixes
         var nValue = LbHelper.ExtractLbNValue(key);
         if (nValue != null)
         {
-            // Try bare key first, then with common suffixes
             foreach (var suffix in new[] { "", "CB", "CBETA", "T", "X", "J" })
             {
                 var tryKey = string.IsNullOrEmpty(suffix)
@@ -139,7 +144,6 @@ public partial class CompareTranslationsWindow : Window
                 }
             }
 
-            // Brute-force: scan all segments for matching n-value
             foreach (var s in doc.Segments)
             {
                 if (s.Key.StartsWith("lb|", StringComparison.Ordinal))
@@ -168,6 +172,6 @@ public partial class CompareTranslationsWindow : Window
             var line = ed.Document?.GetLineByOffset(s);
             if (line != null) ed.ScrollToLine(line.LineNumber);
         }
-        catch { /* guard against race conditions during load */ }
+        catch { }
     }
 }
