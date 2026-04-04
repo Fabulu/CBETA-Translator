@@ -122,7 +122,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _windowTitle = AppTitleBase;
 
     // ===========================================================
-    // Bridge delegates Ã¢â‚¬â€ wired by code-behind to tab view methods
+    // Bridge delegates wired by code-behind to tab view methods
     // ===========================================================
 
     // ReadableTabView bridges
@@ -143,6 +143,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<Dictionary<string, List<DocumentTag>>?>? SetReadableCommunityTags { get; set; }
     public Action<Dictionary<string, TagVocabulary>?>? SetReadableCommunityVocabularies { get; set; }
     public Action<List<DocumentTag>?, TagVocabulary?>? SetSearchTagFilterData { get; set; }
+    public Action<List<string>>? SetReadableTranslationSourceOptions { get; set; }
+    public Action<int>? SetReadableTranslationSourceIndex { get; set; }
 
     // TranslationTabView bridges
     public Action<List<string>>? SetTranslationSourceOptions { get; set; }
@@ -373,6 +375,7 @@ public partial class MainWindowViewModel : ViewModelBase
         PushSearchContext();
         SetScholarRoot?.Invoke(_root);
         SetScholarTranslationDirs?.Invoke(_originalDir, _translatedDir);
+        SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username);
 
         try
         {
@@ -562,7 +565,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetReadableTagUsername?.Invoke(GetCurrentTagUsername()); } catch { }
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
-        try { SetScholarUsername?.Invoke(_config.Username); } catch { }
+        try { SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username); } catch { }
         try { _translationAssistant.SetUsername(_config.Username); } catch { }
     }
 
@@ -891,7 +894,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task OnFileSelectedAsync(FileNavItem item)
     {
         if (string.IsNullOrWhiteSpace(item.RelPath)) return;
-        if (_suppressNavSelection) return; // Autoload in progress Ã¢â‚¬â€ don't double-load
+        if (_suppressNavSelection) return; // Autoload in progress; do not double-load
 
         if (_currentRelPath != null && !string.Equals(_currentRelPath, item.RelPath, StringComparison.OrdinalIgnoreCase))
         {
@@ -1082,8 +1085,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _dirty = false;
         UpdateWindowTitle();
         UpdateSaveButtonState();
-
-        // Signal that core data (projection editor) is ready Ã¢â‚¬â€ allows the window
+        // Signal that core data (projection editor) is ready so the window can appear early.
         // to appear immediately while the slower readable render continues below.
         SignalCoreLoadComplete?.Invoke();
 
@@ -1120,8 +1122,7 @@ public partial class MainWindowViewModel : ViewModelBase
             SetStatus("Loaded. Segments: O=" + ro.Segments.Count.ToString("n0") +
                       ", T=" + rt.Segments.Count.ToString("n0") +
                       ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
-
-            _ = RefreshProgressStatsAsync(); // Don't await Ã¢â‚¬â€ don't freeze UI
+            _ = RefreshProgressStatsAsync(); // Do not await; keep the UI responsive
             _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
         }
         catch (OperationCanceledException) { }
@@ -1314,7 +1315,7 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     // ===========================================================
-    // Coding Mode Ã¢â‚¬â€ Tag loading, saving, and event handling
+    // Coding mode: tag loading, saving, and event handling
     // ===========================================================
 
     private async Task LoadAndPushTagsForCurrentFileAsync()
@@ -2002,7 +2003,7 @@ public partial class MainWindowViewModel : ViewModelBase
             try { await RefreshReadableFromDiskOnlyAsync(); }
             catch (Exception refreshEx)
             {
-                // Post-save refresh can fail on Mac (file access timing) Ã¢â‚¬â€ don't alarm the user
+                // Post-save refresh can fail on Mac due to file timing; keep this non-fatal.
                 System.Diagnostics.Debug.WriteLine($"[SaveXml] Post-save refresh failed (non-critical): {refreshEx.Message}");
             }
 
@@ -2162,7 +2163,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var file = _currentRelPath ?? "";
         var star = _dirty ? "*" : "";
-        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " Ã¢â‚¬â€ " + file);
+        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " - " + file);
         WindowTitle = title;
         SetWindowTitle?.Invoke(title);
 
@@ -2498,7 +2499,11 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         _translationSourceOptions = options;
+        _translationSourceIndex = Math.Clamp(_translationSourceIndex, 0, Math.Max(0, options.Count - 1));
         SetTranslationSourceOptions?.Invoke(options);
+        SetReadableTranslationSourceOptions?.Invoke(options);
+        SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
+        SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
     }
 
     /// <summary>
@@ -2521,6 +2526,8 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         SetTranslationEditorReadOnly?.Invoke(IsActiveTranslationReadOnly);
+        SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
+        SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
         PushSearchContext();
 
         // Reload current file with new source
@@ -2550,6 +2557,7 @@ public partial class MainWindowViewModel : ViewModelBase
     /// Returns the current list of translation source labels (e.g. "My Translation (user)", "Community", other usernames).
     /// </summary>
     public IReadOnlyList<string> GetTranslationSourceLabels() => _translationSourceOptions;
+    public int GetActiveTranslationSourceIndex() => _translationSourceIndex;
 
     private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
 

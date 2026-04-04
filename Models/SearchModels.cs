@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace CbetaTranslator.App.Models;
@@ -15,6 +15,8 @@ public sealed class SearchHit
     public string Left { get; set; } = "";  // KWIC left context
     public string Match { get; set; } = ""; // the query itself (as found)
     public string Right { get; set; } = ""; // KWIC right context
+
+    public string SnippetText => $"{Left}{Match}{Right}";
 }
 
 public sealed class SearchResultGroup
@@ -45,6 +47,7 @@ public sealed class SearchResultChild
     public string RelPath { get; set; } = "";
     public SearchSide Side { get; set; }
     public SearchHit Hit { get; set; } = new();
+    public SearchHit? SecondaryHit { get; set; }
 
     public string SideLabel
         => Side == SearchSide.Original ? "O: " : "T: ";
@@ -52,9 +55,36 @@ public sealed class SearchResultChild
     public string LeftText => Hit.Left ?? "";
     public string MatchText => Hit.Match ?? "";
     public string RightText => Hit.Right ?? "";
+    public string PrimarySnippetText => Hit.SnippetText;
+    public string PrimaryDisplayText => $"{SideLabel}{PrimarySnippetText}";
+    public string SecondarySideLabel => SecondaryHit == null ? "" : (Side == SearchSide.Original ? "T: " : "O: ");
+    public string SecondaryLeftText => SecondaryHit?.Left ?? "";
+    public string SecondaryMatchText => SecondaryHit?.Match ?? "";
+    public string SecondaryRightText => SecondaryHit?.Right ?? "";
+    public string SecondarySnippetText => SecondaryHit?.SnippetText ?? "";
+    public string SecondaryDisplayText => SecondaryHit == null ? "" : $"{SecondarySideLabel}{SecondarySnippetText}";
+    public bool HasSecondaryDisplayText => SecondaryHit != null;
 
     public string RowText
         => $"{SideLabel}{LeftText}[{MatchText}]{RightText}";
+
+    public string BilingualRowText
+        => HasSecondaryDisplayText ? $"{PrimaryDisplayText}{Environment.NewLine}{SecondaryDisplayText}" : PrimaryDisplayText;
+
+    public ScholarPassage ToScholarPassage()
+    {
+        string zh = Side == SearchSide.Original ? PrimarySnippetText : SecondarySnippetText;
+        string en = Side == SearchSide.Translated ? PrimarySnippetText : SecondarySnippetText;
+
+        return new ScholarPassage
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            SourceRelPath = RelPath,
+            ZhText = zh,
+            EnText = en,
+            AddedUtc = DateTimeOffset.UtcNow
+        };
+    }
 }
 
 // A small manifest for the bloom index on disk

@@ -269,18 +269,34 @@
 						</TreeDataTemplate>
 
 						<DataTemplate DataType="models:SearchResultChild">
-							<StackPanel Orientation="Horizontal" Spacing="0">
-								<TextBlock Text="{Binding SideLabel}"
-                                           Classes="muted"
-                                           TextWrapping="NoWrap"/>
-								<TextBlock Text="{Binding LeftText}"
-                                           TextWrapping="NoWrap"/>
-								<TextBlock Text="{Binding MatchText}"
-                                           TextWrapping="NoWrap"
-                                           FontWeight="SemiBold"
-                                           Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
-								<TextBlock Text="{Binding RightText}"
-                                           TextWrapping="NoWrap"/>
+							<StackPanel Orientation="Vertical" Spacing="0">
+								<StackPanel Orientation="Horizontal" Spacing="0">
+									<TextBlock Text="{Binding SideLabel}"
+                                               Classes="muted"
+                                               TextWrapping="NoWrap"/>
+									<TextBlock Text="{Binding LeftText}"
+                                               TextWrapping="NoWrap"/>
+									<TextBlock Text="{Binding MatchText}"
+                                               TextWrapping="NoWrap"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+									<TextBlock Text="{Binding RightText}"
+                                               TextWrapping="NoWrap"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal" Spacing="0"
+                                               IsVisible="{Binding HasSecondaryDisplayText}">
+									<TextBlock Text="{Binding SecondarySideLabel}"
+                                               Classes="muted"
+                                               TextWrapping="NoWrap"/>
+									<TextBlock Text="{Binding SecondaryLeftText}"
+                                               TextWrapping="NoWrap"/>
+									<TextBlock Text="{Binding SecondaryMatchText}"
+                                               TextWrapping="NoWrap"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+									<TextBlock Text="{Binding SecondaryRightText}"
+                                               TextWrapping="NoWrap"/>
+								</StackPanel>
 							</StackPanel>
 						</DataTemplate>
 

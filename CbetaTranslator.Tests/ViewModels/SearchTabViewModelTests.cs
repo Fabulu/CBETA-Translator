@@ -157,6 +157,36 @@ public class SearchTabViewModelTests
         Assert.NotNull(received);
         Assert.Equal("test/file.xml", received!.RelPath);
     }
+    [Fact]
+    public void HandleResultDoubleTap_SearchResultChild_FiresNavigationRequestedWithHitData()
+    {
+        var vm = MakeVm();
+        NavigationRequest? received = null;
+        vm.NavigationRequested += (_, req) => received = req;
+
+        var child = new SearchResultChild
+        {
+            RelPath = "test/file.xml",
+            Side = SearchSide.Original,
+            Hit = new SearchHit
+            {
+                Index = 42,
+                Left = "左",
+                Match = "中",
+                Right = "右"
+            }
+        };
+
+        vm.HandleResultDoubleTap(child);
+
+        Assert.NotNull(received);
+        Assert.Equal("test/file.xml", received!.RelPath);
+        Assert.Equal(SearchSide.Original, received.Side);
+        Assert.Equal("中", received.MatchText);
+        Assert.Equal("左", received.LeftContext);
+        Assert.Equal("右", received.RightContext);
+        Assert.Equal(42, received.AnchorStartHint);
+    }
 
     // ---- Empty state and validation ----
 
