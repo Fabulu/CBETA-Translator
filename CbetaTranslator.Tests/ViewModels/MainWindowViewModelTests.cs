@@ -417,6 +417,23 @@ public class MainWindowViewModelTests
     }
 
     [Fact]
+    public void ApplySettingsToChildViews_FallsBackToUsernameForReadableTagCompareIdentity()
+    {
+        var vm = MakeVm();
+        string? compareIdentity = null;
+        string? tagUsername = null;
+
+        vm.SetReadableTagCompareIdentity = value => compareIdentity = value;
+        vm.SetReadableTagUsername = value => tagUsername = value;
+        vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = null });
+
+        vm.ApplySettingsToChildViews();
+
+        Assert.Equal("Alice", compareIdentity);
+        Assert.Equal("Alice", tagUsername);
+    }
+
+    [Fact]
     public async Task SwitchTranslationSourceAsync_UpdatesSearchContextToMatchActiveTranslationSource()
     {
         var vm = MakeVm();
