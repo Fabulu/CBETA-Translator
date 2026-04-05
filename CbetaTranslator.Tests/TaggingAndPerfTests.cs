@@ -234,6 +234,25 @@ public class TaggingAndPerfTests
         Assert.Contains("No QA issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
     }
 
+
+    [Theory]
+    [InlineData("Tm", "NoteMarkerCommunityFg", true)]
+    [InlineData("Term", "WarningBrush", true)]
+    [InlineData("None", "TextFg", false)]
+    public void AssistantHighlightColorizer_UsesExpectedBrushKeyAndWeight(string styleName, string expectedBrushKey, bool expectedSemiBold)
+    {
+        var rendererType = typeof(AssistantPanelRenderer);
+        var styleType = rendererType.Assembly.GetType("CbetaTranslator.App.Infrastructure.AssistantHighlightStyle")!;
+        var colorizerType = rendererType.Assembly.GetType("CbetaTranslator.App.Infrastructure.AssistantPanelRenderer+AssistantHighlightColorizer")!;
+        var style = Enum.Parse(styleType, styleName);
+
+        var getBrushMethod = colorizerType.GetMethod("GetBrushResourceKey", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public)!;
+        var usesSemiBoldMethod = colorizerType.GetMethod("UsesSemiBold", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public)!;
+
+        Assert.Equal(expectedBrushKey, (string)getBrushMethod.Invoke(null, new[] { style })!);
+        Assert.Equal(expectedSemiBold, (bool)usesSemiBoldMethod.Invoke(null, new[] { style })!);
+    }
+
     // ======================================================================
     // 4. TranslationAssistantService - parallel lookups
     // ======================================================================

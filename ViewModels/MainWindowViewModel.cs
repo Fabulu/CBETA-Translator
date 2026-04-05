@@ -131,6 +131,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<bool>? SetReadableHoverDict { get; set; }
     public Action<string?, bool>? SetReadableZenContext { get; set; }
     public Action<IReadOnlyList<TermHit>?, string?, int?, string?>? UpdateReadableTermHighlights { get; set; }
+    public Action<IReadOnlyList<TranslationTmMatch>?, IReadOnlyList<TranslationTmMatch>?, string?, int?, string?>? UpdateReadableTmSharedHighlights { get; set; }
     public Action<string>? SetReadableDefaultResp { get; set; }
     public Action<string>? SetReadableTagCompareIdentity { get; set; }
     public Action<string?>? SetReadableTagUsername { get; set; }
@@ -246,6 +247,7 @@ public partial class MainWindowViewModel : ViewModelBase
     // Public accessors for code-behind
     // ===========================================================
 
+    public string? ViewConfigUsernameForAssistant() => _config.GitHubUsername ?? _config.Username;
     public TranslationEditMode TranslationMode => _translationMode;
     public IndexedTranslationDocument? IndexedDoc => _indexedDoc;
     public CurrentSegmentContext? CurrentSegmentCtx => _currentSegmentContext;
@@ -566,7 +568,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
         try { SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username); } catch { }
-        try { _translationAssistant.SetUsername(_config.Username); } catch { }
+        try { _translationAssistant.SetUsername(ViewConfigUsernameForAssistant()); } catch { }
     }
 
     public void UpdateConfig(AppConfig config)
@@ -1267,7 +1269,8 @@ public partial class MainWindowViewModel : ViewModelBase
             _readerStudyCts = new CancellationTokenSource();
             var ct = _readerStudyCts.Token;
 
-            SetReadableStudySnapshot?.Invoke(null); // clear stale
+            UpdateReadableTermHighlights?.Invoke(null, null, null, null);
+            UpdateReadableTmSharedHighlights?.Invoke(null, null, null, null, null);
 
             var snapshot = await _translationAssistant.BuildSnapshotAsync(
                 ctx, _root, _originalDir, _translatedDir, ct)
@@ -1278,6 +1281,24 @@ public partial class MainWindowViewModel : ViewModelBase
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 SetReadableStudySnapshot?.Invoke(snapshot);
+                int? readableOccurrenceHint =
+                    ctx.BlockNumber > 0
+                        ? ctx.BlockNumber - 1
+                        : null;
+                string? readableAnchorSignal = string.IsNullOrWhiteSpace(ctx.ZhContextText)
+                    ? null
+                    : ctx.ZhContextText;
+                UpdateReadableTermHighlights?.Invoke(
+                    snapshot?.Terms,
+                    ctx.ZhText,
+                    readableOccurrenceHint,
+                    readableAnchorSignal);
+                UpdateReadableTmSharedHighlights?.Invoke(
+                    snapshot?.ApprovedMatches,
+                    snapshot?.ReferenceMatches,
+                    ctx.ZhText,
+                    readableOccurrenceHint,
+                    readableAnchorSignal);
             });
         }
         catch
@@ -2554,6 +2575,49 @@ public partial class MainWindowViewModel : ViewModelBase
         return null;
     }
 
+    private async Task EnsureTranslationSourceForNavigationAsync(NavigationRequest request)
+    {
+        if (request.Side != SearchSide.Translated || _translationSourceOptions.Count == 0)
+            return;
+
+        int? targetIndex = ResolveTranslationSourceIndexForNavigation(request.User);
+        if (!targetIndex.HasValue || targetIndex.Value == _translationSourceIndex)
+            return;
+
+        await SwitchTranslationSourceAsync(targetIndex.Value);
+    }
+
+    private int? ResolveTranslationSourceIndexForNavigation(string? requestedUser)
+    {
+        if (string.IsNullOrWhiteSpace(requestedUser))
+            return _translationSourceOptions.Count > 1 ? 1 : null;
+
+        var normalizedRequested = requestedUser.Trim();
+        if (string.IsNullOrWhiteSpace(normalizedRequested))
+            return _translationSourceOptions.Count > 1 ? 1 : null;
+
+        var currentUserKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (!string.IsNullOrWhiteSpace(_config.Username))
+            currentUserKeys.Add(_config.Username.Trim());
+        if (!string.IsNullOrWhiteSpace(_config.GitHubUsername))
+            currentUserKeys.Add(_config.GitHubUsername.Trim());
+
+        var currentFolderKey = GetTranslationFolderKey(_config);
+        if (!string.IsNullOrWhiteSpace(currentFolderKey))
+            currentUserKeys.Add(currentFolderKey);
+
+        if (currentUserKeys.Contains(normalizedRequested))
+            return 0;
+
+        for (int i = 2; i < _translationSourceOptions.Count; i++)
+        {
+            if (string.Equals(_translationSourceOptions[i], normalizedRequested, StringComparison.OrdinalIgnoreCase))
+                return i;
+        }
+
+        return null;
+    }
+
     /// <summary>
     /// Returns the current list of translation source labels (e.g. "My Translation (user)", "Community", other usernames).
     /// </summary>
@@ -2645,6 +2709,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task OpenAtCoreAsync(string root, NavigationRequest request)
     {
         await LoadRootAsync(root, saveToConfig: false);
+        await EnsureTranslationSourceForNavigationAsync(request);
         SelectInNav(request.RelPath);
         await LoadPairAsync(request.RelPath);
         ForceTabIndex?.Invoke(0); // switch to Reader tab
@@ -2946,4 +3011,5 @@ public partial class MainWindowViewModel : ViewModelBase
             await LoadPairAsync(_currentRelPath);
     }
 }
+
 

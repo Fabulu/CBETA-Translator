@@ -44,7 +44,7 @@ public partial class MainWindow : Window
 
     private TextBlock? _txtRoot, _txtCurrentFile, _txtStatus;
 
-    private TabControl? _tabs;
+    private TabStrip? _tabs;
     private ReadableTabView? _readableView;
     private TranslationTabView? _translationView;
     private SearchTabView? _searchView;
@@ -314,7 +314,7 @@ public partial class MainWindow : Window
         _txtCurrentFile = Find<TextBlock>("TxtCurrentFile");
         _txtStatus = Find<TextBlock>("TxtStatus");
 
-        _tabs = Find<TabControl>("MainTabs");
+        _tabs = Find<TabStrip>("MainTabs");
         _readableView = Find<ReadableTabView>("ReadableView");
         _translationView = Find<TranslationTabView>("TranslationView");
         _searchView = Find<SearchTabView>("SearchView");
@@ -402,6 +402,8 @@ public partial class MainWindow : Window
         _vm.SetReadableZenContext = (rel, isZen) => _readableView?.SetZenContext(rel, isZen);
         _vm.UpdateReadableTermHighlights = (hits, zh, hint, anchor) =>
             _readableView?.UpdateTermbaseHighlights(hits, zh, preferredOccurrenceHint: hint, anchorTextSignal: anchor);
+        _vm.UpdateReadableTmSharedHighlights = (approved, reference, zh, hint, anchor) =>
+            _readableView?.UpdateTmSharedHighlights(approved, reference, zh, preferredOccurrenceHint: hint, anchorTextSignal: anchor);
         _vm.SetReadableDefaultResp = resp =>
         {
             if (_readableView != null) _readableView.DefaultResp = resp;
@@ -777,9 +779,18 @@ public partial class MainWindow : Window
                 await _vm.SwitchTranslationSourceAsync(idx);
             };
 
+            _readableView.NavigationRequested += (_, req) =>
+            {
+                _vm.HandleNavigationRequested(req);
+            };
+
             _readableView.StudyPanelContextChanged += async (_, ctx) =>
             {
                 await _vm.RefreshReaderStudyPanelAsync(ctx);
+            };
+            _readableView.DictionaryRequested += async (_, _) =>
+            {
+                await _vm.OpenTermbaseEditorAsync();
             };
 
             _readableView.StudyPanelVisibilityChanged += (_, visible) =>

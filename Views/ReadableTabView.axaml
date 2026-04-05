@@ -42,6 +42,12 @@
 						Content="Add community note"
 						Focusable="False"
 						ToolTip.Tip="Add a community note at the current cursor position"/>
+				<Button Name="BtnDictionary"
+						Content="Dict"
+						Padding="6,2"
+						FontSize="11"
+						Focusable="False"
+						ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)"/>
 			</StackPanel>
 
 			<Button Name="BtnCompareTranslations"

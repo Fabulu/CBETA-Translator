@@ -9,203 +9,224 @@
         Height="900"
         Title="Read Zen">
 
-	<Grid RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto">
 
-		<!-- Tour overlay (highest ZIndex, spans entire window) -->
-		<Canvas Name="TourOverlayCanvas"
-				Grid.RowSpan="3"
-				ZIndex="1000"
-				IsVisible="False">
-			<views:TourSpotlightOverlay Name="TourSpotlight"/>
-			<views:TourTooltipPanel Name="TourTooltip"/>
-		</Canvas>
+        <Canvas Name="TourOverlayCanvas"
+                Grid.RowSpan="3"
+                ZIndex="1000"
+                IsVisible="False">
+            <views:TourSpotlightOverlay Name="TourSpotlight"/>
+            <views:TourTooltipPanel Name="TourTooltip"/>
+        </Canvas>
 
-		<!-- Top Bar -->
-		<Border Grid.Row="0"
-				Name="TopBar"
-				Background="{DynamicResource BarBg}"
-				Padding="8">
+        <Border Grid.Row="0"
+                Name="TopBar"
+                Background="{DynamicResource BarBg}"
+                Padding="8,4,8,4">
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,*" RowSpacing="2" ColumnSpacing="4">
+                <DockPanel Name="TopBarCommandsHost"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="3"
+                           LastChildFill="True">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="6"
+                                DockPanel.Dock="Left">
+                        <Button Name="BtnOpenRoot" Width="104" Height="24" FontSize="11" Content="Open Folder"
+                                ToolTip.Tip="Select the root folder containing CBETA XML files"/>
+                        <Button Name="BtnSettings" Width="84" Height="24" FontSize="11" Content="Settings"
+                                ToolTip.Tip="Open application settings"/>
+                        <Button Name="BtnLicenses" Width="84" Height="24" FontSize="11" Content="Licenses"
+                                ToolTip.Tip="View licenses and attributions"/>
+                        <TextBlock Name="TxtRoot"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Classes="muted"/>
+                    </StackPanel>
 
-			<DockPanel LastChildFill="True">
+                    <TextBlock Name="TxtCurrentFile"
+                               DockPanel.Dock="Right"
+                               VerticalAlignment="Center"
+                               Classes="muted"/>
+                </DockPanel>
 
-				<StackPanel Orientation="Horizontal"
-							Spacing="6"
-							DockPanel.Dock="Left">
+                <Button Name="BtnToggleNav"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="28"
+                        Height="22"
+                        FontSize="12"
+                        Content="&#x2630;"
+                        ToolTip.Tip="Toggle sidebar"/>
 
-                    <Button Name="BtnToggleNav" Width="34" Height="28" FontSize="13" Content="&#x2630;"
-                            ToolTip.Tip="Toggle sidebar"/>
-                    <Button Name="BtnOpenRoot" Width="118" Height="28" FontSize="12" Content="Open Folder"
-                            ToolTip.Tip="Select the root folder containing CBETA XML files"/>
-                    <Button Name="BtnSettings" Width="94" Height="28" FontSize="12" Content="Settings"
-                            ToolTip.Tip="Open application settings"/>
-                    <Button Name="BtnLicenses" Width="94" Height="28" FontSize="12" Content="Licenses"
-                            ToolTip.Tip="View licenses and attributions"/>
+                <Button Name="BtnToggleTopBar"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="28"
+                        Height="22"
+                        FontSize="10"
+                        Content="&#x25B2;"
+                        ToolTip.Tip="Collapse command bar"/>
 
-					<TextBlock Name="TxtRoot"
-							   Margin="10,0,0,0"
-							   Classes="muted"/>
+                <Border Grid.Row="1" Grid.Column="2" Background="Transparent">
+                    <TabStrip Name="MainTabs" SelectedIndex="0" Height="20">
+                        <TabStrip.Styles>
+                            <Style Selector="TabStrip#MainTabs">
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="MinHeight" Value="0"/>
+                                <Setter Property="Height" Value="20"/>
+                            </Style>
+                            <Style Selector="TabStrip#MainTabs TabItem">
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Padding" Value="2,0"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="MinHeight" Value="18"/>
+                                <Setter Property="Height" Value="18"/>
+                                <Setter Property="MinWidth" Value="0"/>
+                            </Style>
+                        </TabStrip.Styles>
+                        <TabItem Header="Reader"/>
+                        <TabItem Header="Translate"/>
+                        <TabItem Header="Search"/>
+                        <TabItem Header="Community"/>
+                        <TabItem Header="Scholar"/>
+                    </TabStrip>
+                </Border>
+            </Grid>
+        </Border>
 
-				</StackPanel>
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*">
+            <Border Name="NavPanel"
+                    Grid.Column="0"
+                    Background="{DynamicResource NavBg}"
+                    Width="260">
+                <Grid Margin="6"
+                      RowDefinitions="Auto,Auto,Auto,*"
+                      RowSpacing="6">
 
-				<TextBlock Name="TxtCurrentFile"
-						   DockPanel.Dock="Right"
-						   Classes="muted"/>
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                        <TextBlock Text="Files"
+                                   FontWeight="Bold"
+                                   Classes="muted"
+                                   VerticalAlignment="Center"/>
 
-			</DockPanel>
-		</Border>
-
-		<!-- Main -->
-		<Grid Grid.Row="1" ColumnDefinitions="Auto,*">
-
-			<!-- Nav -->
-			<Border Name="NavPanel"
-					Grid.Column="0"
-					Background="{DynamicResource NavBg}"
-					Width="284">
-
-				<Grid Margin="6"
-					  RowDefinitions="Auto,Auto,Auto,*"
-					  RowSpacing="6">
-
-					<Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="6">
-						<TextBlock Text="Files"
-								   FontWeight="Bold"
-								   Classes="muted"
-								   VerticalAlignment="Center"/>
-
-						<ComboBox Name="CmbStatusFilter"
-								  Grid.Column="1"
-								  SelectedIndex="0"
-								  MinWidth="136" FontSize="12"
-								  ToolTip.Tip="Filter files by translation status">
-							<ComboBoxItem Content="All"/>
-							<ComboBoxItem Content="Translated (Green)"/>
-							<ComboBoxItem Content="Partially translated (Yellow)"/>
-							<ComboBoxItem Content="Untranslated (Red)"/>
-						</ComboBox>
-					</Grid>
+                        <ComboBox Name="CmbStatusFilter"
+                                  Grid.Column="1"
+                                  SelectedIndex="0"
+                                  MinWidth="132"
+                                  FontSize="11"
+                                  ToolTip.Tip="Filter files by translation status">
+                            <ComboBoxItem Content="All"/>
+                            <ComboBoxItem Content="Translated (Green)"/>
+                            <ComboBoxItem Content="Partially translated (Yellow)"/>
+                            <ComboBoxItem Content="Untranslated (Red)"/>
+                        </ComboBox>
+                    </Grid>
 
                     <TextBox Name="NavSearch"
                              Grid.Row="1"
+                             FontSize="11"
                              Watermark="Search (filename or title)..."
                              ToolTip.Tip="Filter by filename or title"/>
 
-					<StackPanel Grid.Row="2"
-								Orientation="Horizontal"
-								Spacing="8">
-						<CheckBox Name="ChkShowFilenames"
-								  Content="Show filenames"
-								  ToolTip.Tip="Show technical filenames instead of titles"/>
-						<CheckBox Name="ChkZenOnly"
-								  Content="Zen texts"
-								  ToolTip.Tip="Show only texts flagged as Zen/Chan"/>
-					</StackPanel>
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <CheckBox Name="ChkShowFilenames"
+                                  FontSize="11"
+                                  Content="Show filenames"
+                                  ToolTip.Tip="Show technical filenames instead of titles"/>
+                        <CheckBox Name="ChkZenOnly"
+                                  FontSize="11"
+                                  Content="Zen texts"
+                                  ToolTip.Tip="Show only texts flagged as Zen/Chan"/>
+                    </StackPanel>
 
-					<ListBox Name="FilesList"
-							 Grid.Row="3"
-							 Background="{DynamicResource ControlBg}"
-							 BorderBrush="{DynamicResource BorderBrush}"
-							 BorderThickness="1">
+                    <ListBox Name="FilesList"
+                             Grid.Row="3"
+                             Background="{DynamicResource ControlBg}"
+                             BorderBrush="{DynamicResource BorderBrush}"
+                             BorderThickness="1">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Name="MnuLinkToPassage" Header="Link to selected passage"
+                                          ToolTip.Tip="Add this text to the selected scholar passage's linked texts"/>
+                                <MenuItem Name="MnuCopyLink" Header="Copy Link"
+                                          ToolTip.Tip="Copy a zen:// link for this file to the clipboard"/>
+                                <MenuItem Name="MnuCopyRedditLink" Header="Copy Reddit Link"
+                                          ToolTip.Tip="Copy a shareable HTTPS link for this file to the clipboard"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:FileNavItem">
+                                <Border CornerRadius="6"
+                                        Padding="4"
+                                        Margin="2"
+                                        Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
+                                    <TextBlock Text="{Binding DisplayShort}"
+                                               ToolTip.Tip="{Binding Tooltip}"
+                                               TextWrapping="NoWrap"
+                                               FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
 
-						<ListBox.ContextMenu>
-							<ContextMenu>
-								<MenuItem Name="MnuLinkToPassage" Header="Link to selected passage"
-										  ToolTip.Tip="Add this text to the selected scholar passage's linked texts"/>
-								<MenuItem Name="MnuCopyLink" Header="Copy Link"
-										  ToolTip.Tip="Copy a zen:// link for this file to the clipboard"/>
-								<MenuItem Name="MnuCopyRedditLink" Header="Copy Reddit Link"
-										  ToolTip.Tip="Copy a shareable HTTPS link for this file to the clipboard"/>
-							</ContextMenu>
-						</ListBox.ContextMenu>
-`t`t`t`t`t`t`t`t<ListBox.ItemTemplate>
-							<DataTemplate x:DataType="models:FileNavItem">
-								<Border CornerRadius="6"
-										Padding="4"
-										Margin="2"
-										Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
-									<TextBlock Text="{Binding DisplayShort}"
-											   ToolTip.Tip="{Binding Tooltip}"
-											   TextWrapping="NoWrap"
-											   FontSize="12"/>
-								</Border>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
+            <Border Grid.Column="1" Margin="8,0,8,8">
+                <Grid>
+                    <Carousel Name="MainTabContent"
+                              SelectedIndex="{Binding ElementName=MainTabs, Path=SelectedIndex, Mode=TwoWay}">
+                        <views:ReadableTabView Name="ReadableView"/>
+                        <views:TranslationTabView Name="TranslationView"/>
+                        <views:SearchTabView Name="SearchView"/>
+                        <views:GitTabView Name="GitView"/>
+                        <views:ScholarTabView Name="ScholarView"/>
+                    </Carousel>
 
-					</ListBox>
+                    <Border Name="EmptyStateOverlay" IsVisible="True"
+                            Background="{DynamicResource AppBg}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Spacing="16" MaxWidth="400">
+                            <TextBlock Text="Welcome to Read Zen"
+                                       FontSize="20" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource TextFg}"/>
+                            <TextBlock Text="Get started with the guided tour, or open an existing folder if you already have texts."
+                                       TextWrapping="Wrap" HorizontalAlignment="Center"
+                                       TextAlignment="Center" Classes="muted"/>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Spacing="12">
+                                <Button Name="BtnGetStarted"
+                                        Content="Get Started"
+                                        Width="140" Height="36"
+                                        FontSize="14" FontWeight="SemiBold"
+                                        Background="{DynamicResource SelectionBg}"
+                                        Foreground="{DynamicResource SelectionFg}"
+                                        BorderBrush="{DynamicResource BorderBrush}"
+                                        BorderThickness="1"/>
+                                <Button Name="BtnOpenRootAlt"
+                                        Content="Open Folder"
+                                        Width="140" Height="36"
+                                        FontSize="14"
+                                        Background="{DynamicResource BtnBg}"
+                                        Foreground="{DynamicResource BtnFg}"
+                                        BorderBrush="{DynamicResource BorderBrush}"
+                                        BorderThickness="1"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
 
-				</Grid>
-			</Border>
-
-			<!-- Tabs -->
-			<Border Grid.Column="1" Margin="8">
-				<Grid>
-					<TabControl Name="MainTabs">
-						<TabItem Header="Reader">
-							<views:ReadableTabView Name="ReadableView"/>
-						</TabItem>
-
-						<TabItem Header="Translate">
-							<views:TranslationTabView Name="TranslationView"/>
-						</TabItem>
-
-						<TabItem Header="Search">
-							<views:SearchTabView Name="SearchView"/>
-						</TabItem>
-
-						<TabItem Header="Community">
-							<views:GitTabView Name="GitView"/>
-						</TabItem>
-
-						<TabItem Header="Scholar">
-							<views:ScholarTabView Name="ScholarView"/>
-						</TabItem>
-					</TabControl>
-
-					<Border Name="EmptyStateOverlay" IsVisible="True"
-							Background="{DynamicResource AppBg}"
-							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-									Spacing="16" MaxWidth="400">
-							<TextBlock Text="Welcome to Read Zen"
-									   FontSize="20" FontWeight="SemiBold"
-									   HorizontalAlignment="Center"
-									   Foreground="{DynamicResource TextFg}"/>
-							<TextBlock Text="Get started with the guided tour, or open an existing folder if you already have texts."
-									   TextWrapping="Wrap" HorizontalAlignment="Center"
-									   TextAlignment="Center" Classes="muted"/>
-							<StackPanel Orientation="Horizontal"
-										HorizontalAlignment="Center"
-										Spacing="12">
-								<Button Name="BtnGetStarted"
-										Content="Get Started"
-										Width="140" Height="36"
-										FontSize="14" FontWeight="SemiBold"
-										Background="{DynamicResource SelectionBg}"
-										Foreground="{DynamicResource SelectionFg}"
-										BorderBrush="{DynamicResource BorderBrush}"
-										BorderThickness="1"/>
-								<Button Name="BtnOpenRootAlt"
-										Content="Open Folder"
-										Width="140" Height="36"
-										FontSize="14"
-										Background="{DynamicResource BtnBg}"
-										Foreground="{DynamicResource BtnFg}"
-										BorderBrush="{DynamicResource BorderBrush}"
-										BorderThickness="1"/>
-							</StackPanel>
-						</StackPanel>
-					</Border>
-				</Grid>
-			</Border>
-
-		</Grid>
-
-		<!-- Status -->
-		<Border Grid.Row="2"
-				Background="{DynamicResource BarBg}"
-				Padding="8">
-			<TextBlock Name="TxtStatus" Classes="muted"/>
-		</Border>
-
-	</Grid>
+        <Border Grid.Row="2"
+                Background="{DynamicResource BarBg}"
+                Padding="8">
+            <TextBlock Name="TxtStatus" Classes="muted"/>
+        </Border>
+    </Grid>
 </Window>
