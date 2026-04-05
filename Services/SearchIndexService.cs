@@ -1,4 +1,4 @@
-// Services/SearchIndexService.cs
+﻿// Services/SearchIndexService.cs
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -2301,7 +2301,7 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    private static List<SearchHit> TryBuildCounterpartHitsForDisplay(
+    internal static List<SearchHit> TryBuildCounterpartHitsForDisplay(
         string originalDir,
         string translatedDir,
         string relKey,
@@ -2310,21 +2310,61 @@ public sealed class SearchIndexService : ISearchIndexService
         int neededCount,
         int contextWidth)
     {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(originalDir) || string.IsNullOrWhiteSpace(translatedDir))
-                return new List<SearchHit>();
-
-            string origAbs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-            string tranAbs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-            string originalXml = File.ReadAllText(origAbs, Utf8NoBom);
-            string translatedXml = File.ReadAllText(tranAbs, Utf8NoBom);
-            var indexed = new IndexedTranslationService().BuildIndex(originalXml, translatedXml);
-            return BuildCounterpartHitsFromIndexedUnits(indexed, effectiveQuery, primarySide, neededCount, contextWidth);
-        }
-        catch
-        {
+        if (string.IsNullOrWhiteSpace(originalDir))
             return new List<SearchHit>();
+
+        foreach (var candidateTranslatedDir in EnumerateTranslatedCounterpartDirs(originalDir, translatedDir, primarySide))
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(candidateTranslatedDir))
+                    continue;
+
+                string origAbs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                string tranAbs = Path.Combine(candidateTranslatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                if (!File.Exists(origAbs) || !File.Exists(tranAbs))
+                    continue;
+
+                string originalXml = File.ReadAllText(origAbs, Utf8NoBom);
+                string translatedXml = File.ReadAllText(tranAbs, Utf8NoBom);
+                var indexed = new IndexedTranslationService().BuildIndex(originalXml, translatedXml);
+                var hits = BuildCounterpartHitsFromIndexedUnits(indexed, effectiveQuery, primarySide, neededCount, contextWidth);
+                if (hits.Count > 0)
+                    return hits;
+            }
+            catch
+            {
+                // Try the next translated candidate.
+            }
+        }
+
+        return new List<SearchHit>();
+    }
+
+    internal static IEnumerable<string> EnumerateTranslatedCounterpartDirs(string originalDir, string translatedDir, SearchSide primarySide)
+    {
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        if (!string.IsNullOrWhiteSpace(translatedDir))
+        {
+            string fullTranslated = Path.GetFullPath(translatedDir);
+            if (seen.Add(fullTranslated))
+                yield return fullTranslated;
+        }
+
+        if (primarySide != SearchSide.Original)
+            yield break;
+
+        var originalParent = Directory.GetParent(Path.GetFullPath(originalDir))?.FullName;
+        if (string.IsNullOrWhiteSpace(originalParent))
+            yield break;
+
+        string canonicalTranslated = Path.Combine(originalParent, "xml-p5t");
+        if (Directory.Exists(canonicalTranslated))
+        {
+            string fullCanonicalTranslated = Path.GetFullPath(canonicalTranslated);
+            if (seen.Add(fullCanonicalTranslated))
+                yield return fullCanonicalTranslated;
         }
     }
     private sealed class VerifyTextCacheKeyComparer : IEqualityComparer<(string rel, SearchSide side, long ticks, long len)>
@@ -2446,3 +2486,6 @@ public sealed class SearchIndexService : ISearchIndexService
         return hits;
     }
 }
+
+
+

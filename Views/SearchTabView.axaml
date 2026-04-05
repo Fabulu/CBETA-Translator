@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:models="clr-namespace:CbetaTranslator.App.Models"
              xmlns:vm="using:CbetaTranslator.App.ViewModels"
@@ -285,17 +285,9 @@
 								</StackPanel>
 								<StackPanel Orientation="Horizontal" Spacing="0"
                                                IsVisible="{Binding HasSecondaryDisplayText}">
-									<TextBlock Text="{Binding SecondarySideLabel}"
-                                               Classes="muted"
-                                               TextWrapping="NoWrap"/>
-									<TextBlock Text="{Binding SecondaryLeftText}"
-                                               TextWrapping="NoWrap"/>
-									<TextBlock Text="{Binding SecondaryMatchText}"
+									<TextBlock Text="{Binding SecondaryDisplayText}"
                                                TextWrapping="NoWrap"
-                                               FontWeight="SemiBold"
-                                               Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
-									<TextBlock Text="{Binding SecondaryRightText}"
-                                               TextWrapping="NoWrap"/>
+                                               FontSize="11"/>
 								</StackPanel>
 							</StackPanel>
 						</DataTemplate>
@@ -317,3 +309,4 @@
 
 	</Grid>
 </UserControl>
+

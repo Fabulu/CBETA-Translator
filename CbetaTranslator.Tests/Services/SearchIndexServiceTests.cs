@@ -1,4 +1,6 @@
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using Xunit;
@@ -115,4 +117,36 @@ public class SearchIndexServiceTests
         Assert.Single(hits);
         Assert.Equal("\u8D99\u5DDE\u554F\u4F5B\u6CD5", hits[0].Match);
     }
+
+    [Fact]
+    public void EnumerateTranslatedCounterpartDirs_PrefersActiveDirThenCanonicalXmlP5t()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string personalTranslatedDir = Path.Combine(root, "community", "translations", "dota2nub");
+        string canonicalTranslatedDir = Path.Combine(root, "xml-p5t");
+
+        Directory.CreateDirectory(originalDir);
+        Directory.CreateDirectory(personalTranslatedDir);
+        Directory.CreateDirectory(canonicalTranslatedDir);
+
+        try
+        {
+            var dirs = SearchIndexService.EnumerateTranslatedCounterpartDirs(
+                originalDir,
+                personalTranslatedDir,
+                SearchSide.Original).ToList();
+
+            Assert.Equal(2, dirs.Count);
+            Assert.Equal(Path.GetFullPath(personalTranslatedDir), dirs[0]);
+            Assert.Equal(Path.GetFullPath(canonicalTranslatedDir), dirs[1]);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
 }
+
+

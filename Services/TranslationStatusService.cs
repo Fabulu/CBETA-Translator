@@ -122,6 +122,11 @@ public sealed class TranslationStatusService : ITranslationStatusService
                         bool parentIgnore = ignoreCjkStack.Count > 0 && ignoreCjkStack.Peek();
                         bool ignoreHere = parentIgnore;
 
+
+                        if (!ignoreHere && local.Equals("mulu", StringComparison.OrdinalIgnoreCase))
+                        {
+                            ignoreHere = true;
+                        }
                         if (!ignoreHere && local.Equals("note", StringComparison.OrdinalIgnoreCase))
                         {
                             var typeAttr = reader.GetAttribute("type");
