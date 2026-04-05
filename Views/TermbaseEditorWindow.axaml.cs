@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
@@ -35,13 +35,14 @@ public partial class TermbaseEditorWindow : Window
     /// </summary>
     public event EventHandler<CorpusUsageHit>? AddToScholarRequested;
 
-    public TermbaseEditorWindow(string root, string? username = null)
+    public TermbaseEditorWindow(string root, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
         InitializeComponent();
 
         var storage = App.Services.GetRequiredService<ITermbaseStorageService>();
         _vm = new TermbaseEditorWindowViewModel(storage, root);
         _vm.SetUsername(username);
+        _vm.ConfigureLanding(landingTerm, landingCommunityUser);
         DataContext = _vm;
 
         // Provide search context for corpus usage tab
@@ -101,6 +102,11 @@ public partial class TermbaseEditorWindow : Window
         Opened += async (_, _) => await _vm.LoadCommand.ExecuteAsync(null);
     }
 
+    public void ApplyLanding(string? term, string? communityUser = null)
+    {
+        _vm.ConfigureLanding(term, communityUser);
+        _vm.ApplyLandingRequest();
+    }
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }
 

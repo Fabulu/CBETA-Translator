@@ -24,7 +24,9 @@ public sealed class DeepLinkRequest
     // Tags
     public string? TagsRelPath { get; init; }
     public string? TagsUser { get; init; }
+    public string? TagsTagId { get; init; }
 
     // Termbase
     public string? TermbaseEntry { get; init; }
+    public string? TermbaseUser { get; init; }
 }

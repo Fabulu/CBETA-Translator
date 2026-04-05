@@ -334,6 +334,77 @@ public class TermbaseEditorWindowViewModelTests
         Assert.Equal("Zebra", vm.FilteredEntries[2].SourceTerm);
     }
 
+    [Fact]
+    public async Task ConfigureLanding_Term_SelectsExactLocalMatchAfterLoad()
+    {
+        var storage = MakeStorage(
+            new TermbaseEntry { SourceTerm = "Alpha", PreferredTarget = "first" },
+            new TermbaseEntry { SourceTerm = "Beta", PreferredTarget = "second" },
+            new TermbaseEntry { SourceTerm = "Gamma", PreferredTarget = "third" }
+        );
+        var vm = new TermbaseEditorWindowViewModel(storage, "/root");
+        vm.ConfigureLanding("Beta");
+
+        await vm.LoadCommand.ExecuteAsync(null);
+
+        Assert.Equal("Beta", vm.SearchQuery);
+        Assert.Single(vm.FilteredEntries);
+        Assert.Equal("Beta", vm.SelectedEntry!.SourceTerm);
+    }
+
+    [Fact]
+    public async Task ConfigureLanding_PreferredTarget_SelectsMatchingLocalEntry()
+    {
+        var storage = MakeStorage(
+            new TermbaseEntry { SourceTerm = "fo", PreferredTarget = "Buddha" },
+            new TermbaseEntry { SourceTerm = "fa", PreferredTarget = "Dharma" }
+        );
+        var vm = new TermbaseEditorWindowViewModel(storage, "/root");
+        vm.ConfigureLanding("Dharma");
+
+        await vm.LoadCommand.ExecuteAsync(null);
+
+        Assert.Equal("Dharma", vm.SearchQuery);
+        Assert.Single(vm.FilteredEntries);
+        Assert.Equal("fa", vm.SelectedEntry!.SourceTerm);
+    }
+
+    [Fact]
+    public async Task ConfigureLanding_WithCommunityUserBias_FiltersAndSelectsCommunityMatch()
+    {
+        var storage = new StubTermbaseStorageService
+        {
+            Entries = new List<TermbaseEntry>
+            {
+                new() { SourceTerm = "Alpha", PreferredTarget = "alpha" },
+                new() { SourceTerm = "Beta", PreferredTarget = "beta" }
+            },
+            CommunityEntriesByUser = new Dictionary<string, List<TermbaseEntry>>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["bob"] = new()
+                {
+                    new() { SourceTerm = "koan", PreferredTarget = "case", CreatedBy = "bob" },
+                    new() { SourceTerm = "other", PreferredTarget = "misc", CreatedBy = "bob" }
+                },
+                ["carol"] = new()
+                {
+                    new() { SourceTerm = "koan", PreferredTarget = "public case", CreatedBy = "carol" }
+                }
+            }
+        };
+        var vm = new TermbaseEditorWindowViewModel(storage, "/root");
+        vm.ConfigureLanding("koan", "bob");
+
+        await vm.LoadCommand.ExecuteAsync(null);
+
+        Assert.Equal("koan", vm.SearchQuery);
+        Assert.Equal("koan", vm.CommunityFilter);
+        Assert.Equal(1, vm.SelectedCommunityUserIndex);
+        Assert.Equal(new[] { "All Users", "bob", "carol" }, vm.CommunityUsernames);
+        Assert.Single(vm.CommunityEntries);
+        Assert.Equal("bob", vm.SelectedCommunityEntry!.CreatedBy);
+        Assert.Equal("koan", vm.SelectedCommunityEntry.SourceTerm);
+    }
     // ---- 11. AdoptSelectedTerm — copies entry to local with user's CreatedBy ----
 
     [Fact]
@@ -548,3 +619,5 @@ public class TermbaseEditorWindowViewModelTests
         Assert.False(vm.HasCommunityEntries);
     }
 }
+
+

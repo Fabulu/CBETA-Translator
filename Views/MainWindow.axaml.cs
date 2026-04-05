@@ -1,4 +1,4 @@
-// Views/MainWindow.axaml.cs
+﻿// Views/MainWindow.axaml.cs
 //
 // Thin code-behind after Wave 5 MVVM extraction.
 // Responsibilities: control lookup, bridge wiring, dialogs, window chrome,
@@ -180,100 +180,113 @@ public partial class MainWindow : Window
     /// Routes a non-passage deep link to the appropriate tab/handler.
     /// </summary>
     public async Task HandleDeepLinkAsync(DeepLinkRequest request)
-    {
-        await _windowReady.Task;
+{
+    await _windowReady.Task;
 
-        switch (request.Kind)
-        {
-            case DeepLinkKind.Dictionary:
-                HandleDictDeepLink(request.DictTerm);
-                break;
-            case DeepLinkKind.Scholar:
-                await HandleScholarDeepLinkAsync(request.ScholarCollectionId, request.ScholarPassageId);
-                break;
-            case DeepLinkKind.Search:
-                HandleSearchDeepLink(request.SearchQuery);
-                break;
-            case DeepLinkKind.Tags:
-                HandleTagsDeepLink(request.TagsRelPath, request.TagsUser);
-                break;
-            case DeepLinkKind.Termbase:
-                // Merged with Dictionary  -  fall through
-                HandleDictDeepLink(request.TermbaseEntry ?? request.DictTerm);
-                break;
-        }
+    switch (request.Kind)
+    {
+        case DeepLinkKind.Dictionary:
+            await HandleDictDeepLinkAsync(request.DictTerm, null, isLegacyDictionaryAlias: true);
+            break;
+        case DeepLinkKind.Scholar:
+            await HandleScholarDeepLinkAsync(request.ScholarCollectionId, request.ScholarPassageId, request.ScholarUser);
+            break;
+        case DeepLinkKind.Search:
+            HandleSearchDeepLink(request.SearchQuery);
+            break;
+        case DeepLinkKind.Tags:
+            await HandleTagsDeepLinkAsync(request.TagsRelPath, request.TagsUser, request.TagsTagId);
+            break;
+        case DeepLinkKind.Termbase:
+            await HandleDictDeepLinkAsync(request.TermbaseEntry ?? request.DictTerm, request.TermbaseUser, isLegacyDictionaryAlias: false);
+            break;
+    }
+}
+
+private async Task HandleDictDeepLinkAsync(string? term, string? user, bool isLegacyDictionaryAlias)
+{
+    if (string.IsNullOrWhiteSpace(term))
+    {
+        _vm.SetStatus((isLegacyDictionaryAlias ? "Dictionary" : "Termbase") + " link: no term specified.", StatusSeverity.Warning);
+        return;
     }
 
-    private void HandleDictDeepLink(string? term)
+    await _vm.OpenTermbaseEditorAsync(term, user);
+    _vm.SetStatus($"Opened dictionary for \"{term}\"" + (!string.IsNullOrWhiteSpace(user) ? $" (user: {user})" : "") + ".", StatusSeverity.Info);
+}
+
+private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId, string? user)
+{
+    if (string.IsNullOrWhiteSpace(collectionId))
     {
-        if (string.IsNullOrWhiteSpace(term))
+        _vm.SetStatus("Scholar link: no collection specified.", StatusSeverity.Warning);
+        return;
+    }
+
+    ForceTab(4);
+
+    if (_scholarView != null)
+    {
+        var vm = (ScholarTabViewModel)_scholarView.DataContext!;
+        bool found = await vm.TryNavigateToPassageAsync(collectionId, passageId, user);
+        if (!found)
+            _vm.SetStatus("This scholar passage isn't available. The person who shared this link may not have synced their data yet.", StatusSeverity.Warning);
+    }
+}
+
+private void HandleSearchDeepLink(string? query)
+{
+    if (string.IsNullOrWhiteSpace(query))
+    {
+        _vm.SetStatus("Search link: no query specified.", StatusSeverity.Warning);
+        return;
+    }
+
+    ForceTab(2);
+    if (_searchView != null)
+        _searchView.SetSearchTextAndExecute(query);
+
+    _vm.SetStatus($"Searching: \"{query}\"");
+}
+
+private async Task HandleTagsDeepLinkAsync(string? relPath, string? user, string? tagId)
+{
+    if (string.IsNullOrWhiteSpace(relPath))
+    {
+        _vm.SetStatus("Tags link: no file specified.", StatusSeverity.Warning);
+        return;
+    }
+    if (string.IsNullOrWhiteSpace(_vm.Root))
+    {
+        _vm.SetStatus("Tags link failed: no text root is loaded.", StatusSeverity.Warning);
+        return;
+    }
+
+    await _vm.OpenAtCoreAsync(_vm.Root!, new NavigationRequest
+    {
+        RelPath = relPath,
+        Side = SearchSide.Original
+    });
+
+    ForceTab(0);
+
+    if (_readableView != null)
+    {
+        bool applied = await _readableView.ApplyTagDeepLinkAsync(user, tagId);
+        if (applied)
         {
-            _vm.SetStatus("Dictionary link: no term specified.", StatusSeverity.Warning);
+            _vm.SetStatus($"Opened tags for {relPath}" + (!string.IsNullOrWhiteSpace(user) ? $" (user: {user})" : "") + (!string.IsNullOrWhiteSpace(tagId) ? $", tag {tagId}" : "") + ".", StatusSeverity.Info);
             return;
         }
-        // Switch to reader tab (where hover dictionary is available)
-        ForceTab(0);
-        _vm.SetStatus($"Dictionary: \"{term}\" \u2014 check the Study Panel or hover dictionary for definitions.", StatusSeverity.Info);
     }
 
-    private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId)
-    {
-        if (string.IsNullOrWhiteSpace(collectionId))
-        {
-            _vm.SetStatus("Scholar link: no collection specified.", StatusSeverity.Warning);
-            return;
-        }
-        // Switch to scholar tab (index 4)
-        ForceTab(4);
+    var suffix = new List<string>();
+    if (!string.IsNullOrWhiteSpace(user)) suffix.Add($"user: {user}");
+    if (!string.IsNullOrWhiteSpace(tagId)) suffix.Add($"tag: {tagId}");
+    _vm.SetStatus($"Tags: opened {relPath}" + (suffix.Count > 0 ? $" ({string.Join(", ", suffix)})" : ""), StatusSeverity.Info);
+}
 
-        if (_scholarView != null)
-        {
-            var vm = (ScholarTabViewModel)_scholarView.DataContext!;
-            bool found = await vm.TryNavigateToPassageAsync(collectionId, passageId);
-            if (!found)
-                _vm.SetStatus("This scholar passage isn't available. The person who shared this link may not have synced their data yet.", StatusSeverity.Warning);
-        }
-    }
-
-    private void HandleSearchDeepLink(string? query)
-    {
-        if (string.IsNullOrWhiteSpace(query))
-        {
-            _vm.SetStatus("Search link: no query specified.", StatusSeverity.Warning);
-            return;
-        }
-        // Switch to search tab (index 2)
-        ForceTab(2);
-        if (_searchView != null)
-        {
-            _searchView.SetSearchTextAndExecute(query);
-        }
-        _vm.SetStatus($"Searching: \"{query}\"");
-    }
-
-    private void HandleTagsDeepLink(string? relPath, string? user)
-    {
-        if (string.IsNullOrWhiteSpace(relPath))
-        {
-            _vm.SetStatus("Tags link: no file specified.", StatusSeverity.Warning);
-            return;
-        }
-        // Switch to reader tab and select the file
-        ForceTab(0);
-        _vm.SetStatus($"Tags: opened {relPath}" + (user != null ? $" (user: {user})" : ""), StatusSeverity.Info);
-    }
-
-    private void HandleTermbaseDeepLink(string? entry)
-    {
-        if (string.IsNullOrWhiteSpace(entry))
-        {
-            _vm.SetStatus("Termbase link: no term specified.", StatusSeverity.Warning);
-            return;
-        }
-        _vm.SetStatus($"Termbase: \"{entry}\" \u2014 open the termbase editor to find this entry.", StatusSeverity.Info);
-    }
-
-    private async Task LoadConfigAndAutoloadAsync()
+private async Task LoadConfigAndAutoloadAsync()
     {
         try
         {
@@ -529,7 +542,7 @@ public partial class MainWindow : Window
         _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
 
         // Termbase editor
-        _vm.OpenTermbaseEditorRequested = (root, username) => _ = OpenTermbaseEditorWindowAsync(root, username);
+        _vm.OpenTermbaseEditorRequested = (root, username, landingTerm, landingUser) => _ = OpenTermbaseEditorWindowAsync(root, username, landingTerm, landingUser);
 
         // Wire assistant title resolver
         _vm.SetAssistantTitleResolver?.Invoke(rel => _vm.ResolveAssistantTitle(rel));
@@ -1209,12 +1222,13 @@ public partial class MainWindow : Window
     // Termbase editor window
     // ===========================================================
 
-    private async Task OpenTermbaseEditorWindowAsync(string root, string? username = null)
+    private async Task OpenTermbaseEditorWindowAsync(string root, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
         try
         {
             if (_termbaseEditorWindow != null)
             {
+                _termbaseEditorWindow.ApplyLanding(landingTerm, landingCommunityUser);
                 _termbaseEditorWindow.Activate();
                 return;
             }
@@ -1236,7 +1250,7 @@ public partial class MainWindow : Window
                 await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
             }
 
-            var win = new TermbaseEditorWindow(root, username)
+            var win = new TermbaseEditorWindow(root, username, landingTerm, landingCommunityUser)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
@@ -1735,3 +1749,7 @@ public partial class MainWindow : Window
         StartTour();
     }
 }
+
+
+
+

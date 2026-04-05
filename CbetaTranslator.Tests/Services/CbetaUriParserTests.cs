@@ -1,4 +1,4 @@
-using CbetaTranslator.App.Models;
+﻿using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using Xunit;
 
@@ -41,7 +41,7 @@ public class CbetaUriParserTests
         Assert.Equal(expected, CbetaUriParser.RelPathToFileId(relPath));
     }
 
-    // ==== BuildUri — clean format ====
+    // ==== BuildUri â€” clean format ====
 
     [Fact]
     public void BuildUri_FileOnly_ProducesCleanUri()
@@ -104,7 +104,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_CjkHighlight_EncodesCorrectly()
     {
-        var cjkText = "\u4f5b\u8aaa\u963f\u5f4c\u9640\u7d93"; // 佛說阿彌陀經
+        var cjkText = "\u4f5b\u8aaa\u963f\u5f4c\u9640\u7d93"; // ä½›èªªé˜¿å½Œé™€ç¶“
         var uri = CbetaUriParser.BuildUri("T/T12/T12n0366.xml", highlightText: cjkText);
 
         // URI should not contain raw CJK characters
@@ -153,7 +153,7 @@ public class CbetaUriParserTests
         Assert.DoesNotContain("\\", uri);
     }
 
-    // ==== TryParse — clean format ====
+    // ==== TryParse â€” clean format ====
 
     [Fact]
     public void TryParse_CleanFormat_FileOnly()
@@ -243,7 +243,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_CjkHighlight()
     {
-        var cjkText = "\u4f5b\u8aaa"; // 佛說
+        var cjkText = "\u4f5b\u8aaa"; // ä½›èªª
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T01n0001?highlight={encoded}";
 
@@ -254,7 +254,7 @@ public class CbetaUriParserTests
         Assert.Equal(cjkText, result.MatchText);
     }
 
-    // ==== TryParse — legacy format (backward compatibility) ====
+    // ==== TryParse â€” legacy format (backward compatibility) ====
 
     [Fact]
     public void TryParse_LegacyFormat_AllParams()
@@ -323,7 +323,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_LegacyFormat_CjkHighlight()
     {
-        var cjkText = "\u4f5b\u8aaa"; // 佛說
+        var cjkText = "\u4f5b\u8aaa"; // ä½›èªª
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T/T01/T01n0001.xml?highlight={encoded}";
 
@@ -333,7 +333,7 @@ public class CbetaUriParserTests
         Assert.Equal(cjkText, result.MatchText);
     }
 
-    // ==== TryParse — malformed input ====
+    // ==== TryParse â€” malformed input ====
 
     [Theory]
     [InlineData(null)]
@@ -411,7 +411,7 @@ public class CbetaUriParserTests
     [Fact]
     public void RoundTrip_CjkHighlight_PreservesText()
     {
-        var cjkText = "\u5982\u662f\u6211\u805e"; // 如是我聞
+        var cjkText = "\u5982\u662f\u6211\u805e"; // å¦‚æ˜¯æˆ‘èž
         var relPath = "T/T01/T01n0001.xml";
 
         var uri = CbetaUriParser.BuildUri(relPath, highlightText: cjkText);
@@ -592,6 +592,7 @@ public class CbetaUriParserTests
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
         Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
         Assert.Equal("alice", result.TagsUser);
+        Assert.Null(result.TagsTagId);
     }
 
     [Fact]
@@ -603,16 +604,63 @@ public class CbetaUriParserTests
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
         Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
         Assert.Null(result.TagsUser);
+        Assert.Null(result.TagsTagId);
     }
 
     [Fact]
-    public void TryParseDeepLink_TermLink_ReturnsDictionaryKind()
+    public void TryParseDeepLink_TermLink_ReturnsTermbaseKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://term/\u822c\u82e5");
+        var result = CbetaUriParser.TryParseDeepLink("zen://term/èˆ¬è‹¥");
 
         Assert.NotNull(result);
-        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
-        Assert.Equal("\u822c\u82e5", result.DictTerm);
+        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
+        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Null(result.TermbaseUser);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TagsLink_WithUserAndTagId()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005/alice/topic-1");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
+        Assert.Equal("alice", result.TagsUser);
+        Assert.Equal("topic-1", result.TagsTagId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TagsLink_TagIdOnly_UsesEmptyUserSlot()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005//topic-1");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Null(result.TagsUser);
+        Assert.Equal("topic-1", result.TagsTagId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TagsLink_QueryTagIdFallback()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice&tagId=topic-1");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Tags, result.Kind);
+        Assert.Equal("alice", result.TagsUser);
+        Assert.Equal("topic-1", result.TagsTagId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_TermLink_WithUser_ReturnsTermbaseKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://term/èˆ¬è‹¥/alice");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
+        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Equal("alice", result.TermbaseUser);
     }
 
     [Fact]
@@ -665,27 +713,29 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTagsUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice");
+        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice", "topic-1");
         var result = CbetaUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
         Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
         Assert.Equal("alice", result.TagsUser);
+        Assert.Equal("topic-1", result.TagsTagId);
     }
 
     [Fact]
     public void BuildTermUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTermUri("\u822c\u82e5");
+        var uri = CbetaUriParser.BuildTermUri("èˆ¬è‹¥", "alice");
         var result = CbetaUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
-        Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
-        Assert.Equal("\u822c\u82e5", result.DictTerm);
+        Assert.Equal(DeepLinkKind.Termbase, result.Kind);
+        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Equal("alice", result.TermbaseUser);
     }
 
-    // ==== Per-user deep links — Passage ====
+    // ==== Per-user deep links â€” Passage ====
 
     [Fact]
     public void TryParse_PassageWithUser_ExtractsUser()
@@ -753,7 +803,7 @@ public class CbetaUriParserTests
         Assert.Equal(SearchSide.Translated, result.Side);
     }
 
-    // ==== Per-user deep links — Scholar ====
+    // ==== Per-user deep links â€” Scholar ====
 
     [Fact]
     public void TryParseDeepLink_ScholarWithUser()
@@ -789,7 +839,7 @@ public class CbetaUriParserTests
         Assert.Equal("bob", result.ScholarUser);
     }
 
-    // ==== Per-user deep links — Tags ====
+    // ==== Per-user deep links â€” Tags ====
 
     [Fact]
     public void TryParseDeepLink_TagsPathUser()
@@ -800,6 +850,7 @@ public class CbetaUriParserTests
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
         Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
         Assert.Equal("alice", result.TagsUser);
+        Assert.Null(result.TagsTagId);
     }
 
     [Fact]
@@ -816,13 +867,14 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTagsUri_WithUser_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice");
+        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice", "tag-42");
         var result = CbetaUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
         Assert.Equal("T/T48/T48n2005.xml", result.TagsRelPath);
         Assert.Equal("alice", result.TagsUser);
+        Assert.Equal("tag-42", result.TagsTagId);
     }
 
     // ==== Shareable URL with user ====
@@ -846,3 +898,4 @@ public class CbetaUriParserTests
         Assert.EndsWith("/en", url);
     }
 }
+

@@ -19,6 +19,16 @@ public class ScholarTabViewModelTests
         return new ScholarTabViewModel(svc ?? new StubScholarCollectionsService(), config);
     }
 
+    private static void SetScholarContext(ScholarTabViewModel vm, string root, string username)
+    {
+        var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+        typeof(ScholarTabViewModel).GetField("_root", flags)!.SetValue(vm, root);
+        typeof(ScholarTabViewModel).GetField("_username", flags)!.SetValue(vm, username);
+        typeof(ScholarTabViewModel).GetField("_preferredUsername", flags)!.SetValue(vm, username);
+        typeof(ScholarTabViewModel).GetField("_legacyUsername", flags)!.SetValue(vm, null);
+        typeof(ScholarTabViewModel).GetField("_configLoadAttempted", flags)!.SetValue(vm, true);
+    }
+
    
 
     [Fact]
@@ -2321,9 +2331,146 @@ public async Task LoadAsync_LoadsLegacyScholarFileAndMigratesToCanonicalGitHubId
     {
         try { Directory.Delete(tempDir, true); } catch { }
     }
-}
 
+    }
 
+    [Fact]
+    public async Task TryNavigateToPassageAsync_WithoutOwner_SelectsOwnedCollectionAndPassage()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            Collections = new List<ScholarCollection>
+            {
+                new()
+                {
+                    Id = "local-c1",
+                    Name = "Local",
+                    Passages = new List<ScholarPassage>
+                    {
+                        new() { Id = "local-p1", ZhText = "zh", SourceRelPath = "x.xml" }
+                    }
+                }
+            }
+        };
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, Path.GetTempPath(), "owner-local");
+
+        var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1");
+
+        Assert.True(found);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal("local-c1", vm.SelectedCollection?.Id);
+        Assert.Equal("local-p1", vm.SelectedPassage?.Id);
+    }
+
+    [Fact]
+    public async Task TryNavigateToPassageAsync_WithCurrentOwner_ResolvesOwnedCollection()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            Collections = new List<ScholarCollection>
+            {
+                new()
+                {
+                    Id = "local-c1",
+                    Name = "Local",
+                    Passages = new List<ScholarPassage>
+                    {
+                        new() { Id = "local-p1", ZhText = "zh", SourceRelPath = "x.xml" }
+                    }
+                }
+            },
+            CommunityData = new Dictionary<string, List<ScholarCollection>>
+            {
+                ["other-user"] = new List<ScholarCollection>
+                {
+                    new()
+                    {
+                        Id = "shared-c1",
+                        Name = "Shared",
+                        Passages = new List<ScholarPassage>
+                        {
+                            new() { Id = "shared-p1", ZhText = "shared", SourceRelPath = "y.xml" }
+                        }
+                    }
+                }
+            }
+        };
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, Path.GetTempPath(), "owner-local");
+
+        var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1", "owner-local");
+
+        Assert.True(found);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal("local-c1", vm.SelectedCollection?.Id);
+        Assert.Equal("local-p1", vm.SelectedPassage?.Id);
+        Assert.Null(vm.SelectedCommunityCollection);
+    }
+
+    [Fact]
+    public async Task TryNavigateToPassageAsync_WithSharedOwner_SelectsCommunityCollectionAndPassage()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            Collections = new List<ScholarCollection>(),
+            CommunityData = new Dictionary<string, List<ScholarCollection>>
+            {
+                ["shared-user"] = new List<ScholarCollection>
+                {
+                    new()
+                    {
+                        Id = "shared-c1",
+                        Name = "Shared",
+                        Passages = new List<ScholarPassage>
+                        {
+                            new() { Id = "shared-p1", ZhText = "shared", SourceRelPath = "y.xml" }
+                        }
+                    }
+                }
+            }
+        };
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, Path.GetTempPath(), "owner-local");
+
+        var found = await vm.TryNavigateToPassageAsync("shared-c1", "shared-p1", "shared-user");
+
+        Assert.True(found);
+        Assert.Equal(2, vm.NavigatorTabIndex);
+        Assert.Equal("shared-c1", vm.SelectedCommunityCollection?.Id);
+        Assert.Equal("shared-p1", vm.SelectedCommunityPassage?.Id);
+        Assert.Equal("shared-user", vm.CommunityUsernames[vm.SelectedCommunityUserIndex]);
+    }
+
+    [Fact]
+    public async Task TryNavigateToPassageAsync_WithUnknownOwner_DoesNotFallBackToOwnedCollection()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            Collections = new List<ScholarCollection>
+            {
+                new()
+                {
+                    Id = "local-c1",
+                    Name = "Local",
+                    Passages = new List<ScholarPassage>
+                    {
+                        new() { Id = "local-p1", ZhText = "zh", SourceRelPath = "x.xml" }
+                    }
+                }
+            }
+        };
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, Path.GetTempPath(), "owner-local");
+
+        var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1", "shared-user");
+
+        Assert.False(found);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal("local-c1", vm.SelectedCollection?.Id);
+        Assert.Equal("local-p1", vm.SelectedPassage?.Id);
+        Assert.Null(vm.SelectedCommunityCollection);
+    }
 }
 
 // ---- Helper stub for export/import tracking ----
