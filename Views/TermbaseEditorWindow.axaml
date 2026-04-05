@@ -4,8 +4,8 @@
         xmlns:vm="using:CbetaTranslator.App.ViewModels"
         x:Class="CbetaTranslator.App.Views.TermbaseEditorWindow"
         x:DataType="vm:TermbaseEditorWindowViewModel"
-        Width="1100"
-        Height="720"
+        Width="980"
+        Height="640"
         Title="Zen Dictionary"
         WindowStartupLocation="CenterOwner">
 
@@ -120,7 +120,7 @@
 				BorderThickness="1"
 				CornerRadius="6"
 				Padding="4">
-			<TabControl>
+			<TabControl Name="MainTabControl">
 				<TabItem Header="Edit Term">
 					<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10" Margin="8">
 						<TextBlock Text="Edit Term" FontWeight="Bold"/>

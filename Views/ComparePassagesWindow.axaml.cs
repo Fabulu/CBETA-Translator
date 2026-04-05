@@ -1,24 +1,37 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Documents;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.VisualTree;
+using AvaloniaEdit;
+using AvaloniaEdit.Document;
+using AvaloniaEdit.Rendering;
+using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
+using CbetaTranslator.App.Services;
 using CbetaTranslator.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CbetaTranslator.App.Views;
 
 public partial class ComparePassagesWindow : Window
 {
+    private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
+    private readonly List<IDisposable> _hoverBehaviors = new();
+    private Canvas? _dictOverlayCanvas;
+
     private static readonly IBrush HighlightBrush =
         new SolidColorBrush(Color.FromArgb(80, 100, 180, 255));
 
     public ComparePassagesWindow()
     {
         InitializeComponent();
+        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+        Closed += (_, _) => DisposeHoverDictionary();
     }
 
     public ComparePassagesWindow(List<ScholarPassage> passages) : this()
@@ -42,59 +55,87 @@ public partial class ComparePassagesWindow : Window
             if (container == null) continue;
 
             var item = vm.Items[i];
-            var textBlock = FindChildByName<TextBlock>(container, "ZhTextBlock");
-            if (textBlock == null) continue;
+            var editor = FindChildByName<TextEditor>(container, "ZhEditor");
+            if (editor == null) continue;
 
-            BuildHighlightedInlines(textBlock, item.Passage.ZhText ?? "", item.SharedZhRanges);
+            BuildHighlightedEditor(editor, item.Passage.ZhText ?? "", item.SharedZhRanges);
+            AttachHoverDictionary(editor);
         }
     }
 
-    private static void BuildHighlightedInlines(
-        TextBlock textBlock,
+    private void BuildHighlightedEditor(
+        TextEditor editor,
         string text,
         List<(int Start, int Length)> ranges)
     {
-        textBlock.Inlines?.Clear();
-        if (textBlock.Inlines == null) return;
+        editor.IsReadOnly = true;
+        editor.ShowLineNumbers = false;
+        editor.WordWrap = true;
+        editor.Background = Brushes.Transparent;
+        editor.Text = text ?? string.Empty;
 
-        if (string.IsNullOrEmpty(text))
+        if (editor.TextArea?.TextView == null)
             return;
 
-        if (ranges.Count == 0)
+        var transformers = editor.TextArea.TextView.LineTransformers
+            .OfType<ComparePassageHighlightTransformer>()
+            .ToList();
+        foreach (var transformer in transformers)
+            editor.TextArea.TextView.LineTransformers.Remove(transformer);
+
+        editor.TextArea.TextView.LineTransformers.Add(new ComparePassageHighlightTransformer(ranges));
+        editor.TextArea.TextView.Redraw();
+    }
+
+    private void AttachHoverDictionary(TextEditor editor)
+    {
+        if (_dictOverlayCanvas == null)
+            return;
+
+        try
         {
-            textBlock.Inlines.Add(new Run(text));
-            return;
+            _hoverBehaviors.Add(new HoverDictionaryBehaviorEdit(editor, _cedict, _grammar, _dictOverlayCanvas));
+        }
+        catch { }
+    }
+
+    private void DisposeHoverDictionary()
+    {
+        foreach (var behavior in _hoverBehaviors)
+        {
+            try { behavior.Dispose(); } catch { }
+        }
+        _hoverBehaviors.Clear();
+    }
+
+    private sealed class ComparePassageHighlightTransformer : DocumentColorizingTransformer
+    {
+        private readonly List<(int Start, int Length)> _ranges;
+
+        public ComparePassageHighlightTransformer(IEnumerable<(int Start, int Length)> ranges)
+        {
+            _ranges = ranges.OrderBy(r => r.Start).ToList();
         }
 
-        int pos = 0;
-        foreach (var (start, length) in ranges.OrderBy(r => r.Start))
+        protected override void ColorizeLine(DocumentLine line)
         {
-            int rangeStart = start;
-            int rangeEnd = start + length;
+            int lineStart = line.Offset;
+            int lineEnd = line.EndOffset;
 
-            // Clamp to text bounds
-            if (rangeStart >= text.Length) break;
-            if (rangeEnd > text.Length) rangeEnd = text.Length;
-
-            // Text before highlight
-            if (rangeStart > pos)
+            foreach (var (start, length) in _ranges)
             {
-                textBlock.Inlines.Add(new Run(text.Substring(pos, rangeStart - pos)));
+                if (start >= lineEnd)
+                    break;
+                if (start + length <= lineStart)
+                    continue;
+
+                int s = Math.Max(start, lineStart);
+                int e = Math.Min(start + length, lineEnd);
+                if (e <= s)
+                    continue;
+
+                ChangeLinePart(s, e, el => el.TextRunProperties.SetBackgroundBrush(HighlightBrush));
             }
-
-            // Highlighted text
-            textBlock.Inlines.Add(new Run(text.Substring(rangeStart, rangeEnd - rangeStart))
-            {
-                Background = HighlightBrush,
-            });
-
-            pos = rangeEnd;
-        }
-
-        // Remaining text
-        if (pos < text.Length)
-        {
-            textBlock.Inlines.Add(new Run(text.Substring(pos)));
         }
     }
 

@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CbetaTranslator.App.ViewModels"
+        xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
         x:Class="CbetaTranslator.App.Views.ComparePassagesWindow"
         x:DataType="vm:ComparePassagesViewModel"
         Width="900"
@@ -76,6 +77,7 @@
 				HorizontalAlignment="Right"
 				Margin="0,8,0,0"
 				Click="OnCloseClick"/>
+			<Canvas Name="DictOverlayCanvas" Grid.RowSpan="2" IsHitTestVisible="False" ZIndex="500"/>
 	</Grid>
 
 </Window>

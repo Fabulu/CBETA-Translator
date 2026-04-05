@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -45,14 +45,21 @@ public partial class ScholarTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _sortMode = "Default";
 
+    [ObservableProperty]
+    private int _navigatorTabIndex = 1;
+
     public static string[] SearchFilterModes { get; } =
         { "All", "Tags", "Masters", "Chinese", "English", "Notes", "Topic", "Form", "Lineage", "Function" };
 
     public static string[] SortModes { get; } =
         { "Default", "A-Z (Chinese)", "Chronological" };
 
+    
     [ObservableProperty]
     private ScholarCollection? _selectedCollection;
+
+    public bool HasSelectedCollection => SelectedCollection != null;
+    public bool ShowWorkspaceHelper => SelectedCollection == null;
 
     [ObservableProperty]
     private ScholarPassage? _selectedPassage;
@@ -224,13 +231,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (_allCollections.Count > 0)
             return _allCollections[0];
 
-        var collection = new ScholarCollection
-        {
-            Id = Guid.NewGuid().ToString("N"),
-            Name = "New Collection",
-            CreatedUtc = DateTimeOffset.UtcNow,
-            CreatedBy = _username
-        };
+        var collection = CreateCollection();
 
         _allCollections.Add(collection);
         Collections.Add(collection);
@@ -885,6 +886,8 @@ public partial class ScholarTabViewModel : ViewModelBase
     partial void OnSelectedCollectionChanged(ScholarCollection? value)
     {
         StudyNotes = value?.StudyNotes ?? "";
+        OnPropertyChanged(nameof(HasSelectedCollection));
+        OnPropertyChanged(nameof(ShowWorkspaceHelper));
         RefreshPassagesList();
     }
 
@@ -938,6 +941,9 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedCollection = (prev != null && Collections.Contains(prev))
             ? prev
             : Collections.FirstOrDefault();
+
+        OnPropertyChanged(nameof(HasSelectedCollection));
+        OnPropertyChanged(nameof(ShowWorkspaceHelper));
     }
 
     private void RefreshPassagesList()
@@ -1345,6 +1351,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedCommunityPassage = null;
         HasCommunityCollections = false;
         IsEmptyState = true;
+        NavigatorTabIndex = 1;
         _root = null;
         _username = null;
         _legacyUsername = null;
@@ -1362,6 +1369,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         bool hasAnyLocal = _allCollections.Count > 0;
         IsEmptyState = !hasAnyLocal && !HasCommunityCollections;
+        NavigatorTabIndex = !hasAnyLocal && HasCommunityCollections ? 2 : 1;
     }
 
 
@@ -1594,5 +1602,7 @@ internal sealed class MasterNameEntry
         Names = names;
     }
 }
+
+
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,6 +71,29 @@ public class ScholarTabViewModelTests
 
    
 
+
+    [Fact]
+    public async Task LoadAsync_WithNoCollections_LeavesCollectionsEmptyAndSelectsSnippetsTab()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+
+        typeof(ScholarTabViewModel)
+            .GetField("_root", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+            .SetValue(vm, Path.GetTempPath());
+        typeof(ScholarTabViewModel)
+            .GetField("_configLoadAttempted", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!
+            .SetValue(vm, true);
+
+        var loadMethod = typeof(ScholarTabViewModel).GetMethod("LoadAsync", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!;
+        await (Task)loadMethod.Invoke(vm, Array.Empty<object>())!;
+
+        Assert.Empty(vm.Collections);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Null(vm.SelectedCollection);
+        Assert.Null(svc.LastSaved);
+    }
+
     [Fact]
     public void AddCollection_CreatesNewCollection()
     {
@@ -91,6 +115,20 @@ public class ScholarTabViewModelTests
 
         Assert.NotNull(vm.SelectedCollection);
         Assert.Equal(vm.Collections[0], vm.SelectedCollection);
+    }
+
+        [Fact]
+    public void AddCollection_TogglesWorkspaceHelperOffWhenCollectionExists()
+    {
+        var vm = MakeVm();
+
+        Assert.True(vm.ShowWorkspaceHelper);
+        Assert.False(vm.HasSelectedCollection);
+
+        vm.AddCollectionCommand.Execute(null);
+
+        Assert.False(vm.ShowWorkspaceHelper);
+        Assert.True(vm.HasSelectedCollection);
     }
 
     [Fact]
@@ -1237,6 +1275,70 @@ public class ScholarTabViewModelTests
         Assert.False(vm.HasCommunityCollections);
     }
 
+
+    [Fact]
+    public async Task LoadCommunityAsync_WithNoLocalCollections_SelectsSharedTabAndClearsEmptyState()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            CommunityData = new Dictionary<string, List<ScholarCollection>>
+            {
+                ["bob"] = new List<ScholarCollection>
+                {
+                    new() { Id = "c1", Name = "Bob's Collection", CreatedBy = "bob" }
+                }
+            }
+        };
+
+        var vm = MakeVm(svc);
+        vm.SetUsername("alice");
+
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        await vm.LoadCommunityCommand.ExecuteAsync(null);
+
+        Assert.True(vm.HasCommunityCollections);
+        Assert.False(vm.IsEmptyState);
+        Assert.Equal(2, vm.NavigatorTabIndex);
+        Assert.Single(vm.CommunityCollections);
+        Assert.NotNull(vm.SelectedCommunityCollection);
+        Assert.Equal(new List<string> { "All Users", "bob" }, vm.CommunityUsernames);
+        Assert.Equal(0, vm.SelectedCommunityUserIndex);
+    }
+
+    [Fact]
+    public async Task LoadCommunityAsync_WithLocalCollections_KeepsWorkspaceTabSelected()
+    {
+        var svc = new StubScholarCollectionsService
+        {
+            CommunityData = new Dictionary<string, List<ScholarCollection>>
+            {
+                ["bob"] = new List<ScholarCollection>
+                {
+                    new() { Id = "c1", Name = "Bob's Collection", CreatedBy = "bob" }
+                }
+            }
+        };
+
+        var vm = MakeVm(svc);
+        vm.SetUsername("alice");
+
+        var rootField = typeof(ScholarTabViewModel).GetField("_root",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        rootField!.SetValue(vm, "/test-root");
+
+        vm.AddCollectionCommand.Execute(null);
+        Assert.Single(vm.Collections);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+
+        await vm.LoadCommunityCommand.ExecuteAsync(null);
+
+        Assert.True(vm.HasCommunityCollections);
+        Assert.Equal(1, vm.NavigatorTabIndex);
+    }
+
    
 
     [Fact]
@@ -1303,6 +1405,23 @@ public class ScholarTabViewModelTests
         Assert.NotEmpty(collection.Links[0].Id);
     }
 
+    [Fact]
+
+    public async Task CreateLinkAsync_StoresOptionalNote()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "a", SourceRelPath = "x.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "b", SourceRelPath = "y.xml" });
+        vm.SelectedCollection = collection;
+
+        await vm.CreateLinkAsync("p1", "p2", "summarizes", "Important parallel");
+
+        Assert.Single(collection.Links);
+        Assert.Equal("Important parallel", collection.Links[0].Note);
+        Assert.Equal("summarizes", collection.Links[0].RelationType);
+    }
     [Fact]
     public async Task CreateLinkAsync_NoSelectedCollection_DoesNothing()
     {
@@ -2237,6 +2356,8 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)
         => Task.CompletedTask;
 }
+
+
 
 
 

@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CbetaTranslator.App.ViewModels"
              xmlns:models="using:CbetaTranslator.App.Models"
@@ -6,12 +6,12 @@
              x:DataType="vm:ScholarTabViewModel"
              x:Class="CbetaTranslator.App.Views.ScholarTabView">
 
-  <Grid ColumnDefinitions="300,Auto,*">
+  <Grid ColumnDefinitions="340,Auto,*">
 
     <!-- Left: mode-based navigator -->
     <Border Grid.Column="0" Margin="4">
-      <TabControl TabStripPlacement="Top">
-        <TabItem Header="Collections">
+      <TabControl TabStripPlacement="Top" SelectedIndex="{Binding NavigatorTabIndex}">
+        <TabItem Header="1. Collections">
           <Grid RowDefinitions="Auto,Auto,*" Margin="4">
             <DockPanel Grid.Row="0" Margin="0,0,0,4">
               <Button Content="+" DockPanel.Dock="Right" Command="{Binding AddCollectionCommand}"
@@ -26,11 +26,16 @@
                       ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="6,2" Margin="0,0,4,0"/>
               <Button Content="Vocab" DockPanel.Dock="Right" Name="BtnVocabulary"
                       ToolTip.Tip="Vocabulary frequency analysis" Padding="6,2" Margin="0,0,4,0"/>
-              <TextBlock Text="Your Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
+              <Button Content="Edit Dates" DockPanel.Dock="Right" Name="BtnEditMasterDates"
+                      ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" Margin="0,0,4,0" MinWidth="92"/>
+              <TextBlock Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
             </DockPanel>
 
-            <TextBox Grid.Row="1" Watermark="Filter collections..."
-                     Text="{Binding CollectionFilter}" Margin="0,0,0,4"/>
+            <StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,4">
+              <TextBlock Text="Create or rename your notebooks here. Snippets you save from Reader, Translate, or Search live in the selected collection." Classes="muted" FontSize="11" TextWrapping="Wrap"/>
+              <TextBox Watermark="Filter collections..."
+                       Text="{Binding CollectionFilter}"/>
+            </StackPanel>
 
             <ListBox Grid.Row="2"
                      ItemsSource="{Binding Collections}"
@@ -51,47 +56,50 @@
           </Grid>
         </TabItem>
 
-        <TabItem Header="Passages">
-          <Grid RowDefinitions="Auto,Auto,*" Margin="4">
+        <TabItem Header="2. Workspace">
+          <Grid RowDefinitions="Auto,*" Margin="4">
             <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,4">
               <DockPanel>
                 <Button Content="&#x2212;" DockPanel.Dock="Right" Command="{Binding DeletePassageCommand}"
                         ToolTip.Tip="Remove selected passage" Padding="8,3"/>
                 <Button Content="Compare" DockPanel.Dock="Right" Name="BtnCompare"
                         ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare (Ctrl+Shift+C)" Padding="6,2" Margin="0,0,4,0"/>
-                <TextBlock Text="Working Collection" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock Text="Snippets" FontWeight="SemiBold" VerticalAlignment="Center"/>
               </DockPanel>
 
-              <ComboBox ItemsSource="{Binding Collections}"
-                        SelectedItem="{Binding SelectedCollection}"
-                        HorizontalAlignment="Stretch"
-                        ToolTip.Tip="Choose the collection you want to work in">
-                <ComboBox.ItemTemplate>
-                  <DataTemplate x:DataType="models:ScholarCollection">
-                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
-                  </DataTemplate>
-                </ComboBox.ItemTemplate>
-              </ComboBox>
-            </StackPanel>
+              <TextBlock Text="Choose a collection or add your first snippet from Reader, Translate, or Search. If shared work already exists, you can browse it in Shared."
+                         Classes="muted"
+                         FontSize="11"
+                         TextWrapping="Wrap"
+                         IsVisible="{Binding ShowWorkspaceHelper}"/>
 
-            <StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,4">
-              <TextBox Watermark="Filter passages..."
-                       Text="{Binding SearchFilter}"/>
-              <WrapPanel Orientation="Horizontal" ItemHeight="32" Margin="0,0,0,2">
-                <ComboBox Width="104" Padding="4,2"
+              <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="4">
+                <ComboBox Grid.Column="0"
+                          ItemsSource="{Binding Collections}"
+                          SelectedItem="{Binding SelectedCollection}"
+                          HorizontalAlignment="Stretch"
+                          ToolTip.Tip="Choose the collection you want to work in">
+                  <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:ScholarCollection">
+                      <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
+                    </DataTemplate>
+                  </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Grid.Column="1" Width="104" Padding="4,2"
                           ItemsSource="{Binding SortModes}"
                           SelectedItem="{Binding SortMode}"
                           ToolTip.Tip="Sort order"/>
-                <ComboBox Width="104" Padding="4,2"
+                <ComboBox Grid.Column="2" Width="112" Padding="4,2"
                           ItemsSource="{Binding SearchFilterModes}"
                           SelectedItem="{Binding SearchFilterMode}"
                           ToolTip.Tip="Filter scope"/>
-                <Button Name="BtnEditMasterDates" Content="Edit Dates"
-                        ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" MinWidth="92"/>
-              </WrapPanel>
+              </Grid>
+
+              <TextBox Watermark="Filter passages..."
+                       Text="{Binding SearchFilter}"/>
             </StackPanel>
 
-            <ListBox Grid.Row="2" Name="PassagesList"
+            <ListBox Grid.Row="1" Name="PassagesList"
                      ItemsSource="{Binding Passages}"
                      SelectedItem="{Binding SelectedPassage}">
               <ListBox.ItemTemplate>
@@ -114,8 +122,7 @@
             </ListBox>
           </Grid>
         </TabItem>
-
-        <TabItem Header="Community" IsVisible="{Binding HasCommunityCollections}">
+<TabItem Header="3. Shared" IsVisible="{Binding HasCommunityCollections}">
           <Grid RowDefinitions="Auto,*,Auto,*,Auto" Margin="4">
             <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,4">
               <TextBlock Text="Community Collections" FontWeight="SemiBold"/>
@@ -490,13 +497,15 @@
     <Border Grid.ColumnSpan="3" Name="ScholarEmptyState" IsVisible="{Binding IsEmptyState}"
             Background="{DynamicResource AppBg}">
       <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-        <TextBlock Text="Scholar's Collections" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-        <TextBlock Text="Right-click text in the Reader, Translation, or Search tabs to add passages to collections."
+        <TextBlock Text="Scholar" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        <TextBlock Text="Create your first collection, or browse Shared collections when available. Add passages from Reader, Translate, or Search to start building your own workspace."
                    TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Classes="muted"/>
       </StackPanel>
     </Border>
   </Grid>
 </UserControl>
+
+
 
 
 
