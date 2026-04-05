@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,6 +16,8 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     private readonly ITermbaseStorageService _storage;
     private readonly string _root;
     private string? _username;
+    private string? _landingTerm;
+    private string? _landingCommunityUser;
 
     // Corpus usage search
     private ISearchIndexService? _searchIndex;
@@ -114,6 +116,12 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
+    public void ConfigureLanding(string? term, string? communityUser = null)
+    {
+        _landingTerm = string.IsNullOrWhiteSpace(term) ? null : term.Trim();
+        _landingCommunityUser = string.IsNullOrWhiteSpace(communityUser) ? null : communityUser.Trim();
+    }
+
     /// <summary>
     /// Provide search context so corpus usage tab can find occurrences.
     /// </summary>
@@ -177,6 +185,8 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             else
                 SelectedEntry = null;
 
+            ApplyLandingRequest();
+
             StatusMessage = $"Loaded {AllEntries.Count:n0} term(s).";
 
             // Load community termbases after main load
@@ -235,7 +245,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     {
         var entry = new TermbaseEntry
         {
-            SourceTerm = "\u65b0\u8a9e",
+            SourceTerm = "New Term",
             PreferredTarget = "",
             Status = "preferred",
             Note = "",
@@ -332,6 +342,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             SelectedCommunityUserIndex = 0;
 
             RefreshCommunityList();
+            ApplyLandingRequest();
         }
         catch (Exception ex)
         {
@@ -471,7 +482,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
                 foreach (var child in group.Children.Take(3))
                 {
                     var snippet = $"{child.LeftText}{child.MatchText}{child.RightText}";
-                    if (snippet.Length > 120) snippet = snippet[..120] + "\u2026";
+                    if (snippet.Length > 120) snippet = snippet[..120] + "…";
 
                     hits.Add(new CorpusUsageHit
                     {
@@ -571,6 +582,66 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             SelectedEntry = null;
     }
 
+    public void ApplyLandingRequest()
+    {
+        var requestedTerm = _landingTerm;
+        var requestedCommunityUser = _landingCommunityUser;
+
+        if (!string.IsNullOrWhiteSpace(requestedTerm))
+        {
+            if (!string.Equals(SearchQuery, requestedTerm, StringComparison.Ordinal))
+                SearchQuery = requestedTerm;
+            else
+                SelectBestLocalMatch(requestedTerm);
+        }
+
+        if (!string.IsNullOrWhiteSpace(requestedCommunityUser))
+        {
+            var idx = _communityUsernames.FindIndex(u =>
+                string.Equals(u, requestedCommunityUser, StringComparison.OrdinalIgnoreCase));
+            if (idx >= 0 && SelectedCommunityUserIndex != idx)
+                SelectedCommunityUserIndex = idx;
+        }
+
+        if (!string.IsNullOrWhiteSpace(requestedTerm) && !string.IsNullOrWhiteSpace(requestedCommunityUser))
+        {
+            if (!string.Equals(CommunityFilter, requestedTerm, StringComparison.Ordinal))
+                CommunityFilter = requestedTerm;
+            else
+                SelectBestCommunityMatch(requestedTerm);
+        }
+        else if (!string.IsNullOrWhiteSpace(requestedTerm) && HasCommunityEntries)
+        {
+            SelectBestCommunityMatch(requestedTerm);
+        }
+    }
+
+    private void SelectBestLocalMatch(string term)
+    {
+        var match = FindBestTermMatch(FilteredEntries, term);
+        if (match != null)
+            SelectedEntry = match;
+    }
+
+    private void SelectBestCommunityMatch(string term)
+    {
+        var match = FindBestTermMatch(CommunityEntries, term);
+        if (match != null)
+            SelectedCommunityEntry = match;
+    }
+
+    private static TermbaseEntry? FindBestTermMatch(IEnumerable<TermbaseEntry> entries, string term)
+    {
+        var requested = term.Trim();
+        if (requested.Length == 0)
+            return null;
+
+        var list = entries.ToList();
+        return list.FirstOrDefault(e => string.Equals(e.SourceTerm, requested, StringComparison.OrdinalIgnoreCase))
+            ?? list.FirstOrDefault(e => string.Equals(e.PreferredTarget, requested, StringComparison.OrdinalIgnoreCase))
+            ?? list.FirstOrDefault();
+    }
+
     private void LoadEntryIntoFields(TermbaseEntry? entry)
     {
         try
@@ -653,4 +724,5 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         return entry;
     }
 }
+
 

@@ -815,21 +815,32 @@ public partial class ScholarTabViewModel : ViewModelBase
     /// </summary>
     public async Task<bool> TryNavigateToPassageAsync(string collectionId, string? passageId)
     {
+        return await TryNavigateToPassageAsync(collectionId, passageId, ownerUser: null);
+    }
+
+    /// <summary>
+    /// Navigates to a specific local or shared collection (and optionally passage) by ID and owner.
+    /// When ownerUser matches the current identity, local collections are searched; otherwise shared collections are searched.
+    /// Returns false if the requested collection was not found.
+    /// </summary>
+    public async Task<bool> TryNavigateToPassageAsync(string collectionId, string? passageId, string? ownerUser)
+    {
         // Ensure collections are loaded
         if (_allCollections.Count == 0 && !string.IsNullOrWhiteSpace(_root))
             await LoadAsync();
 
-        var collection = _allCollections.FirstOrDefault(c => c.Id == collectionId);
-        if (collection == null) return false;
+        if (ShouldResolveOwnedCollection(ownerUser))
+            return TrySelectOwnedCollection(collectionId, passageId);
 
-        SelectedCollection = collection;
-
-        if (!string.IsNullOrWhiteSpace(passageId))
+        if (!string.IsNullOrWhiteSpace(ownerUser))
         {
-            SelectPassageById(passageId);
-            return SelectedPassage?.Id == passageId;
+            if (_allCommunityCollections.Count == 0 && !string.IsNullOrWhiteSpace(_root))
+                await LoadCommunityAsync();
+
+            return TrySelectCommunityCollection(ownerUser, collectionId, passageId);
         }
-        return true;
+
+        return TrySelectOwnedCollection(collectionId, passageId);
     }
 
     // ----- Public API -----
@@ -1467,6 +1478,53 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (!string.IsNullOrWhiteSpace(_legacyUsername))
             keys.Add(_legacyUsername);
         return keys;
+    }
+
+    private bool ShouldResolveOwnedCollection(string? ownerUser)
+    {
+        if (string.IsNullOrWhiteSpace(ownerUser))
+            return true;
+
+        return GetCurrentIdentityKeys().Contains(ownerUser.Trim());
+    }
+
+    private bool TrySelectOwnedCollection(string collectionId, string? passageId)
+    {
+        var collection = _allCollections.FirstOrDefault(c => c.Id == collectionId);
+        if (collection == null)
+            return false;
+
+        NavigatorTabIndex = 1;
+        SelectedCollection = collection;
+
+        if (string.IsNullOrWhiteSpace(passageId))
+            return true;
+
+        SelectPassageById(passageId);
+        return SelectedPassage?.Id == passageId;
+    }
+
+    private bool TrySelectCommunityCollection(string ownerUser, string collectionId, string? passageId)
+    {
+        var communityEntry = _allCommunityCollections.FirstOrDefault(x =>
+            string.Equals(x.Author, ownerUser, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(x.Collection.Id, collectionId, StringComparison.Ordinal));
+        if (communityEntry.Collection == null)
+            return false;
+
+        NavigatorTabIndex = 2;
+
+        int userIndex = _communityUsernames.FindIndex(u => string.Equals(u, communityEntry.Author, StringComparison.OrdinalIgnoreCase));
+        if (userIndex >= 0)
+            SelectedCommunityUserIndex = userIndex;
+
+        SelectedCommunityCollection = communityEntry.Collection;
+
+        if (string.IsNullOrWhiteSpace(passageId))
+            return true;
+
+        SelectedCommunityPassage = SelectedCommunityCollection?.Passages.FirstOrDefault(p => p.Id == passageId);
+        return SelectedCommunityPassage?.Id == passageId;
     }
 
     private void NormalizeOwnedCollections(IEnumerable<ScholarCollection> collections)

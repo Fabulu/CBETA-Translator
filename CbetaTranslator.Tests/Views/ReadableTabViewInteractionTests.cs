@@ -175,13 +175,13 @@ public class ReadableTabViewInteractionTests
 
         var args = new object?[]
         {
-            "Ã¥â€°ÂÃ¤Â½â€ºÃ¦Â³â€¢Ã¥Â¾Å’",
-            "Ã¤Â½â€ºÃ¦Â³â€¢",
+            "ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¤Ã‚Â½Ã¢â‚¬ÂºÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¥Ã‚Â¾Ã…â€™",
+            "ÃƒÂ¤Ã‚Â½Ã¢â‚¬ÂºÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢",
             null,
-            "Ã¤Â½â€ºÃ¦Â³â€¢",
+            "ÃƒÂ¤Ã‚Â½Ã¢â‚¬ÂºÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢",
             0,
             0,
-            "Ã¥â€°ÂÃ¤Â½â€ºÃ¦Â³â€¢Ã¥Â¾Å’",
+            "ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¤Ã‚Â½Ã¢â‚¬ÂºÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¥Ã‚Â¾Ã…â€™",
             0,
             0
         };
@@ -192,6 +192,39 @@ public class ReadableTabViewInteractionTests
         Assert.True((int)args[7]! >= 0);
         Assert.True((int)args[8]! > 0);
     }
+
+    [Fact]
+    public async Task ApplyTagDeepLinkAsync_WithoutTagId_SelectsRequestedCommunityLayer()
+    {
+        var view = CreateViewShell(out var vm);
+        vm.SetZenContext("T01/test.xml", isZen: true);
+        SetField(view, "_communityTags", new Dictionary<string, List<DocumentTag>>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["otheruser"] = new List<DocumentTag>
+            {
+                new() { Id = "tag-link-1", RelPath = "T01/test.xml", TagId = "topic", FromLb = "0292a26", ToLb = "0292a27" }
+            }
+        });
+
+        var ok = await view.ApplyTagDeepLinkAsync("otheruser", null);
+
+        Assert.True(ok);
+        Assert.Equal("otheruser", GetField<string?>(view, "_selectedTagUser"));
+    }
+
+    [Fact]
+    public async Task ApplyTagDeepLinkAsync_WithoutTagId_SelectsOwnTagsLayer()
+    {
+        var view = CreateViewShell(out var vm);
+        vm.SetZenContext("T01/test.xml", isZen: true);
+        SetField(view, "_selectedTagUser", "otheruser");
+
+        var ok = await view.ApplyTagDeepLinkAsync(null, null);
+
+        Assert.True(ok);
+        Assert.Null(GetField<string?>(view, "_selectedTagUser"));
+    }
 }
+
 
 

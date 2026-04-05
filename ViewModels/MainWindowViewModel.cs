@@ -1,4 +1,4 @@
-// ViewModels/MainWindowViewModel.cs
+﻿// ViewModels/MainWindowViewModel.cs
 //
 // Extracted from Views/MainWindow.axaml.cs (Wave 5 MVVM renovation).
 // Contains all business logic, state, and orchestration that was previously
@@ -2393,24 +2393,27 @@ public partial class MainWindowViewModel : ViewModelBase
     // ===========================================================
 
     public Task OpenTermbaseEditorAsync()
-    {
-        // This remains partially in code-behind because it creates a Window.
-        // VM signals intent; code-behind creates the TermbaseEditorWindow.
-        // The bridge delegate handles the actual window creation.
-        if (string.IsNullOrWhiteSpace(_root))
-        {
-            SetStatus("Cannot open termbase editor: no root is loaded.");
-            return Task.CompletedTask;
-        }
+    => OpenTermbaseEditorAsync(term: null, communityUser: null);
 
-        OpenTermbaseEditorRequested?.Invoke(_root, _config.Username);
+public Task OpenTermbaseEditorAsync(string? term, string? communityUser = null)
+{
+    // This remains partially in code-behind because it creates a Window.
+    // VM signals intent; code-behind creates the TermbaseEditorWindow.
+    // The bridge delegate handles the actual window creation.
+    if (string.IsNullOrWhiteSpace(_root))
+    {
+        SetStatus("Cannot open termbase editor: no root is loaded.");
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// Event for code-behind to handle termbase editor window creation.
-    /// </summary>
-    public Action<string, string?>? OpenTermbaseEditorRequested { get; set; }
+    OpenTermbaseEditorRequested?.Invoke(_root, _config.Username, term, communityUser);
+    return Task.CompletedTask;
+}
+
+/// <summary>
+/// Event for code-behind to handle termbase editor window creation.
+/// </summary>
+public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { get; set; }
 
     // ===========================================================
     // TranslationTabView projection helpers
@@ -3011,5 +3014,6 @@ public partial class MainWindowViewModel : ViewModelBase
             await LoadPairAsync(_currentRelPath);
     }
 }
+
 
 

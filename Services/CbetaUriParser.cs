@@ -394,8 +394,8 @@ public static class CbetaUriParser
         var queryPart = qIdx >= 0 ? afterScheme[(qIdx + 1)..] : "";
         var query = ParseQueryString("?" + queryPart);
 
-        var segments = pathPart.Split('/', StringSplitOptions.RemoveEmptyEntries);
-        if (segments.Length == 0)
+        var segments = pathPart.Split('/');
+        if (segments.Length == 0 || string.IsNullOrEmpty(segments[0]))
             return null;
 
         switch (segments[0].ToLowerInvariant())
@@ -427,23 +427,32 @@ public static class CbetaUriParser
 
             case "tags":
                 if (segments.Length < 2) return null;
-                // User as path segment (preferred), with ?user= query param as fallback
-                string? tagsUser = segments.Length >= 3
-                    ? Uri.UnescapeDataString(segments[2])
-                    : (query.TryGetValue("user", out var tu) ? tu : null);
+                // Path shape: zen://tags/{fileId}/{user?}/{tagId?}
+                // Use an empty user segment to carry tag-only links: zen://tags/{fileId}//{tagId}
+                string? tagsUser = null;
+                string? tagsTagId = null;
+                if (segments.Length >= 3 && !string.IsNullOrEmpty(segments[2]))
+                    tagsUser = Uri.UnescapeDataString(segments[2]);
+                if (segments.Length >= 4 && !string.IsNullOrEmpty(segments[3]))
+                    tagsTagId = Uri.UnescapeDataString(segments[3]);
+                tagsUser ??= query.TryGetValue("user", out var tu) ? tu : null;
+                tagsTagId ??= query.TryGetValue("tagId", out var tid) ? tid : null;
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Tags,
                     TagsRelPath = FileIdToRelPath(segments[1]),
                     TagsUser = tagsUser,
+                    TagsTagId = tagsTagId,
                 };
 
             case "term":
+                if (segments.Length < 2) return null;
                 // Termbase merged with dictionary â€” both route to Dictionary kind
                 return new DeepLinkRequest
                 {
-                    Kind = DeepLinkKind.Dictionary,
-                    DictTerm = segments.Length > 1 ? Uri.UnescapeDataString(segments[1]) : null,
+                    Kind = DeepLinkKind.Termbase,
+                    TermbaseEntry = Uri.UnescapeDataString(segments[1]),
+                    TermbaseUser = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
                 };
         }
 
@@ -474,13 +483,24 @@ public static class CbetaUriParser
             ? $"{Scheme}://search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
             : $"{Scheme}://search?q={Uri.EscapeDataString(query)}";
 
-    public static string BuildTagsUri(string fileId, string? user = null)
-        => user != null
-            ? $"{Scheme}://tags/{fileId}/{Uri.EscapeDataString(user)}"
-            : $"{Scheme}://tags/{fileId}";
+    public static string BuildTagsUri(string fileId, string? user = null, string? tagId = null)
+    {
+        var uri = $"{Scheme}://tags/{fileId}";
+        if (!string.IsNullOrEmpty(user))
+            uri += "/" + Uri.EscapeDataString(user);
+        if (!string.IsNullOrEmpty(tagId))
+        {
+            if (string.IsNullOrEmpty(user))
+                uri += "/";
+            uri += "/" + Uri.EscapeDataString(tagId);
+        }
+        return uri;
+    }
 
-    public static string BuildTermUri(string term)
-        => $"{Scheme}://term/{Uri.EscapeDataString(term)}";
+    public static string BuildTermUri(string term, string? user = null)
+        => !string.IsNullOrEmpty(user)
+            ? $"{Scheme}://term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
+            : $"{Scheme}://term/{Uri.EscapeDataString(term)}";
 
     // ---------------------------------------------------------------
     //  Shareable HTTPS URL builders for new deep-link kinds
@@ -504,13 +524,24 @@ public static class CbetaUriParser
             ? $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
             : $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}";
 
-    public static string BuildShareableTagsUrl(string fileId, string? user = null)
-        => user != null
-            ? $"{ShareableBase}#/tags/{fileId}/{Uri.EscapeDataString(user)}"
-            : $"{ShareableBase}#/tags/{fileId}";
+    public static string BuildShareableTagsUrl(string fileId, string? user = null, string? tagId = null)
+    {
+        var url = $"{ShareableBase}#/tags/{fileId}";
+        if (!string.IsNullOrEmpty(user))
+            url += "/" + Uri.EscapeDataString(user);
+        if (!string.IsNullOrEmpty(tagId))
+        {
+            if (string.IsNullOrEmpty(user))
+                url += "/";
+            url += "/" + Uri.EscapeDataString(tagId);
+        }
+        return url;
+    }
 
-    public static string BuildShareableTermUrl(string term)
-        => $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}";
+    public static string BuildShareableTermUrl(string term, string? user = null)
+        => !string.IsNullOrEmpty(user)
+            ? $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
+            : $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}";
 
     // ---------------------------------------------------------------
 

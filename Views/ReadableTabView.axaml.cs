@@ -3066,6 +3066,76 @@ public partial class ReadableTabView : UserControl
         _communityVocabularies = communityVocabs;
     }
 
+
+    public async Task<bool> ApplyTagDeepLinkAsync(string? user, string? tagId)
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath))
+            return false;
+
+        bool hasRequestedLayer = true;
+        if (string.IsNullOrWhiteSpace(user))
+        {
+            _selectedTagUser = null;
+            if (_cmbTagUser != null)
+                _cmbTagUser.SelectedIndex = 0;
+            if (_codeBarSlots != null) _codeBarSlots.Opacity = 1.0;
+            RefreshTagHighlights();
+            RefreshCodeBarStatus();
+            RebuildContextMenus();
+        }
+        else
+        {
+            hasRequestedLayer = _communityTags != null && _communityTags.ContainsKey(user);
+            _selectedTagUser = user;
+            if (_cmbTagUser != null)
+            {
+                var items = (_cmbTagUser.ItemsSource as IEnumerable<string>)?.ToList();
+                if (items != null && items.Contains(user))
+                    _cmbTagUser.SelectedItem = user;
+            }
+            ShowCommunityUserTags(user);
+            RebuildContextMenus();
+        }
+
+        if (string.IsNullOrWhiteSpace(tagId))
+            return hasRequestedLayer;
+
+        var tags = string.IsNullOrWhiteSpace(user)
+            ? _appliedTags
+            : (_communityTags != null && _communityTags.TryGetValue(user, out var otherTags) ? otherTags : null);
+        if (tags == null)
+            return false;
+
+        var candidates = tags
+    .Where(t => string.Equals(t.RelPath, relPath, StringComparison.OrdinalIgnoreCase))
+    .ToList();
+
+var match = candidates.FirstOrDefault(t => string.Equals(t.Id, tagId, StringComparison.Ordinal));
+if (match == null)
+{
+    var byTagDefinition = candidates
+        .Where(t => string.Equals(t.TagId, tagId, StringComparison.Ordinal))
+        .ToList();
+    if (byTagDefinition.Count == 1)
+        match = byTagDefinition[0];
+}
+
+if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
+    return false;
+
+        string toLb = string.IsNullOrWhiteSpace(match.ToLb) ? match.FromLb : match.ToLb;
+        await NavigateToAsync(new NavigationRequest
+        {
+            RelPath = relPath,
+            Side = SearchSide.Original,
+            FromLb = match.FromLb,
+            ToLb = toLb,
+            MatchText = ExtractTextBetweenLbs(_vm.RenderOrig, match.FromLb, toLb)
+        });
+
+        return true;
+    }
     private void RefreshTagUserComboBox()
     {
         if (_cmbTagUser == null) return;
@@ -4631,4 +4701,5 @@ public partial class ReadableTabView : UserControl
         return s.Length <= count ? s : s[^count..];
     }
 }
+
 
