@@ -314,6 +314,8 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         sb.AppendLine("# Edit ONLY EN: lines.");
         sb.AppendLine("# Do NOT change <n> or ZH: lines.");
         sb.AppendLine("# One block = one source line.");
+        sb.AppendLine("# Keep exactly one EN line per block; multiline EN is not supported.");
+        sb.AppendLine("# For large edits, paste numbered batches across many blocks instead.");
         sb.AppendLine();
 
         int idx = 1;
@@ -1151,9 +1153,12 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                     break;
 
                 if (cur.StartsWith("ZH:", StringComparison.Ordinal))
-                    zh = cur.Substring(3).TrimStart();
+                    zh = StripProjectionPrefixSpace(cur.Substring(3));
                 else if (cur.StartsWith("EN:", StringComparison.Ordinal))
-                    en = cur.Substring(3).TrimStart();
+                    en = StripProjectionPrefixSpace(cur.Substring(3));
+                else if (!string.IsNullOrWhiteSpace(cur))
+                    throw new InvalidOperationException(
+                        $"Block <{blockNum}> contains a continuation line. Multiline EN is not supported; keep one EN line per block and use numbered batch paste for many blocks.");
 
                 i++;
             }
@@ -1176,6 +1181,10 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     private static void ValidateEnglish(string en, int blockNumber)
     {
         en ??= "";
+
+        if (en.Contains('\n') || en.Contains('\r'))
+            throw new InvalidOperationException(
+                $"Block <{blockNumber}> EN spans multiple lines. Multiline EN is not supported; keep one EN line per block.");
 
         if (en.Contains('<') || en.Contains('>'))
             throw new InvalidOperationException($"Block <{blockNumber}> EN contains '<' or '>' which is not allowed.");
@@ -1215,6 +1224,13 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                     $"Block <{blockNumber}> EN contains an invalid XML character (U+{((int)ch):X4}) at position {i + 1}.");
             }
         }
+    }
+
+
+    private static string StripProjectionPrefixSpace(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+        return text[0] == ' ' ? text.Substring(1) : text;
     }
 
     // ============================================================

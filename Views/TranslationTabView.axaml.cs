@@ -1830,46 +1830,93 @@ STRICT RULES:
         public int EnValueLength { get; set; }
     }
 
+    private static string StripProjectionPrefixSpace(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return string.Empty;
+        return text[0] == ' ' ? text.Substring(1) : text;
+    }
+
     private static List<ProjectionBlockInfo> ParseProjectionBlocksWithOffsets(string text)
     {
         text ??= "";
-
-        var rx = new Regex(
-            @"(?m)^(?<hdr><(?<num>\d+)>)\s*\r?\n" +
-            @"ZH:\s?(?<zh>[^\r\n]*)\r?\n" +
-            @"EN:\s?(?<en>[^\r\n]*)",
-            RegexOptions.Compiled);
-
-        var ms = rx.Matches(text);
-        var list = new List<ProjectionBlockInfo>(ms.Count);
-
-        foreach (Match m in ms)
+        var normalized = text.Replace("\r\n", "\n");
+        var lines = normalized.Split('\n');
+        var offsets = new int[lines.Length];
+        int runningOffset = 0;
+        for (int idx = 0; idx < lines.Length; idx++)
         {
-            if (!m.Success) continue;
+            offsets[idx] = runningOffset;
+            runningOffset += lines[idx].Length;
+            if (idx < lines.Length - 1)
+                runningOffset += 1;
+        }
 
-            if (!int.TryParse(m.Groups["num"].Value, out int num))
+        var list = new List<ProjectionBlockInfo>();
+        int i = 0;
+        while (i < lines.Length)
+        {
+            var headerTrim = lines[i].Trim();
+            if (!(headerTrim.StartsWith("<") && headerTrim.EndsWith(">")))
+            {
+                i++;
                 continue;
+            }
 
-            var enGroup = m.Groups["en"];
-            var blockStart = m.Index;
-            var blockEnd = m.Index + m.Length;
+            var rawNum = headerTrim.Substring(1, headerTrim.Length - 2);
+            if (!int.TryParse(rawNum, out int num))
+                throw new InvalidOperationException($"Invalid block header: {headerTrim}");
 
+            int blockStartOffset = offsets[i];
+            i++;
+
+            string? zh = null;
+            string? en = null;
+            int enValueStartOffset = -1;
+            int enValueLength = -1;
+
+            while (i < lines.Length)
+            {
+                var cur = lines[i];
+                var curTrim = cur.Trim();
+                if (curTrim.StartsWith("<") && curTrim.EndsWith(">"))
+                    break;
+
+                if (cur.StartsWith("ZH:", StringComparison.Ordinal))
+                {
+                    zh = StripProjectionPrefixSpace(cur.Substring(3));
+                }
+                else if (cur.StartsWith("EN:", StringComparison.Ordinal))
+                {
+                    var raw = cur.Substring(3);
+                    en = StripProjectionPrefixSpace(raw);
+                    enValueStartOffset = offsets[i] + 3 + ((raw.Length > 0 && raw[0] == ' ') ? 1 : 0);
+                    enValueLength = en.Length;
+                }
+                else if (!string.IsNullOrWhiteSpace(cur))
+                {
+                    throw new InvalidOperationException(
+                        $"Block <{num}> contains a continuation line. Multiline EN is not supported; keep one EN line per block and use numbered batch paste for many blocks.");
+                }
+
+                i++;
+            }
+
+            if (zh == null)
+                throw new InvalidOperationException($"Block <{num}> missing ZH.");
+            if (en == null)
+                throw new InvalidOperationException($"Block <{num}> missing EN.");
+
+            int blockEndOffsetExclusive = i < lines.Length ? offsets[i] : normalized.Length;
             list.Add(new ProjectionBlockInfo
             {
                 BlockNumber = num,
-                Zh = m.Groups["zh"].Value,
-                En = enGroup.Value,
-                BlockStartOffset = blockStart,
-                BlockEndOffsetExclusive = blockEnd,
-                EnValueStartOffset = enGroup.Index,
-                EnValueLength = enGroup.Length
+                Zh = zh,
+                En = en,
+                BlockStartOffset = blockStartOffset,
+                BlockEndOffsetExclusive = blockEndOffsetExclusive,
+                EnValueStartOffset = enValueStartOffset,
+                EnValueLength = enValueLength
             });
-        }
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            int end = (i + 1 < list.Count) ? list[i + 1].BlockStartOffset : text.Length;
-            list[i].BlockEndOffsetExclusive = end;
         }
 
         return list;
@@ -1878,6 +1925,10 @@ STRICT RULES:
     private static void ValidateEnglish(string en, int blockNumber)
     {
         en ??= "";
+
+        if (en.Contains('\n') || en.Contains('\r'))
+            throw new InvalidOperationException(
+                $"Block <{blockNumber}> EN spans multiple lines. Multiline EN is not supported; keep one EN line per block.");
 
         if (en.Contains('<') || en.Contains('>'))
             throw new InvalidOperationException($"Block <{blockNumber}> EN contains '<' or '>' which is not allowed.");
@@ -1906,8 +1957,6 @@ STRICT RULES:
 
             bool ok =
                 ch == '\t' ||
-                ch == '\n' ||
-                ch == '\r' ||
                 (ch >= 0x20 && ch <= 0xD7FF) ||
                 (ch >= 0xE000 && ch <= 0xFFFD);
 

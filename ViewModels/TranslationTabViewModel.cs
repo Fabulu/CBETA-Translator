@@ -112,9 +112,9 @@ public partial class TranslationTabViewModel : ViewModelBase
 
         var fileLabel = string.IsNullOrWhiteSpace(_tranPath)
             ? ""
-            : $" — {System.IO.Path.GetFileName(_tranPath)}";
+            : $" - {System.IO.Path.GetFileName(_tranPath)}";
 
-        ModeInfoText = $"{modeText}{fileLabel}";
+        ModeInfoText = $"{modeText}{fileLabel} - One EN line per block";
     }
 
     // -------------------------
