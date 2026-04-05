@@ -141,7 +141,7 @@ public sealed class OnboardingTourService
         {
             Id = "reader-panes",
             Title = "Side-by-Side Reading",
-            Body = "Left pane = original Chinese. Right pane = English translation.\nThe splitter between them can be dragged to adjust the ratio. Click any sentence to highlight its counterpart on the other side.",
+            Body = "Left pane = original Chinese. Right pane = the selected English translation.\nUse the translation source selector to switch between Community, your own translation, or another user\'s view. Click a sentence to highlight its counterpart on the other side.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "TwoPaneGrid"
@@ -161,7 +161,7 @@ public sealed class OnboardingTourService
         {
             Id = "study-panel",
             Title = "Study Panel",
-            Body = "Check the 'Study' checkbox in the Reader toolbar to open the Study Panel.\nIt shows live dictionary lookups at your caret position, translation memory matches, and termbase hits \u2014 all updating as you read.",
+            Body = "Check the \'Study\' checkbox in the Reader toolbar to open the Study Panel.\nIt updates as you move through the original text and shows dictionary help, recognized terms from your dictionary, and translation memory matches.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
             TargetControlName = "ChkStudyPanel",
@@ -191,7 +191,7 @@ public sealed class OnboardingTourService
         {
             Id = "right-click",
             Title = "Right-Click to Collect",
-            Body = "Right-click selected text to add it to your Scholar collection, create deep links, or copy shareable URLs.\nThis works in the Reader, Translation, and Search tabs.",
+            Body = "Right-click selected text to add it to Scholar, create zen:// deep links, or copy shareable URLs.\nThis works in Reader, Translate, and Search.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -245,7 +245,7 @@ public sealed class OnboardingTourService
         {
             Id = "translate-tab",
             Title = "The Translation Editor",
-            Body = "Switching to the Translation tab.\n\nThis is where translations happen. The editor shows numbered blocks: Chinese on top, English below.\nNavigate between blocks with Alt+\u2190 and Alt+\u2192.",
+            Body = "Switching to the Translate tab.\n\nThis is where translations happen. The editor shows numbered blocks: Chinese on top, English below. Use the source selector to switch between Community, your own translation, and other users\' views. Navigate between blocks with Alt+\u2190 and Alt+\u2192.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 1,
@@ -296,7 +296,7 @@ public sealed class OnboardingTourService
         {
             Id = "assistant-panel",
             Title = "Translation Assistant",
-            Body = "The assistant panel shows: recognized terminology, similar translations from the translation memory, and quality warnings.\nIt updates automatically as you navigate blocks.\n\nIn the Reader tab, toggle the Study checkbox for similar lookups as you read, including live dictionary entries.",
+            Body = "The assistant panel shows recognized terminology, translation memory matches, and quality warnings.\nIt updates automatically as you navigate blocks.\n\nIn Reader, the Study panel gives you a lighter reading-focused version of this workflow.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Left,
             TargetControlName = "AssistantPane"
@@ -306,7 +306,7 @@ public sealed class OnboardingTourService
         {
             Id = "save-translation",
             Title = "Save Your Work",
-            Body = "Ctrl+S saves your translation. The app writes clean TEI XML that preserves the original Chinese formatting.\nYour translator name is recorded automatically.",
+            Body = "Ctrl+S saves your current translation source. The app writes clean TEI XML that preserves the original Chinese formatting and refreshes Reader from disk. Other users\' translation sources are read-only.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnSave"
@@ -318,7 +318,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-tab",
             Title = "Search the Corpus",
-            Body = "Switching to the Search tab.\n\nSearch the entire corpus for Chinese text or English phrases.\nThe search works across line breaks \u2014 CBETA often splits Chinese sentences mid-word.",
+            Body = "Switching to the Search tab.\n\nSearch the corpus for Chinese text or English phrases. Use the Original and Translated toggles to decide which side to search. When both sides are available, results can show paired bilingual context.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
@@ -329,7 +329,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-results",
             Title = "Working with Results",
-            Body = "Results show KWIC context (text before and after the match).\nDouble-click any result to open that text in a new reader window. Right-click to add to Scholar.",
+            Body = "Results show KWIC context around the match. When both sides are available, each row can show paired Chinese and English context. Double-click a result to open it, or right-click to add it to Scholar.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ResultsTree"
@@ -339,7 +339,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tab",
             Title = "Your Research Workspace",
-            Body = "Switching to the Scholar tab.\n\nThe Scholar tab is your personal research workspace.\nCollect passages, organize by topic, compare texts, and export your findings.",
+            Body = "Switching to the Scholar tab.\n\nScholar is your research workspace for local collections and shared community collections. Collect passages, compare them, connect them, and export your findings.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 4,
@@ -349,8 +349,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "scholar-collections",
-            Title = "Collections",
-            Body = "Create named collections to organize your research.\nEach collection holds passages \u2014 snippets of Chinese + English text from anywhere in the corpus.",
+            Title = "Collections and Workspace",
+            Body = "Use Collections to organize your own notebooks. Workspace is where you edit and compare your saved snippets. Add snippets from Reader, Translate, or Search and they will appear in the selected collection.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "PassagesList"
@@ -358,19 +358,20 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "graph-and-stats",
-            Title = "Graph & Link Statistics",
-            Body = "Switch to the Graph tab to see your collected passages as a network diagram \u2014 nodes are passages, edges are links colored by relation type.\nThe Links tab shows statistics: relation type distribution, coverage, and orphan passages.",
+            Id = "scholar-shared",
+            Title = "Shared Collections",
+            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. Browse community collections there, then use Adopt to copy a passage into your own local workspace.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
-            SwitchToTabIndex = 4
+            SwitchToTabIndex = 4,
+            TargetControlName = "ScholarView"
         });
 
         Steps.Add(new TourStep
         {
             Id = "adding-passages",
             Title = "Adding Passages",
-            Body = "Right-click text in the Reader, Translation, or Search tabs to add it to a collection.\nMulti-block selections capture entire paragraphs. Master names (like \u8d99\u5dde, \u5357\u6cc9) are auto-detected.\nUse the context menu to also create deep links or copy shareable URLs.",
+            Body = "Right-click text in Reader, Translate, or Search to add it to Scholar. If you do not have a writable local collection yet, Scholar creates one when you first save or adopt a passage. Multi-block selections capture longer snippets automatically.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -379,7 +380,7 @@ public sealed class OnboardingTourService
         {
             Id = "context-menu-links",
             Title = "Context Menu & Inline Links",
-            Body = "Right-click any passage to create cross-reference links, add to collections, or copy deep links.\nIn the Links tab, click '+ Link' to connect passages with semantic relations like 'quotes', 'parallels', or 'contradicts'.",
+            Body = "Right-click passages and text selections to copy deep links, add to collections, or connect related passages. Scholar passages can also link to one another with relation types like quotes, parallels, or contradicts.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -397,8 +398,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "scholar-tools",
-            Title = "Compare, Graph, and Statistics",
-            Body = "Compare passages side-by-side with shared character highlighting.\nSwitch to the Graph tab to visualize your passage network. The Links tab shows relation-type statistics and coverage.\n\nUse '+ Link' in the Links tab to connect related passages.",
+            Title = "Compare, Graph, and Exports",
+            Body = "Compare 2-4 checked passages side-by-side from your local workspace. Use the Graph tab to visualize how your passages connect, and use Scholar exports when you want to share, cite, or draft from your collection.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             TargetControlName = null
@@ -429,7 +430,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-tab",
             Title = "Sync Your Work",
-            Body = "Switching to the Git tab.\n\nClick Sync to share your work and get the latest texts and community data. That's it \u2014 one button does everything.",
+            Body = "Switching to the Community tab.\n\nUse Sync to update texts, pull shared community data, and share your own work. Sharing requires GitHub login, but the initial text download does not.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -439,8 +440,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "git-advanced",
-            Title = "Advanced Section",
-            Body = "Advanced section has tools for submitting translation pull requests. Most users never need it.",
+            Title = "Advanced Recovery",
+            Body = "The advanced area is mainly for recovery actions like discarding local changes. Most users should stay with the main Sync workflow.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "GitView"

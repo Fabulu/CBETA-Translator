@@ -184,12 +184,40 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count is 37 (34 original + 3 new: study-panel, graph-and-stats, context-menu-links) ----
+    // ---- 10. Steps count stays 37 after tutorial rewrites ----
 
     [Fact]
     public void Steps_Count_Is37()
     {
         Assert.Equal(37, _svc.Steps.Count);
+    }
+
+    [Fact]
+    public void Tutorial_DoesNotMention_GitTab()
+    {
+        foreach (var step in _svc.Steps)
+        {
+            Assert.DoesNotContain("Git tab", step.Title);
+            Assert.DoesNotContain("Git tab", step.Body);
+        }
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ScholarSharedStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "scholar-shared");
+        Assert.Contains("Shared", step.Title);
+        Assert.Contains("Adopt", step.Body);
+    }
+
+
+    [Fact]
+    public void Tutorial_SearchResultsStep_CoversBilingualResultsAndScholarAction()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "search-results");
+        Assert.Contains("paired Chinese and English context", step.Body);
+        Assert.Contains("Double-click", step.Body);
+        Assert.Contains("right-click to add it to Scholar", step.Body);
     }
 
     // ---- 11. All steps have non-empty Title and Body ----
