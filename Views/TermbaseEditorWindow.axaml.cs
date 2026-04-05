@@ -88,6 +88,16 @@ public partial class TermbaseEditorWindow : Window
             };
         }
 
+        var mainTabs = this.FindControl<TabControl>("MainTabControl");
+        if (mainTabs != null)
+        {
+            mainTabs.SelectionChanged += (_, _) =>
+            {
+                if (mainTabs.SelectedItem is TabItem tab && string.Equals(tab.Header?.ToString(), "Corpus Usage", StringComparison.Ordinal))
+                    _vm.ActivateCorpusUsageSearch();
+            };
+        }
+
         Opened += async (_, _) => await _vm.LoadCommand.ExecuteAsync(null);
     }
 

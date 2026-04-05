@@ -25,6 +25,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     private CancellationTokenSource? _corpusCts;
 
     private bool _suppressFieldSync;
+    private bool _enableCorpusSearchOnSelection;
 
     [ObservableProperty]
     private string _searchQuery = "";
@@ -123,6 +124,18 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         _translatedDir = translatedDir;
     }
 
+    public void ActivateCorpusUsageSearch()
+    {
+        if (_enableCorpusSearchOnSelection)
+        {
+            _ = SearchCorpusForSelectedTermAsync();
+            return;
+        }
+
+        _enableCorpusSearchOnSelection = true;
+        _ = SearchCorpusForSelectedTermAsync();
+    }
+
     // ----- Generated partial methods for property change hooks -----
 
     partial void OnSearchQueryChanged(string value) => ApplyFilter();
@@ -130,7 +143,8 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
     partial void OnSelectedEntryChanged(TermbaseEntry? value)
     {
         LoadEntryIntoFields(value);
-        _ = SearchCorpusForSelectedTermAsync();
+        if (_enableCorpusSearchOnSelection)
+            _ = SearchCorpusForSelectedTermAsync();
     }
 
     partial void OnSourceTermChanged(string value) => PushFieldsIntoCurrentEntry();

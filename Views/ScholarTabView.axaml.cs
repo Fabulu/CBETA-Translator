@@ -33,11 +33,6 @@ public partial class ScholarTabView : UserControl
     private HoverDictionaryBehaviorTextBox? _hoverDict;
     private Canvas? _dictOverlayCanvas;
 
-    // Termbase highlighting
-    private readonly ITermbaseStorageService _termbaseStorage = App.Services.GetRequiredService<ITermbaseStorageService>();
-    private List<TermbaseEntry>? _cachedTermbaseEntries;
-    private string? _termbaseCacheRoot;
-
     // Parallel passage finder
     private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
     private CancellationTokenSource? _parallelCts;
@@ -46,6 +41,7 @@ public partial class ScholarTabView : UserControl
     private readonly ITranslationAssistantService _assistantService = App.Services.GetRequiredService<ITranslationAssistantService>();
     private string? _originalDir;
     private string? _translatedDir;
+    private string? _currentUsername;
     private string? _lastRenderedPassageId;
     private CancellationTokenSource? _assistantCts;
 
@@ -68,6 +64,7 @@ public partial class ScholarTabView : UserControl
     private string? _currentGraphCollectionId;
 
     public event EventHandler<string>? Status;
+    public Func<string?, string>? SourceTitleResolver { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
 
@@ -194,10 +191,11 @@ public partial class ScholarTabView : UserControl
                 if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
 
                 string? highlight = null;
-                // Prefer lb-based links; fall back to highlight text
                 if (string.IsNullOrWhiteSpace(passage.FromLb))
                 {
-                    highlight = passage.ZhText;
+                    highlight = passage.PreferredSide == SearchSide.Translated
+                        ? passage.EnText
+                        : passage.ZhText;
                     if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
                         highlight = highlight.Substring(0, 80);
                     if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
@@ -208,7 +206,9 @@ public partial class ScholarTabView : UserControl
                     fromLb: passage.FromLb,
                     toLb: passage.ToLb,
                     highlightText: highlight,
-                    blockNumber: passage.StartBlockNumber);
+                    side: passage.PreferredSide,
+                    blockNumber: passage.StartBlockNumber,
+                    user: passage.TranslationUser);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(uri);
@@ -225,7 +225,9 @@ public partial class ScholarTabView : UserControl
                 string? highlight = null;
                 if (string.IsNullOrWhiteSpace(passage.FromLb))
                 {
-                    highlight = passage.ZhText;
+                    highlight = passage.PreferredSide == SearchSide.Translated
+                        ? passage.EnText
+                        : passage.ZhText;
                     if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
                         highlight = highlight.Substring(0, 80);
                     if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
@@ -236,7 +238,8 @@ public partial class ScholarTabView : UserControl
                     fromLb: passage.FromLb,
                     toLb: passage.ToLb,
                     highlightText: highlight,
-                    side: SearchSide.Translated);
+                    side: passage.PreferredSide,
+                    user: passage.TranslationUser);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(url);
@@ -429,12 +432,11 @@ public partial class ScholarTabView : UserControl
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         var txtEnText = this.FindControl<TextBlock>("TxtEnText");
 
-        if (txtSourcePath != null) txtSourcePath.Text = passage?.SourceRelPath ?? "";
+        if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
 
         SetupHoverDictionary();
-        _ = UpdateTermbaseHitsAsync(passage?.ZhText);
         RefreshLinksPanel();
         RefreshLinkedTextsPanel();
 
@@ -450,7 +452,7 @@ public partial class ScholarTabView : UserControl
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         var txtEnText = this.FindControl<TextBlock>("TxtEnText");
 
-        if (txtSourcePath != null) txtSourcePath.Text = passage?.SourceRelPath ?? "";
+        if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
 
@@ -467,7 +469,6 @@ public partial class ScholarTabView : UserControl
         _vm.RhetoricalFunction = passage?.RhetoricalFunction ?? "";
 
         SetupHoverDictionary();
-        _ = UpdateTermbaseHitsAsync(passage?.ZhText);
     }
 
     // ----- Hover dictionary -----
@@ -495,84 +496,48 @@ public partial class ScholarTabView : UserControl
         Application.Current?.FindResource("TermbaseHighlightBg") as IBrush
         ?? new SolidColorBrush(Color.FromArgb(90, 255, 185, 0));
 
-    private async Task UpdateTermbaseHitsAsync(string? zhText)
+    private void UpdateTermbaseHits(IReadOnlyList<TermHit>? hits)
     {
         var panel = this.FindControl<ItemsControl>("PnlTermbaseHits");
         if (panel == null) return;
 
-        if (string.IsNullOrWhiteSpace(zhText))
+        if (hits == null || hits.Count == 0)
         {
             panel.ItemsSource = null;
             panel.IsVisible = false;
             return;
         }
 
-        var root = _vm.GetRoot();
-        if (string.IsNullOrWhiteSpace(root))
+        var controls = new List<Control>();
+        foreach (var hit in hits)
         {
-            panel.ItemsSource = null;
-            panel.IsVisible = false;
-            return;
-        }
+            if (string.IsNullOrWhiteSpace(hit.SourceTerm))
+                continue;
 
-        try
-        {
-            // Cache termbase entries per root
-            if (_cachedTermbaseEntries == null || _termbaseCacheRoot != root)
+            var label = new TextBlock
             {
-                _cachedTermbaseEntries = await _termbaseStorage.LoadAsync(root);
-                _termbaseCacheRoot = root;
-            }
-
-            var hits = FindTermbaseHitsInText(zhText, _cachedTermbaseEntries);
-            if (hits.Count == 0)
+                Text = $"{hit.SourceTerm} -> {hit.PreferredTarget}",
+                FontSize = 11,
+                Padding = new Thickness(4, 2),
+            };
+            var border = new Border
             {
-                panel.ItemsSource = null;
-                panel.IsVisible = false;
-                return;
-            }
+                CornerRadius = new CornerRadius(3),
+                Background = TermbaseGoldBg,
+                Child = label,
+                Margin = new Thickness(0, 0, 4, 2)
+            };
 
-            var controls = new List<Control>();
-            foreach (var hit in hits)
-            {
-                var label = new TextBlock
-                {
-                    Text = $"{hit.SourceTerm} \u2192 {hit.PreferredTarget}",
-                    FontSize = 11,
-                    Padding = new Thickness(4, 2),
-                };
-                var border = new Border
-                {
-                    CornerRadius = new CornerRadius(3),
-                    Background = TermbaseGoldBg,
-                    Child = label,
-                    Margin = new Thickness(0, 0, 4, 2)
-                };
-                if (!string.IsNullOrEmpty(hit.Note))
-                    ToolTip.SetTip(border, hit.Note);
-                controls.Add(border);
-            }
+            var tool = string.IsNullOrWhiteSpace(hit.Note)
+                ? (string.IsNullOrWhiteSpace(hit.CreatedBy) ? null : $"By: {hit.CreatedBy}")
+                : (string.IsNullOrWhiteSpace(hit.CreatedBy) ? hit.Note : $"{hit.Note}\nBy: {hit.CreatedBy}");
+            if (!string.IsNullOrWhiteSpace(tool))
+                ToolTip.SetTip(border, tool);
+            controls.Add(border);
+        }
 
-            panel.ItemsSource = controls;
-            panel.IsVisible = true;
-        }
-        catch
-        {
-            panel.ItemsSource = null;
-            panel.IsVisible = false;
-        }
-    }
-
-    private static List<TermbaseEntry> FindTermbaseHitsInText(string zhText, IReadOnlyList<TermbaseEntry> entries)
-    {
-        var hits = new List<TermbaseEntry>();
-        foreach (var entry in entries)
-        {
-            if (string.IsNullOrEmpty(entry.SourceTerm)) continue;
-            if (zhText.Contains(entry.SourceTerm, StringComparison.Ordinal))
-                hits.Add(entry);
-        }
-        return hits;
+        panel.ItemsSource = controls;
+        panel.IsVisible = controls.Count > 0;
     }
 
     // ----- Confirmation dialog -----
@@ -1548,6 +1513,7 @@ public partial class ScholarTabView : UserControl
             AssistantPanelRenderer.RenderSnapshot(null,
                 _scholarQaHost, _scholarTermHost,
                 _scholarApprovedTmHost, _scholarReferenceTmHost);
+            UpdateTermbaseHits(null);
             _lastRenderedPassageId = null;
             return;
         }
@@ -1568,22 +1534,30 @@ public partial class ScholarTabView : UserControl
                 RelPath = passage.SourceRelPath ?? "",
                 ZhText = passage.ZhText ?? "",
                 EnText = passage.EnText ?? "",
-                BlockNumber = 0,
+                ZhContextText = passage.ZhText ?? "",
+                BlockNumber = passage.StartBlockNumber ?? passage.EndBlockNumber ?? 0,
                 Mode = TranslationEditMode.Body
             };
 
             var root = _vm.GetRoot();
+            string? assistantTranslatedDir = _translatedDir;
+            if (!string.IsNullOrWhiteSpace(root) && !string.IsNullOrWhiteSpace(passage.TranslationUser))
+                assistantTranslatedDir = AppPaths.GetUserTranslatedDir(root, passage.TranslationUser);
+
+            try { _assistantService.SetUsername(_currentUsername); } catch { }
             var snapshot = await _assistantService.BuildSnapshotAsync(
-                ctx, root, _originalDir, _translatedDir, ct);
+                ctx, root, _originalDir, assistantTranslatedDir, ct);
 
             if (ct.IsCancellationRequested) return;
 
             _lastRenderedPassageId = passage.Id;
+            UpdateTermbaseHits(snapshot?.Terms);
 
             AssistantPanelRenderer.RenderSnapshot(
                 snapshot,
                 _scholarQaHost, _scholarTermHost,
                 _scholarApprovedTmHost, _scholarReferenceTmHost,
+                titleResolver: rel => ResolveSourceTitle(rel),
                 brushResolver: GetAssistantBrush,
                 navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
                 addToScholarHandler: passage => AddPassage(passage));
@@ -1591,12 +1565,45 @@ public partial class ScholarTabView : UserControl
         catch (Exception ex)
         {
             Status?.Invoke(this, "Scholar assistant unavailable: " + ex.Message);
+            UpdateTermbaseHits(null);
             AssistantPanelRenderer.RenderSnapshot(null,
                 _scholarQaHost, _scholarTermHost,
                 _scholarApprovedTmHost, _scholarReferenceTmHost);
         }
     }
 
+    private string ResolveSourceDisplay(ScholarPassage? passage)
+    {
+        if (passage == null) return "";
+        return ResolveSourceTitle(passage.SourceRelPath);
+    }
+
+    private string ResolveSourceTitle(string? relPath)
+    {
+        if (string.IsNullOrWhiteSpace(relPath))
+            return "";
+
+        try
+        {
+            if (SourceTitleResolver != null)
+            {
+                var resolved = SourceTitleResolver(relPath);
+                if (!string.IsNullOrWhiteSpace(resolved))
+                    return resolved;
+            }
+        }
+        catch { }
+
+        try
+        {
+            var fileName = Path.GetFileNameWithoutExtension(relPath);
+            return string.IsNullOrWhiteSpace(fileName) ? relPath ?? "" : fileName;
+        }
+        catch
+        {
+            return relPath ?? "";
+        }
+    }
     private static IBrush? GetAssistantBrush(string key)
     {
         if (Avalonia.Application.Current?.TryFindResource(key, out var obj) == true && obj is IBrush brush)
@@ -1622,19 +1629,22 @@ public partial class ScholarTabView : UserControl
             return;
 
         CaptureCurrentGraphLayout();
-        _cachedTermbaseEntries = null;
-        _termbaseCacheRoot = null;
         _lastRenderedPassageId = null;
         _currentGraphCollectionId = null;
         _vm.SetRoot(root);
         _ = RefreshAssistantAsync();
     }
+    public void SetAssistantUsername(string? username)
+    {
+        _currentUsername = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+        try { _assistantService.SetUsername(_currentUsername); } catch { }
+        _lastRenderedPassageId = null;
+        _ = RefreshAssistantAsync();
+    }
     public void SetUsername(string? username)
     {
         _vm.SetUsername(username);
-        try { _assistantService.SetUsername(username); } catch { }
-        _lastRenderedPassageId = null;
-        _ = RefreshAssistantAsync();
+        SetAssistantUsername(username);
     }
 
     public void Clear()
@@ -1651,8 +1661,8 @@ public partial class ScholarTabView : UserControl
 
     public void InvalidateTermbaseCache()
     {
-        _cachedTermbaseEntries = null;
-        _termbaseCacheRoot = null;
+        _lastRenderedPassageId = null;
+        _ = RefreshAssistantAsync();
     }
 
     /// <summary>Returns the currently selected scholar passage, or null if none.</summary>
