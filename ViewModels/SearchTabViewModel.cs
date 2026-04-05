@@ -15,6 +15,17 @@ namespace CbetaTranslator.App.ViewModels;
 
 public partial class SearchTabViewModel : ViewModelBase
 {
+    public sealed class SearchUiState
+    {
+        public string Query { get; init; } = "";
+        public bool SearchOriginal { get; init; } = true;
+        public bool SearchTranslated { get; init; }
+        public bool ZenOnly { get; init; }
+        public int SelectedStatusIndex { get; init; }
+        public int SelectedContextIndex { get; init; } = 1;
+        public string? SelectedTagFilterName { get; init; }
+        public string? SelectedTagFilterId { get; init; }
+    }
     private readonly ISearchIndexService _svc;
 
     public SearchTabViewModel(ISearchIndexService searchIndexService)
@@ -33,6 +44,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private CancellationTokenSource? _cts;
     private CancellationTokenSource? _autoRerunCts;
     private readonly List<SearchResultGroup> _groups = new();
+    private int _batchedStateDepth;
 
     // remember last search so dropdown recompute works
     private string _lastQuery = "";
@@ -49,7 +61,10 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // Tag filter
     private List<string> _tagFilterItems = new() { "All Tags" };
-    private Dictionary<string, HashSet<string>>? _tagsByName; // tagName → set of RelPaths
+    private Dictionary<string, HashSet<string>>? _tagsByName; // tagName -> set of RelPaths
+    private Dictionary<string, string>? _tagNameById; // tagId -> displayName
+    private Dictionary<string, string>? _tagIdByName; // displayName -> tagId
+    private string? _pendingRestoredTagId;
 
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
 
@@ -176,12 +191,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // ----- Property change hooks (trigger auto-rerun) -----
 
-    partial void OnZenOnlyChanged(bool value) => _ = TriggerAutoRerunAsync();
-    partial void OnSelectedStatusIndexChanged(int value) => _ = TriggerAutoRerunAsync();
-    partial void OnSelectedTagFilterIndexChanged(int value) => _ = TriggerAutoRerunAsync();
-    partial void OnSelectedContextIndexChanged(int value) => _ = TriggerAutoRerunAsync();
-    partial void OnSearchOriginalChanged(bool value) => _ = TriggerAutoRerunAsync();
-    partial void OnSearchTranslatedChanged(bool value) => _ = TriggerAutoRerunAsync();
+    partial void OnZenOnlyChanged(bool value) => TriggerAutoRerunIfAllowed();
+    partial void OnSelectedStatusIndexChanged(int value) => TriggerAutoRerunIfAllowed();
+    partial void OnSelectedTagFilterIndexChanged(int value) => TriggerAutoRerunIfAllowed();
+    partial void OnSelectedContextIndexChanged(int value) => TriggerAutoRerunIfAllowed();
+    partial void OnSearchOriginalChanged(bool value) => TriggerAutoRerunIfAllowed();
+    partial void OnSearchTranslatedChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSelectedCoocMetricIndexChanged(int value) => _ = RefreshCoocUiFromCurrentStateAsync();
 
     // ----- Public wiring methods (called by MainWindow via code-behind) -----
@@ -233,16 +248,24 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         var items = new List<string> { "All Tags" };
         _tagsByName = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        _tagNameById = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        _tagIdByName = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         if (tags != null && vocab != null)
         {
-            var tagLookup = new Dictionary<string, string>();
             foreach (var t in vocab.Tags)
-                tagLookup[t.Id] = t.DisplayName;
+            {
+                if (string.IsNullOrWhiteSpace(t.Id) || string.IsNullOrWhiteSpace(t.DisplayName))
+                    continue;
+
+                _tagNameById[t.Id] = t.DisplayName;
+                if (!_tagIdByName.ContainsKey(t.DisplayName))
+                    _tagIdByName[t.DisplayName] = t.Id;
+            }
 
             foreach (var tag in tags)
             {
-                if (!tagLookup.TryGetValue(tag.TagId, out var name)) continue;
+                if (!_tagNameById.TryGetValue(tag.TagId, out var name)) continue;
                 if (!_tagsByName.TryGetValue(name, out var paths))
                 {
                     paths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -256,7 +279,68 @@ public partial class SearchTabViewModel : ViewModelBase
         }
 
         TagFilterItems = items;
-        SelectedTagFilterIndex = 0;
+
+        if (!TryRestorePendingTagFilter())
+        {
+            if (SelectedTagFilterIndex < 0 || SelectedTagFilterIndex >= items.Count)
+                SelectedTagFilterIndex = 0;
+        }
+    }
+
+    public SearchUiState ExportUiState()
+    {
+        var selectedTagName = SelectedTagFilterIndex > 0 && SelectedTagFilterIndex < TagFilterItems.Count
+            ? TagFilterItems[SelectedTagFilterIndex]
+            : null;
+
+        string? selectedTagId = null;
+        if (!string.IsNullOrWhiteSpace(selectedTagName) && _tagIdByName != null)
+            _tagIdByName.TryGetValue(selectedTagName, out selectedTagId);
+
+        return new SearchUiState
+        {
+            Query = Query,
+            SearchOriginal = SearchOriginal,
+            SearchTranslated = SearchTranslated,
+            ZenOnly = ZenOnly,
+            SelectedStatusIndex = SelectedStatusIndex,
+            SelectedContextIndex = SelectedContextIndex,
+            SelectedTagFilterName = selectedTagName,
+            SelectedTagFilterId = selectedTagId
+        };
+    }
+
+    public Task ApplyUiStateAsync(SearchUiState? state, bool executeSearch = false)
+    {
+        state ??= new SearchUiState();
+
+        BeginBatchedStateApply();
+        try
+        {
+            Query = state.Query ?? "";
+            SearchOriginal = state.SearchOriginal;
+            SearchTranslated = state.SearchTranslated;
+            ZenOnly = state.ZenOnly;
+            SelectedStatusIndex = CoerceIndex(state.SelectedStatusIndex, StatusItems.Length);
+            SelectedContextIndex = CoerceIndex(state.SelectedContextIndex, ContextItems.Length);
+
+            if (!string.IsNullOrWhiteSpace(state.SelectedTagFilterId))
+            {
+                _pendingRestoredTagId = state.SelectedTagFilterId;
+                TryRestorePendingTagFilter();
+            }
+            else
+            {
+                _pendingRestoredTagId = null;
+                SelectedTagFilterIndex = ResolveTagFilterIndex(state.SelectedTagFilterName, null);
+            }
+        }
+        finally
+        {
+            EndBatchedStateApply();
+        }
+
+        return executeSearch ? StartSearchAsync() : Task.CompletedTask;
     }
 
     public void Clear()
@@ -282,6 +366,9 @@ public partial class SearchTabViewModel : ViewModelBase
 
         ZenOnly = false;
         _tagsByName = null;
+        _tagNameById = null;
+        _tagIdByName = null;
+        _pendingRestoredTagId = null;
         TagFilterItems = new List<string> { "All Tags" };
         SelectedTagFilterIndex = 0;
         ClearCoocUi();
@@ -846,6 +933,67 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // ----- Helpers -----
 
+    private void TriggerAutoRerunIfAllowed()
+    {
+        if (_batchedStateDepth > 0)
+            return;
+
+        _ = TriggerAutoRerunAsync();
+    }
+
+    private void BeginBatchedStateApply()
+    {
+        _batchedStateDepth++;
+    }
+
+    private void EndBatchedStateApply()
+    {
+        if (_batchedStateDepth > 0)
+            _batchedStateDepth--;
+    }
+
+    private static int CoerceIndex(int index, int itemCount)
+    {
+        if (itemCount <= 0)
+            return 0;
+
+        if (index < 0)
+            return 0;
+
+        return index >= itemCount ? 0 : index;
+    }
+
+    private int ResolveTagFilterIndex(string? tagFilterName, string? tagFilterId)
+    {
+        if (!string.IsNullOrWhiteSpace(tagFilterId) && _tagNameById != null && _tagNameById.TryGetValue(tagFilterId, out var resolvedName))
+            tagFilterName = resolvedName;
+
+        if (string.IsNullOrWhiteSpace(tagFilterName))
+            return 0;
+
+        for (int i = 1; i < TagFilterItems.Count; i++)
+        {
+            if (string.Equals(TagFilterItems[i], tagFilterName, StringComparison.OrdinalIgnoreCase))
+                return i;
+        }
+
+        return 0;
+    }
+
+    private bool TryRestorePendingTagFilter()
+    {
+        if (string.IsNullOrWhiteSpace(_pendingRestoredTagId))
+            return false;
+
+        int index = ResolveTagFilterIndex(null, _pendingRestoredTagId);
+        if (index <= 0)
+            return false;
+
+        SelectedTagFilterIndex = index;
+        _pendingRestoredTagId = null;
+        return true;
+    }
+
     private static string EscapeTsv(string s)
     {
         s ??= "";
@@ -926,3 +1074,12 @@ t-score/dispersion = 'reliable and common'
 dominance = 'artifact detector'";
     }
 }
+
+
+
+
+
+
+
+
+

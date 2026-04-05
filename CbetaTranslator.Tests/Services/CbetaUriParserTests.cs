@@ -1,4 +1,4 @@
-﻿using CbetaTranslator.App.Models;
+using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using Xunit;
 
@@ -41,7 +41,7 @@ public class CbetaUriParserTests
         Assert.Equal(expected, CbetaUriParser.RelPathToFileId(relPath));
     }
 
-    // ==== BuildUri â€” clean format ====
+    // ==== BuildUri Ã¢â‚¬â€ clean format ====
 
     [Fact]
     public void BuildUri_FileOnly_ProducesCleanUri()
@@ -104,7 +104,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_CjkHighlight_EncodesCorrectly()
     {
-        var cjkText = "\u4f5b\u8aaa\u963f\u5f4c\u9640\u7d93"; // ä½›èªªé˜¿å½Œé™€ç¶“
+        var cjkText = "\u4f5b\u8aaa\u963f\u5f4c\u9640\u7d93"; // Ã¤Â½â€ºÃ¨ÂªÂªÃ©ËœÂ¿Ã¥Â½Å’Ã©â„¢â‚¬Ã§Â¶â€œ
         var uri = CbetaUriParser.BuildUri("T/T12/T12n0366.xml", highlightText: cjkText);
 
         // URI should not contain raw CJK characters
@@ -153,7 +153,7 @@ public class CbetaUriParserTests
         Assert.DoesNotContain("\\", uri);
     }
 
-    // ==== TryParse â€” clean format ====
+    // ==== TryParse Ã¢â‚¬â€ clean format ====
 
     [Fact]
     public void TryParse_CleanFormat_FileOnly()
@@ -243,7 +243,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_CjkHighlight()
     {
-        var cjkText = "\u4f5b\u8aaa"; // ä½›èªª
+        var cjkText = "\u4f5b\u8aaa"; // Ã¤Â½â€ºÃ¨ÂªÂª
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T01n0001?highlight={encoded}";
 
@@ -254,7 +254,7 @@ public class CbetaUriParserTests
         Assert.Equal(cjkText, result.MatchText);
     }
 
-    // ==== TryParse â€” legacy format (backward compatibility) ====
+    // ==== TryParse Ã¢â‚¬â€ legacy format (backward compatibility) ====
 
     [Fact]
     public void TryParse_LegacyFormat_AllParams()
@@ -323,7 +323,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_LegacyFormat_CjkHighlight()
     {
-        var cjkText = "\u4f5b\u8aaa"; // ä½›èªª
+        var cjkText = "\u4f5b\u8aaa"; // Ã¤Â½â€ºÃ¨ÂªÂª
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T/T01/T01n0001.xml?highlight={encoded}";
 
@@ -333,7 +333,7 @@ public class CbetaUriParserTests
         Assert.Equal(cjkText, result.MatchText);
     }
 
-    // ==== TryParse â€” malformed input ====
+    // ==== TryParse Ã¢â‚¬â€ malformed input ====
 
     [Theory]
     [InlineData(null)]
@@ -411,7 +411,7 @@ public class CbetaUriParserTests
     [Fact]
     public void RoundTrip_CjkHighlight_PreservesText()
     {
-        var cjkText = "\u5982\u662f\u6211\u805e"; // å¦‚æ˜¯æˆ‘èž
+        var cjkText = "\u5982\u662f\u6211\u805e"; // Ã¥Â¦â€šÃ¦ËœÂ¯Ã¦Ë†â€˜Ã¨ÂÅ¾
         var relPath = "T/T01/T01n0001.xml";
 
         var uri = CbetaUriParser.BuildUri(relPath, highlightText: cjkText);
@@ -583,6 +583,71 @@ public class CbetaUriParserTests
         Assert.Null(result.SearchCorpus);
     }
 
+
+    [Fact]
+    public void TryParseDeepLink_SearchLink_QueryOnly_HasNullExtendedState()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("test", result.SearchQuery);
+        Assert.Null(result.SearchCorpus);
+        Assert.Null(result.SearchOriginal);
+        Assert.Null(result.SearchTranslated);
+        Assert.Null(result.SearchZenOnly);
+        Assert.Null(result.SearchStatusIndex);
+        Assert.Null(result.SearchTagId);
+        Assert.Null(result.SearchContextIndex);
+        Assert.Null(result.SearchTranslationSource);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_SearchLink_RichState_ParsesCanonicalFields()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test&corpus=T&src=alice&orig=1&tran=0&zen=true&status=2&tag=topic-1&ctx=3");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("test", result.SearchQuery);
+        Assert.Equal("T", result.SearchCorpus);
+        Assert.Equal("alice", result.SearchTranslationSource);
+        Assert.True(result.SearchOriginal);
+        Assert.False(result.SearchTranslated);
+        Assert.True(result.SearchZenOnly);
+        Assert.Equal(2, result.SearchStatusIndex);
+        Assert.Equal("topic-1", result.SearchTagId);
+        Assert.Equal(3, result.SearchContextIndex);
+    }
+
+    [Fact]
+    public void BuildSearchUri_RoundTrip_RichState()
+    {
+        var uri = CbetaUriParser.BuildSearchUri(
+            "test",
+            corpus: "T",
+            searchOriginal: true,
+            searchTranslated: false,
+            zenOnly: true,
+            statusIndex: 2,
+            tagId: "topic-1",
+            contextIndex: 0,
+            translationSource: "alice");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Search, result.Kind);
+        Assert.Equal("test", result.SearchQuery);
+        Assert.Equal("T", result.SearchCorpus);
+        Assert.True(result.SearchOriginal);
+        Assert.False(result.SearchTranslated);
+        Assert.True(result.SearchZenOnly);
+        Assert.Equal(2, result.SearchStatusIndex);
+        Assert.Equal("topic-1", result.SearchTagId);
+        Assert.Equal(0, result.SearchContextIndex);
+        Assert.Equal("alice", result.SearchTranslationSource);
+    }
+
     [Fact]
     public void TryParseDeepLink_TagsLink_ReturnsTagsKind()
     {
@@ -610,11 +675,11 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TermLink_ReturnsTermbaseKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://term/èˆ¬è‹¥");
+        var result = CbetaUriParser.TryParseDeepLink("zen://term/Ã¨Ë†Â¬Ã¨â€¹Â¥");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
-        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Equal("Ã¨Ë†Â¬Ã¨â€¹Â¥", result.TermbaseEntry);
         Assert.Null(result.TermbaseUser);
     }
 
@@ -655,14 +720,36 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TermLink_WithUser_ReturnsTermbaseKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://term/èˆ¬è‹¥/alice");
+        var result = CbetaUriParser.TryParseDeepLink("zen://term/Ã¨Ë†Â¬Ã¨â€¹Â¥/alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
-        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Equal("Ã¨Ë†Â¬Ã¨â€¹Â¥", result.TermbaseEntry);
         Assert.Equal("alice", result.TermbaseUser);
     }
 
+
+    [Fact]
+    public void TryParseDeepLink_MasterLink_ReturnsMasterKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Master, result.Kind);
+        Assert.Equal("Linji Yixuan", result.MasterName);
+        Assert.Null(result.MasterUser);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_MasterLink_WithUser_ReturnsMasterKind()
+    {
+        var result = CbetaUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan/alice");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Master, result.Kind);
+        Assert.Equal("Linji Yixuan", result.MasterName);
+        Assert.Equal("alice", result.MasterUser);
+    }
     [Fact]
     public void TryParseDeepLink_HttpsDict_Works()
     {
@@ -675,6 +762,18 @@ public class CbetaUriParserTests
 
     // ==== Deep-link builder round-trips ====
 
+
+    [Fact]
+    public void BuildMasterUri_RoundTrip()
+    {
+        var uri = CbetaUriParser.BuildMasterUri("Linji Yixuan", "alice");
+        var result = CbetaUriParser.TryParseDeepLink(uri);
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Master, result.Kind);
+        Assert.Equal("Linji Yixuan", result.MasterName);
+        Assert.Equal("alice", result.MasterUser);
+    }
     [Fact]
     public void BuildDictUri_RoundTrip()
     {
@@ -726,16 +825,16 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTermUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTermUri("èˆ¬è‹¥", "alice");
+        var uri = CbetaUriParser.BuildTermUri("Ã¨Ë†Â¬Ã¨â€¹Â¥", "alice");
         var result = CbetaUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
-        Assert.Equal("èˆ¬è‹¥", result.TermbaseEntry);
+        Assert.Equal("Ã¨Ë†Â¬Ã¨â€¹Â¥", result.TermbaseEntry);
         Assert.Equal("alice", result.TermbaseUser);
     }
 
-    // ==== Per-user deep links â€” Passage ====
+    // ==== Per-user deep links Ã¢â‚¬â€ Passage ====
 
     [Fact]
     public void TryParse_PassageWithUser_ExtractsUser()
@@ -803,7 +902,7 @@ public class CbetaUriParserTests
         Assert.Equal(SearchSide.Translated, result.Side);
     }
 
-    // ==== Per-user deep links â€” Scholar ====
+    // ==== Per-user deep links Ã¢â‚¬â€ Scholar ====
 
     [Fact]
     public void TryParseDeepLink_ScholarWithUser()
@@ -839,7 +938,7 @@ public class CbetaUriParserTests
         Assert.Equal("bob", result.ScholarUser);
     }
 
-    // ==== Per-user deep links â€” Tags ====
+    // ==== Per-user deep links Ã¢â‚¬â€ Tags ====
 
     [Fact]
     public void TryParseDeepLink_TagsPathUser()

@@ -571,4 +571,67 @@ public class MainWindowViewModelTests
                 Directory.Delete(root, recursive: true);
         }
     }
+
+    [Fact]
+    public async Task RestoreSearchTranslationSourceAsync_MapsMeCommunityAndOtherUser()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            Assert.Equal("me", vm.GetActiveSearchSourceKey());
+
+            await vm.RestoreSearchTranslationSourceAsync("community");
+            Assert.Equal(1, vm.GetActiveTranslationSourceIndex());
+            Assert.Equal("community", vm.GetActiveSearchSourceKey());
+
+            await vm.RestoreSearchTranslationSourceAsync("otheruser");
+            Assert.Equal(2, vm.GetActiveTranslationSourceIndex());
+            Assert.Equal("otheruser", vm.GetActiveSearchSourceKey());
+
+            await vm.RestoreSearchTranslationSourceAsync("me");
+            Assert.Equal(0, vm.GetActiveTranslationSourceIndex());
+            Assert.Equal("me", vm.GetActiveSearchSourceKey());
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task RestoreSearchTranslationSourceAsync_InvalidSource_FallsBackSafely()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            var restored = await vm.RestoreSearchTranslationSourceAsync("missing-user");
+
+            Assert.False(restored);
+            Assert.Equal(0, vm.GetActiveTranslationSourceIndex());
+            Assert.Equal("me", vm.GetActiveSearchSourceKey());
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
 }

@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="using:CbetaTranslator.App.Models"
+        xmlns:vm="using:CbetaTranslator.App.ViewModels"
+        x:Class="CbetaTranslator.App.Views.ZenMasterManagerWindow"
+        x:DataType="vm:ZenMasterManagerWindowViewModel"
+        Width="880"
+        Height="620"
+        Title="Zen Masters"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="*,Auto" ColumnDefinitions="280,12,*" Margin="12">
+    <Border Grid.Row="0" Grid.Column="0"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="8">
+      <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+        <TextBox Grid.Row="0" Text="{Binding FilterText}" Watermark="Search masters or aliases..."/>
+        <TextBlock Grid.Row="1" Text="{Binding StatusText}" Classes="muted" FontSize="11"/>
+        <ListBox Grid.Row="2" ItemsSource="{Binding Masters}" SelectedItem="{Binding SelectedMaster}">
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="models:ZenMasterRecord">
+              <StackPanel Margin="2" Spacing="1">
+                <TextBlock Text="{Binding CanonicalName}" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding DatesSummary}" Classes="muted" FontSize="11"/>
+                <TextBlock Text="{Binding SourceSummary}" Classes="muted" FontSize="10"/>
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+    </Border>
+
+    <GridSplitter Grid.Row="0" Grid.Column="1" Width="12" ResizeDirection="Columns" Background="Transparent"/>
+
+    <Border Grid.Row="0" Grid.Column="2"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="12">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10">
+        <TextBlock Grid.Row="0" Text="{Binding SelectedMaster.CanonicalName}" FontSize="22" FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Spacing="4">
+          <TextBlock Text="Aliases" FontWeight="SemiBold"/>
+          <TextBlock Text="{Binding SelectedAliasesText}" TextWrapping="Wrap" IsVisible="{Binding HasSelection}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+          <TextBlock Text="Dates" FontWeight="SemiBold"/>
+          <TextBlock Grid.Column="1" Text="{Binding SelectedDatesText}" TextWrapping="Wrap"/>
+        </Grid>
+
+        <Grid Grid.Row="3" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+          <TextBlock Text="Sources" FontWeight="SemiBold"/>
+          <TextBlock Grid.Column="1" Text="{Binding SelectedSourceText}" TextWrapping="Wrap"/>
+        </Grid>
+
+        <StackPanel Grid.Row="4" Spacing="6">
+          <TextBlock Text="Variants" FontWeight="SemiBold"/>
+          <ListBox ItemsSource="{Binding SelectedMaster.Variants}" IsVisible="{Binding HasSelection}">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="models:ZenMasterVariant">
+                <Border Background="{DynamicResource PanelAltBg}" CornerRadius="4" Padding="8" Margin="0,0,0,4">
+                  <StackPanel Spacing="2">
+                    <TextBlock Text="{Binding PrimaryName}" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding DatesSummary}" FontSize="11" Classes="muted"/>
+                    <TextBlock Text="{Binding SourceSummary}" FontSize="11" Classes="muted"/>
+                    <TextBlock Text="{Binding Names.Count, StringFormat=Aliases: {0}}" FontSize="10" Classes="muted"/>
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          <TextBlock Text="Select a master from the left to inspect dates, aliases, and community variants."
+                     Classes="muted"
+                     IsVisible="{Binding HasNoSelection}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+          <Button Name="BtnCopyLink" Content="Copy Link" MinWidth="100"/>
+          <Button Name="BtnEditDates" Content="Edit Dates" MinWidth="100"/>
+          <Button Name="BtnClose" Content="Close" MinWidth="100"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Grid>
+</Window>
+

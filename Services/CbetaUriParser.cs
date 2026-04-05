@@ -57,7 +57,7 @@ public static class CbetaUriParser
 
         // Convert shareable HTTPS URLs to zen:// format before parsing.
         // e.g. https://readzen.pages.dev/#/T48n2005/0292b29?side=Translated
-        //    â†’ zen://T48n2005/0292b29?side=Translated
+        //    ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ zen://T48n2005/0292b29?side=Translated
         if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
             uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
         {
@@ -156,7 +156,7 @@ public static class CbetaUriParser
     /// </summary>
     private static bool IsLbSegment(string segment)
     {
-        // A range like "0292a26-0292a29" also counts â€” check the first part before any dash.
+        // A range like "0292a26-0292a29" also counts ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â check the first part before any dash.
         var first = segment.Split('-')[0];
         return first.Length >= 7
             && char.IsDigit(first[0]) && char.IsDigit(first[1])
@@ -285,9 +285,9 @@ public static class CbetaUriParser
 
         if (!string.IsNullOrEmpty(highlightText))
         {
-            // Truncate highlight to keep URLs short â€” 60 chars is enough to find the right spot
+            // Truncate highlight to keep URLs short ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â 60 chars is enough to find the right spot
             var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
-            // Also strip newlines â€” they bloat the URL and aren't needed for matching
+            // Also strip newlines ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â they bloat the URL and aren't needed for matching
             truncated = truncated.Replace("\n", "").Replace("\r", "");
             queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
         }
@@ -319,7 +319,7 @@ public static class CbetaUriParser
         SearchSide side = SearchSide.Original,
         string? user = null)
     {
-        // Extract file ID from relPath: "T/T48/T48n2005.xml" â†’ "T48n2005"
+        // Extract file ID from relPath: "T/T48/T48n2005.xml" ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ "T48n2005"
         var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
         var url = ShareableBase + Uri.EscapeDataString(fileName);
 
@@ -360,7 +360,7 @@ public static class CbetaUriParser
 
     /// <summary>
     /// Parses any <c>zen://</c> or shareable HTTPS URL into a <see cref="DeepLinkRequest"/>.
-    /// Recognises keyword-prefixed paths (<c>zen://dict/â€¦</c>, <c>zen://scholar/â€¦</c>, etc.)
+    /// Recognises keyword-prefixed paths (<c>zen://dict/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, <c>zen://scholar/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, etc.)
     /// and falls back to passage-based parsing via <see cref="TryParse"/> for file IDs.
     /// Returns <c>null</c> if the URI is malformed.
     /// </summary>
@@ -422,7 +422,18 @@ public static class CbetaUriParser
                 {
                     Kind = DeepLinkKind.Search,
                     SearchQuery = query.TryGetValue("q", out var sq) ? sq : null,
-                    SearchCorpus = query.TryGetValue("corpus", out var sc) ? sc : null,
+                    SearchCorpus = query.TryGetValue("corpus", out var corpus) ? corpus : null,
+                    SearchOriginal = TryParseBooleanQuery(query, "orig"),
+                    SearchTranslated = TryParseBooleanQuery(query, "tran"),
+                    SearchZenOnly = TryParseBooleanQuery(query, "zen"),
+                    SearchStatusIndex = TryParseIntegerQuery(query, "status", "statusIndex"),
+                    SearchTagId = query.TryGetValue("tag", out var tag)
+                        ? tag
+                        : (query.TryGetValue("tagId", out var legacyTag) ? legacyTag : null),
+                    SearchContextIndex = TryParseIntegerQuery(query, "ctx", "context", "contextIndex"),
+                    SearchTranslationSource = query.TryGetValue("src", out var src)
+                        ? src
+                        : (query.TryGetValue("translationSource", out var legacySrc) ? legacySrc : null),
                 };
 
             case "tags":
@@ -447,16 +458,25 @@ public static class CbetaUriParser
 
             case "term":
                 if (segments.Length < 2) return null;
-                // Termbase merged with dictionary â€” both route to Dictionary kind
+                // Termbase merged with dictionary ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â both route to Dictionary kind
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Termbase,
                     TermbaseEntry = Uri.UnescapeDataString(segments[1]),
                     TermbaseUser = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
                 };
+
+            case "master":
+                if (segments.Length < 2) return null;
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Master,
+                    MasterName = Uri.UnescapeDataString(segments[1]),
+                    MasterUser = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
+                };
         }
 
-        // No keyword match â€” fall through to passage parsing
+        // No keyword match ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â fall through to passage parsing
         var nav = TryParse(raw);
         return nav != null ? new DeepLinkRequest { Kind = DeepLinkKind.Passage, Passage = nav } : null;
     }
@@ -478,10 +498,41 @@ public static class CbetaUriParser
         return uri;
     }
 
-    public static string BuildSearchUri(string query, string? corpus = null)
-        => corpus != null
-            ? $"{Scheme}://search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
-            : $"{Scheme}://search?q={Uri.EscapeDataString(query)}";
+    public static string BuildSearchUri(
+        string query,
+        string? corpus = null,
+        bool? searchOriginal = null,
+        bool? searchTranslated = null,
+        bool? zenOnly = null,
+        int? statusIndex = null,
+        string? tagId = null,
+        int? contextIndex = null,
+        string? translationSource = null)
+    {
+        var queryParts = new List<string>
+        {
+            "q=" + Uri.EscapeDataString(query)
+        };
+
+        if (!string.IsNullOrEmpty(corpus))
+            queryParts.Add("corpus=" + Uri.EscapeDataString(corpus));
+        if (searchOriginal.HasValue)
+            queryParts.Add("orig=" + FormatBooleanQuery(searchOriginal.Value));
+        if (searchTranslated.HasValue)
+            queryParts.Add("tran=" + FormatBooleanQuery(searchTranslated.Value));
+        if (zenOnly.HasValue)
+            queryParts.Add("zen=" + FormatBooleanQuery(zenOnly.Value));
+        if (statusIndex.HasValue)
+            queryParts.Add("status=" + statusIndex.Value.ToString());
+        if (!string.IsNullOrEmpty(tagId))
+            queryParts.Add("tag=" + Uri.EscapeDataString(tagId));
+        if (contextIndex.HasValue)
+            queryParts.Add("ctx=" + contextIndex.Value.ToString());
+        if (!string.IsNullOrEmpty(translationSource))
+            queryParts.Add("src=" + Uri.EscapeDataString(translationSource));
+
+        return $"{Scheme}://search?{string.Join("&", queryParts)}";
+    }
 
     public static string BuildTagsUri(string fileId, string? user = null, string? tagId = null)
     {
@@ -502,6 +553,11 @@ public static class CbetaUriParser
             ? $"{Scheme}://term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
             : $"{Scheme}://term/{Uri.EscapeDataString(term)}";
 
+    public static string BuildMasterUri(string name, string? user = null)
+        => !string.IsNullOrEmpty(user)
+            ? $"{Scheme}://master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
+            : $"{Scheme}://master/{Uri.EscapeDataString(name)}";
+
     // ---------------------------------------------------------------
     //  Shareable HTTPS URL builders for new deep-link kinds
     // ---------------------------------------------------------------
@@ -519,10 +575,41 @@ public static class CbetaUriParser
         return url;
     }
 
-    public static string BuildShareableSearchUrl(string query, string? corpus = null)
-        => corpus != null
-            ? $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}&corpus={Uri.EscapeDataString(corpus)}"
-            : $"{ShareableBase}#/search?q={Uri.EscapeDataString(query)}";
+    public static string BuildShareableSearchUrl(
+        string query,
+        string? corpus = null,
+        bool? searchOriginal = null,
+        bool? searchTranslated = null,
+        bool? zenOnly = null,
+        int? statusIndex = null,
+        string? tagId = null,
+        int? contextIndex = null,
+        string? translationSource = null)
+    {
+        var queryParts = new List<string>
+        {
+            "q=" + Uri.EscapeDataString(query)
+        };
+
+        if (!string.IsNullOrEmpty(corpus))
+            queryParts.Add("corpus=" + Uri.EscapeDataString(corpus));
+        if (searchOriginal.HasValue)
+            queryParts.Add("orig=" + FormatBooleanQuery(searchOriginal.Value));
+        if (searchTranslated.HasValue)
+            queryParts.Add("tran=" + FormatBooleanQuery(searchTranslated.Value));
+        if (zenOnly.HasValue)
+            queryParts.Add("zen=" + FormatBooleanQuery(zenOnly.Value));
+        if (statusIndex.HasValue)
+            queryParts.Add("status=" + statusIndex.Value.ToString());
+        if (!string.IsNullOrEmpty(tagId))
+            queryParts.Add("tag=" + Uri.EscapeDataString(tagId));
+        if (contextIndex.HasValue)
+            queryParts.Add("ctx=" + contextIndex.Value.ToString());
+        if (!string.IsNullOrEmpty(translationSource))
+            queryParts.Add("src=" + Uri.EscapeDataString(translationSource));
+
+        return $"{ShareableBase}#/search?{string.Join("&", queryParts)}";
+    }
 
     public static string BuildShareableTagsUrl(string fileId, string? user = null, string? tagId = null)
     {
@@ -543,7 +630,38 @@ public static class CbetaUriParser
             ? $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
             : $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}";
 
+    public static string BuildShareableMasterUrl(string name, string? user = null)
+        => !string.IsNullOrEmpty(user)
+            ? $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
+            : $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}";
+
     // ---------------------------------------------------------------
+
+    private static bool? TryParseBooleanQuery(Dictionary<string, string> query, string key)
+    {
+        if (!query.TryGetValue(key, out var raw) || string.IsNullOrWhiteSpace(raw))
+            return null;
+
+        return raw.Trim().ToLowerInvariant() switch
+        {
+            "1" or "true" or "yes" or "on" => true,
+            "0" or "false" or "no" or "off" => false,
+            _ => null,
+        };
+    }
+
+    private static int? TryParseIntegerQuery(Dictionary<string, string> query, params string[] keys)
+    {
+        foreach (var key in keys)
+        {
+            if (query.TryGetValue(key, out var raw) && int.TryParse(raw, out var value))
+                return value;
+        }
+
+        return null;
+    }
+
+    private static string FormatBooleanQuery(bool value) => value ? "1" : "0";
 
     /// <summary>
     /// Minimal query-string parser that avoids System.Web.HttpUtility

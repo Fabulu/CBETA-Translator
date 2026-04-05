@@ -1,4 +1,4 @@
-﻿// Views/MainWindow.axaml.cs
+// Views/MainWindow.axaml.cs
 //
 // Thin code-behind after Wave 5 MVVM extraction.
 // Responsibilities: control lookup, bridge wiring, dialogs, window chrome,
@@ -73,6 +73,9 @@ public partial class MainWindow : Window
 
     // Tag editor (non-modal -- at most one instance per main window)
     private TagEditorWindow? _tagEditorWindow;
+
+    // Zen Master manager (non-modal -- at most one instance per main window)
+    private ZenMasterManagerWindow? _zenMasterManagerWindow;
 
     // Tour overlay controls
     private Canvas? _tourOverlayCanvas;
@@ -192,13 +195,16 @@ public partial class MainWindow : Window
             await HandleScholarDeepLinkAsync(request.ScholarCollectionId, request.ScholarPassageId, request.ScholarUser);
             break;
         case DeepLinkKind.Search:
-            HandleSearchDeepLink(request.SearchQuery);
+            await HandleSearchDeepLinkAsync(request);
             break;
         case DeepLinkKind.Tags:
             await HandleTagsDeepLinkAsync(request.TagsRelPath, request.TagsUser, request.TagsTagId);
             break;
         case DeepLinkKind.Termbase:
             await HandleDictDeepLinkAsync(request.TermbaseEntry ?? request.DictTerm, request.TermbaseUser, isLegacyDictionaryAlias: false);
+            break;
+        case DeepLinkKind.Master:
+            await HandleMasterDeepLinkAsync(request.MasterName, request.MasterUser);
             break;
     }
 }
@@ -213,6 +219,17 @@ private async Task HandleDictDeepLinkAsync(string? term, string? user, bool isLe
 
     await _vm.OpenTermbaseEditorAsync(term, user);
     _vm.SetStatus($"Opened dictionary for \"{term}\"" + (!string.IsNullOrWhiteSpace(user) ? $" (user: {user})" : "") + ".", StatusSeverity.Info);
+}
+
+private async Task HandleMasterDeepLinkAsync(string? name, string? user)
+{
+    if (string.IsNullOrWhiteSpace(name))
+    {
+        _vm.SetStatus("Master link: no name specified.", StatusSeverity.Warning);
+        return;
+    }
+
+    await OpenZenMasterManagerWindowAsync(name, user);
 }
 
 private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId, string? user)
@@ -234,19 +251,33 @@ private async Task HandleScholarDeepLinkAsync(string? collectionId, string? pass
     }
 }
 
-private void HandleSearchDeepLink(string? query)
+private async Task HandleSearchDeepLinkAsync(DeepLinkRequest request)
 {
-    if (string.IsNullOrWhiteSpace(query))
+    if (string.IsNullOrWhiteSpace(request.SearchQuery))
     {
         _vm.SetStatus("Search link: no query specified.", StatusSeverity.Warning);
         return;
     }
 
+    if (!string.IsNullOrWhiteSpace(request.SearchTranslationSource))
+        await _vm.RestoreSearchTranslationSourceAsync(request.SearchTranslationSource);
+
+    var uiState = new SearchTabViewModel.SearchUiState
+    {
+        Query = request.SearchQuery,
+        SearchOriginal = request.SearchOriginal ?? true,
+        SearchTranslated = request.SearchTranslated ?? false,
+        ZenOnly = request.SearchZenOnly ?? false,
+        SelectedStatusIndex = request.SearchStatusIndex ?? 0,
+        SelectedContextIndex = request.SearchContextIndex ?? 1,
+        SelectedTagFilterId = request.SearchTagId
+    };
+
     ForceTab(2);
     if (_searchView != null)
-        _searchView.SetSearchTextAndExecute(query);
+        await _searchView.ApplyUiStateAsync(uiState, executeSearch: true);
 
-    _vm.SetStatus($"Searching: \"{query}\"");
+    _vm.SetStatus($"Searching: \"{request.SearchQuery}\"");
 }
 
 private async Task HandleTagsDeepLinkAsync(string? relPath, string? user, string? tagId)
@@ -946,6 +977,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.OpenTermbaseEditorAsync();
             };
 
+            _scholarView.ZenMastersRequested += async (_, _) =>
+            {
+                await OpenZenMasterManagerWindowAsync();
+            };
+
             // Reload scholar data when ANY window (including secondary) adds a passage
             if (!IsSecondaryWindow)
             {
@@ -1282,6 +1318,42 @@ private async Task LoadConfigAndAutoloadAsync()
         }
     }
 
+    // ===========================================================
+    // Zen Master manager window
+    // ===========================================================
+
+    private Task OpenZenMasterManagerWindowAsync(string? landingName = null, string? landingUser = null)
+    {
+        try
+        {
+            if (_zenMasterManagerWindow != null)
+            {
+                _zenMasterManagerWindow.ApplyLanding(landingName, landingUser);
+                _zenMasterManagerWindow.Activate();
+                return Task.CompletedTask;
+            }
+
+            var win = new ZenMasterManagerWindow(_vm.Root)
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+
+            win.ApplyLanding(landingName, landingUser);
+            win.Closed += (_, _) => _zenMasterManagerWindow = null;
+
+            _zenMasterManagerWindow = win;
+            win.Show();
+
+            if (!string.IsNullOrWhiteSpace(landingName))
+                _vm.SetStatus($"Opened Zen Master Manager for \"{landingName}\"." , StatusSeverity.Info);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open Zen Master Manager failed: " + ex.Message, StatusSeverity.Warning);
+        }
+
+        return Task.CompletedTask;
+    }
     // ===========================================================
     // Tag editor window
     // ===========================================================

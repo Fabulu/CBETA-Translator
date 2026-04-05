@@ -67,6 +67,7 @@ public partial class ScholarTabView : UserControl
     public Func<string?, string>? SourceTitleResolver { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
+    public event EventHandler? ZenMastersRequested;
 
     public ScholarTabView()
     {
@@ -269,6 +270,12 @@ public partial class ScholarTabView : UserControl
         if (btnDict != null)
         {
             btnDict.Click += (_, _) => DictionaryRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        var btnZenMasters = this.FindControl<Button>("BtnZenMasters");
+        if (btnZenMasters != null)
+        {
+            btnZenMasters.Click += (_, _) => ZenMastersRequested?.Invoke(this, EventArgs.Empty);
         }
 
         // Edit Master Dates button
@@ -1466,21 +1473,40 @@ public partial class ScholarTabView : UserControl
 
     private async Task OnEditMasterDatesClickedAsync()
     {
-        var topLevel = TopLevel.GetTopLevel(this) as Window;
-        if (topLevel == null) return;
+        var owner = GetOwnerWindow();
+        if (owner == null) return;
 
         var filePath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
         var repoRoot = _vm.GetRoot();
-        var dlg = new MasterDatesEditorDialog(filePath, repoRoot)
-        {
-            WindowStartupLocation = WindowStartupLocation.CenterOwner
-        };
-        await dlg.ShowDialog(topLevel);
-
-        if (dlg.Saved)
+        if (await ShowMasterDatesEditorDialogAsync(owner, filePath, repoRoot))
         {
             _vm.InvalidateMasterDatesCache();
+            ReloadScholarData(repoRoot);
             Status?.Invoke(this, "Master dates updated.");
+        }
+    }
+
+
+    protected virtual Window? GetOwnerWindow() => TopLevel.GetTopLevel(this) as Window;
+
+    protected virtual async Task<bool> ShowMasterDatesEditorDialogAsync(Window owner, string filePath, string? repoRoot)
+    {
+        var dlg = new MasterDatesEditorDialog(filePath, repoRoot)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            RequestedThemeVariant = ActualThemeVariant
+        };
+        await dlg.ShowDialog(owner);
+        return dlg.Saved;
+    }
+
+
+    protected virtual void ReloadScholarData(string? root)
+    {
+        if (!string.IsNullOrWhiteSpace(root))
+        {
+            _vm.SetRoot(root);
+            _ = RefreshAssistantAsync();
         }
     }
 
