@@ -1,4 +1,4 @@
-﻿// Services/IndexedTranslationService.cs
+// Services/IndexedTranslationService.cs
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1274,7 +1274,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         if (el.Name == Tei + "note")
             return TranslationUnitKind.Note;
 
-        // Everything inside body is Body mode otherwise (including heads, mulu, etc.)
+        // Everything inside body is Body mode otherwise (including heads, but excluding cb:mulu duplicates).
         return TranslationUnitKind.Body;
     }
 
