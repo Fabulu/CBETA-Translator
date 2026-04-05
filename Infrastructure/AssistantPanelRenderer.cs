@@ -23,6 +23,13 @@ namespace CbetaTranslator.App.Infrastructure;
 /// </summary>
 internal sealed record AssistantTextRange(int Start, int Length);
 
+internal enum AssistantHighlightStyle
+{
+    None = 0,
+    Term = 1,
+    Tm = 2
+}
+
 /// <summary>
 /// Static helper that renders <see cref="TranslationAssistantSnapshot"/> content
 /// into StackPanel hosts.  Shared between TranslationTabView and ScholarTabView.
@@ -127,7 +134,14 @@ internal static class AssistantPanelRenderer
         string editorText = BuildTmEditorText(match, title);
         var ranges = BuildTmHighlightRanges(editorText, match.SourceText ?? "", currentZh);
 
-        var editor = BuildAssistantEditor(editorText, ranges, minHeight: 90, maxHeight: 220, brushResolver, postProcessor);
+        var editor = BuildAssistantEditor(
+            editorText,
+            ranges,
+            minHeight: 90,
+            maxHeight: 220,
+            brushResolver,
+            postProcessor,
+            AssistantHighlightStyle.Tm);
 
         var border = new Border
         {
@@ -198,7 +212,14 @@ internal static class AssistantPanelRenderer
         string editorText = BuildTermEditorText(term);
         var ranges = BuildSingleLineChineseHighlightRanges(editorText, term.SourceTerm ?? "", currentZh);
 
-        var editor = BuildAssistantEditor(editorText, ranges, minHeight: 70, maxHeight: 180, brushResolver, postProcessor);
+        var editor = BuildAssistantEditor(
+            editorText,
+            ranges,
+            minHeight: 70,
+            maxHeight: 180,
+            brushResolver,
+            postProcessor,
+            AssistantHighlightStyle.Term);
 
         var border = new Border
         {
@@ -233,7 +254,8 @@ internal static class AssistantPanelRenderer
     public static Control BuildQaEntryControl(
         QaIssue issue,
         Func<string, IBrush?>? brushResolver = null,
-        Action<TextEditor>? postProcessor = null)
+        Action<TextEditor>? postProcessor = null,
+        AssistantHighlightStyle highlightStyle = AssistantHighlightStyle.None)
     {
         var editor = BuildAssistantEditor(
             $"[{issue.Severity}] {issue.Message}",
@@ -241,7 +263,8 @@ internal static class AssistantPanelRenderer
             minHeight: 56,
             maxHeight: 140,
             brushResolver,
-            postProcessor);
+            postProcessor,
+            AssistantHighlightStyle.None);
 
         return new Border
         {
@@ -259,7 +282,8 @@ internal static class AssistantPanelRenderer
         double minHeight,
         double maxHeight,
         Func<string, IBrush?>? brushResolver = null,
-        Action<TextEditor>? postProcessor = null)
+        Action<TextEditor>? postProcessor = null,
+        AssistantHighlightStyle highlightStyle = AssistantHighlightStyle.None)
     {
         var editor = new TextEditor
         {
@@ -278,7 +302,7 @@ internal static class AssistantPanelRenderer
 
         if (editor.TextArea?.TextView != null && highlightRanges.Count > 0)
         {
-            var colorizer = new SharedChineseColorizer(highlightRanges);
+            var colorizer = new AssistantHighlightColorizer(highlightRanges, highlightStyle);
             editor.TextArea.TextView.LineTransformers.Add(colorizer);
             editor.TextArea.TextView.Redraw();
         }
@@ -442,13 +466,17 @@ internal static class AssistantPanelRenderer
     /// AvaloniaEdit line transformer that highlights shared CJK characters
     /// (blue foreground + semi-bold) in assistant panel TextEditor instances.
     /// </summary>
-    internal sealed class SharedChineseColorizer : DocumentColorizingTransformer
+    internal sealed class AssistantHighlightColorizer : DocumentColorizingTransformer
     {
         private readonly IReadOnlyList<AssistantTextRange> _ranges;
+        private readonly AssistantHighlightStyle _style;
 
-        public SharedChineseColorizer(IReadOnlyList<AssistantTextRange> ranges)
+        public AssistantHighlightColorizer(
+            IReadOnlyList<AssistantTextRange> ranges,
+            AssistantHighlightStyle style)
         {
             _ranges = ranges ?? Array.Empty<AssistantTextRange>();
+            _style = style;
         }
 
         private static IBrush Brush(string key, IBrush fallback)
@@ -459,6 +487,17 @@ internal static class AssistantPanelRenderer
             return fallback;
         }
 
+        internal static string GetBrushResourceKey(AssistantHighlightStyle style)
+            => style switch
+            {
+                AssistantHighlightStyle.Term => "WarningBrush",
+                AssistantHighlightStyle.Tm => "NoteMarkerCommunityFg",
+                _ => "TextFg"
+            };
+
+        internal static bool UsesSemiBold(AssistantHighlightStyle style)
+            => style != AssistantHighlightStyle.None;
+
         protected override void ColorizeLine(AvaloniaEdit.Document.DocumentLine line)
         {
             if (_ranges.Count == 0)
@@ -467,7 +506,12 @@ internal static class AssistantPanelRenderer
             int lineStart = line.Offset;
             int lineEnd = line.EndOffset;
 
-            var fg = Brush("NoteMarkerCommunityFg", Avalonia.Media.Brushes.DodgerBlue);
+            var fg = _style switch
+            {
+                AssistantHighlightStyle.Term => Brush(GetBrushResourceKey(_style), new SolidColorBrush(Color.FromRgb(214, 145, 0))),
+                AssistantHighlightStyle.Tm => Brush(GetBrushResourceKey(_style), Avalonia.Media.Brushes.DodgerBlue),
+                _ => Brush(GetBrushResourceKey(_style), Avalonia.Media.Brushes.Black)
+            };
 
             for (int i = 0; i < _ranges.Count; i++)
             {
@@ -490,12 +534,15 @@ internal static class AssistantPanelRenderer
                 ChangeLinePart(s, e, el =>
                 {
                     el.TextRunProperties.SetForegroundBrush(fg);
-                    el.TextRunProperties.SetTypeface(
-                        new Typeface(
-                            el.TextRunProperties.Typeface.FontFamily,
-                            el.TextRunProperties.Typeface.Style,
-                            FontWeight.SemiBold,
-                            el.TextRunProperties.Typeface.Stretch));
+                    if (UsesSemiBold(_style))
+                    {
+                        el.TextRunProperties.SetTypeface(
+                            new Typeface(
+                                el.TextRunProperties.Typeface.FontFamily,
+                                el.TextRunProperties.Typeface.Style,
+                                FontWeight.SemiBold,
+                                el.TextRunProperties.Typeface.Stretch));
+                    }
                 });
             }
         }

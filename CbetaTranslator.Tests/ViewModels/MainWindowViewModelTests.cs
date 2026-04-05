@@ -207,6 +207,17 @@ public class MainWindowViewModelTests
         Assert.Equal(severity, vm.StatusSeverity);
     }
 
+
+    [Fact]
+    public void ViewConfigUsernameForAssistant_PrefersGitHubUsername()
+    {
+        var vm = MakeVm();
+
+        vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+
+        Assert.Equal("octocat", vm.ViewConfigUsernameForAssistant());
+    }
+
     [Fact]
     public void Config_HasDefaultDarkTheme()
     {

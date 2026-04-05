@@ -1,4 +1,4 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -94,6 +94,7 @@ public partial class ReadableTabView : UserControl
     private Button? _btnAddCommunityNote;
     private Button? _btnDeleteCommunityNote;
     private Button? _btnMoveFootnote;
+    private Button? _btnDictionary;
 
     private Border? _readableEmptyState;
 
@@ -145,6 +146,8 @@ public partial class ReadableTabView : UserControl
     private StackPanel? _studyDictSenses;
     private string? _lastStudyDictKey;
     private readonly List<IDisposable> _studyHoverDisposables = new();
+    private DispatcherTimer? _studyContextDebounce;
+    private CurrentSegmentContext? _pendingStudyContext;
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
 
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
@@ -179,6 +182,8 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
+    public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler? DictionaryRequested;
 
     // Coding mode events
     public event EventHandler<DocumentTag>? TagApplied;
@@ -196,6 +201,8 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when study panel visibility changes (for config persistence).</summary>
     public event EventHandler<bool>? StudyPanelVisibilityChanged;
+
+    public Func<string?, string>? StudyTitleResolver { get; set; }
 
     // -------------------------
     // Status/log
@@ -227,6 +234,7 @@ public partial class ReadableTabView : UserControl
         DetachedFromVisualTree += (_, _) =>
         {
             StopSelectionTimer();
+            _studyContextDebounce?.Stop();
             DisposeHoverDictionary();
             _vm.Log("ReadableTabView detached");
         };
@@ -311,6 +319,7 @@ public partial class ReadableTabView : UserControl
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
         _btnDeleteCommunityNote = this.FindControl<Button>("BtnDeleteCommunityNote");
         _btnMoveFootnote = this.FindControl<Button>("BtnMoveFootnote");
+        _btnDictionary = this.FindControl<Button>("BtnDictionary");
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
@@ -407,6 +416,8 @@ public partial class ReadableTabView : UserControl
             }
 
             var user = isTranslated ? GetTranslationUser?.Invoke() : null;
+            if (!string.IsNullOrWhiteSpace(fromLb))
+                highlight = null;
             var uri = CbetaUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
@@ -449,6 +460,8 @@ public partial class ReadableTabView : UserControl
             }
 
             var userR = isTranslated ? GetTranslationUser?.Invoke() : null;
+            if (!string.IsNullOrWhiteSpace(fromLb))
+                highlight = null;
             var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
@@ -701,8 +714,17 @@ public partial class ReadableTabView : UserControl
             _btnMoveFootnote.Click += BtnMoveFootnote_Click;
         }
 
+        if (_btnDictionary != null)
+        {
+            _btnDictionary.Click -= BtnDictionary_Click;
+            _btnDictionary.Click += BtnDictionary_Click;
+        }
+
         UpdateButtonsState();
     }
+
+    private void BtnDictionary_Click(object? sender, RoutedEventArgs e)
+        => DictionaryRequested?.Invoke(this, EventArgs.Empty);
 
     // =========================
     // Public API (called by host)
@@ -951,14 +973,23 @@ public partial class ReadableTabView : UserControl
                     lbSafeEnd--;
                 }
 
-                editor.TextArea.Caret.Offset = lbSafeStart;
-                editor.TextArea.Selection = Selection.Create(editor.TextArea, lbSafeStart, lbSafeEnd);
+                var visibleStart = FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd);
+                if (visibleStart >= 0)
+                    lbSafeStart = visibleStart;
 
-                var lbLine = editor.Document.GetLineByOffset(lbSafeStart);
-                editor.ScrollToLine(lbLine.LineNumber);
+                bool hasMeaningfulText = lbSafeEnd > lbSafeStart &&
+                                         FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd) >= 0;
+                if (hasMeaningfulText)
+                {
+                    editor.TextArea.Caret.Offset = lbSafeStart;
+                    editor.TextArea.Selection = Selection.Create(editor.TextArea, lbSafeStart, lbSafeEnd);
 
-                _navHighlightEditor = editor;
-                return;
+                    var lbLine = editor.Document.GetLineByOffset(lbSafeStart);
+                    editor.ScrollToLine(lbLine.LineNumber);
+
+                    _navHighlightEditor = editor;
+                    return;
+                }
             }
             // lb keys not found; fall through to text-based matching if MatchText is available
         }
@@ -1020,17 +1051,19 @@ public partial class ReadableTabView : UserControl
         if (!TryFindSegmentByLb(doc, fromLb, out var startSeg))
             return (-1, 0);
 
-        int rangeStart = startSeg.Start;
-        int rangeEnd = startSeg.EndExclusive;
+        int rangeStart;
+        int rangeEnd;
 
         if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
         {
+            rangeStart = startSeg.Start;
+            rangeEnd = startSeg.EndExclusive;
             if (TryFindSegmentByLb(doc, toLb, out var endSeg))
                 rangeEnd = endSeg.EndExclusive;
         }
-        else if (rangeEnd <= rangeStart)
+        else
         {
-            rangeEnd = FindSingleLbRangeEnd(doc, startSeg, rangeStart);
+            (rangeStart, rangeEnd) = ResolveSingleLbMeaningfulSpan(doc, startSeg);
         }
 
         if (rangeEnd <= rangeStart)
@@ -1061,6 +1094,51 @@ public partial class ReadableTabView : UserControl
         }
 
         return Math.Max(rangeStart, doc.Text?.Length ?? rangeStart);
+    }
+
+    private static (int start, int end) ResolveSingleLbMeaningfulSpan(RenderedDocument doc, RenderSegment startSeg)
+    {
+        var text = doc.Text ?? string.Empty;
+        int segIndex = doc.Segments.IndexOf(startSeg);
+        if (segIndex < 0)
+            return (-1, 0);
+
+        int cursor = Math.Clamp(Math.Max(startSeg.Start, startSeg.EndExclusive), 0, text.Length);
+
+        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
+        {
+            var seg = doc.Segments[i];
+            var lb = LbHelper.ExtractLbNValue(seg.Key);
+            if (string.IsNullOrWhiteSpace(lb) || seg.Start < cursor)
+                continue;
+
+            int start = FindFirstNonWhitespace(text, cursor, seg.Start);
+            if (start >= 0 && start < seg.Start)
+                return (start, seg.Start);
+
+            cursor = Math.Clamp(Math.Max(cursor, seg.EndExclusive), 0, text.Length);
+        }
+
+        int finalStart = FindFirstNonWhitespace(text, cursor, text.Length);
+        if (finalStart >= 0 && finalStart < text.Length)
+            return (finalStart, text.Length);
+
+        int fallbackStart = Math.Clamp(startSeg.Start, 0, text.Length);
+        int fallbackEnd = FindSingleLbRangeEnd(doc, startSeg, fallbackStart);
+        return fallbackEnd > fallbackStart ? (fallbackStart, fallbackEnd) : (-1, 0);
+    }
+
+    private static int FindFirstNonWhitespace(string text, int start, int endExclusive)
+    {
+        int safeStart = Math.Clamp(start, 0, text.Length);
+        int safeEnd = Math.Clamp(endExclusive, 0, text.Length);
+        for (int i = safeStart; i < safeEnd; i++)
+        {
+            if (!char.IsWhiteSpace(text[i]))
+                return i;
+        }
+
+        return -1;
     }
 
     /// <summary>
@@ -1108,13 +1186,19 @@ public partial class ReadableTabView : UserControl
         if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb)) return "";
 
         if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) return "";
-        int start = startSeg.Start;
-        int end = startSeg.EndExclusive;
+        int start;
+        int end;
 
         if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
         {
+            start = startSeg.Start;
+            end = startSeg.EndExclusive;
             if (TryFindSegmentByLb(doc, toLb, out var endSeg))
                 end = endSeg.EndExclusive;
+        }
+        else
+        {
+            (start, end) = ResolveSingleLbMeaningfulSpan(doc, startSeg);
         }
 
         var text = doc.Text ?? "";
@@ -2572,6 +2656,14 @@ public partial class ReadableTabView : UserControl
         var editor = _aeOrig;
         if (editor == null) return;
 
+        if (!_vm.StudyPanelVisible)
+        {
+            _termHitRanges = null;
+            _termHighlighter?.SetRanges(Array.Empty<(int Start, int Length)>());
+            editor.TextArea?.TextView?.Redraw();
+            return;
+        }
+
         if (_termHighlighter == null)
         {
             _termHighlighter = new TermbaseHighlightTransformer();
@@ -2617,6 +2709,69 @@ public partial class ReadableTabView : UserControl
         editor.TextArea?.TextView?.Redraw();
     }
 
+
+    private TmSharedHighlightTransformer? _tmSharedHighlighter;
+
+    public void UpdateTmSharedHighlights(
+        IReadOnlyList<TranslationTmMatch>? approvedMatches,
+        IReadOnlyList<TranslationTmMatch>? referenceMatches,
+        string? currentZhText,
+        int? preferredOccurrenceHint = null,
+        string? anchorTextSignal = null)
+    {
+        var editor = _aeOrig;
+        if (editor == null) return;
+
+        if (!_vm.StudyPanelVisible)
+        {
+            _tmSharedHighlighter?.SetRanges(Array.Empty<(int Start, int Length)>());
+            editor.TextArea?.TextView?.Redraw();
+            return;
+        }
+
+        if (_tmSharedHighlighter == null)
+        {
+            _tmSharedHighlighter = new TmSharedHighlightTransformer();
+            editor.TextArea.TextView.LineTransformers.Add(_tmSharedHighlighter);
+        }
+
+        var ranges = new List<(int Start, int Length)>();
+
+        if (!string.IsNullOrWhiteSpace(currentZhText))
+        {
+            var best = (approvedMatches ?? Enumerable.Empty<TranslationTmMatch>())
+                .Concat(referenceMatches ?? Enumerable.Empty<TranslationTmMatch>())
+                .OrderByDescending(m => m.Score)
+                .FirstOrDefault();
+
+            if (best != null && !string.IsNullOrWhiteSpace(best.SourceText))
+            {
+                string docText = editor.Document?.Text ?? "";
+                if (TryFindSegmentRange(
+                    docText,
+                    currentZhText,
+                    signalTerms: null,
+                    tmSourceSignal: best.SourceText,
+                    preferredOffset: editor.TextArea?.Caret?.Offset,
+                    preferredOccurrenceHint: preferredOccurrenceHint,
+                    anchorTextSignal: anchorTextSignal,
+                    out int zhStart,
+                    out int zhLength))
+                {
+                    string anchoredZh = docText.Substring(zhStart, zhLength);
+                    var sharedInZh = CjkMatchNormalizer.FindSharedRawRanges(
+                        anchoredZh,
+                        best.SourceText,
+                        minPhraseLen: 2);
+                    foreach (var r in sharedInZh)
+                        ranges.Add((zhStart + r.Start, r.Length));
+                }
+            }
+        }
+
+        _tmSharedHighlighter.SetRanges(ranges);
+        editor.TextArea?.TextView?.Redraw();
+    }
     private bool TryResolveTermHitAtOffset(int offset, out TermHit hit)
     {
         hit = null!;
@@ -4083,15 +4238,25 @@ public partial class ReadableTabView : UserControl
     private sealed class TermbaseHighlightTransformer : DocumentColorizingTransformer
     {
         private List<(int Start, int Length)> _ranges = new();
-        private static readonly SolidColorBrush s_termBrush = new(Color.FromArgb(90, 255, 185, 0));
+        private Typeface? _cachedSemiBold;
 
         public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
         {
             _ranges = ranges.OrderBy(r => r.Start).ToList();
         }
 
+        private static IBrush GetGoldBrush()
+        {
+            var app = Application.Current;
+            if (app != null && app.TryFindResource("WarningBrush", out var res) && res is IBrush b)
+                return b;
+            return new SolidColorBrush(Color.FromRgb(214, 145, 0));
+        }
+
         protected override void ColorizeLine(DocumentLine line)
         {
+            if (_ranges.Count == 0) return;
+            var fg = GetGoldBrush();
             int lo = LowerBound(_ranges, line.Offset);
             for (int i = lo; i < _ranges.Count; i++)
             {
@@ -4101,7 +4266,15 @@ public partial class ReadableTabView : UserControl
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
                 ChangeLinePart(s, e, el =>
-                    el.TextRunProperties.SetBackgroundBrush(s_termBrush));
+                {
+                    el.TextRunProperties.SetForegroundBrush(fg);
+                    _cachedSemiBold ??= new Typeface(
+                        el.TextRunProperties.Typeface.FontFamily,
+                        el.TextRunProperties.Typeface.Style,
+                        FontWeight.SemiBold,
+                        el.TextRunProperties.Typeface.Stretch);
+                    el.TextRunProperties.SetTypeface(_cachedSemiBold.Value);
+                });
             }
         }
 
@@ -4118,6 +4291,62 @@ public partial class ReadableTabView : UserControl
         }
     }
 
+
+    private sealed class TmSharedHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length)> _ranges = new();
+        private Typeface? _cachedSemiBold;
+
+        public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
+        {
+            _ranges = ranges.OrderBy(r => r.Start).ToList();
+        }
+
+        private static IBrush GetBlueBrush()
+        {
+            var app = Application.Current;
+            if (app != null && app.TryFindResource("NoteMarkerCommunityFg", out var res) && res is IBrush b)
+                return b;
+            return Brushes.DodgerBlue;
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            if (_ranges.Count == 0) return;
+            var fg = GetBlueBrush();
+            int lo = LowerBound(_ranges, line.Offset);
+            for (int i = lo; i < _ranges.Count; i++)
+            {
+                var (start, length) = _ranges[i];
+                if (start >= line.Offset + line.Length) break;
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                ChangeLinePart(s, e, el =>
+                {
+                    el.TextRunProperties.SetForegroundBrush(fg);
+                    _cachedSemiBold ??= new Typeface(
+                        el.TextRunProperties.Typeface.FontFamily,
+                        el.TextRunProperties.Typeface.Style,
+                        FontWeight.SemiBold,
+                        el.TextRunProperties.Typeface.Stretch);
+                    el.TextRunProperties.SetTypeface(_cachedSemiBold.Value);
+                });
+            }
+        }
+
+        private static int LowerBound(List<(int Start, int Length)> ranges, int lineStart)
+        {
+            int lo = 0, hi = ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (ranges[mid].Start + ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
+        }
+    }
     // =========================
     // Study panel
     // =========================
@@ -4140,16 +4369,29 @@ public partial class ReadableTabView : UserControl
 
         StudyPanelVisibilityChanged?.Invoke(this, visible);
 
-        // If just opened, derive context immediately (don't wait for poll timer)
-        if (visible)
+        if (!visible)
         {
-            if (_vm.LastStudySnapshot != null)
-                RenderStudyPanelSnapshot(_vm.LastStudySnapshot);
-            else if (!_vm.RenderOrig.IsEmpty)
-                DeriveReaderSegmentContext();
-
-            UpdateStudyDictionary();
+            ClearStudyHoverBehaviors();
+            UpdateTermbaseHighlights(null, null);
+            UpdateTmSharedHighlights(null, null, null);
+            return;
         }
+
+        if (_vm.LastStudySnapshot != null)
+        {
+            RenderStudyPanelSnapshot(_vm.LastStudySnapshot);
+            int? preferredOccurrenceHint = _vm.LastStudySnapshot.Segment?.BlockNumber > 0
+                ? _vm.LastStudySnapshot.Segment.BlockNumber - 1
+                : null;
+            UpdateTermbaseHighlights(_vm.LastStudySnapshot.Terms, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
+            UpdateTmSharedHighlights(_vm.LastStudySnapshot.ApprovedMatches, _vm.LastStudySnapshot.ReferenceMatches, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
+        }
+        else if (!_vm.RenderOrig.IsEmpty)
+        {
+            DeriveReaderSegmentContext();
+        }
+
+        UpdateStudyDictionary();
     }
 
     /// <summary>Sets study panel visibility from config (called by host during init).</summary>
@@ -4186,8 +4428,11 @@ public partial class ReadableTabView : UserControl
             termHost: _studyTermHost,
             approvedTmHost: _studyTmHost,
             referenceTmHost: _studyTmHost,
+            titleResolver: rel => StudyTitleResolver?.Invoke(rel) ?? rel ?? "",
             brushResolver: key => GetResourceBrush(key),
-            postProcessor: editor => AttachStudyHover(editor));
+            postProcessor: null,
+            navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
+            addToScholarHandler: passage => AddToScholarRequested?.Invoke(this, passage));
     }
 
     private void AttachStudyHover(TextEditor editor)
@@ -4299,7 +4544,7 @@ public partial class ReadableTabView : UserControl
             string fallbackKey = $"caret|{caret}";
             if (fallbackKey == _lastStudySegmentKey) return;
             _lastStudySegmentKey = fallbackKey;
-            StudyPanelContextChanged?.Invoke(this, new CurrentSegmentContext
+            QueueStudyPanelContext(new CurrentSegmentContext
             {
                 RelPath = _vm.CurrentRelPathForZen ?? "",
                 ZhText = fallbackZh,
@@ -4342,7 +4587,30 @@ public partial class ReadableTabView : UserControl
             ZhContextText = prevTail + zhText + nextHead
         };
 
-        StudyPanelContextChanged?.Invoke(this, ctx);
+        QueueStudyPanelContext(ctx);
+    }
+
+    private void QueueStudyPanelContext(CurrentSegmentContext ctx)
+    {
+        _pendingStudyContext = ctx;
+        _studyContextDebounce ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(140)
+        };
+
+        _studyContextDebounce.Tick -= StudyContextDebounce_Tick;
+        _studyContextDebounce.Tick += StudyContextDebounce_Tick;
+        _studyContextDebounce.Stop();
+        _studyContextDebounce.Start();
+    }
+
+    private void StudyContextDebounce_Tick(object? sender, EventArgs e)
+    {
+        _studyContextDebounce?.Stop();
+        var ctx = _pendingStudyContext;
+        _pendingStudyContext = null;
+        if (ctx != null)
+            StudyPanelContextChanged?.Invoke(this, ctx);
     }
 
     private static string ExtractSegmentText(RenderedDocument doc, RenderSegment seg)
@@ -4363,3 +4631,4 @@ public partial class ReadableTabView : UserControl
         return s.Length <= count ? s : s[^count..];
     }
 }
+

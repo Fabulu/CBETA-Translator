@@ -263,7 +263,9 @@ public partial class TranslationTabView : UserControl
                 highlight = highlight.Substring(0, 60);
 
             var user = GetTranslationUser?.Invoke();
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, side: SearchSide.Translated, blockNumber: blockNumber, user: user);
+            if (!string.IsNullOrWhiteSpace(fromLb))
+                highlight = null;
+            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, blockNumber: blockNumber, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -303,7 +305,9 @@ public partial class TranslationTabView : UserControl
                 highlight = highlight.Substring(0, 60);
 
             var userR = GetTranslationUser?.Invoke();
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: fromLb != null ? null : highlight, side: SearchSide.Translated, user: userR);
+            if (!string.IsNullOrWhiteSpace(fromLb))
+                highlight = null;
+            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);
@@ -379,7 +383,9 @@ public partial class TranslationTabView : UserControl
             StartBlockNumber = startBlock,
             EndBlockNumber = endBlock,
             FromLb = fromLb,
-            ToLb = toLb
+            ToLb = toLb,
+            PreferredSide = SearchSide.Translated,
+            TranslationUser = GetTranslationUser?.Invoke()
         };
 
         AddToScholarRequested?.Invoke(this, passage);
@@ -473,6 +479,21 @@ public partial class TranslationTabView : UserControl
         {
             _editorAssistantGrid.ColumnDefinitions[1].Width = visible ? new GridLength(8) : new GridLength(0);
             _editorAssistantGrid.ColumnDefinitions[2].Width = visible ? new GridLength(360) : new GridLength(0);
+        }
+
+        if (!visible)
+        {
+            ClearAssistantHoverBehaviors();
+            UpdateTermbaseHighlights(null, null);
+            UpdateTmSharedHighlights(null, null, null);
+            return;
+        }
+
+        if (_vm.LastAssistantSnapshot != null)
+        {
+            RenderAssistantSnapshot(_vm.LastAssistantSnapshot);
+            UpdateTermbaseHighlights(_vm.LastAssistantSnapshot.Terms, _vm.LastAssistantSnapshot.Segment?.ZhText);
+            UpdateTmSharedHighlights(_vm.LastAssistantSnapshot.ApprovedMatches, _vm.LastAssistantSnapshot.ReferenceMatches, _vm.LastAssistantSnapshot.Segment?.ZhText);
         }
     }
 
@@ -1095,6 +1116,13 @@ public partial class TranslationTabView : UserControl
     {
         if (_editor == null) return;
 
+        if (_chkAssistantVisible?.IsChecked != true)
+        {
+            _projectionTermHighlighter?.SetRanges(Array.Empty<(int Start, int Length)>());
+            _editor.TextArea?.TextView?.Redraw();
+            return;
+        }
+
         if (_projectionTermHighlighter == null)
         {
             _projectionTermHighlighter = new TermbaseHighlightTransformer();
@@ -1141,6 +1169,7 @@ public partial class TranslationTabView : UserControl
 
     private TmSharedHighlightTransformer? _tmSharedHighlighter;
 
+
     public void UpdateTmSharedHighlights(
         IReadOnlyList<TranslationTmMatch>? approvedMatches,
         IReadOnlyList<TranslationTmMatch>? referenceMatches,
@@ -1152,6 +1181,13 @@ public partial class TranslationTabView : UserControl
         {
             _tmSharedHighlighter = new TmSharedHighlightTransformer();
             _editor.TextArea.TextView.LineTransformers.Add(_tmSharedHighlighter);
+        }
+
+        if (_chkAssistantVisible?.IsChecked != true)
+        {
+            _tmSharedHighlighter?.SetRanges(Array.Empty<(int Start, int Length)>());
+            _editor.TextArea?.TextView?.Redraw();
+            return;
         }
 
         var ranges = new List<(int Start, int Length)>();
@@ -1954,7 +1990,7 @@ STRICT RULES:
             _qaHost, _termHost, _approvedTmHost, _referenceTmHost,
             titleResolver: rel => _vm.ResolveAssistantTitle(rel),
             brushResolver: key => GetResourceBrush(key),
-            postProcessor: editor => AttachAssistantHover(editor),
+            postProcessor: null,
             navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
             addToScholarHandler: passage => AddToScholarRequested?.Invoke(this, passage));
     }

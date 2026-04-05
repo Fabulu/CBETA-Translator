@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -53,6 +53,22 @@ public class ReadableTabViewInteractionTests
         var method = target.GetType().GetMethod(name, BindingFlags.Instance | BindingFlags.NonPublic)
             ?? throw new InvalidOperationException($"Missing method {name}");
         return method.Invoke(target, args);
+    }
+
+
+    [Fact]
+    public void BtnDictionary_Click_RaisesDictionaryRequested()
+    {
+        var view = CreateViewShell(out _);
+        var method = typeof(ReadableTabView).GetMethod("BtnDictionary_Click", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Missing BtnDictionary_Click");
+
+        int raised = 0;
+        view.DictionaryRequested += (_, _) => raised++;
+
+        method.Invoke(view, new object?[] { null, new RoutedEventArgs() });
+
+        Assert.Equal(1, raised);
     }
 
     [Fact]
@@ -150,4 +166,32 @@ public class ReadableTabViewInteractionTests
         Assert.Contains("Viewing otheruser's tags", status.Text);
         Assert.Contains("read-only", status.Text);
     }
+
+    [Fact]
+    public void TryFindSegmentRange_FindsReaderTmAnchorRange()
+    {
+        var method = typeof(ReadableTabView).GetMethod("TryFindSegmentRange", BindingFlags.Static | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Missing TryFindSegmentRange");
+
+        var args = new object?[]
+        {
+            "Ã¥â€°ÂÃ¤Â½â€ºÃ¦Â³â€¢Ã¥Â¾Å’",
+            "Ã¤Â½â€ºÃ¦Â³â€¢",
+            null,
+            "Ã¤Â½â€ºÃ¦Â³â€¢",
+            0,
+            0,
+            "Ã¥â€°ÂÃ¤Â½â€ºÃ¦Â³â€¢Ã¥Â¾Å’",
+            0,
+            0
+        };
+
+        var ok = (bool)method.Invoke(null, args)!;
+
+        Assert.True(ok);
+        Assert.True((int)args[7]! >= 0);
+        Assert.True((int)args[8]! > 0);
+    }
 }
+
+
