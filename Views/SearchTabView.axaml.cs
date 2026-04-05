@@ -1,6 +1,7 @@
 // Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
@@ -168,13 +169,18 @@ public partial class SearchTabView : UserControl
     public void Clear()
         => _vm.Clear();
 
+    public SearchTabViewModel.SearchUiState ExportUiState()
+        => _vm.ExportUiState();
+
+    public Task ApplyUiStateAsync(SearchTabViewModel.SearchUiState? state, bool executeSearch = false)
+        => _vm.ApplyUiStateAsync(state, executeSearch);
+
     /// <summary>
     /// Sets the search query text and immediately executes the search.
     /// Used by deep link routing.
     /// </summary>
     public void SetSearchTextAndExecute(string query)
     {
-        _vm.Query = query;
-        _vm.SearchCommand.Execute(null);
+        _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
     }
 }

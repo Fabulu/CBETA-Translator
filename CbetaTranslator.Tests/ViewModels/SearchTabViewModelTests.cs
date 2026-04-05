@@ -171,9 +171,9 @@ public class SearchTabViewModelTests
             Hit = new SearchHit
             {
                 Index = 42,
-                Left = "左",
-                Match = "中",
-                Right = "右"
+                Left = "?",
+                Match = "?",
+                Right = "?"
             }
         };
 
@@ -182,9 +182,9 @@ public class SearchTabViewModelTests
         Assert.NotNull(received);
         Assert.Equal("test/file.xml", received!.RelPath);
         Assert.Equal(SearchSide.Original, received.Side);
-        Assert.Equal("中", received.MatchText);
-        Assert.Equal("左", received.LeftContext);
-        Assert.Equal("右", received.RightContext);
+        Assert.Equal("?", received.MatchText);
+        Assert.Equal("?", received.LeftContext);
+        Assert.Equal("?", received.RightContext);
         Assert.Equal(42, received.AnchorStartHint);
     }
 
@@ -312,5 +312,72 @@ public class SearchTabViewModelTests
         vm.ZenOnly = true;
 
         Assert.Contains("ZenOnly", changed);
+    }
+
+    [Fact]
+    public void ExportUiState_IncludesSelectedTagFilterId()
+    {
+        var vm = MakeVm();
+        vm.SetTagFilterData(
+            new List<DocumentTag> { new() { RelPath = "T01/test.xml", TagId = "tag-1" } },
+            new TagVocabulary { Tags = new List<TagDefinition> { new() { Id = "tag-1", Name = "Practice" } } });
+        vm.SelectedTagFilterIndex = 1;
+
+        var state = vm.ExportUiState();
+
+        Assert.Equal("Practice", state.SelectedTagFilterName);
+        Assert.Equal("tag-1", state.SelectedTagFilterId);
+    }
+
+    [Fact]
+    public async Task ApplyUiStateAsync_AppliesVisibleFiltersById_WithoutIntermediateAutoSearch()
+    {
+        var vm = MakeVm();
+        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetTagFilterData(
+            new List<DocumentTag> { new() { RelPath = "T01/test.xml", TagId = "tag-1" } },
+            new TagVocabulary { Tags = new List<TagDefinition> { new() { Id = "tag-1", Name = "Practice" } } });
+
+        int statusCount = 0;
+        vm.StatusChanged += (_, _) => statusCount++;
+
+        await vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState
+        {
+            Query = "restored",
+            SearchOriginal = false,
+            SearchTranslated = true,
+            ZenOnly = true,
+            SelectedStatusIndex = 3,
+            SelectedContextIndex = 0,
+            SelectedTagFilterId = "tag-1"
+        });
+
+        await Task.Delay(250);
+
+        Assert.Equal("restored", vm.Query);
+        Assert.False(vm.SearchOriginal);
+        Assert.True(vm.SearchTranslated);
+        Assert.True(vm.ZenOnly);
+        Assert.Equal(3, vm.SelectedStatusIndex);
+        Assert.Equal(0, vm.SelectedContextIndex);
+        Assert.Equal(1, vm.SelectedTagFilterIndex);
+        Assert.Equal(0, statusCount);
+    }
+
+    [Fact]
+    public async Task ApplyUiStateAsync_PendingTagIdRestoresAfterTagDataArrives()
+    {
+        var vm = MakeVm();
+
+        await vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState
+        {
+            SelectedTagFilterId = "tag-1"
+        });
+
+        vm.SetTagFilterData(
+            new List<DocumentTag> { new() { RelPath = "T01/test.xml", TagId = "tag-1" } },
+            new TagVocabulary { Tags = new List<TagDefinition> { new() { Id = "tag-1", Name = "Practice" } } });
+
+        Assert.Equal(1, vm.SelectedTagFilterIndex);
     }
 }

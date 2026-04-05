@@ -517,6 +517,26 @@ public partial class MasterDatesEditorDialog : Window
         Close();
     }
 
+    public void ApplyLanding(string? name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return;
+
+        var filterBox = this.FindControl<TextBox>("TxtFilter");
+        if (filterBox != null)
+            filterBox.Text = name;
+
+        RefreshList(name.Trim());
+
+        var list = this.FindControl<ListBox>("MasterList");
+        if (list?.ItemsSource is IEnumerable<MasterEntry> items)
+        {
+            var match = items.FirstOrDefault(m => m.Names.Any(n => string.Equals(n.Trim(), name.Trim(), StringComparison.OrdinalIgnoreCase)))
+                ?? items.FirstOrDefault(m => m.Names.Any(n => n.Contains(name.Trim(), StringComparison.OrdinalIgnoreCase)));
+            if (match != null)
+                list.SelectedItem = match;
+        }
+    }
     // ----- Public helpers -----
 
     /// <summary>

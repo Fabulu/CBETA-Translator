@@ -1,4 +1,4 @@
-﻿// ViewModels/MainWindowViewModel.cs
+// ViewModels/MainWindowViewModel.cs
 //
 // Extracted from Views/MainWindow.axaml.cs (Wave 5 MVVM renovation).
 // Contains all business logic, state, and orchestration that was previously
@@ -2578,6 +2578,34 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         return null;
     }
 
+    public string GetActiveSearchSourceKey()
+    {
+        if (_translationSourceIndex == 0) return "me";
+        if (_translationSourceIndex == 1) return "community";
+        return GetActiveTranslationUser() ?? "community";
+    }
+
+    public async Task<bool> RestoreSearchTranslationSourceAsync(string? sourceKey)
+    {
+        if (string.IsNullOrWhiteSpace(sourceKey) || _translationSourceOptions.Count == 0)
+            return false;
+
+        int? targetIndex = sourceKey.Trim().ToLowerInvariant() switch
+        {
+            "me" => 0,
+            "community" => _translationSourceOptions.Count > 1 ? 1 : null,
+            _ => ResolveTranslationSourceIndexForNavigation(sourceKey)
+        };
+
+        if (!targetIndex.HasValue)
+            return false;
+
+        if (targetIndex.Value != _translationSourceIndex)
+            await SwitchTranslationSourceAsync(targetIndex.Value);
+
+        return true;
+    }
+
     private async Task EnsureTranslationSourceForNavigationAsync(NavigationRequest request)
     {
         if (request.Side != SearchSide.Translated || _translationSourceOptions.Count == 0)
@@ -3014,6 +3042,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             await LoadPairAsync(_currentRelPath);
     }
 }
+
 
 
 
