@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -204,6 +204,8 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         try
         {
             PushFieldsIntoCurrentEntry();
+            var selectedSourceTerm = SelectedEntry?.SourceTerm?.Trim();
+            var selectedPreferredTarget = SelectedEntry?.PreferredTarget?.Trim();
 
             var cleaned = AllEntries
                 .Select(NormalizeEntry)
@@ -229,6 +231,19 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             AllEntries.Clear();
             foreach (var entry in cleaned)
                 AllEntries.Add(entry);
+
+            ApplyFilter();
+            if (!string.IsNullOrWhiteSpace(selectedSourceTerm))
+            {
+                var best = FindBestTermMatch(
+                    FilteredEntries.Where(e =>
+                        string.Equals(e.SourceTerm, selectedSourceTerm, StringComparison.OrdinalIgnoreCase) ||
+                        (!string.IsNullOrWhiteSpace(selectedPreferredTarget) &&
+                         string.Equals(e.PreferredTarget, selectedPreferredTarget, StringComparison.OrdinalIgnoreCase))),
+                    selectedSourceTerm);
+                if (best != null)
+                    SelectedEntry = best;
+            }
 
             Saved = true;
             StatusMessage = $"Saved {cleaned.Count:n0} terms.";
@@ -482,7 +497,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
                 foreach (var child in group.Children.Take(3))
                 {
                     var snippet = $"{child.LeftText}{child.MatchText}{child.RightText}";
-                    if (snippet.Length > 120) snippet = snippet[..120] + "…";
+                    if (snippet.Length > 120) snippet = snippet[..120] + "�";
 
                     hits.Add(new CorpusUsageHit
                     {
@@ -724,5 +739,6 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         return entry;
     }
 }
+
 
 
