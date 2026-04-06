@@ -170,6 +170,17 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "reader-dictionary-button",
+            Title = "Open the Zen Dictionary",
+            Body = "Reader also has a Dictionary button when you want the full Zen Dictionary window, not just hover lookups. Use it to manage terminology and inspect corpus usage directly while reading.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnDictionary",
+            SwitchToTabIndex = 0
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "community-notes",
             Title = "Community Notes",
             Body = "Blue markers in the text are community notes \u2014 click one to read it.\nYou can add your own notes to any passage with this button.",
@@ -194,6 +205,16 @@ public sealed class OnboardingTourService
             Body = "Right-click selected text to add it to Scholar, create zen:// deep links, or copy shareable URLs.\nThis works in Reader, Translate, and Search.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "reader-compare-tools",
+            Title = "Compare in Reader",
+            Body = "Reader can compare translations and compare tag layers for the current text. Use these tools to see how different translators or coders handled the same passage without leaving the reading workflow.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 0
         });
 
         // ===== Phase 2b: Coding / Tagging (steps 12-15) =====
@@ -306,7 +327,7 @@ public sealed class OnboardingTourService
         {
             Id = "save-translation",
             Title = "Save Your Work",
-            Body = "Ctrl+S saves your current translation source. The app writes clean TEI XML that preserves the original Chinese formatting and refreshes Reader from disk. Other users\' translation sources are read-only.",
+            Body = "Ctrl+S saves your current translation source. Keep exactly one EN line per block in the editor; multiline EN inside a single block is not supported. Large numbered batch pastes across many blocks still work normally. Other users\' translation sources are read-only.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnSave"
@@ -360,7 +381,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-shared",
             Title = "Shared Collections",
-            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. Browse community collections there, then use Adopt to copy a passage into your own local workspace.",
+            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. That means Scholar is still useful before you create anything locally. Browse community collections there, then use Adopt to copy a passage into your own local workspace.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4,
@@ -417,6 +438,17 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "zen-master-manager",
+            Title = "Zen Master Manager",
+            Body = "Use the Zen Master Manager to browse master records, aliases, dates, and community variants in one place. It centralizes data that used to be scattered across different dialogs, and Zen master deep links can open a master directly there.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 4,
+            TargetControlName = "ScholarView"
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "deep-links",
             Title = "Share Links to Any Passage",
             Body = "Right-click any text, search result, or file to copy a zen:// deep link.\nLink types: dictionary lookups, scholar collections, corpus searches, and tagged passages.\nShare with colleagues \u2014 clicking opens the exact resource in the app.",
@@ -430,7 +462,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-tab",
             Title = "Sync Your Work",
-            Body = "Switching to the Community tab.\n\nUse Sync to update texts, pull shared community data, and share your own work. Sharing requires GitHub login, but the initial text download does not.",
+            Body = "Switching to the Community tab.\n\nUse Sync to update texts, pull shared community data, and share your own work. Community data and selected translated text are shared in separate sync flows. Sharing requires GitHub login, but the initial text download does not.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
