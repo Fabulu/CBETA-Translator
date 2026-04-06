@@ -50,6 +50,8 @@ public class SearchTabViewModelTests
         var vm = MakeVm();
         Assert.Equal(new[]
         {
+            "20 chars",
+            "40 chars",
             "80 chars",
             "160 chars",
             "240 chars",

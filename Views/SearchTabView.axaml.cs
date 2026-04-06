@@ -1,11 +1,15 @@
 ﻿// Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
+using Avalonia.VisualTree;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using CbetaTranslator.App.ViewModels;
@@ -16,6 +20,9 @@ namespace CbetaTranslator.App.Views;
 public partial class SearchTabView : UserControl
 {
     private readonly SearchTabViewModel _vm;
+    private readonly ICedictDictionary _cedict;
+    private TextBlock? _activeHoverTextBlock;
+    private CancellationTokenSource? _hoverLookupCts;
 
     public SearchTabViewModel ViewModel => _vm;
 
@@ -33,6 +40,7 @@ public partial class SearchTabView : UserControl
     {
         InitializeComponent();
 
+        _cedict = App.Services.GetRequiredService<ICedictDictionary>();
         _vm = new SearchTabViewModel(
             App.Services.GetRequiredService<ISearchIndexService>(),
             App.Services.GetRequiredService<ISearchExportService>());
@@ -78,6 +86,9 @@ public partial class SearchTabView : UserControl
             {
                 _vm.HandleResultDoubleTap(resultsTree.SelectedItem);
             };
+            resultsTree.PointerMoved += ResultsTree_PointerMoved;
+            resultsTree.PointerExited += (_, _) => ClearResultsHoverTooltip();
+            resultsTree.PointerPressed += (_, _) => ClearResultsHoverTooltip();
 
             var addToScholarItem = new MenuItem { Header = "Add to Scholar Collection" };
             addToScholarItem.Click += (_, _) =>
@@ -149,6 +160,148 @@ public partial class SearchTabView : UserControl
                 await CopySearchLinkAsync(shareable: false);
             };
         }
+    }
+
+    private async void ResultsTree_PointerMoved(object? sender, PointerEventArgs e)
+    {
+        var textBlock = TryGetHoveredSearchTextBlock(e.Source);
+        if (textBlock == null)
+        {
+            ClearResultsHoverTooltip();
+            return;
+        }
+
+        var text = textBlock.Text?.Trim();
+        if (string.IsNullOrWhiteSpace(text) || !ContainsCjk(text))
+        {
+            ClearResultsHoverTooltip();
+            return;
+        }
+
+        if (ReferenceEquals(textBlock, _activeHoverTextBlock))
+            return;
+
+        _hoverLookupCts?.Cancel();
+        _hoverLookupCts?.Dispose();
+        _hoverLookupCts = new CancellationTokenSource();
+        var ct = _hoverLookupCts.Token;
+
+        try
+        {
+            await _cedict.EnsureLoadedAsync(ct);
+            if (ct.IsCancellationRequested)
+                return;
+
+            if (!TryLookupSearchSegment(text, out var match))
+            {
+                ClearResultsHoverTooltip();
+                return;
+            }
+
+            ClearResultsHoverTooltip();
+
+            ToolTip.SetShowDelay(textBlock, 0);
+            ToolTip.SetTip(textBlock, BuildDictionaryTooltip(match));
+            ToolTip.SetIsOpen(textBlock, true);
+            _activeHoverTextBlock = textBlock;
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch
+        {
+            ClearResultsHoverTooltip();
+        }
+    }
+
+    private void ClearResultsHoverTooltip()
+    {
+        try { _hoverLookupCts?.Cancel(); } catch { }
+        try { _hoverLookupCts?.Dispose(); } catch { }
+        _hoverLookupCts = null;
+
+        if (_activeHoverTextBlock != null)
+        {
+            try { ToolTip.SetIsOpen(_activeHoverTextBlock, false); } catch { }
+            try { ToolTip.SetTip(_activeHoverTextBlock, null); } catch { }
+            _activeHoverTextBlock = null;
+        }
+    }
+
+    private static TextBlock? TryGetHoveredSearchTextBlock(object? source)
+    {
+        var textBlock = source as TextBlock;
+        if (textBlock == null && source is Visual visual)
+            textBlock = visual.FindAncestorOfType<TextBlock>();
+
+        if (textBlock?.DataContext is not SearchResultChild child)
+            return null;
+
+        var text = textBlock.Text?.Trim();
+        if (string.IsNullOrWhiteSpace(text))
+            return null;
+
+        bool isPrimaryMatch = string.Equals(text, child.MatchText, StringComparison.Ordinal);
+        bool isSecondaryMatch = string.Equals(text, child.SecondaryMatchText, StringComparison.Ordinal);
+        return isPrimaryMatch || isSecondaryMatch ? textBlock : null;
+    }
+
+    private static bool ContainsCjk(string text)
+        => text.Any(ch => ch >= 0x3400 && ch <= 0x9fff);
+
+    private bool TryLookupSearchSegment(string text, out CedictMatch match)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            char ch = text[i];
+            if (ch < 0x3400 || ch > 0x9fff)
+                continue;
+
+            if (_cedict.TryLookupLongest(text, i, out match, maxLen: Math.Min(12, text.Length - i)))
+                return true;
+
+            if (_cedict.TryLookupChar(ch, out var entries) && entries.Count > 0)
+            {
+                match = new CedictMatch(ch.ToString(), i, 1, entries);
+                return true;
+            }
+        }
+
+        match = default!;
+        return false;
+    }
+
+    private static Border BuildDictionaryTooltip(CedictMatch match)
+    {
+        var panel = new StackPanel { Spacing = 4, MaxWidth = 420 };
+        panel.Children.Add(new TextBlock
+        {
+            Text = match.Headword,
+            FontWeight = Avalonia.Media.FontWeight.SemiBold,
+            TextWrapping = Avalonia.Media.TextWrapping.Wrap
+        });
+
+        foreach (var entry in match.Entries.Take(3))
+        {
+            string senses = entry.Senses == null ? string.Empty : string.Join("; ", entry.Senses.Take(3));
+            panel.Children.Add(new TextBlock
+            {
+                Text = string.IsNullOrWhiteSpace(senses) ? entry.Pinyin : $"{entry.Pinyin} - {senses}",
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                FontSize = 11
+            });
+        }
+
+        return new Border
+        {
+            Background = App.Current?.FindResource("PanelBg") as Avalonia.Media.IBrush,
+            BorderBrush = App.Current?.FindResource("PanelBorder") as Avalonia.Media.IBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(10),
+            Child = panel,
+            MaxWidth = 440
+        };
     }
 
     private async Task CopyPassageLinkAsync(SearchResultChild child, bool shareable)
@@ -329,4 +482,3 @@ public partial class SearchTabView : UserControl
         _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
     }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace CbetaTranslator.App.Models;
+namespace CbetaTranslator.App.Models;
 
 public sealed class CoocRow
 {
@@ -8,6 +8,7 @@ public sealed class CoocRow
     public double Assoc { get; set; }             // metric score (changes with selection)
     public double Dominance { get; set; }         // share of occurrences from top file [0..1]
     public string Bar { get; set; } = "";
+    public double BarRatio { get; set; }          // normalized bar value [0..1] for UI visuals
 
     public override string ToString()
         => $"{Key}  f={Freq:n0}  r={Range:n0}  dom={Dominance:0.##%}  score={Assoc:0.###}  {Bar}";

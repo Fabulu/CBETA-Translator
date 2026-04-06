@@ -617,7 +617,7 @@ public class CbetaUriParserTests
         Assert.True(result.SearchZenOnly);
         Assert.Equal(2, result.SearchStatusIndex);
         Assert.Equal("topic-1", result.SearchTagId);
-        Assert.Equal(5, result.SearchContextIndex);
+        Assert.Equal(6, result.SearchContextIndex);
     }
 
     [Fact]

@@ -591,32 +591,40 @@ public static class CbetaUriParser
 
         return index.Value switch
         {
-            0 => 0,
-            1 => 0,
-            2 => 1,
-            _ => index.Value
+            0 => 1,
+            1 => 2,
+            2 => 3,
+            3 => 4,
+            4 => 5,
+            5 => 6,
+            6 => 7,
+            _ => SearchContextWidthToIndex(index.Value)
         };
     }
 
     private static int SearchContextIndexToWidth(int index) => index switch
     {
-        0 => 80,
-        1 => 160,
-        2 => 240,
-        3 => 320,
-        4 => 480,
-        5 => 640,
-        _ => 160
+        0 => 20,
+        1 => 40,
+        2 => 80,
+        3 => 160,
+        4 => 240,
+        5 => 320,
+        6 => 480,
+        7 => 640,
+        _ => 40
     };
 
     private static int SearchContextWidthToIndex(int width) => width switch
     {
-        <= 80 => 0,
-        <= 160 => 1,
-        <= 240 => 2,
-        <= 320 => 3,
-        <= 480 => 4,
-        _ => 5
+        <= 20 => 0,
+        <= 40 => 1,
+        <= 80 => 2,
+        <= 160 => 3,
+        <= 240 => 4,
+        <= 320 => 5,
+        <= 480 => 6,
+        _ => 7
     };
 
     public static string BuildTagsUri(string fileId, string? user = null, string? tagId = null)
