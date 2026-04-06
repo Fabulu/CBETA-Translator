@@ -758,6 +758,29 @@ public partial class GitTabViewModel : ViewModelBase
             "No, keep my changes");
     }
 
+    private async Task<bool> ConfirmCommunityShareAsync(IReadOnlyList<string> changedFiles)
+    {
+        if (ConfirmAsync == null)
+            return true;
+
+        var preview = string.Join("\n", changedFiles.Take(8).Select(f => $"- {f}"));
+        if (changedFiles.Count > 8)
+            preview += $"\n- ... and {changedFiles.Count - 8} more";
+
+        var message =
+            "You are about to share community data changes.\n\n" +
+            "These community contributions will be reviewed by a real person before merge. " +
+            "Please discuss substantial changes on the /r/zen forums so reviewers have context.\n\n" +
+            "Files to share:\n" + preview + "\n\n" +
+            "Personal translation PRs are handled separately and will not be blocked by this prompt.";
+
+        return await ConfirmAsync(
+            "Share Community Data?",
+            message,
+            "Share community data",
+            "Cancel");
+    }
+
     // ----- Private: Panic -----
 
     private async Task PanicButtonAsync()
@@ -1489,6 +1512,14 @@ public partial class GitTabViewModel : ViewModelBase
                 ProgressText = "No changes in community data (already up to date).";
                 AppendLog("[warn] share produced no user-authored community changes to commit");
                 AppendLog("[hint] Fetched upstream community files are intentionally skipped.");
+                return;
+            }
+
+            bool confirmedCommunityShare = await ConfirmCommunityShareAsync(changedFiles);
+            if (!confirmedCommunityShare)
+            {
+                ProgressText = "Community share canceled.";
+                AppendLog("[cancel] user canceled community share after confirmation prompt");
                 return;
             }
 

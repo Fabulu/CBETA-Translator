@@ -315,4 +315,53 @@ public class GitTabViewModelTests
         Assert.Equal(a, b);
         Assert.NotEqual(a, c);
     }
+
+
+    [Fact]
+    public async Task ConfirmCommunityShareAsync_NoConfirmBridge_AllowsShare()
+    {
+        var vm = MakeVm();
+        var method = typeof(GitTabViewModel).GetMethod("ConfirmCommunityShareAsync", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(method);
+
+        var task = (Task<bool>)method!.Invoke(vm, new object[] { new List<string> { "community/termbases/alice.jsonl" } })!;
+        var result = await task;
+
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task ConfirmCommunityShareAsync_BuildsReviewerAndForumWarningMessage()
+    {
+        var vm = MakeVm();
+        string? capturedTitle = null;
+        string? capturedMessage = null;
+        string? capturedYes = null;
+        string? capturedNo = null;
+
+        vm.ConfirmAsync = (title, message, yesText, noText) =>
+        {
+            capturedTitle = title;
+            capturedMessage = message;
+            capturedYes = yesText;
+            capturedNo = noText;
+            return Task.FromResult(true);
+        };
+
+        var method = typeof(GitTabViewModel).GetMethod("ConfirmCommunityShareAsync", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(method);
+
+        var task = (Task<bool>)method!.Invoke(vm, new object[] { new List<string> { "community/termbases/alice.jsonl", "community/tags/alice.jsonl" } })!;
+        var result = await task;
+
+        Assert.True(result);
+        Assert.Equal("Share Community Data?", capturedTitle);
+        Assert.Contains("reviewed by a real person", capturedMessage);
+        Assert.Contains("/r/zen forums", capturedMessage);
+        Assert.Contains("community/termbases/alice.jsonl", capturedMessage);
+        Assert.Contains("Personal translation PRs are handled separately", capturedMessage);
+        Assert.Equal("Share community data", capturedYes);
+        Assert.Equal("Cancel", capturedNo);
+    }
+
 }
