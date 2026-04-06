@@ -78,6 +78,11 @@
 						 ItemsSource="{Binding CommunityEntries}"
 						 SelectedItem="{Binding SelectedCommunityEntry}"
 						 MaxHeight="250">
+					<ListBox.ContextMenu>
+						<ContextMenu>
+							<MenuItem Header="Adopt Term" Command="{Binding AdoptSelectedTermCommand}"/>
+						</ContextMenu>
+					</ListBox.ContextMenu>
 					<ListBox.ItemTemplate>
 						<DataTemplate x:DataType="models:TermbaseEntry">
 							<Border Padding="6" Margin="0,0,0,4">

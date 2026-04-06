@@ -634,4 +634,122 @@ public class MainWindowViewModelTests
                 Directory.Delete(root, recursive: true);
         }
     }
+    [Fact]
+    public async Task ApplySettingsToChildViews_UsesActiveTranslationUserForAssistantAndScholar()
+    {
+        var assistant = new StubTranslationAssistantService();
+        var vm = new MainWindowViewModel(
+            new StubFileService(),
+            new StubAppConfigService(),
+            new StubIndexCacheService(),
+            new StubRenderedDocumentCacheService(),
+            new StubZenTextsService(),
+            new StubIndexedTranslationService(),
+            assistant,
+            new StubTranslationAssistantBuildService(),
+            new StubTranslationReviewService(),
+            new StubSearchIndexService(),
+            new StubDocumentTagService());
+
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+            await vm.SwitchTranslationSourceAsync(2);
+
+            string? scholarAssistantUser = null;
+            vm.SetScholarAssistantUsername = user => scholarAssistantUser = user;
+
+            vm.ApplySettingsToChildViews();
+
+            Assert.Equal("otheruser", assistant.LastUsername);
+            Assert.Equal("otheruser", scholarAssistantUser);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task OpenTermbaseEditorAsync_WhenViewingOtherUser_PassesOwnUsernameAndActiveCommunityUser()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+            await vm.SwitchTranslationSourceAsync(2);
+
+            string? seenRoot = null;
+            string? seenUsername = null;
+            string? seenTerm = null;
+            string? seenCommunityUser = null;
+            vm.OpenTermbaseEditorRequested = (r, username, term, communityUser) =>
+            {
+                seenRoot = r;
+                seenUsername = username;
+                seenTerm = term;
+                seenCommunityUser = communityUser;
+            };
+
+            await vm.OpenTermbaseEditorAsync("gate");
+
+            Assert.Equal(root, seenRoot);
+            Assert.Equal("octocat", seenUsername);
+            Assert.Equal("gate", seenTerm);
+            Assert.Equal("otheruser", seenCommunityUser);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task RefreshTranslationSources_PushesScholarDictionarySourceOptionsAndIndex()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            List<string>? scholarOptions = null;
+            int scholarIndex = -1;
+            vm.SetScholarDictionarySourceOptions = options => scholarOptions = new List<string>(options);
+            vm.SetScholarDictionarySourceIndex = index => scholarIndex = index;
+
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            Assert.Equal(vm.GetTranslationSourceLabels(), scholarOptions);
+            Assert.Equal(0, scholarIndex);
+
+            await vm.SwitchTranslationSourceAsync(2);
+            Assert.Equal(2, scholarIndex);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
 }

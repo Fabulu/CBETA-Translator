@@ -510,7 +510,10 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
         _vm.ClearScholar = () => _scholarView?.Clear();
         _vm.SetScholarUsername = user => _scholarView?.SetUsername(user);
+        _vm.SetScholarAssistantUsername = user => _scholarView?.SetAssistantUsername(user);
         _vm.SetScholarTranslationDirs = (orig, tran) => _scholarView?.SetTranslationDirs(orig, tran);
+        _vm.SetScholarDictionarySourceOptions = options => _scholarView?.SetDictionarySourceOptions(options);
+        _vm.SetScholarDictionarySourceIndex = index => _scholarView?.SetDictionarySourceIndex(index);
         _vm.SaveScholarStateAsync = async () => { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); };
 
         // Dialog bridges
@@ -976,6 +979,10 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 await _vm.OpenTermbaseEditorAsync();
             };
+            _scholarView.DictionarySourceChanged += async (_, idx) =>
+            {
+                await _vm.SwitchTranslationSourceAsync(idx);
+            };
 
             _scholarView.ZenMastersRequested += async (_, _) =>
             {
@@ -1022,7 +1029,8 @@ private async Task LoadConfigAndAutoloadAsync()
         if (!string.IsNullOrWhiteSpace(_vm.Root))
             _scholarView.SetRoot(_vm.Root);
         _scholarView.SetUsername(_vm.Config.GitHubUsername ?? _vm.Config.Username);
-        _scholarView.SetTranslationDirs(_vm.OriginalDir, _vm.TranslatedDir);
+        _scholarView.SetAssistantUsername(_vm.GetActiveDictionaryUser());
+        _scholarView.SetTranslationDirs(_vm.OriginalDir, _vm.GetActiveTranslatedDir());
     }
 
     private async Task HandleAddToScholarAsync(ScholarPassage passage)
