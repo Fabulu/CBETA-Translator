@@ -23,19 +23,18 @@
                 Name="TopBar"
                 Background="{DynamicResource BarBg}"
                 Padding="8,4,8,4">
-            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,*" RowSpacing="2" ColumnSpacing="4">
+            <StackPanel Spacing="0">
                 <DockPanel Name="TopBarCommandsHost"
-                           Grid.Row="0"
-                           Grid.ColumnSpan="3"
-                           LastChildFill="True">
+                           LastChildFill="True"
+                           Margin="0,0,0,2">
                     <StackPanel Orientation="Horizontal"
                                 Spacing="6"
                                 DockPanel.Dock="Left">
-                        <Button Name="BtnOpenRoot" Width="104" Height="24" FontSize="11" Content="Open Folder"
+                        <Button Name="BtnOpenRoot" Classes="compact-shell" Width="104" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Open Folder"
                                 ToolTip.Tip="Select the root folder containing CBETA XML files"/>
-                        <Button Name="BtnSettings" Width="84" Height="24" FontSize="11" Content="Settings"
+                        <Button Name="BtnSettings" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Settings"
                                 ToolTip.Tip="Open application settings"/>
-                        <Button Name="BtnLicenses" Width="84" Height="24" FontSize="11" Content="Licenses"
+                        <Button Name="BtnLicenses" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Licenses"
                                 ToolTip.Tip="View licenses and attributions"/>
                         <TextBlock Name="TxtRoot"
                                    Margin="10,0,0,0"
@@ -49,50 +48,50 @@
                                Classes="muted"/>
                 </DockPanel>
 
-                <Button Name="BtnToggleNav"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Width="28"
-                        Height="22"
-                        FontSize="12"
-                        Content="&#x2630;"
-                        ToolTip.Tip="Toggle sidebar"/>
+                <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="4">
+                    <Button Name="BtnToggleNav"
+                            Grid.Column="0"
+                            Width="28"
+                            Height="22"
+                            FontSize="12"
+                            Content="&#x2630;"
+                            ToolTip.Tip="Toggle sidebar"/>
 
-                <Button Name="BtnToggleTopBar"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Width="28"
-                        Height="22"
-                        FontSize="10"
-                        Content="&#x25B2;"
-                        ToolTip.Tip="Collapse command bar"/>
+                    <Button Name="BtnToggleTopBar"
+                            Grid.Column="1"
+                            Width="28"
+                            Height="22"
+                            FontSize="10"
+                            Content="&#x25B2;"
+                            ToolTip.Tip="Collapse command bar"/>
 
-                <Border Grid.Row="1" Grid.Column="2" Background="Transparent">
-                    <TabStrip Name="MainTabs" SelectedIndex="0" Height="20">
-                        <TabStrip.Styles>
-                            <Style Selector="TabStrip#MainTabs">
-                                <Setter Property="Margin" Value="0"/>
-                                <Setter Property="Padding" Value="0"/>
-                                <Setter Property="MinHeight" Value="0"/>
-                                <Setter Property="Height" Value="20"/>
-                            </Style>
-                            <Style Selector="TabStrip#MainTabs TabItem">
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Padding" Value="2,0"/>
-                                <Setter Property="Margin" Value="0"/>
-                                <Setter Property="MinHeight" Value="18"/>
-                                <Setter Property="Height" Value="18"/>
-                                <Setter Property="MinWidth" Value="0"/>
-                            </Style>
-                        </TabStrip.Styles>
-                        <TabItem Header="Reader"/>
-                        <TabItem Header="Translate"/>
-                        <TabItem Header="Search"/>
-                        <TabItem Header="Community"/>
-                        <TabItem Header="Scholar"/>
-                    </TabStrip>
-                </Border>
-            </Grid>
+                    <Border Grid.Column="2" Background="Transparent">
+                        <TabStrip Name="MainTabs" SelectedIndex="0" Height="20">
+                            <TabStrip.Styles>
+                                <Style Selector="TabStrip#MainTabs">
+                                    <Setter Property="Margin" Value="0"/>
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="MinHeight" Value="0"/>
+                                    <Setter Property="Height" Value="20"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs TabItem">
+                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="Padding" Value="2,0"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                    <Setter Property="MinHeight" Value="18"/>
+                                    <Setter Property="Height" Value="18"/>
+                                    <Setter Property="MinWidth" Value="0"/>
+                                </Style>
+                            </TabStrip.Styles>
+                            <TabItem Header="Reader"/>
+                            <TabItem Header="Translate"/>
+                            <TabItem Header="Search"/>
+                            <TabItem Header="Community"/>
+                            <TabItem Header="Scholar"/>
+                        </TabStrip>
+                    </Border>
+                </Grid>
+            </StackPanel>
         </Border>
 
         <Grid Grid.Row="1" ColumnDefinitions="Auto,*">

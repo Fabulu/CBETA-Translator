@@ -1,6 +1,8 @@
-﻿using System;
+using System;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Threading;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
 using CbetaTranslator.App.Infrastructure;
@@ -13,8 +15,7 @@ namespace CbetaTranslator.App.Views;
 /// <summary>
 /// A 3-pane comparison window that shows original Chinese text side-by-side with
 /// two different translations. Clicking a segment in any pane selects the
-/// corresponding segment in the other two using segment KEY matching (since each
-/// pane has different text from different RenderedDocuments).
+/// corresponding segment in the other two using segment KEY matching.
 /// </summary>
 public partial class CompareTranslationsWindow : Window
 {
@@ -26,6 +27,9 @@ public partial class CompareTranslationsWindow : Window
     private TextBlock? _txtHeader, _txtPaneAHeader, _txtPaneBHeader;
     private RenderedDocument? _docOriginal, _docTransA, _docTransB;
     private bool _syncing;
+    private string _relPath = string.Empty;
+    private string _sourceAKey = "community";
+    private string _sourceBKey = "community";
 
     public CompareTranslationsWindow()
     {
@@ -34,12 +38,11 @@ public partial class CompareTranslationsWindow : Window
         Closed += (_, _) => DisposeHoverDictionary();
     }
 
-    /// <summary>
-    /// Populates the three editors with their respective document texts and wires
-    /// segment-key-based selection mirroring. Call once after construction.
-    /// </summary>
     public void LoadComparison(CompareTranslationsRequestData data)
     {
+        _relPath = data.RelPath ?? string.Empty;
+        _sourceAKey = data.SourceAKey ?? "community";
+        _sourceBKey = data.SourceBKey ?? "community";
         _docOriginal = data.OriginalDoc;
         _docTransA = data.TranslationADoc;
         _docTransB = data.TranslationBDoc;
@@ -51,16 +54,200 @@ public partial class CompareTranslationsWindow : Window
         _txtPaneAHeader = this.FindControl<TextBlock>("TxtPaneAHeader");
         _txtPaneBHeader = this.FindControl<TextBlock>("TxtPaneBHeader");
 
-        if (_txtHeader != null) _txtHeader.Text = $"Compare Translations — {data.Title}";
+        if (_txtHeader != null) _txtHeader.Text = $"Compare Translations - {data.Title}";
         if (_txtPaneAHeader != null) _txtPaneAHeader.Text = data.TranslationALabel;
         if (_txtPaneBHeader != null) _txtPaneBHeader.Text = data.TranslationBLabel;
 
-        if (_edOriginal != null) { _edOriginal.Text = _docOriginal.Text ?? ""; ConfigureEditor(_edOriginal); }
-        if (_edTransA != null) { _edTransA.Text = _docTransA.Text ?? ""; ConfigureEditor(_edTransA); }
-        if (_edTransB != null) { _edTransB.Text = _docTransB.Text ?? ""; ConfigureEditor(_edTransB); }
+        if (_edOriginal != null) { _edOriginal.Text = _docOriginal.Text ?? string.Empty; ConfigureEditor(_edOriginal); }
+        if (_edTransA != null) { _edTransA.Text = _docTransA.Text ?? string.Empty; ConfigureEditor(_edTransA); }
+        if (_edTransB != null) { _edTransB.Text = _docTransB.Text ?? string.Empty; ConfigureEditor(_edTransB); }
 
+        AttachContextMenus();
         WireSelectionMirroring();
         SetupHoverDictionary();
+
+        if (data.LandingPane.HasValue && data.LandingNavigation != null)
+        {
+            Dispatcher.UIThread.Post(async () => await NavigateToAsync(data.LandingPane.Value, data.LandingNavigation), DispatcherPriority.Loaded);
+        }
+    }
+
+    public async Task NavigateToAsync(ComparePaneTarget pane, NavigationRequest request)
+    {
+        await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+
+        var (editor, doc) = GetPaneState(pane);
+        if (editor?.Document == null || doc == null || doc.IsEmpty)
+            return;
+
+        if (!string.IsNullOrWhiteSpace(request.FromLb) && TrySelectByLbRange(editor, doc, request.FromLb!, request.ToLb, out var lbKey))
+        {
+            MirrorSelection(pane, request.FromLb!, request.ToLb, lbKey);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(request.MatchText))
+            return;
+
+        var docText = doc.Text ?? string.Empty;
+        var idx = docText.IndexOf(request.MatchText, StringComparison.Ordinal);
+        if (idx < 0)
+            idx = docText.IndexOf(request.MatchText, StringComparison.OrdinalIgnoreCase);
+        if (idx < 0)
+            return;
+
+        SelectSegment(editor, idx, idx + request.MatchText.Length);
+        var seg = doc.FindSegmentAtOrBefore(idx);
+        MirrorSelection(pane, null, null, seg?.Key);
+    }
+
+    private void AttachContextMenus()
+    {
+        if (_edOriginal != null && _docOriginal != null)
+            _edOriginal.ContextMenu = BuildContextMenu(ComparePaneTarget.Original, _edOriginal, _docOriginal);
+        if (_edTransA != null && _docTransA != null)
+            _edTransA.ContextMenu = BuildContextMenu(ComparePaneTarget.TranslationA, _edTransA, _docTransA);
+        if (_edTransB != null && _docTransB != null)
+            _edTransB.ContextMenu = BuildContextMenu(ComparePaneTarget.TranslationB, _edTransB, _docTransB);
+    }
+
+    private ContextMenu BuildContextMenu(ComparePaneTarget pane, TextEditor editor, RenderedDocument doc)
+    {
+        var menu = new ContextMenu();
+        var copyLink = new MenuItem { Header = "Copy Link" };
+        copyLink.Click += async (_, _) => await CopyCompareLinkAsync(pane, editor, doc, shareable: false);
+        menu.Items.Add(copyLink);
+
+        var copyReddit = new MenuItem { Header = "Copy Reddit Link" };
+        copyReddit.Click += async (_, _) => await CopyCompareLinkAsync(pane, editor, doc, shareable: true);
+        menu.Items.Add(copyReddit);
+
+        return menu;
+    }
+
+    private async Task CopyCompareLinkAsync(ComparePaneTarget pane, TextEditor editor, RenderedDocument doc, bool shareable)
+    {
+        if (string.IsNullOrWhiteSpace(_relPath))
+            return;
+
+        GetSelectionAnchor(editor, doc, out var fromLb, out var toLb, out var highlight);
+
+        var link = shareable
+            ? CbetaUriParser.BuildShareableCompareUrl(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight)
+            : CbetaUriParser.BuildCompareUri(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight);
+
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard != null)
+            await top.Clipboard.SetTextAsync(link);
+    }
+
+    private void GetSelectionAnchor(TextEditor editor, RenderedDocument doc, out string? fromLb, out string? toLb, out string? highlight)
+    {
+        fromLb = null;
+        toLb = null;
+        highlight = null;
+
+        int selStart = Math.Min(editor.SelectionStart, editor.SelectionStart + editor.SelectionLength);
+        int selEnd = Math.Max(editor.SelectionStart, editor.SelectionStart + editor.SelectionLength);
+        bool hasSelection = selEnd > selStart;
+
+        if (hasSelection)
+        {
+            fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+            toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
+
+            if (string.IsNullOrWhiteSpace(fromLb))
+            {
+                highlight = editor.SelectedText;
+                if (string.IsNullOrWhiteSpace(highlight))
+                    highlight = null;
+                else if (highlight.Length > 60)
+                    highlight = highlight[..60];
+            }
+        }
+        else
+        {
+            int caret = editor.TextArea?.Caret.Offset ?? 0;
+            fromLb = LbHelper.FindNearestLbNValue(doc, caret);
+            toLb = fromLb;
+        }
+
+        if (!string.IsNullOrWhiteSpace(fromLb))
+            highlight = null;
+    }
+
+    private void MirrorSelection(ComparePaneTarget sourcePane, string? fromLb, string? toLb, string? key)
+    {
+        if (!string.IsNullOrWhiteSpace(fromLb))
+        {
+            if (sourcePane != ComparePaneTarget.Original)
+                TrySelectByLbRange(_edOriginal, _docOriginal, fromLb!, toLb, out _);
+            if (sourcePane != ComparePaneTarget.TranslationA)
+                TrySelectByLbRange(_edTransA, _docTransA, fromLb!, toLb, out _);
+            if (sourcePane != ComparePaneTarget.TranslationB)
+                TrySelectByLbRange(_edTransB, _docTransB, fromLb!, toLb, out _);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(key))
+            return;
+
+        if (sourcePane != ComparePaneTarget.Original)
+            SelectByKey(_edOriginal, _docOriginal, key);
+        if (sourcePane != ComparePaneTarget.TranslationA)
+            SelectByKey(_edTransA, _docTransA, key);
+        if (sourcePane != ComparePaneTarget.TranslationB)
+            SelectByKey(_edTransB, _docTransB, key);
+    }
+
+    private (TextEditor? Editor, RenderedDocument? Doc) GetPaneState(ComparePaneTarget pane) => pane switch
+    {
+        ComparePaneTarget.Original => (_edOriginal, _docOriginal),
+        ComparePaneTarget.TranslationA => (_edTransA, _docTransA),
+        ComparePaneTarget.TranslationB => (_edTransB, _docTransB),
+        _ => (_edOriginal, _docOriginal),
+    };
+
+    private static bool TrySelectByLbRange(TextEditor? editor, RenderedDocument? doc, string fromLb, string? toLb, out string? matchedKey)
+    {
+        matchedKey = null;
+        if (editor?.TextArea == null || doc == null)
+            return false;
+
+        int start = -1;
+        int end = -1;
+
+        foreach (var seg in doc.Segments)
+        {
+            if (TryMatchLb(seg.Key, fromLb))
+            {
+                start = seg.Start;
+                matchedKey = seg.Key;
+                break;
+            }
+        }
+
+        if (start < 0)
+            return false;
+
+        var targetTo = string.IsNullOrWhiteSpace(toLb) ? fromLb : toLb!;
+        foreach (var seg in doc.Segments)
+        {
+            if (TryMatchLb(seg.Key, targetTo))
+                end = seg.EndExclusive;
+        }
+
+        if (end < start)
+            end = start;
+
+        SelectSegment(editor, start, end);
+        return true;
+    }
+
+    private static bool TryMatchLb(string key, string lb)
+    {
+        var nValue = LbHelper.ExtractLbNValue(key);
+        return !string.IsNullOrWhiteSpace(nValue) && string.Equals(nValue, lb, StringComparison.OrdinalIgnoreCase);
     }
 
     private void SetupHoverDictionary()
@@ -164,7 +351,7 @@ public partial class CompareTranslationsWindow : Window
         if (ed?.TextArea == null) return;
         try
         {
-            int len = (ed.Text ?? "").Length;
+            int len = (ed.Text ?? string.Empty).Length;
             int s = Math.Clamp(start, 0, len);
             int e = Math.Clamp(end, 0, len);
             ed.TextArea.Selection = Selection.Create(ed.TextArea, s, e);

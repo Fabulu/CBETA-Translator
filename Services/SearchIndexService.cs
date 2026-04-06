@@ -99,6 +99,13 @@ public sealed class SearchIndexService : ISearchIndexService
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
+    private static readonly HashSet<char> CooccurrenceStopChars = new()
+    {
+        '\u4E4B', '\u4E4E', '\u8005', '\u4E5F', '\u77E3', '\u7109', '\u800C', '\u4EE5', '\u70BA', '\u65BC',
+        '\u5176', '\u6240', '\u5247', '\u4E43', '\u82E5', '\u5982', '\u96D6', '\u65E2', '\u4E14', '\u7336',
+        '\u6CC1', '\u8C48', '\u84CB', '\u592B', '\u60DF', '\u552F', '\u5373', '\u9042', '\u7ADF', '\u4F46',
+        '\u7136', '\u54C9', '\u4E0D', '\u662F', '\u6709', '\u7121', '\u6B64', '\u5F7C', '\u4F55'
+    };
 
     // ==========================================================
     // CO-OCCURRENCE METRICS (dropdown controls what panel shows)
@@ -122,16 +129,16 @@ public sealed class SearchIndexService : ISearchIndexService
         int topK = 30)
     {
         query ??= "";
+        string compactQuery = CompactCooccurrenceText(query);
+        var queryChars = BuildQueryCharExclusions(compactQuery);
 
         int totalHits = 0;
         int totalWindows = 0;
 
-        // Characters
         var chFreq = new Dictionary<string, int>(StringComparer.Ordinal);
         var chRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
         var chByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
 
-        // Ngrams (bigrams+trigrams together)
         var ngFreq = new Dictionary<string, int>(StringComparer.Ordinal);
         var ngRange = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
         var ngByFile = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
@@ -153,11 +160,10 @@ public sealed class SearchIndexService : ISearchIndexService
                 window = window.Replace("\r", "").Replace("\n", " ").Trim();
                 if (window.Length == 0) continue;
 
-                // Characters (skip whitespace)
                 for (int i = 0; i < window.Length; i++)
                 {
                     char ch = window[i];
-                    if (char.IsWhiteSpace(ch)) continue;
+                    if (!ShouldKeepCoocChar(ch, queryChars)) continue;
 
                     string key = ch.ToString();
                     chFreq[key] = chFreq.TryGetValue(key, out var f) ? f + 1 : 1;
@@ -171,16 +177,14 @@ public sealed class SearchIndexService : ISearchIndexService
                     map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
                 }
 
-                // Ngrams: avoid LINQ allocations by doing a compact rolling window over non-whitespace
                 char a = '\0', b = '\0';
                 bool hasA = false, hasB = false;
 
                 for (int i = 0; i < window.Length; i++)
                 {
                     char ch = window[i];
-                    if (char.IsWhiteSpace(ch)) continue;
+                    if (!ShouldKeepNgramChar(ch)) continue;
 
-                    // shift rolling buffer: (a,b,ch)
                     if (!hasA)
                     {
                         a = ch; hasA = true;
@@ -190,45 +194,51 @@ public sealed class SearchIndexService : ISearchIndexService
                     {
                         b = ch; hasB = true;
 
-                        // bigram (a,b)
                         string bg0 = string.Concat(a, b);
-                        ngFreq[bg0] = ngFreq.TryGetValue(bg0, out var f2) ? f2 + 1 : 1;
+                        if (ShouldKeepCoocNgram(bg0, compactQuery))
+                        {
+                            ngFreq[bg0] = ngFreq.TryGetValue(bg0, out var f2) ? f2 + 1 : 1;
 
-                        if (!ngRange.TryGetValue(bg0, out var set))
-                            ngRange[bg0] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                        set.Add(rel);
+                            if (!ngRange.TryGetValue(bg0, out var set))
+                                ngRange[bg0] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                            set.Add(rel);
 
-                        if (!ngByFile.TryGetValue(bg0, out var map))
-                            ngByFile[bg0] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-                        map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+                            if (!ngByFile.TryGetValue(bg0, out var map))
+                                ngByFile[bg0] = map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                            map[rel] = map.TryGetValue(rel, out var v) ? v + 1 : 1;
+                        }
 
                         continue;
                     }
 
-                    // Now we have a,b and new ch => bigram (b,ch) and trigram (a,b,ch)
                     string bg = string.Concat(b, ch);
-                    ngFreq[bg] = ngFreq.TryGetValue(bg, out var fbg) ? fbg + 1 : 1;
+                    if (ShouldKeepCoocNgram(bg, compactQuery))
+                    {
+                        ngFreq[bg] = ngFreq.TryGetValue(bg, out var fbg) ? fbg + 1 : 1;
 
-                    if (!ngRange.TryGetValue(bg, out var setBg))
-                        ngRange[bg] = setBg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                    setBg.Add(rel);
+                        if (!ngRange.TryGetValue(bg, out var setBg))
+                            ngRange[bg] = setBg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                        setBg.Add(rel);
 
-                    if (!ngByFile.TryGetValue(bg, out var mapBg))
-                        ngByFile[bg] = mapBg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-                    mapBg[rel] = mapBg.TryGetValue(rel, out var vbg) ? vbg + 1 : 1;
+                        if (!ngByFile.TryGetValue(bg, out var mapBg))
+                            ngByFile[bg] = mapBg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                        mapBg[rel] = mapBg.TryGetValue(rel, out var vbg) ? vbg + 1 : 1;
+                    }
 
                     string tg = string.Concat(a, b, ch);
-                    ngFreq[tg] = ngFreq.TryGetValue(tg, out var ftg) ? ftg + 1 : 1;
+                    if (ShouldKeepCoocNgram(tg, compactQuery))
+                    {
+                        ngFreq[tg] = ngFreq.TryGetValue(tg, out var ftg) ? ftg + 1 : 1;
 
-                    if (!ngRange.TryGetValue(tg, out var setTg))
-                        ngRange[tg] = setTg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                    setTg.Add(rel);
+                        if (!ngRange.TryGetValue(tg, out var setTg))
+                            ngRange[tg] = setTg = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                        setTg.Add(rel);
 
-                    if (!ngByFile.TryGetValue(tg, out var mapTg))
-                        ngByFile[tg] = mapTg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-                    mapTg[rel] = mapTg.TryGetValue(rel, out var vtg) ? vtg + 1 : 1;
+                        if (!ngByFile.TryGetValue(tg, out var mapTg))
+                            ngByFile[tg] = mapTg = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                        mapTg[rel] = mapTg.TryGetValue(rel, out var vtg) ? vtg + 1 : 1;
+                    }
 
-                    // shift
                     a = b;
                     b = ch;
                 }
@@ -244,7 +254,7 @@ public sealed class SearchIndexService : ISearchIndexService
             int max = 0;
             foreach (var kv in perFile)
                 if (kv.Value > max) max = kv.Value;
-            return (double)max / freq; // 0..1
+            return (double)max / freq;
         }
 
         double LogDiceApprox(int f_xq, int f_x, int f_q)
@@ -292,7 +302,6 @@ public sealed class SearchIndexService : ISearchIndexService
             int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
             chByFile.TryGetValue(key, out var byFile);
             double val = MetricValueFor(freq, range, byFile);
-
             return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
         }).ToList();
 
@@ -303,7 +312,6 @@ public sealed class SearchIndexService : ISearchIndexService
             int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
             ngByFile.TryGetValue(key, out var byFile);
             double val = MetricValueFor(freq, range, byFile);
-
             return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
         }).ToList();
 
@@ -340,18 +348,133 @@ public sealed class SearchIndexService : ISearchIndexService
 
         return new CooccurrencePanelResult
         {
-            Summary = $"metric={metricName}   hits={totalHits:n0}, windows={totalWindows:n0}, files={Nfiles:n0}, context={contextWidth} chars",
-            LeftTitle = $"Top characters by {metricName}",
-            RightTitle = $"Top bigrams / trigrams by {metricName}",
+            Summary = $"result-scoped metric={metricName}   hits={totalHits:n0}, windows={totalWindows:n0}, result files={Nfiles:n0}, context={contextWidth} chars",
+            LeftTitle = $"Top characters within current results by {metricName}",
+            RightTitle = $"Top bigrams / trigrams within current results by {metricName}",
             Left = left,
             Right = right,
-            ExtraLine = extra
+            ExtraLine = string.Join("\n", new[] { "Window-scoped analytics from current search results; not corpus-wide.", extra }.Where(s => !string.IsNullOrWhiteSpace(s)))
         };
     }
 
-    // ---------------------------
-    // Helpers (index caches)
-    // ---------------------------
+    private static HashSet<char> BuildQueryCharExclusions(string compactQuery)
+    {
+        var set = new HashSet<char>();
+        foreach (var ch in compactQuery)
+        {
+            if (ShouldKeepNgramChar(ch))
+                set.Add(ch);
+        }
+        return set;
+    }
+
+    private static string CompactCooccurrenceText(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return string.Empty;
+
+        var sb = new StringBuilder(text.Length);
+        foreach (var ch in text)
+        {
+            if (ShouldKeepNgramChar(ch))
+                sb.Append(char.ToLowerInvariant(ch));
+        }
+        return sb.ToString();
+    }
+
+    private static bool ShouldKeepCoocChar(char ch, HashSet<char> queryChars)
+    {
+        if (!IsMeaningfulCoocChar(ch))
+            return false;
+
+        return !queryChars.Contains(char.ToLowerInvariant(ch));
+    }
+
+    private static bool ShouldKeepCoocNgram(string value, string compactQuery)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        bool hasCjk = false;
+        bool hasLetter = false;
+        foreach (var ch in value)
+        {
+            if (!ShouldKeepNgramChar(ch))
+                return false;
+
+            if (IsCjk(ch))
+                hasCjk = true;
+            else if (char.IsLetter(ch))
+                hasLetter = true;
+        }
+
+        if (!hasCjk && !hasLetter)
+            return false;
+
+        var compactValue = CompactCooccurrenceText(value);
+        if (compactValue.Length < 2)
+            return false;
+
+        if (compactValue.All(IsCooccurrenceStopChar))
+            return false;
+
+        if (compactValue.Length >= 3)
+        {
+            bool leadingParticles = IsCooccurrenceStopChar(compactValue[0]) && IsCooccurrenceStopChar(compactValue[1]);
+            bool trailingParticles = IsCooccurrenceStopChar(compactValue[^1]) && IsCooccurrenceStopChar(compactValue[^2]);
+            if (leadingParticles || trailingParticles)
+                return false;
+        }
+
+        if (!string.IsNullOrWhiteSpace(compactQuery) &&
+            (string.Equals(compactValue, compactQuery, StringComparison.OrdinalIgnoreCase) ||
+             compactQuery.Contains(compactValue, StringComparison.OrdinalIgnoreCase)))
+        {
+            return false;
+        }
+
+        return compactValue switch
+        {
+            "the" or "and" or "ing" or "ion" or "for" or "ent" => false,
+            _ => true
+        };
+    }
+
+    private static bool IsCooccurrenceStopChar(char ch)
+    {
+        return ch switch
+        {
+            '\u4E4B' or '\u4E4E' or '\u8005' or '\u4E5F' or '\u77E3' or '\u7109' or '\u800C' or '\u4EE5' or '\u70BA' or '\u65BC'
+            or '\u5176' or '\u6240' or '\u5247' or '\u4E43' or '\u82E5' or '\u5982' or '\u96D6' or '\u65E2' or '\u4E14' or '\u7336'
+            or '\u6CC1' or '\u8C48' or '\u84CB' or '\u592B' or '\u60DF' or '\u552F' or '\u5373' or '\u9042' or '\u7ADF' or '\u4F46'
+            or '\u7136' or '\u54C9' or '\u4E0D' or '\u662F' or '\u6709' or '\u7121' or '\u6B64' or '\u5F7C' or '\u4F55' => true,
+            _ => false,
+        };
+    }
+
+    private static bool IsMeaningfulCoocChar(char ch)
+    {
+        if (!ShouldKeepNgramChar(ch))
+            return false;
+
+        if (ch <= 0x7F && char.IsLetter(ch))
+            return false;
+
+        return true;
+    }
+
+    private static bool ShouldKeepNgramChar(char ch)
+    {
+        if (char.IsWhiteSpace(ch) || char.IsControl(ch) || char.IsPunctuation(ch) || char.IsSymbol(ch) || char.IsDigit(ch))
+            return false;
+
+        return IsCjk(ch) || char.IsLetter(ch);
+    }
+
+    private static bool IsCjk(char ch)
+        => (ch >= '\u3400' && ch <= '\u4DBF')
+        || (ch >= '\u4E00' && ch <= '\u9FFF')
+        || (ch >= '\uF900' && ch <= '\uFAFF');
 
     public void Dispose()
     {
@@ -1733,27 +1856,179 @@ public sealed class SearchIndexService : ISearchIndexService
 
         for (int i = 0; i < originalHits.Count; i++)
         {
+            var primaryHit = originalHits[i];
+            var secondaryHit = i < translatedHits.Count ? translatedHits[i] : null;
             children.Add(new SearchResultChild
             {
                 RelPath = relPath,
                 Side = SearchSide.Original,
-                Hit = originalHits[i],
-                SecondaryHit = i < translatedHits.Count ? translatedHits[i] : null
+                Hit = primaryHit,
+                PrimaryIsContextOnly = IsContextOnlyHit(primaryHit),
+                SecondaryHit = secondaryHit,
+                SecondaryIsContextOnly = secondaryHit != null && IsContextOnlyHit(secondaryHit)
             });
         }
 
         for (int i = 0; i < translatedHits.Count; i++)
         {
+            var primaryHit = translatedHits[i];
+            var secondaryHit = i < originalHits.Count ? originalHits[i] : null;
             children.Add(new SearchResultChild
             {
                 RelPath = relPath,
                 Side = SearchSide.Translated,
-                Hit = translatedHits[i],
-                SecondaryHit = i < originalHits.Count ? originalHits[i] : null
+                Hit = primaryHit,
+                PrimaryIsContextOnly = IsContextOnlyHit(primaryHit),
+                SecondaryHit = secondaryHit,
+                SecondaryIsContextOnly = secondaryHit != null && IsContextOnlyHit(secondaryHit)
             });
         }
 
         return children;
+    }
+
+    public static List<SearchResultChild> BuildAlignedDisplayChildrenFromIndexedUnits(
+        string originalDir,
+        string translatedDir,
+        string relPath,
+        string query,
+        bool includeOriginal,
+        bool includeTranslated,
+        int contextWidth)
+    {
+        var indexed = TryLoadIndexedTranslationForDisplay(originalDir, translatedDir, relPath);
+        if (indexed == null)
+            return new List<SearchResultChild>();
+
+        bool isCjkQuery = CjkMatchNormalizer.ContainsCjk(query);
+        string effectiveQuery = isCjkQuery ? CjkMatchNormalizer.Normalize(query ?? string.Empty) : (query ?? string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(effectiveQuery))
+            return new List<SearchResultChild>();
+
+        var children = new List<SearchResultChild>();
+        foreach (var unit in indexed.Units)
+        {
+            string zh = unit.Zh ?? string.Empty;
+            string en = unit.En ?? string.Empty;
+
+            bool zhMatch = includeOriginal && TextContainsQuery(zh, effectiveQuery, isCjkQuery);
+            bool enMatch = includeTranslated && TextContainsQuery(en, effectiveQuery, false);
+            if (!zhMatch && !enMatch)
+                continue;
+
+            var zhCounterpart = string.IsNullOrWhiteSpace(zh) ? null : BuildCounterpartSnippet(zh, contextWidth);
+            var enCounterpart = string.IsNullOrWhiteSpace(en) ? null : BuildCounterpartSnippet(en, contextWidth);
+
+            if (zhMatch)
+            {
+                children.Add(new SearchResultChild
+                {
+                    RelPath = relPath,
+                    Side = SearchSide.Original,
+                    Hit = BuildSnippetForDisplay(zh, query ?? string.Empty, contextWidth, isCjkQuery),
+                    PrimaryIsContextOnly = false,
+                    SecondaryHit = enCounterpart,
+                    SecondaryIsContextOnly = true
+                });
+            }
+
+            if (enMatch)
+            {
+                children.Add(new SearchResultChild
+                {
+                    RelPath = relPath,
+                    Side = SearchSide.Translated,
+                    Hit = BuildSnippetForDisplay(en, query ?? string.Empty, contextWidth, false),
+                    PrimaryIsContextOnly = false,
+                    SecondaryHit = zhCounterpart,
+                    SecondaryIsContextOnly = true
+                });
+            }
+        }
+
+        return children;
+    }
+
+    private static IndexedTranslationDocument? TryLoadIndexedTranslationForDisplay(string originalDir, string translatedDir, string relPath)
+    {
+        if (string.IsNullOrWhiteSpace(originalDir) || string.IsNullOrWhiteSpace(relPath))
+            return null;
+
+        foreach (var candidateTranslatedDir in EnumerateTranslatedCounterpartDirs(originalDir, translatedDir, SearchSide.Original))
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(candidateTranslatedDir))
+                    continue;
+
+                string origAbs = Path.Combine(originalDir, relPath.Replace('/', Path.DirectorySeparatorChar));
+                string tranAbs = Path.Combine(candidateTranslatedDir, relPath.Replace('/', Path.DirectorySeparatorChar));
+                if (!File.Exists(origAbs) || !File.Exists(tranAbs))
+                    continue;
+
+                string originalXml = File.ReadAllText(origAbs, Utf8NoBom);
+                string translatedXml = File.ReadAllText(tranAbs, Utf8NoBom);
+                return new IndexedTranslationService().BuildIndex(originalXml, translatedXml);
+            }
+            catch
+            {
+            }
+        }
+
+        return null;
+    }
+
+    private static SearchHit BuildSnippetForDisplay(string text, string query, int contextWidth, bool isCjkQuery)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return new SearchHit();
+
+        string collapsed = CollapseWhitespace(text);
+        if (collapsed.Length == 0)
+            return new SearchHit();
+
+        if (string.IsNullOrWhiteSpace(query))
+            return BuildCounterpartSnippet(collapsed, contextWidth);
+
+        if (isCjkQuery)
+        {
+            string normalizedQuery = CjkMatchNormalizer.Normalize(query);
+            if (!string.IsNullOrWhiteSpace(normalizedQuery))
+            {
+                var normalized = CjkMatchNormalizer.NormalizeWithMap(collapsed);
+                int idx2 = normalized.Normalized.IndexOf(normalizedQuery, StringComparison.Ordinal);
+                if (idx2 >= 0)
+                {
+                    int start = CjkMatchNormalizer.RawIndexFromNormalizedPos(normalized, idx2);
+                    int end = CjkMatchNormalizer.RawIndexFromNormalizedPos(normalized, idx2 + normalizedQuery.Length);
+                    return BuildSnippetFromOffsets(collapsed, start, end, contextWidth);
+                }
+            }
+        }
+        else
+        {
+            int idx2 = collapsed.IndexOf(query, StringComparison.OrdinalIgnoreCase);
+            if (idx2 >= 0)
+                return BuildSnippetFromOffsets(collapsed, idx2, idx2 + query.Length, contextWidth);
+        }
+
+        return BuildCounterpartSnippet(collapsed, contextWidth);
+    }
+
+    private static SearchHit BuildSnippetFromOffsets(string text, int matchStart, int matchEnd, int contextWidth)
+    {
+        int safeStart = Math.Clamp(matchStart, 0, text.Length);
+        int safeEnd = Math.Clamp(matchEnd, safeStart, text.Length);
+        int leftStart = Math.Max(0, safeStart - contextWidth);
+        int rightEnd = Math.Min(text.Length, safeEnd + contextWidth);
+
+        return new SearchHit
+        {
+            Index = safeStart,
+            Left = text.Substring(leftStart, safeStart - leftStart),
+            Match = text.Substring(safeStart, safeEnd - safeStart),
+            Right = text.Substring(safeEnd, rightEnd - safeEnd)
+        };
     }
 
     public static List<SearchHit> BuildCounterpartHitsFromIndexedUnits(
@@ -1809,7 +2084,15 @@ public sealed class SearchIndexService : ISearchIndexService
 
         int maxLen = Math.Max(20, contextWidth * 2);
         string snippet = collapsed.Length > maxLen ? collapsed[..maxLen] + "..." : collapsed;
-        return new SearchHit { Left = string.Empty, Match = snippet, Right = string.Empty };
+        return new SearchHit { Left = snippet, Match = string.Empty, Right = string.Empty };
+    }
+
+    private static bool IsContextOnlyHit(SearchHit? hit)
+    {
+        return hit != null
+            && string.IsNullOrEmpty(hit.Match)
+            && !string.IsNullOrEmpty(hit.Left)
+            && string.IsNullOrEmpty(hit.Right);
     }
 
     private static string CollapseWhitespace(string text)
@@ -1836,6 +2119,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
         return sb.ToString().Trim();
     }
+
     public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(
     string root,
     string originalDir,
@@ -2209,25 +2493,41 @@ public sealed class SearchIndexService : ISearchIndexService
                 Interlocked.Add(ref totalHits, hitsT);
             }
 
-            var displayOriginalHits = originalHits;
-            var displayTranslatedHits = translatedHits;
-
-            if (originalHits.Count > 0 && translatedHits.Count == 0)
-            {
-                var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Original, originalHits.Count, contextWidth);
-                if (counterpart.Count > 0)
-                    displayTranslatedHits = counterpart;
-            }
-            else if (translatedHits.Count > 0 && originalHits.Count == 0)
-            {
-                var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Translated, translatedHits.Count, contextWidth);
-                if (counterpart.Count > 0)
-                    displayOriginalHits = counterpart;
-            }
+            var displayChildren = BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                translatedDir,
+                relKey,
+                query,
+                includeOriginal,
+                includeTranslated,
+                contextWidth);
 
             group.HitsOriginal = hitsO;
             group.HitsTranslated = hitsT;
-            group.Children.AddRange(BuildResultChildren(relKey, displayOriginalHits, displayTranslatedHits));
+            if (displayChildren.Count > 0)
+            {
+                group.Children.AddRange(displayChildren);
+            }
+            else
+            {
+                var displayOriginalHits = originalHits;
+                var displayTranslatedHits = translatedHits;
+
+                if (originalHits.Count > translatedHits.Count)
+                {
+                    var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Original, originalHits.Count, contextWidth);
+                    if (counterpart.Count > translatedHits.Count)
+                        displayTranslatedHits = MergeDisplayHits(translatedHits, counterpart, originalHits.Count);
+                }
+                else if (translatedHits.Count > originalHits.Count)
+                {
+                    var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Translated, translatedHits.Count, contextWidth);
+                    if (counterpart.Count > originalHits.Count)
+                        displayOriginalHits = MergeDisplayHits(originalHits, counterpart, translatedHits.Count);
+                }
+
+                group.Children.AddRange(BuildResultChildren(relKey, displayOriginalHits, displayTranslatedHits));
+            }
 
             if (group.Children.Count > 0)
                 outGroups.Add(group);
@@ -2301,6 +2601,20 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    private static List<SearchHit> MergeDisplayHits(IReadOnlyList<SearchHit> existingHits, IReadOnlyList<SearchHit> counterpartHits, int targetCount)
+    {
+        if (targetCount <= 0)
+            return new List<SearchHit>();
+
+        var merged = new List<SearchHit>(targetCount);
+        foreach (var hit in existingHits)
+            merged.Add(hit);
+
+        for (int i = merged.Count; i < targetCount && i < counterpartHits.Count; i++)
+            merged.Add(counterpartHits[i]);
+
+        return merged;
+    }
     internal static List<SearchHit> TryBuildCounterpartHitsForDisplay(
         string originalDir,
         string translatedDir,
@@ -2486,6 +2800,17 @@ public sealed class SearchIndexService : ISearchIndexService
         return hits;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

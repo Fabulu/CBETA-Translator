@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
 using Xunit;
@@ -46,6 +47,31 @@ public class SearchIndexServiceTests
     }
 
     [Fact]
+    public void BuildResultChildren_ContextOnlyCounterpartRows_AreMarkedAsContextOnly()
+    {
+        var originalHits = new List<SearchHit>
+        {
+            Hit("zh-l1 ", "\u5B57\u4E00", " zh-r1"),
+            Hit("zh-l2 ", "\u5B57\u4E8C", " zh-r2")
+        };
+
+        var translatedHits = new List<SearchHit>
+        {
+            Hit("en-l1 ", "word1", " en-r1"),
+            new() { Left = "context only counterpart", Match = string.Empty, Right = string.Empty }
+        };
+
+        var children = SearchIndexService.BuildResultChildren("T/T01/T01n0001.xml", originalHits, translatedHits);
+
+        Assert.False(children[0].PrimaryIsContextOnly);
+        Assert.False(children[0].SecondaryIsContextOnly);
+        Assert.False(children[1].PrimaryIsContextOnly);
+        Assert.True(children[1].SecondaryIsContextOnly);
+        Assert.True(children[3].PrimaryIsContextOnly);
+        Assert.Equal("context only counterpart", children[3].PrimarySnippetText);
+    }
+
+    [Fact]
     public void ToScholarPassage_CarriesBothLanguagesWhenPaired()
     {
         var child = new SearchResultChild
@@ -83,9 +109,28 @@ public class SearchIndexServiceTests
     }
 
     [Fact]
+    public void BuildCounterpartHitsFromIndexedUnits_ContextOnlyHit_UsesPlainSnippetWithoutMatchSegment()
+    {
+        var doc = new IndexedTranslationDocument();
+        doc.Units.Add(new CbetaTranslator.App.Services.TranslationUnit { Zh = "\u8D99\u5DDE\u554F\u4F5B\u6CD5", En = "Zhaozhou asked about the Dharma." });
+
+        var hits = SearchIndexService.BuildCounterpartHitsFromIndexedUnits(
+            doc,
+            "\u4F5B\u6CD5",
+            SearchSide.Original,
+            neededCount: 1,
+            contextWidth: 40);
+
+        var hit = Assert.Single(hits);
+        Assert.Equal(string.Empty, hit.Match);
+        Assert.Equal("Zhaozhou asked about the Dharma.", hit.Left);
+        Assert.Equal(string.Empty, hit.Right);
+    }
+
+    [Fact]
     public void BuildCounterpartHitsFromIndexedUnits_ForChineseQuery_ReturnsEnglishCounterparts()
     {
-        var doc = new CbetaTranslator.App.Services.IndexedTranslationDocument();
+        var doc = new IndexedTranslationDocument();
         doc.Units.Add(new CbetaTranslator.App.Services.TranslationUnit { Zh = "\u8D99\u5DDE\u554F\u4F5B\u6CD5", En = "Zhaozhou asked about the Dharma." });
         doc.Units.Add(new CbetaTranslator.App.Services.TranslationUnit { Zh = "\u7121\u9580\u66F0", En = "Wumen said." });
 
@@ -97,13 +142,14 @@ public class SearchIndexServiceTests
             contextWidth: 40);
 
         Assert.Single(hits);
-        Assert.Equal("Zhaozhou asked about the Dharma.", hits[0].Match);
+        Assert.Equal(string.Empty, hits[0].Match);
+        Assert.Equal("Zhaozhou asked about the Dharma.", hits[0].Left);
     }
 
     [Fact]
     public void BuildCounterpartHitsFromIndexedUnits_ForEnglishQuery_ReturnsChineseCounterparts()
     {
-        var doc = new CbetaTranslator.App.Services.IndexedTranslationDocument();
+        var doc = new IndexedTranslationDocument();
         doc.Units.Add(new CbetaTranslator.App.Services.TranslationUnit { Zh = "\u8D99\u5DDE\u554F\u4F5B\u6CD5", En = "Zhaozhou asked about the Dharma." });
         doc.Units.Add(new CbetaTranslator.App.Services.TranslationUnit { Zh = "\u7121\u9580\u66F0", En = "Wumen said." });
 
@@ -115,7 +161,8 @@ public class SearchIndexServiceTests
             contextWidth: 40);
 
         Assert.Single(hits);
-        Assert.Equal("\u8D99\u5DDE\u554F\u4F5B\u6CD5", hits[0].Match);
+        Assert.Equal(string.Empty, hits[0].Match);
+        Assert.Equal("\u8D99\u5DDE\u554F\u4F5B\u6CD5", hits[0].Left);
     }
 
     [Fact]
@@ -147,6 +194,183 @@ public class SearchIndexServiceTests
                 Directory.Delete(root, recursive: true);
         }
     }
-}
 
+    [Fact]
+    public void BuildAlignedDisplayChildrenFromIndexedUnits_UsesUnitOrderAndCounterpartsForMixedHits()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-display-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string translatedDir = Path.Combine(root, "xml-p5t");
+        Directory.CreateDirectory(Path.Combine(originalDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(translatedDir, "T", "T48"));
+
+        string relPath = "T/T48/T48n2005.xml";
+        File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>\u7121\u9580\u95DC \u7B2C\u4E00\u5247</p><p>\u5E73\u5E38\u5FC3\u662F\u9053</p></body></text></TEI>");
+        File.WriteAllText(Path.Combine(translatedDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Wumenguan Case One</p><p>The ordinary mind is the Way</p></body></text></TEI>");
+
+        try
+        {
+            var children = SearchIndexService.BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                translatedDir,
+                relPath,
+                "\u9580\u95DC",
+                includeOriginal: true,
+                includeTranslated: true,
+                contextWidth: 40);
+
+            var child = Assert.Single(children);
+            Assert.Equal(SearchSide.Original, child.Side);
+            Assert.Contains("\u7121\u9580\u95DC", child.PrimarySnippetText);
+            Assert.True(child.HasSecondaryDisplayText);
+            Assert.Contains("Wumenguan", child.SecondarySnippetText);
+            Assert.True(child.SecondaryIsContextOnly);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void BuildAlignedDisplayChildrenFromIndexedUnits_FallsBackToCanonicalXmlP5tForDisplay()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-display-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string personalTranslatedDir = Path.Combine(root, "community", "translations", "dota2nub");
+        string canonicalTranslatedDir = Path.Combine(root, "xml-p5t");
+        Directory.CreateDirectory(Path.Combine(originalDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(personalTranslatedDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(canonicalTranslatedDir, "T", "T48"));
+
+        string relPath = "T/T48/T48n2004.xml";
+        File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2004.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>\u96F2\u9580\u95DC</p></body></text></TEI>");
+        File.WriteAllText(Path.Combine(canonicalTranslatedDir, "T", "T48", "T48n2004.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Yunmen''s Barrier</p></body></text></TEI>");
+
+        try
+        {
+            var children = SearchIndexService.BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                personalTranslatedDir,
+                relPath,
+                "\u95DC",
+                includeOriginal: true,
+                includeTranslated: true,
+                contextWidth: 40);
+
+            var child = Assert.Single(children);
+            Assert.Equal(SearchSide.Original, child.Side);
+            Assert.Contains("\u96F2\u9580\u95DC", child.PrimarySnippetText);
+            Assert.Contains("Yunmen", child.SecondarySnippetText);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void ComputeCooccurrences_FiltersQueryCharsAndPunctuationNoise()
+    {
+        var groups = new List<SearchResultGroup>
+        {
+            new()
+            {
+                RelPath = "T/T48/T48n2005.xml",
+                Children = new List<SearchResultChild>
+                {
+                    new() { Hit = Hit("!\u96F2\u9580", "\u9580\u95DC", "\u3002\u8D99\u5DDE"), Side = SearchSide.Original }
+                }
+            }
+        };
+
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u9580\u95DC", 80, CoocMetric.TopCooccurrences, topK: 10);
+
+        Assert.DoesNotContain(result.Left, row => row.Key == "\u9580" || row.Key == "\u95DC" || row.Key == "!" || row.Key == "\u3002");
+        Assert.Contains(result.Left, row => row.Key == "\u96F2");
+        Assert.Contains("result-scoped", result.Summary);
+    }
+
+    [Fact]
+    public void ComputeCooccurrences_FiltersCommonParticleNgrams()
+    {
+        var groups = new List<SearchResultGroup>
+        {
+            new()
+            {
+                RelPath = "T/T48/T48n2005.xml",
+                Children = new List<SearchResultChild>
+                {
+                    new() { Hit = Hit("\u4E4B\u4E4E", "\u4F5B\u6CD5", "\u8005\u4E5F\u96F2\u9580\u95DC"), Side = SearchSide.Original }
+                }
+            }
+        };
+
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u4F5B\u6CD5", 80, CoocMetric.TopCooccurrences, topK: 20);
+
+        Assert.DoesNotContain(result.Right, row => row.Key == "\u4E4B\u4E4E" || row.Key == "\u4E4E\u8005" || row.Key == "\u8005\u4E5F");
+        Assert.Contains(result.Right, row => row.Key.Contains("\u96F2\u9580") || row.Key.Contains("\u9580\u95DC"));
+    }
+
+    [Fact]
+    public void ComputeCooccurrences_FiltersPunctuationAsciiCharNoiseAndQuerySelf()
+    {
+        var groups = new List<SearchResultGroup>
+        {
+            new()
+            {
+                RelPath = "T/T48/T48n2005.xml",
+                Children = new List<SearchResultChild>
+                {
+                    new()
+                    {
+                        RelPath = "T/T48/T48n2005.xml",
+                        Side = SearchSide.Original,
+                        Hit = Hit("\u96F2\u9580", "\u95DC", " is the gate.")
+                    }
+                }
+            }
+        };
+
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u96F2\u9580\u95DC", 80, CoocMetric.Frequency, topK: 20);
+
+        Assert.DoesNotContain(result.Left, row => row.Key == "\u96F2" || row.Key == "\u9580" || row.Key == "\u95DC" || row.Key == "i");
+        Assert.DoesNotContain(result.Right, row => row.Key.Contains("\u96F2\u9580\u95DC", StringComparison.Ordinal));
+        Assert.DoesNotContain(result.Right, row => row.Key.Any(char.IsPunctuation));
+    }
+
+    [Fact]
+    public void ComputeCooccurrences_SummaryAndTitlesStateResultScopedSemantics()
+    {
+        var groups = new List<SearchResultGroup>
+        {
+            new()
+            {
+                RelPath = "T/T48/T48n2005.xml",
+                Children = new List<SearchResultChild>
+                {
+                    new()
+                    {
+                        RelPath = "T/T48/T48n2005.xml",
+                        Side = SearchSide.Original,
+                        Hit = Hit("\u96F2\u9580", "\u95DC", "\u8D99\u5DDE")
+                    }
+                }
+            }
+        };
+
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u95DC", 80, CoocMetric.DispersionScore, topK: 10);
+
+        Assert.Contains("result-scoped", result.Summary);
+        Assert.Contains("current results", result.LeftTitle);
+        Assert.Contains("current results", result.RightTitle);
+        Assert.Contains("not corpus-wide", result.ExtraLine);
+    }
+}
 

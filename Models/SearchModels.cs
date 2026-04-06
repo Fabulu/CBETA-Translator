@@ -47,7 +47,9 @@ public sealed class SearchResultChild
     public string RelPath { get; set; } = "";
     public SearchSide Side { get; set; }
     public SearchHit Hit { get; set; } = new();
+    public bool PrimaryIsContextOnly { get; set; }
     public SearchHit? SecondaryHit { get; set; }
+    public bool SecondaryIsContextOnly { get; set; } = true;
 
     public string SideLabel
         => Side == SearchSide.Original ? "O: " : "T: ";
@@ -57,6 +59,8 @@ public sealed class SearchResultChild
     public string RightText => Hit.Right ?? "";
     public string PrimarySnippetText => Hit.SnippetText;
     public string PrimaryDisplayText => $"{SideLabel}{PrimarySnippetText}";
+    public bool HasPrimaryStructuredDisplay => !PrimaryIsContextOnly;
+    public bool HasPrimaryContextOnlyDisplay => PrimaryIsContextOnly;
     public string SecondarySideLabel => SecondaryHit == null ? "" : (Side == SearchSide.Original ? "T: " : "O: ");
     public string SecondaryLeftText => SecondaryHit?.Left ?? "";
     public string SecondaryMatchText => SecondaryHit?.Match ?? "";
@@ -64,6 +68,8 @@ public sealed class SearchResultChild
     public string SecondarySnippetText => SecondaryHit?.SnippetText ?? "";
     public string SecondaryDisplayText => SecondaryHit == null ? "" : $"{SecondarySideLabel}{SecondarySnippetText}";
     public bool HasSecondaryDisplayText => SecondaryHit != null;
+    public bool HasSecondaryStructuredDisplay => SecondaryHit != null && !SecondaryIsContextOnly;
+    public bool HasSecondaryContextOnlyDisplay => SecondaryHit != null && SecondaryIsContextOnly;
 
     public string RowText
         => $"{SideLabel}{LeftText}[{MatchText}]{RightText}";
@@ -154,3 +160,6 @@ public sealed class SearchCjkBigramPosting
     public string Gram { get; set; } = "";
     public List<int> EntryIds { get; set; } = new();
 }
+
+
+

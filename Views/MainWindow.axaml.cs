@@ -1,4 +1,4 @@
-// Views/MainWindow.axaml.cs
+﻿// Views/MainWindow.axaml.cs
 //
 // Thin code-behind after Wave 5 MVVM extraction.
 // Responsibilities: control lookup, bridge wiring, dialogs, window chrome,
@@ -33,7 +33,7 @@ namespace CbetaTranslator.App.Views;
 public partial class MainWindow : Window
 {
     // UI controls
-    private Button? _btnToggleNav, _btnOpenRoot, _btnSettings, _btnSave, _btnLicenses;
+    private Button? _btnToggleNav, _btnToggleTopBar, _btnOpenRoot, _btnSettings, _btnSave, _btnLicenses;
     private Button? _btnMinimize, _btnMaximize, _btnClose;
     private Border? _navPanel, _topBar, _emptyStateOverlay;
 
@@ -206,6 +206,9 @@ public partial class MainWindow : Window
         case DeepLinkKind.Master:
             await HandleMasterDeepLinkAsync(request.MasterName, request.MasterUser);
             break;
+        case DeepLinkKind.Compare:
+            await HandleCompareDeepLinkAsync(request);
+            break;
     }
 }
 
@@ -219,6 +222,26 @@ private async Task HandleDictDeepLinkAsync(string? term, string? user, bool isLe
 
     await _vm.OpenTermbaseEditorAsync(term, user);
     _vm.SetStatus($"Opened dictionary for \"{term}\"" + (!string.IsNullOrWhiteSpace(user) ? $" (user: {user})" : "") + ".", StatusSeverity.Info);
+}
+
+private async Task HandleCompareDeepLinkAsync(DeepLinkRequest request)
+{
+    if (string.IsNullOrWhiteSpace(request.CompareRelPath) ||
+        string.IsNullOrWhiteSpace(request.CompareSourceA) ||
+        string.IsNullOrWhiteSpace(request.CompareSourceB) ||
+        request.ComparePane == null ||
+        request.CompareNavigation == null)
+    {
+        _vm.SetStatus("Compare link is incomplete.", StatusSeverity.Warning);
+        return;
+    }
+
+    await OpenCompareTranslationsWindowAsync(
+        request.CompareRelPath,
+        request.CompareSourceA,
+        request.CompareSourceB,
+        request.ComparePane.Value,
+        request.CompareNavigation);
 }
 
 private async Task HandleMasterDeepLinkAsync(string? name, string? user)
@@ -336,6 +359,7 @@ private async Task LoadConfigAndAutoloadAsync()
     private void FindControls()
     {
         _btnToggleNav = Find<Button>("BtnToggleNav");
+        _btnToggleTopBar = Find<Button>("BtnToggleTopBar");
         _btnOpenRoot = Find<Button>("BtnOpenRoot");
         _btnSettings = Find<Button>("BtnSettings");
         _btnSave = Find<Button>("BtnSave");
@@ -599,6 +623,12 @@ private async Task LoadConfigAndAutoloadAsync()
             };
         }
 
+        if (_btnToggleTopBar != null)
+        {
+            _btnToggleTopBar.Click += (_, _) => ToggleTopBarCommands();
+            UpdateTopBarToggleState();
+        }
+
         if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) => await _vm.OpenRootAsync();
         if (_btnSettings != null) _btnSettings.Click += async (_, _) => await _vm.OpenSettingsAsync();
         if (_btnLicenses != null) _btnLicenses.Click += async (_, _) => await _vm.OpenLicensesAsync();
@@ -754,6 +784,26 @@ private async Task LoadConfigAndAutoloadAsync()
         };
     }
 
+    private void ToggleTopBarCommands()
+    {
+        var host = Find<Control>("TopBarCommandsHost");
+        if (host == null)
+            return;
+
+        host.IsVisible = !host.IsVisible;
+        UpdateTopBarToggleState();
+    }
+
+    private void UpdateTopBarToggleState()
+    {
+        if (_btnToggleTopBar == null)
+            return;
+
+        var host = Find<Control>("TopBarCommandsHost");
+        bool expanded = host?.IsVisible != false;
+        _btnToggleTopBar.Content = expanded ? "▲" : "▼";
+        ToolTip.SetTip(_btnToggleTopBar, expanded ? "Collapse command bar" : "Expand command bar");
+    }
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         var visual = e.Source as Visual;
@@ -918,6 +968,7 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_searchView != null)
         {
             _searchView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
+            _searchView.GetTranslationSourceKey = () => _vm.GetActiveSearchSourceKey();
             _searchView.Status += (_, msg) => _vm.SetStatus(msg);
             _searchView.NavigationRequested += (_, req) =>
             {
@@ -1446,7 +1497,10 @@ private async Task LoadConfigAndAutoloadAsync()
                 return;
             }
 
-            // Build picker dialog with two ComboBoxes
+            var sourceList = new List<string>(sources);
+            var activeIndex = Math.Clamp(_vm.GetActiveTranslationSourceIndex(), 0, sourceList.Count - 1);
+            var fallbackIndex = Enumerable.Range(0, sourceList.Count).FirstOrDefault(i => i != activeIndex);
+
             var dialog = new Window
             {
                 Title = "Select Translations to Compare",
@@ -1457,13 +1511,8 @@ private async Task LoadConfigAndAutoloadAsync()
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            var sourceList = new List<string>(sources);
-            var activeIndex = Math.Clamp(_vm.GetActiveTranslationSourceIndex(), 0, sourceList.Count - 1);
-            var fallbackIndex = Enumerable.Range(0, sourceList.Count).FirstOrDefault(i => i != activeIndex);
-
             var cmbA = new ComboBox { ItemsSource = sourceList, SelectedIndex = activeIndex, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
             var cmbB = new ComboBox { ItemsSource = sourceList, SelectedIndex = fallbackIndex, MinWidth = 300, Margin = new Thickness(0, 4, 0, 0) };
-
             var btnOk = new Button { Content = "Compare", HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0, 16, 0, 0), Padding = new Thickness(20, 6) };
 
             var panel = new StackPanel
@@ -1491,63 +1540,135 @@ private async Task LoadConfigAndAutoloadAsync()
 
             dialog.Show(this);
             var result = await tcs.Task;
-
             if (result == null) return;
-            var (indexA, indexB) = result.Value;
 
+            var (indexA, indexB) = result.Value;
             if (indexA == indexB)
             {
                 _vm.SetStatus("Please select two different translation sources.");
                 return;
             }
 
-            // Render original
-            var origDir = _vm.OriginalDir;
-            if (origDir == null) return;
-            var origPath = Path.Combine(origDir, _vm.CurrentRelPath);
-            if (!File.Exists(origPath))
+            var sourceAKey = GetCompareSourceKey(indexA);
+            var sourceBKey = GetCompareSourceKey(indexB);
+            if (sourceAKey == null || sourceBKey == null)
             {
-                _vm.SetStatus("Original file not found.");
-                return;
-            }
-            var origXml = await File.ReadAllTextAsync(origPath, Encoding.UTF8);
-            var origDoc = CbetaTeiRenderer.Render(origXml);
-
-            // Render translation A
-            var transADoc = _vm.RenderTranslationSource(indexA);
-            if (transADoc == null || transADoc.IsEmpty)
-            {
-                _vm.SetStatus($"Translation A ({sourceList[indexA]}) is empty or not found for this file.");
+                _vm.SetStatus("Could not resolve comparison sources.");
                 return;
             }
 
-            // Render translation B
-            var transBDoc = _vm.RenderTranslationSource(indexB);
-            if (transBDoc == null || transBDoc.IsEmpty)
-            {
-                _vm.SetStatus($"Translation B ({sourceList[indexB]}) is empty or not found for this file.");
-                return;
-            }
-
-            var data = new CompareTranslationsRequestData(
-                _vm.CurrentRelPath,
-                origDoc,
-                transADoc,
-                sourceList[indexA],
-                transBDoc,
-                sourceList[indexB]);
-
-            var win = new CompareTranslationsWindow
-            {
-                RequestedThemeVariant = this.ActualThemeVariant
-            };
-            win.LoadComparison(data);
-            win.Show(this);
+            await OpenCompareTranslationsWindowAsync(_vm.CurrentRelPath, sourceAKey, sourceBKey, null, null);
         }
         catch (Exception ex)
         {
             _vm.SetStatus("Open translation comparison failed: " + ex.Message);
         }
+    }
+
+    private async Task OpenCompareTranslationsWindowAsync(
+        string relPath,
+        string sourceAKey,
+        string sourceBKey,
+        ComparePaneTarget? landingPane,
+        NavigationRequest? landingRequest)
+    {
+        if (string.IsNullOrWhiteSpace(_vm.Root))
+        {
+            _vm.SetStatus("Compare link requires a loaded text root.");
+            return;
+        }
+
+        await _vm.OpenAtCoreAsync(_vm.Root!, new NavigationRequest { RelPath = relPath });
+
+        var sourceList = new List<string>(_vm.GetTranslationSourceLabels());
+        var indexA = ResolveCompareSourceIndex(sourceAKey, sourceList);
+        var indexB = ResolveCompareSourceIndex(sourceBKey, sourceList);
+        if (!indexA.HasValue || !indexB.HasValue || indexA.Value == indexB.Value)
+        {
+            _vm.SetStatus("Compare link refers to unavailable translation sources.");
+            return;
+        }
+
+        var origDir = _vm.OriginalDir;
+        if (origDir == null)
+            return;
+
+        var origPath = Path.Combine(origDir, relPath);
+        if (!File.Exists(origPath))
+        {
+            _vm.SetStatus("Original file not found.");
+            return;
+        }
+
+        var origXml = await File.ReadAllTextAsync(origPath, Encoding.UTF8);
+        var origDoc = CbetaTeiRenderer.Render(origXml);
+
+        var transADoc = _vm.RenderTranslationSource(indexA.Value);
+        if (transADoc == null || transADoc.IsEmpty)
+        {
+            _vm.SetStatus($"Translation A ({sourceList[indexA.Value]}) is empty or not found for this file.");
+            return;
+        }
+
+        var transBDoc = _vm.RenderTranslationSource(indexB.Value);
+        if (transBDoc == null || transBDoc.IsEmpty)
+        {
+            _vm.SetStatus($"Translation B ({sourceList[indexB.Value]}) is empty or not found for this file.");
+            return;
+        }
+
+        var data = new CompareTranslationsRequestData(
+            relPath,
+            relPath,
+            sourceAKey,
+            sourceBKey,
+            origDoc,
+            transADoc,
+            sourceList[indexA.Value],
+            transBDoc,
+            sourceList[indexB.Value],
+            landingPane,
+            landingRequest);
+
+        var win = new CompareTranslationsWindow
+        {
+            RequestedThemeVariant = this.ActualThemeVariant
+        };
+        win.LoadComparison(data);
+        win.Show(this);
+    }
+
+    private string? GetCompareSourceKey(int index)
+    {
+        var labels = _vm.GetTranslationSourceLabels();
+        if (index < 0 || index >= labels.Count)
+            return null;
+
+        if (index == 0)
+            return "me";
+        if (index == 1)
+            return "community";
+        return labels[index];
+    }
+
+    private static int? ResolveCompareSourceIndex(string sourceKey, IReadOnlyList<string> labels)
+    {
+        if (string.IsNullOrWhiteSpace(sourceKey))
+            return null;
+
+        var normalized = sourceKey.Trim();
+        if (string.Equals(normalized, "me", StringComparison.OrdinalIgnoreCase))
+            return labels.Count > 0 ? 0 : null;
+        if (string.Equals(normalized, "community", StringComparison.OrdinalIgnoreCase))
+            return labels.Count > 1 ? 1 : null;
+
+        for (int i = 2; i < labels.Count; i++)
+        {
+            if (string.Equals(labels[i], normalized, StringComparison.OrdinalIgnoreCase))
+                return i;
+        }
+
+        return null;
     }
 
     // ===========================================================
@@ -1829,6 +1950,7 @@ private async Task LoadConfigAndAutoloadAsync()
         StartTour();
     }
 }
+
 
 
 

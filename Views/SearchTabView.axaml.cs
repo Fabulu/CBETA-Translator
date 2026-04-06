@@ -1,4 +1,4 @@
-// Views/SearchTabView.axaml.cs
+﻿// Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,11 +26,16 @@ public partial class SearchTabView : UserControl
     /// <summary>Returns the currently active translation user (null = community).</summary>
     public Func<string?>? GetTranslationUser { get; set; }
 
+    /// <summary>Returns the active translation source key for search-state deep links.</summary>
+    public Func<string?>? GetTranslationSourceKey { get; set; }
+
     public SearchTabView()
     {
         InitializeComponent();
 
-        _vm = new SearchTabViewModel(App.Services.GetRequiredService<ISearchIndexService>());
+        _vm = new SearchTabViewModel(
+            App.Services.GetRequiredService<ISearchIndexService>(),
+            App.Services.GetRequiredService<ISearchExportService>());
         DataContext = _vm;
 
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
@@ -80,72 +85,216 @@ public partial class SearchTabView : UserControl
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
 
                 var passage = child.ToScholarPassage();
-
                 AddToScholarRequested?.Invoke(this, passage);
             };
 
-            var copyLinkItem = new MenuItem { Header = "Copy Link" };
-            copyLinkItem.Click += async (_, _) =>
+            var copyPassageLinkItem = new MenuItem { Header = "Copy Passage Link" };
+            copyPassageLinkItem.Click += async (_, _) =>
             {
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
-
-                var user = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
-                var uri = CbetaUriParser.BuildUri(
-                    child.RelPath, highlightText: child.MatchText, side: child.Side,
-                    leftContext: child.LeftText, rightContext: child.RightText, user: user);
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null)
-                    await top.Clipboard.SetTextAsync(uri);
-                Status?.Invoke(this, "Link copied to clipboard.");
+                await CopyPassageLinkAsync(child, shareable: false);
             };
 
-            var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
-            copyRedditLink.Click += async (_, _) =>
+            var copyPassageRedditLink = new MenuItem { Header = "Copy Shareable Passage Link" };
+            copyPassageRedditLink.Click += async (_, _) =>
             {
                 if (resultsTree.SelectedItem is not SearchResultChild child) return;
+                await CopyPassageLinkAsync(child, shareable: true);
+            };
 
-                var userR = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
-                var url = CbetaUriParser.BuildShareableUrl(
-                    child.RelPath, highlightText: child.MatchText, side: child.Side, user: userR);
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null)
-                    await top.Clipboard.SetTextAsync(url);
-                Status?.Invoke(this, "Reddit link copied to clipboard.");
+            var copySearchLinkItem = new MenuItem { Header = "Copy Search Link" };
+            copySearchLinkItem.Click += async (_, _) =>
+            {
+                await CopySearchLinkAsync(shareable: false);
+            };
+
+            var copyShareableSearchLinkItem = new MenuItem { Header = "Copy Shareable Search Link" };
+            copyShareableSearchLinkItem.Click += async (_, _) =>
+            {
+                await CopySearchLinkAsync(shareable: true);
             };
 
             resultsTree.ContextMenu = new ContextMenu
             {
-                Items = { addToScholarItem, copyLinkItem, copyRedditLink }
+                Items =
+                {
+                    addToScholarItem,
+                    new Separator(),
+                    copyPassageLinkItem,
+                    copyPassageRedditLink,
+                    new Separator(),
+                    copySearchLinkItem,
+                    copyShareableSearchLinkItem
+                }
             };
         }
 
-        // Wire the save-file picker delegate so the VM never touches Window/StorageProvider
-        _vm.PickSaveFileAsync = async () =>
-        {
-            var owner = TopLevel.GetTopLevel(this) as Window;
-            if (owner?.StorageProvider == null) return null;
+        _vm.PickExportFormatAsync = PickExportFormatAsyncCore;
+        _vm.PickExportFileAsync = PickExportFileAsyncCore;
 
-            var file = await owner.StorageProvider.SaveFilePickerAsync(
-                new Avalonia.Platform.Storage.FilePickerSaveOptions
-                {
-                    Title = "Export search results (TSV)",
-                    SuggestedFileName = "search-results.tsv"
-                });
-
-            return file?.TryGetLocalPath();
-        };
-
-        var btnExport = this.FindControl<Button>("BtnExportTsv");
+        var btnExport = this.FindControl<Button>("BtnExport");
         if (btnExport != null)
         {
             btnExport.Click += async (_, _) =>
             {
-                await _vm.ExportTsvCommand.ExecuteAsync(null);
+                await _vm.ExportCommand.ExecuteAsync(null);
+            };
+        }
+
+        var btnCopySearchLink = this.FindControl<Button>("BtnCopySearchLink");
+        if (btnCopySearchLink != null)
+        {
+            btnCopySearchLink.Click += async (_, _) =>
+            {
+                await CopySearchLinkAsync(shareable: false);
             };
         }
     }
 
-    // ----- Public forwarding methods (called by MainWindow) -----
+    private async Task CopyPassageLinkAsync(SearchResultChild child, bool shareable)
+    {
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard == null)
+            return;
+
+        var user = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
+        var highlightText = string.IsNullOrWhiteSpace(child.MatchText) ? child.PrimarySnippetText : child.MatchText;
+        var leftContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.LeftText;
+        var rightContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.RightText;
+        var text = shareable
+            ? CbetaUriParser.BuildShareableUrl(child.RelPath, highlightText: highlightText, side: child.Side, user: user)
+            : CbetaUriParser.BuildUri(child.RelPath, highlightText: highlightText, side: child.Side, leftContext: leftContext, rightContext: rightContext, user: user);
+
+        await top.Clipboard.SetTextAsync(text);
+        Status?.Invoke(this, shareable ? "Shareable passage link copied to clipboard." : "Passage link copied to clipboard.");
+    }
+
+    private async Task CopySearchLinkAsync(bool shareable)
+    {
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard == null)
+            return;
+
+        var state = _vm.ExportUiState();
+        var sourceKey = GetTranslationSourceKey?.Invoke();
+        var link = shareable
+            ? CbetaUriParser.BuildShareableSearchUrl(
+                state.Query,
+                searchOriginal: state.SearchOriginal,
+                searchTranslated: state.SearchTranslated,
+                zenOnly: state.ZenOnly,
+                statusIndex: state.SelectedStatusIndex,
+                tagId: state.SelectedTagFilterId,
+                contextIndex: state.SelectedContextIndex,
+                translationSource: sourceKey)
+            : CbetaUriParser.BuildSearchUri(
+                state.Query,
+                searchOriginal: state.SearchOriginal,
+                searchTranslated: state.SearchTranslated,
+                zenOnly: state.ZenOnly,
+                statusIndex: state.SelectedStatusIndex,
+                tagId: state.SelectedTagFilterId,
+                contextIndex: state.SelectedContextIndex,
+                translationSource: sourceKey);
+
+        await top.Clipboard.SetTextAsync(link);
+        Status?.Invoke(this, shareable ? "Shareable search link copied to clipboard." : "Search link copied to clipboard.");
+    }
+
+    private async Task<SearchExportFormat?> PickExportFormatAsyncCore()
+    {
+        var owner = TopLevel.GetTopLevel(this) as Window;
+        if (owner == null)
+            return null;
+
+        var dlg = new SearchExportFormatDialog
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+
+        return await dlg.ShowDialog<SearchExportFormat?>(owner);
+    }
+
+    private async Task<string?> PickExportFileAsyncCore(SearchExportFormat format, string? suggestedBaseName)
+    {
+        var owner = TopLevel.GetTopLevel(this) as Window;
+        if (owner?.StorageProvider == null)
+            return null;
+
+        var baseName = string.IsNullOrWhiteSpace(suggestedBaseName) ? "search-results" : suggestedBaseName;
+        var options = format switch
+        {
+            SearchExportFormat.Html => new FilePickerSaveOptions
+            {
+                Title = "Export search results as HTML",
+                SuggestedFileName = baseName + ".html",
+                DefaultExtension = "html",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("HTML") { Patterns = new[] { "*.html", "*.htm" } }
+                }
+            },
+            SearchExportFormat.Markdown => new FilePickerSaveOptions
+            {
+                Title = "Export search results as Markdown",
+                SuggestedFileName = baseName + ".md",
+                DefaultExtension = "md",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Markdown") { Patterns = new[] { "*.md", "*.markdown" } }
+                }
+            },
+            SearchExportFormat.PlainText => new FilePickerSaveOptions
+            {
+                Title = "Export search results as Plain Text",
+                SuggestedFileName = baseName + ".txt",
+                DefaultExtension = "txt",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("Plain Text") { Patterns = new[] { "*.txt" } }
+                }
+            },
+            SearchExportFormat.Csv => new FilePickerSaveOptions
+            {
+                Title = "Export search results as CSV",
+                SuggestedFileName = baseName + ".csv",
+                DefaultExtension = "csv",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("CSV") { Patterns = new[] { "*.csv" } }
+                }
+            },
+            SearchExportFormat.Tsv => new FilePickerSaveOptions
+            {
+                Title = "Export search results as TSV",
+                SuggestedFileName = baseName + ".tsv",
+                DefaultExtension = "tsv",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("TSV") { Patterns = new[] { "*.tsv" } }
+                }
+            },
+            SearchExportFormat.Json => new FilePickerSaveOptions
+            {
+                Title = "Export search results as JSON",
+                SuggestedFileName = baseName + ".json",
+                DefaultExtension = "json",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("JSON") { Patterns = new[] { "*.json" } }
+                }
+            },
+            _ => new FilePickerSaveOptions
+            {
+                Title = "Export search results",
+                SuggestedFileName = baseName + ".txt",
+                DefaultExtension = "txt"
+            }
+        };
+
+        var file = await owner.StorageProvider.SaveFilePickerAsync(options);
+        return file?.TryGetLocalPath();
+    }
 
     public void SetRootContext(string root, string originalDir, string translatedDir)
         => _vm.SetRootContext(root, originalDir, translatedDir);
@@ -175,12 +324,9 @@ public partial class SearchTabView : UserControl
     public Task ApplyUiStateAsync(SearchTabViewModel.SearchUiState? state, bool executeSearch = false)
         => _vm.ApplyUiStateAsync(state, executeSearch);
 
-    /// <summary>
-    /// Sets the search query text and immediately executes the search.
-    /// Used by deep link routing.
-    /// </summary>
     public void SetSearchTextAndExecute(string query)
     {
         _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
     }
 }
+
