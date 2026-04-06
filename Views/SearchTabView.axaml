@@ -174,7 +174,7 @@
 
 					<Grid IsVisible="{Binding IsMetricViewVisible}"
                           ColumnDefinitions="*,*"
-                          RowDefinitions="Auto,*"
+                          RowDefinitions="Auto,*,Auto,*"
                           ColumnSpacing="10"
                           RowSpacing="4">
 
@@ -333,6 +333,8 @@
 
 	</Grid>
 </UserControl>
+
+
 
 
 

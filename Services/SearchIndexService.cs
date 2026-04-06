@@ -357,6 +357,70 @@ public sealed class SearchIndexService : ISearchIndexService
         };
     }
 
+    public static CooccurrencePanelResult ComputeCorpusCooccurrences(
+        string originalDir,
+        string translatedDir,
+        IEnumerable<FileNavItem> files,
+        string query,
+        bool includeOriginal,
+        bool includeTranslated,
+        int contextWidth,
+        CoocMetric metric,
+        int topK = 30,
+        Func<string, bool>? relPathFilter = null,
+        TranslationStatus? statusFilter = null,
+        IProgress<(int done, int total)>? progress = null,
+        CancellationToken ct = default)
+    {
+        var selectedFiles = (files ?? Array.Empty<FileNavItem>())
+            .Where(f => f != null && !string.IsNullOrWhiteSpace(f.RelPath))
+            .Where(f => !statusFilter.HasValue || f.Status == statusFilter.Value)
+            .Where(f => relPathFilter == null || relPathFilter(f.RelPath))
+            .ToList();
+
+        var groups = new List<SearchResultGroup>(selectedFiles.Count);
+        for (int i = 0; i < selectedFiles.Count; i++)
+        {
+            ct.ThrowIfCancellationRequested();
+            var file = selectedFiles[i];
+            var children = BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                translatedDir,
+                file.RelPath,
+                query,
+                includeOriginal,
+                includeTranslated,
+                contextWidth);
+
+            if (children.Count > 0)
+            {
+                groups.Add(new SearchResultGroup
+                {
+                    RelPath = file.RelPath,
+                    DisplayName = string.IsNullOrWhiteSpace(file.DisplayShort) ? file.FileName : file.DisplayShort,
+                    Tooltip = string.IsNullOrWhiteSpace(file.Tooltip) ? file.RelPath : file.Tooltip,
+                    Status = file.Status,
+                    Children = children,
+                    HitsOriginal = children.Count(c => c.Side == SearchSide.Original),
+                    HitsTranslated = children.Count(c => c.Side == SearchSide.Translated)
+                });
+            }
+
+            progress?.Report((i + 1, selectedFiles.Count));
+        }
+
+        var result = ComputeCooccurrences(groups, query, contextWidth, metric, topK);
+        result.Summary = result.Summary.Replace("result-scoped", "corpus-scan", StringComparison.OrdinalIgnoreCase);
+        result.LeftTitle = result.LeftTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
+        result.RightTitle = result.RightTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
+        result.ExtraLine = string.Join("\n", new[]
+        {
+            $"Filtered files scanned: {selectedFiles.Count:n0}",
+            "Corpus scan is slower because it re-reads filtered files directly.",
+            result.ExtraLine
+        }.Where(s => !string.IsNullOrWhiteSpace(s)));
+        return result;
+    }
     private static HashSet<char> BuildQueryCharExclusions(string compactQuery)
     {
         var set = new HashSet<char>();
@@ -2800,6 +2864,7 @@ public sealed class SearchIndexService : ISearchIndexService
         return hits;
     }
 }
+
 
 
 

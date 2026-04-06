@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CbetaTranslator.App.Models;
@@ -93,6 +93,14 @@ public sealed class SearchResultChild
     }
 }
 
+public sealed class AnalyticsBubbleItem
+{
+    public string Label { get; set; } = "";
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public double FontSize { get; set; }
+    public string Tooltip { get; set; } = "";
+}
 // A small manifest for the bloom index on disk
 public sealed class SearchIndexManifest
 {
@@ -160,6 +168,8 @@ public sealed class SearchCjkBigramPosting
     public string Gram { get; set; } = "";
     public List<int> EntryIds { get; set; } = new();
 }
+
+
 
 
 
