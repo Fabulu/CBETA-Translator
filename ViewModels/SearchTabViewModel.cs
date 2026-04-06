@@ -67,6 +67,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private Dictionary<string, string>? _tagNameById; // tagId -> displayName
     private Dictionary<string, string>? _tagIdByName; // displayName -> tagId
     private string? _pendingRestoredTagId;
+    private static readonly int[] ContextWidths = new[] { 20, 40, 80, 160, 240, 320, 480, 640 };
 
 
 
@@ -83,6 +84,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isSearching;
+
+    [ObservableProperty]
+    private bool _isSearchProgressVisible;
+
+    [ObservableProperty]
+    private bool _isSearchProgressIndeterminate;
+
+    [ObservableProperty]
+    private double _searchProgressPercent;
 
     [ObservableProperty]
     private bool _isBuildingIndex;
@@ -110,6 +120,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isAnalyticsBusy;
+
+    [ObservableProperty]
+    private bool _isAnalyticsProgressVisible;
+
+    [ObservableProperty]
+    private double _analyticsProgressPercent;
     [ObservableProperty]
     private int _selectedStatusIndex;
 
@@ -172,15 +188,7 @@ public partial class SearchTabViewModel : ViewModelBase
         "Green (done)"
     };
 
-    public string[] ContextItems { get; } = new[]
-    {
-        "80 chars",
-        "160 chars",
-        "240 chars",
-        "320 chars",
-        "480 chars",
-        "640 chars"
-    };
+    public string[] ContextItems { get; } = ContextWidths.Select(w => $"{w} chars").ToArray();
 
     public List<string> TagFilterItems
     {
@@ -502,13 +510,13 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             IsCancelEnabled = true;
 
-            ProgressText = force ? "Index rebuild…" : "Index update…";
+            ProgressText = force ? "Index rebuild..." : "Index update...";
             SummaryText = force ? "Rebuilding search index" : "Updating search index";
 
             var prog = new Progress<(int done, int total, string phase)>(p =>
             {
                 int percent = p.total <= 0 ? 0 : (int)Math.Round((double)p.done * 100 / p.total);
-                ProgressText = $"Index {Math.Clamp(percent, 0, 100)}% · {p.phase}";
+                ProgressText = $"Index {Math.Clamp(percent, 0, 100)}% ? {p.phase}";
             });
 
             await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDir, forceRebuild: force, progress: prog, ct: ct);
@@ -596,16 +604,8 @@ public partial class SearchTabViewModel : ViewModelBase
 
     private int GetContextWidth()
     {
-        return SelectedContextIndex switch
-        {
-            0 => 80,
-            1 => 160,
-            2 => 240,
-            3 => 320,
-            4 => 480,
-            5 => 640,
-            _ => 160
-        };
+        var index = CoerceIndex(SelectedContextIndex, ContextWidths.Length);
+        return ContextWidths[index];
     }
 
     private TranslationStatus? GetStatusFilter()
@@ -708,10 +708,14 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         CoocChars.Clear();
         CoocNgrams.Clear();
+        CoocCharVisuals.Clear();
+        CoocNgramVisuals.Clear();
         CoocSummaryText = "No data yet.";
         ZipfText = "";
         LeftTitle = "Top characters";
         RightTitle = "Top bigrams / trigrams";
+        IsAnalyticsProgressVisible = false;
+        AnalyticsProgressPercent = 0;
     }
 
     private async Task RefreshCoocUiFromCurrentStateAsync()
@@ -733,6 +737,8 @@ public partial class SearchTabViewModel : ViewModelBase
                 MetricGuideText = GetMetricGuideText();
                 CoocSummaryText = $"Guide (query='{_lastQuery}', context={_lastContextWidth} chars)";
                 ZipfText = "";
+                IsAnalyticsBusy = false;
+                IsAnalyticsProgressVisible = false;
             });
             return;
         }
@@ -741,36 +747,122 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             IsMetricViewVisible = true;
             IsMetricGuideVisible = false;
-            CoocSummaryText = "Computing\u2026";
+            IsAnalyticsBusy = true;
+            IsAnalyticsProgressVisible = SelectedAnalyticsScopeIndex == 1;
+            AnalyticsProgressPercent = 0;
+            CoocSummaryText = SelectedAnalyticsScopeIndex == 1 ? "Corpus scan 0%" : "Computing insights...";
         });
 
         int myVer = Interlocked.Increment(ref _metricComputeVersion);
         var metric = GetSelectedMetric();
-
         var snapshotGroups = _groups.ToList();
         string q = _lastQuery;
         int cw = _lastContextWidth;
+        var statusFilter = GetStatusFilter();
+        var relFilter = BuildRelPathFilter(ZenOnly);
 
-        var result = await Task.Run(() =>
-            SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 30));
+        SearchIndexService.CooccurrencePanelResult result;
+        if (SelectedAnalyticsScopeIndex == 1 &&
+            !string.IsNullOrWhiteSpace(_originalDir) &&
+            !string.IsNullOrWhiteSpace(_translatedDir) &&
+            _fileIndex.Count > 0)
+        {
+            var corpusProgress = new Progress<(int done, int total)>(p =>
+            {
+                if (myVer != Volatile.Read(ref _metricComputeVersion))
+                    return;
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    if (myVer != Volatile.Read(ref _metricComputeVersion))
+                        return;
+
+                    var percent = p.total <= 0 ? 0d : Math.Clamp((double)p.done * 100d / p.total, 0d, 100d);
+                    AnalyticsProgressPercent = percent;
+                    CoocSummaryText = $"Corpus scan {p.done:n0}/{p.total:n0} files ({percent:0}%)";
+                });
+            });
+
+            result = await Task.Run(() =>
+                SearchIndexService.ComputeCorpusCooccurrences(
+                    _originalDir!,
+                    _translatedDir!,
+                    _fileIndex,
+                    q,
+                    SearchOriginal,
+                    SearchTranslated,
+                    cw,
+                    metric,
+                    topK: 30,
+                    relPathFilter: relFilter,
+                    statusFilter: statusFilter,
+                    progress: corpusProgress,
+                    ct: CancellationToken.None));
+        }
+        else
+        {
+            result = await Task.Run(() =>
+                SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 30));
+        }
 
         if (myVer != Volatile.Read(ref _metricComputeVersion))
             return;
 
         await Dispatcher.UIThread.InvokeAsync(() =>
         {
-            CoocSummaryText = result.Summary;
-            LeftTitle = result.LeftTitle;
-            RightTitle = result.RightTitle;
-
-            CoocChars.Clear();
-            foreach (var r in result.Left) CoocChars.Add(r);
-
-            CoocNgrams.Clear();
-            foreach (var r in result.Right) CoocNgrams.Add(r);
-
-            ZipfText = result.ExtraLine ?? "";
+            ApplyCooccurrenceResult(result);
+            IsAnalyticsBusy = false;
+            IsAnalyticsProgressVisible = false;
+            AnalyticsProgressPercent = 0;
         });
+    }
+
+    private void ApplyCooccurrenceResult(SearchIndexService.CooccurrencePanelResult result)
+    {
+        CoocSummaryText = result.Summary;
+        LeftTitle = result.LeftTitle;
+        RightTitle = result.RightTitle;
+
+        CoocChars.Clear();
+        foreach (var row in result.Left)
+            CoocChars.Add(row);
+
+        CoocNgrams.Clear();
+        foreach (var row in result.Right)
+            CoocNgrams.Add(row);
+
+        CoocCharVisuals.Clear();
+        foreach (var item in BuildAnalyticsVisuals(result.Left))
+            CoocCharVisuals.Add(item);
+
+        CoocNgramVisuals.Clear();
+        foreach (var item in BuildAnalyticsVisuals(result.Right))
+            CoocNgramVisuals.Add(item);
+
+        ZipfText = result.ExtraLine ?? "";
+    }
+
+    private static List<AnalyticsBubbleItem> BuildAnalyticsVisuals(IReadOnlyList<CoocRow> rows)
+    {
+        var visuals = new List<AnalyticsBubbleItem>();
+        if (rows == null || rows.Count == 0)
+            return visuals;
+
+        var maxFreq = Math.Max(1, rows.Max(r => r.Freq));
+        foreach (var row in rows.Take(18))
+        {
+            var ratio = row.Freq <= 0 ? 0.2 : Math.Clamp((double)row.Freq / maxFreq, 0.18, 1.0);
+            visuals.Add(new AnalyticsBubbleItem
+            {
+                Label = row.Key,
+                Width = 52 + (70 * ratio),
+                Height = 24 + (18 * ratio),
+                FontSize = 11 + (7 * ratio),
+                Tooltip = $"{row.Key} | freq {row.Freq:n0} | range {row.Range:n0} | score {row.Assoc:0.###}"
+            });
+        }
+
+        return visuals;
     }
 
     // ----- Search -----
@@ -823,13 +915,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
         int mySearchVer = Interlocked.Increment(ref _searchRunVersion);
 
-        // Reset results
         _groups.Clear();
         ResultGroups.Clear();
         IsExportEnabled = false;
         ClearCoocUi();
+        IsSearching = true;
+        IsSearchProgressVisible = true;
+        IsSearchProgressIndeterminate = true;
+        SearchProgressPercent = 0;
 
-        // Snapshot UI-derived values before jumping to background work
         string root = _root;
         string originalDir = _originalDir;
         string translatedDir = _translatedDir;
@@ -843,9 +937,8 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             IsCancelEnabled = true;
             SummaryText = $"Search: {q}";
-            ProgressText = "Search 0% · loading index";
+            ProgressText = "Preparing search...";
 
-            // Force a UI turn so the user sees the immediate feedback
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
             await Task.Run(async () =>
@@ -857,17 +950,17 @@ public partial class SearchTabViewModel : ViewModelBase
                     {
                         if (mySearchVer != Volatile.Read(ref _searchRunVersion)) return;
                         ProgressText = "No index.";
-                        StatusChanged?.Invoke(this, "No search index found. Click 'Build/Update Index' first.");
+                        IsSearchProgressVisible = false;
+                        IsSearchProgressIndeterminate = false;
+                        StatusChanged?.Invoke(this, "No search index found. Click 'Index' first.");
                     });
                     return;
                 }
 
                 int totalHits = 0;
                 int totalGroups = 0;
-                long uiAppendMs = 0;
-
                 var localGroups = new List<SearchResultGroup>(256);
-                var pendingUiBatch = new List<SearchResultGroup>(16);
+                var pendingUiBatch = new List<SearchResultGroup>(12);
 
                 var prog = new Progress<SearchIndexService.SearchProgress>(p =>
                 {
@@ -877,7 +970,10 @@ public partial class SearchTabViewModel : ViewModelBase
                             return;
 
                         int percent = p.TotalDocsToVerify <= 0 ? 0 : (int)Math.Round((double)p.VerifiedDocs * 100 / p.TotalDocsToVerify);
-                        ProgressText = $"Search {Math.Clamp(percent, 0, 100)}% · {p.Groups:n0} files · {p.TotalHits:n0} hits";
+                        IsSearchProgressVisible = true;
+                        IsSearchProgressIndeterminate = p.TotalDocsToVerify <= 0;
+                        SearchProgressPercent = Math.Clamp(percent, 0, 100);
+                        ProgressText = $"{p.Phase} - {p.Groups:n0} files - {p.TotalHits:n0} hits";
                     });
                 });
 
@@ -890,7 +986,6 @@ public partial class SearchTabViewModel : ViewModelBase
 
                     int snapshotGroups = totalGroups;
                     int snapshotHits = totalHits;
-                    var swUi = System.Diagnostics.Stopwatch.StartNew();
 
                     await Dispatcher.UIThread.InvokeAsync(() =>
                     {
@@ -901,10 +996,8 @@ public partial class SearchTabViewModel : ViewModelBase
                             ResultGroups.Add(batch[i]);
 
                         if (forceSummary || batch.Length > 0)
-                            SummaryText = $"Results: {snapshotGroups:n0} files · {snapshotHits:n0} hits";
+                            SummaryText = $"Results: {snapshotGroups:n0} files - {snapshotHits:n0} hits";
                     }, DispatcherPriority.Background);
-                    swUi.Stop();
-                    uiAppendMs += swUi.ElapsedMilliseconds;
                 }
 
                 await foreach (var g in _svc.SearchAllAsync(
@@ -949,11 +1042,10 @@ public partial class SearchTabViewModel : ViewModelBase
 
                     localGroups.Add(g);
                     pendingUiBatch.Add(g);
-
                     totalGroups++;
                     totalHits += g.Children.Count;
 
-                    if (totalGroups <= 8 || pendingUiBatch.Count >= 12)
+                    if (totalGroups <= 10 || pendingUiBatch.Count >= 8)
                     {
                         await FlushPendingUiBatchAsync(forceSummary: false);
                         await Task.Yield();
@@ -970,7 +1062,10 @@ public partial class SearchTabViewModel : ViewModelBase
                     _groups.Clear();
                     _groups.AddRange(localGroups);
 
-                    SummaryText = $"Done: {localGroups.Count:n0} files · {totalHits:n0} hits";
+                    SummaryText = $"Done: {localGroups.Count:n0} files - {totalHits:n0} hits";
+                    ProgressText = $"Verified {localGroups.Count:n0} files";
+                    SearchProgressPercent = 100;
+                    IsSearchProgressIndeterminate = false;
                     IsExportEnabled = localGroups.Count > 0;
                 });
             }, ct);
@@ -984,6 +1079,8 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 ProgressText = "Canceled.";
                 SummaryText = "Canceled.";
+                IsSearchProgressVisible = false;
+                IsSearchProgressIndeterminate = false;
             }
         }
         catch (Exception ex)
@@ -992,6 +1089,8 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 ProgressText = "Search failed: " + ex.Message;
                 SummaryText = "Search failed.";
+                IsSearchProgressVisible = false;
+                IsSearchProgressIndeterminate = false;
                 StatusChanged?.Invoke(this, "Search failed: " + ex.Message);
             }
         }
@@ -1000,6 +1099,9 @@ public partial class SearchTabViewModel : ViewModelBase
             if (mySearchVer == Volatile.Read(ref _searchRunVersion))
             {
                 IsCancelEnabled = false;
+                IsSearching = false;
+                IsSearchProgressVisible = false;
+                IsSearchProgressIndeterminate = false;
             }
         }
     }
@@ -1140,6 +1242,7 @@ t-score/dispersion = 'reliable and common'
 dominance = 'artifact detector'";
     }
 }
+
 
 
 

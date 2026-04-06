@@ -94,7 +94,27 @@ public class SearchTabViewInteractionTests
         Assert.Contains("Topic 1", vm.TagFilterItems);
         Assert.Equal(0, vm.SelectedTagFilterIndex);
     }
+    [Fact]
+    public async Task ApplyUiStateAsync_RoundTripsLowestExpandedContextIndex()
+    {
+        var view = CreateViewShell(out _);
+        var state = new SearchTabViewModel.SearchUiState
+        {
+            Query = "mumonkan",
+            SearchOriginal = true,
+            SearchTranslated = false,
+            ZenOnly = false,
+            SelectedStatusIndex = 0,
+            SelectedContextIndex = 0
+        };
+
+        await view.ApplyUiStateAsync(state, executeSearch: false);
+        var exported = view.ExportUiState();
+
+        Assert.Equal("mumonkan", exported.Query);
+        Assert.Equal(0, exported.SelectedContextIndex);
+        Assert.True(exported.SearchOriginal);
+        Assert.False(exported.SearchTranslated);
+    }
 }
-
-
 

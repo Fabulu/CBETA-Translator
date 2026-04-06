@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -372,5 +372,59 @@ public class SearchIndexServiceTests
         Assert.Contains("current results", result.RightTitle);
         Assert.Contains("not corpus-wide", result.ExtraLine);
     }
+    [Fact]
+    public void ComputeCorpusCooccurrences_SummaryTitlesAndProgressStateCorpusScanSemantics()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-corpus-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string translatedDir = Path.Combine(root, "xml-p5t");
+        Directory.CreateDirectory(Path.Combine(originalDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(translatedDir, "T", "T48"));
+
+        var files = new List<FileNavItem>
+        {
+            new()
+            {
+                RelPath = "T/T48/T48n2005.xml",
+                FileName = "T48n2005",
+                DisplayShort = "Wumenguan",
+                Tooltip = "T/T48/T48n2005.xml"
+            }
+        };
+
+        File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>無門關</p><p>關門</p></body></text></TEI>");
+        File.WriteAllText(Path.Combine(translatedDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Wumenguan</p><p>The barrier gate</p></body></text></TEI>");
+
+        var progress = new List<(int done, int total)>();
+
+        try
+        {
+            var result = SearchIndexService.ComputeCorpusCooccurrences(
+                originalDir,
+                translatedDir,
+                files,
+                "關",
+                includeOriginal: true,
+                includeTranslated: true,
+                contextWidth: 40,
+                metric: CoocMetric.TopCooccurrences,
+                progress: new Progress<(int done, int total)>(p => progress.Add(p)));
+
+            Assert.Contains("corpus-scan", result.Summary);
+            Assert.Contains("across filtered corpus", result.LeftTitle);
+            Assert.Contains("across filtered corpus", result.RightTitle);
+            Assert.Contains("Filtered files scanned: 1", result.ExtraLine);
+            Assert.Contains("Corpus scan is slower", result.ExtraLine);
+            Assert.Contains(progress, p => p.done == 1 && p.total == 1);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
 }
+
 
