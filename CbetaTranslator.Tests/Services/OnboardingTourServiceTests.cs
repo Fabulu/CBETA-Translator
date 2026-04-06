@@ -184,12 +184,12 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count stays 37 after tutorial rewrites ----
+    // ---- 10. Steps count stays 40 after tutorial rewrites ----
 
     [Fact]
-    public void Steps_Count_Is37()
+    public void Steps_Count_Is40()
     {
-        Assert.Equal(37, _svc.Steps.Count);
+        Assert.Equal(40, _svc.Steps.Count);
     }
 
     [Fact]
@@ -218,6 +218,40 @@ public class OnboardingTourServiceTests
         Assert.Contains("paired Chinese and English context", step.Body);
         Assert.Contains("Double-click", step.Body);
         Assert.Contains("right-click to add it to Scholar", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ReaderDictionaryAndCompareSteps()
+    {
+        var dictStep = Assert.Single(_svc.Steps, s => s.Id == "reader-dictionary-button");
+        Assert.Contains("Dictionary button", dictStep.Body);
+
+        var compareStep = Assert.Single(_svc.Steps, s => s.Id == "reader-compare-tools");
+        Assert.Contains("compare translations", compareStep.Body);
+        Assert.Contains("compare tag layers", compareStep.Body);
+    }
+
+    [Fact]
+    public void Tutorial_SaveTranslationStep_ExplainsOneLinePerBlockRule()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "save-translation");
+        Assert.Contains("one EN line per block", step.Body);
+        Assert.Contains("batch pastes", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ZenMasterManagerStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "zen-master-manager");
+        Assert.Contains("Zen Master Manager", step.Title);
+        Assert.Contains("deep links", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_CommunityStep_MentionsSeparateSyncFlows()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "git-tab");
+        Assert.Contains("separate sync flows", step.Body);
     }
 
     // ---- 11. All steps have non-empty Title and Body ----
