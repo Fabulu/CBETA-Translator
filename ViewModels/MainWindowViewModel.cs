@@ -185,7 +185,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string>? SetScholarRoot { get; set; }
     public Action? ClearScholar { get; set; }
     public Action<string?>? SetScholarUsername { get; set; }
+    public Action<string?>? SetScholarAssistantUsername { get; set; }
     public Action<string?, string?>? SetScholarTranslationDirs { get; set; }
+    public Action<List<string>>? SetScholarDictionarySourceOptions { get; set; }
+    public Action<int>? SetScholarDictionarySourceIndex { get; set; }
     public Func<Task>? SaveScholarStateAsync { get; set; }
 
     // Dialog bridges (code-behind provides UI dialogs)
@@ -248,6 +251,8 @@ public partial class MainWindowViewModel : ViewModelBase
     // ===========================================================
 
     public string? ViewConfigUsernameForAssistant() => _config.GitHubUsername ?? _config.Username;
+    public string? GetActiveDictionaryUser() => GetActiveTranslationUser();
+    public string? GetActiveTranslatedDir() => GetSearchTranslatedDir();
     public TranslationEditMode TranslationMode => _translationMode;
     public IndexedTranslationDocument? IndexedDoc => _indexedDoc;
     public CurrentSegmentContext? CurrentSegmentCtx => _currentSegmentContext;
@@ -376,8 +381,9 @@ public partial class MainWindowViewModel : ViewModelBase
         SetGitRepoRoot?.Invoke(_root);
         PushSearchContext();
         SetScholarRoot?.Invoke(_root);
-        SetScholarTranslationDirs?.Invoke(_originalDir, _translatedDir);
+        SetScholarTranslationDirs?.Invoke(_originalDir, GetActiveTranslatedDir());
         SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username);
+        SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser());
 
         try
         {
@@ -568,7 +574,8 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetGitUsername?.Invoke(_config.Username); } catch { }
         try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
         try { SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username); } catch { }
-        try { _translationAssistant.SetUsername(ViewConfigUsernameForAssistant()); } catch { }
+        try { SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser()); } catch { }
+        try { _translationAssistant.SetUsername(GetActiveDictionaryUser()); } catch { }
     }
 
     public void UpdateConfig(AppConfig config)
@@ -1169,7 +1176,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 },
                 _root,
                 _originalDir,
-                _translatedDir);
+                GetActiveTranslatedDir());
 
             SetAssistantSnapshot?.Invoke(snapshot);
             await RefreshReviewBadgeAsync();
@@ -1219,7 +1226,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 ctx,
                 _root,
                 _originalDir,
-                _translatedDir,
+                GetActiveTranslatedDir(),
                 ct).ConfigureAwait(false);
 
             if (ct.IsCancellationRequested) return;
@@ -1273,7 +1280,7 @@ public partial class MainWindowViewModel : ViewModelBase
             UpdateReadableTmSharedHighlights?.Invoke(null, null, null, null, null);
 
             var snapshot = await _translationAssistant.BuildSnapshotAsync(
-                ctx, _root, _originalDir, _translatedDir, ct)
+                ctx, _root, _originalDir, GetActiveTranslatedDir(), ct)
                 .ConfigureAwait(false);
 
             if (ct.IsCancellationRequested) return;
@@ -2406,7 +2413,16 @@ public Task OpenTermbaseEditorAsync(string? term, string? communityUser = null)
         return Task.CompletedTask;
     }
 
-    OpenTermbaseEditorRequested?.Invoke(_root, _config.Username, term, communityUser);
+    var localEditorUsername = _config.GitHubUsername ?? _config.Username;
+    var activeDictionaryUser = GetActiveDictionaryUser();
+    if (string.IsNullOrWhiteSpace(communityUser)
+        && !string.IsNullOrWhiteSpace(activeDictionaryUser)
+        && !string.Equals(activeDictionaryUser, localEditorUsername, StringComparison.OrdinalIgnoreCase))
+    {
+        communityUser = activeDictionaryUser;
+    }
+
+    OpenTermbaseEditorRequested?.Invoke(_root, localEditorUsername, term, communityUser);
     return Task.CompletedTask;
 }
 
@@ -2527,8 +2543,10 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         _translationSourceIndex = Math.Clamp(_translationSourceIndex, 0, Math.Max(0, options.Count - 1));
         SetTranslationSourceOptions?.Invoke(options);
         SetReadableTranslationSourceOptions?.Invoke(options);
+        SetScholarDictionarySourceOptions?.Invoke(options);
         SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
+        SetScholarDictionarySourceIndex?.Invoke(_translationSourceIndex);
     }
 
     /// <summary>
@@ -2553,6 +2571,9 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         SetTranslationEditorReadOnly?.Invoke(IsActiveTranslationReadOnly);
         SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
+        SetScholarDictionarySourceIndex?.Invoke(_translationSourceIndex);
+        try { _translationAssistant.SetUsername(GetActiveDictionaryUser()); } catch { }
+        try { SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser()); } catch { }
         PushSearchContext();
 
         // Reload current file with new source

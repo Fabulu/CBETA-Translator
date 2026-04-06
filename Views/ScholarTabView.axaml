@@ -206,6 +206,8 @@
         <Grid Grid.Row="0" RowDefinitions="Auto,*">
           <DockPanel Grid.Row="0" Margin="0,0,0,8" LastChildFill="False">
             <TextBlock Text="Scholar Workspace" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <ComboBox Name="CmbDictionarySource" DockPanel.Dock="Right" MinWidth="150" FontSize="11" Margin="8,0,0,0"
+                      ToolTip.Tip="Select whose dictionary powers Scholar assistant and highlights across the app."/>
             <TextBlock DockPanel.Dock="Right" Text="Switching items autosaves. Save Current forces it now."
                        Classes="muted" FontSize="11" VerticalAlignment="Center" Margin="8,0,8,0"/>
             <Button Name="BtnSaveCurrent" DockPanel.Dock="Right" Content="Save Current"
@@ -506,6 +508,7 @@
     </Border>
   </Grid>
 </UserControl>
+
 
 
 

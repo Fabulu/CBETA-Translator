@@ -62,11 +62,14 @@ public partial class ScholarTabView : UserControl
     private CancellationTokenSource? _graphSaveCts;
     private readonly LinkGraphViewModel _graphVm = new();
     private string? _currentGraphCollectionId;
+    private ComboBox? _cmbDictionarySource;
+    private bool _suppressDictionarySourceChanged;
 
     public event EventHandler<string>? Status;
     public Func<string?, string>? SourceTitleResolver { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
+    public event EventHandler<int>? DictionarySourceChanged;
     public event EventHandler? ZenMastersRequested;
 
     public ScholarTabView()
@@ -92,6 +95,7 @@ public partial class ScholarTabView : UserControl
         _scholarReferenceTmHost = this.FindControl<StackPanel>("ScholarReferenceTmHost");
 
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+        _cmbDictionarySource = this.FindControl<ComboBox>("CmbDictionarySource");
 
         // Graph + link stats controls
         _graphControl = this.FindControl<LinkNetworkGraphControl>("GraphControl");
@@ -270,6 +274,16 @@ public partial class ScholarTabView : UserControl
         if (btnDict != null)
         {
             btnDict.Click += (_, _) => DictionaryRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (_cmbDictionarySource != null)
+        {
+            _cmbDictionarySource.SelectionChanged += (_, _) =>
+            {
+                if (_suppressDictionarySourceChanged) return;
+                if (_cmbDictionarySource.SelectedIndex >= 0)
+                    DictionarySourceChanged?.Invoke(this, _cmbDictionarySource.SelectedIndex);
+            };
         }
 
         var btnZenMasters = this.FindControl<Button>("BtnZenMasters");
@@ -1667,10 +1681,25 @@ public partial class ScholarTabView : UserControl
         _lastRenderedPassageId = null;
         _ = RefreshAssistantAsync();
     }
+
+    public void SetDictionarySourceOptions(List<string> options)
+    {
+        if (_cmbDictionarySource == null) return;
+        _suppressDictionarySourceChanged = true;
+        try { _cmbDictionarySource.ItemsSource = options; }
+        finally { _suppressDictionarySourceChanged = false; }
+    }
+
+    public void SetDictionarySourceIndex(int index)
+    {
+        if (_cmbDictionarySource == null) return;
+        _suppressDictionarySourceChanged = true;
+        try { _cmbDictionarySource.SelectedIndex = index; }
+        finally { _suppressDictionarySourceChanged = false; }
+    }
     public void SetUsername(string? username)
     {
         _vm.SetUsername(username);
-        SetAssistantUsername(username);
     }
 
     public void Clear()
@@ -1753,6 +1782,7 @@ public partial class ScholarTabView : UserControl
         return false;
     }
 }
+
 
 
 

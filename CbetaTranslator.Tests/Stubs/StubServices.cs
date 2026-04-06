@@ -222,7 +222,8 @@ public class StubIndexedTranslationService : IIndexedTranslationService
 
 public class StubTranslationAssistantService : ITranslationAssistantService
 {
-    public void SetUsername(string? username) { }
+    public string? LastUsername { get; private set; }
+    public void SetUsername(string? username) { LastUsername = username; }
     public Task<TranslationAssistantSnapshot> BuildSnapshotAsync(CurrentSegmentContext ctx, string? root, string? originalDir, string? translatedDir, CancellationToken ct = default)
         => Task.FromResult(new TranslationAssistantSnapshot());
 }
@@ -333,4 +334,5 @@ public class StubDocumentTagService : IDocumentTagService
     public Task WriteUserCommunityTagsAsync(string root, string username, List<DocumentTag> tags, CancellationToken ct = default) => Task.CompletedTask;
     public Task WriteUserCommunityVocabularyAsync(string root, string username, TagVocabulary vocab, CancellationToken ct = default) => Task.CompletedTask;
 }
+
 
