@@ -1,0 +1,126 @@
+<!-- Views/SearchExportFormatDialog.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CbetaTranslator.App.Views.SearchExportFormatDialog"
+        Width="360" Height="520"
+        Background="{DynamicResource AppBg}"
+        Title="Export Search Results"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="20">
+
+		<TextBlock Grid.Row="0"
+				   Text="Choose export format"
+				   FontSize="15"
+				   FontWeight="SemiBold"
+				   Foreground="{DynamicResource TextFg}"
+				   Margin="0,0,0,14"/>
+
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+			<StackPanel Spacing="10">
+				<RadioButton Name="RbHtml"
+						 IsChecked="True"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="HTML" FontWeight="SemiBold"/>
+						<TextBlock Text="Rich formatted document with grouped hits and metadata"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbMarkdown"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="Markdown" FontWeight="SemiBold"/>
+						<TextBlock Text="Copyable plain writing format for notes and papers"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbPlainText"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="Plain Text" FontWeight="SemiBold"/>
+						<TextBlock Text="Simple text without markup"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbCsv"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="CSV" FontWeight="SemiBold"/>
+						<TextBlock Text="Spreadsheet-friendly rows with one hit per line"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbTsv"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="TSV" FontWeight="SemiBold"/>
+						<TextBlock Text="Tab-separated export for research tools"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbJson"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="JSON" FontWeight="SemiBold"/>
+						<TextBlock Text="Structured archive export of the current search state and hits"
+							   FontSize="11"
+							   Foreground="{DynamicResource TextMutedFg}"
+							   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+			</StackPanel>
+		</ScrollViewer>
+
+		<StackPanel Grid.Row="2"
+					Orientation="Horizontal"
+					HorizontalAlignment="Right"
+					Spacing="10"
+					Margin="0,14,0,0">
+			<Button Content="Cancel"
+					Width="90" Height="32"
+					Name="BtnCancel"
+					ToolTip.Tip="Cancel export"/>
+			<Button Content="Export"
+					Width="90" Height="32"
+					Classes="primary"
+					Name="BtnOk"
+					ToolTip.Tip="Export in the selected format"/>
+		</StackPanel>
+	</Grid>
+</Window>

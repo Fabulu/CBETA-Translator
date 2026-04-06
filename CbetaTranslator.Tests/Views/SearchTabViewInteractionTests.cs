@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -46,6 +46,7 @@ public class SearchTabViewInteractionTests
             SearchTranslated = true,
             ZenOnly = true,
             SelectedStatusIndex = 2,
+            SelectedContextIndex = 5,
             SelectedTagFilterId = "topic-1"
         };
 
@@ -57,6 +58,7 @@ public class SearchTabViewInteractionTests
         Assert.True(exported.SearchTranslated);
         Assert.True(exported.ZenOnly);
         Assert.Equal(2, exported.SelectedStatusIndex);
+        Assert.Equal(5, exported.SelectedContextIndex);
     }
 
     [Fact]
@@ -93,3 +95,6 @@ public class SearchTabViewInteractionTests
         Assert.Equal(0, vm.SelectedTagFilterIndex);
     }
 }
+
+
+

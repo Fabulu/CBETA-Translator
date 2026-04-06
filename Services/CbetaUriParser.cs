@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -57,7 +57,7 @@ public static class CbetaUriParser
 
         // Convert shareable HTTPS URLs to zen:// format before parsing.
         // e.g. https://readzen.pages.dev/#/T48n2005/0292b29?side=Translated
-        //    ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ zen://T48n2005/0292b29?side=Translated
+        //    ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ zen://T48n2005/0292b29?side=Translated
         if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
             uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
         {
@@ -156,7 +156,7 @@ public static class CbetaUriParser
     /// </summary>
     private static bool IsLbSegment(string segment)
     {
-        // A range like "0292a26-0292a29" also counts ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â check the first part before any dash.
+        // A range like "0292a26-0292a29" also counts ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â check the first part before any dash.
         var first = segment.Split('-')[0];
         return first.Length >= 7
             && char.IsDigit(first[0]) && char.IsDigit(first[1])
@@ -171,6 +171,22 @@ public static class CbetaUriParser
     private static bool IsSideSegment(string segment)
         => segment.Equals("en", StringComparison.OrdinalIgnoreCase)
         || segment.Equals("tran", StringComparison.OrdinalIgnoreCase);
+
+    private static string PaneToSegment(ComparePaneTarget pane) => pane switch
+    {
+        ComparePaneTarget.Original => "orig",
+        ComparePaneTarget.TranslationA => "a",
+        ComparePaneTarget.TranslationB => "b",
+        _ => "orig"
+    };
+
+    private static ComparePaneTarget? TryParsePaneSegment(string? segment) => segment?.Trim().ToLowerInvariant() switch
+    {
+        "orig" or "original" => ComparePaneTarget.Original,
+        "a" or "passage1" or "translationa" => ComparePaneTarget.TranslationA,
+        "b" or "passage2" or "translationb" => ComparePaneTarget.TranslationB,
+        _ => null,
+    };
 
     /// <summary>
     /// Parses the clean format: <c>zen://T48n2005/0292a26-0292a29/en/bob?highlight=...</c>
@@ -285,9 +301,9 @@ public static class CbetaUriParser
 
         if (!string.IsNullOrEmpty(highlightText))
         {
-            // Truncate highlight to keep URLs short ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â 60 chars is enough to find the right spot
+            // Truncate highlight to keep URLs short ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â 60 chars is enough to find the right spot
             var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
-            // Also strip newlines ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â they bloat the URL and aren't needed for matching
+            // Also strip newlines ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â they bloat the URL and aren't needed for matching
             truncated = truncated.Replace("\n", "").Replace("\r", "");
             queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
         }
@@ -319,7 +335,7 @@ public static class CbetaUriParser
         SearchSide side = SearchSide.Original,
         string? user = null)
     {
-        // Extract file ID from relPath: "T/T48/T48n2005.xml" ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ "T48n2005"
+        // Extract file ID from relPath: "T/T48/T48n2005.xml" ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ "T48n2005"
         var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
         var url = ShareableBase + Uri.EscapeDataString(fileName);
 
@@ -360,7 +376,7 @@ public static class CbetaUriParser
 
     /// <summary>
     /// Parses any <c>zen://</c> or shareable HTTPS URL into a <see cref="DeepLinkRequest"/>.
-    /// Recognises keyword-prefixed paths (<c>zen://dict/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, <c>zen://scholar/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, etc.)
+    /// Recognises keyword-prefixed paths (<c>zen://dict/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, <c>zen://scholar/ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦</c>, etc.)
     /// and falls back to passage-based parsing via <see cref="TryParse"/> for file IDs.
     /// Returns <c>null</c> if the URI is malformed.
     /// </summary>
@@ -430,7 +446,7 @@ public static class CbetaUriParser
                     SearchTagId = query.TryGetValue("tag", out var tag)
                         ? tag
                         : (query.TryGetValue("tagId", out var legacyTag) ? legacyTag : null),
-                    SearchContextIndex = TryParseIntegerQuery(query, "ctx", "context", "contextIndex"),
+                    SearchContextIndex = ParseSearchContextIndex(query),
                     SearchTranslationSource = query.TryGetValue("src", out var src)
                         ? src
                         : (query.TryGetValue("translationSource", out var legacySrc) ? legacySrc : null),
@@ -458,7 +474,7 @@ public static class CbetaUriParser
 
             case "term":
                 if (segments.Length < 2) return null;
-                // Termbase merged with dictionary ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â both route to Dictionary kind
+                // Termbase merged with dictionary ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â both route to Dictionary kind
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Termbase,
@@ -474,9 +490,38 @@ public static class CbetaUriParser
                     MasterName = Uri.UnescapeDataString(segments[1]),
                     MasterUser = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
                 };
+
+            case "compare":
+                if (segments.Length < 5) return null;
+                var compareRelPath = FileIdToRelPath(segments[1]);
+                var comparePane = TryParsePaneSegment(segments[2]);
+                if (compareRelPath == null || comparePane == null) return null;
+
+                var compareNavigation = new NavigationRequest
+                {
+                    RelPath = compareRelPath,
+                    Side = comparePane == ComparePaneTarget.Original ? SearchSide.Original : SearchSide.Translated,
+                };
+
+                if (query.TryGetValue("from", out var compareFrom) && !string.IsNullOrWhiteSpace(compareFrom))
+                    compareNavigation.FromLb = compareFrom;
+                if (query.TryGetValue("to", out var compareTo) && !string.IsNullOrWhiteSpace(compareTo))
+                    compareNavigation.ToLb = compareTo;
+                if (query.TryGetValue("highlight", out var compareHighlight) && !string.IsNullOrWhiteSpace(compareHighlight))
+                    compareNavigation.MatchText = compareHighlight;
+
+                return new DeepLinkRequest
+                {
+                    Kind = DeepLinkKind.Compare,
+                    CompareRelPath = compareRelPath,
+                    ComparePane = comparePane,
+                    CompareSourceA = Uri.UnescapeDataString(segments[3]),
+                    CompareSourceB = Uri.UnescapeDataString(segments[4]),
+                    CompareNavigation = compareNavigation,
+                };
         }
 
-        // No keyword match ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â fall through to passage parsing
+        // No keyword match ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â fall through to passage parsing
         var nav = TryParse(raw);
         return nav != null ? new DeepLinkRequest { Kind = DeepLinkKind.Passage, Passage = nav } : null;
     }
@@ -527,12 +572,52 @@ public static class CbetaUriParser
         if (!string.IsNullOrEmpty(tagId))
             queryParts.Add("tag=" + Uri.EscapeDataString(tagId));
         if (contextIndex.HasValue)
-            queryParts.Add("ctx=" + contextIndex.Value.ToString());
+            queryParts.Add("ctxw=" + SearchContextIndexToWidth(contextIndex.Value).ToString());
         if (!string.IsNullOrEmpty(translationSource))
             queryParts.Add("src=" + Uri.EscapeDataString(translationSource));
 
         return $"{Scheme}://search?{string.Join("&", queryParts)}";
     }
+
+    private static int? ParseSearchContextIndex(Dictionary<string, string> query)
+    {
+        int? width = TryParseIntegerQuery(query, "ctxw", "contextWidth", "contextChars");
+        if (width.HasValue)
+            return SearchContextWidthToIndex(width.Value);
+
+        int? index = TryParseIntegerQuery(query, "ctx", "context", "contextIndex");
+        if (!index.HasValue)
+            return null;
+
+        return index.Value switch
+        {
+            0 => 0,
+            1 => 0,
+            2 => 1,
+            _ => index.Value
+        };
+    }
+
+    private static int SearchContextIndexToWidth(int index) => index switch
+    {
+        0 => 80,
+        1 => 160,
+        2 => 240,
+        3 => 320,
+        4 => 480,
+        5 => 640,
+        _ => 160
+    };
+
+    private static int SearchContextWidthToIndex(int width) => width switch
+    {
+        <= 80 => 0,
+        <= 160 => 1,
+        <= 240 => 2,
+        <= 320 => 3,
+        <= 480 => 4,
+        _ => 5
+    };
 
     public static string BuildTagsUri(string fileId, string? user = null, string? tagId = null)
     {
@@ -557,6 +642,36 @@ public static class CbetaUriParser
         => !string.IsNullOrEmpty(user)
             ? $"{Scheme}://master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
             : $"{Scheme}://master/{Uri.EscapeDataString(name)}";
+
+    public static string BuildCompareUri(
+        string relPath,
+        ComparePaneTarget pane,
+        string sourceAKey,
+        string sourceBKey,
+        string? fromLb = null,
+        string? toLb = null,
+        string? highlightText = null)
+    {
+        var fileId = RelPathToFileId(relPath);
+        var uri = $"{Scheme}://compare/{Uri.EscapeDataString(fileId)}/{PaneToSegment(pane)}/{Uri.EscapeDataString(sourceAKey)}/{Uri.EscapeDataString(sourceBKey)}";
+
+        var queryParts = new List<string>();
+        if (!string.IsNullOrWhiteSpace(fromLb))
+            queryParts.Add("from=" + Uri.EscapeDataString(fromLb));
+        if (!string.IsNullOrWhiteSpace(toLb) && !string.Equals(toLb, fromLb, StringComparison.Ordinal))
+            queryParts.Add("to=" + Uri.EscapeDataString(toLb));
+        if (!string.IsNullOrWhiteSpace(highlightText))
+        {
+            var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
+            truncated = truncated.Replace("\n", "").Replace("\r", "");
+            queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
+        }
+
+        if (queryParts.Count > 0)
+            uri += "?" + string.Join("&", queryParts);
+
+        return uri;
+    }
 
     // ---------------------------------------------------------------
     //  Shareable HTTPS URL builders for new deep-link kinds
@@ -604,7 +719,7 @@ public static class CbetaUriParser
         if (!string.IsNullOrEmpty(tagId))
             queryParts.Add("tag=" + Uri.EscapeDataString(tagId));
         if (contextIndex.HasValue)
-            queryParts.Add("ctx=" + contextIndex.Value.ToString());
+            queryParts.Add("ctxw=" + SearchContextIndexToWidth(contextIndex.Value).ToString());
         if (!string.IsNullOrEmpty(translationSource))
             queryParts.Add("src=" + Uri.EscapeDataString(translationSource));
 
@@ -634,6 +749,36 @@ public static class CbetaUriParser
         => !string.IsNullOrEmpty(user)
             ? $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
             : $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}";
+
+    public static string BuildShareableCompareUrl(
+        string relPath,
+        ComparePaneTarget pane,
+        string sourceAKey,
+        string sourceBKey,
+        string? fromLb = null,
+        string? toLb = null,
+        string? highlightText = null)
+    {
+        var fileId = RelPathToFileId(relPath);
+        var url = $"{ShareableBase}#/compare/{Uri.EscapeDataString(fileId)}/{PaneToSegment(pane)}/{Uri.EscapeDataString(sourceAKey)}/{Uri.EscapeDataString(sourceBKey)}";
+
+        var queryParts = new List<string>();
+        if (!string.IsNullOrWhiteSpace(fromLb))
+            queryParts.Add("from=" + Uri.EscapeDataString(fromLb));
+        if (!string.IsNullOrWhiteSpace(toLb) && !string.Equals(toLb, fromLb, StringComparison.Ordinal))
+            queryParts.Add("to=" + Uri.EscapeDataString(toLb));
+        if (!string.IsNullOrWhiteSpace(highlightText))
+        {
+            var truncated = highlightText.Length > 60 ? highlightText[..60] : highlightText;
+            truncated = truncated.Replace("\n", "").Replace("\r", "");
+            queryParts.Add("highlight=" + Uri.EscapeDataString(truncated));
+        }
+
+        if (queryParts.Count > 0)
+            url += "?" + string.Join("&", queryParts);
+
+        return url;
+    }
 
     // ---------------------------------------------------------------
 
@@ -696,3 +841,7 @@ public static class CbetaUriParser
         return result;
     }
 }
+
+
+
+

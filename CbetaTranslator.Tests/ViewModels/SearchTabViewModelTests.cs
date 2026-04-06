@@ -45,10 +45,18 @@ public class SearchTabViewModelTests
     }
 
     [Fact]
-    public void ContextItems_HasThreeEntries()
+    public void ContextItems_HasExpandedEntries()
     {
         var vm = MakeVm();
-        Assert.Equal(3, vm.ContextItems.Length);
+        Assert.Equal(new[]
+        {
+            "80 chars",
+            "160 chars",
+            "240 chars",
+            "320 chars",
+            "480 chars",
+            "640 chars"
+        }, vm.ContextItems);
     }
 
     [Fact]
@@ -380,4 +388,86 @@ public class SearchTabViewModelTests
 
         Assert.Equal(1, vm.SelectedTagFilterIndex);
     }
+    [Fact]
+    public async Task ApplyUiStateAsync_AndExportUiState_RoundTripsExpandedContextIndex()
+    {
+        var vm = MakeVm();
+
+        await vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState
+        {
+            Query = "wumenguan",
+            SearchOriginal = true,
+            SearchTranslated = true,
+            ZenOnly = true,
+            SelectedStatusIndex = 2,
+            SelectedContextIndex = 5
+        });
+
+        var exported = vm.ExportUiState();
+
+        Assert.Equal("wumenguan", exported.Query);
+        Assert.True(exported.SearchOriginal);
+        Assert.True(exported.SearchTranslated);
+        Assert.True(exported.ZenOnly);
+        Assert.Equal(2, exported.SelectedStatusIndex);
+        Assert.Equal(5, exported.SelectedContextIndex);
+    }
+
+    [Fact]
+    public async Task ExportCommand_UsesSelectedFormatAndWritesResults()
+    {
+        var vm = MakeVm();
+        vm.Query = "wumenguan";
+        vm.SearchOriginal = true;
+        vm.SearchTranslated = true;
+        vm.ZenOnly = true;
+        vm.SelectedStatusIndex = 2;
+        vm.SelectedTagFilterIndex = 0;
+        vm.ResultGroups.Add(new SearchResultGroup
+        {
+            RelPath = "T/T48/T48n2005.xml",
+            DisplayName = "Blue Cliff",
+            Tooltip = "T48n2005",
+            Children = new List<SearchResultChild>
+            {
+                new()
+                {
+                    RelPath = "T/T48/T48n2005.xml",
+                    Side = SearchSide.Original,
+                    Hit = new SearchHit { Index = 4, Left = "\u5DE6", Match = "\u4E2D", Right = "\u53F3" }
+                }
+            }
+        });
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "search-vm-export-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(tempDir);
+        var path = Path.Combine(tempDir, "results.md");
+        SearchExportFormat? pickedFormat = null;
+        string? pickedBaseName = null;
+
+        vm.PickExportFormatAsync = () => Task.FromResult<SearchExportFormat?>(SearchExportFormat.Markdown);
+        vm.PickExportFileAsync = (format, suggestedName) =>
+        {
+            pickedFormat = format;
+            pickedBaseName = suggestedName;
+            return Task.FromResult<string?>(path);
+        };
+
+        try
+        {
+            await vm.ExportCommand.ExecuteAsync(null);
+            var text = await File.ReadAllTextAsync(path);
+
+            Assert.Equal(SearchExportFormat.Markdown, pickedFormat);
+            Assert.Equal("search-wumenguan", pickedBaseName);
+            Assert.Contains("# Search Results", text);
+            Assert.Contains("Blue Cliff", text);
+            Assert.Contains("wumenguan", text);
+        }
+        finally
+        {
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
+    }
 }
+

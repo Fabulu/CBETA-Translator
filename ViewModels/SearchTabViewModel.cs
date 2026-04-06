@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,10 +27,12 @@ public partial class SearchTabViewModel : ViewModelBase
         public string? SelectedTagFilterId { get; init; }
     }
     private readonly ISearchIndexService _svc;
+    private readonly ISearchExportService _exportSvc;
 
-    public SearchTabViewModel(ISearchIndexService searchIndexService)
+    public SearchTabViewModel(ISearchIndexService searchIndexService, ISearchExportService? searchExportService = null)
     {
         _svc = searchIndexService ?? throw new ArgumentNullException(nameof(searchIndexService));
+        _exportSvc = searchExportService ?? new SearchExportService();
     }
 
     private string? _root;
@@ -66,7 +68,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private Dictionary<string, string>? _tagIdByName; // displayName -> tagId
     private string? _pendingRestoredTagId;
 
-    private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
+
 
     // ----- Observable properties -----
 
@@ -165,9 +167,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
     public string[] ContextItems { get; } = new[]
     {
-        "20 chars",
-        "40 chars",
-        "80 chars"
+        "80 chars",
+        "160 chars",
+        "240 chars",
+        "320 chars",
+        "480 chars",
+        "640 chars"
     };
 
     public List<string> TagFilterItems
@@ -224,7 +229,7 @@ public partial class SearchTabViewModel : ViewModelBase
         _translatedDir = translatedDir;
         _meta = fileMeta;
 
-        ProgressText = "Ready. (Index will load automatically on first search if present.)";
+        ProgressText = "Ready.";
         SummaryText = "Ready.";
         ClearCoocUi();
 
@@ -308,6 +313,52 @@ public partial class SearchTabViewModel : ViewModelBase
             SelectedTagFilterName = selectedTagName,
             SelectedTagFilterId = selectedTagId
         };
+    }
+
+    private SearchExportSnapshot BuildExportSnapshot()
+    {
+        return new SearchExportSnapshot
+        {
+            Query = Query.Trim(),
+            SearchOriginal = SearchOriginal,
+            SearchTranslated = SearchTranslated,
+            ZenOnly = ZenOnly,
+            StatusFilter = GetStatusFilterLabel(),
+            TagFilter = GetSelectedTagFilterLabel(),
+            ContextLabel = GetContextLabel(),
+            ExportedUtc = DateTimeOffset.UtcNow,
+            Groups = ResultGroups.ToList()
+        };
+    }
+
+    private string GetStatusFilterLabel() => SelectedStatusIndex switch
+    {
+        1 => StatusItems[1],
+        2 => StatusItems[2],
+        3 => StatusItems[3],
+        _ => StatusItems[0]
+    };
+
+    private string GetSelectedTagFilterLabel()
+    {
+        if (SelectedTagFilterIndex > 0 && SelectedTagFilterIndex < TagFilterItems.Count)
+            return TagFilterItems[SelectedTagFilterIndex];
+        return "All Tags";
+    }
+
+    private string GetContextLabel()
+    {
+        var index = CoerceIndex(SelectedContextIndex, ContextItems.Length);
+        return ContextItems[index];
+    }
+
+    private string BuildSuggestedExportBaseName()
+    {
+        if (string.IsNullOrWhiteSpace(Query))
+            return "search-results";
+
+        var cleaned = new string(Query.Trim().Where(ch => char.IsLetterOrDigit(ch) || ch == '-' || ch == '_').ToArray());
+        return string.IsNullOrWhiteSpace(cleaned) ? "search-results" : "search-" + cleaned;
     }
 
     public Task ApplyUiStateAsync(SearchUiState? state, bool executeSearch = false)
@@ -438,12 +489,13 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             IsCancelEnabled = true;
 
-            ProgressText = force ? "Rebuilding index..." : "Updating index...";
-            SummaryText = force ? "Rebuilding index... (full rebuild)" : "Updating index... (incremental)";
+            ProgressText = force ? "Index rebuild…" : "Index update…";
+            SummaryText = force ? "Rebuilding search index" : "Updating search index";
 
             var prog = new Progress<(int done, int total, string phase)>(p =>
             {
-                ProgressText = $"{p.phase} {p.done:n0}/{p.total:n0}";
+                int percent = p.total <= 0 ? 0 : (int)Math.Round((double)p.done * 100 / p.total);
+                ProgressText = $"Index {Math.Clamp(percent, 0, 100)}% · {p.phase}";
             });
 
             await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDir, forceRebuild: force, progress: prog, ct: ct);
@@ -473,48 +525,53 @@ public partial class SearchTabViewModel : ViewModelBase
     /// Delegate that opens a save-file picker and returns the chosen path, or null if cancelled.
     /// Wired by code-behind to avoid ViewModel depending on Window/StorageProvider.
     /// </summary>
-    public Func<Task<string?>>? PickSaveFileAsync { get; set; }
+    public Func<SearchExportFormat, string?, Task<string?>>? PickExportFileAsync { get; set; }
+    public Func<Task<SearchExportFormat?>>? PickExportFormatAsync { get; set; }
+
+    [RelayCommand]
+    private async Task ExportAsync()
+        => await ExportCoreAsync();
 
     [RelayCommand]
     private async Task ExportTsvAsync()
+        => await ExportCoreAsync(SearchExportFormat.Tsv, promptForFormat: false);
+
+    private async Task ExportCoreAsync(SearchExportFormat? forcedFormat = null, bool promptForFormat = true)
     {
         try
         {
-            if (_groups.Count == 0)
+            var snapshot = BuildExportSnapshot();
+            if (snapshot.Groups.Count == 0)
             {
                 StatusChanged?.Invoke(this, "No results to export.");
                 return;
             }
 
-            if (PickSaveFileAsync == null)
+            var format = forcedFormat ?? SearchExportFormat.Tsv;
+            if (promptForFormat && PickExportFormatAsync != null)
+            {
+                var pickedFormat = await PickExportFormatAsync();
+                if (pickedFormat == null)
+                {
+                    StatusChanged?.Invoke(this, "Export cancelled.");
+                    return;
+                }
+
+                format = pickedFormat.Value;
+            }
+
+            if (PickExportFileAsync == null)
             {
                 StatusChanged?.Invoke(this, "Save file picker not available.");
                 return;
             }
 
-            var filePath = await PickSaveFileAsync();
-            if (filePath == null) return;
+            var filePath = await PickExportFileAsync(format, BuildSuggestedExportBaseName());
+            if (string.IsNullOrWhiteSpace(filePath))
+                return;
 
-            var sb = new StringBuilder(1024 * 16);
-            sb.AppendLine("relPath\tside\tmatchIndex\tleft\tmatch\tright");
-
-            foreach (var g in _groups)
-            {
-                foreach (var c in g.Children)
-                {
-                    string side = c.Side == SearchSide.Original ? "O" : "T";
-                    sb.Append(g.RelPath).Append('\t')
-                      .Append(side).Append('\t')
-                      .Append(c.Hit.Index).Append('\t')
-                      .Append(EscapeTsv(c.Hit.Left)).Append('\t')
-                      .Append(EscapeTsv(c.Hit.Match)).Append('\t')
-                      .Append(EscapeTsv(c.Hit.Right)).AppendLine();
-                }
-            }
-
-            await System.IO.File.WriteAllBytesAsync(filePath, Utf8NoBom.GetBytes(sb.ToString()));
-
-            StatusChanged?.Invoke(this, "Exported TSV.");
+            await _exportSvc.ExportAsync(filePath, snapshot, format);
+            StatusChanged?.Invoke(this, $"Exported search results as {format}.");
         }
         catch (Exception ex)
         {
@@ -528,9 +585,13 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         return SelectedContextIndex switch
         {
-            0 => 20,
-            2 => 80,
-            _ => 40
+            0 => 80,
+            1 => 160,
+            2 => 240,
+            3 => 320,
+            4 => 480,
+            5 => 640,
+            _ => 160
         };
     }
 
@@ -768,8 +829,8 @@ public partial class SearchTabViewModel : ViewModelBase
         try
         {
             IsCancelEnabled = true;
-            SummaryText = $"Searching for: {q}";
-            ProgressText = "Loading index...";
+            SummaryText = $"Search: {q}";
+            ProgressText = "Search 0% · loading index";
 
             // Force a UI turn so the user sees the immediate feedback
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
@@ -782,7 +843,7 @@ public partial class SearchTabViewModel : ViewModelBase
                     await Dispatcher.UIThread.InvokeAsync(() =>
                     {
                         if (mySearchVer != Volatile.Read(ref _searchRunVersion)) return;
-                        ProgressText = "No index found. Build it first.";
+                        ProgressText = "No index.";
                         StatusChanged?.Invoke(this, "No search index found. Click 'Build/Update Index' first.");
                     });
                     return;
@@ -802,9 +863,8 @@ public partial class SearchTabViewModel : ViewModelBase
                         if (mySearchVer != Volatile.Read(ref _searchRunVersion))
                             return;
 
-                        string timing =
-                            $"  t[cand={p.CandidateMs:n0}ms ver={p.VerifyMs:n0}ms ui={uiAppendMs:n0}ms total={p.TotalMs:n0}ms]";
-                        ProgressText = $"{p.Phase}  verified {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0}  groups={p.Groups:n0}  hits={p.TotalHits:n0}{timing}";
+                        int percent = p.TotalDocsToVerify <= 0 ? 0 : (int)Math.Round((double)p.VerifiedDocs * 100 / p.TotalDocsToVerify);
+                        ProgressText = $"Search {Math.Clamp(percent, 0, 100)}% · {p.Groups:n0} files · {p.TotalHits:n0} hits";
                     });
                 });
 
@@ -828,7 +888,7 @@ public partial class SearchTabViewModel : ViewModelBase
                             ResultGroups.Add(batch[i]);
 
                         if (forceSummary || batch.Length > 0)
-                            SummaryText = $"Results: files={snapshotGroups:n0}, hits={snapshotHits:n0}";
+                            SummaryText = $"Results: {snapshotGroups:n0} files · {snapshotHits:n0} hits";
                     }, DispatcherPriority.Background);
                     swUi.Stop();
                     uiAppendMs += swUi.ElapsedMilliseconds;
@@ -897,7 +957,7 @@ public partial class SearchTabViewModel : ViewModelBase
                     _groups.Clear();
                     _groups.AddRange(localGroups);
 
-                    SummaryText = $"Done. files={localGroups.Count:n0}, hits={totalHits:n0}";
+                    SummaryText = $"Done: {localGroups.Count:n0} files · {totalHits:n0} hits";
                     IsExportEnabled = localGroups.Count > 0;
                 });
             }, ct);
@@ -994,13 +1054,6 @@ public partial class SearchTabViewModel : ViewModelBase
         return true;
     }
 
-    private static string EscapeTsv(string s)
-    {
-        s ??= "";
-        s = s.Replace("\t", " ").Replace("\r", "").Replace("\n", " ");
-        return s;
-    }
-
     private static string GetMetricGuideText()
     {
         return
@@ -1074,6 +1127,12 @@ t-score/dispersion = 'reliable and common'
 dominance = 'artifact detector'";
     }
 }
+
+
+
+
+
+
 
 
 

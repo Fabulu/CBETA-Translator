@@ -1,6 +1,6 @@
 namespace CbetaTranslator.App.Models;
 
-public enum DeepLinkKind { Passage, Dictionary, Scholar, Search, Tags, Termbase, Master }
+public enum DeepLinkKind { Passage, Dictionary, Scholar, Search, Tags, Termbase, Master, Compare }
 
 public sealed class DeepLinkRequest
 {
@@ -40,4 +40,11 @@ public sealed class DeepLinkRequest
     // Master
     public string? MasterName { get; init; }
     public string? MasterUser { get; init; }
+
+    // Compare
+    public string? CompareRelPath { get; init; }
+    public string? CompareSourceA { get; init; }
+    public string? CompareSourceB { get; init; }
+    public ComparePaneTarget? ComparePane { get; init; }
+    public NavigationRequest? CompareNavigation { get; init; }
 }

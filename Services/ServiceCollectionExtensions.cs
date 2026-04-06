@@ -18,7 +18,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IIndexCacheService, IndexCacheService>();
         services.AddSingleton<IIndexedTranslationService, IndexedTranslationService>();
         services.AddSingleton<IRenderedDocumentCacheService>(_ => new RenderedDocumentCacheService(48));
-        services.AddSingleton<ISearchIndexService, SearchIndexService>();
+                services.AddSingleton<ISearchIndexService, SearchIndexService>();
+        services.AddSingleton<ISearchExportService, SearchExportService>();
         services.AddSingleton<ISearchIndexBuilder>(sp => new SearchIndexBuilder(sp.GetRequiredService<ISearchIndexService>()));
         services.AddSingleton<ISearchEngine>(sp => new SearchEngine(sp.GetRequiredService<ISearchIndexService>()));
         services.AddSingleton<ICooccurrenceService, CooccurrenceService>();
