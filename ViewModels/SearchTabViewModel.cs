@@ -106,6 +106,11 @@ public partial class SearchTabViewModel : ViewModelBase
     private int _selectedCoocMetricIndex;
 
     [ObservableProperty]
+    private int _selectedAnalyticsScopeIndex;
+
+    [ObservableProperty]
+    private bool _isAnalyticsBusy;
+    [ObservableProperty]
     private int _selectedStatusIndex;
 
     [ObservableProperty]
@@ -149,6 +154,8 @@ public partial class SearchTabViewModel : ViewModelBase
     public ObservableCollection<SearchResultGroup> ResultGroups { get; } = new();
     public ObservableCollection<CoocRow> CoocChars { get; } = new();
     public ObservableCollection<CoocRow> CoocNgrams { get; } = new();
+    public ObservableCollection<AnalyticsBubbleItem> CoocCharVisuals { get; } = new();
+    public ObservableCollection<AnalyticsBubbleItem> CoocNgramVisuals { get; } = new();
 
     // ----- Events -----
 
@@ -194,6 +201,11 @@ public partial class SearchTabViewModel : ViewModelBase
         "Metric guide (how to read these)"
     };
 
+    public string[] AnalyticsScopeItems { get; } = new[]
+    {
+        "Current Results",
+        "Corpus Scan (slow)"
+    };
     // ----- Property change hooks (trigger auto-rerun) -----
 
     partial void OnZenOnlyChanged(bool value) => TriggerAutoRerunIfAllowed();
@@ -203,6 +215,7 @@ public partial class SearchTabViewModel : ViewModelBase
     partial void OnSearchOriginalChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSearchTranslatedChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSelectedCoocMetricIndexChanged(int value) => _ = RefreshCoocUiFromCurrentStateAsync();
+    partial void OnSelectedAnalyticsScopeIndexChanged(int value) => _ = RefreshCoocUiFromCurrentStateAsync();
 
     // ----- Public wiring methods (called by MainWindow via code-behind) -----
 
@@ -1127,6 +1140,11 @@ t-score/dispersion = 'reliable and common'
 dominance = 'artifact detector'";
     }
 }
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.ViewModels;
@@ -469,5 +469,14 @@ public class SearchTabViewModelTests
             try { Directory.Delete(tempDir, true); } catch { }
         }
     }
+    [Fact]
+    public void AnalyticsScopeItems_ExposeCurrentAndCorpusModes()
+    {
+        var vm = MakeVm();
+
+        Assert.Equal(new[] { "Current Results", "Corpus Scan (slow)" }, vm.AnalyticsScopeItems);
+        Assert.Equal(0, vm.SelectedAnalyticsScopeIndex);
+    }
 }
+
 
