@@ -60,11 +60,11 @@ public class ScholarTabViewInteractionTests
         return (T)field.GetValue(target)!;
     }
 
-    private static async Task InvokePrivateAsync(Type type, object target, string name)
+    private static async Task InvokePrivateAsync(Type type, object target, string name, params object?[]? args)
     {
         var method = type.GetMethod(name, BindingFlags.Instance | BindingFlags.NonPublic)
             ?? throw new InvalidOperationException($"Missing method {name} on {type.Name}");
-        var result = method.Invoke(target, Array.Empty<object>());
+        var result = method.Invoke(target, args ?? Array.Empty<object?>());
         switch (result)
         {
             case Task task:
@@ -110,4 +110,8 @@ public class ScholarTabViewInteractionTests
         Assert.Null(GetField<object?>(typeof(ScholarTabViewModel), vm, "_masterDatesLookup"));
         Assert.False(GetField<bool>(typeof(ScholarTabViewModel), vm, "_masterDatesLoadAttempted"));
     }
+
+
+
+
 }

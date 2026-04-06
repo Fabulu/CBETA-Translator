@@ -363,14 +363,14 @@ public partial class ScholarTabView : UserControl
             }
             else if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCommunityPassage))
             {
-                UpdateCommunityDetailFields();
-                _ = RefreshAssistantAsync();
                 if (_vm.SelectedCommunityPassage != null)
                 {
                     _suppressSelectionSync = true;
                     _vm.SelectedPassage = null;
                     _suppressSelectionSync = false;
                 }
+                UpdateCommunityDetailFields();
+                _ = RefreshAssistantAsync();
             }
             else if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCommunityCollection))
             {
@@ -490,6 +490,8 @@ public partial class ScholarTabView : UserControl
         _vm.RhetoricalFunction = passage?.RhetoricalFunction ?? "";
 
         SetupHoverDictionary();
+        RefreshLinksPanel();
+        RefreshLinkedTextsPanel();
     }
 
     // ----- Hover dictionary -----
@@ -828,6 +830,8 @@ public partial class ScholarTabView : UserControl
         if (passage == null || _vm.SelectedCollection == null)
         {
             panel.ItemsSource = null;
+            RefreshLinkStats();
+            RefreshGraph();
             if (emptyText != null) emptyText.IsVisible = true;
             if (tabHeader != null) tabHeader.Text = "Links";
             return;
@@ -1095,6 +1099,8 @@ public partial class ScholarTabView : UserControl
     {
         CaptureCurrentGraphLayout();
         await _vm.SaveCurrentStateAsync();
+        _lastRenderedPassageId = null;
+        _ = RefreshAssistantAsync();
         if (!string.IsNullOrWhiteSpace(statusMessage))
             Status?.Invoke(this, statusMessage);
     }
@@ -1782,6 +1788,7 @@ public partial class ScholarTabView : UserControl
         return false;
     }
 }
+
 
 
 

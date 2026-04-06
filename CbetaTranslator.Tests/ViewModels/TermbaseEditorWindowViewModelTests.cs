@@ -618,6 +618,23 @@ public class TermbaseEditorWindowViewModelTests
         Assert.Empty(allCommunity);
         Assert.False(vm.HasCommunityEntries);
     }
+    [Fact]
+    public async Task SaveAsync_ReappliesFilterAndSelectsSavedEntry()
+    {
+        var storage = new StubTermbaseStorageService();
+        var vm = new TermbaseEditorWindowViewModel(storage, "/root");
+
+        vm.NewTermCommand.Execute(null);
+        vm.SourceTerm = "Gate";
+        vm.PreferredTarget = "Barrier";
+        vm.SearchQuery = "Gate";
+
+        await vm.SaveCommand.ExecuteAsync(null);
+
+        Assert.Single(vm.FilteredEntries);
+        Assert.Equal("Gate", vm.FilteredEntries[0].SourceTerm);
+        Assert.NotNull(vm.SelectedEntry);
+        Assert.Equal("Gate", vm.SelectedEntry!.SourceTerm);
+        Assert.Equal("Barrier", vm.SelectedEntry.PreferredTarget);
+    }
 }
-
-
