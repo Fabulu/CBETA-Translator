@@ -1235,19 +1235,9 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            AppendLog("[step] ensuring local credential helper");
-            var cred = await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
-            if (!cred.Success)
-            {
-                AppendLog("[warn] could not configure credential helper automatically");
-                AppendLog("[warn] " + (cred.Error ?? "unknown error"));
-            }
-
             ProgressText = "Pushing branch\u2026";
             AppendLog("[step] push -u " + remoteName + " " + _lastContribBranch);
-            AppendLog("[hint] If Git opens a browser/device login, complete it and retry if needed.");
-
-            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, _lastContribBranch!, prog, ct);
+            var push = await PushBranchUsingConfiguredAuthAsync(repoDir, remoteName, remoteUrlClean, _lastContribBranch!, prog, ct);
             if (!push.Success)
             {
                 ProgressText = "Push failed.";
@@ -1696,11 +1686,9 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
-
             ProgressText = "Pushing community branch\u2026";
             AppendLog("[step] push -u " + remoteName + " " + branchName);
-            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+            var push = await PushBranchUsingConfiguredAuthAsync(repoDir, remoteName, remoteUrlClean, branchName, prog, ct);
             if (!push.Success)
             {
                 ProgressText = "Push failed.";
@@ -2041,11 +2029,9 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
-
             ProgressText = "Pushing community branch\u2026";
             AppendLog("[step] push -u " + remoteName + " " + branchName);
-            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+            var push = await PushBranchUsingConfiguredAuthAsync(repoDir, remoteName, remoteUrlClean, branchName, prog, ct);
             if (!push.Success)
             {
                 ProgressText = "Push failed.";
@@ -2304,11 +2290,9 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
-
             ProgressText = "Pushing scholar branch\u2026";
             AppendLog("[step] push -u " + remoteName + " " + branchName);
-            var push = await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+            var push = await PushBranchUsingConfiguredAuthAsync(repoDir, remoteName, remoteUrlClean, branchName, prog, ct);
             if (!push.Success)
             {
                 ProgressText = "Push failed.";
@@ -3444,6 +3428,7 @@ public partial class GitTabViewModel : ViewModelBase
         catch { return (p ?? "").Trim(); }
     }
 }
+
 
 
 
