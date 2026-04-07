@@ -49,10 +49,7 @@
 					<Button Name="BtnApproveSegment" Content="&#x2713;" ToolTip.Tip="Mark approved and advance to next unreviewed (Alt+A / F9)" Padding="8,3"/>
 					<Button Name="BtnNeedsWorkSegment" Content="&#x26A0;" ToolTip.Tip="Flag as needing more work (Alt+N / F10)" Padding="8,3" IsVisible="False"/>
 					<Button Name="BtnRejectSegment" Content="&#x2717;" ToolTip.Tip="Mark the current segment as rejected (F11)" Padding="8,3"/>
-					<Button Name="BtnNextUnapproved" Content="Next ?" ToolTip.Tip="Jump to next segment that has not been approved yet" Padding="8,3"/>
-					<ScrollViewer MaxHeight="60" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="4,0">
-						<TextBlock Name="TxtReviewState" Text="" FontWeight="SemiBold" TextWrapping="Wrap"/>
-					</ScrollViewer>
+					<Button Name="BtnNextUnapproved" Content="Next" ToolTip.Tip="Jump to next segment that has not been approved yet" Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- File -->

@@ -19,12 +19,12 @@ namespace CbetaTranslator.App.ViewModels;
 
 public partial class GitTabViewModel : ViewModelBase
 {
-    private const string RepoUrl = "https://github.com/Fabulu/ReadZen.git";
-    private const string RepoFolderName = "ReadZen";
+    private const string RepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
+    private const string RepoFolderName = "CbetaZenTexts";
 
     private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
-    private const string UpstreamRepo = "ReadZen";
+    private const string UpstreamRepo = "CbetaZenTexts";
 
     private const string CommunityTmFile = "translation-memory.approved.jsonl";
     private const string CommunityTermbaseFile = "termbase.json";
@@ -1653,12 +1653,12 @@ public partial class GitTabViewModel : ViewModelBase
             }
 
             // --- Auto-create PR for community data (auto-merged by GitHub Action) ---
-            if (!isUpstreamOwner && _githubAccessToken != null)
+            if (_githubAccessToken != null)
             {
                 try
                 {
                     ProgressText = "Creating community data PR\u2026";
-                    string prHead = $"{_githubLogin}:{branchName}";
+                    string prHead = isUpstreamOwner ? branchName : $"{_githubLogin}:{branchName}";
                     string prTitle = $"Community data: {_githubLogin}";
                     string prBody =
                         $"Auto-generated community data sync from **{_githubLogin}**.\n\n" +
@@ -1689,7 +1689,7 @@ public partial class GitTabViewModel : ViewModelBase
                 catch (Exception prEx)
                 {
                     AppendLog("[warn] PR creation failed: " + prEx.Message);
-                    AppendLog("[info] Data was pushed to your fork. You can create a PR manually on GitHub.");
+                    AppendLog("[info] Data was pushed. You can create a PR manually on GitHub.");
                 }
             }
 
@@ -2684,6 +2684,46 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
+    private static string BuildTokenizedGitRemoteUrl(string cleanRemoteUrl, string githubAccessToken)
+    {
+        var uri = new Uri(cleanRemoteUrl);
+        var builder = new UriBuilder(uri)
+        {
+            UserName = "x-access-token",
+            Password = githubAccessToken
+        };
+        return builder.Uri.ToString();
+    }
+
+    private async Task<GitOpResult> PushBranchUsingConfiguredAuthAsync(
+        string repoDir,
+        string remoteName,
+        string remoteUrlClean,
+        string branchName,
+        IProgress<string> prog,
+        CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(_githubAccessToken))
+        {
+            await _git.EnsureCredentialHelperAsync(repoDir, prog, ct);
+            return await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+        }
+
+        var remoteUrlForPush = BuildTokenizedGitRemoteUrl(remoteUrlClean, _githubAccessToken!);
+        var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlForPush, prog, ct);
+        if (!rem.Success)
+            return rem;
+
+        try
+        {
+            prog.Report("[auth] using OAuth token for git push");
+            return await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
+        }
+        finally
+        {
+            await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
+        }
+    }
     private async Task ScrubTokenizedForkRemoteIfAny(string repoDir, IProgress<string> prog, CancellationToken ct)
     {
         try
@@ -2846,13 +2886,6 @@ public partial class GitTabViewModel : ViewModelBase
         trackedPaths.Add($"community/master-dates/{login}.jsonl");
         trackedPaths.Add($"community/tags/{login}.jsonl");
         trackedPaths.Add($"community/tag-vocabularies/{login}.json");
-
-        var translationUserDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(login));
-        if (Directory.Exists(translationUserDir))
-        {
-            foreach (var fullPath in Directory.EnumerateFiles(translationUserDir, "*", SearchOption.AllDirectories))
-                trackedPaths.Add(NormalizeRel(Path.GetRelativePath(repoDir, fullPath)));
-        }
 
         return trackedPaths;
     }
@@ -3282,5 +3315,6 @@ public partial class GitTabViewModel : ViewModelBase
         catch { return (p ?? "").Trim(); }
     }
 }
+
 
 

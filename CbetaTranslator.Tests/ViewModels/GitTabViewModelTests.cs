@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -364,4 +365,43 @@ public class GitTabViewModelTests
         Assert.Equal("Cancel", capturedNo);
     }
 
+
+    [Fact]
+    public void RepoConstants_TargetCbetaZenTexts()
+    {
+        var type = typeof(GitTabViewModel);
+        var repoUrl = (string?)type.GetField("RepoUrl", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+        var repoFolder = (string?)type.GetField("RepoFolderName", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+        var upstreamRepo = (string?)type.GetField("UpstreamRepo", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+
+        Assert.Equal("https://github.com/Fabulu/CbetaZenTexts.git", repoUrl);
+        Assert.Equal("CbetaZenTexts", repoFolder);
+        Assert.Equal("CbetaZenTexts", upstreamRepo);
+    }
+
+    [Fact]
+    public void GetTrackedCommunitySharePaths_ExcludesPerUserCommunityTranslations()
+    {
+        var vm = MakeVm();
+        vm.LoadPersistedAuth("ghp_test", "Fabulu");
+
+        var repoDir = Path.Combine(Path.GetTempPath(), "cbeta-share-test-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(repoDir, "community", "translations", "Fabulu"));
+        File.WriteAllText(Path.Combine(repoDir, "community", "translations", "Fabulu", "T48n2005.xml"), "test");
+
+        try
+        {
+            var method = typeof(GitTabViewModel).GetMethod("GetTrackedCommunitySharePaths", BindingFlags.NonPublic | BindingFlags.Instance);
+            Assert.NotNull(method);
+
+            var tracked = (HashSet<string>)method!.Invoke(vm, new object[] { repoDir })!;
+
+            Assert.DoesNotContain("community/translations/Fabulu/T48n2005.xml", tracked, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("community/termbases/Fabulu.jsonl", tracked, StringComparer.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            Directory.Delete(repoDir, true);
+        }
+    }
 }
