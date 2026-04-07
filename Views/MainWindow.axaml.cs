@@ -36,6 +36,7 @@ public partial class MainWindow : Window
     private Button? _btnToggleNav, _btnToggleTopBar, _btnOpenRoot, _btnSettings, _btnSave, _btnLicenses;
     private Button? _btnMinimize, _btnMaximize, _btnClose;
     private Border? _navPanel, _topBar, _emptyStateOverlay;
+    private bool _navAutoHiddenByStudyPanel;
 
     private ListBox? _filesList;
     private TextBox? _navSearch;
@@ -898,9 +899,23 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 _vm.Config.EnableStudyPanel = visible;
                 _ = _vm.SafeSaveConfigAsync();
-                // Auto-collapse nav sidebar when study panel opens to give more reading space
-                if (visible && _navPanel != null)
-                    _navPanel.IsVisible = false;
+
+                if (_navPanel == null)
+                    return;
+
+                if (visible)
+                {
+                    if (_navPanel.IsVisible)
+                    {
+                        _navAutoHiddenByStudyPanel = true;
+                        _navPanel.IsVisible = false;
+                    }
+                }
+                else if (_navAutoHiddenByStudyPanel)
+                {
+                    _navPanel.IsVisible = true;
+                    _navAutoHiddenByStudyPanel = false;
+                }
             };
         }
 
@@ -1954,6 +1969,7 @@ private async Task LoadConfigAndAutoloadAsync()
         StartTour();
     }
 }
+
 
 
 
