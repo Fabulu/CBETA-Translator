@@ -1969,9 +1969,11 @@ public sealed class SearchIndexService : ISearchIndexService
         if (string.IsNullOrWhiteSpace(effectiveQuery))
             return new List<SearchResultChild>();
 
-        var children = new List<SearchResultChild>();
-        foreach (var unit in indexed.Units)
+        var originalChildren = new List<SearchResultChild>();
+        var translatedChildren = new List<SearchResultChild>();
+        for (int i = 0; i < indexed.Units.Count; i++)
         {
+            var unit = indexed.Units[i];
             string zh = unit.Zh ?? string.Empty;
             string en = unit.En ?? string.Empty;
 
@@ -1980,12 +1982,12 @@ public sealed class SearchIndexService : ISearchIndexService
             if (!zhMatch && !enMatch)
                 continue;
 
-            var zhCounterpart = string.IsNullOrWhiteSpace(zh) ? null : BuildCounterpartSnippet(zh, contextWidth);
-            var enCounterpart = string.IsNullOrWhiteSpace(en) ? null : BuildCounterpartSnippet(en, contextWidth);
+            var zhCounterpart = BuildWidenedCounterpartSnippet(indexed.Units, i, SearchSide.Original, contextWidth);
+            var enCounterpart = BuildWidenedCounterpartSnippet(indexed.Units, i, SearchSide.Translated, contextWidth);
 
             if (zhMatch)
             {
-                children.Add(new SearchResultChild
+                originalChildren.Add(new SearchResultChild
                 {
                     RelPath = relPath,
                     Side = SearchSide.Original,
@@ -1998,7 +2000,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
             if (enMatch)
             {
-                children.Add(new SearchResultChild
+                translatedChildren.Add(new SearchResultChild
                 {
                     RelPath = relPath,
                     Side = SearchSide.Translated,
@@ -2010,6 +2012,9 @@ public sealed class SearchIndexService : ISearchIndexService
             }
         }
 
+        var children = new List<SearchResultChild>(originalChildren.Count + translatedChildren.Count);
+        children.AddRange(originalChildren);
+        children.AddRange(translatedChildren);
         return children;
     }
 
@@ -2129,6 +2134,96 @@ public sealed class SearchIndexService : ISearchIndexService
         return hits;
     }
 
+    private static SearchHit? BuildWidenedCounterpartSnippet(IReadOnlyList<TranslationUnit> units, int centerIndex, SearchSide counterpartSide, int contextWidth)
+    {
+        if (units == null || centerIndex < 0 || centerIndex >= units.Count)
+            return null;
+
+        string centerText = GetCounterpartUnitText(units[centerIndex], counterpartSide);
+        if (string.IsNullOrWhiteSpace(centerText))
+            return null;
+
+        int budget = Math.Max(60, contextWidth * 2);
+        var pieces = new List<string>();
+        AddVisiblePiece(pieces, centerText, addToFront: false);
+        int visibleLength = string.Join(" ", pieces).Length;
+
+        int left = centerIndex - 1;
+        int right = centerIndex + 1;
+        while (visibleLength < budget)
+        {
+            bool added = false;
+
+            if (left >= 0 && CanExtendCounterpartWindow(units, left, left + 1))
+            {
+                int beforeCount = pieces.Count;
+                AddVisiblePiece(pieces, GetCounterpartUnitText(units[left], counterpartSide), addToFront: true);
+                if (pieces.Count != beforeCount)
+                {
+                    visibleLength = string.Join(" ", pieces).Length;
+                    added = true;
+                }
+                left--;
+            }
+            else
+            {
+                left = -1;
+            }
+
+            if (visibleLength >= budget)
+                break;
+
+            if (right < units.Count && CanExtendCounterpartWindow(units, right - 1, right))
+            {
+                int beforeCount = pieces.Count;
+                AddVisiblePiece(pieces, GetCounterpartUnitText(units[right], counterpartSide), addToFront: false);
+                if (pieces.Count != beforeCount)
+                {
+                    visibleLength = string.Join(" ", pieces).Length;
+                    added = true;
+                }
+                right++;
+            }
+            else
+            {
+                right = units.Count;
+            }
+
+            if (!added)
+                break;
+        }
+
+        if (pieces.Count == 0)
+            return null;
+
+        return BuildCounterpartSnippet(string.Join(" ", pieces), contextWidth, budget);
+    }
+
+    private static string GetCounterpartUnitText(TranslationUnit unit, SearchSide counterpartSide)
+        => counterpartSide == SearchSide.Original ? unit.Zh ?? string.Empty : unit.En ?? string.Empty;
+
+    private static void AddVisiblePiece(List<string> pieces, string text, bool addToFront)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return;
+
+        if (addToFront)
+            pieces.Insert(0, text.Trim());
+        else
+            pieces.Add(text.Trim());
+    }
+
+    private static bool CanExtendCounterpartWindow(IReadOnlyList<TranslationUnit> units, int leftIndex, int rightIndex)
+    {
+        if (leftIndex < 0 || rightIndex < 0 || leftIndex >= units.Count || rightIndex >= units.Count)
+            return false;
+
+        var left = units[leftIndex];
+        var right = units[rightIndex];
+        return string.Equals(left.ElementStableKey, right.ElementStableKey, StringComparison.Ordinal)
+            && left.Kind == right.Kind
+            && right.LineNumber == left.LineNumber + 1;
+    }
     private static bool TextContainsQuery(string text, string effectiveQuery, bool isCjkQuery)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -2140,13 +2235,13 @@ public sealed class SearchIndexService : ISearchIndexService
         return text.Contains(effectiveQuery, StringComparison.OrdinalIgnoreCase);
     }
 
-    private static SearchHit BuildCounterpartSnippet(string text, int contextWidth)
+    private static SearchHit BuildCounterpartSnippet(string text, int contextWidth, int? maxLenOverride = null)
     {
         string collapsed = CollapseWhitespace(text);
         if (collapsed.Length == 0)
             return new SearchHit();
 
-        int maxLen = Math.Max(20, contextWidth * 2);
+        int maxLen = maxLenOverride ?? Math.Max(20, contextWidth * 2);
         string snippet = collapsed.Length > maxLen ? collapsed[..maxLen] + "..." : collapsed;
         return new SearchHit { Left = snippet, Match = string.Empty, Right = string.Empty };
     }
@@ -2468,8 +2563,10 @@ public sealed class SearchIndexService : ISearchIndexService
         });
 
         var outGroups = new ConcurrentBag<SearchResultGroup>();
+
         int verifiedDocs = 0;
         int totalHits = 0;
+        int emittedGroups = 0;
         var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
         var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
 
@@ -2493,160 +2590,149 @@ public sealed class SearchIndexService : ISearchIndexService
             MaxDegreeOfParallelism = Math.Max(1, Options.MaxVerifyDegreeOfParallelism)
         };
 
+        var outChannel = System.Threading.Channels.Channel.CreateUnbounded<SearchResultGroup>(
+            new System.Threading.Channels.UnboundedChannelOptions
+            {
+                SingleReader = true,
+                SingleWriter = false
+            });
+
         var swVerify = System.Diagnostics.Stopwatch.StartNew();
 
-        Parallel.ForEach(candidateList, verifyPo, relKey =>
+        var verifyTask = Task.Run(() =>
         {
-            ct.ThrowIfCancellationRequested();
-
-            int mask = candidates[relKey];
-
-            var meta = fileMeta(relKey);
-            var group = new SearchResultGroup
+            try
             {
-                RelPath = relKey,
-                DisplayName = string.IsNullOrWhiteSpace(meta.display) ? relKey : meta.display,
-                Tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip,
-                Status = meta.status
-            };
-
-            int hitsO = 0;
-            int hitsT = 0;
-            var originalHits = new List<SearchHit>();
-            var translatedHits = new List<SearchHit>();
-
-            if ((mask & 1) != 0)
-            {
-                string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
-                textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
-                originalHits = VerifyFileAllHits(
-                    root,
-                    relKey,
-                    SearchSide.Original,
-                    abs,
-                    metaOriginal?.LastWriteUtcTicks ?? 0,
-                    metaOriginal?.LengthBytes ?? 0,
-                    textOriginal,
-                    effectiveQuery,
-                    contextWidth,
-                    htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
-                Interlocked.Increment(ref verifiedDocs);
-                hitsO = originalHits.Count;
-                Interlocked.Add(ref totalHits, hitsO);
-            }
-
-            if ((mask & 2) != 0)
-            {
-                string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
-                entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
-                textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
-                translatedHits = VerifyFileAllHits(
-                    root,
-                    relKey,
-                    SearchSide.Translated,
-                    abs,
-                    metaTranslated?.LastWriteUtcTicks ?? 0,
-                    metaTranslated?.LengthBytes ?? 0,
-                    textTranslated,
-                    effectiveQuery,
-                    contextWidth,
-                    htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
-                Interlocked.Increment(ref verifiedDocs);
-                hitsT = translatedHits.Count;
-                Interlocked.Add(ref totalHits, hitsT);
-            }
-
-            var displayChildren = BuildAlignedDisplayChildrenFromIndexedUnits(
-                originalDir,
-                translatedDir,
-                relKey,
-                query,
-                includeOriginal,
-                includeTranslated,
-                contextWidth);
-
-            group.HitsOriginal = hitsO;
-            group.HitsTranslated = hitsT;
-            if (displayChildren.Count > 0)
-            {
-                group.Children.AddRange(displayChildren);
-            }
-            else
-            {
-                var displayOriginalHits = originalHits;
-                var displayTranslatedHits = translatedHits;
-
-                if (originalHits.Count > translatedHits.Count)
+                Parallel.ForEach(candidateList, verifyPo, relKey =>
                 {
-                    var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Original, originalHits.Count, contextWidth);
-                    if (counterpart.Count > translatedHits.Count)
-                        displayTranslatedHits = MergeDisplayHits(translatedHits, counterpart, originalHits.Count);
-                }
-                else if (translatedHits.Count > originalHits.Count)
-                {
-                    var counterpart = TryBuildCounterpartHitsForDisplay(originalDir, translatedDir, relKey, effectiveQuery, SearchSide.Translated, translatedHits.Count, contextWidth);
-                    if (counterpart.Count > originalHits.Count)
-                        displayOriginalHits = MergeDisplayHits(originalHits, counterpart, translatedHits.Count);
-                }
+                    ct.ThrowIfCancellationRequested();
 
-                group.Children.AddRange(BuildResultChildren(relKey, displayOriginalHits, displayTranslatedHits));
-            }
+                    int mask = candidates[relKey];
 
-            if (group.Children.Count > 0)
-                outGroups.Add(group);
+                    var meta = fileMeta(relKey);
+                    var group = new SearchResultGroup
+                    {
+                        RelPath = relKey,
+                        DisplayName = string.IsNullOrWhiteSpace(meta.display) ? relKey : meta.display,
+                        Tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip,
+                        Status = meta.status
+                    };
 
-            int v = Volatile.Read(ref verifiedDocs);
-            if (v % 50 == 0)
-            {
-                Dbg($"Verify phase progress verified={v}/{totalDocsToVerify} groups={outGroups.Count} hits={Volatile.Read(ref totalHits)}");
+                    int hitsO = 0;
+                    int hitsT = 0;
+                    var originalHits = new List<SearchHit>();
+                    var translatedHits = new List<SearchHit>();
+
+                    if ((mask & 1) != 0)
+                    {
+                        string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                        entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
+                        textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                        originalHits = VerifyFileAllHits(
+                            root,
+                            relKey,
+                            SearchSide.Original,
+                            abs,
+                            metaOriginal?.LastWriteUtcTicks ?? 0,
+                            metaOriginal?.LengthBytes ?? 0,
+                            textOriginal,
+                            effectiveQuery,
+                            contextWidth,
+                            htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                        Interlocked.Increment(ref verifiedDocs);
+                        hitsO = originalHits.Count;
+                        Interlocked.Add(ref totalHits, hitsO);
+                    }
+
+                    if ((mask & 2) != 0)
+                    {
+                        string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                        entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
+                        textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                        translatedHits = VerifyFileAllHits(
+                            root,
+                            relKey,
+                            SearchSide.Translated,
+                            abs,
+                            metaTranslated?.LastWriteUtcTicks ?? 0,
+                            metaTranslated?.LengthBytes ?? 0,
+                            textTranslated,
+                            effectiveQuery,
+                            contextWidth,
+                            htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                        Interlocked.Increment(ref verifiedDocs);
+                        hitsT = translatedHits.Count;
+                        Interlocked.Add(ref totalHits, hitsT);
+                    }
+
+                    group.HitsOriginal = hitsO;
+                    group.HitsTranslated = hitsT;
+                    group.Children.AddRange(BuildResultChildren(relKey, originalHits, translatedHits));
+
+                    if (group.Children.Count > 0)
+                    {
+                        Interlocked.Increment(ref emittedGroups);
+                        outChannel.Writer.TryWrite(group);
+                    }
+
+                    int v = Volatile.Read(ref verifiedDocs);
+                    if (v <= 10 || v % 10 == 0)
+                    {
+                        int groupsNow = Volatile.Read(ref emittedGroups);
+                        int hitsNow = Volatile.Read(ref totalHits);
+                        Dbg($"Verify phase progress verified={v}/{totalDocsToVerify} groups={groupsNow} hits={hitsNow}");
+
+                        progress?.Report(new SearchProgress
+                        {
+                            Phase = "Searching...",
+                            Candidates = totalDocsToVerify,
+                            VerifiedDocs = v,
+                            TotalDocsToVerify = totalDocsToVerify,
+                            Groups = groupsNow,
+                            TotalHits = hitsNow,
+                            CandidateMs = swCandidate.ElapsedMilliseconds,
+                            VerifyMs = swVerify.ElapsedMilliseconds,
+                            TotalMs = swTotal.ElapsedMilliseconds
+                        });
+                    }
+                });
+
+                swVerify.Stop();
+                Dbg($"Verify phase DONE in {swVerify.ElapsedMilliseconds}ms verified={verifiedDocs}/{totalDocsToVerify} groups={emittedGroups} hits={totalHits}");
 
                 progress?.Report(new SearchProgress
                 {
-                    Phase = "Searching...",
+                    Phase = "Done",
                     Candidates = totalDocsToVerify,
-                    VerifiedDocs = v,
+                    VerifiedDocs = verifiedDocs,
                     TotalDocsToVerify = totalDocsToVerify,
-                    Groups = outGroups.Count,
-                    TotalHits = Volatile.Read(ref totalHits),
+                    Groups = emittedGroups,
+                    TotalHits = totalHits,
                     CandidateMs = swCandidate.ElapsedMilliseconds,
                     VerifyMs = swVerify.ElapsedMilliseconds,
                     TotalMs = swTotal.ElapsedMilliseconds
                 });
+
+                outChannel.Writer.TryComplete();
             }
-        });
+            catch (Exception ex)
+            {
+                outChannel.Writer.TryComplete(ex);
+            }
+        }, ct);
 
-        swVerify.Stop();
-        Dbg($"Verify phase DONE in {swVerify.ElapsedMilliseconds}ms verified={verifiedDocs}/{totalDocsToVerify} groups={outGroups.Count} hits={totalHits}");
-
-        var ordered = outGroups
-            .OrderBy(g => g.RelPath, StringComparer.OrdinalIgnoreCase)
-            .ToList();
-
-        progress?.Report(new SearchProgress
-        {
-            Phase = "Done",
-            Candidates = totalDocsToVerify,
-            VerifiedDocs = verifiedDocs,
-            TotalDocsToVerify = totalDocsToVerify,
-            Groups = ordered.Count,
-            TotalHits = totalHits,
-            CandidateMs = swCandidate.ElapsedMilliseconds,
-            VerifyMs = swVerify.ElapsedMilliseconds,
-            TotalMs = swTotal.ElapsedMilliseconds
-        });
-
-        Dbg($"Yield phase START groups={ordered.Count}");
-
-        foreach (var g in ordered)
+        await foreach (var g in outChannel.Reader.ReadAllAsync(ct))
         {
             ct.ThrowIfCancellationRequested();
             yield return g;
             await Task.Yield();
         }
 
+        await verifyTask;
+
         swTotal.Stop();
         Dbg($"SearchAllAsync END total={swTotal.ElapsedMilliseconds}ms");
+
     }
 
     private sealed class RelSideComparer : IEqualityComparer<(string rel, SearchSide side)>
@@ -2864,6 +2950,9 @@ public sealed class SearchIndexService : ISearchIndexService
         return hits;
     }
 }
+
+
+
 
 
 

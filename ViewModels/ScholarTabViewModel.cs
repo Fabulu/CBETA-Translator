@@ -59,7 +59,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private ScholarCollection? _selectedCollection;
 
     public bool HasSelectedCollection => SelectedCollection != null;
-    public bool ShowWorkspaceHelper => SelectedCollection == null;
+    public bool ShowWorkspaceHelper => SelectedCollection == null || Passages.Count == 0;
 
     [ObservableProperty]
     private ScholarPassage? _selectedPassage;
@@ -1008,6 +1008,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             Passages.Add(p);
 
         SelectedPassage = Passages.FirstOrDefault();
+        OnPropertyChanged(nameof(ShowWorkspaceHelper));
     }
 
     private int GetChronologicalKey(ScholarPassage passage)

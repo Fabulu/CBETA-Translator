@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CbetaTranslator.App.Models;
 using CbetaTranslator.App.Services;
@@ -14,7 +14,7 @@ public class OnboardingTourServiceTests
 {
     private readonly OnboardingTourService _svc = new();
 
-    // ---- 1. Start — sets IsActive, CurrentIndex=0, fires StepChanged ----
+    // ---- 1. Start â€” sets IsActive, CurrentIndex=0, fires StepChanged ----
 
     [Fact]
     public void Start_SetsIsActive_And_CurrentIndexZero_And_FiresStepChanged()
@@ -30,7 +30,7 @@ public class OnboardingTourServiceTests
         Assert.Same(_svc.Steps[0], received);
     }
 
-    // ---- 2. Next — advances to next step, fires StepChanged ----
+    // ---- 2. Next â€” advances to next step, fires StepChanged ----
 
     [Fact]
     public void Next_AdvancesToNextStep_And_FiresStepChanged()
@@ -47,7 +47,7 @@ public class OnboardingTourServiceTests
         Assert.Same(_svc.Steps[1], received);
     }
 
-    // ---- 3. Next on last step — calls Complete, fires TourCompleted ----
+    // ---- 3. Next on last step â€” calls Complete, fires TourCompleted ----
 
     [Fact]
     public void Next_OnLastStep_CallsComplete_And_FiresTourCompleted()
@@ -69,7 +69,7 @@ public class OnboardingTourServiceTests
         Assert.False(_svc.IsActive);
     }
 
-    // ---- 4. Previous — goes back, fires StepChanged ----
+    // ---- 4. Previous â€” goes back, fires StepChanged ----
 
     [Fact]
     public void Previous_GoesBack_And_FiresStepChanged()
@@ -89,7 +89,7 @@ public class OnboardingTourServiceTests
         Assert.Same(_svc.Steps[1], received);
     }
 
-    // ---- 5. Previous on step 0 — stays at 0 (no underflow) ----
+    // ---- 5. Previous on step 0 â€” stays at 0 (no underflow) ----
 
     [Fact]
     public void Previous_OnStepZero_StaysAtZero_DoesNotFire()
@@ -106,7 +106,7 @@ public class OnboardingTourServiceTests
         Assert.False(fired);
     }
 
-    // ---- 6. Skip — sets IsActive=false, fires TourSkipped ----
+    // ---- 6. Skip â€” sets IsActive=false, fires TourSkipped ----
 
     [Fact]
     public void Skip_SetsIsActiveFalse_And_FiresTourSkipped()
@@ -123,7 +123,7 @@ public class OnboardingTourServiceTests
         Assert.True(skipped);
     }
 
-    // ---- 7. Complete — sets IsActive=false, fires TourCompleted ----
+    // ---- 7. Complete â€” sets IsActive=false, fires TourCompleted ----
 
     [Fact]
     public void Complete_SetsIsActiveFalse_And_FiresTourCompleted()
@@ -139,7 +139,7 @@ public class OnboardingTourServiceTests
         Assert.True(completed);
     }
 
-    // ---- 8. AdvanceIfWaitingFor — advances when event matches ----
+    // ---- 8. AdvanceIfWaitingFor â€” advances when event matches ----
 
     [Fact]
     public void AdvanceIfWaitingFor_AdvancesWhenEventMatches()
@@ -171,7 +171,7 @@ public class OnboardingTourServiceTests
         Assert.Equal(waitIndex + 1, _svc.CurrentIndex);
     }
 
-    // ---- 9. AdvanceIfWaitingFor — does nothing when event doesn't match ----
+    // ---- 9. AdvanceIfWaitingFor â€” does nothing when event doesn't match ----
 
     [Fact]
     public void AdvanceIfWaitingFor_DoesNothing_WhenEventDoesNotMatch()
@@ -217,18 +217,19 @@ public class OnboardingTourServiceTests
         var step = Assert.Single(_svc.Steps, s => s.Id == "search-results");
         Assert.Contains("paired Chinese and English context", step.Body);
         Assert.Contains("Double-click", step.Body);
-        Assert.Contains("right-click to add it to Scholar", step.Body);
+        Assert.Contains("search-state links", step.Body);
+        Assert.Contains("Add to Scholar", step.Body);
     }
 
     [Fact]
     public void Tutorial_Includes_ReaderDictionaryAndCompareSteps()
     {
         var dictStep = Assert.Single(_svc.Steps, s => s.Id == "reader-dictionary-button");
-        Assert.Contains("Dictionary button", dictStep.Body);
+        Assert.Contains("Dict button", dictStep.Body);
 
         var compareStep = Assert.Single(_svc.Steps, s => s.Id == "reader-compare-tools");
-        Assert.Contains("compare translations", compareStep.Body);
-        Assert.Contains("compare tag layers", compareStep.Body);
+        Assert.Contains("Compare Translations", compareStep.Body);
+        Assert.Contains("tag layers", compareStep.Body);
     }
 
     [Fact]
@@ -244,14 +245,15 @@ public class OnboardingTourServiceTests
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "zen-master-manager");
         Assert.Contains("Zen Master Manager", step.Title);
-        Assert.Contains("deep links", step.Body);
+        Assert.Contains("zen:// master links", step.Body);
     }
 
     [Fact]
     public void Tutorial_CommunityStep_MentionsSeparateSyncFlows()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "git-tab");
-        Assert.Contains("separate sync flows", step.Body);
+        Assert.Contains("separate sync/share flows", step.Body);
+        Assert.Contains("first-run text download", step.Body);
     }
 
     // ---- 11. All steps have non-empty Title and Body ----
@@ -397,3 +399,6 @@ public class OnboardingTourServiceTests
         Assert.False(skipped);
     }
 }
+
+
+

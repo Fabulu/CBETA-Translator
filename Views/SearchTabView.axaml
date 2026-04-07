@@ -62,13 +62,13 @@
                             Padding="5,2"
                             FontSize="10.5"
                             Content="Link"
-                            ToolTip.Tip="Copy a deep link for the current search state"/>
+                            ToolTip.Tip="Copy a shareable link for the current search state"/>
                 </StackPanel>
 
                 <Grid Grid.Row="1"
                       Grid.Column="0"
                       Grid.ColumnSpan="4"
-                      ColumnDefinitions="*,220"
+                      ColumnDefinitions="*,260"
                       ColumnSpacing="10">
                     <WrapPanel Grid.Column="0"
                                Orientation="Horizontal"
@@ -107,11 +107,12 @@
                                 HorizontalAlignment="Stretch"
                                 Spacing="2">
                         <TextBlock Text="{Binding SummaryText}"
-                                   HorizontalAlignment="Right"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Right"
                                    Classes="muted"
                                    FontSize="11"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="CharacterEllipsis"/>
+                                   TextWrapping="Wrap"
+                                   MaxLines="2"/>
                         <ProgressBar Height="8"
                                      Minimum="0"
                                      Maximum="100"
@@ -119,17 +120,18 @@
                                      IsIndeterminate="{Binding IsSearchProgressIndeterminate}"
                                      IsVisible="{Binding IsSearchProgressVisible}"/>
                         <TextBlock Text="{Binding ProgressText}"
-                                   HorizontalAlignment="Right"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Right"
                                    Classes="muted"
                                    FontSize="11"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="Wrap"
+                                   MaxLines="2"
                                    IsVisible="{Binding IsSearchProgressVisible}"/>
                         <TextBlock Text="{Binding ValidationMessage}"
                                    Foreground="{DynamicResource ErrorFg}"
                                    FontSize="11"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="Wrap"
+                                   MaxLines="2"
                                    IsVisible="{Binding HasValidationError}"/>
                     </StackPanel>
                 </Grid>
@@ -161,59 +163,107 @@
                         </TreeDataTemplate>
 
                         <DataTemplate DataType="models:SearchResultChild">
-                            <StackPanel Orientation="Vertical" Spacing="0">
-                                <StackPanel Orientation="Horizontal" Spacing="0"
-                                            IsVisible="{Binding HasPrimaryStructuredDisplay}">
-                                    <TextBlock Text="{Binding SideLabel}"
-                                               Classes="muted"
-                                               TextWrapping="NoWrap"/>
-                                    <TextBlock Text="{Binding LeftText}"
-                                               TextWrapping="Wrap"/>
-                                    <TextBlock Text="{Binding MatchText}"
-                                               TextWrapping="Wrap"
-                                               FontWeight="SemiBold"
-                                               Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
-                                    <TextBlock Text="{Binding RightText}"
-                                               TextWrapping="Wrap"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="0"
-                                            IsVisible="{Binding HasPrimaryContextOnlyDisplay}">
-                                    <TextBlock Text="{Binding SideLabel}"
-                                               Classes="muted"
-                                               TextWrapping="NoWrap"/>
-                                    <TextBlock Text="{Binding PrimarySnippetText}"
-                                               TextWrapping="Wrap"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="0"
-                                            IsVisible="{Binding HasSecondaryStructuredDisplay}">
-                                    <TextBlock Text="{Binding SecondarySideLabel}"
+                            <StackPanel Orientation="Vertical" Spacing="2">
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="6"
+                                      IsVisible="{Binding HasPrimaryStructuredDisplay}">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding SideLabel}"
                                                Classes="muted"
                                                TextWrapping="NoWrap"
+                                               VerticalAlignment="Top"/>
+                                    <TextBlock Grid.Column="1"
+                                               TextWrapping="Wrap">
+                                        <Run Text="{Binding LeftText}"/>
+                                        <Run Text="{Binding MatchText}"
+                                             FontWeight="SemiBold"
+                                             Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+                                        <Run Text="{Binding RightText}"/>
+                                    </TextBlock>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="6"
+                                      IsVisible="{Binding HasPrimaryContextOnlyDisplay}">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding SideLabel}"
+                                               Classes="muted"
+                                               TextWrapping="NoWrap"
+                                               VerticalAlignment="Top"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding PrimarySnippetText}"
+                                               TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="6"
+                                      Margin="0,1,0,0"
+                                      IsVisible="{Binding HasSecondaryStructuredDisplay}">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding SecondarySideLabel}"
+                                               Classes="muted"
+                                               TextWrapping="NoWrap"
+                                               VerticalAlignment="Top"
                                                FontSize="11"/>
-                                    <TextBlock Text="{Binding SecondaryLeftText}"
+                                    <TextBlock Grid.Column="1"
+                                               TextWrapping="Wrap"
+                                               FontSize="11">
+                                        <Run Text="{Binding SecondaryLeftText}"/>
+                                        <Run Text="{Binding SecondaryMatchText}"
+                                             FontWeight="SemiBold"
+                                             Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+                                        <Run Text="{Binding SecondaryRightText}"/>
+                                    </TextBlock>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="6"
+                                      Margin="0,1,0,0"
+                                      IsVisible="{Binding HasSecondaryContextOnlyDisplay}">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding SecondarySideLabel}"
+                                               Classes="muted"
+                                               TextWrapping="NoWrap"
+                                               VerticalAlignment="Top"
+                                               FontSize="11"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding SecondarySnippetText}"
                                                TextWrapping="Wrap"
                                                FontSize="11"/>
-                                    <TextBlock Text="{Binding SecondaryMatchText}"
-                                               TextWrapping="Wrap"
-                                               FontSize="11"
-                                               FontWeight="SemiBold"
-                                               Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
-                                    <TextBlock Text="{Binding SecondaryRightText}"
-                                               TextWrapping="Wrap"
-                                               FontSize="11"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="0"
-                                            IsVisible="{Binding HasSecondaryContextOnlyDisplay}">
-                                    <TextBlock Text="{Binding SecondaryDisplayText}"
-                                               TextWrapping="Wrap"
-                                               FontSize="11"/>
-                                </StackPanel>
+                                </Grid>
                             </StackPanel>
                         </DataTemplate>
 
                     </TreeView.DataTemplates>
 
                 </TreeView>
+
+                <Border IsVisible="{Binding IsSearchLoadingPlaceholderVisible}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="14"
+                        Background="{DynamicResource PanelAltBg}"
+                        BorderBrush="{DynamicResource PanelBorder}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        IsHitTestVisible="False"
+                        MaxWidth="320">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding ResultsLoadingText}"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                        <ProgressBar Height="8"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Value="{Binding SearchProgressPercent}"
+                                     IsIndeterminate="{Binding IsSearchProgressIndeterminate}"
+                                     IsVisible="{Binding IsSearchProgressVisible}"/>
+                        <TextBlock Text="{Binding ProgressText}"
+                                   Classes="muted"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   IsVisible="{Binding IsSearchProgressVisible}"/>
+                    </StackPanel>
+                </Border>
 
                 <Border Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -439,3 +489,9 @@
 
     </Grid>
 </UserControl>
+
+
+
+
+
+

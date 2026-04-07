@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CbetaTranslator.App.Models;
 
@@ -19,8 +21,10 @@ public sealed class SearchHit
     public string SnippetText => $"{Left}{Match}{Right}";
 }
 
-public sealed class SearchResultGroup
+public sealed class SearchResultGroup : INotifyPropertyChanged
 {
+    private List<SearchResultChild> _children = new();
+
     public string RelPath { get; set; } = "";
     public string DisplayName { get; set; } = "";   // titles/enShort if available
     public string Tooltip { get; set; } = "";       // full titles or relpath
@@ -30,7 +34,18 @@ public sealed class SearchResultGroup
     public int HitsTranslated { get; set; }
 
     // Tree children
-    public List<SearchResultChild> Children { get; set; } = new();
+    public List<SearchResultChild> Children
+    {
+        get => _children;
+        set
+        {
+            if (ReferenceEquals(_children, value))
+                return;
+
+            _children = value ?? new List<SearchResultChild>();
+            OnPropertyChanged();
+        }
+    }
 
     public string HeaderText
     {
@@ -40,16 +55,104 @@ public sealed class SearchResultGroup
             return $"{DisplayName}  ({RelPath}){st}  |  O: {HitsOriginal:n0}  T: {HitsTranslated:n0}";
         }
     }
+
+    public void ApplyEnrichment(IReadOnlyList<SearchResultChild> enrichedChildren)
+    {
+        if (enrichedChildren == null || enrichedChildren.Count == 0)
+            return;
+
+        if (Children.Count == enrichedChildren.Count && HaveMatchingChildShape(Children, enrichedChildren))
+        {
+            for (int i = 0; i < Children.Count; i++)
+                Children[i].ApplyEnrichment(enrichedChildren[i]);
+
+            return;
+        }
+
+        var replacement = new List<SearchResultChild>(enrichedChildren.Count);
+        for (int i = 0; i < enrichedChildren.Count; i++)
+            replacement.Add(enrichedChildren[i]);
+
+        Children = replacement;
+    }
+
+    private static bool HaveMatchingChildShape(IReadOnlyList<SearchResultChild> current, IReadOnlyList<SearchResultChild> enriched)
+    {
+        if (current.Count != enriched.Count)
+            return false;
+
+        for (int i = 0; i < current.Count; i++)
+        {
+            if (current[i].Side != enriched[i].Side)
+                return false;
+        }
+
+        return true;
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
-public sealed class SearchResultChild
+public sealed class SearchResultChild : INotifyPropertyChanged
 {
+    private SearchHit _hit = new();
+    private bool _primaryIsContextOnly;
+    private SearchHit? _secondaryHit;
+    private bool _secondaryIsContextOnly = true;
+
     public string RelPath { get; set; } = "";
     public SearchSide Side { get; set; }
-    public SearchHit Hit { get; set; } = new();
-    public bool PrimaryIsContextOnly { get; set; }
-    public SearchHit? SecondaryHit { get; set; }
-    public bool SecondaryIsContextOnly { get; set; } = true;
+    public SearchHit Hit
+    {
+        get => _hit;
+        set
+        {
+            if (ReferenceEquals(_hit, value))
+                return;
+
+            _hit = value ?? new SearchHit();
+            NotifyPrimaryChanged();
+        }
+    }
+    public bool PrimaryIsContextOnly
+    {
+        get => _primaryIsContextOnly;
+        set
+        {
+            if (_primaryIsContextOnly == value)
+                return;
+
+            _primaryIsContextOnly = value;
+            NotifyPrimaryChanged();
+        }
+    }
+    public SearchHit? SecondaryHit
+    {
+        get => _secondaryHit;
+        set
+        {
+            if (ReferenceEquals(_secondaryHit, value))
+                return;
+
+            _secondaryHit = value;
+            NotifySecondaryChanged();
+        }
+    }
+    public bool SecondaryIsContextOnly
+    {
+        get => _secondaryIsContextOnly;
+        set
+        {
+            if (_secondaryIsContextOnly == value)
+                return;
+
+            _secondaryIsContextOnly = value;
+            NotifySecondaryChanged();
+        }
+    }
 
     public string SideLabel
         => Side == SearchSide.Original ? "O: " : "T: ";
@@ -77,6 +180,30 @@ public sealed class SearchResultChild
     public string BilingualRowText
         => HasSecondaryDisplayText ? $"{PrimaryDisplayText}{Environment.NewLine}{SecondaryDisplayText}" : PrimaryDisplayText;
 
+    public void ApplyEnrichment(SearchResultChild enriched)
+    {
+        if (enriched == null)
+            return;
+
+        if (ShouldReplacePrimaryWith(enriched))
+        {
+            Hit = enriched.Hit;
+            PrimaryIsContextOnly = enriched.PrimaryIsContextOnly;
+        }
+        SecondaryHit = enriched.SecondaryHit;
+        SecondaryIsContextOnly = enriched.SecondaryIsContextOnly;
+    }
+
+    private bool ShouldReplacePrimaryWith(SearchResultChild enriched)
+    {
+        if (PrimaryIsContextOnly)
+            return true;
+
+        if (string.IsNullOrEmpty(Hit.Match))
+            return true;
+
+        return enriched.PrimaryIsContextOnly;
+    }
     public ScholarPassage ToScholarPassage()
     {
         string zh = Side == SearchSide.Original ? PrimarySnippetText : SecondarySnippetText;
@@ -91,6 +218,42 @@ public sealed class SearchResultChild
             AddedUtc = DateTimeOffset.UtcNow
         };
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void NotifyPrimaryChanged()
+    {
+        OnPropertyChanged(nameof(Hit));
+        OnPropertyChanged(nameof(PrimaryIsContextOnly));
+        OnPropertyChanged(nameof(LeftText));
+        OnPropertyChanged(nameof(MatchText));
+        OnPropertyChanged(nameof(RightText));
+        OnPropertyChanged(nameof(PrimarySnippetText));
+        OnPropertyChanged(nameof(PrimaryDisplayText));
+        OnPropertyChanged(nameof(HasPrimaryStructuredDisplay));
+        OnPropertyChanged(nameof(HasPrimaryContextOnlyDisplay));
+        OnPropertyChanged(nameof(RowText));
+        OnPropertyChanged(nameof(BilingualRowText));
+    }
+
+    private void NotifySecondaryChanged()
+    {
+        OnPropertyChanged(nameof(SecondaryHit));
+        OnPropertyChanged(nameof(SecondaryIsContextOnly));
+        OnPropertyChanged(nameof(SecondarySideLabel));
+        OnPropertyChanged(nameof(SecondaryLeftText));
+        OnPropertyChanged(nameof(SecondaryMatchText));
+        OnPropertyChanged(nameof(SecondaryRightText));
+        OnPropertyChanged(nameof(SecondarySnippetText));
+        OnPropertyChanged(nameof(SecondaryDisplayText));
+        OnPropertyChanged(nameof(HasSecondaryDisplayText));
+        OnPropertyChanged(nameof(HasSecondaryStructuredDisplay));
+        OnPropertyChanged(nameof(HasSecondaryContextOnlyDisplay));
+        OnPropertyChanged(nameof(BilingualRowText));
+    }
+
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
 public sealed class AnalyticsBubbleItem
@@ -168,8 +331,4 @@ public sealed class SearchCjkBigramPosting
     public string Gram { get; set; } = "";
     public List<int> EntryIds { get; set; } = new();
 }
-
-
-
-
 

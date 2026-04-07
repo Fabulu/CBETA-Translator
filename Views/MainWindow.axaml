@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:CbetaTranslator.App.Views"
         xmlns:models="clr-namespace:CbetaTranslator.App.Models"
@@ -66,7 +66,7 @@
                             ToolTip.Tip="Collapse command bar"/>
 
                     <Border Grid.Column="2" Background="Transparent">
-                        <TabStrip Name="MainTabs" SelectedIndex="0" Height="20">
+                        <TabStrip Name="MainTabs" SelectedIndex="0" Height="20" PointerWheelChanged="MainTabs_OnPointerWheelChanged">
                             <TabStrip.Styles>
                                 <Style Selector="TabStrip#MainTabs">
                                     <Setter Property="Margin" Value="0"/>
@@ -229,3 +229,4 @@
         </Border>
     </Grid>
 </Window>
+
