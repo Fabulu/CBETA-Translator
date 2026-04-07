@@ -2381,6 +2381,61 @@ public partial class MainWindowViewModel : ViewModelBase
         return FindTranslatedPath(relPath) != null;
     }
 
+    public async Task<bool> EnsurePersonalTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
+    {
+        if (_originalDir == null || string.IsNullOrWhiteSpace(_root)) return false;
+
+        var origPath = Path.Combine(_originalDir, relPath);
+        if (!File.Exists(origPath)) return false;
+
+        var personalDir = _userTranslatedDir;
+        if (string.IsNullOrWhiteSpace(personalDir))
+        {
+            personalDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
+            _userTranslatedDir = personalDir;
+        }
+
+        var personalAbs = Path.Combine(personalDir!, relPath);
+        var personalParentDir = Path.GetDirectoryName(personalAbs);
+        if (!string.IsNullOrWhiteSpace(personalParentDir) && !Directory.Exists(personalParentDir))
+            Directory.CreateDirectory(personalParentDir);
+
+        if (saveCurrentEditor &&
+            _indexedDoc != null &&
+            string.Equals(_currentRelPath, relPath, StringComparison.OrdinalIgnoreCase))
+        {
+            try
+            {
+                var projection = GetTranslationProjectionText?.Invoke() ?? "";
+                _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, projection);
+
+                var xml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out _);
+                await AtomicWriteXmlAsync(personalAbs, xml);
+
+                if (string.Equals(_activeTranslatedDir, _userTranslatedDir, StringComparison.OrdinalIgnoreCase))
+                    _rawTranXml = xml;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        var existing = FindTranslatedPath(relPath);
+        if (!string.IsNullOrWhiteSpace(existing) && File.Exists(existing))
+        {
+            if (!string.Equals(existing, personalAbs, StringComparison.OrdinalIgnoreCase))
+                File.Copy(existing, personalAbs, overwrite: true);
+            return true;
+        }
+
+        var origXml = await ReadOriginalXmlAsync(relPath);
+        if (string.IsNullOrWhiteSpace(origXml)) return false;
+        await AtomicWriteXmlAsync(personalAbs, origXml);
+        return true;
+    }
+
     public async Task HandleRootClonedAsync(string repoRoot, bool isSecondaryWindow)
     {
         try
