@@ -1018,6 +1018,12 @@ private async Task LoadConfigAndAutoloadAsync()
                 catch (Exception ex) { _vm.SetStatus("Prepare sync migration failed: " + ex.Message); throw; }
             };
 
+
+            _gitView.EnsurePersonalTranslatedForSelectedRequested += async relPath =>
+            {
+                try { return await _vm.EnsurePersonalTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }
+                catch (Exception ex) { _vm.SetStatus("Prepare personal translated XML failed: " + ex.Message); return false; }
+            };
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {
                 try { return await _vm.EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }

@@ -442,4 +442,81 @@ public class GitTabViewModelTests
             Directory.Delete(repoDir, true);
         }
     }
+
+    [Fact]
+    public async Task ShareAllInternalAsync_MaterializesSelectedPersonalTranslationBeforeFingerprinting()
+    {
+        var git = new RecordingGitRepoService();
+        var api = new RecordingGitHubApiService();
+        var vm = new GitTabViewModel(
+            git,
+            new StubGitHubAuthService(),
+            api,
+            new StubCommunityDataService(),
+            new StubScholarCollectionsService(),
+            new StubTermbaseStorageService(),
+            new StubTranslationReviewService(),
+            new StubMasterDatesService(),
+            new StubDocumentTagService());
+
+        vm.LoadPersistedAuth("ghp_test", "Fabulu");
+        vm.SetUsername("dota2nub");
+
+        var repoDir = Path.Combine(Path.GetTempPath(), "cbeta-share-selected-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(repoDir, ".git"));
+        vm.SetCurrentRepoRoot(repoDir);
+        vm.SetSelectedRelPath("T/T48/T48n2005.xml");
+
+        var ensureCalled = false;
+        vm.EnsurePersonalTranslatedForSelectedRequested += relPath =>
+        {
+            ensureCalled = true;
+            var full = Path.Combine(repoDir, "community", "translations", "Fabulu", relPath.Replace('/', Path.DirectorySeparatorChar));
+            var dir = Path.GetDirectoryName(full);
+            if (!string.IsNullOrWhiteSpace(dir))
+                Directory.CreateDirectory(dir);
+            File.WriteAllText(full, "<TEI/>");
+            return Task.FromResult(true);
+        };
+
+        try
+        {
+            var method = typeof(GitTabViewModel).GetMethod("ShareAllInternalAsync", BindingFlags.NonPublic | BindingFlags.Instance);
+            Assert.NotNull(method);
+            var task = (Task)method!.Invoke(vm, null)!;
+            await task;
+
+            Assert.True(ensureCalled);
+            Assert.Contains(git.StagedPaths, p => string.Equals(p, "community/translations/Fabulu/T/T48/T48n2005.xml", StringComparison.OrdinalIgnoreCase));
+        }
+        finally
+        {
+            Directory.Delete(repoDir, true);
+        }
+    }
+
+
+    private sealed class RecordingGitRepoService : StubGitRepoService
+    {
+        public List<string> StagedPaths { get; } = new();
+        public override Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
+        {
+            var full = Path.Combine(repoDir, "community", "translations", "Fabulu", "T", "T48", "T48n2005.xml");
+            return Task.FromResult(File.Exists(full)
+                ? new[] { "?? community/translations/" }
+                : Array.Empty<string>());
+        }
+
+        public override Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct)
+        {
+            StagedPaths.Add(relPath.Replace('\\', '/'));
+            return Task.FromResult(new GitOpResult(true));
+        }
+    }
+
+    private sealed class RecordingGitHubApiService : StubGitHubApiService
+    {
+        public override Task<string?> CreatePullRequestAsync(string accessToken, string upstreamOwner, string upstreamRepo, string head, string baseBranch, string title, string body, CancellationToken ct)
+            => Task.FromResult<string?>("https://example.test/pr/1");
+    }
 }

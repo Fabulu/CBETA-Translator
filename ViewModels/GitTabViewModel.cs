@@ -98,6 +98,7 @@ public partial class GitTabViewModel : ViewModelBase
     public event EventHandler<string>? RootCloned;
     public event EventHandler? CommunityDataFetched;
     public event Func<Task>? PrepareCommunityShareRequested;
+    public event Func<string, Task<bool>>? EnsurePersonalTranslatedForSelectedRequested;
     public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabViewModel(
@@ -418,6 +419,7 @@ public partial class GitTabViewModel : ViewModelBase
                 else
                 {
                     var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            var trackedSharePaths = GetTrackedCommunitySharePaths(repoDir);
                     var hasSelectedFileChanges = status.Any(line =>
                         line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
 
@@ -1377,6 +1379,26 @@ public partial class GitTabViewModel : ViewModelBase
 
             await PrepareCommunityShareAsync();
 
+            if (!string.IsNullOrWhiteSpace(_selectedRelPath) && EnsurePersonalTranslatedForSelectedRequested != null)
+            {
+                ProgressText = "Preparing selected personal translation...";
+                var preparedSelectedTranslation = true;
+                foreach (var fn in EnsurePersonalTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                {
+                    if (!await fn(_selectedRelPath))
+                    {
+                        preparedSelectedTranslation = false;
+                        break;
+                    }
+                }
+
+                if (!preparedSelectedTranslation)
+                {
+                    AppendLog($"[warn] could not materialize personal translation for {_selectedRelPath} before share");
+                }
+            }
+
+
             var preShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
 
             // --- TM dedup ---
@@ -1507,6 +1529,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             // --- Check git status for community changes authored by this share ---
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            var trackedSharePaths = GetTrackedCommunitySharePaths(repoDir);
             var changedFiles = new List<string>();
             var postShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
 
@@ -1524,8 +1547,22 @@ public partial class GitTabViewModel : ViewModelBase
 
                 if (string.IsNullOrWhiteSpace(filePath))
                     continue;
-                if (IsTrackedCommunitySharePath(filePath) && !changedFiles.Contains(filePath))
+
+                if (trackedSharePaths.Contains(filePath) && !changedFiles.Contains(filePath))
+                {
                     changedFiles.Add(filePath);
+                    continue;
+                }
+
+                var normalizedDirPath = filePath.TrimEnd('/');
+                if (!string.IsNullOrWhiteSpace(normalizedDirPath))
+                {
+                    foreach (var trackedPath in trackedSharePaths.Where(p => p.StartsWith(normalizedDirPath + '/', StringComparison.OrdinalIgnoreCase)))
+                    {
+                        if (!changedFiles.Contains(trackedPath))
+                            changedFiles.Add(trackedPath);
+                    }
+                }
             }
 
             var autoMergeFiles = changedFiles
@@ -2506,7 +2543,7 @@ public partial class GitTabViewModel : ViewModelBase
 
                 // Community translations (per-user)
                 int communityTransUserCount = 0;
-                ProgressText = "Pulling community translations…";
+                ProgressText = "Pulling community translationsÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦";
                 AppendLog("[step] git checkout origin/main -- community/translations/");
                 try
                 {
