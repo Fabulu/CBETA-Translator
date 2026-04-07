@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -18,6 +18,7 @@ namespace CbetaTranslator.App.Views;
 
 public partial class TagEditorWindow : Window
 {
+    private static readonly DataFormat<string> TagIdDataFormat = DataFormat.CreateStringApplicationFormat("TagId");
     private static readonly string[] Palette =
     {
         "#E63946", "#2A9D8F", "#457B9D", "#E9C46A", "#8338EC",
@@ -81,7 +82,7 @@ public partial class TagEditorWindow : Window
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
-    // â”€â”€ Control wiring â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Control wiring ──────────────────────────────────────────────────
 
     private void WireControls()
     {
@@ -170,7 +171,7 @@ public partial class TagEditorWindow : Window
         if (btnSave != null) btnSave.Click += async (_, _) => await OnSaveAsync();
     }
 
-    // â”€â”€ Load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Load ────────────────────────────────────────────────────────────
 
     private async Task LoadAsync()
     {
@@ -189,7 +190,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // â”€â”€ Tree building â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Tree building ───────────────────────────────────────────────────
 
     private void BuildTree()
     {
@@ -255,7 +256,7 @@ public partial class TagEditorWindow : Window
         return null;
     }
 
-    // â”€â”€ Filter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Filter ──────────────────────────────────────────────────────────
 
     private void ApplyFilter()
     {
@@ -301,7 +302,7 @@ public partial class TagEditorWindow : Window
         return result;
     }
 
-    // â”€â”€ Selection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Selection ───────────────────────────────────────────────────────
 
     private void OnSelectionChanged()
     {
@@ -388,7 +389,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // â”€â”€ Property changes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Property changes ────────────────────────────────────────────────
 
     private void OnNameChanged()
     {
@@ -455,7 +456,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // â”€â”€ CRUD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── CRUD ────────────────────────────────────────────────────────────
 
     private void OnNewTag()
     {
@@ -531,7 +532,7 @@ public partial class TagEditorWindow : Window
         SetStatus($"Deleted tag \"{tag.DisplayName}\".");
     }
 
-    // â”€â”€ Code bar assignment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Code bar assignment ─────────────────────────────────────────────
 
     private void OnAssignToSlot()
     {
@@ -627,9 +628,9 @@ public partial class TagEditorWindow : Window
             int capturedSlot = i;
             chip.AddHandler(DragDrop.DropEvent, (_, args) =>
             {
-                if (args.Data.Contains("TagId"))
+                if (args.DataTransfer.Contains(TagIdDataFormat))
                 {
-                    var dragTagId = args.Data.Get("TagId") as string;
+                    var dragTagId = args.DataTransfer.TryGetValue(TagIdDataFormat);
                     if (!string.IsNullOrEmpty(dragTagId))
                     {
                         int dropPage = (_cmbPage?.SelectedItem as int?) ?? 1;
@@ -661,7 +662,7 @@ public partial class TagEditorWindow : Window
         catch { return Colors.Gray; }
     }
 
-    // â”€â”€ Save â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Save ────────────────────────────────────────────────────────────
 
     private async Task OnSaveAsync()
     {
@@ -683,7 +684,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // â”€â”€ Color palette swatches â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Color palette swatches ─────────────────────────────────────────
 
     private void BuildColorSwatches()
     {
@@ -731,7 +732,7 @@ public partial class TagEditorWindow : Window
         }
     }
 
-    // â”€â”€ Drag-and-drop tag assignment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Drag-and-drop tag assignment ────────────────────────────────────
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
     {
@@ -748,14 +749,14 @@ public partial class TagEditorWindow : Window
         if (Math.Abs(delta.X) < 5 && Math.Abs(delta.Y) < 5) return;
 
         _dragStartPoint = null;
-        var data = new DataObject();
-        data.Set("TagId", _dragCandidate.Tag.Id);
+        var data = new DataTransfer();
+        data.Add(DataTransferItem.Create(TagIdDataFormat, _dragCandidate.Tag.Id));
 
-        await DragDrop.DoDragDrop(e, data, DragDropEffects.Copy);
+        await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Copy);
         _dragCandidate = null;
     }
 
-    // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Helpers ─────────────────────────────────────────────────────────
 
     private void SetStatus(string msg)
     {
@@ -805,4 +806,6 @@ public class TagTreeNode : INotifyPropertyChanged
     private void OnPropertyChanged(string name) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 }
+
+
 

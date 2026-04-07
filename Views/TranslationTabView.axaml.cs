@@ -33,7 +33,7 @@ public partial class TranslationTabView : UserControl
 
     private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
-    private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnRevert;
+    private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnFreshStart, _btnRevert;
     private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment, _btnNextUnapproved;
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
@@ -56,6 +56,7 @@ public partial class TranslationTabView : UserControl
 
     public event EventHandler<TranslationEditMode>? ModeChanged;
     public event EventHandler? SaveRequested;
+    public event EventHandler? FreshStartRequested;
     public event EventHandler? RevertRequested;
     public event EventHandler<string>? Status;
 
@@ -148,6 +149,7 @@ public partial class TranslationTabView : UserControl
         _btnNextUntranslated = this.FindControl<Button>("BtnNextUntranslated");
         _btnFindChineseInEn = this.FindControl<Button>("BtnFindChineseInEn");
         _btnSave = this.FindControl<Button>("BtnSave");
+        _btnFreshStart = this.FindControl<Button>("BtnFreshStart");
         _btnRevert = this.FindControl<Button>("BtnRevert");
         _btnBuildReferenceTm = this.FindControl<Button>("BtnBuildReferenceTm");
         _btnManageTerms = this.FindControl<Button>("BtnManageTerms");
@@ -407,6 +409,9 @@ public partial class TranslationTabView : UserControl
 
         if (_btnSave != null)
             _btnSave.Click += (_, _) => SaveRequested?.Invoke(this, EventArgs.Empty);
+
+        if (_btnFreshStart != null)
+            _btnFreshStart.Click += (_, _) => FreshStartRequested?.Invoke(this, EventArgs.Empty);
 
         if (_btnRevert != null)
             _btnRevert.Click += (_, _) => RevertRequested?.Invoke(this, EventArgs.Empty);
@@ -2229,4 +2234,5 @@ STRICT RULES:
     }
 
 }
+
 

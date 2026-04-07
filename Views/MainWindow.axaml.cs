@@ -923,6 +923,7 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             _translationView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _translationView.SaveRequested += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
+            _translationView.FreshStartRequested += async (_, _) => await _vm.ResetTranslatedToUntranslatedAsync();
             _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
             _translationView.Status += (_, msg) => _vm.SetStatus(msg);
 
@@ -1969,6 +1970,7 @@ private async Task LoadConfigAndAutoloadAsync()
         StartTour();
     }
 }
+
 
 
 

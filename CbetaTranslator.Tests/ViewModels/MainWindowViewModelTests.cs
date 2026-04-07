@@ -751,5 +751,55 @@ public class MainWindowViewModelTests
             if (Directory.Exists(root))
                 Directory.Delete(root, recursive: true);
         }
+    }    [Fact]
+    public async Task ResetTranslatedToUntranslatedAsync_ConfirmsAndOverwritesWritableTranslation()
+    {
+        var vm = MakeVm();
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5", "T01"));
+        Directory.CreateDirectory(Path.Combine(root, "xml-p5t", "T01"));
+
+        const string relPath = "T01/test.xml";
+        const string originalXml = "<TEI><text><body><p>??</p></body></text></TEI>";
+        const string translatedXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><div><head>Translated Title</head><p>Body EN<lb/>Tail EN</p><p>Closing EN</p></div></body></text></TEI>";
+
+        await File.WriteAllTextAsync(Path.Combine(root, "xml-p5", relPath), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(root, "xml-p5t", relPath), translatedXml);
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            typeof(MainWindowViewModel)
+                .GetField("_currentRelPath", BindingFlags.Instance | BindingFlags.NonPublic)!
+                .SetValue(vm, relPath);
+
+            vm.GetTranslationProjectionText = () => string.Empty;
+
+            string? promptTitle = null;
+            string? promptMessage = null;
+            vm.ShowYesNoDialogAsync = (title, message) =>
+            {
+                promptTitle = title;
+                promptMessage = message;
+                return Task.FromResult(true);
+            };
+
+            await vm.ResetTranslatedToUntranslatedAsync();
+
+            var writePath = Path.Combine(root, "community", "translations", "octocat", relPath);
+            Assert.True(File.Exists(writePath));
+            Assert.Equal(originalXml, await File.ReadAllTextAsync(writePath));
+            Assert.Equal("Fresh Start Translation", promptTitle);
+            Assert.Contains("will be lost", promptMessage);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
     }
 }
+
+

@@ -1953,6 +1953,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task RefreshReadableFromDiskOnlyAsync()
     {
+        if (SetReadableRendered == null) return;
         if (_currentRelPath == null || _originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
         _renderCts?.Cancel();
@@ -2044,6 +2045,58 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public async Task ResetTranslatedToUntranslatedAsync()
+    {
+        try
+        {
+            if (_currentRelPath == null) { SetStatus("Nothing to reset."); return; }
+            if (_activeTranslatedDir == null && _translatedDir == null) { SetStatus("Fresh start unavailable."); return; }
+            if (IsActiveTranslationReadOnly) { SetStatus("Cannot fresh start: viewing another user's translation (read-only)."); return; }
+
+            bool confirmed = await (ShowYesNoDialogAsync?.Invoke(
+                "Fresh Start Translation",
+                "This will replace the current writable translation for this file with the original untranslated XML.\n\nAll saved translation edits for this file in the active translation source will be lost.\n\nDo you want to continue?")
+                ?? Task.FromResult(false));
+            if (!confirmed)
+            {
+                SetStatus("Fresh start canceled.");
+                return;
+            }
+
+            _rawOrigXml = await ReadOriginalXmlAsync(_currentRelPath);
+            if (string.IsNullOrWhiteSpace(_rawOrigXml))
+            {
+                SetStatus("Fresh start failed: original XML could not be read.");
+                return;
+            }
+
+            EnsureXmlIsWellFormed(_rawOrigXml, "Original XML is malformed.");
+
+            await AtomicWriteTranslatedXmlForCurrentAsync(_rawOrigXml);
+
+            _rawTranXml = _rawOrigXml;
+            _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
+            var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
+            SetTranslationProjection(_translationMode, projection);
+
+            SetBaselineFromCurrentTranslatedEditorText();
+            await RefreshFileStatusAsync(_currentRelPath);
+
+            try
+            {
+                var tranAbs = GetWritePath(_currentRelPath);
+                _renderCache.Invalidate(tranAbs);
+            }
+            catch { }
+
+            await RefreshReadableFromDiskOnlyAsync();
+            SetStatus("Reset translation to untranslated state.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("Fresh start failed: " + ex.Message);
+        }
+    }
     public async Task RevertTranslatedXmlFromDiskAsync()
     {
         try
@@ -3063,6 +3116,8 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             await LoadPairAsync(_currentRelPath);
     }
 }
+
+
 
 
 
