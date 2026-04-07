@@ -10,6 +10,77 @@ namespace CbetaTranslator.Tests.Services;
 
 public class SearchIndexServiceTests
 {
+    [Fact]
+    public void SearchResultGroup_ApplyEnrichment_MutatesExistingChildren_WhenShapeMatches()
+    {
+        var existingChild = new SearchResultChild
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Side = SearchSide.Original,
+            Hit = Hit("zh-left ", "??", " zh-right")
+        };
+        var group = new SearchResultGroup
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Children = new List<SearchResultChild> { existingChild }
+        };
+
+        var enrichedChild = new SearchResultChild
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Side = SearchSide.Original,
+            Hit = Hit("zh-left ", "??", " zh-right"),
+            SecondaryHit = Hit("en-left ", "barrier", " en-right"),
+            SecondaryIsContextOnly = false
+        };
+
+        group.ApplyEnrichment(new List<SearchResultChild> { enrichedChild });
+
+        Assert.Same(existingChild, group.Children[0]);
+        Assert.Equal("en-left barrier en-right", existingChild.SecondarySnippetText);
+        Assert.False(existingChild.SecondaryIsContextOnly);
+    }
+
+    [Fact]
+    public void SearchResultGroup_ApplyEnrichment_ReplacesChildren_WhenShapeChanges()
+    {
+        var existingChild = new SearchResultChild
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Side = SearchSide.Original,
+            Hit = Hit("zh-left ", "??", " zh-right")
+        };
+        var group = new SearchResultGroup
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Children = new List<SearchResultChild> { existingChild }
+        };
+
+        var enrichedChildren = new List<SearchResultChild>
+        {
+            new()
+            {
+                RelPath = "T/T01/T01n0001.xml",
+                Side = SearchSide.Original,
+                Hit = Hit("zh-left ", "??", " zh-right"),
+                SecondaryHit = Hit("en-left ", string.Empty, string.Empty),
+                SecondaryIsContextOnly = true
+            },
+            new()
+            {
+                RelPath = "T/T01/T01n0001.xml",
+                Side = SearchSide.Translated,
+                Hit = Hit("en-left ", "barrier", " en-right")
+            }
+        };
+
+        group.ApplyEnrichment(enrichedChildren);
+
+        Assert.Equal(2, group.Children.Count);
+        Assert.NotSame(existingChild, group.Children[0]);
+        Assert.Equal(SearchSide.Translated, group.Children[1].Side);
+    }
+
     private static SearchHit Hit(string left, string match, string right)
         => new() { Left = left, Match = match, Right = right };
 
@@ -236,6 +307,79 @@ public class SearchIndexServiceTests
     }
 
     [Fact]
+    public void BuildAlignedDisplayChildrenFromIndexedUnits_StitchesAdjacentCounterpartUnitsWithinSameElement()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-display-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string translatedDir = Path.Combine(root, "xml-p5t");
+        Directory.CreateDirectory(Path.Combine(originalDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(translatedDir, "T", "T48"));
+
+        string relPath = "T/T48/T48n2005.xml";
+        File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>無門<lb/>關第一則</p></body></text></TEI>");
+        File.WriteAllText(Path.Combine(translatedDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Wumen<lb/>Barrier case one</p></body></text></TEI>");
+
+        try
+        {
+            var child = Assert.Single(SearchIndexService.BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                translatedDir,
+                relPath,
+                "門",
+                includeOriginal: true,
+                includeTranslated: true,
+                contextWidth: 80));
+
+            Assert.Equal(SearchSide.Original, child.Side);
+            Assert.Contains("Wumen", child.SecondarySnippetText);
+            Assert.Contains("Barrier case one", child.SecondarySnippetText);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void BuildAlignedDisplayChildrenFromIndexedUnits_DoesNotCrossElementBoundaryWhenStitchingCounterpart()
+    {
+        string root = Path.Combine(Path.GetTempPath(), "rz-search-display-" + Guid.NewGuid().ToString("N"));
+        string originalDir = Path.Combine(root, "xml-p5");
+        string translatedDir = Path.Combine(root, "xml-p5t");
+        Directory.CreateDirectory(Path.Combine(originalDir, "T", "T48"));
+        Directory.CreateDirectory(Path.Combine(translatedDir, "T", "T48"));
+
+        string relPath = "T/T48/T48n2005.xml";
+        File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>無門<lb/>關第一則</p><p>平常心是道</p></body></text></TEI>");
+        File.WriteAllText(Path.Combine(translatedDir, "T", "T48", "T48n2005.xml"),
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Wumen<lb/>Barrier case one</p><p>The ordinary mind is the Way</p></body></text></TEI>");
+
+        try
+        {
+            var child = Assert.Single(SearchIndexService.BuildAlignedDisplayChildrenFromIndexedUnits(
+                originalDir,
+                translatedDir,
+                relPath,
+                "門",
+                includeOriginal: true,
+                includeTranslated: true,
+                contextWidth: 160));
+
+            Assert.Contains("Wumen", child.SecondarySnippetText);
+            Assert.Contains("Barrier case one", child.SecondarySnippetText);
+            Assert.DoesNotContain("ordinary mind", child.SecondarySnippetText, StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            if (Directory.Exists(root))
+                Directory.Delete(root, recursive: true);
+        }
+    }
+    [Fact]
     public void BuildAlignedDisplayChildrenFromIndexedUnits_FallsBackToCanonicalXmlP5tForDisplay()
     {
         string root = Path.Combine(Path.GetTempPath(), "rz-search-display-" + Guid.NewGuid().ToString("N"));
@@ -393,7 +537,7 @@ public class SearchIndexServiceTests
         };
 
         File.WriteAllText(Path.Combine(originalDir, "T", "T48", "T48n2005.xml"),
-            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>無門關</p><p>關門</p></body></text></TEI>");
+            "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>???</p><p>??</p></body></text></TEI>");
         File.WriteAllText(Path.Combine(translatedDir, "T", "T48", "T48n2005.xml"),
             "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>Wumenguan</p><p>The barrier gate</p></body></text></TEI>");
 
@@ -405,7 +549,7 @@ public class SearchIndexServiceTests
                 originalDir,
                 translatedDir,
                 files,
-                "關",
+                "?",
                 includeOriginal: true,
                 includeTranslated: true,
                 contextWidth: 40,
@@ -425,6 +569,40 @@ public class SearchIndexServiceTests
                 Directory.Delete(root, recursive: true);
         }
     }
+
+    [Fact]
+    public void SearchResultGroup_ApplyEnrichment_PreservesVerifiedPrimaryHitWhenOnlyCounterpartIsEnriched()
+    {
+        var existingChild = new SearchResultChild
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Side = SearchSide.Original,
+            Hit = Hit("wide-left ", "門關", " wide-right")
+        };
+        var group = new SearchResultGroup
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Children = new List<SearchResultChild> { existingChild }
+        };
+
+        var enrichedChild = new SearchResultChild
+        {
+            RelPath = "T/T01/T01n0001.xml",
+            Side = SearchSide.Original,
+            Hit = Hit("narrow-left ", "門關", " narrow-right"),
+            SecondaryHit = new SearchHit { Left = "Wumen Barrier case one", Match = string.Empty, Right = string.Empty },
+            SecondaryIsContextOnly = true
+        };
+
+        group.ApplyEnrichment(new List<SearchResultChild> { enrichedChild });
+
+        Assert.Equal("wide-left 門關 wide-right", existingChild.PrimarySnippetText);
+        Assert.Equal("Wumen Barrier case one", existingChild.SecondarySnippetText);
+        Assert.True(existingChild.SecondaryIsContextOnly);
+    }
 }
+
+
+
 
 

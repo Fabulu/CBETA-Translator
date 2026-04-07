@@ -1,4 +1,4 @@
-﻿// Views/MainWindow.axaml.cs
+// Views/MainWindow.axaml.cs
 //
 // Thin code-behind after Wave 5 MVVM extraction.
 // Responsibilities: control lookup, bridge wiring, dialogs, window chrome,
@@ -292,7 +292,7 @@ private async Task HandleSearchDeepLinkAsync(DeepLinkRequest request)
         SearchTranslated = request.SearchTranslated ?? false,
         ZenOnly = request.SearchZenOnly ?? false,
         SelectedStatusIndex = request.SearchStatusIndex ?? 0,
-        SelectedContextIndex = request.SearchContextIndex ?? 1,
+        SelectedContextIndex = request.SearchContextIndex ?? 2,
         SelectedTagFilterId = request.SearchTagId
     };
 
@@ -784,6 +784,10 @@ private async Task LoadConfigAndAutoloadAsync()
         };
     }
 
+    private void MainTabs_OnPointerWheelChanged(object? sender, PointerWheelEventArgs e)
+    {
+        e.Handled = true;
+    }
     private void ToggleTopBarCommands()
     {
         var host = Find<Control>("TopBarCommandsHost");
@@ -801,7 +805,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
         var host = Find<Control>("TopBarCommandsHost");
         bool expanded = host?.IsVisible != false;
-        _btnToggleTopBar.Content = expanded ? "▲" : "▼";
+        _btnToggleTopBar.Content = expanded ? "?" : "?";
         ToolTip.SetTip(_btnToggleTopBar, expanded ? "Collapse command bar" : "Expand command bar");
     }
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
@@ -1950,6 +1954,8 @@ private async Task LoadConfigAndAutoloadAsync()
         StartTour();
     }
 }
+
+
 
 
 

@@ -1836,26 +1836,53 @@ STRICT RULES:
         return text[0] == ' ' ? text.Substring(1) : text;
     }
 
+    private sealed class ProjectionLineInfo
+    {
+        public string Text { get; init; } = "";
+        public int StartOffset { get; init; }
+    }
+
+    private static List<ProjectionLineInfo> SplitProjectionLinesWithOffsets(string text)
+    {
+        var lines = new List<ProjectionLineInfo>();
+        if (string.IsNullOrEmpty(text))
+            return lines;
+
+        int pos = 0;
+        while (pos < text.Length)
+        {
+            int start = pos;
+            while (pos < text.Length && text[pos] != '\r' && text[pos] != '\n')
+                pos++;
+
+            lines.Add(new ProjectionLineInfo
+            {
+                Text = text.Substring(start, pos - start),
+                StartOffset = start
+            });
+
+            if (pos < text.Length)
+            {
+                if (text[pos] == '\r' && pos + 1 < text.Length && text[pos + 1] == '\n')
+                    pos += 2;
+                else
+                    pos += 1;
+            }
+        }
+
+        return lines;
+    }
+
     private static List<ProjectionBlockInfo> ParseProjectionBlocksWithOffsets(string text)
     {
         text ??= "";
-        var normalized = text.Replace("\r\n", "\n");
-        var lines = normalized.Split('\n');
-        var offsets = new int[lines.Length];
-        int runningOffset = 0;
-        for (int idx = 0; idx < lines.Length; idx++)
-        {
-            offsets[idx] = runningOffset;
-            runningOffset += lines[idx].Length;
-            if (idx < lines.Length - 1)
-                runningOffset += 1;
-        }
+        var lines = SplitProjectionLinesWithOffsets(text);
 
         var list = new List<ProjectionBlockInfo>();
         int i = 0;
-        while (i < lines.Length)
+        while (i < lines.Count)
         {
-            var headerTrim = lines[i].Trim();
+            var headerTrim = lines[i].Text.Trim();
             if (!(headerTrim.StartsWith("<") && headerTrim.EndsWith(">")))
             {
                 i++;
@@ -1866,7 +1893,7 @@ STRICT RULES:
             if (!int.TryParse(rawNum, out int num))
                 throw new InvalidOperationException($"Invalid block header: {headerTrim}");
 
-            int blockStartOffset = offsets[i];
+            int blockStartOffset = lines[i].StartOffset;
             i++;
 
             string? zh = null;
@@ -1874,9 +1901,9 @@ STRICT RULES:
             int enValueStartOffset = -1;
             int enValueLength = -1;
 
-            while (i < lines.Length)
+            while (i < lines.Count)
             {
-                var cur = lines[i];
+                var cur = lines[i].Text;
                 var curTrim = cur.Trim();
                 if (curTrim.StartsWith("<") && curTrim.EndsWith(">"))
                     break;
@@ -1889,7 +1916,7 @@ STRICT RULES:
                 {
                     var raw = cur.Substring(3);
                     en = StripProjectionPrefixSpace(raw);
-                    enValueStartOffset = offsets[i] + 3 + ((raw.Length > 0 && raw[0] == ' ') ? 1 : 0);
+                    enValueStartOffset = lines[i].StartOffset + 3 + ((raw.Length > 0 && raw[0] == ' ') ? 1 : 0);
                     enValueLength = en.Length;
                 }
                 else if (!string.IsNullOrWhiteSpace(cur))
@@ -1906,7 +1933,7 @@ STRICT RULES:
             if (en == null)
                 throw new InvalidOperationException($"Block <{num}> missing EN.");
 
-            int blockEndOffsetExclusive = i < lines.Length ? offsets[i] : normalized.Length;
+            int blockEndOffsetExclusive = i < lines.Count ? lines[i].StartOffset : text.Length;
             list.Add(new ProjectionBlockInfo
             {
                 BlockNumber = num,
@@ -1921,7 +1948,6 @@ STRICT RULES:
 
         return list;
     }
-
     private static void ValidateEnglish(string en, int blockNumber)
     {
         en ??= "";
@@ -2203,3 +2229,4 @@ STRICT RULES:
     }
 
 }
+

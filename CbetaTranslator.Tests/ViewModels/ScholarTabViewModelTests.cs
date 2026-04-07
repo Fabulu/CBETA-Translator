@@ -128,7 +128,7 @@ public class ScholarTabViewModelTests
     }
 
         [Fact]
-    public void AddCollection_TogglesWorkspaceHelperOffWhenCollectionExists()
+    public void AddCollection_KeepsWorkspaceHelperVisibleForEmptySelectedCollection()
     {
         var vm = MakeVm();
 
@@ -137,7 +137,7 @@ public class ScholarTabViewModelTests
 
         vm.AddCollectionCommand.Execute(null);
 
-        Assert.False(vm.ShowWorkspaceHelper);
+        Assert.True(vm.ShowWorkspaceHelper);
         Assert.True(vm.HasSelectedCollection);
     }
 

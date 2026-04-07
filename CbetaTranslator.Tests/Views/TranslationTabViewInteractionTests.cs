@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls;
@@ -32,7 +32,31 @@ public class TranslationTabViewInteractionTests
         field.SetValue(target, value);
     }
 
+
     [Fact]
+    public void ParseProjectionBlocksWithOffsets_CrlfText_PreservesBlockSliceBoundaries()
+    {
+        const string text = "<1>\r\nZH: No. 1998A\r\nEN: \r\n\r\n<2>\r\nZH: ?????????\r\nEN: \r\n\r\n<3>\r\nZH: ?????????\r\nEN: \r\n";
+
+        var parse = typeof(TranslationTabView).GetMethod("ParseProjectionBlocksWithOffsets", BindingFlags.Static | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Missing ParseProjectionBlocksWithOffsets");
+        var blocks = (System.Collections.IList?)parse.Invoke(null, new object?[] { text })
+            ?? throw new InvalidOperationException("Parser returned null");
+
+        Assert.Equal(3, blocks.Count);
+
+        var block2 = blocks[1]!;
+        var startProp = block2.GetType().GetProperty("BlockStartOffset")
+            ?? throw new InvalidOperationException("Missing BlockStartOffset");
+        var endProp = block2.GetType().GetProperty("BlockEndOffsetExclusive")
+            ?? throw new InvalidOperationException("Missing BlockEndOffsetExclusive");
+
+        int start = (int)(startProp.GetValue(block2) ?? -1);
+        int end = (int)(endProp.GetValue(block2) ?? -1);
+        var slice = text.Substring(start, end - start).TrimEnd('\r', '\n');
+
+        Assert.Equal("<2>\r\nZH: ?????????\r\nEN: ", slice);
+    }    [Fact]
     public void SetTranslationSourceOptions_AndIndex_UpdateComboBox()
     {
         var view = CreateViewShell(out _, out var cmb, out _, out _);
@@ -68,3 +92,4 @@ public class TranslationTabViewInteractionTests
         Assert.Contains("10", progress.Text);
     }
 }
+

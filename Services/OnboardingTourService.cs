@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using CbetaTranslator.App.Models;
 
@@ -94,10 +94,10 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Choose where to store the Read Zen text collection, then download it. This only happens once.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
+            Body = "Choose where to store the Read Zen text collection, then download it. This is the first-run text setup only, not Community sync or GitHub sharing.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "GitView",
+            TargetControlName = "BtnGitSync",
             SwitchToTabIndex = 3,
             WaitForEvent = "root-cloned",
             ActionButtonLabel = "Choose Folder + Download",
@@ -118,7 +118,7 @@ public sealed class OnboardingTourService
         {
             Id = "sidebar",
             Title = "Your Text Library",
-            Body = "Here are all the texts in the collection.\n\nRed = not yet translated\nYellow = partially translated\nGreen = fully translated\n\nClick any text to start reading.",
+            Body = "Here are all the texts in the collection. Use the search box above the list to filter titles quickly. You can also collapse the sidebar or the top command bar later if you want more reading space.\n\nRed = not yet translated\nYellow = partially translated\nGreen = fully translated\n\nClick any text to start reading.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
             TargetControlName = "FilesList"
@@ -172,7 +172,7 @@ public sealed class OnboardingTourService
         {
             Id = "reader-dictionary-button",
             Title = "Open the Zen Dictionary",
-            Body = "Reader also has a Dictionary button when you want the full Zen Dictionary window, not just hover lookups. Use it to manage terminology and inspect corpus usage directly while reading.",
+            Body = "Reader also has a Dict button when you want the full Zen Dictionary window, not just hover lookups. Use it to manage terminology and inspect corpus usage directly while reading.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnDictionary",
@@ -183,7 +183,7 @@ public sealed class OnboardingTourService
         {
             Id = "community-notes",
             Title = "Community Notes",
-            Body = "Blue markers in the text are community notes \u2014 click one to read it.\nYou can add your own notes to any passage with this button.",
+            Body = "Blue Community markers in the text are shared notes from other readers — click one to read it. Use this button to add your own note to the current passage.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnAddCommunityNote"
@@ -211,7 +211,7 @@ public sealed class OnboardingTourService
         {
             Id = "reader-compare-tools",
             Title = "Compare in Reader",
-            Body = "Reader can compare translations and compare tag layers for the current text. Use these tools to see how different translators or coders handled the same passage without leaving the reading workflow.",
+            Body = "Reader has two separate compare tools. Use Compare Translations in the top bar to compare translation sources for the current text. In Coding Mode, use Compare next to the tag-user picker to compare tag layers.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 0
@@ -234,7 +234,7 @@ public sealed class OnboardingTourService
         {
             Id = "tag-editor",
             Title = "Tag Vocabulary Editor",
-            Body = "Click the pencil icon to open the Tag Editor. Create hierarchical tags, assign colors from a 15-color auto-palette, and drag tags into code bar slots for quick access.",
+            Body = "Click ✎ Edit Tags to open the Tag Editor. Create hierarchical tags, assign colors from a 15-color auto-palette, and drag tags into code bar slots for quick access.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnEditTags"
@@ -307,7 +307,7 @@ public sealed class OnboardingTourService
         {
             Id = "review-system",
             Title = "Review and Approve",
-            Body = "After translating, review each block:\n\u2022 Alt+A = Approve (moves to next unreviewed)\n\u2022 Alt+N = Needs Work\nOther users will see who approved what.",
+            Body = "After translating, review each block with the visible toolbar controls: Approve, Reject, and Next ? for the next unresolved block. Other users can see review status, so this is how you clean up AI drafts into a usable translation.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnApproveSegment"
@@ -317,7 +317,7 @@ public sealed class OnboardingTourService
         {
             Id = "assistant-panel",
             Title = "Translation Assistant",
-            Body = "The assistant panel shows recognized terminology, translation memory matches, and quality warnings.\nIt updates automatically as you navigate blocks.\n\nIn Reader, the Study panel gives you a lighter reading-focused version of this workflow.",
+            Body = "The assistant panel shows recognized terminology, translation memory matches, and quality warnings. Use the Asst toggle to show or hide it; its highlights follow along with the panel. In Reader, the Study panel gives you a lighter reading-focused version of this workflow.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Left,
             TargetControlName = "AssistantPane"
@@ -339,7 +339,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-tab",
             Title = "Search the Corpus",
-            Body = "Switching to the Search tab.\n\nSearch the corpus for Chinese text or English phrases. Use the Original and Translated toggles to decide which side to search. When both sides are available, results can show paired bilingual context.",
+            Body = "Switching to the Search tab.\n\nSearch the corpus for Chinese text or English phrases. Use the Original and Translated toggles to choose which side to search, then refine with Zen only, Status, Tag, and KWIC width. When both sides are available, results can show paired bilingual context.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
@@ -350,7 +350,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-results",
             Title = "Working with Results",
-            Body = "Results show KWIC context around the match. When both sides are available, each row can show paired Chinese and English context. Double-click a result to open it, or right-click to add it to Scholar.",
+            Body = "Results show KWIC context around the match. When both sides are available, each row can show paired Chinese and English context. Double-click a result to open it. Right-click a result row for passage links, shareable links, search-state links, and Add to Scholar.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ResultsTree"
@@ -360,7 +360,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tab",
             Title = "Your Research Workspace",
-            Body = "Switching to the Scholar tab.\n\nScholar is your research workspace for local collections and shared community collections. Collect passages, compare them, connect them, and export your findings.",
+            Body = "Switching to the Scholar tab.\n\nScholar is your research workspace for local collections and shared community collections. Collect passages, compare them, connect them, and export or cite your findings.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 4,
@@ -371,17 +371,17 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-collections",
             Title = "Collections and Workspace",
-            Body = "Use Collections to organize your own notebooks. Workspace is where you edit and compare your saved snippets. Add snippets from Reader, Translate, or Search and they will appear in the selected collection.",
+            Body = "Use Collections to organize your own notebooks. Workspace is where you edit, compare, and annotate saved snippets. Add snippets from Reader, Translate, or Search and they will appear in the selected collection.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "PassagesList"
+            TargetControlName = "ScholarView"
         });
 
         Steps.Add(new TourStep
         {
             Id = "scholar-shared",
             Title = "Shared Collections",
-            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. That means Scholar is still useful before you create anything locally. Browse community collections there, then use Adopt to copy a passage into your own local workspace.",
+            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. Browse another user, inspect their collection, choose a local target collection, and use Adopt to copy passages into your own workspace.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4,
@@ -392,7 +392,7 @@ public sealed class OnboardingTourService
         {
             Id = "adding-passages",
             Title = "Adding Passages",
-            Body = "Right-click text in Reader, Translate, or Search to add it to Scholar. If you do not have a writable local collection yet, Scholar creates one when you first save or adopt a passage. Multi-block selections capture longer snippets automatically.",
+            Body = "Right-click text in Reader, Translate, or Search to add it to Scholar. If you do not have a writable local collection yet, Scholar creates one on your first successful add or adopt flow. Multi-block selections capture longer snippets automatically.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -420,7 +420,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tools",
             Title = "Compare, Graph, and Exports",
-            Body = "Compare 2-4 checked passages side-by-side from your local workspace. Use the Graph tab to visualize how your passages connect, and use Scholar exports when you want to share, cite, or draft from your collection.",
+            Body = "Use Compare to enter checkbox mode, then pick 2-4 passages and continue into the compare window. Scholar exports include readable formats and academic ones like CSV, BibTeX, CSL-JSON, and paper-draft output.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             TargetControlName = null
@@ -440,7 +440,7 @@ public sealed class OnboardingTourService
         {
             Id = "zen-master-manager",
             Title = "Zen Master Manager",
-            Body = "Use the Zen Master Manager to browse master records, aliases, dates, and community variants in one place. It centralizes data that used to be scattered across different dialogs, and Zen master deep links can open a master directly there.",
+            Body = "Use the Zen Master Manager to browse master records, aliases, dates, and community variants in one place. It centralizes data that used to be scattered across different dialogs, and zen:// master links can open a master directly there.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4,
@@ -451,7 +451,7 @@ public sealed class OnboardingTourService
         {
             Id = "deep-links",
             Title = "Share Links to Any Passage",
-            Body = "Right-click any text, search result, or file to copy a zen:// deep link.\nLink types: dictionary lookups, scholar collections, corpus searches, and tagged passages.\nShare with colleagues \u2014 clicking opens the exact resource in the app.",
+            Body = "Right-click text selections, search results, or files to copy zen:// deep links. Link types now include dictionary terms, Scholar resources, corpus searches, tags, Zen masters, and compare views. Share with colleagues — clicking opens the exact resource in the app.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -461,22 +461,22 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "git-tab",
-            Title = "Sync Your Work",
-            Body = "Switching to the Community tab.\n\nUse Sync to update texts, pull shared community data, and share your own work. Community data and selected translated text are shared in separate sync flows. Sharing requires GitHub login, but the initial text download does not.",
+            Title = "Community Sync",
+            Body = "Switching to the Community tab.\n\nUse Sync when you want GitHub-backed sharing and updates. Community materials and selected translated text are handled as separate sync/share flows. Sharing requires GitHub login, but the first-run text download does not.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
-            TargetControlName = "GitView"
+            TargetControlName = "BtnGitSync"
         });
 
         Steps.Add(new TourStep
         {
             Id = "git-advanced",
             Title = "Advanced Recovery",
-            Body = "The advanced area is mainly for recovery actions like discarding local changes. Most users should stay with the main Sync workflow.",
+            Body = "The advanced area is mainly for recovery actions like discarding local changes or fixing a confused sync state. Most users should stay with the main Sync workflow.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "GitView"
+            TargetControlName = "BtnGitSync"
         });
 
         Steps.Add(new TourStep
@@ -489,3 +489,7 @@ public sealed class OnboardingTourService
         });
     }
 }
+
+
+
+

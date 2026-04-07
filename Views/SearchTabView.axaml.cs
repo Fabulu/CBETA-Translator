@@ -1,4 +1,4 @@
-﻿// Views/SearchTabView.axaml.cs
+// Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,7 +116,7 @@ public partial class SearchTabView : UserControl
             var copySearchLinkItem = new MenuItem { Header = "Copy Search Link" };
             copySearchLinkItem.Click += async (_, _) =>
             {
-                await CopySearchLinkAsync(shareable: false);
+                await CopySearchLinkAsync(shareable: true);
             };
 
             var copyShareableSearchLinkItem = new MenuItem { Header = "Copy Shareable Search Link" };
@@ -157,7 +157,7 @@ public partial class SearchTabView : UserControl
         {
             btnCopySearchLink.Click += async (_, _) =>
             {
-                await CopySearchLinkAsync(shareable: false);
+                await CopySearchLinkAsync(shareable: true);
             };
         }
     }
@@ -482,3 +482,4 @@ public partial class SearchTabView : UserControl
         _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
     }
 }
+
