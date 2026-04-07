@@ -379,8 +379,9 @@ public class GitTabViewModelTests
         Assert.Equal("CbetaZenTexts", upstreamRepo);
     }
 
+
     [Fact]
-    public void GetTrackedCommunitySharePaths_ExcludesPerUserCommunityTranslations()
+    public void GetTrackedCommunitySharePaths_IncludesPerUserCommunityTranslations()
     {
         var vm = MakeVm();
         vm.LoadPersistedAuth("ghp_test", "Fabulu");
@@ -396,8 +397,45 @@ public class GitTabViewModelTests
 
             var tracked = (HashSet<string>)method!.Invoke(vm, new object[] { repoDir })!;
 
-            Assert.DoesNotContain("community/translations/Fabulu/T48n2005.xml", tracked, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("community/translations/Fabulu/T48n2005.xml", tracked, StringComparer.OrdinalIgnoreCase);
             Assert.Contains("community/termbases/Fabulu.jsonl", tracked, StringComparer.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            Directory.Delete(repoDir, true);
+        }
+    }
+
+    [Fact]
+    public void IsAutoMergeCommunitySharePath_AcceptsPerUserTranslationXml_AndRejectsBak()
+    {
+        var vm = MakeVm();
+        vm.LoadPersistedAuth("ghp_test", "Fabulu");
+        var method = typeof(GitTabViewModel).GetMethod("IsAutoMergeCommunitySharePath", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(method);
+
+        var ok = (bool)method!.Invoke(vm, new object[] { "community/translations/Fabulu/T/T48/T48n2005.xml" })!;
+        var bak = (bool)method!.Invoke(vm, new object[] { "community/translations/Fabulu/T/T48/T48n2005.xml.bak" })!;
+
+        Assert.True(ok);
+        Assert.False(bak);
+    }
+
+    [Fact]
+    public void GetAlwaysPreservedUpdatePaths_IncludesCommunityTranslationsTree()
+    {
+        var vm = MakeVm();
+        var repoDir = Path.Combine(Path.GetTempPath(), "cbeta-preserve-test-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(repoDir, "community", "translations", "dota2nub", "T", "T48"));
+        File.WriteAllText(Path.Combine(repoDir, "community", "translations", "dota2nub", "T", "T48", "T48n2005.xml"), "test");
+
+        try
+        {
+            var method = typeof(GitTabViewModel).GetMethod("GetAlwaysPreservedUpdatePaths", BindingFlags.NonPublic | BindingFlags.Instance);
+            Assert.NotNull(method);
+
+            var tracked = (string[])method!.Invoke(vm, new object[] { repoDir })!;
+            Assert.Contains("community/translations/dota2nub/T/T48/T48n2005.xml", tracked, StringComparer.OrdinalIgnoreCase);
         }
         finally
         {

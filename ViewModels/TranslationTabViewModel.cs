@@ -34,9 +34,6 @@ public partial class TranslationTabViewModel : ViewModelBase
     private bool _hoverDictionaryEnabled = true;
 
     [ObservableProperty]
-    private bool _isModeHeadEnabled = true;
-
-    [ObservableProperty]
     private bool _isModeBodyEnabled;
 
     [ObservableProperty]
@@ -85,6 +82,7 @@ public partial class TranslationTabViewModel : ViewModelBase
     // -------------------------
     public void SwitchMode(TranslationEditMode mode)
     {
+        if (mode == TranslationEditMode.Head) mode = TranslationEditMode.Body;
         if (CurrentMode == mode) return;
 
         CurrentMode = mode;
@@ -95,7 +93,6 @@ public partial class TranslationTabViewModel : ViewModelBase
 
     private void UpdateModeButtons()
     {
-        IsModeHeadEnabled = CurrentMode != TranslationEditMode.Head;
         IsModeBodyEnabled = CurrentMode != TranslationEditMode.Body;
         IsModeNotesEnabled = CurrentMode != TranslationEditMode.Notes;
     }
@@ -104,7 +101,6 @@ public partial class TranslationTabViewModel : ViewModelBase
     {
         var modeText = CurrentMode switch
         {
-            TranslationEditMode.Head => "Head of File",
             TranslationEditMode.Body => "Body of File",
             TranslationEditMode.Notes => "Notes",
             _ => "Translation Editor"
@@ -277,6 +273,7 @@ public partial class TranslationTabViewModel : ViewModelBase
     // -------------------------
     public void SetModeProjectionState(TranslationEditMode mode, string projectionText)
     {
+        if (mode == TranslationEditMode.Head) mode = TranslationEditMode.Body;
         CurrentMode = mode;
         CurrentProjection = projectionText ?? "";
         UpdateModeInfo();

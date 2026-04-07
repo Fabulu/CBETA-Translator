@@ -58,10 +58,10 @@ public class StubGitRepoService : IGitRepoService
     public Task<bool> CheckGitAvailableAsync(CancellationToken ct) => Task.FromResult(true);
     public Task<GitOpResult> CloneAsync(string repoUrl, string targetDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
-    public Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
+    public virtual Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
     public Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct) => Task.FromResult("main");
     public Task EnsureUserIdentityAsync(string repoDir, string? username, IProgress<string> progress, CancellationToken ct) => Task.CompletedTask;
-    public Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
+    public virtual Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> StashAllAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> SwitchCreateBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
@@ -99,7 +99,7 @@ public class StubGitHubApiService : IGitHubApiService
     public Task<bool> ForkExistsAsync(string accessToken, string owner, string repo, CancellationToken ct) => Task.FromResult(false);
     public Task<bool> CreateForkAsync(string accessToken, string upstreamOwner, string upstreamRepo, CancellationToken ct) => Task.FromResult(true);
     public Task<bool> WaitForForkAsync(string accessToken, string owner, string repo, TimeSpan timeout, IProgress<string> log, CancellationToken ct) => Task.FromResult(true);
-    public Task<string?> CreatePullRequestAsync(string accessToken, string upstreamOwner, string upstreamRepo, string head, string baseBranch, string title, string body, CancellationToken ct) => Task.FromResult<string?>(null);
+    public virtual Task<string?> CreatePullRequestAsync(string accessToken, string upstreamOwner, string upstreamRepo, string head, string baseBranch, string title, string body, CancellationToken ct) => Task.FromResult<string?>(null);
     public void Dispose() { }
 }
 

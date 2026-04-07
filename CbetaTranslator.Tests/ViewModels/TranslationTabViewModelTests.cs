@@ -31,7 +31,7 @@ public class TranslationTabViewModelTests
     // ---- SwitchMode ----
 
     [Fact]
-    public void SwitchMode_Head_UpdatesModeAndButtons()
+    public void SwitchMode_Head_CoercesToBody()
     {
         var vm = MakeVm();
         TranslationEditMode? received = null;
@@ -39,11 +39,10 @@ public class TranslationTabViewModelTests
 
         vm.SwitchMode(TranslationEditMode.Head);
 
-        Assert.Equal(TranslationEditMode.Head, vm.CurrentMode);
-        Assert.False(vm.IsModeHeadEnabled);  // current mode button disabled
-        Assert.True(vm.IsModeBodyEnabled);
+        Assert.Equal(TranslationEditMode.Body, vm.CurrentMode);
+        Assert.False(vm.IsModeBodyEnabled);
         Assert.True(vm.IsModeNotesEnabled);
-        Assert.Equal(TranslationEditMode.Head, received);
+        Assert.Null(received);
     }
 
     [Fact]
@@ -287,7 +286,7 @@ public class TranslationTabViewModelTests
     [InlineData("Hello", false)]
     [InlineData("", false)]
     [InlineData(null, false)]
-    [InlineData("mixed\u4e16界", true)]
+    [InlineData("mixed\u4e16ç•Œ", true)]
     public void ContainsChineseChar_VariousInputs(string? input, bool expected)
     {
         Assert.Equal(expected, TranslationTabViewModel.ContainsChineseChar(input));
@@ -456,9 +455,9 @@ public class TranslationTabViewModelTests
 
         vm.SetModeProjectionState(TranslationEditMode.Head, "projection text");
 
-        Assert.Equal(TranslationEditMode.Head, vm.CurrentMode);
+        Assert.Equal(TranslationEditMode.Body, vm.CurrentMode);
         Assert.Equal("projection text", vm.CurrentProjection);
-        Assert.Contains("Head", vm.ModeInfoText);
+        Assert.Contains("Body", vm.ModeInfoText);
     }
 
     // ---- ResolveAssistantTitle ----
@@ -500,7 +499,7 @@ public class TranslationTabViewModelTests
         var changed = new List<string>();
         vm.PropertyChanged += (_, e) => changed.Add(e.PropertyName!);
 
-        vm.SwitchMode(TranslationEditMode.Head);
+        vm.SwitchMode(TranslationEditMode.Notes);
 
         Assert.Contains("CurrentMode", changed);
     }
@@ -575,7 +574,7 @@ public class TranslationTabViewModelTests
     {
         var vm = MakeVm();
 
-        // Aggregation with exactly 1 reviewer — should NOT use multi-user format
+        // Aggregation with exactly 1 reviewer â€” should NOT use multi-user format
         var agg = new SegmentReviewAggregation
         {
             SegmentKey = "test|Body|1",
@@ -587,7 +586,7 @@ public class TranslationTabViewModelTests
 
         vm.SetCurrentReviewState("approved", "alice", new DateTime(2026, 3, 1, 0, 0, 0, DateTimeKind.Utc), agg);
 
-        // Single reviewer path: "Approved — alice — date"
+        // Single reviewer path: "Approved â€” alice â€” date"
         Assert.Contains("Approved", vm.ReviewStateText);
         Assert.Contains("alice", vm.ReviewStateText);
         // Should NOT use the multi-user "(1):" format
