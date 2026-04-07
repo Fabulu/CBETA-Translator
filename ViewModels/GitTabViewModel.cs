@@ -394,56 +394,73 @@ public partial class GitTabViewModel : ViewModelBase
             if (!string.IsNullOrWhiteSpace(_selectedRelPath) && !string.IsNullOrWhiteSpace(_githubLogin))
             {
                 var selectedRepoRel = NormalizeRel($"{RepoTranslatedRoot}/{_selectedRelPath}");
-                var status = await _git.GetStatusPorcelainAsync(repoDir, _cts?.Token ?? CancellationToken.None);
-                var hasSelectedFileChanges = status.Any(line =>
-                    line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
+                var ct = _cts?.Token ?? CancellationToken.None;
+                var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-                if (hasSelectedFileChanges)
+                // Export the selected translation to the canonical xml-p5t path used for contribution PRs.
+                var preparedSelectedTranslation = true;
+                if (EnsureTranslatedForSelectedRequested != null)
                 {
-                    var ct = _cts?.Token ?? CancellationToken.None;
-                    var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
-
-                    AppendLog($"\n[sync] Translation change detected in {_selectedRelPath} - creating pull request...");
-                    ProgressText = "Submitting translation for " + _selectedRelPath + "...";
-
-                    // Ensure translated XML exists for the selected file
-                    if (EnsureTranslatedForSelectedRequested != null)
+                    foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
                     {
-                        foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
-                            await fn(_selectedRelPath);
+                        if (!await fn(_selectedRelPath))
+                        {
+                            preparedSelectedTranslation = false;
+                            break;
+                        }
                     }
-
-                    // Stage ONLY the selected translated file. The per-user community copy is handled by ShareAllInternalAsync().
-                    await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
-
-                // Create branch + commit
-                var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
-                var msg = $"{_githubLogin}: {Path.GetFileNameWithoutExtension(_selectedRelPath)} translation update";
-
-                await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
-                await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
-                await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
-
-                var currentBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
-                var stash = await _git.StashKeepIndexAsync(repoDir, "sync-auto-stash", prog, ct);
-                await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
-                if (stash.Success)
-                    await _git.StashPopAsync(repoDir, prog, ct);
-                await _git.CommitAsync(repoDir, msg, prog, ct);
-
-                _lastContribBranch = branchName;
-
-                // Push + create PR (uses _lastContribBranch)
-                await PushAndCreatePrAsync();
-
-                // Restore original branch
-                try
-                {
-                    await _git.SwitchBranchAsync(repoDir, currentBranch ?? "main", prog, ct);
                 }
-                catch { }
 
-                AppendLog("[sync] Translation PR created.");
+                if (!preparedSelectedTranslation)
+                {
+                    AppendLog($"[sync] Translation PR step skipped: could not prepare canonical translation for {_selectedRelPath}.");
+                }
+                else
+                {
+                    var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+                    var hasSelectedFileChanges = status.Any(line =>
+                        line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
+
+                    if (hasSelectedFileChanges)
+                    {
+                        AppendLog($"\n[sync] Translation change detected in {_selectedRelPath} - creating pull request...");
+                        ProgressText = "Submitting translation for " + _selectedRelPath + "...";
+
+                        // Stage ONLY the canonical selected translated file for the contribution PR.
+                        var stage = await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
+                        if (!stage.Success)
+                            throw new InvalidOperationException(stage.Error ?? "Failed to stage selected translated file.");
+
+                        var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
+                        var msg = $"{_githubLogin}: {Path.GetFileNameWithoutExtension(_selectedRelPath)} translation update";
+
+                        await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
+                        await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
+                        await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+
+                        var currentBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
+                        var stash = await _git.StashKeepIndexAsync(repoDir, "sync-auto-stash", prog, ct);
+                        await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
+                        await _git.CommitAsync(repoDir, msg, prog, ct);
+
+                        _lastContribBranch = branchName;
+
+                        await PushAndCreatePrAsync();
+
+                        try
+                        {
+                            await _git.SwitchBranchAsync(repoDir, currentBranch ?? "main", prog, ct);
+                            if (stash.Success)
+                                await _git.StashPopAsync(repoDir, prog, ct);
+                        }
+                        catch { }
+
+                        AppendLog("[sync] Translation PR created.");
+                    }
+                    else
+                    {
+                        AppendLog($"[sync] No canonical translation diff detected for {_selectedRelPath}.");
+                    }
                 }
             }
         }
@@ -627,6 +644,10 @@ public partial class GitTabViewModel : ViewModelBase
     private async Task DoUpdateKeepLocalAsync(string repoDir, IProgress<string> prog, CancellationToken ct)
     {
         var changedPaths = await _git.GetChangedPathsForBackupAsync(repoDir, includePrefixes: null, ct);
+        changedPaths = changedPaths
+            .Concat(GetAlwaysPreservedUpdatePaths(repoDir))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         AppendLog($"[scan] changed paths to preserve: {changedPaths.Length}");
 
         string backupDir = CreateBackupDir();
@@ -2485,11 +2506,33 @@ public partial class GitTabViewModel : ViewModelBase
 
                 // Community translations (per-user)
                 int communityTransUserCount = 0;
-                ProgressText = "Pulling community translations\u2026";
+                ProgressText = "Pulling community translations…";
                 AppendLog("[step] git checkout origin/main -- community/translations/");
                 try
                 {
+                    string? preservedUserTranslationBackupDir = null;
+                    string? preservedUserTranslationDir = null;
+                    if (!string.IsNullOrWhiteSpace(_githubLogin))
+                    {
+                        preservedUserTranslationDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(_githubLogin));
+                        if (Directory.Exists(preservedUserTranslationDir))
+                        {
+                            preservedUserTranslationBackupDir = Path.Combine(tempDir, "preserve-user-translations");
+                            CopyDirectoryContents(preservedUserTranslationDir, preservedUserTranslationBackupDir);
+                            AppendLog($"[preserve] kept local personal translations for {_githubLogin}");
+                        }
+                    }
+
                     await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/translations/");
+
+                    if (!string.IsNullOrWhiteSpace(preservedUserTranslationBackupDir) &&
+                        !string.IsNullOrWhiteSpace(preservedUserTranslationDir) &&
+                        Directory.Exists(preservedUserTranslationBackupDir))
+                    {
+                        CopyDirectoryContents(preservedUserTranslationBackupDir, preservedUserTranslationDir);
+                        AppendLog($"[restore] reapplied local personal translations for {_githubLogin}");
+                    }
+
                     var communityTransDir = Path.Combine(repoDir, "community", "translations");
                     if (Directory.Exists(communityTransDir))
                     {
@@ -2887,6 +2930,13 @@ public partial class GitTabViewModel : ViewModelBase
         trackedPaths.Add($"community/tags/{login}.jsonl");
         trackedPaths.Add($"community/tag-vocabularies/{login}.json");
 
+        var translationUserDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(login));
+        if (Directory.Exists(translationUserDir))
+        {
+            foreach (var fullPath in Directory.EnumerateFiles(translationUserDir, "*", SearchOption.AllDirectories))
+                trackedPaths.Add(NormalizeRel(Path.GetRelativePath(repoDir, fullPath)));
+        }
+
         return trackedPaths;
     }
 
@@ -2916,7 +2966,8 @@ public partial class GitTabViewModel : ViewModelBase
             || string.Equals(normalized, $"community/reviews/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/master-dates/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/tags/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
-            || string.Equals(normalized, $"community/tag-vocabularies/{login}.json", StringComparison.OrdinalIgnoreCase);
+            || string.Equals(normalized, $"community/tag-vocabularies/{login}.json", StringComparison.OrdinalIgnoreCase)
+            || normalized.StartsWith($"community/translations/{AppPaths.SanitizeUsername(login)}/", StringComparison.OrdinalIgnoreCase);
     }
     private bool IsTrackedCommunitySharePath(string relPath)
     {
@@ -2932,6 +2983,22 @@ public partial class GitTabViewModel : ViewModelBase
 
         using var stream = File.OpenRead(fullPath);
         return Convert.ToHexString(SHA256.HashData(stream));
+    }
+
+    private string[] GetAlwaysPreservedUpdatePaths(string repoDir)
+    {
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (string.IsNullOrWhiteSpace(repoDir) || !Directory.Exists(repoDir))
+            return result.ToArray();
+
+        var translationsDir = Path.Combine(repoDir, "community", "translations");
+        if (!Directory.Exists(translationsDir))
+            return result.ToArray();
+
+        foreach (var file in Directory.EnumerateFiles(translationsDir, "*", SearchOption.AllDirectories))
+            result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+
+        return result.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     private static string CreateBackupDir()
@@ -2957,6 +3024,31 @@ public partial class GitTabViewModel : ViewModelBase
     /// <summary>
     /// Extracts custom (non-base) master entries from the local master-dates.json for sharing.
     /// </summary>
+
+    private static void CopyDirectoryContents(string sourceDir, string destinationDir)
+    {
+        if (!Directory.Exists(sourceDir))
+            return;
+
+        Directory.CreateDirectory(destinationDir);
+
+        foreach (var dir in Directory.EnumerateDirectories(sourceDir, "*", SearchOption.AllDirectories))
+        {
+            var rel = Path.GetRelativePath(sourceDir, dir);
+            Directory.CreateDirectory(Path.Combine(destinationDir, rel));
+        }
+
+        foreach (var file in Directory.EnumerateFiles(sourceDir, "*", SearchOption.AllDirectories))
+        {
+            var rel = Path.GetRelativePath(sourceDir, file);
+            var dst = Path.Combine(destinationDir, rel);
+            var dstDir = Path.GetDirectoryName(dst);
+            if (!string.IsNullOrWhiteSpace(dstDir))
+                Directory.CreateDirectory(dstDir);
+            File.Copy(file, dst, overwrite: true);
+        }
+    }
+
     private static List<Models.MasterDateEntry> ExtractCustomMasterEntries(string repoDir)
     {
         var baseNames = MasterDatesService.LoadBaseNameSet();

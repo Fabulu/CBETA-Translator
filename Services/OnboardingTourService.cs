@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using CbetaTranslator.App.Models;
 
@@ -277,10 +277,10 @@ public sealed class OnboardingTourService
         {
             Id = "mode-buttons",
             Title = "Text Sections",
-            Body = "Texts have three parts: Header (title), Body (main text), and Notes (footnotes).\nSwitch between them with these buttons or Ctrl+1 / Ctrl+2 / Ctrl+3.",
+            Body = "Translate works in two sections: Body (main text) and Notes (footnotes).\nSwitch between them with these buttons or Ctrl+2 / Ctrl+3.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "BtnModeHead"
+            TargetControlName = "BtnModeBody"
         });
 
         Steps.Add(new TourStep

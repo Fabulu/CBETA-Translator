@@ -26,7 +26,6 @@
 				<!-- Row 0: all buttons in one compact line -->
 				<WrapPanel Grid.Row="0" Orientation="Horizontal">
 					<!-- Mode -->
-					<Button Name="BtnModeHead" Content="Head" ToolTip.Tip="Switch to header projection (Ctrl+1)" Padding="8,3"/>
 					<Button Name="BtnModeBody" Content="Body" ToolTip.Tip="Switch to body projection (Ctrl+2)" Padding="8,3"/>
 					<Button Name="BtnModeNotes" Content="Notes" ToolTip.Tip="Switch to notes projection (Ctrl+3)" Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>

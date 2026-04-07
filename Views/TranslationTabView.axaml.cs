@@ -1,5 +1,5 @@
 // Views/TranslationTabView.axaml.cs
-// Projection editor for IndexedTranslationService (Head / Body / Notes)
+// Projection editor for IndexedTranslationService (Body / Notes)
 
 using Avalonia;
 using Avalonia.Controls;
@@ -31,7 +31,7 @@ public partial class TranslationTabView : UserControl
 {
     private const int AdjacentContextChars = 4;
 
-    private Button? _btnModeHead, _btnModeBody, _btnModeNotes;
+    private Button? _btnModeBody, _btnModeNotes;
     private Button? _btnUndo, _btnRedo;
     private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnFreshStart, _btnRevert;
     private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment, _btnNextUnapproved;
@@ -137,7 +137,6 @@ public partial class TranslationTabView : UserControl
 
     private void FindControls()
     {
-        _btnModeHead = this.FindControl<Button>("BtnModeHead");
         _btnModeBody = this.FindControl<Button>("BtnModeBody");
         _btnModeNotes = this.FindControl<Button>("BtnModeNotes");
 
@@ -395,7 +394,6 @@ public partial class TranslationTabView : UserControl
 
     private void WireEvents()
     {
-        if (_btnModeHead != null) _btnModeHead.Click += (_, _) => SwitchMode(TranslationEditMode.Head);
         if (_btnModeBody != null) _btnModeBody.Click += (_, _) => SwitchMode(TranslationEditMode.Body);
         if (_btnModeNotes != null) _btnModeNotes.Click += (_, _) => SwitchMode(TranslationEditMode.Notes);
 
@@ -560,7 +558,6 @@ public partial class TranslationTabView : UserControl
 
     private void UpdateModeButtons()
     {
-        if (_btnModeHead != null) _btnModeHead.IsEnabled = _vm.IsModeHeadEnabled;
         if (_btnModeBody != null) _btnModeBody.IsEnabled = _vm.IsModeBodyEnabled;
         if (_btnModeNotes != null) _btnModeNotes.IsEnabled = _vm.IsModeNotesEnabled;
     }
@@ -1657,13 +1654,6 @@ public partial class TranslationTabView : UserControl
             e.KeyModifiers.HasFlag(KeyModifiers.Shift))
         {
             JumpToChineseInEnglishLine();
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.D1 && e.KeyModifiers.HasFlag(KeyModifiers.Control))
-        {
-            SwitchMode(TranslationEditMode.Head);
             e.Handled = true;
             return;
         }

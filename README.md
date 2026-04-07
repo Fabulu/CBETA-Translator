@@ -2,341 +2,291 @@
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
-![Releases](https://img.shields.io/badge/Releases-GitHub-black)
 
 # Read Zen
-*A fast desktop app for reading, translating, and contributing CBETA texts*
 
-> Read. Translate. Annotate. Search. Commit.  
-> Built for real work.
+Read Zen is a desktop app for reading, translating, searching, annotating, and sharing CBETA Zen texts without having to live in terminals, XML editors, or Git command lines.
 
----
-
-## What this is
-
-**Read Zen** is a cross-platform desktop app (Windows / Linux / macOS) for working with CBETA texts, especially Zen material.
-
-It is built for people who want to:
-
+It is built for actual text work:
 - read Chinese and English side by side
-- translate in a human-friendly editor
-- use machine translation and then clean it up
-- add footnotes/notes
-- search a large local text collection
-- send changes to GitHub without living in the terminal
+- maintain personal translations and compare them with community ones
+- search the corpus with bilingual context and exportable results
+- build research collections in Scholar
+- manage terminology, master metadata, tags, and reviews
+- sync personal and shared work through GitHub-backed workflows
 
----
+## What Read Zen Covers Now
 
-## Important: CBETA is non-commercial
+Read Zen is no longer just a reader plus translation editor. The app now has five major work areas:
+- `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging
+- `Translate`: projection-based translation workflow with AI copy/paste, review, assistant, and source switching
+- `Search`: corpus search with KWIC, bilingual pairing, deep links, analytics, and exports
+- `Community`: text download, updates, GitHub sync, recovery actions
+- `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
 
-This app is MIT-licensed, but the **CBETA texts and derived translations are non-commercial**.
+There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
 
-If you share CBETA files or translations:
+## Important Licensing Note
 
-- keep the original CBETA header
-- do not use them commercially
+The app itself is MIT-licensed, but the CBETA corpus and derived translations remain non-commercial.
 
----
+If you use or share CBETA-based texts:
+- keep the original CBETA attribution/header
+- do not use the corpus or derived translations commercially
 
-## Main library view (left pane)
+## Text Folder Layout
 
-![File Navbar Screenshot](./Screenshots/filesystem-navbar.png)
-
-Pick a root folder like this:
+Read Zen expects a CBETA text root with the standard source and translation structure. The important folders are:
 
 ```text
 root/
-  xml-p5/    (original Chinese files)
-  xml-p5t/   (translated files)
+  xml-p5/                         original Chinese XML
+  xml-p5t/                        shared/canonical translated XML
+  community/
+    translations/{user}/          personal translations
+    termbases/{user}.jsonl        personal terminology share files
+    collections/{user}.jsonl      personal Scholar collections share files
+    reviews/{user}.jsonl          personal review share files
+    tags/{user}.jsonl             personal tagging share files
+    tag-vocabularies/{user}.json  personal tag vocabulary share files
 ```
 
-The app will automatically:
+In normal use:
+- your writable personal translation source lives in `community/translations/{user}/...`
+- community/canonical translations live in `xml-p5t/...`
+- sync treats personal share files differently from shared canonical translation updates
+
+## Reader
+
+The Reader is the main side-by-side reading view.
+
+What it does:
+- Chinese on the left, selected English source on the right
+- click text to highlight matching text on the other side
+- switch translation source between community, your own work, and other users' work
+- open the full Zen Dictionary with `Dict`
+- use the `Study` panel for dictionary hits, recognized terminology, and translation memory support
+- add and read community notes inline
+- create deep links or add passages to Scholar from right-click menus
+
+Reader also contains the coding/tagging workflow:
+- `F2` enters Coding Mode
+- create and manage tag vocabularies
+- apply tags by keyboard shortcuts
+- switch tag user with the existing user picker
+- compare your tag layer with another user's layer
+
+## Translate
+
+Translate uses a projection editor designed for safe structured translation work.
+
+Key rules of the editor:
+- edit only `EN:` lines
+- do not edit `ZH:` lines or `<n>` block markers
+- one `EN:` line per block
+- multiline English inside a single block is intentionally rejected
+- large numbered batch pastes across many blocks are supported
+
+Translate supports:
+- `Body` and `Notes` translation sections
+- `Copy for AI` to export numbered blocks with strict instructions
+- `Paste from AI` to reinsert numbered results safely
+- assistant support with termbase hits, translation memory hits, and warnings
+- per-block review controls
+- a `Fresh Start` option to reset the current writable translation back to untranslated state with confirmation
+- personal-vs-other-user translation source switching
+
+The editor is designed to preserve XML structure on save and reject unsafe projection states rather than silently mangling them.
+
+## Search
+
+Search is a full corpus workflow, not just a title filter.
+
+Current features:
+- search original Chinese, translated English, or both
+- `Zen only`, status, tag, source, and KWIC controls
+- paired bilingual result rows when counterpart text is available
+- right-click result rows for passage links, shareable links, search-state links, and `Add to Scholar`
+- corpus exports in multiple formats
+- optional search analytics and a slower corpus-wide analytics mode
+- deep-linkable search state
+
+Search also supports:
+- hover dictionary on Chinese result content
+- incremental result population while search is running
+- progress indication in the header
+- shareable search links via the web launcher site
+
+## Scholar
+
+Scholar is the research workspace.
+
+It is split into three concepts:
+- `Collections`: your notebooks / containers
+- `Workspace`: the active passage editing and comparison area
+- `Shared`: other users' shared collections
+
+What you can do there:
+- collect passages from Reader, Translate, or Search
+- adopt passages from shared collections into your own collection
+- compare passages
+- create typed links between passages
+- attach notes, tags, doctrinal/topic metadata, and master metadata
+- export in readable and research-friendly formats
+
+Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
+
+## Zen Dictionary And Zen Masters
+
+Read Zen includes a full terminology workflow.
+
+The Zen Dictionary / termbase can:
+- manage your own terminology entries
+- inspect community/user terminology
+- drive assistant highlights across Reader, Translate, and Scholar
+- open directly from deep links
+
+Zen Master management now has its own manager window.
+It centralizes:
+- master names
+- aliases
+- dates
+- community variants
 
-- scan the texts
-- match originals and translations
-- track translation progress
-- cache data for speed
+Both dictionary terms and masters support deep links.
 
-You can quickly narrow things down with:
+## Community Sync
 
-- search
-- filters
-- grouping options
-- translation status filters
+The Community tab handles downloading texts, updating your local clone, and syncing shareable work through GitHub.
 
-### Translation status colors
+Important model:
+- first-run text download is not the same thing as GitHub sharing
+- personal share files can auto-merge through the community data flow
+- canonical/shared translation updates are handled separately from personal translation storage
+- recovery actions exist, but the normal `Sync` path is the intended workflow
 
-- ?? Red = not translated
-- ?? Yellow = partially translated
-- ?? Green = fully translated
+Read Zen tries to protect local work during updates, but this is still a Git-backed workflow. If something feels destructive, stop and inspect before proceeding.
 
----
+## Deep Links
 
-## Readable view (side-by-side reading + notes)
+Read Zen supports a broad `zen://` deep-link surface, plus shareable web links through the launcher site.
 
-![Readable View Screenshot](./Screenshots/readable-view.png)
+Supported families include:
+- passages
+- searches
+- dictionary / termbase entries
+- Scholar collections and passages
+- tags
+- Zen masters
+- compare views
 
-The **Readable** view shows:
+These links are used throughout the app from Reader, Translate, Search, Scholar, and the dictionary/master tooling.
 
-- **Left:** Chinese
-- **Right:** English translation
+## Onboarding Tutorial
 
-If a translation does not exist yet, you’ll see Chinese on both sides.
+The app includes an in-app tutorial covering the current workflow.
+It now walks through:
+- initial text download / setup
+- Reader basics
+- hover dictionary and the full dictionary window
+- Study panel
+- tagging/coding mode
+- Translate workflow
+- Search workflow
+- Scholar collections/workspace/shared model
+- Zen Dictionary and Zen Master Manager
+- Community sync
+- deep links and right-click actions
 
-### Linked reading (both sides stay in sync)
+The tutorial is the quickest way to see how the current app is supposed to be used.
 
-When you click or select text on one side, the matching part on the other side is highlighted.
+## Performance Philosophy
 
-This makes it much easier to:
+Read Zen is built around large text collections and tries to stay fast through indexing, caching, and deferred enrichment.
 
-- compare lines
-- review translations
-- spot mistakes fast
+If something is slow, especially repeated work on the same corpus, that should generally be treated as a bug rather than as expected behavior.
 
-### Hover dictionary (CC-CEDICT)
-
-Hover over Chinese text and a dictionary popup appears (powered by **CC-CEDICT**).
-
-Useful for:
-
-- quick word checks
-- difficult phrases
-- sanity-checking draft translations
-
-### Community footnotes
-
-You can add community notes directly into the translated text, and they show up like normal footnotes in the readable view.
-
-Example note format:
-
-```xml
-<note type="community" resp="optional">Text</note>
-```
-
-If you set your username in the app, it is used to prefill the note attribution (`resp`) when adding community notes.
-
-Nice community habit idea: if you submit a translation, add a short footnote near the beginning saying what method you used (manual, AI-assisted, which model/tool, how heavily edited, etc.). That makes review easier for everyone.
-
----
-
-## Translation view (for real translation work)
-
-![Translation View Screenshot](./Screenshots/translation-xml.png)
-
-There is one main translation editing view, and it is built for actual work:
-
-- human translation
-- machine translation cleanup
-- preserving the file structure as much as possible
-- avoiding accidental breakage
-
-The app tracks your username for translation accountability.
-
-When you save, the app automatically:
-
-- writes the file
-- refreshes the rendered view
-- updates caches
-- recalculates translation status
-
-Translated files also include a translator accountability footnote with your username and translated block range / blocks translated.
-
-### New translation workflow upgrades
-
-- Translation Assistant exists directly inside this view and supports translation memory (TM) + termbase + QA while you translate.
-- Translation Assistant panel supports:
-  - approved TM suggestions
-  - reference/AI TM suggestions
-  - termbase hits
-  - inline QA warnings
-- Double-click from Search **or** Translation Assistant opens the text at the exact spot in Readable view.
-- Segment review states are built in (`Approve`, `Needs work`, `Reject`) for cleaner team review flow.
-- Search/assistant navigation into this view is more robust for repeated phrases and cross-tag text.
-
-This is the core workflow of the app.
-
----
-
-## Advanced search (whole corpus)
-
-![Search Tab Screenshot](./Screenshots/search-tab.png)
-
-There is a built-in advanced search for the whole corpus:
-
-- full-text search
-- file matches
-- quick open
-- basic corpus stats
-
-First-time indexing can take a bit (big corpus), but after that it is very fast.
-
-### New search upgrades
-
-- Match text is color-highlighted in search results (same visual style as Translation XML highlights).
-- Search now uses an on-disk text sidecar cache to speed up verify work, with safe fallback if cache data is missing/corrupt.
-- Optional short-CJK prefilter can reduce candidate work for short Chinese queries.
-- Progress text shows timing breakdown (`cand`, `ver`, `ui`, `total`) so bottlenecks are visible.
-- Double-click navigation/hit highlighting is more reliable when matches span line/tag boundaries.
-
----
-
-## Git tab (send changes without terminal pain)
-
-![Git Tab Screenshot](./Screenshots/git-tab.png)
-
-The Git tab is there so normal people can contribute without learning command-line Git.
-
-It can help you:
-
-- download the project files to your computer
-- update your local copy
-- save your changes with a message
-- upload your changes
-- submit to the community repository on Github (This is called a pull request. I get to review it before it ends up public)
-- recover from local messes with a **Don’t Panic** button
-
-- Default update flow is the safe one: keep your local file edits while updating from remote.
-- A separate dangerous update option can discard local edits (with warning/confirmation).
-
-By default, the standard commit message now includes your username (still fully editable before commit).
-
-### Git and GitHub account required
-
-To use this app, you need **Git installed** (the app uses Git to download and update the files).  
-If you want to **submit translations**, you also need a **GitHub account**.
-
-- **Install Git:** https://git-scm.com/downloads  
-- **Create a GitHub account:** https://github.com/signup
-
-#### Quick install help
-
-- **Windows:** Download **Git for Windows** here: https://git-scm.com/download/win  
-- **macOS:** Download Git here: https://git-scm.com/download/mac  
-  (or install Apple’s command line tools by opening Terminal and running `xcode-select --install`)
-- **Linux:** Download/install info here: https://git-scm.com/download/linux  
-  (usually you install it with your package manager, like `apt`, `dnf`, or `pacman`)
-
-> **Windows note:** the app now includes a **bundled Git version** (experimental), so it may work even if Git is not installed system-wide.  
-> **Still recommended:** install Git normally anyway.
-
-### Linux note (Git login)
-
-On Linux, upload/PR can fail if Git cannot open a login prompt from inside the app.
-
-Recommended fix: install **Git Credential Manager**.
-
-**Ubuntu / Debian**
-```bash
-sudo apt-get update && sudo apt-get install -y git-credential-manager
-```
-
-**Fedora**
-```bash
-sudo dnf install git-credential-manager
-```
-
-**Arch**
-```bash
-sudo pacman -S git-credential-manager
-```
-
----
-
-## Performance (why it stays fast)
-
-This app is built for big text collections and uses caching so it doesn’t re-scan or re-render everything every time.
-
-If it gets slow, that is a bug.
-
-Come yell at me on the /r/zen reddit forums.
-
----
-
-## Platform support
+## Platform Support
 
 - Windows
 - Linux
 - macOS
 
-Built with **Avalonia 11** on **.NET 8**.
-
----
-
-## Contributing
-
-Pull requests are welcome.
-
-Main rules:
-
-- don’t break features
-- don’t break file structure
-- don’t add automatic “cleanup” that rewrites tags
-- don’t make it slower without a good reason
-
-If you’re unsure, open an issue first.
-
----
-
-## Legal
-
-Read Zen is licensed under the **MIT License**.
-
-Other data/licenses:
-
-- **CBETA corpus**: CBETA terms (non-commercial)
-- **CC-CEDICT**: **CC BY-SA 4.0**
-
-See `THIRD_PARTY_NOTICES.txt` for details.
-
----
+Built with:
+- `.NET 8`
+- `Avalonia 11`
 
 ## Building
 
-If you just want to use it, grab a release.
+If you just want to use Read Zen, use a release build.
 
-### Windows (self-contained)
+### Windows
 ```bash
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### Linux (self-contained)
+### Linux
 ```bash
 ./eng/build-linux.sh Release true linux-x64
 ./run-cbeta-selfcontained.sh linux-x64
 ```
 
-### macOS (Intel)
+### macOS Intel
 ```bash
 dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### macOS (Apple Silicon)
+### macOS Apple Silicon
 ```bash
 dotnet publish -c Release -r osx-arm64 --self-contained true /p:PublishSingleFile=true
 ```
 
-### Dictionary asset required
-
+### Dictionary Asset
 Make sure this file exists in the publish output:
 
 ```text
 Assets/Dict/cedict_ts.u8
 ```
 
-If it is missing, copy it manually.
+## Git / GitHub Requirements
 
----
+For text download and sync, you need Git available.
+For GitHub-backed sharing, you also need a GitHub account.
 
-## Final words
+Useful links:
+- Git: https://git-scm.com/downloads
+- GitHub signup: https://github.com/signup
 
-Read Zen is a practical tool for real translation work:
+## Contributing
 
+Contributions are welcome, but this app is built around corpus integrity and workflow safety.
+
+Please avoid:
+- XML rewrites that casually change structure
+- "cleanup" passes that rewrite tags or semantics without need
+- performance regressions without a strong reason
+- UI changes that hide real working space for the text itself
+
+If a change affects translation structure, sync, or search semantics, add tests.
+
+## Legal
+
+Read Zen: MIT License
+
+Other important data sources:
+- CBETA corpus: non-commercial terms
+- CC-CEDICT: `CC BY-SA 4.0`
+
+See `THIRD_PARTY_NOTICES.txt` for details.
+
+## Short Version
+
+Read Zen is now a full working environment for CBETA Zen study and translation:
 - read side by side
-- translate and clean machine output
-- add footnotes
-- search the corpus
-- send changes to GitHub
+- translate with structure-aware tools
+- search with context and exports
+- build Scholar collections
+- manage terms, masters, notes, reviews, and tags
+- sync personal and shared work without living in Git
 
-Built for /r/zen by dota2nub.
-
-?? Welcome to the canon.
+Built for actual use, not demos.
