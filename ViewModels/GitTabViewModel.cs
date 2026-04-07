@@ -1507,22 +1507,30 @@ public partial class GitTabViewModel : ViewModelBase
                     changedFiles.Add(filePath);
             }
 
-            if (changedFiles.Count == 0)
+            var autoMergeFiles = changedFiles
+                .Where(IsAutoMergeCommunitySharePath)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            var skippedFiles = changedFiles
+                .Except(autoMergeFiles, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            if (skippedFiles.Count > 0)
             {
-                ProgressText = "No changes in community data (already up to date).";
-                AppendLog("[warn] share produced no user-authored community changes to commit");
-                AppendLog("[hint] Fetched upstream community files are intentionally skipped.");
+                AppendLog("[warn] skipping non-auto-merge paths from personal share flow:");
+                foreach (var skipped in skippedFiles)
+                    AppendLog("[warn] skipped " + skipped);
+            }
+
+            if (autoMergeFiles.Count == 0)
+            {
+                ProgressText = "No auto-mergeable personal share changes found.";
+                AppendLog("[warn] share produced no auto-mergeable personal changes to commit");
                 return;
             }
 
-            bool confirmedCommunityShare = await ConfirmCommunityShareAsync(changedFiles);
-            if (!confirmedCommunityShare)
-            {
-                ProgressText = "Community share canceled.";
-                AppendLog("[cancel] user canceled community share after confirmation prompt");
-                return;
-            }
-
+            changedFiles = autoMergeFiles;
             // --- Stage, stash, branch, commit, push ---
             string originalBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
             AppendLog("[git] current branch: " + originalBranch);
@@ -2825,9 +2833,9 @@ public partial class GitTabViewModel : ViewModelBase
             NormalizeRel(CommunityTmFile),
             NormalizeRel(CommunityTermbaseFile),
             NormalizeRel(ScholarCollectionsFile),
+            NormalizeRel("translation-review.jsonl"),
             ".gitattributes"
         };
-
         if (string.IsNullOrWhiteSpace(_githubLogin))
             return trackedPaths;
 
@@ -2849,6 +2857,34 @@ public partial class GitTabViewModel : ViewModelBase
         return trackedPaths;
     }
 
+    private bool IsAutoMergeCommunitySharePath(string relPath)
+    {
+        var normalized = NormalizeRel(relPath);
+        if (string.IsNullOrWhiteSpace(normalized))
+            return false;
+        if (normalized.EndsWith(".bak", StringComparison.OrdinalIgnoreCase))
+            return false;
+        if (string.Equals(normalized, ".gitattributes", StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(normalized, NormalizeRel(CommunityTmFile), StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(normalized, NormalizeRel(CommunityTermbaseFile), StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(normalized, NormalizeRel(ScholarCollectionsFile), StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(normalized, "translation-review.jsonl", StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.IsNullOrWhiteSpace(_githubLogin))
+            return false;
+
+        var login = _githubLogin.Trim();
+        return string.Equals(normalized, $"community/termbases/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/collections/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/reviews/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/master-dates/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/tags/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/tag-vocabularies/{login}.json", StringComparison.OrdinalIgnoreCase);
+    }
     private bool IsTrackedCommunitySharePath(string relPath)
     {
         var normalized = NormalizeRel(relPath);
@@ -3246,4 +3282,5 @@ public partial class GitTabViewModel : ViewModelBase
         catch { return (p ?? "").Trim(); }
     }
 }
+
 

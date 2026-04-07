@@ -3085,28 +3085,31 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
 
         if (!string.IsNullOrWhiteSpace(previousDir) && Directory.Exists(previousDir))
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(canonicalDir)!);
+
             if (!Directory.Exists(canonicalDir))
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(canonicalDir)!);
-                Directory.Move(previousDir, canonicalDir);
+                try
+                {
+                    Directory.Move(previousDir, canonicalDir);
+                }
+                catch (IOException)
+                {
+                    MergeDirectoryContents(previousDir, canonicalDir);
+                    TryDeleteDirectoryRecursive(previousDir);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MergeDirectoryContents(previousDir, canonicalDir);
+                    TryDeleteDirectoryRecursive(previousDir);
+                }
             }
             else
             {
-                foreach (var sourceFile in Directory.GetFiles(previousDir, "*", SearchOption.AllDirectories))
-                {
-                    var relative = Path.GetRelativePath(previousDir, sourceFile);
-                    var destFile = Path.Combine(canonicalDir, relative);
-                    var destDir = Path.GetDirectoryName(destFile);
-                    if (destDir != null && !Directory.Exists(destDir))
-                        Directory.CreateDirectory(destDir);
-                    if (!File.Exists(destFile))
-                        File.Copy(sourceFile, destFile);
-                }
-
-                Directory.Delete(previousDir, recursive: true);
+                MergeDirectoryContents(previousDir, canonicalDir);
+                TryDeleteDirectoryRecursive(previousDir);
             }
         }
-
         _userTranslatedDir = canonicalDir;
         if (_translationSourceIndex == 0 || string.IsNullOrWhiteSpace(_activeTranslatedDir))
             _activeTranslatedDir = _userTranslatedDir;
@@ -3115,7 +3118,34 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         if (!string.IsNullOrWhiteSpace(_currentRelPath) && _translationSourceIndex == 0)
             await LoadPairAsync(_currentRelPath);
     }
+
+    private static void MergeDirectoryContents(string sourceDir, string destDir)
+    {
+        foreach (var sourceFile in Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories))
+        {
+            var relative = Path.GetRelativePath(sourceDir, sourceFile);
+            var destFile = Path.Combine(destDir, relative);
+            var destParent = Path.GetDirectoryName(destFile);
+            if (destParent != null && !Directory.Exists(destParent))
+                Directory.CreateDirectory(destParent);
+
+            if (!File.Exists(destFile))
+                File.Copy(sourceFile, destFile);
+        }
+    }
+
+    private static void TryDeleteDirectoryRecursive(string path)
+    {
+        try
+        {
+            if (Directory.Exists(path))
+                Directory.Delete(path, recursive: true);
+        }
+        catch (IOException) { }
+        catch (UnauthorizedAccessException) { }
+    }
 }
+
 
 
 
