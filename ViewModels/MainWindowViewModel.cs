@@ -425,6 +425,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (!AppPaths.ValidateBothReposExist(_root))
         {
+            _root = null;
+            _translationRoot = null;
+            _originalDir = null;
+            _translatedDir = null;
+            _translatedCacheDir = null;
+            _userTranslatedDir = null;
+            _activeTranslatedDir = null;
             SetStatus("Both originals and translations repos are required. Please sync via Git tab.");
             return;
         }
