@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
@@ -47,8 +48,10 @@ public partial class TermbaseEditorWindow : Window
 
         // Provide search context for corpus usage tab
         var searchIndex = App.Services.GetRequiredService<ISearchIndexService>();
-        var origDir = AppPaths.GetOriginalDir(root);
-        var transDir = AppPaths.GetTranslatedDir(root);
+        // root is the translation repo root; AppPaths.Get*Dir expects the parent folder.
+        var parentRoot = Path.GetDirectoryName(root) ?? root;
+        var origDir = AppPaths.GetOriginalDir(parentRoot);
+        var transDir = AppPaths.GetTranslatedDir(parentRoot);
         _vm.SetSearchContext(searchIndex, origDir, transDir);
 
         _vm.CloseRequested = () => Close();

@@ -488,7 +488,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         var root = _translationRoot;
         var origDir = _originalDir;
-        var tranDir = _translatedDir;
+        var tranDir = GetSearchTranslatedDir();
 
         _ = Task.Run(async () =>
         {
