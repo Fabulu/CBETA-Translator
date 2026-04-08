@@ -1588,7 +1588,11 @@ public partial class ScholarTabView : UserControl
             var root = _vm.GetRoot();
             string? assistantTranslatedDir = _translatedDir;
             if (!string.IsNullOrWhiteSpace(root) && !string.IsNullOrWhiteSpace(passage.TranslationUser))
-                assistantTranslatedDir = AppPaths.GetUserTranslatedDir(root, passage.TranslationUser);
+            {
+                // root here is the translations repo root; GetUserTranslatedDir expects the parent folder.
+                var parentRoot = Path.GetDirectoryName(root) ?? root;
+                assistantTranslatedDir = AppPaths.GetUserTranslatedDir(parentRoot, passage.TranslationUser);
+            }
 
             try { _assistantService.SetUsername(_currentUsername); } catch { }
             var snapshot = await _assistantService.BuildSnapshotAsync(
