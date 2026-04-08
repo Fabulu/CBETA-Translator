@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public readonly record struct FileStamp(
     string AbsPath,

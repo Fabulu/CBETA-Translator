@@ -18,15 +18,15 @@ using System.Xml;
 using System.Xml.Linq;
 using Avalonia;
 using Avalonia.Threading;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.Text;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using ReadZen.App.Text;
 using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public enum StatusSeverity { Info, Success, Warning, Error }
 
@@ -1921,9 +1921,9 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var kindFilter = mode switch
         {
-            TranslationEditMode.Head => CbetaTranslator.App.Services.TranslationUnitKind.Head,
-            TranslationEditMode.Notes => CbetaTranslator.App.Services.TranslationUnitKind.Note,
-            _ => CbetaTranslator.App.Services.TranslationUnitKind.Body
+            TranslationEditMode.Head => ReadZen.App.Services.TranslationUnitKind.Head,
+            TranslationEditMode.Notes => ReadZen.App.Services.TranslationUnitKind.Note,
+            _ => ReadZen.App.Services.TranslationUnitKind.Body
         };
 
         var units = indexedDoc.Units.Where(u => u.Kind == kindFilter).ToList();

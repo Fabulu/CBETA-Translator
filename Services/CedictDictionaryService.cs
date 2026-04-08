@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public interface ICedictDictionary
 {

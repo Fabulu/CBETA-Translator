@@ -6,7 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.VisualTree;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 /// <summary>
 /// Draws a highlight rectangle for a text range inside a TextBox WITHOUT touching SelectionStart/End.

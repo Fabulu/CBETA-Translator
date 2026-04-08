@@ -51,7 +51,7 @@ After building, you'll have:
 
 ```
 bin\SelfContained\
-â”œâ”€â”€ CbetaTranslator.App.exe    # ~46MB single executable
+â”œâ”€â”€ ReadZen.App.exe    # ~46MB single executable
 â”œâ”€â”€ Assets\
 â”‚   â””â”€â”€ Dict\
 â”‚       â””â”€â”€ cedict_ts.u8      # Dictionary file (embedded)
@@ -72,7 +72,7 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 ### Complete Deployment Structure:
 ```
 [Application Directory]\
-â”œâ”€â”€ CbetaTranslator.App.exe          # ~46MB self-contained exe
+â”œâ”€â”€ ReadZen.App.exe          # ~46MB self-contained exe
 â”œâ”€â”€ cbeta-gui-dll.dll                # ~5MB Rust DLL
 â””â”€â”€ ReadZen\                   # ~500MB+ CBETA database
     â”œâ”€â”€ xml-p5\                      # Original XML files
@@ -90,7 +90,7 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 
 ## âš™ï¸ Configuration Details
 
-The project file (`CbetaTranslator.App.csproj`) includes these key settings:
+The project file (`ReadZen.App.csproj`) includes these key settings:
 
 ```xml
 <SelfContained>true</SelfContained>
@@ -144,7 +144,7 @@ To verify the build worked:
 
 ```bash
 # Check file size (should be ~46MB)
-dir bin\SelfContained\CbetaTranslator.App.exe
+dir bin\SelfContained\ReadZen.App.exe
 
 # Check embedded assets
 dir bin\SelfContained\Assets\Dict\cedict_ts.u8

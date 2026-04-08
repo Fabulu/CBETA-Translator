@@ -1,9 +1,9 @@
 // Views/ExportFormatDialog.axaml.cs
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class ExportFormatDialog : Window
 {

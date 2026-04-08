@@ -8,11 +8,11 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Services;
+using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class GitTabView : UserControl
 {

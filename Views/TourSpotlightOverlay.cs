@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 /// <summary>
 /// Full-window semi-transparent dark overlay with a rounded-rectangle cutout (spotlight)

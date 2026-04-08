@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public sealed class ComparePassageItem
 {

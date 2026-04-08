@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public enum SearchSide
 {

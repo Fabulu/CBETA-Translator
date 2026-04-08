@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class TranslationQaService : ITranslationQaService
 {

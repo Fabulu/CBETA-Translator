@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public enum TranslationEditMode
 {

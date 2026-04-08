@@ -12,7 +12,7 @@ release:
 
 # Run development build
 run:
-	./run-cbeta.sh
+	./run-readzen.sh
 
 # Create self-contained debug build
 publish-debug:
@@ -33,7 +33,7 @@ install-deps:
 
 # Clean build artifacts
 clean:
-	dotnet clean ./CbetaTranslator.App.sln
+	dotnet clean ./ReadZen.App.sln
 	rm -rf ./publish/
 	rm -rf ./bin/
 	rm -rf ./obj/

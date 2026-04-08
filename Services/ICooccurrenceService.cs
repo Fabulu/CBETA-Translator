@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 /// <summary>
 /// Responsible for computing character/ngram co-occurrence frequency metrics

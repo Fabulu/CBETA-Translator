@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class GitRepoService : IGitRepoService
 {

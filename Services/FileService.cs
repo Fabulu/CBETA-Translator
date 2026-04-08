@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class FileService : IFileService
 {

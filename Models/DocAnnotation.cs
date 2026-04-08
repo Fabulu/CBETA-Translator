@@ -1,7 +1,7 @@
 ﻿// Models/DocAnnotation.cs
 using System;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed class DocAnnotation
 {

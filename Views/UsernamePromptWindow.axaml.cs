@@ -1,9 +1,9 @@
 // Views/UsernamePromptWindow.axaml.cs
 using Avalonia.Controls;
 using Avalonia.Input;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.ViewModels;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class UsernamePromptWindow : Window
 {

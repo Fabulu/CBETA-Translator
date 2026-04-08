@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 /// <summary>
 /// Exposes XML reconciliation logic for testing. These methods are extracted from

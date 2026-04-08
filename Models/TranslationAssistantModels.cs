@@ -1,8 +1,8 @@
-﻿using CbetaTranslator.App.Services;
+﻿using ReadZen.App.Services;
 using System;
 using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public enum TranslationResourceTrust
 {

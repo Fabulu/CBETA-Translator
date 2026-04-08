@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public static partial class AppPaths
 {

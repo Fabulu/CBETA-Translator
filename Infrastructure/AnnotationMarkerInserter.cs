@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public static class AnnotationMarkerInserter
 {

@@ -9,15 +9,15 @@ using Avalonia.Styling;
 using Avalonia.Media.TextFormatting;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public sealed class HoverDictionaryBehaviorTextBox : IDisposable
 {

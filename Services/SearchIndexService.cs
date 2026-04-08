@@ -10,9 +10,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class SearchIndexService : ISearchIndexService
 {

@@ -2,9 +2,9 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class RenderedDocumentCacheService : IRenderedDocumentCacheService
 {

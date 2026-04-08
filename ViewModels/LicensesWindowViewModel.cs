@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using System.Text;
-using CbetaTranslator.App.Infrastructure;
+using ReadZen.App.Infrastructure;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public partial class LicensesWindowViewModel : ViewModelBase
 {

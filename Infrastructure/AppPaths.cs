@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public partial class AppPaths
 {

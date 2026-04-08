@@ -1,4 +1,4 @@
-﻿using CbetaTranslator.App.Models;
+﻿using ReadZen.App.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class TermbaseStorageService : ITermbaseStorageService
 {

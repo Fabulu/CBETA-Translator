@@ -1,4 +1,4 @@
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public class GraphEdge
 {

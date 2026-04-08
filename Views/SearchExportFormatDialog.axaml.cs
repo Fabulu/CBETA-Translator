@@ -1,9 +1,9 @@
 // Views/SearchExportFormatDialog.axaml.cs
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class SearchExportFormatDialog : Window
 {

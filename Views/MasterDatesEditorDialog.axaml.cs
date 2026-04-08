@@ -9,10 +9,10 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class MasterDatesEditorDialog : Window
 {

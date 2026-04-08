@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public sealed class GrammarParticleInfo
 {

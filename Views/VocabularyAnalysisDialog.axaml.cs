@@ -4,11 +4,11 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class VocabularyAnalysisDialog : Window
 {

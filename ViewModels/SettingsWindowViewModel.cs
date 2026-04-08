@@ -1,9 +1,9 @@
 using System;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public partial class SettingsWindowViewModel : ViewModelBase
 {

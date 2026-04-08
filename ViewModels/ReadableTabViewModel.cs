@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public partial class ReadableTabViewModel : ViewModelBase
 {

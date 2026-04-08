@@ -1,8 +1,8 @@
 using Avalonia.Threading;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Views;
+using ReadZen.App.Models;
+using ReadZen.App.Views;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 /// <summary>
 /// Opens a new, fully independent reader window and navigates it to a specific location.

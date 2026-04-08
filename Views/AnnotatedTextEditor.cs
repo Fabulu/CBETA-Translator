@@ -9,9 +9,9 @@ using Avalonia.Interactivity;
 using AvaloniaEdit;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Rendering;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 /// <summary>
 /// Wraps AvaloniaEdit TextEditor and supports:

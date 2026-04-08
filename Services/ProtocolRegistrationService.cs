@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 /// <summary>
 /// Registers and unregisters the <c>zen://</c> protocol handler with the OS.
@@ -230,16 +230,16 @@ public static class ProtocolRegistrationService
         var baseDir = AppContext.BaseDirectory;
         var appHostCandidates = new[]
         {
-            Path.Combine(baseDir, "CbetaTranslator.App"),
-            Path.Combine(baseDir, "publish", "linux-x64", "CbetaTranslator.App"),
-            Path.Combine(baseDir, "publish", "linux-arm64", "CbetaTranslator.App"),
+            Path.Combine(baseDir, "ReadZen.App"),
+            Path.Combine(baseDir, "publish", "linux-x64", "ReadZen.App"),
+            Path.Combine(baseDir, "publish", "linux-arm64", "ReadZen.App"),
         };
 
         var appHost = appHostCandidates.FirstOrDefault(File.Exists);
         if (!string.IsNullOrWhiteSpace(appHost))
             return QuoteDesktopArgument(appHost);
 
-        var dllPath = Path.Combine(baseDir, "CbetaTranslator.App.dll");
+        var dllPath = Path.Combine(baseDir, "ReadZen.App.dll");
         if (File.Exists(dllPath))
             return QuoteDesktopArgument("dotnet") + " " + QuoteDesktopArgument(dllPath);
 

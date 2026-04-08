@@ -5,12 +5,12 @@ using Avalonia.Media;
 using Avalonia.Threading;
 using AvaloniaEdit;
 using AvaloniaEdit.Editing;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 /// <summary>
 /// A 3-pane comparison window that shows original Chinese text side-by-side with

@@ -2,13 +2,13 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Models;
+using ReadZen.App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public class LinkNetworkGraphControl : Control
 {
