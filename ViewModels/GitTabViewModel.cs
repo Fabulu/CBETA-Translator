@@ -508,6 +508,7 @@ public partial class GitTabViewModel : ViewModelBase
             AppendLog($"[path] {parentDir}");
 
             ProgressText = "Checking git\u2026";
+            StatusChanged?.Invoke(this, "Checking for Git\u2026");
             var gitOk = await _git.CheckGitAvailableAsync(ct);
             if (!gitOk)
             {
@@ -627,7 +628,8 @@ public partial class GitTabViewModel : ViewModelBase
                     return;
                 }
 
-                ProgressText = "Cloning originals\u2026";
+                ProgressText = "Cloning originals (this may take a few minutes)\u2026";
+                StatusChanged?.Invoke(this, "Cloning originals repo\u2026 This is a large download (~500 MB).");
                 AppendLog("\n--- Cloning originals repo ---");
                 var cloneOrig = await _git.CloneAsync(OriginalsRepoUrl, originalsDir, prog, ct);
                 if (!cloneOrig.Success)
@@ -656,6 +658,7 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 ProgressText = "Cloning translations\u2026";
+                StatusChanged?.Invoke(this, "Cloning translations repo\u2026");
                 AppendLog("\n--- Cloning translations repo ---");
                 var cloneTrans = await _git.CloneAsync(TranslationRepoUrl, translationDir, prog, ct);
                 if (!cloneTrans.Success)
