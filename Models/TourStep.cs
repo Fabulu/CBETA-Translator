@@ -19,4 +19,7 @@ public sealed class TourStep
 
     /// <summary>If true, shows a "Skip" link in the tour tooltip for Wait-type steps.</summary>
     public bool CanSkipWait { get; set; }
+
+    /// <summary>If set, auto-opens this file (relative path) when the step activates.</summary>
+    public string? AutoOpenRelPath { get; set; }
 }

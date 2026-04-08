@@ -1802,6 +1802,10 @@ private async Task LoadConfigAndAutoloadAsync()
         if (step.SwitchToTabIndex.HasValue)
             ForceTab(step.SwitchToTabIndex.Value);
 
+        // Auto-open a file if the step requires it
+        if (!string.IsNullOrWhiteSpace(step.AutoOpenRelPath) && _vm.Root != null)
+            _ = _vm.LoadPairAsync(step.AutoOpenRelPath);
+
         _tourOverlayCanvas.IsVisible = true;
 
         // Make spotlight fill the entire overlay canvas
