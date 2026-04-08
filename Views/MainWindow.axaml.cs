@@ -1073,8 +1073,8 @@ private async Task LoadConfigAndAutoloadAsync()
                 _scholarDataChangedHandler = (sender, _) =>
                 {
                     // Only reload if the change came from a different view instance
-                    if (sender != _scholarView && !string.IsNullOrWhiteSpace(_vm.Root))
-                        _scholarView.SetRoot(_vm.Root);
+                    if (sender != _scholarView && !string.IsNullOrWhiteSpace(_vm.TranslationRoot ?? _vm.Root))
+                        _scholarView.SetRoot((_vm.TranslationRoot ?? _vm.Root)!);
                 };
                 ScholarTabView.ScholarDataChanged += _scholarDataChangedHandler;
             }
