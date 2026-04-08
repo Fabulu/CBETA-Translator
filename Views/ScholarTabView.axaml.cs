@@ -1363,8 +1363,10 @@ public partial class ScholarTabView : UserControl
 
         try
         {
-            var origDir = _originalDir ?? Infrastructure.AppPaths.GetOriginalDir(root);
-            var tranDir = _translatedDir ?? Infrastructure.AppPaths.GetTranslatedDir(root);
+            // root is the translations repo root; AppPaths expects the parent folder
+            var parentRoot = Path.GetDirectoryName(root) ?? root;
+            var origDir = _originalDir ?? Infrastructure.AppPaths.GetOriginalDir(parentRoot);
+            var tranDir = _translatedDir ?? Infrastructure.AppPaths.GetTranslatedDir(parentRoot);
 
             var results = await _parallelFinder.FindParallelsAsync(
                 passage.ZhText, root, origDir, tranDir, ct);
