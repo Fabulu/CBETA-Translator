@@ -1851,10 +1851,9 @@ private async Task LoadConfigAndAutoloadAsync()
         double windowWidth = ClientSize.Width;
         double windowHeight = ClientSize.Height;
 
-        // Limit tooltip height to 40% of window to prevent overflow on small screens
-        double maxTooltipHeight = Math.Max(150, windowHeight * 0.4);
-        _tourTooltip.MaxHeight = maxTooltipHeight;
-        _tourTooltip.Measure(new Size(Math.Min(400, windowWidth - 32), maxTooltipHeight));
+        // Let the tooltip size naturally (body text is in a ScrollViewer with MaxHeight)
+        _tourTooltip.ClearValue(MaxHeightProperty);
+        _tourTooltip.Measure(new Size(Math.Min(400, windowWidth - 32), windowHeight - 32));
         var tooltipSize = _tourTooltip.DesiredSize;
 
         double left, top;
