@@ -1956,7 +1956,17 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_tourService?.CurrentStep?.Id == "download-texts")
         {
             if (_gitView != null)
+            {
+                // Update tooltip to show we're working
+                _tourTooltip?.Update(
+                    "Downloading Texts...",
+                    "Downloading the text corpus and translation workspace. This is a large download (~500 MB) and may take several minutes.\n\nPlease wait \u2014 progress is shown in the status bar below.",
+                    _tourService?.CurrentIndex ?? 2,
+                    _tourService?.Steps.Count ?? 1,
+                    canGoBack: false);
+
                 await _gitView.TriggerInitialDownloadAsync();
+            }
         }
     }
 
