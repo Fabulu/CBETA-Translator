@@ -46,6 +46,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ITranslationReviewService _translationReview;
     private readonly ISearchIndexService _searchIndex;
     private readonly IDocumentTagService _documentTagService;
+    private readonly IGitRepoService _gitService;
     private static readonly TranslationStatusService LiveTranslationStatusService = new();
 
     // Coding mode state
@@ -249,7 +250,8 @@ public partial class MainWindowViewModel : ViewModelBase
         ITranslationAssistantBuildService translationAssistantBuilder,
         ITranslationReviewService translationReview,
         ISearchIndexService searchIndex,
-        IDocumentTagService documentTagService)
+        IDocumentTagService documentTagService,
+        IGitRepoService gitService)
     {
         _fileService = fileService;
         _configService = configService;
@@ -262,6 +264,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _translationReview = translationReview;
         _searchIndex = searchIndex;
         _documentTagService = documentTagService;
+        _gitService = gitService;
     }
 
     // ===========================================================
@@ -303,6 +306,47 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
             {
+                // Check for legacy single-repo layout needing migration
+                var configPath = _config.TextRootPath!;
+                if (LegacyRepoMigration.IsLegacySingleRepoLayout(configPath))
+                {
+                    SetStatus("Migrating to two-repo layout (one-time)...");
+                    var migrationProgress = new Progress<string>(msg => SetStatus("Migration: " + msg));
+                    var result = await LegacyRepoMigration.MigrateAsync(
+                        configPath, _gitService, migrationProgress, CancellationToken.None);
+
+                    if (result.Success)
+                    {
+                        _config.TextRootPath = result.NewParentRoot;
+                        await SafeSaveConfigAsync();
+                        AppPaths.InvalidateDiscoveryCache();
+                        SetStatus("Migration complete. Loading...");
+                    }
+                    else
+                    {
+                        SetStatus("Migration failed: " + (result.Error ?? "unknown") + " — Use Git tab to sync.");
+                    }
+                }
+                else
+                {
+                    // Check for pending migration from interrupted attempt
+                    var parentDir = Path.GetDirectoryName(configPath);
+                    if (parentDir != null && LegacyRepoMigration.HasPendingMigration(parentDir))
+                    {
+                        SetStatus("Resuming interrupted migration...");
+                        var migrationProgress = new Progress<string>(msg => SetStatus("Migration: " + msg));
+                        var result = await LegacyRepoMigration.MigrateAsync(
+                            configPath, _gitService, migrationProgress, CancellationToken.None);
+
+                        if (result.Success)
+                        {
+                            _config.TextRootPath = result.NewParentRoot;
+                            await SafeSaveConfigAsync();
+                            AppPaths.InvalidateDiscoveryCache();
+                        }
+                    }
+                }
+
                 _suppressConfigSaves = true;
                 try
                 {

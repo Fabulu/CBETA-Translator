@@ -409,7 +409,8 @@ private async Task LoadConfigAndAutoloadAsync()
             sp.GetRequiredService<ITranslationAssistantBuildService>(),
             sp.GetRequiredService<ITranslationReviewService>(),
             sp.GetRequiredService<ISearchIndexService>(),
-            sp.GetRequiredService<IDocumentTagService>());
+            sp.GetRequiredService<IDocumentTagService>(),
+            sp.GetRequiredService<IGitRepoService>());
 
         DataContext = _vm;
 
