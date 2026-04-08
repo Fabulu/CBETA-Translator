@@ -100,7 +100,8 @@ public partial class GitTabViewModel : ViewModelBase
     public event EventHandler? CommunityDataFetched;
     public event Func<Task>? PrepareCommunityShareRequested;
     public event Func<string, Task<bool>>? EnsurePersonalTranslatedForSelectedRequested;
-    public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
+    /// Returns the absolute path of the saved file, or null on failure.
+    public event Func<string, Task<string?>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabViewModel(
         IGitRepoService git,
@@ -395,32 +396,27 @@ public partial class GitTabViewModel : ViewModelBase
         {
             if (!string.IsNullOrWhiteSpace(_selectedRelPath) && !string.IsNullOrWhiteSpace(_githubLogin))
             {
-                var selectedRepoRel = NormalizeRel($"{RepoTranslatedRoot}/{_selectedRelPath}");
                 var ct = _cts?.Token ?? CancellationToken.None;
                 var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-                // Export the selected translation to the canonical xml-p5t path used for contribution PRs.
-                var preparedSelectedTranslation = true;
+                string? savedAbsPath = null;
                 if (EnsureTranslatedForSelectedRequested != null)
                 {
-                    foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                    foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<string?>>>())
                     {
-                        if (!await fn(_selectedRelPath))
-                        {
-                            preparedSelectedTranslation = false;
-                            break;
-                        }
+                        savedAbsPath = await fn(_selectedRelPath);
+                        if (savedAbsPath == null) break;
                     }
                 }
 
-                if (!preparedSelectedTranslation)
+                if (savedAbsPath == null)
                 {
-                    AppendLog($"[sync] Translation PR step skipped: could not prepare canonical translation for {_selectedRelPath}.");
+                    AppendLog($"[sync] Translation PR step skipped: could not prepare translation for {_selectedRelPath}.");
                 }
                 else
                 {
+                    var selectedRepoRel = NormalizeRel(Path.GetRelativePath(transDir, savedAbsPath));
                     var status = await _git.GetStatusPorcelainAsync(transDir, ct);
-            var trackedSharePaths = GetTrackedCommunitySharePaths(transDir);
                     var hasSelectedFileChanges = status.Any(line =>
                         line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
 
@@ -988,22 +984,18 @@ public partial class GitTabViewModel : ViewModelBase
             }
 
             var cbetaRel = NormalizeRel(_selectedRelPath);
-            var repoRel = NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
 
+            string? absTarget = null;
             if (EnsureTranslatedForSelectedRequested != null)
             {
-                ProgressText = "Preparing translated XML from Markdown\u2026";
-                bool prepared = true;
-                foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<bool>>>())
+                ProgressText = "Preparing translated XML\u2026";
+                foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<string?>>>())
                 {
-                    if (!await fn(cbetaRel))
-                    {
-                        prepared = false;
-                        break;
-                    }
+                    absTarget = await fn(cbetaRel);
+                    if (absTarget == null) break;
                 }
 
-                if (!prepared)
+                if (absTarget == null)
                 {
                     ProgressText = "Preparation failed. Save in Edit tab and retry.";
                     AppendLog("[error] failed to materialize translated XML for selected file");
@@ -1011,15 +1003,18 @@ public partial class GitTabViewModel : ViewModelBase
                 }
             }
 
+            // Compute repo-relative path from the actual file location
+            var repoRel = absTarget != null
+                ? NormalizeRel(Path.GetRelativePath(repoDir, absTarget))
+                : NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
+
             AppendLog("[map] cbeta: " + cbetaRel);
             AppendLog("[map] repo : " + repoRel);
 
-            string absTarget = Path.Combine(repoDir, repoRel.Replace('/', Path.DirectorySeparatorChar));
-            if (!File.Exists(absTarget))
+            if (absTarget == null || !File.Exists(absTarget))
             {
                 ProgressText = "Translated file does not exist in repo yet. Save it first.";
-                AppendLog("[error] missing: " + absTarget);
-                AppendLog("Expected at: " + repoRel);
+                AppendLog("[error] missing: " + (absTarget ?? repoRel));
                 return;
             }
 

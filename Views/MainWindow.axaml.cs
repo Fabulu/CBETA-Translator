@@ -1028,7 +1028,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _gitView.EnsureTranslatedForSelectedRequested += async relPath =>
             {
                 try { return await _vm.EnsureTranslatedXmlForRelPathAsync(relPath, saveCurrentEditor: true); }
-                catch (Exception ex) { _vm.SetStatus("Prepare translated XML failed: " + ex.Message); return false; }
+                catch (Exception ex) { _vm.SetStatus("Prepare translated XML failed: " + ex.Message); return null; }
             };
 
             _rootClonedHandler = async (_, repoRoot) =>

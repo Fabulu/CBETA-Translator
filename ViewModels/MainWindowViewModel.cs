@@ -2392,12 +2392,16 @@ public partial class MainWindowViewModel : ViewModelBase
     // Git helper
     // ===========================================================
 
-    public async Task<bool> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
+    /// <summary>
+    /// Ensures a translated XML file exists for the given relative path.
+    /// Returns the absolute path of the saved/found file, or null on failure.
+    /// </summary>
+    public async Task<string?> EnsureTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
     {
-        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return false;
+        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return null;
 
         var origPath = Path.Combine(_originalDir, relPath);
-        if (!File.Exists(origPath)) return false;
+        if (!File.Exists(origPath)) return null;
 
         if (saveCurrentEditor &&
             _indexedDoc != null &&
@@ -2414,16 +2418,16 @@ public partial class MainWindowViewModel : ViewModelBase
                 await AtomicWriteXmlAsync(tranAbs, xml);
 
                 _rawTranXml = xml;
-                return true;
+                return tranAbs;
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 
         await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
-        return FindTranslatedPath(relPath) != null;
+        return FindTranslatedPath(relPath);
     }
 
     public async Task<bool> EnsurePersonalTranslatedXmlForRelPathAsync(string relPath, bool saveCurrentEditor)
