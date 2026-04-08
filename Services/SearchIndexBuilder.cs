@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
@@ -38,17 +39,17 @@ public sealed class SearchIndexBuilder : ISearchIndexBuilder
     public Task BuildAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => _facade.BuildAsync(root, originalDir, translatedDir, progress, ct);
+        => _facade.BuildAsync(root, originalDir, translatedDirs, progress, ct);
 
     public Task BuildOrUpdateAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => _facade.BuildOrUpdateAsync(root, originalDir, translatedDir, forceRebuild, progress, ct);
+        => _facade.BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild, progress, ct);
 }

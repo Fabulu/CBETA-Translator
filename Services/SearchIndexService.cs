@@ -695,7 +695,7 @@ public sealed class SearchIndexService : ISearchIndexService
     public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
     public string GetCjk2ManifestPath(string root) => Path.Combine(root, Cjk2ManifestFileName);
 
-    public async Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir)
+    public async Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs)
     {
         var manifestPath = GetManifestPath(root);
         if (!File.Exists(manifestPath))
@@ -710,23 +710,19 @@ public sealed class SearchIndexService : ISearchIndexService
 
         var manifestWriteUtc = File.GetLastWriteTimeUtc(manifestPath);
 
-        // Check if any XML file is newer than the manifest
-        var dirs = new[] { originalDir, translatedDir };
-        int fileCount = 0;
-        foreach (var dir in dirs)
+        // Only check translated dirs for changes — originals are a read-only corpus
+        foreach (var tDir in translatedDirs)
         {
-            if (!Directory.Exists(dir)) continue;
-            foreach (var f in Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
+            if (!Directory.Exists(tDir)) continue;
+            foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
             {
-                fileCount++;
                 if (File.GetLastWriteTimeUtc(f) > manifestWriteUtc)
                     return true;
             }
         }
 
-        // If file count differs significantly from manifest entries, consider stale.
-        // Each XML file can appear as both original and translated side, so compare loosely.
-        if (manifest.Entries.Count == 0 && fileCount > 0)
+        // If manifest has zero entries but originals exist, it needs a full build
+        if (manifest.Entries.Count == 0 && Directory.Exists(originalDir))
             return true;
 
         return false;
@@ -1585,15 +1581,15 @@ public sealed class SearchIndexService : ISearchIndexService
     public Task BuildAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => BuildOrUpdateAsync(root, originalDir, translatedDir, forceRebuild: true, progress, ct);
+        => BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild: true, progress, ct);
 
     public Task BuildOrUpdateAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
@@ -1651,9 +1647,17 @@ public sealed class SearchIndexService : ISearchIndexService
                     .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f)))
                     .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
 
-                var tranFiles = Directory.EnumerateFiles(translatedDir, "*.xml", SearchOption.AllDirectories)
-                    .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(translatedDir, f)), abs: f, fi: new FileInfo(f)))
-                    .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
+                var tranFiles = new Dictionary<string, (string rel, string abs, FileInfo fi)>(StringComparer.OrdinalIgnoreCase);
+                foreach (var tDir in translatedDirs)
+                {
+                    if (!Directory.Exists(tDir)) continue;
+                    foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
+                    {
+                        var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
+                        if (!tranFiles.ContainsKey(rel)) // First dir wins (community first)
+                            tranFiles[rel] = (rel, f, new FileInfo(f));
+                    }
+                }
 
                 var allRel = origFiles.Keys.Union(tranFiles.Keys, StringComparer.OrdinalIgnoreCase)
                     .OrderBy(s => s, StringComparer.OrdinalIgnoreCase)
@@ -2819,6 +2823,8 @@ public sealed class SearchIndexService : ISearchIndexService
         if (primarySide != SearchSide.Original)
             yield break;
 
+        // Fallback: when the active translatedDir is a personal dir (e.g. community/translations/user),
+        // also check the canonical xml-p5t sibling of the originals dir for counterpart files.
         var originalParent = Directory.GetParent(Path.GetFullPath(originalDir))?.FullName;
         if (string.IsNullOrWhiteSpace(originalParent))
             yield break;

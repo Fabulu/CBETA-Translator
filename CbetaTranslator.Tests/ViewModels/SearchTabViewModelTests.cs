@@ -33,9 +33,9 @@ public class SearchTabViewModelTests
         public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(new SearchIndexManifest());
         public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
         public Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root) => Task.FromResult<SearchCjkBigramManifest?>(null);
-        public Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir) => Task.FromResult(false);
-        public Task BuildAsync(string root, string originalDir, string translatedDir, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
-        public Task BuildOrUpdateAsync(string root, string originalDir, string translatedDir, bool forceRebuild, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
+        public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
+        public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
+        public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
         public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(string root, string originalDir, string translatedDir, SearchIndexManifest manifest, string query, bool includeOriginal, bool includeTranslated, Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta, int contextWidth, IProgress<SearchIndexService.SearchProgress>? progress = null, Func<string, bool>? relPathFilter = null, [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)
         {
             progress?.Report(new SearchIndexService.SearchProgress { Phase = "Building candidates", VerifiedDocs = 0, TotalDocsToVerify = 10, Groups = 0, TotalHits = 0 });
@@ -80,7 +80,7 @@ public class SearchTabViewModelTests
     {
         var svc = new ControlledSearchIndexService();
         var vm = new SearchTabViewModel(svc);
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.Query = "wumen";
 
         var searchTask = vm.SearchCommand.ExecuteAsync(null);
@@ -102,7 +102,7 @@ public class SearchTabViewModelTests
     {
         var svc = new ControlledSearchIndexService();
         var vm = new SearchTabViewModel(svc);
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.Query = "wumen";
 
         var searchTask = vm.SearchCommand.ExecuteAsync(null);
@@ -182,7 +182,7 @@ public class SearchTabViewModelTests
     public void SetRootContext_SetsInternalState()
     {
         var vm = MakeVm();
-        vm.SetRootContext("/root", "/orig", "/tran");
+        vm.SetRootContext("/root", "/orig", new[] { "/tran" });
 
         // No direct public accessor but Clear should reset
         // This just verifies no exceptions
@@ -226,7 +226,7 @@ public class SearchTabViewModelTests
     public void Clear_ResetsState()
     {
         var vm = MakeVm();
-        vm.SetRootContext("/root", "/orig", "/tran");
+        vm.SetRootContext("/root", "/orig", new[] { "/tran" });
         vm.Query = "test";
         vm.ZenOnly = true;
 
@@ -333,7 +333,7 @@ public class SearchTabViewModelTests
     public async Task SearchAsync_EmptyQuery_SetsHasValidationError()
     {
         var vm = MakeVm();
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.Query = "";
 
         await vm.SearchCommand.ExecuteAsync(null);
@@ -346,7 +346,7 @@ public class SearchTabViewModelTests
     public async Task SearchAsync_EmptyQuery_ValidationMessageIsNonEmpty()
     {
         var vm = MakeVm();
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.Query = "   ";
 
         await vm.SearchCommand.ExecuteAsync(null);
@@ -359,7 +359,7 @@ public class SearchTabViewModelTests
     public async Task SearchAsync_NeitherOriginalNorTranslated_SetsValidationError()
     {
         var vm = MakeVm();
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.Query = "test";
         vm.SearchOriginal = false;
         vm.SearchTranslated = false;
@@ -451,7 +451,7 @@ public class SearchTabViewModelTests
     public async Task ApplyUiStateAsync_AppliesVisibleFiltersById_WithoutIntermediateAutoSearch()
     {
         var vm = MakeVm();
-        vm.SetContext("/root", "/orig", "/tran", rel => ("display", "tooltip", (TranslationStatus?)null));
+        vm.SetContext("/root", "/orig", new[] { "/tran" }, rel => ("display", "tooltip", (TranslationStatus?)null));
         vm.SetTagFilterData(
             new List<DocumentTag> { new() { RelPath = "T01/test.xml", TagId = "tag-1" } },
             new TagVocabulary { Tags = new List<TagDefinition> { new() { Id = "tag-1", Name = "Practice" } } });
