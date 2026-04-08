@@ -360,7 +360,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 }
 
                 SetStatus("Auto-loading last root...");
-                await LoadRootAsync(_config.TextRootPath, saveToConfig: false);
+                await LoadRootAsync(_config.TextRootPath!, saveToConfig: false);
 
                 // Skip auto-loading last file if a deep link will navigate us elsewhere
                 var hasDeepLink = App.StartupArgs?.Any(a =>
