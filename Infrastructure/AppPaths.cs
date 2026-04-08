@@ -9,7 +9,6 @@ public partial class AppPaths
 {
     public const string OriginalFolderName = "xml-p5";
     public const string TranslatedFolderName = "xml-p5t";
-    public const string MarkdownFolderName = "md-p5t";
     public const string TranslatedCacheFolderName = "xml-p5t-cache";
 
     // Default repo folder names used only for cloning. Discovery uses xml-p5/xml-p5t conventions.
@@ -116,14 +115,6 @@ public partial class AppPaths
             : Path.Combine(parentRoot, DefaultTranslationRepoFolderName, TranslatedCacheFolderName);
     }
 
-    public static string GetMarkdownDir(string parentRoot)
-    {
-        var repoRoot = GetTranslationRepoRoot(parentRoot);
-        return repoRoot != null
-            ? Path.Combine(repoRoot, MarkdownFolderName)
-            : Path.Combine(parentRoot, DefaultTranslationRepoFolderName, MarkdownFolderName);
-    }
-
     public static void EnsureTranslatedDirExists(string parentRoot)
     {
         var dir = GetTranslatedDir(parentRoot);
@@ -133,13 +124,6 @@ public partial class AppPaths
         var cacheDir = GetTranslatedCacheDir(parentRoot);
         if (!Directory.Exists(cacheDir))
             Directory.CreateDirectory(cacheDir);
-    }
-
-    public static void EnsureMarkdownDirExists(string parentRoot)
-    {
-        var dir = GetMarkdownDir(parentRoot);
-        if (!Directory.Exists(dir))
-            Directory.CreateDirectory(dir);
     }
 
     /// <summary>
