@@ -1014,6 +1014,15 @@ public partial class TranslationTabView : UserControl
         SelectAndRevealBlock(blocks[prevIx]);
     }
 
+    public void JumpToBlockNumber(int blockNumber)
+    {
+        if (_editor == null) return;
+        var blocks = ParseProjectionBlocksWithOffsets(_editor.Text ?? "");
+        var target = blocks.FirstOrDefault(b => b.BlockNumber == blockNumber);
+        if (target != null)
+            SelectAndRevealBlock(target);
+    }
+
     public void JumpToNextUnapproved(IReadOnlySet<int> approvedBlockNumbers)
     {
         if (_editor == null) return;

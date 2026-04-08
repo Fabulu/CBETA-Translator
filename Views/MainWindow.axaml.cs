@@ -808,7 +808,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
         var host = Find<Control>("TopBarCommandsHost");
         bool expanded = host?.IsVisible != false;
-        _btnToggleTopBar.Content = expanded ? "?" : "?";
+        _btnToggleTopBar.Content = expanded ? "\u25B2" : "\u25BC";
         ToolTip.SetTip(_btnToggleTopBar, expanded ? "Collapse command bar" : "Expand command bar");
     }
     private void TopBar_PointerPressed(object? sender, PointerPressedEventArgs e)
@@ -1810,6 +1810,10 @@ private async Task LoadConfigAndAutoloadAsync()
         // Auto-open a file if the step requires it
         if (!string.IsNullOrWhiteSpace(step.AutoOpenRelPath) && _vm.Root != null)
             _ = _vm.LoadPairAsync(step.AutoOpenRelPath);
+
+        // Auto-jump to a specific block in the translation editor
+        if (step.AutoJumpToBlock.HasValue)
+            _translationView?.JumpToBlockNumber(step.AutoJumpToBlock.Value);
 
         _tourOverlayCanvas.IsVisible = true;
 

@@ -22,4 +22,7 @@ public sealed class TourStep
 
     /// <summary>If set, auto-opens this file (relative path) when the step activates.</summary>
     public string? AutoOpenRelPath { get; set; }
+
+    /// <summary>If set, jumps the translation editor to this block number (1-based) when the step activates.</summary>
+    public int? AutoJumpToBlock { get; set; }
 }
