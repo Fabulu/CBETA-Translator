@@ -1453,7 +1453,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 return Task.CompletedTask;
             }
 
-            var root = _vm.Root;
+            var root = _vm.TranslationRoot ?? _vm.Root;
             if (string.IsNullOrEmpty(root)) return Task.CompletedTask;
 
             var win = new TagEditorWindow(root, _vm.Username)
