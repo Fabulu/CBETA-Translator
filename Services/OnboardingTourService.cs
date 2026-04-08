@@ -144,8 +144,7 @@ public sealed class OnboardingTourService
             Title = "Side-by-Side Reading",
             Body = "Left pane = original Chinese. Right pane = English translation.\n\nTry it now: click on any Chinese sentence on the left. The corresponding English text highlights on the right \u2014 and vice versa.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Top,
-            TargetControlName = "TwoPaneGrid"
+            Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
