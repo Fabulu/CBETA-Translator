@@ -2877,6 +2877,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetScholarDictionarySourceIndex?.Invoke(_translationSourceIndex);
+        SetScholarTranslationDirs?.Invoke(_originalDir, GetActiveTranslatedDir());
         try { _translationAssistant.SetUsername(GetActiveDictionaryUser()); } catch { }
         try { SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser()); } catch { }
         PushSearchContext();
