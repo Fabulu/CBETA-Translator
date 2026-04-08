@@ -24,7 +24,7 @@ public partial class GitTabView : UserControl
     public event EventHandler? CommunityDataFetched;
     public event Func<Task>? PrepareCommunityShareRequested;
     public event Func<string, Task<bool>>? EnsurePersonalTranslatedForSelectedRequested;
-    public event Func<string, Task<bool>>? EnsureTranslatedForSelectedRequested;
+    public event Func<string, Task<string?>>? EnsureTranslatedForSelectedRequested;
 
     public GitTabView()
     {
@@ -59,7 +59,7 @@ public partial class GitTabView : UserControl
         _vm.EnsurePersonalTranslatedForSelectedRequested += relPath =>
             EnsurePersonalTranslatedForSelectedRequested?.Invoke(relPath) ?? Task.FromResult(true);
         _vm.EnsureTranslatedForSelectedRequested += relPath =>
-            EnsureTranslatedForSelectedRequested?.Invoke(relPath) ?? Task.FromResult(true);
+            EnsureTranslatedForSelectedRequested?.Invoke(relPath) ?? Task.FromResult<string?>(null);
 
         AttachedToVisualTree += (_, _) => _vm.OnAttachedToVisualTree();
     }
