@@ -90,7 +90,7 @@ public partial class ZenMasterManagerWindow : Window
         if (selected == null)
             return;
 
-        var uri = CbetaUriParser.BuildMasterUri(selected.CanonicalName);
+        var uri = ZenUriParser.BuildMasterUri(selected.CanonicalName);
         var top = TopLevel.GetTopLevel(this);
         if (top?.Clipboard != null)
             await top.Clipboard.SetTextAsync(uri);

@@ -206,7 +206,7 @@ public partial class ScholarTabView : UserControl
                     if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
                 }
 
-                var uri = CbetaUriParser.BuildUri(
+                var uri = ZenUriParser.BuildUri(
                     passage.SourceRelPath,
                     fromLb: passage.FromLb,
                     toLb: passage.ToLb,
@@ -238,7 +238,7 @@ public partial class ScholarTabView : UserControl
                     if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
                 }
 
-                var url = CbetaUriParser.BuildShareableUrl(
+                var url = ZenUriParser.BuildShareableUrl(
                     passage.SourceRelPath,
                     fromLb: passage.FromLb,
                     toLb: passage.ToLb,

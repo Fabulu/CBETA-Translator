@@ -36,7 +36,7 @@ public partial class App : Application
 
             // Check for deep link after window is created
             var startupUri = StartupArgs?.FirstOrDefault(a =>
-                CbetaUriParser.TryParseDeepLink(a) != null);
+                ZenUriParser.TryParseDeepLink(a) != null);
 
             Dispatcher.UIThread.Post(async () =>
             {
@@ -100,7 +100,7 @@ public partial class App : Application
 
     private async System.Threading.Tasks.Task HandleDeepLinkAsync(string uri)
     {
-        var deepLink = CbetaUriParser.TryParseDeepLink(uri);
+        var deepLink = ZenUriParser.TryParseDeepLink(uri);
         if (deepLink == null) return;
 
         try
@@ -145,7 +145,7 @@ public partial class App : Application
     /// </summary>
     private async System.Threading.Tasks.Task HandleDeepLinkInPrimaryAsync(string uri)
     {
-        var deepLink = CbetaUriParser.TryParseDeepLink(uri);
+        var deepLink = ZenUriParser.TryParseDeepLink(uri);
         if (deepLink == null) return;
 
         try

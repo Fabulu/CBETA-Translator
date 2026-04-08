@@ -1,4 +1,4 @@
-﻿// Text/CbetaTeiRenderer.cs
+﻿// Text/TeiRenderer.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace ReadZen.App.Text;
 ///   must map to an XML index that matches where the insertion *logically occurs*.
 ///   We therefore map inserted breaks to (gt+1), i.e. "after this tag", NOT to lt.
 /// </summary>
-public static class CbetaTeiRenderer
+public static class TeiRenderer
 {
     // Your translation merge uses resp="md-import"; renderer must NOT treat those as annotations.
     private const string RespMdImport = "md-import";

@@ -17,7 +17,7 @@ namespace ReadZen.App.Services;
 /// <c>zen://T/T48/T48n2005.xml?from=0001a01&amp;to=0001a03&amp;side=...&amp;highlight=...</c>
 /// </para>
 /// </summary>
-public static class CbetaUriParser
+public static class ZenUriParser
 {
     public const string Scheme = "zen";
 

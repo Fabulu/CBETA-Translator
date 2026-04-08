@@ -6,12 +6,6 @@ Required:
 - .NET SDK 8
 - Git
 
-Optional (PDF export path used by this app):
-- `cbeta_gui_dll.dll` available from one of:
-  - `CBETA_GUI_DLL_PATH` env var
-  - app output folder
-  - `D:\Rust-projects\MT15-model\cbeta-gui-dll\target\release\cbeta_gui_dll.dll`
-
 ## Windows (PowerShell)
 
 1. Check/install tools:

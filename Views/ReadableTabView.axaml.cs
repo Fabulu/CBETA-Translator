@@ -418,7 +418,7 @@ public partial class ReadableTabView : UserControl
             var user = isTranslated ? GetTranslationUser?.Invoke() : null;
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
+            var uri = ZenUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -462,7 +462,7 @@ public partial class ReadableTabView : UserControl
             var userR = isTranslated ? GetTranslationUser?.Invoke() : null;
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
+            var url = ZenUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);

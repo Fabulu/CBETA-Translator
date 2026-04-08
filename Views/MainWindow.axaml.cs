@@ -697,7 +697,7 @@ private async Task LoadConfigAndAutoloadAsync()
                     var navItem = _filesList.SelectedItem as FileNavItem;
                     if (navItem == null || string.IsNullOrWhiteSpace(navItem.RelPath)) return;
 
-                    var uri = CbetaUriParser.BuildUri(navItem.RelPath);
+                    var uri = ZenUriParser.BuildUri(navItem.RelPath);
                     var top = TopLevel.GetTopLevel(this);
                     if (top?.Clipboard != null)
                         await top.Clipboard.SetTextAsync(uri);
@@ -713,7 +713,7 @@ private async Task LoadConfigAndAutoloadAsync()
                     var navItem = _filesList.SelectedItem as FileNavItem;
                     if (navItem == null || string.IsNullOrWhiteSpace(navItem.RelPath)) return;
 
-                    var url = CbetaUriParser.BuildShareableUrl(navItem.RelPath);
+                    var url = ZenUriParser.BuildShareableUrl(navItem.RelPath);
                     var top = TopLevel.GetTopLevel(this);
                     if (top?.Clipboard != null)
                         await top.Clipboard.SetTextAsync(url);
@@ -1628,7 +1628,7 @@ private async Task LoadConfigAndAutoloadAsync()
         }
 
         var origXml = await File.ReadAllTextAsync(origPath, Encoding.UTF8);
-        var origDoc = CbetaTeiRenderer.Render(origXml);
+        var origDoc = TeiRenderer.Render(origXml);
 
         var transADoc = _vm.RenderTranslationSource(indexA.Value);
         if (transADoc == null || transADoc.IsEmpty)

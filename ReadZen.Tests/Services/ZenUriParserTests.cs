@@ -5,11 +5,11 @@ using Xunit;
 namespace ReadZen.Tests.Services;
 
 /// <summary>
-/// Tests for <see cref="CbetaUriParser"/>: TryParse (clean + legacy formats),
+/// Tests for <see cref="ZenUriParser"/>: TryParse (clean + legacy formats),
 /// BuildUri (clean format), FileIdToRelPath, RelPathToFileId, round-trips,
 /// and malformed-input handling.
 /// </summary>
-public class CbetaUriParserTests
+public class ZenUriParserTests
 {
     // ==== FileIdToRelPath / RelPathToFileId ====
 
@@ -20,7 +20,7 @@ public class CbetaUriParserTests
     [InlineData("X73n1452", "X/X73/X73n1452.xml")]
     public void FileIdToRelPath_ValidIds_ReturnsExpectedPath(string fileId, string expected)
     {
-        Assert.Equal(expected, CbetaUriParser.FileIdToRelPath(fileId));
+        Assert.Equal(expected, ZenUriParser.FileIdToRelPath(fileId));
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public class CbetaUriParserTests
     [InlineData("abc")]     // no 'n' at all
     public void FileIdToRelPath_InvalidId_ReturnsNull(string fileId)
     {
-        Assert.Null(CbetaUriParser.FileIdToRelPath(fileId));
+        Assert.Null(ZenUriParser.FileIdToRelPath(fileId));
     }
 
     [Theory]
@@ -38,7 +38,7 @@ public class CbetaUriParserTests
     [InlineData("T\\T01\\T01n0001.xml", "T01n0001")]
     public void RelPathToFileId_ValidPaths_ReturnsExpectedId(string relPath, string expected)
     {
-        Assert.Equal(expected, CbetaUriParser.RelPathToFileId(relPath));
+        Assert.Equal(expected, ZenUriParser.RelPathToFileId(relPath));
     }
 
     // ==== BuildUri ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â clean format ====
@@ -46,7 +46,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_FileOnly_ProducesCleanUri()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml");
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml");
 
         Assert.Equal("zen://T48n2005", uri);
     }
@@ -54,7 +54,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithFromLb_ProducesCleanUri()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", fromLb: "0292a26");
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml", fromLb: "0292a26");
 
         Assert.Equal("zen://T48n2005/0292a26", uri);
     }
@@ -62,7 +62,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithLbRange_ProducesCleanUri()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", fromLb: "0292a26", toLb: "0292a29");
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml", fromLb: "0292a26", toLb: "0292a29");
 
         Assert.Equal("zen://T48n2005/0292a26-0292a29", uri);
     }
@@ -70,7 +70,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithSide_AppendsEn()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", side: SearchSide.Translated);
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml", side: SearchSide.Translated);
 
         Assert.Equal("zen://T48n2005/en", uri);
     }
@@ -78,7 +78,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithRangeAndSide_ProducesCleanUri()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml",
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml",
             fromLb: "0292a26", toLb: "0292a29", side: SearchSide.Translated);
 
         Assert.Equal("zen://T48n2005/0292a26-0292a29/en", uri);
@@ -87,7 +87,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_SameLbFromAndTo_NoRange()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml",
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml",
             fromLb: "0292a26", toLb: "0292a26");
 
         Assert.Equal("zen://T48n2005/0292a26", uri);
@@ -96,7 +96,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithHighlight_ProducesQueryParam()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", highlightText: "hello world");
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml", highlightText: "hello world");
 
         Assert.Equal("zen://T48n2005?highlight=hello%20world", uri);
     }
@@ -105,7 +105,7 @@ public class CbetaUriParserTests
     public void BuildUri_CjkHighlight_EncodesCorrectly()
     {
         var cjkText = "\u4f5b\u8aaa\u963f\u5f4c\u9640\u7d93"; // ÃƒÂ¤Ã‚Â½Ã¢â‚¬ÂºÃƒÂ¨Ã‚ÂªÃ‚ÂªÃƒÂ©Ã‹Å“Ã‚Â¿ÃƒÂ¥Ã‚Â½Ã…â€™ÃƒÂ©Ã¢â€žÂ¢Ã¢â€šÂ¬ÃƒÂ§Ã‚Â¶Ã¢â‚¬Å“
-        var uri = CbetaUriParser.BuildUri("T/T12/T12n0366.xml", highlightText: cjkText);
+        var uri = ZenUriParser.BuildUri("T/T12/T12n0366.xml", highlightText: cjkText);
 
         // URI should not contain raw CJK characters
         Assert.DoesNotContain(cjkText, uri);
@@ -115,7 +115,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_AllParams_ProducesCorrectUri()
     {
-        var uri = CbetaUriParser.BuildUri(
+        var uri = ZenUriParser.BuildUri(
             "T/T48/T48n2005.xml",
             fromLb: "0001a01",
             toLb: "0001a03",
@@ -138,7 +138,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_DefaultSide_NotIncludedInUri()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml", side: SearchSide.Original);
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml", side: SearchSide.Original);
 
         Assert.DoesNotContain("/en", uri);
         Assert.DoesNotContain("side=", uri);
@@ -147,7 +147,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_BackslashPath_NormalizedCorrectly()
     {
-        var uri = CbetaUriParser.BuildUri(@"T\T48\T48n2005.xml");
+        var uri = ZenUriParser.BuildUri(@"T\T48\T48n2005.xml");
 
         Assert.Equal("zen://T48n2005", uri);
         Assert.DoesNotContain("\\", uri);
@@ -158,7 +158,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_FileOnly()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005");
+        var result = ZenUriParser.TryParse("zen://T48n2005");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -171,7 +171,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_SingleLb()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292a26");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292a26");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -182,7 +182,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_LbRange()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292a26-0292a29");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292a26-0292a29");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -193,7 +193,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_WithSide()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/en");
+        var result = ZenUriParser.TryParse("zen://T48n2005/en");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -203,7 +203,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_RangeAndSide()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292a26-0292a29/en");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292a26-0292a29/en");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -215,7 +215,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_CleanFormat_TranAlias()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292a26/tran");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292a26/tran");
 
         Assert.NotNull(result);
         Assert.Equal(SearchSide.Translated, result.Side);
@@ -227,7 +227,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T48n2005/0292a26-0292a29/en?highlight=test&lctx=before&rctx=after&block=42";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -247,7 +247,7 @@ public class CbetaUriParserTests
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T01n0001?highlight={encoded}";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal("T/T01/T01n0001.xml", result.RelPath);
@@ -261,7 +261,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T/T48/T48n2005.xml?from=0292a26&to=0292a29&side=Translated&highlight=hello&lctx=left&rctx=right&block=42";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -279,7 +279,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T/T48/T48n2005.xml";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -292,7 +292,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T/T48/T48n2005.xml?side=translated";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(SearchSide.Translated, result.Side);
@@ -303,7 +303,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T/T48/T48n2005.xml?side=invalid";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(SearchSide.Original, result.Side);
@@ -314,7 +314,7 @@ public class CbetaUriParserTests
     {
         var uri = "zen://T/T48/T48n2005.xml?block=notanumber";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Null(result.AnchorStartHint);
@@ -327,7 +327,7 @@ public class CbetaUriParserTests
         var encoded = Uri.EscapeDataString(cjkText);
         var uri = $"zen://T/T01/T01n0001.xml?highlight={encoded}";
 
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(cjkText, result.MatchText);
@@ -343,7 +343,7 @@ public class CbetaUriParserTests
     [InlineData("://missing-scheme")]
     public void TryParse_MalformedUri_ReturnsNull(string? uri)
     {
-        var result = CbetaUriParser.TryParse(uri!);
+        var result = ZenUriParser.TryParse(uri!);
         Assert.Null(result);
     }
 
@@ -354,14 +354,14 @@ public class CbetaUriParserTests
     [InlineData("file://T/T48/T48n2005.xml")]
     public void TryParse_NonCbetaScheme_ReturnsNull(string uri)
     {
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
         Assert.Null(result);
     }
 
     [Fact]
     public void TryParse_CaseInsensitiveScheme_Works()
     {
-        var result = CbetaUriParser.TryParse("ZEN://T48n2005");
+        var result = ZenUriParser.TryParse("ZEN://T48n2005");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -379,11 +379,11 @@ public class CbetaUriParserTests
         var rctx = "right context";
         var block = 99;
 
-        var uri = CbetaUriParser.BuildUri(relPath,
+        var uri = ZenUriParser.BuildUri(relPath,
             fromLb: "0001a01", toLb: "0001a03",
             highlightText: highlight, side: side,
             leftContext: lctx, rightContext: rctx, blockNumber: block);
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(relPath, result.RelPath);
@@ -401,8 +401,8 @@ public class CbetaUriParserTests
     {
         var relPath = "T/T48/T48n2005.xml";
 
-        var uri = CbetaUriParser.BuildUri(relPath);
-        var result = CbetaUriParser.TryParse(uri);
+        var uri = ZenUriParser.BuildUri(relPath);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(relPath, result.RelPath);
@@ -414,8 +414,8 @@ public class CbetaUriParserTests
         var cjkText = "\u5982\u662f\u6211\u805e"; // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã‹â€ Ã¢â‚¬ËœÃƒÂ¨Ã‚ÂÃ…Â¾
         var relPath = "T/T01/T01n0001.xml";
 
-        var uri = CbetaUriParser.BuildUri(relPath, highlightText: cjkText);
-        var result = CbetaUriParser.TryParse(uri);
+        var uri = ZenUriParser.BuildUri(relPath, highlightText: cjkText);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(relPath, result.RelPath);
@@ -428,9 +428,9 @@ public class CbetaUriParserTests
         var lctx = "text with spaces & symbols=yes";
         var rctx = "more?special/chars";
 
-        var uri = CbetaUriParser.BuildUri("T/T01/T01n0001.xml",
+        var uri = ZenUriParser.BuildUri("T/T01/T01n0001.xml",
             highlightText: "match", leftContext: lctx, rightContext: rctx);
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(lctx, result.LeftContext);
@@ -442,8 +442,8 @@ public class CbetaUriParserTests
     {
         // Test with X canon
         var relPath = "X/X73/X73n1452.xml";
-        var uri = CbetaUriParser.BuildUri(relPath, fromLb: "0001a01");
-        var result = CbetaUriParser.TryParse(uri);
+        var uri = ZenUriParser.BuildUri(relPath, fromLb: "0001a01");
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal(relPath, result.RelPath);
@@ -455,28 +455,28 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildShareableUrl_FileOnly_ReturnsCleanUrl()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml");
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml");
         Assert.Equal("https://readzen.pages.dev/T48n2005", url);
     }
 
     [Fact]
     public void BuildShareableUrl_WithLbRange_AppendsRange()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01", "0001a03");
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01", "0001a03");
         Assert.Equal("https://readzen.pages.dev/T48n2005/0001a01-0001a03", url);
     }
 
     [Fact]
     public void BuildShareableUrl_SingleLb_NoRange()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01");
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml", "0001a01");
         Assert.Equal("https://readzen.pages.dev/T48n2005/0001a01", url);
     }
 
     [Fact]
     public void BuildShareableUrl_WithSide_AppendsEnPath()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml", side: SearchSide.Translated);
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml", side: SearchSide.Translated);
         Assert.EndsWith("/en", url);
         Assert.DoesNotContain("?side=", url);
     }
@@ -486,19 +486,19 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_Null_ReturnsNull()
     {
-        Assert.Null(CbetaUriParser.TryParseDeepLink(null));
+        Assert.Null(ZenUriParser.TryParseDeepLink(null));
     }
 
     [Fact]
     public void TryParseDeepLink_Empty_ReturnsNull()
     {
-        Assert.Null(CbetaUriParser.TryParseDeepLink(""));
+        Assert.Null(ZenUriParser.TryParseDeepLink(""));
     }
 
     [Fact]
     public void TryParseDeepLink_PassageLink_ReturnsPassageKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://T48n2005/0292b28");
+        var result = ZenUriParser.TryParseDeepLink("zen://T48n2005/0292b28");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Passage, result.Kind);
@@ -510,7 +510,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_HttpsPassageLink_ReturnsPassageKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("https://readzen.pages.dev/#/T48n2005/0292b28");
+        var result = ZenUriParser.TryParseDeepLink("https://readzen.pages.dev/#/T48n2005/0292b28");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Passage, result.Kind);
@@ -522,7 +522,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_DictLink_ReturnsDictionaryKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://dict/\u4f5b");
+        var result = ZenUriParser.TryParseDeepLink("zen://dict/\u4f5b");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
@@ -532,7 +532,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_DictLink_DecodesUri()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://dict/%E4%BD%9B");
+        var result = ZenUriParser.TryParseDeepLink("zen://dict/%E4%BD%9B");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
@@ -542,7 +542,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_ScholarLink_ReturnsScholarKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col1/pass1");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col1/pass1");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
@@ -553,7 +553,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_ScholarLink_CollectionOnly()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col1");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col1");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
@@ -564,7 +564,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_SearchLink_ReturnsSearchKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=\u7121\u9580\u95dc&corpus=T");
+        var result = ZenUriParser.TryParseDeepLink("zen://search?q=\u7121\u9580\u95dc&corpus=T");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -575,7 +575,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_SearchLink_QueryOnly()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test");
+        var result = ZenUriParser.TryParseDeepLink("zen://search?q=test");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -587,7 +587,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_SearchLink_QueryOnly_HasNullExtendedState()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test");
+        var result = ZenUriParser.TryParseDeepLink("zen://search?q=test");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -605,7 +605,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_SearchLink_RichState_ParsesCanonicalFields()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://search?q=test&corpus=T&src=alice&orig=1&tran=0&zen=true&status=2&tag=topic-1&ctx=5");
+        var result = ZenUriParser.TryParseDeepLink("zen://search?q=test&corpus=T&src=alice&orig=1&tran=0&zen=true&status=2&tag=topic-1&ctx=5");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -623,7 +623,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildSearchUri_RoundTrip_RichState()
     {
-        var uri = CbetaUriParser.BuildSearchUri(
+        var uri = ZenUriParser.BuildSearchUri(
             "test",
             corpus: "T",
             searchOriginal: true,
@@ -633,7 +633,7 @@ public class CbetaUriParserTests
             tagId: "topic-1",
             contextIndex: 5,
             translationSource: "alice");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -651,7 +651,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsLink_ReturnsTagsKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -663,7 +663,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsLink_NoUser()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -675,7 +675,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TermLink_ReturnsTermbaseKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://term/ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥");
+        var result = ZenUriParser.TryParseDeepLink("zen://term/ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
@@ -686,7 +686,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsLink_WithUserAndTagId()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005/alice/topic-1");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005/alice/topic-1");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -698,7 +698,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsLink_TagIdOnly_UsesEmptyUserSlot()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005//topic-1");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005//topic-1");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -709,7 +709,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsLink_QueryTagIdFallback()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice&tagId=topic-1");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice&tagId=topic-1");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -720,7 +720,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TermLink_WithUser_ReturnsTermbaseKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://term/ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥/alice");
+        var result = ZenUriParser.TryParseDeepLink("zen://term/ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥/alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
@@ -732,7 +732,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_MasterLink_ReturnsMasterKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan");
+        var result = ZenUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Master, result.Kind);
@@ -743,7 +743,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_MasterLink_WithUser_ReturnsMasterKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan/alice");
+        var result = ZenUriParser.TryParseDeepLink("zen://master/Linji%20Yixuan/alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Master, result.Kind);
@@ -753,7 +753,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_HttpsDict_Works()
     {
-        var result = CbetaUriParser.TryParseDeepLink("https://readzen.pages.dev/#/dict/\u4f5b");
+        var result = ZenUriParser.TryParseDeepLink("https://readzen.pages.dev/#/dict/\u4f5b");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
@@ -766,8 +766,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildMasterUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildMasterUri("Linji Yixuan", "alice");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildMasterUri("Linji Yixuan", "alice");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Master, result.Kind);
@@ -777,8 +777,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildDictUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildDictUri("\u4f5b");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildDictUri("\u4f5b");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Dictionary, result.Kind);
@@ -788,8 +788,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildScholarUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildScholarUri("c1", "p1");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildScholarUri("c1", "p1");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
@@ -800,8 +800,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildSearchUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildSearchUri("test", "T");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildSearchUri("test", "T");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Search, result.Kind);
@@ -812,8 +812,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTagsUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice", "topic-1");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildTagsUri("T48n2005", "alice", "topic-1");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -825,8 +825,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTermUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTermUri("ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥", "alice");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildTermUri("ÃƒÂ¨Ã‹â€ Ã‚Â¬ÃƒÂ¨Ã¢â‚¬Â¹Ã‚Â¥", "alice");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Termbase, result.Kind);
@@ -839,7 +839,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_PassageWithUser_ExtractsUser()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292b28/en/bob");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292b28/en/bob");
 
         Assert.NotNull(result);
         Assert.Equal("T/T48/T48n2005.xml", result.RelPath);
@@ -851,7 +851,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParse_PassageWithoutUser_UserIsNull()
     {
-        var result = CbetaUriParser.TryParse("zen://T48n2005/0292b28/en");
+        var result = ZenUriParser.TryParse("zen://T48n2005/0292b28/en");
 
         Assert.NotNull(result);
         Assert.Equal(SearchSide.Translated, result.Side);
@@ -862,7 +862,7 @@ public class CbetaUriParserTests
     public void TryParse_PassageWithUserNoSide_ExtractsUser()
     {
         // zen://T48n2005/en/bob (no lb, side + user)
-        var result = CbetaUriParser.TryParse("zen://T48n2005/en/bob");
+        var result = ZenUriParser.TryParse("zen://T48n2005/en/bob");
 
         Assert.NotNull(result);
         Assert.Equal(SearchSide.Translated, result.Side);
@@ -873,7 +873,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithUser_AppendsUserSegment()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml",
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml",
             fromLb: "0292b28", side: SearchSide.Translated, user: "bob");
 
         Assert.Contains("/bob", uri);
@@ -883,7 +883,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildUri_WithoutUser_NoUserSegment()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml",
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml",
             fromLb: "0292b28", side: SearchSide.Translated);
 
         Assert.Equal("zen://T48n2005/0292b28/en", uri);
@@ -892,9 +892,9 @@ public class CbetaUriParserTests
     [Fact]
     public void RoundTrip_PassageWithUser()
     {
-        var uri = CbetaUriParser.BuildUri("T/T48/T48n2005.xml",
+        var uri = ZenUriParser.BuildUri("T/T48/T48n2005.xml",
             fromLb: "0292b28", side: SearchSide.Translated, user: "bob");
-        var result = CbetaUriParser.TryParse(uri);
+        var result = ZenUriParser.TryParse(uri);
 
         Assert.NotNull(result);
         Assert.Equal("bob", result.User);
@@ -907,7 +907,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_ScholarWithUser()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col/pass/bob");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col/pass/bob");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
@@ -919,7 +919,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_ScholarWithoutUser_UserIsNull()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://scholar/col/pass");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col/pass");
 
         Assert.NotNull(result);
         Assert.Null(result.ScholarUser);
@@ -928,8 +928,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildScholarUri_WithUser_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildScholarUri("c1", "p1", user: "bob");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildScholarUri("c1", "p1", user: "bob");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
@@ -943,7 +943,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_TagsPathUser()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005/alice");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005/alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -956,7 +956,7 @@ public class CbetaUriParserTests
     public void TryParseDeepLink_TagsQueryUserFallback()
     {
         // Legacy ?user= query param still works
-        var result = CbetaUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice");
+        var result = ZenUriParser.TryParseDeepLink("zen://tags/T48n2005?user=alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -966,8 +966,8 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildTagsUri_WithUser_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildTagsUri("T48n2005", "alice", "tag-42");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var uri = ZenUriParser.BuildTagsUri("T48n2005", "alice", "tag-42");
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Tags, result.Kind);
@@ -981,7 +981,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildShareableUrl_WithUser_AppendsUserSegment()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml",
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml",
             fromLb: "0001a01", side: SearchSide.Translated, user: "bob");
 
         Assert.Contains("/bob", url);
@@ -992,7 +992,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_CompareLink_ReturnsCompareKind()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://compare/T48n2005/orig/me/community?from=0292a26&to=0292a29");
+        var result = ZenUriParser.TryParseDeepLink("zen://compare/T48n2005/orig/me/community?from=0292a26&to=0292a29");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Compare, result.Kind);
@@ -1009,7 +1009,7 @@ public class CbetaUriParserTests
     [Fact]
     public void TryParseDeepLink_CompareLink_TranslatedPane_UsesTranslatedSide()
     {
-        var result = CbetaUriParser.TryParseDeepLink("zen://compare/T48n2005/b/alice/bob?highlight=linji");
+        var result = ZenUriParser.TryParseDeepLink("zen://compare/T48n2005/b/alice/bob?highlight=linji");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Compare, result.Kind);
@@ -1024,14 +1024,14 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildCompareUri_RoundTrip()
     {
-        var uri = CbetaUriParser.BuildCompareUri(
+        var uri = ZenUriParser.BuildCompareUri(
             "T/T48/T48n2005.xml",
             ComparePaneTarget.TranslationA,
             "me",
             "alice",
             fromLb: "0292a26",
             toLb: "0292a29");
-        var result = CbetaUriParser.TryParseDeepLink(uri);
+        var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Compare, result.Kind);
@@ -1048,13 +1048,13 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildShareableCompareUrl_RoundTrip()
     {
-        var url = CbetaUriParser.BuildShareableCompareUrl(
+        var url = ZenUriParser.BuildShareableCompareUrl(
             "T/T48/T48n2005.xml",
             ComparePaneTarget.Original,
             "community",
             "alice",
             highlightText: "some highlighted text");
-        var result = CbetaUriParser.TryParseDeepLink(url);
+        var result = ZenUriParser.TryParseDeepLink(url);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Compare, result.Kind);
@@ -1070,7 +1070,7 @@ public class CbetaUriParserTests
     [Fact]
     public void BuildShareableUrl_WithoutUser_NoUserSegment()
     {
-        var url = CbetaUriParser.BuildShareableUrl("T/T48/T48n2005.xml",
+        var url = ZenUriParser.BuildShareableUrl("T/T48/T48n2005.xml",
             side: SearchSide.Translated);
 
         Assert.EndsWith("/en", url);

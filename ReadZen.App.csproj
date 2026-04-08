@@ -25,7 +25,7 @@
 		<DefaultItemExcludes>$(DefaultItemExcludes);runs\**\*;runs/**;ReadZen.Tests\**\*;ReadZen.Tests/**</DefaultItemExcludes>
 	</PropertyGroup>
 
-	<!-- macOS app bundle support for cbeta:// protocol handler -->
+	<!-- macOS app bundle support for zen:// protocol handler -->
 	<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX')) OR '$(RuntimeIdentifier)' == 'osx-x64' OR '$(RuntimeIdentifier)' == 'osx-arm64'">
 		<CFBundleName>Read Zen</CFBundleName>
 	</PropertyGroup>

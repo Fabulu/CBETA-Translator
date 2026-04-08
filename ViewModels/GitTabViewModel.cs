@@ -72,7 +72,7 @@ public partial class GitTabViewModel : ViewModelBase
     private string _progressText = "Ready.";
 
     [ObservableProperty]
-    private string _logText = "Welcome to Git Integration.\n\nWorkflow:\n  1) Pick a location and clone the CBETA repo\n  2) Commit your translation\n  3) Authorize with GitHub\n  4) Push and create a pull request\n\nLog output will appear here.\n";
+    private string _logText = "Welcome to Git Integration.\n\nWorkflow:\n  1) Pick a location and clone the text repos\n  2) Commit your translation\n  3) Authorize with GitHub\n  4) Push and create a pull request\n\nLog output will appear here.\n";
 
     [ObservableProperty]
     private string _commitMessage = "";
@@ -983,7 +983,7 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            var cbetaRel = NormalizeRel(_selectedRelPath);
+            var relPath = NormalizeRel(_selectedRelPath);
 
             string? absTarget = null;
             if (EnsureTranslatedForSelectedRequested != null)
@@ -991,7 +991,7 @@ public partial class GitTabViewModel : ViewModelBase
                 ProgressText = "Preparing translated XML\u2026";
                 foreach (var fn in EnsureTranslatedForSelectedRequested.GetInvocationList().Cast<Func<string, Task<string?>>>())
                 {
-                    absTarget = await fn(cbetaRel);
+                    absTarget = await fn(relPath);
                     if (absTarget == null) break;
                 }
 
@@ -1006,9 +1006,9 @@ public partial class GitTabViewModel : ViewModelBase
             // Compute repo-relative path from the actual file location
             var repoRel = absTarget != null
                 ? NormalizeRel(Path.GetRelativePath(repoDir, absTarget))
-                : NormalizeRel($"{RepoTranslatedRoot}/{cbetaRel}");
+                : NormalizeRel($"{RepoTranslatedRoot}/{relPath}");
 
-            AppendLog("[map] cbeta: " + cbetaRel);
+            AppendLog("[map] rel: " + relPath);
             AppendLog("[map] repo : " + repoRel);
 
             if (absTarget == null || !File.Exists(absTarget))
@@ -1053,9 +1053,9 @@ public partial class GitTabViewModel : ViewModelBase
 
             string msg = CommitMessage.Trim();
             if (string.IsNullOrWhiteSpace(msg))
-                msg = BuildDefaultTranslationCommitMessage(cbetaRel);
+                msg = BuildDefaultTranslationCommitMessage(relPath);
 
-            string branchName = MakeBranchName(cbetaRel);
+            string branchName = MakeBranchName(relPath);
 
             ProgressText = "Staging selected file\u2026";
             AppendLog("[step] git add -- " + repoRel);
@@ -1069,7 +1069,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             ProgressText = "Stashing other work\u2026";
             AppendLog("[step] git stash push -u -k");
-            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-autostash", prog, ct);
+            var stash = await _git.StashKeepIndexAsync(repoDir, "readzen-autostash", prog, ct);
             if (!stash.Success)
             {
                 ProgressText = "Stash failed.";
@@ -1660,7 +1660,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             ProgressText = "Stashing other work\u2026";
             AppendLog("[step] git stash push -u -k");
-            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-community-autostash", prog, ct);
+            var stash = await _git.StashKeepIndexAsync(repoDir, "readzen-community-autostash", prog, ct);
             if (!stash.Success)
             {
                 ProgressText = "Stash failed.";
@@ -2003,7 +2003,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             ProgressText = "Stashing other work\u2026";
             AppendLog("[step] git stash push -u -k");
-            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-community-autostash", prog, ct);
+            var stash = await _git.StashKeepIndexAsync(repoDir, "readzen-community-autostash", prog, ct);
             if (!stash.Success)
             {
                 ProgressText = "Stash failed.";
@@ -2266,7 +2266,7 @@ public partial class GitTabViewModel : ViewModelBase
             }
 
             ProgressText = "Stashing other work\u2026";
-            var stash = await _git.StashKeepIndexAsync(repoDir, "cbeta-scholar-autostash", prog, ct);
+            var stash = await _git.StashKeepIndexAsync(repoDir, "readzen-scholar-autostash", prog, ct);
             if (!stash.Success)
             {
                 ProgressText = "Stash failed.";
@@ -2962,10 +2962,10 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
-    private static string MakeBranchName(string cbetaRel)
+    private static string MakeBranchName(string relPath)
     {
         string ts = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-        string core = cbetaRel.Replace('\\', '/');
+        string core = relPath.Replace('\\', '/');
 
         core = Regex.Replace(core, @"[^a-zA-Z0-9/\-_.]+", "-");
         core = core.Trim('-').Trim('/');
@@ -2974,9 +2974,9 @@ public partial class GitTabViewModel : ViewModelBase
         return $"contrib/{core}/{ts}";
     }
 
-    private string BuildDefaultTranslationCommitMessage(string cbetaRel)
+    private string BuildDefaultTranslationCommitMessage(string relPath)
     {
-        string fileName = Path.GetFileName((cbetaRel ?? "").Replace('/', Path.DirectorySeparatorChar));
+        string fileName = Path.GetFileName((relPath ?? "").Replace('/', Path.DirectorySeparatorChar));
         if (string.IsNullOrWhiteSpace(fileName))
             fileName = "selected-file";
 

@@ -1,19 +1,18 @@
 # Building Read Zen as Self-Contained Executable
 
-This guide explains how to build Read Zen as a single self-contained executable that only requires the Rust DLL to run.
+This guide explains how to build Read Zen as a single self-contained executable.
 
 ## ðŸŽ¯ What Self-Contained Means
 
 - **Single executable**: All .NET dependencies are bundled into one `.exe` file
 - **No .NET runtime required**: Users don't need to install .NET 8.0
-- **Only external dependency**: Just the Rust DLL (`cbeta-gui-dll.dll`) needs to be shipped separately
+
 - **Portable**: Can be copied to any Windows machine and run
 
 ## ðŸ“‹ Prerequisites
 
 - .NET 8.0 SDK (for building only)
 - Visual Studio 2022 or VS Code (optional)
-- Rust DLL (`cbeta-gui-dll.dll`) in the output directory
 
 ## ðŸš€ Quick Build
 
@@ -55,7 +54,6 @@ bin\SelfContained\
 â”œâ”€â”€ Assets\
 â”‚   â””â”€â”€ Dict\
 â”‚       â””â”€â”€ cedict_ts.u8      # Dictionary file (embedded)
-â””â”€â”€ cbeta-gui-dll.dll         # Rust DLL (you must add this)
 ```
 
 ## âš ï¸ **IMPORTANT: Additional Data Required**
@@ -73,7 +71,6 @@ The self-contained executable **does NOT include the CBETA XML database**. You m
 ```
 [Application Directory]\
 â”œâ”€â”€ ReadZen.App.exe          # ~46MB self-contained exe
-â”œâ”€â”€ cbeta-gui-dll.dll                # ~5MB Rust DLL
 â””â”€â”€ ReadZen\                   # ~500MB+ CBETA database
     â”œâ”€â”€ xml-p5\                      # Original XML files
     â”œâ”€â”€ xml-p5t\                     # Translated XML files  
@@ -112,25 +109,19 @@ The project file (`ReadZen.App.csproj`) includes these key settings:
 ### For Distribution
 
 1. Copy the entire `bin\SelfContained\` folder
-2. Ensure `cbeta-gui-dll.dll` is in the same directory as the exe
-3. The application will run without any .NET runtime installation
+2. The application will run without any .NET runtime installation
 
 ### File Size
 
 - **Single exe**: ~46MB (compressed with all dependencies)
 - **Dictionary**: ~9.3MB (embedded)
-- **Rust DLL**: ~5MB (separate)
-- **Total**: ~60MB
+- **Total**: ~55MB
 
 ## ðŸ› Troubleshooting
 
 ### Common Issues
 
-1. **"DLL not found" error**
-   - Ensure `cbeta-gui-dll.dll` is in the same directory as the exe
-   - Check that the Rust DLL matches the target architecture (x64)
-
-2. **Build fails with warnings**
+1. **Build fails with warnings**
    - Warnings are expected (nullable reference warnings)
    - Build should still succeed despite warnings
 
