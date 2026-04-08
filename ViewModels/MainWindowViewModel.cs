@@ -488,7 +488,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         var root = _translationRoot;
         var origDir = _originalDir;
-        var tranDir = GetSearchTranslatedDir();
+        var tranDir = _translatedDir; // Use community xml-p5t/ for stable indexing, not the active user dir
 
         _ = Task.Run(async () =>
         {
