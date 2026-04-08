@@ -320,7 +320,8 @@ public sealed class OnboardingTourService
             Body = "The assistant panel shows recognized terminology, translation memory matches, and quality warnings. Use the Asst toggle to show or hide it; its highlights follow along with the panel. In Reader, the Study panel gives you a lighter reading-focused version of this workflow.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Left,
-            TargetControlName = "AssistantPane"
+            TargetControlName = "AssistantPane",
+            AutoJumpToBlock = 4
         });
 
         Steps.Add(new TourStep
@@ -360,21 +361,19 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tab",
             Title = "Your Research Workspace",
-            Body = "Switching to the Scholar tab.\n\nScholar is your research workspace for local collections and shared community collections. Collect passages, compare them, connect them, and export or cite your findings.",
+            Body = "This is the Scholar tab \u2014 your research workspace.\n\nIt\u2019s empty right now because you haven\u2019t collected any passages yet. As you read and translate, you can right-click text to add passages here. They\u2019ll appear in your collections for comparison, annotation, and export.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Bottom,
-            SwitchToTabIndex = 4,
-            TargetControlName = "ScholarView"
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 4
         });
 
         Steps.Add(new TourStep
         {
             Id = "scholar-collections",
             Title = "Collections and Workspace",
-            Body = "Use Collections to organize your own notebooks. Workspace is where you edit, compare, and annotate saved snippets. Add snippets from Reader, Translate, or Search and they will appear in the selected collection.",
+            Body = "Scholar has three sections:\n\n\u2022 Collections \u2014 your local notebooks\n\u2022 Workspace \u2014 where you edit and compare passages\n\u2022 Shared \u2014 other users\u2019 published collections\n\nYou build collections over time by adding passages from Reader, Translate, or Search.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Bottom,
-            TargetControlName = "ScholarView"
+            Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
@@ -412,8 +411,7 @@ public sealed class OnboardingTourService
             Title = "Passage Details",
             Body = "Each passage has: tags, master names, notes, doctrinal categorization (Topic, Form, Lineage), and cross-reference links to other passages.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Left,
-            TargetControlName = "TxtZhText"
+            Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
