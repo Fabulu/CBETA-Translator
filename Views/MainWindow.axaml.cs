@@ -83,6 +83,7 @@ public partial class MainWindow : Window
     private TourSpotlightOverlay? _tourSpotlight;
     private TourTooltipPanel? _tourTooltip;
     private OnboardingTourService? _tourService;
+    private bool _tourDownloadInProgress;
 
     // Stored handler for static event (must unsubscribe on close to avoid leak)
     private EventHandler? _scholarDataChangedHandler;
@@ -1798,6 +1799,10 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_tourOverlayCanvas == null || _tourSpotlight == null || _tourTooltip == null || _tourService == null)
             return;
 
+        // Don't overwrite the tooltip while a download is in progress
+        if (_tourDownloadInProgress && step.Id == "download-texts")
+            return;
+
         // Switch tab if step requires it
         if (step.SwitchToTabIndex.HasValue)
             ForceTab(step.SwitchToTabIndex.Value);
@@ -1961,15 +1966,45 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             if (_gitView != null)
             {
-                // Update tooltip to show we're working
+                _tourDownloadInProgress = true;
+
+                // Update tooltip — no action button, no skip, no back (locked during download)
                 _tourTooltip?.Update(
-                    "Downloading Texts...",
-                    "Downloading the text corpus and translation workspace. This is a large download (~500 MB) and may take several minutes.\n\nPlease wait \u2014 progress is shown in the status bar below.",
+                    "Downloading Texts\u2026",
+                    "Downloading the original text corpus and the translation workspace. This is a large download (~2.5 GB) and will take several minutes.\n\nProgress is shown in the status bar at the bottom of the window. Please wait.",
                     _tourService?.CurrentIndex ?? 2,
                     _tourService?.Steps.Count ?? 1,
-                    canGoBack: false);
+                    canGoBack: false,
+                    actionButtonLabel: null,
+                    canSkipWait: false);
 
-                await _gitView.TriggerInitialDownloadAsync();
+                // Pipe git status updates to the tooltip body so the user sees live progress
+                void OnStatus(object? s, string msg)
+                {
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        _vm.SetStatus(msg);
+                        _tourTooltip?.Update(
+                            "Downloading Texts\u2026",
+                            msg + "\n\nThis is a large download (~2.5 GB). Please wait.",
+                            _tourService?.CurrentIndex ?? 2,
+                            _tourService?.Steps.Count ?? 1,
+                            canGoBack: false,
+                            actionButtonLabel: null,
+                            canSkipWait: false);
+                    });
+                }
+
+                _gitView.Status += OnStatus;
+                try
+                {
+                    await _gitView.TriggerInitialDownloadAsync();
+                }
+                finally
+                {
+                    _gitView.Status -= OnStatus;
+                    _tourDownloadInProgress = false;
+                }
             }
         }
     }
