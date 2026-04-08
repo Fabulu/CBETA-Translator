@@ -1917,12 +1917,26 @@ private async Task LoadConfigAndAutoloadAsync()
     {
         if (step.WaitForEvent == "git-check-complete")
         {
-            // Check git availability in background, then auto-advance
+            // Check git availability in background
+            bool gitFound = false;
             await Task.Run(() =>
             {
-                try { GitBinaryLocator.ResolveGitExecutablePath(); }
+                try { GitBinaryLocator.ResolveGitExecutablePath(); gitFound = true; }
                 catch { }
             });
+
+            if (gitFound)
+            {
+                // Brief confirmation so the user sees the step resolved
+                _tourTooltip?.Update(
+                    "Git Found",
+                    "Git is available on your system. Ready to download texts.",
+                    _tourService?.CurrentIndex ?? 1,
+                    _tourService?.Steps.Count ?? 1,
+                    canGoBack: true);
+                await Task.Delay(1500);
+            }
+
             await Dispatcher.UIThread.InvokeAsync(() =>
                 _tourService?.AdvanceIfWaitingFor("git-check-complete"));
         }
