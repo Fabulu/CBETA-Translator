@@ -1104,8 +1104,8 @@ private async Task LoadConfigAndAutoloadAsync()
     private void EnsureScholarContextReady()
     {
         if (_scholarView == null) return;
-        if (!string.IsNullOrWhiteSpace(_vm.Root))
-            _scholarView.SetRoot(_vm.Root);
+        if (!string.IsNullOrWhiteSpace(_vm.TranslationRoot ?? _vm.Root))
+            _scholarView.SetRoot((_vm.TranslationRoot ?? _vm.Root)!);
         _scholarView.SetUsername(_vm.Config.GitHubUsername ?? _vm.Config.Username);
         _scholarView.SetAssistantUsername(_vm.GetActiveDictionaryUser());
         _scholarView.SetTranslationDirs(_vm.OriginalDir, _vm.GetActiveTranslatedDir());
