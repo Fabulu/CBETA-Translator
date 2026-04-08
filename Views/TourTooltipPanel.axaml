@@ -32,7 +32,8 @@
 	        Padding="20"
 	        BoxShadow="0 4 16 0 #40000000"
 	        MinWidth="300"
-	        MaxWidth="400">
+	        MaxWidth="400"
+	        MaxHeight="500">
 
 		<StackPanel Spacing="12">
 
@@ -43,12 +44,15 @@
 			           Foreground="{DynamicResource TextFg}"
 			           TextWrapping="Wrap"/>
 
-			<!-- Body -->
-			<TextBlock Name="TxtBody"
-			           FontSize="13"
-			           Foreground="{DynamicResource TextFg}"
-			           TextWrapping="Wrap"
-			           LineHeight="20"/>
+			<!-- Body (scrollable if text is long) -->
+			<ScrollViewer MaxHeight="250"
+			              VerticalScrollBarVisibility="Auto">
+				<TextBlock Name="TxtBody"
+				           FontSize="13"
+				           Foreground="{DynamicResource TextFg}"
+				           TextWrapping="Wrap"
+				           LineHeight="20"/>
+			</ScrollViewer>
 
 			<!-- Action button (e.g. "Sync Now") — visible only when step has ActionButtonLabel -->
 			<Button Name="BtnAction"
