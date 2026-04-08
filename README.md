@@ -36,25 +36,31 @@ If you use or share CBETA-based texts:
 
 ## Text Folder Layout
 
-Read Zen expects a CBETA text root with the standard source and translation structure. The important folders are:
+Read Zen uses a two-repo model. You pick one parent folder; the app clones both repos into it and discovers them automatically:
 
 ```text
-root/
-  xml-p5/                         original Chinese XML
-  xml-p5t/                        shared/canonical translated XML
-  community/
-    translations/{user}/          personal translations
-    termbases/{user}.jsonl        personal terminology share files
-    collections/{user}.jsonl      personal Scholar collections share files
-    reviews/{user}.jsonl          personal review share files
-    tags/{user}.jsonl             personal tagging share files
-    tag-vocabularies/{user}.json  personal tag vocabulary share files
+ReadZen/                              your chosen folder
+  CbetaZenTexts/                      originals repo (read-only CBETA corpus)
+    xml-p5/                           4990 original Chinese XML files
+  CbetaZenTranslations/              translations repo (your work lives here)
+    xml-p5t/                          shared/canonical translated XML
+    xml-p5t-cache/                    auto-generated untranslated copies (local, gitignored)
+    community/
+      translations/{user}/            personal translations
+      termbases/{user}.jsonl          personal terminology share files
+      collections/{user}.jsonl        personal Scholar collections share files
+      reviews/{user}.jsonl            personal review share files
+      tags/{user}.jsonl               personal tagging share files
+      tag-vocabularies/{user}.json    personal tag vocabulary share files
+    termbase.json                     shared termbase
+    translation-memory.approved.jsonl approved TM entries
+    translation-review.jsonl          review ledger
+    zen_texts.json                    zen text list
 ```
 
-In normal use:
-- your writable personal translation source lives in `community/translations/{user}/...`
-- community/canonical translations live in `xml-p5t/...`
-- sync treats personal share files differently from shared canonical translation updates
+The split keeps the original CBETA corpus untouched in one repo and all translation work in another. Untranslated files are generated locally on demand and never distributed. Commits and PRs target the translations repo only.
+
+Existing users on the old single-repo layout are migrated automatically on first launch.
 
 ## Reader
 
@@ -65,9 +71,14 @@ What it does:
 - click text to highlight matching text on the other side
 - switch translation source between community, your own work, and other users' work
 - open the full Zen Dictionary with `Dict`
-- use the `Study` panel for dictionary hits, recognized terminology, and translation memory support
 - add and read community notes inline
 - create deep links or add passages to Scholar from right-click menus
+
+The Reader has a built-in **Study Assistant** panel that shows:
+- hover dictionary lookups (CC-CEDICT) on any Chinese text
+- recognized termbase entries highlighted in the text
+- translation memory matches from approved and reference TM
+- context from the active translation source
 
 Reader also contains the coding/tagging workflow:
 - `F2` enters Coding Mode
@@ -91,10 +102,15 @@ Translate supports:
 - `Body` and `Notes` translation sections
 - `Copy for AI` to export numbered blocks with strict instructions
 - `Paste from AI` to reinsert numbered results safely
-- assistant support with termbase hits, translation memory hits, and warnings
-- per-block review controls
+- per-block review controls (approve / needs-work with `Alt+A` / `Alt+N`)
 - a `Fresh Start` option to reset the current writable translation back to untranslated state with confirmation
 - personal-vs-other-user translation source switching
+
+The Translate tab has a built-in **Translation Assistant** that shows:
+- termbase hits highlighted in the Chinese source text
+- translation memory matches (approved and reference) with shared-phrase highlighting
+- QA warnings (same-as-source, Chinese in English, too-short)
+- auto-fill from 100% TM matches
 
 The editor is designed to preserve XML structure on save and reject unsafe projection states rather than silently mangling them.
 
@@ -134,6 +150,8 @@ What you can do there:
 - attach notes, tags, doctrinal/topic metadata, and master metadata
 - export in readable and research-friendly formats
 
+Scholar has its own **Passage Assistant** that provides termbase hits and translation memory context for any selected passage, using the same TM and termbase data as the other tabs.
+
 Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
 
 ## Zen Dictionary And Zen Masters
@@ -157,12 +175,13 @@ Both dictionary terms and masters support deep links.
 
 ## Community Sync
 
-The Community tab handles downloading texts, updating your local clone, and syncing shareable work through GitHub.
+The Community tab handles downloading texts, updating your local repos, and syncing shareable work through GitHub.
 
 Important model:
-- first-run text download is not the same thing as GitHub sharing
+- first-run download clones both the originals repo and the translations repo
 - personal share files can auto-merge through the community data flow
 - canonical/shared translation updates are handled separately from personal translation storage
+- commits and pull requests target the translations repo only
 - recovery actions exist, but the normal `Sync` path is the intended workflow
 
 Read Zen tries to protect local work during updates, but this is still a Git-backed workflow. If something feels destructive, stop and inspect before proceeding.
@@ -222,23 +241,18 @@ If you just want to use Read Zen, use a release build.
 
 ### Windows
 ```bash
-dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+dotnet publish ReadZen.App.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
 ### Linux
 ```bash
-./eng/build-linux.sh Release true linux-x64
+dotnet publish ReadZen.App.csproj -c Release -r linux-x64 --self-contained true
 ./run-readzen-selfcontained.sh linux-x64
-```
-
-### macOS Intel
-```bash
-dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true
 ```
 
 ### macOS Apple Silicon
 ```bash
-dotnet publish -c Release -r osx-arm64 --self-contained true /p:PublishSingleFile=true
+dotnet publish ReadZen.App.csproj -c Release -r osx-arm64 --self-contained true /p:PublishSingleFile=true
 ```
 
 ### Dictionary Asset
