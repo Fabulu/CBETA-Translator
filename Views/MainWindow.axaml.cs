@@ -1934,7 +1934,7 @@ private async Task LoadConfigAndAutoloadAsync()
                     _tourService?.CurrentIndex ?? 1,
                     _tourService?.Steps.Count ?? 1,
                     canGoBack: true);
-                await Task.Delay(1500);
+                await Task.Delay(3000);
             }
 
             await Dispatcher.UIThread.InvokeAsync(() =>
