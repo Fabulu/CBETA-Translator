@@ -134,7 +134,8 @@ public sealed class OnboardingTourService
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 0,
-            TargetControlName = "ReadableView"
+            TargetControlName = "ReadableView",
+            AutoOpenRelPath = "T/T48/T48n2005.xml"
         });
 
         Steps.Add(new TourStep
