@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
@@ -642,26 +643,33 @@ public class MainWindowViewModelTests
         var vm = MakeVm();
         var (root, _, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
-        string? rootContextTranslatedDir = null;
-        string? searchContextTranslatedDir = null;
+        IReadOnlyList<string>? rootContextTranslatedDirs = null;
+        IReadOnlyList<string>? searchContextTranslatedDirs = null;
 
         try
         {
-            vm.SetSearchRootContext = (_, _, translatedDir) => rootContextTranslatedDir = translatedDir;
-            vm.SetSearchContext = (_, _, translatedDir, _) => searchContextTranslatedDir = translatedDir;
+            vm.SetSearchRootContext = (_, _, translatedDirs) => rootContextTranslatedDirs = translatedDirs;
+            vm.SetSearchContext = (_, _, translatedDirs, _) => searchContextTranslatedDirs = translatedDirs;
             vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
             await vm.LoadRootAsync(root, saveToConfig: false);
 
-            Assert.Equal(Path.Combine(translations, "community", "translations", "octocat"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(translations, "community", "translations", "octocat"), searchContextTranslatedDir);
+            // Multi-dir: first element is the active translated dir, followed by community user dirs
+            Assert.NotNull(rootContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "community", "translations", "octocat"), rootContextTranslatedDirs!);
+            Assert.NotNull(searchContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "community", "translations", "octocat"), searchContextTranslatedDirs!);
 
             await vm.SwitchTranslationSourceAsync(1);
-            Assert.Equal(Path.Combine(translations, "xml-p5t"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(translations, "xml-p5t"), searchContextTranslatedDir);
+            Assert.NotNull(rootContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "xml-p5t"), rootContextTranslatedDirs!);
+            Assert.NotNull(searchContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "xml-p5t"), searchContextTranslatedDirs!);
 
             await vm.SwitchTranslationSourceAsync(2);
-            Assert.Equal(Path.Combine(translations, "community", "translations", "otheruser"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(translations, "community", "translations", "otheruser"), searchContextTranslatedDir);
+            Assert.NotNull(rootContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "community", "translations", "otheruser"), rootContextTranslatedDirs!);
+            Assert.NotNull(searchContextTranslatedDirs);
+            Assert.Contains(Path.Combine(translations, "community", "translations", "otheruser"), searchContextTranslatedDirs!);
         }
         finally
         {

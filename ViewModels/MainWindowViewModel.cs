@@ -189,9 +189,9 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<Func<string, string>?>? SetAssistantTitleResolver { get; set; }
 
     // SearchTabView bridges
-    public Action<string, string, string>? SetSearchRootContext { get; set; }
+    public Action<string, string, IReadOnlyList<string>>? SetSearchRootContext { get; set; }
     public Action<Func<string, bool>>? SetSearchZenResolver { get; set; }
-    public Action<string, string, string, Func<string, (string, string, TranslationStatus?)>>? SetSearchContext { get; set; }
+    public Action<string, string, IReadOnlyList<string>, Func<string, (string, string, TranslationStatus?)>>? SetSearchContext { get; set; }
     public Action? ClearSearch { get; set; }
 
     // GitTabView bridges
@@ -488,7 +488,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
         var root = _translationRoot;
         var origDir = _originalDir;
-        var tranDir = _translatedDir; // Use community xml-p5t/ for stable indexing, not the active user dir
+        var tranDir = _translatedDir; // Primary community xml-p5t/ — also used for TM reference build
+
+        // Collect ALL translation dirs for multi-dir indexing
+        var tranDirs = BuildAllTranslatedDirs();
 
         _ = Task.Run(async () =>
         {
@@ -508,7 +511,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 await Task.Delay(3000, ct);
 
                 // Search index
-                bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDir);
+                bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDirs);
                 if (searchStale && !ct.IsCancellationRequested)
                 {
                     Dispatcher.UIThread.Post(() => SetStatus("Auto-updating search index..."));
@@ -516,7 +519,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     var progress = new Progress<(int done, int total, string phase)>(t =>
                         Dispatcher.UIThread.Post(() => SetStatus($"Indexing: {t.phase} ({t.done}/{t.total})")));
 
-                    await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDir,
+                    await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDirs,
                         forceRebuild: false, progress, ct);
 
                     if (!ct.IsCancellationRequested)
@@ -688,7 +691,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         void WireSearchTab()
         {
-            SetSearchContext?.Invoke((_translationRoot ?? _root)!, _originalDir!, GetSearchTranslatedDir(),
+            SetSearchContext?.Invoke((_translationRoot ?? _root)!, _originalDir!, BuildAllTranslatedDirs(),
                 relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
@@ -2991,15 +2994,35 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
 
     private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
 
+    /// <summary>
+    /// Builds a list of all translation directories: community xml-p5t first,
+    /// then each user directory under community/translations/.
+    /// </summary>
+    private IReadOnlyList<string> BuildAllTranslatedDirs()
+    {
+        var dirs = new List<string>();
+        if (_translatedDir != null) dirs.Add(_translatedDir); // community xml-p5t first
+        if (_translationRoot != null)
+        {
+            var communityTransDir = Path.Combine(_translationRoot, "community", "translations");
+            if (Directory.Exists(communityTransDir))
+            {
+                foreach (var userDir in Directory.EnumerateDirectories(communityTransDir))
+                    dirs.Add(userDir);
+            }
+        }
+        return dirs;
+    }
+
     private void PushSearchContext()
     {
         if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_originalDir) || string.IsNullOrWhiteSpace(_translatedDir))
             return;
 
-        var searchTranslatedDir = GetSearchTranslatedDir();
+        var allTranslatedDirs = BuildAllTranslatedDirs();
         var indexRoot = _translationRoot ?? _root;
-        SetSearchRootContext?.Invoke(indexRoot, _originalDir, searchTranslatedDir);
-        SetSearchContext?.Invoke(indexRoot, _originalDir, searchTranslatedDir,
+        SetSearchRootContext?.Invoke(indexRoot, _originalDir, allTranslatedDirs);
+        SetSearchContext?.Invoke(indexRoot, _originalDir, allTranslatedDirs,
             relKey =>
             {
                 _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);

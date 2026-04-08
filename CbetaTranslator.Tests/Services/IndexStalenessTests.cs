@@ -39,7 +39,7 @@ public class IndexStalenessTests : IDisposable
         // No manifest file exists at all
         var svc = new SearchIndexService();
 
-        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, _tranDir);
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         Assert.True(stale);
     }
@@ -55,33 +55,37 @@ public class IndexStalenessTests : IDisposable
         File.SetLastWriteTimeUtc(xmlFile, DateTime.UtcNow.AddHours(-2));
 
         // Build the index (creates manifest)
-        await svc.BuildAsync(_tempRoot, _origDir, _tranDir);
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         // Manifest should now be newer than the XML file
-        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, _tranDir);
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         Assert.False(stale);
     }
 
     [Fact]
-    public async Task IsStaleAsync_ReturnsTrueWhenOneFileNewerThanManifest()
+    public async Task IsStaleAsync_ReturnsTrueWhenOneTranslatedFileNewerThanManifest()
     {
         var svc = new SearchIndexService();
 
-        // Create initial XML file
-        var xmlFile = Path.Combine(_origDir, "test.xml");
-        File.WriteAllText(xmlFile, "<x/>");
-        File.SetLastWriteTimeUtc(xmlFile, DateTime.UtcNow.AddHours(-2));
+        // Create initial XML files
+        var origFile = Path.Combine(_origDir, "test.xml");
+        File.WriteAllText(origFile, "<x/>");
+        File.SetLastWriteTimeUtc(origFile, DateTime.UtcNow.AddHours(-2));
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
 
         // Build the index
-        await svc.BuildAsync(_tempRoot, _origDir, _tranDir);
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
 
-        // Now touch the XML file to be newer than the manifest
+        // Now touch the translated XML file to be newer than the manifest
         var manifestPath = svc.GetManifestPath(_tempRoot);
         var manifestTime = File.GetLastWriteTimeUtc(manifestPath);
-        File.SetLastWriteTimeUtc(xmlFile, manifestTime.AddSeconds(5));
+        File.SetLastWriteTimeUtc(tranFile, manifestTime.AddSeconds(5));
 
-        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, _tranDir);
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         Assert.True(stale);
     }

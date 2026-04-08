@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using CbetaTranslator.App.Models;
@@ -24,14 +25,14 @@ public interface ISearchIndexBuilder
     Task BuildAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 
     Task BuildOrUpdateAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);

@@ -449,8 +449,8 @@ public partial class SearchTabView : UserControl
         return file?.TryGetLocalPath();
     }
 
-    public void SetRootContext(string root, string originalDir, string translatedDir)
-        => _vm.SetRootContext(root, originalDir, translatedDir);
+    public void SetRootContext(string root, string originalDir, IReadOnlyList<string> translatedDirs)
+        => _vm.SetRootContext(root, originalDir, translatedDirs);
 
     public void SetFileIndex(List<FileNavItem> items)
         => _vm.SetFileIndex(items);
@@ -458,9 +458,9 @@ public partial class SearchTabView : UserControl
     public void SetContext(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta)
-        => _vm.SetContext(root, originalDir, translatedDir, fileMeta);
+        => _vm.SetContext(root, originalDir, translatedDirs, fileMeta);
 
     public void SetZenResolver(Func<string, bool> isZenResolver)
         => _vm.SetZenResolver(isZenResolver);

@@ -37,7 +37,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
     private string? _root;
     private string? _originalDir;
-    private string? _translatedDir;
+    private IReadOnlyList<string>? _translatedDirs;
     private bool _forceRebuildNextClick;
 
     private List<FileNavItem> _fileIndex = new();
@@ -236,11 +236,11 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // ----- Public wiring methods (called by MainWindow via code-behind) -----
 
-    public void SetRootContext(string root, string originalDir, string translatedDir)
+    public void SetRootContext(string root, string originalDir, IReadOnlyList<string> translatedDirs)
     {
         _root = root;
         _originalDir = originalDir;
-        _translatedDir = translatedDir;
+        _translatedDirs = translatedDirs;
     }
 
     public void SetFileIndex(IReadOnlyList<FileNavItem> items)
@@ -251,12 +251,12 @@ public partial class SearchTabViewModel : ViewModelBase
     public void SetContext(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta)
     {
         _root = root;
         _originalDir = originalDir;
-        _translatedDir = translatedDir;
+        _translatedDirs = translatedDirs;
         _meta = fileMeta;
 
         ProgressText = "Ready.";
@@ -430,7 +430,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         _root = null;
         _originalDir = null;
-        _translatedDir = null;
+        _translatedDirs = null;
         _fileIndex.Clear();
         _meta = null;
         _isZen = null;
@@ -505,7 +505,7 @@ public partial class SearchTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task BuildIndexAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null)
+        if (_root == null || _originalDir == null || _translatedDirs == null)
         {
             StatusChanged?.Invoke(this, "Search tab has no root context yet.");
             return;
@@ -531,7 +531,7 @@ public partial class SearchTabViewModel : ViewModelBase
                 ProgressText = $"Index {Math.Clamp(percent, 0, 100)}% ? {p.phase}";
             });
 
-            await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDir, forceRebuild: force, progress: prog, ct: ct);
+            await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force, progress: prog, ct: ct);
 
             ProgressText = force ? "Index rebuilt." : "Index updated.";
             SummaryText = "Index ready. Search will be fast.";
@@ -776,7 +776,7 @@ public partial class SearchTabViewModel : ViewModelBase
         SearchIndexService.CooccurrencePanelResult result;
         if (SelectedAnalyticsScopeIndex == 1 &&
             !string.IsNullOrWhiteSpace(_originalDir) &&
-            !string.IsNullOrWhiteSpace(_translatedDir) &&
+            _translatedDirs is { Count: > 0 } &&
             _fileIndex.Count > 0)
         {
             var corpusProgress = new Progress<(int done, int total)>(p =>
@@ -798,7 +798,7 @@ public partial class SearchTabViewModel : ViewModelBase
             result = await Task.Run(() =>
                 SearchIndexService.ComputeCorpusCooccurrences(
                     _originalDir!,
-                    _translatedDir!,
+                    _translatedDirs[0],
                     _fileIndex,
                     q,
                     SearchOriginal,
@@ -881,7 +881,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
     private async Task StartSearchAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null || _meta == null)
+        if (_root == null || _originalDir == null || _translatedDirs == null || _meta == null)
         {
             StatusChanged?.Invoke(this, "Search tab has no root context yet.");
             return;
@@ -941,7 +941,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         string root = _root;
         string originalDir = _originalDir;
-        string translatedDir = _translatedDir;
+        string translatedDir = _translatedDirs is { Count: > 0 } ? _translatedDirs[0] : "";
         var metaFn = _meta;
         int contextWidth = GetContextWidth();
 

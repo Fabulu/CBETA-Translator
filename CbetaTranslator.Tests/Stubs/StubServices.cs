@@ -134,12 +134,12 @@ public class StubSearchIndexService : ISearchIndexService
     public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
     public Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root) => Task.FromResult<SearchCjkBigramManifest?>(null);
 
-    public Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir) => Task.FromResult(false);
+    public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
 
-    public Task BuildAsync(string root, string originalDir, string translatedDir, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
+    public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
 
-    public Task BuildOrUpdateAsync(string root, string originalDir, string translatedDir, bool forceRebuild, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
+    public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
 
     public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(string root, string originalDir, string translatedDir, SearchIndexManifest manifest, string query, bool includeOriginal, bool includeTranslated, Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta, int contextWidth, IProgress<SearchIndexService.SearchProgress>? progress = null, Func<string, bool>? relPathFilter = null, [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)

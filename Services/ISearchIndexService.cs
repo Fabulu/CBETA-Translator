@@ -26,19 +26,19 @@ public interface ISearchIndexService : IDisposable
     Task BuildAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 
     Task BuildOrUpdateAsync(
         string root,
         string originalDir,
-        string translatedDir,
+        IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 
-    Task<bool> IsStaleAsync(string root, string originalDir, string translatedDir);
+    Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs);
 
     IAsyncEnumerable<SearchResultGroup> SearchAllAsync(
         string root,

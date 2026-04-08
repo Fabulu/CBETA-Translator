@@ -66,11 +66,14 @@ public class SearchTabViewInteractionTests
     {
         var view = CreateViewShell(out var vm);
 
-        view.SetContext("/root", "/orig", "/tran", rel => (rel, rel, TranslationStatus.Green));
+        view.SetContext("/root", "/orig", new[] { "/tran" }, rel => (rel, rel, TranslationStatus.Green));
 
         Assert.Equal("/root", GetField<string?>(typeof(SearchTabViewModel), vm, "_root"));
         Assert.Equal("/orig", GetField<string?>(typeof(SearchTabViewModel), vm, "_originalDir"));
-        Assert.Equal("/tran", GetField<string?>(typeof(SearchTabViewModel), vm, "_translatedDir"));
+        var translatedDirs = GetField<IReadOnlyList<string>?>(typeof(SearchTabViewModel), vm, "_translatedDirs");
+        Assert.NotNull(translatedDirs);
+        Assert.Single(translatedDirs!);
+        Assert.Equal("/tran", translatedDirs![0]);
     }
 
     [Fact]

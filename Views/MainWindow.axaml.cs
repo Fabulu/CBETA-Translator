@@ -521,9 +521,9 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SignalCoreLoadComplete = () => _windowReady.TrySetResult();
 
         // SearchTabView bridges
-        _vm.SetSearchRootContext = (root, orig, tran) => _searchView?.SetRootContext(root, orig, tran);
+        _vm.SetSearchRootContext = (root, orig, tranDirs) => _searchView?.SetRootContext(root, orig, tranDirs);
         _vm.SetSearchZenResolver = resolver => _searchView?.SetZenResolver(resolver);
-        _vm.SetSearchContext = (root, orig, tran, meta) => _searchView?.SetContext(root, orig, tran, fileMeta: meta);
+        _vm.SetSearchContext = (root, orig, tranDirs, meta) => _searchView?.SetContext(root, orig, tranDirs, fileMeta: meta);
         _vm.ClearSearch = () => _searchView?.Clear();
 
         // GitTabView bridges
