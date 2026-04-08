@@ -1411,7 +1411,11 @@ public partial class ScholarTabViewModel : ViewModelBase
                 return;
 
             if (string.IsNullOrWhiteSpace(_root) && !string.IsNullOrWhiteSpace(cfg.TextRootPath))
-                _root = cfg.TextRootPath.Trim();
+            {
+                // Scholar needs the translation repo root (community/ lives there), not the parent folder.
+                var transRoot = Infrastructure.AppPaths.GetTranslationRepoRoot(cfg.TextRootPath.Trim());
+                _root = transRoot ?? cfg.TextRootPath.Trim();
+            }
 
             ApplyIdentity(
                 string.IsNullOrWhiteSpace(_preferredUsername) ? cfg.Username : _preferredUsername,

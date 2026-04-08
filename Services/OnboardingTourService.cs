@@ -94,7 +94,7 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Choose where to store the Read Zen text collection, then download it. This is the first-run text setup only, not Community sync or GitHub sharing.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
+            Body = "Choose where to store the Read Zen data, then download it. This downloads both the original text corpus and the translation workspace.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync",

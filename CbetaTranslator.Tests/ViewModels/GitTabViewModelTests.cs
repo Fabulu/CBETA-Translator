@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Services;
 using CbetaTranslator.App.ViewModels;
 using CbetaTranslator.Tests.Stubs;
@@ -367,16 +368,16 @@ public class GitTabViewModelTests
 
 
     [Fact]
-    public void RepoConstants_TargetCbetaZenTexts()
+    public void RepoConstants_TargetSplitRepos()
     {
         var type = typeof(GitTabViewModel);
-        var repoUrl = (string?)type.GetField("RepoUrl", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
-        var repoFolder = (string?)type.GetField("RepoFolderName", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+        var originalsUrl = (string?)type.GetField("OriginalsRepoUrl", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+        var translationUrl = (string?)type.GetField("TranslationRepoUrl", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
         var upstreamRepo = (string?)type.GetField("UpstreamRepo", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
 
-        Assert.Equal("https://github.com/Fabulu/CbetaZenTexts.git", repoUrl);
-        Assert.Equal("CbetaZenTexts", repoFolder);
-        Assert.Equal("CbetaZenTexts", upstreamRepo);
+        Assert.Equal("https://github.com/Fabulu/CbetaZenTexts.git", originalsUrl);
+        Assert.Equal("https://github.com/Fabulu/CbetaZenTranslations.git", translationUrl);
+        Assert.Equal("CbetaZenTranslations", upstreamRepo);
     }
 
 
@@ -462,16 +463,19 @@ public class GitTabViewModelTests
         vm.LoadPersistedAuth("ghp_test", "Fabulu");
         vm.SetUsername("dota2nub");
 
-        var repoDir = Path.Combine(Path.GetTempPath(), "cbeta-share-selected-" + Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(repoDir, ".git"));
-        vm.SetCurrentRepoRoot(repoDir);
+        var parentDir = Path.Combine(Path.GetTempPath(), "cbeta-share-selected-" + Guid.NewGuid().ToString("N"));
+        var transRepoDir = Path.Combine(parentDir, AppPaths.DefaultTranslationRepoFolderName);
+        Directory.CreateDirectory(Path.Combine(transRepoDir, ".git"));
+        Directory.CreateDirectory(Path.Combine(transRepoDir, "xml-p5t"));
+        AppPaths.InvalidateDiscoveryCache(parentDir);
+        vm.SetCurrentRepoRoot(parentDir);
         vm.SetSelectedRelPath("T/T48/T48n2005.xml");
 
         var ensureCalled = false;
         vm.EnsurePersonalTranslatedForSelectedRequested += relPath =>
         {
             ensureCalled = true;
-            var full = Path.Combine(repoDir, "community", "translations", "Fabulu", relPath.Replace('/', Path.DirectorySeparatorChar));
+            var full = Path.Combine(transRepoDir, "community", "translations", "Fabulu", relPath.Replace('/', Path.DirectorySeparatorChar));
             var dir = Path.GetDirectoryName(full);
             if (!string.IsNullOrWhiteSpace(dir))
                 Directory.CreateDirectory(dir);
@@ -491,7 +495,8 @@ public class GitTabViewModelTests
         }
         finally
         {
-            Directory.Delete(repoDir, true);
+            AppPaths.InvalidateDiscoveryCache(parentDir);
+            Directory.Delete(parentDir, true);
         }
     }
 

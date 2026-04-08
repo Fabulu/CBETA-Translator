@@ -1,6 +1,8 @@
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
+using CbetaTranslator.App.Infrastructure;
 using CbetaTranslator.App.Models;
+using CbetaTranslator.App.Services;
 using CbetaTranslator.App.ViewModels;
 using CbetaTranslator.Tests.Stubs;
 using Xunit;
@@ -9,7 +11,7 @@ namespace CbetaTranslator.Tests.ViewModels;
 
 public class MainWindowViewModelTests
 {
-    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null)
+    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null)
     {
         return new MainWindowViewModel(
             new StubFileService(),
@@ -17,12 +19,44 @@ public class MainWindowViewModelTests
             new StubIndexCacheService(),
             new StubRenderedDocumentCacheService(),
             new StubZenTextsService(),
-            new StubIndexedTranslationService(),
+            indexedTranslationService ?? new StubIndexedTranslationService(),
             new StubTranslationAssistantService(),
             new StubTranslationAssistantBuildService(),
             new StubTranslationReviewService(),
             new StubSearchIndexService(),
             documentTagService ?? new StubDocumentTagService());
+    }
+
+    /// <summary>
+    /// Creates the two-repo directory layout expected by AppPaths.DiscoverRepoPaths.
+    /// Returns (root, originalsSubfolder, translationsSubfolder).
+    /// </summary>
+    private static (string Root, string Originals, string Translations) CreateTwoRepoLayout(
+        bool createXmlP5t = true,
+        IEnumerable<string>? communityUsers = null)
+    {
+        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var originals = Path.Combine(root, "originals");
+        var translations = Path.Combine(root, "translations");
+        Directory.CreateDirectory(Path.Combine(originals, "xml-p5"));
+        if (createXmlP5t)
+            Directory.CreateDirectory(Path.Combine(translations, "xml-p5t"));
+        else
+            Directory.CreateDirectory(translations); // needs to exist even if empty
+        if (communityUsers != null)
+        {
+            foreach (var user in communityUsers)
+                Directory.CreateDirectory(Path.Combine(translations, "community", "translations", user));
+        }
+        AppPaths.InvalidateDiscoveryCache();
+        return (root, originals, translations);
+    }
+
+    private static void CleanupTwoRepoLayout(string root)
+    {
+        AppPaths.InvalidateDiscoveryCache();
+        if (Directory.Exists(root))
+            Directory.Delete(root, recursive: true);
     }
 
     [Fact]
@@ -47,6 +81,178 @@ public class MainWindowViewModelTests
         vm.SetStatus("Loading...");
 
         Assert.Equal("Loading...", vm.StatusText);
+    }
+
+
+    [Fact]
+    public async Task FindTranslatedPath_FallsBackToCommunityUserWhenSelectedSourceIsEffectivelyUntranslated()
+    {
+        var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
+        var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
+        var relPath = "T01/test.xml";
+        var originalDir = Path.Combine(originals, "xml-p5", "T01");
+        var communityDir = Path.Combine(translations, "xml-p5t", "T01");
+        var myDir = Path.Combine(translations, "community", "translations", "octocat", "T01");
+        var otherDir = Path.Combine(translations, "community", "translations", "otheruser", "T01");
+        Directory.CreateDirectory(originalDir);
+        Directory.CreateDirectory(communityDir);
+        Directory.CreateDirectory(myDir);
+        Directory.CreateDirectory(otherDir);
+
+        const string originalXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">無門關</p></body></text></TEI>";
+        const string translatedXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">Translated passage</p></body></text></TEI>";
+
+        await File.WriteAllTextAsync(Path.Combine(originalDir, "test.xml"), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(myDir, "test.xml"), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(otherDir, "test.xml"), translatedXml);
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            var resolved = InvokeFindTranslatedPath(vm, relPath);
+
+            Assert.Equal(Path.GetFullPath(Path.Combine(otherDir, "test.xml")), Path.GetFullPath(resolved!));
+        }
+        finally
+        {
+            CleanupTwoRepoLayout(root);
+        }
+    }
+
+    [Fact]
+    public async Task FindTranslatedPath_PicksNewestMeaningfulCommunityUserFallback()
+    {
+        var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
+        var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "olderuser", "neweruser" });
+        var relPath = "T01/test.xml";
+        var originalDir = Path.Combine(originals, "xml-p5", "T01");
+        var communityDir = Path.Combine(translations, "xml-p5t", "T01");
+        var olderDir = Path.Combine(translations, "community", "translations", "olderuser", "T01");
+        var newerDir = Path.Combine(translations, "community", "translations", "neweruser", "T01");
+        Directory.CreateDirectory(originalDir);
+        Directory.CreateDirectory(communityDir);
+        Directory.CreateDirectory(olderDir);
+        Directory.CreateDirectory(newerDir);
+
+        const string originalXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">無門關</p></body></text></TEI>";
+        const string olderXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">Older translation</p></body></text></TEI>";
+        const string newerXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">Newer translation</p></body></text></TEI>";
+
+        var originalPath = Path.Combine(originalDir, "test.xml");
+        var communityPath = Path.Combine(communityDir, "test.xml");
+        var olderPath = Path.Combine(olderDir, "test.xml");
+        var newerPath = Path.Combine(newerDir, "test.xml");
+
+        await File.WriteAllTextAsync(originalPath, originalXml);
+        await File.WriteAllTextAsync(communityPath, originalXml);
+        await File.WriteAllTextAsync(olderPath, olderXml);
+        await File.WriteAllTextAsync(newerPath, newerXml);
+        File.SetLastWriteTimeUtc(olderPath, new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+        File.SetLastWriteTimeUtc(newerPath, new DateTime(2025, 1, 2, 0, 0, 0, DateTimeKind.Utc));
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+            await vm.SwitchTranslationSourceAsync(1);
+
+            var resolved = InvokeFindTranslatedPath(vm, relPath);
+
+            Assert.Equal(Path.GetFullPath(newerPath), Path.GetFullPath(resolved!));
+        }
+        finally
+        {
+            CleanupTwoRepoLayout(root);
+        }
+    }
+
+    [Fact]
+    public async Task ResolveBestTranslationSourceIndex_DefaultsToCommunityWhenCommunityTiesForBestTranslation()
+    {
+        var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
+        var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat" });
+        var relPath = "T01/test.xml";
+        var originalDir = Path.Combine(originals, "xml-p5", "T01");
+        var communityDir = Path.Combine(translations, "xml-p5t", "T01");
+        var myDir = Path.Combine(translations, "community", "translations", "octocat", "T01");
+        Directory.CreateDirectory(originalDir);
+        Directory.CreateDirectory(communityDir);
+        Directory.CreateDirectory(myDir);
+
+        const string originalXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">無門關</p></body></text></TEI>";
+        const string translatedXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">Translated passage</p></body></text></TEI>";
+
+        await File.WriteAllTextAsync(Path.Combine(originalDir, "test.xml"), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(communityDir, "test.xml"), translatedXml);
+        await File.WriteAllTextAsync(Path.Combine(myDir, "test.xml"), translatedXml);
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+            Assert.Equal(1, InvokeResolveBestTranslationSourceIndex(vm, relPath));
+        }
+        finally
+        {
+            CleanupTwoRepoLayout(root);
+        }
+    }
+
+    [Fact]
+    public async Task RefreshAllCachedStatusesAsync_UsesBestAvailableTranslationStatusAcrossSources()
+    {
+        var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
+        var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "otheruser" });
+        var relPath = "T01/test.xml";
+        var originalDir = Path.Combine(originals, "xml-p5", "T01");
+        var communityDir = Path.Combine(translations, "xml-p5t", "T01");
+        var otherDir = Path.Combine(translations, "community", "translations", "otheruser", "T01");
+        Directory.CreateDirectory(originalDir);
+        Directory.CreateDirectory(communityDir);
+        Directory.CreateDirectory(otherDir);
+
+        const string originalXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">無門關</p></body></text></TEI>";
+        const string partialXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">無門關</p><p xml:id=\"p2\">Translated passage</p></body></text></TEI>";
+        const string fullXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p xml:id=\"p1\">Translated passage</p></body></text></TEI>";
+
+        await File.WriteAllTextAsync(Path.Combine(originalDir, "test.xml"), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(communityDir, "test.xml"), partialXml);
+        await File.WriteAllTextAsync(Path.Combine(otherDir, "test.xml"), fullXml);
+
+        try
+        {
+            vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
+            await vm.LoadRootAsync(root, saveToConfig: false);
+
+            var item = new FileNavItem { RelPath = relPath, FileName = "test.xml", DisplayShort = "test", Tooltip = relPath, Status = TranslationStatus.Red };
+            typeof(MainWindowViewModel)
+                .GetField("_allItems", BindingFlags.Instance | BindingFlags.NonPublic)!
+                .SetValue(vm, new List<FileNavItem> { item });
+            vm.AllItemsByRel[MainWindowViewModel.NormalizeRel(relPath)] = item;
+
+            await vm.RefreshAllCachedStatusesAsync();
+
+            Assert.Equal(TranslationStatus.Green, item.Status);
+        }
+        finally
+        {
+            CleanupTwoRepoLayout(root);
+        }
+    }
+    private static string? InvokeFindTranslatedPath(MainWindowViewModel vm, string relPath)
+    {
+        return (string?)typeof(MainWindowViewModel)
+            .GetMethod("FindTranslatedPath", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .Invoke(vm, new object[] { relPath });
+    }
+
+    private static int InvokeResolveBestTranslationSourceIndex(MainWindowViewModel vm, string relPath)
+    {
+        return (int)typeof(MainWindowViewModel)
+            .GetMethod("ResolveBestTranslationSourceIndex", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .Invoke(vm, new object[] { relPath })!;
     }
 
     [Fact]
@@ -243,10 +449,9 @@ public class MainWindowViewModelTests
     public async Task HandleGitHubAuthCompletedAsync_MigratesLegacyUserTranslationDirToGitHubFolder()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        var (root, _, translations) = CreateTwoRepoLayout();
 
-        var legacyDir = Path.Combine(root, "community", "translations", "Alice");
+        var legacyDir = Path.Combine(translations, "community", "translations", "Alice");
         Directory.CreateDirectory(Path.Combine(legacyDir, "T01"));
         var legacyFile = Path.Combine(legacyDir, "T01", "test.xml");
         await File.WriteAllTextAsync(legacyFile, "<xml>legacy</xml>");
@@ -258,15 +463,14 @@ public class MainWindowViewModelTests
 
             await vm.HandleGitHubAuthCompletedAsync("ghp_test", "octocat");
 
-            var githubFile = Path.Combine(root, "community", "translations", "octocat", "T01", "test.xml");
+            var githubFile = Path.Combine(translations, "community", "translations", "octocat", "T01", "test.xml");
             Assert.True(File.Exists(githubFile));
             Assert.False(Directory.Exists(legacyDir));
             Assert.Equal("octocat", vm.GetActiveTranslationUser());
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -274,11 +478,7 @@ public class MainWindowViewModelTests
     public async Task RefreshTranslationSources_UsesGitHubFolderAsCurrentUserIdentity()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "alice"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "alice", "otheruser" });
 
         try
         {
@@ -293,8 +493,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -302,10 +501,7 @@ public class MainWindowViewModelTests
     public async Task RefreshTranslationSources_PushesReaderSourceOptionsAndIndex()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         List<string>? readerOptions = null;
         int? readerIndex = null;
@@ -323,8 +519,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -332,11 +527,10 @@ public class MainWindowViewModelTests
     public async Task HandleGitHubAuthCompletedAsync_ConflictingLegacyFolderIsDeletedAndGitHubFolderWins()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        var (root, _, translations) = CreateTwoRepoLayout();
 
-        var legacyDir = Path.Combine(root, "community", "translations", "Alice");
-        var githubDir = Path.Combine(root, "community", "translations", "octocat");
+        var legacyDir = Path.Combine(translations, "community", "translations", "Alice");
+        var githubDir = Path.Combine(translations, "community", "translations", "octocat");
         Directory.CreateDirectory(Path.Combine(legacyDir, "T01"));
         Directory.CreateDirectory(Path.Combine(githubDir, "T01"));
         await File.WriteAllTextAsync(Path.Combine(legacyDir, "T01", "test.xml"), "<xml>legacy</xml>");
@@ -355,8 +549,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -379,8 +572,7 @@ public class MainWindowViewModelTests
             }
         };
         var vm = MakeVm(tagService);
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        var (root, _, _) = CreateTwoRepoLayout();
 
         Dictionary<string, List<DocumentTag>>? capturedTags = null;
         Dictionary<string, TagVocabulary>? capturedVocabs = null;
@@ -405,8 +597,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -448,11 +639,7 @@ public class MainWindowViewModelTests
     public async Task SwitchTranslationSourceAsync_UpdatesSearchContextToMatchActiveTranslationSource()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         string? rootContextTranslatedDir = null;
         string? searchContextTranslatedDir = null;
@@ -464,21 +651,20 @@ public class MainWindowViewModelTests
             vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
             await vm.LoadRootAsync(root, saveToConfig: false);
 
-            Assert.Equal(Path.Combine(root, "community", "translations", "octocat"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(root, "community", "translations", "octocat"), searchContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "community", "translations", "octocat"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "community", "translations", "octocat"), searchContextTranslatedDir);
 
             await vm.SwitchTranslationSourceAsync(1);
-            Assert.Equal(Path.Combine(root, "xml-p5t"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(root, "xml-p5t"), searchContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "xml-p5t"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "xml-p5t"), searchContextTranslatedDir);
 
             await vm.SwitchTranslationSourceAsync(2);
-            Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), rootContextTranslatedDir);
-            Assert.Equal(Path.Combine(root, "community", "translations", "otheruser"), searchContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "community", "translations", "otheruser"), rootContextTranslatedDir);
+            Assert.Equal(Path.Combine(translations, "community", "translations", "otheruser"), searchContextTranslatedDir);
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -486,11 +672,7 @@ public class MainWindowViewModelTests
     public async Task SwitchTranslationSourceAsync_UpdatesReaderSourceIndexBridge()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         var seenIndexes = new List<int>();
 
@@ -508,8 +690,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -550,8 +731,7 @@ public class MainWindowViewModelTests
     public async Task HandleGitHubAuthCompletedAsync_WithNoLegacyFolder_DoesNotCreateUserTranslationDirectory()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
+        var (root, _, translations) = CreateTwoRepoLayout();
 
         try
         {
@@ -560,15 +740,14 @@ public class MainWindowViewModelTests
 
             await vm.HandleGitHubAuthCompletedAsync("ghp_test", "octocat");
 
-            var githubDir = Path.Combine(root, "community", "translations", "octocat");
+            var githubDir = Path.Combine(translations, "community", "translations", "octocat");
             Assert.False(Directory.Exists(githubDir));
             Assert.Equal("octocat", vm.Config.Username);
             Assert.Equal("octocat", vm.GetActiveTranslationUser());
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -576,11 +755,7 @@ public class MainWindowViewModelTests
     public async Task RestoreSearchTranslationSourceAsync_MapsMeCommunityAndOtherUser()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         try
         {
@@ -603,8 +778,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -612,10 +786,7 @@ public class MainWindowViewModelTests
     public async Task RestoreSearchTranslationSourceAsync_InvalidSource_FallsBackSafely()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat" });
 
         try
         {
@@ -630,8 +801,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
     [Fact]
@@ -651,11 +821,7 @@ public class MainWindowViewModelTests
             new StubSearchIndexService(),
             new StubDocumentTagService());
 
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         try
         {
@@ -673,8 +839,7 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -682,11 +847,7 @@ public class MainWindowViewModelTests
     public async Task OpenTermbaseEditorAsync_WhenViewingOtherUser_PassesOwnUsernameAndActiveCommunityUser()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         try
         {
@@ -708,15 +869,14 @@ public class MainWindowViewModelTests
 
             await vm.OpenTermbaseEditorAsync("gate");
 
-            Assert.Equal(root, seenRoot);
+            Assert.Equal(translations, seenRoot);
             Assert.Equal("octocat", seenUsername);
             Assert.Equal("gate", seenTerm);
             Assert.Equal("otheruser", seenCommunityUser);
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 
@@ -724,11 +884,7 @@ public class MainWindowViewModelTests
     public async Task RefreshTranslationSources_PushesScholarDictionarySourceOptionsAndIndex()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "octocat"));
-        Directory.CreateDirectory(Path.Combine(root, "community", "translations", "otheruser"));
+        var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
         try
         {
@@ -748,23 +904,22 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }    [Fact]
     public async Task ResetTranslatedToUntranslatedAsync_ConfirmsAndOverwritesWritableTranslation()
     {
         var vm = MakeVm();
-        var root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5", "T01"));
-        Directory.CreateDirectory(Path.Combine(root, "xml-p5t", "T01"));
+        var (root, originals, translations) = CreateTwoRepoLayout();
+        Directory.CreateDirectory(Path.Combine(originals, "xml-p5", "T01"));
+        Directory.CreateDirectory(Path.Combine(translations, "xml-p5t", "T01"));
 
         const string relPath = "T01/test.xml";
         const string originalXml = "<TEI><text><body><p>??</p></body></text></TEI>";
         const string translatedXml = "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><div><head>Translated Title</head><p>Body EN<lb/>Tail EN</p><p>Closing EN</p></div></body></text></TEI>";
 
-        await File.WriteAllTextAsync(Path.Combine(root, "xml-p5", relPath), originalXml);
-        await File.WriteAllTextAsync(Path.Combine(root, "xml-p5t", relPath), translatedXml);
+        await File.WriteAllTextAsync(Path.Combine(originals, "xml-p5", relPath), originalXml);
+        await File.WriteAllTextAsync(Path.Combine(translations, "xml-p5t", relPath), translatedXml);
 
         try
         {
@@ -788,7 +943,7 @@ public class MainWindowViewModelTests
 
             await vm.ResetTranslatedToUntranslatedAsync();
 
-            var writePath = Path.Combine(root, "community", "translations", "octocat", relPath);
+            var writePath = Path.Combine(translations, "community", "translations", "octocat", relPath);
             Assert.True(File.Exists(writePath));
             Assert.Equal(originalXml, await File.ReadAllTextAsync(writePath));
             Assert.Equal("Fresh Start Translation", promptTitle);
@@ -796,10 +951,19 @@ public class MainWindowViewModelTests
         }
         finally
         {
-            if (Directory.Exists(root))
-                Directory.Delete(root, recursive: true);
+            CleanupTwoRepoLayout(root);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 

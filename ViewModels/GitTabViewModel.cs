@@ -19,12 +19,12 @@ namespace CbetaTranslator.App.ViewModels;
 
 public partial class GitTabViewModel : ViewModelBase
 {
-    private const string RepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
-    private const string RepoFolderName = "CbetaZenTexts";
+    private const string OriginalsRepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
+    private const string TranslationRepoUrl = "https://github.com/Fabulu/CbetaZenTranslations.git";
 
     private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
-    private const string UpstreamRepo = "CbetaZenTexts";
+    private const string UpstreamRepo = "CbetaZenTranslations";
 
     private const string CommunityTmFile = "translation-memory.approved.jsonl";
     private const string CommunityTermbaseFile = "termbase.json";
@@ -39,7 +39,8 @@ public partial class GitTabViewModel : ViewModelBase
         "search.cjk2.manifest.json",
         "search.index.bin",
         "index.debug.log",
-        "*.log"
+        "*.log",
+        "xml-p5t-cache"
     };
 
     private readonly IGitRepoService _git;
@@ -135,12 +136,12 @@ public partial class GitTabViewModel : ViewModelBase
             return;
 
         var input = rootPath.Trim();
-        var resolvedRepo = TryResolveRepoRootFromAnyFolder(input);
+        var resolvedParent = TryResolveParentRootFromAnyFolder(input);
 
-        if (!string.IsNullOrWhiteSpace(resolvedRepo))
+        if (!string.IsNullOrWhiteSpace(resolvedParent))
         {
-            _currentRepoRoot = resolvedRepo;
-            _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+            _currentRepoRoot = resolvedParent;
+            _baseDestFolder = resolvedParent;
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
             return;
@@ -210,12 +211,12 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
+            var resolvedParent = TryResolveParentRootFromAnyFolder(pickedPath);
 
-            if (!string.IsNullOrWhiteSpace(resolvedRepo))
+            if (!string.IsNullOrWhiteSpace(resolvedParent))
             {
-                _currentRepoRoot = resolvedRepo;
-                _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+                _currentRepoRoot = resolvedParent;
+                _baseDestFolder = resolvedParent;
             }
             else
             {
@@ -252,12 +253,12 @@ public partial class GitTabViewModel : ViewModelBase
             var pickedPath = await PickFolderAsync();
             if (pickedPath == null) return;
 
-            var resolvedRepo = TryResolveRepoRootFromAnyFolder(pickedPath);
+            var resolvedParent = TryResolveParentRootFromAnyFolder(pickedPath);
 
-            if (!string.IsNullOrWhiteSpace(resolvedRepo))
+            if (!string.IsNullOrWhiteSpace(resolvedParent))
             {
-                _currentRepoRoot = resolvedRepo;
-                _baseDestFolder = Path.GetDirectoryName(resolvedRepo);
+                _currentRepoRoot = resolvedParent;
+                _baseDestFolder = resolvedParent;
             }
             else
             {
@@ -357,8 +358,8 @@ public partial class GitTabViewModel : ViewModelBase
         await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
 
         // Check repo is available after clone/update
-        var repoDir = GetTargetRepoDir();
-        if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
+        var transDir = GetTranslationRepoDir();
+        if (!Directory.Exists(transDir) || !Directory.Exists(Path.Combine(transDir, ".git")))
             return; // Clone/update failed or was canceled
 
         // Phase 2: Share all community data
@@ -418,8 +419,8 @@ public partial class GitTabViewModel : ViewModelBase
                 }
                 else
                 {
-                    var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
-            var trackedSharePaths = GetTrackedCommunitySharePaths(repoDir);
+                    var status = await _git.GetStatusPorcelainAsync(transDir, ct);
+            var trackedSharePaths = GetTrackedCommunitySharePaths(transDir);
                     var hasSelectedFileChanges = status.Any(line =>
                         line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
 
@@ -429,21 +430,21 @@ public partial class GitTabViewModel : ViewModelBase
                         ProgressText = "Submitting translation for " + _selectedRelPath + "...";
 
                         // Stage ONLY the canonical selected translated file for the contribution PR.
-                        var stage = await _git.StagePathAsync(repoDir, selectedRepoRel, prog, ct);
+                        var stage = await _git.StagePathAsync(transDir, selectedRepoRel, prog, ct);
                         if (!stage.Success)
                             throw new InvalidOperationException(stage.Error ?? "Failed to stage selected translated file.");
 
                         var branchName = $"contrib/{_githubLogin}/{DateTime.UtcNow:yyyyMMdd-HHmmss}";
                         var msg = $"{_githubLogin}: {Path.GetFileNameWithoutExtension(_selectedRelPath)} translation update";
 
-                        await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
-                        await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
-                        await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+                        await _git.EnsureUserIdentityAsync(transDir, _username, prog, ct);
+                        await _git.EnsureLocalExcludeAsync(transDir, LocalIgnorePatterns, prog, ct);
+                        await _git.EnsureLineEndingConfigAsync(transDir, prog, ct);
 
-                        var currentBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
-                        var stash = await _git.StashKeepIndexAsync(repoDir, "sync-auto-stash", prog, ct);
-                        await _git.SwitchCreateBranchAsync(repoDir, branchName, prog, ct);
-                        await _git.CommitAsync(repoDir, msg, prog, ct);
+                        var currentBranch = await _git.GetCurrentBranchAsync(transDir, ct);
+                        var stash = await _git.StashKeepIndexAsync(transDir, "sync-auto-stash", prog, ct);
+                        await _git.SwitchCreateBranchAsync(transDir, branchName, prog, ct);
+                        await _git.CommitAsync(transDir, msg, prog, ct);
 
                         _lastContribBranch = branchName;
 
@@ -451,9 +452,9 @@ public partial class GitTabViewModel : ViewModelBase
 
                         try
                         {
-                            await _git.SwitchBranchAsync(repoDir, currentBranch ?? "main", prog, ct);
+                            await _git.SwitchBranchAsync(transDir, currentBranch ?? "main", prog, ct);
                             if (stash.Success)
-                                await _git.StashPopAsync(repoDir, prog, ct);
+                                await _git.StashPopAsync(transDir, prog, ct);
                         }
                         catch { }
 
@@ -500,13 +501,15 @@ public partial class GitTabViewModel : ViewModelBase
         SetButtonsBusy(true);
         ClearLog();
 
-        var repoDir = GetTargetRepoDir();
-        var baseDir = Path.GetDirectoryName(repoDir) ?? (_baseDestFolder ?? GetDefaultBaseFolder());
+        var parentDir = GetTargetRepoDir();
+        var originalsDir = GetOriginalsRepoDir();
+        var translationDir = GetTranslationRepoDir();
 
         try
         {
-            AppendLog($"[repo] {RepoUrl}");
-            AppendLog($"[path] {repoDir}");
+            AppendLog($"[originals] {OriginalsRepoUrl}");
+            AppendLog($"[translations] {TranslationRepoUrl}");
+            AppendLog($"[path] {parentDir}");
 
             ProgressText = "Checking git\u2026";
             var gitOk = await _git.CheckGitAvailableAsync(ct);
@@ -521,36 +524,59 @@ public partial class GitTabViewModel : ViewModelBase
 
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
 
-            // Existing repo -> UPDATE
-            if (Directory.Exists(repoDir) && Directory.Exists(Path.Combine(repoDir, ".git")))
-            {
-                await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
-                await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+            bool originalsExist = Directory.Exists(originalsDir) && Directory.Exists(Path.Combine(originalsDir, ".git"));
+            bool translationsExist = Directory.Exists(translationDir) && Directory.Exists(Path.Combine(translationDir, ".git"));
 
-                ProgressText = "Fetching\u2026";
-                var fetch = await _git.FetchAsync(repoDir, prog, ct);
-                if (!fetch.Success)
+            // Both repos exist -> UPDATE
+            if (originalsExist && translationsExist)
+            {
+                // --- Update originals repo (safe to hard-reset, no user data) ---
+                AppendLog("\n--- Updating originals repo ---");
+                await _git.EnsureLocalExcludeAsync(originalsDir, LocalIgnorePatterns, prog, ct);
+                await _git.EnsureLineEndingConfigAsync(originalsDir, prog, ct);
+
+                ProgressText = "Fetching originals\u2026";
+                var fetchOrig = await _git.FetchAsync(originalsDir, prog, ct);
+                if (!fetchOrig.Success)
                 {
-                    ProgressText = "Fetch failed.";
-                    AppendLog("[error] " + (fetch.Error ?? "unknown error"));
-                    StatusChanged?.Invoke(this, "Fetch failed.");
+                    ProgressText = "Fetch originals failed.";
+                    AppendLog("[error] " + (fetchOrig.Error ?? "unknown error"));
+                    StatusChanged?.Invoke(this, "Fetch originals failed.");
                     return;
                 }
 
-                var ab = await _git.GetAheadBehindAsync(repoDir, "origin/main", ct);
-                AppendLog($"[git] ahead/behind vs origin/main: ahead={ab.ahead}, behind={ab.behind}");
+                // Originals: always hard-reset (no user data)
+                await DoUpdateDiscardLocalAsync(originalsDir, prog, ct);
+
+                // --- Update translations repo (preserve user data) ---
+                AppendLog("\n--- Updating translations repo ---");
+                await _git.EnsureLocalExcludeAsync(translationDir, LocalIgnorePatterns, prog, ct);
+                await _git.EnsureLineEndingConfigAsync(translationDir, prog, ct);
+
+                ProgressText = "Fetching translations\u2026";
+                var fetchTrans = await _git.FetchAsync(translationDir, prog, ct);
+                if (!fetchTrans.Success)
+                {
+                    ProgressText = "Fetch translations failed.";
+                    AppendLog("[error] " + (fetchTrans.Error ?? "unknown error"));
+                    StatusChanged?.Invoke(this, "Fetch translations failed.");
+                    return;
+                }
+
+                var ab = await _git.GetAheadBehindAsync(translationDir, "origin/main", ct);
+                AppendLog($"[git] translations ahead/behind vs origin/main: ahead={ab.ahead}, behind={ab.behind}");
 
                 if (ab.ahead > 0)
                 {
                     string rescueBranch = "rescue/local-" + DateTime.Now.ToString("yyyyMMdd-HHmmss");
-                    AppendLog("[safety] local commits detected. Creating rescue branch: " + rescueBranch);
+                    AppendLog("[safety] local commits detected in translations. Creating rescue branch: " + rescueBranch);
 
-                    var rescue = await _git.CreateBranchAtHeadAsync(repoDir, rescueBranch, prog, ct);
+                    var rescue = await _git.CreateBranchAtHeadAsync(translationDir, rescueBranch, prog, ct);
                     if (!rescue.Success)
                     {
                         ProgressText = "Update blocked (could not create rescue branch).";
                         AppendLog("[error] " + (rescue.Error ?? "unknown error"));
-                        AppendLog("[hint] This repo has local commits. Create/push a PR first, or fix branch state manually.");
+                        AppendLog("[hint] Translations repo has local commits. Create/push a PR first, or fix branch state manually.");
                         StatusChanged?.Invoke(this, "Update blocked (rescue branch failed).");
                         return;
                     }
@@ -569,61 +595,97 @@ public partial class GitTabViewModel : ViewModelBase
                         return;
                     }
 
-                    await DoUpdateDiscardLocalAsync(repoDir, prog, ct);
+                    await DoUpdateDiscardLocalAsync(translationDir, prog, ct);
                 }
                 else
                 {
-                    await DoUpdateKeepLocalAsync(repoDir, prog, ct);
+                    await DoUpdateKeepLocalAsync(translationDir, prog, ct);
                 }
 
-                _currentRepoRoot = repoDir;
-                _baseDestFolder = Path.GetDirectoryName(repoDir);
+                _currentRepoRoot = parentDir;
+                _baseDestFolder = parentDir;
                 UpdateDestLabel();
                 TryRestoreLastBranchFromDisk();
 
-                RootCloned?.Invoke(this, repoDir);
+                AppPaths.InvalidateDiscoveryCache(parentDir);
+                RootCloned?.Invoke(this, parentDir);
                 StatusChanged?.Invoke(this, mode == UpdateMode.KeepLocalChanges
-                    ? "Repo updated (kept local changes)."
-                    : "Repo updated (discarded local changes).");
+                    ? "Repos updated (kept local changes)."
+                    : "Repos updated (discarded local changes).");
                 return;
             }
 
-            // Missing repo -> CLONE
-            if (!Directory.Exists(baseDir))
-                Directory.CreateDirectory(baseDir);
+            // Missing repos -> CLONE
+            if (!Directory.Exists(parentDir))
+                Directory.CreateDirectory(parentDir);
 
-            if (Directory.Exists(repoDir) && Directory.EnumerateFileSystemEntries(repoDir).Any())
+            // Clone originals repo
+            if (!originalsExist)
             {
-                ProgressText = "Folder exists but is not a Git repo: " + repoDir;
-                AppendLog("[error] target folder exists and is not a git repo");
-                AppendLog("Pick a different location or delete that folder.");
-                StatusChanged?.Invoke(this, "Target folder exists but is not a Git repo.");
-                return;
+                if (Directory.Exists(originalsDir) && Directory.EnumerateFileSystemEntries(originalsDir).Any())
+                {
+                    ProgressText = "Folder exists but is not a Git repo: " + originalsDir;
+                    AppendLog("[error] originals target folder exists and is not a git repo");
+                    AppendLog("Pick a different location or delete that folder.");
+                    StatusChanged?.Invoke(this, "Originals folder exists but is not a Git repo.");
+                    return;
+                }
+
+                ProgressText = "Cloning originals\u2026";
+                AppendLog("\n--- Cloning originals repo ---");
+                var cloneOrig = await _git.CloneAsync(OriginalsRepoUrl, originalsDir, prog, ct);
+                if (!cloneOrig.Success)
+                {
+                    ProgressText = "Clone originals failed.";
+                    AppendLog("[error] " + (cloneOrig.Error ?? "unknown error"));
+                    StatusChanged?.Invoke(this, "Clone originals failed.");
+                    return;
+                }
+
+                await _git.EnsureLocalExcludeAsync(originalsDir, LocalIgnorePatterns, prog, ct);
+                await _git.EnsureLineEndingConfigAsync(originalsDir, prog, ct);
+                AppendLog("[ok] originals clone complete: " + originalsDir);
             }
 
-            ProgressText = "Cloning\u2026";
-            var clone = await _git.CloneAsync(RepoUrl, repoDir, prog, ct);
-            if (!clone.Success)
+            // Clone translations repo
+            if (!translationsExist)
             {
-                ProgressText = "Clone failed.";
-                AppendLog("[error] " + (clone.Error ?? "unknown error"));
-                StatusChanged?.Invoke(this, "Clone failed.");
-                return;
+                if (Directory.Exists(translationDir) && Directory.EnumerateFileSystemEntries(translationDir).Any())
+                {
+                    ProgressText = "Folder exists but is not a Git repo: " + translationDir;
+                    AppendLog("[error] translations target folder exists and is not a git repo");
+                    AppendLog("Pick a different location or delete that folder.");
+                    StatusChanged?.Invoke(this, "Translations folder exists but is not a Git repo.");
+                    return;
+                }
+
+                ProgressText = "Cloning translations\u2026";
+                AppendLog("\n--- Cloning translations repo ---");
+                var cloneTrans = await _git.CloneAsync(TranslationRepoUrl, translationDir, prog, ct);
+                if (!cloneTrans.Success)
+                {
+                    ProgressText = "Clone translations failed.";
+                    AppendLog("[error] " + (cloneTrans.Error ?? "unknown error"));
+                    StatusChanged?.Invoke(this, "Clone translations failed.");
+                    return;
+                }
+
+                await _git.EnsureLocalExcludeAsync(translationDir, LocalIgnorePatterns, prog, ct);
+                await _git.EnsureLineEndingConfigAsync(translationDir, prog, ct);
+                AppendLog("[ok] translations clone complete: " + translationDir);
             }
 
-            await _git.EnsureLocalExcludeAsync(repoDir, LocalIgnorePatterns, prog, ct);
-            await _git.EnsureLineEndingConfigAsync(repoDir, prog, ct);
+            ProgressText = "Done. Both repos are ready.";
+            AppendLog("[ok] clone complete");
 
-            ProgressText = "Done. Repo is ready.";
-            AppendLog("[ok] clone complete: " + repoDir);
-
-            _currentRepoRoot = repoDir;
-            _baseDestFolder = Path.GetDirectoryName(repoDir);
+            _currentRepoRoot = parentDir;
+            _baseDestFolder = parentDir;
             UpdateDestLabel();
             TryRestoreLastBranchFromDisk();
 
-            RootCloned?.Invoke(this, repoDir);
-            StatusChanged?.Invoke(this, "Repo cloned.");
+            AppPaths.InvalidateDiscoveryCache(parentDir);
+            RootCloned?.Invoke(this, parentDir);
+            StatusChanged?.Invoke(this, "Repos cloned.");
         }
         catch (OperationCanceledException)
         {
@@ -815,7 +877,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -910,7 +972,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -1132,7 +1194,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -1192,7 +1254,7 @@ public partial class GitTabViewModel : ViewModelBase
             {
                 AppendLog("[mode] upstream owner detected -> no fork");
                 remoteName = "origin";
-                remoteUrlClean = RepoUrl;
+                remoteUrlClean = TranslationRepoUrl;
                 prHeadOwner = UpstreamOwner;
             }
             else
@@ -1321,7 +1383,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -1646,7 +1708,7 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = RepoUrl;
+                remoteUrlClean = TranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
@@ -1776,7 +1838,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -1989,7 +2051,7 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = RepoUrl;
+                remoteUrlClean = TranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
@@ -2078,7 +2140,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -2250,7 +2312,7 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = RepoUrl;
+                remoteUrlClean = TranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
@@ -2336,7 +2398,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var repoDir = GetTranslationRepoDir();
             if (!Directory.Exists(repoDir) || !Directory.Exists(Path.Combine(repoDir, ".git")))
             {
                 ProgressText = "Repo not ready. Click Get/Update first.";
@@ -2643,8 +2705,8 @@ public partial class GitTabViewModel : ViewModelBase
 
     private void UpdateDestLabel()
     {
-        var target = GetTargetRepoDir();
-        DestText = "Location: " + target;
+        var parentDir = GetTargetRepoDir();
+        DestText = "Location: " + parentDir;
     }
 
     private void UpdateSelectedLabel()
@@ -2654,7 +2716,12 @@ public partial class GitTabViewModel : ViewModelBase
             : "Selected: " + _selectedRelPath;
     }
 
-    private string? TryResolveRepoRootFromAnyFolder(string? folderPath)
+    /// <summary>
+    /// Given a picked folder, try to resolve it as a valid parent root that contains both repo subfolders.
+    /// Also handles legacy single-repo folders and direct repo subfolder picks.
+    /// Returns the PARENT folder path or null.
+    /// </summary>
+    private string? TryResolveParentRootFromAnyFolder(string? folderPath)
     {
         if (string.IsNullOrWhiteSpace(folderPath))
             return null;
@@ -2666,12 +2733,25 @@ public partial class GitTabViewModel : ViewModelBase
             if (!Directory.Exists(full))
                 return null;
 
-            if (Directory.Exists(Path.Combine(full, ".git")))
+            // If the picked folder itself contains both repos (or at least one), treat it as the parent
+            if (AppPaths.ValidateBothReposExist(full))
                 return full;
 
-            var childRepo = Path.Combine(full, RepoFolderName);
-            if (Directory.Exists(childRepo) && Directory.Exists(Path.Combine(childRepo, ".git")))
-                return childRepo;
+            // If the picked folder IS one of the repo subfolders, return its parent
+            if (Directory.Exists(Path.Combine(full, ".git")))
+            {
+                var parent = Path.GetDirectoryName(full);
+                if (parent != null && AppPaths.ValidateBothReposExist(parent))
+                    return parent;
+                // Legacy: single repo folder that hasn't been split yet — treat parent as parent root
+                if (parent != null)
+                    return parent;
+            }
+
+            // Check if there's at least one discoverable repo subfolder
+            var (orig, trans) = AppPaths.DiscoverRepoPaths(full);
+            if (orig != null || trans != null)
+                return full;
 
             return null;
         }
@@ -2697,33 +2777,47 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
+    /// <summary>
+    /// Returns the PARENT folder that contains (or will contain) both repo subfolders.
+    /// </summary>
     private string GetTargetRepoDir()
     {
-        if (!string.IsNullOrWhiteSpace(_currentRepoRoot) &&
-            Directory.Exists(_currentRepoRoot) &&
-            Directory.Exists(Path.Combine(_currentRepoRoot, ".git")))
+        if (!string.IsNullOrWhiteSpace(_currentRepoRoot) && Directory.Exists(_currentRepoRoot))
         {
+            // If _currentRepoRoot already has both repos discovered, use it
+            if (AppPaths.ValidateBothReposExist(_currentRepoRoot))
+                return _currentRepoRoot!;
+
+            // Legacy: if _currentRepoRoot is itself a .git repo (old single-repo setup), go up one level
+            if (Directory.Exists(Path.Combine(_currentRepoRoot, ".git")))
+            {
+                var parent = Path.GetDirectoryName(_currentRepoRoot);
+                if (parent != null)
+                {
+                    _currentRepoRoot = parent;
+                    return parent;
+                }
+            }
+
             return _currentRepoRoot!;
         }
 
         var baseDir = _baseDestFolder ?? GetDefaultBaseFolder();
+        return baseDir;
+    }
 
-        if (Directory.Exists(baseDir) &&
-            string.Equals(Path.GetFileName(baseDir), RepoFolderName, StringComparison.OrdinalIgnoreCase) &&
-            Directory.Exists(Path.Combine(baseDir, ".git")))
-        {
-            _currentRepoRoot = baseDir;
-            return baseDir;
-        }
+    private string GetOriginalsRepoDir()
+    {
+        var parent = GetTargetRepoDir();
+        var discovered = AppPaths.GetOriginalRepoRoot(parent);
+        return discovered ?? Path.Combine(parent, AppPaths.DefaultOriginalRepoFolderName);
+    }
 
-        var nestedRepo = Path.Combine(baseDir, RepoFolderName);
-        if (Directory.Exists(nestedRepo) && Directory.Exists(Path.Combine(nestedRepo, ".git")))
-        {
-            _currentRepoRoot = nestedRepo;
-            return nestedRepo;
-        }
-
-        return Path.Combine(baseDir, RepoFolderName);
+    private string GetTranslationRepoDir()
+    {
+        var parent = GetTargetRepoDir();
+        var discovered = AppPaths.GetTranslationRepoRoot(parent);
+        return discovered ?? Path.Combine(parent, AppPaths.DefaultTranslationRepoFolderName);
     }
 
     private async Task SafeRestoreAsync(string repoDir, string originalBranch, IProgress<string> prog, CancellationToken ct)
@@ -2994,7 +3088,7 @@ public partial class GitTabViewModel : ViewModelBase
     {
         var normalized = NormalizeRel(relPath);
         return !string.IsNullOrWhiteSpace(normalized) &&
-               GetTrackedCommunitySharePaths(GetTargetRepoDir()).Contains(normalized);
+               GetTrackedCommunitySharePaths(GetTranslationRepoDir()).Contains(normalized);
     }
 
     private static string? ComputeCommunityShareFingerprint(string fullPath)
@@ -3402,7 +3496,8 @@ public partial class GitTabViewModel : ViewModelBase
     {
         try
         {
-            var repoDir = GetTargetRepoDir();
+            var transDir = GetTranslationRepoDir();
+            var parentDir = GetTargetRepoDir();
             var path = GetStateFilePath();
             if (!File.Exists(path)) return;
 
@@ -3410,7 +3505,10 @@ public partial class GitTabViewModel : ViewModelBase
             var state = JsonSerializer.Deserialize<GitTabState>(json);
             if (state == null) return;
 
-            if (!string.Equals(NormalizePath(state.RepoDir), NormalizePath(repoDir), StringComparison.OrdinalIgnoreCase))
+            // Match against translation repo dir (new) or parent dir (for forward compat)
+            var savedNorm = NormalizePath(state.RepoDir);
+            if (!string.Equals(savedNorm, NormalizePath(transDir), StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(savedNorm, NormalizePath(parentDir), StringComparison.OrdinalIgnoreCase))
                 return;
 
             if (!string.IsNullOrWhiteSpace(state.LastContribBranch))

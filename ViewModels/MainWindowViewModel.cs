@@ -1,4 +1,4 @@
-// ViewModels/MainWindowViewModel.cs
+﻿// ViewModels/MainWindowViewModel.cs
 //
 // Extracted from Views/MainWindow.axaml.cs (Wave 5 MVVM renovation).
 // Contains all business logic, state, and orchestration that was previously
@@ -46,6 +46,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ITranslationReviewService _translationReview;
     private readonly ISearchIndexService _searchIndex;
     private readonly IDocumentTagService _documentTagService;
+    private static readonly TranslationStatusService LiveTranslationStatusService = new();
 
     // Coding mode state
     private TagVocabulary? _tagVocabulary;
@@ -59,10 +60,13 @@ public partial class MainWindowViewModel : ViewModelBase
     private AppConfig _config = new() { IsDarkTheme = true };
     public AppConfig Config => _config;
 
-    private string? _root, _originalDir, _translatedDir;
+    private string? _root, _translationRoot, _originalDir, _translatedDir;
+    private string? _translatedCacheDir;
     private string? _userTranslatedDir;   // community/translations/{username}/
     private string? _activeTranslatedDir; // currently selected dir (user, community, or other user)
+    private readonly Dictionary<string, MeaningfulTranslationCacheEntry> _meaningfulTranslationCache = new(StringComparer.OrdinalIgnoreCase);
     public string? Root => _root;
+    public string? TranslationRoot => _translationRoot;
     public string? Username => _config.Username;
     public string? OriginalDir => _originalDir;
     public string? TranslatedDir => _translatedDir;
@@ -103,6 +107,20 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private bool _suppressConfigSaves;
     private bool _suppressNavSelection;
+
+    private sealed record MeaningfulTranslationCacheEntry(
+        DateTime OriginalWriteUtc,
+        DateTime CandidateWriteUtc,
+        long CandidateLength,
+        bool IsMeaningful);
+
+    private sealed record TranslationSourceEvaluation(
+        int Index,
+        string? Path,
+        TranslationStatus Status,
+        bool IsCommunity,
+        long TranslatedMtimeTicks,
+        DateTime LastWriteUtc);
 
     // ---- Observable properties ----
 
@@ -352,14 +370,23 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task LoadRootAsync(string rootPath, bool saveToConfig)
     {
         _root = rootPath;
+        _translationRoot = AppPaths.GetTranslationRepoRoot(_root);
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
+        _translatedCacheDir = AppPaths.GetTranslatedCacheDir(_root);
 
         _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
         _activeTranslatedDir = _userTranslatedDir; // default to user's own
         // Note: user dir is created on-demand by GetWritePath() when user first saves
 
+        if (!AppPaths.ValidateBothReposExist(_root))
+        {
+            SetStatus("Both originals and translations repos are required. Please sync via Git tab.");
+            return;
+        }
+
         _renderCache.Clear();
+        _meaningfulTranslationCache.Clear();
 
         RootDisplayText = _root;
 
@@ -373,22 +400,22 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            await _zenTexts.LoadAsync(_root);
+            await _zenTexts.LoadAsync(_translationRoot ?? _root);
             SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen texts load failed: {ex.Message}"); }
 
         SetGitRepoRoot?.Invoke(_root);
         PushSearchContext();
-        SetScholarRoot?.Invoke(_root);
+        SetScholarRoot?.Invoke(_translationRoot ?? _root);
         SetScholarTranslationDirs?.Invoke(_originalDir, GetActiveTranslatedDir());
         SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username);
         SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser());
 
         try
         {
-            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
-            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_translationRoot!);
+            await _translationReview.RefreshAggregationCacheAsync(_translationRoot!, reviewsDir);
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Review aggregation refresh failed: {ex.Message}"); }
 
@@ -400,22 +427,22 @@ public partial class MainWindowViewModel : ViewModelBase
             await SafeSaveConfigAsync();
         }
 
-        await LoadFileListFromCacheOrBuildAsync();
-
-        QueueAutoIndexBuild();
         RefreshTranslationSources();
+        await LoadFileListFromCacheOrBuildAsync();
+        await RefreshAllCachedStatusesAsync();
+        QueueAutoIndexBuild();
     }
 
     private void QueueAutoIndexBuild()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null) return;
+        if (_translationRoot == null || _originalDir == null || _translatedDir == null) return;
 
         _autoIndexCts?.Cancel();
         try { _autoIndexCts?.Dispose(); } catch { }
         _autoIndexCts = new CancellationTokenSource();
         var ct = _autoIndexCts.Token;
 
-        var root = _root;
+        var root = _translationRoot;
         var origDir = _originalDir;
         var tranDir = _translatedDir;
 
@@ -610,14 +637,14 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task LoadFileListFromCacheOrBuildAsync()
     {
-        if (_root == null || _originalDir == null || _translatedDir == null)
+        if (_translationRoot == null || _originalDir == null || _translatedDir == null)
             return;
 
         ClearViews();
 
         void WireSearchTab()
         {
-            SetSearchContext?.Invoke(_root!, _originalDir!, GetSearchTranslatedDir(),
+            SetSearchContext?.Invoke((_translationRoot ?? _root)!, _originalDir!, GetSearchTranslatedDir(),
                 relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
@@ -629,7 +656,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var cache = await _indexCacheService.TryLoadAsync(_root);
+            var cache = await _indexCacheService.TryLoadAsync(_translationRoot);
 
             if (cache?.Entries is { Count: > 0 })
             {
@@ -650,8 +677,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 SetStatus("Indexing files... " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
             });
 
-            IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _root, progress);
-            await _indexCacheService.SaveAsync(_root, built);
+            IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _translationRoot, progress);
+            await _indexCacheService.SaveAsync(_translationRoot, built);
 
             _allItems = built.Entries ?? new List<FileNavItem>();
             RebuildLookup();
@@ -670,63 +697,39 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task RefreshAllCachedStatusesAsync()
     {
         if (_root == null || _originalDir == null || _translatedDir == null) return;
-
         bool changed = false;
         int total = _allItems.Count;
-
         var progress = new Progress<int>(done =>
             SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
-
         await Task.Run(() =>
         {
             int done = 0;
             foreach (var it in _allItems)
             {
                 if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
-
-                var rel = NormalizeRel(it.RelPath);
-                var origAbs = Path.Combine(_originalDir, it.RelPath);
-                var tranAbs = FindTranslatedPath(it.RelPath) ?? Path.Combine(_translatedDir, it.RelPath);
-
-                // Incremental: skip re-parse when translated file mtime unchanged
-                long currentMtime = 0;
-                if (File.Exists(tranAbs))
-                {
-                    try { currentMtime = File.GetLastWriteTimeUtc(tranAbs).Ticks; }
-                    catch { }
-                }
-                if (currentMtime == it.TranslatedMtimeTicks && it.TranslatedMtimeTicks != 0)
-                {
-                    done++;
-                    if (done % 50 == 0) ((IProgress<int>)progress).Report(done);
-                    continue;
-                }
-
-                var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, rel, verboseLog: false);
+                var best = EvaluateBestTranslationSource(it.RelPath);
+                var newStatus = best.Status;
                 if (!Equals(it.Status, newStatus))
                 {
                     it.Status = newStatus;
                     changed = true;
                 }
-                if (it.TranslatedMtimeTicks != currentMtime)
+                if (it.TranslatedMtimeTicks != best.TranslatedMtimeTicks)
                 {
-                    it.TranslatedMtimeTicks = currentMtime;
+                    it.TranslatedMtimeTicks = best.TranslatedMtimeTicks;
                     changed = true;
                 }
-
                 done++;
                 if (done % 50 == 0)
                     ((IProgress<int>)progress).Report(done);
             }
             ((IProgress<int>)progress).Report(done);
         });
-
         if (changed)
         {
-            await _indexCacheService.SaveAsync(_root, new IndexCache { Entries = _allItems });
+            await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
         }
     }
-
     private void RebuildLookup()
     {
         _allItemsByRel.Clear();
@@ -993,19 +996,19 @@ public partial class MainWindowViewModel : ViewModelBase
         // Check if a translated file already exists in active or community dir
         if (FindTranslatedPath(relPath) != null) return;
 
-        // For per-user translations: only create in community dir (shared baseline).
-        // User dir files are created on first explicit save, not on open.
-        if (_translatedDir != null)
+        // Auto-generated untranslated copies go to the cache dir (gitignored),
+        // not the main translated dir.
+        if (_translatedCacheDir != null)
         {
-            var communityPath = Path.Combine(_translatedDir, relPath);
-            if (!File.Exists(communityPath))
+            var cachePath = Path.Combine(_translatedCacheDir, relPath);
+            if (!File.Exists(cachePath))
             {
                 var origXml = await ReadOriginalXmlAsync(relPath);
                 if (string.IsNullOrWhiteSpace(origXml)) return;
                 EnsureXmlIsWellFormed(origXml, "Original XML is malformed; cannot create translated copy.");
-                var dir = Path.GetDirectoryName(communityPath);
+                var dir = Path.GetDirectoryName(cachePath);
                 if (dir != null) Directory.CreateDirectory(dir);
-                await AtomicWriteXmlAsync(communityPath, origXml);
+                await AtomicWriteXmlAsync(cachePath, origXml);
             }
         }
     }
@@ -1049,9 +1052,15 @@ public partial class MainWindowViewModel : ViewModelBase
         return Task.FromResult((ro, rt));
     }
 
-    public async Task LoadPairAsync(string relPath)
+    public async Task LoadPairAsync(string relPath, bool autoChooseSource = true)
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
+
+        if (autoChooseSource)
+        {
+            var bestIndex = ResolveBestTranslationSourceIndex(relPath);
+            ApplyTranslationSourceIndex(bestIndex);
+        }
 
         _renderCts?.Cancel();
         _renderCts?.Dispose();
@@ -1174,7 +1183,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     ProjectionOffsetEndExclusive = 0,
                     Mode = _translationMode
                 },
-                _root,
+                _translationRoot,
                 _originalDir,
                 GetActiveTranslatedDir());
 
@@ -1224,7 +1233,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             var snapshot = await _translationAssistant.BuildSnapshotAsync(
                 ctx,
-                _root,
+                _translationRoot,
                 _originalDir,
                 GetActiveTranslatedDir(),
                 ct).ConfigureAwait(false);
@@ -1280,7 +1289,7 @@ public partial class MainWindowViewModel : ViewModelBase
             UpdateReadableTmSharedHighlights?.Invoke(null, null, null, null, null);
 
             var snapshot = await _translationAssistant.BuildSnapshotAsync(
-                ctx, _root, _originalDir, GetActiveTranslatedDir(), ct)
+                ctx, _translationRoot, _originalDir, GetActiveTranslatedDir(), ct)
                 .ConfigureAwait(false);
 
             if (ct.IsCancellationRequested) return;
@@ -1325,13 +1334,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task RefreshProgressStatsAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(_currentRelPath))
+        if (string.IsNullOrWhiteSpace(_translationRoot) || string.IsNullOrWhiteSpace(_currentRelPath))
         {
             SetProgressStats?.Invoke(0, 0, 0);
             return;
         }
 
-        var map = await _translationReview.LoadLatestEntriesAsync(_root);
+        var map = await _translationReview.LoadLatestEntriesAsync(_translationRoot);
         var entries = map.Values
             .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
                      && e.Mode == _translationMode.ToString())
@@ -1351,7 +1360,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             var username = _config.Username;
-            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username))
+            if (string.IsNullOrWhiteSpace(_translationRoot) || string.IsNullOrWhiteSpace(username))
             {
                 await InvokeUiActionAsync(() => SetReadableAppliedTags?.Invoke(null));
                 return;
@@ -1360,7 +1369,7 @@ public partial class MainWindowViewModel : ViewModelBase
             // Load vocabulary (once, then cached)
             if (_tagVocabulary == null)
             {
-                _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
+                _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_translationRoot, username);
                 await InvokeUiActionAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
             }
 
@@ -1370,7 +1379,7 @@ public partial class MainWindowViewModel : ViewModelBase
             await _tagSaveLock.WaitAsync();
             try
             {
-                _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+                _appliedTags = await _documentTagService.LoadUserTagsAsync(_translationRoot, username);
                 forFile = _appliedTags
                     .Where(t => string.Equals(t.RelPath, _currentRelPath, StringComparison.OrdinalIgnoreCase))
                     .ToList();
@@ -1404,13 +1413,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task RefreshCommunityTagDataAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root))
+        if (string.IsNullOrWhiteSpace(_translationRoot))
             return;
 
         try
         {
-            var communityTags = await _documentTagService.LoadAllCommunityTagsAsync(_root);
-            var communityVocabs = await _documentTagService.LoadAllCommunityVocabulariesAsync(_root);
+            var communityTags = await _documentTagService.LoadAllCommunityTagsAsync(_translationRoot);
+            var communityVocabs = await _documentTagService.LoadAllCommunityVocabulariesAsync(_translationRoot);
             var identityKeys = GetCurrentTagIdentityKeys();
 
             foreach (var key in identityKeys)
@@ -1450,7 +1459,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             var username = _config.Username;
-            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+            if (string.IsNullOrWhiteSpace(_translationRoot) || string.IsNullOrWhiteSpace(username)) return;
 
             await _tagSaveLock.WaitAsync();
             try
@@ -1459,12 +1468,12 @@ public partial class MainWindowViewModel : ViewModelBase
                 // load them first to avoid overwriting existing tags with only the new one.
                 if (_appliedTags.Count == 0)
                 {
-                    _appliedTags = await _documentTagService.LoadUserTagsAsync(_root, username);
+                    _appliedTags = await _documentTagService.LoadUserTagsAsync(_translationRoot, username);
                 }
 
                 tag.CreatedBy = username;
                 _appliedTags.Add(tag);
-                await _documentTagService.SaveUserTagsAsync(_root, username, _appliedTags);
+                await _documentTagService.SaveUserTagsAsync(_translationRoot, username, _appliedTags);
             }
             finally
             {
@@ -1486,10 +1495,10 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             var username = _config.Username;
-            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+            if (string.IsNullOrWhiteSpace(_translationRoot) || string.IsNullOrWhiteSpace(username)) return;
 
             _tagVocabulary = vocab;
-            await _documentTagService.SaveVocabularyAsync(_root, username, vocab);
+            await _documentTagService.SaveVocabularyAsync(_translationRoot, username, vocab);
         }
         catch (Exception ex)
         {
@@ -1506,9 +1515,9 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             var username = _config.Username;
-            if (string.IsNullOrWhiteSpace(_root) || string.IsNullOrWhiteSpace(username)) return;
+            if (string.IsNullOrWhiteSpace(_translationRoot) || string.IsNullOrWhiteSpace(username)) return;
 
-            _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_root, username);
+            _tagVocabulary = await _documentTagService.LoadVocabularyAsync(_translationRoot, username);
             await InvokeUiActionAsync(() => SetReadableTagVocabulary?.Invoke(_tagVocabulary));
         }
         catch (Exception ex)
@@ -1521,13 +1530,13 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_root == null || _currentSegmentContext == null)
+            if (_translationRoot == null || _currentSegmentContext == null)
             {
                 SetCurrentReviewState?.Invoke(null, null, null, null);
                 return;
             }
 
-            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
+            var latest = await _translationReview.GetLatestEntryAsync(_translationRoot, _currentSegmentContext);
             var segKey = TranslationReviewService.BuildSegmentKey(
                 _currentSegmentContext.RelPath, _currentSegmentContext.Mode, _currentSegmentContext.BlockNumber);
             var agg = _translationReview.GetAggregatedReview(segKey);
@@ -1543,7 +1552,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_root == null)
+            if (_translationRoot == null)
             {
                 SetStatus("Review failed: no root is loaded.");
                 return;
@@ -1558,17 +1567,17 @@ public partial class MainWindowViewModel : ViewModelBase
             _currentSegmentContext.EnText = _currentSegmentContext.EnText ?? "";
 
             await _translationReview.AppendReviewAsync(
-                _root,
+                _translationRoot,
                 _currentSegmentContext,
                 status,
                 reviewer: _config.Username ?? "User");
 
-            int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_root);
+            int count = await _translationReview.RebuildApprovedTranslationMemoryAsync(_translationRoot);
 
-            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
-            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_translationRoot);
+            await _translationReview.RefreshAggregationCacheAsync(_translationRoot, reviewsDir);
 
-            var latest = await _translationReview.GetLatestEntryAsync(_root, _currentSegmentContext);
+            var latest = await _translationReview.GetLatestEntryAsync(_translationRoot, _currentSegmentContext);
             var segKey = TranslationReviewService.BuildSegmentKey(
                 _currentSegmentContext.RelPath, _currentSegmentContext.Mode, _currentSegmentContext.BlockNumber);
             var agg = _translationReview.GetAggregatedReview(segKey);
@@ -1588,7 +1597,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (status == TranslationReviewStatuses.Approved)
             {
-                var reviewMap = await _translationReview.LoadLatestEntriesAsync(_root);
+                var reviewMap = await _translationReview.LoadLatestEntriesAsync(_translationRoot);
                 var currentRel = NormalizeRel(_currentRelPath ?? "");
                 var approvedBlocks = reviewMap.Values
                     .Where(e => NormalizeRel(e.RelPath) == currentRel
@@ -1611,8 +1620,8 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_root == null || _currentRelPath == null) return;
-            var map = await _translationReview.LoadLatestEntriesAsync(_root);
+            if (_translationRoot == null || _currentRelPath == null) return;
+            var map = await _translationReview.LoadLatestEntriesAsync(_translationRoot);
             var approvedBlocks = map.Values
                 .Where(e => NormalizeRel(e.RelPath) == NormalizeRel(_currentRelPath)
                          && e.Mode == _translationMode.ToString()
@@ -1635,8 +1644,8 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_root == null) return;
-            await _zenTexts.SetZenAsync(_root, relPath, isZen);
+            if (_translationRoot == null) return;
+            await _zenTexts.SetZenAsync(_translationRoot, relPath, isZen);
             SetStatus(isZen ? "Marked as Zen text." : "Unmarked as Zen text.");
             await ApplyFilterSafeAsync();
         }
@@ -2136,18 +2145,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var origAbs = Path.Combine(_originalDir, relPath);
-            var tranAbs = FindTranslatedPath(relPath) ?? Path.Combine(_translatedDir, relPath);
             var relKey = NormalizeRel(relPath);
-
-            var newStatus = _indexCacheService.ComputeStatusForPairLive(origAbs, tranAbs, _root, relKey, verboseLog: false);
-
-            long mtimeTicks = 0;
-            if (File.Exists(tranAbs))
-            {
-                try { mtimeTicks = File.GetLastWriteTimeUtc(tranAbs).Ticks; }
-                catch { }
-            }
+            var best = EvaluateBestTranslationSource(relPath);
+            var newStatus = best.Status;
+            long mtimeTicks = best.TranslatedMtimeTicks;
 
             if (_allItemsByRel.TryGetValue(relKey, out var existing))
             {
@@ -2455,11 +2456,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task RefreshReviewAggregationAsync()
     {
-        if (string.IsNullOrWhiteSpace(_root)) return;
+        if (string.IsNullOrWhiteSpace(_translationRoot)) return;
         try
         {
-            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_root);
-            await _translationReview.RefreshAggregationCacheAsync(_root, reviewsDir);
+            var reviewsDir = ITranslationReviewService.GetCommunityReviewsDir(_translationRoot);
+            await _translationReview.RefreshAggregationCacheAsync(_translationRoot, reviewsDir);
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Review aggregation failed: {ex.Message}"); }
     }
@@ -2472,7 +2473,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            if (_root == null || _originalDir == null || _translatedDir == null)
+            if (_translationRoot == null || _originalDir == null || _translatedDir == null)
             {
                 SetStatus("Cannot build reference TM: no root is loaded.");
                 return;
@@ -2489,7 +2490,7 @@ public partial class MainWindowViewModel : ViewModelBase
             });
 
             int count = await _translationAssistantBuilder.BuildReferenceTranslationMemoryAsync(
-                _root,
+                _translationRoot,
                 _originalDir,
                 _translatedDir,
                 rel => _zenTexts.IsZen(rel),
@@ -2515,7 +2516,7 @@ public Task OpenTermbaseEditorAsync(string? term, string? communityUser = null)
     // This remains partially in code-behind because it creates a Window.
     // VM signals intent; code-behind creates the TermbaseEditorWindow.
     // The bridge delegate handles the actual window creation.
-    if (string.IsNullOrWhiteSpace(_root))
+    if (string.IsNullOrWhiteSpace(_translationRoot))
     {
         SetStatus("Cannot open termbase editor: no root is loaded.");
         return Task.CompletedTask;
@@ -2530,7 +2531,7 @@ public Task OpenTermbaseEditorAsync(string? term, string? communityUser = null)
         communityUser = activeDictionaryUser;
     }
 
-    OpenTermbaseEditorRequested?.Invoke(_root, localEditorUsername, term, communityUser);
+    OpenTermbaseEditorRequested?.Invoke(_translationRoot, localEditorUsername, term, communityUser);
     return Task.CompletedTask;
 }
 
@@ -2594,21 +2595,167 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     private int _translationSourceIndex;
 
     /// <summary>
-    /// For reads: check active dir first, then community dir as fallback.
+    /// For reads: choose the most translated available source for this file.
+    /// Community wins ties.
     /// </summary>
     private string? FindTranslatedPath(string relPath)
     {
-        if (_activeTranslatedDir != null)
+        return EvaluateBestTranslationSource(relPath).Path;
+    }
+
+    private TranslationSourceEvaluation EvaluateBestTranslationSource(string relPath)
+    {
+        if (string.IsNullOrWhiteSpace(relPath) || _originalDir == null || string.IsNullOrWhiteSpace(_root))
+            return new TranslationSourceEvaluation(Math.Clamp(_translationSourceIndex, 0, Math.Max(0, _translationSourceOptions.Count - 1)), null, TranslationStatus.Red, false, 0, DateTime.MinValue);
+
+        var origAbs = Path.Combine(_originalDir, relPath);
+        var relKey = NormalizeRel(relPath);
+        TranslationSourceEvaluation? best = null;
+
+        for (int index = 0; index < _translationSourceOptions.Count; index++)
         {
-            var activePath = Path.Combine(_activeTranslatedDir, relPath);
-            if (File.Exists(activePath)) return activePath;
+            var dir = ResolveTranslatedDirForSourceIndex(index);
+            if (string.IsNullOrWhiteSpace(dir))
+                continue;
+
+            var candidatePath = Path.Combine(dir, relPath);
+            TranslationStatus status = TranslationStatus.Red;
+            long mtimeTicks = 0;
+            DateTime writeUtc = DateTime.MinValue;
+
+            if (File.Exists(candidatePath) && IsMeaningfullyTranslatedPath(relPath, candidatePath))
+            {
+                status = LiveTranslationStatusService.ComputeStatusForPairLive(origAbs, candidatePath, _root!, relKey, verboseLog: false);
+                try
+                {
+                    writeUtc = File.GetLastWriteTimeUtc(candidatePath);
+                    mtimeTicks = writeUtc.Ticks;
+                }
+                catch { }
+            }
+
+            var evaluation = new TranslationSourceEvaluation(
+                index,
+                status == TranslationStatus.Red ? null : candidatePath,
+                status,
+                index == 1,
+                mtimeTicks,
+                writeUtc);
+
+            if (IsBetterTranslationSource(evaluation, best))
+                best = evaluation;
         }
-        if (_translatedDir != null && _activeTranslatedDir != _translatedDir)
+
+        if ((best == null || best.Path == null) && !string.IsNullOrWhiteSpace(_translatedCacheDir))
         {
-            var communityPath = Path.Combine(_translatedDir, relPath);
-            if (File.Exists(communityPath)) return communityPath;
+            var cachePath = Path.Combine(_translatedCacheDir, relPath);
+            if (File.Exists(cachePath))
+            {
+                return new TranslationSourceEvaluation(
+                    _translationSourceOptions.Count > 1 ? 1 : 0,
+                    cachePath,
+                    TranslationStatus.Red,
+                    false,
+                    0,
+                    DateTime.MinValue);
+            }
         }
-        return null;
+
+        return best ?? new TranslationSourceEvaluation(
+            _translationSourceOptions.Count > 1 ? 1 : 0,
+            null,
+            TranslationStatus.Red,
+            _translationSourceOptions.Count > 1,
+            0,
+            DateTime.MinValue);
+    }
+
+    private static bool IsBetterTranslationSource(TranslationSourceEvaluation candidate, TranslationSourceEvaluation? currentBest)
+    {
+        if (currentBest == null)
+            return true;
+
+        int candidateRank = GetTranslationStatusRank(candidate.Status);
+        int bestRank = GetTranslationStatusRank(currentBest.Status);
+        if (candidateRank != bestRank)
+            return candidateRank > bestRank;
+
+        if (candidate.IsCommunity != currentBest.IsCommunity)
+            return candidate.IsCommunity;
+
+        if (candidate.LastWriteUtc != currentBest.LastWriteUtc)
+            return candidate.LastWriteUtc > currentBest.LastWriteUtc;
+
+        return candidate.Index < currentBest.Index;
+    }
+
+    private static int GetTranslationStatusRank(TranslationStatus status) => status switch
+    {
+        TranslationStatus.Green => 2,
+        TranslationStatus.Yellow => 1,
+        _ => 0,
+    };
+
+    private int ResolveBestTranslationSourceIndex(string relPath) => EvaluateBestTranslationSource(relPath).Index;
+    private bool IsMeaningfullyTranslatedPath(string relPath, string candidatePath)
+    {
+        try
+        {
+            if (_originalDir == null || string.IsNullOrWhiteSpace(relPath) || string.IsNullOrWhiteSpace(candidatePath))
+                return false;
+
+            var originalPath = Path.Combine(_originalDir, relPath);
+            if (!File.Exists(originalPath) || !File.Exists(candidatePath))
+                return false;
+
+            var originalWriteUtc = File.GetLastWriteTimeUtc(originalPath);
+            var candidateInfo = new FileInfo(candidatePath);
+            var candidateWriteUtc = candidateInfo.LastWriteTimeUtc;
+            var candidateLength = candidateInfo.Length;
+
+            if (_meaningfulTranslationCache.TryGetValue(candidatePath, out var cached)
+                && cached.OriginalWriteUtc == originalWriteUtc
+                && cached.CandidateWriteUtc == candidateWriteUtc
+                && cached.CandidateLength == candidateLength)
+            {
+                return cached.IsMeaningful;
+            }
+
+            var originalXml = File.ReadAllText(originalPath, Encoding.UTF8);
+            var candidateXml = File.ReadAllText(candidatePath, Encoding.UTF8);
+
+            bool isMeaningful;
+            if (TryParseXml(originalXml, out _)
+                && TryParseXml(candidateXml, out _)
+                && XNode.DeepEquals(XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace), XDocument.Parse(candidateXml, LoadOptions.PreserveWhitespace)))
+            {
+                isMeaningful = false;
+            }
+            else
+            {
+                try
+                {
+                    var doc = _indexedTranslation.BuildIndex(originalXml, candidateXml);
+                    isMeaningful = doc.Units.Any(u => !string.IsNullOrWhiteSpace(u.En));
+                }
+                catch
+                {
+                    isMeaningful = true;
+                }
+            }
+
+            _meaningfulTranslationCache[candidatePath] = new MeaningfulTranslationCacheEntry(
+                originalWriteUtc,
+                candidateWriteUtc,
+                candidateLength,
+                isMeaningful);
+
+            return isMeaningful;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -2633,9 +2780,9 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         var displayName = string.IsNullOrWhiteSpace(_config.Username) ? (_config.GitHubUsername ?? "User") : _config.Username;
         var options = new List<string> { $"My Translation ({displayName})", "Community" };
 
-        if (_root != null)
+        if (_translationRoot != null)
         {
-            var communityTransDir = Path.Combine(_root, "community", "translations");
+            var communityTransDir = Path.Combine(_translationRoot, "community", "translations");
             if (Directory.Exists(communityTransDir))
             {
                 foreach (var dir in Directory.GetDirectories(communityTransDir))
@@ -2664,17 +2811,19 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     {
         if (index < 0 || index >= _translationSourceOptions.Count) return;
 
-        _translationSourceIndex = index;
+        ApplyTranslationSourceIndex(index);
 
-        if (index == 0) // My Translation
-            _activeTranslatedDir = _userTranslatedDir;
-        else if (index == 1) // Community
-            _activeTranslatedDir = _translatedDir;
-        else // Other user (read-only)
-        {
-            var username = _translationSourceOptions[index];
-            _activeTranslatedDir = AppPaths.GetUserTranslatedDir(_root!, username);
-        }
+        // Reload current file with new source
+        if (_currentRelPath != null)
+            await LoadPairAsync(_currentRelPath, autoChooseSource: false);
+    }
+
+    private void ApplyTranslationSourceIndex(int index)
+    {
+        if (index < 0 || index >= _translationSourceOptions.Count) return;
+
+        _translationSourceIndex = index;
+        _activeTranslatedDir = ResolveTranslatedDirForSourceIndex(index);
 
         SetTranslationEditorReadOnly?.Invoke(IsActiveTranslationReadOnly);
         SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
@@ -2683,10 +2832,17 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         try { _translationAssistant.SetUsername(GetActiveDictionaryUser()); } catch { }
         try { SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser()); } catch { }
         PushSearchContext();
+    }
 
-        // Reload current file with new source
-        if (_currentRelPath != null)
-            await LoadPairAsync(_currentRelPath);
+    private string? ResolveTranslatedDirForSourceIndex(int index)
+    {
+        if (index == 0)
+            return _userTranslatedDir;
+        if (index == 1)
+            return _translatedDir;
+        if (index >= 2 && index < _translationSourceOptions.Count && !string.IsNullOrWhiteSpace(_root))
+            return AppPaths.GetUserTranslatedDir(_root!, _translationSourceOptions[index]);
+        return null;
     }
 
     /// <summary>
@@ -2792,8 +2948,9 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             return;
 
         var searchTranslatedDir = GetSearchTranslatedDir();
-        SetSearchRootContext?.Invoke(_root, _originalDir, searchTranslatedDir);
-        SetSearchContext?.Invoke(_root, _originalDir, searchTranslatedDir,
+        var indexRoot = _translationRoot ?? _root;
+        SetSearchRootContext?.Invoke(indexRoot, _originalDir, searchTranslatedDir);
+        SetSearchContext?.Invoke(indexRoot, _originalDir, searchTranslatedDir,
             relKey =>
             {
                 _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
@@ -3053,13 +3210,13 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     public async Task SaveIndexCacheIfDirtyAsync()
     {
         if (!_indexCacheDirty) return;
-        if (_root == null) return;
+        if (_translationRoot == null) return;
 
         _indexCacheDirty = false;
 
         try
         {
-            await _indexCacheService.SaveAsync(_root, new IndexCache { Entries = _allItems });
+            await _indexCacheService.SaveAsync(_translationRoot, new IndexCache { Entries = _allItems });
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Index cache save failed: {ex.Message}"); }
     }
@@ -3171,7 +3328,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         RefreshTranslationSources();
 
         if (!string.IsNullOrWhiteSpace(_currentRelPath) && _translationSourceIndex == 0)
-            await LoadPairAsync(_currentRelPath);
+            await LoadPairAsync(_currentRelPath, autoChooseSource: false);
     }
 
     private static void MergeDirectoryContents(string sourceDir, string destDir)
@@ -3200,6 +3357,17 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         catch (UnauthorizedAccessException) { }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
