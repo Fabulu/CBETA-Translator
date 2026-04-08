@@ -315,8 +315,8 @@ public partial class SearchTabView : UserControl
         var leftContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.LeftText;
         var rightContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.RightText;
         var text = shareable
-            ? CbetaUriParser.BuildShareableUrl(child.RelPath, highlightText: highlightText, side: child.Side, user: user)
-            : CbetaUriParser.BuildUri(child.RelPath, highlightText: highlightText, side: child.Side, leftContext: leftContext, rightContext: rightContext, user: user);
+            ? ZenUriParser.BuildShareableUrl(child.RelPath, highlightText: highlightText, side: child.Side, user: user)
+            : ZenUriParser.BuildUri(child.RelPath, highlightText: highlightText, side: child.Side, leftContext: leftContext, rightContext: rightContext, user: user);
 
         await top.Clipboard.SetTextAsync(text);
         Status?.Invoke(this, shareable ? "Shareable passage link copied to clipboard." : "Passage link copied to clipboard.");
@@ -331,7 +331,7 @@ public partial class SearchTabView : UserControl
         var state = _vm.ExportUiState();
         var sourceKey = GetTranslationSourceKey?.Invoke();
         var link = shareable
-            ? CbetaUriParser.BuildShareableSearchUrl(
+            ? ZenUriParser.BuildShareableSearchUrl(
                 state.Query,
                 searchOriginal: state.SearchOriginal,
                 searchTranslated: state.SearchTranslated,
@@ -340,7 +340,7 @@ public partial class SearchTabView : UserControl
                 tagId: state.SelectedTagFilterId,
                 contextIndex: state.SelectedContextIndex,
                 translationSource: sourceKey)
-            : CbetaUriParser.BuildSearchUri(
+            : ZenUriParser.BuildSearchUri(
                 state.Query,
                 searchOriginal: state.SearchOriginal,
                 searchTranslated: state.SearchTranslated,

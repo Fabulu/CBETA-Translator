@@ -228,7 +228,7 @@ dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=
 ### Linux
 ```bash
 ./eng/build-linux.sh Release true linux-x64
-./run-cbeta-selfcontained.sh linux-x64
+./run-readzen-selfcontained.sh linux-x64
 ```
 
 ### macOS Intel

@@ -364,7 +364,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 // Skip auto-loading last file if a deep link will navigate us elsewhere
                 var hasDeepLink = App.StartupArgs?.Any(a =>
-                    a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase)) == true;
+                    a.StartsWith(ZenUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase)) == true;
 
                 if (!hasDeepLink && !string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
                 {
@@ -1075,7 +1075,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (!_renderCache.TryGet(stampOrig, out ro))
         {
             ct.ThrowIfCancellationRequested();
-            ro = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
+            ro = TeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
             _renderCache.Put(stampOrig, ro);
         }
 
@@ -1083,7 +1083,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (tranAbs == null || !File.Exists(tranAbs))
         {
-            var rtFallback = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
+            var rtFallback = TeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
             return Task.FromResult((ro, rtFallback));
         }
 
@@ -1092,7 +1092,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (!_renderCache.TryGet(stampTran, out rt))
         {
             ct.ThrowIfCancellationRequested();
-            rt = CbetaTeiRenderer.Render(SafeReadAllTextUtf8(tranAbs));
+            rt = TeiRenderer.Render(SafeReadAllTextUtf8(tranAbs));
             _renderCache.Put(stampTran, rt);
         }
 
@@ -1870,7 +1870,7 @@ public partial class MainWindowViewModel : ViewModelBase
         string username)
     {
         RenderedDocument rendered;
-        try { rendered = CbetaTeiRenderer.Render(xml); }
+        try { rendered = TeiRenderer.Render(xml); }
         catch { return xml; }
 
         DocAnnotation? existing = null;
@@ -3068,7 +3068,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                 return null;
         }
 
-        return CbetaTeiRenderer.Render(SafeReadAllTextUtf8(filePath));
+        return TeiRenderer.Render(SafeReadAllTextUtf8(filePath));
     }
 
     /// <summary>

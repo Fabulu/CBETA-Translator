@@ -14,8 +14,8 @@ public static class GitBinaryLocator
     // - Final fallback: "git" (PATH)
     //
     // Optional override (env var):
-    //   CBETA_GIT_PREFERENCE=system   -> prefer system git
-    //   CBETA_GIT_PREFERENCE=bundled  -> prefer bundled git
+    //   READZEN_GIT_PREFERENCE=system   -> prefer system git
+    //   READZEN_GIT_PREFERENCE=bundled  -> prefer bundled git
 
     public static string ResolveGitExecutablePath()
     {
@@ -135,7 +135,7 @@ public static class GitBinaryLocator
     {
         try
         {
-            var env = Environment.GetEnvironmentVariable("CBETA_GIT_PREFERENCE")?.Trim();
+            var env = Environment.GetEnvironmentVariable("READZEN_GIT_PREFERENCE")?.Trim();
             if (!string.IsNullOrWhiteSpace(env))
             {
                 if (env.Equals("bundled", StringComparison.OrdinalIgnoreCase))

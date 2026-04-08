@@ -133,8 +133,8 @@ public partial class CompareTranslationsWindow : Window
         GetSelectionAnchor(editor, doc, out var fromLb, out var toLb, out var highlight);
 
         var link = shareable
-            ? CbetaUriParser.BuildShareableCompareUrl(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight)
-            : CbetaUriParser.BuildCompareUri(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight);
+            ? ZenUriParser.BuildShareableCompareUrl(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight)
+            : ZenUriParser.BuildCompareUri(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight);
 
         var top = TopLevel.GetTopLevel(this);
         if (top?.Clipboard != null)

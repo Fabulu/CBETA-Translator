@@ -1602,7 +1602,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     {
         try
         {
-            var dir = Path.Combine(Path.GetTempPath(), "cbeta-debug");
+            var dir = Path.Combine(Path.GetTempPath(), "readzen-debug");
             Directory.CreateDirectory(dir);
 
             var ts = DateTime.Now.ToString("yyyyMMdd-HHmmss-fff");

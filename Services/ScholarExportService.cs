@@ -1019,7 +1019,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             return null;
 
         var block = passage.StartBlockNumber ?? passage.EndBlockNumber;
-        return CbetaUriParser.BuildUri(
+        return ZenUriParser.BuildUri(
             passage.SourceRelPath,
             fromLb: passage.FromLb,
             toLb: passage.ToLb,
@@ -1031,7 +1031,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         if (string.IsNullOrWhiteSpace(passage.SourceRelPath))
             return null;
 
-        return CbetaUriParser.BuildShareableUrl(
+        return ZenUriParser.BuildShareableUrl(
             passage.SourceRelPath,
             fromLb: passage.FromLb,
             toLb: passage.ToLb);

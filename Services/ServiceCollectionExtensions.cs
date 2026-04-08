@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITermbaseService, TermbaseService>();
         services.AddSingleton<ITermbaseStorageService, TermbaseStorageService>();
         services.AddSingleton<ICommunityDataService, CommunityDataService>();
-        services.AddSingleton<IMarkdownTranslationService, MarkdownTranslationService>();
+
         services.AddSingleton<IScholarCollectionsService, ScholarCollectionsService>();
         services.AddSingleton<IDocumentTagService, DocumentTagService>();
         services.AddSingleton<IScholarExportService, ScholarExportService>();

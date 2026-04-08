@@ -58,17 +58,17 @@ public sealed class SingleInstanceManager : IDisposable
         }
 
         // Second instance â€” forward the zen:// URI to the first instance and signal exit.
-        var cbetaArg = args.FirstOrDefault(a =>
-            a.StartsWith(CbetaUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
+        var deepLinkArg = args.FirstOrDefault(a =>
+            a.StartsWith(ZenUriParser.Scheme + "://", StringComparison.OrdinalIgnoreCase));
 
-        if (!string.IsNullOrEmpty(cbetaArg))
+        if (!string.IsNullOrEmpty(deepLinkArg))
         {
             try
             {
                 using var client = new NamedPipeClientStream(".", PipeName, PipeDirection.Out);
                 client.Connect(timeout: 3000);
                 using var writer = new StreamWriter(client);
-                writer.Write(cbetaArg);
+                writer.Write(deepLinkArg);
                 writer.Flush();
             }
             catch

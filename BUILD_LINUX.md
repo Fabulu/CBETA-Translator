@@ -27,7 +27,7 @@ sudo apt install dotnet-sdk-8.0
 
 Run the application:
 ```bash
-./run-cbeta.sh
+./run-readzen.sh
 ```
 
 ### 2. Self-Contained Build (standalone executable)
@@ -41,7 +41,7 @@ Run the application:
 
 Run the standalone executable:
 ```bash
-./run-cbeta-selfcontained.sh linux-x64
+./run-readzen-selfcontained.sh linux-x64
 ```
 
 ## Build Script Parameters
@@ -74,16 +74,11 @@ The `build-linux.sh` script accepts four parameters:
 ./eng/build-linux.sh Release true linux-x64 true
 ```
 
-## Optional Dependencies
-
-For PDF export functionality, you may need:
-- `cbeta_gui_dll.dll` (place in output folder or set `CBETA_GUI_DLL_PATH` environment variable)
-
 ## Troubleshooting
 
 ### Permission denied
 ```bash
-chmod +x ./eng/build-linux.sh ./run-cbeta.sh ./run-cbeta-selfcontained.sh
+chmod +x ./eng/build-linux.sh ./run-readzen.sh ./run-readzen-selfcontained.sh
 ```
 
 ### dotnet command not found
@@ -93,6 +88,6 @@ Install .NET SDK 8.0 as shown in prerequisites, then restart your terminal.
 - Rebuild using non-single-file mode (default):
   `./eng/build-linux.sh Release true linux-x64`
 - Launch via:
-  `./run-cbeta-selfcontained.sh linux-x64`
+  `./run-readzen-selfcontained.sh linux-x64`
 - If your `dotnet` comes from Snap, use a non-snap SDK for Linux self-contained publish.
 

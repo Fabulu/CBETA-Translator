@@ -266,7 +266,7 @@ public partial class TranslationTabView : UserControl
             var user = GetTranslationUser?.Invoke();
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
-            var uri = CbetaUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, blockNumber: blockNumber, user: user);
+            var uri = ZenUriParser.BuildUri(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, blockNumber: blockNumber, user: user);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(uri);
@@ -308,7 +308,7 @@ public partial class TranslationTabView : UserControl
             var userR = GetTranslationUser?.Invoke();
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
-            var url = CbetaUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, user: userR);
+            var url = ZenUriParser.BuildShareableUrl(relPath, fromLb: fromLb, toLb: toLb, highlightText: highlight, side: SearchSide.Translated, user: userR);
             var top = TopLevel.GetTopLevel(this);
             if (top?.Clipboard != null)
                 await top.Clipboard.SetTextAsync(url);
