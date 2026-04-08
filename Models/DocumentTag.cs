@@ -1,6 +1,6 @@
 using System;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 /// <summary>
 /// A single tag applied to a range of text in a document, identified by lb-tag ranges.

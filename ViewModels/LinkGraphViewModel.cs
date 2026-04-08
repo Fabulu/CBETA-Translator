@@ -1,9 +1,9 @@
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public class LinkGraphViewModel
 {

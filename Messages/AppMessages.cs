@@ -1,4 +1,4 @@
-namespace CbetaTranslator.App.Messages;
+namespace ReadZen.App.Messages;
 
 // Status updates
 public sealed record StatusMessage(string Text);

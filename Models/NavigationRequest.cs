@@ -1,4 +1,4 @@
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 /// <summary>
 /// Describes a navigation target: a file location to open in a new reader window and scroll to.

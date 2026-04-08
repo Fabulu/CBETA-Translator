@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed class ZenMasterVariant
 {

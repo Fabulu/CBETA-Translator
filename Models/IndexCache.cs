@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed class IndexCache
 {

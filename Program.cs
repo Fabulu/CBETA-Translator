@@ -1,8 +1,8 @@
 ﻿using Avalonia;
 using System;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App;
+namespace ReadZen.App;
 
 class Program
 {

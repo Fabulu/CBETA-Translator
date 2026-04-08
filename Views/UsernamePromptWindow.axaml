@@ -1,8 +1,8 @@
 <!-- Views/UsernamePromptWindow.axaml -->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:CbetaTranslator.App.ViewModels"
-        x:Class="CbetaTranslator.App.Views.UsernamePromptWindow"
+        xmlns:vm="using:ReadZen.App.ViewModels"
+        x:Class="ReadZen.App.Views.UsernamePromptWindow"
         x:DataType="vm:UsernamePromptWindowViewModel"
         Width="400" Height="230"
         Background="{DynamicResource AppBg}"

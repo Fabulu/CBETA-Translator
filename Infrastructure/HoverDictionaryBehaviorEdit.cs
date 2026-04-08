@@ -14,10 +14,10 @@ using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Rendering;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public sealed class HoverDictionaryBehaviorEdit : IDisposable
 {

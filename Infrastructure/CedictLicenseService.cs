@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace CbetaTranslator.App.Infrastructure;
+namespace ReadZen.App.Infrastructure;
 
 public static class CedictLicenseService
 {

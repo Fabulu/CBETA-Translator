@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CbetaTranslator.App.Infrastructure;
+using ReadZen.App.Infrastructure;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed class RenderedDocument
 {

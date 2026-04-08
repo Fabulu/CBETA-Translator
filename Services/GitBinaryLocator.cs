@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public static class GitBinaryLocator
 {

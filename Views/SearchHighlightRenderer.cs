@@ -4,7 +4,7 @@ using Avalonia.Media;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Rendering;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 /// <summary>
 /// Highlight a single text range in AvaloniaEdit without touching selection.

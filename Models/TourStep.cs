@@ -1,4 +1,4 @@
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public enum TourStepType { Passive, Active, Wait }
 public enum TourPlacement { Top, Bottom, Left, Right, Center }

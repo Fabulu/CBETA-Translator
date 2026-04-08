@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed class ScholarPassage
 {

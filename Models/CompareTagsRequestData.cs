@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 /// <summary>
 /// Carries all data needed to populate a <see cref="Views.CompareTagsWindow"/>:

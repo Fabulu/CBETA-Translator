@@ -3,11 +3,11 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Services;
+using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class ZenMasterManagerWindow : Window
 {

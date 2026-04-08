@@ -5,12 +5,12 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.Views;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using ReadZen.App.Views;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App;
+namespace ReadZen.App;
 
 public partial class App : Application
 {

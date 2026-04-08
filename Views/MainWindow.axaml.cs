@@ -16,10 +16,10 @@ using Avalonia.Platform.Storage;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.Text;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using ReadZen.App.Text;
+using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class MainWindow : Window
 {
@@ -975,14 +975,14 @@ private async Task LoadConfigAndAutoloadAsync()
                 var mode = _vm.TranslationMode;
                 var wantedKind = mode switch
                 {
-                    TranslationEditMode.Head => CbetaTranslator.App.Services.TranslationUnitKind.Head,
-                    TranslationEditMode.Notes => CbetaTranslator.App.Services.TranslationUnitKind.Note,
-                    _ => CbetaTranslator.App.Services.TranslationUnitKind.Body
+                    TranslationEditMode.Head => ReadZen.App.Services.TranslationUnitKind.Head,
+                    TranslationEditMode.Notes => ReadZen.App.Services.TranslationUnitKind.Note,
+                    _ => ReadZen.App.Services.TranslationUnitKind.Body
                 };
                 var unit = doc.Units
                     .Where(u => u.Kind == wantedKind)
                     .FirstOrDefault(u => u.Index == blockNumber);
-                return CbetaTranslator.App.Services.TranslationUnit.GetLbNValueForUnit(unit);
+                return ReadZen.App.Services.TranslationUnit.GetLbNValueForUnit(unit);
             };
         }
 

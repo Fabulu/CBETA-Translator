@@ -3,13 +3,13 @@ using System.IO;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class TermbaseEditorWindow : Window
 {

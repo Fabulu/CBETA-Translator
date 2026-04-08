@@ -1,8 +1,8 @@
 // Views/LicensesWindow.axaml.cs
 using Avalonia.Controls;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.ViewModels;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class LicensesWindow : Window
 {

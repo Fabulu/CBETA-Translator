@@ -1,6 +1,6 @@
 ﻿# Read Zen App - Renovation Findings & Blueprint
 
-**Source:** Dry-run performed on a stale copy (64 commits behind) at `C:\programmieren\CbetaReaderMVVM\CbetaTranslator.App`. Everything below was validated against that older snapshot. The real app has evolved significantly -- many files, services, views, and features may have been added, renamed, or restructured. All findings must be re-verified against the current codebase before acting on them.
+**Source:** Dry-run performed on a stale copy (64 commits behind) at `C:\programmieren\CbetaReaderMVVM\ReadZen.App`. Everything below was validated against that older snapshot. The real app has evolved significantly -- many files, services, views, and features may have been added, renamed, or restructured. All findings must be re-verified against the current codebase before acting on them.
 
 **Date:** 2026-03-26
 

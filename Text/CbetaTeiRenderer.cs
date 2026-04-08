@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Text;
+namespace ReadZen.App.Text;
 
 /// <summary>
 /// Converts TEI/CBETA-ish XML into readable text WITH stable segment keys.

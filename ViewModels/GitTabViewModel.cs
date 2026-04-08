@@ -10,12 +10,12 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
-using CbetaTranslator.App.Infrastructure;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace CbetaTranslator.App.ViewModels;
+namespace ReadZen.App.ViewModels;
 
 public partial class GitTabViewModel : ViewModelBase
 {
@@ -2422,7 +2422,7 @@ public partial class GitTabViewModel : ViewModelBase
                 return;
             }
 
-            var tempDir = Path.Combine(Path.GetTempPath(), "CbetaTranslator", "community-merge", Guid.NewGuid().ToString("N"));
+            var tempDir = Path.Combine(Path.GetTempPath(), "ReadZen", "community-merge", Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(tempDir);
 
             try
@@ -2764,7 +2764,7 @@ public partial class GitTabViewModel : ViewModelBase
             if (string.IsNullOrWhiteSpace(docs))
                 docs = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-            return Path.Combine(docs, "CbetaTranslator");
+            return Path.Combine(docs, "ReadZen");
         }
         catch
         {
@@ -3113,7 +3113,7 @@ public partial class GitTabViewModel : ViewModelBase
 
     private static string CreateBackupDir()
     {
-        var dir = Path.Combine(Path.GetTempPath(), "CbetaTranslator", "git-keep-local", Guid.NewGuid().ToString("N"));
+        var dir = Path.Combine(Path.GetTempPath(), "ReadZen", "git-keep-local", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(dir);
         return dir;
     }
@@ -3456,7 +3456,7 @@ public partial class GitTabViewModel : ViewModelBase
         {
             var dir = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "CbetaTranslator");
+                "ReadZen");
 
             Directory.CreateDirectory(dir);
             return Path.Combine(dir, "git-tab-state.json");

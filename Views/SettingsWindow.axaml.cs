@@ -1,9 +1,9 @@
 // Views/SettingsWindow.axaml.cs
 using Avalonia.Controls;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Models;
+using ReadZen.App.ViewModels;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class SettingsWindow : Window
 {

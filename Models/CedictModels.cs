@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 public sealed record CedictEntry(
     string Traditional,

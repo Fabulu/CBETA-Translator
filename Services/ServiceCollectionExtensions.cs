@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Services;
+namespace ReadZen.App.Services;
 
 public static class ServiceCollectionExtensions
 {

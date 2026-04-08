@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 /// <summary>
 /// A user's complete tag vocabulary: definitions + code bar page assignments.

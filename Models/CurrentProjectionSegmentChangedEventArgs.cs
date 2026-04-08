@@ -1,7 +1,7 @@
 using System;
-using CbetaTranslator.App.Services;
+using ReadZen.App.Services;
 
-namespace CbetaTranslator.App.Models;
+namespace ReadZen.App.Models;
 
 /// <summary>
 /// Carries information about the currently selected projection segment in the translation editor.

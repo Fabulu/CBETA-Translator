@@ -10,5 +10,5 @@ export LD_LIBRARY_PATH="$DIR/bin/Debug/net8.0/runtimes/linux-x64/native:$LD_LIBR
 # Run the application
 echo "Starting Read Zen..."
 echo "Library path: $LD_LIBRARY_PATH"
-dotnet run --project ./CbetaTranslator.App.csproj -c Debug
+dotnet run --project ./ReadZen.App.csproj -c Debug
 

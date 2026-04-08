@@ -157,7 +157,7 @@ Instead:
 5. **If User Approves:**
 
    - Remove task entry from "Active Tasks" in CLAUDE.md
-   - Run `.\eng\build.ps1` (or `dotnet build .\CbetaTranslator.App.csproj -c Debug`) as a post-change quality gate
+   - Run `.\eng\build.ps1` (or `dotnet build .\ReadZen.App.csproj -c Debug`) as a post-change quality gate
    - Add entry to `runs/CLAUDE-RUNS/ARCHIVE.md` (see template in that file)
    - Keep working directory intact (never auto-delete)
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public sealed class AnnotationMarkerOverlay : Control
 {

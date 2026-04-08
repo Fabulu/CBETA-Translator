@@ -1,8 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:models="clr-namespace:CbetaTranslator.App.Models"
-             xmlns:vm="using:CbetaTranslator.App.ViewModels"
-             x:Class="CbetaTranslator.App.Views.SearchTabView"
+             xmlns:models="clr-namespace:ReadZen.App.Models"
+             xmlns:vm="using:ReadZen.App.ViewModels"
+             x:Class="ReadZen.App.Views.SearchTabView"
              x:DataType="vm:SearchTabViewModel">
 
     <Grid RowDefinitions="Auto,*,Auto" RowSpacing="4">

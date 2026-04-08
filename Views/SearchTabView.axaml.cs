@@ -10,12 +10,12 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
 using Avalonia.VisualTree;
-using CbetaTranslator.App.Models;
-using CbetaTranslator.App.Services;
-using CbetaTranslator.App.ViewModels;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public partial class SearchTabView : UserControl
 {

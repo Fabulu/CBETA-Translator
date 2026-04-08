@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- Windows gets a GUI subsystem binary; non-windows can still run fine if you later publish linux -->
+		<OutputType>WinExe</OutputType>
+
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<InvariantGlobalization>true</InvariantGlobalization>
+
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		
+		<!-- Self-contained publishing configuration (only applied when RuntimeIdentifier is explicitly specified) -->
+		<SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
+		<PublishSingleFile Condition="'$(RuntimeIdentifier)' != ''">false</PublishSingleFile>
+		<PublishTrimmed>false</PublishTrimmed>
+		<IncludeNativeLibrariesForSelfExtract Condition="'$(RuntimeIdentifier)' != ''">true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile Condition="'$(RuntimeIdentifier)' != ''">false</EnableCompressionInSingleFile>
+		
+		<!-- Use invariant globalization for self-contained builds to avoid ICU dependency -->
+		<InvariantGlobalization Condition="'$(RuntimeIdentifier)' != ''">true</InvariantGlobalization>
+
+		<!-- Keep run artifacts (handoffs, probe snippets) out of SDK default globs -->
+		<DefaultItemExcludes>$(DefaultItemExcludes);runs\**\*;runs/**;ReadZen.Tests\**\*;ReadZen.Tests/**</DefaultItemExcludes>
+	</PropertyGroup>
+
+	<!-- macOS app bundle support for cbeta:// protocol handler -->
+	<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX')) OR '$(RuntimeIdentifier)' == 'osx-x64' OR '$(RuntimeIdentifier)' == 'osx-arm64'">
+		<CFBundleName>Read Zen</CFBundleName>
+	</PropertyGroup>
+	<ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX')) OR '$(RuntimeIdentifier)' == 'osx-x64' OR '$(RuntimeIdentifier)' == 'osx-arm64'">
+		<Content Include="Info.plist">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="ReadZen.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="Avalonia" Version="11.3.11" />
+		<PackageReference Include="Avalonia.AvaloniaEdit" Version="11.4.1" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.11" />
+
+		<!-- Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration. -->
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.11">
+			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<!-- Ensure dictionary ships in BOTH build output AND publish output -->
+	<ItemGroup>
+		<Content Include="Assets\Dict\cedict_ts.u8">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Assets\Data\scholar-facets.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Assets\Data\grammar-particles.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Assets\Data\master-dates.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+
+</Project>
+

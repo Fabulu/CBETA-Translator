@@ -2,11 +2,11 @@
 using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
-using CbetaTranslator.App.Models;
+using ReadZen.App.Models;
 using System;
 using System.Globalization;
 
-namespace CbetaTranslator.App.Views;
+namespace ReadZen.App.Views;
 
 public sealed class NavStatusToBrushConverter : IValueConverter
 {

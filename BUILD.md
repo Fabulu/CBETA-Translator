@@ -33,7 +33,7 @@ Optional (PDF export path used by this app):
 3. Run:
 
 ```powershell
-dotnet run --project .\CbetaTranslator.App.csproj -c Debug
+dotnet run --project .\ReadZen.App.csproj -c Debug
 ```
 
 ## Linux/WSL

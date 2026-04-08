@@ -4,19 +4,19 @@ echo.
 
 REM Clean previous builds
 echo Cleaning previous builds...
-dotnet clean CbetaTranslator.App.csproj -c Release
+dotnet clean ReadZen.App.csproj -c Release
 
 REM Restore packages
 echo Restoring packages...
-dotnet restore CbetaTranslator.App.csproj
+dotnet restore ReadZen.App.csproj
 
 REM Build self-contained single file
 echo Building self-contained single file executable...
-dotnet publish CbetaTranslator.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o bin\SelfContained
+dotnet publish ReadZen.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o bin\SelfContained
 
 echo.
 echo Build complete!
-echo Executable location: bin\SelfContained\CbetaTranslator.App.exe
+echo Executable location: bin\SelfContained\ReadZen.App.exe
 echo.
 echo IMPORTANT: You will also need:
 echo   1. cbeta-gui-dll.dll (in same directory as exe)
