@@ -142,9 +142,9 @@ public sealed class OnboardingTourService
         {
             Id = "reader-panes",
             Title = "Side-by-Side Reading",
-            Body = "Left pane = original Chinese. Right pane = the selected English translation.\nUse the translation source selector to switch between Community, your own translation, or another user\'s view. Click a sentence to highlight its counterpart on the other side.",
+            Body = "Left pane = original Chinese. Right pane = English translation.\n\nTry it now: click on any Chinese sentence on the left. The corresponding English text highlights on the right \u2014 and vice versa.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Bottom,
+            Placement = TourPlacement.Top,
             TargetControlName = "TwoPaneGrid"
         });
 

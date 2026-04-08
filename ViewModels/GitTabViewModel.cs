@@ -628,10 +628,17 @@ public partial class GitTabViewModel : ViewModelBase
                     return;
                 }
 
-                ProgressText = "Cloning originals (this may take a few minutes)\u2026";
-                StatusChanged?.Invoke(this, "Cloning originals repo\u2026 This is a large download (~500 MB).");
+                ProgressText = "Cloning originals (this may take several minutes)\u2026";
+                StatusChanged?.Invoke(this, "Cloning originals repo (1/2)\u2026 ~2.5 GB download.");
                 AppendLog("\n--- Cloning originals repo ---");
-                var cloneOrig = await _git.CloneAsync(OriginalsRepoUrl, originalsDir, prog, ct);
+                var cloneOrigProg = new Progress<string>(line =>
+                {
+                    Dispatcher.UIThread.Post(() => AppendLog(line));
+                    // Forward git progress lines to status so the tooltip can show them
+                    if (line.Contains("Receiving") || line.Contains("Resolving") || line.Contains("%"))
+                        StatusChanged?.Invoke(this, "Cloning originals (1/2): " + line.Trim());
+                });
+                var cloneOrig = await _git.CloneAsync(OriginalsRepoUrl, originalsDir, cloneOrigProg, ct);
                 if (!cloneOrig.Success)
                 {
                     ProgressText = "Clone originals failed.";
@@ -643,6 +650,7 @@ public partial class GitTabViewModel : ViewModelBase
                 await _git.EnsureLocalExcludeAsync(originalsDir, LocalIgnorePatterns, prog, ct);
                 await _git.EnsureLineEndingConfigAsync(originalsDir, prog, ct);
                 AppendLog("[ok] originals clone complete: " + originalsDir);
+                StatusChanged?.Invoke(this, "Originals downloaded. Cloning translations\u2026");
             }
 
             // Clone translations repo
@@ -657,8 +665,8 @@ public partial class GitTabViewModel : ViewModelBase
                     return;
                 }
 
-                ProgressText = "Cloning translations\u2026";
-                StatusChanged?.Invoke(this, "Cloning translations repo\u2026");
+                ProgressText = "Cloning translations (2/2)\u2026";
+                StatusChanged?.Invoke(this, "Cloning translations repo (2/2)\u2026");
                 AppendLog("\n--- Cloning translations repo ---");
                 var cloneTrans = await _git.CloneAsync(TranslationRepoUrl, translationDir, prog, ct);
                 if (!cloneTrans.Success)
