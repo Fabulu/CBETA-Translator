@@ -1419,7 +1419,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 return Task.CompletedTask;
             }
 
-            var win = new ZenMasterManagerWindow(_vm.Root)
+            var win = new ZenMasterManagerWindow(_vm.TranslationRoot ?? _vm.Root)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
