@@ -8,6 +8,8 @@ namespace ReadZen.App.Views;
 /// Full-window semi-transparent dark overlay with a rounded-rectangle cutout (spotlight)
 /// around a target control. Draws 4 dark rectangles around the cutout rather than using
 /// CombinedGeometry for simplicity and reliability.
+/// When a cutout is active, the overlay is not hit-test-visible so clicks pass through
+/// to the spotlighted control underneath.
 /// </summary>
 public sealed class TourSpotlightOverlay : Control
 {
@@ -27,13 +29,10 @@ public sealed class TourSpotlightOverlay : Control
         set
         {
             _targetBounds = value;
+            // When a cutout is active, let clicks pass through to the control underneath
+            IsHitTestVisible = value == null;
             InvalidateVisual();
         }
-    }
-
-    public TourSpotlightOverlay()
-    {
-        IsHitTestVisible = true;
     }
 
     public override void Render(DrawingContext context)
