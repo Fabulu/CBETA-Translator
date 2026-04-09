@@ -1664,7 +1664,7 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             RequestedThemeVariant = this.ActualThemeVariant
         };
-        win.LoadComparison(data, _vm.GetActiveTranslationUser());
+        win.LoadComparison(data, _vm.Config.GitHubUsername ?? _vm.Config.Username);
         win.Show(this);
     }
 
@@ -1689,7 +1689,7 @@ private async Task LoadConfigAndAutoloadAsync()
         return labels[index];
     }
 
-    private static int? ResolveCompareSourceIndex(string sourceKey, IReadOnlyList<string> labels)
+    private int? ResolveCompareSourceIndex(string sourceKey, IReadOnlyList<string> labels)
     {
         if (string.IsNullOrWhiteSpace(sourceKey))
             return null;
@@ -1699,6 +1699,12 @@ private async Task LoadConfigAndAutoloadAsync()
             return labels.Count > 0 ? 0 : null;
         if (string.Equals(normalized, "community", StringComparison.OrdinalIgnoreCase))
             return labels.Count > 1 ? 1 : null;
+
+        // If the source key matches the current user's username, that's index 0 ("My Translation")
+        var currentUser = _vm.GetActiveTranslationUser();
+        if (!string.IsNullOrWhiteSpace(currentUser) &&
+            string.Equals(normalized, currentUser, StringComparison.OrdinalIgnoreCase))
+            return labels.Count > 0 ? 0 : null;
 
         for (int i = 2; i < labels.Count; i++)
         {
