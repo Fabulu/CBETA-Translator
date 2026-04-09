@@ -30,6 +30,7 @@ public partial class CompareTranslationsWindow : Window
     private string _relPath = string.Empty;
     private string _sourceAKey = "community";
     private string _sourceBKey = "community";
+    private string? _actualUsername;
 
     public CompareTranslationsWindow()
     {
@@ -38,11 +39,12 @@ public partial class CompareTranslationsWindow : Window
         Closed += (_, _) => DisposeHoverDictionary();
     }
 
-    public void LoadComparison(CompareTranslationsRequestData data)
+    public void LoadComparison(CompareTranslationsRequestData data, string? actualUsername = null)
     {
         _relPath = data.RelPath ?? string.Empty;
         _sourceAKey = data.SourceAKey ?? "community";
         _sourceBKey = data.SourceBKey ?? "community";
+        _actualUsername = actualUsername;
         _docOriginal = data.OriginalDoc;
         _docTransA = data.TranslationADoc;
         _docTransB = data.TranslationBDoc;
@@ -132,8 +134,12 @@ public partial class CompareTranslationsWindow : Window
 
         GetSelectionAnchor(editor, doc, out var fromLb, out var toLb, out var highlight);
 
+        // For shareable links, replace "me" with the actual username so others can see your translation
+        var keyA = shareable && _sourceAKey == "me" && !string.IsNullOrWhiteSpace(_actualUsername) ? _actualUsername : _sourceAKey;
+        var keyB = shareable && _sourceBKey == "me" && !string.IsNullOrWhiteSpace(_actualUsername) ? _actualUsername : _sourceBKey;
+
         var link = shareable
-            ? ZenUriParser.BuildShareableCompareUrl(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight)
+            ? ZenUriParser.BuildShareableCompareUrl(_relPath, pane, keyA, keyB, fromLb, toLb, highlight)
             : ZenUriParser.BuildCompareUri(_relPath, pane, _sourceAKey, _sourceBKey, fromLb, toLb, highlight);
 
         var top = TopLevel.GetTopLevel(this);

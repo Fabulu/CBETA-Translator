@@ -35,6 +35,7 @@ public partial class SearchTabView : UserControl
 
     /// <summary>Returns the active translation source key for search-state deep links.</summary>
     public Func<string?>? GetTranslationSourceKey { get; set; }
+    public Func<string?>? GetShareableTranslationSourceKey { get; set; }
 
     public SearchTabView()
     {
@@ -329,7 +330,9 @@ public partial class SearchTabView : UserControl
             return;
 
         var state = _vm.ExportUiState();
-        var sourceKey = GetTranslationSourceKey?.Invoke();
+        var sourceKey = shareable
+            ? (GetShareableTranslationSourceKey?.Invoke() ?? GetTranslationSourceKey?.Invoke())
+            : GetTranslationSourceKey?.Invoke();
         var link = shareable
             ? ZenUriParser.BuildShareableSearchUrl(
                 state.Query,
