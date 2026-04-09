@@ -171,7 +171,7 @@ public class MainWindowViewModelTests
     }
 
     [Fact]
-    public async Task ResolveBestTranslationSourceIndex_DefaultsToCommunityWhenCommunityTiesForBestTranslation()
+    public async Task ResolveBestTranslationSourceIndex_PrefersPersonalOverCommunityWhenTied()
     {
         var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
         var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "octocat" });
@@ -194,7 +194,7 @@ public class MainWindowViewModelTests
         {
             vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
             await vm.LoadRootAsync(root, saveToConfig: false);
-            Assert.Equal(1, InvokeResolveBestTranslationSourceIndex(vm, relPath));
+            Assert.Equal(0, InvokeResolveBestTranslationSourceIndex(vm, relPath));
         }
         finally
         {

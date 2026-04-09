@@ -59,10 +59,12 @@
 					Margin="4,0,0,0"
 					ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
 
+			<TextBlock DockPanel.Dock="Right" Text="Source:" VerticalAlignment="Center"
+					   FontSize="11" Margin="8,0,4,0" Opacity="0.7"/>
 			<ComboBox Name="CmbTranslationSource"
 					  DockPanel.Dock="Right"
 					  MinWidth="170"
-					  FontSize="11"
+					  FontSize="12"
 					  Margin="8,0,0,0"
 					  ToolTip.Tip="Select whose translation to view"/>
 

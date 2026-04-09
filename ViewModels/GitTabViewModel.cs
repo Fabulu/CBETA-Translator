@@ -1019,8 +1019,8 @@ public partial class GitTabViewModel : ViewModelBase
                 ? NormalizeRel(Path.GetRelativePath(repoDir, absTarget))
                 : NormalizeRel($"{RepoTranslatedRoot}/{relPath}");
 
-            AppendLog("[map] rel: " + relPath);
-            AppendLog("[map] repo : " + repoRel);
+            AppendLog("[commit] Source file: " + relPath);
+            AppendLog("[commit] Staging: " + repoRel);
 
             if (absTarget == null || !File.Exists(absTarget))
             {
