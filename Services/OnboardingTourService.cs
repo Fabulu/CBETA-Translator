@@ -144,7 +144,8 @@ public sealed class OnboardingTourService
             Title = "Side-by-Side Reading",
             Body = "Left pane = original Chinese. Right pane = English translation.\n\nTry it now: click on any Chinese sentence on the left. The corresponding English text highlights on the right \u2014 and vice versa.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Center,
+            TargetControlName = "TwoPaneGrid"
         });
 
         Steps.Add(new TourStep
@@ -161,7 +162,7 @@ public sealed class OnboardingTourService
         {
             Id = "study-panel",
             Title = "Study Panel",
-            Body = "Check the \'Study\' checkbox in the Reader toolbar to open the Study Panel.\nIt updates as you move through the original text and shows dictionary help, recognized terms from your dictionary, and translation memory matches.",
+            Body = "Check the \'Study\' checkbox in the Reader toolbar to open the Study Panel.\nAs you move through the text, it shows dictionary definitions, relevant terms from your dictionary, and similar translations from other texts.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
             TargetControlName = "ChkStudyPanel",
@@ -172,7 +173,7 @@ public sealed class OnboardingTourService
         {
             Id = "reader-dictionary-button",
             Title = "Open the Zen Dictionary",
-            Body = "Reader also has a Dict button when you want the full Zen Dictionary window, not just hover lookups. Use it to manage terminology and inspect corpus usage directly while reading.",
+            Body = "The Dict button opens the full Zen Dictionary window, where you can manage terminology and see how terms are used across all the texts \u2014 right while you're reading.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnDictionary",
@@ -244,7 +245,7 @@ public sealed class OnboardingTourService
         {
             Id = "code-bar",
             Title = "Code Bar Shortcuts",
-            Body = "Press 1-9 to apply the corresponding tag. Shift+1-9 switches pages (up to 18 pages = 162 tags).\nW selects a block, E/Q expand or shrink the selection, Tab skips to the next untagged block.",
+            Body = "Press 1-9 to apply the corresponding tag. Shift+1-9 switches pages (up to 18 pages = 162 tags).\nW selects a passage, E/Q expand or shrink the selection, Tab skips to the next untagged passage.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "CodeBarSlots"
@@ -266,7 +267,7 @@ public sealed class OnboardingTourService
         {
             Id = "translate-tab",
             Title = "The Translation Editor",
-            Body = "Switching to the Translate tab.\n\nThis is where translations happen. The editor shows numbered blocks: Chinese on top, English below. Use the source selector to switch between Community, your own translation, and other users\' views. Navigate between blocks with Alt+\u2190 and Alt+\u2192.",
+            Body = "Switching to the Translate tab.\n\nThis is where you translate. Each passage shows the Chinese original on top and your English translation below. Use the dropdown at the top to switch between the community translation, your own, or other users\' work. Move between passages with Alt+\u2190 / Alt+\u2192.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 1,
@@ -277,7 +278,7 @@ public sealed class OnboardingTourService
         {
             Id = "mode-buttons",
             Title = "Text Sections",
-            Body = "Translate works in two sections: Body (main text) and Notes (footnotes).\nSwitch between them with these buttons or Ctrl+2 / Ctrl+3.",
+            Body = "Translate works in two sections: Body (the main text) and Notes (footnotes).\nSwitch between them with these buttons, or press Ctrl+2 for Body and Ctrl+3 for Notes.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnModeBody"
@@ -287,7 +288,7 @@ public sealed class OnboardingTourService
         {
             Id = "copy-for-ai",
             Title = "Copy for AI Translation",
-            Body = "Select any block, or just click 'Copy for AI' to automatically grab up to 100 untranslated blocks with instructions.\n\nPaste into ChatGPT, Claude, or DeepSeek. The AI returns numbered translations.",
+            Body = "Click 'Copy for AI' to grab up to 100 untranslated lines with instructions, ready to paste into ChatGPT, Claude, or DeepSeek.\n\nThe AI will return numbered translations you can paste back in.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnCopyChunkPrompt"
@@ -297,7 +298,7 @@ public sealed class OnboardingTourService
         {
             Id = "paste-from-ai",
             Title = "Paste AI Translations",
-            Body = "Copy the AI's output and click 'Paste from AI'. No need to select anything \u2014 the app matches block numbers automatically, in any order.\n\nIt catches errors like skipped or combined lines.",
+            Body = "Copy the AI's response and click 'Paste from AI'. The app reads the numbers and puts each translation in the right place automatically.\n\nIt will warn you if any lines were skipped or merged.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnPasteByNumber"
@@ -307,7 +308,7 @@ public sealed class OnboardingTourService
         {
             Id = "review-system",
             Title = "Review and Approve",
-            Body = "After translating, review each block with the visible toolbar controls: Approve, Reject, and Next ? for the next unresolved block. Other users can see review status, so this is how you clean up AI drafts into a usable translation.",
+            Body = "After translating, review each line using the toolbar: Approve to accept, Reject to flag for rework, and Next ? to jump to the next unreviewed line. This is how you polish AI drafts into a finished translation that others can use.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnApproveSegment"
@@ -317,7 +318,7 @@ public sealed class OnboardingTourService
         {
             Id = "assistant-panel",
             Title = "Translation Assistant",
-            Body = "The assistant panel shows recognized terminology, translation memory matches, and quality warnings. Use the Asst toggle to show or hide it; its highlights follow along with the panel. In Reader, the Study panel gives you a lighter reading-focused version of this workflow.",
+            Body = "The assistant panel shows relevant dictionary terms, similar translations from other texts, and quality warnings to help you translate accurately. Toggle it with the Asst button. In the Reader tab, the Study panel offers a lighter version of the same help.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Left,
             TargetControlName = "AssistantPane",
@@ -328,7 +329,7 @@ public sealed class OnboardingTourService
         {
             Id = "save-translation",
             Title = "Save Your Work",
-            Body = "Ctrl+S saves your current translation source. Keep exactly one EN line per block in the editor; multiline EN inside a single block is not supported. Large numbered batch pastes across many blocks still work normally. Other users\' translation sources are read-only.",
+            Body = "Ctrl+S saves your translation. Each line in the editor should have one English translation \u2014 don't split a single translation across multiple lines. Batch pastes from AI still work fine. Other users' translations are read-only; you can only save your own.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnSave"
@@ -340,7 +341,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-tab",
             Title = "Search the Corpus",
-            Body = "Switching to the Search tab.\n\nSearch the corpus for Chinese text or English phrases. Use the Original and Translated toggles to choose which side to search, then refine with Zen only, Status, Tag, and KWIC width. When both sides are available, results can show paired bilingual context.",
+            Body = "Switching to the Search tab.\n\nSearch the entire text collection for Chinese or English phrases. Use the Original and Translated toggles to choose which side to search, then narrow results by Zen-only filter, translation status, tags, or how much surrounding context to show.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
@@ -351,7 +352,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-results",
             Title = "Working with Results",
-            Body = "Results show KWIC context around the match. When both sides are available, each row can show paired Chinese and English context. Double-click a result to open it. Right-click a result row for passage links, shareable links, search-state links, and Add to Scholar.",
+            Body = "Results show your search match with surrounding text for context. When translations exist, each row shows both the Chinese and English side by side. Double-click a result to open it. Right-click for links, sharing options, or to add it to Scholar.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ResultsTree"
@@ -380,7 +381,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-shared",
             Title = "Shared Collections",
-            Body = "If you have no local collections yet but shared ones exist, Scholar can open on Shared first. Browse another user, inspect their collection, choose a local target collection, and use Adopt to copy passages into your own workspace.",
+            Body = "If you don't have any collections yet, Scholar shows shared ones from other users first. Browse their work, and use Adopt to copy passages you like into your own collection.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4,
@@ -391,7 +392,7 @@ public sealed class OnboardingTourService
         {
             Id = "adding-passages",
             Title = "Adding Passages",
-            Body = "Right-click text in Reader, Translate, or Search to add it to Scholar. If you do not have a writable local collection yet, Scholar creates one on your first successful add or adopt flow. Multi-block selections capture longer snippets automatically.",
+            Body = "Right-click text in Reader, Translate, or Search to add it to Scholar. If you don't have a collection yet, one is created automatically the first time you add something. Selecting multiple lines captures longer passages automatically.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -418,7 +419,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tools",
             Title = "Compare, Graph, and Exports",
-            Body = "Use Compare to enter checkbox mode, then pick 2-4 passages and continue into the compare window. Scholar exports include readable formats and academic ones like CSV, BibTeX, CSL-JSON, and paper-draft output.",
+            Body = "Use Compare to select 2-4 passages and view them side by side. Scholar can export your collections in readable formats or academic ones (CSV, BibTeX, CSL-JSON) for use in papers.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             TargetControlName = null
@@ -438,7 +439,7 @@ public sealed class OnboardingTourService
         {
             Id = "zen-master-manager",
             Title = "Zen Master Manager",
-            Body = "Use the Zen Master Manager to browse master records, aliases, dates, and community variants in one place. It centralizes data that used to be scattered across different dialogs, and zen:// master links can open a master directly there.",
+            Body = "Use the Zen Master Manager to browse information about Zen masters \u2014 names, aliases, dates, and community contributions \u2014 all in one place. You can also open a master directly from links shared by other users.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4,
@@ -449,7 +450,7 @@ public sealed class OnboardingTourService
         {
             Id = "deep-links",
             Title = "Share Links to Any Passage",
-            Body = "Right-click text selections, search results, or files to copy zen:// deep links. Link types now include dictionary terms, Scholar resources, corpus searches, tags, Zen masters, and compare views. Share with colleagues — clicking opens the exact resource in the app.",
+            Body = "Right-click any text, search result, or file to copy a shareable zen:// link. You can link to specific passages, dictionary terms, searches, tags, Zen masters, and more. Send links to colleagues \u2014 clicking one opens the exact spot in the app.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -460,7 +461,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-tab",
             Title = "Community Sync",
-            Body = "Switching to the Community tab.\n\nUse Sync when you want GitHub-backed sharing and updates. Community materials and selected translated text are handled as separate sync/share flows. Sharing requires GitHub login, but the first-run text download does not.",
+            Body = "Switching to the Community tab.\n\nUse Sync to share your work and get updates from other translators. Translations and community materials (dictionary, notes) are shared separately. Sharing requires a free GitHub account, but downloading texts does not.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 3,
@@ -471,7 +472,7 @@ public sealed class OnboardingTourService
         {
             Id = "git-advanced",
             Title = "Advanced Recovery",
-            Body = "The advanced area is mainly for recovery actions like discarding local changes or fixing a confused sync state. Most users should stay with the main Sync workflow.",
+            Body = "The advanced section is for troubleshooting \u2014 like undoing local changes or fixing sync problems. You probably won't need it. Stick with the main Sync button for everyday use.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync"

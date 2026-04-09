@@ -215,10 +215,10 @@ public class OnboardingTourServiceTests
     public void Tutorial_SearchResultsStep_CoversBilingualResultsAndScholarAction()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "search-results");
-        Assert.Contains("paired Chinese and English context", step.Body);
+        Assert.Contains("Chinese and English side by side", step.Body);
         Assert.Contains("Double-click", step.Body);
-        Assert.Contains("search-state links", step.Body);
-        Assert.Contains("Add to Scholar", step.Body);
+        Assert.Contains("sharing options", step.Body);
+        Assert.Contains("Scholar", step.Body);
     }
 
     [Fact]
@@ -236,8 +236,8 @@ public class OnboardingTourServiceTests
     public void Tutorial_SaveTranslationStep_ExplainsOneLinePerBlockRule()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "save-translation");
-        Assert.Contains("one EN line per block", step.Body);
-        Assert.Contains("batch pastes", step.Body);
+        Assert.Contains("one English translation", step.Body);
+        Assert.Contains("Batch pastes", step.Body);
     }
 
     [Fact]
@@ -245,15 +245,15 @@ public class OnboardingTourServiceTests
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "zen-master-manager");
         Assert.Contains("Zen Master Manager", step.Title);
-        Assert.Contains("zen:// master links", step.Body);
+        Assert.Contains("links shared by other users", step.Body);
     }
 
     [Fact]
     public void Tutorial_CommunityStep_MentionsSeparateSyncFlows()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "git-tab");
-        Assert.Contains("separate sync/share flows", step.Body);
-        Assert.Contains("first-run text download", step.Body);
+        Assert.Contains("shared separately", step.Body);
+        Assert.Contains("downloading texts", step.Body);
     }
 
     // ---- 11. All steps have non-empty Title and Body ----
