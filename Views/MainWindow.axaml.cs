@@ -84,6 +84,7 @@ public partial class MainWindow : Window
     private TourTooltipPanel? _tourTooltip;
     private OnboardingTourService? _tourService;
     private bool _tourDownloadInProgress;
+    private string? _tourSampleCollectionId;
 
     // Stored handler for static event (must unsubscribe on close to avoid leak)
     private EventHandler? _scholarDataChangedHandler;
@@ -1815,6 +1816,10 @@ private async Task LoadConfigAndAutoloadAsync()
         if (step.AutoJumpToBlock.HasValue)
             _translationView?.JumpToBlockNumber(step.AutoJumpToBlock.Value);
 
+        // Add sample scholar data when entering scholar tutorial
+        if (step.Id == "scholar-tab" && _scholarView?.DataContext is ScholarTabViewModel scholarVm)
+            _ = EnsureTourScholarSampleAsync(scholarVm);
+
         _tourOverlayCanvas.IsVisible = true;
 
         // Make spotlight fill the entire overlay canvas
@@ -1960,8 +1965,45 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_tourOverlayCanvas != null)
             _tourOverlayCanvas.IsVisible = false;
 
+        // Clean up sample scholar data
+        await RemoveTourScholarSampleAsync();
+
         _vm.Config.HasCompletedOnboarding = true;
         await _vm.SafeSaveConfigAsync();
+    }
+
+    private async Task EnsureTourScholarSampleAsync(ScholarTabViewModel scholarVm)
+    {
+        if (_tourSampleCollectionId != null) return; // Already created
+        try
+        {
+            var collection = await scholarVm.EnsureDefaultCollectionAsync();
+            _tourSampleCollectionId = collection.Id;
+
+            // Add a sample passage from the Gateless Barrier (Case 1: Zhaozhou's Dog)
+            var samplePassage = new Models.ScholarPassage
+            {
+                SourceRelPath = "T/T48/T48n2005.xml",
+                ZhText = "\u8d99\u5dde\u548c\u5c1a\u3001\u56e0\u50e7\u554f\u300c\u72d7\u5b50\u9084\u6709\u4f5b\u6027\u4e5f\u7121\u300d\u3002\u5dde\u4e91\u300c\u7121\u300d\u3002",
+                EnText = "A monk asked Zhaozhou, \u201CDoes a dog have Buddha-nature or not?\u201D Zhaozhou said, \u201CNo.\u201D",
+                Notes = "Case 1 of the Gateless Barrier. Added as a sample during the tutorial.",
+            };
+            await scholarVm.AddPassageToCollectionAsync(collection.Id, samplePassage);
+        }
+        catch { /* non-critical — tutorial continues without sample data */ }
+    }
+
+    private async Task RemoveTourScholarSampleAsync()
+    {
+        if (_tourSampleCollectionId == null || _scholarView?.DataContext is not ScholarTabViewModel scholarVm)
+            return;
+
+        try
+        {
+            await scholarVm.RemoveCollectionAsync(_tourSampleCollectionId);
+            _tourSampleCollectionId = null;
+        }
+        catch { /* non-critical */ }
     }
 
     private async void OnTourActionClicked()
