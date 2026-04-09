@@ -45,6 +45,7 @@ public static class LegacyRepoMigration
     public static async Task<MigrationResult> MigrateAsync(
         string legacyRepoPath,
         IGitRepoService git,
+        string? username,
         IProgress<string> progress,
         CancellationToken ct)
     {
@@ -88,7 +89,7 @@ public static class LegacyRepoMigration
 
             // Step 5: Copy meaningful translations (files that differ from originals)
             progress.Report("Identifying local translations...");
-            CopyMeaningfulTranslations(legacyRepoPath, translationDir);
+            CopyMeaningfulTranslations(legacyRepoPath, translationDir, username);
 
             // Step 6: Rename legacy folders so DiscoverRepoPaths sees old repo as originals-only
             progress.Report("Cleaning up old layout...");
@@ -117,12 +118,18 @@ public static class LegacyRepoMigration
         }
     }
 
-    private static void CopyMeaningfulTranslations(string legacyRepoPath, string translationDir)
+    private static void CopyMeaningfulTranslations(string legacyRepoPath, string translationDir, string? username)
     {
         var origDir = Path.Combine(legacyRepoPath, AppPaths.OriginalFolderName);
         var tranDir = Path.Combine(legacyRepoPath, AppPaths.TranslatedFolderName);
 
         if (!Directory.Exists(tranDir)) return;
+
+        // Determine the user's personal folder for translations
+        // Use GitHubUsername > Username > "User" as the folder key (matches GetTranslationFolderKey)
+        var userKey = !string.IsNullOrWhiteSpace(username)
+            ? AppPaths.SanitizeUsername(username)
+            : "User";
 
         foreach (var tranFile in Directory.EnumerateFiles(tranDir, "*.xml", SearchOption.AllDirectories))
         {
@@ -131,10 +138,17 @@ public static class LegacyRepoMigration
 
             if (!File.Exists(origFile) || !FilesAreIdentical(origFile, tranFile))
             {
-                var dstFile = Path.Combine(translationDir, AppPaths.TranslatedFolderName, relPath);
-                var dstDir = Path.GetDirectoryName(dstFile);
-                if (dstDir != null) Directory.CreateDirectory(dstDir);
-                File.Copy(tranFile, dstFile, overwrite: true);
+                // Copy to community xml-p5t/ (so it's visible as "Community" source)
+                var dstCommunity = Path.Combine(translationDir, AppPaths.TranslatedFolderName, relPath);
+                var dstCommunityDir = Path.GetDirectoryName(dstCommunity);
+                if (dstCommunityDir != null) Directory.CreateDirectory(dstCommunityDir);
+                File.Copy(tranFile, dstCommunity, overwrite: true);
+
+                // Also copy to the user's personal folder (so it's visible as "My Translation")
+                var dstPersonal = Path.Combine(translationDir, "community", "translations", userKey, relPath);
+                var dstPersonalDir = Path.GetDirectoryName(dstPersonal);
+                if (dstPersonalDir != null) Directory.CreateDirectory(dstPersonalDir);
+                File.Copy(tranFile, dstPersonal, overwrite: true);
             }
         }
     }

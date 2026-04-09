@@ -312,8 +312,9 @@ public partial class MainWindowViewModel : ViewModelBase
                 {
                     SetStatus("Migrating to two-repo layout (one-time)...");
                     var migrationProgress = new Progress<string>(msg => SetStatus("Migration: " + msg));
+                    var migrationUsername = _config.GitHubUsername ?? _config.Username;
                     var result = await LegacyRepoMigration.MigrateAsync(
-                        configPath, _gitService, migrationProgress, CancellationToken.None);
+                        configPath, _gitService, migrationUsername, migrationProgress, CancellationToken.None);
 
                     if (result.Success)
                     {
@@ -335,8 +336,9 @@ public partial class MainWindowViewModel : ViewModelBase
                     {
                         SetStatus("Resuming interrupted migration...");
                         var migrationProgress = new Progress<string>(msg => SetStatus("Migration: " + msg));
+                        var resumeUsername = _config.GitHubUsername ?? _config.Username;
                         var result = await LegacyRepoMigration.MigrateAsync(
-                            configPath, _gitService, migrationProgress, CancellationToken.None);
+                            configPath, _gitService, resumeUsername, migrationProgress, CancellationToken.None);
 
                         if (result.Success)
                         {
