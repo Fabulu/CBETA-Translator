@@ -362,7 +362,7 @@ public sealed class OnboardingTourService
         {
             Id = "scholar-tab",
             Title = "Your Research Workspace",
-            Body = "This is the Scholar tab \u2014 your research workspace.\n\nIt\u2019s empty right now because you haven\u2019t collected any passages yet. As you read and translate, you can right-click text to add passages here. They\u2019ll appear in your collections for comparison, annotation, and export.",
+            Body = "This is the Scholar tab \u2014 your research workspace.\n\nWe\u2019ve added a sample passage from the Gateless Barrier so you can see how it looks. You\u2019ll build your own collections over time by right-clicking text in Reader, Translate, or Search.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 4
@@ -410,9 +410,10 @@ public sealed class OnboardingTourService
         {
             Id = "passage-detail",
             Title = "Passage Details",
-            Body = "Each passage has: tags, master names, notes, doctrinal categorization (Topic, Form, Lineage), and cross-reference links to other passages.",
+            Body = "Click the sample passage to see its details. Each passage can have tags, master names, notes, doctrinal categories, and links to other passages.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Left,
+            TargetControlName = "ScholarView"
         });
 
         Steps.Add(new TourStep

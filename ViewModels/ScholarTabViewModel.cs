@@ -389,6 +389,19 @@ public partial class ScholarTabViewModel : ViewModelBase
         _ = SafeFireAndForget(SaveAsync());
     }
 
+    /// <summary>Removes a collection by ID without confirmation. Used for tour sample cleanup.</summary>
+    public async Task RemoveCollectionAsync(string collectionId)
+    {
+        var c = _allCollections.FirstOrDefault(x => x.Id == collectionId);
+        if (c == null) return;
+        _allCollections.Remove(c);
+        Collections.Remove(c);
+        if (SelectedCollection?.Id == collectionId)
+            SelectedCollection = Collections.FirstOrDefault();
+        RefreshIsEmptyState();
+        await SaveAsync();
+    }
+
     [RelayCommand]
     private async Task DeletePassageAsync()
     {
