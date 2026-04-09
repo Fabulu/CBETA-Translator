@@ -1700,10 +1700,11 @@ private async Task LoadConfigAndAutoloadAsync()
         if (string.Equals(normalized, "community", StringComparison.OrdinalIgnoreCase))
             return labels.Count > 1 ? 1 : null;
 
-        // If the source key matches the current user's username, that's index 0 ("My Translation")
-        var currentUser = _vm.GetActiveTranslationUser();
-        if (!string.IsNullOrWhiteSpace(currentUser) &&
-            string.Equals(normalized, currentUser, StringComparison.OrdinalIgnoreCase))
+        // If the source key matches the current user's username (GitHub or local), that's index 0
+        var ghUser = _vm.Config.GitHubUsername;
+        var localUser = _vm.Config.Username;
+        if ((!string.IsNullOrWhiteSpace(ghUser) && string.Equals(normalized, ghUser, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrWhiteSpace(localUser) && string.Equals(normalized, localUser, StringComparison.OrdinalIgnoreCase)))
             return labels.Count > 0 ? 0 : null;
 
         for (int i = 2; i < labels.Count; i++)
