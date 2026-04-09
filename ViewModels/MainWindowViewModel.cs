@@ -108,6 +108,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private bool _suppressConfigSaves;
     private bool _suppressNavSelection;
+    private bool _userHasManuallySelectedSource;
 
     private sealed record MeaningfulTranslationCacheEntry(
         DateTime OriginalWriteUtc,
@@ -416,6 +417,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public async Task LoadRootAsync(string rootPath, bool saveToConfig)
     {
         _root = rootPath;
+        _userHasManuallySelectedSource = false;
         _translationRoot = AppPaths.GetTranslationRepoRoot(_root);
         _originalDir = AppPaths.GetOriginalDir(_root);
         _translatedDir = AppPaths.GetTranslatedDir(_root);
@@ -1129,7 +1131,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
-        if (autoChooseSource)
+        if (autoChooseSource && !_userHasManuallySelectedSource)
         {
             var bestIndex = ResolveBestTranslationSourceIndex(relPath);
             ApplyTranslationSourceIndex(bestIndex);
@@ -1210,9 +1212,9 @@ public partial class MainWindowViewModel : ViewModelBase
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen context set failed: {ex.Message}"); }
 
             await SaveUiStateAsync();
-            SetStatus("Loaded. Segments: O=" + ro.Segments.Count.ToString("n0") +
-                      ", T=" + rt.Segments.Count.ToString("n0") +
-                      ". Render=" + swRender.ElapsedMilliseconds.ToString("n0") + "ms");
+            var sourceName = _translationSourceIndex < _translationSourceOptions.Count
+                ? _translationSourceOptions[_translationSourceIndex] : "unknown";
+            SetStatus($"Loaded: {relPath} — Source: {sourceName} (O={ro.Segments.Count:n0}, T={rt.Segments.Count:n0}, {swRender.ElapsedMilliseconds:n0}ms)");
             _ = RefreshProgressStatsAsync(); // Do not await; keep the UI responsive
             _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
         }
@@ -2119,7 +2121,9 @@ public partial class MainWindowViewModel : ViewModelBase
             }
 
             var backupMsg = saveInfo.BackupCreated ? " backup=yes" : " backup=no";
-            SetStatus("Saved translated XML (" + updatedCount.ToString("n0") + " units updated)." + backupMsg);
+            var sourceName = _translationSourceIndex < _translationSourceOptions.Count
+                ? _translationSourceOptions[_translationSourceIndex] : "active source";
+            SetStatus($"Saved ({updatedCount:n0} units updated) to {sourceName}.{backupMsg}");
         }
         catch (Exception ex)
         {
@@ -2318,7 +2322,10 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var file = _currentRelPath ?? "";
         var star = _dirty ? "*" : "";
-        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " - " + file);
+        var sourceLabel = !string.IsNullOrWhiteSpace(file) && _translationSourceIndex >= 0 && _translationSourceIndex < _translationSourceOptions.Count
+            ? _translationSourceOptions[_translationSourceIndex] : null;
+        var sourceSuffix = sourceLabel != null ? $" [{sourceLabel}]" : "";
+        var title = string.IsNullOrWhiteSpace(file) ? (AppTitleBase + star) : (AppTitleBase + star + " - " + file + sourceSuffix);
         WindowTitle = title;
         SetWindowTitle?.Invoke(title);
 
@@ -2758,7 +2765,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             return candidateRank > bestRank;
 
         if (candidate.IsCommunity != currentBest.IsCommunity)
-            return candidate.IsCommunity;
+            return !candidate.IsCommunity; // Prefer personal over community at equal quality
 
         if (candidate.LastWriteUtc != currentBest.LastWriteUtc)
             return candidate.LastWriteUtc > currentBest.LastWriteUtc;
@@ -2887,6 +2894,16 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     public async Task SwitchTranslationSourceAsync(int index)
     {
         if (index < 0 || index >= _translationSourceOptions.Count) return;
+
+        if (!await ConfirmNavigateIfDirtyAsync("switch translation source"))
+        {
+            SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
+            SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
+            SetScholarDictionarySourceIndex?.Invoke(_translationSourceIndex);
+            return;
+        }
+
+        _userHasManuallySelectedSource = true;
 
         ApplyTranslationSourceIndex(index);
 
