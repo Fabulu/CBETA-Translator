@@ -76,31 +76,42 @@ public partial class CompareTranslationsWindow : Window
 
     public async Task NavigateToAsync(ComparePaneTarget pane, NavigationRequest request)
     {
+        // Wait for layout + extra frame so AvaloniaEdit visual lines are ready
         await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+        await Task.Delay(100);
 
         var (editor, doc) = GetPaneState(pane);
         if (editor?.Document == null || doc == null || doc.IsEmpty)
             return;
 
-        if (!string.IsNullOrWhiteSpace(request.FromLb) && TrySelectByLbRange(editor, doc, request.FromLb!, request.ToLb, out var lbKey))
+        // Prevent WireSelectionMirroring from overwriting our navigation
+        _syncing = true;
+        try
         {
-            MirrorSelection(pane, request.FromLb!, request.ToLb, lbKey);
-            return;
+            if (!string.IsNullOrWhiteSpace(request.FromLb) && TrySelectByLbRange(editor, doc, request.FromLb!, request.ToLb, out var lbKey))
+            {
+                MirrorSelection(pane, request.FromLb!, request.ToLb, lbKey);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(request.MatchText))
+                return;
+
+            var docText = doc.Text ?? string.Empty;
+            var idx = docText.IndexOf(request.MatchText, StringComparison.Ordinal);
+            if (idx < 0)
+                idx = docText.IndexOf(request.MatchText, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0)
+                return;
+
+            SelectSegment(editor, idx, idx + request.MatchText.Length);
+            var seg = doc.FindSegmentAtOrBefore(idx);
+            MirrorSelection(pane, null, null, seg?.Key);
         }
-
-        if (string.IsNullOrWhiteSpace(request.MatchText))
-            return;
-
-        var docText = doc.Text ?? string.Empty;
-        var idx = docText.IndexOf(request.MatchText, StringComparison.Ordinal);
-        if (idx < 0)
-            idx = docText.IndexOf(request.MatchText, StringComparison.OrdinalIgnoreCase);
-        if (idx < 0)
-            return;
-
-        SelectSegment(editor, idx, idx + request.MatchText.Length);
-        var seg = doc.FindSegmentAtOrBefore(idx);
-        MirrorSelection(pane, null, null, seg?.Key);
+        finally
+        {
+            _syncing = false;
+        }
     }
 
     private void AttachContextMenus()
