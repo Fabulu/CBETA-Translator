@@ -3112,12 +3112,21 @@ public partial class GitTabViewModel : ViewModelBase
         if (string.IsNullOrWhiteSpace(repoDir) || !Directory.Exists(repoDir))
             return result.ToArray();
 
+        // Preserve all personal translation directories
         var translationsDir = Path.Combine(repoDir, "community", "translations");
-        if (!Directory.Exists(translationsDir))
-            return result.ToArray();
+        if (Directory.Exists(translationsDir))
+        {
+            foreach (var file in Directory.EnumerateFiles(translationsDir, "*", SearchOption.AllDirectories))
+                result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+        }
 
-        foreach (var file in Directory.EnumerateFiles(translationsDir, "*", SearchOption.AllDirectories))
-            result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+        // Preserve locally modified xml-p5t files (user may have saved to community source)
+        var xmlP5tDir = Path.Combine(repoDir, "xml-p5t");
+        if (Directory.Exists(xmlP5tDir))
+        {
+            foreach (var file in Directory.EnumerateFiles(xmlP5tDir, "*.xml", SearchOption.AllDirectories))
+                result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+        }
 
         return result.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray();
     }
