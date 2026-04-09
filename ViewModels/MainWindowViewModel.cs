@@ -1010,7 +1010,16 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var tranAbs = FindTranslatedPath(relPath);
+            // Prefer the active translation source (what the user selected/saved to)
+            string? tranAbs = null;
+            if (_activeTranslatedDir != null)
+            {
+                var activePath = Path.Combine(_activeTranslatedDir, relPath);
+                if (File.Exists(activePath))
+                    tranAbs = activePath;
+            }
+            // Fall back to best-source discovery
+            tranAbs ??= FindTranslatedPath(relPath);
             if (tranAbs == null)
                 return null;
 
@@ -1075,7 +1084,15 @@ public partial class MainWindowViewModel : ViewModelBase
             return Task.FromResult((RenderedDocument.Empty, RenderedDocument.Empty));
 
         var origAbs = Path.Combine(_originalDir, relPath);
-        var tranAbs = FindTranslatedPath(relPath);
+        // Prefer the active translation source so the reader shows what the user just saved
+        string? tranAbs = null;
+        if (_activeTranslatedDir != null)
+        {
+            var activePath = Path.Combine(_activeTranslatedDir, relPath);
+            if (File.Exists(activePath))
+                tranAbs = activePath;
+        }
+        tranAbs ??= FindTranslatedPath(relPath);
 
         ct.ThrowIfCancellationRequested();
 
