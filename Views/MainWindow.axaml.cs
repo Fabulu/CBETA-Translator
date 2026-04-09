@@ -992,6 +992,7 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             _searchView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _searchView.GetTranslationSourceKey = () => _vm.GetActiveSearchSourceKey();
+            _searchView.GetShareableTranslationSourceKey = () => _vm.GetActiveSearchSourceKey(forShareableLink: true);
             _searchView.Status += (_, msg) => _vm.SetStatus(msg);
             _searchView.NavigationRequested += (_, req) =>
             {
@@ -1663,18 +1664,26 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             RequestedThemeVariant = this.ActualThemeVariant
         };
-        win.LoadComparison(data);
+        win.LoadComparison(data, _vm.GetActiveTranslationUser());
         win.Show(this);
     }
 
-    private string? GetCompareSourceKey(int index)
+    private string? GetCompareSourceKey(int index, bool forShareableLink = false)
     {
         var labels = _vm.GetTranslationSourceLabels();
         if (index < 0 || index >= labels.Count)
             return null;
 
         if (index == 0)
+        {
+            if (forShareableLink)
+            {
+                // Shareable links need the actual username so other people can see your translation
+                var user = _vm.GetActiveTranslationUser();
+                return string.IsNullOrWhiteSpace(user) ? "me" : user;
+            }
             return "me";
+        }
         if (index == 1)
             return "community";
         return labels[index];

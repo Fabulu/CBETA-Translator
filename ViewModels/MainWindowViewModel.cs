@@ -2941,9 +2941,17 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         return null;
     }
 
-    public string GetActiveSearchSourceKey()
+    public string GetActiveSearchSourceKey(bool forShareableLink = false)
     {
-        if (_translationSourceIndex == 0) return "me";
+        if (_translationSourceIndex == 0)
+        {
+            if (forShareableLink)
+            {
+                var user = GetActiveTranslationUser();
+                return string.IsNullOrWhiteSpace(user) ? "me" : user;
+            }
+            return "me";
+        }
         if (_translationSourceIndex == 1) return "community";
         return GetActiveTranslationUser() ?? "community";
     }
