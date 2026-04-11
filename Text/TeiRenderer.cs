@@ -407,7 +407,8 @@ public static class TeiRenderer
             annotations,
             markers,
             baseToXmlIndex: baseToXmlIndex,
-            baseTextLength: baseText.Length);
+            baseTextLength: baseText.Length,
+            license: null);
     }
 
     // ------------------------------------------------------------

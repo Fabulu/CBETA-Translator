@@ -36,7 +36,18 @@ public sealed class AppConfigService : IAppConfigService
             if (string.IsNullOrWhiteSpace(json))
                 return null;
 
-            return JsonSerializer.Deserialize<AppConfig>(json, JsonOpts);
+            var cfg = JsonSerializer.Deserialize<AppConfig>(json, JsonOpts);
+            if (cfg == null) return null;
+
+            // v3 -> v4 migration: existing configs don't carry ActiveCorpus.
+            // Assume CBETA (the original corpus) and bump version.
+            if (cfg.Version < 4)
+            {
+                cfg.ActiveCorpus = CorpusKind.Cbeta;
+                cfg.Version = 4;
+            }
+
+            return cfg;
         }
         catch
         {

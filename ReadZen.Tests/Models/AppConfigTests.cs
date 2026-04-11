@@ -37,10 +37,19 @@ public class AppConfigTests
     }
 
     [Fact]
-    public void Version_DefaultsTo3()
+    public void Version_DefaultsTo4()
+    {
+        // Bumped from 3 to 4 when ActiveCorpus was added; AppConfigService
+        // migrates v3 configs forward by setting ActiveCorpus = Cbeta.
+        var config = new AppConfig();
+        Assert.Equal(4, config.Version);
+    }
+
+    [Fact]
+    public void ActiveCorpus_DefaultsToCbeta()
     {
         var config = new AppConfig();
-        Assert.Equal(3, config.Version);
+        Assert.Equal(CorpusKind.Cbeta, config.ActiveCorpus);
     }
 
     [Fact]
