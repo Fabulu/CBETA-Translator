@@ -22,6 +22,14 @@ public partial class GitTabViewModel : ViewModelBase
     private const string OriginalsRepoUrl = "https://github.com/Fabulu/CbetaZenTexts.git";
     private const string TranslationRepoUrl = "https://github.com/Fabulu/CbetaZenTranslations.git";
 
+    // OpenZenTexts — the parallel commercial-OK corpus. Sync clones/updates
+    // these alongside the CBETA pair so users always have both available
+    // under one parent root, switchable via the corpus badge in the top bar.
+    private const string OpenZenOriginalsRepoUrl = "https://github.com/Fabulu/OpenZenTexts.git";
+    private const string OpenZenTranslationRepoUrl = "https://github.com/Fabulu/OpenZenTranslations.git";
+    private const string OpenZenOriginalsFolderName = "OpenZenTexts";
+    private const string OpenZenTranslationsFolderName = "OpenZenTranslations";
+
     private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
     private const string UpstreamRepo = "CbetaZenTranslations";
@@ -599,6 +607,11 @@ public partial class GitTabViewModel : ViewModelBase
                     await DoUpdateKeepLocalAsync(translationDir, prog, ct);
                 }
 
+                // Now also clone/update the OpenZenTexts pair so existing
+                // CBETA-only users automatically pick up the parallel free
+                // corpus on their next sync.
+                await EnsureOpenZenReposAsync(prog, ct);
+
                 _currentRepoRoot = parentDir;
                 _baseDestFolder = parentDir;
                 UpdateDestLabel();
@@ -682,7 +695,14 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[ok] translations clone complete: " + translationDir);
             }
 
-            ProgressText = "Done. Both repos are ready.";
+            // Now also clone the OpenZenTexts pair so the user has both
+            // corpora available from the start. New users get both at once;
+            // existing CBETA-only users (who already cloned CBETA earlier
+            // and don't go through this branch) pick it up via the update
+            // path's EnsureOpenZenReposAsync call above.
+            await EnsureOpenZenReposAsync(prog, ct);
+
+            ProgressText = "Done. CBETA + OpenZenTexts ready.";
             AppendLog("[ok] clone complete");
 
             _currentRepoRoot = parentDir;
@@ -692,7 +712,7 @@ public partial class GitTabViewModel : ViewModelBase
 
             AppPaths.InvalidateDiscoveryCache(parentDir);
             RootCloned?.Invoke(this, parentDir);
-            StatusChanged?.Invoke(this, "Repos cloned.");
+            StatusChanged?.Invoke(this, "Repos cloned (CBETA + OpenZenTexts).");
         }
         catch (OperationCanceledException)
         {
@@ -2824,6 +2844,132 @@ public partial class GitTabViewModel : ViewModelBase
         var parent = GetTargetRepoDir();
         var discovered = AppPaths.GetTranslationRepoRoot(parent);
         return discovered ?? Path.Combine(parent, AppPaths.DefaultTranslationRepoFolderName);
+    }
+
+    private string GetOpenZenOriginalsDir()
+    {
+        var parent = GetTargetRepoDir();
+        return Path.Combine(parent, OpenZenOriginalsFolderName);
+    }
+
+    private string GetOpenZenTranslationsDir()
+    {
+        var parent = GetTargetRepoDir();
+        return Path.Combine(parent, OpenZenTranslationsFolderName);
+    }
+
+    /// <summary>
+    /// Clone or update the OpenZenTexts + OpenZenTranslations pair as a
+    /// secondary corpus alongside CBETA. Called from both the CBETA update
+    /// path and the CBETA clone path so existing users automatically get
+    /// the OpenZen pair on their next sync (the migration story for
+    /// CBETA-only installs).
+    ///
+    /// Defensive: any failure here is logged but does NOT propagate. The
+    /// CBETA half of the sync is the primary deliverable; OpenZen failing
+    /// (e.g. network blip, repo not yet pushed) must not break the
+    /// existing CBETA-only experience.
+    /// </summary>
+    private async Task EnsureOpenZenReposAsync(IProgress<string> prog, CancellationToken ct)
+    {
+        try
+        {
+            var openOrigDir = GetOpenZenOriginalsDir();
+            var openTransDir = GetOpenZenTranslationsDir();
+
+            bool openOrigExists = Directory.Exists(openOrigDir) && Directory.Exists(Path.Combine(openOrigDir, ".git"));
+            bool openTransExists = Directory.Exists(openTransDir) && Directory.Exists(Path.Combine(openTransDir, ".git"));
+
+            if (openOrigExists && openTransExists)
+            {
+                AppendLog("\n--- Updating OpenZenTexts repos ---");
+                ProgressText = "Fetching OpenZenTexts…";
+                StatusChanged?.Invoke(this, "Updating OpenZenTexts (originals)…");
+                var f1 = await _git.FetchAsync(openOrigDir, prog, ct);
+                if (f1.Success)
+                {
+                    await DoUpdateDiscardLocalAsync(openOrigDir, prog, ct);
+                    AppendLog("[ok] OpenZenTexts originals updated");
+                }
+                else
+                {
+                    AppendLog("[warn] OpenZenTexts originals fetch failed: " + (f1.Error ?? "unknown"));
+                }
+
+                StatusChanged?.Invoke(this, "Updating OpenZenTexts (translations)…");
+                var f2 = await _git.FetchAsync(openTransDir, prog, ct);
+                if (f2.Success)
+                {
+                    // Translations: keep local changes (user might have personal contributions)
+                    await DoUpdateKeepLocalAsync(openTransDir, prog, ct);
+                    AppendLog("[ok] OpenZenTranslations updated (kept local)");
+                }
+                else
+                {
+                    AppendLog("[warn] OpenZenTranslations fetch failed: " + (f2.Error ?? "unknown"));
+                }
+                return;
+            }
+
+            // Clone any missing OpenZen repo. The clone is small (< 5 MB
+            // currently) so progress notifications are simpler.
+            if (!openOrigExists)
+            {
+                if (Directory.Exists(openOrigDir) && Directory.EnumerateFileSystemEntries(openOrigDir).Any())
+                {
+                    AppendLog("[warn] OpenZenTexts target folder exists but is not a Git repo — skipping clone. Path: " + openOrigDir);
+                }
+                else
+                {
+                    AppendLog("\n--- Cloning OpenZenTexts ---");
+                    ProgressText = "Cloning OpenZenTexts…";
+                    StatusChanged?.Invoke(this, "Cloning OpenZenTexts (free corpus)…");
+                    var c1 = await _git.CloneAsync(OpenZenOriginalsRepoUrl, openOrigDir, prog, ct);
+                    if (c1.Success)
+                    {
+                        await _git.EnsureLocalExcludeAsync(openOrigDir, LocalIgnorePatterns, prog, ct);
+                        await _git.EnsureLineEndingConfigAsync(openOrigDir, prog, ct);
+                        AppendLog("[ok] OpenZenTexts cloned: " + openOrigDir);
+                    }
+                    else
+                    {
+                        AppendLog("[warn] OpenZenTexts clone failed: " + (c1.Error ?? "unknown"));
+                        return;
+                    }
+                }
+            }
+
+            if (!openTransExists)
+            {
+                if (Directory.Exists(openTransDir) && Directory.EnumerateFileSystemEntries(openTransDir).Any())
+                {
+                    AppendLog("[warn] OpenZenTranslations target folder exists but is not a Git repo — skipping clone. Path: " + openTransDir);
+                }
+                else
+                {
+                    AppendLog("\n--- Cloning OpenZenTranslations ---");
+                    ProgressText = "Cloning OpenZenTranslations…";
+                    StatusChanged?.Invoke(this, "Cloning OpenZenTranslations…");
+                    var c2 = await _git.CloneAsync(OpenZenTranslationRepoUrl, openTransDir, prog, ct);
+                    if (c2.Success)
+                    {
+                        await _git.EnsureLocalExcludeAsync(openTransDir, LocalIgnorePatterns, prog, ct);
+                        await _git.EnsureLineEndingConfigAsync(openTransDir, prog, ct);
+                        AppendLog("[ok] OpenZenTranslations cloned: " + openTransDir);
+                    }
+                    else
+                    {
+                        AppendLog("[warn] OpenZenTranslations clone failed: " + (c2.Error ?? "unknown"));
+                    }
+                }
+            }
+        }
+        catch (OperationCanceledException) { throw; }
+        catch (System.Exception ex)
+        {
+            // Best-effort: log and move on. CBETA sync is the primary path.
+            AppendLog("[warn] OpenZenTexts sync skipped: " + ex.Message);
+        }
     }
 
     private async Task SafeRestoreAsync(string repoDir, string originalBranch, IProgress<string> prog, CancellationToken ct)
