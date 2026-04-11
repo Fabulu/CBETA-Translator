@@ -212,10 +212,19 @@ public class StubIndexedTranslationService : IIndexedTranslationService
 {
     public string LastBuildTranslatedXmlDebugDump => "";
     public string LastBuildTranslatedXmlDebugDumpPath => "";
-    public IndexedTranslationDocument BuildIndex(string originalXml, string? translatedXml) => new();
+    public IndexedTranslationDocument BuildIndex(string originalXml, string? translatedXml, string? originalAbsPath = null) => new();
     public string RenderProjection(IndexedTranslationDocument doc, TranslationEditMode mode) => "";
     public void ApplyProjectionEdits(IndexedTranslationDocument doc, TranslationEditMode mode, string editedText) { }
     public string BuildTranslatedXml(IndexedTranslationDocument doc, out int updatedCount) { updatedCount = 0; return ""; }
+}
+
+// ---- ILicenseMetadataService ----
+
+public class StubLicenseMetadataService : ILicenseMetadataService
+{
+    public bool TryGet(string absPath, out TextLicenseInfo? info) { info = null; return false; }
+    public void Set(string absPath, TextLicenseInfo info) { }
+    public void Clear() { }
 }
 
 // ---- ITranslationAssistantService ----
