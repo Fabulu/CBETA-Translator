@@ -422,41 +422,16 @@ private async Task LoadConfigAndAutoloadAsync()
     private void WireBridges()
     {
         // StatusText -> TxtStatus (via property changed, or direct bridge)
+        // Marshal to UI thread — background tasks (e.g. RefreshAllCachedStatusesAsync)
+        // can fire property changes from worker threads.
         _vm.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(MainWindowViewModel.StatusText))
+            if (!Avalonia.Threading.Dispatcher.UIThread.CheckAccess())
             {
-                if (_txtStatus != null) _txtStatus.Text = _vm.StatusText;
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => HandleVmPropertyChanged(e));
+                return;
             }
-            else if (e.PropertyName == nameof(MainWindowViewModel.StatusSeverity))
-            {
-                if (_txtStatus != null)
-                {
-                    var key = _vm.StatusSeverity switch
-                    {
-                        StatusSeverity.Error   => "ErrorFg",
-                        StatusSeverity.Warning => "WarningFg",
-                        StatusSeverity.Success => "SuccessFg",
-                        _                      => "TextMutedFg"
-                    };
-                    if (Application.Current?.Resources.TryGetValue(key, out var brush) == true && brush is Avalonia.Media.IBrush b)
-                        _txtStatus.Foreground = b;
-                }
-            }
-            else if (e.PropertyName == nameof(MainWindowViewModel.RootDisplayText))
-            {
-                if (_txtRoot != null) _txtRoot.Text = _vm.RootDisplayText;
-                if (_emptyStateOverlay != null)
-                    _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
-            }
-            else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
-            {
-                if (_txtCurrentFile != null) _txtCurrentFile.Text = _vm.CurrentFileText;
-            }
-            else if (e.PropertyName == nameof(MainWindowViewModel.WindowTitle))
-            {
-                Title = _vm.WindowTitle;
-            }
+            HandleVmPropertyChanged(e);
         };
 
         // ReadableTabView bridges
@@ -611,6 +586,43 @@ private async Task LoadConfigAndAutoloadAsync()
 
         // Tour: auto-index complete
         _vm.OnAutoIndexCompleted = () => _tourService?.AdvanceIfWaitingFor("index-built");
+    }
+
+    private void HandleVmPropertyChanged(System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(MainWindowViewModel.StatusText))
+        {
+            if (_txtStatus != null) _txtStatus.Text = _vm.StatusText;
+        }
+        else if (e.PropertyName == nameof(MainWindowViewModel.StatusSeverity))
+        {
+            if (_txtStatus != null)
+            {
+                var key = _vm.StatusSeverity switch
+                {
+                    StatusSeverity.Error   => "ErrorFg",
+                    StatusSeverity.Warning => "WarningFg",
+                    StatusSeverity.Success => "SuccessFg",
+                    _                      => "TextMutedFg"
+                };
+                if (Application.Current?.Resources.TryGetValue(key, out var brush) == true && brush is Avalonia.Media.IBrush b)
+                    _txtStatus.Foreground = b;
+            }
+        }
+        else if (e.PropertyName == nameof(MainWindowViewModel.RootDisplayText))
+        {
+            if (_txtRoot != null) _txtRoot.Text = _vm.RootDisplayText;
+            if (_emptyStateOverlay != null)
+                _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
+        }
+        else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
+        {
+            if (_txtCurrentFile != null) _txtCurrentFile.Text = _vm.CurrentFileText;
+        }
+        else if (e.PropertyName == nameof(MainWindowViewModel.WindowTitle))
+        {
+            Title = _vm.WindowTitle;
+        }
     }
 
     // ===========================================================
