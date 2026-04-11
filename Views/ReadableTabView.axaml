@@ -83,32 +83,8 @@
 					  Focusable="False"
 					  ToolTip.Tip="Flag this text as Zen (affects filtering and translation memory)"/>
 
-			<Button Name="BtnLicenseChip"
-					DockPanel.Dock="Right"
-					Margin="8,0,0,0"
-					Padding="0"
-					Background="Transparent"
-					BorderThickness="0"
-					Focusable="False"
-					IsVisible="False"
-					ToolTip.Tip="License and attribution for this file">
-				<Border Name="LicenseChipBorder"
-						CornerRadius="10"
-						Padding="8,2"
-						VerticalAlignment="Center">
-					<TextBlock Name="TxtLicenseChip"
-							   FontSize="11"
-							   FontWeight="SemiBold"
-							   VerticalAlignment="Center"/>
-				</Border>
-				<Button.Flyout>
-					<Flyout Placement="BottomEdgeAlignedLeft">
-						<local:LicenseDetailsView Name="LicenseDetailsPanel"
-												  MinWidth="360"
-												  MaxWidth="480"/>
-					</Flyout>
-				</Button.Flyout>
-			</Button>
+			<!-- License chip lives in the top bar now (next to the corpus
+			     badge) so the action row stays uncluttered. -->
 
 			<!-- Annotation legend -->
 			<StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center" Margin="16,0,0,0">

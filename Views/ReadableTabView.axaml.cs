@@ -98,11 +98,11 @@ public partial class ReadableTabView : UserControl
 
     private Border? _readableEmptyState;
 
-    // License chip + flyout (set on every file load via SetFileLicense)
-    private Button? _btnLicenseChip;
-    private Border? _licenseChipBorder;
-    private TextBlock? _txtLicenseChip;
-    private LicenseDetailsView? _licenseDetailsPanel;
+    // The license chip + flyout moved to the top bar (in MainWindow). This
+    // field still tracks the current file's license so the right-click
+    // context-menu items ("Copy with attribution" / "Copy source URL" /
+    // "Open source page in browser") can act on it without going through
+    // the VM on every click.
     private TextLicenseInfo? _currentFileLicense;
 
     // Navigation highlight: cleared on next user click
@@ -332,10 +332,10 @@ public partial class ReadableTabView : UserControl
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
 
-        _btnLicenseChip = this.FindControl<Button>("BtnLicenseChip");
-        _licenseChipBorder = this.FindControl<Border>("LicenseChipBorder");
-        _txtLicenseChip = this.FindControl<TextBlock>("TxtLicenseChip");
-        _licenseDetailsPanel = this.FindControl<LicenseDetailsView>("LicenseDetailsPanel");
+        // License chip controls are no longer in this view (they live in
+        // the top bar via MainWindow). The chip and flyout are wired
+        // there; this view only tracks _currentFileLicense for the
+        // right-click context-menu items.
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
         _codeBarPanel = this.FindControl<Border>("CodeBarPanel");
@@ -388,69 +388,16 @@ public partial class ReadableTabView : UserControl
     }
 
     /// <summary>
-    /// Updates the per-file license chip in the action row, plus refreshes
-    /// the flyout content. Called by MainWindow.axaml.cs after every file load.
-    ///
-    /// Three display states:
-    ///   - license == null:                 chip hidden (no metadata at all)
-    ///   - license.Class == Unknown:        chip shown as "License unclear",
-    ///                                      tooltip explains "header present
-    ///                                      but no known license keywords",
-    ///                                      flyout shows raw availability text
-    ///                                      so the user can verify manually
-    ///   - license.Class is known:          chip shown with the SPDX label,
-    ///                                      color-coded by class
+    /// Tracks the current file's license metadata so the right-click
+    /// context-menu items ("Copy with attribution" / "Copy source URL" /
+    /// "Open source page in browser") can act on it. The license chip and
+    /// flyout themselves moved to the top bar — see MainWindow.axaml.cs
+    /// for the chip wiring. This method stays as the bridge from the
+    /// file-load flow to this view's _currentFileLicense field.
     /// </summary>
     public void SetFileLicense(TextLicenseInfo? license)
     {
         _currentFileLicense = license;
-        _licenseDetailsPanel?.SetLicense(license);
-
-        if (_btnLicenseChip == null || _txtLicenseChip == null || _licenseChipBorder == null)
-            return;
-
-        if (license == null)
-        {
-            _btnLicenseChip.IsVisible = false;
-            ToolTip.SetTip(_btnLicenseChip, null);
-            return;
-        }
-
-        if (license.LicenseClass == LicenseClass.Unknown)
-        {
-            _btnLicenseChip.IsVisible = true;
-            _txtLicenseChip.Text = "License unclear";
-            ToolTip.SetTip(_btnLicenseChip,
-                "The file has a header but no recognized license keywords were detected. " +
-                "Click to inspect the raw availability text and verify manually.");
-            ApplyLicenseChipColors("BarBg", "TextMutedFg");
-            return;
-        }
-
-        _btnLicenseChip.IsVisible = true;
-        _txtLicenseChip.Text = license.ShortLabel;
-        ToolTip.SetTip(_btnLicenseChip, $"License: {license.ShortLabel}. Click for full attribution.");
-
-        var (bgKey, fgKey) = license.LicenseClass switch
-        {
-            LicenseClass.PublicDomain          => ("SuccessBg", "SuccessFg"),
-            LicenseClass.PermissiveAttribution => ("SuccessBg", "SuccessFg"),
-            LicenseClass.CopyleftAttribution   => ("SuccessBg", "SuccessFg"),
-            LicenseClass.NonCommercial         => ("WarningBg", "WarningFg"),
-            LicenseClass.AllRightsReserved     => ("WarningBg", "WarningFg"),
-            _                                  => ("BarBg",     "TextMutedFg"),
-        };
-        ApplyLicenseChipColors(bgKey, fgKey);
-    }
-
-    private void ApplyLicenseChipColors(string bgKey, string fgKey)
-    {
-        if (Application.Current?.Resources.TryGetValue(bgKey, out var bg) == true
-            && bg is Avalonia.Media.IBrush bgBrush && _licenseChipBorder != null)
-            _licenseChipBorder.Background = bgBrush;
-        if (Application.Current?.Resources.TryGetValue(fgKey, out var fg) == true
-            && fg is Avalonia.Media.IBrush fgBrush && _txtLicenseChip != null)
-            _txtLicenseChip.Foreground = fgBrush;
     }
 
     private ContextMenu BuildScholarContextMenu(bool isTranslated)
