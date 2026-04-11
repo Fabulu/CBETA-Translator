@@ -48,7 +48,11 @@ public sealed class RenderedDocument
             new List<DocAnnotation>(),
             new List<AnnotationMarkerInserter.MarkerSpan>(),
             baseToXmlIndex: null,
-            baseTextLength: null);
+            baseTextLength: null,
+            license: null);
+
+    /// <summary>License/attribution metadata, if extracted from the source TEI header.</summary>
+    public TextLicenseInfo? License { get; }
 
     public RenderedDocument(
         string text,
@@ -56,7 +60,8 @@ public sealed class RenderedDocument
         List<DocAnnotation> annotations,
         List<AnnotationMarkerInserter.MarkerSpan> markers,
         int[]? baseToXmlIndex = null,
-        int? baseTextLength = null)
+        int? baseTextLength = null,
+        TextLicenseInfo? license = null)
     {
         Text = text ?? "";
         Segments = segments ?? new List<RenderSegment>();
@@ -65,6 +70,7 @@ public sealed class RenderedDocument
 
         BaseToXmlIndex = baseToXmlIndex;
         BaseTextLength = baseTextLength;
+        License = license;
 
         // CRITICAL: binary search requires sorted markers
         if (AnnotationMarkers.Count > 1)
