@@ -67,7 +67,15 @@ public partial class MainWindowViewModel : ViewModelBase
     // All corpus layouts found under _root (CBETA + Open siblings inside one
     // parent folder). Empty when the root is a legacy single-pair layout.
     private IReadOnlyList<CorpusLayout> _availableCorpora = System.Array.Empty<CorpusLayout>();
-    public IReadOnlyList<CorpusLayout> AvailableCorpora => _availableCorpora;
+    public IReadOnlyList<CorpusLayout> AvailableCorpora
+    {
+        get => _availableCorpora;
+        private set
+        {
+            _availableCorpora = value ?? System.Array.Empty<CorpusLayout>();
+            OnPropertyChanged(nameof(AvailableCorpora));
+        }
+    }
     private string? _userTranslatedDir;   // community/translations/{username}/
     private string? _activeTranslatedDir; // currently selected dir (user, community, or other user)
     private readonly Dictionary<string, MeaningfulTranslationCacheEntry> _meaningfulTranslationCache = new(StringComparer.OrdinalIgnoreCase);
@@ -530,8 +538,24 @@ public partial class MainWindowViewModel : ViewModelBase
         // Skip redundant loads of the same root — this avoids the heavy
         // RefreshAllCachedStatusesAsync running multiple times when a deep
         // link comes in right after the initial config-driven auto-load.
+        // EXCEPT: always re-run multi-corpus discovery here, because sync
+        // can clone the OpenZenTexts repo pair into the same root mid-
+        // session, and the badge flyout needs to pick up the new corpus
+        // without forcing a full reload.
         if (_root != null && string.Equals(_root, rootPath, StringComparison.OrdinalIgnoreCase) && _allItems.Count > 0)
         {
+            // Bust the AppPaths discovery caches so we re-scan the disk
+            // (sync just invalidated them but in case anything else
+            // populated them since the last call, blow them away again).
+            AppPaths.InvalidateDiscoveryCache(rootPath);
+            var refreshed = AppPaths.DiscoverAllCorpora(rootPath);
+            // Only update if the count actually changed — avoids spurious
+            // PropertyChanged events when nothing differs.
+            if (refreshed.Count != _availableCorpora.Count)
+            {
+                AvailableCorpora = refreshed;
+            }
+
             if (saveToConfig && _config.TextRootPath != _root)
             {
                 _config.TextRootPath = _root;
@@ -547,7 +571,7 @@ public partial class MainWindowViewModel : ViewModelBase
         // under the parent root. CBETA and OpenZenTexts can coexist as
         // sibling subfolders. The active corpus is chosen from the saved
         // preference if it's present in the list, otherwise the first one.
-        _availableCorpora = AppPaths.DiscoverAllCorpora(_root);
+        AvailableCorpora = AppPaths.DiscoverAllCorpora(_root);
 
         CorpusLayout? activeLayout = null;
         if (_availableCorpora.Count > 0)
@@ -585,7 +609,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _translatedCacheDir = null;
             _userTranslatedDir = null;
             _activeTranslatedDir = null;
-            _availableCorpora = System.Array.Empty<CorpusLayout>();
+            AvailableCorpora = System.Array.Empty<CorpusLayout>();
             SetStatus("Both originals and translations repos are required. Please sync via Git tab.");
             return;
         }
