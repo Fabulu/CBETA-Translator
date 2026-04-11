@@ -415,7 +415,13 @@ public partial class ReadableTabView : UserControl
                 }
             }
 
-            var user = isTranslated ? GetTranslationUser?.Invoke() : null;
+            // Use the active translation user regardless of which pane was
+            // right-clicked. A link made from the Chinese pane should still
+            // open the user's currently-selected translation, not silently
+            // fall back to community. GetTranslationUser returns null for
+            // the community source, so community-source clicks still produce
+            // a translator-less link as before.
+            var user = GetTranslationUser?.Invoke();
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
             var uri = ZenUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
@@ -459,7 +465,11 @@ public partial class ReadableTabView : UserControl
                 }
             }
 
-            var userR = isTranslated ? GetTranslationUser?.Invoke() : null;
+            // Same rationale as the Copy Link handler above: a Reddit link
+            // made from the Chinese pane should carry the active translator
+            // so the recipient lands on the same translation the user is
+            // looking at, not silently fall back to community.
+            var userR = GetTranslationUser?.Invoke();
             if (!string.IsNullOrWhiteSpace(fromLb))
                 highlight = null;
             var url = ZenUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
@@ -610,7 +620,10 @@ public partial class ReadableTabView : UserControl
             FromLb = fromLb,
             ToLb = toLb,
             PreferredSide = isTranslated ? SearchSide.Translated : SearchSide.Original,
-            TranslationUser = isTranslated ? GetTranslationUser?.Invoke() : null
+            // Always carry the active translation user so the Scholar passage
+            // remembers which translation the reader was viewing, regardless
+            // of which pane was right-clicked. Community source returns null.
+            TranslationUser = GetTranslationUser?.Invoke()
         };
 
         AddToScholarRequested?.Invoke(this, passage);

@@ -311,7 +311,15 @@ public partial class SearchTabView : UserControl
         if (top?.Clipboard == null)
             return;
 
-        var user = child.Side == SearchSide.Translated ? GetTranslationUser?.Invoke() : null;
+        // Use the active translation user regardless of which side the
+        // search hit is on. The previous logic dropped the translator for
+        // ZH-side hits, which meant a link made while reading your own
+        // translation would silently fall back to community when followed.
+        // Edge case: if the active translator hasn't translated this
+        // particular file, the followed link lands on an empty translation
+        // pane — but that's still the correct behavior, because it
+        // truthfully reflects the source the user was browsing in.
+        var user = GetTranslationUser?.Invoke();
         var highlightText = string.IsNullOrWhiteSpace(child.MatchText) ? child.PrimarySnippetText : child.MatchText;
         var leftContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.LeftText;
         var rightContext = string.IsNullOrWhiteSpace(child.MatchText) ? null : child.RightText;
