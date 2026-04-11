@@ -51,6 +51,20 @@ public partial class LicenseDetailsView : UserControl
         var badgeNoCbeta = this.FindControl<Border>("BadgeNoCbeta");
         var badgeConf = this.FindControl<Border>("BadgeConfidence");
         var txtConf = this.FindControl<TextBlock>("TxtConfidence");
+        var btnCopy = this.FindControl<Button>("BtnCopyAttribution");
+        var btnOpen = this.FindControl<Button>("BtnOpenSource");
+
+        // Hide the action buttons when their actions would no-op:
+        //   - Copy attribution: hidden when there's no license data at all
+        //     (a license-Unknown record still has the title/author for the
+        //     formatter to use, so we keep the button visible in that case)
+        //   - Open source in browser: hidden when there's no URL at all,
+        //     because Process.Start with an empty target silently fails
+        //     and looks broken (the user reported exactly this for a CBETA
+        //     file whose availability block has no upstream URL).
+        var url = license?.StableRevisionUrl ?? license?.SourceUrl;
+        if (btnCopy != null) btnCopy.IsVisible = license != null;
+        if (btnOpen != null) btnOpen.IsVisible = !string.IsNullOrWhiteSpace(url);
 
         if (license == null)
         {
@@ -91,8 +105,8 @@ public partial class LicenseDetailsView : UserControl
                 ? (string.IsNullOrWhiteSpace(license.LongText) ? "(no availability text)" : license.LongText)
                 : (license.RightsBasisText ?? license.LongText);
         }
-        if (txtSrc != null) txtSrc.Text = license.SourceUrl ?? "—";
-        if (txtStable != null) txtStable.Text = license.StableRevisionUrl ?? "—";
+        if (txtSrc != null) txtSrc.Text = license.SourceUrl ?? "(none)";
+        if (txtStable != null) txtStable.Text = license.StableRevisionUrl ?? "(none)";
         if (badgeNoCbeta != null) badgeNoCbeta.IsVisible = license.NoCbetaMaterial;
         if (badgeConf != null && txtConf != null && !string.IsNullOrWhiteSpace(license.VettingConfidence))
         {

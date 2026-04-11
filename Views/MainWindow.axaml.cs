@@ -47,7 +47,7 @@ public partial class MainWindow : Window
     private CheckBox? _chkShowFilenames, _chkZenOnly;
     private ComboBox? _cmbStatusFilter;
 
-    private TextBlock? _txtRoot, _txtCurrentFile, _txtStatus;
+    private TextBlock? _txtCurrentFile, _txtStatus;
 
     private TabStrip? _tabs;
     private ReadableTabView? _readableView;
@@ -385,7 +385,6 @@ private async Task LoadConfigAndAutoloadAsync()
         _chkZenOnly = Find<CheckBox>("ChkZenOnly");
         _cmbStatusFilter = Find<ComboBox>("CmbStatusFilter");
 
-        _txtRoot = Find<TextBlock>("TxtRoot");
         _txtCurrentFile = Find<TextBlock>("TxtCurrentFile");
         _txtStatus = Find<TextBlock>("TxtStatus");
         _btnCorpusBadge = Find<Button>("BtnCorpusBadge");
@@ -624,13 +623,16 @@ private async Task LoadConfigAndAutoloadAsync()
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.RootDisplayText))
         {
-            if (_txtRoot != null) _txtRoot.Text = _vm.RootDisplayText;
+            // TxtRoot has been removed from the top bar — the corpus badge
+            // shows the active corpus, and its tooltip carries the full
+            // root path for users who need to verify which folder is loaded.
             if (_emptyStateOverlay != null)
                 _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
             UpdateCorpusBadge();
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.ActiveCorpus)
-              || e.PropertyName == nameof(MainWindowViewModel.CorpusBadgeLabel))
+              || e.PropertyName == nameof(MainWindowViewModel.CorpusBadgeLabel)
+              || e.PropertyName == nameof(MainWindowViewModel.AvailableCorpora))
         {
             UpdateCorpusBadge();
         }
@@ -2149,6 +2151,12 @@ private async Task LoadConfigAndAutoloadAsync()
 
         _txtCorpusBadge.Text = _vm.CorpusBadgeLabel;
 
+        // Tooltip carries the full root path (since we no longer show
+        // TxtRoot text in the top bar). Users who need to see where the
+        // corpus is on disk can hover the badge.
+        ToolTip.SetTip(_btnCorpusBadge,
+            $"Active corpus: {_vm.CorpusBadgeLabel}\nRoot: {_vm.RootDisplayText}\nClick to switch corpus.");
+
         if (Application.Current?.Resources.TryGetValue(_vm.CorpusBadgeBgKey, out var bg) == true
             && bg is Avalonia.Media.IBrush bgBrush)
             _corpusBadge.Background = bgBrush;
@@ -2173,6 +2181,8 @@ private async Task LoadConfigAndAutoloadAsync()
         _corpusSwitcherPanel.Children.Clear();
 
         var available = _vm.AvailableCorpora;
+        var muted = Application.Current?.Resources.TryGetValue("TextMutedFg", out var mutedRes) == true
+            && mutedRes is Avalonia.Media.IBrush mb ? mb : null;
 
         var header = new TextBlock
         {
@@ -2183,14 +2193,17 @@ private async Task LoadConfigAndAutoloadAsync()
         };
         _corpusSwitcherPanel.Children.Add(header);
 
+        // Always render every available corpus as a button, even the active
+        // one (which is disabled). If there are zero, the legacy single-pair
+        // path is in use — explain that.
         if (available.Count == 0)
         {
             var msg = new TextBlock
             {
-                Text = "Only one corpus is available under this folder. Sync to add the other corpus, or open a parent folder containing both repository pairs.",
+                Text = "No multi-corpus layout detected at this root. The app is operating on a single repository pair.",
                 FontSize = 11,
                 TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                Foreground = Application.Current?.Resources.TryGetValue("TextMutedFg", out var muted) == true && muted is Avalonia.Media.IBrush mb ? mb : null
+                Foreground = muted
             };
             _corpusSwitcherPanel.Children.Add(msg);
             return;
@@ -2225,6 +2238,21 @@ private async Task LoadConfigAndAutoloadAsync()
             };
 
             _corpusSwitcherPanel.Children.Add(btn);
+        }
+
+        // If only one corpus was discovered, add a hint below the buttons
+        // explaining how to get the other one.
+        if (available.Count == 1)
+        {
+            var hint = new TextBlock
+            {
+                Text = "Sync via the Git tab to add the other corpus alongside this one.",
+                FontSize = 10,
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Foreground = muted,
+                Margin = new Avalonia.Thickness(0, 6, 0, 0)
+            };
+            _corpusSwitcherPanel.Children.Add(hint);
         }
     }
 }

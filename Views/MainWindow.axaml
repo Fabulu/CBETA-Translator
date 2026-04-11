@@ -36,12 +36,8 @@
                                 ToolTip.Tip="Open application settings"/>
                         <Button Name="BtnLicenses" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Licenses"
                                 ToolTip.Tip="View licenses and attributions"/>
-                        <TextBlock Name="TxtRoot"
-                                   Margin="10,0,0,0"
-                                   VerticalAlignment="Center"
-                                   Classes="muted"/>
                         <Button Name="BtnCorpusBadge"
-                                Margin="8,0,0,0"
+                                Margin="10,0,0,0"
                                 Padding="0"
                                 Background="Transparent"
                                 BorderThickness="0"
