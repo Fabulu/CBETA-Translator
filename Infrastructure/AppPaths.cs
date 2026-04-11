@@ -324,11 +324,29 @@ public partial class AppPaths
 
     /// <summary>
     /// Returns the per-user translation directory: {translationsRepo}/community/translations/{sanitized-username}/
+    /// Looks up the translations repo by scanning the parent root, which
+    /// always picks the FIRST discovered translation repo. In multi-corpus
+    /// setups (CBETA + OpenZenTexts coexisting), this is wrong because it
+    /// always picks CBETA. Use <see cref="GetUserTranslatedDirForRepo"/>
+    /// instead when you already know which translations repo is active.
     /// </summary>
     public static string GetUserTranslatedDir(string parentRoot, string username)
     {
         var repoRoot = GetTranslationRepoRoot(parentRoot);
         var baseDir = repoRoot ?? Path.Combine(parentRoot, DefaultTranslationRepoFolderName);
         return Path.Combine(baseDir, "community", "translations", SanitizeUsername(username));
+    }
+
+    /// <summary>
+    /// Returns the per-user translation directory inside a SPECIFIC
+    /// translations repo: {translationsRepoRoot}/community/translations/{sanitized-username}/.
+    /// Use this in multi-corpus setups where the caller knows which
+    /// translations repo (CBETA vs OpenZen) the user dir should live in,
+    /// to avoid the silent "first translation repo wins" trap of
+    /// <see cref="GetUserTranslatedDir"/>.
+    /// </summary>
+    public static string GetUserTranslatedDirForRepo(string translationsRepoRoot, string username)
+    {
+        return Path.Combine(translationsRepoRoot, "community", "translations", SanitizeUsername(username));
     }
 }

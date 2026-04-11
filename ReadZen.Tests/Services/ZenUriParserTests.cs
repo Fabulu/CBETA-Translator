@@ -41,6 +41,60 @@ public class ZenUriParserTests
         Assert.Equal(expected, ZenUriParser.RelPathToFileId(relPath));
     }
 
+    // ==== OpenZenTexts file ID format (publisher.slug) ====
+
+    [Theory]
+    [InlineData("ws.gateless-barrier", "ws/gateless-barrier/gateless-barrier.xml")]
+    [InlineData("pd.linji-record", "pd/linji-record/linji-record.xml")]
+    [InlineData("ce.blue-cliff-record", "ce/blue-cliff-record/blue-cliff-record.xml")]
+    [InlineData("mit.platform-sutra", "mit/platform-sutra/platform-sutra.xml")]
+    public void FileIdToRelPath_OpenZenIds_ReturnsExpectedPath(string fileId, string expected)
+    {
+        Assert.Equal(expected, ZenUriParser.FileIdToRelPath(fileId));
+    }
+
+    [Theory]
+    [InlineData("ws/gateless-barrier/gateless-barrier.xml", "ws.gateless-barrier")]
+    [InlineData("pd/linji-record/linji-record.xml", "pd.linji-record")]
+    [InlineData("ce\\blue-cliff-record\\blue-cliff-record.xml", "ce.blue-cliff-record")]
+    public void RelPathToFileId_OpenZenPaths_ReturnsExpectedId(string relPath, string expected)
+    {
+        Assert.Equal(expected, ZenUriParser.RelPathToFileId(relPath));
+    }
+
+    [Theory]
+    [InlineData("ws.gateless-barrier")]
+    [InlineData("pd.linji-record")]
+    [InlineData("ce.blue-cliff-record")]
+    [InlineData("mit.platform-sutra")]
+    public void IsOpenZenFileId_ValidIds_ReturnsTrue(string fileId)
+    {
+        Assert.True(ZenUriParser.IsOpenZenFileId(fileId));
+    }
+
+    [Theory]
+    [InlineData("T48n2005")]      // CBETA format
+    [InlineData("X73n1452")]      // CBETA format
+    [InlineData("xx.something")]  // unknown publisher prefix
+    [InlineData("ws.")]           // empty slug
+    [InlineData(".gateless")]     // empty publisher
+    [InlineData("")]
+    public void IsOpenZenFileId_InvalidIds_ReturnsFalse(string fileId)
+    {
+        Assert.False(ZenUriParser.IsOpenZenFileId(fileId));
+    }
+
+    [Theory]
+    [InlineData("ws.gateless-barrier")]
+    [InlineData("T48n2005")]
+    public void FileId_RoundTripsThroughBothDirections(string fileId)
+    {
+        var path = ZenUriParser.FileIdToRelPath(fileId);
+        Assert.NotNull(path);
+        var roundTrip = ZenUriParser.RelPathToFileId(path!);
+        Assert.Equal(fileId, roundTrip);
+    }
+
     // ==== BuildUri ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â clean format ====
 
     [Fact]
