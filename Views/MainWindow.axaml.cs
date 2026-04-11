@@ -40,6 +40,14 @@ public partial class MainWindow : Window
     private Border? _corpusBadge;
     private TextBlock? _txtCorpusBadge;
     private StackPanel? _corpusSwitcherPanel;
+    // Top-bar license chip — global per-file license display, sits next to
+    // the corpus badge. The flyout content (LicenseDetailsView) is wider
+    // than the old in-Reader version so attribution text doesn't need to
+    // scroll horizontally.
+    private Button? _btnLicenseChipTopBar;
+    private Border? _licenseChipBorderTopBar;
+    private TextBlock? _txtLicenseChipTopBar;
+    private LicenseDetailsView? _licenseDetailsTopBar;
     private bool _navAutoHiddenByStudyPanel;
 
     private ListBox? _filesList;
@@ -391,6 +399,10 @@ private async Task LoadConfigAndAutoloadAsync()
         _corpusBadge = Find<Border>("CorpusBadge");
         _txtCorpusBadge = Find<TextBlock>("TxtCorpusBadge");
         _corpusSwitcherPanel = Find<StackPanel>("CorpusSwitcherPanel");
+        _btnLicenseChipTopBar = Find<Button>("BtnLicenseChipTopBar");
+        _licenseChipBorderTopBar = Find<Border>("LicenseChipBorderTopBar");
+        _txtLicenseChipTopBar = Find<TextBlock>("TxtLicenseChipTopBar");
+        _licenseDetailsTopBar = Find<LicenseDetailsView>("LicenseDetailsTopBar");
 
         _tabs = Find<TabStrip>("MainTabs");
         _readableView = Find<ReadableTabView>("ReadableView");
@@ -446,9 +458,17 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetReadableRendered = (ro, rt) =>
         {
             _readableView?.SetRendered(ro, rt);
-            _readableView?.SetFileLicense(_vm.GetLicenseForCurrentFile());
+            // Push the active file's license to BOTH the reader (for the
+            // right-click context menu) and the top-bar chip (for display).
+            var license = _vm.GetLicenseForCurrentFile();
+            _readableView?.SetFileLicense(license);
+            UpdateLicenseChip(license);
         };
-        _vm.ClearReadable = () => _readableView?.Clear();
+        _vm.ClearReadable = () =>
+        {
+            _readableView?.Clear();
+            UpdateLicenseChip(null);
+        };
         _vm.SetReadableHoverDict = enabled =>
         {
             try
@@ -2141,6 +2161,66 @@ private async Task LoadConfigAndAutoloadAsync()
     /// DynamicResource keys the VM exposes (SuccessBg/Fg for OpenZenTexts,
     /// WarningBg/Fg for CBETA).
     /// </summary>
+    /// <summary>
+    /// Repaints the top-bar license chip to match the active file's
+    /// license metadata, and pushes the same metadata into the flyout
+    /// content. Three states:
+    ///   - license == null:                 chip hidden
+    ///   - license.Class == Unknown:        "License unclear" + tooltip + raw
+    ///                                      availability text in flyout
+    ///   - license.Class is known:          short label + colored badge
+    /// </summary>
+    private void UpdateLicenseChip(TextLicenseInfo? license)
+    {
+        if (_btnLicenseChipTopBar == null || _txtLicenseChipTopBar == null || _licenseChipBorderTopBar == null)
+            return;
+
+        _licenseDetailsTopBar?.SetLicense(license);
+
+        if (license == null)
+        {
+            _btnLicenseChipTopBar.IsVisible = false;
+            ToolTip.SetTip(_btnLicenseChipTopBar, null);
+            return;
+        }
+
+        if (license.LicenseClass == LicenseClass.Unknown)
+        {
+            _btnLicenseChipTopBar.IsVisible = true;
+            _txtLicenseChipTopBar.Text = "License unclear";
+            ToolTip.SetTip(_btnLicenseChipTopBar,
+                "The file has a header but no recognized license keywords were detected. " +
+                "Click to inspect the raw availability text and verify manually.");
+            ApplyLicenseChipColorsTopBar("BarBg", "TextMutedFg");
+            return;
+        }
+
+        _btnLicenseChipTopBar.IsVisible = true;
+        _txtLicenseChipTopBar.Text = license.ShortLabel;
+        ToolTip.SetTip(_btnLicenseChipTopBar, $"License: {license.ShortLabel}. Click for full attribution.");
+
+        var (bgKey, fgKey) = license.LicenseClass switch
+        {
+            LicenseClass.PublicDomain          => ("SuccessBg", "SuccessFg"),
+            LicenseClass.PermissiveAttribution => ("SuccessBg", "SuccessFg"),
+            LicenseClass.CopyleftAttribution   => ("SuccessBg", "SuccessFg"),
+            LicenseClass.NonCommercial         => ("WarningBg", "WarningFg"),
+            LicenseClass.AllRightsReserved     => ("WarningBg", "WarningFg"),
+            _                                  => ("BarBg",     "TextMutedFg"),
+        };
+        ApplyLicenseChipColorsTopBar(bgKey, fgKey);
+    }
+
+    private void ApplyLicenseChipColorsTopBar(string bgKey, string fgKey)
+    {
+        if (Application.Current?.Resources.TryGetValue(bgKey, out var bg) == true
+            && bg is Avalonia.Media.IBrush bgBrush && _licenseChipBorderTopBar != null)
+            _licenseChipBorderTopBar.Background = bgBrush;
+        if (Application.Current?.Resources.TryGetValue(fgKey, out var fg) == true
+            && fg is Avalonia.Media.IBrush fgBrush && _txtLicenseChipTopBar != null)
+            _txtLicenseChipTopBar.Foreground = fgBrush;
+    }
+
     private void UpdateCorpusBadge()
     {
         if (_btnCorpusBadge == null || _corpusBadge == null || _txtCorpusBadge == null) return;

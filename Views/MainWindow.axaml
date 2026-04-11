@@ -36,8 +36,43 @@
                                 ToolTip.Tip="Open application settings"/>
                         <Button Name="BtnLicenses" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Licenses"
                                 ToolTip.Tip="View licenses and attributions"/>
+                    </StackPanel>
+
+                    <!-- Right-edge cluster: corpus badge + license chip + current file label.
+                         All Dock="Right" so they stack right-to-left from the corner. -->
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="6"
+                                DockPanel.Dock="Right"
+                                VerticalAlignment="Center">
+                        <TextBlock Name="TxtCurrentFile"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,8,0"
+                                   Classes="muted"/>
+                        <Button Name="BtnLicenseChipTopBar"
+                                Padding="0"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Focusable="False"
+                                IsVisible="False"
+                                ToolTip.Tip="License and attribution for the current file">
+                            <Border Name="LicenseChipBorderTopBar"
+                                    CornerRadius="10"
+                                    Padding="8,2"
+                                    VerticalAlignment="Center">
+                                <TextBlock Name="TxtLicenseChipTopBar"
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <Button.Flyout>
+                                <Flyout Placement="BottomEdgeAlignedRight">
+                                    <views:LicenseDetailsView Name="LicenseDetailsTopBar"
+                                                              MinWidth="560"
+                                                              MaxWidth="800"/>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                         <Button Name="BtnCorpusBadge"
-                                Margin="10,0,0,0"
                                 Padding="0"
                                 Background="Transparent"
                                 BorderThickness="0"
@@ -54,7 +89,7 @@
                                            VerticalAlignment="Center"/>
                             </Border>
                             <Button.Flyout>
-                                <Flyout Placement="BottomEdgeAlignedLeft">
+                                <Flyout Placement="BottomEdgeAlignedRight">
                                     <StackPanel Name="CorpusSwitcherPanel"
                                                 Margin="12"
                                                 Spacing="6"
@@ -63,11 +98,6 @@
                             </Button.Flyout>
                         </Button>
                     </StackPanel>
-
-                    <TextBlock Name="TxtCurrentFile"
-                               DockPanel.Dock="Right"
-                               VerticalAlignment="Center"
-                               Classes="muted"/>
                 </DockPanel>
 
                 <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="4">
