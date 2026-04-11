@@ -25,24 +25,74 @@ public static class ZenUriParser
     public const string ShareableBase = "https://readzen.pages.dev/";
 
     /// <summary>
-    /// Converts a compact file ID (e.g. "T48n2005") to its relative path (e.g. "T/T48/T48n2005.xml").
-    /// Returns <c>null</c> if the file ID does not contain an 'n' separator.
+    /// Known publisher prefixes for OpenZenTexts file IDs. The dot-separated
+    /// format (e.g. "ws.gateless-barrier") is the canonical OpenZen ID shape;
+    /// the prefix corresponds to a top-level subfolder under xml-open/.
     /// </summary>
-    public static string? FileIdToRelPath(string fileId)
+    private static readonly System.Collections.Generic.HashSet<string> OpenZenPublishers
+        = new(StringComparer.OrdinalIgnoreCase) { "ws", "pd", "ce", "mit" };
+
+    /// <summary>
+    /// Returns true if the given file ID is in OpenZenTexts format
+    /// ({publisher}.{slug}, e.g. "ws.gateless-barrier").
+    /// </summary>
+    public static bool IsOpenZenFileId(string fileId)
     {
-        var nIdx = fileId.IndexOf('n');
-        if (nIdx < 1) return null;
-        var volume = fileId[..nIdx];
-        var canon = Regex.Replace(volume, "[0-9]", "");
-        if (string.IsNullOrEmpty(canon)) return null;
-        return $"{canon}/{volume}/{fileId}.xml";
+        if (string.IsNullOrEmpty(fileId)) return false;
+        int dotIdx = fileId.IndexOf('.');
+        if (dotIdx < 1 || dotIdx >= fileId.Length - 1) return false;
+        var prefix = fileId[..dotIdx];
+        return OpenZenPublishers.Contains(prefix);
     }
 
     /// <summary>
-    /// Extracts the file ID from a relative path (e.g. "T/T48/T48n2005.xml" becomes "T48n2005").
+    /// Converts a compact file ID to its relative path. Handles both formats:
+    ///   - CBETA:    "T48n2005"          -> "T/T48/T48n2005.xml"
+    ///   - OpenZen:  "ws.gateless-barrier" -> "ws/gateless-barrier/gateless-barrier.xml"
+    /// Returns <c>null</c> for unrecognised file IDs.
+    /// </summary>
+    public static string? FileIdToRelPath(string fileId)
+    {
+        if (string.IsNullOrEmpty(fileId)) return null;
+
+        // OpenZen format: {publisher}.{slug}
+        if (IsOpenZenFileId(fileId))
+        {
+            int dotIdx = fileId.IndexOf('.');
+            var publisher = fileId[..dotIdx];
+            var slug = fileId[(dotIdx + 1)..];
+            return $"{publisher}/{slug}/{slug}.xml";
+        }
+
+        // CBETA format: {canon}{volume}n{work}
+        var nIdx = fileId.IndexOf('n');
+        if (nIdx < 1) return null;
+        var vol = fileId[..nIdx];
+        var canon = Regex.Replace(vol, "[0-9]", "");
+        if (string.IsNullOrEmpty(canon)) return null;
+        return $"{canon}/{vol}/{fileId}.xml";
+    }
+
+    /// <summary>
+    /// Extracts the file ID from a relative path. Handles both formats:
+    ///   - CBETA:    "T/T48/T48n2005.xml"          -> "T48n2005"
+    ///   - OpenZen:  "ws/gateless-barrier/gateless-barrier.xml" -> "ws.gateless-barrier"
     /// </summary>
     public static string RelPathToFileId(string relPath)
-        => Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
+    {
+        var normalized = relPath.Replace('\\', '/');
+        var parts = normalized.Split('/', StringSplitOptions.RemoveEmptyEntries);
+        // OpenZen layout: first segment is a known publisher prefix → return
+        // {publisher}.{slug}, where slug is the SECOND segment (the directory
+        // that holds the XML file). This preserves the publisher across
+        // round-trips and lets the website + desktop app dispatch by prefix.
+        if (parts.Length >= 3 && OpenZenPublishers.Contains(parts[0]))
+        {
+            return $"{parts[0]}.{parts[1]}";
+        }
+        // CBETA layout: filename without extension is the canonical ID.
+        return Path.GetFileNameWithoutExtension(normalized);
+    }
 
     /// <summary>
     /// Attempts to parse a <c>zen://</c> URI into a <see cref="NavigationRequest"/>.

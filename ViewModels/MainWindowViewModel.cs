@@ -191,6 +191,19 @@ public partial class MainWindowViewModel : ViewModelBase
         _                => "TextMutedFg"
     };
 
+    /// <summary>
+    /// Like <see cref="IZenTextsService.IsZen"/>, but also returns true for
+    /// every file in the OpenZenTexts corpus. OpenZenTexts is curated as a
+    /// pure Zen text collection — there's no need for users to manually
+    /// flag each text. CBETA still uses the explicit per-file zen_texts.json
+    /// list because its scope is much broader than just Zen.
+    /// </summary>
+    public bool IsZenOrOpenCorpusFile(string relPath)
+    {
+        if (_activeCorpus == CorpusKind.Open) return true;
+        return _zenTexts.IsZen(relPath);
+    }
+
     /// <summary>Called by ReadableTabView (via MainWindow) to render the per-file license chip.</summary>
     public TextLicenseInfo? GetLicenseForCurrentFile()
     {
@@ -233,7 +246,10 @@ public partial class MainWindowViewModel : ViewModelBase
         _translatedCacheDir = layout.TranslatedCacheDir;
         _translationRoot = layout.TranslationsRepoRoot;
 
-        _userTranslatedDir = AppPaths.GetUserTranslatedDir(layout.TranslationsRepoRoot, GetTranslationFolderKey(_config));
+        // Use the active corpus's translations repo root directly. Passing
+        // it through the legacy GetUserTranslatedDir would re-discover from
+        // scratch and pick the wrong corpus.
+        _userTranslatedDir = AppPaths.GetUserTranslatedDirForRepo(layout.TranslationsRepoRoot, GetTranslationFolderKey(_config));
         _activeTranslatedDir = _userTranslatedDir;
 
         _renderCache.Clear();
@@ -595,7 +611,25 @@ public partial class MainWindowViewModel : ViewModelBase
             _translatedCacheDir = AppPaths.GetTranslatedCacheDir(_root);
         }
 
-        _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
+        // CRITICAL: use the ACTIVE corpus's translations repo root for the
+        // per-user dir, not _root (the parent). The legacy GetUserTranslatedDir
+        // overload internally calls GetTranslationRepoRoot which always returns
+        // the FIRST discovered translation repo — in multi-corpus setups
+        // (CBETA + OpenZen coexisting) that's CBETA, so OpenZen translations
+        // would silently land in CBETA's working tree and get wiped by the
+        // next CBETA sync's `git clean -fd`. Real data-loss bug. Always
+        // route through GetUserTranslatedDirForRepo here.
+        if (!string.IsNullOrEmpty(_translationRoot))
+        {
+            _userTranslatedDir = AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, GetTranslationFolderKey(_config));
+        }
+        else
+        {
+            // Truly legacy: no discovered translations repo at all (the user
+            // pointed at a degenerate folder). Fall back to the old helper
+            // which constructs a default path under the parent.
+            _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
+        }
         _activeTranslatedDir = _userTranslatedDir; // default to user's own
         // Note: user dir is created on-demand by GetWritePath() when user first saves
 
@@ -1012,7 +1046,14 @@ public partial class MainWindowViewModel : ViewModelBase
             ((IProgress<int>)progress).Report(done);
         });
         // Final refilter to catch any pending status changes — marshal to UI thread.
-        await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(async () => await ApplyFilterSafeAsync());
+        // Use Post (fire-and-forget) instead of InvokeAsync to avoid deadlocking under
+        // headless test hosts where no Avalonia dispatcher is pumping. The filter only
+        // affects the visible nav list, not the cache save below which reads _allItems
+        // directly, so awaiting it is not required for correctness.
+        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+        {
+            var fireAndForget = ApplyFilterSafeAsync();
+        });
         if (changed)
         {
             await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
@@ -1092,7 +1133,13 @@ public partial class MainWindowViewModel : ViewModelBase
                 IEnumerable<FileNavItem> seq = allSnapshot;
 
                 if (zenOnly)
-                    seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath) && _zenTexts.IsZen(it.RelPath));
+                {
+                    // OpenZenTexts files are all zen by definition; CBETA
+                    // uses the explicit per-file zen_texts.json list.
+                    bool openCorpus = _activeCorpus == CorpusKind.Open;
+                    seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath)
+                        && (openCorpus || _zenTexts.IsZen(it.RelPath)));
+                }
 
                 if (statusIdx != 0)
                     seq = seq.Where(it => MatchesStatusFilter(it.Status, statusIdx));
@@ -1431,7 +1478,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             try
             {
-                bool isZen = _root != null && _zenTexts.IsZen(relPath);
+                bool isZen = _root != null && IsZenOrOpenCorpusFile(relPath);
                 SetReadableZenContext?.Invoke(relPath, isZen);
             }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen context set failed: {ex.Message}"); }
@@ -2728,7 +2775,11 @@ public partial class MainWindowViewModel : ViewModelBase
         var personalDir = _userTranslatedDir;
         if (string.IsNullOrWhiteSpace(personalDir))
         {
-            personalDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
+            // Recompute from the active corpus's translations repo, not _root.
+            // See LoadRootAsync for the rationale (multi-corpus data-loss bug).
+            personalDir = !string.IsNullOrEmpty(_translationRoot)
+                ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, GetTranslationFolderKey(_config))
+                : AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
             _userTranslatedDir = personalDir;
         }
 
@@ -3188,7 +3239,13 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         if (index == 1)
             return _translatedDir;
         if (index >= 2 && index < _translationSourceOptions.Count && !string.IsNullOrWhiteSpace(_root))
-            return AppPaths.GetUserTranslatedDir(_root!, _translationSourceOptions[index]);
+        {
+            // Use the active corpus's translations repo for "other user" sources
+            // so we don't accidentally read from CBETA when the user is in OpenZen.
+            return !string.IsNullOrEmpty(_translationRoot)
+                ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, _translationSourceOptions[index])
+                : AppPaths.GetUserTranslatedDir(_root!, _translationSourceOptions[index]);
+        }
         return null;
     }
 
@@ -3351,7 +3408,10 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         else if (sourceIndex >= 2 && sourceIndex < _translationSourceOptions.Count) // Other user
         {
             var username = _translationSourceOptions[sourceIndex];
-            translatedDir = AppPaths.GetUserTranslatedDir(_root, username);
+            // Use the active corpus's translations repo for the lookup.
+            translatedDir = !string.IsNullOrEmpty(_translationRoot)
+                ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, username)
+                : AppPaths.GetUserTranslatedDir(_root, username);
         }
         else
             return null;
@@ -3401,12 +3461,51 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     public async Task OpenAtCoreAsync(string root, NavigationRequest request)
     {
         await LoadRootAsync(root, saveToConfig: false);
+
+        // Deep-link corpus routing: if the request's relPath belongs to a
+        // different corpus than the currently active one, switch corpora
+        // before loading the file. Otherwise the load will fail (the file
+        // doesn't exist in the active corpus's tree) or worse, the wrong
+        // file will load if a same-named file happens to exist in both.
+        var requiredCorpus = InferCorpusForRelPath(request.RelPath);
+        if (requiredCorpus != CorpusKind.Unknown && requiredCorpus != ActiveCorpus
+            && _availableCorpora.Any(c => c.Kind == requiredCorpus))
+        {
+            await SwitchCorpusAsync(requiredCorpus);
+        }
+
         await EnsureTranslationSourceForNavigationAsync(request);
         SelectInNav(request.RelPath);
         await LoadPairAsync(request.RelPath);
         ForceTabIndex?.Invoke(0); // switch to Reader tab
 
         NavigateInReadable?.Invoke(request);
+    }
+
+    /// <summary>
+    /// Infers which corpus a relative path belongs to based on its top-level
+    /// directory. OpenZenTexts files live under publisher-prefixed dirs
+    /// (ws/, pd/, ce/, mit/); CBETA files live under canon-prefixed dirs
+    /// (T/, X/, S/, etc.). Returns Unknown if the path doesn't match either
+    /// shape so the caller can fall back to whatever's currently active.
+    /// </summary>
+    private static CorpusKind InferCorpusForRelPath(string? relPath)
+    {
+        if (string.IsNullOrWhiteSpace(relPath)) return CorpusKind.Unknown;
+        var normalized = relPath.Replace('\\', '/');
+        var firstSlash = normalized.IndexOf('/');
+        if (firstSlash <= 0) return CorpusKind.Unknown;
+        var top = normalized[..firstSlash];
+        // OpenZen publisher prefixes
+        if (top.Equals("ws", StringComparison.OrdinalIgnoreCase) ||
+            top.Equals("pd", StringComparison.OrdinalIgnoreCase) ||
+            top.Equals("ce", StringComparison.OrdinalIgnoreCase) ||
+            top.Equals("mit", StringComparison.OrdinalIgnoreCase))
+            return CorpusKind.Open;
+        // CBETA canon abbreviations are 1-3 ASCII letters
+        if (top.Length >= 1 && top.Length <= 3 && top.All(char.IsLetter))
+            return CorpusKind.Cbeta;
+        return CorpusKind.Unknown;
     }
 
     // ===========================================================
@@ -3664,11 +3763,17 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             return;
 
         var canonicalKey = GetTranslationFolderKey(_config);
-        var canonicalDir = AppPaths.GetUserTranslatedDir(_root, canonicalKey);
+        // Use the active corpus's translations repo so the username-rename
+        // refresh stays inside the right corpus's tree.
+        var canonicalDir = !string.IsNullOrEmpty(_translationRoot)
+            ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, canonicalKey)
+            : AppPaths.GetUserTranslatedDir(_root, canonicalKey);
         var previousKey = string.IsNullOrWhiteSpace(previousFolderKey) ? null : AppPaths.SanitizeUsername(previousFolderKey);
         var previousDir = string.IsNullOrWhiteSpace(previousKey) || string.Equals(previousKey, canonicalKey, StringComparison.OrdinalIgnoreCase)
             ? null
-            : AppPaths.GetUserTranslatedDir(_root, previousKey);
+            : (!string.IsNullOrEmpty(_translationRoot)
+                ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot!, previousKey!)
+                : AppPaths.GetUserTranslatedDir(_root, previousKey!));
 
         if (!string.IsNullOrWhiteSpace(previousDir) && Directory.Exists(previousDir))
         {
