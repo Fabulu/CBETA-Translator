@@ -1197,8 +1197,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
         SetStatus("Loading: " + relPath);
 
-        // Run XML I/O + index build off the UI thread to keep the app responsive
-        var (origXml, tranXml, indexedDoc) = await Task.Run(async () =>
+        // Kick off both XML pipelines in parallel:
+        //   (1) index build for the translation editor (slower; XML parse + segment maps)
+        //   (2) readable view render (uses _renderCache, often a cache hit on revisit)
+        // Both read the same XML files but are independent. Running them in
+        // parallel lets the readable view appear as soon as it's ready instead
+        // of waiting for the index build to complete first.
+        var indexTask = Task.Run(async () =>
         {
             var orig = await ReadOriginalXmlAsync(relPath);
             await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
@@ -1207,40 +1212,25 @@ public partial class MainWindowViewModel : ViewModelBase
             return (orig, tran, doc);
         }, ct);
 
-        if (ct.IsCancellationRequested) return;
+        var readableTask = Task.Run(async () =>
+        {
+            ct.ThrowIfCancellationRequested();
+            return await RenderReadablePairDiskOnlyAsync(relPath, ct);
+        }, ct);
 
-        _rawOrigXml = origXml;
-        _rawTranXml = tranXml;
-        _indexedDoc = indexedDoc;
-
-        var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-        SetTranslationProjection(_translationMode, projection);
-
-        _baselineTranSha1 = Sha1Hex(projection);
-        _lastSeenTranSha1 = _baselineTranSha1;
-        _dirty = false;
-        UpdateWindowTitle();
-        UpdateSaveButtonState();
-        // Signal that core data (projection editor) is ready so the window can appear early.
-        // to appear immediately while the slower readable render continues below.
-        SignalCoreLoadComplete?.Invoke();
-
-        SetStatus("Rendering readable view...");
-
-        // Render the readable view FIRST (user sees this tab immediately)
-        // Assistant build is deferred to AFTER render to avoid I/O contention
+        // Show the readable view as soon as it's ready — it's typically the
+        // active tab on a deep link, so this is the "loaded" feeling for users.
+        var swRender = System.Diagnostics.Stopwatch.StartNew();
+        RenderedDocument readableOrig = RenderedDocument.Empty;
+        RenderedDocument readableTran = RenderedDocument.Empty;
         try
         {
-            var swRender = System.Diagnostics.Stopwatch.StartNew();
-
-            var (ro, rt) = await Task.Run(async () =>
-            {
-                ct.ThrowIfCancellationRequested();
-                return await RenderReadablePairDiskOnlyAsync(relPath, ct);
-            }, ct);
-
+            var (ro, rt) = await readableTask;
             swRender.Stop();
             if (ct.IsCancellationRequested) return;
+
+            readableOrig = ro;
+            readableTran = rt;
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
@@ -1253,18 +1243,45 @@ public partial class MainWindowViewModel : ViewModelBase
                 SetReadableZenContext?.Invoke(relPath, isZen);
             }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen context set failed: {ex.Message}"); }
+        }
+        catch (OperationCanceledException) { return; }
+        catch (Exception ex)
+        {
+            SetStatus("Render failed: " + ex.Message);
+        }
+
+        // Now wait for the index build to complete and wire up the translation editor.
+        try
+        {
+            var (origXml, tranXml, indexedDoc) = await indexTask;
+            if (ct.IsCancellationRequested) return;
+
+            _rawOrigXml = origXml;
+            _rawTranXml = tranXml;
+            _indexedDoc = indexedDoc;
+
+            var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
+            SetTranslationProjection(_translationMode, projection);
+
+            _baselineTranSha1 = Sha1Hex(projection);
+            _lastSeenTranSha1 = _baselineTranSha1;
+            _dirty = false;
+            UpdateWindowTitle();
+            UpdateSaveButtonState();
+            // Signal core data ready for any deep-link gates waiting on it.
+            SignalCoreLoadComplete?.Invoke();
 
             await SaveUiStateAsync();
             var sourceName = _translationSourceIndex < _translationSourceOptions.Count
                 ? _translationSourceOptions[_translationSourceIndex] : "unknown";
-            SetStatus($"Loaded: {relPath} — Source: {sourceName} (O={ro.Segments.Count:n0}, T={rt.Segments.Count:n0}, {swRender.ElapsedMilliseconds:n0}ms)");
+            SetStatus($"Loaded: {relPath} — Source: {sourceName} (O={readableOrig.Segments.Count:n0}, T={readableTran.Segments.Count:n0}, {swRender.ElapsedMilliseconds:n0}ms)");
             _ = RefreshProgressStatsAsync(); // Do not await; keep the UI responsive
             _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
         }
-        catch (OperationCanceledException) { }
+        catch (OperationCanceledException) { return; }
         catch (Exception ex)
         {
-            SetStatus("Render failed: " + ex.Message);
+            SetStatus("Index build failed: " + ex.Message);
         }
 
         // Assistant + progress stats refresh in background (don't freeze UI)
