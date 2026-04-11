@@ -497,7 +497,17 @@ public partial class MainWindowViewModel : ViewModelBase
 
         RefreshTranslationSources();
         await LoadFileListFromCacheOrBuildAsync();
-        await RefreshAllCachedStatusesAsync();
+
+        // Fire status refresh in background — the cache provides usable
+        // statuses immediately, and the nav icons update progressively as
+        // EvaluateBestTranslationSource catches up. This lets deep links
+        // open the requested text without waiting for the full 0→4990 sweep.
+        _ = Task.Run(async () =>
+        {
+            try { await RefreshAllCachedStatusesAsync(); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Background nav status refresh failed: {ex.Message}"); }
+        });
+
         QueueAutoIndexBuild();
     }
 
@@ -772,9 +782,15 @@ public partial class MainWindowViewModel : ViewModelBase
         int total = _allItems.Count;
         var progress = new Progress<int>(done =>
             SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
+        var refilter = new Progress<int>(_ =>
+        {
+            // Re-apply the filter so the nav list reflects updated statuses progressively
+            var fireAndForget = ApplyFilterSafeAsync();
+        });
         await Task.Run(() =>
         {
             int done = 0;
+            int sinceRefilter = 0;
             foreach (var it in _allItems)
             {
                 if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
@@ -791,11 +807,20 @@ public partial class MainWindowViewModel : ViewModelBase
                     changed = true;
                 }
                 done++;
+                sinceRefilter++;
                 if (done % 50 == 0)
                     ((IProgress<int>)progress).Report(done);
+                // Periodically refresh the visible nav list so icons update live
+                if (sinceRefilter >= 500)
+                {
+                    sinceRefilter = 0;
+                    ((IProgress<int>)refilter).Report(done);
+                }
             }
             ((IProgress<int>)progress).Report(done);
         });
+        // Final refilter to catch any pending status changes
+        await ApplyFilterSafeAsync();
         if (changed)
         {
             await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
@@ -2540,8 +2565,8 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (!await ConfirmNavigateIfDirtyAsync("load a different root")) return;
             await LoadRootAsync(repoRoot, saveToConfig: true);
-            SetStatus("Refreshing nav statuses after git update...");
-            await RefreshAllCachedStatusesAsync();
+            // LoadRootAsync now fires the status refresh in the background;
+            // no need to await it here. Just update the filter view.
             await ApplyFilterSafeAsync();
             ForceTabIndex?.Invoke(0);
         }
