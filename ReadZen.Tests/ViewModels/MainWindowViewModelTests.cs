@@ -26,7 +26,8 @@ public class MainWindowViewModelTests
             new StubTranslationReviewService(),
             new StubSearchIndexService(),
             documentTagService ?? new StubDocumentTagService(),
-            new StubGitRepoService());
+            new StubGitRepoService(),
+            new StubLicenseMetadataService());
     }
 
     /// <summary>
@@ -722,7 +723,8 @@ public class MainWindowViewModelTests
             new StubTranslationReviewService(),
             new StubSearchIndexService(),
             new StubDocumentTagService(),
-            new StubGitRepoService());
+            new StubGitRepoService(),
+            new StubLicenseMetadataService());
 
         var promptCalls = 0;
         vm.ShowUsernamePromptAsync = () =>
@@ -830,7 +832,8 @@ public class MainWindowViewModelTests
             new StubTranslationReviewService(),
             new StubSearchIndexService(),
             new StubDocumentTagService(),
-            new StubGitRepoService());
+            new StubGitRepoService(),
+            new StubLicenseMetadataService());
 
         var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 

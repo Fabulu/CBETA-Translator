@@ -39,6 +39,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IAppConfigService _configService;
     private readonly IIndexCacheService _indexCacheService;
     private readonly IRenderedDocumentCacheService _renderCache;
+    private readonly ILicenseMetadataService _licenseMetadata;
     private readonly IZenTextsService _zenTexts;
     private readonly IIndexedTranslationService _indexedTranslation;
     private readonly ITranslationAssistantService _translationAssistant;
@@ -63,6 +64,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private string? _root, _translationRoot, _originalDir, _translatedDir;
     private string? _translatedCacheDir;
+    // All corpus layouts found under _root (CBETA + Open siblings inside one
+    // parent folder). Empty when the root is a legacy single-pair layout.
+    private IReadOnlyList<CorpusLayout> _availableCorpora = System.Array.Empty<CorpusLayout>();
+    public IReadOnlyList<CorpusLayout> AvailableCorpora => _availableCorpora;
     private string? _userTranslatedDir;   // community/translations/{username}/
     private string? _activeTranslatedDir; // currently selected dir (user, community, or other user)
     private readonly Dictionary<string, MeaningfulTranslationCacheEntry> _meaningfulTranslationCache = new(StringComparer.OrdinalIgnoreCase);
@@ -140,6 +145,110 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [ObservableProperty]
     private string _windowTitle = AppTitleBase;
+
+    private CorpusKind _activeCorpus = CorpusKind.Cbeta;
+    public CorpusKind ActiveCorpus
+    {
+        get => _activeCorpus;
+        private set
+        {
+            if (_activeCorpus == value) return;
+            _activeCorpus = value;
+            OnPropertyChanged(nameof(ActiveCorpus));
+            OnPropertyChanged(nameof(CorpusBadgeLabel));
+            OnPropertyChanged(nameof(CorpusBadgeBgKey));
+            OnPropertyChanged(nameof(CorpusBadgeFgKey));
+        }
+    }
+
+    public string CorpusBadgeLabel => _activeCorpus switch
+    {
+        CorpusKind.Open  => "OpenZenTexts",
+        CorpusKind.Cbeta => "CBETA",
+        _                => "Unknown corpus"
+    };
+
+    /// <summary>DynamicResource key the view should use for the badge background.</summary>
+    public string CorpusBadgeBgKey => _activeCorpus switch
+    {
+        CorpusKind.Open  => "SuccessBg",
+        CorpusKind.Cbeta => "WarningBg",
+        _                => "BarBg"
+    };
+
+    public string CorpusBadgeFgKey => _activeCorpus switch
+    {
+        CorpusKind.Open  => "SuccessFg",
+        CorpusKind.Cbeta => "WarningFg",
+        _                => "TextMutedFg"
+    };
+
+    /// <summary>Called by ReadableTabView (via MainWindow) to render the per-file license chip.</summary>
+    public TextLicenseInfo? GetLicenseForCurrentFile()
+    {
+        if (_originalDir == null || string.IsNullOrWhiteSpace(_currentRelPath))
+            return null;
+        var abs = System.IO.Path.Combine(_originalDir, _currentRelPath);
+        return _licenseMetadata.TryGet(abs, out var info) ? info : null;
+    }
+
+    /// <summary>
+    /// Switch the active corpus to the requested kind. Only succeeds if the
+    /// requested corpus was discovered under the current root by
+    /// <see cref="AppPaths.DiscoverAllCorpora"/>. Re-points all directory
+    /// pointers (originals, translations, cache, user) at the new corpus,
+    /// clears render and translation caches, persists the new active corpus
+    /// to config, and triggers a fresh nav rebuild so the file list reflects
+    /// the new corpus's contents.
+    /// </summary>
+    public async Task SwitchCorpusAsync(CorpusKind target)
+    {
+        if (target == CorpusKind.Unknown) return;
+        if (target == ActiveCorpus) return;
+        if (string.IsNullOrEmpty(_root)) return;
+
+        var layout = _availableCorpora.FirstOrDefault(c => c.Kind == target);
+        if (layout == null)
+        {
+            SetStatus($"Corpus '{target}' is not available under the current root.", StatusSeverity.Error);
+            return;
+        }
+
+        // Cancel any in-flight render so we don't end up applying it to
+        // the wrong corpus's editor state after the switch.
+        _renderCts?.Cancel();
+        _renderCts?.Dispose();
+        _renderCts = new CancellationTokenSource();
+
+        _originalDir = layout.OriginalDir;
+        _translatedDir = layout.TranslatedDir;
+        _translatedCacheDir = layout.TranslatedCacheDir;
+        _translationRoot = layout.TranslationsRepoRoot;
+
+        _userTranslatedDir = AppPaths.GetUserTranslatedDir(layout.TranslationsRepoRoot, GetTranslationFolderKey(_config));
+        _activeTranslatedDir = _userTranslatedDir;
+
+        _renderCache.Clear();
+        _meaningfulTranslationCache.Clear();
+        _licenseMetadata.Clear();
+
+        ActiveCorpus = target;
+        _config.ActiveCorpus = target;
+        await SafeSaveConfigAsync();
+
+        // Force a fresh nav rebuild from the new corpus's filesystem.
+        SetStatus($"Switched to {target} corpus. Rebuilding nav…");
+        try
+        {
+            await LoadFileListFromCacheOrBuildAsync();
+            await ApplyFilterSafeAsync();
+            SetStatus($"Active corpus: {target}");
+        }
+        catch (System.Exception ex)
+        {
+            SetStatus($"Corpus switch failed: {ex.Message}", StatusSeverity.Error);
+        }
+    }
 
     // ===========================================================
     // Bridge delegates wired by code-behind to tab view methods
@@ -252,7 +361,8 @@ public partial class MainWindowViewModel : ViewModelBase
         ITranslationReviewService translationReview,
         ISearchIndexService searchIndex,
         IDocumentTagService documentTagService,
-        IGitRepoService gitService)
+        IGitRepoService gitService,
+        ILicenseMetadataService licenseMetadata)
     {
         _fileService = fileService;
         _configService = configService;
@@ -266,6 +376,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _searchIndex = searchIndex;
         _documentTagService = documentTagService;
         _gitService = gitService;
+        _licenseMetadata = licenseMetadata;
     }
 
     // ===========================================================
@@ -431,16 +542,41 @@ public partial class MainWindowViewModel : ViewModelBase
 
         _root = rootPath;
         _userHasManuallySelectedSource = false;
-        _translationRoot = AppPaths.GetTranslationRepoRoot(_root);
-        _originalDir = AppPaths.GetOriginalDir(_root);
-        _translatedDir = AppPaths.GetTranslatedDir(_root);
-        _translatedCacheDir = AppPaths.GetTranslatedCacheDir(_root);
+
+        // Multi-corpus discovery: find every (originals, translations) pair
+        // under the parent root. CBETA and OpenZenTexts can coexist as
+        // sibling subfolders. The active corpus is chosen from the saved
+        // preference if it's present in the list, otherwise the first one.
+        _availableCorpora = AppPaths.DiscoverAllCorpora(_root);
+
+        CorpusLayout? activeLayout = null;
+        if (_availableCorpora.Count > 0)
+        {
+            activeLayout = _availableCorpora.FirstOrDefault(c => c.Kind == _config.ActiveCorpus)
+                        ?? _availableCorpora[0];
+            _originalDir = activeLayout.OriginalDir;
+            _translatedDir = activeLayout.TranslatedDir;
+            _translatedCacheDir = activeLayout.TranslatedCacheDir;
+            _translationRoot = activeLayout.TranslationsRepoRoot;
+        }
+        else
+        {
+            // Legacy single-corpus path: user picked a folder that contains
+            // just one repo pair (or even is itself the originals repo).
+            // Fall back to AppPaths' single-pair discovery + the corpus
+            // detector for the kind hint.
+            _translationRoot = AppPaths.GetTranslationRepoRoot(_root);
+            _originalDir = AppPaths.GetOriginalDir(_root);
+            _translatedDir = AppPaths.GetTranslatedDir(_root);
+            _translatedCacheDir = AppPaths.GetTranslatedCacheDir(_root);
+        }
 
         _userTranslatedDir = AppPaths.GetUserTranslatedDir(_root, GetTranslationFolderKey(_config));
         _activeTranslatedDir = _userTranslatedDir; // default to user's own
         // Note: user dir is created on-demand by GetWritePath() when user first saves
 
-        if (!AppPaths.ValidateBothReposExist(_root))
+        bool reposReady = (activeLayout != null) || AppPaths.ValidateBothReposExist(_root);
+        if (!reposReady)
         {
             _root = null;
             _translationRoot = null;
@@ -449,12 +585,39 @@ public partial class MainWindowViewModel : ViewModelBase
             _translatedCacheDir = null;
             _userTranslatedDir = null;
             _activeTranslatedDir = null;
+            _availableCorpora = System.Array.Empty<CorpusLayout>();
             SetStatus("Both originals and translations repos are required. Please sync via Git tab.");
             return;
         }
 
         _renderCache.Clear();
         _meaningfulTranslationCache.Clear();
+        // The license metadata cache is a DI singleton shared across windows.
+        // Only the primary window (saveToConfig=true) is allowed to wipe it;
+        // a secondary window doing so would nuke the primary's cached entries
+        // mid-session. Secondary windows just update their own VM state.
+        if (saveToConfig)
+            _licenseMetadata.Clear();
+
+        // Resolve the active corpus. Prefer the kind from the multi-corpus
+        // discovery (most authoritative — it's filesystem evidence). Fall
+        // back to CorpusDetector for legacy single-corpus roots, then to
+        // the saved config preference. Only the primary window persists
+        // the choice to _config; secondary windows must not mutate the
+        // shared config object because their root selection is transient.
+        CorpusKind resolvedKind;
+        if (activeLayout != null)
+        {
+            resolvedKind = activeLayout.Kind;
+        }
+        else
+        {
+            var detected = CorpusDetector.Detect(_root);
+            resolvedKind = detected != CorpusKind.Unknown ? detected : _config.ActiveCorpus;
+        }
+        ActiveCorpus = resolvedKind;
+        if (saveToConfig)
+            _config.ActiveCorpus = resolvedKind;
 
         RootDisplayText = _root;
 
@@ -1208,7 +1371,12 @@ public partial class MainWindowViewModel : ViewModelBase
             var orig = await ReadOriginalXmlAsync(relPath);
             await EnsureTranslatedXmlExistsForRelPathAsync(relPath);
             var tran = await TryReadTranslatedXmlFromDiskAsync(relPath) ?? orig;
-            var doc = _indexedTranslation.BuildIndex(orig, tran);
+            // Pass the absolute path so the license extractor caches under the
+            // same key the UI surfaces will look up later.
+            var origAbsForLicense = _originalDir != null
+                ? Path.Combine(_originalDir, relPath)
+                : null;
+            var doc = _indexedTranslation.BuildIndex(orig, tran, origAbsForLicense);
             return (orig, tran, doc);
         }, ct);
 

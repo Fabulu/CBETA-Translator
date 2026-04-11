@@ -121,11 +121,23 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     // Turn this on to validate after each patched element (slower, but pinpoints corruption source)
     private const bool ValidateAfterEachPatchedGroup = true;
 
+    // Optional license metadata cache. Injected via DI when wired through the
+    // application service container; null in unit tests and standalone callers
+    // that just want the indexed document without license side-effects.
+    private readonly ILicenseMetadataService? _licenseMetadata;
+
+    public IndexedTranslationService() : this(null) { }
+
+    public IndexedTranslationService(ILicenseMetadataService? licenseMetadata)
+    {
+        _licenseMetadata = licenseMetadata;
+    }
+
     // ============================================================
     // BUILD INDEX
     // ============================================================
 
-    public IndexedTranslationDocument BuildIndex(string originalXml, string? translatedXml)
+    public IndexedTranslationDocument BuildIndex(string originalXml, string? translatedXml, string? originalAbsPath = null)
     {
         originalXml ??= "";
         translatedXml = string.IsNullOrWhiteSpace(translatedXml) ? originalXml : translatedXml;
@@ -142,6 +154,24 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         var origDoc = XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace);
         var tranDoc = XDocument.Parse(translatedXml, LoadOptions.PreserveWhitespace);
+
+        // License extraction hook — reuses the same XDocument we just parsed,
+        // no double-parse. Only fires when both the cache service and the
+        // file path were provided (i.e. called from the file-load path, not
+        // from a search/scholar background re-index).
+        if (_licenseMetadata != null && !string.IsNullOrWhiteSpace(originalAbsPath))
+        {
+            try
+            {
+                var licenseInfo = TextLicenseExtractor.Extract(origDoc, originalAbsPath);
+                if (licenseInfo != null)
+                    _licenseMetadata.Set(originalAbsPath!, licenseInfo);
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[IndexedTranslationService] License extraction failed: {ex.Message}");
+            }
+        }
 
         var tranLookup = BuildDocLookup(tranDoc);
 
