@@ -416,6 +416,19 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task LoadRootAsync(string rootPath, bool saveToConfig)
     {
+        // Skip redundant loads of the same root — this avoids the heavy
+        // RefreshAllCachedStatusesAsync running multiple times when a deep
+        // link comes in right after the initial config-driven auto-load.
+        if (_root != null && string.Equals(_root, rootPath, StringComparison.OrdinalIgnoreCase) && _allItems.Count > 0)
+        {
+            if (saveToConfig && _config.TextRootPath != _root)
+            {
+                _config.TextRootPath = _root;
+                await SafeSaveConfigAsync();
+            }
+            return;
+        }
+
         _root = rootPath;
         _userHasManuallySelectedSource = false;
         _translationRoot = AppPaths.GetTranslationRepoRoot(_root);
