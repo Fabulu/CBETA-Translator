@@ -186,20 +186,36 @@ Important model:
 
 Read Zen tries to protect local work during updates, but this is still a Git-backed workflow. If something feels destructive, stop and inspect before proceeding.
 
-## Deep Links
+## Deep Links And Web Preview
 
-Read Zen supports a broad `zen://` deep-link surface, plus shareable web links through the launcher site.
+Read Zen supports a broad `zen://` deep-link surface for in-app navigation, plus a companion web preview page at **[readzen.pages.dev](https://readzen.pages.dev)** so the same links can be shared with people who don't have the desktop app installed.
 
-Supported families include:
-- passages
-- searches
+Supported link kinds:
+- passages (with or without a line range)
+- full-text searches (state and query)
 - dictionary / termbase entries
-- Scholar collections and passages
-- tags
 - Zen masters
-- compare views
+- Scholar collections and individual passages
+- tags on a work
+- compare views (two translations side by side)
 
-These links are used throughout the app from Reader, Translate, Search, Scholar, and the dictionary/master tooling.
+These links are produced throughout the app — Reader, Translate, Search, Scholar, and the dictionary/master tooling — usually via right-click menus. They embed the same routing the app uses internally, so every link round-trips: open it on the web, click "open in Read Zen", and you land in the same place.
+
+### Web preview (readzen.pages.dev)
+
+The preview page is a zero-install fallback that fetches data directly from the public CBETA and translations repos:
+
+- **Passage** links to a line range render side-by-side ZH/EN with the chosen translator
+- **Passage** links without a line range render a bilingual body preview for translated works, or a navigable source TOC for untranslated ones
+- **Compare** links render two translations side-by-side against the original
+- **Tags / Scholar / Search** previews stream the relevant community files (tag lists, collection passages, title search) and link into ranged passage URLs
+- **Dictionary / Termbase / Master** previews resolve a single lookup card with falls-back from per-user to shared sources
+
+Every preview includes a download CTA for the desktop app, since the previews are deliberately limited to "proof of value" — the full reading, translation, search, and scholarship workflows live in the app.
+
+When the desktop app is installed, the preview page silently hands the link off to it on load and the browser tab becomes a no-op. This auto-open behavior can be disabled via a subtle footer toggle on the preview page for users who prefer to stay in the browser; an explicit "Open in Read Zen" button reappears when auto-open is off.
+
+**Example:** the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/#/T48n2005/](https://readzen.pages.dev/#/T48n2005/)
 
 ## Onboarding Tutorial
 
