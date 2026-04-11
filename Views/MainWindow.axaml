@@ -40,6 +40,32 @@
                                    Margin="10,0,0,0"
                                    VerticalAlignment="Center"
                                    Classes="muted"/>
+                        <Button Name="BtnCorpusBadge"
+                                Margin="8,0,0,0"
+                                Padding="0"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Focusable="False"
+                                IsVisible="False"
+                                ToolTip.Tip="Active corpus — click to switch">
+                            <Border Name="CorpusBadge"
+                                    CornerRadius="10"
+                                    Padding="8,2"
+                                    VerticalAlignment="Center">
+                                <TextBlock Name="TxtCorpusBadge"
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <Button.Flyout>
+                                <Flyout Placement="BottomEdgeAlignedLeft">
+                                    <StackPanel Name="CorpusSwitcherPanel"
+                                                Margin="12"
+                                                Spacing="6"
+                                                MinWidth="240"/>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                     </StackPanel>
 
                     <TextBlock Name="TxtCurrentFile"

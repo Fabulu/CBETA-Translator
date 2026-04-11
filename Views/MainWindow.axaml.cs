@@ -36,6 +36,10 @@ public partial class MainWindow : Window
     private Button? _btnToggleNav, _btnToggleTopBar, _btnOpenRoot, _btnSettings, _btnSave, _btnLicenses;
     private Button? _btnMinimize, _btnMaximize, _btnClose;
     private Border? _navPanel, _topBar, _emptyStateOverlay;
+    private Button? _btnCorpusBadge;
+    private Border? _corpusBadge;
+    private TextBlock? _txtCorpusBadge;
+    private StackPanel? _corpusSwitcherPanel;
     private bool _navAutoHiddenByStudyPanel;
 
     private ListBox? _filesList;
@@ -384,6 +388,10 @@ private async Task LoadConfigAndAutoloadAsync()
         _txtRoot = Find<TextBlock>("TxtRoot");
         _txtCurrentFile = Find<TextBlock>("TxtCurrentFile");
         _txtStatus = Find<TextBlock>("TxtStatus");
+        _btnCorpusBadge = Find<Button>("BtnCorpusBadge");
+        _corpusBadge = Find<Border>("CorpusBadge");
+        _txtCorpusBadge = Find<TextBlock>("TxtCorpusBadge");
+        _corpusSwitcherPanel = Find<StackPanel>("CorpusSwitcherPanel");
 
         _tabs = Find<TabStrip>("MainTabs");
         _readableView = Find<ReadableTabView>("ReadableView");
@@ -412,7 +420,8 @@ private async Task LoadConfigAndAutoloadAsync()
             sp.GetRequiredService<ITranslationReviewService>(),
             sp.GetRequiredService<ISearchIndexService>(),
             sp.GetRequiredService<IDocumentTagService>(),
-            sp.GetRequiredService<IGitRepoService>());
+            sp.GetRequiredService<IGitRepoService>(),
+            sp.GetRequiredService<ILicenseMetadataService>());
 
         DataContext = _vm;
 
@@ -435,7 +444,11 @@ private async Task LoadConfigAndAutoloadAsync()
         };
 
         // ReadableTabView bridges
-        _vm.SetReadableRendered = (ro, rt) => _readableView?.SetRendered(ro, rt);
+        _vm.SetReadableRendered = (ro, rt) =>
+        {
+            _readableView?.SetRendered(ro, rt);
+            _readableView?.SetFileLicense(_vm.GetLicenseForCurrentFile());
+        };
         _vm.ClearReadable = () => _readableView?.Clear();
         _vm.SetReadableHoverDict = enabled =>
         {
@@ -614,6 +627,12 @@ private async Task LoadConfigAndAutoloadAsync()
             if (_txtRoot != null) _txtRoot.Text = _vm.RootDisplayText;
             if (_emptyStateOverlay != null)
                 _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
+            UpdateCorpusBadge();
+        }
+        else if (e.PropertyName == nameof(MainWindowViewModel.ActiveCorpus)
+              || e.PropertyName == nameof(MainWindowViewModel.CorpusBadgeLabel))
+        {
+            UpdateCorpusBadge();
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
         {
@@ -2111,6 +2130,102 @@ private async Task LoadConfigAndAutoloadAsync()
         }
 
         StartTour();
+    }
+
+    /// <summary>
+    /// Repaints the corpus badge in the top bar to match the active corpus,
+    /// and rebuilds the click-to-switch flyout content from the VM's
+    /// AvailableCorpora list. Hidden when no root is loaded; colored via
+    /// DynamicResource keys the VM exposes (SuccessBg/Fg for OpenZenTexts,
+    /// WarningBg/Fg for CBETA).
+    /// </summary>
+    private void UpdateCorpusBadge()
+    {
+        if (_btnCorpusBadge == null || _corpusBadge == null || _txtCorpusBadge == null) return;
+
+        bool hasRoot = !string.IsNullOrEmpty(_vm.RootDisplayText);
+        _btnCorpusBadge.IsVisible = hasRoot;
+        if (!hasRoot) return;
+
+        _txtCorpusBadge.Text = _vm.CorpusBadgeLabel;
+
+        if (Application.Current?.Resources.TryGetValue(_vm.CorpusBadgeBgKey, out var bg) == true
+            && bg is Avalonia.Media.IBrush bgBrush)
+            _corpusBadge.Background = bgBrush;
+
+        if (Application.Current?.Resources.TryGetValue(_vm.CorpusBadgeFgKey, out var fg) == true
+            && fg is Avalonia.Media.IBrush fgBrush)
+            _txtCorpusBadge.Foreground = fgBrush;
+
+        RebuildCorpusSwitcherFlyout();
+    }
+
+    /// <summary>
+    /// Populates the corpus-switcher flyout from the VM's AvailableCorpora list.
+    /// Each entry becomes a Button that, when clicked, calls SwitchCorpusAsync.
+    /// The currently-active corpus is highlighted and disabled. If only one
+    /// corpus is available the flyout shows a "no other corpora" notice instead.
+    /// </summary>
+    private void RebuildCorpusSwitcherFlyout()
+    {
+        if (_corpusSwitcherPanel == null) return;
+
+        _corpusSwitcherPanel.Children.Clear();
+
+        var available = _vm.AvailableCorpora;
+
+        var header = new TextBlock
+        {
+            Text = "Switch corpus",
+            FontWeight = Avalonia.Media.FontWeight.SemiBold,
+            FontSize = 12,
+            Margin = new Avalonia.Thickness(0, 0, 0, 6)
+        };
+        _corpusSwitcherPanel.Children.Add(header);
+
+        if (available.Count == 0)
+        {
+            var msg = new TextBlock
+            {
+                Text = "Only one corpus is available under this folder. Sync to add the other corpus, or open a parent folder containing both repository pairs.",
+                FontSize = 11,
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Foreground = Application.Current?.Resources.TryGetValue("TextMutedFg", out var muted) == true && muted is Avalonia.Media.IBrush mb ? mb : null
+            };
+            _corpusSwitcherPanel.Children.Add(msg);
+            return;
+        }
+
+        foreach (var corpus in available)
+        {
+            bool isActive = corpus.Kind == _vm.ActiveCorpus;
+            string label = corpus.Kind switch
+            {
+                ReadZen.App.Models.CorpusKind.Open => "OpenZenTexts (commercial-OK)",
+                ReadZen.App.Models.CorpusKind.Cbeta => "CBETA (non-commercial)",
+                _ => corpus.Kind.ToString()
+            };
+
+            var btn = new Button
+            {
+                Content = isActive ? "● " + label : "○ " + label,
+                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+                HorizontalContentAlignment = Avalonia.Layout.HorizontalAlignment.Left,
+                FontSize = 11,
+                IsEnabled = !isActive
+            };
+
+            var capturedKind = corpus.Kind;
+            btn.Click += async (_, _) =>
+            {
+                // Close the flyout before triggering the switch so the user
+                // sees the badge update without the popover blocking it.
+                if (_btnCorpusBadge?.Flyout is Flyout f) f.Hide();
+                await _vm.SwitchCorpusAsync(capturedKind);
+            };
+
+            _corpusSwitcherPanel.Children.Add(btn);
+        }
     }
 }
 

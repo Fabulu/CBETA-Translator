@@ -98,6 +98,13 @@ public partial class ReadableTabView : UserControl
 
     private Border? _readableEmptyState;
 
+    // License chip + flyout (set on every file load via SetFileLicense)
+    private Button? _btnLicenseChip;
+    private Border? _licenseChipBorder;
+    private TextBlock? _txtLicenseChip;
+    private LicenseDetailsView? _licenseDetailsPanel;
+    private TextLicenseInfo? _currentFileLicense;
+
     // Navigation highlight: cleared on next user click
     private TextEditor? _navHighlightEditor;
 
@@ -324,6 +331,11 @@ public partial class ReadableTabView : UserControl
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
+
+        _btnLicenseChip = this.FindControl<Button>("BtnLicenseChip");
+        _licenseChipBorder = this.FindControl<Border>("LicenseChipBorder");
+        _txtLicenseChip = this.FindControl<TextBlock>("TxtLicenseChip");
+        _licenseDetailsPanel = this.FindControl<LicenseDetailsView>("LicenseDetailsPanel");
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
 
         _codeBarPanel = this.FindControl<Border>("CodeBarPanel");
@@ -373,6 +385,72 @@ public partial class ReadableTabView : UserControl
             _aeOrig.ContextMenu = BuildScholarContextMenu(isTranslated: false);
         if (_aeTran != null)
             _aeTran.ContextMenu = BuildScholarContextMenu(isTranslated: true);
+    }
+
+    /// <summary>
+    /// Updates the per-file license chip in the action row, plus refreshes
+    /// the flyout content. Called by MainWindow.axaml.cs after every file load.
+    ///
+    /// Three display states:
+    ///   - license == null:                 chip hidden (no metadata at all)
+    ///   - license.Class == Unknown:        chip shown as "License unclear",
+    ///                                      tooltip explains "header present
+    ///                                      but no known license keywords",
+    ///                                      flyout shows raw availability text
+    ///                                      so the user can verify manually
+    ///   - license.Class is known:          chip shown with the SPDX label,
+    ///                                      color-coded by class
+    /// </summary>
+    public void SetFileLicense(TextLicenseInfo? license)
+    {
+        _currentFileLicense = license;
+        _licenseDetailsPanel?.SetLicense(license);
+
+        if (_btnLicenseChip == null || _txtLicenseChip == null || _licenseChipBorder == null)
+            return;
+
+        if (license == null)
+        {
+            _btnLicenseChip.IsVisible = false;
+            ToolTip.SetTip(_btnLicenseChip, null);
+            return;
+        }
+
+        if (license.LicenseClass == LicenseClass.Unknown)
+        {
+            _btnLicenseChip.IsVisible = true;
+            _txtLicenseChip.Text = "License unclear";
+            ToolTip.SetTip(_btnLicenseChip,
+                "The file has a header but no recognized license keywords were detected. " +
+                "Click to inspect the raw availability text and verify manually.");
+            ApplyLicenseChipColors("BarBg", "TextMutedFg");
+            return;
+        }
+
+        _btnLicenseChip.IsVisible = true;
+        _txtLicenseChip.Text = license.ShortLabel;
+        ToolTip.SetTip(_btnLicenseChip, $"License: {license.ShortLabel}. Click for full attribution.");
+
+        var (bgKey, fgKey) = license.LicenseClass switch
+        {
+            LicenseClass.PublicDomain          => ("SuccessBg", "SuccessFg"),
+            LicenseClass.PermissiveAttribution => ("SuccessBg", "SuccessFg"),
+            LicenseClass.CopyleftAttribution   => ("SuccessBg", "SuccessFg"),
+            LicenseClass.NonCommercial         => ("WarningBg", "WarningFg"),
+            LicenseClass.AllRightsReserved     => ("WarningBg", "WarningFg"),
+            _                                  => ("BarBg",     "TextMutedFg"),
+        };
+        ApplyLicenseChipColors(bgKey, fgKey);
+    }
+
+    private void ApplyLicenseChipColors(string bgKey, string fgKey)
+    {
+        if (Application.Current?.Resources.TryGetValue(bgKey, out var bg) == true
+            && bg is Avalonia.Media.IBrush bgBrush && _licenseChipBorder != null)
+            _licenseChipBorder.Background = bgBrush;
+        if (Application.Current?.Resources.TryGetValue(fgKey, out var fg) == true
+            && fg is Avalonia.Media.IBrush fgBrush && _txtLicenseChip != null)
+            _txtLicenseChip.Foreground = fgBrush;
     }
 
     private ContextMenu BuildScholarContextMenu(bool isTranslated)
@@ -492,6 +570,56 @@ public partial class ReadableTabView : UserControl
                 adoptItem.Click += (_, _) => OnAdoptCommunityTag(isTranslated);
                 menu.Items.Add(adoptItem);
             }
+        }
+
+        // License-aware items — only added when the active file has license
+        // metadata that makes them meaningful. Hiding empty entries keeps
+        // the menu lean for users who right-click frequently.
+        bool hasLicense = _currentFileLicense != null;
+        var sourceUrl = _currentFileLicense?.StableRevisionUrl ?? _currentFileLicense?.SourceUrl;
+        bool hasSourceUrl = !string.IsNullOrWhiteSpace(sourceUrl);
+
+        if (hasLicense)
+        {
+            var copyAttr = new MenuItem { Header = "Copy with attribution" };
+            copyAttr.Click += async (_, _) =>
+            {
+                var editor = isTranslated ? _aeTran : _aeOrig;
+                if (editor == null) return;
+                string selected = editor.SelectedText ?? "";
+                var block = AttributionFormatter.Plain(_currentFileLicense, string.IsNullOrWhiteSpace(selected) ? null : selected);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(block);
+                Say("Copied with attribution.");
+            };
+            menu.Items.Add(copyAttr);
+        }
+
+        if (hasSourceUrl)
+        {
+            var copySrc = new MenuItem { Header = "Copy source URL" };
+            copySrc.Click += async (_, _) =>
+            {
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(sourceUrl!);
+                Say("Source URL copied.");
+            };
+            menu.Items.Add(copySrc);
+
+            var openSrc = new MenuItem { Header = "Open source page in browser" };
+            openSrc.Click += (_, _) =>
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = sourceUrl!,
+                        UseShellExecute = true
+                    });
+                }
+                catch (System.Exception ex) { Say("Open failed: " + ex.Message); }
+            };
+            menu.Items.Add(openSrc);
         }
 
         return menu;
@@ -770,6 +898,12 @@ public partial class ReadableTabView : UserControl
         _vm.LastStudySnapshot = null;
         _termHitRanges = null;
         ClearStudyHoverBehaviors();
+
+        // Drop license metadata for the previously-loaded file so the
+        // context-menu items ("Copy with attribution" / "Copy source URL" /
+        // "Open source page") don't operate on stale data after a root
+        // change. Hides the chip until the next file load populates it.
+        SetFileLicense(null);
 
         _vm.PendingRefresh = false;
         UpdateButtonsState();

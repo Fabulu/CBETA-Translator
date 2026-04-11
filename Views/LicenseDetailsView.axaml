@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.LicenseDetailsView">
+    <StackPanel Margin="12" Spacing="8">
+        <TextBlock Name="TxtTitle" FontWeight="Bold" FontSize="14" TextWrapping="Wrap"/>
+        <TextBlock Name="TxtAuthorYear" Classes="muted" FontSize="12" TextWrapping="Wrap"/>
+        <Border Background="{DynamicResource NavBg}" CornerRadius="6" Padding="8">
+            <StackPanel Spacing="4">
+                <TextBlock Name="TxtShortLabel" FontWeight="SemiBold" FontSize="12"/>
+                <TextBlock Name="TxtRightsBasis" FontSize="11" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Spacing="4">
+            <TextBlock Text="Source witness" FontSize="11" Classes="muted"/>
+            <TextBlock Name="TxtSourceUrl" FontSize="11" TextWrapping="Wrap"/>
+            <TextBlock Text="Stable revision" FontSize="11" Classes="muted" Margin="0,4,0,0"/>
+            <TextBlock Name="TxtStableUrl" FontSize="11" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <Border Name="BadgeNoCbeta"
+                    Background="{DynamicResource SuccessBg}"
+                    CornerRadius="8" Padding="6,2"
+                    IsVisible="False">
+                <TextBlock Text="no CBETA material"
+                           Foreground="{DynamicResource SuccessFg}"
+                           FontSize="10" FontWeight="SemiBold"/>
+            </Border>
+            <Border Name="BadgeConfidence"
+                    Background="{DynamicResource BarBg}"
+                    CornerRadius="8" Padding="6,2"
+                    IsVisible="False">
+                <TextBlock Name="TxtConfidence" FontSize="10" FontWeight="SemiBold"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Name="BtnCopyAttribution" Content="Copy attribution" FontSize="11"/>
+            <Button Name="BtnOpenSource" Content="Open source in browser" FontSize="11"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
