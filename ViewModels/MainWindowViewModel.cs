@@ -784,8 +784,13 @@ public partial class MainWindowViewModel : ViewModelBase
             SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
         var refilter = new Progress<int>(_ =>
         {
-            // Re-apply the filter so the nav list reflects updated statuses progressively
-            var fireAndForget = ApplyFilterSafeAsync();
+            // Re-apply the filter so the nav list reflects updated statuses progressively.
+            // Marshal to UI thread because Progress<T> may fire on the threadpool when
+            // RefreshAllCachedStatusesAsync was started from a background context.
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            {
+                var fireAndForget = ApplyFilterSafeAsync();
+            });
         });
         await Task.Run(() =>
         {
@@ -819,8 +824,8 @@ public partial class MainWindowViewModel : ViewModelBase
             }
             ((IProgress<int>)progress).Report(done);
         });
-        // Final refilter to catch any pending status changes
-        await ApplyFilterSafeAsync();
+        // Final refilter to catch any pending status changes — marshal to UI thread.
+        await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(async () => await ApplyFilterSafeAsync());
         if (changed)
         {
             await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
