@@ -2829,6 +2829,38 @@ public partial class MainWindowViewModel : ViewModelBase
         try
         {
             if (!await ConfirmNavigateIfDirtyAsync("load a different root")) return;
+
+            // A clone OR sync just changed the corpus on disk. The cache's
+            // git-HEAD gate (added 2026-04-12) will catch the common case
+            // where HEAD moved, but we can't trust that alone — a script,
+            // hand-edit, or stash apply might have introduced new files
+            // without moving HEAD. Belt-and-braces: delete the per-corpus
+            // cache files for every discovered corpus under this root so
+            // the next LoadFileListFromCacheOrBuildAsync rebuilds from disk.
+            //
+            // The path-based cache lookup is corpus-aware (each translations
+            // repo has its own index.cache.json under its own root), so we
+            // need to walk the discovered corpora rather than guess.
+            try
+            {
+                foreach (var layout in AppPaths.DiscoverAllCorpora(repoRoot))
+                {
+                    var cachePath = _indexCacheService.GetCachePath(layout.TranslationsRepoRoot);
+                    if (System.IO.File.Exists(cachePath))
+                    {
+                        try { System.IO.File.Delete(cachePath); }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Could not delete stale cache {cachePath}: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Cache wipe before clone-load failed: {ex.Message}");
+            }
+
             await LoadRootAsync(repoRoot, saveToConfig: true);
             // LoadRootAsync now fires the status refresh in the background;
             // no need to await it here. Just update the filter view.
