@@ -34,6 +34,27 @@ public partial class GitTabViewModel : ViewModelBase
     private const string RepoTranslatedRoot = "xml-p5t";
     private const string UpstreamOwner = "Fabulu";
     private const string UpstreamRepo = "CbetaZenTranslations";
+    private const string OpenZenUpstreamRepo = "OpenZenTranslations";
+
+    /// <summary>
+    /// Returns the GitHub repo name matching the active corpus. Used by the
+    /// push/PR flows that need to fork, set the remote URL, and open PRs
+    /// against the right upstream. Without this dispatch, every push in
+    /// OpenZen mode would write CBETA's repo URL into the OpenZen folder's
+    /// <c>.git/config</c> — the exact contamination vector Recon 3 identified.
+    /// </summary>
+    private string ActiveUpstreamRepo => _activeCorpus == CorpusKind.Open
+        ? OpenZenUpstreamRepo
+        : UpstreamRepo;
+
+    /// <summary>
+    /// Returns the full clone URL for the active corpus's translations repo.
+    /// Same dispatch as <see cref="ActiveUpstreamRepo"/> — both must stay
+    /// in sync or the push paths will write the wrong URL to <c>.git/config</c>.
+    /// </summary>
+    private string ActiveTranslationRepoUrl => _activeCorpus == CorpusKind.Open
+        ? OpenZenTranslationRepoUrl
+        : TranslationRepoUrl;
 
     private const string CommunityTmFile = "translation-memory.approved.jsonl";
     private const string CommunityTermbaseFile = "termbase.json";
@@ -1299,18 +1320,18 @@ public partial class GitTabViewModel : ViewModelBase
             {
                 AppendLog("[mode] upstream owner detected -> no fork");
                 remoteName = "origin";
-                remoteUrlClean = TranslationRepoUrl;
+                remoteUrlClean = ActiveTranslationRepoUrl;
                 prHeadOwner = UpstreamOwner;
             }
             else
             {
                 ProgressText = "Ensuring fork\u2026";
 
-                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, ct);
                 if (!forkExists)
                 {
                     AppendLog("[step] create fork");
-                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, ActiveUpstreamRepo, ct);
                     if (!okFork)
                     {
                         ProgressText = "Fork failed.";
@@ -1318,7 +1339,7 @@ public partial class GitTabViewModel : ViewModelBase
                         return;
                     }
 
-                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
                     if (!ready)
                     {
                         ProgressText = "Fork not ready yet.";
@@ -1328,7 +1349,7 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 remoteName = "fork";
-                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{ActiveUpstreamRepo}.git";
                 prHeadOwner = _githubLogin!;
             }
 
@@ -1367,7 +1388,7 @@ public partial class GitTabViewModel : ViewModelBase
             var prUrl = await _api.CreatePullRequestAsync(
                 _githubAccessToken!,
                 UpstreamOwner,
-                UpstreamRepo,
+                ActiveUpstreamRepo,
                 head,
                 "main",
                 title,
@@ -1753,16 +1774,16 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = TranslationRepoUrl;
+                remoteUrlClean = ActiveTranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
             {
                 ProgressText = "Ensuring fork\u2026";
-                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, ct);
                 if (!forkExists)
                 {
-                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, ActiveUpstreamRepo, ct);
                     if (!okFork)
                     {
                         ProgressText = "Fork failed.";
@@ -1771,7 +1792,7 @@ public partial class GitTabViewModel : ViewModelBase
                         return;
                     }
 
-                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
                     if (!ready)
                     {
                         ProgressText = "Fork not ready yet.";
@@ -1781,7 +1802,7 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 remoteName = "fork";
-                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{ActiveUpstreamRepo}.git";
             }
 
             var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
@@ -2096,16 +2117,16 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = TranslationRepoUrl;
+                remoteUrlClean = ActiveTranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
             {
                 ProgressText = "Ensuring fork\u2026";
-                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, ct);
                 if (!forkExists)
                 {
-                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, ActiveUpstreamRepo, ct);
                     if (!okFork)
                     {
                         ProgressText = "Fork failed.";
@@ -2114,7 +2135,7 @@ public partial class GitTabViewModel : ViewModelBase
                         return;
                     }
 
-                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
                     if (!ready)
                     {
                         ProgressText = "Fork not ready yet.";
@@ -2124,7 +2145,7 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 remoteName = "fork";
-                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{ActiveUpstreamRepo}.git";
             }
 
             var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
@@ -2357,16 +2378,16 @@ public partial class GitTabViewModel : ViewModelBase
             if (isUpstreamOwner)
             {
                 remoteName = "origin";
-                remoteUrlClean = TranslationRepoUrl;
+                remoteUrlClean = ActiveTranslationRepoUrl;
                 AppendLog("[mode] upstream owner -> push to origin");
             }
             else
             {
                 ProgressText = "Ensuring fork\u2026";
-                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, ct);
+                bool forkExists = await _api.ForkExistsAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, ct);
                 if (!forkExists)
                 {
-                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, UpstreamRepo, ct);
+                    var okFork = await _api.CreateForkAsync(_githubAccessToken!, UpstreamOwner, ActiveUpstreamRepo, ct);
                     if (!okFork)
                     {
                         ProgressText = "Fork failed.";
@@ -2375,7 +2396,7 @@ public partial class GitTabViewModel : ViewModelBase
                         return;
                     }
 
-                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, UpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
+                    var ready = await _api.WaitForForkAsync(_githubAccessToken!, _githubLogin!, ActiveUpstreamRepo, TimeSpan.FromSeconds(60), prog, ct);
                     if (!ready)
                     {
                         ProgressText = "Fork not ready yet.";
@@ -2385,7 +2406,7 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 remoteName = "fork";
-                remoteUrlClean = $"https://github.com/{_githubLogin}/{UpstreamRepo}.git";
+                remoteUrlClean = $"https://github.com/{_githubLogin}/{ActiveUpstreamRepo}.git";
             }
 
             var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
