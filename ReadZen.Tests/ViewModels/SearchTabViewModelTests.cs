@@ -61,21 +61,25 @@ public class SearchTabViewModelTests
         public void Dispose() { }
     }
 
-    private static async Task WaitForAsync(Func<bool> condition, int timeoutMs = 1000)
+    private static async Task WaitForAsync(Func<bool> condition, int timeoutMs = 2000)
     {
         var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMs);
         while (!condition())
         {
             if (DateTime.UtcNow >= deadline)
                 throw new TimeoutException("Condition was not reached in time.");
-            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Background);
+            // Use Task.Delay instead of Dispatcher.UIThread.InvokeAsync —
+            // the latter deadlocks in headless test hosts where no Avalonia
+            // dispatcher is pumping (same class of bug as the
+            // RefreshAllCachedStatusesAsync deadlock fixed earlier today).
+            await Task.Delay(10);
             await Task.Delay(20);
         }
     }
 
     // ---- Initial state ----
 
-    [Fact(Skip = "Dispatcher timing harness is flaky for this controlled-search case.")]
+    [Fact(Skip = "Requires Avalonia headless test harness: the VM posts search results via Dispatcher.UIThread which doesn't pump in xUnit. Add Avalonia.Headless NuGet + AppBuilder to un-skip.")]
     public async Task SearchAsync_ShowsLoadingPlaceholderBeforeFirstResultArrives()
     {
         var svc = new ControlledSearchIndexService();
@@ -84,9 +88,8 @@ public class SearchTabViewModelTests
         vm.Query = "wumen";
 
         var searchTask = vm.SearchCommand.ExecuteAsync(null);
-        await Task.Delay(50);
+        await WaitForAsync(() => vm.IsSearching);
 
-        Assert.True(vm.IsSearching);
         Assert.True(vm.IsSearchProgressVisible);
         Assert.True(vm.IsResultsLoadingVisible);
         Assert.Empty(vm.ResultGroups);
@@ -97,7 +100,7 @@ public class SearchTabViewModelTests
         await searchTask;
     }
 
-    [Fact(Skip = "Dispatcher timing harness is flaky for this controlled-search case.")]
+    [Fact(Skip = "Requires Avalonia headless test harness: the VM posts search results via Dispatcher.UIThread which doesn't pump in xUnit. Add Avalonia.Headless NuGet + AppBuilder to un-skip.")]
     public async Task SearchAsync_ShowsFirstBatchBeforeSearchCompletes()
     {
         var svc = new ControlledSearchIndexService();

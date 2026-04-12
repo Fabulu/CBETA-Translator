@@ -145,6 +145,16 @@ public sealed class OnboardingTourService
             TargetControlName = "BtnCorpusBadge"
         });
 
+        Steps.Add(new TourStep
+        {
+            Id = "license-chip",
+            Title = "Per-File License",
+            Body = "This chip shows the license for the currently open file. Colours tell you at a glance:\n\n\u2022 Green \u2014 public domain or very permissive (CC0, MIT)\n\u2022 Amber \u2014 attribution required (CC BY-SA)\n\u2022 Orange \u2014 non-commercial (CBETA)\n\nClick the chip for full citation details, source links, and the short attribution line you can copy for your own work.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnLicenseChipTopBar"
+        });
+
         // ===== Phase 2: Reading =====
 
         Steps.Add(new TourStep

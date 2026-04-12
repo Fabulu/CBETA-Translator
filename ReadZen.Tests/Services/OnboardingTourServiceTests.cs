@@ -187,9 +187,9 @@ public class OnboardingTourServiceTests
     // ---- 10. Steps count stays 40 after tutorial rewrites ----
 
     [Fact]
-    public void Steps_Count_Is42()
+    public void Steps_Count_Is43()
     {
-        Assert.Equal(42, _svc.Steps.Count);
+        Assert.Equal(43, _svc.Steps.Count);
     }
 
     [Fact]
@@ -207,6 +207,15 @@ public class OnboardingTourServiceTests
         var step = Assert.Single(_svc.Steps, s => s.Id == "corpus-switcher");
         Assert.Equal("BtnCorpusBadge", step.TargetControlName);
         Assert.Contains("switch", step.Body, System.StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_LicenseChipStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "license-chip");
+        Assert.Equal("BtnLicenseChipTopBar", step.TargetControlName);
+        Assert.Contains("CC0", step.Body);
+        Assert.Contains("non-commercial", step.Body);
     }
 
     [Fact]
