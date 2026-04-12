@@ -86,7 +86,90 @@ public sealed class IndexCacheService : IIndexCacheService
             if (!string.Equals(cache.BuildGuid, CacheBuildGuid, StringComparison.Ordinal))
                 return null;
 
+            // Git HEAD gate. When the corpus root is a git repo and the
+            // current HEAD has moved since the cache was built, the cached
+            // file list may be missing files (or include deleted ones) —
+            // rebuild from disk. When the cache OR the live repo lacks a
+            // HEAD record (no .git dir, sandbox, packed-refs miss, etc.)
+            // we don't gate on it: the BuildGuid + RootPath checks above
+            // remain authoritative.
+            var liveHead = TryGetGitHead(root);
+            if (!string.IsNullOrEmpty(cache.GitHead)
+                && !string.IsNullOrEmpty(liveHead)
+                && !string.Equals(cache.GitHead, liveHead, StringComparison.Ordinal))
+            {
+                return null;
+            }
+
             return cache;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Reads the current HEAD commit SHA of the git repo rooted at
+    /// <paramref name="repoRoot"/>, without invoking the git binary.
+    /// Handles the three on-disk forms libgit2 / git itself can produce:
+    ///   1. <c>.git/HEAD</c> contains a literal SHA  (detached HEAD)
+    ///   2. <c>.git/HEAD</c> contains <c>ref: refs/heads/{name}</c>
+    ///      and the resolved file <c>.git/{ref}</c> exists
+    ///   3. The ref is packed in <c>.git/packed-refs</c>
+    /// Returns null on any failure (no .git dir, malformed file, race).
+    /// Cheap enough to call on every cache load.
+    /// </summary>
+    public static string? TryGetGitHead(string repoRoot)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(repoRoot)) return null;
+            var gitDir = Path.Combine(repoRoot, ".git");
+            if (!Directory.Exists(gitDir)) return null;
+
+            var headFile = Path.Combine(gitDir, "HEAD");
+            if (!File.Exists(headFile)) return null;
+
+            var head = File.ReadAllText(headFile).Trim();
+            if (string.IsNullOrEmpty(head)) return null;
+
+            // Detached HEAD: HEAD contains the SHA directly.
+            if (!head.StartsWith("ref:", StringComparison.Ordinal))
+                return head;
+
+            // Symbolic ref: resolve to the underlying ref file.
+            var refPath = head.Substring(4).Trim();
+            if (string.IsNullOrEmpty(refPath)) return null;
+
+            var refFile = Path.Combine(gitDir, refPath.Replace('/', Path.DirectorySeparatorChar));
+            if (File.Exists(refFile))
+            {
+                var sha = File.ReadAllText(refFile).Trim();
+                if (!string.IsNullOrEmpty(sha)) return sha;
+            }
+
+            // Packed-refs fallback: scan for the matching ref line.
+            var packedRefs = Path.Combine(gitDir, "packed-refs");
+            if (File.Exists(packedRefs))
+            {
+                foreach (var line in File.ReadLines(packedRefs))
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    if (line.StartsWith("#", StringComparison.Ordinal)) continue;
+                    if (line.StartsWith("^", StringComparison.Ordinal)) continue;
+                    var sp = line.IndexOf(' ');
+                    if (sp <= 0 || sp >= line.Length - 1) continue;
+                    var name = line.Substring(sp + 1).Trim();
+                    if (string.Equals(name, refPath, StringComparison.Ordinal))
+                    {
+                        var sha = line.Substring(0, sp).Trim();
+                        if (!string.IsNullOrEmpty(sha)) return sha;
+                    }
+                }
+            }
+
+            return null;
         }
         catch
         {
@@ -100,6 +183,9 @@ public sealed class IndexCacheService : IIndexCacheService
         cache.BuiltUtc = DateTime.UtcNow;
         cache.Version = 3;
         cache.BuildGuid = CacheBuildGuid;
+        // Snapshot the current HEAD so the next load can detect drift.
+        // Null is fine — TryLoadAsync only gates when both sides have one.
+        cache.GitHead = TryGetGitHead(root);
 
         var path = GetCachePath(root);
         var json = JsonSerializer.Serialize(cache, JsonOpts);
@@ -294,6 +380,7 @@ public sealed class IndexCacheService : IIndexCacheService
                 RootPath = root,
                 BuiltUtc = DateTime.UtcNow,
                 BuildGuid = CacheBuildGuid,
+                GitHead = TryGetGitHead(root),
                 Entries = entries
             };
         }, ct);
