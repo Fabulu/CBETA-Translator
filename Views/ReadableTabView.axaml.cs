@@ -143,6 +143,9 @@ public partial class ReadableTabView : UserControl
     private Border? _studyPanel;
     private GridSplitter? _studyPanelSplitter;
     private CheckBox? _chkStudyPanel;
+    private CheckBox? _chkProvenance;
+    private Border? _provenancePanelBorder;
+    private ProvenancePanel? _provenancePanelView;
     private StackPanel? _studyTermHost;
     private StackPanel? _studyTmHost;
     private TextBlock? _txtStudySegmentZh;
@@ -208,6 +211,9 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when study panel visibility changes (for config persistence).</summary>
     public event EventHandler<bool>? StudyPanelVisibilityChanged;
+
+    /// <summary>Fired when provenance panel visibility changes (for config persistence).</summary>
+    public event EventHandler<bool>? ProvenancePanelVisibilityChanged;
 
     public Func<string?, string>? StudyTitleResolver { get; set; }
 
@@ -351,6 +357,9 @@ public partial class ReadableTabView : UserControl
         _studyPanel = this.FindControl<Border>("StudyPanel");
         _studyPanelSplitter = this.FindControl<GridSplitter>("StudyPanelSplitter");
         _chkStudyPanel = this.FindControl<CheckBox>("ChkStudyPanel");
+        _chkProvenance = this.FindControl<CheckBox>("ChkProvenance");
+        _provenancePanelBorder = this.FindControl<Border>("ProvenancePanelBorder");
+        _provenancePanelView = this.FindControl<ProvenancePanel>("ProvenancePanelView");
         _studyTermHost = this.FindControl<StackPanel>("StudyTermHost");
         _studyTmHost = this.FindControl<StackPanel>("StudyTmHost");
         _txtStudySegmentZh = this.FindControl<TextBlock>("TxtStudySegmentZh");
@@ -741,6 +750,11 @@ public partial class ReadableTabView : UserControl
         if (_chkStudyPanel != null)
         {
             _chkStudyPanel.IsCheckedChanged += (_, _) => UpdateStudyPanelVisibility();
+        }
+
+        if (_chkProvenance != null)
+        {
+            _chkProvenance.IsCheckedChanged += (_, _) => UpdateProvenancePanelVisibility();
         }
 
         if (_btnCloseNotes != null)
@@ -4522,14 +4536,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
         if (_studyPanel != null)
             _studyPanel.IsVisible = visible;
-        if (_studyPanelSplitter != null)
-            _studyPanelSplitter.IsVisible = visible;
 
-        if (_readerOuterGrid != null && _readerOuterGrid.ColumnDefinitions.Count >= 3)
-        {
-            _readerOuterGrid.ColumnDefinitions[1].Width = visible ? new GridLength(8) : new GridLength(0);
-            _readerOuterGrid.ColumnDefinitions[2].Width = visible ? new GridLength(320) : new GridLength(0);
-        }
+        UpdateRightColumnVisibility();
 
         StudyPanelVisibilityChanged?.Invoke(this, visible);
 
@@ -4558,12 +4566,56 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         UpdateStudyDictionary();
     }
 
+    private void UpdateProvenancePanelVisibility()
+    {
+        bool visible = _chkProvenance?.IsChecked == true;
+
+        if (_provenancePanelBorder != null)
+            _provenancePanelBorder.IsVisible = visible;
+
+        UpdateRightColumnVisibility();
+
+        ProvenancePanelVisibilityChanged?.Invoke(this, visible);
+    }
+
+    /// <summary>
+    /// Shows or hides the right column (splitter + panel host) based on
+    /// whether either the study panel or provenance panel is active.
+    /// </summary>
+    private void UpdateRightColumnVisibility()
+    {
+        bool anyVisible = _chkStudyPanel?.IsChecked == true || _chkProvenance?.IsChecked == true;
+
+        if (_studyPanelSplitter != null)
+            _studyPanelSplitter.IsVisible = anyVisible;
+
+        if (_readerOuterGrid != null && _readerOuterGrid.ColumnDefinitions.Count >= 3)
+        {
+            _readerOuterGrid.ColumnDefinitions[1].Width = anyVisible ? new GridLength(8) : new GridLength(0);
+            _readerOuterGrid.ColumnDefinitions[2].Width = anyVisible ? new GridLength(320) : new GridLength(0);
+        }
+    }
+
     /// <summary>Sets study panel visibility from config (called by host during init).</summary>
     public void SetStudyPanelVisible(bool visible)
     {
         if (_chkStudyPanel != null)
             _chkStudyPanel.IsChecked = visible;
         UpdateStudyPanelVisibility();
+    }
+
+    /// <summary>Sets provenance panel visibility from config (called by host during init).</summary>
+    public void SetProvenancePanelVisible(bool visible)
+    {
+        if (_chkProvenance != null)
+            _chkProvenance.IsChecked = visible;
+        UpdateProvenancePanelVisibility();
+    }
+
+    /// <summary>Populates provenance panel from manifest data.</summary>
+    public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus)
+    {
+        _provenancePanelView?.SetProvenance(manifest, license, corpus);
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>

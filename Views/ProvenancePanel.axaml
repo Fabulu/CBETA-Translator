@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.ProvenancePanel">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Name="RootStack" Spacing="8" Margin="8">
+
+            <!-- Header -->
+            <TextBlock Text="Provenance" FontWeight="Bold" FontSize="14"/>
+
+            <!-- Edition kind badge -->
+            <Border Name="BadgeEditionKind"
+                    CornerRadius="8" Padding="8,3"
+                    IsVisible="False"
+                    HorizontalAlignment="Left">
+                <TextBlock Name="TxtEditionKind" FontSize="11" FontWeight="SemiBold"/>
+            </Border>
+
+            <!-- Title + author -->
+            <StackPanel Spacing="2">
+                <TextBlock Name="TxtWorkName" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap"/>
+                <TextBlock Name="TxtAuthor" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- License summary -->
+            <Border Background="{DynamicResource BarBg}" CornerRadius="6" Padding="8">
+                <StackPanel Spacing="3">
+                    <TextBlock Name="TxtLicenseSpdx" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Name="TxtLicenseFlags" FontSize="11" Opacity="0.8" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- CBETA-independence badge -->
+            <Border Name="BadgeNoCbeta"
+                    Background="{DynamicResource SuccessBg}"
+                    CornerRadius="8" Padding="8,3"
+                    IsVisible="False"
+                    HorizontalAlignment="Left">
+                <TextBlock Name="TxtNoCbeta"
+                           Foreground="{DynamicResource SuccessFg}"
+                           FontSize="10" FontWeight="SemiBold"/>
+            </Border>
+
+            <!-- Witnesses section -->
+            <StackPanel Name="WitnessesSection" Spacing="6" IsVisible="False">
+                <TextBlock Text="Witnesses consulted" FontWeight="Bold" FontSize="12" Margin="0,4,0,0"/>
+                <StackPanel Name="WitnessHost" Spacing="6"/>
+            </StackPanel>
+
+            <!-- Production method -->
+            <StackPanel Name="ProductionSection" Spacing="2" IsVisible="False">
+                <TextBlock Text="Production method" FontWeight="Bold" FontSize="12" Margin="0,4,0,0"/>
+                <TextBlock Name="TxtProductionMethod" FontSize="11" TextWrapping="Wrap" Opacity="0.85"/>
+            </StackPanel>
+
+            <!-- Curator + capture date -->
+            <StackPanel Name="CuratorSection" Spacing="2" IsVisible="False">
+                <TextBlock Name="TxtCurator" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+                <TextBlock Name="TxtCapturedUtc" FontSize="11" Opacity="0.7"/>
+            </StackPanel>
+
+            <!-- Copy citation button -->
+            <Button Name="BtnCopyCitation" Content="Copy citation" FontSize="11"
+                    HorizontalAlignment="Left" Margin="0,4,0,0"/>
+
+            <!-- CBETA fallback card (when no manifest exists and corpus is CBETA) -->
+            <Border Name="CbetaFallbackCard"
+                    Background="{DynamicResource WarningBg}"
+                    CornerRadius="6" Padding="10"
+                    IsVisible="False">
+                <StackPanel Spacing="3">
+                    <TextBlock Text="Source: CBETA"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Non-commercial use only. See CBETA license terms."
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"/>
+                </StackPanel>
+            </Border>
+
+            <!-- No-manifest fallback for non-CBETA -->
+            <Border Name="NoManifestCard"
+                    Background="{DynamicResource BarBg}"
+                    CornerRadius="6" Padding="10"
+                    IsVisible="False">
+                <TextBlock Text="No provenance manifest available for this text."
+                           FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

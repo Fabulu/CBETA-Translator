@@ -40,6 +40,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IIndexCacheService _indexCacheService;
     private readonly IRenderedDocumentCacheService _renderCache;
     private readonly ILicenseMetadataService _licenseMetadata;
+    private readonly IManifestService _manifestService;
     private readonly IZenTextsService _zenTexts;
     private readonly IIndexedTranslationService _indexedTranslation;
     private readonly ITranslationAssistantService _translationAssistant;
@@ -213,6 +214,15 @@ public partial class MainWindowViewModel : ViewModelBase
         return _licenseMetadata.TryGet(abs, out var info) ? info : null;
     }
 
+    /// <summary>Loads manifest.json from the current file's directory (null for CBETA files).</summary>
+    public ManifestInfo? GetManifestForCurrentFile()
+    {
+        if (_originalDir == null || string.IsNullOrWhiteSpace(_currentRelPath))
+            return null;
+        var abs = System.IO.Path.Combine(_originalDir, _currentRelPath);
+        return _manifestService.TryLoad(abs);
+    }
+
     /// <summary>
     /// Switch the active corpus to the requested kind. Only succeeds if the
     /// requested corpus was discovered under the current root by
@@ -297,6 +307,10 @@ public partial class MainWindowViewModel : ViewModelBase
     // inside BuildIndex, so the first emission can arrive before metadata
     // exists).
     public Action<TextLicenseInfo?>? SetCurrentFileLicense { get; set; }
+
+    // Provenance panel bridge
+    public Action<ManifestInfo?, TextLicenseInfo?, CorpusKind>? SetCurrentFileProvenance { get; set; }
+    public Action<bool>? SetReadableProvenancePanelVisible { get; set; }
 
     // ReadableTabView coding mode bridges
     public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
@@ -393,7 +407,8 @@ public partial class MainWindowViewModel : ViewModelBase
         ISearchIndexService searchIndex,
         IDocumentTagService documentTagService,
         IGitRepoService gitService,
-        ILicenseMetadataService licenseMetadata)
+        ILicenseMetadataService licenseMetadata,
+        IManifestService manifestService)
     {
         _fileService = fileService;
         _configService = configService;
@@ -408,6 +423,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _documentTagService = documentTagService;
         _gitService = gitService;
         _licenseMetadata = licenseMetadata;
+        _manifestService = manifestService;
     }
 
     // ===========================================================
@@ -904,6 +920,7 @@ public partial class MainWindowViewModel : ViewModelBase
         try { SetTranslationHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableStudyPanelVisible?.Invoke(_config.EnableStudyPanel); } catch { }
+        try { SetReadableProvenancePanelVisible?.Invoke(_config.EnableProvenancePanel); } catch { }
         try { SetReadableDefaultResp?.Invoke(_config.Username ?? ""); } catch { }
         try { SetReadableTagCompareIdentity?.Invoke(_config.GitHubUsername ?? GetCurrentTagUsername() ?? ""); } catch { }
         try { SetReadableTagUsername?.Invoke(GetCurrentTagUsername()); } catch { }
@@ -1513,6 +1530,9 @@ public partial class MainWindowViewModel : ViewModelBase
             // now that the extractor has written the entry.
             try { SetCurrentFileLicense?.Invoke(GetLicenseForCurrentFile()); }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] License chip refresh failed: {ex.Message}"); }
+
+            try { SetCurrentFileProvenance?.Invoke(GetManifestForCurrentFile(), GetLicenseForCurrentFile(), _activeCorpus); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Provenance refresh failed: {ex.Message}"); }
 
             var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
             SetTranslationProjection(_translationMode, projection);

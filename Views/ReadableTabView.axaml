@@ -68,6 +68,14 @@
 					  Margin="8,0,0,0"
 					  ToolTip.Tip="Select whose translation to view"/>
 
+			<CheckBox Name="ChkProvenance"
+					  DockPanel.Dock="Right"
+					  Content="Provenance"
+					  VerticalAlignment="Center"
+					  Focusable="False"
+					  Margin="8,0,0,0"
+					  ToolTip.Tip="Show or hide the provenance panel with source documentation and witness details"/>
+
 			<CheckBox Name="ChkStudyPanel"
 					  DockPanel.Dock="Right"
 					  Content="Study"
@@ -170,63 +178,76 @@
 							  ResizeBehavior="PreviousAndNext"
 							  Background="Transparent"/>
 
-				<!-- Column 2: study panel -->
-				<Border Name="StudyPanel"
-						Grid.Column="2"
-						IsVisible="False"
-						Padding="8"
-						Background="{DynamicResource ControlBg}"
-						BorderBrush="{DynamicResource XmlViewerBorder}"
-						BorderThickness="1,0,0,0">
-					<ScrollViewer HorizontalScrollBarVisibility="Disabled"
-								  VerticalScrollBarVisibility="Auto">
-						<StackPanel Spacing="10">
-							<TextBlock Text="Study Panel" FontWeight="Bold"/>
+				<!-- Column 2: right side panels (study + provenance) -->
+				<Grid Name="RightPanelHost" Grid.Column="2" RowDefinitions="*,Auto">
+					<!-- Row 0: study panel -->
+					<Border Name="StudyPanel"
+							Grid.Row="0"
+							IsVisible="False"
+							Padding="8"
+							Background="{DynamicResource ControlBg}"
+							BorderBrush="{DynamicResource XmlViewerBorder}"
+							BorderThickness="1,0,0,0">
+						<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+									  VerticalScrollBarVisibility="Auto">
+							<StackPanel Spacing="10">
+								<TextBlock Text="Study Panel" FontWeight="Bold"/>
 
-							<Border Padding="8" CornerRadius="6"
-									BorderThickness="1"
-									BorderBrush="{DynamicResource BorderBrush}">
-								<StackPanel Spacing="4">
-									<TextBlock Text="Dictionary" FontWeight="Bold"/>
-									<TextBlock Name="TxtStudyDictHeadword" FontSize="18" FontWeight="SemiBold"/>
-									<TextBlock Name="TxtStudyDictPinyin" FontSize="12" Opacity="0.8"/>
-									<StackPanel Name="StudyDictSenses" Spacing="2"/>
-								</StackPanel>
-							</Border>
+								<Border Padding="8" CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="4">
+										<TextBlock Text="Dictionary" FontWeight="Bold"/>
+										<TextBlock Name="TxtStudyDictHeadword" FontSize="18" FontWeight="SemiBold"/>
+										<TextBlock Name="TxtStudyDictPinyin" FontSize="12" Opacity="0.8"/>
+										<StackPanel Name="StudyDictSenses" Spacing="2"/>
+									</StackPanel>
+								</Border>
 
-							<Border Padding="8" CornerRadius="6"
-									BorderThickness="1"
-									BorderBrush="{DynamicResource BorderBrush}">
-								<StackPanel Spacing="6">
-									<TextBlock Text="Segment" FontWeight="Bold"/>
-									<TextBlock Name="TxtStudySegmentZh"
-											   TextWrapping="Wrap" FontSize="13"/>
-									<TextBlock Name="TxtStudySegmentEn"
-											   TextWrapping="Wrap" FontSize="12"
-											   Opacity="0.8"/>
-								</StackPanel>
-							</Border>
+								<Border Padding="8" CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Segment" FontWeight="Bold"/>
+										<TextBlock Name="TxtStudySegmentZh"
+												   TextWrapping="Wrap" FontSize="13"/>
+										<TextBlock Name="TxtStudySegmentEn"
+												   TextWrapping="Wrap" FontSize="12"
+												   Opacity="0.8"/>
+									</StackPanel>
+								</Border>
 
-							<Border Padding="8" CornerRadius="6"
-									BorderThickness="1"
-									BorderBrush="{DynamicResource BorderBrush}">
-								<StackPanel Spacing="6">
-									<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
-									<StackPanel Name="StudyTermHost" Spacing="10"/>
-								</StackPanel>
-							</Border>
+								<Border Padding="8" CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+										<StackPanel Name="StudyTermHost" Spacing="10"/>
+									</StackPanel>
+								</Border>
 
-							<Border Padding="8" CornerRadius="6"
-									BorderThickness="1"
-									BorderBrush="{DynamicResource BorderBrush}">
-								<StackPanel Spacing="6">
-									<TextBlock Text="Translation Memory" FontWeight="Bold"/>
-									<StackPanel Name="StudyTmHost" Spacing="10"/>
-								</StackPanel>
-							</Border>
-						</StackPanel>
-					</ScrollViewer>
-				</Border>
+								<Border Padding="8" CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}">
+									<StackPanel Spacing="6">
+										<TextBlock Text="Translation Memory" FontWeight="Bold"/>
+										<StackPanel Name="StudyTmHost" Spacing="10"/>
+									</StackPanel>
+								</Border>
+							</StackPanel>
+						</ScrollViewer>
+					</Border>
+
+					<!-- Row 1: provenance panel -->
+					<Border Name="ProvenancePanelBorder"
+							Grid.Row="1"
+							IsVisible="False"
+							Background="{DynamicResource ControlBg}"
+							BorderBrush="{DynamicResource XmlViewerBorder}"
+							BorderThickness="1,1,0,0">
+						<local:ProvenancePanel Name="ProvenancePanelView"/>
+					</Border>
+				</Grid>
 			</Grid>
 		</Grid>
 
