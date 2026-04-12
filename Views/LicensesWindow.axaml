@@ -18,6 +18,18 @@
 			<TextBlock Text="Shows app license, third-party notices, CC-CEDICT attribution, and bundled Git for Windows notices (when present)."
 					   Classes="muted"
 					   TextWrapping="Wrap"/>
+			<StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+				<TextBlock Text="&#x2665;" FontSize="12"
+						   Foreground="{DynamicResource AccentLinkFg}"
+						   VerticalAlignment="Center"/>
+				<TextBlock Name="BtnSupportLicenses"
+						   Text="ReadZen is free and open-source. Support this project on Ko-fi"
+						   FontSize="12"
+						   Foreground="{DynamicResource AccentLinkFg}"
+						   Cursor="Hand"
+						   TextDecorations="Underline"
+						   VerticalAlignment="Center"/>
+			</StackPanel>
 		</StackPanel>
 
 		<Border Grid.Row="1"

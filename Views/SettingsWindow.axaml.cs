@@ -16,5 +16,15 @@ public partial class SettingsWindow : Window
         var vm = new SettingsWindowViewModel(config);
         vm.CloseRequested = result => Close(result);
         DataContext = vm;
+
+        var supportLink = this.FindControl<TextBlock>("BtnSupportSettings");
+        if (supportLink != null)
+        {
+            supportLink.PointerPressed += (_, _) =>
+            {
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://ko-fi.com/readzen") { UseShellExecute = true }); }
+                catch { }
+            };
+        }
     }
 }

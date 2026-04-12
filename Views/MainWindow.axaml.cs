@@ -395,6 +395,15 @@ private async Task LoadConfigAndAutoloadAsync()
 
         _txtCurrentFile = Find<TextBlock>("TxtCurrentFile");
         _txtStatus = Find<TextBlock>("TxtStatus");
+        var supportLink = Find<TextBlock>("BtnSupportStatusBar");
+        if (supportLink != null)
+        {
+            supportLink.PointerPressed += (_, _) =>
+            {
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://ko-fi.com/readzen") { UseShellExecute = true }); }
+                catch { }
+            };
+        }
         _btnCorpusBadge = Find<Button>("BtnCorpusBadge");
         _corpusBadge = Find<Border>("CorpusBadge");
         _txtCorpusBadge = Find<TextBlock>("TxtCorpusBadge");

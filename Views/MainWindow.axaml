@@ -277,7 +277,22 @@
         <Border Grid.Row="2"
                 Background="{DynamicResource BarBg}"
                 Padding="8">
-            <TextBlock Name="TxtStatus" Classes="muted"/>
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="4"
+                            VerticalAlignment="Center" Margin="12,0,0,0">
+                    <TextBlock Text="&#x2665;" FontSize="10"
+                               Foreground="{DynamicResource AccentLinkFg}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Name="BtnSupportStatusBar"
+                               Text="Support" FontSize="10"
+                               Foreground="{DynamicResource AccentLinkFg}"
+                               VerticalAlignment="Center"
+                               Cursor="Hand"
+                               TextDecorations="Underline"
+                               ToolTip.Tip="Support ReadZen + OpenZenTexts on Ko-fi"/>
+                </StackPanel>
+                <TextBlock Name="TxtStatus" Classes="muted"/>
+            </DockPanel>
         </Border>
     </Grid>
 </Window>
