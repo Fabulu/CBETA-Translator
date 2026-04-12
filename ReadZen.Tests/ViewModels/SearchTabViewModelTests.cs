@@ -13,6 +13,11 @@ namespace ReadZen.Tests.ViewModels;
 
 public class SearchTabViewModelTests
 {
+    static SearchTabViewModelTests()
+    {
+        AvaloniaTestInfrastructure.EnsureInitialized();
+    }
+
     private static SearchTabViewModel MakeVm()
     {
         return new SearchTabViewModel(new StubSearchIndexService());
@@ -68,10 +73,8 @@ public class SearchTabViewModelTests
         {
             if (DateTime.UtcNow >= deadline)
                 throw new TimeoutException("Condition was not reached in time.");
-            // Use Task.Delay instead of Dispatcher.UIThread.InvokeAsync —
-            // the latter deadlocks in headless test hosts where no Avalonia
-            // dispatcher is pumping (same class of bug as the
-            // RefreshAllCachedStatusesAsync deadlock fixed earlier today).
+            // Yield to the dispatcher so queued Post / InvokeAsync callbacks
+            // from background threads get a chance to execute.
             await Task.Delay(10);
             await Task.Delay(20);
         }
@@ -79,7 +82,7 @@ public class SearchTabViewModelTests
 
     // ---- Initial state ----
 
-    [Avalonia.Headless.XUnit.AvaloniaFact(Timeout = 10000)]
+    [Fact]
     public async Task SearchAsync_ShowsLoadingPlaceholderBeforeFirstResultArrives()
     {
         var svc = new ControlledSearchIndexService();
@@ -100,7 +103,7 @@ public class SearchTabViewModelTests
         await searchTask;
     }
 
-    [Avalonia.Headless.XUnit.AvaloniaFact(Timeout = 10000)]
+    [Fact]
     public async Task SearchAsync_ShowsFirstBatchBeforeSearchCompletes()
     {
         var svc = new ControlledSearchIndexService();
