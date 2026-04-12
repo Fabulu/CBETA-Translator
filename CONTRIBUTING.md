@@ -68,10 +68,10 @@ dotnet publish -c Release -r win-x64 --self-contained true  # release build
 
 This project moves fast. Major rewrites happen regularly — entire subsystems get redesigned between releases. If you start working on a contribution without coordinating first, there's a real chance the code you're touching will have changed significantly by the time you submit a PR.
 
-GitHub pull requests can sit unnoticed. The best way to reach me:
+I don't check GitHub notifications reliably — both PRs and issues can sit unnoticed. The best way to reach me:
 
-- **Reddit:** post in [r/zen](https://www.reddit.com/r/zen/) or send a PM to [u/dota2nub](https://www.reddit.com/user/dota2nub/)
-- **GitHub Issues:** open an issue describing what you want to work on — I'll respond faster to issues than to surprise PRs
+- **Reddit:** post in [r/zen](https://www.reddit.com/r/zen/) or send a PM to [u/dota2nub](https://www.reddit.com/user/dota2nub/) — this is where I'll see it fastest
+- **GitHub Issues:** open an issue describing what you want to work on — I prefer issues over surprise PRs, but ping me on Reddit too so I actually see it
 
 Tell me what you're thinking of doing, and I'll tell you whether it fits the current direction or whether that area is about to be rewritten. This saves everyone time.
 
