@@ -189,7 +189,7 @@ public class OnboardingTourServiceTests
     [Fact]
     public void Steps_Count_Is43()
     {
-        Assert.Equal(43, _svc.Steps.Count);
+        Assert.Equal(49, _svc.Steps.Count);
     }
 
     [Fact]
@@ -280,6 +280,60 @@ public class OnboardingTourServiceTests
         var step = Assert.Single(_svc.Steps, s => s.Id == "zen-master-manager");
         Assert.Contains("Zen Master Manager", step.Title);
         Assert.Contains("links shared by other users", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ProvenancePanelStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "provenance-panel");
+        Assert.Equal("ChkProvenance", step.TargetControlName);
+        Assert.Contains("Provenance", step.Body);
+        Assert.Contains("SHA-256", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_AutoFillTmStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "auto-fill-tm");
+        Assert.Equal("AssistantPane", step.TargetControlName);
+        Assert.Contains("Translation Memory", step.Title);
+        Assert.Contains("100%", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_FreshStartStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "fresh-start");
+        Assert.Equal("BtnFreshStart", step.TargetControlName);
+        Assert.Contains("reset", step.Body);
+        Assert.Contains("untranslated", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_SearchExportStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "search-export");
+        Assert.Equal("BtnExport", step.TargetControlName);
+        Assert.Contains("CSV", step.Body);
+        Assert.Contains("BibTeX", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_MultiCorpusSyncStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "multi-corpus-sync");
+        Assert.Equal("BtnGitSync", step.TargetControlName);
+        Assert.Contains("CBETA", step.Body);
+        Assert.Contains("OpenZenTexts", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_TranslationPrStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "translation-pr");
+        Assert.Equal(TourPlacement.Center, step.Placement);
+        Assert.Contains("pull request", step.Body);
+        Assert.Contains("GitHub", step.Body);
     }
 
     [Fact]
