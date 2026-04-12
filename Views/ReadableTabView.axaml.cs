@@ -145,6 +145,7 @@ public partial class ReadableTabView : UserControl
     private CheckBox? _chkStudyPanel;
     private CheckBox? _chkProvenance;
     private Border? _provenancePanelBorder;
+    private Grid? _rightPanelHost;
     private ProvenancePanel? _provenancePanelView;
     private StackPanel? _studyTermHost;
     private StackPanel? _studyTmHost;
@@ -359,6 +360,7 @@ public partial class ReadableTabView : UserControl
         _chkStudyPanel = this.FindControl<CheckBox>("ChkStudyPanel");
         _chkProvenance = this.FindControl<CheckBox>("ChkProvenance");
         _provenancePanelBorder = this.FindControl<Border>("ProvenancePanelBorder");
+        _rightPanelHost = this.FindControl<Grid>("RightPanelHost");
         _provenancePanelView = this.FindControl<ProvenancePanel>("ProvenancePanelView");
         _studyTermHost = this.FindControl<StackPanel>("StudyTermHost");
         _studyTmHost = this.FindControl<StackPanel>("StudyTmHost");
@@ -4584,7 +4586,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// </summary>
     private void UpdateRightColumnVisibility()
     {
-        bool anyVisible = _chkStudyPanel?.IsChecked == true || _chkProvenance?.IsChecked == true;
+        bool studyVisible = _chkStudyPanel?.IsChecked == true;
+        bool provenanceVisible = _chkProvenance?.IsChecked == true;
+        bool anyVisible = studyVisible || provenanceVisible;
 
         if (_studyPanelSplitter != null)
             _studyPanelSplitter.IsVisible = anyVisible;
@@ -4593,6 +4597,20 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         {
             _readerOuterGrid.ColumnDefinitions[1].Width = anyVisible ? new GridLength(8) : new GridLength(0);
             _readerOuterGrid.ColumnDefinitions[2].Width = anyVisible ? new GridLength(320) : new GridLength(0);
+        }
+
+        // Dynamically size the two rows inside RightPanelHost so the visible
+        // panel(s) get the full column height instead of splitting 50/50.
+        // When only one is visible, give it all the space (*, 0 or 0, *).
+        // When both are visible, split evenly (*, *).
+        if (_rightPanelHost != null && _rightPanelHost.RowDefinitions.Count >= 2)
+        {
+            _rightPanelHost.RowDefinitions[0].Height = studyVisible
+                ? new GridLength(1, GridUnitType.Star)
+                : new GridLength(0);
+            _rightPanelHost.RowDefinitions[1].Height = provenanceVisible
+                ? new GridLength(1, GridUnitType.Star)
+                : new GridLength(0);
         }
     }
 
