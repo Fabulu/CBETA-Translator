@@ -125,6 +125,29 @@
 					<CheckBox Content="Restart onboarding tour on next launch"
 					          IsChecked="{Binding RestartTourRequested}"/>
 				</StackPanel>
+
+				<Border Height="1" Background="{DynamicResource BorderBrush}" Opacity="0.5"/>
+
+				<StackPanel Spacing="6">
+					<TextBlock Text="About &amp; Support"
+					           FontSize="14"
+					           FontWeight="SemiBold"
+					           Foreground="{DynamicResource TextFg}"/>
+					<TextBlock Text="ReadZen is free and open-source, built by an independent scholar."
+					           Classes="muted" FontSize="12" TextWrapping="Wrap"/>
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Text="&#x2665;" FontSize="12"
+						           Foreground="{DynamicResource AccentLinkFg}"
+						           VerticalAlignment="Center"/>
+						<TextBlock Name="BtnSupportSettings"
+						           Text="Support ReadZen + OpenZenTexts on Ko-fi"
+						           FontSize="12"
+						           Foreground="{DynamicResource AccentLinkFg}"
+						           Cursor="Hand"
+						           TextDecorations="Underline"
+						           VerticalAlignment="Center"/>
+					</StackPanel>
+				</StackPanel>
 			</StackPanel>
 		</Border>
 
