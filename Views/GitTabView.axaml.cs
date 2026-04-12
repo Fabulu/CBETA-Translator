@@ -78,6 +78,7 @@ public partial class GitTabView : UserControl
     public void SetCurrentRepoRoot(string? rootPath) => _vm.SetCurrentRepoRoot(rootPath);
     public void SetSelectedRelPath(string? relPath) => _vm.SetSelectedRelPath(relPath);
     public void SetUsername(string? username) => _vm.SetUsername(username);
+    public void SetActiveCorpus(ReadZen.App.Models.CorpusKind corpus) => _vm.SetActiveCorpus(corpus);
     public void LoadPersistedAuth(string? token, string? login) => _vm.LoadPersistedAuth(token, login);
     public event EventHandler<(string Token, string Login)>? GitHubAuthCompleted
     {
