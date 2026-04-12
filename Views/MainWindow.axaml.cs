@@ -469,6 +469,15 @@ private async Task LoadConfigAndAutoloadAsync()
             _readableView?.Clear();
             UpdateLicenseChip(null);
         };
+        // Late-arriving license push from the VM (after the indexTask builds
+        // the license metadata cache). Needed because SetReadableRendered can
+        // fire before BuildIndex completes on cold load, at which point
+        // GetLicenseForCurrentFile() still returns null.
+        _vm.SetCurrentFileLicense = license =>
+        {
+            _readableView?.SetFileLicense(license);
+            UpdateLicenseChip(license);
+        };
         _vm.SetReadableHoverDict = enabled =>
         {
             try
