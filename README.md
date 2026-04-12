@@ -25,6 +25,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has fiv
 - `Search`: corpus search with KWIC, bilingual pairing, deep links, analytics, and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
+- `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZenTexts
 
 There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
 
@@ -69,6 +70,14 @@ ReadZen/                              your chosen folder
       pd/                             Public-domain scan-derived texts
       ce/                             Critical editions
       mit/                            MIT-licensed contributions
+    provenance/
+      {slug}/                         captured source witnesses + SHA-256 audit
+    docs/curation/                    curation workflow documentation
+      exemplars/{slug}/               worked examples of the transcription process
+      PROCESS_LOG_TEMPLATE.md         journal template for future transcriptions
+    tools/
+      wikitext-to-tei/                converter for Wikisource witnesses
+      woodblock-to-tei/               converter for woodblock-derived editions
   OpenZenTranslations/               OpenZen translations repo
     xml-open-t/                       shared/canonical translated XML
     community/                        same community structure as CBETA
@@ -98,6 +107,15 @@ The Reader has a built-in **Study Assistant** panel that shows:
 - recognized termbase entries highlighted in the text
 - translation memory matches from approved and reference TM
 - context from the active translation source
+
+The Reader has a **Provenance Panel** (toggle via "Provenance" checkbox in the toolbar) that shows:
+- source witnesses with SHA-256 hashes, capture dates, and vetting confidence
+- edition kind and production method
+- CBETA-independence verification
+- expandable markdown documents from the provenance chain (witness verification, case audits, editorial notes)
+- copy-citation button for quick attribution
+
+A **license chip** in the top bar shows the current file's SPDX license at a glance (green = CC0/permissive, amber = CC BY-SA, orange = non-commercial). Click for full citation details.
 
 Reader also contains the coding/tagging workflow:
 - `F2` enters Coding Mode
@@ -220,6 +238,8 @@ Supported link kinds:
 
 These links are produced throughout the app — Reader, Translate, Search, Scholar, and the dictionary/master tooling — usually via right-click menus. They embed the same routing the app uses internally, so every link round-trips: open it on the web, click "open in Read Zen", and you land in the same place.
 
+OpenZenTexts files use synthetic line identifiers (e.g. `wm32.case01.l01`) that never collide with CBETA notation. Both formats work in deep links and the web preview.
+
 ### Web preview (readzen.pages.dev)
 
 The preview page is a zero-install fallback that fetches data directly from the public CBETA and OpenZenTexts repos. It recognizes both file-ID formats and dispatches to the correct repo automatically:
@@ -240,13 +260,13 @@ When the desktop app is installed, the preview page silently hands the link off 
 
 ## Onboarding Tutorial
 
-The app includes an in-app tutorial covering the current workflow.
-It now walks through:
+The app includes an in-app tutorial with **43 guided steps** covering:
 - initial text download / setup
 - Reader basics
 - hover dictionary and the full dictionary window
 - Study panel
 - tagging/coding mode
+- corpus switching and provenance
 - Translate workflow
 - Search workflow
 - Scholar collections/workspace/shared model
@@ -271,6 +291,17 @@ If something is slow, especially repeated work on the same corpus, that should g
 Built with:
 - `.NET 8`
 - `Avalonia 11`
+
+## Repositories
+
+| Repository | Purpose |
+|---|---|
+| [Fabulu/ReadZen](https://github.com/Fabulu/ReadZen) | Desktop app source code |
+| [Fabulu/CbetaZenTexts](https://github.com/Fabulu/CbetaZenTexts) | CBETA original Chinese texts (~5000 files) |
+| [Fabulu/CbetaZenTranslations](https://github.com/Fabulu/CbetaZenTranslations) | CBETA translations + community data |
+| [Fabulu/OpenZenTexts](https://github.com/Fabulu/OpenZenTexts) | OpenZenTexts originals + provenance + curation docs |
+| [Fabulu/OpenZenTranslations](https://github.com/Fabulu/OpenZenTranslations) | OpenZenTexts translations + community data |
+| [Fabulu/readzen-page](https://github.com/Fabulu/readzen-page) | Web preview SPA (readzen.pages.dev) |
 
 ## Building
 
@@ -299,6 +330,12 @@ Make sure this file exists in the publish output:
 Assets/Dict/cedict_ts.u8
 ```
 
+### Testing
+```bash
+dotnet test
+```
+882 automated tests covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, and view model logic.
+
 ## Git / GitHub Requirements
 
 For text download and sync, you need Git available.
@@ -320,6 +357,14 @@ Please avoid:
 
 If a change affects translation structure, sync, or search semantics, add tests.
 
+## Support
+
+ReadZen and OpenZenTexts are free and open-source. If this work is useful to your practice, teaching, or research:
+
+[![Support on Ko-fi](https://img.shields.io/badge/Support_on-Ko--fi-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/readzen)
+
+Your support funds new woodblock transcriptions, translation tools, and a growing freely-licensed corpus.
+
 ## Legal
 
 Read Zen: MIT License
@@ -333,13 +378,13 @@ See `THIRD_PARTY_NOTICES.txt` for details.
 
 ## Short Version
 
-Read Zen is now a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZenTexts collection (commercial-OK, freely-licensed witnesses):
-- read side by side
+Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZenTexts collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
+- read side by side with provenance and license visibility
 - translate with structure-aware tools
 - search with context and exports
 - build Scholar collections
 - manage terms, masters, notes, reviews, and tags
 - sync personal and shared work without living in Git
-- share deep links that work in both the desktop app and on the web
+- share deep links that work in both the desktop app and on the web at [readzen.pages.dev](https://readzen.pages.dev)
 
 Built for actual use, not demos.

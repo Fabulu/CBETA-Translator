@@ -155,6 +155,16 @@ public sealed class OnboardingTourService
             TargetControlName = "BtnLicenseChipTopBar"
         });
 
+        Steps.Add(new TourStep
+        {
+            Id = "provenance-panel",
+            Title = "Source Documentation",
+            Body = "Check the \u2018Provenance\u2019 checkbox to see where each text comes from: source witnesses, SHA-256 verification hashes, editorial notes, and the full documentation chain.\n\nFor OpenZenTexts files like the 1632 Wumenguan, you can expand the witness verification ledger, case completeness audit, and reading edition notes right in the panel.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "ChkProvenance"
+        });
+
         // ===== Phase 2: Reading =====
 
         Steps.Add(new TourStep
@@ -337,6 +347,16 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "auto-fill-tm",
+            Title = "Auto-Fill from Translation Memory",
+            Body = "When an identical Chinese passage exists in an approved translation elsewhere in the corpus, the editor can fill it in automatically.\n\nLook for the blue TM-match highlighting in the assistant panel \u2014 a 100\u0025 match means the translation is ready to use with one click.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "AssistantPane"
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "review-system",
             Title = "Review and Approve",
             Body = "After translating, review each line using the toolbar: Approve to accept, Reject to flag for rework, and Next ? to jump to the next unreviewed line. This is how you polish AI drafts into a finished translation that others can use.",
@@ -366,6 +386,16 @@ public sealed class OnboardingTourService
             TargetControlName = "BtnSave"
         });
 
+        Steps.Add(new TourStep
+        {
+            Id = "fresh-start",
+            Title = "Start Over",
+            Body = "Need to reset a translation? Fresh Start clears your draft and returns the file to its untranslated state.\n\nThis only affects the current file and translation source. Your approved work in other files is safe.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnFreshStart"
+        });
+
         // ===== Phase 4: Research (steps 23-30) =====
 
         Steps.Add(new TourStep
@@ -387,6 +417,17 @@ public sealed class OnboardingTourService
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ResultsTree"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "search-export",
+            Title = "Export Search Results",
+            Body = "Search results can be exported for use outside Read Zen: HTML for sharing, CSV for spreadsheets, or BibTeX and CSL-JSON for academic citation managers.\n\nRight-click any result row for more options including Add to Scholar and passage deep links.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnExport",
+            SwitchToTabIndex = 2
         });
 
         Steps.Add(new TourStep
@@ -491,6 +532,17 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "multi-corpus-sync",
+            Title = "Syncing Both Corpora",
+            Body = "When you click Sync, Read Zen updates both CBETA and OpenZenTexts in one operation. Your personal translations, notes, tags, and terminology are preserved for both corpora.\n\nNew OpenZenTexts content (like new woodblock transcriptions) arrives automatically on sync.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnGitSync",
+            SwitchToTabIndex = 3
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "git-tab",
             Title = "Community Sync",
             Body = "Switching to the Community tab.\n\nUse Sync to share your work and get updates from other translators. Translations and community materials (dictionary, notes) are shared separately. Sharing requires a free GitHub account, but downloading texts does not.",
@@ -508,6 +560,15 @@ public sealed class OnboardingTourService
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "translation-pr",
+            Title = "Share Your Translation",
+            Body = "When you\u2019re ready to share a translation with the community, Sync creates a pull request on GitHub automatically. The community can review it, and once approved, it becomes the shared translation that everyone sees.\n\nYou don\u2019t need to know Git \u2014 the app handles branches, commits, and PRs for you.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
         });
 
         Steps.Add(new TourStep
