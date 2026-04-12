@@ -432,7 +432,8 @@ private async Task LoadConfigAndAutoloadAsync()
             sp.GetRequiredService<ISearchIndexService>(),
             sp.GetRequiredService<IDocumentTagService>(),
             sp.GetRequiredService<IGitRepoService>(),
-            sp.GetRequiredService<ILicenseMetadataService>());
+            sp.GetRequiredService<ILicenseMetadataService>(),
+            sp.GetRequiredService<IManifestService>());
 
         DataContext = _vm;
 
@@ -478,6 +479,10 @@ private async Task LoadConfigAndAutoloadAsync()
             _readableView?.SetFileLicense(license);
             UpdateLicenseChip(license);
         };
+        _vm.SetCurrentFileProvenance = (manifest, license, corpus) =>
+            _readableView?.SetProvenance(manifest, license, corpus);
+        _vm.SetReadableProvenancePanelVisible = visible =>
+            _readableView?.SetProvenancePanelVisible(visible);
         _vm.SetReadableHoverDict = enabled =>
         {
             try
@@ -994,6 +999,12 @@ private async Task LoadConfigAndAutoloadAsync()
                     _navPanel.IsVisible = true;
                     _navAutoHiddenByStudyPanel = false;
                 }
+            };
+
+            _readableView.ProvenancePanelVisibilityChanged += (_, visible) =>
+            {
+                _vm.Config.EnableProvenancePanel = visible;
+                _ = _vm.SafeSaveConfigAsync();
             };
         }
 

@@ -21,6 +21,8 @@ namespace ReadZen.App.Models
 
         public bool EnableStudyPanel { get; set; }
 
+        public bool EnableProvenancePanel { get; set; }
+
         /// <summary>Which corpus the last-loaded root belongs to. Defaults to CBETA.</summary>
         public CorpusKind ActiveCorpus { get; set; } = CorpusKind.Cbeta;
 

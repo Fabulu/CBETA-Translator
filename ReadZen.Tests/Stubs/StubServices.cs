@@ -227,6 +227,13 @@ public class StubLicenseMetadataService : ILicenseMetadataService
     public void Clear() { }
 }
 
+// ---- IManifestService ----
+
+public class StubManifestService : IManifestService
+{
+    public ManifestInfo? TryLoad(string xmlAbsPath) => null;
+}
+
 // ---- ITranslationAssistantService ----
 
 public class StubTranslationAssistantService : ITranslationAssistantService
