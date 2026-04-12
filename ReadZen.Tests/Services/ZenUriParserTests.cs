@@ -535,6 +535,74 @@ public class ZenUriParserTests
         Assert.DoesNotContain("?side=", url);
     }
 
+    // ==== BuildShareableUrl — OpenZen corpus ====
+    //
+    // Regression: BuildShareableUrl used Path.GetFileNameWithoutExtension which
+    // produced just the bare slug for OpenZen paths (e.g. "wumenguan-1632"
+    // instead of "pd.wumenguan-1632"). The resulting URL was rejected by both
+    // the SPA router and the desktop deep-link parser. Fixed by routing
+    // through RelPathToFileId which handles both corpus shapes.
+
+    [Fact]
+    public void BuildShareableUrl_OpenZen_PreservesPublisherPrefix()
+    {
+        var url = ZenUriParser.BuildShareableUrl("pd/wumenguan-1632/wumenguan-1632.xml");
+        Assert.Equal("https://readzen.pages.dev/pd.wumenguan-1632", url);
+    }
+
+    [Fact]
+    public void BuildShareableUrl_OpenZen_AllPublisherPrefixes()
+    {
+        Assert.Equal(
+            "https://readzen.pages.dev/ws.gateless-barrier",
+            ZenUriParser.BuildShareableUrl("ws/gateless-barrier/gateless-barrier.xml"));
+        Assert.Equal(
+            "https://readzen.pages.dev/pd.wumenguan-1632",
+            ZenUriParser.BuildShareableUrl("pd/wumenguan-1632/wumenguan-1632.xml"));
+        Assert.Equal(
+            "https://readzen.pages.dev/ce.blue-cliff-record",
+            ZenUriParser.BuildShareableUrl("ce/blue-cliff-record/blue-cliff-record.xml"));
+        Assert.Equal(
+            "https://readzen.pages.dev/mit.platform-sutra",
+            ZenUriParser.BuildShareableUrl("mit/platform-sutra/platform-sutra.xml"));
+    }
+
+    [Fact]
+    public void BuildShareableUrl_OpenZen_WithLbRangeAndSideAndUser()
+    {
+        var url = ZenUriParser.BuildShareableUrl(
+            "pd/wumenguan-1632/wumenguan-1632.xml",
+            fromLb: "wm32.case01.l01",
+            toLb: "wm32.case01.l02",
+            side: SearchSide.Translated,
+            user: "Fabulu");
+        Assert.Equal(
+            "https://readzen.pages.dev/pd.wumenguan-1632/wm32.case01.l01-wm32.case01.l02/en/Fabulu",
+            url);
+    }
+
+    [Fact]
+    public void BuildShareableUrl_OpenZen_RoundTripsThroughTryParse()
+    {
+        var url = ZenUriParser.BuildShareableUrl(
+            "pd/wumenguan-1632/wumenguan-1632.xml",
+            fromLb: "wm32.case01.l01",
+            toLb: "wm32.case01.l02",
+            side: SearchSide.Translated,
+            user: "Fabulu");
+
+        // The URL the user just produced must round-trip through the parser
+        // back to a NavigationRequest with the right relPath. If this fails,
+        // shared OpenZen links are dead on arrival.
+        var deep = ZenUriParser.TryParseDeepLink(url);
+        Assert.NotNull(deep);
+        Assert.Equal(DeepLinkKind.Passage, deep!.Kind);
+        Assert.NotNull(deep.Passage);
+        Assert.Equal(
+            "pd/wumenguan-1632/wumenguan-1632.xml",
+            deep.Passage!.RelPath?.Replace('\\', '/'));
+    }
+
     // ==== TryParseDeepLink ====
 
     [Fact]
