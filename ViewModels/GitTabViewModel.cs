@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
 using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -69,6 +70,7 @@ public partial class GitTabViewModel : ViewModelBase
     private string? _lastContribBranch;
     private string? _lastCommunityBranch;
     private string? _username;
+    private CorpusKind _activeCorpus = CorpusKind.Cbeta;
     private CancellationTokenSource? _cts;
 
     // ----- Observable properties -----
@@ -174,6 +176,23 @@ public partial class GitTabViewModel : ViewModelBase
     public void SetUsername(string? username)
     {
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+    }
+
+    /// <summary>
+    /// Tells the Git tab which corpus is currently active in the rest of the
+    /// app. Drives <see cref="GetTranslationRepoDir"/> /
+    /// <see cref="GetOriginalsRepoDir"/> so the share + sync flows operate
+    /// on the right pair of repos in a multi-corpus install.
+    ///
+    /// Without this, the legacy <see cref="AppPaths.GetTranslationRepoRoot"/>
+    /// helper always returns the FIRST discovered translations repo (CBETA),
+    /// so an OpenZen translation share would silently run against the wrong
+    /// repo and report "no auto-mergeable changes" — exactly the
+    /// data-disappearing failure mode the user just hit.
+    /// </summary>
+    public void SetActiveCorpus(CorpusKind corpus)
+    {
+        _activeCorpus = corpus;
     }
 
     /// <summary>
@@ -2835,6 +2854,14 @@ public partial class GitTabViewModel : ViewModelBase
     private string GetOriginalsRepoDir()
     {
         var parent = GetTargetRepoDir();
+        // Multi-corpus dispatch: in OpenZen mode, use the OpenZen text repo
+        // explicitly. The legacy AppPaths.GetOriginalRepoRoot returns the
+        // first discovered originals repo (CBETA in a co-installed setup),
+        // which would point share/sync flows at the wrong repo. Same fix
+        // pattern as the data-loss bug closed earlier today in
+        // MainWindowViewModel.LoadRootAsync.
+        if (_activeCorpus == CorpusKind.Open)
+            return Path.Combine(parent, OpenZenOriginalsFolderName);
         var discovered = AppPaths.GetOriginalRepoRoot(parent);
         return discovered ?? Path.Combine(parent, AppPaths.DefaultOriginalRepoFolderName);
     }
@@ -2842,6 +2869,12 @@ public partial class GitTabViewModel : ViewModelBase
     private string GetTranslationRepoDir()
     {
         var parent = GetTargetRepoDir();
+        // Multi-corpus dispatch: see GetOriginalsRepoDir for the rationale.
+        // The whole share + sync + PR pipeline reads this; if it returns
+        // CBETA while the user is in OpenZen mode, OpenZen translations
+        // never get committed and the user's work appears to vanish.
+        if (_activeCorpus == CorpusKind.Open)
+            return Path.Combine(parent, OpenZenTranslationsFolderName);
         var discovered = AppPaths.GetTranslationRepoRoot(parent);
         return discovered ?? Path.Combine(parent, AppPaths.DefaultTranslationRepoFolderName);
     }

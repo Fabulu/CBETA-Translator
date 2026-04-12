@@ -549,6 +549,13 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetGitSelectedRelPath = rel => _gitView?.SetSelectedRelPath(rel);
         _vm.SetGitUsername = user => _gitView?.SetUsername(user);
         _vm.LoadGitPersistedAuth = (token, login) => _gitView?.LoadPersistedAuth(token, login);
+        // Seed the Git tab with the current corpus immediately so the very
+        // first sync after launch dispatches to the right repo. The
+        // PropertyChanged handler above keeps it in sync on later changes,
+        // but it only fires on a state TRANSITION — if the persisted
+        // ActiveCorpus equals the default, the handler never runs and the
+        // Git tab would be stuck on its own default. Belt-and-braces.
+        _gitView?.SetActiveCorpus(_vm.ActiveCorpus);
 
         // ScholarTabView bridges
         _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
@@ -664,6 +671,12 @@ private async Task LoadConfigAndAutoloadAsync()
               || e.PropertyName == nameof(MainWindowViewModel.AvailableCorpora))
         {
             UpdateCorpusBadge();
+            // Keep the Git tab in sync with the active corpus so its share /
+            // sync / PR pipeline operates against the matching translations
+            // repo. Without this, switching to OpenZen leaves the Git tab
+            // pointing at CBETA and personal translations silently fail to
+            // ship (the "no auto-mergeable changes" failure mode).
+            _gitView?.SetActiveCorpus(_vm.ActiveCorpus);
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
         {
