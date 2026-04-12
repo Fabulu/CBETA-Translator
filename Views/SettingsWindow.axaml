@@ -4,7 +4,7 @@
         xmlns:vm="using:ReadZen.App.ViewModels"
         x:Class="ReadZen.App.Views.SettingsWindow"
         x:DataType="vm:SettingsWindowViewModel"
-        Width="560" Height="400"
+        Width="560" Height="580" MinHeight="400"
         Background="{DynamicResource AppBg}"
         Title="Settings"
         WindowStartupLocation="CenterOwner">
@@ -59,6 +59,8 @@
 		        BorderThickness="1"
 		        CornerRadius="6"
 		        Padding="18">
+			<ScrollViewer VerticalScrollBarVisibility="Auto"
+			              HorizontalScrollBarVisibility="Disabled">
 			<StackPanel Spacing="16">
 
 				<!-- Theme -->
@@ -149,6 +151,7 @@
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
+			</ScrollViewer>
 		</Border>
 
 		<!-- Footer buttons -->
