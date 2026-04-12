@@ -309,7 +309,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<TextLicenseInfo?>? SetCurrentFileLicense { get; set; }
 
     // Provenance panel bridge
-    public Action<ManifestInfo?, TextLicenseInfo?, CorpusKind>? SetCurrentFileProvenance { get; set; }
+    public Action<ManifestInfo?, TextLicenseInfo?, CorpusKind, string?>? SetCurrentFileProvenance { get; set; }
     public Action<bool>? SetReadableProvenancePanelVisible { get; set; }
 
     // ReadableTabView coding mode bridges
@@ -1531,7 +1531,13 @@ public partial class MainWindowViewModel : ViewModelBase
             try { SetCurrentFileLicense?.Invoke(GetLicenseForCurrentFile()); }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] License chip refresh failed: {ex.Message}"); }
 
-            try { SetCurrentFileProvenance?.Invoke(GetManifestForCurrentFile(), GetLicenseForCurrentFile(), _activeCorpus); }
+            try
+            {
+                var absPath = _originalDir != null && _currentRelPath != null
+                    ? Path.Combine(_originalDir, _currentRelPath)
+                    : null;
+                SetCurrentFileProvenance?.Invoke(GetManifestForCurrentFile(), GetLicenseForCurrentFile(), _activeCorpus, absPath);
+            }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Provenance refresh failed: {ex.Message}"); }
 
             var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
