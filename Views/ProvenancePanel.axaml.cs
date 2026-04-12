@@ -293,20 +293,46 @@ public partial class ProvenancePanel : UserControl
     }
 
     /// <summary>
-    /// Minimal markdown-to-Avalonia renderer for provenance documents.
-    /// Handles: # headings, **bold**, - / * bullet lists, | tables |,
-    /// --- separators, and plain text with wrapping. No NuGet dependencies.
+    /// Markdown-to-Avalonia renderer for provenance documents.
+    /// Handles: # headings (3 levels), **bold**, `code`, [links](url),
+    /// fenced code blocks, blockquotes, nested bullets, numbered lists,
+    /// | tables |, --- separators, and plain text with wrapping.
     /// </summary>
     private static StackPanel RenderMarkdown(string markdown)
     {
-        var panel = new StackPanel { Spacing = 3 };
+        var panel = new StackPanel { Spacing = 2 };
         var lines = markdown.Split('\n');
         var tableRows = new List<string>();
         bool inTable = false;
+        bool inCodeBlock = false;
+        var codeBlockLines = new List<string>();
 
         for (int i = 0; i < lines.Length; i++)
         {
             var line = lines[i].TrimEnd('\r');
+
+            // Fenced code block toggle
+            if (line.TrimStart().StartsWith("```"))
+            {
+                if (inCodeBlock)
+                {
+                    // Close code block — render collected lines
+                    FlushCodeBlock(panel, codeBlockLines);
+                    codeBlockLines.Clear();
+                    inCodeBlock = false;
+                }
+                else
+                {
+                    inCodeBlock = true;
+                }
+                continue;
+            }
+
+            if (inCodeBlock)
+            {
+                codeBlockLines.Add(line);
+                continue;
+            }
 
             // Flush table if we're leaving one
             if (inTable && !line.TrimStart().StartsWith("|"))
@@ -339,39 +365,78 @@ public partial class ProvenancePanel : UserControl
                 panel.Children.Add(new Border
                 {
                     Height = 1,
-                    Margin = new Avalonia.Thickness(0, 4),
+                    Margin = new Avalonia.Thickness(0, 6),
                     Background = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255))
                 });
                 continue;
             }
 
-            // Headings
+            // Headings — visual hierarchy: H1 > H2 > H3
             if (line.StartsWith("### "))
             {
-                panel.Children.Add(MakeTextBlock(line[4..].Trim(), 11.5, FontWeight.SemiBold));
+                panel.Children.Add(MakeHeading(line[4..].Trim(), 11.5, FontWeight.SemiBold,
+                    new Avalonia.Thickness(0, 6, 0, 2), 0.8));
                 continue;
             }
             if (line.StartsWith("## "))
             {
-                panel.Children.Add(MakeTextBlock(line[3..].Trim(), 12, FontWeight.Bold));
+                panel.Children.Add(MakeHeading(line[3..].Trim(), 12.5, FontWeight.Bold,
+                    new Avalonia.Thickness(0, 8, 0, 3), 0.9));
                 continue;
             }
             if (line.StartsWith("# "))
             {
-                panel.Children.Add(MakeTextBlock(line[2..].Trim(), 13, FontWeight.Bold));
+                var headingWrap = new StackPanel { Spacing = 0, Margin = new Avalonia.Thickness(0, 12, 0, 2) };
+                headingWrap.Children.Add(new TextBlock
+                {
+                    Text = line[2..].Trim(),
+                    FontSize = 14,
+                    FontWeight = FontWeight.Bold,
+                    TextWrapping = TextWrapping.Wrap,
+                    Opacity = 1.0,
+                });
+                headingWrap.Children.Add(new Border
+                {
+                    Height = 1,
+                    Margin = new Avalonia.Thickness(0, 4, 0, 0),
+                    Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
+                });
+                panel.Children.Add(headingWrap);
                 continue;
             }
 
-            // Bullet list
+            // Blockquote: > text
+            if (line.TrimStart().StartsWith("> "))
+            {
+                var quoteText = line.TrimStart()[2..];
+                var quoteTb = MakeRichTextBlock(quoteText, 11);
+                quoteTb.Opacity = 0.8;
+                quoteTb.FontStyle = FontStyle.Italic;
+                panel.Children.Add(new Border
+                {
+                    Child = quoteTb,
+                    BorderThickness = new Avalonia.Thickness(3, 0, 0, 0),
+                    BorderBrush = new SolidColorBrush(Color.FromArgb(60, 136, 170, 255)),
+                    Padding = new Avalonia.Thickness(10, 2, 0, 2),
+                    Margin = new Avalonia.Thickness(0, 2),
+                });
+                continue;
+            }
+
+            // Bullet list with nesting: detect indent level
             if (line.TrimStart().StartsWith("- ") || line.TrimStart().StartsWith("* "))
             {
                 var indent = line.Length - line.TrimStart().Length;
+                var nestLevel = indent / 2; // 0, 1, 2, ...
                 var bulletText = line.TrimStart()[2..];
                 var tb = MakeRichTextBlock(bulletText, 11);
-                tb.Margin = new Avalonia.Thickness(8 + indent * 4, 0, 0, 0);
-                // Prepend bullet
+                var bulletChar = nestLevel == 0 ? "\u2022 " : nestLevel == 1 ? "\u25e6 " : "\u2013 ";
+                tb.Margin = new Avalonia.Thickness(8 + nestLevel * 12, 0, 0, 0);
                 if (tb.Inlines != null && tb.Inlines.Count > 0)
-                    tb.Inlines.Insert(0, new Avalonia.Controls.Documents.Run("\u2022 "));
+                    tb.Inlines.Insert(0, new Avalonia.Controls.Documents.Run(bulletChar)
+                    {
+                        Foreground = new SolidColorBrush(Color.FromArgb(120, 255, 255, 255))
+                    });
                 panel.Children.Add(tb);
                 continue;
             }
@@ -381,8 +446,9 @@ public partial class ProvenancePanel : UserControl
                 line.TrimStart().IndexOf(". ", StringComparison.Ordinal) > 0 &&
                 line.TrimStart().IndexOf(". ", StringComparison.Ordinal) < 5)
             {
+                var indent = line.Length - line.TrimStart().Length;
                 var tb = MakeRichTextBlock(line.TrimStart(), 11);
-                tb.Margin = new Avalonia.Thickness(8, 0, 0, 0);
+                tb.Margin = new Avalonia.Thickness(8 + (indent / 2) * 12, 0, 0, 0);
                 panel.Children.Add(tb);
                 continue;
             }
@@ -391,6 +457,10 @@ public partial class ProvenancePanel : UserControl
             panel.Children.Add(MakeRichTextBlock(line, 11));
         }
 
+        // Flush any remaining code block
+        if (inCodeBlock && codeBlockLines.Count > 0)
+            FlushCodeBlock(panel, codeBlockLines);
+
         // Flush any remaining table
         if (inTable && tableRows.Count > 0)
             FlushTable(panel, tableRows);
@@ -398,7 +468,8 @@ public partial class ProvenancePanel : UserControl
         return panel;
     }
 
-    private static TextBlock MakeTextBlock(string text, double fontSize, FontWeight weight)
+    private static TextBlock MakeHeading(string text, double fontSize, FontWeight weight,
+        Avalonia.Thickness margin, double opacity)
     {
         return new TextBlock
         {
@@ -406,12 +477,12 @@ public partial class ProvenancePanel : UserControl
             FontSize = fontSize,
             FontWeight = weight,
             TextWrapping = TextWrapping.Wrap,
-            Opacity = 0.9,
-            Margin = new Avalonia.Thickness(0, 2, 0, 1)
+            Opacity = opacity,
+            Margin = margin,
         };
     }
 
-    /// <summary>Renders inline **bold** and `code` within a line.</summary>
+    /// <summary>Renders inline **bold**, `code`, and [links](url) within a line.</summary>
     private static TextBlock MakeRichTextBlock(string text, double fontSize)
     {
         var tb = new TextBlock
@@ -421,7 +492,6 @@ public partial class ProvenancePanel : UserControl
             Opacity = 0.85,
         };
 
-        // Simple inline parsing: **bold** and `code`
         int pos = 0;
         while (pos < text.Length)
         {
@@ -440,19 +510,41 @@ public partial class ProvenancePanel : UserControl
                 }
             }
 
-            // Code: `...`
+            // Inline code: `...`
             if (text[pos] == '`')
             {
                 var end = text.IndexOf('`', pos + 1);
                 if (end > pos + 1)
                 {
+                    // Space buffer around code for visual padding effect
+                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run("\u2009")); // thin space
                     tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[(pos + 1)..end])
                     {
                         FontFamily = new FontFamily("Consolas, Courier New, monospace"),
-                        Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255))
+                        Background = new SolidColorBrush(Color.FromArgb(50, 255, 255, 255)),
+                        FontSize = fontSize > 1 ? fontSize - 0.5 : fontSize,
                     });
+                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run("\u2009")); // thin space
                     pos = end + 1;
                     continue;
+                }
+            }
+
+            // Link: [text](url)
+            if (text[pos] == '[')
+            {
+                var closeBracket = text.IndexOf(']', pos + 1);
+                if (closeBracket > pos + 1 && closeBracket + 1 < text.Length && text[closeBracket + 1] == '(')
+                {
+                    var closeParen = text.IndexOf(')', closeBracket + 2);
+                    if (closeParen > closeBracket + 2)
+                    {
+                        var linkText = text[(pos + 1)..closeBracket];
+                        var linkUrl = text[(closeBracket + 2)..closeParen];
+                        AddLinkInline(tb, linkText, linkUrl);
+                        pos = closeParen + 1;
+                        continue;
+                    }
                 }
             }
 
@@ -460,8 +552,10 @@ public partial class ProvenancePanel : UserControl
             var nextSpecial = text.Length;
             var nextBold = text.IndexOf("**", pos, StringComparison.Ordinal);
             var nextCode = text.IndexOf('`', pos);
+            var nextLink = text.IndexOf('[', pos);
             if (nextBold >= 0 && nextBold < nextSpecial) nextSpecial = nextBold;
             if (nextCode >= 0 && nextCode < nextSpecial) nextSpecial = nextCode;
+            if (nextLink >= 0 && nextLink < nextSpecial) nextSpecial = nextLink;
             if (nextSpecial == pos) nextSpecial = pos + 1; // advance at least 1 char
 
             tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[pos..nextSpecial]));
@@ -471,13 +565,62 @@ public partial class ProvenancePanel : UserControl
         return tb;
     }
 
-    /// <summary>Renders a markdown table as a simple grid of TextBlocks.</summary>
+    /// <summary>Adds a clickable link Run to a TextBlock using an InlineUIContainer with a Button.</summary>
+    private static void AddLinkInline(TextBlock tb, string displayText, string url)
+    {
+        var linkBtn = new Button
+        {
+            Content = displayText,
+            FontSize = tb.FontSize,
+            Padding = new Avalonia.Thickness(0),
+            Background = Brushes.Transparent,
+            BorderThickness = new Avalonia.Thickness(0),
+            Cursor = new Cursor(StandardCursorType.Hand),
+            Foreground = new SolidColorBrush(Color.FromRgb(136, 170, 255)), // AccentLinkFg
+            MinHeight = 0,
+            MinWidth = 0,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(linkBtn, url);
+        linkBtn.Click += (_, _) =>
+        {
+            try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+            catch { /* ignore if no browser */ }
+        };
+        tb.Inlines!.Add(new Avalonia.Controls.Documents.InlineUIContainer { Child = linkBtn });
+    }
+
+    /// <summary>Renders fenced code block lines as a monospace TextBlock with background.</summary>
+    private static void FlushCodeBlock(StackPanel parent, List<string> lines)
+    {
+        if (lines.Count == 0) return;
+
+        var codeText = string.Join("\n", lines);
+        parent.Children.Add(new Border
+        {
+            Child = new TextBlock
+            {
+                Text = codeText,
+                FontFamily = new FontFamily("Consolas, Courier New, monospace"),
+                FontSize = 10.5,
+                TextWrapping = TextWrapping.Wrap,
+                Opacity = 0.85,
+            },
+            Background = new SolidColorBrush(Color.FromArgb(25, 255, 255, 255)),
+            CornerRadius = new Avalonia.CornerRadius(4),
+            Padding = new Avalonia.Thickness(10, 6),
+            Margin = new Avalonia.Thickness(0, 4),
+        });
+    }
+
+    /// <summary>Renders a markdown table with header styling and alternating row backgrounds.</summary>
     private static void FlushTable(StackPanel parent, List<string> rows)
     {
         if (rows.Count == 0) return;
 
-        var tablePanel = new StackPanel { Spacing = 1, Margin = new Avalonia.Thickness(0, 2) };
+        var tablePanel = new StackPanel { Spacing = 0, Margin = new Avalonia.Thickness(0, 4) };
         bool isHeader = true;
+        int dataRowIdx = 0;
 
         foreach (var row in rows)
         {
@@ -486,14 +629,13 @@ public partial class ProvenancePanel : UserControl
                 .Where(c => !string.IsNullOrEmpty(c) || row.Contains('|'))
                 .ToArray();
 
-            // Filter out empty leading/trailing from the split
             var cleanCells = cells.Where(c => c.Length > 0 || cells.Length <= 2).ToList();
             if (cleanCells.Count == 0) continue;
 
             var rowPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
-                Spacing = 8,
+                Spacing = 12,
             };
 
             foreach (var cell in cleanCells)
@@ -504,12 +646,38 @@ public partial class ProvenancePanel : UserControl
                     FontSize = 10.5,
                     FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
                     TextWrapping = TextWrapping.NoWrap,
-                    MinWidth = 60,
-                    Opacity = isHeader ? 0.9 : 0.8,
+                    MinWidth = 70,
+                    Opacity = isHeader ? 0.95 : 0.8,
                 });
             }
 
-            tablePanel.Children.Add(rowPanel);
+            // Header gets a distinct background + bottom border; data rows alternate
+            if (isHeader)
+            {
+                var headerBorder = new Border
+                {
+                    Child = rowPanel,
+                    Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
+                    Padding = new Avalonia.Thickness(6, 4),
+                    BorderThickness = new Avalonia.Thickness(0, 0, 0, 1),
+                    BorderBrush = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255)),
+                };
+                tablePanel.Children.Add(headerBorder);
+            }
+            else
+            {
+                var rowBg = dataRowIdx % 2 == 0
+                    ? Color.FromArgb(0, 0, 0, 0)
+                    : Color.FromArgb(12, 255, 255, 255);
+                tablePanel.Children.Add(new Border
+                {
+                    Child = rowPanel,
+                    Background = new SolidColorBrush(rowBg),
+                    Padding = new Avalonia.Thickness(6, 3),
+                });
+                dataRowIdx++;
+            }
+
             isHeader = false;
         }
 
@@ -523,9 +691,10 @@ public partial class ProvenancePanel : UserControl
         parent.Children.Add(new Border
         {
             Child = tableScroll,
-            Padding = new Avalonia.Thickness(4),
+            Padding = new Avalonia.Thickness(2),
             CornerRadius = new Avalonia.CornerRadius(4),
-            Background = new SolidColorBrush(Color.FromArgb(15, 255, 255, 255)),
+            Background = new SolidColorBrush(Color.FromArgb(10, 255, 255, 255)),
+            Margin = new Avalonia.Thickness(0, 2),
         });
     }
 
