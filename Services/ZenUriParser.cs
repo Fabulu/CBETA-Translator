@@ -206,13 +206,31 @@ public static class ZenUriParser
     /// </summary>
     private static bool IsLbSegment(string segment)
     {
-        // A range like "0292a26-0292a29" also counts ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â check the first part before any dash.
-        var first = segment.Split('-')[0];
-        return first.Length >= 7
-            && char.IsDigit(first[0]) && char.IsDigit(first[1])
-            && char.IsDigit(first[2]) && char.IsDigit(first[3])
-            && char.IsLetter(first[4]) && char.IsLower(first[4])
-            && char.IsDigit(first[5]) && char.IsDigit(first[6]);
+        // Accept BOTH CBETA-style line markers (e.g. "0292c23", a 4-digit
+        // page + column letter + 2-digit line) AND OpenZen-style synthetic
+        // line IDs (e.g. "wm32.case01.l01", letter-prefixed with internal
+        // dots). Two-part ranges have both ends checked the same way; a
+        // segment qualifies as an lb-range if its first split-part qualifies.
+        //
+        // Without the OpenZen branch, links like
+        //   https://readzen.pages.dev/#/pd.wumenguan-1632/wm32.case01.l01-wm32.case01.l02/en/Fabulu
+        // silently drop the range and the desktop app opens the file at the
+        // top instead of jumping to the passage — exactly the failure the
+        // user just reported.
+        var firstPart = segment.Split('-')[0];
+        if (string.IsNullOrEmpty(firstPart)) return false;
+
+        // OpenZen synthetic line ID: starts with a letter, contains at
+        // least one dot. Usernames (the only competing classification at
+        // this position) don't contain dots in any realistic case.
+        if (char.IsLetter(firstPart[0]) && firstPart.IndexOf('.') > 0)
+            return true;
+        // CBETA line marker: 4 digits + lowercase letter + 2 digits.
+        return firstPart.Length >= 7
+            && char.IsDigit(firstPart[0]) && char.IsDigit(firstPart[1])
+            && char.IsDigit(firstPart[2]) && char.IsDigit(firstPart[3])
+            && char.IsLetter(firstPart[4]) && char.IsLower(firstPart[4])
+            && char.IsDigit(firstPart[5]) && char.IsDigit(firstPart[6]);
     }
 
     /// <summary>
@@ -386,8 +404,14 @@ public static class ZenUriParser
         string? user = null)
     {
         // Extract file ID from relPath: "T/T48/T48n2005.xml" ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ "T48n2005"
-        var fileName = Path.GetFileNameWithoutExtension(relPath.Replace('\\', '/'));
-        var url = ShareableBase + Uri.EscapeDataString(fileName);
+        // Use RelPathToFileId so OpenZen paths produce "{publisher}.{slug}"
+        // (e.g. "pd.wumenguan-1632") instead of just the bare slug. The old
+        // Path.GetFileNameWithoutExtension shortcut was CBETA-only and silently
+        // dropped the publisher prefix, producing unparseable share links like
+        // #/wumenguan-1632/... that neither the SPA router nor the desktop
+        // deep-link handler accept.
+        var fileId = RelPathToFileId(relPath);
+        var url = ShareableBase + Uri.EscapeDataString(fileId);
 
         // Append lb range as path segment
         if (!string.IsNullOrEmpty(fromLb))
@@ -437,13 +461,32 @@ public static class ZenUriParser
 
         var uri = raw;
 
-        // Convert shareable HTTPS URLs to zen:// format
+        // Convert shareable HTTPS URLs to zen:// format. Two flavours:
+        //   1) Hash-routed:  https://readzen.pages.dev/#/T48n2005/...
+        //   2) Path-routed:  https://readzen.pages.dev/pd.wumenguan-1632/...
+        // Form (2) is what BuildShareableUrl produces (no #/) and is the
+        // fallback the SPA accepts via its 404 redirect. Both have to round-
+        // trip cleanly through this parser, otherwise shared OpenZen passage
+        // links land in the SPA but can never reach the keyword-route or
+        // legacy-passage downstream parsers.
         if (uri.StartsWith("https://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase) ||
             uri.StartsWith("http://readzen.pages.dev/", StringComparison.OrdinalIgnoreCase))
         {
             int hashIdx = uri.IndexOf("#/", StringComparison.Ordinal);
             if (hashIdx >= 0)
+            {
                 uri = Scheme + "://" + uri[(hashIdx + 2)..];
+            }
+            else if (Uri.TryCreate(uri, UriKind.Absolute, out var shareable))
+            {
+                var path = shareable.AbsolutePath.Trim('/');
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    uri = Scheme + "://" + path;
+                    if (!string.IsNullOrWhiteSpace(shareable.Query))
+                        uri += shareable.Query;
+                }
+            }
         }
 
         // Must start with zen://
