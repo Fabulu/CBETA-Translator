@@ -79,7 +79,7 @@ public class SearchTabViewModelTests
 
     // ---- Initial state ----
 
-    [Fact(Skip = "Requires Avalonia headless test harness: the VM posts search results via Dispatcher.UIThread which doesn't pump in xUnit. Add Avalonia.Headless NuGet + AppBuilder to un-skip.")]
+    [Avalonia.Headless.XUnit.AvaloniaFact(Timeout = 10000)]
     public async Task SearchAsync_ShowsLoadingPlaceholderBeforeFirstResultArrives()
     {
         var svc = new ControlledSearchIndexService();
@@ -100,7 +100,7 @@ public class SearchTabViewModelTests
         await searchTask;
     }
 
-    [Fact(Skip = "Requires Avalonia headless test harness: the VM posts search results via Dispatcher.UIThread which doesn't pump in xUnit. Add Avalonia.Headless NuGet + AppBuilder to un-skip.")]
+    [Avalonia.Headless.XUnit.AvaloniaFact(Timeout = 10000)]
     public async Task SearchAsync_ShowsFirstBatchBeforeSearchCompletes()
     {
         var svc = new ControlledSearchIndexService();
