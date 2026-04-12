@@ -2936,6 +2936,15 @@ public partial class GitTabViewModel : ViewModelBase
 
             if (openOrigExists && openTransExists)
             {
+                // Self-healing: verify both remotes point at the correct
+                // URLs before fetching. A previous bug (fixed in 858de5e)
+                // could silently rewrite the OpenZen remote to CBETA's URL,
+                // and the update path never noticed — it just fetched from
+                // whatever origin was configured. This check catches any
+                // stale misconfiguration and corrects it in-place.
+                await _git.EnsureRemoteUrlAsync(openOrigDir, "origin", OpenZenOriginalsRepoUrl, prog, ct);
+                await _git.EnsureRemoteUrlAsync(openTransDir, "origin", OpenZenTranslationRepoUrl, prog, ct);
+
                 AppendLog("\n--- Updating OpenZenTexts repos ---");
                 ProgressText = "Fetching OpenZenTexts…";
                 StatusChanged?.Invoke(this, "Updating OpenZenTexts (originals)…");
