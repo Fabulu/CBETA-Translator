@@ -75,7 +75,7 @@ public sealed class OnboardingTourService
         {
             Id = "welcome",
             Title = "Welcome to Read Zen",
-            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from the CBETA corpus.\n\nLet's get you set up \u2014 it only takes a minute.",
+            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from two collections: CBETA and OpenZenTexts.\n\nLet's get you set up \u2014 it only takes a minute.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -94,7 +94,7 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Choose where to store the Read Zen data, then download it. This downloads both the original text corpus and the translation workspace.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
+            Body = "Choose where to store the Read Zen data, then download it. This downloads both text collections (CBETA and OpenZenTexts) plus the translation workspace.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync",
@@ -124,7 +124,28 @@ public sealed class OnboardingTourService
             TargetControlName = "FilesList"
         });
 
-        // ===== Phase 2: Reading (steps 6-11) =====
+        // ===== Phase 1b: Corpora =====
+
+        Steps.Add(new TourStep
+        {
+            Id = "two-collections",
+            Title = "Two Text Collections",
+            Body = "Read Zen includes two text collections:\n\n\u2022 CBETA \u2014 the full Chinese Buddhist canon (non-commercial use)\n\u2022 OpenZenTexts \u2014 a growing open-access Zen corpus (CC0 and CC BY-SA licensed)\n\nBoth are downloaded automatically. OpenZenTexts files are freely shareable; CBETA files carry a non-commercial restriction. You\u2019ll see each file\u2019s license in the top bar when you open it.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "corpus-switcher",
+            Title = "Switch Between Corpora",
+            Body = "This badge shows which collection you\u2019re browsing. Click it to switch between CBETA and OpenZenTexts \u2014 the sidebar, search, and file list all update to match.\n\nThe badge changes colour so you always know which corpus is active.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnCorpusBadge"
+        });
+
+        // ===== Phase 2: Reading =====
 
         Steps.Add(new TourStep
         {
