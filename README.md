@@ -2,10 +2,11 @@
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
+![OpenZenTexts: CC0 / Commercial OK](https://img.shields.io/badge/OpenZenTexts-CC0%20%2F%20Commercial%20OK-brightgreen)
 
 # Read Zen
 
-Read Zen is a desktop app for reading, translating, searching, annotating, and sharing CBETA Zen texts without having to live in terminals, XML editors, or Git command lines.
+Read Zen is a desktop app for reading, translating, searching, annotating, and sharing Chinese Zen texts across two corpora — **CBETA** (non-commercial, ~5000 texts) and **OpenZenTexts** (commercial-OK, CC0/CC BY-SA, growing collection of freely-licensed witnesses) — without having to live in terminals, XML editors, or Git command lines.
 
 It is built for actual text work:
 - read Chinese and English side by side
@@ -28,39 +29,56 @@ There is also a built-in onboarding tutorial that walks through the current work
 
 ## Important Licensing Note
 
-The app itself is MIT-licensed, but the CBETA corpus and derived translations remain non-commercial.
+The app itself is MIT-licensed. The two corpora have different license terms:
 
-If you use or share CBETA-based texts:
+**CBETA corpus** (non-commercial):
 - keep the original CBETA attribution/header
 - do not use the corpus or derived translations commercially
 
+**OpenZenTexts** (commercial-OK):
+- each text declares its own license in the TEI header (typically CC0 or CC BY-SA)
+- editorial reading editions (e.g. the 1632 NDL Wumenguan) are CC0 — public domain dedication, no attribution required
+- Wikisource-derived texts carry CC BY-SA from Wikisource
+- check the per-file license chip in the app or the TEI `<availability>` block for the specific terms
+
+The two corpora are kept in separate repositories so their license terms never cross-contaminate.
+
 ## Text Folder Layout
 
-Read Zen uses a two-repo model. You pick one parent folder; the app clones both repos into it and discovers them automatically:
+Read Zen uses a multi-repo model. You pick one parent folder; the app clones all repos into it and discovers them automatically. Both corpora coexist under the same parent:
 
 ```text
 ReadZen/                              your chosen folder
-  CbetaZenTexts/                      originals repo (read-only CBETA corpus)
-    xml-p5/                           4990 original Chinese XML files
-  CbetaZenTranslations/              translations repo (your work lives here)
+  CbetaZenTexts/                      CBETA originals repo (read-only, ~5000 texts)
+    xml-p5/                           original Chinese XML files
+  CbetaZenTranslations/              CBETA translations repo (your work lives here)
     xml-p5t/                          shared/canonical translated XML
     xml-p5t-cache/                    auto-generated untranslated copies (local, gitignored)
-    community/
+    community/                        per-user community contributions
       translations/{user}/            personal translations
-      termbases/{user}.jsonl          personal terminology share files
-      collections/{user}.jsonl        personal Scholar collections share files
-      reviews/{user}.jsonl            personal review share files
-      tags/{user}.jsonl               personal tagging share files
-      tag-vocabularies/{user}.json    personal tag vocabulary share files
-    termbase.json                     shared termbase
-    translation-memory.approved.jsonl approved TM entries
-    translation-review.jsonl          review ledger
-    zen_texts.json                    zen text list
+      termbases/{user}.jsonl          personal terminology
+      collections/{user}.jsonl        Scholar collections
+      reviews/{user}.jsonl            review state
+      tags/{user}.jsonl               tagging
+      tag-vocabularies/{user}.json    tag vocabularies
+    titles.jsonl                      title index
+  OpenZenTexts/                       OpenZen originals repo (free-licensed texts)
+    xml-open/
+      ws/                             Wikisource-derived texts
+      pd/                             Public-domain scan-derived texts
+      ce/                             Critical editions
+      mit/                            MIT-licensed contributions
+  OpenZenTranslations/               OpenZen translations repo
+    xml-open-t/                       shared/canonical translated XML
+    community/                        same community structure as CBETA
+    titles.jsonl                      title index
 ```
 
-The split keeps the original CBETA corpus untouched in one repo and all translation work in another. Untranslated files are generated locally on demand and never distributed. Commits and PRs target the translations repo only.
+The split keeps each corpus's originals untouched in their own repo and all translation work in a separate translations repo. The OpenZen pair mirrors the CBETA pair's structure so the app can read both with the same code paths. File identifiers use different schemes (`T48n2005` for CBETA, `pd.wumenguan-1632` for OpenZen) so the two corpora can never be confused.
 
-Existing users on the old single-repo layout are migrated automatically on first launch.
+A corpus badge in the top-right corner of the app shows which corpus is active. Switching is one click.
+
+Existing CBETA-only users get the OpenZen pair automatically on their next sync.
 
 ## Reader
 
@@ -203,7 +221,7 @@ These links are produced throughout the app — Reader, Translate, Search, Schol
 
 ### Web preview (readzen.pages.dev)
 
-The preview page is a zero-install fallback that fetches data directly from the public CBETA and translations repos:
+The preview page is a zero-install fallback that fetches data directly from the public CBETA and OpenZenTexts repos. It recognizes both file-ID formats and dispatches to the correct repo automatically:
 
 - **Passage** links to a line range render side-by-side ZH/EN with the chosen translator
 - **Passage** links without a line range render a bilingual body preview for translated works, or a navigable source TOC for untranslated ones
@@ -215,7 +233,9 @@ Every preview includes a download CTA for the desktop app, since the previews ar
 
 When the desktop app is installed, the preview page silently hands the link off to it on load and the browser tab becomes a no-op. This auto-open behavior can be disabled via a subtle footer toggle on the preview page for users who prefer to stay in the browser; an explicit "Open in Read Zen" button reappears when auto-open is off.
 
-**Example:** the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/#/T48n2005/](https://readzen.pages.dev/#/T48n2005/)
+**Examples:**
+- CBETA: the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/#/T48n2005/](https://readzen.pages.dev/#/T48n2005/)
+- OpenZenTexts: the 1632 NDL Woodblock Reading Edition (*Wumenguan*, pd.wumenguan-1632) — [readzen.pages.dev/#/pd.wumenguan-1632/](https://readzen.pages.dev/#/pd.wumenguan-1632/)
 
 ## Onboarding Tutorial
 
@@ -303,20 +323,22 @@ If a change affects translation structure, sync, or search semantics, add tests.
 
 Read Zen: MIT License
 
-Other important data sources:
-- CBETA corpus: non-commercial terms
-- CC-CEDICT: `CC BY-SA 4.0`
+Data sources and their terms:
+- **CBETA corpus**: non-commercial terms — see CBETA's license
+- **OpenZenTexts**: per-file license declared in TEI headers (CC0, CC BY-SA, etc.) — commercial use permitted
+- **CC-CEDICT**: `CC BY-SA 4.0`
 
 See `THIRD_PARTY_NOTICES.txt` for details.
 
 ## Short Version
 
-Read Zen is now a full working environment for CBETA Zen study and translation:
+Read Zen is now a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZenTexts collection (commercial-OK, freely-licensed witnesses):
 - read side by side
 - translate with structure-aware tools
 - search with context and exports
 - build Scholar collections
 - manage terms, masters, notes, reviews, and tags
 - sync personal and shared work without living in Git
+- share deep links that work in both the desktop app and on the web
 
 Built for actual use, not demos.
