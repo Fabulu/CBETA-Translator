@@ -291,6 +291,13 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<TranslationAssistantSnapshot?>? SetReadableStudySnapshot { get; set; }
     public Action<bool>? SetReadableStudyPanelVisible { get; set; }
 
+    // Top-bar license chip. Fired whenever the active file's license metadata
+    // becomes known — once from the readable-render bridge (cache path), and
+    // again after the index build completes on cold load (the extractor runs
+    // inside BuildIndex, so the first emission can arrive before metadata
+    // exists).
+    public Action<TextLicenseInfo?>? SetCurrentFileLicense { get; set; }
+
     // ReadableTabView coding mode bridges
     public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
     public Action<List<DocumentTag>?>? SetReadableAppliedTags { get; set; }
@@ -1498,6 +1505,14 @@ public partial class MainWindowViewModel : ViewModelBase
             _rawOrigXml = origXml;
             _rawTranXml = tranXml;
             _indexedDoc = indexedDoc;
+
+            // License metadata is populated as a side-effect of BuildIndex
+            // (which ran inside indexTask). The readable render that fired
+            // SetReadableRendered earlier may have raced ahead of indexTask
+            // on cold load and pushed a null license to the chip; re-publish
+            // now that the extractor has written the entry.
+            try { SetCurrentFileLicense?.Invoke(GetLicenseForCurrentFile()); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] License chip refresh failed: {ex.Message}"); }
 
             var projection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
             SetTranslationProjection(_translationMode, projection);
