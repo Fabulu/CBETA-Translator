@@ -3,9 +3,15 @@
 // from OpenZenTexts manifest.json files. Follows the LicenseDetailsView.SetLicense() pattern.
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Text;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -16,6 +22,7 @@ namespace ReadZen.App.Views;
 public partial class ProvenancePanel : UserControl
 {
     private ManifestInfo? _manifest;
+    private TextLicenseInfo? _license;
 
     public ProvenancePanel()
     {
@@ -36,9 +43,10 @@ public partial class ProvenancePanel : UserControl
     /// <summary>
     /// Populates all controls from manifest data. Follows LicenseDetailsView.SetLicense() pattern.
     /// </summary>
-    public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus)
+    public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
         _manifest = manifest;
+        _license = license;
 
         var txtWorkName = this.FindControl<TextBlock>("TxtWorkName");
         var txtAuthor = this.FindControl<TextBlock>("TxtAuthor");
@@ -76,10 +84,28 @@ public partial class ProvenancePanel : UserControl
 
         if (manifest == null)
         {
-            // Fallback cards
             if (corpus == CorpusKind.Cbeta)
             {
                 if (cbetaCard != null) cbetaCard.IsVisible = true;
+
+                // Enhance the CBETA fallback with whatever the TEI header has
+                if (license != null)
+                {
+                    if (txtWorkName != null && !string.IsNullOrWhiteSpace(license.Title))
+                        txtWorkName.Text = license.Title;
+                    if (txtAuthor != null && !string.IsNullOrWhiteSpace(license.Author))
+                        txtAuthor.Text = license.Author;
+                    if (txtLicenseSpdx != null)
+                        txtLicenseSpdx.Text = string.IsNullOrWhiteSpace(license.ShortLabel) ? "CBETA Non-Commercial" : license.ShortLabel;
+                    if (txtLicenseFlags != null)
+                    {
+                        var flags = new StringBuilder("Non-commercial only");
+                        if (license.AttributionRequired) flags.Append(" | Attribution required");
+                        txtLicenseFlags.Text = flags.ToString();
+                    }
+                    if (!string.IsNullOrWhiteSpace(license.RequiredAttribution) && btnCopy != null)
+                        btnCopy.IsVisible = true;
+                }
             }
             else
             {
@@ -146,11 +172,7 @@ public partial class ProvenancePanel : UserControl
             !string.IsNullOrWhiteSpace(manifest.ProductionMethod))
         {
             productionSection.IsVisible = true;
-            // Truncate long production methods for display
-            var method = manifest.ProductionMethod;
-            if (method.Length > 400)
-                method = method.Substring(0, 400) + "...";
-            txtProduction.Text = method;
+            txtProduction.Text = manifest.ProductionMethod;
         }
 
         // Curator + capture date
@@ -169,8 +191,113 @@ public partial class ProvenancePanel : UserControl
             }
         }
 
+        // Discover and display .md documents from provenance/ and exemplars/
+        var docsSection = this.FindControl<StackPanel>("DocumentsSection");
+        var docsHost = this.FindControl<StackPanel>("DocumentsHost");
+        if (docsSection != null && docsHost != null)
+        {
+            docsHost.Children.Clear();
+            var docs = DiscoverDocuments(xmlAbsPath, manifest.TextId);
+            if (docs.Count > 0)
+            {
+                docsSection.IsVisible = true;
+                foreach (var (name, path) in docs)
+                    docsHost.Children.Add(BuildDocumentExpander(name, path));
+            }
+        }
+
         // Show copy citation button when we have manifest data
         if (btnCopy != null) btnCopy.IsVisible = true;
+    }
+
+    /// <summary>
+    /// Discovers .md documentation files in provenance/{slug}/ and
+    /// docs/curation/exemplars/{slug}/ relative to the corpus root.
+    /// Returns (display name, absolute path) pairs.
+    /// </summary>
+    private static List<(string Name, string Path)> DiscoverDocuments(string? xmlAbsPath, string? textId)
+    {
+        var result = new List<(string, string)>();
+        if (string.IsNullOrWhiteSpace(xmlAbsPath) || string.IsNullOrWhiteSpace(textId))
+            return result;
+
+        try
+        {
+            // Derive the slug from the text_id: "pd.wumenguan-1632" -> "wumenguan-1632"
+            var slug = textId;
+            var dotIdx = textId.IndexOf('.');
+            if (dotIdx > 0 && dotIdx < textId.Length - 1)
+                slug = textId[(dotIdx + 1)..];
+
+            // The XML lives under xml-open/{publisher}/{slug}/{slug}.xml
+            // The repo root is 3 levels up from the XML file's directory
+            var xmlDir = System.IO.Path.GetDirectoryName(xmlAbsPath);
+            if (xmlDir == null) return result;
+            var repoRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(xmlDir, "..", "..", ".."));
+
+            // Check provenance/{slug}/
+            var provenanceDir = System.IO.Path.Combine(repoRoot, "provenance", slug);
+            if (Directory.Exists(provenanceDir))
+            {
+                foreach (var mdFile in Directory.EnumerateFiles(provenanceDir, "*.md"))
+                {
+                    var name = System.IO.Path.GetFileNameWithoutExtension(mdFile)
+                        .Replace('-', ' ').Replace('_', ' ');
+                    // Capitalize first letter
+                    if (name.Length > 0) name = char.ToUpperInvariant(name[0]) + name[1..];
+                    result.Add((name, mdFile));
+                }
+            }
+
+            // Check docs/curation/exemplars/{slug}/
+            var exemplarDir = System.IO.Path.Combine(repoRoot, "docs", "curation", "exemplars", slug);
+            if (Directory.Exists(exemplarDir))
+            {
+                foreach (var mdFile in Directory.EnumerateFiles(exemplarDir, "*.md"))
+                {
+                    var name = System.IO.Path.GetFileNameWithoutExtension(mdFile)
+                        .Replace('-', ' ').Replace('_', ' ');
+                    if (name.Length > 0) name = char.ToUpperInvariant(name[0]) + name[1..];
+                    result.Add((name, mdFile));
+                }
+            }
+        }
+        catch { /* never crash on doc discovery */ }
+
+        return result;
+    }
+
+    private static Expander BuildDocumentExpander(string displayName, string filePath)
+    {
+        string? content = null;
+        try { content = File.ReadAllText(filePath); }
+        catch { content = "(Could not read file)"; }
+
+        var textBlock = new TextBlock
+        {
+            Text = content ?? "",
+            FontFamily = new FontFamily("Consolas, Courier New, monospace"),
+            FontSize = 11,
+            TextWrapping = TextWrapping.Wrap,
+            Opacity = 0.85,
+            MaxHeight = 600, // prevent gigantic expansion
+        };
+
+        var scroll = new ScrollViewer
+        {
+            Content = textBlock,
+            MaxHeight = 500,
+            HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
+            VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+        };
+
+        return new Expander
+        {
+            Header = displayName,
+            Content = scroll,
+            IsExpanded = false,
+            FontSize = 11,
+        };
     }
 
     private static Border BuildWitnessCard(WitnessInfo w)
@@ -206,19 +333,55 @@ public partial class ProvenancePanel : UserControl
             });
         }
 
-        // Upstream URL
+        // Upstream URL — clickable, opens in browser
         if (!string.IsNullOrWhiteSpace(w.UpstreamUrl))
         {
-            var urlText = w.UpstreamUrl;
-            if (urlText.Length > 80)
-                urlText = urlText.Substring(0, 77) + "...";
-            stack.Children.Add(new TextBlock
+            var fullUrl = w.UpstreamUrl;
+            var displayUrl = fullUrl.Length > 60 ? fullUrl.Substring(0, 57) + "..." : fullUrl;
+            var linkBtn = new Button
             {
-                Text = urlText,
+                Content = displayUrl,
                 FontSize = 10,
-                Opacity = 0.65,
-                TextWrapping = TextWrapping.Wrap
-            });
+                Padding = new Avalonia.Thickness(0),
+                Background = Brushes.Transparent,
+                BorderThickness = new Avalonia.Thickness(0),
+                Cursor = new Cursor(StandardCursorType.Hand),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Foreground = new SolidColorBrush(Color.FromRgb(100, 160, 255)),
+            };
+            ToolTip.SetTip(linkBtn, fullUrl);
+            linkBtn.Click += (_, _) =>
+            {
+                try { Process.Start(new ProcessStartInfo(fullUrl) { UseShellExecute = true }); }
+                catch { /* ignore if no browser */ }
+            };
+            stack.Children.Add(linkBtn);
+        }
+
+        // Stable revision URL — clickable if different from upstream
+        if (!string.IsNullOrWhiteSpace(w.StableRevisionUrl) &&
+            !string.Equals(w.StableRevisionUrl, w.UpstreamUrl, StringComparison.OrdinalIgnoreCase))
+        {
+            var fullUrl = w.StableRevisionUrl;
+            var displayUrl = fullUrl.Length > 60 ? fullUrl.Substring(0, 57) + "..." : fullUrl;
+            var revBtn = new Button
+            {
+                Content = "Stable revision: " + displayUrl,
+                FontSize = 10,
+                Padding = new Avalonia.Thickness(0),
+                Background = Brushes.Transparent,
+                BorderThickness = new Avalonia.Thickness(0),
+                Cursor = new Cursor(StandardCursorType.Hand),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Foreground = new SolidColorBrush(Color.FromRgb(100, 160, 255)),
+            };
+            ToolTip.SetTip(revBtn, fullUrl);
+            revBtn.Click += (_, _) =>
+            {
+                try { Process.Start(new ProcessStartInfo(fullUrl) { UseShellExecute = true }); }
+                catch { /* ignore */ }
+            };
+            stack.Children.Add(revBtn);
         }
 
         // SHA-256 (first 16 chars) + bytes
@@ -297,19 +460,32 @@ public partial class ProvenancePanel : UserControl
 
     private string BuildCitationText()
     {
-        if (_manifest == null) return "";
-
         var sb = new StringBuilder();
-        sb.Append(_manifest.WorkName ?? "Unknown work");
-        if (!string.IsNullOrWhiteSpace(_manifest.Author))
-            sb.Append($" by {_manifest.Author}");
-        if (!string.IsNullOrWhiteSpace(_manifest.TextId))
-            sb.Append($" [{_manifest.TextId}]");
-        if (!string.IsNullOrWhiteSpace(_manifest.License))
-            sb.Append($". License: {_manifest.License}");
-        if (!string.IsNullOrWhiteSpace(_manifest.Curator))
-            sb.Append($". {_manifest.Curator}");
-        sb.Append('.');
+
+        if (_manifest != null)
+        {
+            sb.Append(_manifest.WorkName ?? "Unknown work");
+            if (!string.IsNullOrWhiteSpace(_manifest.Author))
+                sb.Append($" by {_manifest.Author}");
+            if (!string.IsNullOrWhiteSpace(_manifest.TextId))
+                sb.Append($" [{_manifest.TextId}]");
+            if (!string.IsNullOrWhiteSpace(_manifest.License))
+                sb.Append($". License: {_manifest.License}");
+            if (!string.IsNullOrWhiteSpace(_manifest.Curator))
+                sb.Append($". {_manifest.Curator}");
+            sb.Append('.');
+        }
+        else if (_license != null && !string.IsNullOrWhiteSpace(_license.RequiredAttribution))
+        {
+            sb.Append(_license.RequiredAttribution);
+        }
+        else if (_license != null)
+        {
+            if (!string.IsNullOrWhiteSpace(_license.Title)) sb.Append(_license.Title);
+            if (!string.IsNullOrWhiteSpace(_license.Author)) sb.Append($" by {_license.Author}");
+            if (!string.IsNullOrWhiteSpace(_license.ShortLabel)) sb.Append($". {_license.ShortLabel}");
+            sb.Append('.');
+        }
 
         return sb.ToString();
     }

@@ -4613,9 +4613,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     }
 
     /// <summary>Populates provenance panel from manifest data.</summary>
-    public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus)
+    public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
-        _provenancePanelView?.SetProvenance(manifest, license, corpus);
+        _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>

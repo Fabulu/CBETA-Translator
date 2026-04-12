@@ -479,8 +479,8 @@ private async Task LoadConfigAndAutoloadAsync()
             _readableView?.SetFileLicense(license);
             UpdateLicenseChip(license);
         };
-        _vm.SetCurrentFileProvenance = (manifest, license, corpus) =>
-            _readableView?.SetProvenance(manifest, license, corpus);
+        _vm.SetCurrentFileProvenance = (manifest, license, corpus, xmlAbsPath) =>
+            _readableView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
         _vm.SetReadableProvenancePanelVisible = visible =>
             _readableView?.SetProvenancePanelVisible(visible);
         _vm.SetReadableHoverDict = enabled =>
