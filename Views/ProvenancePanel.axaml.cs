@@ -504,7 +504,7 @@ public partial class ProvenancePanel : UserControl
                     FontSize = 10.5,
                     FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
                     TextWrapping = TextWrapping.NoWrap,
-                    Width = 140,
+                    MinWidth = 60,
                     Opacity = isHeader ? 0.9 : 0.8,
                 });
             }
@@ -513,9 +513,16 @@ public partial class ProvenancePanel : UserControl
             isHeader = false;
         }
 
+        var tableScroll = new ScrollViewer
+        {
+            Content = tablePanel,
+            HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+            VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
+        };
+
         parent.Children.Add(new Border
         {
-            Child = tablePanel,
+            Child = tableScroll,
             Padding = new Avalonia.Thickness(4),
             CornerRadius = new Avalonia.CornerRadius(4),
             Background = new SolidColorBrush(Color.FromArgb(15, 255, 255, 255)),
