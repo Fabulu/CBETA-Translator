@@ -64,14 +64,22 @@ dotnet test                     # run all tests
 dotnet publish -c Release -r win-x64 --self-contained true  # release build
 ```
 
+## Talk to me BEFORE you start
+
+This project moves fast. Major rewrites happen regularly — entire subsystems get redesigned between releases. If you start working on a contribution without coordinating first, there's a real chance the code you're touching will have changed significantly by the time you submit a PR.
+
+GitHub pull requests can sit unnoticed. The best way to reach me:
+
+- **Reddit:** post in [r/zen](https://www.reddit.com/r/zen/) or send a PM to [u/dota2nub](https://www.reddit.com/user/dota2nub/)
+- **GitHub Issues:** open an issue describing what you want to work on — I'll respond faster to issues than to surprise PRs
+
+Tell me what you're thinking of doing, and I'll tell you whether it fits the current direction or whether that area is about to be rewritten. This saves everyone time.
+
 ## Pull Request Guidelines
 
+- **Coordinate first** (see above)
 - Clear title and commit message
 - Describe what changed and why
 - Do not bundle unrelated changes
 - Run `dotnet test` before submitting
 - If adding features that affect translation, search, or sync, add corresponding tests
-
-## Discussion
-
-If you're unsure about an architectural change, open an Issue first. We aim to keep this project stable and predictable.
