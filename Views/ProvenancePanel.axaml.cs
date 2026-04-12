@@ -273,19 +273,11 @@ public partial class ProvenancePanel : UserControl
         try { content = File.ReadAllText(filePath); }
         catch { content = "(Could not read file)"; }
 
-        var textBlock = new TextBlock
-        {
-            Text = content ?? "",
-            FontFamily = new FontFamily("Consolas, Courier New, monospace"),
-            FontSize = 11,
-            TextWrapping = TextWrapping.Wrap,
-            Opacity = 0.85,
-            MaxHeight = 600, // prevent gigantic expansion
-        };
+        var rendered = RenderMarkdown(content ?? "");
 
         var scroll = new ScrollViewer
         {
-            Content = textBlock,
+            Content = rendered,
             MaxHeight = 500,
             HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
             VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
@@ -298,6 +290,236 @@ public partial class ProvenancePanel : UserControl
             IsExpanded = false,
             FontSize = 11,
         };
+    }
+
+    /// <summary>
+    /// Minimal markdown-to-Avalonia renderer for provenance documents.
+    /// Handles: # headings, **bold**, - / * bullet lists, | tables |,
+    /// --- separators, and plain text with wrapping. No NuGet dependencies.
+    /// </summary>
+    private static StackPanel RenderMarkdown(string markdown)
+    {
+        var panel = new StackPanel { Spacing = 3 };
+        var lines = markdown.Split('\n');
+        var tableRows = new List<string>();
+        bool inTable = false;
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            var line = lines[i].TrimEnd('\r');
+
+            // Flush table if we're leaving one
+            if (inTable && !line.TrimStart().StartsWith("|"))
+            {
+                FlushTable(panel, tableRows);
+                tableRows.Clear();
+                inTable = false;
+            }
+
+            // Table row
+            if (line.TrimStart().StartsWith("|"))
+            {
+                inTable = true;
+                // Skip separator rows (|---|---|)
+                if (!System.Text.RegularExpressions.Regex.IsMatch(line, @"^\|[\s\-:|]+\|$"))
+                    tableRows.Add(line);
+                continue;
+            }
+
+            // Blank line
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                panel.Children.Add(new Border { Height = 4 });
+                continue;
+            }
+
+            // Horizontal rule
+            if (line.TrimStart().StartsWith("---") && line.Trim().All(c => c == '-' || c == ' '))
+            {
+                panel.Children.Add(new Border
+                {
+                    Height = 1,
+                    Margin = new Avalonia.Thickness(0, 4),
+                    Background = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255))
+                });
+                continue;
+            }
+
+            // Headings
+            if (line.StartsWith("### "))
+            {
+                panel.Children.Add(MakeTextBlock(line[4..].Trim(), 11.5, FontWeight.SemiBold));
+                continue;
+            }
+            if (line.StartsWith("## "))
+            {
+                panel.Children.Add(MakeTextBlock(line[3..].Trim(), 12, FontWeight.Bold));
+                continue;
+            }
+            if (line.StartsWith("# "))
+            {
+                panel.Children.Add(MakeTextBlock(line[2..].Trim(), 13, FontWeight.Bold));
+                continue;
+            }
+
+            // Bullet list
+            if (line.TrimStart().StartsWith("- ") || line.TrimStart().StartsWith("* "))
+            {
+                var indent = line.Length - line.TrimStart().Length;
+                var bulletText = line.TrimStart()[2..];
+                var tb = MakeRichTextBlock(bulletText, 11);
+                tb.Margin = new Avalonia.Thickness(8 + indent * 4, 0, 0, 0);
+                // Prepend bullet
+                if (tb.Inlines != null && tb.Inlines.Count > 0)
+                    tb.Inlines.Insert(0, new Avalonia.Controls.Documents.Run("\u2022 "));
+                panel.Children.Add(tb);
+                continue;
+            }
+
+            // Numbered list
+            if (line.TrimStart().Length > 2 && char.IsDigit(line.TrimStart()[0]) &&
+                line.TrimStart().IndexOf(". ", StringComparison.Ordinal) > 0 &&
+                line.TrimStart().IndexOf(". ", StringComparison.Ordinal) < 5)
+            {
+                var tb = MakeRichTextBlock(line.TrimStart(), 11);
+                tb.Margin = new Avalonia.Thickness(8, 0, 0, 0);
+                panel.Children.Add(tb);
+                continue;
+            }
+
+            // Regular text with inline formatting
+            panel.Children.Add(MakeRichTextBlock(line, 11));
+        }
+
+        // Flush any remaining table
+        if (inTable && tableRows.Count > 0)
+            FlushTable(panel, tableRows);
+
+        return panel;
+    }
+
+    private static TextBlock MakeTextBlock(string text, double fontSize, FontWeight weight)
+    {
+        return new TextBlock
+        {
+            Text = text,
+            FontSize = fontSize,
+            FontWeight = weight,
+            TextWrapping = TextWrapping.Wrap,
+            Opacity = 0.9,
+            Margin = new Avalonia.Thickness(0, 2, 0, 1)
+        };
+    }
+
+    /// <summary>Renders inline **bold** and `code` within a line.</summary>
+    private static TextBlock MakeRichTextBlock(string text, double fontSize)
+    {
+        var tb = new TextBlock
+        {
+            FontSize = fontSize,
+            TextWrapping = TextWrapping.Wrap,
+            Opacity = 0.85,
+        };
+
+        // Simple inline parsing: **bold** and `code`
+        int pos = 0;
+        while (pos < text.Length)
+        {
+            // Bold: **...**
+            if (pos + 2 < text.Length && text[pos] == '*' && text[pos + 1] == '*')
+            {
+                var end = text.IndexOf("**", pos + 2, StringComparison.Ordinal);
+                if (end > pos + 2)
+                {
+                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[(pos + 2)..end])
+                    {
+                        FontWeight = FontWeight.Bold
+                    });
+                    pos = end + 2;
+                    continue;
+                }
+            }
+
+            // Code: `...`
+            if (text[pos] == '`')
+            {
+                var end = text.IndexOf('`', pos + 1);
+                if (end > pos + 1)
+                {
+                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[(pos + 1)..end])
+                    {
+                        FontFamily = new FontFamily("Consolas, Courier New, monospace"),
+                        Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255))
+                    });
+                    pos = end + 1;
+                    continue;
+                }
+            }
+
+            // Plain text: consume until next special char
+            var nextSpecial = text.Length;
+            var nextBold = text.IndexOf("**", pos, StringComparison.Ordinal);
+            var nextCode = text.IndexOf('`', pos);
+            if (nextBold >= 0 && nextBold < nextSpecial) nextSpecial = nextBold;
+            if (nextCode >= 0 && nextCode < nextSpecial) nextSpecial = nextCode;
+            if (nextSpecial == pos) nextSpecial = pos + 1; // advance at least 1 char
+
+            tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[pos..nextSpecial]));
+            pos = nextSpecial;
+        }
+
+        return tb;
+    }
+
+    /// <summary>Renders a markdown table as a simple grid of TextBlocks.</summary>
+    private static void FlushTable(StackPanel parent, List<string> rows)
+    {
+        if (rows.Count == 0) return;
+
+        var tablePanel = new StackPanel { Spacing = 1, Margin = new Avalonia.Thickness(0, 2) };
+        bool isHeader = true;
+
+        foreach (var row in rows)
+        {
+            var cells = row.Split('|', StringSplitOptions.None)
+                .Select(c => c.Trim())
+                .Where(c => !string.IsNullOrEmpty(c) || row.Contains('|'))
+                .ToArray();
+
+            // Filter out empty leading/trailing from the split
+            var cleanCells = cells.Where(c => c.Length > 0 || cells.Length <= 2).ToList();
+            if (cleanCells.Count == 0) continue;
+
+            var rowPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 8,
+            };
+
+            foreach (var cell in cleanCells)
+            {
+                rowPanel.Children.Add(new TextBlock
+                {
+                    Text = cell,
+                    FontSize = 10.5,
+                    FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
+                    TextWrapping = TextWrapping.NoWrap,
+                    Width = 140,
+                    Opacity = isHeader ? 0.9 : 0.8,
+                });
+            }
+
+            tablePanel.Children.Add(rowPanel);
+            isHeader = false;
+        }
+
+        parent.Children.Add(new Border
+        {
+            Child = tablePanel,
+            Padding = new Avalonia.Thickness(4),
+            CornerRadius = new Avalonia.CornerRadius(4),
+            Background = new SolidColorBrush(Color.FromArgb(15, 255, 255, 255)),
+        });
     }
 
     private static Border BuildWitnessCard(WitnessInfo w)
