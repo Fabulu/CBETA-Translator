@@ -295,8 +295,73 @@ public partial class CompareTagsWindow : Window
         {
             var svc = new ConsensusService();
             await svc.SaveResolutionsAsync(_communityRoot, _resolverUsername, resolutions);
+
+            // Option C: merge accepted tags into the resolver's own tag set.
+            // For each resolution, if the accepted coder is NOT the resolver,
+            // copy that tag into the resolver's working set. If the accepted
+            // coder IS the resolver, the tag is already there. If the resolver
+            // rejected their own tag for a disagreement where they were the
+            // only one who tagged it, remove it from their set.
+            var tagSvc = new DocumentTagService();
+            var resolverTags = await tagSvc.LoadUserTagsAsync(_communityRoot, _resolverUsername);
+            int added = 0, removed = 0;
+
+            foreach (var r in resolutions)
+            {
+                bool resolverHadTag = resolverTags.Any(t =>
+                    t.RelPath == r.RelPath && t.TagId == r.TagId &&
+                    string.Compare(t.FromLb, r.FromLb, StringComparison.Ordinal) <= 0 &&
+                    string.Compare(r.ToLb, t.ToLb, StringComparison.Ordinal) <= 0);
+
+                if (r.AcceptedCoder == _resolverUsername)
+                {
+                    // Resolver's tag was accepted — already in their set, nothing to do
+                }
+                else if (!string.IsNullOrEmpty(r.AcceptedCoder))
+                {
+                    // Other coder's tag was accepted — copy it into resolver's set if not already there
+                    if (!resolverHadTag)
+                    {
+                        var sourceTag = (r.AcceptedCoder == _myUsername ? _myTags : _otherTags)
+                            .FirstOrDefault(t => t.RelPath == r.RelPath && t.TagId == r.TagId &&
+                                string.Compare(t.FromLb, r.FromLb, StringComparison.Ordinal) <= 0 &&
+                                string.Compare(r.ToLb, t.ToLb, StringComparison.Ordinal) <= 0);
+                        if (sourceTag != null)
+                        {
+                            resolverTags.Add(new DocumentTag
+                            {
+                                Id = Guid.NewGuid().ToString("N"),
+                                RelPath = sourceTag.RelPath,
+                                FromLb = sourceTag.FromLb,
+                                ToLb = sourceTag.ToLb,
+                                TagId = sourceTag.TagId,
+                                CreatedBy = _resolverUsername,
+                                CreatedUtc = DateTimeOffset.UtcNow,
+                                Memo = $"Accepted from {r.AcceptedCoder} via consensus"
+                            });
+                            added++;
+                        }
+                    }
+                }
+
+                // If resolver rejected their own tag (they had it, accepted the other who didn't)
+                if (r.RejectedCoder == _resolverUsername && resolverHadTag)
+                {
+                    resolverTags.RemoveAll(t =>
+                        t.RelPath == r.RelPath && t.TagId == r.TagId &&
+                        string.Compare(t.FromLb, r.FromLb, StringComparison.Ordinal) <= 0 &&
+                        string.Compare(r.ToLb, t.ToLb, StringComparison.Ordinal) <= 0);
+                    removed++;
+                }
+            }
+
+            if (added > 0 || removed > 0)
+                await tagSvc.SaveUserTagsAsync(_communityRoot, _resolverUsername, resolverTags);
+
             if (_btnApplyConsensus != null)
-                _btnApplyConsensus.Content = $"Saved {resolutions.Count} resolutions";
+                _btnApplyConsensus.Content = $"Saved {resolutions.Count} resolutions" +
+                    (added > 0 ? $", +{added} tags" : "") +
+                    (removed > 0 ? $", -{removed} tags" : "");
         }
         catch (Exception ex)
         {
