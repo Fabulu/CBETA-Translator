@@ -62,6 +62,8 @@ public partial class ReadableTabView : UserControl
     private const int SuppressPollingAfterUserActionMs = 220;
 
     private DateTime _suppressMirrorUntilUtc = DateTime.MinValue;
+    private const int SuppressMirrorMs = 700;
+    private const int LongSuppressMs = 900;
 
     private DateTime _suppressMirrorForMarkerClickUntilUtc = DateTime.MinValue;
     private const int SuppressMirrorAfterMarkerClickMs = 260;
@@ -160,6 +162,20 @@ public partial class ReadableTabView : UserControl
     private DispatcherTimer? _studyContextDebounce;
     private CurrentSegmentContext? _pendingStudyContext;
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
+
+    // -------------------------
+    // Find bar (Ctrl+F)
+    // -------------------------
+    private Border? _findBar;
+    private TextBox? _txtFindInput;
+    private TextBlock? _txtFindCount;
+    private Button? _btnFindNext;
+    private Button? _btnFindPrev;
+    private Button? _btnFindClose;
+    private FindHighlightTransformer? _findHighlightOrig;
+    private FindHighlightTransformer? _findHighlightTran;
+    private List<(bool IsTranslated, int Start, int Length)> _findMatches = new();
+    private int _findCurrentIndex = -1;
 
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
     private bool _suppressZenEvents;
@@ -370,6 +386,13 @@ public partial class ReadableTabView : UserControl
         _txtStudyDictPinyin = this.FindControl<TextBlock>("TxtStudyDictPinyin");
         _studyDictSenses = this.FindControl<StackPanel>("StudyDictSenses");
 
+        _findBar = this.FindControl<Border>("FindBar");
+        _txtFindInput = this.FindControl<TextBox>("TxtFindInput");
+        _txtFindCount = this.FindControl<TextBlock>("TxtFindCount");
+        _btnFindNext = this.FindControl<Button>("BtnFindNext");
+        _btnFindPrev = this.FindControl<Button>("BtnFindPrev");
+        _btnFindClose = this.FindControl<Button>("BtnFindClose");
+
         if (_notesPanel != null) _notesPanel.IsVisible = false;
     }
 
@@ -382,11 +405,21 @@ public partial class ReadableTabView : UserControl
         {
             _aeOrig.IsReadOnly = true;
             _aeOrig.ContextMenu = BuildScholarContextMenu(isTranslated: false);
+            if (_findHighlightOrig == null)
+            {
+                _findHighlightOrig = new FindHighlightTransformer();
+                _aeOrig.TextArea.TextView.LineTransformers.Add(_findHighlightOrig);
+            }
         }
         if (_aeTran != null)
         {
             _aeTran.IsReadOnly = true;
             _aeTran.ContextMenu = BuildScholarContextMenu(isTranslated: true);
+            if (_findHighlightTran == null)
+            {
+                _findHighlightTran = new FindHighlightTransformer();
+                _aeTran.TextArea.TextView.LineTransformers.Add(_findHighlightTran);
+            }
         }
     }
 
@@ -419,101 +452,11 @@ public partial class ReadableTabView : UserControl
         menu.Items.Add(addItem);
 
         var copyLinkItem = new MenuItem { Header = "Copy Link" };
-        copyLinkItem.Click += async (_, _) =>
-        {
-            var relPath = _vm.CurrentRelPathForZen;
-            if (string.IsNullOrWhiteSpace(relPath)) return;
-
-            var editor = isTranslated ? _aeTran : _aeOrig;
-            var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
-            var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
-
-            string? fromLb = null;
-            string? toLb = null;
-            string? highlight = null;
-
-            if (editor != null && doc != null && !doc.IsEmpty)
-            {
-                int selStart = GetSelectionStartSafe(editor);
-                int selEnd = GetSelectionEndSafe(editor);
-                bool hasSelection = selEnd > selStart;
-
-                if (hasSelection)
-                {
-                    fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
-                    toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
-
-                    if (fromLb == null)
-                    {
-                        highlight = editor.SelectedText;
-                        if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
-                    }
-                }
-            }
-
-            // Use the active translation user regardless of which pane was
-            // right-clicked. A link made from the Chinese pane should still
-            // open the user's currently-selected translation, not silently
-            // fall back to community. GetTranslationUser returns null for
-            // the community source, so community-source clicks still produce
-            // a translator-less link as before.
-            var user = GetTranslationUser?.Invoke();
-            if (!string.IsNullOrWhiteSpace(fromLb))
-                highlight = null;
-            var uri = ZenUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
-            var top = TopLevel.GetTopLevel(this);
-            if (top?.Clipboard != null)
-                await top.Clipboard.SetTextAsync(uri);
-            Say("Link copied to clipboard.");
-        };
+        copyLinkItem.Click += async (_, _) => await CopyLinkToClipboardAsync(isTranslated, isReddit: false);
         menu.Items.Add(copyLinkItem);
 
         var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
-        copyRedditLink.Click += async (_, _) =>
-        {
-            var relPath = _vm.CurrentRelPathForZen;
-            if (string.IsNullOrWhiteSpace(relPath)) return;
-
-            var editor = isTranslated ? _aeTran : _aeOrig;
-            var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
-            var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
-
-            string? fromLb = null;
-            string? toLb = null;
-            string? highlight = null;
-
-            if (editor != null && doc != null && !doc.IsEmpty)
-            {
-                int selStart = GetSelectionStartSafe(editor);
-                int selEnd = GetSelectionEndSafe(editor);
-                bool hasSelection = selEnd > selStart;
-
-                if (hasSelection)
-                {
-                    fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
-                    toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
-
-                    if (fromLb == null)
-                    {
-                        highlight = editor.SelectedText;
-                        if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
-                    }
-                }
-            }
-
-            // Same rationale as the Copy Link handler above: a Reddit link
-            // made from the Chinese pane should carry the active translator
-            // so the recipient lands on the same translation the user is
-            // looking at, not silently fall back to community.
-            var userR = GetTranslationUser?.Invoke();
-            if (!string.IsNullOrWhiteSpace(fromLb))
-                highlight = null;
-            var url = ZenUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: userR);
-            var top = TopLevel.GetTopLevel(this);
-            if (top?.Clipboard != null)
-                await top.Clipboard.SetTextAsync(url);
-            Say("Reddit link copied to clipboard.");
-        };
+        copyRedditLink.Click += async (_, _) => await CopyLinkToClipboardAsync(isTranslated, isReddit: true);
         menu.Items.Add(copyRedditLink);
 
         if (_codingModeActive)
@@ -581,6 +524,65 @@ public partial class ReadableTabView : UserControl
         }
 
         return menu;
+    }
+
+    /// <summary>
+    /// Shared helper for "Copy Link" and "Copy Reddit Link" context menu items.
+    /// Builds a zen:// URI or shareable URL from the current selection, then
+    /// copies it to the clipboard.
+    /// </summary>
+    private async Task CopyLinkToClipboardAsync(bool isTranslated, bool isReddit)
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath)) return;
+
+        var editor = isTranslated ? _aeTran : _aeOrig;
+        var doc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        var side = isTranslated ? SearchSide.Translated : SearchSide.Original;
+
+        string? fromLb = null;
+        string? toLb = null;
+        string? highlight = null;
+
+        if (editor != null && doc != null && !doc.IsEmpty)
+        {
+            int selStart = GetSelectionStartSafe(editor);
+            int selEnd = GetSelectionEndSafe(editor);
+            bool hasSelection = selEnd > selStart;
+
+            if (hasSelection)
+            {
+                fromLb = LbHelper.FindNearestLbNValue(doc, selStart);
+                toLb = LbHelper.FindNearestLbNValue(doc, Math.Max(selStart, selEnd - 1));
+
+                if (fromLb == null)
+                {
+                    highlight = editor.SelectedText;
+                    if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
+                }
+            }
+        }
+
+        // Use the active translation user regardless of which pane was
+        // right-clicked so the recipient lands on the same translation.
+        var user = GetTranslationUser?.Invoke();
+        if (!string.IsNullOrWhiteSpace(fromLb))
+            highlight = null;
+
+        string text;
+        if (isReddit)
+        {
+            text = ZenUriParser.BuildShareableUrl(relPath, fromLb, toLb, highlight, side, user: user);
+        }
+        else
+        {
+            text = ZenUriParser.BuildUri(relPath, fromLb, toLb, highlight, side, user: user);
+        }
+
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard != null)
+            await top.Clipboard.SetTextAsync(text);
+        Say(isReddit ? "Reddit link copied to clipboard." : "Link copied to clipboard.");
     }
 
     private async Task OnAddToScholarCollectionAsync(bool isTranslated)
@@ -795,6 +797,17 @@ public partial class ReadableTabView : UserControl
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
         AddHandler(InputElement.KeyUpEvent, OnCodingKeyUp_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
 
+        // Find bar (Ctrl+F)
+        AddHandler(InputElement.KeyDownEvent, OnFindKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
+        if (_btnFindClose != null) _btnFindClose.Click += (_, _) => CloseFindBar();
+        if (_btnFindNext != null) _btnFindNext.Click += (_, _) => FindNext();
+        if (_btnFindPrev != null) _btnFindPrev.Click += (_, _) => FindPrev();
+        if (_txtFindInput != null)
+        {
+            _txtFindInput.TextChanged += (_, _) => OnFindTextChanged();
+            _txtFindInput.KeyDown += OnFindInputKeyDown;
+        }
+
         RewireButtons();
     }
 
@@ -896,10 +909,10 @@ public partial class ReadableTabView : UserControl
         int tranSelE = GetSelectionEndSafe(_aeTran);
 
         _syncingSelection = true;
-        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
-        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
-        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-        _suppressMirrorForMarkerClickUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
+        _suppressMirrorForMarkerClickUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
 
         try
         {
@@ -947,18 +960,8 @@ public partial class ReadableTabView : UserControl
             }
             catch { }
 
-            // Restore scroll offsets twice: once on Background, then again on Render
-            // (AvaloniaEdit may adjust scroll to keep caret visible during layout/render.)
-            Dispatcher.UIThread.Post(() =>
-            {
-                try
-                {
-                    SetScrollOffsetSafe(origSv, origOff);
-                    SetScrollOffsetSafe(tranSv, tranOff);
-                }
-                catch { }
-            }, DispatcherPriority.Background);
-
+            // Restore scroll offsets on Render priority (fires after layout,
+            // so AvaloniaEdit won't overwrite the position).
             Dispatcher.UIThread.Post(() =>
             {
                 try
@@ -1058,18 +1061,11 @@ public partial class ReadableTabView : UserControl
         // --- lb-based navigation (preferred for deep links with from/to params) ---
         if (!string.IsNullOrEmpty(request.FromLb))
         {
-            System.Diagnostics.Debug.WriteLine($"[DeepLink] FromLb={request.FromLb}, ToLb={request.ToLb}");
-            System.Diagnostics.Debug.WriteLine($"[DeepLink] Doc has {doc.Segments.Count} segments, text length={doc.Text?.Length ?? 0}");
-            // Dump first 10 segment keys for debugging
-            for (int i = 0; i < Math.Min(10, doc.Segments.Count); i++)
-                System.Diagnostics.Debug.WriteLine($"[DeepLink]   Segment[{i}]: Key={doc.Segments[i].Key} Start={doc.Segments[i].Start}");
-
             var (lbStart, lbLength) = ResolveLbRange(doc, request.FromLb, request.ToLb);
-            System.Diagnostics.Debug.WriteLine($"[DeepLink] ResolveLbRange result: start={lbStart}, length={lbLength}");
             if (lbStart >= 0 && lbLength > 0)
             {
                 _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
-                _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+                _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
 
                 int lbDocLen = editor.Document.TextLength;
                 int lbSafeStart = Math.Clamp(lbStart, 0, Math.Max(0, lbDocLen - 1));
@@ -1122,7 +1118,7 @@ public partial class ReadableTabView : UserControl
 
         // Suppress selection-mirror during our programmatic move
         _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
-        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(700);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
 
         int docLen = editor.Document.TextLength;
         int safeStart = Math.Clamp(hit.start, 0, Math.Max(0, docLen - 1));
@@ -2717,9 +2713,9 @@ public partial class ReadableTabView : UserControl
         _vm.PendingRefresh = true;
         _vm.PendingSinceUtc = DateTime.UtcNow;
 
-        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
-        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(900);
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
 
         if (_btnAddCommunityNote != null) _btnAddCommunityNote.IsEnabled = false;
         if (_btnDeleteCommunityNote != null) _btnDeleteCommunityNote.IsEnabled = false;
@@ -4863,6 +4859,249 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (string.IsNullOrEmpty(s) || count <= 0) return "";
         return s.Length <= count ? s : s[^count..];
+    }
+
+    // =========================
+    // Find bar (Ctrl+F)
+    // =========================
+
+    private void OnFindKeyDown_Tunnel(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.F && e.KeyModifiers == KeyModifiers.Control)
+        {
+            OpenFindBar();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Escape && _findBar is { IsVisible: true })
+        {
+            CloseFindBar();
+            e.Handled = true;
+        }
+    }
+
+    private void OnFindInputKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            if (e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+                FindPrev();
+            else
+                FindNext();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Escape)
+        {
+            CloseFindBar();
+            e.Handled = true;
+        }
+    }
+
+    private void OpenFindBar()
+    {
+        if (_findBar == null || _txtFindInput == null) return;
+        _findBar.IsVisible = true;
+        _txtFindInput.Focus();
+        _txtFindInput.SelectAll();
+    }
+
+    private void CloseFindBar()
+    {
+        if (_findBar != null) _findBar.IsVisible = false;
+        ClearFindHighlights();
+        // Return focus to original editor
+        _aeOrig?.Focus();
+    }
+
+    private void OnFindTextChanged()
+    {
+        var query = _txtFindInput?.Text;
+        if (string.IsNullOrEmpty(query))
+        {
+            ClearFindHighlights();
+            return;
+        }
+
+        _findMatches.Clear();
+        _findCurrentIndex = -1;
+
+        // Search in original pane
+        CollectMatches(query, _aeOrig, isTranslated: false);
+        // Search in translated pane
+        CollectMatches(query, _aeTran, isTranslated: true);
+
+        // Sort: original pane first, then by position
+        _findMatches.Sort((a, b) =>
+        {
+            int c = a.IsTranslated.CompareTo(b.IsTranslated);
+            return c != 0 ? c : a.Start.CompareTo(b.Start);
+        });
+
+        // Update transformers
+        UpdateFindHighlightRanges();
+
+        if (_findMatches.Count > 0)
+        {
+            _findCurrentIndex = 0;
+            ScrollToCurrentMatch();
+        }
+
+        UpdateFindCountText();
+    }
+
+    private void CollectMatches(string query, TextEditor? editor, bool isTranslated)
+    {
+        if (editor?.Document == null) return;
+        var text = editor.Document.Text;
+        if (string.IsNullOrEmpty(text)) return;
+
+        // Case-insensitive for Latin chars; exact for CJK
+        bool hasCjk = ContainsCjkFind(query);
+        var comparison = hasCjk ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+
+        int pos = 0;
+        while (pos <= text.Length - query.Length)
+        {
+            int idx = text.IndexOf(query, pos, comparison);
+            if (idx < 0) break;
+            _findMatches.Add((isTranslated, idx, query.Length));
+            pos = idx + 1; // allow overlapping matches
+        }
+    }
+
+    private static bool ContainsCjkFind(string s)
+    {
+        foreach (char c in s)
+        {
+            if (c >= 0x4E00 && c <= 0x9FFF) return true;  // CJK Unified
+            if (c >= 0x3400 && c <= 0x4DBF) return true;  // CJK Extension A
+            if (c >= 0xF900 && c <= 0xFAFF) return true;  // CJK Compatibility
+        }
+        return false;
+    }
+
+    private void UpdateFindHighlightRanges()
+    {
+        var origRanges = new List<(int Start, int Length, bool IsCurrent)>();
+        var tranRanges = new List<(int Start, int Length, bool IsCurrent)>();
+
+        for (int i = 0; i < _findMatches.Count; i++)
+        {
+            var m = _findMatches[i];
+            bool isCurrent = i == _findCurrentIndex;
+            if (m.IsTranslated)
+                tranRanges.Add((m.Start, m.Length, isCurrent));
+            else
+                origRanges.Add((m.Start, m.Length, isCurrent));
+        }
+
+        _findHighlightOrig?.SetRanges(origRanges);
+        _findHighlightTran?.SetRanges(tranRanges);
+
+        _aeOrig?.TextArea.TextView.Redraw();
+        _aeTran?.TextArea.TextView.Redraw();
+    }
+
+    private void FindNext()
+    {
+        if (_findMatches.Count == 0) return;
+        _findCurrentIndex = (_findCurrentIndex + 1) % _findMatches.Count;
+        UpdateFindHighlightRanges();
+        ScrollToCurrentMatch();
+        UpdateFindCountText();
+    }
+
+    private void FindPrev()
+    {
+        if (_findMatches.Count == 0) return;
+        _findCurrentIndex = (_findCurrentIndex - 1 + _findMatches.Count) % _findMatches.Count;
+        UpdateFindHighlightRanges();
+        ScrollToCurrentMatch();
+        UpdateFindCountText();
+    }
+
+    private void ScrollToCurrentMatch()
+    {
+        if (_findCurrentIndex < 0 || _findCurrentIndex >= _findMatches.Count) return;
+        var match = _findMatches[_findCurrentIndex];
+        var editor = match.IsTranslated ? _aeTran : _aeOrig;
+        if (editor?.Document == null) return;
+
+        // Move caret and scroll into view
+        editor.CaretOffset = Math.Min(match.Start, editor.Document.TextLength);
+        editor.TextArea.Caret.BringCaretToView();
+    }
+
+    private void UpdateFindCountText()
+    {
+        if (_txtFindCount == null) return;
+        if (_findMatches.Count == 0)
+        {
+            var hasQuery = !string.IsNullOrEmpty(_txtFindInput?.Text);
+            _txtFindCount.Text = hasQuery ? "No matches" : "";
+        }
+        else
+        {
+            _txtFindCount.Text = $"{_findCurrentIndex + 1} of {_findMatches.Count}";
+        }
+    }
+
+    private void ClearFindHighlights()
+    {
+        _findMatches.Clear();
+        _findCurrentIndex = -1;
+        _findHighlightOrig?.SetRanges(new List<(int, int, bool)>());
+        _findHighlightTran?.SetRanges(new List<(int, int, bool)>());
+        _aeOrig?.TextArea.TextView.Redraw();
+        _aeTran?.TextArea.TextView.Redraw();
+        if (_txtFindCount != null) _txtFindCount.Text = "";
+    }
+
+    /// <summary>
+    /// Highlights find matches in an AvaloniaEdit editor.
+    /// All matches get a yellow/gold background; the current match gets an orange background.
+    /// </summary>
+    private sealed class FindHighlightTransformer : DocumentColorizingTransformer
+    {
+        private List<(int Start, int Length, bool IsCurrent)> _ranges = new();
+
+        private static readonly IBrush MatchBrush = new SolidColorBrush(Color.FromArgb(100, 255, 215, 0));
+        private static readonly IBrush CurrentMatchBrush = new SolidColorBrush(Color.FromArgb(180, 255, 165, 0));
+
+        public void SetRanges(IEnumerable<(int Start, int Length, bool IsCurrent)> ranges)
+        {
+            _ranges = ranges.OrderBy(r => r.Start).ToList();
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            if (_ranges.Count == 0) return;
+            int lo = LowerBound(line.Offset);
+            for (int i = lo; i < _ranges.Count; i++)
+            {
+                var (start, length, isCurrent) = _ranges[i];
+                if (start >= line.Offset + line.Length) break;
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                var brush = isCurrent ? CurrentMatchBrush : MatchBrush;
+                ChangeLinePart(s, e, el =>
+                {
+                    el.TextRunProperties.SetBackgroundBrush(brush);
+                });
+            }
+        }
+
+        private int LowerBound(int lineStart)
+        {
+            int lo = 0, hi = _ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (_ranges[mid].Start + _ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
+        }
     }
 }
 
