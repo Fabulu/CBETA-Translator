@@ -27,11 +27,36 @@
 		</Style>
 	</UserControl.Styles>
 
-	<!-- Find bar row removed -->
-	<Grid RowDefinitions="Auto,*,Auto">
+	<Grid RowDefinitions="Auto,Auto,*,Auto">
 
-		<!-- Row 0: top action bar -->
-		<DockPanel Grid.Row="0"
+		<!-- Row 0: Find bar (hidden by default, toggled with Ctrl+F) -->
+		<Border Name="FindBar" Grid.Row="0" IsVisible="False"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="6,4"
+				Margin="0,0,0,4">
+			<DockPanel LastChildFill="True">
+				<Button Name="BtnFindClose" Content="✕" Padding="6,2" FontSize="11"
+						DockPanel.Dock="Right" Focusable="False" Margin="4,0,0,0"
+						ToolTip.Tip="Close find bar (Escape)"/>
+				<TextBlock Name="TxtFindCount" Text="" DockPanel.Dock="Right"
+						   VerticalAlignment="Center" FontSize="11" Opacity="0.7"
+						   Margin="8,0,4,0"/>
+				<Button Name="BtnFindNext" Content="▼" Padding="6,2" FontSize="11"
+						DockPanel.Dock="Right" Focusable="False" Margin="2,0,0,0"
+						ToolTip.Tip="Next match (Enter)"/>
+				<Button Name="BtnFindPrev" Content="▲" Padding="6,2" FontSize="11"
+						DockPanel.Dock="Right" Focusable="False" Margin="4,0,0,0"
+						ToolTip.Tip="Previous match (Shift+Enter)"/>
+				<TextBox Name="TxtFindInput" Watermark="Find in text…"
+						 FontSize="12" Padding="6,3" Margin="0,0,4,0"/>
+			</DockPanel>
+		</Border>
+
+		<!-- Row 1: top action bar -->
+		<DockPanel Grid.Row="1"
 				   Margin="0,0,0,8"
 				   LastChildFill="True">
 
@@ -108,8 +133,8 @@
 			<Border/>
 		</DockPanel>
 
-		<!-- Row 1: two readable panes + study panel + empty state overlay -->
-		<Grid Grid.Row="1">
+		<!-- Row 2: two readable panes + study panel + empty state overlay -->
+		<Grid Grid.Row="2">
 			<Grid Name="ReaderOuterGrid" ColumnDefinitions="*,0,0">
 				<!-- Column 0: existing two-pane content -->
 				<Grid Grid.Column="0">
@@ -155,6 +180,7 @@
 
 					<!-- Empty state overlay -->
 					<Border Name="ReadableEmptyState" IsVisible="True"
+							IsHitTestVisible="True"
 							Background="{DynamicResource AppBg}"
 							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
@@ -251,10 +277,10 @@
 			</Grid>
 		</Grid>
 
-		<!-- Row 2: coding mode bar + notes panel -->
+		<!-- Row 3: coding mode bar + notes panel -->
 
 		<!-- Coding Mode toggle button - always visible -->
-		<StackPanel Grid.Row="2" Orientation="Vertical" Spacing="0">
+		<StackPanel Grid.Row="3" Orientation="Vertical" Spacing="0">
 
 			<!-- Code bar - visible only in coding mode -->
 			<Border Name="CodeBarPanel" IsVisible="False"
