@@ -1,4 +1,5 @@
 // Views/SettingsWindow.axaml.cs
+using System.Reflection;
 using Avalonia.Controls;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
@@ -16,6 +17,16 @@ public partial class SettingsWindow : Window
         var vm = new SettingsWindowViewModel(config);
         vm.CloseRequested = result => Close(result);
         DataContext = vm;
+
+        var verBlock = this.FindControl<TextBlock>("TxtAppVersion");
+        if (verBlock != null)
+        {
+            var asm = System.Reflection.Assembly.GetEntryAssembly() ?? System.Reflection.Assembly.GetExecutingAssembly();
+            var ver = asm.GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion
+                      ?? asm.GetName().Version?.ToString()
+                      ?? "unknown";
+            verBlock.Text = $"Version {ver}";
+        }
 
         var supportLink = this.FindControl<TextBlock>("BtnSupportSettings");
         if (supportLink != null)

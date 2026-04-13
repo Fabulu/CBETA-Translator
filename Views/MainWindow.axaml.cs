@@ -197,6 +197,33 @@ public partial class MainWindow : Window
     /// <summary>
     /// Routes a non-passage deep link to the appropriate tab/handler.
     /// </summary>
+    public void ShowUpdateNotification(string version, string url)
+    {
+        var bar = Find<Border>("UpdateBar");
+        var msg = Find<TextBlock>("TxtUpdateMessage");
+        var download = Find<Button>("BtnDownloadUpdate");
+        var dismiss = Find<Button>("BtnDismissUpdate");
+
+        if (bar == null || msg == null) return;
+
+        msg.Text = $"ReadZen v{version} is available";
+        bar.IsVisible = true;
+
+        if (download != null)
+        {
+            download.Click += (_, _) =>
+            {
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); }
+                catch { }
+            };
+        }
+
+        if (dismiss != null)
+        {
+            dismiss.Click += (_, _) => bar.IsVisible = false;
+        }
+    }
+
     public async Task HandleDeepLinkAsync(DeepLinkRequest request)
 {
     await _windowReady.Task;
