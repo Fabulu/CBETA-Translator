@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -51,7 +52,51 @@ public partial class App : Application
             }, DispatcherPriority.Background);
         }
 
+        // Non-blocking update check
+        _ = CheckForUpdateAsync();
+
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private async System.Threading.Tasks.Task CheckForUpdateAsync()
+    {
+        try
+        {
+            await System.Threading.Tasks.Task.Delay(5000); // Don't slow down startup
+            using var http = new System.Net.Http.HttpClient();
+            http.DefaultRequestHeaders.UserAgent.ParseAdd("ReadZen-UpdateCheck/1.0");
+            var json = await http.GetStringAsync("https://api.github.com/repos/Fabulu/ReadZen/releases/latest");
+
+            var tagMatch = System.Text.RegularExpressions.Regex.Match(json, "\"tag_name\"\\s*:\\s*\"v?([^\"]+)\"");
+            var urlMatch = System.Text.RegularExpressions.Regex.Match(json, "\"html_url\"\\s*:\\s*\"([^\"]+)\"");
+            if (!tagMatch.Success) return;
+
+            var latestVersion = tagMatch.Groups[1].Value;
+            var releaseUrl = urlMatch.Success ? urlMatch.Groups[1].Value : "https://github.com/Fabulu/ReadZen/releases";
+
+            var currentVersion = (System.Reflection.Assembly.GetEntryAssembly() ?? System.Reflection.Assembly.GetExecutingAssembly())
+                .GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
+
+            // Strip +metadata and -prerelease suffixes for comparison
+            var current = currentVersion.Split('+')[0].Split('-')[0];
+            var latest = latestVersion.Split('+')[0].Split('-')[0];
+
+            if (string.Compare(latest, current, StringComparison.OrdinalIgnoreCase) > 0)
+            {
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                        && desktop.MainWindow is Views.MainWindow mainWin)
+                    {
+                        mainWin.ShowUpdateNotification(latestVersion, releaseUrl);
+                    }
+                });
+            }
+        }
+        catch
+        {
+            // Never crash on update check failure -- network may be unavailable
+        }
     }
 
     private void SetupPipeListener()

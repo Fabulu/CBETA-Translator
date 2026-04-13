@@ -9,17 +9,31 @@
         Height="900"
         Title="Read Zen">
 
-    <Grid RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- Update notification bar (hidden by default) -->
+        <Border Name="UpdateBar" Grid.Row="0" IsVisible="False"
+                Background="#DFF0D8" Padding="8,4">
+            <DockPanel>
+                <Button Name="BtnDismissUpdate" DockPanel.Dock="Right" Content="&#x2715;"
+                        Background="Transparent" BorderThickness="0" FontSize="12"
+                        Padding="4,0" Cursor="Hand"/>
+                <Button Name="BtnDownloadUpdate" DockPanel.Dock="Right" Content="Download"
+                        FontSize="11" Padding="8,2" Margin="8,0" Cursor="Hand"/>
+                <TextBlock Name="TxtUpdateMessage" VerticalAlignment="Center"
+                           FontSize="11" Foreground="#3C763D"/>
+            </DockPanel>
+        </Border>
 
         <Canvas Name="TourOverlayCanvas"
-                Grid.RowSpan="3"
+                Grid.RowSpan="4"
                 ZIndex="1000"
                 IsVisible="False">
             <views:TourSpotlightOverlay Name="TourSpotlight"/>
             <views:TourTooltipPanel Name="TourTooltip"/>
         </Canvas>
 
-        <Border Grid.Row="0"
+        <Border Grid.Row="1"
                 Name="TopBar"
                 Background="{DynamicResource BarBg}"
                 Padding="8,4,8,4">
@@ -146,7 +160,7 @@
             </StackPanel>
         </Border>
 
-        <Grid Grid.Row="1" ColumnDefinitions="Auto,*">
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*">
             <Border Name="NavPanel"
                     Grid.Column="0"
                     Background="{DynamicResource NavBg}"
@@ -274,7 +288,7 @@
             </Border>
         </Grid>
 
-        <Border Grid.Row="2"
+        <Border Grid.Row="3"
                 Background="{DynamicResource BarBg}"
                 Padding="8">
             <DockPanel LastChildFill="True">
