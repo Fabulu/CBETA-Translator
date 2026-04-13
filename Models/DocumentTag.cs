@@ -16,4 +16,5 @@ public sealed class DocumentTag
     public string? CreatedBy { get; set; }
     public DateTimeOffset CreatedUtc { get; set; }
     public DateTimeOffset? ModifiedUtc { get; set; }
+    public string? Memo { get; set; }
 }

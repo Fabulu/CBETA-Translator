@@ -987,7 +987,13 @@ private async Task LoadConfigAndAutoloadAsync()
 
             _readableView.CompareTagsRequested += (_, data) =>
             {
-                OpenCompareTagsWindow(data);
+                // Enrich with community root and resolver username for consensus workflow
+                var enriched = data with
+                {
+                    CommunityRoot = _vm.TranslationRoot ?? _vm.Root ?? "",
+                    ResolverUsername = _vm.Config.Username ?? ""
+                };
+                OpenCompareTagsWindow(enriched);
             };
 
             _readableView.CompareTranslationsRequested += (_, _) =>
@@ -1619,7 +1625,9 @@ private async Task LoadConfigAndAutoloadAsync()
                 data.MyVocab,
                 data.OtherUsername,
                 data.OtherTags,
-                data.OtherVocab);
+                data.OtherVocab,
+                data.CommunityRoot,
+                data.ResolverUsername);
             win.Show(this);
         }
         catch (Exception ex)

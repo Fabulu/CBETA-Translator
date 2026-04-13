@@ -14,4 +14,6 @@ public sealed record CompareTagsRequestData(
     TagVocabulary? MyVocab,
     string OtherUsername,
     List<DocumentTag> OtherTags,
-    TagVocabulary? OtherVocab);
+    TagVocabulary? OtherVocab,
+    string CommunityRoot = "",
+    string ResolverUsername = "");

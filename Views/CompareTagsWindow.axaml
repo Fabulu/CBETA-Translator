@@ -3,9 +3,9 @@
         xmlns:ae="https://github.com/avaloniaui/avaloniaedit"
         x:Class="ReadZen.App.Views.CompareTagsWindow"
         Title="Compare Tags"
-        Width="1200" Height="700"
+        Width="1200" Height="800"
         WindowStartupLocation="CenterOwner">
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*,Auto,Auto,Auto">
         <!-- Header: shows file name and user names -->
         <DockPanel Grid.Row="0" Margin="8">
             <TextBlock Name="TxtHeader" FontWeight="Bold" FontSize="14"
@@ -51,5 +51,41 @@
                 </Grid>
             </Border>
         </Grid>
+
+        <!-- Metrics panel -->
+        <Border Grid.Row="2" Margin="8,4" Padding="8" CornerRadius="4"
+                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+            <StackPanel Name="PanelMetrics" Spacing="4">
+                <TextBlock Name="TxtOverallMetrics" FontWeight="SemiBold" FontSize="13"
+                           Text="Agreement metrics will appear here after loading."/>
+                <WrapPanel Name="WrapPerCode"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Memo preview -->
+        <Border Grid.Row="3" Margin="8,2" Padding="6" CornerRadius="4"
+                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
+                IsVisible="False" Name="BorderMemoPreview">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+                <TextBlock Text="Memo:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock Name="TxtMemoPreview" TextWrapping="Wrap" VerticalAlignment="Center"
+                           Foreground="{DynamicResource SystemControlForegroundBaseMediumHighBrush}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Consensus disagreements expander -->
+        <Expander Grid.Row="4" Margin="8,4" Header="Disagreements and Consensus" IsExpanded="False"
+                  Name="ExpanderConsensus">
+            <Grid RowDefinitions="*,Auto" MaxHeight="250">
+                <ScrollViewer Grid.Row="0">
+                    <StackPanel Name="PanelDisagreements" Spacing="2"/>
+                </ScrollViewer>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="0,4,0,0" Spacing="8">
+                    <Button Name="BtnApplyConsensus" Content="Save Resolutions"
+                            IsEnabled="False" Classes="accent"/>
+                </StackPanel>
+            </Grid>
+        </Expander>
     </Grid>
 </Window>
