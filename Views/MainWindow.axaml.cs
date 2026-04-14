@@ -1077,7 +1077,11 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_translationView != null)
         {
             _translationView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
-            _translationView.SaveRequested += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
+            _translationView.SaveRequested += async (_, _) =>
+            {
+                await _vm.SaveTranslatedFromTabAsync();
+                await PromptLicenseIfNeededAsync();
+            };
             _translationView.FreshStartRequested += async (_, _) => await _vm.ResetTranslatedToUntranslatedAsync();
             _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
             _translationView.HistoryRequested += async (_, _) => await OpenTranslationHistoryAsync();
@@ -1856,6 +1860,67 @@ private async Task LoadConfigAndAutoloadAsync()
     /// Shows a picker dialog for two translation sources, then opens a 3-pane comparison window
     /// with the original Chinese text and both selected translations.
     /// </summary>
+    // ── Translation Licensing ─────────────────────────────────────────
+
+    private readonly TranslationLicenseService _licenseService = new();
+    private bool _licenseServiceLoaded;
+
+    private async Task PromptLicenseIfNeededAsync()
+    {
+        try
+        {
+            if (_vm.CurrentRelPath == null || _vm.TranslationRoot == null) return;
+
+            var username = _vm.Config.GitHubUsername ?? _vm.Config.Username;
+            if (string.IsNullOrWhiteSpace(username)) return;
+
+            // Lazy-load the license service
+            if (!_licenseServiceLoaded)
+            {
+                await _licenseService.LoadUserLicensesAsync(_vm.TranslationRoot, username);
+                _licenseServiceLoaded = true;
+            }
+
+            // Already has a license for this file? Skip.
+            var existing = _licenseService.GetLicense(_vm.CurrentRelPath);
+            if (existing?.License != null) return;
+
+            // CBETA auto-applies NC — no prompt needed
+            if (_vm.ActiveCorpus == CorpusKind.Cbeta) return;
+
+            // Get source license info
+            var sourceLicense = _vm.GetLicenseForCurrentFile();
+            var sourceLicenseId = sourceLicense?.ShortLabel;
+
+            var dialog = new TranslationLicenseDialog();
+            dialog.Load(sourceLicenseId, _vm.ActiveCorpus, sourceLicenseId);
+            await dialog.ShowDialog(this);
+
+            if (dialog.ChosenLicense != null)
+            {
+                var info = new Models.TranslationLicenseInfo
+                {
+                    RelPath = _vm.CurrentRelPath,
+                    License = dialog.ChosenLicense.Id,
+                    LicenseUrl = dialog.ChosenLicense.Url,
+                    CopyrightHolder = username,
+                    Username = username,
+                    CommercialUseAllowed = dialog.ChosenLicense.CommercialOk,
+                    AttributionRequired = dialog.ChosenLicense.AttributionRequired,
+                    ShareAlikeRequired = dialog.ChosenLicense.ShareAlikeRequired,
+                };
+                await _licenseService.SaveLicenseAsync(_vm.TranslationRoot, username, info);
+                _vm.SetStatus($"License set: {dialog.ChosenLicense.DisplayName}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"License prompt: {ex.Message}");
+        }
+    }
+
+    // ── Time Travel (Reader) ────────────────────────────────────────
+
     private async Task PopulateReaderVersionPickerAsync()
     {
         try

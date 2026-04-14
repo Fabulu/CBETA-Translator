@@ -1616,7 +1616,8 @@ public partial class GitTabViewModel : ViewModelBase
                 "community/collections/*.jsonl merge=union",
                 "community/reviews/*.jsonl merge=union",
                 "community/master-dates/*.jsonl merge=union",
-                "community/tags/*.jsonl merge=union"
+                "community/tags/*.jsonl merge=union",
+                "community/translation-licenses/*.jsonl merge=union"
             };
             string gitattribContent = File.Exists(gitattribPath)
                 ? await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct)
