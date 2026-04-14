@@ -387,6 +387,8 @@ public partial class CompareTranslationsWindow : Window
     private string? _repoRelPathB;
     private RenderedDocument? _originalDocA;
     private RenderedDocument? _originalDocB;
+    private EventHandler<SelectionChangedEventArgs>? _versionHandlerA;
+    private EventHandler<SelectionChangedEventArgs>? _versionHandlerB;
 
     /// <summary>
     /// Enables version pickers for both translation panes.
@@ -408,18 +410,24 @@ public partial class CompareTranslationsWindow : Window
         var cmbA = this.FindControl<ComboBox>("CmbVersionA");
         var cmbB = this.FindControl<ComboBox>("CmbVersionB");
 
+        // Detach any previous handlers (defensive — in case called more than once)
+        if (cmbA != null) cmbA.SelectionChanged -= _versionHandlerA;
+        if (cmbB != null) cmbB.SelectionChanged -= _versionHandlerB;
+
         if (cmbA != null && !string.IsNullOrEmpty(repoRelPathA))
         {
             var commitsA = await git.GetFileLogAsync(repoDir, repoRelPathA, 30);
             PopulateVersionCombo(cmbA, commitsA);
-            cmbA.SelectionChanged += async (_, _) => await OnVersionChanged(cmbA, _repoRelPathA, _edTransA, _originalDocA, a => _docTransA = a);
+            _versionHandlerA = async (_, _) => await OnVersionChanged(cmbA, _repoRelPathA, _edTransA, _originalDocA, a => _docTransA = a);
+            cmbA.SelectionChanged += _versionHandlerA;
         }
 
         if (cmbB != null && !string.IsNullOrEmpty(repoRelPathB))
         {
             var commitsB = await git.GetFileLogAsync(repoDir, repoRelPathB, 30);
             PopulateVersionCombo(cmbB, commitsB);
-            cmbB.SelectionChanged += async (_, _) => await OnVersionChanged(cmbB, _repoRelPathB, _edTransB, _originalDocB, b => _docTransB = b);
+            _versionHandlerB = async (_, _) => await OnVersionChanged(cmbB, _repoRelPathB, _edTransB, _originalDocB, b => _docTransB = b);
+            cmbB.SelectionChanged += _versionHandlerB;
         }
     }
 

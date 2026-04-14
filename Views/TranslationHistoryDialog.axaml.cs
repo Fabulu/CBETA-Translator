@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using ReadZen.App.Models;
@@ -55,6 +56,22 @@ public partial class TranslationHistoryDialog : Window
         string repoDir,
         string relPath,
         string? displayFileName = null)
+    {
+        try
+        {
+            await LoadHistoryCore(git, repoDir, relPath, displayFileName);
+        }
+        catch (Exception ex)
+        {
+            _txtPreviewHeader.Text = $"Error: {ex.Message}";
+        }
+    }
+
+    private async Task LoadHistoryCore(
+        IGitRepoService git,
+        string repoDir,
+        string relPath,
+        string? displayFileName)
     {
         _git = git;
         _repoDir = repoDir;
