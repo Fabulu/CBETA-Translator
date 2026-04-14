@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.DocumentVariablesWindow"
+        x:CompileBindings="False"
+        Title="Document Variables"
+        Width="800" Height="600"
+        WindowStartupLocation="CenterOwner">
+    <Grid RowDefinitions="Auto,*,Auto,Auto">
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8" Spacing="8">
+            <TextBlock Text="Variable Name:" VerticalAlignment="Center"/>
+            <TextBox Name="TxtVariableName" Width="200" Watermark="e.g. genre, period"/>
+            <Button Name="BtnAddVariable" Content="Add to Selected" Padding="8,4"/>
+        </StackPanel>
+
+        <!-- Variable list -->
+        <ListBox Name="VariableList" Grid.Row="1" Margin="8">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="2*,*,*">
+                        <TextBlock Grid.Column="0" Text="{Binding RelPath}" Margin="4,2"/>
+                        <TextBlock Grid.Column="1" Text="{Binding VariableName}" Margin="4,2"/>
+                        <TextBlock Grid.Column="2" Text="{Binding VariableValue}" Margin="4,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Cross-tab controls -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="8" Spacing="8">
+            <TextBlock Text="Cross-tabulate by:" VerticalAlignment="Center"/>
+            <ComboBox Name="CmbCrossTabVar" Width="200" PlaceholderText="Select variable name"/>
+            <Button Name="BtnCrossTab" Content="Cross-Tabulate" Padding="8,4"/>
+        </StackPanel>
+
+        <!-- Bottom buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="8" Spacing="8">
+            <Button Name="BtnSave" Content="Save" Padding="12,6" Classes="accent"/>
+            <Button Name="BtnClose" Content="Close" Padding="12,6"/>
+        </StackPanel>
+    </Grid>
+</Window>

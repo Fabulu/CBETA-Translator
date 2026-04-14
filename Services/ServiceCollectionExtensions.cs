@@ -42,6 +42,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IGrammarReferenceService, GrammarReferenceService>();
         services.AddSingleton<IMasterDatesService, MasterDatesService>();
         services.AddSingleton<OnboardingTourService>();
+        services.AddSingleton<IDocumentVariableService, DocumentVariableService>();
         return services;
     }
 }
