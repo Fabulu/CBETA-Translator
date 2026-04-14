@@ -57,11 +57,15 @@ public sealed class WitnessTextEntry
     [JsonPropertyName("confidence")]
     public string? Confidence { get; set; }
 
+    /// <summary>Alignment mode: "direct_locus", "locus_to_span", "page_line_map".</summary>
+    [JsonPropertyName("alignment_mode")]
+    public string? AlignmentMode { get; set; }
+
     /// <summary>Whether a locus map exists for this witness.</summary>
     [JsonPropertyName("has_locus_map")]
     public bool HasLocusMap { get; set; }
 
-    /// <summary>Relative path to the locus map JSON file (locus_id → text).</summary>
+    /// <summary>Relative path to the locus map JSON file.</summary>
     [JsonPropertyName("locus_map_file")]
     public string? LocusMapFile { get; set; }
 

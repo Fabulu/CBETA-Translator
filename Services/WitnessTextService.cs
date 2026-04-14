@@ -54,6 +54,30 @@ public sealed class WitnessTextService
     }
 
     /// <summary>
+    /// Loads a witness's locus map companion file (.loci.json).
+    /// </summary>
+    public WitnessLocusMap? TryLoadLocusMap(string xmlAbsPath, WitnessTextEntry witness)
+    {
+        if (string.IsNullOrWhiteSpace(xmlAbsPath) || string.IsNullOrWhiteSpace(witness.LocusMapFile))
+            return null;
+
+        string? dir;
+        try { dir = Path.GetDirectoryName(xmlAbsPath); }
+        catch { return null; }
+        if (string.IsNullOrEmpty(dir)) return null;
+
+        var filePath = Path.Combine(dir, witness.LocusMapFile);
+        if (!File.Exists(filePath)) return null;
+
+        try
+        {
+            var json = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<WitnessLocusMap>(json);
+        }
+        catch { return null; }
+    }
+
+    /// <summary>
     /// Gets the reading for a specific witness at a specific locus.
     /// Returns null if the witness doesn't have a reading for that locus.
     /// </summary>
