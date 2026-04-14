@@ -30,15 +30,27 @@
                 <Grid RowDefinitions="Auto,Auto,*">
                     <!-- Slider + controls -->
                     <DockPanel Grid.Row="0" Margin="8,8,8,0">
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="4">
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="2">
+                            <Button Name="BtnBack50" Content="-50" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Back 50 events" Opacity="0.7"/>
+                            <Button Name="BtnBack10" Content="-10" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Back 10 events" Opacity="0.7"/>
+                            <Button Name="BtnBack5" Content="-5" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Back 5 events" Opacity="0.7"/>
                             <Button Name="BtnTimelinePrev" Content="&#x25C0;" Padding="6,2" FontSize="11"
                                     ToolTip.Tip="Previous event"/>
                             <Button Name="BtnTimelineNext" Content="&#x25B6;" Padding="6,2" FontSize="11"
                                     ToolTip.Tip="Next event"/>
+                            <Button Name="BtnFwd5" Content="+5" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Forward 5 events" Opacity="0.7"/>
+                            <Button Name="BtnFwd10" Content="+10" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Forward 10 events" Opacity="0.7"/>
+                            <Button Name="BtnFwd50" Content="+50" Padding="4,2" FontSize="9"
+                                    ToolTip.Tip="Forward 50 events" Opacity="0.7"/>
                             <ComboBox Name="CmbTimelineStage" MinWidth="130" FontSize="11"
-                                      ToolTip.Tip="Jump to stage"/>
+                                      ToolTip.Tip="Jump to stage" Margin="4,0,0,0"/>
                             <CheckBox Name="ChkTextChangesOnly" Content="Text changes only"
-                                      FontSize="11" VerticalAlignment="Center"/>
+                                      FontSize="11" VerticalAlignment="Center" Margin="4,0,0,0"/>
                         </StackPanel>
                         <Slider Name="SliderTimeline" Minimum="0" Maximum="1"
                                 IsSnapToTickEnabled="True" TickFrequency="1"

@@ -589,6 +589,23 @@ public partial class EditionProcessDialog : Window
             if (slider != null && slider.Value < slider.Maximum) slider.Value++;
         };
 
+        // Multi-step buttons
+        void WireStep(string name, int delta)
+        {
+            var btn = this.FindControl<Button>(name);
+            if (btn != null) btn.Click += (_, _) =>
+            {
+                if (slider == null) return;
+                slider.Value = Math.Clamp(slider.Value + delta, 0, slider.Maximum);
+            };
+        }
+        WireStep("BtnBack50", -50);
+        WireStep("BtnBack10", -10);
+        WireStep("BtnBack5", -5);
+        WireStep("BtnFwd5", 5);
+        WireStep("BtnFwd10", 10);
+        WireStep("BtnFwd50", 50);
+
         // Stage jump combo
         var cmbStage = this.FindControl<ComboBox>("CmbTimelineStage");
         if (cmbStage != null)
