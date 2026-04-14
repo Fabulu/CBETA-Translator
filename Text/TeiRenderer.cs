@@ -879,6 +879,7 @@ public static class TeiRenderer
         if (id.StartsWith("nkr_note_prov_", StringComparison.Ordinal)) return "prov";
         if (id.StartsWith("nkr_note_trans_", StringComparison.Ordinal)) return "trans";
         if (id.StartsWith("nkr_note_unres_", StringComparison.Ordinal)) return "unres";
+        if (id.StartsWith("nkr_note_proc_", StringComparison.Ordinal)) return "proc";
 
         return null;
     }

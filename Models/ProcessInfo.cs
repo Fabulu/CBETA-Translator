@@ -36,6 +36,19 @@ public sealed class ProcessInfo
     [JsonPropertyName("unresolved_loci")]
     public List<UnresolvedLocusInfo>? UnresolvedLoci { get; set; }
 
+    // Timeline + log integration (added by timeline-provenance spec)
+    [JsonPropertyName("current_stage")]
+    public string? CurrentStage { get; set; }
+
+    [JsonPropertyName("edition_maturity")]
+    public string? EditionMaturity { get; set; }
+
+    [JsonPropertyName("timeline_file")]
+    public string? TimelineFile { get; set; }
+
+    [JsonPropertyName("human_log_file")]
+    public string? HumanLogFile { get; set; }
+
     [JsonPropertyName("publication_checks")]
     public PublicationChecks? PublicationChecks { get; set; }
 }

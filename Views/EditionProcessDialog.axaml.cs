@@ -32,13 +32,19 @@ public partial class EditionProcessDialog : Window
     /// <summary>
     /// Loads all edition data and populates the dialog tabs.
     /// </summary>
+    private List<TimelineEvent> _timelineEvents = new();
+    private List<TimelineEvent> _filteredEvents = new();
+    private int _timelineIndex;
+
     public void Load(
         ManifestInfo manifest,
         string? xmlAbsPath,
         ProcessService? processService,
         ApparatusService? apparatusService,
         EditionStatsService? statsService,
-        DocumentsService? documentsService)
+        DocumentsService? documentsService,
+        TimelineService? timelineService = null,
+        HumanLogService? humanLogService = null)
     {
         // Header
         var txtTitle = this.FindControl<TextBlock>("TxtDialogTitle");
@@ -58,6 +64,8 @@ public partial class EditionProcessDialog : Window
         ApparatusInfo? apparatus = null;
         EditionStatsInfo? stats = null;
         DocumentsInfo? documents = null;
+        TimelineInfo? timeline = null;
+        string? humanLog = null;
 
         if (xmlAbsPath != null)
         {
@@ -65,9 +73,13 @@ public partial class EditionProcessDialog : Window
             apparatus = apparatusService?.TryLoad(xmlAbsPath);
             stats = statsService?.TryLoad(xmlAbsPath);
             documents = documentsService?.TryLoad(xmlAbsPath);
+            timeline = timelineService?.TryLoad(xmlAbsPath);
+            humanLog = humanLogService?.TryLoad(xmlAbsPath);
         }
 
         PopulateSources(manifest);
+        PopulateTimeline(timeline);
+        PopulateLog(humanLog);
         PopulateProcess(process, manifest);
         PopulateApparatus(apparatus);
         PopulateStats(stats);
@@ -536,6 +548,186 @@ public partial class EditionProcessDialog : Window
         catch { }
 
         return result;
+    }
+
+    // ── Timeline tab ────────────────────────────────────────────────────
+
+    private void PopulateTimeline(TimelineInfo? timeline)
+    {
+        if (timeline?.Events == null || timeline.Events.Count == 0)
+        {
+            var host = this.FindControl<StackPanel>("TimelineDetailsHost");
+            host?.Children.Add(MakeEmptyState("No timeline events available for this text."));
+            return;
+        }
+
+        _timelineEvents = timeline.Events;
+        _filteredEvents = new List<TimelineEvent>(_timelineEvents);
+
+        // Set up slider
+        var slider = this.FindControl<Slider>("SliderTimeline");
+        if (slider != null)
+        {
+            slider.Maximum = _filteredEvents.Count - 1;
+            slider.Value = _filteredEvents.Count - 1; // start at latest
+            slider.ValueChanged += (_, _) =>
+            {
+                _timelineIndex = (int)slider.Value;
+                ShowTimelineEvent(_timelineIndex);
+            };
+        }
+
+        // Prev/Next buttons
+        var btnPrev = this.FindControl<Button>("BtnTimelinePrev");
+        var btnNext = this.FindControl<Button>("BtnTimelineNext");
+        if (btnPrev != null) btnPrev.Click += (_, _) =>
+        {
+            if (slider != null && slider.Value > 0) slider.Value--;
+        };
+        if (btnNext != null) btnNext.Click += (_, _) =>
+        {
+            if (slider != null && slider.Value < slider.Maximum) slider.Value++;
+        };
+
+        // Stage jump combo
+        var cmbStage = this.FindControl<ComboBox>("CmbTimelineStage");
+        if (cmbStage != null)
+        {
+            var stages = TimelineService.GetStages(_timelineEvents);
+            var items = new List<ComboBoxItem> { new() { Content = "(all stages)", Tag = (string?)null } };
+            foreach (var s in stages)
+                items.Add(new ComboBoxItem { Content = FormatStage(s), Tag = s });
+            cmbStage.ItemsSource = items;
+            cmbStage.SelectedIndex = 0;
+            cmbStage.SelectionChanged += (_, _) =>
+            {
+                var selected = (cmbStage.SelectedItem as ComboBoxItem)?.Tag as string;
+                ApplyTimelineFilter(selected);
+            };
+        }
+
+        // Text changes only checkbox
+        var chkText = this.FindControl<CheckBox>("ChkTextChangesOnly");
+        if (chkText != null)
+        {
+            chkText.IsCheckedChanged += (_, _) =>
+            {
+                var stageTag = (this.FindControl<ComboBox>("CmbTimelineStage")?.SelectedItem as ComboBoxItem)?.Tag as string;
+                ApplyTimelineFilter(stageTag);
+            };
+        }
+
+        // Show the latest event
+        ShowTimelineEvent(_filteredEvents.Count - 1);
+    }
+
+    private void ApplyTimelineFilter(string? stage)
+    {
+        var textOnly = this.FindControl<CheckBox>("ChkTextChangesOnly")?.IsChecked == true;
+        _filteredEvents = TimelineService.Filter(_timelineEvents, stage: stage, textChangingOnly: textOnly);
+
+        var slider = this.FindControl<Slider>("SliderTimeline");
+        if (slider != null)
+        {
+            slider.Maximum = Math.Max(_filteredEvents.Count - 1, 0);
+            slider.Value = slider.Maximum;
+        }
+
+        ShowTimelineEvent(_filteredEvents.Count > 0 ? _filteredEvents.Count - 1 : -1);
+    }
+
+    private void ShowTimelineEvent(int index)
+    {
+        var txtSummary = this.FindControl<TextBlock>("TxtEventSummary");
+        var txtMeta = this.FindControl<TextBlock>("TxtEventMeta");
+        var host = this.FindControl<StackPanel>("TimelineDetailsHost");
+
+        if (index < 0 || index >= _filteredEvents.Count)
+        {
+            if (txtSummary != null) txtSummary.Text = "No events match the current filter.";
+            if (txtMeta != null) txtMeta.Text = "";
+            host?.Children.Clear();
+            return;
+        }
+
+        var evt = _filteredEvents[index];
+
+        if (txtSummary != null) txtSummary.Text = evt.Summary ?? "(no summary)";
+        if (txtMeta != null)
+            txtMeta.Text = $"#{evt.Sequence} \u2022 {evt.StageDisplay} \u2022 {evt.EventTypeDisplay} \u2022 {evt.ActorType}:{evt.ActorId} \u2022 {evt.Timestamp}";
+
+        if (host == null) return;
+        host.Children.Clear();
+
+        // Details
+        if (!string.IsNullOrWhiteSpace(evt.Details))
+        {
+            host.Children.Add(MakeSection("Details"));
+            host.Children.Add(new TextBlock { Text = evt.Details, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Opacity = 0.85 });
+        }
+
+        // State at this event
+        var state = TimelineService.ReconstructState(_timelineEvents, evt.Sequence);
+        host.Children.Add(MakeSection("State at this point"));
+        host.Children.Add(MakeKV("Stage", state.CurrentStage ?? "?"));
+        host.Children.Add(MakeKV("Accepted witnesses", state.AcceptedWitnesses.Count.ToString()));
+        host.Children.Add(MakeKV("Rejected witnesses", state.RejectedWitnesses.Count.ToString()));
+        if (state.CopyTextSelected != null) host.Children.Add(MakeKV("Copy text", state.CopyTextSelected));
+        else if (state.CopyTextCandidate != null) host.Children.Add(MakeKV("Copy text candidate", state.CopyTextCandidate));
+        host.Children.Add(MakeKV("Unresolved loci", state.UnresolvedLoci.Count.ToString()));
+        host.Children.Add(MakeKV("OCR runs", $"{state.OcrRunsCompleted}/{state.OcrRunsStarted} completed"));
+        host.Children.Add(MakeKV("Apparatus entries", state.ApparatusEntryCount.ToString()));
+        if (state.EditionMaturity != null) host.Children.Add(MakeKV("Maturity", state.EditionMaturity));
+
+        // Evidence links
+        if (evt.EvidenceLinks is { Count: > 0 })
+        {
+            host.Children.Add(MakeSection("Evidence"));
+            foreach (var link in evt.EvidenceLinks)
+                host.Children.Add(MakeLinkButton(link, link, 10));
+        }
+
+        // Decision reference
+        if (!string.IsNullOrWhiteSpace(evt.DecisionRef))
+            host.Children.Add(MakeKV("Decision", evt.DecisionRef));
+
+        // Note anchor
+        if (!string.IsNullOrWhiteSpace(evt.NoteAnchorId))
+            host.Children.Add(MakeKV("Note anchor", evt.NoteAnchorId));
+
+        // Inputs/outputs
+        if (evt.Inputs is { Count: > 0 })
+        {
+            host.Children.Add(MakeSection("Inputs"));
+            foreach (var inp in evt.Inputs)
+                host.Children.Add(new TextBlock { Text = inp, FontSize = 10, Opacity = 0.7 });
+        }
+        if (evt.Outputs is { Count: > 0 })
+        {
+            host.Children.Add(MakeSection("Outputs"));
+            foreach (var outp in evt.Outputs)
+                host.Children.Add(new TextBlock { Text = outp, FontSize = 10, Opacity = 0.7 });
+        }
+    }
+
+    private static string FormatStage(string s) => s.Replace('_', ' ');
+
+    // ── Log tab ──────────────────────────────────────────────────────
+
+    private void PopulateLog(string? humanLogMarkdown)
+    {
+        var host = this.FindControl<StackPanel>("LogHost");
+        if (host == null) return;
+
+        if (string.IsNullOrWhiteSpace(humanLogMarkdown))
+        {
+            host.Children.Add(MakeEmptyState("No human-readable log available for this text."));
+            return;
+        }
+
+        host.Children.Add(MakeSection("Edition Build Log"));
+        var rendered = MarkdownRenderer.Render(humanLogMarkdown);
+        host.Children.Add(rendered);
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────
