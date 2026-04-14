@@ -15,6 +15,13 @@ public sealed class OnboardingTourService
     public event EventHandler? TourCompleted;
     public event EventHandler? TourSkipped;
 
+    private DateTime _lastAdvanceUtc;
+
+    /// <summary>
+    /// Minimum milliseconds between advances. Prevents rapid-fire clicks from skipping steps.
+    /// </summary>
+    internal int DebounceMs { get; set; } = 200;
+
     public OnboardingTourService()
     {
         BuildSteps();
@@ -29,6 +36,10 @@ public sealed class OnboardingTourService
 
     public void Next()
     {
+        var now = DateTime.UtcNow;
+        if ((now - _lastAdvanceUtc).TotalMilliseconds < DebounceMs) return;
+        _lastAdvanceUtc = now;
+
         if (CurrentIndex < Steps.Count - 1)
         {
             CurrentIndex++;
@@ -63,6 +74,9 @@ public sealed class OnboardingTourService
 
     public void AdvanceIfWaitingFor(string eventId)
     {
+        var now = DateTime.UtcNow;
+        if ((now - _lastAdvanceUtc).TotalMilliseconds < DebounceMs) return;
+
         if (CurrentStep?.WaitForEvent == eventId)
             Next();
     }

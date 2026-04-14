@@ -750,7 +750,11 @@ private async Task LoadConfigAndAutoloadAsync()
         }
 
         if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) => await _vm.OpenRootAsync();
-        if (_btnSettings != null) _btnSettings.Click += async (_, _) => await _vm.OpenSettingsAsync();
+        if (_btnSettings != null) _btnSettings.Click += async (_, _) =>
+        {
+            if (BlockIfTourActive()) return;
+            await _vm.OpenSettingsAsync();
+        };
         if (_btnLicenses != null) _btnLicenses.Click += async (_, _) => await _vm.OpenLicensesAsync();
 
         var btnGetStarted = Find<Button>("BtnGetStarted");
@@ -1484,11 +1488,23 @@ private async Task LoadConfigAndAutoloadAsync()
     }
 
     // ===========================================================
+    // Tour guard — blocks non-modal windows and settings while tour is active
+    // ===========================================================
+
+    private bool BlockIfTourActive()
+    {
+        if (_tourService?.IsActive != true) return false;
+        _vm.SetStatus("Complete or skip the tutorial first.");
+        return true;
+    }
+
+    // ===========================================================
     // Termbase editor window
     // ===========================================================
 
     private async Task OpenTermbaseEditorWindowAsync(string root, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
+        if (BlockIfTourActive()) return;
         try
         {
             if (_termbaseEditorWindow != null)
@@ -1553,6 +1569,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private Task OpenZenMasterManagerWindowAsync(string? landingName = null, string? landingUser = null)
     {
+        if (BlockIfTourActive()) return Task.CompletedTask;
         try
         {
             if (_zenMasterManagerWindow != null)
@@ -1588,6 +1605,7 @@ private async Task LoadConfigAndAutoloadAsync()
     // ===========================================================
     private Task OpenTagEditorWindowAsync()
     {
+        if (BlockIfTourActive()) return Task.CompletedTask;
         try
         {
             if (_tagEditorWindow != null)
@@ -2257,7 +2275,23 @@ private async Task LoadConfigAndAutoloadAsync()
                         && _tourService.CurrentStep?.Id == stepId
                         && !string.IsNullOrEmpty(waitEvent))
                     {
-                        _tourService.AdvanceIfWaitingFor(waitEvent);
+                        bool conditionMet = waitEvent switch
+                        {
+                            "root-cloned" => _vm.Root != null,
+                            "index-built" => _vm.AllItemsByRel.Count > 0,
+                            "git-check-complete" => true,
+                            _ => true
+                        };
+
+                        if (conditionMet)
+                        {
+                            _tourService.AdvanceIfWaitingFor(waitEvent);
+                        }
+                        else
+                        {
+                            // Condition not met — skip the tour instead of advancing into broken state
+                            _tourService?.Skip();
+                        }
                     }
                 });
             });

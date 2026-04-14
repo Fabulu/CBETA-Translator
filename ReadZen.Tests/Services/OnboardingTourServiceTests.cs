@@ -12,7 +12,7 @@ namespace ReadZen.Tests.Services;
 /// </summary>
 public class OnboardingTourServiceTests
 {
-    private readonly OnboardingTourService _svc = new();
+    private readonly OnboardingTourService _svc = new() { DebounceMs = 0 };
 
     // ---- 1. Start â€” sets IsActive, CurrentIndex=0, fires StepChanged ----
 
