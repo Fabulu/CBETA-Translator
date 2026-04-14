@@ -46,51 +46,70 @@
                 BorderThickness="1"
                 CornerRadius="6"
                 Padding="12">
-          <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10">
-            <TextBlock Grid.Row="0" Text="{Binding SelectedMaster.CanonicalName}" FontSize="22" FontWeight="Bold"/>
+          <DockPanel>
+          <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+            <Button Name="BtnCopyLink" Content="Copy Link" MinWidth="100"/>
+            <Button Name="BtnEditDates" Content="Edit Dates" MinWidth="100"/>
+            <Button Name="BtnClose" Content="Close" MinWidth="100"/>
+          </StackPanel>
+          <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="10" Margin="0,0,0,8">
+            <TextBlock Text="{Binding SelectedMaster.CanonicalName}" FontSize="22" FontWeight="Bold"/>
 
-            <StackPanel Grid.Row="1" Spacing="4">
-              <TextBlock Text="Aliases" FontWeight="SemiBold"/>
-              <TextBlock Text="{Binding SelectedAliasesText}" TextWrapping="Wrap" IsVisible="{Binding HasSelection}"/>
+            <!-- All name variants (copyable) -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
+              <TextBlock Text="Names &amp; Aliases" FontWeight="SemiBold"/>
+              <SelectableTextBlock Text="{Binding SelectedAliasesText}" TextWrapping="Wrap" FontSize="12"/>
             </StackPanel>
 
-            <Grid Grid.Row="2" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+            <!-- Dates -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
               <TextBlock Text="Dates" FontWeight="SemiBold"/>
-              <TextBlock Grid.Column="1" Text="{Binding SelectedDatesText}" TextWrapping="Wrap"/>
-            </Grid>
+              <TextBlock Text="{Binding SelectedDatesText}" TextWrapping="Wrap"/>
+            </StackPanel>
 
-            <Grid Grid.Row="3" ColumnDefinitions="Auto,*" ColumnSpacing="10">
+            <!-- School -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSchool}">
+              <TextBlock Text="School" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.School}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Teacher -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasTeacher}">
+              <TextBlock Text="Teacher" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.Teacher}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Students -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasStudents}">
+              <TextBlock Text="Students" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedStudentsText}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Notes / Biography -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasNotes}">
+              <TextBlock Text="Biography" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.Notes}" TextWrapping="Wrap" FontSize="12"/>
+            </StackPanel>
+
+            <!-- Region -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasRegion}">
+              <TextBlock Text="Region" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.Region}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Sources -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
               <TextBlock Text="Sources" FontWeight="SemiBold"/>
-              <TextBlock Grid.Column="1" Text="{Binding SelectedSourceText}" TextWrapping="Wrap"/>
-            </Grid>
-
-            <StackPanel Grid.Row="4" Spacing="6">
-              <TextBlock Text="Variants" FontWeight="SemiBold"/>
-              <ListBox ItemsSource="{Binding SelectedMaster.Variants}" IsVisible="{Binding HasSelection}">
-                <ListBox.ItemTemplate>
-                  <DataTemplate x:DataType="models:ZenMasterVariant">
-                    <Border Background="{DynamicResource PanelAltBg}" CornerRadius="4" Padding="8" Margin="0,0,0,4">
-                      <StackPanel Spacing="2">
-                        <TextBlock Text="{Binding PrimaryName}" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DatesSummary}" FontSize="11" Classes="muted"/>
-                        <TextBlock Text="{Binding SourceSummary}" FontSize="11" Classes="muted"/>
-                        <TextBlock Text="{Binding Names.Count, StringFormat=Aliases: {0}}" FontSize="10" Classes="muted"/>
-                      </StackPanel>
-                    </Border>
-                  </DataTemplate>
-                </ListBox.ItemTemplate>
-              </ListBox>
-              <TextBlock Text="Select a master from the left to inspect dates, aliases, and community variants."
-                         Classes="muted"
-                         IsVisible="{Binding HasNoSelection}"/>
+              <TextBlock Text="{Binding SelectedSourceText}" TextWrapping="Wrap"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-              <Button Name="BtnCopyLink" Content="Copy Link" MinWidth="100"/>
-              <Button Name="BtnEditDates" Content="Edit Dates" MinWidth="100"/>
-              <Button Name="BtnClose" Content="Close" MinWidth="100"/>
-            </StackPanel>
-          </Grid>
+            <TextBlock Text="Select a master from the left to view details."
+                       Classes="muted"
+                       IsVisible="{Binding HasNoSelection}"/>
+          </StackPanel>
+          </ScrollViewer>
+          </DockPanel>
         </Border>
       </Grid>
     </TabItem>

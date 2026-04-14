@@ -39,11 +39,17 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _statusText = "Loading Zen masters...";
 
-    public string SelectedAliasesText => SelectedMaster == null ? "" : string.Join(", ", SelectedMaster.Aliases);
+    public string SelectedAliasesText => SelectedMaster == null ? "" : string.Join("  |  ", SelectedMaster.Aliases);
     public string SelectedDatesText => SelectedMaster?.DatesSummary ?? "";
     public string SelectedSourceText => SelectedMaster?.SourceSummary ?? "";
+    public string SelectedStudentsText => SelectedMaster?.Students is { Count: > 0 } s ? string.Join(", ", s) : "";
     public bool HasSelection => SelectedMaster != null;
     public bool HasNoSelection => SelectedMaster == null;
+    public bool HasSchool => !string.IsNullOrWhiteSpace(SelectedMaster?.School);
+    public bool HasTeacher => !string.IsNullOrWhiteSpace(SelectedMaster?.Teacher);
+    public bool HasStudents => SelectedMaster?.Students is { Count: > 0 };
+    public bool HasNotes => !string.IsNullOrWhiteSpace(SelectedMaster?.Notes);
+    public bool HasRegion => !string.IsNullOrWhiteSpace(SelectedMaster?.Region);
 
     partial void OnFilterTextChanged(string value) => RefreshFilteredMasters();
 
@@ -52,8 +58,14 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(SelectedAliasesText));
         OnPropertyChanged(nameof(SelectedDatesText));
         OnPropertyChanged(nameof(SelectedSourceText));
+        OnPropertyChanged(nameof(SelectedStudentsText));
         OnPropertyChanged(nameof(HasSelection));
         OnPropertyChanged(nameof(HasNoSelection));
+        OnPropertyChanged(nameof(HasSchool));
+        OnPropertyChanged(nameof(HasTeacher));
+        OnPropertyChanged(nameof(HasStudents));
+        OnPropertyChanged(nameof(HasNotes));
+        OnPropertyChanged(nameof(HasRegion));
     }
 
     public async Task LoadAsync()

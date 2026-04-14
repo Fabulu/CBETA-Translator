@@ -53,6 +53,9 @@ public sealed class LineageWebControl : Control
         var bounds = Bounds;
         ctx.FillRectangle(Brushes.Transparent, new Rect(bounds.Size));
 
+        // Legend (fixed position, top-right)
+        DrawLegend(ctx, bounds);
+
         using var transform = ctx.PushTransform(Matrix.CreateTranslation(_offsetX, _offsetY) * Matrix.CreateScale(_zoom, _zoom));
 
         // Era bands
@@ -188,5 +191,32 @@ public sealed class LineageWebControl : Control
 
         InvalidateVisual();
         e.Handled = true;
+    }
+
+    private static void DrawLegend(DrawingContext ctx, Rect bounds)
+    {
+        var legendBg = new SolidColorBrush(Color.FromArgb(200, 30, 30, 30));
+        double legendX = bounds.Width - 170;
+        double legendY = 8;
+        double lineHeight = 18;
+
+        var entries = LineageGraphViewModel.SchoolColors;
+        double legendHeight = entries.Count * lineHeight + 12;
+
+        ctx.FillRectangle(legendBg, new Rect(legendX, legendY, 160, legendHeight), 6);
+
+        int i = 0;
+        foreach (var (school, color) in entries)
+        {
+            double y = legendY + 6 + i * lineHeight;
+            ctx.FillRectangle(new SolidColorBrush(Color.FromArgb(180, color.R, color.G, color.B)),
+                new Rect(legendX + 8, y + 2, 12, 12), 2);
+
+            var ft = new FormattedText(school, CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight, Typeface.Default, 10,
+                new SolidColorBrush(Color.FromArgb(200, 255, 255, 255)));
+            ctx.DrawText(ft, new Point(legendX + 26, y));
+            i++;
+        }
     }
 }
