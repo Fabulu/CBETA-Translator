@@ -550,6 +550,24 @@ private async Task LoadConfigAndAutoloadAsync()
         };
         _vm.SetReadableStudySnapshot = snapshot => _readableView?.SetStudyPanelSnapshot(snapshot);
         _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
+
+        // Wire zen master lookup for study panel bio section
+        if (_readableView != null)
+        {
+            var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
+            var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+            ZenMasterCatalog? cachedCatalog = null;
+            _readableView.FindMasterByName = zhText =>
+            {
+                // Lazy-load the catalog on first use (small dataset, fast)
+                if (cachedCatalog == null && _vm.Root != null)
+                {
+                    try { cachedCatalog = masterMgr.LoadAsync(_vm.Root).GetAwaiter().GetResult(); }
+                    catch { return null; }
+                }
+                return cachedCatalog != null ? masterMgr.FindMasterInText(cachedCatalog.Records, zhText) : null;
+            };
+        }
         _vm.SetReadableTagVocabulary = vocab => _readableView?.SetTagVocabulary(vocab);
         _vm.SetReadableAppliedTags = tags => _readableView?.SetAppliedTags(tags);
         _vm.SetReadableCommunityTags = tags => _readableView?.SetCommunityTags(tags);

@@ -89,6 +89,27 @@ public sealed class ZenMasterManagerService
         };
     }
 
+    /// <summary>
+    /// Scans a text passage for any mentioned master names (Chinese or English).
+    /// Returns the first match found, or null. Checks CJK names (2+ chars) for substring match.
+    /// </summary>
+    public ZenMasterRecord? FindMasterInText(IEnumerable<ZenMasterRecord> records, string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return null;
+
+        // Check CJK names first (more specific, less false positives)
+        foreach (var r in records)
+        {
+            foreach (var alias in r.Aliases)
+            {
+                if (alias.Length >= 2 && MasterDatesService.ContainsCjk(alias) && text.Contains(alias, StringComparison.Ordinal))
+                    return r;
+            }
+        }
+
+        return null;
+    }
+
     private static IEnumerable<MasterDateEntry> LoadBaseEntries(string? baseFilePath)
     {
         var path = string.IsNullOrWhiteSpace(baseFilePath)

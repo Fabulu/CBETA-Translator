@@ -4819,6 +4819,62 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             postProcessor: null,
             navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
             addToScholarHandler: passage => AddToScholarRequested?.Invoke(this, passage));
+
+        // Master bio section — check if any master is mentioned in the segment
+        UpdateStudyMasterBio(snapshot?.Segment?.ZhText);
+    }
+
+    /// <summary>Delegate for looking up a master by name. Set by MainWindow.</summary>
+    public Func<string, ZenMasterRecord?>? FindMasterByName { get; set; }
+
+    private void UpdateStudyMasterBio(string? zhText)
+    {
+        var border = this.FindControl<Border>("StudyMasterBorder");
+        if (border == null) return;
+
+        if (string.IsNullOrWhiteSpace(zhText) || FindMasterByName == null)
+        {
+            border.IsVisible = false;
+            return;
+        }
+
+        // Search for any master name in the Chinese text
+        ZenMasterRecord? match = null;
+        // Try the full text first — FindMasterByName does substring matching
+        match = FindMasterByName(zhText);
+
+        if (match == null)
+        {
+            border.IsVisible = false;
+            return;
+        }
+
+        border.IsVisible = true;
+
+        var txtName = this.FindControl<TextBlock>("TxtStudyMasterName");
+        var txtDates = this.FindControl<TextBlock>("TxtStudyMasterDates");
+        var txtSchool = this.FindControl<TextBlock>("TxtStudyMasterSchool");
+        var txtTeacher = this.FindControl<TextBlock>("TxtStudyMasterTeacher");
+        var txtNotes = this.FindControl<TextBlock>("TxtStudyMasterNotes");
+
+        if (txtName != null) txtName.Text = match.CanonicalName;
+        if (txtDates != null) txtDates.Text = match.DatesSummary;
+
+        if (txtSchool != null)
+        {
+            txtSchool.IsVisible = !string.IsNullOrWhiteSpace(match.School);
+            txtSchool.Text = !string.IsNullOrWhiteSpace(match.School) ? $"School: {match.School}" : "";
+        }
+        if (txtTeacher != null)
+        {
+            txtTeacher.IsVisible = !string.IsNullOrWhiteSpace(match.Teacher);
+            txtTeacher.Text = !string.IsNullOrWhiteSpace(match.Teacher) ? $"Teacher: {match.Teacher}" : "";
+        }
+        if (txtNotes != null)
+        {
+            txtNotes.IsVisible = !string.IsNullOrWhiteSpace(match.Notes);
+            txtNotes.Text = match.Notes ?? "";
+        }
     }
 
     private void AttachStudyHover(TextEditor editor)
