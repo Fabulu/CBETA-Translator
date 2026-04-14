@@ -14,6 +14,8 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using AvaloniaEdit;
+using AvaloniaEdit.Rendering;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -35,6 +37,11 @@ public partial class EditionProcessDialog : Window
     private List<TimelineEvent> _timelineEvents = new();
     private List<TimelineEvent> _filteredEvents = new();
     private int _timelineIndex;
+    private TimelineInfo? _timeline;
+    private RenderedDocument? _finalRenderedDoc;
+    private string? _finalText;
+    private TextEditor? _editorPreview;
+    private LocusHighlightRenderer? _locusHighlighter;
 
     public void Load(
         ManifestInfo manifest,
@@ -44,7 +51,8 @@ public partial class EditionProcessDialog : Window
         EditionStatsService? statsService,
         DocumentsService? documentsService,
         TimelineService? timelineService = null,
-        HumanLogService? humanLogService = null)
+        HumanLogService? humanLogService = null,
+        RenderedDocument? renderedTranslation = null)
     {
         // Header
         var txtTitle = this.FindControl<TextBlock>("TxtDialogTitle");
@@ -76,6 +84,10 @@ public partial class EditionProcessDialog : Window
             timeline = timelineService?.TryLoad(xmlAbsPath);
             humanLog = humanLogService?.TryLoad(xmlAbsPath);
         }
+
+        // Store rendered doc for timeline text preview
+        _finalRenderedDoc = renderedTranslation;
+        _finalText = renderedTranslation?.Text;
 
         PopulateSources(manifest);
         PopulateTimeline(timeline);
@@ -554,6 +566,25 @@ public partial class EditionProcessDialog : Window
 
     private void PopulateTimeline(TimelineInfo? timeline)
     {
+        // Set up text preview editor
+        _editorPreview = this.FindControl<TextEditor>("EditorTimelinePreview");
+        if (_editorPreview != null)
+        {
+            _editorPreview.IsReadOnly = true;
+            _editorPreview.ShowLineNumbers = false;
+            _editorPreview.WordWrap = true;
+
+            if (!string.IsNullOrEmpty(_finalText))
+                _editorPreview.Text = _finalText;
+
+            // Install locus highlighter
+            if (_editorPreview.TextArea?.TextView != null)
+            {
+                _locusHighlighter = new LocusHighlightRenderer(_editorPreview.TextArea.TextView);
+                _editorPreview.TextArea.TextView.BackgroundRenderers.Add(_locusHighlighter);
+            }
+        }
+
         if (timeline?.Events == null || timeline.Events.Count == 0)
         {
             var host = this.FindControl<StackPanel>("TimelineDetailsHost");
@@ -561,6 +592,7 @@ public partial class EditionProcessDialog : Window
             return;
         }
 
+        _timeline = timeline;
         _timelineEvents = timeline.Events;
         _filteredEvents = new List<TimelineEvent>(_timelineEvents);
 
@@ -676,6 +708,9 @@ public partial class EditionProcessDialog : Window
         if (host == null) return;
         host.Children.Clear();
 
+        // Apply reading patches to the text preview
+        ApplyReadingPatches(evt);
+
         // Details
         if (!string.IsNullOrWhiteSpace(evt.Details))
         {
@@ -724,6 +759,68 @@ public partial class EditionProcessDialog : Window
             host.Children.Add(MakeSection("Outputs"));
             foreach (var outp in evt.Outputs)
                 host.Children.Add(new TextBlock { Text = outp, FontSize = 10, Opacity = 0.7 });
+        }
+    }
+
+    private void ApplyReadingPatches(TimelineEvent evt)
+    {
+        if (_editorPreview == null || _timeline == null || string.IsNullOrEmpty(_finalText)) return;
+
+        // Get patches for this timeline position
+        var patches = TimelineService.GetReadingPatchesAtPosition(_timeline, evt.Sequence);
+
+        if (patches.Count == 0)
+        {
+            // At or past the final state — show the final text
+            _editorPreview.Text = _finalText;
+            _locusHighlighter?.Clear();
+        }
+        else
+        {
+            // Apply patches to the final text
+            var text = _finalText;
+            foreach (var (locusId, reading) in patches)
+            {
+                // Find the final reading for this locus to know what to replace
+                if (_timeline.Readings?.TryGetValue(locusId, out var readings) == true && readings.Count > 0)
+                {
+                    var finalReading = readings[^1];
+                    if (!string.IsNullOrEmpty(finalReading))
+                        text = text.Replace(finalReading, reading);
+                }
+            }
+            _editorPreview.Text = text;
+        }
+
+        // Highlight the affected locus if this is a text_changed event
+        _locusHighlighter?.Clear();
+        if (evt.EventType == "text_changed" && evt.StateEffects != null)
+        {
+            if (evt.StateEffects.TryGetValue("locus_id", out var locusObj))
+            {
+                var locusId = locusObj?.ToString();
+                if (!string.IsNullOrEmpty(locusId))
+                {
+                    // Find the reading at this position for highlighting
+                    var readingAtPos = TimelineService.GetReadingAtPosition(_timeline, locusId, evt.Sequence);
+                    if (!string.IsNullOrEmpty(readingAtPos))
+                    {
+                        var idx = _editorPreview.Text?.IndexOf(readingAtPos, StringComparison.Ordinal) ?? -1;
+                        if (idx >= 0)
+                        {
+                            _locusHighlighter?.SetHighlight(idx, readingAtPos.Length);
+
+                            // Scroll to the highlighted locus
+                            try
+                            {
+                                var line = _editorPreview.Document?.GetLineByOffset(idx);
+                                if (line != null) _editorPreview.ScrollToLine(line.LineNumber);
+                            }
+                            catch { }
+                        }
+                    }
+                }
+            }
         }
     }
 

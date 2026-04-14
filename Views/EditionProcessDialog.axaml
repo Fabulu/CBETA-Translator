@@ -1,10 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ae="https://github.com/avaloniaui/avaloniaedit"
         x:Class="ReadZen.App.Views.EditionProcessDialog"
         Title="Edition Details"
-        Width="820" Height="640"
+        Width="920" Height="700"
         WindowStartupLocation="CenterOwner"
         CanResize="True">
+    <Window.Styles>
+        <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+    </Window.Styles>
     <DockPanel>
         <!-- Header -->
         <Border DockPanel.Dock="Top" Padding="16,12" Background="{DynamicResource BarBg}">
@@ -66,11 +70,34 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Event details + state -->
-                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled"
-                                  VerticalScrollBarVisibility="Auto">
-                        <StackPanel Name="TimelineDetailsHost" Spacing="8" Margin="8"/>
-                    </ScrollViewer>
+                    <!-- Main content: text preview (left) + event details (right) -->
+                    <Grid Grid.Row="2" ColumnDefinitions="*,6,300" Margin="8,4,8,8">
+                        <!-- Text preview pane with AvaloniaEdit -->
+                        <Border Grid.Column="0" CornerRadius="6" BorderThickness="1" Padding="2">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Name="TxtTextPreviewHeader"
+                                           Text="Edition text at this point"
+                                           FontWeight="SemiBold" FontSize="11"
+                                           Margin="6,4,6,4" Opacity="0.7"/>
+                                <ae:TextEditor Name="EditorTimelinePreview"
+                                               IsReadOnly="True"
+                                               ShowLineNumbers="False"
+                                               WordWrap="True"
+                                               FontFamily="Consolas, Menlo, 'Noto Sans CJK SC', monospace"
+                                               FontSize="12"/>
+                            </DockPanel>
+                        </Border>
+
+                        <GridSplitter Grid.Column="1" ResizeDirection="Columns"
+                                      Background="Transparent" Width="6"/>
+
+                        <!-- Event details + state panel -->
+                        <ScrollViewer Grid.Column="2"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                            <StackPanel Name="TimelineDetailsHost" Spacing="8"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
