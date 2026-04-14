@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing.
 
-Read Zen is a desktop app for reading, translating, and studying Chinese Zen Buddhist texts across the CBETA and OpenZenTexts corpora. It also includes the web preview at readzen.pages.dev and the OpenZenTexts curation pipeline.
+Read Zen is a desktop app for reading, translating, and studying Chinese Zen Buddhist texts across the CBETA and OpenZen corpora. It also includes the web preview at readzen.pages.dev and the OpenZen curation pipeline.
 
 ## Getting Started
 
@@ -44,9 +44,9 @@ Translation changes should:
 - Be scoped to individual files when possible
 - One file per PR is preferred
 
-## OpenZenTexts Contributions
+## OpenZen Contributions
 
-New texts for the OpenZenTexts corpus should follow the curation pipeline documented in `docs/curation/` of the OpenZenTexts repository:
+New texts for the OpenZen corpus should follow the curation pipeline documented in `docs/curation/` of the OpenZen repository:
 
 - Source witnesses must be non-CBETA and freely licensed
 - Each text needs a `manifest.json` with witness metadata and SHA-256 hashes

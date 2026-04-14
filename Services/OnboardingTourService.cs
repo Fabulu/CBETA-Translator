@@ -75,7 +75,7 @@ public sealed class OnboardingTourService
         {
             Id = "welcome",
             Title = "Welcome to Read Zen",
-            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from two collections: CBETA and OpenZenTexts.\n\nLet's get you set up \u2014 it only takes a minute.",
+            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from two collections: CBETA and OpenZen.\n\nLet's get you set up \u2014 it only takes a minute.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -94,7 +94,7 @@ public sealed class OnboardingTourService
         {
             Id = "download-texts",
             Title = "Downloading the Text Collection",
-            Body = "Choose where to store the Read Zen data, then download it. This downloads both text collections (CBETA and OpenZenTexts) plus the translation workspace.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
+            Body = "Choose where to store the Read Zen data, then download it. This downloads both text collections (CBETA and OpenZen) plus the translation workspace.\n\nAlready have texts on disk? Click 'Skip' to choose an existing folder instead.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync",
@@ -130,7 +130,7 @@ public sealed class OnboardingTourService
         {
             Id = "two-collections",
             Title = "Two Text Collections",
-            Body = "Read Zen includes two text collections:\n\n\u2022 CBETA \u2014 the full Chinese Buddhist canon (non-commercial use)\n\u2022 OpenZenTexts \u2014 a growing open-access Zen corpus (CC0 and CC BY-SA licensed)\n\nBoth are downloaded automatically. OpenZenTexts files are freely shareable; CBETA files carry a non-commercial restriction. You\u2019ll see each file\u2019s license in the top bar when you open it.",
+            Body = "Read Zen includes two text collections:\n\n\u2022 CBETA \u2014 the full Chinese Buddhist canon (non-commercial use)\n\u2022 OpenZen \u2014 a growing open-access Zen corpus (CC0 and CC BY-SA licensed)\n\nBoth are downloaded automatically. OpenZen files are freely shareable; CBETA files carry a non-commercial restriction. You\u2019ll see each file\u2019s license in the top bar when you open it.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -139,7 +139,7 @@ public sealed class OnboardingTourService
         {
             Id = "corpus-switcher",
             Title = "Switch Between Corpora",
-            Body = "This badge shows which collection you\u2019re browsing. Click it to switch between CBETA and OpenZenTexts \u2014 the sidebar, search, and file list all update to match.\n\nThe badge changes colour so you always know which corpus is active.",
+            Body = "This badge shows which collection you\u2019re browsing. Click it to switch between CBETA and OpenZen \u2014 the sidebar, search, and file list all update to match.\n\nThe badge changes colour so you always know which corpus is active.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnCorpusBadge"
@@ -159,7 +159,7 @@ public sealed class OnboardingTourService
         {
             Id = "provenance-panel",
             Title = "Source Documentation",
-            Body = "Check the \u2018Provenance\u2019 checkbox to see where each text comes from: source witnesses, SHA-256 verification hashes, editorial notes, and the full documentation chain.\n\nFor OpenZenTexts files like the 1632 Wumenguan, you can expand the witness verification ledger, case completeness audit, and reading edition notes right in the panel.",
+            Body = "Check the \u2018Provenance\u2019 checkbox to see where each text comes from: source witnesses, SHA-256 verification hashes, editorial notes, and the full documentation chain.\n\nFor OpenZen files like the 1632 Wumenguan, you can expand the witness verification ledger, case completeness audit, and reading edition notes right in the panel.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ChkProvenance"
@@ -534,7 +534,7 @@ public sealed class OnboardingTourService
         {
             Id = "multi-corpus-sync",
             Title = "Syncing Both Corpora",
-            Body = "When you click Sync, Read Zen updates both CBETA and OpenZenTexts in one operation. Your personal translations, notes, tags, and terminology are preserved for both corpora.\n\nNew OpenZenTexts content (like new woodblock transcriptions) arrives automatically on sync.",
+            Body = "When you click Sync, Read Zen updates both CBETA and OpenZen in one operation. Your personal translations, notes, tags, and terminology are preserved for both corpora.\n\nNew OpenZen content (like new woodblock transcriptions) arrives automatically on sync.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "BtnGitSync",
