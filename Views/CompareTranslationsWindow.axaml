@@ -1,4 +1,4 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ae="https://github.com/avaloniaui/avaloniaedit"
         x:Class="ReadZen.App.Views.CompareTranslationsWindow"
@@ -32,10 +32,14 @@
 
             <!-- Pane 2: Translation A -->
             <Border Grid.Column="2" Margin="4">
-                <Grid RowDefinitions="Auto,*">
+                <Grid RowDefinitions="Auto,Auto,*">
                     <TextBlock Name="TxtPaneAHeader" Text="Translation A" FontWeight="Bold" Padding="8,4"
                                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"/>
-                    <ae:TextEditor Grid.Row="1" Name="EditorTransA"
+                    <ComboBox Grid.Row="1" Name="CmbVersionA"
+                              MinWidth="150" FontSize="10" Margin="4,2"
+                              IsVisible="False"
+                              ToolTip.Tip="View an older version of this translation"/>
+                    <ae:TextEditor Grid.Row="2" Name="EditorTransA"
                                    IsReadOnly="True" ShowLineNumbers="False"
                                    WordWrap="True"/>
                 </Grid>
@@ -45,10 +49,14 @@
 
             <!-- Pane 3: Translation B -->
             <Border Grid.Column="4" Margin="4">
-                <Grid RowDefinitions="Auto,*">
+                <Grid RowDefinitions="Auto,Auto,*">
                     <TextBlock Name="TxtPaneBHeader" Text="Translation B" FontWeight="Bold" Padding="8,4"
                                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"/>
-                    <ae:TextEditor Grid.Row="1" Name="EditorTransB"
+                    <ComboBox Grid.Row="1" Name="CmbVersionB"
+                              MinWidth="150" FontSize="10" Margin="4,2"
+                              IsVisible="False"
+                              ToolTip.Tip="View an older version of this translation"/>
+                    <ae:TextEditor Grid.Row="2" Name="EditorTransB"
                                    IsReadOnly="True" ShowLineNumbers="False"
                                    WordWrap="True"/>
                 </Grid>

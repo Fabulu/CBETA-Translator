@@ -55,6 +55,7 @@
 					<Button Name="BtnSave" Content="Save" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)" Padding="8,3"/>
 					<Button Name="BtnFreshStart" Content="Fresh Start" ToolTip.Tip="Replace the current writable translation with the original untranslated XML" Padding="8,3"/>
 					<Button Name="BtnRevert" Content="&#x21BA;" ToolTip.Tip="Reload projection from XML (Ctrl+R)" Padding="8,3" Width="32"/>
+					<Button Name="BtnHistory" Content="&#x1F552;" ToolTip.Tip="Browse and restore older versions of this translation (git history)" Padding="8,3"/>
 					<Button Name="BtnUndo" Content="&#x21B6;" ToolTip.Tip="Undo (Ctrl+Z)" Padding="8,3" Width="32"/>
 					<Button Name="BtnRedo" Content="&#x21B7;" ToolTip.Tip="Redo (Ctrl+Y)" Padding="8,3" Width="32"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>

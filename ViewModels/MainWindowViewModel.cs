@@ -1459,6 +1459,13 @@ public partial class MainWindowViewModel : ViewModelBase
         return Task.FromResult((ro, rt));
     }
 
+    /// <summary>Reloads the current file from disk (used when returning from historical view).</summary>
+    public async Task ReloadCurrentReadableAsync()
+    {
+        if (_currentRelPath != null)
+            await LoadPairAsync(_currentRelPath, autoChooseSource: false);
+    }
+
     public async Task LoadPairAsync(string relPath, bool autoChooseSource = true)
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
@@ -3536,6 +3543,34 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         }
 
         return TeiRenderer.Render(SafeReadAllTextUtf8(filePath));
+    }
+
+    /// <summary>
+    /// Returns the repo-relative path for the translated file at the given source index.
+    /// Used by the Compare window to populate version pickers.
+    /// </summary>
+    public string? GetTranslationSourceRepoRelPath(int sourceIndex)
+    {
+        if (_currentRelPath == null || _translationRoot == null) return null;
+
+        string? translatedDir;
+        if (sourceIndex == 0)
+            translatedDir = _userTranslatedDir;
+        else if (sourceIndex == 1)
+            translatedDir = _translatedDir;
+        else if (sourceIndex >= 2 && sourceIndex < _translationSourceOptions.Count)
+        {
+            var username = _translationSourceOptions[sourceIndex];
+            translatedDir = !string.IsNullOrEmpty(_translationRoot)
+                ? AppPaths.GetUserTranslatedDirForRepo(_translationRoot, username)
+                : null;
+        }
+        else
+            return null;
+
+        if (translatedDir == null) return null;
+        var absPath = Path.Combine(translatedDir, _currentRelPath);
+        return Path.GetRelativePath(_translationRoot, absPath);
     }
 
     /// <summary>

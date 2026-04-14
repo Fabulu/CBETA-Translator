@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
 
@@ -72,4 +74,23 @@ public interface IGitRepoService
     Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct);
     Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct);
     Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct);
+
+    // ── History browsing (read-only) ──────────────────────────────────
+
+    /// <summary>
+    /// Returns the commit log for a specific file, newest first.
+    /// Uses --follow to track renames.
+    /// </summary>
+    Task<List<GitCommitEntry>> GetFileLogAsync(string repoDir, string relPath, int maxCount = 50, CancellationToken ct = default);
+
+    /// <summary>
+    /// Returns the contents of a file at a specific commit, or null if the file
+    /// did not exist at that commit.
+    /// </summary>
+    Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default);
+
+    /// <summary>
+    /// Returns a unified diff of a file between two commits.
+    /// </summary>
+    Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default);
 }

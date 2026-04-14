@@ -378,4 +378,100 @@ public partial class CompareTranslationsWindow : Window
         }
         catch { }
     }
+
+    // ── Version history support ──────────────────────────────────────
+
+    private IGitRepoService? _git;
+    private string? _repoDir;
+    private string? _repoRelPathA;
+    private string? _repoRelPathB;
+    private RenderedDocument? _originalDocA;
+    private RenderedDocument? _originalDocB;
+
+    /// <summary>
+    /// Enables version pickers for both translation panes.
+    /// Call after LoadComparison with the git context.
+    /// </summary>
+    public async Task PopulateVersionPickersAsync(
+        IGitRepoService git,
+        string repoDir,
+        string? repoRelPathA,
+        string? repoRelPathB)
+    {
+        _git = git;
+        _repoDir = repoDir;
+        _repoRelPathA = repoRelPathA;
+        _repoRelPathB = repoRelPathB;
+        _originalDocA = _docTransA;
+        _originalDocB = _docTransB;
+
+        var cmbA = this.FindControl<ComboBox>("CmbVersionA");
+        var cmbB = this.FindControl<ComboBox>("CmbVersionB");
+
+        if (cmbA != null && !string.IsNullOrEmpty(repoRelPathA))
+        {
+            var commitsA = await git.GetFileLogAsync(repoDir, repoRelPathA, 30);
+            PopulateVersionCombo(cmbA, commitsA);
+            cmbA.SelectionChanged += async (_, _) => await OnVersionChanged(cmbA, _repoRelPathA, _edTransA, _originalDocA, a => _docTransA = a);
+        }
+
+        if (cmbB != null && !string.IsNullOrEmpty(repoRelPathB))
+        {
+            var commitsB = await git.GetFileLogAsync(repoDir, repoRelPathB, 30);
+            PopulateVersionCombo(cmbB, commitsB);
+            cmbB.SelectionChanged += async (_, _) => await OnVersionChanged(cmbB, _repoRelPathB, _edTransB, _originalDocB, b => _docTransB = b);
+        }
+    }
+
+    private static void PopulateVersionCombo(ComboBox cmb, System.Collections.Generic.List<GitCommitEntry> commits)
+    {
+        var items = new System.Collections.Generic.List<ComboBoxItem>
+        {
+            new() { Content = "(current)", Tag = null }
+        };
+        foreach (var c in commits)
+            items.Add(new ComboBoxItem { Content = $"{c.DateDisplay} — {c.Author}: {c.Subject}", Tag = c.Hash });
+
+        cmb.ItemsSource = items;
+        cmb.SelectedIndex = 0;
+        cmb.IsVisible = commits.Count > 0;
+    }
+
+    private async Task OnVersionChanged(ComboBox cmb, string? relPath, TextEditor? editor, RenderedDocument? originalDoc, Action<RenderedDocument> setDoc)
+    {
+        if (_git == null || _repoDir == null || string.IsNullOrEmpty(relPath) || editor == null)
+            return;
+
+        var item = cmb.SelectedItem as ComboBoxItem;
+        var hash = item?.Tag as string;
+
+        if (hash == null)
+        {
+            // "(current)" — restore from the original loaded doc
+            if (originalDoc != null)
+            {
+                setDoc(originalDoc);
+                editor.Text = originalDoc.Text ?? string.Empty;
+            }
+            return;
+        }
+
+        try
+        {
+            var content = await _git.GetFileAtCommitAsync(_repoDir, hash, relPath);
+            if (content == null)
+            {
+                editor.Text = "(file did not exist at this version)";
+                return;
+            }
+
+            var historicalDoc = Text.TeiRenderer.Render(content);
+            setDoc(historicalDoc);
+            editor.Text = historicalDoc.Text ?? string.Empty;
+        }
+        catch (Exception ex)
+        {
+            editor.Text = $"(error loading version: {ex.Message})";
+        }
+    }
 }
