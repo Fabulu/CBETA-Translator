@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +45,9 @@ public partial class ZenMasterManagerWindow : Window
             {
                 await ViewModel.LoadAsync();
                 _loaded = true;
+
+                // Build lineage graph after catalog loads
+                BuildLineageGraph();
             }
 
             ApplyPendingLanding();
@@ -65,7 +69,41 @@ public partial class ZenMasterManagerWindow : Window
         var btnEditDates = this.FindControl<Button>("BtnEditDates");
         if (btnEditDates != null)
             btnEditDates.Click += async (_, _) => await OpenEditorAsync();
+
+        // Lineage Web tab
+        var lineageGraph = this.FindControl<LineageWebControl>("LineageGraph");
+        var txtSearch = this.FindControl<TextBox>("TxtLineageSearch");
+        var txtInfo = this.FindControl<TextBlock>("TxtLineageInfo");
+        var btnCenter = this.FindControl<Button>("BtnLineageCenter");
+
+        if (lineageGraph != null)
+        {
+            lineageGraph.NodeClicked += (_, record) =>
+            {
+                ViewModel.SelectedMaster = record;
+            };
+        }
+
+        if (txtSearch != null)
+        {
+            txtSearch.TextChanged += (_, _) =>
+            {
+                _lineageGraphVm?.HighlightSearch(txtSearch.Text);
+                lineageGraph?.InvalidateVisual();
+            };
+        }
+
+        if (btnCenter != null)
+        {
+            btnCenter.Click += (_, _) =>
+            {
+                if (_lineageGraphVm?.SelectedNode != null && lineageGraph != null)
+                    lineageGraph.CenterOnNode(_lineageGraphVm.SelectedNode);
+            };
+        }
     }
+
+    private LineageGraphViewModel? _lineageGraphVm;
 
     public void ApplyLanding(string? name, string? user)
     {
@@ -82,6 +120,23 @@ public partial class ZenMasterManagerWindow : Window
         ViewModel.ApplyLanding(_pendingLandingName, _pendingLandingUser);
         _pendingLandingName = null;
         _pendingLandingUser = null;
+    }
+
+    private void BuildLineageGraph()
+    {
+        var catalog = ViewModel.GetCatalog();
+        if (catalog == null || catalog.Records.Count == 0) return;
+
+        _lineageGraphVm = new LineageGraphViewModel();
+        _lineageGraphVm.BuildGraph(catalog);
+        _lineageGraphVm.RunLayeredLayout();
+
+        var lineageGraph = this.FindControl<LineageWebControl>("LineageGraph");
+        lineageGraph?.SetViewModel(_lineageGraphVm);
+
+        var txtInfo = this.FindControl<TextBlock>("TxtLineageInfo");
+        if (txtInfo != null)
+            txtInfo.Text = $"{_lineageGraphVm.Nodes.Count} masters, {_lineageGraphVm.Edges.Count} links";
     }
 
     private async Task CopyLinkAsync()

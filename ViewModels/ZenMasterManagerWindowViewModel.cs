@@ -19,6 +19,8 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
     private string? _pendingLandingUser;
     private ZenMasterCatalog _catalog = new();
 
+    public ZenMasterCatalog? GetCatalog() => _catalog.Records.Count > 0 ? _catalog : null;
+
     public ZenMasterManagerWindowViewModel(ZenMasterManagerService service, string? repoRoot, string? baseFilePath = null)
     {
         _service = service;
