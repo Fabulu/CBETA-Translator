@@ -16,6 +16,8 @@ public sealed class LineageGraphNode
     public double Y { get; set; }
     public bool IsSelected { get; set; }
     public bool IsHighlighted { get; set; }
+    public bool IsHidden { get; set; }
+    public bool IsOrphan { get; set; }
     public ZenMasterRecord? Record { get; set; }
 }
 
