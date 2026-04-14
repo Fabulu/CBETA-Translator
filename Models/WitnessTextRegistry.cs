@@ -1,6 +1,6 @@
 // Models/WitnessTextRegistry.cs
-// Registry of witness texts for locus-based comparison.
-// Loaded from witness-texts.json in the edition package.
+// Registry of definitive witness texts for locus-based comparison.
+// Loaded from witnesses.json in the edition package.
 // Enables the Witness Comparison surface (separate from critical text and timeline).
 
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace ReadZen.App.Models;
 
-/// <summary>Top-level witness text registry.</summary>
+/// <summary>Top-level witness delivery registry.</summary>
 public sealed class WitnessTextRegistry
 {
     [JsonPropertyName("text_id")]
@@ -18,52 +18,56 @@ public sealed class WitnessTextRegistry
     public List<WitnessTextEntry>? Witnesses { get; set; }
 }
 
-/// <summary>A single witness's text data for comparison.</summary>
+/// <summary>A single witness's definitive delivered text data.</summary>
 public sealed class WitnessTextEntry
 {
-    /// <summary>Witness ID matching manifest and timeline (e.g., "ndl-1632", "korea-commons").</summary>
     [JsonPropertyName("witness_id")]
     public string? WitnessId { get; set; }
 
-    /// <summary>Stable siglum (e.g., "T1", "A3").</summary>
     [JsonPropertyName("siglum")]
     public string? Siglum { get; set; }
 
-    /// <summary>Human-readable label.</summary>
     [JsonPropertyName("label")]
     public string? Label { get; set; }
 
-    /// <summary>Witness family (e.g., "standalone", "shiburoku").</summary>
     [JsonPropertyName("family_id")]
     public string? FamilyId { get; set; }
 
-    /// <summary>
-    /// How to access this witness's text. One of:
-    /// - "ocr": text from OCR output files
-    /// - "transcription": manually transcribed text
-    /// - "tei": text extracted from a TEI file
-    /// - "image": scan images only (no extracted text yet)
-    /// </summary>
-    [JsonPropertyName("text_type")]
-    public string? TextType { get; set; }
+    /// <summary>Role in the edition: "base", "primary_collation", "secondary_collation", "context_only".</summary>
+    [JsonPropertyName("role")]
+    public string? Role { get; set; }
 
-    /// <summary>
-    /// Relative path to the witness text file (from the edition package root).
-    /// For OCR: path to the OCR output directory or file.
-    /// For transcription: path to the transcribed text file.
-    /// For TEI: path to a TEI file containing this witness's readings.
-    /// Null if text_type is "image" (scan-only, no extracted text).
-    /// </summary>
-    [JsonPropertyName("text_path")]
-    public string? TextPath { get; set; }
+    /// <summary>Relative path to the definitive witness text file.</summary>
+    [JsonPropertyName("definitive_text_file")]
+    public string? DefinitiveTextFile { get; set; }
 
-    /// <summary>
-    /// Locus-level readings for this witness. Key = locus_id, value = reading text.
-    /// Populated when locus-level comparison data is available (post-collation).
-    /// Null before collation.
-    /// </summary>
-    [JsonPropertyName("readings")]
-    public Dictionary<string, string>? Readings { get; set; }
+    /// <summary>Format of the text file: "plain_text", "json_loci", "tei", "markdown".</summary>
+    [JsonPropertyName("text_format")]
+    public string? TextFormat { get; set; }
+
+    /// <summary>Status: "raw_ocr", "normalized", "corrected_working", "definitive_witness_text".</summary>
+    [JsonPropertyName("text_status")]
+    public string? TextStatus { get; set; }
+
+    /// <summary>Completeness: "complete", "partial", "fragment".</summary>
+    [JsonPropertyName("completeness")]
+    public string? Completeness { get; set; }
+
+    /// <summary>Confidence in the text: "high", "medium", "low".</summary>
+    [JsonPropertyName("confidence")]
+    public string? Confidence { get; set; }
+
+    /// <summary>Whether a locus map exists for this witness.</summary>
+    [JsonPropertyName("has_locus_map")]
+    public bool HasLocusMap { get; set; }
+
+    /// <summary>Relative path to the locus map JSON file (locus_id → text).</summary>
+    [JsonPropertyName("locus_map_file")]
+    public string? LocusMapFile { get; set; }
+
+    /// <summary>Relative path to the witness README / source documentation.</summary>
+    [JsonPropertyName("source_readme")]
+    public string? SourceReadme { get; set; }
 
     /// <summary>Whether this witness has been OCR'd.</summary>
     [JsonPropertyName("has_ocr")]
@@ -72,4 +76,22 @@ public sealed class WitnessTextEntry
     /// <summary>Whether this witness has been human-checked.</summary>
     [JsonPropertyName("has_human_check")]
     public bool HasHumanCheck { get; set; }
+
+    /// <summary>
+    /// Inline locus-level readings. Key = locus_id, value = reading text.
+    /// Used for comparison when a separate locus map file doesn't exist.
+    /// </summary>
+    [JsonPropertyName("readings")]
+    public Dictionary<string, string>? Readings { get; set; }
+
+    /// <summary>Display-friendly status.</summary>
+    [JsonIgnore]
+    public string StatusDisplay => TextStatus switch
+    {
+        "raw_ocr" => "Raw OCR",
+        "normalized" => "Normalized",
+        "corrected_working" => "Working (corrected)",
+        "definitive_witness_text" => "Definitive",
+        _ => TextStatus ?? "Unknown",
+    };
 }

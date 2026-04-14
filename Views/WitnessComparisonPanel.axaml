@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.WitnessComparisonPanel">
+    <Border Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1" CornerRadius="8"
+            Padding="12" MaxWidth="500">
+        <StackPanel Spacing="8">
+            <!-- Header -->
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="Witness Comparison"
+                           FontWeight="Bold" FontSize="13"/>
+                <Button Name="BtnCopyAll" DockPanel.Dock="Right" Content="Copy All"
+                        FontSize="10" Padding="6,2" HorizontalAlignment="Right"/>
+            </DockPanel>
+
+            <!-- Locus ID -->
+            <TextBlock Name="TxtLocusId" FontSize="10" Opacity="0.6"/>
+
+            <!-- Critical reading (adopted) -->
+            <Border Background="{DynamicResource BarBg}" CornerRadius="6" Padding="8">
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Adopted reading" FontSize="10" FontWeight="SemiBold" Opacity="0.7"/>
+                    <SelectableTextBlock Name="TxtLemma" FontSize="13" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Toggle for showing all vs differing only -->
+            <CheckBox Name="ChkShowAll" Content="Show all witnesses (including agreements)"
+                      FontSize="10" IsChecked="False"/>
+
+            <!-- Witness readings host -->
+            <StackPanel Name="ReadingsHost" Spacing="4"/>
+
+            <!-- Empty state -->
+            <TextBlock Name="TxtEmpty" Text="No witness readings available for this locus."
+                       FontSize="11" Opacity="0.5" FontStyle="Italic"
+                       IsVisible="False"/>
+        </StackPanel>
+    </Border>
+</UserControl>
