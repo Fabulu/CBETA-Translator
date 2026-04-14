@@ -119,16 +119,30 @@
 			<!-- License chip lives in the top bar now (next to the corpus
 			     badge) so the action row stays uncluttered. -->
 
-			<!-- Annotation legend -->
-			<StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center" Margin="16,0,0,0">
-				<TextBlock Text="Markers:" Classes="muted" VerticalAlignment="Center" FontSize="11"/>
-				<Border Background="Gray" Width="10" Height="10" CornerRadius="2"/>
-				<TextBlock Text="CBETA" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
-				<Border Background="DarkOrange" Width="10" Height="10" CornerRadius="2" Margin="6,0,0,0"/>
-				<TextBlock Text="Footnote" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
-				<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2" Margin="6,0,0,0"/>
-				<TextBlock Text="Community" FontSize="11" Classes="muted" VerticalAlignment="Center"/>
-			</StackPanel>
+			<!-- Annotation legend (collapsible flyout) -->
+			<Button Name="BtnMarkersLegend" Content="Markers ▾"
+			        FontSize="11" Padding="6,2" Background="Transparent"
+			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
+			        Margin="16,0,0,0">
+				<Button.Flyout>
+					<Flyout Placement="BottomEdgeAlignedLeft">
+						<StackPanel Spacing="6" Margin="8">
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<Border Background="Gray" Width="10" Height="10" CornerRadius="2"/>
+								<TextBlock Text="CBETA editorial markers" FontSize="11"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<Border Background="DarkOrange" Width="10" Height="10" CornerRadius="2"/>
+								<TextBlock Text="Footnotes" FontSize="11"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2"/>
+								<TextBlock Text="Community annotations" FontSize="11"/>
+							</StackPanel>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
 
 			<Border/>
 		</DockPanel>
