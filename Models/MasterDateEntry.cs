@@ -10,6 +10,14 @@ public sealed class MasterDateEntry
     public int Death { get; set; }
     public string? CreatedBy { get; set; }
     public DateTimeOffset? WrittenUtc { get; set; }
+
+    // New fields for zen master expansion
+    public string? Notes { get; set; }
+    public string? School { get; set; }
+    public string? Teacher { get; set; }
+    public List<string>? Students { get; set; }
+    public string? Region { get; set; }
+    public string? ReferenceUrl { get; set; }
 }
 
 public sealed class MasterDateConflict

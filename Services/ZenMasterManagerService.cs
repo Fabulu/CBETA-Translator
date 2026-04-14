@@ -160,6 +160,12 @@ public sealed class ZenMasterManagerService
             Death = entry.Death,
             IsBase = isBase,
             Username = username,
+            Notes = entry.Notes,
+            School = entry.School,
+            Teacher = entry.Teacher,
+            Students = entry.Students,
+            Region = entry.Region,
+            ReferenceUrl = entry.ReferenceUrl,
         });
 
         foreach (var name in names)

@@ -12,6 +12,14 @@ public sealed class ZenMasterVariant
     public bool IsBase { get; init; }
     public string? Username { get; init; }
 
+    // Biographical expansion
+    public string? Notes { get; init; }
+    public string? School { get; init; }
+    public string? Teacher { get; init; }
+    public List<string>? Students { get; init; }
+    public string? Region { get; init; }
+    public string? ReferenceUrl { get; init; }
+
     public string PrimaryName => Names.FirstOrDefault(n => !string.IsNullOrWhiteSpace(n)) ?? "(unnamed)";
 
     public string DatesSummary => Floruit > 0 && Death > 0
@@ -48,6 +56,28 @@ public sealed class ZenMasterRecord
         .ToList();
 
     public string DatesSummary => PrimaryVariant?.DatesSummary ?? "date unknown";
+
+    /// <summary>Best available notes (prefers base, falls back to community).</summary>
+    public string? Notes => Variants.Select(v => v.Notes).FirstOrDefault(n => !string.IsNullOrWhiteSpace(n));
+
+    /// <summary>Best available school.</summary>
+    public string? School => Variants.Select(v => v.School).FirstOrDefault(s => !string.IsNullOrWhiteSpace(s));
+
+    /// <summary>Best available teacher name/ID.</summary>
+    public string? Teacher => Variants.Select(v => v.Teacher).FirstOrDefault(t => !string.IsNullOrWhiteSpace(t));
+
+    /// <summary>Merged students list from all variants.</summary>
+    public List<string> Students => Variants
+        .Where(v => v.Students != null)
+        .SelectMany(v => v.Students!)
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .ToList();
+
+    /// <summary>Best available region.</summary>
+    public string? Region => Variants.Select(v => v.Region).FirstOrDefault(r => !string.IsNullOrWhiteSpace(r));
+
+    /// <summary>Best available reference URL.</summary>
+    public string? ReferenceUrl => Variants.Select(v => v.ReferenceUrl).FirstOrDefault(u => !string.IsNullOrWhiteSpace(u));
 
     public string SourceSummary
     {
