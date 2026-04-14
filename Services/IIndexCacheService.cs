@@ -9,8 +9,8 @@ public interface IIndexCacheService
 {
     string GetCachePath(string root);
 
-    Task<IndexCache?> TryLoadAsync(string root);
-    Task SaveAsync(string root, IndexCache cache);
+    Task<IndexCache?> TryLoadAsync(string root, string? originalsRepoRoot = null);
+    Task SaveAsync(string root, IndexCache cache, string? originalsRepoRoot = null);
 
     TranslationStatus ComputeStatusForPairLive(
         string origAbs,
