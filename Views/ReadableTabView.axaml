@@ -286,6 +286,21 @@
 										<StackPanel Name="StudyTmHost" Spacing="10"/>
 									</StackPanel>
 								</Border>
+
+								<Border Name="StudyMasterBorder" Padding="8" CornerRadius="6"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource BorderBrush}"
+										IsVisible="False">
+									<StackPanel Spacing="4">
+										<TextBlock Text="Zen Master" FontWeight="Bold"/>
+										<TextBlock Name="TxtStudyMasterName" FontSize="14" FontWeight="SemiBold"/>
+										<TextBlock Name="TxtStudyMasterDates" FontSize="11" Opacity="0.7"/>
+										<TextBlock Name="TxtStudyMasterSchool" FontSize="11" Opacity="0.8" IsVisible="False"/>
+										<TextBlock Name="TxtStudyMasterTeacher" FontSize="11" Opacity="0.8" IsVisible="False"/>
+										<TextBlock Name="TxtStudyMasterNotes" FontSize="11" Opacity="0.85"
+												   TextWrapping="Wrap" IsVisible="False"/>
+									</StackPanel>
+								</Border>
 							</StackPanel>
 						</ScrollViewer>
 					</Border>

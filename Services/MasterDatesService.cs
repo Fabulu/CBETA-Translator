@@ -201,7 +201,7 @@ public sealed class MasterDatesService : IMasterDatesService
         return false;
     }
 
-    private static bool ContainsCjk(string s) => s.Any(c => IsCjk(c));
+    internal static bool ContainsCjk(string s) => s.Any(c => IsCjk(c));
 
     private static bool IsCjk(char c) =>
         c >= '\u4E00' && c <= '\u9FFF' ||
