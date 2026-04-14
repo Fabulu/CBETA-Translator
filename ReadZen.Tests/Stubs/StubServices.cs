@@ -181,8 +181,8 @@ public class StubAppConfigService : IAppConfigService
 public class StubIndexCacheService : IIndexCacheService
 {
     public string GetCachePath(string root) => "cache.json";
-    public Task<IndexCache?> TryLoadAsync(string root) => Task.FromResult<IndexCache?>(null);
-    public Task SaveAsync(string root, IndexCache cache) => Task.CompletedTask;
+    public Task<IndexCache?> TryLoadAsync(string root, string? originalsRepoRoot = null) => Task.FromResult<IndexCache?>(null);
+    public Task SaveAsync(string root, IndexCache cache, string? originalsRepoRoot = null) => Task.CompletedTask;
     public TranslationStatus ComputeStatusForPairLive(string origAbs, string tranAbs, string rootForLogs, string relKeyForLogs, bool verboseLog = true) => TranslationStatus.Red;
     public Task<IndexCache> BuildAsync(string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(new IndexCache());
 }

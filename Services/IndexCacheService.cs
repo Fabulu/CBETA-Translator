@@ -56,7 +56,7 @@ public sealed class IndexCacheService : IIndexCacheService
        */
     }
 
-    public async Task<IndexCache?> TryLoadAsync(string root)
+    public async Task<IndexCache?> TryLoadAsync(string root, string? originalsRepoRoot = null)
     {
         try
         {
@@ -86,19 +86,27 @@ public sealed class IndexCacheService : IIndexCacheService
             if (!string.Equals(cache.BuildGuid, CacheBuildGuid, StringComparison.Ordinal))
                 return null;
 
-            // Git HEAD gate. When the corpus root is a git repo and the
-            // current HEAD has moved since the cache was built, the cached
-            // file list may be missing files (or include deleted ones) —
-            // rebuild from disk. When the cache OR the live repo lacks a
-            // HEAD record (no .git dir, sandbox, packed-refs miss, etc.)
-            // we don't gate on it: the BuildGuid + RootPath checks above
-            // remain authoritative.
+            // Git HEAD gate — translations repo.
             var liveHead = TryGetGitHead(root);
             if (!string.IsNullOrEmpty(cache.GitHead)
                 && !string.IsNullOrEmpty(liveHead)
                 && !string.Equals(cache.GitHead, liveHead, StringComparison.Ordinal))
             {
                 return null;
+            }
+
+            // Git HEAD gate — originals repo. The file list is built from
+            // the originals dir, so when new texts are added there the
+            // cache is stale even if the translations repo hasn't changed.
+            if (!string.IsNullOrEmpty(originalsRepoRoot))
+            {
+                var liveOriginalsHead = TryGetGitHead(originalsRepoRoot);
+                if (!string.IsNullOrEmpty(cache.OriginalsGitHead)
+                    && !string.IsNullOrEmpty(liveOriginalsHead)
+                    && !string.Equals(cache.OriginalsGitHead, liveOriginalsHead, StringComparison.Ordinal))
+                {
+                    return null;
+                }
             }
 
             return cache;
@@ -177,7 +185,7 @@ public sealed class IndexCacheService : IIndexCacheService
         }
     }
 
-    public async Task SaveAsync(string root, IndexCache cache)
+    public async Task SaveAsync(string root, IndexCache cache, string? originalsRepoRoot = null)
     {
         cache.RootPath = root;
         cache.BuiltUtc = DateTime.UtcNow;
@@ -186,6 +194,9 @@ public sealed class IndexCacheService : IIndexCacheService
         // Snapshot the current HEAD so the next load can detect drift.
         // Null is fine — TryLoadAsync only gates when both sides have one.
         cache.GitHead = TryGetGitHead(root);
+        cache.OriginalsGitHead = !string.IsNullOrEmpty(originalsRepoRoot)
+            ? TryGetGitHead(originalsRepoRoot)
+            : null;
 
         var path = GetCachePath(root);
         var json = JsonSerializer.Serialize(cache, JsonOpts);

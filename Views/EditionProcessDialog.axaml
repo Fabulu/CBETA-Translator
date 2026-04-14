@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.EditionProcessDialog"
+        Title="Edition Details"
+        Width="820" Height="640"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Padding="16,12" Background="{DynamicResource BarBg}">
+            <StackPanel Spacing="2">
+                <TextBlock Name="TxtDialogTitle" FontWeight="Bold" FontSize="16" TextWrapping="Wrap"/>
+                <TextBlock Name="TxtDialogSubtitle" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Tab control -->
+        <TabControl Name="TabMain" Margin="8">
+
+            <!-- Sources tab -->
+            <TabItem Header="Sources">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="SourcesHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Process tab -->
+            <TabItem Header="Process">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="ProcessHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Apparatus tab -->
+            <TabItem Header="Apparatus">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="ApparatusHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Stats tab -->
+            <TabItem Header="Stats">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="StatsHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Documents tab -->
+            <TabItem Header="Documents">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="DocumentsHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+    </DockPanel>
+</Window>

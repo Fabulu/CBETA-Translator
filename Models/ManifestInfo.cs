@@ -59,6 +59,48 @@ public sealed class ManifestInfo
 
     [JsonPropertyName("witnesses_consulted")]
     public List<WitnessInfo>? Witnesses { get; set; }
+
+    // File pointers (critical-edition support)
+
+    [JsonPropertyName("process_file")]
+    public string? ProcessFile { get; set; }
+
+    [JsonPropertyName("apparatus_file")]
+    public string? ApparatusFile { get; set; }
+
+    [JsonPropertyName("stats_file")]
+    public string? StatsFile { get; set; }
+
+    [JsonPropertyName("documents_file")]
+    public string? DocumentsFile { get; set; }
+
+    // Edition fields (critical-edition support)
+
+    [JsonPropertyName("base_witness_id")]
+    public string? BaseWitnessId { get; set; }
+
+    [JsonPropertyName("edition_maturity")]
+    public string? EditionMaturity { get; set; }
+
+    [JsonPropertyName("ocr_maximal")]
+    public bool? OcrMaximal { get; set; }
+
+    [JsonPropertyName("human_intervention_required")]
+    public bool? HumanInterventionRequired { get; set; }
+
+    [JsonPropertyName("human_intervention_note")]
+    public string? HumanInterventionNote { get; set; }
+
+    // Previously missing schema fields
+
+    [JsonPropertyName("work_name_alt")]
+    public List<string>? WorkNameAlt { get; set; }
+
+    [JsonPropertyName("compiler")]
+    public string? Compiler { get; set; }
+
+    [JsonPropertyName("year_composed")]
+    public string? YearComposed { get; set; }
 }
 
 public sealed class WitnessInfo
@@ -98,4 +140,37 @@ public sealed class WitnessInfo
 
     [JsonPropertyName("role_in_production")]
     public string? RoleInProduction { get; set; }
+
+    [JsonPropertyName("family_id")]
+    public string? FamilyId { get; set; }
+
+    [JsonPropertyName("page_count")]
+    public int? PageCount { get; set; }
+
+    [JsonPropertyName("completeness")]
+    public string? Completeness { get; set; }
+
+    [JsonPropertyName("validation_method")]
+    public string? ValidationMethod { get; set; }
+
+    [JsonPropertyName("source_page_snapshot")]
+    public string? SourcePageSnapshot { get; set; }
+
+    [JsonPropertyName("license_snapshot")]
+    public string? LicenseSnapshot { get; set; }
+
+    [JsonPropertyName("rights_basis_text")]
+    public string? RightsBasisText { get; set; }
+
+    [JsonPropertyName("provenance_check")]
+    public string? ProvenanceCheck { get; set; }
+
+    [JsonPropertyName("captured_local_path")]
+    public string? CapturedLocalPath { get; set; }
+
+    [JsonPropertyName("captured_filename")]
+    public string? CapturedFilename { get; set; }
+
+    [JsonPropertyName("stable_revision_id")]
+    public string? StableRevisionId { get; set; }
 }

@@ -25,4 +25,12 @@ public sealed class IndexCache
     /// situation we don't gate on it.
     /// </summary>
     public string? GitHead { get; set; }
+
+    /// <summary>
+    /// SHA of the originals repo's HEAD commit at build time. The file list
+    /// is enumerated from the originals dir, so when THIS repo changes
+    /// (new texts added, files removed) the cache must be rebuilt even if
+    /// the translations repo HEAD hasn't moved.
+    /// </summary>
+    public string? OriginalsGitHead { get; set; }
 }

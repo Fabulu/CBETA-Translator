@@ -1,16 +1,13 @@
 // Views/ProvenancePanel.axaml.cs
-// Collapsible provenance panel that displays per-text source documentation
-// from OpenZenTexts manifest.json files. Follows the LicenseDetailsView.SetLicense() pattern.
+// Slim provenance sidebar: source/license facts only.
+// Full edition details (witnesses, process, apparatus, stats, documents)
+// live in EditionProcessDialog, opened via the "View Edition Details..." button.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
@@ -23,6 +20,13 @@ public partial class ProvenancePanel : UserControl
 {
     private ManifestInfo? _manifest;
     private TextLicenseInfo? _license;
+    private string? _xmlAbsPath;
+
+    /// <summary>
+    /// Fired when the user clicks "View Edition Details..." so the parent
+    /// can open the EditionProcessDialog with the right services.
+    /// </summary>
+    public event Action<ManifestInfo, string?>? EditionDetailsRequested;
 
     public ProvenancePanel()
     {
@@ -36,17 +40,25 @@ public partial class ProvenancePanel : UserControl
             if (top?.Clipboard != null && !string.IsNullOrEmpty(txt))
                 await top.Clipboard.SetTextAsync(txt);
         };
+
+        var btnDetails = this.FindControl<Button>("BtnViewEditionDetails");
+        if (btnDetails != null) btnDetails.Click += (_, _) =>
+        {
+            if (_manifest != null)
+                EditionDetailsRequested?.Invoke(_manifest, _xmlAbsPath);
+        };
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
     /// <summary>
-    /// Populates all controls from manifest data. Follows LicenseDetailsView.SetLicense() pattern.
+    /// Populates the slim sidebar from manifest data.
     /// </summary>
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
         _manifest = manifest;
         _license = license;
+        _xmlAbsPath = xmlAbsPath;
 
         var txtWorkName = this.FindControl<TextBlock>("TxtWorkName");
         var txtAuthor = this.FindControl<TextBlock>("TxtAuthor");
@@ -56,28 +68,28 @@ public partial class ProvenancePanel : UserControl
         var txtLicenseFlags = this.FindControl<TextBlock>("TxtLicenseFlags");
         var badgeNoCbeta = this.FindControl<Border>("BadgeNoCbeta");
         var txtNoCbeta = this.FindControl<TextBlock>("TxtNoCbeta");
-        var witnessesSection = this.FindControl<StackPanel>("WitnessesSection");
-        var witnessHost = this.FindControl<StackPanel>("WitnessHost");
-        var productionSection = this.FindControl<StackPanel>("ProductionSection");
-        var txtProduction = this.FindControl<TextBlock>("TxtProductionMethod");
-        var curatorSection = this.FindControl<StackPanel>("CuratorSection");
-        var txtCurator = this.FindControl<TextBlock>("TxtCurator");
-        var txtCaptured = this.FindControl<TextBlock>("TxtCapturedUtc");
+        var txtBaseWitness = this.FindControl<TextBlock>("TxtBaseWitness");
+        var txtWitnessCount = this.FindControl<TextBlock>("TxtWitnessCount");
+        var sourceLinksHost = this.FindControl<StackPanel>("SourceLinksHost");
+        var badgeMaturity = this.FindControl<Border>("BadgeMaturity");
+        var txtMaturity = this.FindControl<TextBlock>("TxtMaturity");
+        var btnDetails = this.FindControl<Button>("BtnViewEditionDetails");
         var btnCopy = this.FindControl<Button>("BtnCopyCitation");
         var cbetaCard = this.FindControl<Border>("CbetaFallbackCard");
         var noManifestCard = this.FindControl<Border>("NoManifestCard");
 
-        // Hide everything first, then selectively show
+        // Hide everything first
         if (badgeEdition != null) badgeEdition.IsVisible = false;
         if (txtWorkName != null) txtWorkName.Text = "";
         if (txtAuthor != null) txtAuthor.Text = "";
         if (txtLicenseSpdx != null) txtLicenseSpdx.Text = "";
         if (txtLicenseFlags != null) txtLicenseFlags.Text = "";
         if (badgeNoCbeta != null) badgeNoCbeta.IsVisible = false;
-        if (witnessesSection != null) witnessesSection.IsVisible = false;
-        if (witnessHost != null) witnessHost.Children.Clear();
-        if (productionSection != null) productionSection.IsVisible = false;
-        if (curatorSection != null) curatorSection.IsVisible = false;
+        if (txtBaseWitness != null) txtBaseWitness.IsVisible = false;
+        if (txtWitnessCount != null) txtWitnessCount.IsVisible = false;
+        if (sourceLinksHost != null) { sourceLinksHost.Children.Clear(); sourceLinksHost.IsVisible = false; }
+        if (badgeMaturity != null) badgeMaturity.IsVisible = false;
+        if (btnDetails != null) btnDetails.IsVisible = false;
         if (btnCopy != null) btnCopy.IsVisible = false;
         if (cbetaCard != null) cbetaCard.IsVisible = false;
         if (noManifestCard != null) noManifestCard.IsVisible = false;
@@ -88,7 +100,6 @@ public partial class ProvenancePanel : UserControl
             {
                 if (cbetaCard != null) cbetaCard.IsVisible = true;
 
-                // Enhance the CBETA fallback with whatever the TEI header has
                 if (license != null)
                 {
                     if (txtWorkName != null && !string.IsNullOrWhiteSpace(license.Title))
@@ -124,9 +135,7 @@ public partial class ProvenancePanel : UserControl
             txtEdition.Text = FormatEditionKind(manifest.EditionKind);
             badgeEdition.IsVisible = true;
 
-            // Green for transcription/scan_ocr, blue for critical_edition
-            var kind = manifest.EditionKind;
-            if (kind == "critical_edition")
+            if (manifest.EditionKind == "critical_edition")
             {
                 badgeEdition.Background = TryGetBrush("BarBg");
                 txtEdition.Foreground = TryGetBrush("TextFg");
@@ -158,702 +167,75 @@ public partial class ProvenancePanel : UserControl
             badgeNoCbeta.IsVisible = true;
         }
 
-        // Witnesses
-        if (witnessesSection != null && witnessHost != null &&
-            manifest.Witnesses != null && manifest.Witnesses.Count > 0)
+        // Base witness (single line)
+        if (txtBaseWitness != null && !string.IsNullOrWhiteSpace(manifest.BaseWitnessId))
         {
-            witnessesSection.IsVisible = true;
-            foreach (var w in manifest.Witnesses)
-                witnessHost.Children.Add(BuildWitnessCard(w));
+            var baseW = manifest.Witnesses?.FirstOrDefault(w =>
+                string.Equals(w.Id, manifest.BaseWitnessId, StringComparison.OrdinalIgnoreCase));
+            txtBaseWitness.Text = baseW != null
+                ? $"Base: {baseW.Label ?? baseW.Id}"
+                : $"Base: {manifest.BaseWitnessId}";
+            txtBaseWitness.IsVisible = true;
         }
 
-        // Production method
-        if (productionSection != null && txtProduction != null &&
-            !string.IsNullOrWhiteSpace(manifest.ProductionMethod))
+        // Witness count
+        if (txtWitnessCount != null && manifest.Witnesses != null && manifest.Witnesses.Count > 0)
         {
-            productionSection.IsVisible = true;
-            txtProduction.Text = manifest.ProductionMethod;
+            var count = manifest.Witnesses.Count;
+            txtWitnessCount.Text = $"{count} witness{(count != 1 ? "es" : "")} consulted";
+            txtWitnessCount.IsVisible = true;
         }
 
-        // Curator + capture date
-        if (curatorSection != null && txtCurator != null)
+        // Source links (upstream URLs from witnesses)
+        if (sourceLinksHost != null && manifest.Witnesses != null)
         {
-            if (!string.IsNullOrWhiteSpace(manifest.Curator) || !string.IsNullOrWhiteSpace(manifest.CapturedUtc))
+            foreach (var w in manifest.Witnesses.Where(w => !string.IsNullOrWhiteSpace(w.UpstreamUrl)))
             {
-                curatorSection.IsVisible = true;
-                txtCurator.Text = !string.IsNullOrWhiteSpace(manifest.Curator)
-                    ? $"Curator: {manifest.Curator}"
-                    : "";
-                if (txtCaptured != null)
-                    txtCaptured.Text = !string.IsNullOrWhiteSpace(manifest.CapturedUtc)
-                        ? $"Captured: {manifest.CapturedUtc}"
-                        : "";
-            }
-        }
-
-        // Discover and display .md documents from provenance/ and exemplars/
-        var docsSection = this.FindControl<StackPanel>("DocumentsSection");
-        var docsHost = this.FindControl<StackPanel>("DocumentsHost");
-        if (docsSection != null && docsHost != null)
-        {
-            docsHost.Children.Clear();
-            var docs = DiscoverDocuments(xmlAbsPath, manifest.TextId);
-            if (docs.Count > 0)
-            {
-                docsSection.IsVisible = true;
-                foreach (var (name, path) in docs)
-                    docsHost.Children.Add(BuildDocumentExpander(name, path));
-            }
-        }
-
-        // Show copy citation button when we have manifest data
-        if (btnCopy != null) btnCopy.IsVisible = true;
-    }
-
-    /// <summary>
-    /// Discovers .md documentation files in provenance/{slug}/ and
-    /// docs/curation/exemplars/{slug}/ relative to the corpus root.
-    /// Returns (display name, absolute path) pairs.
-    /// </summary>
-    private static List<(string Name, string Path)> DiscoverDocuments(string? xmlAbsPath, string? textId)
-    {
-        var result = new List<(string, string)>();
-        if (string.IsNullOrWhiteSpace(xmlAbsPath) || string.IsNullOrWhiteSpace(textId))
-            return result;
-
-        try
-        {
-            // Derive the slug from the text_id: "pd.wumenguan-1632" -> "wumenguan-1632"
-            var slug = textId;
-            var dotIdx = textId.IndexOf('.');
-            if (dotIdx > 0 && dotIdx < textId.Length - 1)
-                slug = textId[(dotIdx + 1)..];
-
-            // The XML lives under xml-open/{publisher}/{slug}/{slug}.xml
-            // The repo root is 3 levels up from the XML file's directory
-            var xmlDir = System.IO.Path.GetDirectoryName(xmlAbsPath);
-            if (xmlDir == null) return result;
-            var repoRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(xmlDir, "..", "..", ".."));
-
-            // Check provenance/{slug}/
-            var provenanceDir = System.IO.Path.Combine(repoRoot, "provenance", slug);
-            if (Directory.Exists(provenanceDir))
-            {
-                foreach (var mdFile in Directory.EnumerateFiles(provenanceDir, "*.md"))
+                var label = w.Label ?? w.Id ?? "Source";
+                var url = w.UpstreamUrl!;
+                var linkBtn = new Button
                 {
-                    var name = System.IO.Path.GetFileNameWithoutExtension(mdFile)
-                        .Replace('-', ' ').Replace('_', ' ');
-                    // Capitalize first letter
-                    if (name.Length > 0) name = char.ToUpperInvariant(name[0]) + name[1..];
-                    result.Add((name, mdFile));
-                }
-            }
-
-            // Check docs/curation/exemplars/{slug}/
-            var exemplarDir = System.IO.Path.Combine(repoRoot, "docs", "curation", "exemplars", slug);
-            if (Directory.Exists(exemplarDir))
-            {
-                foreach (var mdFile in Directory.EnumerateFiles(exemplarDir, "*.md"))
-                {
-                    var name = System.IO.Path.GetFileNameWithoutExtension(mdFile)
-                        .Replace('-', ' ').Replace('_', ' ');
-                    if (name.Length > 0) name = char.ToUpperInvariant(name[0]) + name[1..];
-                    result.Add((name, mdFile));
-                }
-            }
-        }
-        catch { /* never crash on doc discovery */ }
-
-        return result;
-    }
-
-    private static Expander BuildDocumentExpander(string displayName, string filePath)
-    {
-        string? content = null;
-        try { content = File.ReadAllText(filePath); }
-        catch { content = "(Could not read file)"; }
-
-        var rendered = RenderMarkdown(content ?? "");
-
-        var scroll = new ScrollViewer
-        {
-            Content = rendered,
-            MaxHeight = 500,
-            HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
-            VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
-        };
-
-        return new Expander
-        {
-            Header = displayName,
-            Content = scroll,
-            IsExpanded = false,
-            FontSize = 11,
-        };
-    }
-
-    /// <summary>
-    /// Markdown-to-Avalonia renderer for provenance documents.
-    /// Handles: # headings (3 levels), **bold**, `code`, [links](url),
-    /// fenced code blocks, blockquotes, nested bullets, numbered lists,
-    /// | tables |, --- separators, and plain text with wrapping.
-    /// </summary>
-    private static StackPanel RenderMarkdown(string markdown)
-    {
-        var panel = new StackPanel { Spacing = 2 };
-        var lines = markdown.Split('\n');
-        var tableRows = new List<string>();
-        bool inTable = false;
-        bool inCodeBlock = false;
-        var codeBlockLines = new List<string>();
-
-        for (int i = 0; i < lines.Length; i++)
-        {
-            var line = lines[i].TrimEnd('\r');
-
-            // Fenced code block toggle
-            if (line.TrimStart().StartsWith("```"))
-            {
-                if (inCodeBlock)
-                {
-                    // Close code block — render collected lines
-                    FlushCodeBlock(panel, codeBlockLines);
-                    codeBlockLines.Clear();
-                    inCodeBlock = false;
-                }
-                else
-                {
-                    inCodeBlock = true;
-                }
-                continue;
-            }
-
-            if (inCodeBlock)
-            {
-                codeBlockLines.Add(line);
-                continue;
-            }
-
-            // Flush table if we're leaving one
-            if (inTable && !line.TrimStart().StartsWith("|"))
-            {
-                FlushTable(panel, tableRows);
-                tableRows.Clear();
-                inTable = false;
-            }
-
-            // Table row
-            if (line.TrimStart().StartsWith("|"))
-            {
-                inTable = true;
-                // Skip separator rows (|---|---|)
-                if (!System.Text.RegularExpressions.Regex.IsMatch(line, @"^\|[\s\-:|]+\|$"))
-                    tableRows.Add(line);
-                continue;
-            }
-
-            // Blank line
-            if (string.IsNullOrWhiteSpace(line))
-            {
-                panel.Children.Add(new Border { Height = 4 });
-                continue;
-            }
-
-            // Horizontal rule
-            if (line.TrimStart().StartsWith("---") && line.Trim().All(c => c == '-' || c == ' '))
-            {
-                panel.Children.Add(new Border
-                {
-                    Height = 1,
-                    Margin = new Avalonia.Thickness(0, 6),
-                    Background = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255))
-                });
-                continue;
-            }
-
-            // Headings — visual hierarchy: H1 > H2 > H3
-            if (line.StartsWith("### "))
-            {
-                panel.Children.Add(MakeHeading(line[4..].Trim(), 11.5, FontWeight.SemiBold,
-                    new Avalonia.Thickness(0, 6, 0, 2), 0.8));
-                continue;
-            }
-            if (line.StartsWith("## "))
-            {
-                panel.Children.Add(MakeHeading(line[3..].Trim(), 12.5, FontWeight.Bold,
-                    new Avalonia.Thickness(0, 8, 0, 3), 0.9));
-                continue;
-            }
-            if (line.StartsWith("# "))
-            {
-                var headingWrap = new StackPanel { Spacing = 0, Margin = new Avalonia.Thickness(0, 12, 0, 2) };
-                headingWrap.Children.Add(new TextBlock
-                {
-                    Text = line[2..].Trim(),
-                    FontSize = 14,
-                    FontWeight = FontWeight.Bold,
-                    TextWrapping = TextWrapping.Wrap,
-                    Opacity = 1.0,
-                });
-                headingWrap.Children.Add(new Border
-                {
-                    Height = 1,
-                    Margin = new Avalonia.Thickness(0, 4, 0, 0),
-                    Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
-                });
-                panel.Children.Add(headingWrap);
-                continue;
-            }
-
-            // Blockquote: > text
-            if (line.TrimStart().StartsWith("> "))
-            {
-                var quoteText = line.TrimStart()[2..];
-                var quoteTb = MakeRichTextBlock(quoteText, 11);
-                quoteTb.Opacity = 0.8;
-                quoteTb.FontStyle = FontStyle.Italic;
-                panel.Children.Add(new Border
-                {
-                    Child = quoteTb,
-                    BorderThickness = new Avalonia.Thickness(3, 0, 0, 0),
-                    BorderBrush = new SolidColorBrush(Color.FromArgb(60, 136, 170, 255)),
-                    Padding = new Avalonia.Thickness(10, 2, 0, 2),
-                    Margin = new Avalonia.Thickness(0, 2),
-                });
-                continue;
-            }
-
-            // Bullet list with nesting: detect indent level
-            if (line.TrimStart().StartsWith("- ") || line.TrimStart().StartsWith("* "))
-            {
-                var indent = line.Length - line.TrimStart().Length;
-                var nestLevel = indent / 2; // 0, 1, 2, ...
-                var bulletText = line.TrimStart()[2..];
-                var tb = MakeRichTextBlock(bulletText, 11);
-                var bulletChar = nestLevel == 0 ? "\u2022 " : nestLevel == 1 ? "\u25e6 " : "\u2013 ";
-                tb.Margin = new Avalonia.Thickness(8 + nestLevel * 12, 0, 0, 0);
-                if (tb.Inlines != null && tb.Inlines.Count > 0)
-                    tb.Inlines.Insert(0, new Avalonia.Controls.Documents.Run(bulletChar)
-                    {
-                        Foreground = new SolidColorBrush(Color.FromArgb(120, 255, 255, 255))
-                    });
-                panel.Children.Add(tb);
-                continue;
-            }
-
-            // Numbered list
-            if (line.TrimStart().Length > 2 && char.IsDigit(line.TrimStart()[0]) &&
-                line.TrimStart().IndexOf(". ", StringComparison.Ordinal) > 0 &&
-                line.TrimStart().IndexOf(". ", StringComparison.Ordinal) < 5)
-            {
-                var indent = line.Length - line.TrimStart().Length;
-                var tb = MakeRichTextBlock(line.TrimStart(), 11);
-                tb.Margin = new Avalonia.Thickness(8 + (indent / 2) * 12, 0, 0, 0);
-                panel.Children.Add(tb);
-                continue;
-            }
-
-            // Regular text with inline formatting
-            panel.Children.Add(MakeRichTextBlock(line, 11));
-        }
-
-        // Flush any remaining code block
-        if (inCodeBlock && codeBlockLines.Count > 0)
-            FlushCodeBlock(panel, codeBlockLines);
-
-        // Flush any remaining table
-        if (inTable && tableRows.Count > 0)
-            FlushTable(panel, tableRows);
-
-        return panel;
-    }
-
-    private static TextBlock MakeHeading(string text, double fontSize, FontWeight weight,
-        Avalonia.Thickness margin, double opacity)
-    {
-        return new TextBlock
-        {
-            Text = text,
-            FontSize = fontSize,
-            FontWeight = weight,
-            TextWrapping = TextWrapping.Wrap,
-            Opacity = opacity,
-            Margin = margin,
-        };
-    }
-
-    /// <summary>Renders inline **bold**, `code`, and [links](url) within a line.</summary>
-    private static TextBlock MakeRichTextBlock(string text, double fontSize)
-    {
-        var tb = new TextBlock
-        {
-            FontSize = fontSize,
-            TextWrapping = TextWrapping.Wrap,
-            Opacity = 0.85,
-        };
-
-        int pos = 0;
-        while (pos < text.Length)
-        {
-            // Bold: **...**
-            if (pos + 2 < text.Length && text[pos] == '*' && text[pos + 1] == '*')
-            {
-                var end = text.IndexOf("**", pos + 2, StringComparison.Ordinal);
-                if (end > pos + 2)
-                {
-                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[(pos + 2)..end])
-                    {
-                        FontWeight = FontWeight.Bold
-                    });
-                    pos = end + 2;
-                    continue;
-                }
-            }
-
-            // Inline code: `...`
-            if (text[pos] == '`')
-            {
-                var end = text.IndexOf('`', pos + 1);
-                if (end > pos + 1)
-                {
-                    // Space buffer around code for visual padding effect
-                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run("\u2009")); // thin space
-                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[(pos + 1)..end])
-                    {
-                        FontFamily = new FontFamily("Consolas, Courier New, monospace"),
-                        Background = new SolidColorBrush(Color.FromArgb(50, 255, 255, 255)),
-                        FontSize = fontSize > 1 ? fontSize - 0.5 : fontSize,
-                    });
-                    tb.Inlines!.Add(new Avalonia.Controls.Documents.Run("\u2009")); // thin space
-                    pos = end + 1;
-                    continue;
-                }
-            }
-
-            // Link: [text](url)
-            if (text[pos] == '[')
-            {
-                var closeBracket = text.IndexOf(']', pos + 1);
-                if (closeBracket > pos + 1 && closeBracket + 1 < text.Length && text[closeBracket + 1] == '(')
-                {
-                    var closeParen = text.IndexOf(')', closeBracket + 2);
-                    if (closeParen > closeBracket + 2)
-                    {
-                        var linkText = text[(pos + 1)..closeBracket];
-                        var linkUrl = text[(closeBracket + 2)..closeParen];
-                        AddLinkInline(tb, linkText, linkUrl);
-                        pos = closeParen + 1;
-                        continue;
-                    }
-                }
-            }
-
-            // Plain text: consume until next special char
-            var nextSpecial = text.Length;
-            var nextBold = text.IndexOf("**", pos, StringComparison.Ordinal);
-            var nextCode = text.IndexOf('`', pos);
-            var nextLink = text.IndexOf('[', pos);
-            if (nextBold >= 0 && nextBold < nextSpecial) nextSpecial = nextBold;
-            if (nextCode >= 0 && nextCode < nextSpecial) nextSpecial = nextCode;
-            if (nextLink >= 0 && nextLink < nextSpecial) nextSpecial = nextLink;
-            if (nextSpecial == pos) nextSpecial = pos + 1; // advance at least 1 char
-
-            tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(text[pos..nextSpecial]));
-            pos = nextSpecial;
-        }
-
-        return tb;
-    }
-
-    /// <summary>Adds a clickable link Run to a TextBlock using an InlineUIContainer with a Button.</summary>
-    private static void AddLinkInline(TextBlock tb, string displayText, string url)
-    {
-        var linkBtn = new Button
-        {
-            Content = displayText,
-            FontSize = tb.FontSize,
-            Padding = new Avalonia.Thickness(0),
-            Background = Brushes.Transparent,
-            BorderThickness = new Avalonia.Thickness(0),
-            Cursor = new Cursor(StandardCursorType.Hand),
-            Foreground = new SolidColorBrush(Color.FromRgb(136, 170, 255)), // AccentLinkFg
-            MinHeight = 0,
-            MinWidth = 0,
-            VerticalAlignment = VerticalAlignment.Center,
-        };
-        ToolTip.SetTip(linkBtn, url);
-        linkBtn.Click += (_, _) =>
-        {
-            try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
-            catch { /* ignore if no browser */ }
-        };
-        tb.Inlines!.Add(new Avalonia.Controls.Documents.InlineUIContainer { Child = linkBtn });
-    }
-
-    /// <summary>Renders fenced code block lines as a monospace TextBlock with background.</summary>
-    private static void FlushCodeBlock(StackPanel parent, List<string> lines)
-    {
-        if (lines.Count == 0) return;
-
-        var codeText = string.Join("\n", lines);
-        parent.Children.Add(new Border
-        {
-            Child = new TextBlock
-            {
-                Text = codeText,
-                FontFamily = new FontFamily("Consolas, Courier New, monospace"),
-                FontSize = 10.5,
-                TextWrapping = TextWrapping.Wrap,
-                Opacity = 0.85,
-            },
-            Background = new SolidColorBrush(Color.FromArgb(25, 255, 255, 255)),
-            CornerRadius = new Avalonia.CornerRadius(4),
-            Padding = new Avalonia.Thickness(10, 6),
-            Margin = new Avalonia.Thickness(0, 4),
-        });
-    }
-
-    /// <summary>Renders a markdown table with header styling and alternating row backgrounds.</summary>
-    private static void FlushTable(StackPanel parent, List<string> rows)
-    {
-        if (rows.Count == 0) return;
-
-        var tablePanel = new StackPanel { Spacing = 0, Margin = new Avalonia.Thickness(0, 4) };
-        bool isHeader = true;
-        int dataRowIdx = 0;
-
-        foreach (var row in rows)
-        {
-            var cells = row.Split('|', StringSplitOptions.None)
-                .Select(c => c.Trim())
-                .Where(c => !string.IsNullOrEmpty(c) || row.Contains('|'))
-                .ToArray();
-
-            var cleanCells = cells.Where(c => c.Length > 0 || cells.Length <= 2).ToList();
-            if (cleanCells.Count == 0) continue;
-
-            var rowPanel = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                Spacing = 12,
-            };
-
-            foreach (var cell in cleanCells)
-            {
-                rowPanel.Children.Add(new TextBlock
-                {
-                    Text = cell,
-                    FontSize = 10.5,
-                    FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
-                    TextWrapping = TextWrapping.NoWrap,
-                    MinWidth = 70,
-                    Opacity = isHeader ? 0.95 : 0.8,
-                });
-            }
-
-            // Header gets a distinct background + bottom border; data rows alternate
-            if (isHeader)
-            {
-                var headerBorder = new Border
-                {
-                    Child = rowPanel,
-                    Background = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
-                    Padding = new Avalonia.Thickness(6, 4),
-                    BorderThickness = new Avalonia.Thickness(0, 0, 0, 1),
-                    BorderBrush = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255)),
-                };
-                tablePanel.Children.Add(headerBorder);
-            }
-            else
-            {
-                var rowBg = dataRowIdx % 2 == 0
-                    ? Color.FromArgb(0, 0, 0, 0)
-                    : Color.FromArgb(12, 255, 255, 255);
-                tablePanel.Children.Add(new Border
-                {
-                    Child = rowPanel,
-                    Background = new SolidColorBrush(rowBg),
-                    Padding = new Avalonia.Thickness(6, 3),
-                });
-                dataRowIdx++;
-            }
-
-            isHeader = false;
-        }
-
-        var tableScroll = new ScrollViewer
-        {
-            Content = tablePanel,
-            HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
-            VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
-        };
-
-        parent.Children.Add(new Border
-        {
-            Child = tableScroll,
-            Padding = new Avalonia.Thickness(2),
-            CornerRadius = new Avalonia.CornerRadius(4),
-            Background = new SolidColorBrush(Color.FromArgb(10, 255, 255, 255)),
-            Margin = new Avalonia.Thickness(0, 2),
-        });
-    }
-
-    private static Border BuildWitnessCard(WitnessInfo w)
-    {
-        var stack = new StackPanel { Spacing = 2 };
-
-        // Label (bold)
-        stack.Children.Add(new TextBlock
-        {
-            Text = w.Label ?? w.Id ?? "(unknown witness)",
-            FontWeight = FontWeight.SemiBold,
-            FontSize = 12,
-            TextWrapping = TextWrapping.Wrap
-        });
-
-        // Kind + Role
-        if (!string.IsNullOrWhiteSpace(w.Kind) || !string.IsNullOrWhiteSpace(w.RoleInProduction))
-        {
-            var parts = new StringBuilder();
-            if (!string.IsNullOrWhiteSpace(w.Kind))
-                parts.Append(FormatWitnessKind(w.Kind));
-            if (!string.IsNullOrWhiteSpace(w.RoleInProduction))
-            {
-                if (parts.Length > 0) parts.Append(" | ");
-                parts.Append(w.RoleInProduction);
-            }
-            stack.Children.Add(new TextBlock
-            {
-                Text = parts.ToString(),
-                FontSize = 11,
-                Opacity = 0.8,
-                TextWrapping = TextWrapping.Wrap
-            });
-        }
-
-        // Upstream URL — clickable, opens in browser
-        if (!string.IsNullOrWhiteSpace(w.UpstreamUrl))
-        {
-            var fullUrl = w.UpstreamUrl;
-            var displayUrl = fullUrl.Length > 60 ? fullUrl.Substring(0, 57) + "..." : fullUrl;
-            var linkBtn = new Button
-            {
-                Content = displayUrl,
-                FontSize = 10,
-                Padding = new Avalonia.Thickness(0),
-                Background = Brushes.Transparent,
-                BorderThickness = new Avalonia.Thickness(0),
-                Cursor = new Cursor(StandardCursorType.Hand),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = new SolidColorBrush(Color.FromRgb(100, 160, 255)),
-            };
-            ToolTip.SetTip(linkBtn, fullUrl);
-            linkBtn.Click += (_, _) =>
-            {
-                try { Process.Start(new ProcessStartInfo(fullUrl) { UseShellExecute = true }); }
-                catch { /* ignore if no browser */ }
-            };
-            stack.Children.Add(linkBtn);
-        }
-
-        // Stable revision URL — clickable if different from upstream
-        if (!string.IsNullOrWhiteSpace(w.StableRevisionUrl) &&
-            !string.Equals(w.StableRevisionUrl, w.UpstreamUrl, StringComparison.OrdinalIgnoreCase))
-        {
-            var fullUrl = w.StableRevisionUrl;
-            var displayUrl = fullUrl.Length > 60 ? fullUrl.Substring(0, 57) + "..." : fullUrl;
-            var revBtn = new Button
-            {
-                Content = "Stable revision: " + displayUrl,
-                FontSize = 10,
-                Padding = new Avalonia.Thickness(0),
-                Background = Brushes.Transparent,
-                BorderThickness = new Avalonia.Thickness(0),
-                Cursor = new Cursor(StandardCursorType.Hand),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = new SolidColorBrush(Color.FromRgb(100, 160, 255)),
-            };
-            ToolTip.SetTip(revBtn, fullUrl);
-            revBtn.Click += (_, _) =>
-            {
-                try { Process.Start(new ProcessStartInfo(fullUrl) { UseShellExecute = true }); }
-                catch { /* ignore */ }
-            };
-            stack.Children.Add(revBtn);
-        }
-
-        // SHA-256 (first 16 chars) + bytes
-        if (!string.IsNullOrWhiteSpace(w.CapturedSha256))
-        {
-            var sha = w.CapturedSha256.Length > 16
-                ? w.CapturedSha256.Substring(0, 16) + "..."
-                : w.CapturedSha256;
-
-            var detail = $"SHA-256: {sha}";
-            if (w.CapturedBytes > 0)
-                detail += $" | {FormatBytes(w.CapturedBytes)}";
-
-            stack.Children.Add(new TextBlock
-            {
-                Text = detail,
-                FontSize = 10,
-                FontFamily = new FontFamily("Consolas, Courier New, monospace"),
-                Opacity = 0.6
-            });
-        }
-
-        // Capture date
-        if (!string.IsNullOrWhiteSpace(w.CapturedUtc))
-        {
-            stack.Children.Add(new TextBlock
-            {
-                Text = $"Captured: {w.CapturedUtc}",
-                FontSize = 10,
-                Opacity = 0.6
-            });
-        }
-
-        // Vetting confidence badge
-        if (!string.IsNullOrWhiteSpace(w.VettingConfidence))
-        {
-            var confBadge = new Border
-            {
-                CornerRadius = new Avalonia.CornerRadius(6),
-                Padding = new Avalonia.Thickness(6, 1),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Avalonia.Thickness(0, 2, 0, 0),
-                Child = new TextBlock
-                {
-                    Text = $"vetting: {w.VettingConfidence}",
+                    Content = label,
                     FontSize = 10,
-                    FontWeight = FontWeight.SemiBold
-                }
-            };
-
-            // Color by confidence level
-            if (w.VettingConfidence == "high")
-            {
-                confBadge.Background = new SolidColorBrush(Color.FromArgb(40, 0, 180, 0));
+                    Padding = new Avalonia.Thickness(0),
+                    Background = Brushes.Transparent,
+                    BorderThickness = new Avalonia.Thickness(0),
+                    Cursor = new Cursor(StandardCursorType.Hand),
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    Foreground = new SolidColorBrush(Color.FromRgb(100, 160, 255)),
+                };
+                ToolTip.SetTip(linkBtn, url);
+                linkBtn.Click += (_, _) =>
+                {
+                    try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+                    catch { }
+                };
+                sourceLinksHost.Children.Add(linkBtn);
             }
-            else if (w.VettingConfidence == "medium")
-            {
-                confBadge.Background = new SolidColorBrush(Color.FromArgb(40, 220, 180, 0));
-            }
-            else
-            {
-                confBadge.Background = new SolidColorBrush(Color.FromArgb(40, 220, 60, 0));
-            }
-
-            stack.Children.Add(confBadge);
+            if (sourceLinksHost.Children.Count > 0)
+                sourceLinksHost.IsVisible = true;
         }
 
-        return new Border
+        // Edition maturity badge
+        if (badgeMaturity != null && txtMaturity != null && !string.IsNullOrWhiteSpace(manifest.EditionMaturity))
         {
-            Padding = new Avalonia.Thickness(8),
-            CornerRadius = new Avalonia.CornerRadius(6),
-            BorderThickness = new Avalonia.Thickness(1),
-            Child = stack
-        };
+            txtMaturity.Text = FormatMaturity(manifest.EditionMaturity);
+            badgeMaturity.IsVisible = true;
+
+            badgeMaturity.Background = manifest.EditionMaturity switch
+            {
+                "published" => new SolidColorBrush(Color.FromArgb(40, 0, 180, 0)),
+                "publication-candidate" => new SolidColorBrush(Color.FromArgb(40, 0, 140, 220)),
+                "review" => new SolidColorBrush(Color.FromArgb(40, 220, 180, 0)),
+                _ => new SolidColorBrush(Color.FromArgb(40, 160, 160, 160)),
+            };
+        }
+
+        // Show "View Edition Details..." button for OpenZen texts
+        if (btnDetails != null) btnDetails.IsVisible = true;
+
+        // Show copy citation
+        if (btnCopy != null) btnCopy.IsVisible = true;
     }
 
     private string BuildCitationText()
@@ -897,22 +279,14 @@ public partial class ProvenancePanel : UserControl
         _ => kind
     };
 
-    private static string FormatWitnessKind(string kind) => kind switch
+    private static string FormatMaturity(string maturity) => maturity switch
     {
-        "wiki_transcription" => "Wiki transcription",
-        "woodblock_scan" => "Woodblock scan",
-        "printed_edition" => "Printed edition",
-        "manuscript" => "Manuscript",
-        "other" => "Other",
-        _ => kind
+        "draft" => "Draft",
+        "review" => "Under Review",
+        "publication-candidate" => "Publication Candidate",
+        "published" => "Published",
+        _ => maturity
     };
-
-    private static string FormatBytes(long bytes)
-    {
-        if (bytes < 1024) return $"{bytes} B";
-        if (bytes < 1024 * 1024) return $"{bytes / 1024.0:F1} KB";
-        return $"{bytes / (1024.0 * 1024.0):F1} MB";
-    }
 
     private IBrush? TryGetBrush(string resourceKey)
     {

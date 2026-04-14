@@ -41,29 +41,32 @@
                            FontSize="10" FontWeight="SemiBold"/>
             </Border>
 
-            <!-- Witnesses section -->
-            <StackPanel Name="WitnessesSection" Spacing="6" IsVisible="False">
-                <TextBlock Text="Witnesses consulted" FontWeight="Bold" FontSize="12" Margin="0,4,0,0"/>
-                <StackPanel Name="WitnessHost" Spacing="6"/>
-            </StackPanel>
+            <!-- Base witness (single line) -->
+            <TextBlock Name="TxtBaseWitness" FontSize="11" Opacity="0.8"
+                       TextWrapping="Wrap" IsVisible="False"/>
 
-            <!-- Production method -->
-            <StackPanel Name="ProductionSection" Spacing="2" IsVisible="False">
-                <TextBlock Text="Production method" FontWeight="Bold" FontSize="12" Margin="0,4,0,0"/>
-                <TextBlock Name="TxtProductionMethod" FontSize="11" TextWrapping="Wrap" Opacity="0.85"/>
-            </StackPanel>
+            <!-- Witness count -->
+            <TextBlock Name="TxtWitnessCount" FontSize="11" Opacity="0.7"
+                       IsVisible="False"/>
 
-            <!-- Curator + capture date -->
-            <StackPanel Name="CuratorSection" Spacing="2" IsVisible="False">
-                <TextBlock Name="TxtCurator" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
-                <TextBlock Name="TxtCapturedUtc" FontSize="11" Opacity="0.7"/>
-            </StackPanel>
+            <!-- Source links -->
+            <StackPanel Name="SourceLinksHost" Spacing="2" IsVisible="False"/>
 
-            <!-- Documents section (expandable .md files from provenance + exemplars) -->
-            <StackPanel Name="DocumentsSection" Spacing="4" IsVisible="False">
-                <TextBlock Text="Documents" FontWeight="Bold" FontSize="12" Margin="0,4,0,0"/>
-                <StackPanel Name="DocumentsHost" Spacing="4"/>
-            </StackPanel>
+            <!-- Edition maturity badge -->
+            <Border Name="BadgeMaturity"
+                    CornerRadius="8" Padding="8,3"
+                    IsVisible="False"
+                    HorizontalAlignment="Left">
+                <TextBlock Name="TxtMaturity" FontSize="10" FontWeight="SemiBold"/>
+            </Border>
+
+            <!-- View Edition Details button -->
+            <Button Name="BtnViewEditionDetails"
+                    Content="View Edition Details..."
+                    FontSize="11"
+                    HorizontalAlignment="Left"
+                    Margin="0,4,0,0"
+                    IsVisible="False"/>
 
             <!-- Copy citation button -->
             <Button Name="BtnCopyCitation" Content="Copy citation" FontSize="11"

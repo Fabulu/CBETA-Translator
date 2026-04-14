@@ -63,7 +63,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private AppConfig _config = new() { IsDarkTheme = true };
     public AppConfig Config => _config;
 
-    private string? _root, _translationRoot, _originalDir, _translatedDir;
+    private string? _root, _translationRoot, _originalDir, _translatedDir, _originalsRepoRoot;
     private string? _translatedCacheDir;
     // All corpus layouts found under _root (CBETA + Open siblings inside one
     // parent folder). Empty when the root is a legacy single-pair layout.
@@ -256,6 +256,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _translatedDir = layout.TranslatedDir;
         _translatedCacheDir = layout.TranslatedCacheDir;
         _translationRoot = layout.TranslationsRepoRoot;
+        _originalsRepoRoot = layout.OriginalsRepoRoot;
 
         // Use the active corpus's translations repo root directly. Passing
         // it through the legacy GetUserTranslatedDir would re-discover from
@@ -279,7 +280,7 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 if (_originalDir != null)
                 {
-                    var cached = await _indexCacheService.TryLoadAsync(_translationRoot);
+                    var cached = await _indexCacheService.TryLoadAsync(_translationRoot, _originalsRepoRoot);
                     if (cached?.Entries is { Count: > 0 })
                     {
                         var diskCount = Directory.EnumerateFiles(_originalDir, "*.xml", SearchOption.AllDirectories).Count();
@@ -643,6 +644,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _translatedDir = activeLayout.TranslatedDir;
             _translatedCacheDir = activeLayout.TranslatedCacheDir;
             _translationRoot = activeLayout.TranslationsRepoRoot;
+            _originalsRepoRoot = activeLayout.OriginalsRepoRoot;
         }
         else
         {
@@ -654,6 +656,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _originalDir = AppPaths.GetOriginalDir(_root);
             _translatedDir = AppPaths.GetTranslatedDir(_root);
             _translatedCacheDir = AppPaths.GetTranslatedCacheDir(_root);
+            _originalsRepoRoot = AppPaths.DiscoverRepoPaths(_root).OriginalsRepoRoot;
         }
 
         // CRITICAL: use the ACTIVE corpus's translations repo root for the
@@ -686,6 +689,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _originalDir = null;
             _translatedDir = null;
             _translatedCacheDir = null;
+            _originalsRepoRoot = null;
             _userTranslatedDir = null;
             _activeTranslatedDir = null;
             AvailableCorpora = System.Array.Empty<CorpusLayout>();
@@ -1004,7 +1008,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var cache = await _indexCacheService.TryLoadAsync(_translationRoot);
+            var cache = await _indexCacheService.TryLoadAsync(_translationRoot, _originalsRepoRoot);
 
             if (cache?.Entries is { Count: > 0 } && !_forceRebuildIndex)
             {
@@ -1026,7 +1030,7 @@ public partial class MainWindowViewModel : ViewModelBase
             });
 
             IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _translationRoot, progress);
-            await _indexCacheService.SaveAsync(_translationRoot, built);
+            await _indexCacheService.SaveAsync(_translationRoot, built, _originalsRepoRoot);
 
             _allItems = built.Entries ?? new List<FileNavItem>();
             RebuildLookup();
@@ -1104,7 +1108,7 @@ public partial class MainWindowViewModel : ViewModelBase
         });
         if (changed)
         {
-            await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
+            await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems }, _originalsRepoRoot);
         }
     }
     private void RebuildLookup()

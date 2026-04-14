@@ -873,6 +873,13 @@ public static class TeiRenderer
         if (id.StartsWith("nkr_note_mod_", StringComparison.Ordinal)) return "mod";
         if (id.StartsWith("nkr_note_orig_", StringComparison.Ordinal)) return "orig";
         if (id.StartsWith("nkr_note_add_", StringComparison.Ordinal)) return "add";
+
+        // OpenZen critical-edition note kinds
+        if (id.StartsWith("nkr_note_crit_", StringComparison.Ordinal)) return "crit";
+        if (id.StartsWith("nkr_note_prov_", StringComparison.Ordinal)) return "prov";
+        if (id.StartsWith("nkr_note_trans_", StringComparison.Ordinal)) return "trans";
+        if (id.StartsWith("nkr_note_unres_", StringComparison.Ordinal)) return "unres";
+
         return null;
     }
 }
