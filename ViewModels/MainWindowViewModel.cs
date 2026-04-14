@@ -98,6 +98,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private CancellationTokenSource? _navSearchCts;
     private CancellationTokenSource? _renderCts;
+    private bool _forceRebuildIndex;
     private CancellationTokenSource? _assistantCts;
     private CancellationTokenSource? _readerStudyCts;
     private CancellationTokenSource? _autoIndexCts;
@@ -274,6 +275,21 @@ public partial class MainWindowViewModel : ViewModelBase
         SetStatus($"Switched to {target} corpus. Rebuilding nav…");
         try
         {
+            try
+            {
+                if (_originalDir != null)
+                {
+                    var cached = await _indexCacheService.TryLoadAsync(_translationRoot);
+                    if (cached?.Entries is { Count: > 0 })
+                    {
+                        var diskCount = Directory.EnumerateFiles(_originalDir, "*.xml", SearchOption.AllDirectories).Count();
+                        if (diskCount != cached.Entries.Count)
+                            _forceRebuildIndex = true;
+                    }
+                }
+            }
+            catch { }
+
             await LoadFileListFromCacheOrBuildAsync();
             await ApplyFilterSafeAsync();
             SetStatus($"Active corpus: {target}");
@@ -522,6 +538,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 SetStatus("Auto-loading last root...");
                 await LoadRootAsync(_config.TextRootPath!, saveToConfig: false);
+
+                if (!_config.HasCompletedOnboarding && _root != null)
+                {
+                    _config.HasCompletedOnboarding = true;
+                    await SafeSaveConfigAsync();
+                }
 
                 // Skip auto-loading last file if a deep link will navigate us elsewhere
                 var hasDeepLink = App.StartupArgs?.Any(a =>
@@ -984,7 +1006,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             var cache = await _indexCacheService.TryLoadAsync(_translationRoot);
 
-            if (cache?.Entries is { Count: > 0 })
+            if (cache?.Entries is { Count: > 0 } && !_forceRebuildIndex)
             {
                 _allItems = cache.Entries;
                 RebuildLookup();
@@ -1013,9 +1035,11 @@ public partial class MainWindowViewModel : ViewModelBase
             WireSearchTab();
 
             SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
+            _forceRebuildIndex = false;
         }
         catch (Exception ex)
         {
+            _forceRebuildIndex = false;
             SetStatus("Index load/build failed: " + ex.Message);
         }
     }
@@ -1248,6 +1272,9 @@ public partial class MainWindowViewModel : ViewModelBase
         ClearTranslation?.Invoke();
         ClearSearch?.Invoke();
         ClearScholar?.Invoke();
+
+        _allItems = new();
+        _allItemsByRel.Clear();
 
         SetNavItemsSource?.Invoke(new List<FileNavItem>());
 
@@ -3546,6 +3573,12 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         {
             await SwitchCorpusAsync(requiredCorpus);
         }
+        else if (requiredCorpus != CorpusKind.Unknown && requiredCorpus != ActiveCorpus)
+        {
+            var name = requiredCorpus == CorpusKind.Open ? "OpenZenTexts" : "CBETA";
+            SetStatus($"This text requires the {name} corpus. Use Sync in the Community tab to download it.");
+            return;
+        }
 
         await EnsureTranslationSourceForNavigationAsync(request);
         SelectInNav(request.RelPath);
@@ -3562,6 +3595,8 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     /// (T/, X/, S/, etc.). Returns Unknown if the path doesn't match either
     /// shape so the caller can fall back to whatever's currently active.
     /// </summary>
+    public CorpusKind InferCorpusForPath(string relPath) => InferCorpusForRelPath(relPath);
+
     private static CorpusKind InferCorpusForRelPath(string? relPath)
     {
         if (string.IsNullOrWhiteSpace(relPath)) return CorpusKind.Unknown;

@@ -2137,9 +2137,39 @@ private async Task LoadConfigAndAutoloadAsync()
         if (step.SwitchToTabIndex.HasValue)
             ForceTab(step.SwitchToTabIndex.Value);
 
+        // Auto-advance Wait steps that are already satisfied
+        if (step.Type == Models.TourStepType.Wait)
+        {
+            bool alreadySatisfied = step.WaitForEvent switch
+            {
+                "root-cloned" => _vm.Root != null,
+                "index-built" => _vm.AllItemsByRel.Count > 0,
+                "git-check-complete" => true,
+                _ => false
+            };
+            if (alreadySatisfied)
+            {
+                _ = Task.Run(async () => await Dispatcher.UIThread.InvokeAsync(async () =>
+                {
+                    await Task.Delay(500);
+                    _tourService?.AdvanceIfWaitingFor(step.WaitForEvent!);
+                }));
+                return;
+            }
+        }
+
         // Auto-open a file if the step requires it
         if (!string.IsNullOrWhiteSpace(step.AutoOpenRelPath) && _vm.Root != null)
-            _ = _vm.LoadPairAsync(step.AutoOpenRelPath);
+        {
+            _ = Task.Run(async () => await Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                var neededCorpus = _vm.InferCorpusForPath(step.AutoOpenRelPath);
+                if (neededCorpus != CorpusKind.Unknown && neededCorpus != _vm.ActiveCorpus)
+                    await _vm.SwitchCorpusAsync(neededCorpus);
+                _vm.SelectInNav(step.AutoOpenRelPath);
+                await _vm.LoadPairAsync(step.AutoOpenRelPath);
+            }));
+        }
 
         // Auto-jump to a specific block in the translation editor
         if (step.AutoJumpToBlock.HasValue)
