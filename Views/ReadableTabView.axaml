@@ -84,6 +84,13 @@
 					Margin="4,0,0,0"
 					ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
 
+			<ComboBox Name="CmbVersionPicker"
+					  DockPanel.Dock="Right"
+					  MinWidth="120"
+					  FontSize="11"
+					  Margin="4,0,0,0"
+					  IsVisible="False"
+					  ToolTip.Tip="View an older version of this translation (git history)"/>
 			<ComboBox Name="CmbTranslationSource"
 					  DockPanel.Dock="Right"
 					  MinWidth="170"

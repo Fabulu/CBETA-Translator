@@ -85,6 +85,7 @@ public partial class ReadableTabView : UserControl
     private CheckBox? _chkZenText;
     private ComboBox? _cmbTranslationSource;
     private bool _suppressTranslationSourceEvents;
+    private bool _suppressVersionPickerEvents;
 
     // -------------------------
     // Notes panel + buttons
@@ -222,6 +223,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<CompareTagsRequestData>? CompareTagsRequested;
     public event EventHandler? CompareTranslationsRequested;
     public event EventHandler<int>? TranslationSourceChanged;
+
+    /// <summary>Fired when user selects a historical version from the version picker. Value is the commit hash, or null for "(current)".</summary>
+    public event EventHandler<string?>? VersionPickerChanged;
 
     /// <summary>Analytics menu events.</summary>
     public event EventHandler? CodeFrequencyRequested;
@@ -811,6 +815,21 @@ public partial class ReadableTabView : UserControl
                     TranslationSourceChanged?.Invoke(this, _cmbTranslationSource.SelectedIndex);
             };
         }
+
+        var cmbVersion = this.FindControl<ComboBox>("CmbVersionPicker");
+        if (cmbVersion != null)
+        {
+            cmbVersion.SelectionChanged += (_, _) =>
+            {
+                if (_suppressVersionPickerEvents) return;
+                if (cmbVersion.SelectedItem is ComboBoxItem item)
+                {
+                    var hash = item.Tag as string; // null for "(current)"
+                    VersionPickerChanged?.Invoke(this, hash);
+                }
+            };
+        }
+
         // Tunnel key handlers for coding mode (Space tracking + F2 + coding keys)
         AddHandler(InputElement.KeyDownEvent, OnCodingKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
         AddHandler(InputElement.KeyUpEvent, OnCodingKeyUp_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
@@ -1028,6 +1047,66 @@ public partial class ReadableTabView : UserControl
             _suppressTranslationSourceEvents = false;
         }
     }
+    /// <summary>
+    /// Swaps only the translated pane to a historical version (read-only).
+    /// Does not touch the original pane.
+    /// </summary>
+    public void SetRenderedTranslationOnly(RenderedDocument tran)
+    {
+        _vm.RenderTran = tran ?? RenderedDocument.Empty;
+        ResolveInnerEditors();
+        if (_aeTran == null) return;
+
+        _syncingSelection = true;
+        try
+        {
+            _aeTran.Text = _vm.RenderTran.Text ?? "";
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+    }
+
+    /// <summary>
+    /// Populates the version picker with commit entries. Called by MainWindow after file load.
+    /// First item is always "(current)" with null tag.
+    /// </summary>
+    public void PopulateVersionPicker(List<ReadZen.App.Models.GitCommitEntry> commits)
+    {
+        var cmb = this.FindControl<ComboBox>("CmbVersionPicker");
+        if (cmb == null) return;
+
+        _suppressVersionPickerEvents = true;
+        try
+        {
+            var items = new List<ComboBoxItem>
+            {
+                new() { Content = "(current)", Tag = null }
+            };
+
+            foreach (var c in commits)
+                items.Add(new ComboBoxItem { Content = $"{c.DateDisplay} — {c.Author}: {c.Subject}", Tag = c.Hash });
+
+            cmb.ItemsSource = items;
+            cmb.SelectedIndex = 0;
+            cmb.IsVisible = commits.Count > 0;
+        }
+        finally
+        {
+            _suppressVersionPickerEvents = false;
+        }
+    }
+
+    /// <summary>Hides the version picker (e.g. when no file is loaded or no git history).</summary>
+    public void ClearVersionPicker()
+    {
+        var cmb = this.FindControl<ComboBox>("CmbVersionPicker");
+        if (cmb == null) return;
+        cmb.ItemsSource = null;
+        cmb.IsVisible = false;
+    }
+
     public void SetHoverDictionaryEnabled(bool enabled)
     {
         _vm.HoverDictionaryEnabled = enabled;

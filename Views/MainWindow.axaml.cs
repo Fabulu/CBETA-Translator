@@ -500,6 +500,9 @@ private async Task LoadConfigAndAutoloadAsync()
             var license = _vm.GetLicenseForCurrentFile();
             _readableView?.SetFileLicense(license);
             UpdateLicenseChip(license);
+
+            // Populate version picker with git history for the translated file
+            _ = PopulateReaderVersionPickerAsync();
         };
         _vm.ClearReadable = () =>
         {
@@ -1022,6 +1025,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.SwitchTranslationSourceAsync(idx);
             };
 
+            _readableView.VersionPickerChanged += async (_, commitHash) =>
+            {
+                await LoadReaderHistoricalVersionAsync(commitHash);
+            };
+
             _readableView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
@@ -1072,6 +1080,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _translationView.SaveRequested += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
             _translationView.FreshStartRequested += async (_, _) => await _vm.ResetTranslatedToUntranslatedAsync();
             _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
+            _translationView.HistoryRequested += async (_, _) => await OpenTranslationHistoryAsync();
             _translationView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _translationView.CurrentSegmentChanged += async (_, ev) =>
@@ -1847,6 +1856,114 @@ private async Task LoadConfigAndAutoloadAsync()
     /// Shows a picker dialog for two translation sources, then opens a 3-pane comparison window
     /// with the original Chinese text and both selected translations.
     /// </summary>
+    private async Task PopulateReaderVersionPickerAsync()
+    {
+        try
+        {
+            if (_vm.CurrentRelPath == null || _vm.TranslationRoot == null)
+            {
+                _readableView?.ClearVersionPicker();
+                return;
+            }
+
+            var git = App.Services.GetRequiredService<IGitRepoService>();
+            var translatedDir = _vm.GetActiveTranslatedDir();
+            if (translatedDir == null) { _readableView?.ClearVersionPicker(); return; }
+
+            var tranAbsPath = System.IO.Path.Combine(translatedDir, _vm.CurrentRelPath);
+            var repoRelPath = System.IO.Path.GetRelativePath(_vm.TranslationRoot, tranAbsPath);
+
+            var commits = await git.GetFileLogAsync(_vm.TranslationRoot, repoRelPath, 30);
+            _readableView?.PopulateVersionPicker(commits);
+        }
+        catch
+        {
+            _readableView?.ClearVersionPicker();
+        }
+    }
+
+    private async Task LoadReaderHistoricalVersionAsync(string? commitHash)
+    {
+        try
+        {
+            if (commitHash == null)
+            {
+                // "(current)" selected — reload from disk
+                await _vm.ReloadCurrentReadableAsync();
+                return;
+            }
+
+            if (_vm.CurrentRelPath == null || _vm.TranslationRoot == null) return;
+
+            var git = App.Services.GetRequiredService<IGitRepoService>();
+            var translatedDir = _vm.GetActiveTranslatedDir();
+            if (translatedDir == null) return;
+
+            var tranAbsPath = System.IO.Path.Combine(translatedDir, _vm.CurrentRelPath);
+            var repoRelPath = System.IO.Path.GetRelativePath(_vm.TranslationRoot, tranAbsPath);
+
+            var content = await git.GetFileAtCommitAsync(_vm.TranslationRoot, commitHash, repoRelPath);
+            if (content == null)
+            {
+                _vm.SetStatus("This file did not exist at the selected version.");
+                return;
+            }
+
+            // Render the historical content and display it in the translated pane
+            var historicalDoc = Text.TeiRenderer.Render(content);
+            _readableView?.SetRenderedTranslationOnly(historicalDoc);
+            _vm.SetStatus($"Viewing historical version ({commitHash[..7]})");
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"History: {ex.Message}", StatusSeverity.Error);
+        }
+    }
+
+    private async Task OpenTranslationHistoryAsync()
+    {
+        try
+        {
+            if (_vm.CurrentRelPath == null || _vm.TranslationRoot == null)
+            {
+                _vm.SetStatus("No file loaded.");
+                return;
+            }
+
+            var git = App.Services.GetRequiredService<IGitRepoService>();
+            var translatedDir = _vm.GetActiveTranslatedDir();
+            if (translatedDir == null)
+            {
+                _vm.SetStatus("No translation directory available.");
+                return;
+            }
+
+            // Build the path relative to the translations repo root
+            var tranAbsPath = System.IO.Path.Combine(translatedDir, _vm.CurrentRelPath);
+            var repoRelPath = System.IO.Path.GetRelativePath(_vm.TranslationRoot, tranAbsPath);
+
+            var dialog = new TranslationHistoryDialog();
+            dialog.LoadHistory(git, _vm.TranslationRoot, repoRelPath, _vm.CurrentRelPath);
+            await dialog.ShowDialog(this);
+
+            // If the user chose to restore, save any unsaved work first, then write and reload
+            if (!string.IsNullOrEmpty(dialog.RestoredContent))
+            {
+                // Auto-save current work before overwriting to prevent data loss
+                if (_vm.IsDirty)
+                    await _vm.SaveTranslatedFromTabAsync();
+
+                await System.IO.File.WriteAllTextAsync(tranAbsPath, dialog.RestoredContent);
+                await _vm.RevertTranslatedXmlFromDiskAsync();
+                _vm.SetStatus("Restored translation from history.");
+            }
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"History: {ex.Message}", StatusSeverity.Error);
+        }
+    }
+
     private async Task OpenCompareTranslationsWindowAsync()
     {
         try
@@ -2002,6 +2119,20 @@ private async Task LoadConfigAndAutoloadAsync()
             RequestedThemeVariant = this.ActualThemeVariant
         };
         win.LoadComparison(data, _vm.Config.GitHubUsername ?? _vm.Config.Username);
+
+        // Populate version pickers if git is available
+        if (_vm.TranslationRoot != null)
+        {
+            try
+            {
+                var git = App.Services.GetRequiredService<IGitRepoService>();
+                var relPathA = _vm.GetTranslationSourceRepoRelPath(indexA.Value);
+                var relPathB = _vm.GetTranslationSourceRepoRelPath(indexB.Value);
+                await win.PopulateVersionPickersAsync(git, _vm.TranslationRoot, relPathA, relPathB);
+            }
+            catch { /* graceful — version pickers just stay hidden */ }
+        }
+
         win.Show(this);
     }
 

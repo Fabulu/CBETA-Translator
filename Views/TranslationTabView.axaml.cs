@@ -58,6 +58,7 @@ public partial class TranslationTabView : UserControl
     public event EventHandler? SaveRequested;
     public event EventHandler? FreshStartRequested;
     public event EventHandler? RevertRequested;
+    public event EventHandler? HistoryRequested;
     public event EventHandler<string>? Status;
 
     private CheckBox? _chkAssistantVisible;
@@ -413,6 +414,10 @@ public partial class TranslationTabView : UserControl
 
         if (_btnRevert != null)
             _btnRevert.Click += (_, _) => RevertRequested?.Invoke(this, EventArgs.Empty);
+
+        var btnHistory = this.FindControl<Button>("BtnHistory");
+        if (btnHistory != null)
+            btnHistory.Click += (_, _) => HistoryRequested?.Invoke(this, EventArgs.Empty);
 
         if (_btnBuildReferenceTm != null)
             _btnBuildReferenceTm.Click += (_, _) => BuildReferenceTmRequested?.Invoke(this, EventArgs.Empty);

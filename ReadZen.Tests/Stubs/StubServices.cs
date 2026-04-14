@@ -80,6 +80,9 @@ public class StubGitRepoService : IGitRepoService
     public Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
     public Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct) => Task.FromResult((0, 0));
     public Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
+    public Task<List<GitCommitEntry>> GetFileLogAsync(string repoDir, string relPath, int maxCount = 50, CancellationToken ct = default) => Task.FromResult(new List<GitCommitEntry>());
+    public Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default) => Task.FromResult<string?>(null);
+    public Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default) => Task.FromResult("");
 }
 
 // ---- IGitHubAuthService ----

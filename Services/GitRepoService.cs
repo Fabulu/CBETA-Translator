@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
 
@@ -736,5 +738,51 @@ public sealed class GitRepoService : IGitRepoService
             _running = null;
             p.Dispose();
         }
+    }
+
+    // ── History browsing (read-only) ──────────────────────────────────
+
+    public async Task<List<GitCommitEntry>> GetFileLogAsync(string repoDir, string relPath, int maxCount = 50, CancellationToken ct = default)
+    {
+        var entries = new List<GitCommitEntry>();
+        // Use pipe separator that won't appear in commit messages
+        var format = "%H|%aI|%an|%s";
+        var normalizedPath = relPath.Replace('\\', '/');
+        var r = await RunGitAsync(repoDir, $"log --follow --format=\"{format}\" -n {maxCount} -- \"{normalizedPath}\"", null, ct);
+        if (r.ExitCode != 0 || string.IsNullOrWhiteSpace(r.StdOut))
+            return entries;
+
+        foreach (var line in r.StdOut.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var parts = line.Split('|', 4);
+            if (parts.Length < 4) continue;
+
+            var hash = parts[0].Trim();
+            if (string.IsNullOrEmpty(hash)) continue;
+
+            DateTimeOffset.TryParse(parts[1].Trim(), CultureInfo.InvariantCulture, DateTimeStyles.None, out var date);
+            var author = parts[2].Trim();
+            var subject = parts[3].Trim();
+
+            entries.Add(new GitCommitEntry(hash, date, author, subject));
+        }
+
+        return entries;
+    }
+
+    public async Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default)
+    {
+        var normalizedPath = relPath.Replace('\\', '/');
+        var r = await RunGitAsync(repoDir, $"show {commitHash}:\"{normalizedPath}\"", null, ct);
+        if (r.ExitCode != 0)
+            return null;
+        return r.StdOut;
+    }
+
+    public async Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default)
+    {
+        var normalizedPath = relPath.Replace('\\', '/');
+        var r = await RunGitAsync(repoDir, $"diff {commitHashA} {commitHashB} -- \"{normalizedPath}\"", null, ct);
+        return r.StdOut ?? "";
     }
 }
