@@ -138,21 +138,28 @@ public static class LicenseCatalog
         if (IsMatch(src, "CC0", "PD-old", "public domain", "Public Domain", "Unlicense"))
             return new List<LicenseOption>(All);
 
-        // CC BY (not SA, not NC): full freedom with attribution note
-        if (IsMatch(src, "CC-BY-4.0", "CC BY 4.0", "CC-BY-") && !ContainsAny(src, "SA", "NC", "ND"))
-            return new List<LicenseOption>(All);
+        // Order matters: check most specific (most restrictive) first to avoid false matches.
+        // CC-BY-NC-SA must be checked before CC-BY-NC, CC-BY-SA, and CC-BY.
 
-        // CC BY-SA: sticky — only CC BY-SA
-        if (IsMatch(src, "CC-BY-SA", "CC BY-SA"))
-            return new List<LicenseOption> { CcBySa, AllRightsReserved };
-
-        // CC BY-NC-SA: fully sticky
+        // CC BY-NC-SA: fully sticky (most restrictive CC with derivatives)
         if (IsMatch(src, "CC-BY-NC-SA", "CC BY-NC-SA"))
             return new List<LicenseOption> { CcByNcSa, AllRightsReserved };
 
-        // CC BY-NC: can add restrictions
+        // CC BY-NC-ND: no derivatives allowed
+        if (IsMatch(src, "CC-BY-NC-ND", "CC BY-NC-ND"))
+            return new List<LicenseOption> { CcByNcNd, AllRightsReserved };
+
+        // CC BY-NC: can add restrictions but must stay NC
         if (IsMatch(src, "CC-BY-NC", "CC BY-NC"))
             return new List<LicenseOption> { CcByNc, CcByNcSa, CcByNcNd, AllRightsReserved };
+
+        // CC BY-SA: sticky copyleft (must check before plain CC-BY)
+        if (IsMatch(src, "CC-BY-SA", "CC BY-SA"))
+            return new List<LicenseOption> { CcBySa, AllRightsReserved };
+
+        // CC BY: full freedom with attribution
+        if (IsMatch(src, "CC-BY-4.0", "CC BY 4.0", "CC-BY-") && !ContainsAny(src, "SA", "NC", "ND"))
+            return new List<LicenseOption>(All);
 
         // Unknown: safe default
         return new List<LicenseOption> { AllRightsReserved };
@@ -170,12 +177,12 @@ public static class LicenseCatalog
 
         var src = sourceLicense.Trim();
 
-        // Map source license to the matching catalog entry
+        // Map source license to the matching catalog entry (most specific first)
         if (IsMatch(src, "CC0", "PD-old", "public domain", "Unlicense")) return Cc0;
-        if (IsMatch(src, "CC-BY-SA", "CC BY-SA")) return CcBySa;
         if (IsMatch(src, "CC-BY-NC-SA", "CC BY-NC-SA")) return CcByNcSa;
         if (IsMatch(src, "CC-BY-NC-ND", "CC BY-NC-ND")) return CcByNcNd;
         if (IsMatch(src, "CC-BY-NC", "CC BY-NC")) return CcByNc;
+        if (IsMatch(src, "CC-BY-SA", "CC BY-SA")) return CcBySa;
         if (IsMatch(src, "CC-BY-4.0", "CC BY 4.0", "CC-BY-")) return CcBy;
 
         return null;

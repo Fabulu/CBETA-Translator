@@ -18,6 +18,13 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IIndexCacheService, IndexCacheService>();
         services.AddSingleton<ILicenseMetadataService, LicenseMetadataService>();
         services.AddSingleton<IManifestService, ManifestService>();
+        services.AddSingleton<ProcessService>();
+        services.AddSingleton<ApparatusService>();
+        services.AddSingleton<EditionStatsService>();
+        services.AddSingleton<DocumentsService>();
+        services.AddSingleton<TimelineService>();
+        services.AddSingleton<HumanLogService>();
+        services.AddSingleton<TranslationLicenseService>();
         services.AddSingleton<IIndexedTranslationService, IndexedTranslationService>();
         services.AddSingleton<IRenderedDocumentCacheService>(_ => new RenderedDocumentCacheService(48));
                 services.AddSingleton<ISearchIndexService, SearchIndexService>();

@@ -1030,6 +1030,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 await LoadReaderHistoricalVersionAsync(commitHash);
             };
 
+            _readableView.EditionDetailsRequested += async (manifest, xmlPath) =>
+            {
+                await OpenEditionProcessDialogAsync(manifest, xmlPath);
+            };
+
             _readableView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
@@ -1860,6 +1865,41 @@ private async Task LoadConfigAndAutoloadAsync()
     /// Shows a picker dialog for two translation sources, then opens a 3-pane comparison window
     /// with the original Chinese text and both selected translations.
     /// </summary>
+    // ── Edition Process Dialog ────────────────────────────────────────
+
+    private async Task OpenEditionProcessDialogAsync(ManifestInfo manifest, string? xmlAbsPath)
+    {
+        try
+        {
+            var dialog = new EditionProcessDialog
+            {
+                RequestedThemeVariant = this.ActualThemeVariant,
+            };
+
+            var processSvc = App.Services.GetService<ProcessService>();
+            var apparatusSvc = App.Services.GetService<ApparatusService>();
+            var statsSvc = App.Services.GetService<EditionStatsService>();
+            var docsSvc = App.Services.GetService<DocumentsService>();
+            var timelineSvc = App.Services.GetService<TimelineService>();
+            var logSvc = App.Services.GetService<HumanLogService>();
+
+            // Get the current rendered translation for the text preview
+            RenderedDocument? renderedTran = null;
+            try { renderedTran = _readableView?.GetRenderedTranslation(); }
+            catch { }
+
+            dialog.Load(manifest, xmlAbsPath,
+                processSvc, apparatusSvc, statsSvc, docsSvc,
+                timelineSvc, logSvc, renderedTran);
+
+            dialog.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"Edition details: {ex.Message}", StatusSeverity.Error);
+        }
+    }
+
     // ── Translation Licensing ─────────────────────────────────────────
 
     private readonly TranslationLicenseService _licenseService = new();

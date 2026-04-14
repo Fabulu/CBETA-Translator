@@ -777,16 +777,20 @@ public partial class EditionProcessDialog : Window
         }
         else
         {
-            // Apply patches to the final text
+            // Apply patches to the final text — replace only the FIRST occurrence
+            // of each final reading to avoid clobbering identical text at other loci.
             var text = _finalText;
             foreach (var (locusId, reading) in patches)
             {
-                // Find the final reading for this locus to know what to replace
                 if (_timeline.Readings?.TryGetValue(locusId, out var readings) == true && readings.Count > 0)
                 {
                     var finalReading = readings[^1];
                     if (!string.IsNullOrEmpty(finalReading))
-                        text = text.Replace(finalReading, reading);
+                    {
+                        var idx = text.IndexOf(finalReading, StringComparison.Ordinal);
+                        if (idx >= 0)
+                            text = string.Concat(text.AsSpan(0, idx), reading, text.AsSpan(idx + finalReading.Length));
+                    }
                 }
             }
             _editorPreview.Text = text;
