@@ -24,6 +24,7 @@ public partial class TimelineSlider : UserControl
     private int _selectedIndex; // 0 = present (newest), _commits.Count = oldest
     private readonly List<Ellipse> _notches = new();
     private Ellipse? _thumb;
+    private bool _suppressEvents;
 
     /// <summary>Fired when user selects a version. Value is commit hash or null for "(current)".</summary>
     public event EventHandler<string?>? VersionChanged;
@@ -49,11 +50,19 @@ public partial class TimelineSlider : UserControl
     /// </summary>
     public void SetCommits(List<GitCommitEntry> commits)
     {
-        _commits = commits ?? new();
-        _selectedIndex = 0; // present
-        IsVisible = _commits.Count > 0;
-        Redraw();
-        UpdateBadge();
+        _suppressEvents = true;
+        try
+        {
+            _commits = commits ?? new();
+            _selectedIndex = 0; // present
+            IsVisible = _commits.Count > 0;
+            Redraw();
+            UpdateBadge();
+        }
+        finally
+        {
+            _suppressEvents = false;
+        }
     }
 
     public void Clear()
@@ -131,7 +140,7 @@ public partial class TimelineSlider : UserControl
 
     private void OnTrackPointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (_canvas == null || _commits.Count == 0) return;
+        if (_suppressEvents || _canvas == null || _commits.Count == 0) return;
 
         var pos = e.GetPosition(_canvas);
         var w = _canvas.Bounds.Width;

@@ -227,6 +227,9 @@ public partial class ReadableTabView : UserControl
     /// <summary>Fired when user selects a historical version from the version picker. Value is the commit hash, or null for "(current)".</summary>
     public event EventHandler<string?>? VersionPickerChanged;
 
+    /// <summary>Fired when user clicks "View Edition Details..." in the provenance panel.</summary>
+    public event Action<ManifestInfo, string?>? EditionDetailsRequested;
+
     /// <summary>Analytics menu events.</summary>
     public event EventHandler? CodeFrequencyRequested;
     public event EventHandler? CooccurrenceRequested;
@@ -389,6 +392,9 @@ public partial class ReadableTabView : UserControl
         _provenancePanelBorder = this.FindControl<Border>("ProvenancePanelBorder");
         _rightPanelHost = this.FindControl<Grid>("RightPanelHost");
         _provenancePanelView = this.FindControl<ProvenancePanel>("ProvenancePanelView");
+        if (_provenancePanelView != null)
+            _provenancePanelView.EditionDetailsRequested += (manifest, xmlPath) =>
+                EditionDetailsRequested?.Invoke(manifest, xmlPath);
         _studyTermHost = this.FindControl<StackPanel>("StudyTermHost");
         _studyTmHost = this.FindControl<StackPanel>("StudyTmHost");
         _txtStudySegmentZh = this.FindControl<TextBlock>("TxtStudySegmentZh");
@@ -4770,6 +4776,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             _chkProvenance.IsChecked = visible;
         UpdateProvenancePanelVisibility();
     }
+
+    /// <summary>Returns the currently rendered translation document (for timeline text preview).</summary>
+    public RenderedDocument? GetRenderedTranslation() => _vm?.RenderTran;
 
     /// <summary>Populates provenance panel from manifest data.</summary>
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
