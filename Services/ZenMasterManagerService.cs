@@ -167,11 +167,30 @@ public sealed class ZenMasterManagerService
             if (names.Count == 0)
                 continue;
 
+            // Parse students array if present
+            List<string>? students = null;
+            if (m.TryGetProperty("students", out var studentsEl) && studentsEl.ValueKind == JsonValueKind.Array)
+            {
+                students = new List<string>();
+                foreach (var s in studentsEl.EnumerateArray())
+                {
+                    var sv = s.GetString()?.Trim();
+                    if (!string.IsNullOrWhiteSpace(sv))
+                        students.Add(sv);
+                }
+            }
+
             yield return new MasterDateEntry
             {
                 Names = names,
                 Floruit = m.TryGetProperty("floruit", out var f) ? f.GetInt32() : 0,
                 Death = m.TryGetProperty("death", out var d) ? d.GetInt32() : 0,
+                School = m.TryGetProperty("school", out var sch) ? sch.GetString() : null,
+                Teacher = m.TryGetProperty("teacher", out var tch) ? tch.GetString() : null,
+                Students = students,
+                Notes = m.TryGetProperty("notes", out var nt) ? nt.GetString() : null,
+                Region = m.TryGetProperty("region", out var rg) ? rg.GetString() : null,
+                ReferenceUrl = m.TryGetProperty("referenceUrl", out var ru) ? ru.GetString() : null,
             };
         }
     }
