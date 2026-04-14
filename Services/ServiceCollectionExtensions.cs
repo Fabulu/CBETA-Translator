@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<TimelineService>();
         services.AddSingleton<HumanLogService>();
         services.AddSingleton<TranslationLicenseService>();
+        services.AddSingleton<WitnessTextService>();
         services.AddSingleton<IIndexedTranslationService, IndexedTranslationService>();
         services.AddSingleton<IRenderedDocumentCacheService>(_ => new RenderedDocumentCacheService(48));
                 services.AddSingleton<ISearchIndexService, SearchIndexService>();
