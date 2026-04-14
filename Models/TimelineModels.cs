@@ -13,8 +13,42 @@ public sealed class TimelineInfo
     [JsonPropertyName("text_id")]
     public string? TextId { get; set; }
 
+    /// <summary>
+    /// Deduplicated reading lookup table. Key = locus_id, value = array of reading strings.
+    /// Index 0 = initial reading, subsequent indices = readings introduced by text_changed events.
+    /// text_changed events reference readings by index (reading_before, reading_after).
+    /// </summary>
+    [JsonPropertyName("readings")]
+    public Dictionary<string, List<string>>? Readings { get; set; }
+
+    /// <summary>Edition revision bookmarks. Append-only; new revisions get higher event ranges.</summary>
+    [JsonPropertyName("revisions")]
+    public List<TimelineRevision>? Revisions { get; set; }
+
     [JsonPropertyName("events")]
     public List<TimelineEvent>? Events { get; set; }
+}
+
+/// <summary>A revision bookmark in the timeline. Tracks publication milestones.</summary>
+public sealed class TimelineRevision
+{
+    [JsonPropertyName("revision_id")]
+    public string? RevisionId { get; set; }
+
+    [JsonPropertyName("label")]
+    public string? Label { get; set; }
+
+    [JsonPropertyName("date")]
+    public string? Date { get; set; }
+
+    [JsonPropertyName("event_range")]
+    public int[]? EventRange { get; set; }
+
+    [JsonPropertyName("witnesses_added")]
+    public List<string>? WitnessesAdded { get; set; }
+
+    [JsonPropertyName("status")]
+    public string? Status { get; set; }
 }
 
 /// <summary>A single event in the edition build history.</summary>

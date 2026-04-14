@@ -139,6 +139,76 @@ public sealed class TimelineService
         return state;
     }
 
+    /// <summary>
+    /// Computes the reading text patches needed to show the text at a given timeline position.
+    /// Returns a dictionary of locus_id → reading string to substitute.
+    /// Works by reverse-patching: collects all text_changed events AFTER the target position
+    /// and reverses them (swapping reading_after back to reading_before).
+    /// </summary>
+    public static Dictionary<string, string> GetReadingPatchesAtPosition(
+        TimelineInfo timeline, int upToSequence)
+    {
+        var patches = new Dictionary<string, string>(StringComparer.Ordinal);
+        if (timeline.Events == null || timeline.Readings == null) return patches;
+
+        // Collect text_changed events AFTER the target position, in reverse order
+        var toReverse = timeline.Events
+            .Where(e => e.Sequence > upToSequence
+                     && e.EventType == "text_changed"
+                     && e.Status == "applied"
+                     && e.StateEffects != null)
+            .OrderByDescending(e => e.Sequence)
+            .ToList();
+
+        foreach (var evt in toReverse)
+        {
+            var effects = evt.StateEffects!;
+            if (!effects.TryGetValue("locus_id", out var locusObj)) continue;
+            var locusId = locusObj?.ToString();
+            if (string.IsNullOrEmpty(locusId)) continue;
+
+            if (!effects.TryGetValue("reading_before", out var beforeObj)) continue;
+
+            int beforeIdx;
+            if (beforeObj is System.Text.Json.JsonElement je)
+                beforeIdx = je.GetInt32();
+            else if (beforeObj is int bi)
+                beforeIdx = bi;
+            else if (int.TryParse(beforeObj?.ToString(), out var parsed))
+                beforeIdx = parsed;
+            else
+                continue;
+
+            // Look up the actual reading string from the readings table
+            if (!timeline.Readings.TryGetValue(locusId, out var readings)) continue;
+            if (beforeIdx < 0 || beforeIdx >= readings.Count) continue;
+
+            // The latest reverse-applied event for each locus wins
+            // (we process in reverse chronological order, so the first hit is correct)
+            if (!patches.ContainsKey(locusId))
+                patches[locusId] = readings[beforeIdx];
+        }
+
+        return patches;
+    }
+
+    /// <summary>
+    /// Returns the reading at a specific locus at the given timeline position.
+    /// Returns the final reading if no text_changed events affect it after the position.
+    /// </summary>
+    public static string? GetReadingAtPosition(
+        TimelineInfo timeline, string locusId, int upToSequence)
+    {
+        var patches = GetReadingPatchesAtPosition(timeline, upToSequence);
+        if (patches.TryGetValue(locusId, out var patched)) return patched;
+
+        // No patch needed — return the final reading (last index in the readings table)
+        if (timeline.Readings?.TryGetValue(locusId, out var readings) == true && readings.Count > 0)
+            return readings[^1];
+
+        return null;
+    }
+
     /// <summary>Gets all distinct stages present in the event stream, in order of first occurrence.</summary>
     public static List<string> GetStages(List<TimelineEvent> events) =>
         events.Select(e => e.Stage ?? "").Where(s => s.Length > 0).Distinct().ToList();
