@@ -110,7 +110,7 @@ public sealed class LineageGraphViewModel
             parentOf[edge.To] = edge.From;
         }
 
-        // Separate connected nodes from orphans
+        // Separate connected from orphans
         var connected = new HashSet<LineageGraphNode>();
         foreach (var edge in Edges)
         {
@@ -120,7 +120,7 @@ public sealed class LineageGraphViewModel
         var orphans = Nodes.Where(n => !connected.Contains(n)).OrderBy(n => n.SortDate).ToList();
         var treeRoots = connected.Where(n => !parentOf.ContainsKey(n)).OrderBy(n => n.SortDate).ToList();
 
-        // BFS assign layers
+        // BFS assign layers (generation depth)
         var visited = new HashSet<LineageGraphNode>();
         var queue = new Queue<LineageGraphNode>();
         foreach (var root in treeRoots)
@@ -129,7 +129,6 @@ public sealed class LineageGraphViewModel
             queue.Enqueue(root);
             visited.Add(root);
         }
-
         while (queue.Count > 0)
         {
             var node = queue.Dequeue();
@@ -145,59 +144,48 @@ public sealed class LineageGraphViewModel
             }
         }
 
-        // ── Layout the TREE (connected nodes) ──
-        // X = layer (generation) * spacing → flows LEFT to RIGHT
-        // Y = positioned by tree structure, children grouped under parents
-
         int maxLayer = connected.Count > 0 ? connected.Max(n => n.Layer) : 0;
 
-        // First pass: assign Y by DFS order (preserves tree structure)
-        double nextY = 60;
-        var dfsVisited = new HashSet<LineageGraphNode>();
+        // ── TEMPORAL LAYOUT ──
+        // Y = death/floruit year (absolute temporal position)
+        // X = generation layer (left to right)
+        //
+        // This makes the chart a TIMELINE: early masters at top, late masters at bottom.
+        // Teacher → student lines naturally flow downward because students die later.
 
-        void LayoutSubtree(LineageGraphNode node)
+        int minYear = Nodes.Where(n => n.SortDate > 0).Select(n => n.SortDate).DefaultIfEmpty(300).Min();
+
+        foreach (var node in Nodes.Where(n => connected.Contains(n)))
         {
-            if (dfsVisited.Contains(node)) return;
-            dfsVisited.Add(node);
-
             node.X = node.Layer * HorizontalSpacing + 60;
-
-            if (childrenOf.TryGetValue(node, out var children) && children.Count > 0)
-            {
-                var sortedChildren = children.Where(c => !dfsVisited.Contains(c)).OrderBy(c => c.SortDate).ToList();
-                foreach (var child in sortedChildren)
-                    LayoutSubtree(child);
-
-                // Center parent between its children
-                var childYs = sortedChildren.Where(c => dfsVisited.Contains(c)).Select(c => c.Y).ToList();
-                if (childYs.Count > 0)
-                    node.Y = (childYs.Min() + childYs.Max()) / 2;
-                else
-                    node.Y = nextY;
-            }
-            else
-            {
-                // Leaf node: place at next available Y
-                node.Y = nextY;
-                nextY += NodeHeight + 14;
-            }
+            node.Y = node.SortDate > 0
+                ? (node.SortDate - minYear) * PixelsPerYear + 60
+                : 60; // unknown date goes to top
         }
 
-        foreach (var root in treeRoots)
+        // ── Collision resolution within each layer ──
+        // Multiple masters at the same generation + similar dates can overlap.
+        // Spread them vertically with minimum gap.
+        var layers = Nodes.Where(n => connected.Contains(n))
+            .GroupBy(n => n.Layer)
+            .ToDictionary(g => g.Key, g => g.OrderBy(n => n.Y).ToList());
+
+        foreach (var (_, layerNodes) in layers)
         {
-            LayoutSubtree(root);
-            nextY += 20; // gap between root trees
+            for (int i = 1; i < layerNodes.Count; i++)
+            {
+                double minGap = NodeHeight + 6;
+                if (layerNodes[i].Y - layerNodes[i - 1].Y < minGap)
+                    layerNodes[i].Y = layerNodes[i - 1].Y + minGap;
+            }
         }
 
-        // ── Layout ORPHANS (unconnected nodes) ──
-        // Place BELOW the tree in a compact date-sorted grid
-        double treeMaxY = Nodes.Where(n => !orphans.Contains(n) && dfsVisited.Contains(n)).Select(n => n.Y).DefaultIfEmpty(0).Max();
-        double orphanStartY = treeMaxY + NodeHeight + 60; // gap between tree and orphans
-
-        // Section label Y (for rendering)
+        // ── ORPHANS below the tree ──
+        double treeMaxY = Nodes.Where(n => connected.Contains(n)).Select(n => n.Y).DefaultIfEmpty(0).Max();
+        double orphanStartY = treeMaxY + NodeHeight + 60;
         OrphanSectionY = orphanStartY - 20;
 
-        int orphanCols = Math.Max(1, (int)((maxLayer + 2) * HorizontalSpacing / (NodeWidth + 16)));
+        int orphanCols = Math.Max(3, (int)((maxLayer + 2) * HorizontalSpacing / (NodeWidth + 16)));
         for (int i = 0; i < orphans.Count; i++)
         {
             orphans[i].IsOrphan = true;
