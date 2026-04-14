@@ -785,4 +785,16 @@ public sealed class GitRepoService : IGitRepoService
         var r = await RunGitAsync(repoDir, $"diff {commitHashA} {commitHashB} -- \"{normalizedPath}\"", null, ct);
         return r.StdOut ?? "";
     }
+
+    public async Task<string?> GetHeadShaAsync(string repoDir, CancellationToken ct = default)
+    {
+        var r = await RunGitAsync(repoDir, "rev-parse HEAD", null, ct);
+        return r.ExitCode == 0 ? r.StdOut.Trim() : null;
+    }
+
+    public async Task<string> GetDiffStatAsync(string repoDir, string commitA, string commitB, CancellationToken ct = default)
+    {
+        var r = await RunGitAsync(repoDir, $"diff --stat {commitA} {commitB}", null, ct);
+        return r.StdOut ?? "";
+    }
 }

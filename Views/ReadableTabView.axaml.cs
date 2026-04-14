@@ -1056,12 +1056,19 @@ public partial class ReadableTabView : UserControl
             _suppressTranslationSourceEvents = false;
         }
     }
+    private DiffHighlightRenderer? _diffRenderer;
+    private string? _currentTextForDiff;
+
     /// <summary>
     /// Swaps only the translated pane to a historical version (read-only).
-    /// Does not touch the original pane.
+    /// Does not touch the original pane. Optionally shows diff highlighting.
     /// </summary>
-    public void SetRenderedTranslationOnly(RenderedDocument tran)
+    public void SetRenderedTranslationOnly(RenderedDocument tran, bool showDiff = true)
     {
+        // Capture the current text before swapping (for diff computation)
+        if (_currentTextForDiff == null && _aeTran != null)
+            _currentTextForDiff = _aeTran.Text;
+
         _vm.RenderTran = tran ?? RenderedDocument.Empty;
         ResolveInnerEditors();
         if (_aeTran == null) return;
@@ -1070,11 +1077,32 @@ public partial class ReadableTabView : UserControl
         try
         {
             _aeTran.Text = _vm.RenderTran.Text ?? "";
+
+            // Compute and apply diff highlighting
+            if (showDiff && _currentTextForDiff != null && _aeTran.TextArea?.TextView != null)
+            {
+                var historicalText = _vm.RenderTran.Text ?? "";
+                var spans = Infrastructure.TextDiff.ComputeAddedSpans(_currentTextForDiff, historicalText);
+
+                if (_diffRenderer == null)
+                {
+                    _diffRenderer = new DiffHighlightRenderer(_aeTran.TextArea.TextView);
+                    _aeTran.TextArea.TextView.BackgroundRenderers.Add(_diffRenderer);
+                }
+                _diffRenderer.SetSpans(spans);
+            }
         }
         finally
         {
             _syncingSelection = false;
         }
+    }
+
+    /// <summary>Clears diff highlighting and resets the diff baseline.</summary>
+    public void ClearDiffHighlighting()
+    {
+        _diffRenderer?.Clear();
+        _currentTextForDiff = null;
     }
 
     /// <summary>

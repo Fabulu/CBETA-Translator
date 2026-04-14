@@ -403,6 +403,16 @@ public partial class GitTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task SyncAsync()
     {
+        // Capture HEAD before sync for "What's New" summary
+        string? preTransHead = null;
+        try
+        {
+            var td = GetTranslationRepoDir();
+            if (Directory.Exists(td))
+                preTransHead = await _git.GetHeadShaAsync(td, _cts?.Token ?? CancellationToken.None);
+        }
+        catch { }
+
         // Phase 1: Clone or update repo texts (safe, keeps local changes)
         await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
 
@@ -541,6 +551,28 @@ public partial class GitTabViewModel : ViewModelBase
         {
             AppendLog("[sync] Translation PR step failed (non-critical): " + ex.Message);
         }
+
+        // "What's New" summary: compare pre-sync and post-sync HEADs
+        try
+        {
+            if (preTransHead != null)
+            {
+                var postTransHead = await _git.GetHeadShaAsync(transDir, _cts?.Token ?? CancellationToken.None);
+                if (postTransHead != null && !string.Equals(preTransHead, postTransHead, StringComparison.Ordinal))
+                {
+                    var diffStat = await _git.GetDiffStatAsync(transDir, preTransHead, postTransHead, _cts?.Token ?? CancellationToken.None);
+                    var summary = Infrastructure.SyncSummary.Summarize(diffStat);
+                    AppendLog("\n=== What's New ===");
+                    foreach (var line in summary)
+                        AppendLog("  \u2022 " + line);
+                }
+                else
+                {
+                    AppendLog("\n[sync] Translations repo: already up to date.");
+                }
+            }
+        }
+        catch { /* summary is informational — never block sync */ }
 
         AppendLog("\n[sync] Sync finished.");
         ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
