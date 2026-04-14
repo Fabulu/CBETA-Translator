@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.TimelineSlider"
+             Height="32">
+    <Grid RowDefinitions="Auto,*">
+        <!-- "Time traveling" badge (hidden when at present) -->
+        <Border Grid.Row="0" Name="BadgeTimeTraveling"
+                IsVisible="False"
+                Background="{DynamicResource WarningBg}"
+                CornerRadius="4" Padding="6,1"
+                HorizontalAlignment="Left" Margin="4,0,0,2">
+            <TextBlock Name="TxtBadge" FontSize="9" FontWeight="SemiBold"
+                       Foreground="{DynamicResource WarningFg}"/>
+        </Border>
+
+        <!-- Slider track -->
+        <Canvas Grid.Row="1" Name="TrackCanvas" Height="20"
+                Background="Transparent"
+                Margin="8,0"/>
+    </Grid>
+</UserControl>
