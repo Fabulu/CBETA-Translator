@@ -1867,8 +1867,13 @@ private async Task LoadConfigAndAutoloadAsync()
     /// </summary>
     // ── Edition Process Dialog ────────────────────────────────────────
 
+    private bool _editionDialogOpen;
+
     private async Task OpenEditionProcessDialogAsync(ManifestInfo manifest, string? xmlAbsPath)
     {
+        if (_editionDialogOpen) return; // prevent double-open
+        _editionDialogOpen = true;
+
         try
         {
             var dialog = new EditionProcessDialog
@@ -1892,10 +1897,12 @@ private async Task LoadConfigAndAutoloadAsync()
                 processSvc, apparatusSvc, statsSvc, docsSvc,
                 timelineSvc, logSvc, renderedTran);
 
+            dialog.Closed += (_, _) => _editionDialogOpen = false;
             dialog.Show(this);
         }
         catch (Exception ex)
         {
+            _editionDialogOpen = false;
             _vm.SetStatus($"Edition details: {ex.Message}", StatusSeverity.Error);
         }
     }
