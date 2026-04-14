@@ -1745,8 +1745,38 @@ public partial class TranslationTabView : UserControl
         return top?.Clipboard;
     }
 
-    private static string BuildPrompt(string selectedProjection)
+    /// <summary>Delegate for finding masters mentioned in text. Set by MainWindow.</summary>
+    public Func<string, List<ZenMasterRecord>>? FindMastersInText { get; set; }
+
+    private string BuildPrompt(string selectedProjection)
     {
+        var masterContext = "";
+
+        // Scan for zen masters mentioned in the Chinese text
+        if (FindMastersInText != null)
+        {
+            try
+            {
+                var masters = FindMastersInText(selectedProjection);
+                if (masters.Count > 0)
+                {
+                    var sb = new System.Text.StringBuilder();
+                    sb.AppendLine();
+                    sb.AppendLine("CONTEXT — Zen masters mentioned in this passage:");
+                    foreach (var m in masters.Take(5)) // cap at 5 to avoid prompt bloat
+                    {
+                        sb.Append($"- {m.CanonicalName} ({m.DatesSummary})");
+                        if (!string.IsNullOrWhiteSpace(m.School)) sb.Append($", {m.School}");
+                        if (!string.IsNullOrWhiteSpace(m.Teacher)) sb.Append($", student of {m.Teacher}");
+                        if (!string.IsNullOrWhiteSpace(m.Notes)) sb.Append($". {m.Notes}");
+                        sb.AppendLine();
+                    }
+                    masterContext = sb.ToString();
+                }
+            }
+            catch { }
+        }
+
         return
 $@"You are translating a CBETA projection block.
 
@@ -1761,7 +1791,7 @@ STRICT RULES:
 - Do NOT use angle brackets < or > in EN text.
 - Output ONLY one markdown code block.
 - Translate common Zen honorifics/titles like ""heshang"" as ""the master"" (or ""Venerable"") in EN, not left as Chinese.
-
+{masterContext}
 ```markdown
 {selectedProjection}
 ```";
