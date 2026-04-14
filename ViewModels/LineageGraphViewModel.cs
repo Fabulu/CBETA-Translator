@@ -99,23 +99,30 @@ public sealed class LineageGraphViewModel
 
         // Build adjacency
         var childrenOf = new Dictionary<LineageGraphNode, List<LineageGraphNode>>();
-        var hasParent = new HashSet<LineageGraphNode>();
+        var parentOf = new Dictionary<LineageGraphNode, LineageGraphNode>();
 
         foreach (var edge in Edges)
         {
             if (!childrenOf.ContainsKey(edge.From))
                 childrenOf[edge.From] = new();
             childrenOf[edge.From].Add(edge.To);
-            hasParent.Add(edge.To);
+            parentOf[edge.To] = edge.From;
         }
 
-        // Roots = nodes without a parent edge
-        var roots = Nodes.Where(n => !hasParent.Contains(n)).OrderBy(n => n.SortDate).ToList();
+        // Separate connected nodes from orphans
+        var connected = new HashSet<LineageGraphNode>();
+        foreach (var edge in Edges)
+        {
+            connected.Add(edge.From);
+            connected.Add(edge.To);
+        }
+        var orphans = Nodes.Where(n => !connected.Contains(n)).OrderBy(n => n.SortDate).ToList();
+        var treeRoots = connected.Where(n => !parentOf.ContainsKey(n)).OrderBy(n => n.SortDate).ToList();
 
-        // BFS assign layers (generation depth)
+        // BFS assign layers
         var visited = new HashSet<LineageGraphNode>();
         var queue = new Queue<LineageGraphNode>();
-        foreach (var root in roots)
+        foreach (var root in treeRoots)
         {
             root.Layer = 0;
             queue.Enqueue(root);
@@ -137,48 +144,58 @@ public sealed class LineageGraphViewModel
             }
         }
 
-        // Orphans (no teacher AND no students) go to a special column
-        foreach (var node in Nodes.Where(n => !visited.Contains(n)))
-            node.Layer = 0;
+        // ── Layout the TREE (connected nodes) ──
+        // X = layer (generation) * spacing → flows LEFT to RIGHT
+        // Y = positioned by tree structure, children grouped under parents
 
-        // Layout: X = layer * spacing (tree flows left to right)
-        // Y = position within layer, sorted by death date, then spread evenly
-        var layers = Nodes.GroupBy(n => n.Layer).OrderBy(g => g.Key).ToDictionary(g => g.Key, g => g.OrderBy(n => n.SortDate).ToList());
+        int maxLayer = connected.Count > 0 ? connected.Max(n => n.Layer) : 0;
 
-        foreach (var (layerIdx, layerNodes) in layers)
+        // First pass: assign Y by DFS order (preserves tree structure)
+        double nextY = 60;
+        var dfsVisited = new HashSet<LineageGraphNode>();
+
+        void LayoutSubtree(LineageGraphNode node)
         {
-            for (int i = 0; i < layerNodes.Count; i++)
+            if (dfsVisited.Contains(node)) return;
+            dfsVisited.Add(node);
+
+            node.X = node.Layer * HorizontalSpacing + 60;
+
+            if (childrenOf.TryGetValue(node, out var children) && children.Count > 0)
             {
-                layerNodes[i].X = layerIdx * HorizontalSpacing + 60;
-                layerNodes[i].Y = i * (NodeHeight + 12) + 60;
+                var sortedChildren = children.Where(c => !dfsVisited.Contains(c)).OrderBy(c => c.SortDate).ToList();
+                foreach (var child in sortedChildren)
+                    LayoutSubtree(child);
+
+                // Center parent between its children
+                var childYs = sortedChildren.Where(c => dfsVisited.Contains(c)).Select(c => c.Y).ToList();
+                if (childYs.Count > 0)
+                    node.Y = (childYs.Min() + childYs.Max()) / 2;
+                else
+                    node.Y = nextY;
+            }
+            else
+            {
+                // Leaf node: place at next available Y
+                node.Y = nextY;
+                nextY += NodeHeight + 14;
             }
         }
 
-        // Barycenter refinement: reorder each layer's Y positions so that
-        // children are near their parents. Two passes.
-        for (int pass = 0; pass < 3; pass++)
+        foreach (var root in treeRoots)
         {
-            foreach (var (layerIdx, layerNodes) in layers)
-            {
-                if (layerIdx == 0) continue;
+            LayoutSubtree(root);
+            nextY += 20; // gap between root trees
+        }
 
-                // For each node, compute average Y of its parents
-                foreach (var node in layerNodes)
-                {
-                    var parentEdges = Edges.Where(e => e.To == node).ToList();
-                    if (parentEdges.Count > 0)
-                        node.Y = parentEdges.Average(e => e.From.Y);
-                }
-
-                // Sort by Y and re-spread to avoid overlap
-                var sorted = layerNodes.OrderBy(n => n.Y).ToList();
-                for (int i = 0; i < sorted.Count; i++)
-                {
-                    double minY = i == 0 ? 60 : sorted[i - 1].Y + NodeHeight + 12;
-                    if (sorted[i].Y < minY)
-                        sorted[i].Y = minY;
-                }
-            }
+        // ── Layout ORPHANS (unconnected nodes) ──
+        // Place them in a separate column to the right of the tree
+        double orphanX = (maxLayer + 2) * HorizontalSpacing + 100;
+        for (int i = 0; i < orphans.Count; i++)
+        {
+            orphans[i].X = orphanX + (i % 3) * (NodeWidth + 20); // 3 columns of orphans
+            orphans[i].Y = (i / 3) * (NodeHeight + 10) + 60;
+            orphans[i].Layer = maxLayer + 2;
         }
     }
 
