@@ -478,7 +478,22 @@ public partial class EditionProcessDialog : Window
             {
                 var absPath = doc.Path;
                 if (xmlDir != null && !Path.IsPathRooted(doc.Path ?? ""))
+                {
+                    // Try relative to the XML directory first
                     absPath = Path.GetFullPath(Path.Combine(xmlDir, doc.Path ?? ""));
+
+                    // Fallback: try relative to the repo root (3 levels up from xml-open/{prefix}/{slug}/)
+                    if (!File.Exists(absPath))
+                    {
+                        try
+                        {
+                            var repoRoot = Path.GetFullPath(Path.Combine(xmlDir, "..", "..", ".."));
+                            var fromRoot = Path.GetFullPath(Path.Combine(repoRoot, doc.Path ?? ""));
+                            if (File.Exists(fromRoot)) absPath = fromRoot;
+                        }
+                        catch { }
+                    }
+                }
 
                 var title = doc.Title ?? Path.GetFileNameWithoutExtension(doc.Path ?? "");
                 if (!string.IsNullOrWhiteSpace(doc.Description))
