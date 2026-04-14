@@ -97,7 +97,6 @@ public sealed class ZenMasterManagerService
     {
         if (string.IsNullOrWhiteSpace(text)) return null;
 
-        // Check CJK names first (more specific, less false positives)
         foreach (var r in records)
         {
             foreach (var alias in r.Aliases)
@@ -108,6 +107,35 @@ public sealed class ZenMasterManagerService
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Scans a text passage and returns ALL masters mentioned (by CJK name).
+    /// Used for AI prompt enrichment.
+    /// </summary>
+    public List<ZenMasterRecord> FindAllMastersInText(IEnumerable<ZenMasterRecord> records, string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return new();
+
+        var found = new List<ZenMasterRecord>();
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var r in records)
+        {
+            if (seen.Contains(r.CanonicalName)) continue;
+
+            foreach (var alias in r.Aliases)
+            {
+                if (alias.Length >= 2 && MasterDatesService.ContainsCjk(alias) && text.Contains(alias, StringComparison.Ordinal))
+                {
+                    found.Add(r);
+                    seen.Add(r.CanonicalName);
+                    break;
+                }
+            }
+        }
+
+        return found;
     }
 
     private static IEnumerable<MasterDateEntry> LoadBaseEntries(string? baseFilePath)

@@ -1108,6 +1108,22 @@ private async Task LoadConfigAndAutoloadAsync()
             _translationView.FreshStartRequested += async (_, _) => await _vm.ResetTranslatedToUntranslatedAsync();
             _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
             _translationView.HistoryRequested += async (_, _) => await OpenTranslationHistoryAsync();
+
+            // Wire zen master lookup for AI prompt enrichment
+            {
+                var masterDatesSvc2 = App.Services.GetRequiredService<IMasterDatesService>();
+                var masterMgr2 = new ZenMasterManagerService(masterDatesSvc2);
+                ZenMasterCatalog? masterCatalog2 = null;
+                _translationView.FindMastersInText = text =>
+                {
+                    if (masterCatalog2 == null && _vm.Root != null)
+                    {
+                        try { masterCatalog2 = masterMgr2.LoadAsync(_vm.Root).GetAwaiter().GetResult(); }
+                        catch { return new(); }
+                    }
+                    return masterCatalog2 != null ? masterMgr2.FindAllMastersInText(masterCatalog2.Records, text) : new();
+                };
+            }
             _translationView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _translationView.CurrentSegmentChanged += async (_, ev) =>
