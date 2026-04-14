@@ -327,6 +327,25 @@
 							Focusable="False"
 							Margin="4,0,0,0"
 							ToolTip.Tip="Open a 3-pane window comparing your tags with the selected user's tags"/>
+					<Button Name="BtnAnalytics"
+							Content="Analytics &#x25BE;"
+							DockPanel.Dock="Right"
+							Padding="6,2"
+							FontSize="11"
+							Focusable="False"
+							Margin="4,0,0,0"
+							ToolTip.Tip="Qualitative analytics: frequency, co-occurrence, variables, queries, export">
+						<Button.Flyout>
+							<MenuFlyout>
+								<MenuItem Name="MiCodeFrequency" Header="Code Frequency Report"/>
+								<MenuItem Name="MiCooccurrence" Header="Co-occurrence Matrix"/>
+								<MenuItem Name="MiDocVariables" Header="Document Variables"/>
+								<MenuItem Name="MiQueryBuilder" Header="Query Builder"/>
+								<Separator/>
+								<MenuItem Name="MiExportQdpx" Header="Export QDPX"/>
+							</MenuFlyout>
+						</Button.Flyout>
+					</Button>
 					<ComboBox Name="CmbTagUser"
 							  DockPanel.Dock="Right"
 							  MinWidth="120" Padding="4,2"

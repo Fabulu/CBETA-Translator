@@ -223,6 +223,13 @@ public partial class ReadableTabView : UserControl
     public event EventHandler? CompareTranslationsRequested;
     public event EventHandler<int>? TranslationSourceChanged;
 
+    /// <summary>Analytics menu events.</summary>
+    public event EventHandler? CodeFrequencyRequested;
+    public event EventHandler? CooccurrenceRequested;
+    public event EventHandler? DocumentVariablesRequested;
+    public event EventHandler? QueryBuilderRequested;
+    public event EventHandler? ExportQdpxRequested;
+
     /// <summary>Fired when the study panel's segment context changes (caret moved to new segment).</summary>
     public event EventHandler<CurrentSegmentContext>? StudyPanelContextChanged;
 
@@ -784,6 +791,17 @@ public partial class ReadableTabView : UserControl
         if (btnCompareTranslations != null)
             btnCompareTranslations.Click += (_, _) => CompareTranslationsRequested?.Invoke(this, EventArgs.Empty);
 
+        // Analytics menu items
+        var miFreq = this.FindControl<MenuItem>("MiCodeFrequency");
+        if (miFreq != null) miFreq.Click += (_, _) => CodeFrequencyRequested?.Invoke(this, EventArgs.Empty);
+        var miCooc = this.FindControl<MenuItem>("MiCooccurrence");
+        if (miCooc != null) miCooc.Click += (_, _) => CooccurrenceRequested?.Invoke(this, EventArgs.Empty);
+        var miVars = this.FindControl<MenuItem>("MiDocVariables");
+        if (miVars != null) miVars.Click += (_, _) => DocumentVariablesRequested?.Invoke(this, EventArgs.Empty);
+        var miQuery = this.FindControl<MenuItem>("MiQueryBuilder");
+        if (miQuery != null) miQuery.Click += (_, _) => QueryBuilderRequested?.Invoke(this, EventArgs.Empty);
+        var miQdpx = this.FindControl<MenuItem>("MiExportQdpx");
+        if (miQdpx != null) miQdpx.Click += (_, _) => ExportQdpxRequested?.Invoke(this, EventArgs.Empty);
 
         if (_cmbTranslationSource != null)
         {

@@ -1001,6 +1001,12 @@ private async Task LoadConfigAndAutoloadAsync()
                 _ = OpenCompareTranslationsWindowAsync();
             };
 
+            _readableView.CodeFrequencyRequested += (_, _) => _ = OpenCodeFrequencyWindowAsync();
+            _readableView.CooccurrenceRequested += (_, _) => _ = OpenCodeCooccurrenceWindowAsync();
+            _readableView.DocumentVariablesRequested += (_, _) => _ = OpenDocumentVariablesWindowAsync();
+            _readableView.QueryBuilderRequested += (_, _) => _ = OpenQueryBuilderWindowAsync();
+            _readableView.ExportQdpxRequested += (_, _) => _ = ExportQdpxAsync();
+
             _readableView.TranslationSourceChanged += async (_, idx) =>
             {
                 await _vm.SwitchTranslationSourceAsync(idx);
@@ -1633,6 +1639,183 @@ private async Task LoadConfigAndAutoloadAsync()
         catch (Exception ex)
         {
             _vm.SetStatus("Open tag comparison failed: " + ex.Message);
+        }
+    }
+
+    // ===========================================================
+    // Analytics windows
+    // ===========================================================
+
+    private async Task OpenCodeFrequencyWindowAsync()
+    {
+        try
+        {
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            var username = _vm.Username;
+            if (string.IsNullOrEmpty(root) || string.IsNullOrEmpty(username))
+            {
+                _vm.SetStatus("No project or username set.");
+                return;
+            }
+
+            var tagSvc = new Services.DocumentTagService();
+            var tags = await tagSvc.LoadUserTagsAsync(root, username);
+            var vocab = await tagSvc.LoadVocabularyAsync(root, username);
+
+            var win = new CodeFrequencyWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            win.LoadData(tags, vocab);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Code frequency failed: " + ex.Message);
+        }
+    }
+
+    private async Task OpenCodeCooccurrenceWindowAsync()
+    {
+        try
+        {
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            var username = _vm.Username;
+            if (string.IsNullOrEmpty(root) || string.IsNullOrEmpty(username))
+            {
+                _vm.SetStatus("No project or username set.");
+                return;
+            }
+
+            var tagSvc = new Services.DocumentTagService();
+            var tags = await tagSvc.LoadUserTagsAsync(root, username);
+            var vocab = await tagSvc.LoadVocabularyAsync(root, username);
+
+            var win = new CodeCooccurrenceWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            win.LoadData(tags, vocab);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Co-occurrence matrix failed: " + ex.Message);
+        }
+    }
+
+    private async Task OpenDocumentVariablesWindowAsync()
+    {
+        try
+        {
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            var username = _vm.Username;
+            if (string.IsNullOrEmpty(root) || string.IsNullOrEmpty(username))
+            {
+                _vm.SetStatus("No project or username set.");
+                return;
+            }
+
+            var tagSvc = new Services.DocumentTagService();
+            var tags = await tagSvc.LoadUserTagsAsync(root, username);
+            var vocab = await tagSvc.LoadVocabularyAsync(root, username);
+
+            var win = new DocumentVariablesWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            await win.LoadDataAsync(root, tags, vocab);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Document variables failed: " + ex.Message);
+        }
+    }
+
+    private async Task OpenQueryBuilderWindowAsync()
+    {
+        try
+        {
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            var username = _vm.Username;
+            if (string.IsNullOrEmpty(root) || string.IsNullOrEmpty(username))
+            {
+                _vm.SetStatus("No project or username set.");
+                return;
+            }
+
+            var tagSvc = new Services.DocumentTagService();
+            var tags = await tagSvc.LoadUserTagsAsync(root, username);
+            var vocab = await tagSvc.LoadVocabularyAsync(root, username);
+
+            var win = new QueryBuilderWindow
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+            win.LoadData(root, tags, vocab);
+            win.Show(this);
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Query builder failed: " + ex.Message);
+        }
+    }
+
+    private async Task ExportQdpxAsync()
+    {
+        try
+        {
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            var username = _vm.Username;
+            if (string.IsNullOrEmpty(root) || string.IsNullOrEmpty(username))
+            {
+                _vm.SetStatus("No project or username set.");
+                return;
+            }
+
+            var sp = GetTopLevel(this)?.StorageProvider;
+            if (sp == null) return;
+
+            var file = await sp.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+            {
+                Title = "Export QDPX Project",
+                DefaultExtension = "qdpx",
+                FileTypeChoices = new[]
+                {
+                    new Avalonia.Platform.Storage.FilePickerFileType("QDPX") { Patterns = new[] { "*.qdpx" } }
+                }
+            });
+
+            if (file == null) return;
+
+            var tagSvc = new Services.DocumentTagService();
+            var tags = await tagSvc.LoadUserTagsAsync(root, username);
+            var vocab = await tagSvc.LoadVocabularyAsync(root, username);
+
+            var outputPath = file.Path.LocalPath;
+
+            await Services.QdpxExportService.ExportAsync(
+                outputPath, tags, vocab,
+                async (relPath, ct) =>
+                {
+                    // Load plaintext via the renderer
+                    try
+                    {
+                        var xmlPath = System.IO.Path.Combine(_vm.OriginalDir ?? root, relPath);
+                        if (!System.IO.File.Exists(xmlPath)) return null;
+                        var xml = await System.IO.File.ReadAllTextAsync(xmlPath, ct);
+                        var doc = Text.TeiRenderer.Render(xml);
+                        return doc.Text;
+                    }
+                    catch { return null; }
+                });
+
+            _vm.SetStatus($"Exported QDPX to {outputPath}");
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("QDPX export failed: " + ex.Message);
         }
     }
 

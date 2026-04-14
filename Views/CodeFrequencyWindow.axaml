@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.CodeFrequencyWindow"
+        x:CompileBindings="False"
+        Title="Code Frequency Report"
+        Width="700" Height="500"
+        WindowStartupLocation="CenterOwner">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Header -->
+        <Grid Grid.Row="0" ColumnDefinitions="50,*,100,100" Margin="8,8,8,2">
+            <TextBlock Grid.Column="0" Text="Color" FontWeight="Bold" Margin="4,0"/>
+            <TextBlock Grid.Column="1" Text="Tag Name" FontWeight="Bold" Margin="4,0"/>
+            <TextBlock Grid.Column="2" Text="Segments" FontWeight="Bold" Margin="4,0"/>
+            <TextBlock Grid.Column="3" Text="Files" FontWeight="Bold" Margin="4,0"/>
+        </Grid>
+
+        <ListBox Name="FrequencyList" Grid.Row="1" Margin="8,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="50,*,100,100">
+                        <Border Grid.Column="0" Width="24" Height="16" CornerRadius="3"
+                                Background="{Binding ColorBrush}" Margin="4,2"/>
+                        <TextBlock Grid.Column="1" Text="{Binding TagName}" Margin="4,2"/>
+                        <TextBlock Grid.Column="2" Text="{Binding SegmentCount}" Margin="4,2"/>
+                        <TextBlock Grid.Column="3" Text="{Binding FileCount}" Margin="4,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="8" Spacing="8">
+            <Button Name="BtnExportCsv" Content="Export CSV" Padding="12,6"/>
+            <Button Name="BtnClose" Content="Close" Padding="12,6"/>
+        </StackPanel>
+    </Grid>
+</Window>

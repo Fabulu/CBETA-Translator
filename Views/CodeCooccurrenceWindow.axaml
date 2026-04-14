@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.CodeCooccurrenceWindow"
+        x:CompileBindings="False"
+        Title="Code Co-occurrence Matrix"
+        Width="600" Height="400"
+        WindowStartupLocation="CenterOwner">
+    <Grid RowDefinitions="*,Auto">
+        <TextBlock Grid.Row="0" Name="TxtInfo" Margin="16" TextWrapping="Wrap"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Co-occurrence matrix computed. Use the buttons below to view or export."/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="8" Spacing="8">
+            <Button Name="BtnOpenBrowser" Content="Open in Browser" Padding="12,6"/>
+            <Button Name="BtnExportCsv" Content="Export CSV" Padding="12,6"/>
+            <Button Name="BtnClose" Content="Close" Padding="12,6"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.QueryBuilderWindow"
+        x:CompileBindings="False"
+        Title="Tag Query Builder"
+        Width="800" Height="600"
+        WindowStartupLocation="CenterOwner">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Query builder row -->
+        <Border Grid.Row="0" Margin="8" Padding="8" CornerRadius="4"
+                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+            <StackPanel Spacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="Code A:" VerticalAlignment="Center"/>
+                    <ComboBox Name="CmbCodeA" Width="180" PlaceholderText="Select code"/>
+                    <ComboBox Name="CmbOperator" Width="100" SelectedIndex="0">
+                        <ComboBoxItem Content="AND"/>
+                        <ComboBoxItem Content="OR"/>
+                        <ComboBoxItem Content="NOT"/>
+                    </ComboBox>
+                    <TextBlock Text="Code B:" VerticalAlignment="Center"/>
+                    <ComboBox Name="CmbCodeB" Width="180" PlaceholderText="Select code"/>
+                    <Button Name="BtnRun" Content="Run" Padding="12,4" Classes="accent"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="Query name:" VerticalAlignment="Center"/>
+                    <TextBox Name="TxtQueryName" Width="200" Watermark="optional name"/>
+                    <Button Name="BtnSave" Content="Save Query" Padding="8,4"/>
+                    <Button Name="BtnLoad" Content="Load Queries" Padding="8,4"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Results -->
+        <ListBox Name="ResultsList" Grid.Row="1" Margin="8">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="3*,*,*,*">
+                        <TextBlock Grid.Column="0" Text="{Binding RelPath}" Margin="4,2"/>
+                        <TextBlock Grid.Column="1" Text="{Binding FromLb}" Margin="4,2"/>
+                        <TextBlock Grid.Column="2" Text="{Binding ToLb}" Margin="4,2"/>
+                        <TextBlock Grid.Column="3" Text="{Binding MatchedCodesText}" Margin="4,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Status bar -->
+        <TextBlock Name="TxtStatus" Grid.Row="2" Margin="8,4"
+                   Text="Build a query and click Run."/>
+    </Grid>
+</Window>
