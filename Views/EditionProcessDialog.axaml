@@ -25,6 +25,51 @@
                 </ScrollViewer>
             </TabItem>
 
+            <!-- Timeline tab -->
+            <TabItem Header="Timeline">
+                <Grid RowDefinitions="Auto,Auto,*">
+                    <!-- Slider + controls -->
+                    <DockPanel Grid.Row="0" Margin="8,8,8,0">
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="4">
+                            <Button Name="BtnTimelinePrev" Content="&#x25C0;" Padding="6,2" FontSize="11"
+                                    ToolTip.Tip="Previous event"/>
+                            <Button Name="BtnTimelineNext" Content="&#x25B6;" Padding="6,2" FontSize="11"
+                                    ToolTip.Tip="Next event"/>
+                            <ComboBox Name="CmbTimelineStage" MinWidth="130" FontSize="11"
+                                      ToolTip.Tip="Jump to stage"/>
+                            <CheckBox Name="ChkTextChangesOnly" Content="Text changes only"
+                                      FontSize="11" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Slider Name="SliderTimeline" Minimum="0" Maximum="1"
+                                IsSnapToTickEnabled="True" TickFrequency="1"
+                                VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    </DockPanel>
+
+                    <!-- Event summary -->
+                    <Border Grid.Row="1" Background="{DynamicResource BarBg}" CornerRadius="6"
+                            Padding="10" Margin="8,4">
+                        <StackPanel Spacing="2">
+                            <TextBlock Name="TxtEventSummary" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock Name="TxtEventMeta" FontSize="10" Opacity="0.7" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Event details + state -->
+                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel Name="TimelineDetailsHost" Spacing="8" Margin="8"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <!-- Log tab -->
+            <TabItem Header="Log">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="LogHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
             <!-- Process tab -->
             <TabItem Header="Process">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"

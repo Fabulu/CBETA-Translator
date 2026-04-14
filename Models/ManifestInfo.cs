@@ -74,6 +74,9 @@ public sealed class ManifestInfo
     [JsonPropertyName("documents_file")]
     public string? DocumentsFile { get; set; }
 
+    [JsonPropertyName("timeline_file")]
+    public string? TimelineFile { get; set; }
+
     // Edition fields (critical-edition support)
 
     [JsonPropertyName("base_witness_id")]
