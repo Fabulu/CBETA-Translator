@@ -485,6 +485,31 @@ public partial class GitTabViewModel : ViewModelBase
                         await _git.EnsureLocalExcludeAsync(transDir, LocalIgnorePatterns, prog, ct);
                         await _git.EnsureLineEndingConfigAsync(transDir, prog, ct);
 
+                        // Log translation license info
+                        try
+                        {
+                            var licSvc = new Services.TranslationLicenseService();
+                            await licSvc.LoadUserLicensesAsync(transDir, _githubLogin!, ct);
+                            var lic = licSvc.GetLicense(_selectedRelPath);
+                            if (lic?.License != null)
+                            {
+                                var opt = Models.LicenseCatalog.Find(lic.License);
+                                AppendLog($"[license] Translation licensed as: {opt?.DisplayName ?? lic.License}");
+                            }
+                            else
+                            {
+                                // No explicit choice — warn about inherited default
+                                var defaultOpt = Models.LicenseCatalog.GetDefault(null, _activeCorpus);
+                                if (defaultOpt != null)
+                                {
+                                    AppendLog($"[license] No license chosen \u2014 inheriting source license: {defaultOpt.DisplayName}");
+                                    AppendLog($"[license] What this means: {Models.LicenseCatalog.GetDefaultExplanation(defaultOpt)}");
+                                    AppendLog("[license] To choose a different license, open the translation and click the license badge.");
+                                }
+                            }
+                        }
+                        catch { /* license logging is informational — never block sync */ }
+
                         var currentBranch = await _git.GetCurrentBranchAsync(transDir, ct);
                         var stash = await _git.StashKeepIndexAsync(transDir, "sync-auto-stash", prog, ct);
                         await _git.SwitchCreateBranchAsync(transDir, branchName, prog, ct);

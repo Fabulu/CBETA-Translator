@@ -160,13 +160,50 @@ public static class LicenseCatalog
 
     /// <summary>
     /// Returns the default license for a given source context.
-    /// CBETA → cbeta-nc, OpenZen CC0/PD → null (prompt user), everything else → null.
+    /// Default is always "inherit from source" — the same license as the source text.
+    /// This is the safest default and requires no active choice.
     /// </summary>
     public static LicenseOption? GetDefault(string? sourceLicense, CorpusKind corpus)
     {
         if (corpus == CorpusKind.Cbeta) return CbetaNc;
-        return null; // prompt user to choose
+        if (string.IsNullOrWhiteSpace(sourceLicense)) return null;
+
+        var src = sourceLicense.Trim();
+
+        // Map source license to the matching catalog entry
+        if (IsMatch(src, "CC0", "PD-old", "public domain", "Unlicense")) return Cc0;
+        if (IsMatch(src, "CC-BY-SA", "CC BY-SA")) return CcBySa;
+        if (IsMatch(src, "CC-BY-NC-SA", "CC BY-NC-SA")) return CcByNcSa;
+        if (IsMatch(src, "CC-BY-NC-ND", "CC BY-NC-ND")) return CcByNcNd;
+        if (IsMatch(src, "CC-BY-NC", "CC BY-NC")) return CcByNc;
+        if (IsMatch(src, "CC-BY-4.0", "CC BY 4.0", "CC-BY-")) return CcBy;
+
+        return null;
     }
+
+    /// <summary>
+    /// Returns a human-readable explanation of what the inherited default means for the translator.
+    /// Shown as a sync warning when the user hasn't explicitly chosen a license.
+    /// </summary>
+    public static string GetDefaultExplanation(LicenseOption defaultLicense) => defaultLicense.Id switch
+    {
+        "cbeta-nc" =>
+            "Your translation inherits CBETA's non-commercial license. Anyone can read and share it for non-commercial purposes, but not sell it. You can change this to a more specific NC license if you want.",
+        "CC0-1.0" =>
+            "The source is public domain (CC0), so your translation defaults to CC0 too \u2014 anyone can do anything with it. If you want to keep some rights, choose a different license before syncing.",
+        "CC-BY-SA-4.0" =>
+            "The source uses CC BY-SA (share-alike), so your translation must use the same license. Others can use it commercially but must share their changes under the same terms and credit you.",
+        "CC-BY-NC-SA-4.0" =>
+            "The source uses CC BY-NC-SA, so your translation must use the same license. Others can share non-commercially under the same terms. They must credit you.",
+        "CC-BY-NC-ND-4.0" =>
+            "The source uses CC BY-NC-ND. Others can share your translation non-commercially but cannot modify it. They must credit you.",
+        "CC-BY-NC-4.0" =>
+            "The source uses CC BY-NC. Others can remix and share non-commercially. They must credit you.",
+        "CC-BY-4.0" =>
+            "The source uses CC BY, so your translation defaults to CC BY too \u2014 anyone can use it, even commercially, as long as they credit you. You can choose a different license if you want.",
+        _ =>
+            $"Your translation inherits the source license ({defaultLicense.DisplayName}). You can change this before syncing.",
+    };
 
     private static bool IsMatch(string source, params string[] patterns) =>
         patterns.Any(p => source.Contains(p, StringComparison.OrdinalIgnoreCase));
