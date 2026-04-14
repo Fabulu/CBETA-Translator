@@ -97,7 +97,7 @@ public sealed class LineageGraphViewModel
     {
         if (Nodes.Count == 0) return;
 
-        // Assign layers via BFS from roots
+        // Build adjacency
         var childrenOf = new Dictionary<LineageGraphNode, List<LineageGraphNode>>();
         var hasParent = new HashSet<LineageGraphNode>();
 
@@ -109,9 +109,10 @@ public sealed class LineageGraphViewModel
             hasParent.Add(edge.To);
         }
 
+        // Roots = nodes without a parent edge
         var roots = Nodes.Where(n => !hasParent.Contains(n)).OrderBy(n => n.SortDate).ToList();
 
-        // BFS
+        // BFS assign layers (generation depth)
         var visited = new HashSet<LineageGraphNode>();
         var queue = new Queue<LineageGraphNode>();
         foreach (var root in roots)
@@ -126,7 +127,7 @@ public sealed class LineageGraphViewModel
             var node = queue.Dequeue();
             if (childrenOf.TryGetValue(node, out var children))
             {
-                foreach (var child in children)
+                foreach (var child in children.OrderBy(c => c.SortDate))
                 {
                     if (visited.Contains(child)) continue;
                     child.Layer = node.Layer + 1;
@@ -136,34 +137,47 @@ public sealed class LineageGraphViewModel
             }
         }
 
-        // Assign unvisited nodes (orphans) to layer 0
+        // Orphans (no teacher AND no students) go to a special column
         foreach (var node in Nodes.Where(n => !visited.Contains(n)))
             node.Layer = 0;
 
-        // Group by layer, sort by date within layer
-        var layers = Nodes.GroupBy(n => n.Layer).OrderBy(g => g.Key).ToList();
+        // Layout: X = layer * spacing (tree flows left to right)
+        // Y = position within layer, sorted by death date, then spread evenly
+        var layers = Nodes.GroupBy(n => n.Layer).OrderBy(g => g.Key).ToDictionary(g => g.Key, g => g.OrderBy(n => n.SortDate).ToList());
 
-        // Assign positions: Y by date, X by layer position
-        foreach (var layer in layers)
+        foreach (var (layerIdx, layerNodes) in layers)
         {
-            var sorted = layer.OrderBy(n => n.SortDate).ToList();
-            for (int i = 0; i < sorted.Count; i++)
+            for (int i = 0; i < layerNodes.Count; i++)
             {
-                sorted[i].X = sorted[i].Layer * HorizontalSpacing + 50;
-                sorted[i].Y = sorted[i].SortDate > 0
-                    ? (sorted[i].SortDate - 300) * PixelsPerYear
-                    : i * VerticalSpacing + 50;
+                layerNodes[i].X = layerIdx * HorizontalSpacing + 60;
+                layerNodes[i].Y = i * (NodeHeight + 12) + 60;
             }
         }
 
-        // Simple X-spreading: within each layer, spread nodes that overlap
-        foreach (var layer in layers)
+        // Barycenter refinement: reorder each layer's Y positions so that
+        // children are near their parents. Two passes.
+        for (int pass = 0; pass < 3; pass++)
         {
-            var sorted = layer.OrderBy(n => n.Y).ToList();
-            for (int i = 1; i < sorted.Count; i++)
+            foreach (var (layerIdx, layerNodes) in layers)
             {
-                if (sorted[i].Y - sorted[i - 1].Y < NodeHeight + 8)
-                    sorted[i].Y = sorted[i - 1].Y + NodeHeight + 8;
+                if (layerIdx == 0) continue;
+
+                // For each node, compute average Y of its parents
+                foreach (var node in layerNodes)
+                {
+                    var parentEdges = Edges.Where(e => e.To == node).ToList();
+                    if (parentEdges.Count > 0)
+                        node.Y = parentEdges.Average(e => e.From.Y);
+                }
+
+                // Sort by Y and re-spread to avoid overlap
+                var sorted = layerNodes.OrderBy(n => n.Y).ToList();
+                for (int i = 0; i < sorted.Count; i++)
+                {
+                    double minY = i == 0 ? 60 : sorted[i - 1].Y + NodeHeight + 12;
+                    if (sorted[i].Y < minY)
+                        sorted[i].Y = minY;
+                }
             }
         }
     }
