@@ -197,7 +197,7 @@ public class OnboardingTourServiceTests
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "two-collections");
         Assert.Contains("CBETA", step.Body);
-        Assert.Contains("OpenZenTexts", step.Body);
+        Assert.Contains("OpenZen", step.Body);
         Assert.Contains("CC0", step.Body);
     }
 
@@ -222,7 +222,7 @@ public class OnboardingTourServiceTests
     public void Tutorial_WelcomeStep_MentionsBothCorpora()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "welcome");
-        Assert.Contains("OpenZenTexts", step.Body);
+        Assert.Contains("OpenZen", step.Body);
         Assert.Contains("CBETA", step.Body);
     }
 
@@ -324,7 +324,7 @@ public class OnboardingTourServiceTests
         var step = Assert.Single(_svc.Steps, s => s.Id == "multi-corpus-sync");
         Assert.Equal("BtnGitSync", step.TargetControlName);
         Assert.Contains("CBETA", step.Body);
-        Assert.Contains("OpenZenTexts", step.Body);
+        Assert.Contains("OpenZen", step.Body);
     }
 
     [Fact]

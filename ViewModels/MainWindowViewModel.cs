@@ -173,7 +173,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public string CorpusBadgeLabel => _activeCorpus switch
     {
-        CorpusKind.Open  => "OpenZenTexts",
+        CorpusKind.Open  => "OpenZen",
         CorpusKind.Cbeta => "CBETA",
         _                => "Unknown corpus"
     };
@@ -195,7 +195,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     /// <summary>
     /// Like <see cref="IZenTextsService.IsZen"/>, but also returns true for
-    /// every file in the OpenZenTexts corpus. OpenZenTexts is curated as a
+    /// every file in the OpenZen corpus. OpenZen is curated as a
     /// pure Zen text collection — there's no need for users to manually
     /// flag each text. CBETA still uses the explicit per-file zen_texts.json
     /// list because its scope is much broader than just Zen.
@@ -600,7 +600,7 @@ public partial class MainWindowViewModel : ViewModelBase
         // RefreshAllCachedStatusesAsync running multiple times when a deep
         // link comes in right after the initial config-driven auto-load.
         // EXCEPT: always re-run multi-corpus discovery here, because sync
-        // can clone the OpenZenTexts repo pair into the same root mid-
+        // can clone the OpenZen repo pair into the same root mid-
         // session, and the badge flyout needs to pick up the new corpus
         // without forcing a full reload.
         if (_root != null && string.Equals(_root, rootPath, StringComparison.OrdinalIgnoreCase) && _allItems.Count > 0)
@@ -629,7 +629,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _userHasManuallySelectedSource = false;
 
         // Multi-corpus discovery: find every (originals, translations) pair
-        // under the parent root. CBETA and OpenZenTexts can coexist as
+        // under the parent root. CBETA and OpenZen can coexist as
         // sibling subfolders. The active corpus is chosen from the saved
         // preference if it's present in the list, otherwise the first one.
         AvailableCorpora = AppPaths.DiscoverAllCorpora(_root);
@@ -1182,7 +1182,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 if (zenOnly)
                 {
-                    // OpenZenTexts files are all zen by definition; CBETA
+                    // OpenZen files are all zen by definition; CBETA
                     // uses the explicit per-file zen_texts.json list.
                     bool openCorpus = _activeCorpus == CorpusKind.Open;
                     seq = seq.Where(it => !string.IsNullOrWhiteSpace(it.RelPath)
@@ -3575,7 +3575,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         }
         else if (requiredCorpus != CorpusKind.Unknown && requiredCorpus != ActiveCorpus)
         {
-            var name = requiredCorpus == CorpusKind.Open ? "OpenZenTexts" : "CBETA";
+            var name = requiredCorpus == CorpusKind.Open ? "OpenZen" : "CBETA";
             SetStatus($"This text requires the {name} corpus. Use Sync in the Community tab to download it.");
             return;
         }
@@ -3590,7 +3590,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
 
     /// <summary>
     /// Infers which corpus a relative path belongs to based on its top-level
-    /// directory. OpenZenTexts files live under publisher-prefixed dirs
+    /// directory. OpenZen files live under publisher-prefixed dirs
     /// (ws/, pd/, ce/, mit/); CBETA files live under canon-prefixed dirs
     /// (T/, X/, S/, etc.). Returns Unknown if the path doesn't match either
     /// shape so the caller can fall back to whatever's currently active.

@@ -7,7 +7,7 @@
 
 # Read Zen
 
-Read Zen is a desktop app for reading, translating, searching, annotating, and sharing Chinese Zen texts across two corpora — **CBETA** (non-commercial, ~5000 texts) and **OpenZenTexts** (commercial-OK, CC0/CC BY-SA, growing collection of freely-licensed witnesses) — without having to live in terminals, XML editors, or Git command lines.
+Read Zen is a desktop app for reading, translating, searching, annotating, and sharing Chinese Zen texts across two corpora — **CBETA** (non-commercial, ~5000 texts) and **OpenZen** (commercial-OK, CC0/CC BY-SA, growing collection of freely-licensed witnesses) — without having to live in terminals, XML editors, or Git command lines.
 
 It is built for actual text work:
 - read Chinese and English side by side
@@ -25,7 +25,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has fiv
 - `Search`: corpus search with KWIC, bilingual pairing, deep links, analytics, and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
-- `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZenTexts
+- `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 
 There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
 
@@ -37,7 +37,7 @@ The app itself is MIT-licensed. The two corpora have different license terms:
 - keep the original CBETA attribution/header
 - do not use the corpus or derived translations commercially
 
-**OpenZenTexts** (commercial-OK):
+**OpenZen** (commercial-OK):
 - each text declares its own license in the TEI header (typically CC0 or CC BY-SA)
 - editorial reading editions (e.g. the 1632 NDL Wumenguan) are CC0 — public domain dedication, no attribution required
 - Wikisource-derived texts carry CC BY-SA from Wikisource
@@ -64,7 +64,7 @@ ReadZen/                              your chosen folder
       tags/{user}.jsonl               tagging
       tag-vocabularies/{user}.json    tag vocabularies
     titles.jsonl                      title index
-  OpenZenTexts/                       OpenZen originals repo (free-licensed texts)
+  OpenZen/                       OpenZen originals repo (free-licensed texts)
     xml-open/
       ws/                             Wikisource-derived texts
       pd/                             Public-domain scan-derived texts
@@ -238,11 +238,11 @@ Supported link kinds:
 
 These links are produced throughout the app — Reader, Translate, Search, Scholar, and the dictionary/master tooling — usually via right-click menus. They embed the same routing the app uses internally, so every link round-trips: open it on the web, click "open in Read Zen", and you land in the same place.
 
-OpenZenTexts files use synthetic line identifiers (e.g. `wm32.case01.l01`) that never collide with CBETA notation. Both formats work in deep links and the web preview.
+OpenZen files use synthetic line identifiers (e.g. `wm32.case01.l01`) that never collide with CBETA notation. Both formats work in deep links and the web preview.
 
 ### Web preview (readzen.pages.dev)
 
-The preview page is a zero-install fallback that fetches data directly from the public CBETA and OpenZenTexts repos. It recognizes both file-ID formats and dispatches to the correct repo automatically:
+The preview page is a zero-install fallback that fetches data directly from the public CBETA and OpenZen repos. It recognizes both file-ID formats and dispatches to the correct repo automatically:
 
 - **Passage** links to a line range render side-by-side ZH/EN with the chosen translator
 - **Passage** links without a line range render a bilingual body preview for translated works, or a navigable source TOC for untranslated ones
@@ -256,7 +256,7 @@ When the desktop app is installed, the preview page silently hands the link off 
 
 **Examples:**
 - CBETA: the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/#/T48n2005/](https://readzen.pages.dev/#/T48n2005/)
-- OpenZenTexts: the 1632 NDL Woodblock Reading Edition (*Wumenguan*, pd.wumenguan-1632) — [readzen.pages.dev/#/pd.wumenguan-1632/](https://readzen.pages.dev/#/pd.wumenguan-1632/)
+- OpenZen: the 1632 NDL Woodblock Reading Edition (*Wumenguan*, pd.wumenguan-1632) — [readzen.pages.dev/#/pd.wumenguan-1632/](https://readzen.pages.dev/#/pd.wumenguan-1632/)
 
 ## Onboarding Tutorial
 
@@ -359,7 +359,7 @@ If a change affects translation structure, sync, or search semantics, add tests.
 
 ## Support
 
-ReadZen and OpenZenTexts are free and open-source. If this work is useful to your practice, teaching, or research:
+ReadZen and OpenZen are free and open-source. If this work is useful to your practice, teaching, or research:
 
 [![Support on Ko-fi](https://img.shields.io/badge/Support_on-Ko--fi-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/readzen)
 
@@ -371,14 +371,14 @@ Read Zen: MIT License
 
 Data sources and their terms:
 - **CBETA corpus**: non-commercial terms — see CBETA's license
-- **OpenZenTexts**: per-file license declared in TEI headers (CC0, CC BY-SA, etc.) — commercial use permitted
+- **OpenZen**: per-file license declared in TEI headers (CC0, CC BY-SA, etc.) — commercial use permitted
 - **CC-CEDICT**: `CC BY-SA 4.0`
 
 See `THIRD_PARTY_NOTICES.txt` for details.
 
 ## Short Version
 
-Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZenTexts collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
+Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZen collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
 - read side by side with provenance and license visibility
 - translate with structure-aware tools
 - search with context and exports

@@ -2492,7 +2492,7 @@ private async Task LoadConfigAndAutoloadAsync()
     /// Repaints the corpus badge in the top bar to match the active corpus,
     /// and rebuilds the click-to-switch flyout content from the VM's
     /// AvailableCorpora list. Hidden when no root is loaded; colored via
-    /// DynamicResource keys the VM exposes (SuccessBg/Fg for OpenZenTexts,
+    /// DynamicResource keys the VM exposes (SuccessBg/Fg for OpenZen,
     /// WarningBg/Fg for CBETA).
     /// </summary>
     /// <summary>
@@ -2628,7 +2628,7 @@ private async Task LoadConfigAndAutoloadAsync()
             bool isActive = corpus.Kind == _vm.ActiveCorpus;
             string label = corpus.Kind switch
             {
-                ReadZen.App.Models.CorpusKind.Open => "OpenZenTexts (commercial-OK)",
+                ReadZen.App.Models.CorpusKind.Open => "OpenZen (commercial-OK)",
                 ReadZen.App.Models.CorpusKind.Cbeta => "CBETA (non-commercial)",
                 _ => corpus.Kind.ToString()
             };
