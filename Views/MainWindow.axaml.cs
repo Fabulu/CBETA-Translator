@@ -845,6 +845,12 @@ private async Task LoadConfigAndAutoloadAsync()
             _tabs.SelectionChanged += async (_, _) =>
             {
                 if (_suppressTabEvents) return;
+                if (_tourService is { IsActive: true, CurrentStep.SwitchToTabIndex: int expectedTab }
+                    && _tabs.SelectedIndex != expectedTab)
+                {
+                    ForceTab(expectedTab);
+                    return;
+                }
                 await _vm.OnTabSelectionChangedAsync();
                 _vm.UpdateSaveButtonState();
             };
@@ -2171,6 +2177,24 @@ private async Task LoadConfigAndAutoloadAsync()
             }));
         }
 
+        // Guard 1: If step targets a Reader/Translate control but no file is loaded, open default
+        if (!string.IsNullOrEmpty(step.TargetControlName)
+            && (step.SwitchToTabIndex is 0 or 1 || step.SwitchToTabIndex == null)
+            && string.IsNullOrEmpty(_vm.CurrentRelPath)
+            && _vm.Root != null
+            && string.IsNullOrWhiteSpace(step.AutoOpenRelPath))
+        {
+            var defaultFile = "T/T48/T48n2005.xml";
+            _ = Task.Run(async () => await Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                var neededCorpus = _vm.InferCorpusForPath(defaultFile);
+                if (neededCorpus != CorpusKind.Unknown && neededCorpus != _vm.ActiveCorpus)
+                    await _vm.SwitchCorpusAsync(neededCorpus);
+                _vm.SelectInNav(defaultFile);
+                await _vm.LoadPairAsync(defaultFile);
+            }));
+        }
+
         // Auto-jump to a specific block in the translation editor
         if (step.AutoJumpToBlock.HasValue)
             _translationView?.JumpToBlockNumber(step.AutoJumpToBlock.Value);
@@ -2192,7 +2216,8 @@ private async Task LoadConfigAndAutoloadAsync()
         if (!string.IsNullOrEmpty(step.TargetControlName))
         {
             var target = FindControlDeep(step.TargetControlName);
-            if (target != null && target.IsVisible)
+            if (target != null && target.IsEffectivelyVisible
+                && target.Bounds.Width > 0 && target.Bounds.Height > 0)
             {
                 var pt = target.TranslatePoint(new Point(0, 0), this);
                 if (pt.HasValue)
@@ -2217,7 +2242,26 @@ private async Task LoadConfigAndAutoloadAsync()
 
         // Handle Wait steps: trigger async actions
         if (step.Type == Models.TourStepType.Wait)
+        {
             _ = HandleWaitStepAsync(step);
+
+            // Guard 3: 30-second timeout for all Wait steps
+            var stepId = step.Id;
+            var waitEvent = step.WaitForEvent;
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(30_000);
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (_tourService is { IsActive: true }
+                        && _tourService.CurrentStep?.Id == stepId
+                        && !string.IsNullOrEmpty(waitEvent))
+                    {
+                        _tourService.AdvanceIfWaitingFor(waitEvent);
+                    }
+                });
+            });
+        }
     }
 
     private void PositionTooltip(Models.TourStep step, Rect? targetBounds)
