@@ -391,8 +391,10 @@ public partial class ReadableTabView : UserControl
         _chkProvenance = this.FindControl<CheckBox>("ChkProvenance");
         _provenancePanelBorder = this.FindControl<Border>("ProvenancePanelBorder");
         _rightPanelHost = this.FindControl<Grid>("RightPanelHost");
+        var prevPanel = _provenancePanelView;
         _provenancePanelView = this.FindControl<ProvenancePanel>("ProvenancePanelView");
-        if (_provenancePanelView != null)
+        // Only subscribe once — avoid duplicate subscriptions on re-FindControls
+        if (_provenancePanelView != null && _provenancePanelView != prevPanel)
             _provenancePanelView.EditionDetailsRequested += (manifest, xmlPath) =>
                 EditionDetailsRequested?.Invoke(manifest, xmlPath);
         _studyTermHost = this.FindControl<StackPanel>("StudyTermHost");
