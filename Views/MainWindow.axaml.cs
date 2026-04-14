@@ -1869,9 +1869,9 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private bool _editionDialogOpen;
 
-    private async Task OpenEditionProcessDialogAsync(ManifestInfo manifest, string? xmlAbsPath)
+    private Task OpenEditionProcessDialogAsync(ManifestInfo manifest, string? xmlAbsPath)
     {
-        if (_editionDialogOpen) return; // prevent double-open
+        if (_editionDialogOpen) return Task.CompletedTask;
         _editionDialogOpen = true;
 
         try
@@ -1905,6 +1905,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _editionDialogOpen = false;
             _vm.SetStatus($"Edition details: {ex.Message}", StatusSeverity.Error);
         }
+        return Task.CompletedTask;
     }
 
     // ── Translation Licensing ─────────────────────────────────────────
@@ -2064,7 +2065,13 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 // Auto-save current work before overwriting to prevent data loss
                 if (_vm.IsDirty)
-                    await _vm.SaveTranslatedFromTabAsync();
+                {
+                    try { await _vm.SaveTranslatedFromTabAsync(); }
+                    catch (Exception saveEx)
+                    {
+                        _vm.SetStatus($"Warning: could not auto-save before restore ({saveEx.Message}). Proceeding anyway.");
+                    }
+                }
 
                 await System.IO.File.WriteAllTextAsync(tranAbsPath, dialog.RestoredContent);
                 await _vm.RevertTranslatedXmlFromDiskAsync();
