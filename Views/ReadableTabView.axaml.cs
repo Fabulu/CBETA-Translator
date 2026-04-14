@@ -824,9 +824,18 @@ public partial class ReadableTabView : UserControl
                 if (_suppressVersionPickerEvents) return;
                 if (cmbVersion.SelectedItem is ComboBoxItem item)
                 {
-                    var hash = item.Tag as string; // null for "(current)"
+                    var hash = item.Tag as string;
                     VersionPickerChanged?.Invoke(this, hash);
                 }
+            };
+        }
+
+        var timelineSlider = this.FindControl<TimelineSlider>("TimelineSlider");
+        if (timelineSlider != null)
+        {
+            timelineSlider.VersionChanged += (_, hash) =>
+            {
+                VersionPickerChanged?.Invoke(this, hash);
             };
         }
 
@@ -1074,37 +1083,48 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public void PopulateVersionPicker(List<ReadZen.App.Models.GitCommitEntry> commits)
     {
-        var cmb = this.FindControl<ComboBox>("CmbVersionPicker");
-        if (cmb == null) return;
-
-        _suppressVersionPickerEvents = true;
-        try
+        // Timeline slider (visual)
+        var slider = this.FindControl<TimelineSlider>("TimelineSlider");
+        if (slider != null)
         {
-            var items = new List<ComboBoxItem>
-            {
-                new() { Content = "(current)", Tag = null }
-            };
-
-            foreach (var c in commits)
-                items.Add(new ComboBoxItem { Content = $"{c.DateDisplay} — {c.Author}: {c.Subject}", Tag = c.Hash });
-
-            cmb.ItemsSource = items;
-            cmb.SelectedIndex = 0;
-            cmb.IsVisible = commits.Count > 0;
+            slider.SetCommits(commits);
         }
-        finally
+
+        // ComboBox fallback (hidden, kept for programmatic use)
+        var cmb = this.FindControl<ComboBox>("CmbVersionPicker");
+        if (cmb != null)
         {
-            _suppressVersionPickerEvents = false;
+            _suppressVersionPickerEvents = true;
+            try
+            {
+                var items = new List<ComboBoxItem>
+                {
+                    new() { Content = "(current)", Tag = null }
+                };
+                foreach (var c in commits)
+                    items.Add(new ComboBoxItem { Content = $"{c.DateDisplay} — {c.Author}: {c.Subject}", Tag = c.Hash });
+                cmb.ItemsSource = items;
+                cmb.SelectedIndex = 0;
+            }
+            finally
+            {
+                _suppressVersionPickerEvents = false;
+            }
         }
     }
 
     /// <summary>Hides the version picker (e.g. when no file is loaded or no git history).</summary>
     public void ClearVersionPicker()
     {
+        var slider = this.FindControl<TimelineSlider>("TimelineSlider");
+        slider?.Clear();
+
         var cmb = this.FindControl<ComboBox>("CmbVersionPicker");
-        if (cmb == null) return;
-        cmb.ItemsSource = null;
-        cmb.IsVisible = false;
+        if (cmb != null)
+        {
+            cmb.ItemsSource = null;
+            cmb.IsVisible = false;
+        }
     }
 
     public void SetHoverDictionaryEnabled(bool enabled)

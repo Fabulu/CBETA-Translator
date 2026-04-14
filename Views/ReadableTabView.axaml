@@ -27,7 +27,7 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,*,Auto">
+	<Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
 
 		<!-- Row 0: Find bar (hidden by default, toggled with Ctrl+F) -->
 		<Border Name="FindBar" Grid.Row="0" IsVisible="False"
@@ -56,7 +56,11 @@
 		</Border>
 
 		<!-- Row 1: top action bar -->
-		<DockPanel Grid.Row="1"
+		<!-- Row 2: Timeline slider (version history) -->
+	<local:TimelineSlider Grid.Row="2" Name="TimelineSlider"
+	                      IsVisible="False" Margin="0,0,0,4"/>
+
+	<DockPanel Grid.Row="1"
 				   Margin="0,0,0,8"
 				   LastChildFill="True">
 
@@ -84,6 +88,7 @@
 					Margin="4,0,0,0"
 					ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
 
+			<!-- Version picker ComboBox (hidden, still used as fallback data carrier) -->
 			<ComboBox Name="CmbVersionPicker"
 					  DockPanel.Dock="Right"
 					  MinWidth="120"
@@ -154,8 +159,8 @@
 			<Border/>
 		</DockPanel>
 
-		<!-- Row 2: two readable panes + study panel + empty state overlay -->
-		<Grid Grid.Row="2">
+		<!-- Row 3: two readable panes + study panel + empty state overlay -->
+		<Grid Grid.Row="3">
 			<Grid Name="ReaderOuterGrid" ColumnDefinitions="*,0,0">
 				<!-- Column 0: existing two-pane content -->
 				<Grid Grid.Column="0">
@@ -301,7 +306,7 @@
 		<!-- Row 3: coding mode bar + notes panel -->
 
 		<!-- Coding Mode toggle button - always visible -->
-		<StackPanel Grid.Row="3" Orientation="Vertical" Spacing="0">
+		<StackPanel Grid.Row="4" Orientation="Vertical" Spacing="0">
 
 			<!-- Code bar - visible only in coding mode -->
 			<Border Name="CodeBarPanel" IsVisible="False"
