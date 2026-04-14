@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -82,6 +83,14 @@ public partial class ZenMasterManagerWindow : Window
             {
                 ViewModel.SelectedMaster = record;
             };
+
+            lineageGraph.NodeDoubleClicked += (_, record) =>
+            {
+                ViewModel.SelectedMaster = record;
+                // Switch to List tab on double-click
+                var tabs = this.FindControl<TabControl>("TabMain");
+                if (tabs != null) tabs.SelectedIndex = 0;
+            };
         }
 
         if (txtSearch != null)
@@ -101,6 +110,26 @@ public partial class ZenMasterManagerWindow : Window
                     lineageGraph.CenterOnNode(_lineageGraphVm.SelectedNode);
             };
         }
+
+        // Sync graph selection when List tab selection changes
+        ViewModel.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(ViewModel.SelectedMaster) && _lineageGraphVm != null)
+            {
+                var master = ViewModel.SelectedMaster;
+                if (master != null)
+                {
+                    var graphNode = _lineageGraphVm.Nodes.Find(n => n.Record == master);
+                    if (graphNode != null)
+                    {
+                        foreach (var n in _lineageGraphVm.Nodes) n.IsSelected = false;
+                        graphNode.IsSelected = true;
+                        _lineageGraphVm.SelectedNode = graphNode;
+                        lineageGraph?.InvalidateVisual();
+                    }
+                }
+            }
+        };
     }
 
     private LineageGraphViewModel? _lineageGraphVm;

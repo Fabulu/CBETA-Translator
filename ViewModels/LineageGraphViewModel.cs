@@ -15,6 +15,7 @@ public sealed class LineageGraphViewModel
     public List<LineageGraphNode> Nodes { get; } = new();
     public List<LineageEdge> Edges { get; } = new();
     public LineageGraphNode? SelectedNode { get; set; }
+    public double OrphanSectionY { get; set; }
 
     public const double NodeWidth = 130;
     public const double NodeHeight = 38;
@@ -189,13 +190,20 @@ public sealed class LineageGraphViewModel
         }
 
         // ── Layout ORPHANS (unconnected nodes) ──
-        // Place them in a separate column to the right of the tree
-        double orphanX = (maxLayer + 2) * HorizontalSpacing + 100;
+        // Place BELOW the tree in a compact date-sorted grid
+        double treeMaxY = Nodes.Where(n => !orphans.Contains(n) && dfsVisited.Contains(n)).Select(n => n.Y).DefaultIfEmpty(0).Max();
+        double orphanStartY = treeMaxY + NodeHeight + 60; // gap between tree and orphans
+
+        // Section label Y (for rendering)
+        OrphanSectionY = orphanStartY - 20;
+
+        int orphanCols = Math.Max(1, (int)((maxLayer + 2) * HorizontalSpacing / (NodeWidth + 16)));
         for (int i = 0; i < orphans.Count; i++)
         {
-            orphans[i].X = orphanX + (i % 3) * (NodeWidth + 20); // 3 columns of orphans
-            orphans[i].Y = (i / 3) * (NodeHeight + 10) + 60;
-            orphans[i].Layer = maxLayer + 2;
+            orphans[i].IsOrphan = true;
+            orphans[i].X = (i % orphanCols) * (NodeWidth + 16) + 60;
+            orphans[i].Y = orphanStartY + (i / orphanCols) * (NodeHeight + 8);
+            orphans[i].Layer = -1;
         }
     }
 

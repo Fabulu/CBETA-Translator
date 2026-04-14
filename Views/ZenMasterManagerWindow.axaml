@@ -11,7 +11,7 @@
         Background="{DynamicResource AppBg}"
         WindowStartupLocation="CenterOwner">
 
-  <TabControl Margin="8">
+  <TabControl Name="TabMain" Margin="8">
     <!-- List tab (existing layout) -->
     <TabItem Header="List">
       <Grid RowDefinitions="*,Auto" ColumnDefinitions="280,12,*" Margin="4">

@@ -4,6 +4,7 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -22,6 +23,7 @@ public sealed class LineageWebControl : Control
     private bool _isPanning;
 
     public event EventHandler<ZenMasterRecord>? NodeClicked;
+    public event EventHandler<ZenMasterRecord>? NodeDoubleClicked;
 
     public LineageWebControl()
     {
@@ -56,43 +58,58 @@ public sealed class LineageWebControl : Control
         // Legend (fixed position, top-right)
         DrawLegend(ctx, bounds);
 
-        using var transform = ctx.PushTransform(Matrix.CreateTranslation(_offsetX, _offsetY) * Matrix.CreateScale(_zoom, _zoom));
+        using var transform = ctx.PushTransform(
+            Matrix.CreateScale(_zoom, _zoom) *
+            Matrix.CreateTranslation(_offsetX, _offsetY));
 
-        // Era bands
-        var eraBandBrush = new SolidColorBrush(Color.FromArgb(15, 255, 255, 255));
-        var eraBandTextBrush = new SolidColorBrush(Color.FromArgb(40, 255, 255, 255));
-        foreach (var (century, y) in _vm.GetEraBands())
-        {
-            ctx.FillRectangle(eraBandBrush, new Rect(0, y, 5000, LineageGraphViewModel.PixelsPerYear * 100));
-            var ft = new FormattedText($"{century}s", CultureInfo.InvariantCulture,
-                FlowDirection.LeftToRight, Typeface.Default, 10, eraBandTextBrush);
-            ctx.DrawText(ft, new Point(5, y + 2));
-        }
+        // Compute visible viewport in canvas coordinates for culling
+        double vLeft = -_offsetX / _zoom - 200;
+        double vTop = -_offsetY / _zoom - 200;
+        double vRight = (bounds.Width - _offsetX) / _zoom + 200;
+        double vBottom = (bounds.Height - _offsetY) / _zoom + 200;
 
-        // Edges
-        var edgePen = new Pen(new SolidColorBrush(Color.FromArgb(80, 255, 255, 255)), 1.2);
+        // Edges (only if both endpoints potentially visible)
+        var edgePen = new Pen(new SolidColorBrush(Color.FromArgb(60, 255, 255, 255)), 1.2);
         foreach (var edge in _vm.Edges)
         {
-            var fromCenter = new Point(
-                edge.From.X + LineageGraphViewModel.NodeWidth / 2,
-                edge.From.Y + LineageGraphViewModel.NodeHeight);
-            var toCenter = new Point(
-                edge.To.X + LineageGraphViewModel.NodeWidth / 2,
-                edge.To.Y);
+            if (edge.From.X > vRight && edge.To.X > vRight) continue;
+            if (edge.From.Y > vBottom && edge.To.Y > vBottom) continue;
+            if (edge.From.X + LineageGraphViewModel.NodeWidth < vLeft && edge.To.X + LineageGraphViewModel.NodeWidth < vLeft) continue;
 
-            // Simple straight line (Bezier curves would be nicer but more code)
-            ctx.DrawLine(edgePen, fromCenter, toCenter);
+            var fromPt = new Point(
+                edge.From.X + LineageGraphViewModel.NodeWidth,
+                edge.From.Y + LineageGraphViewModel.NodeHeight / 2);
+            var toPt = new Point(
+                edge.To.X,
+                edge.To.Y + LineageGraphViewModel.NodeHeight / 2);
+
+            ctx.DrawLine(edgePen, fromPt, toPt);
         }
 
-        // Nodes
-        foreach (var node in _vm.Nodes)
+        // Orphan section label
+        if (_vm.OrphanSectionY > 0)
         {
+            var labelFt = new FormattedText("─── Unconnected Masters ───",
+                CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                new Typeface("Segoe UI", FontStyle.Normal, FontWeight.SemiBold), 12,
+                new SolidColorBrush(Color.FromArgb(80, 255, 255, 255)));
+            ctx.DrawText(labelFt, new Point(60, _vm.OrphanSectionY));
+        }
+
+        // Nodes (viewport culled)
+        foreach (var node in _vm.Nodes.Where(n => !n.IsHidden))
+        {
+            // Viewport culling
+            if (node.X + LineageGraphViewModel.NodeWidth < vLeft || node.X > vRight) continue;
+            if (node.Y + LineageGraphViewModel.NodeHeight < vTop || node.Y > vBottom) continue;
+
             var schoolColor = LineageGraphViewModel.GetSchoolColor(node.School);
 
-            // Background
+            // Background (orphans rendered dimmer)
+            byte baseAlpha = node.IsOrphan ? (byte)60 : (byte)120;
             var fillBrush = new SolidColorBrush(node.IsSelected
                 ? Color.FromArgb(200, schoolColor.R, schoolColor.G, schoolColor.B)
-                : Color.FromArgb(120, schoolColor.R, schoolColor.G, schoolColor.B));
+                : Color.FromArgb(baseAlpha, schoolColor.R, schoolColor.G, schoolColor.B));
 
             var rect = new Rect(node.X, node.Y, LineageGraphViewModel.NodeWidth, LineageGraphViewModel.NodeHeight);
             ctx.FillRectangle(fillBrush, rect, 4);
@@ -145,7 +162,12 @@ public sealed class LineageWebControl : Control
                 foreach (var n in _vm.Nodes) n.IsSelected = false;
                 hit.IsSelected = true;
                 _vm.SelectedNode = hit;
-                if (hit.Record != null) NodeClicked?.Invoke(this, hit.Record);
+
+                if (e.ClickCount >= 2 && hit.Record != null)
+                    NodeDoubleClicked?.Invoke(this, hit.Record);
+                else if (hit.Record != null)
+                    NodeClicked?.Invoke(this, hit.Record);
+
                 InvalidateVisual();
                 return;
             }
@@ -163,10 +185,12 @@ public sealed class LineageWebControl : Control
         if (_isPanning)
         {
             var pos = e.GetPosition(this);
+            // Pan delta is in screen space, independent of zoom
             _offsetX += pos.X - _lastPan.X;
             _offsetY += pos.Y - _lastPan.Y;
             _lastPan = pos;
             InvalidateVisual();
+            e.Handled = true;
         }
     }
 
