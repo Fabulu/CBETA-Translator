@@ -93,4 +93,13 @@ public interface IGitRepoService
     /// Returns a unified diff of a file between two commits.
     /// </summary>
     Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default);
+
+    /// <summary>Returns the HEAD commit SHA for the given repo.</summary>
+    Task<string?> GetHeadShaAsync(string repoDir, CancellationToken ct = default);
+
+    /// <summary>
+    /// Returns a diff --stat summary between two commits (or HEAD and a commit).
+    /// Each line is "path | +N -M" format.
+    /// </summary>
+    Task<string> GetDiffStatAsync(string repoDir, string commitA, string commitB, CancellationToken ct = default);
 }

@@ -1953,7 +1953,8 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             if (commitHash == null)
             {
-                // "(current)" selected — reload from disk
+                // "(current)" selected — reload from disk and clear diff
+                _readableView?.ClearDiffHighlighting();
                 await _vm.ReloadCurrentReadableAsync();
                 return;
             }

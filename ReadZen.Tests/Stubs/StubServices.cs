@@ -83,6 +83,8 @@ public class StubGitRepoService : IGitRepoService
     public Task<List<GitCommitEntry>> GetFileLogAsync(string repoDir, string relPath, int maxCount = 50, CancellationToken ct = default) => Task.FromResult(new List<GitCommitEntry>());
     public Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default) => Task.FromResult<string?>(null);
     public Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default) => Task.FromResult("");
+    public Task<string?> GetHeadShaAsync(string repoDir, CancellationToken ct = default) => Task.FromResult<string?>(null);
+    public Task<string> GetDiffStatAsync(string repoDir, string commitA, string commitB, CancellationToken ct = default) => Task.FromResult("");
 }
 
 // ---- IGitHubAuthService ----
