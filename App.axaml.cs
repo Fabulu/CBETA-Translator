@@ -162,7 +162,11 @@ public partial class App : Application
 
                 if (string.IsNullOrEmpty(root))
                 {
-                    Debug.WriteLine("Cannot handle deep link: no TextRootPath configured.");
+                    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                        && desktop.MainWindow?.DataContext is ViewModels.MainWindowViewModel vm)
+                    {
+                        vm.SetStatus("To open this link, first download texts via the Community tab.");
+                    }
                     return;
                 }
 
