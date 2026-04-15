@@ -152,6 +152,15 @@ public partial class ZenMasterManagerWindow : Window
             }
         };
 
+        // Master list context menu
+        var mnuCopyLink = this.FindControl<MenuItem>("MnuCopyMasterLink");
+        if (mnuCopyLink != null)
+            mnuCopyLink.Click += async (_, _) => await CopyMasterLinkAsync(isReddit: false);
+
+        var mnuCopyReddit = this.FindControl<MenuItem>("MnuCopyMasterRedditLink");
+        if (mnuCopyReddit != null)
+            mnuCopyReddit.Click += async (_, _) => await CopyMasterLinkAsync(isReddit: true);
+
         // Corpus search tab
         var btnBuildIndex = this.FindControl<Button>("BtnBuildCorpusIndex");
         if (btnBuildIndex != null)
@@ -225,15 +234,26 @@ public partial class ZenMasterManagerWindow : Window
 
     private async Task CopyLinkAsync()
     {
+        await CopyMasterLinkAsync(isReddit: false);
+    }
+
+    private async Task CopyMasterLinkAsync(bool isReddit)
+    {
         var selected = ViewModel.SelectedMaster;
         if (selected == null)
             return;
 
-        var uri = ZenUriParser.BuildMasterUri(selected.CanonicalName);
+        var text = isReddit
+            ? ZenUriParser.BuildShareableMasterUrl(selected.CanonicalName)
+            : ZenUriParser.BuildMasterUri(selected.CanonicalName);
+
         var top = TopLevel.GetTopLevel(this);
         if (top?.Clipboard != null)
-            await top.Clipboard.SetTextAsync(uri);
-        ViewModel.StatusText = $"Copied link for {selected.CanonicalName}.";
+            await top.Clipboard.SetTextAsync(text);
+
+        ViewModel.StatusText = isReddit
+            ? $"Reddit link copied for {selected.CanonicalName}."
+            : $"Copied link for {selected.CanonicalName}.";
     }
 
     private async Task OpenEditorAsync()

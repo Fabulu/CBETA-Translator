@@ -24,7 +24,13 @@
           <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
             <TextBox Grid.Row="0" Text="{Binding FilterText}" Watermark="Search masters or aliases..."/>
             <TextBlock Grid.Row="1" Text="{Binding StatusText}" Classes="muted" FontSize="11"/>
-            <ListBox Grid.Row="2" ItemsSource="{Binding Masters}" SelectedItem="{Binding SelectedMaster}">
+            <ListBox Grid.Row="2" Name="LstMasters" ItemsSource="{Binding Masters}" SelectedItem="{Binding SelectedMaster}">
+              <ListBox.ContextMenu>
+                <ContextMenu>
+                  <MenuItem Name="MnuCopyMasterLink" Header="Copy Link"/>
+                  <MenuItem Name="MnuCopyMasterRedditLink" Header="Copy Reddit Link"/>
+                </ContextMenu>
+              </ListBox.ContextMenu>
               <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:ZenMasterRecord">
                   <StackPanel Margin="2" Spacing="1">
