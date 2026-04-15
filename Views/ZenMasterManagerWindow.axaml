@@ -98,6 +98,21 @@
               <TextBlock Text="{Binding SelectedMaster.Region}" TextWrapping="Wrap"/>
             </StackPanel>
 
+            <!-- Links -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasLinks}">
+              <TextBlock Text="Links" FontWeight="SemiBold"/>
+              <ItemsControl ItemsSource="{Binding SelectedMaster.Links}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterLink">
+                    <TextBlock Name="LinkItem" Text="{Binding Label}" FontSize="12"
+                               Foreground="{DynamicResource SystemAccentColor}"
+                               Cursor="Hand" TextDecorations="Underline" Margin="0,1"
+                               Tag="{Binding Url}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+
             <!-- Sources -->
             <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
               <TextBlock Text="Sources" FontWeight="SemiBold"/>
@@ -111,6 +126,138 @@
           </ScrollViewer>
           </DockPanel>
         </Border>
+      </Grid>
+    </TabItem>
+
+    <!-- Corpus tab -->
+    <TabItem Header="Corpus">
+      <Grid RowDefinitions="Auto,*" Margin="4">
+        <!-- Toolbar -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Margin="0,0,0,4">
+          <Button Name="BtnBuildCorpusIndex" Content="Scan All Texts" Padding="8,4" Margin="0,0,8,0"
+                  ToolTip.Tip="Scan all XML files in the corpus for mentions of every zen master. This takes a few seconds."/>
+          <Button Name="BtnCancelCorpusScan" Content="Cancel" Padding="8,4" Margin="0,0,8,0"
+                  IsVisible="{Binding IsCorpusScanning}"/>
+          <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="{Binding CorpusStatusText}" FontSize="11" Opacity="0.8" TextTrimming="CharacterEllipsis"/>
+            <ProgressBar IsVisible="{Binding IsCorpusScanning}" Value="{Binding CorpusScanProgress}"
+                         Minimum="0" Maximum="100" Height="4" Margin="0,2,0,0"/>
+          </StackPanel>
+          <TextBlock Grid.Column="3" Text="{Binding CorpusScanProgressText}" FontSize="10" Opacity="0.6"
+                     VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </Grid>
+
+        <!-- Results split: left = primary/secondary, right = stats -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,12,280">
+          <!-- No master selected -->
+          <StackPanel Grid.Column="0" Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8"
+                      IsVisible="{Binding HasNoSelection}">
+            <TextBlock Text="Select a master in the List tab to see their corpus appearances."
+                       Classes="muted" FontSize="13" HorizontalAlignment="Center"/>
+            <TextBlock Text="The corpus index scans every XML file and finds which texts mention each master."
+                       Classes="muted" FontSize="11" HorizontalAlignment="Center" Opacity="0.6"/>
+          </StackPanel>
+
+          <!-- Primary + Secondary results -->
+          <Border Grid.Column="0"
+                  Background="{DynamicResource ControlBg}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  BorderThickness="1" CornerRadius="6" Padding="8"
+                  IsVisible="{Binding HasSelection}">
+            <Grid RowDefinitions="Auto,*,Auto,*">
+              <!-- Primary -->
+              <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6" Margin="0,0,0,4">
+                <TextBlock Text="Primary Texts (author/subject)" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="{Binding CorpusPrimaryResults.Count, StringFormat='({0})'}"
+                           Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+              </StackPanel>
+              <ListBox Grid.Row="1" Name="LstCorpusPrimary"
+                       ItemsSource="{Binding CorpusPrimaryResults}"
+                       Margin="0,0,0,8">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterTextAppearance">
+                    <StackPanel Margin="2" Spacing="1">
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{Binding TextTitleZh}" FontWeight="SemiBold" FontSize="12"/>
+                        <TextBlock Text="{Binding MentionCount, StringFormat='({0}x)'}"
+                                   Classes="muted" FontSize="10" VerticalAlignment="Center"/>
+                      </StackPanel>
+                      <TextBlock Text="{Binding TextTitle}" Classes="muted" FontSize="11"
+                                 IsVisible="{Binding TextTitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                      <TextBlock Text="{Binding RelPath}" Classes="muted" FontSize="10" Opacity="0.5"/>
+                      <TextBlock Text="{Binding Snippet}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"
+                                 IsVisible="{Binding Snippet, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                 Margin="0,2,0,0"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+
+              <!-- Secondary -->
+              <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="6" Margin="0,0,0,4">
+                <TextBlock Text="Secondary Mentions (quoted/referenced)" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="{Binding CorpusSecondaryResults.Count, StringFormat='({0})'}"
+                           Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+              </StackPanel>
+              <ListBox Grid.Row="3" Name="LstCorpusSecondary"
+                       ItemsSource="{Binding CorpusSecondaryResults}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterTextAppearance">
+                    <StackPanel Margin="2" Spacing="1">
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{Binding TextTitleZh}" FontWeight="SemiBold" FontSize="12"/>
+                        <TextBlock Text="{Binding MentionCount, StringFormat='({0}x)'}"
+                                   Classes="muted" FontSize="10" VerticalAlignment="Center"/>
+                      </StackPanel>
+                      <TextBlock Text="{Binding TextTitle}" Classes="muted" FontSize="11"
+                                 IsVisible="{Binding TextTitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                      <TextBlock Text="{Binding RelPath}" Classes="muted" FontSize="10" Opacity="0.5"/>
+                      <TextBlock Text="{Binding Snippet}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"
+                                 IsVisible="{Binding Snippet, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                 Margin="0,2,0,0"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Grid>
+          </Border>
+
+          <GridSplitter Grid.Column="1" Width="12" ResizeDirection="Columns" Background="Transparent"/>
+
+          <!-- Stats pane -->
+          <Border Grid.Column="2"
+                  Background="{DynamicResource ControlBg}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  BorderThickness="1" CornerRadius="6" Padding="8"
+                  IsVisible="{Binding HasSelection}">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+              <StackPanel Spacing="10">
+                <TextBlock Text="Co-occurring Masters" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="Masters who appear in the same texts."
+                           Classes="muted" FontSize="11" TextWrapping="Wrap"
+                           IsVisible="{Binding HasCorpusCoOccurrences}"/>
+                <ItemsControl ItemsSource="{Binding CorpusCoOccurrences}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:CorpusCoOccurrence">
+                      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,1">
+                        <TextBlock Text="{Binding MasterName}" FontSize="12"/>
+                        <TextBlock Text="{Binding SharedTexts, StringFormat='({0})'}"
+                                   Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="No co-occurrences found." Classes="muted" FontSize="11"
+                           IsVisible="{Binding !HasCorpusCoOccurrences}"/>
+
+                <Separator Margin="0,4"/>
+
+                <TextBlock Text="{Binding CorpusSummaryText}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"/>
+              </StackPanel>
+            </ScrollViewer>
+          </Border>
+        </Grid>
       </Grid>
     </TabItem>
 

@@ -1297,7 +1297,77 @@ private async Task LoadConfigAndAutoloadAsync()
             _translationView.AddToScholarRequested += _translationAddToScholarHandler;
         }
 
+        // Masters tab buttons
+        var btnOpenMasters = Find<Button>("BtnOpenMasters");
+        if (btnOpenMasters != null)
+            btnOpenMasters.Click += async (_, _) => await OpenZenMasterManagerWindowAsync();
+
+        var btnBuildMasterIndex = Find<Button>("BtnBuildMasterIndex");
+        if (btnBuildMasterIndex != null)
+            btnBuildMasterIndex.Click += async (_, _) =>
+            {
+                if (string.IsNullOrEmpty(_vm.Root)) return;
+                btnBuildMasterIndex.IsEnabled = false;
+                var txtInfo = Find<TextBlock>("TxtMastersCorpusInfo");
+                try
+                {
+                    var svc = new MasterCorpusSearchService();
+                    var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
+                    var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                    var catalog = await masterMgr.LoadAsync(_vm.Root);
+
+                    if (txtInfo != null) txtInfo.Text = "Scanning corpus...";
+
+                    var progress = new Progress<(int done, int total, string status)>(p =>
+                    {
+                        if (txtInfo != null) txtInfo.Text = p.status;
+                    });
+
+                    var index = await svc.BuildFullIndexAsync(_vm.Root, catalog, progress);
+                    var cacheDir = MasterCorpusSearchService.GetCacheDir(_vm.Root);
+                    await svc.SaveAsync(cacheDir, index);
+
+                    if (txtInfo != null)
+                        txtInfo.Text = $"Index ready: {index.MasterCount} masters, {index.Appearances.Count} appearances across {index.FileCount} files";
+                    _vm.SetStatus($"Master corpus index rebuilt ({index.MasterCount} masters).");
+                }
+                catch (Exception ex)
+                {
+                    if (txtInfo != null) txtInfo.Text = $"Failed: {ex.Message}";
+                }
+                finally { btnBuildMasterIndex.IsEnabled = true; }
+            };
+
+        // Update Masters tab status on load
+        UpdateMastersTabInfo();
+
         AddHandler(InputElement.KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
+    }
+
+    private void UpdateMastersTabInfo()
+    {
+        var txtStatus = Find<TextBlock>("TxtMastersStatus");
+        var txtCorpus = Find<TextBlock>("TxtMastersCorpusInfo");
+        if (txtStatus == null || txtCorpus == null || string.IsNullOrEmpty(_vm.Root)) return;
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var svc = new MasterCorpusSearchService();
+                var cacheDir = MasterCorpusSearchService.GetCacheDir(_vm.Root!);
+                var cached = await svc.TryLoadAsync(cacheDir);
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    if (cached != null)
+                        txtCorpus.Text = $"Corpus index: {cached.MasterCount} masters found across {cached.FileCount} files ({cached.Appearances.Count} total appearances)";
+                    else
+                        txtCorpus.Text = "No corpus index cached yet. Click 'Rebuild Corpus Index' or it will auto-build on next startup.";
+                });
+            }
+            catch { }
+        });
     }
 
     private void EnsureScholarContextReady()
@@ -1631,12 +1701,13 @@ private async Task LoadConfigAndAutoloadAsync()
                 return Task.CompletedTask;
             }
 
-            var win = new ZenMasterManagerWindow(_vm.TranslationRoot ?? _vm.Root)
+            var win = new ZenMasterManagerWindow(_vm.TranslationRoot ?? _vm.Root, _vm.Root)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
             win.ApplyLanding(landingName, landingUser);
+            win.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
             win.Closed += (_, _) => _zenMasterManagerWindow = null;
 
             _zenMasterManagerWindow = win;

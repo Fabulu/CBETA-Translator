@@ -846,6 +846,42 @@ public partial class MainWindowViewModel : ViewModelBase
                     if (!ct.IsCancellationRequested)
                         Dispatcher.UIThread.Post(() => SetStatus("Reference TM ready."));
                 }
+
+                // Master corpus index (zen masters in texts)
+                if (!ct.IsCancellationRequested && _root != null)
+                {
+                    try
+                    {
+                        var corpusSvc = new MasterCorpusSearchService();
+                        var cacheDir = MasterCorpusSearchService.GetCacheDir(_root);
+                        var cached = await corpusSvc.TryLoadAsync(cacheDir, ct);
+                        if (cached == null)
+                        {
+                            Dispatcher.UIThread.Post(() => SetStatus("Auto-building master corpus index..."));
+
+                            var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
+                            var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                            var catalog = await masterMgr.LoadAsync(_root);
+
+                            if (catalog.Records.Count > 0)
+                            {
+                                var corpusProgress = new Progress<(int done, int total, string status)>(t =>
+                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus: {t.status}")));
+
+                                var index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
+                                await corpusSvc.SaveAsync(cacheDir, index, ct);
+
+                                if (!ct.IsCancellationRequested)
+                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} masters, {index.Appearances.Count} appearances)."));
+                            }
+                        }
+                    }
+                    catch (OperationCanceledException) { throw; }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master corpus index failed: {ex.Message}");
+                    }
+                }
             }
             catch (OperationCanceledException) { }
             catch (Exception ex)

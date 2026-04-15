@@ -18,6 +18,13 @@ public sealed class MasterDateEntry
     public List<string>? Students { get; set; }
     public string? Region { get; set; }
     public string? ReferenceUrl { get; set; }
+    public List<MasterLink>? Links { get; set; }
+}
+
+public sealed class MasterLink
+{
+    public string Label { get; set; } = "";
+    public string Url { get; set; } = "";
 }
 
 public sealed class MasterDateConflict

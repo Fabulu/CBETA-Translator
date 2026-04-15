@@ -180,6 +180,20 @@ public sealed class ZenMasterManagerService
                 }
             }
 
+            // Parse links array if present
+            List<MasterLink>? links = null;
+            if (m.TryGetProperty("links", out var linksEl) && linksEl.ValueKind == JsonValueKind.Array)
+            {
+                links = new List<MasterLink>();
+                foreach (var lnk in linksEl.EnumerateArray())
+                {
+                    var label = lnk.TryGetProperty("label", out var lblEl) ? lblEl.GetString() : null;
+                    var url = lnk.TryGetProperty("url", out var urlEl) ? urlEl.GetString() : null;
+                    if (!string.IsNullOrWhiteSpace(url))
+                        links.Add(new MasterLink { Label = label ?? url!, Url = url! });
+                }
+            }
+
             yield return new MasterDateEntry
             {
                 Names = names,
@@ -191,6 +205,7 @@ public sealed class ZenMasterManagerService
                 Notes = m.TryGetProperty("notes", out var nt) ? nt.GetString() : null,
                 Region = m.TryGetProperty("region", out var rg) ? rg.GetString() : null,
                 ReferenceUrl = m.TryGetProperty("referenceUrl", out var ru) ? ru.GetString() : null,
+                Links = links,
             };
         }
     }
@@ -234,6 +249,7 @@ public sealed class ZenMasterManagerService
             Students = entry.Students,
             Region = entry.Region,
             ReferenceUrl = entry.ReferenceUrl,
+            Links = entry.Links,
         });
 
         foreach (var name in names)

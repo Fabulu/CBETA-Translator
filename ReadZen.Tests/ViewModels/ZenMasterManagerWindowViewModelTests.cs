@@ -87,7 +87,7 @@ public class ZenMasterManagerWindowViewModelTests : IDisposable
             }
         }));
 
-        return new ZenMasterManagerWindowViewModel(service, _repoRoot, _baseFilePath);
+        return new ZenMasterManagerWindowViewModel(service, _repoRoot, _repoRoot, _baseFilePath);
     }
 
     private Task WriteBaseFileAsync()

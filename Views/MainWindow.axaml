@@ -154,6 +154,7 @@
                             <TabItem Header="Search"/>
                             <TabItem Header="Community"/>
                             <TabItem Header="Scholar"/>
+                            <TabItem Header="Masters"/>
                         </TabStrip>
                     </Border>
                 </Grid>
@@ -248,6 +249,23 @@
                         <views:SearchTabView Name="SearchView"/>
                         <views:GitTabView Name="GitView"/>
                         <views:ScholarTabView Name="ScholarView"/>
+
+                        <!-- Masters tab: lightweight launcher for ZenMasterManagerWindow -->
+                        <Border Name="MastersTabPanel" Padding="16">
+                          <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12" MaxWidth="500">
+                            <TextBlock Text="Zen Masters" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <TextBlock Name="TxtMastersStatus" Text="156 masters catalogued"
+                                       HorizontalAlignment="Center" FontSize="13" Opacity="0.7"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,8,0,0">
+                              <Button Name="BtnOpenMasters" Content="Open Master Manager" MinWidth="200" Padding="12,8"
+                                      HorizontalContentAlignment="Center"/>
+                              <Button Name="BtnBuildMasterIndex" Content="Rebuild Corpus Index" MinWidth="200" Padding="12,8"
+                                      HorizontalContentAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Name="TxtMastersCorpusInfo" Text="" HorizontalAlignment="Center"
+                                       FontSize="11" Opacity="0.6" TextWrapping="Wrap" TextAlignment="Center"/>
+                          </StackPanel>
+                        </Border>
                     </Carousel>
 
                     <Border Name="EmptyStateOverlay" IsVisible="True"
