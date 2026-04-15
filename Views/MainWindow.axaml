@@ -254,7 +254,7 @@
                         <Border Name="MastersTabPanel" Padding="16">
                           <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12" MaxWidth="500">
                             <TextBlock Text="Zen Masters" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
-                            <TextBlock Name="TxtMastersStatus" Text="156 masters catalogued"
+                            <TextBlock Name="TxtMastersStatus" Text="Loading masters..."
                                        HorizontalAlignment="Center" FontSize="13" Opacity="0.7"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,8,0,0">
                               <Button Name="BtnOpenMasters" Content="Open Master Manager" MinWidth="200" Padding="12,8"
