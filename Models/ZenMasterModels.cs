@@ -19,6 +19,7 @@ public sealed class ZenMasterVariant
     public List<string>? Students { get; init; }
     public string? Region { get; init; }
     public string? ReferenceUrl { get; init; }
+    public List<MasterLink>? Links { get; init; }
 
     public string PrimaryName => Names.FirstOrDefault(n => !string.IsNullOrWhiteSpace(n)) ?? "(unnamed)";
 
@@ -78,6 +79,16 @@ public sealed class ZenMasterRecord
 
     /// <summary>Best available reference URL.</summary>
     public string? ReferenceUrl => Variants.Select(v => v.ReferenceUrl).FirstOrDefault(u => !string.IsNullOrWhiteSpace(u));
+
+    /// <summary>Merged links from all variants.</summary>
+    public List<MasterLink> Links => Variants
+        .Where(v => v.Links is { Count: > 0 })
+        .SelectMany(v => v.Links!)
+        .GroupBy(l => l.Url, StringComparer.OrdinalIgnoreCase)
+        .Select(g => g.First())
+        .ToList();
+
+    public bool HasLinks => Links.Count > 0;
 
     public string SourceSummary
     {

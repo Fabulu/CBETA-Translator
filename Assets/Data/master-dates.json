@@ -1,160 +1,4547 @@
 {
   "masters": [
-    {"names": ["Daoan", "道安"], "floruit": 312, "death": 385, "school": "Early Chinese Buddhism", "teacher": "Fotucheng", "notes": "Systematized monastic rules, established Shi surname convention, created first catalogue of Chinese Buddhist scriptures."},
-    {"names": ["Kumarajiva", "鳩摩羅什"], "floruit": 344, "death": 413, "school": "Madhyamaka (Chinese transmission)", "notes": "Directed one of the most prolific translation bureaus in Buddhist history. His translations shaped the vocabulary of East Asian Buddhism."},
-    {"names": ["Sengzhao", "僧肇"], "floruit": 384, "death": 414, "school": "Madhyamaka", "teacher": "Kumarajiva", "notes": "Author of the Zhao Lun, the first mature synthesis of Madhyamaka thought in Chinese."},
-    {"names": ["Huiyuan of Lushan", "廬山慧遠", "慧遠"], "floruit": 334, "death": 416, "school": "Pure Land / Prajnaparamita", "teacher": "Daoan", "notes": "Founder of Donglin Temple on Mount Lu. First patriarch of Chinese Pure Land Buddhism."},
-    {"names": ["Daosheng", "竺道生", "道生"], "floruit": 355, "death": 434, "school": "Nirvana school", "teacher": "Kumarajiva", "notes": "Argued all beings possess buddha-nature. Championed sudden enlightenment, anticipating Chan."},
-    {"names": ["Bodhidharma", "達磨", "菩提達磨"], "floruit": 500, "death": 535, "school": "Chan (founder)", "notes": "First Patriarch of Chan. Legendary transmitter of Chan from India to China. Traditionally credited with introducing wall-gazing meditation (壁觀) at Shaolin.", "region": "Luoyang"},
-    {"names": ["Fu Dashi", "傅大士", "傅翕"], "floruit": 497, "death": 569, "school": "Chan (proto-Chan lay tradition)", "notes": "Celebrated lay Buddhist. Credited with inventing the revolving sutra cabinet."},
-    {"names": ["Huike", "慧可"], "floruit": 487, "death": 593, "school": "Chan", "teacher": "Bodhidharma", "notes": "Second Patriarch. Famous for cutting off his arm to demonstrate sincerity to Bodhidharma."},
-    {"names": ["Zongchi", "總持"], "floruit": 530, "death": 604, "school": "Chan", "teacher": "Huike", "notes": "Nun and direct disciple of the Second Patriarch Huike. One of few women in early Chan lineage histories."},
-    {"names": ["Sengcan", "僧璨"], "floruit": 520, "death": 606, "school": "Chan", "teacher": "Huike", "notes": "Third Patriarch. Attributed author of the Xinxinming (信心銘, Faith in Mind), one of the earliest and most influential Chan poems."},
-    {"names": ["Daoxin", "道信"], "floruit": 580, "death": 651, "school": "Chan", "teacher": "Sengcan", "notes": "Fourth Patriarch. First to establish a settled monastic community for Chan practice at Mount Shuangfeng."},
-    {"names": ["Niutou Farong", "牛頭法融", "法融"], "floruit": 594, "death": 657, "school": "Niutou (Oxhead)", "teacher": "Daoxin", "notes": "Founder of the Niutou (Oxhead) school. Studied under the Fourth Patriarch Daoxin but developed a distinct teaching emphasizing emptiness."},
-    {"names": ["Hongren", "弘忍"], "floruit": 601, "death": 674, "school": "Chan", "teacher": "Daoxin", "notes": "Fifth Patriarch. Presided over the famous poetry contest between Shenxiu and Huineng at East Mountain (Dongshan)."},
-    {"names": ["Wujin Zang", "無盡藏"], "floruit": 630, "death": 700, "school": "Early Chan (pre-sectarian)", "notes": "Nun mentioned in the Platform Sutra who could recite the Mahāparinirvāṇa Sūtra. Huineng reportedly explained its meaning to her."},
-    {"names": ["Shenxiu", "神秀"], "floruit": 606, "death": 706, "school": "Northern Chan", "teacher": "Hongren", "notes": "Foremost disciple of the Fifth Patriarch in the traditional account. Leader of the Northern school emphasizing gradual cultivation."},
-    {"names": ["Huineng", "慧能", "六祖"], "floruit": 638, "death": 713, "school": "Southern Chan", "teacher": "Hongren", "notes": "Sixth Patriarch and pivotal figure in Chan history. His Platform Sutra established the 'sudden awakening' teaching that defined mainstream Chan. Traditionally an illiterate firewood seller who received transmission from Hongren.", "region": "Caoxi, Guangdong"},
-    {"names": ["Yongjia Xuanjue", "永嘉玄覺"], "floruit": 665, "death": 713, "school": "Chan", "teacher": "Huineng", "notes": "Author of the Song of Enlightenment (證道歌). Said to have attained awakening in a single night's meeting with Huineng."},
-    {"names": ["Li Tongxuan", "李通玄"], "floruit": 635, "death": 730, "school": "Huayan (lay)", "notes": "Lay Huayan scholar. His experiential reading of the Avatamsaka profoundly influenced later Chan."},
-    {"names": ["Qingyuan Xingsi", "青原行思"], "floruit": 660, "death": 740, "school": "Chan", "teacher": "Huineng", "students": ["Shitou Xiqian"], "notes": "Dharma heir of the Sixth Patriarch. Ancestor of the Caodong, Yunmen, and Fayan lineages."},
-    {"names": ["Zhitong", "智通"], "floruit": 680, "death": 740, "school": "Southern Chan", "teacher": "Huineng", "notes": "Listed in the Platform Sutra as one of Huineng's disciples."},
-    {"names": ["Nanyue Huairang", "南嶽懷讓"], "floruit": 677, "death": 744, "school": "Chan", "teacher": "Huineng", "students": ["Mazu Daoyi"], "notes": "Dharma heir of Huineng. Ancestor of the Linji and Guiyang houses. Famous for 'polishing a tile' exchange with Mazu."},
-    {"names": ["Shenhui", "神會"], "floruit": 684, "death": 758, "school": "Heze school", "teacher": "Huineng", "notes": "Championed Huineng as true Sixth Patriarch against the Northern school. His polemical efforts established Southern school dominance."},
-    {"names": ["Wuxiang", "無相", "金和尚"], "floruit": 684, "death": 762, "school": "Jingzhong school", "teacher": "Chuji", "notes": "Korean-born monk (Kim Heshang) who established a major Chan center in Sichuan. Known for 'three phrases' teaching."},
-    {"names": ["Baotang Wuzhu", "保唐無住"], "floruit": 714, "death": 774, "school": "Baotang school", "teacher": "Wuxiang", "notes": "Founded the radical Baotang school in Sichuan, rejecting all external forms. Teachings recorded in the Lidai fabao ji."},
-    {"names": ["Nanyang Huizhong", "南陽慧忠", "國師"], "floruit": 683, "death": 775, "school": "Chan", "teacher": "Huineng", "notes": "Appointed National Teacher by two Tang emperors. Known for 'the National Teacher calls three times' koan."},
-    {"names": ["Mazu Daoyi", "馬祖", "馬祖道一"], "floruit": 709, "death": 788, "school": "Hongzhou", "teacher": "Nanyue Huairang", "notes": "One of the most influential Tang dynasty Chan masters. Founder of the Hongzhou school. Teacher of Baizhang, Nanquan, and many others. Famous for 'the mind is Buddha' and 'neither mind nor Buddha' teachings.", "students": ["Baizhang Huaihai", "Nanquan Puyuan", "Dazhu Huihai"], "region": "Jiangxi"},
-    {"names": ["Shitou Xiqian", "石頭", "石頭希遷"], "floruit": 700, "death": 790, "school": "Chan", "teacher": "Qingyuan Xingsi", "notes": "Ancestor of the Caodong (Soto) lineage. Author of the Cantongqi (參同契, Harmony of Difference and Sameness). Along with Mazu, one of the two great branches of Tang Chan."},
-    {"names": ["Panshan Baoji", "盤山寶積"], "floruit": 720, "death": 790, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Known for 'The mind-moon is solitary and round; its light swallows the ten thousand forms.'"},
-    {"names": ["Tianhuang Daowu", "天皇道悟"], "floruit": 748, "death": 807, "school": "Shitou lineage", "teacher": "Shitou Xiqian", "notes": "Student Longtan transmitted line that produced Deshan Xuanjian."},
-    {"names": ["Pang Yun", "龐蘊", "龐居士"], "floruit": 740, "death": 808, "school": "Hongzhou", "teacher": "Shitou Xiqian", "notes": "Most celebrated lay Chan practitioner. Dumped his wealth into a river and lived making bamboo utensils."},
-    {"names": ["Lingzhao", "靈照"], "floruit": 780, "death": 808, "school": "Hongzhou", "teacher": "Pang Yun", "notes": "Daughter of Layman Pang, depicted as matching or surpassing her father in insight. Died moments before him."},
-    {"names": ["Xitang Zhizang", "西堂智藏"], "floruit": 735, "death": 814, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "One of Mazu's three great disciples alongside Baizhang and Nanquan."},
-    {"names": ["Baizhang Huaihai", "百丈", "百丈懷海"], "floruit": 720, "death": 814, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Established the first independent Chan monastic code (百丈清規). Teacher of Huangbo and Guishan. Famous for 'a day without work is a day without food' and the fox koan.", "students": ["Huangbo Xiyun", "Guishan Lingyou"]},
-    {"names": ["Zhangjing Huaihui", "章敬懷暉"], "floruit": 756, "death": 816, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Prominent student of Mazu who served as abbot of Zhangjing monastery in Chang'an."},
-    {"names": ["Wuxie Lingmo", "五洩靈默"], "floruit": 747, "death": 818, "school": "Shitou lineage", "teacher": "Shitou Xiqian", "notes": "Dharma heir of Shitou Xiqian. Named after Mount Wuxie where he resided."},
-    {"names": ["Dazhu Huihai", "大珠慧海", "大珠"], "floruit": 750, "death": 820, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Author of the Essentials of Sudden Enlightenment. Mazu called him the 'Great Pearl'."},
-    {"names": ["Fenzhou Wuye", "汾州無業"], "floruit": 760, "death": 823, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Known for his teaching that the three poisons are themselves the three disciplines."},
-    {"names": ["Danxia Tianran", "丹霞天然", "丹霞"], "floruit": 739, "death": 824, "school": "Shitou lineage", "teacher": "Shitou Xiqian", "students": ["Cuiwei Wuxue"], "notes": "Famous for burning a wooden Buddha statue to warm himself. Studied with both Shitou and Mazu."},
-    {"names": ["Yaoshan Weiyan", "藥山惟儼", "藥山"], "floruit": 745, "death": 828, "school": "Shitou lineage", "teacher": "Shitou Xiqian", "students": ["Yunyan Tansheng", "Daowu Yuanzhi"], "notes": "Pivotal figure linking Shitou's lineage to the later Caodong school through his student Yunyan."},
-    {"names": ["Mayu Baoche", "麻谷寶徹"], "floruit": 770, "death": 830, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Appears in several encounter dialogues including a well-known exchange with Nanquan."},
-    {"names": ["Nanquan Puyuan", "南泉", "南泉普願"], "floruit": 748, "death": 835, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Teacher of Zhaozhou. Famous for killing the cat (南泉斬貓) and 'ordinary mind is the Way' (平常心是道).", "students": ["Zhaozhou Congshen"]},
-    {"names": ["Daowu Yuanzhi", "道吾圓智"], "floruit": 769, "death": 835, "school": "Shitou lineage", "teacher": "Yaoshan Weiyan", "students": ["Shishuang Qingzhu"], "notes": "Featured in the 'condolence call' koan (Blue Cliff Record, Case 55)."},
-    {"names": ["Damei Fachang", "大梅法常", "大梅"], "floruit": 752, "death": 839, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Awakened by Mazu's 'This very mind is Buddha.' Became a recluse on Damei mountain."},
-    {"names": ["Guizong Zhichang", "歸宗智常"], "floruit": 770, "death": 840, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Resided at Guizong monastery on Mount Lu. Known for dramatic teaching methods."},
-    {"names": ["Longtan Chongxin", "龍潭崇信", "龍潭"], "floruit": 780, "death": 840, "school": "Shitou lineage", "teacher": "Tianhuang Daowu", "students": ["Deshan Xuanjian"], "notes": "Teacher of Deshan. Their encounter with the blown-out candle is one of Chan's most celebrated awakening stories."},
-    {"names": ["Tianlong", "天龍"], "floruit": 780, "death": 840, "students": ["Juzhi"], "notes": "Known through the 'one-finger Chan' teaching he transmitted to Juzhi."},
-    {"names": ["Guifeng Zongmi", "圭峰宗密", "宗密"], "floruit": 780, "death": 841, "school": "Heze / Huayan", "notes": "Fifth patriarch of Huayan and Heze Chan lineage holder. His Chan Prolegomenon is a landmark work classifying Chan schools."},
-    {"names": ["Yunyan Tansheng", "雲巖曇晟"], "floruit": 780, "death": 841, "school": "Shitou lineage", "teacher": "Yaoshan Weiyan", "students": ["Dongshan Liangjie"], "notes": "Crucial link in the Caodong lineage as teacher of Dongshan. 'Whole body is hands and eyes' koan."},
-    {"names": ["Yanguan Qi'an", "鹽官齊安"], "floruit": 750, "death": 842, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Known for the 'rhinoceros fan' koan (Blue Cliff Record, Case 91)."},
-    {"names": ["Bai Juyi", "白居易"], "floruit": 772, "death": 846, "school": "Chan layperson", "notes": "One of the greatest Tang poets and devoted lay Buddhist. Famous exchange with Bird's Nest Daolin."},
-    {"names": ["Huangbo Xiyun", "黃檗", "黃蘗", "黃檗希運"], "floruit": 770, "death": 850, "school": "Hongzhou", "teacher": "Baizhang Huaihai", "notes": "Teacher of Linji. Author of the Essentials of the Transmission of Mind (傳心法要). Teaching centered on 'one mind' and the impossibility of attaining Buddhahood through seeking.", "students": ["Linji Yixuan"]},
-    {"names": ["Guishan Lingyou", "潙山", "潙山靈祐"], "floruit": 771, "death": 853, "school": "Guiyang (co-founder)", "teacher": "Baizhang Huaihai", "students": ["Yangshan Huiji", "Xiangyan Zhixian"], "notes": "Co-founder of the Guiyang school, earliest of the Five Houses."},
-    {"names": ["Liu Tiemo", "劉鐵磨"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Guishan Lingyou", "notes": "Formidable laywoman nicknamed 'Iron Grindstone' for her relentless debating style. One of few women in the lamp records."},
-    {"names": ["Chuanzi Decheng", "船子德誠", "船子"], "floruit": 800, "death": 860, "school": "Shitou lineage", "teacher": "Yaoshan Weiyan", "students": ["Jiashan Shanhui"], "notes": "The 'Boat Monk' who spent decades ferrying passengers. After transmitting to Jiashan, he capsized his boat and drowned."},
-    {"names": ["Juzhi", "俱胝"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Tianlong", "notes": "Famous for answering every question by raising one finger."},
-    {"names": ["Cuiwei Wuxue", "翠微無學"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Danxia Tianran", "students": ["Touzi Datong"], "notes": "Dharma heir of Danxia Tianran."},
-    {"names": ["Luzu", "魯祖"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Nanquan Puyuan", "notes": "Known for sitting facing the wall when visitors came."},
-    {"names": ["Wufeng", "五峰"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Baizhang Huaihai", "notes": "Dharma heir of Baizhang."},
-    {"names": ["Jinniu Heshang", "金牛和尚"], "floruit": 800, "death": 860, "school": "Hongzhou", "teacher": "Mazu Daoyi", "notes": "Known for dancing with the rice bucket — 'Bodhisattvas, come eat!'"},
-    {"names": ["Deshan Xuanjian", "德山", "德山宣鑒"], "floruit": 782, "death": 865, "school": "Shitou lineage", "teacher": "Longtan Chongxin", "students": ["Xuefeng Yicun", "Yantou Quanhuo"], "notes": "Originally a Diamond Sutra scholar. Famous for 'Thirty blows whether you can speak or not.'"},
-    {"names": ["Linji Yixuan", "臨濟", "臨濟義玄"], "floruit": 810, "death": 866, "school": "Linji", "teacher": "Huangbo Xiyun", "notes": "Founder of the Linji (Rinzai) school. Known for shouting (喝), striking, and radical teaching methods. His recorded sayings (臨濟錄) are foundational to the koan tradition.", "students": ["Xinghua Cunjiang", "Sansheng Huiran"], "region": "Hebei"},
-    {"names": ["Changsha Jingcen", "長沙景岑"], "floruit": 820, "death": 868, "school": "Nanquan lineage", "teacher": "Nanquan Puyuan", "notes": "Known for 'The entire ten-direction world is the eye of the monk.'"},
-    {"names": ["Dongshan Liangjie", "洞山", "洞山良价"], "floruit": 807, "death": 869, "school": "Caodong (founder)", "teacher": "Yunyan Tansheng", "notes": "Co-founder of the Caodong (Soto) school with Caoshan Benji. Author of the Five Ranks (五位) teaching. His verse 'Crossing the river' (過水偈) marks a pivotal awakening moment.", "students": ["Caoshan Benji", "Yunju Daoying"]},
-    {"names": ["Zihu Lizong", "子湖利蹤"], "floruit": 800, "death": 880, "school": "Nanquan lineage", "teacher": "Nanquan Puyuan", "notes": "Known for the 'watch the dog!' koan."},
-    {"names": ["Jiashan Shanhui", "夾山善會", "夾山"], "floruit": 805, "death": 881, "school": "Shitou lineage", "teacher": "Chuanzi Decheng", "notes": "Awakened when the boatman-monk pushed him into water."},
-    {"names": ["Yangshan Huiji", "仰山", "仰山慧寂"], "floruit": 807, "death": 883, "school": "Guiyang (co-founder)", "teacher": "Guishan Lingyou", "notes": "Co-founder of the Guiyang school. Known for circular figures in teaching."},
-    {"names": ["Yantou Quanhuo", "巖頭", "巖頭全豁"], "floruit": 828, "death": 887, "school": "Deshan lineage", "teacher": "Deshan Xuanjian", "notes": "Let out a great shout at moment of death during Huang Chao rebellion."},
-    {"names": ["Xinghua Cunjiang", "興化存獎"], "floruit": 830, "death": 888, "school": "Linji lineage", "teacher": "Linji Yixuan", "notes": "Critical link in the survival of the Linji school through the Five Dynasties."},
-    {"names": ["Muzhou Daoming", "睦州道明", "睦州"], "floruit": 800, "death": 888, "school": "Huangbo lineage", "teacher": "Huangbo Xiyun", "students": ["Yunmen Wenyan"], "notes": "Slammed the gate on Yunmen's leg, triggering his enlightenment. Called 'Chen the Sandal-Weaver.'"},
-    {"names": ["Shishuang Qingzhu", "石霜慶諸"], "floruit": 807, "death": 888, "school": "Shitou lineage", "teacher": "Daowu Yuanzhi", "students": ["Jiufeng Daoqian"], "notes": "His assembly called 'the dead tree hall' — monks sat in continuous meditation."},
-    {"names": ["Miaoxin", "妙信"], "floruit": 830, "death": 890, "school": "Guiyang", "teacher": "Yangshan Huiji", "notes": "Woman Chan master who defeated seventeen traveling monks in dharma combat."},
-    {"names": ["Moshan Liaoran", "末山了然"], "floruit": 820, "death": 895, "school": "Hongzhou", "teacher": "Gaoan Dayu", "notes": "Woman Chan master who led her own monastery. Guanxi Zhixian bowed and served as her gardener for three years."},
-    {"names": ["Zhaozhou Congshen", "趙州", "趙州從諗"], "floruit": 778, "death": 897, "school": "Chan (Mazu lineage)", "teacher": "Nanquan Puyuan", "notes": "One of the most celebrated Chan masters. Famous for 'Mu' (無), 'wash your bowl', and 'the cypress tree in the garden'. Lived to 120. Appears in more koans than any other master.", "region": "Zhaozhou, Hebei"},
-    {"names": ["Xiangyan Zhixian", "香嚴智閑"], "floruit": 820, "death": 898, "school": "Guiyang lineage", "teacher": "Guishan Lingyou", "notes": "Awakened by sound of a pebble striking bamboo after burning his notes."},
-    {"names": ["Luopu Yuanan", "洛浦元安"], "floruit": 834, "death": 898, "school": "Linji", "teacher": "Linji Yixuan", "notes": "Initially Linji's student, later studied under Jiashan of the Shitou lineage."},
-    {"names": ["Sansheng Huiran", "三聖慧然"], "floruit": 830, "death": 900, "school": "Linji", "teacher": "Linji Yixuan", "notes": "Compiler/editor of the Linji Lu (Record of Linji). Known for sharp exchanges."},
-    {"names": ["Qinshan Wensui", "欽山文邃"], "floruit": 830, "death": 900, "school": "Caodong", "teacher": "Dongshan Liangjie", "notes": "Known for 'one arrow piercing three barriers' koan."},
-    {"names": ["Caoshan Benji", "曹山", "曹山本寂"], "floruit": 840, "death": 901, "school": "Caodong (co-founder)", "teacher": "Dongshan Liangjie", "notes": "Co-founder of the Caodong (Soto) school. Systematized Dongshan's Five Ranks teaching."},
-    {"names": ["Yunju Daoying", "雲居道膺"], "floruit": 835, "death": 902, "school": "Caodong", "teacher": "Dongshan Liangjie", "students": ["Tongan Daopi"], "notes": "Principal dharma heir of Dongshan. Major monastery on Mount Yunju."},
-    {"names": ["Xuansha Shibei", "玄沙師備"], "floruit": 835, "death": 908, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "students": ["Luohan Guichen", "Baofu Congzhan"], "notes": "Originally a fisherman. Ancestral figure of the Fayan school. 'Three diseases' teaching."},
-    {"names": ["Xuefeng Yicun", "雪峰", "雪峰義存"], "floruit": 822, "death": 908, "school": "Deshan lineage", "teacher": "Deshan Xuanjian", "students": ["Yunmen Wenyan", "Xuansha Shibei"], "notes": "Community of 1500+ monks. His students founded the Yunmen and Fayan houses."},
-    {"names": ["Sushan Kuangren", "疏山匡仁"], "floruit": 837, "death": 909, "school": "Caodong", "teacher": "Dongshan Liangjie", "notes": "Known for 'the price of the dharma body' exchange."},
-    {"names": ["Touzi Datong", "投子大同"], "floruit": 819, "death": 914, "school": "Hongzhou", "teacher": "Cuiwei Wuxue", "notes": "Lived as hermit on Mount Touzi for thirty years."},
-    {"names": ["Ruiyan Shiyan", "瑞巖師彥"], "floruit": 840, "death": 920, "school": "Xuefeng lineage", "teacher": "Yantou Quanhuo", "notes": "Called out to himself daily 'Master! Be alert! Don't be deceived!'"},
-    {"names": ["Deshan Yuanming", "德山緣密"], "floruit": 850, "death": 920, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "Known for the 'bowl' koan."},
-    {"names": ["Longya Judun", "龍牙居遁"], "floruit": 835, "death": 923, "school": "Caodong", "teacher": "Dongshan Liangjie", "notes": "Traveled widely before settling under Dongshan."},
-    {"names": ["Jiufeng Daoqian", "九峰道虔"], "floruit": 840, "death": 923, "school": "Shitou lineage", "teacher": "Shishuang Qingzhu", "notes": "After Shishuang's death, challenged the assembly about understanding the late master."},
-    {"names": ["Baofu Congzhan", "保福從展"], "floruit": 860, "death": 928, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "Close dharma brother of Changqing Huileng."},
-    {"names": ["Luohan Guichen", "羅漢桂琛"], "floruit": 867, "death": 928, "school": "Xuefeng lineage", "teacher": "Xuansha Shibei", "students": ["Fayan Wenyi"], "notes": "Direct ancestor of the Fayan school. 'What is this?' about a rock triggered Fayan's awakening."},
-    {"names": ["Nanyuan Huiyong", "南院慧顒"], "floruit": 860, "death": 930, "school": "Linji", "teacher": "Xinghua Cunjiang", "students": ["Fengxue Yanzhao"], "notes": "Critical link in Linji lineage between Xinghua and Fengxue."},
-    {"names": ["Cuiyan Lingcan", "翠巖令參"], "floruit": 860, "death": 930, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "'Cuiyan's eyebrows' koan — tested whether his teaching had been in error."},
-    {"names": ["Changqing Huileng", "長慶慧稜"], "floruit": 854, "death": 932, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "Wore out seven sitting cushions before awakening."},
-    {"names": ["Jingqing Daofu", "鏡清道怤"], "floruit": 868, "death": 937, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "Known for the 'what sound is that?' (raindrops) koan."},
-    {"names": ["Nanta Guangyong", "南塔光涌"], "floruit": 850, "death": 938, "school": "Guiyang", "teacher": "Yangshan Huiji", "students": ["Bajiao Huiqing"], "notes": "Important figure in transmitting the Guiyang school."},
-    {"names": ["Qingliang Taiqin", "清涼泰欽"], "floruit": 870, "death": 938},
-    {"names": ["Qianfeng", "千峰"], "floruit": 880, "death": 940},
-    {"names": ["Gushan Shenyan", "鼓山神晏"], "floruit": 860, "death": 944, "school": "Xuefeng lineage", "teacher": "Xuefeng Yicun", "notes": "Abbot of Gushan (Drum Mountain) monastery in Fuzhou."},
-    {"names": ["Yunmen Wenyan", "雲門", "雲門文偃"], "floruit": 864, "death": 949, "school": "Yunmen (founder)", "teacher": "Xuefeng Yicun", "notes": "Founder of the Yunmen school. Known for terse, one-word answers. Famous for 'every day is a good day' and 'the world is vast — why do you put on your robe at the sound of a bell?'", "region": "Guangdong"},
-    {"names": ["Daguang Juhui", "大光居慧"], "floruit": 890, "death": 950},
-    {"names": ["Bajiao Huiqing", "芭蕉慧清"], "floruit": 890, "death": 950, "school": "Linji", "teacher": "Nanta Guangyong", "notes": "'If you have a staff, I will give you a staff; if not, I will take it away.'"},
-    {"names": ["Fayan Wenyi", "法眼", "法眼文益"], "floruit": 885, "death": 958, "school": "Fayan (founder)", "teacher": "Luohan Guichen", "notes": "Founder of the Fayan school, last of the Five Houses. Emphasized integration of doctrinal study with Chan."},
-    {"names": ["Zhimen Guangzuo", "智門光祚"], "floruit": 900, "death": 960, "school": "Yunmen", "teacher": "Xianglin Chengyuan", "students": ["Xuedou Chongxian"], "notes": "Teacher of Xuedou Chongxian, key link in Yunmen lineage."},
-    {"names": ["Wuzu Shijie", "五祖師戒"], "floruit": 900, "death": 960},
-    {"names": ["Baling Haojian", "巴陵顥鑒"], "floruit": 910, "death": 970, "school": "Yunmen", "teacher": "Yunmen Wenyan", "notes": "Direct heir of Yunmen. Known for his three turning phrases."},
-    {"names": ["Tiantai Deshao", "天台德韶"], "floruit": 891, "death": 972, "school": "Fayan", "teacher": "Fayan Wenyi", "students": ["Yongming Yanshou"], "notes": "Most important heir of Fayan Wenyi. National teacher of Wuyue kingdom."},
-    {"names": ["Fengxue Yanzhao", "風穴延沼"], "floruit": 896, "death": 973, "school": "Linji", "teacher": "Nanyuan Huiyong", "students": ["Shoushan Xingnian"], "notes": "Preserved the Linji lineage during Five Dynasties persecutions."},
-    {"names": ["Yongming Yanshou", "永明延壽"], "floruit": 904, "death": 975, "school": "Fayan", "teacher": "Tiantai Deshao", "notes": "Advocated harmonization of Chan with Pure Land. Author of Zongjing Lu in 100 fascicles."},
-    {"names": ["Xianglin Chengyuan", "香林澄遠"], "floruit": 908, "death": 987, "school": "Yunmen", "teacher": "Yunmen Wenyan", "students": ["Zhimen Guangzuo"], "notes": "Served Yunmen for eighteen years before transmission."},
-    {"names": ["Dongshan Shouchu", "洞山守初"], "floruit": 910, "death": 990, "school": "Yunmen", "teacher": "Yunmen Wenyan", "notes": "Known for the 'three pounds of hemp' koan."},
-    {"names": ["Shoushan Xingnian", "首山省念"], "floruit": 926, "death": 993, "school": "Linji", "teacher": "Fengxue Yanzhao", "notes": "Preserved the Linji transmission through the difficult Five Dynasties period."},
-    {"names": ["Fenyang Shanzhao", "汾陽善昭"], "floruit": 947, "death": 1024, "school": "Linji", "teacher": "Shoushan Xingnian", "notes": "Reviver of the Linji school. Pioneered verse commentary on old cases (songgu)."},
-    {"names": ["Dayang Jingxuan", "大陽警玄"], "floruit": 943, "death": 1027, "school": "Caodong", "notes": "Last living Caodong lineage holder. Entrusted lineage to Linji master Fushan Fayuan to preserve the school."},
-    {"names": ["Shishuang Chuyuan", "石霜楚圓", "慈明楚圓", "Ciming Chuyuan"], "floruit": 987, "death": 1040, "school": "Linji", "teacher": "Fenyang Shanzhao", "students": ["Huanglong Huinan", "Yangqi Fanghui"], "notes": "His two greatest students founded the Huanglong and Yangqi branches."},
-    {"names": ["Yangqi Fanghui", "楊岐方會"], "floruit": 992, "death": 1049, "school": "Linji (Yangqi branch)", "teacher": "Shishuang Chuyuan", "notes": "Founded the Yangqi branch, which became the dominant Chan lineage."},
-    {"names": ["Xuedou Chongxian", "雪竇", "雪竇重顯"], "floruit": 980, "death": 1052, "school": "Yunmen", "teacher": "Zhimen Guangzuo", "notes": "His poetic verses on 100 cases became the foundation of the Blue Cliff Record. Greatest poet of the Chan tradition."},
-    {"names": ["Langye Huijue", "琅琊慧覺"], "floruit": 980, "death": 1056, "school": "Linji", "teacher": "Fenyang Shanzhao", "notes": "Dharma brother of Shishuang Chuyuan."},
-    {"names": ["Huanglong Huinan", "黃龍慧南"], "floruit": 1002, "death": 1069, "school": "Linji (Huanglong branch)", "teacher": "Shishuang Chuyuan", "notes": "Founded the Huanglong branch. Famous for his 'Three Barriers' test."},
-    {"names": ["Baiyun Shouduan", "白雲守端"], "floruit": 1025, "death": 1072, "school": "Linji (Yangqi branch)", "teacher": "Yangqi Fanghui", "students": ["Wuzu Fayan"], "notes": "Key transmitter in the Yangqi branch."},
-    {"names": ["Touzi Yiqing", "投子義青"], "floruit": 1032, "death": 1083, "school": "Caodong", "students": ["Furong Daokai"], "notes": "Received Caodong transmission via proxy through Fushan Fayuan. Saved the Caodong lineage from extinction."},
-    {"names": ["Foyin Liaoyuan", "佛印了元"], "floruit": 1032, "death": 1098, "school": "Linji (Huanglong branch)", "notes": "Famous for his close friendship with the poet Su Shi."},
-    {"names": ["Huitang Zuxin", "晦堂祖心"], "floruit": 1025, "death": 1100, "school": "Linji (Huanglong branch)", "teacher": "Huanglong Huinan", "notes": "Taught Huang Tingjian using the scent of osmanthus."},
-    {"names": ["Su Shi", "蘇軾", "蘇東坡"], "floruit": 1037, "death": 1101, "school": "Lay practitioner", "notes": "One of China's greatest poets. Deeply engaged with Chan Buddhism. Legend connected him to a rebirth of Wuzu Shijie."},
-    {"names": ["Wuzu Fayan", "五祖法演"], "floruit": 1024, "death": 1104, "school": "Linji (Yangqi branch)", "teacher": "Baiyun Shouduan", "students": ["Yuanwu Keqin"], "notes": "His three principal disciples became the most influential Chan teachers of the next generation."},
-    {"names": ["Danxia Zichun", "丹霞子淳"], "floruit": 1064, "death": 1117, "school": "Caodong", "teacher": "Furong Daokai", "students": ["Hongzhi Zhengjue", "Zhenxie Qingliao"], "notes": "Teacher of Hongzhi Zhengjue. Key figure in the Caodong revival."},
-    {"names": ["Furong Daokai", "芙蓉道楷"], "floruit": 1043, "death": 1118, "school": "Caodong", "teacher": "Touzi Yiqing", "students": ["Danxia Zichun"], "notes": "Principal reviver of the Caodong school. Refused an imperial purple robe, preferring imprisonment."},
-    {"names": ["Foyan Qingyuan", "佛眼清遠"], "floruit": 1067, "death": 1120, "school": "Linji (Yangqi branch)", "teacher": "Wuzu Fayan", "notes": "Dharma brother of Yuanwu Keqin. Subtle, penetrating teaching style."},
-    {"names": ["Zhang Shangying", "張商英"], "floruit": 1043, "death": 1121, "school": "Lay practitioner", "notes": "High-ranking Song official who became devoted Chan patron. Author of Hufa lun."},
-    {"names": ["Cishou Huaishen", "慈受懷深"], "floruit": 1077, "death": 1132, "school": "Yunmen", "notes": "Known for literary skill and poetic dharma talks."},
-    {"names": ["Yuanwu Keqin", "圜悟", "圜悟克勤"], "floruit": 1063, "death": 1135, "school": "Linji (Yangqi branch)", "teacher": "Wuzu Fayan", "students": ["Dahui Zonggao"], "notes": "Compiler of the Blue Cliff Record, the most celebrated koan collection in Chan."},
-    {"names": ["Huqiu Shaolong", "虎丘紹隆"], "floruit": 1077, "death": 1136, "school": "Linji (Yangqi branch)", "teacher": "Yuanwu Keqin", "students": ["Ying'an Tanhua"], "notes": "His lineage transmitted to Japan as the dominant Rinzai line."},
-    {"names": ["Zhenxie Qingliao", "真歇清了"], "floruit": 1089, "death": 1151, "school": "Caodong", "teacher": "Danxia Zichun", "notes": "Helped revive Caodong in the Southern Song. Abbot of Tiantong monastery."},
-    {"names": ["Hongzhi Zhengjue", "宏智", "宏智正覺"], "floruit": 1091, "death": 1157, "school": "Caodong", "teacher": "Danxia Zichun", "notes": "Leading Caodong master. Advocate of mozhao Chan (silent illumination). Compiled the Book of Equanimity."},
-    {"names": ["Dahui Zonggao", "大慧", "大慧宗杲"], "floruit": 1089, "death": 1163, "school": "Linji (Yangqi branch)", "teacher": "Yuanwu Keqin", "notes": "Systematized kanhua Chan (koan-introspection). Most influential Chan master of the Southern Song."},
-    {"names": ["Ying'an Tanhua", "應庵曇華"], "floruit": 1103, "death": 1163, "school": "Linji (Yangqi branch)", "teacher": "Huqiu Shaolong", "students": ["Mi'an Xianjie"], "notes": "Key link in the Huqiu lineage."},
-    {"names": ["Miaozong", "妙總"], "floruit": 1095, "death": 1170, "school": "Linji (Yangqi branch)", "teacher": "Dahui Zonggao", "notes": "One of the most prominent female Chan masters. Known for her sharp repartee."},
-    {"names": ["Yu Daopo", "俞道婆"], "floruit": 1100, "death": 1170, "school": "Linji", "notes": "Laywoman who achieved awakening. Notable female figure in Song Chan."},
-    {"names": ["Mi'an Xianjie", "密庵咸傑"], "floruit": 1118, "death": 1186, "school": "Linji (Yangqi branch)", "teacher": "Ying'an Tanhua", "students": ["Songyuan Chongyue"], "notes": "His two main heirs founded the Songyuan and Po'an sub-lineages."},
-    {"names": ["Kongshi Daoren", "空室道人"], "floruit": 1130, "death": 1200, "school": "Linji", "notes": "Female Chan practitioner of the Southern Song."},
-    {"names": ["Songyuan Chongyue", "松源崇嶽"], "floruit": 1132, "death": 1202, "school": "Linji (Yangqi branch)", "teacher": "Mi'an Xianjie", "notes": "Founded the Songyuan sub-lineage producing Gaofeng and Zhongfeng."},
-    {"names": ["Tiantong Rujing", "天童如淨"], "floruit": 1163, "death": 1228, "school": "Caodong", "notes": "Abbot of Tiantong monastery. Transmitted Caodong to Japan through Dogen. Emphasized shikantaza."},
-    {"names": ["Wuzhun Shifan", "無準師範"], "floruit": 1178, "death": 1249, "school": "Linji (Yangqi branch)", "students": ["Xutang Zhiyu"], "notes": "One of the most eminent Southern Song Chan masters. His portrait is a Japanese national treasure."},
-    {"names": ["Wumen Huikai", "無門", "無門慧開"], "floruit": 1183, "death": 1260, "school": "Linji (Yangqi branch)", "teacher": "Yuelin Shiguan", "notes": "Compiler of the Wumenguan (無門關, Gateless Barrier), the most widely studied koan collection. Attained awakening after six years of working on Zhaozhou's Mu. The Wumenguan's 48 cases with verse commentary became central to Rinzai training."},
-    {"names": ["Miaodao", "妙道"], "floruit": 1200, "death": 1260, "school": "Linji", "notes": "Female Chan master of the Southern Song."},
-    {"names": ["Xutang Zhiyu", "虛堂智愚"], "floruit": 1185, "death": 1269, "school": "Linji (Yangqi branch)", "notes": "Late Song Linji master whose recorded sayings became profoundly influential in Japanese Rinzai Zen."},
-    {"names": ["Xueyan Zuqin", "雪巖祖欽"], "floruit": 1216, "death": 1287, "school": "Linji (Yangqi branch)", "students": ["Gaofeng Yuanmiao"], "notes": "Known for extreme asceticism and fierce teaching style. His autobiography is a classic."},
-    {"names": ["Gaofeng Yuanmiao", "高峰原妙"], "floruit": 1238, "death": 1295, "school": "Linji (Yangqi branch)", "teacher": "Xueyan Zuqin", "students": ["Zhongfeng Mingben"], "notes": "Lived on Tianmu mountain in a hermitage. Writings on huatou and 'great doubt' highly influential."},
-    {"names": ["Zhongfeng Mingben", "中峰明本"], "floruit": 1263, "death": 1323, "school": "Linji (Yangqi branch)", "teacher": "Gaofeng Yuanmiao", "students": ["Tianru Weize"], "notes": "Most celebrated Yuan-dynasty master. Declined imperial appointments. Strong ties with Korean and Japanese monks."},
-    {"names": ["Tianru Weize", "天如惟則"], "floruit": 1286, "death": 1354, "school": "Linji (Yangqi branch)", "teacher": "Zhongfeng Mingben", "notes": "Founded Shizi Lin (Lion Grove Garden) in Suzhou. Combined Chan with Pure Land."},
-    {"names": ["Chushi Fanqi", "楚石梵琦"], "floruit": 1296, "death": 1370, "school": "Linji", "notes": "Major Chan poet of the Yuan-Ming transition."},
-    {"names": ["Zibo Zhenke", "紫柏真可"], "floruit": 1543, "death": 1603, "school": "Linji", "notes": "One of the 'four great monks' of late Ming. Spearheaded the Jiaxing canon printing project. Died in prison."},
-    {"names": ["Yunqi Zhuhong", "雲棲祩宏"], "floruit": 1535, "death": 1615, "school": "Linji / Pure Land", "notes": "One of the 'four great monks'. Leading advocate of Chan-Pure Land synthesis."},
-    {"names": ["Hanshan Deqing", "憨山德清"], "floruit": 1546, "death": 1623, "school": "Linji", "notes": "One of the 'four great monks'. Prolific writer, exiled to Guangdong. His autobiography is a classic."},
-    {"names": ["Hanyue Fazang", "漢月法藏"], "floruit": 1573, "death": 1635, "school": "Linji", "teacher": "Miyun Yuanwu", "notes": "Clashed with his teacher over Linji's teaching, splitting the late Ming Linji revival."},
-    {"names": ["Miyun Yuanwu", "密雲圓悟"], "floruit": 1567, "death": 1642, "school": "Linji", "students": ["Hanyue Fazang"], "notes": "Central figure of the late Ming Linji revival. Made his line the dominant Chan transmission into the Qing."},
-    {"names": ["Zhiyuan Xinggang", "祇園行剛"], "floruit": 1597, "death": 1654, "school": "Linji", "notes": "Linji master of the late Ming / early Qing transition."},
-    {"names": ["Ouyi Zhixu", "蕅益智旭"], "floruit": 1599, "death": 1655, "school": "Tiantai / Pure Land", "notes": "Last of the 'four great monks'. Primarily Tiantai and Pure Land, fierce advocate of Vinaya reform."}
+    {
+      "names": [
+        "Daoan",
+        "道安"
+      ],
+      "floruit": 312,
+      "death": 385,
+      "school": "Early Chinese Buddhism",
+      "teacher": "Fotucheng",
+      "notes": "Systematized monastic rules, established Shi surname convention, created first catalogue of Chinese Buddhist scriptures.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dao%27an"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%81%93%E5%AE%89"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Kumarajiva",
+        "鳩摩羅什"
+      ],
+      "floruit": 344,
+      "death": 413,
+      "school": "Madhyamaka (Chinese transmission)",
+      "notes": "Directed one of the most prolific translation bureaus in Buddhist history. His translations shaped the vocabulary of East Asian Buddhism.",
+      "teacher": "Bandhudatta",
+      "students": [
+        "Sengzhao",
+        "Daosheng",
+        "Sengrui",
+        "Daorong"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kum%C4%81raj%C4%ABva"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%B8%A0%E6%91%A9%E7%BD%97%E4%BB%80"
+        },
+        {
+          "label": "Britannica",
+          "url": "https://www.britannica.com/biography/Kumarajiva"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sengzhao",
+        "僧肇"
+      ],
+      "floruit": 384,
+      "death": 414,
+      "school": "Madhyamaka",
+      "teacher": "Kumarajiva",
+      "notes": "Author of the Zhao Lun, the first mature synthesis of Madhyamaka thought in Chinese.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sengzhao"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E5%83%A7%E8%82%87"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huiyuan of Lushan",
+        "廬山慧遠",
+        "慧遠"
+      ],
+      "floruit": 334,
+      "death": 416,
+      "school": "Pure Land / Prajnaparamita",
+      "teacher": "Daoan",
+      "notes": "Founder of Donglin Temple on Mount Lu. First patriarch of Chinese Pure Land Buddhism.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Huiyuan_(Buddhist)"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E6%85%A7%E9%81%A0"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Daosheng",
+        "竺道生",
+        "道生"
+      ],
+      "floruit": 355,
+      "death": 434,
+      "school": "Nirvana school",
+      "teacher": "Kumarajiva",
+      "notes": "Argued all beings possess buddha-nature. Championed sudden enlightenment, anticipating Chan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Daosheng"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E9%81%93%E7%94%9F"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Bodhidharma",
+        "達磨",
+        "菩提達磨"
+      ],
+      "floruit": 500,
+      "death": 535,
+      "school": "Early Chan",
+      "teacher": "Prajnatara",
+      "students": [
+        "Huike",
+        "Daoyu"
+      ],
+      "notes": "First Patriarch of Chan and traditionally the 28th Indian patriarch. Born as a prince in southern India, possibly of the Pallava dynasty. Arrived in China c. 520, reportedly met Emperor Wu of Liang who asked about the merit of his works; Bodhidharma replied 'no merit.' Settled at Shaolin Temple on Mount Song, where tradition says he sat in wall-gazing meditation (壁觀) for nine years. His teaching emphasized direct transmission outside scriptures. Named Huike his dharma heir after Huike demonstrated wordless understanding.",
+      "region": "Luoyang",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bodhidharma"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E8%8F%A9%E6%8F%90%E8%BE%BE%E6%91%A9"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/Bodhidharma.pdf"
+        },
+        {
+          "label": "Britannica",
+          "url": "https://www.britannica.com/biography/Bodhidharma"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Bodhidharma"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fu Dashi",
+        "傅大士",
+        "傅翕"
+      ],
+      "floruit": 497,
+      "death": 569,
+      "school": "Early Chan",
+      "notes": "Celebrated lay Buddhist. Credited with inventing the revolving sutra cabinet.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fu_Dashi"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/fuxi.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huike",
+        "慧可"
+      ],
+      "floruit": 487,
+      "death": 593,
+      "school": "Early Chan",
+      "teacher": "Bodhidharma",
+      "notes": "Second Patriarch. Famous for cutting off his arm to demonstrate sincerity to Bodhidharma.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dazu_Huike"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%85%A7%E5%8F%AF"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huike.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zongchi",
+        "總持"
+      ],
+      "floruit": 530,
+      "death": 604,
+      "school": "Early Chan",
+      "teacher": "Huike",
+      "notes": "Nun and direct disciple of the Second Patriarch Huike. One of few women in early Chan lineage histories.",
+      "links": [
+        {
+          "label": "Wikipedia (Bodhidharma)",
+          "url": "https://en.wikipedia.org/wiki/Bodhidharma"
+        },
+        {
+          "label": "Terebess (Bodhidharma)",
+          "url": "https://terebess.hu/zen/mesterek/bodhidharma.pdf"
+        },
+        {
+          "label": "Ancient Dragon Zen",
+          "url": "https://www.ancientdragon.org/2018/03/22/women-ancestors/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sengcan",
+        "僧璨"
+      ],
+      "floruit": 520,
+      "death": 606,
+      "school": "Early Chan",
+      "teacher": "Huike",
+      "notes": "Third Patriarch. Attributed author of the Xinxinming (信心銘, Faith in Mind), one of the earliest and most influential Chan poems.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sengcan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E5%83%A7%E7%92%A8"
+        },
+        {
+          "label": "Terebess (Xinxinming)",
+          "url": "https://terebess.hu/english/hsin.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Daoxin",
+        "道信"
+      ],
+      "floruit": 580,
+      "death": 651,
+      "school": "Early Chan",
+      "teacher": "Sengcan",
+      "notes": "Fourth Patriarch. First to establish a settled monastic community for Chan practice at Mount Shuangfeng.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Daoxin"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E9%81%93%E4%BF%A1"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/dayi.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Niutou Farong",
+        "牛頭法融",
+        "法融"
+      ],
+      "floruit": 594,
+      "death": 657,
+      "school": "Niutou (Oxhead)",
+      "teacher": "Daoxin",
+      "notes": "Founder of the Niutou (Oxhead) school. Studied under the Fourth Patriarch Daoxin but developed a distinct teaching emphasizing emptiness.",
+      "links": [
+        {
+          "label": "Wikipedia (Oxhead school)",
+          "url": "https://en.wikipedia.org/wiki/Oxhead_school"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E6%B3%95%E8%9E%8D%E7%A6%AA%E5%B8%AB"
+        },
+        {
+          "label": "Terebess (Xin ming)",
+          "url": "https://terebess.hu/zen/xinming.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Hongren",
+        "弘忍"
+      ],
+      "floruit": 601,
+      "death": 674,
+      "school": "Early Chan",
+      "teacher": "Daoxin",
+      "notes": "Fifth Patriarch. Presided over the famous poetry contest between Shenxiu and Huineng at East Mountain (Dongshan).",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Daman_Hongren"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E5%BC%98%E5%BF%8D"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/daman.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wujin Zang",
+        "無盡藏"
+      ],
+      "floruit": 630,
+      "death": 700,
+      "school": "Early Chan",
+      "notes": "Nun mentioned in the Platform Sutra who could recite the Mahāparinirvāṇa Sūtra. Huineng reportedly explained its meaning to her.",
+      "teacher": "Huineng",
+      "links": [
+        {
+          "label": "Platform Sutra - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Platform_Sutra"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shenxiu",
+        "神秀"
+      ],
+      "floruit": 606,
+      "death": 706,
+      "school": "Early Chan",
+      "teacher": "Hongren",
+      "notes": "Foremost disciple of the Fifth Patriarch in the traditional account. Leader of the Northern school emphasizing gradual cultivation.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yuquan_Shenxiu"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E7%A5%9E%E7%A7%80"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/shenxiu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huineng",
+        "慧能",
+        "六祖"
+      ],
+      "floruit": 638,
+      "death": 713,
+      "school": "Early Chan",
+      "teacher": "Hongren",
+      "students": [
+        "Nanyue Huairang",
+        "Qingyuan Xingsi",
+        "Shenhui",
+        "Nanyang Huizhong",
+        "Yongjia Xuanjue"
+      ],
+      "notes": "Sixth Patriarch and pivotal figure in Chan history. Born 638 in Xinzhou, Guangdong, to a poor family. Received secret transmission from Hongren after composing a verse demonstrating sudden awakening. His Platform Sutra (六祖壇經) established the 'sudden awakening' teaching. All surviving Chan/Zen lineages descend through his five principal dharma heirs. His mummified body is preserved at Nanhua Temple.",
+      "region": "Caoxi, Guangdong",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Huineng"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%83%A0%E8%83%BD"
+        },
+        {
+          "label": "Platform Sutra (McRae)",
+          "url": "https://terebess.hu/zen/PlatformMcRae.pdf"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huineng-eng.html"
+        },
+        {
+          "label": "IEP",
+          "url": "https://iep.utm.edu/huineng/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yongjia Xuanjue",
+        "永嘉玄覺"
+      ],
+      "floruit": 665,
+      "death": 713,
+      "school": "Early Chan",
+      "teacher": "Huineng",
+      "notes": "Author of the Song of Enlightenment (證道歌). Said to have attained awakening in a single night's meeting with Huineng.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yongjia_Xuanjue"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yongjia.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Li Tongxuan",
+        "李通玄"
+      ],
+      "floruit": 635,
+      "death": 730,
+      "school": "Huayan (lay)",
+      "notes": "Lay Huayan scholar. His experiential reading of the Avatamsaka profoundly influenced later Chan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Li_Tongxuan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E9%80%9A%E7%8E%84"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Qingyuan Xingsi",
+        "青原行思"
+      ],
+      "floruit": 660,
+      "death": 740,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Huineng",
+      "students": [
+        "Shitou Xiqian"
+      ],
+      "notes": "Dharma heir of the Sixth Patriarch. Ancestor of the Caodong, Yunmen, and Fayan lineages.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Qingyuan_Xingsi"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E9%9D%92%E5%8E%9F%E8%A1%8C%E6%80%9D"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/QingyuanXingsi.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhitong",
+        "智通"
+      ],
+      "floruit": 680,
+      "death": 740,
+      "school": "Early Chan",
+      "teacher": "Huineng",
+      "notes": "Listed in the Platform Sutra as one of Huineng's disciples.",
+      "links": [
+        {
+          "label": "Platform Sutra - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Platform_Sutra"
+        },
+        {
+          "label": "Terebess (Huineng)",
+          "url": "https://terebess.hu/zen/huineng-eng.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nanyue Huairang",
+        "南嶽懷讓"
+      ],
+      "floruit": 677,
+      "death": 744,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Huineng",
+      "students": [
+        "Mazu Daoyi"
+      ],
+      "notes": "Dharma heir of Huineng. Ancestor of the Linji and Guiyang houses. Famous for 'polishing a tile' exchange with Mazu.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Nanyue_Huairang"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E5%8D%97%E5%B2%B3%E6%80%80%E8%AE%A9"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/nanyue.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shenhui",
+        "神會"
+      ],
+      "floruit": 684,
+      "death": 758,
+      "school": "Heze",
+      "teacher": "Huineng",
+      "notes": "Championed Huineng as true Sixth Patriarch against the Northern school. His polemical efforts established Southern school dominance.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Shenhui"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E8%8D%B7%E6%B3%BD%E7%A5%9E%E4%BC%9A"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/shenhui.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuxiang",
+        "無相",
+        "金和尚"
+      ],
+      "floruit": 684,
+      "death": 762,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Chuji",
+      "notes": "Korean-born monk (Kim Heshang) who established a major Chan center in Sichuan. Known for 'three phrases' teaching.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Wuxiang"
+        },
+        {
+          "label": "Wikipedia (Kim Hwasang)",
+          "url": "https://en.wikipedia.org/wiki/Kim_Hwasang"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%87%8B%E7%84%A1%E7%9B%B8"
+        },
+        {
+          "label": "Terebess (Musang)",
+          "url": "https://terebess.hu/zen/mesterek/Musang.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baotang Wuzhu",
+        "保唐無住"
+      ],
+      "floruit": 714,
+      "death": 774,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Wuxiang",
+      "notes": "Founded the radical Baotang school in Sichuan, rejecting all external forms. Teachings recorded in the Lidai fabao ji.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Baotang_Wuzhu"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nanyang Huizhong",
+        "南陽慧忠",
+        "國師"
+      ],
+      "floruit": 683,
+      "death": 775,
+      "school": "Early Chan",
+      "teacher": "Huineng",
+      "notes": "Appointed National Teacher by two Tang emperors. Known for 'the National Teacher calls three times' koan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Nanyang_Huizhong"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E5%8D%97%E9%99%BD%E6%85%A7%E5%BF%A0"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Mazu Daoyi",
+        "馬祖",
+        "馬祖道一"
+      ],
+      "floruit": 709,
+      "death": 788,
+      "school": "Hongzhou",
+      "teacher": "Nanyue Huairang",
+      "notes": "One of the most influential Tang dynasty Chan masters. Born 709 in Sichuan. Founded the Hongzhou school, producing 139 dharma heirs. Known for 'this mind is Buddha' (即心是佛) and 'ordinary mind is the Way' (平常心是道). Pioneer of unconventional teaching methods including shouts and blows.",
+      "students": [
+        "Baizhang Huaihai",
+        "Nanquan Puyuan",
+        "Xitang Zhizang",
+        "Dazhu Huihai"
+      ],
+      "region": "Jiangxi",
+      "links": [
+        {
+          "label": "Hongzhou school",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mazu_Daoyi"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%A9%AC%E7%A5%96%E9%81%93%E4%B8%80"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mazu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shitou Xiqian",
+        "石頭",
+        "石頭希遷"
+      ],
+      "floruit": 700,
+      "death": 790,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Qingyuan Xingsi",
+      "students": [
+        "Yaoshan Weiyan",
+        "Tianhuang Daowu",
+        "Danxia Tianran",
+        "Wuxie Lingmo"
+      ],
+      "notes": "Ancestor of the Caodong (Soto) lineage. Author of the Cantongqi (參同契, Harmony of Difference and Sameness). Along with Mazu, one of the two great branches of Tang Chan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Shitou_Xiqian"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/shitou.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Panshan Baoji",
+        "盤山寶積"
+      ],
+      "floruit": 720,
+      "death": 790,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Known for 'The mind-moon is solitary and round; its light swallows the ten thousand forms.'",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/panshan.html"
+        },
+        {
+          "label": "BCR 37 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2016/05/blue-cliff-record-37.html"
+        },
+        {
+          "label": "Dogen Institute",
+          "url": "https://dogeninstitute.wordpress.com/tag/panshan-baoji/"
+        },
+        {
+          "label": "Story of Zen",
+          "url": "https://rickmcdaniel.blogspot.com/2020/01/panshan-baoji-w-g-pan-shan-pao-chi-j.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tianhuang Daowu",
+        "天皇道悟"
+      ],
+      "floruit": 748,
+      "death": 807,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Shitou Xiqian",
+      "notes": "Student Longtan transmitted line that produced Deshan Xuanjian.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/daowu.html"
+        },
+        {
+          "label": "Lingyinsi Temple",
+          "url": "https://en.lingyinsi.org/list_215.html"
+        },
+        {
+          "label": "Oxford Academic",
+          "url": "https://academic.oup.com/book/36124/chapter-abstract/313645710"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Pang Yun",
+        "龐蘊",
+        "龐居士"
+      ],
+      "floruit": 740,
+      "death": 808,
+      "school": "Hongzhou",
+      "teacher": "Shitou Xiqian",
+      "notes": "Most celebrated lay Chan practitioner. Dumped his wealth into a river and lived making bamboo utensils.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Layman_Pang"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/pang.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Lingzhao",
+        "靈照"
+      ],
+      "floruit": 780,
+      "death": 808,
+      "school": "Hongzhou",
+      "teacher": "Pang Yun",
+      "notes": "Daughter of Layman Pang, depicted as matching or surpassing her father in insight. Died moments before him.",
+      "links": [
+        {
+          "label": "Wikipedia (Layman Pang)",
+          "url": "https://en.wikipedia.org/wiki/Layman_Pang"
+        },
+        {
+          "label": "Shundo Haye",
+          "url": "https://shundo.org/2015/10/30/lingzhao/"
+        },
+        {
+          "label": "Women Zen Masters (Learn Religions)",
+          "url": "https://www.learnreligions.com/women-ancestors-of-zen-449935"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Cizhou Zhiru",
+        "磁州智如"
+      ],
+      "floruit": 723,
+      "death": 811,
+      "teacher": "Shenhui",
+      "school": "Heze",
+      "notes": "Second generation Heze lineage. Dharma heir of Shenhui.",
+      "links": [
+        {
+          "label": "Heze school",
+          "url": "https://draftymountainhut.com/2020/12/20/the-heze-school-guifeng-zongmi/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xitang Zhizang",
+        "西堂智藏"
+      ],
+      "floruit": 735,
+      "death": 814,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "One of Mazu's three great disciples alongside Baizhang and Nanquan.",
+      "links": [
+        {
+          "label": "Wikipedia (Hongzhou)",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        },
+        {
+          "label": "BCR 73 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2016/02/feb-22-28-bcr-73-bos-6.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baizhang Huaihai",
+        "百丈",
+        "百丈懷海"
+      ],
+      "floruit": 720,
+      "death": 814,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Established the first independent Chan monastic code (百丈清規), revolutionizing Chan communal life. Famous for 'a day without work is a day without food' (一日不作一日不食). Subject of the wild fox koan. His monastic regulations became the model for all later Chan/Zen monasteries.",
+      "students": [
+        "Huangbo Xiyun",
+        "Guishan Lingyou"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Baizhang_Huaihai"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E7%99%BE%E4%B8%88%E6%80%80%E6%B5%B7"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/baizhang.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Baizhang_Huaihai"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhangjing Huaihui",
+        "章敬懷暉"
+      ],
+      "floruit": 756,
+      "death": 816,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Prominent student of Mazu who served as abbot of Zhangjing monastery in Chang'an.",
+      "links": [
+        {
+          "label": "Wikipedia (Hongzhou)",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        },
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q45631456"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xingshan Weikuan",
+        "興善惟寬"
+      ],
+      "floruit": 755,
+      "death": 817,
+      "teacher": "Mazu Daoyi",
+      "school": "Hongzhou",
+      "notes": "Hongzhou school master at Xingshan Temple in Chang’an. Teacher of the poet Bai Juyi, who wrote his memorial inscription in 819.",
+      "links": [
+        {
+          "label": "Wikipedia (Hongzhou)",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuxie Lingmo",
+        "五洩靈默"
+      ],
+      "floruit": 747,
+      "death": 818,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Shitou Xiqian",
+      "notes": "Dharma heir of Shitou Xiqian. Named after Mount Wuxie where he resided.",
+      "links": [
+        {
+          "label": "Terebess (Shitou lineage)",
+          "url": "https://terebess.hu/zen/shitou-eng.html"
+        },
+        {
+          "label": "Oshobob",
+          "url": "http://www3.telus.net/public/sarlo/Oshobob/Wuxie.htm"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dazhu Huihai",
+        "大珠慧海",
+        "大珠"
+      ],
+      "floruit": 750,
+      "death": 820,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Author of the Essentials of Sudden Enlightenment. Mazu called him the 'Great Pearl'.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dazhu_Huihai"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huihai.html"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huihai-eng1.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yizhou Nanyin",
+        "益州南印"
+      ],
+      "floruit": 750,
+      "death": 820,
+      "teacher": "Cizhou Zhiru",
+      "school": "Heze",
+      "notes": "Third generation Heze lineage. Transmitted to Suizhou Daoyuan.",
+      "links": [
+        {
+          "label": "Heze school",
+          "url": "https://draftymountainhut.com/2020/12/20/the-heze-school-guifeng-zongmi/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fenzhou Wuye",
+        "汾州無業"
+      ],
+      "floruit": 760,
+      "death": 823,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Known for his teaching that the three poisons are themselves the three disciplines.",
+      "links": [
+        {
+          "label": "Wikipedia (Hongzhou)",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        },
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q9258941"
+        },
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Danxia Tianran",
+        "丹霞天然",
+        "丹霞"
+      ],
+      "floruit": 739,
+      "death": 824,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Shitou Xiqian",
+      "students": [
+        "Cuiwei Wuxue"
+      ],
+      "notes": "Famous for burning a wooden Buddha statue to warm himself. Studied with both Shitou and Mazu.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Danxia_Tianran"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E4%B8%B9%E9%9C%9E%E5%A4%A9%E7%84%B6"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/danxia.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yaoshan Weiyan",
+        "藥山惟儼",
+        "藥山"
+      ],
+      "floruit": 745,
+      "death": 828,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Shitou Xiqian",
+      "students": [
+        "Yunyan Tansheng",
+        "Daowu Yuanzhi"
+      ],
+      "notes": "Pivotal figure linking Shitou's lineage to the later Caodong school through his student Yunyan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yaoshan_Weiyan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E8%8D%AF%E5%B1%B1%E6%83%9F%E4%BF%A8"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yaoshan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Mayu Baoche",
+        "麻谷寶徹"
+      ],
+      "floruit": 770,
+      "death": 830,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Appears in several encounter dialogues including a well-known exchange with Nanquan.",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q16573965"
+        },
+        {
+          "label": "Athens Zen (wind)",
+          "url": "https://www.athenszen.org/blog/wind-goes-everywhere"
+        },
+        {
+          "label": "Genjokoan (wind)",
+          "url": "https://buddhism-thewayofemptiness.blog.nomagic.uk/genjokoan-we-have-a-fan-because-wind-nature-is-everywhere/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Suizhou Daoyuan",
+        "遂州道圓"
+      ],
+      "floruit": 770,
+      "death": 830,
+      "teacher": "Yizhou Nanyin",
+      "school": "Heze",
+      "notes": "Fourth generation Heze lineage. Teacher of Guifeng Zongmi.",
+      "links": [
+        {
+          "label": "Wikipedia (Zongmi)",
+          "url": "https://en.wikipedia.org/wiki/Guifeng_Zongmi"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nanquan Puyuan",
+        "南泉",
+        "南泉普願"
+      ],
+      "floruit": 748,
+      "death": 835,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "One of Mazu's 'three great disciples'. Often called 'Old Teacher Wang' (王老師). After enlightenment under Mazu, retreated to Mount Nanquan for 30 years. Famous for killing the cat (南泉斬貓) and 'ordinary mind is the Way' (平常心是道). Had seventeen dharma heirs.",
+      "students": [
+        "Zhaozhou Congshen",
+        "Changsha Jingcen",
+        "Zihu Lizong"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Nanquan_Puyuan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B3%89%E6%99%AE%E9%A1%98"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/nanquan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Daowu Yuanzhi",
+        "道吾圓智"
+      ],
+      "floruit": 769,
+      "death": 835,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Yaoshan Weiyan",
+      "students": [
+        "Shishuang Qingzhu"
+      ],
+      "notes": "Featured in the 'condolence call' koan (Blue Cliff Record, Case 55).",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q9201811"
+        },
+        {
+          "label": "Wikipedia (PL)",
+          "url": "https://pl.wikipedia.org/wiki/Daowu_Yuanzhi"
+        },
+        {
+          "label": "BOS 83 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2017/05/may-24-30-bos-83.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Damei Fachang",
+        "大梅法常",
+        "大梅"
+      ],
+      "floruit": 752,
+      "death": 839,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Awakened by Mazu's 'This very mind is Buddha.' Became a recluse on Damei mountain.",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q9201031"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/damei.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Guizong Zhichang",
+        "歸宗智常"
+      ],
+      "floruit": 770,
+      "death": 840,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Resided at Guizong monastery on Mount Lu. Known for dramatic teaching methods.",
+      "links": [
+        {
+          "label": "Wikipedia (Hongzhou)",
+          "url": "https://en.wikipedia.org/wiki/Hongzhou_school"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/GuizongZhichang.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Longtan Chongxin",
+        "龍潭崇信",
+        "龍潭"
+      ],
+      "floruit": 780,
+      "death": 840,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Tianhuang Daowu",
+      "students": [
+        "Deshan Xuanjian"
+      ],
+      "notes": "Teacher of Deshan. Their encounter with the blown-out candle is one of Chan's most celebrated awakening stories.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/longtan.html"
+        },
+        {
+          "label": "GG 28 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2017/05/may-31-jun-6-gg-28.html"
+        },
+        {
+          "label": "Gateless Gate 28 (Sacred Texts)",
+          "url": "https://sacred-texts.com/bud/glg/glg28.htm"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tianlong",
+        "天龍"
+      ],
+      "floruit": 780,
+      "death": 840,
+      "students": [
+        "Juzhi"
+      ],
+      "notes": "Known through the 'one-finger Chan' teaching he transmitted to Juzhi.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/HangzhouTianlong.html"
+        },
+        {
+          "label": "Terebess (Juzhi)",
+          "url": "https://terebess.hu/zen/gutei.html"
+        }
+      ],
+      "school": "Chan (unaffiliated)",
+      "teacher": "Unknown"
+    },
+    {
+      "names": [
+        "Guifeng Zongmi",
+        "圭峰宗密",
+        "宗密"
+      ],
+      "floruit": 780,
+      "death": 841,
+      "school": "Heze",
+      "teacher": "Suizhou Daoyuan",
+      "notes": "Fifth patriarch of Huayan and Heze Chan lineage holder. His Chan Prolegomenon is a landmark work classifying Chan schools.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Guifeng_Zongmi"
+        },
+        {
+          "label": "Stanford Encyclopedia",
+          "url": "https://plato.stanford.edu/entries/zongmi/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yunyan Tansheng",
+        "雲巖曇晟"
+      ],
+      "floruit": 780,
+      "death": 841,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Yaoshan Weiyan",
+      "students": [
+        "Dongshan Liangjie"
+      ],
+      "notes": "Crucial link in the Caodong lineage as teacher of Dongshan. 'Whole body is hands and eyes' koan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yunyan_Tansheng"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yunyan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yanguan Qi'an",
+        "鹽官齊安"
+      ],
+      "floruit": 750,
+      "death": 842,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Known for the 'rhinoceros fan' koan (Blue Cliff Record, Case 91).",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yanguan.html"
+        },
+        {
+          "label": "Rhinoceros Fan (Suzuki)",
+          "url": "https://suzukiroshi.engagewisdom.com/talks/bring-me-rhinoceros-fan"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Bai Juyi",
+        "白居易"
+      ],
+      "floruit": 772,
+      "death": 846,
+      "school": "Chan (unaffiliated)",
+      "notes": "One of the greatest Tang poets and devoted lay Buddhist. Famous exchange with Bird's Nest Daolin.",
+      "teacher": "Xingshan Weikuan",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bai_Juyi"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E7%99%BD%E5%B1%85%E6%98%93"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huangbo Xiyun",
+        "黃檗",
+        "黃蘗",
+        "黃檗希運"
+      ],
+      "floruit": 770,
+      "death": 850,
+      "school": "Hongzhou",
+      "teacher": "Baizhang Huaihai",
+      "notes": "Teacher of Linji and one of the most important Tang Chan masters. Born in Fuzhou, Fujian. Teaching centered on 'one mind' (一心): all beings possess this one mind which is the Buddha. His teachings recorded by lay student Pei Xiu in the Chuanxin Fayao (傳心法要) and Wanling Lu (宛陵錄). Named thirteen successors.",
+      "students": [
+        "Linji Yixuan",
+        "Muzhou Daoming"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Huangbo_Xiyun"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%BB%83%E8%98%97%E5%B8%8C%E9%81%8B"
+        },
+        {
+          "label": "Terebess (Blofeld)",
+          "url": "https://terebess.hu/zen/huangboBlofeld.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Huangbo_Xiyun"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Guishan Lingyou",
+        "潙山",
+        "潙山靈祐"
+      ],
+      "floruit": 771,
+      "death": 853,
+      "school": "Guiyang",
+      "teacher": "Baizhang Huaihai",
+      "students": [
+        "Yangshan Huiji",
+        "Xiangyan Zhixian"
+      ],
+      "notes": "Co-founder of the Guiyang school, earliest of the Five Houses.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Guishan_Lingyou"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E6%BA%88%E5%B1%B1%E9%9D%88%E7%A5%90"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/guishan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Liu Tiemo",
+        "劉鐵磨"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Guiyang",
+      "teacher": "Guishan Lingyou",
+      "notes": "Formidable laywoman nicknamed 'Iron Grindstone' for her relentless debating style. One of few women in the lamp records.",
+      "links": [
+        {
+          "label": "Iron Grinder Liu (Spark Zen)",
+          "url": "https://sparkzen.substack.com/p/zen-in-ten-iron-grinder-liu"
+        },
+        {
+          "label": "Life of Liu Tiemo (Upaya)",
+          "url": "https://www.upaya.org/2020/04/fischer-life-times-zen-ancestor-liu-tiemo/"
+        },
+        {
+          "label": "Women in Zen (Pacific Zen)",
+          "url": "https://www.pacificzen.org/about/the-pzi-way/women-in-zen/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Chuanzi Decheng",
+        "船子德誠",
+        "船子"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Yaoshan Weiyan",
+      "students": [
+        "Jiashan Shanhui"
+      ],
+      "notes": "The 'Boat Monk' who spent decades ferrying passengers. After transmitting to Jiashan, he capsized his boat and drowned.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/chuanzi.html"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/boatmonk.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Juzhi",
+        "俱胝"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Tianlong",
+      "notes": "Famous for answering every question by raising one finger.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Juzhi_Yizhi"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/gutei.html"
+        },
+        {
+          "label": "Zen Universe (one-finger)",
+          "url": "https://thezenuniverse.org/the-z-files-case-3-gutei-one-finger-zen/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Cuiwei Wuxue",
+        "翠微無學"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Danxia Tianran",
+      "students": [
+        "Touzi Datong"
+      ],
+      "notes": "Dharma heir of Danxia Tianran.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/CuiweiWuxue.html"
+        },
+        {
+          "label": "Story of Zen",
+          "url": "https://rickmcdaniel.blogspot.com/2019/10/cuiwei-wuxue-w-g-tsui-wei-wu-hseuh-j.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Luzu",
+        "魯祖"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Hongzhou",
+      "teacher": "Nanquan Puyuan",
+      "notes": "Known for sitting facing the wall when visitors came.",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q16573334"
+        },
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        },
+        {
+          "label": "BOS 23 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2016/09/sep-13-20-bos-23.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wufeng",
+        "五峰"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Hongzhou",
+      "teacher": "Baizhang Huaihai",
+      "notes": "Dharma heir of Baizhang.",
+      "links": [
+        {
+          "label": "Wikipedia (PL)",
+          "url": "https://pl.wikipedia.org/wiki/Wufeng_Changguan"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/WufengChangguan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Jinniu Heshang",
+        "金牛和尚"
+      ],
+      "floruit": 800,
+      "death": 860,
+      "school": "Hongzhou",
+      "teacher": "Mazu Daoyi",
+      "notes": "Known for dancing with the rice bucket — 'Bodhisattvas, come eat!'",
+      "links": [
+        {
+          "label": "BCR 74 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2016/06/blue-cliff-record-74.html"
+        },
+        {
+          "label": "Blue Cliff Record Case 74",
+          "url": "https://www.bluecliffrecord.ca/excerpts-from-the-book/the-74th-case/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Gaoan Dayu",
+        "高安大愚"
+      ],
+      "floruit": 810,
+      "death": 860,
+      "teacher": "Guizong Zhichang",
+      "school": "Hongzhou",
+      "notes": "Reclusive monk in Gao’an, Jiangxi. Triggered Linji Yixuan’s great awakening when Huangbo sent Linji to him. Teacher of Moshan Liaoran.",
+      "links": [
+        {
+          "label": "Wikipedia (Linji)",
+          "url": "https://en.wikipedia.org/wiki/Linji_Yixuan"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Deshan Xuanjian",
+        "德山",
+        "德山宣鑒"
+      ],
+      "floruit": 782,
+      "death": 865,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Longtan Chongxin",
+      "students": [
+        "Xuefeng Yicun",
+        "Yantou Quanhuo"
+      ],
+      "notes": "Originally a Diamond Sutra scholar. Famous for 'Thirty blows whether you can speak or not.'",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Deshan_Xuanjian"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/deshan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Linji Yixuan",
+        "臨濟",
+        "臨濟義玄"
+      ],
+      "floruit": 810,
+      "death": 866,
+      "school": "Linji",
+      "teacher": "Huangbo Xiyun",
+      "notes": "Founder of the Linji (Rinzai) school, one of only two Chan lineages surviving to the present. Asked Huangbo three times about the essence of Buddhism and was beaten each time; enlightened after visiting Gaoan Dayu. Known for radical pedagogy: shouts (喝), blows, and paradoxical statements. Developed 'four shouts' and 'four positions of host and guest' frameworks. His recorded sayings (臨濟錄) compiled by Sansheng Huiran are foundational to the koan tradition.",
+      "students": [
+        "Xinghua Cunjiang",
+        "Sansheng Huiran",
+        "Baoshou Yanzhao"
+      ],
+      "region": "Hebei",
+      "links": [
+        {
+          "label": "Linji school",
+          "url": "https://en.wikipedia.org/wiki/Linji_school"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Linji_Yixuan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E4%B8%B4%E6%B5%8E%E4%B9%89%E7%8E%84"
+        },
+        {
+          "label": "Terebess (Linji Lu)",
+          "url": "https://terebess.hu/zen/linji-eng.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Linji_Yixuan"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Changsha Jingcen",
+        "長沙景岑"
+      ],
+      "floruit": 820,
+      "death": 868,
+      "school": "Hongzhou",
+      "teacher": "Nanquan Puyuan",
+      "notes": "Known for 'The entire ten-direction world is the eye of the monk.'",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/ChangshaJingcen.html"
+        },
+        {
+          "label": "PeoplePill",
+          "url": "https://www.peoplepill.com/i/changsha-jingcen/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dongshan Liangjie",
+        "洞山",
+        "洞山良价"
+      ],
+      "floruit": 807,
+      "death": 869,
+      "school": "Caodong",
+      "teacher": "Yunyan Tansheng",
+      "notes": "Co-founder of the Caodong (Soto) school. Born 807 in Kuaiji (Shaoxing, Zhejiang). Created the Five Ranks (五位偏正) teaching and the Jewel Mirror Samadhi (寶鏡三昧). Enlightened upon seeing his reflection crossing a stream. Had 26 dharma heirs. Transmitted to Japan by Dogen as the Soto school.",
+      "students": [
+        "Caoshan Benji",
+        "Yunju Daoying",
+        "Qinshan Wensui",
+        "Longya Judun"
+      ],
+      "links": [
+        {
+          "label": "Caodong school",
+          "url": "https://en.wikipedia.org/wiki/C%C3%A1od%C3%B2ng_school"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dongshan_Liangjie"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%B4%9E%E5%B1%B1%E8%89%AF%E4%BB%B7"
+        },
+        {
+          "label": "Terebess (Five Ranks)",
+          "url": "https://terebess.hu/zen/5ranks.html"
+        },
+        {
+          "label": "Terebess (Record)",
+          "url": "https://terebess.hu/zen/dongshan-eng2.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Muzhou Daoming",
+        "睦州道明",
+        "睦州"
+      ],
+      "floruit": 800,
+      "death": 877,
+      "school": "Linji",
+      "teacher": "Huangbo Xiyun",
+      "students": [
+        "Yunmen Wenyan"
+      ],
+      "notes": "Slammed the gate on Yunmen's leg, triggering his enlightenment. Called 'Chen the Sandal-Weaver.'",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/muzhou.html"
+        },
+        {
+          "label": "Pacific Zen (Linji awakenings)",
+          "url": "https://www.pacificzen.org/library/awakenings-of-linji-the-great-chan-teachers/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zihu Lizong",
+        "子湖利蹤"
+      ],
+      "floruit": 800,
+      "death": 880,
+      "school": "Hongzhou",
+      "teacher": "Nanquan Puyuan",
+      "notes": "Known for the 'watch the dog!' koan.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/ZihuLizong.html"
+        },
+        {
+          "label": "Watch the Dog (Patheos)",
+          "url": "https://www.patheos.com/blogs/wildfoxzen/2014/02/watch-out-for-the-dog.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Jiashan Shanhui",
+        "夾山善會",
+        "夾山"
+      ],
+      "floruit": 805,
+      "death": 881,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Chuanzi Decheng",
+      "notes": "Awakened when the boatman-monk pushed him into water.",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q45614961"
+        },
+        {
+          "label": "Terebess (Boat Monk)",
+          "url": "https://terebess.hu/zen/boatmonk.html"
+        },
+        {
+          "label": "Story of Zen",
+          "url": "https://rickmcdaniel.blogspot.com/2019/12/jiashan-shanhui-w-g-chia-shan-shan-hui.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yangshan Huiji",
+        "仰山",
+        "仰山慧寂"
+      ],
+      "floruit": 807,
+      "death": 883,
+      "school": "Guiyang",
+      "teacher": "Guishan Lingyou",
+      "students": [
+        "Nanta Guangyong",
+        "Miaoxin",
+        "Xita Guangmu"
+      ],
+      "notes": "Co-founder of the Guiyang school. Known for circular figures in teaching.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yangshan_Huiji"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E4%BB%B0%E5%B1%B1%E6%85%A7%E5%AF%82"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yangshan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yantou Quanhuo",
+        "巖頭",
+        "巖頭全豁"
+      ],
+      "floruit": 828,
+      "death": 887,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Deshan Xuanjian",
+      "notes": "Let out a great shout at moment of death during Huang Chao rebellion.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yantou_Quanhuo"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/YantouQuanhuo.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xinghua Cunjiang",
+        "興化存獎"
+      ],
+      "floruit": 830,
+      "death": 888,
+      "school": "Linji",
+      "teacher": "Linji Yixuan",
+      "notes": "Critical link in the survival of the Linji school through the Five Dynasties.",
+      "links": [
+        {
+          "label": "Wikipedia (PL)",
+          "url": "https://pl.wikipedia.org/wiki/Xinghua_Cunjiang"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/xinghua.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shishuang Qingzhu",
+        "石霜慶諸"
+      ],
+      "floruit": 807,
+      "death": 888,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Daowu Yuanzhi",
+      "students": [
+        "Jiufeng Daoqian"
+      ],
+      "notes": "His assembly called 'the dead tree hall' — monks sat in continuous meditation.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Shishuang_Qingzhu"
+        },
+        {
+          "label": "Withered Tree Way (Patheos)",
+          "url": "https://www.patheos.com/blogs/wildfoxzen/2012/08/what-is-the-withered-tree-way.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baoshou Yanzhao",
+        "保壽延沼"
+      ],
+      "floruit": 830,
+      "death": 888,
+      "teacher": "Linji Yixuan",
+      "school": "Linji",
+      "notes": "Disciple of Linji Yixuan at Baoshou Monastery in Zhenzhou. Known for exchanges with Zhaozhou and Sansheng.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/BaoshouYanzhao.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Miaoxin",
+        "妙信"
+      ],
+      "floruit": 830,
+      "death": 890,
+      "school": "Guiyang",
+      "teacher": "Yangshan Huiji",
+      "notes": "Woman Chan master who defeated seventeen traveling monks in dharma combat.",
+      "links": [
+        {
+          "label": "Lion's Roar",
+          "url": "https://www.lionsroar.com/a-bow-to-womens-wisdom/"
+        },
+        {
+          "label": "Pacific Zen (Women)",
+          "url": "https://www.pacificzen.org/about/the-pzi-way/women-in-zen/"
+        },
+        {
+          "label": "Tibetan Buddhist Encyclopedia",
+          "url": "https://tibetanbuddhistencyclopedia.com/en/index.php/Miaoxin,_Woman_Master_of_Flag,_Wind_and_Mind"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Moshan Liaoran",
+        "末山了然"
+      ],
+      "floruit": 820,
+      "death": 895,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Gaoan Dayu",
+      "notes": "Woman Chan master who led her own monastery. Guanxi Zhixian bowed and served as her gardener for three years.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/MoshanLiaoran.html"
+        },
+        {
+          "label": "Mother Moshan (Patheos)",
+          "url": "https://www.patheos.com/blogs/monkeymind/2023/03/thinking-of-mother-moshan-one-of-the-early-zen-masters.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yuezhou Qianfeng",
+        "越州千峰",
+        "千峰"
+      ],
+      "floruit": 831,
+      "death": 895,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "notes": "Dharma heir of Dongshan. Known for 'three diseases and two lights of the dharmakaya' teaching. Yunmen served under him before succeeding Xuefeng. Appears in Gateless Gate Case 48 and Book of Serenity Case 61.",
+      "region": "Yuezhou (Zhejiang)",
+      "links": [
+        {
+          "label": "BOS 40 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2018/07/book-of-serenity-40.html"
+        },
+        {
+          "label": "Mumonkan Case 48",
+          "url": "https://www.rzc.org/news/mumonkan-case-48-kempos-one-road/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhaozhou Congshen",
+        "趙州",
+        "趙州從諗"
+      ],
+      "floruit": 778,
+      "death": 897,
+      "school": "Hongzhou",
+      "teacher": "Nanquan Puyuan",
+      "notes": "One of the most celebrated Chan masters, appearing in more koans than any other figure. Met Nanquan at age 18, studied under him over 20 years. At 80, settled at the dilapidated Guanyin Temple in Zhaozhou where he taught for 40 more years. Famous for 'No' (無), 'wash your bowl', 'the cypress tree in the garden', and 'have a cup of tea' (喫茶去). Lived to 120. His lineage died out by c. 1000 CE, but his recorded sayings (趙州錄) preserved his enormous influence.",
+      "region": "Zhaozhou, Hebei",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Zhaozhou_Congshen"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E8%B6%99%E5%B7%9E%E5%BE%9E%E8%AB%97"
+        },
+        {
+          "label": "Radical Zen (Sayings of Joshu)",
+          "url": "https://terebess.hu/zen/Chao-chouHoffman.pdf"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/zhaozhou.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xiangyan Zhixian",
+        "香嚴智閑"
+      ],
+      "floruit": 820,
+      "death": 898,
+      "school": "Guiyang",
+      "teacher": "Guishan Lingyou",
+      "notes": "Awakened by sound of a pebble striking bamboo after burning his notes.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Xiangyan_Zhixian"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E9%A6%99%E5%9A%B4%E6%99%BA%E9%96%92"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/xiangyan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Luopu Yuanan",
+        "洛浦元安"
+      ],
+      "floruit": 834,
+      "death": 898,
+      "school": "Linji",
+      "teacher": "Linji Yixuan",
+      "notes": "Initially Linji's student, later studied under Jiashan of the Shitou lineage.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/LuopuYuanan.html"
+        },
+        {
+          "label": "BOS 35 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2017/08/book-of-serenity-35.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sansheng Huiran",
+        "三聖慧然"
+      ],
+      "floruit": 830,
+      "death": 900,
+      "school": "Linji",
+      "teacher": "Linji Yixuan",
+      "notes": "Compiler/editor of the Linji Lu (Record of Linji). Known for sharp exchanges.",
+      "links": [
+        {
+          "label": "Wikipedia (Record of Linji)",
+          "url": "https://en.wikipedia.org/wiki/Record_of_Linji"
+        },
+        {
+          "label": "Terebess (Linji Lu)",
+          "url": "https://terebess.hu/zen/linji-eng.html"
+        },
+        {
+          "label": "BCR 49 / BOS 33",
+          "url": "https://www.bowzwestchester.org/2018/01/blue-cliff-record-49-book-of-serenity-33.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Qinshan Wensui",
+        "欽山文邃"
+      ],
+      "floruit": 830,
+      "death": 900,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "notes": "Known for 'one arrow piercing three barriers' koan.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/QinshanWensui.html"
+        },
+        {
+          "label": "FoGuangPedia",
+          "url": "https://foguangpedia.org/blog-post/one-lettuce-leaf/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Caoshan Benji",
+        "曹山",
+        "曹山本寂"
+      ],
+      "floruit": 840,
+      "death": 901,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "notes": "Co-founder of the Caodong (Soto) school. Systematized Dongshan's Five Ranks teaching.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Caoshan_Benji"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%9B%B9%E5%B1%B1%E6%9C%AC%E5%AF%82"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/caoshan-eng.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yunju Daoying",
+        "雲居道膺"
+      ],
+      "floruit": 835,
+      "death": 902,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "students": [
+        "Tongan Daopi"
+      ],
+      "notes": "Principal dharma heir of Dongshan. Major monastery on Mount Yunju.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yunju_Daoying"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/YunjuDaoying.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Daguang Juhui",
+        "大光居慧"
+      ],
+      "floruit": 837,
+      "death": 903,
+      "school": "Chan (unaffiliated)",
+      "notes": "Dharma heir of Shishuang Qingzhu (807-888). Dates corrected from d.950 to d.903 per lineage chronology.",
+      "teacher": "Shishuang Qingzhu",
+      "links": [
+        {
+          "label": "Terebess (Heritage PDF)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        },
+        {
+          "label": "Ferguson Lineage Chart",
+          "url": "https://www.cuke.com/pdf-2015/lineage-chart-zen-masters-Ferguson.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xuansha Shibei",
+        "玄沙師備"
+      ],
+      "floruit": 835,
+      "death": 908,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "students": [
+        "Luohan Guichen",
+        "Baofu Congzhan"
+      ],
+      "notes": "Originally a fisherman. Ancestral figure of the Fayan school. 'Three diseases' teaching.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Xuansha_Shibei"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh/%E7%8E%84%E6%B2%99%E5%B8%AB%E5%82%99"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/xuansha.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xuefeng Yicun",
+        "雪峰",
+        "雪峰義存"
+      ],
+      "floruit": 822,
+      "death": 908,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Deshan Xuanjian",
+      "students": [
+        "Yunmen Wenyan",
+        "Xuansha Shibei"
+      ],
+      "notes": "Community of 1500+ monks. His students founded the Yunmen and Fayan houses.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Xuefeng_Yicun"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E9%9B%AA%E5%B3%B0%E7%BE%A9%E5%AD%98"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/xuefeng.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sushan Kuangren",
+        "疏山匡仁"
+      ],
+      "floruit": 837,
+      "death": 909,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "notes": "Known for 'the price of the dharma body' exchange.",
+      "links": [
+        {
+          "label": "Book of Serenity",
+          "url": "https://en.wikipedia.org/wiki/Book_of_Equanimity"
+        },
+        {
+          "label": "PeoplePill",
+          "url": "https://peoplepill.com/people/sushan-kuangren/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Touzi Datong",
+        "投子大同"
+      ],
+      "floruit": 819,
+      "death": 914,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Cuiwei Wuxue",
+      "notes": "Lived as hermit on Mount Touzi for thirty years.",
+      "links": [
+        {
+          "label": "Terebess (Heritage PDF)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        },
+        {
+          "label": "Dr Henley",
+          "url": "https://www.drjameshenley.us/zen-buddhism-3/touzi-datong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Ruiyan Shiyan",
+        "瑞巖師彥"
+      ],
+      "floruit": 840,
+      "death": 920,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Yantou Quanhuo",
+      "notes": "Called out to himself daily 'Master! Be alert! Don't be deceived!'",
+      "links": [
+        {
+          "label": "Gateless Gate",
+          "url": "https://en.wikipedia.org/wiki/The_Gateless_Barrier"
+        },
+        {
+          "label": "Everyday Zen (Calls Master)",
+          "url": "https://everydayzen.org/teachings/ruiyan-calls-the-master/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Deshan Yuanming",
+        "德山緣密"
+      ],
+      "floruit": 850,
+      "death": 920,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "Known for the 'bowl' koan.",
+      "links": [
+        {
+          "label": "Terebess (Heritage PDF)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        },
+        {
+          "label": "Zen Apocrypha",
+          "url": "https://zenapocrypha.substack.com/p/three-is-the-magic-number"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Longya Judun",
+        "龍牙居遁"
+      ],
+      "floruit": 835,
+      "death": 923,
+      "school": "Caodong",
+      "teacher": "Dongshan Liangjie",
+      "notes": "Traveled widely before settling under Dongshan.",
+      "links": [
+        {
+          "label": "Blue Cliff Record",
+          "url": "https://en.wikipedia.org/wiki/Blue_Cliff_Record"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/Longya.html"
+        },
+        {
+          "label": "BCR 20",
+          "url": "https://www.bluecliffrecord.ca/case-20-longya-asks-around/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Jiufeng Daoqian",
+        "九峰道虔"
+      ],
+      "floruit": 840,
+      "death": 923,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Shishuang Qingzhu",
+      "notes": "After Shishuang's death, challenged the assembly about understanding the late master.",
+      "links": [
+        {
+          "label": "Blue Cliff Record",
+          "url": "https://en.wikipedia.org/wiki/Blue_Cliff_Record"
+        },
+        {
+          "label": "BOS 96 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2018/03/book-of-serenity-96.html"
+        },
+        {
+          "label": "Pacific Zen (BOS 96)",
+          "url": "https://www.pacificzen.org/library/koan/juifeng-does-not-acknowledge-bs96/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baofu Congzhan",
+        "保福從展"
+      ],
+      "floruit": 860,
+      "death": 928,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "Close dharma brother of Changqing Huileng.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/baofu.html"
+        },
+        {
+          "label": "BCR 23",
+          "url": "https://www.bluecliffrecord.ca/case-23-baofu-and-changqing-find-the-mystic-peak/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Luohan Guichen",
+        "羅漢桂琛"
+      ],
+      "floruit": 867,
+      "death": 928,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuansha Shibei",
+      "students": [
+        "Fayan Wenyi"
+      ],
+      "notes": "Direct ancestor of the Fayan school. 'What is this?' about a rock triggered Fayan's awakening.",
+      "links": [
+        {
+          "label": "Wikipedia (Fayan school)",
+          "url": "https://en.wikipedia.org/wiki/Fayan_school"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/luohan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nanyuan Huiyong",
+        "南院慧顒"
+      ],
+      "floruit": 860,
+      "death": 930,
+      "school": "Linji",
+      "teacher": "Xinghua Cunjiang",
+      "students": [
+        "Fengxue Yanzhao"
+      ],
+      "notes": "Critical link in Linji lineage between Xinghua and Fengxue.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/nanyuan.html"
+        },
+        {
+          "label": "BCR 38 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2019/12/blue-cliff-record-38-book-of-serenity-29.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Cuiyan Lingcan",
+        "翠巖令參"
+      ],
+      "floruit": 860,
+      "death": 930,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "'Cuiyan's eyebrows' koan — tested whether his teaching had been in error.",
+      "links": [
+        {
+          "label": "Blue Cliff Record Case 8",
+          "url": "https://www.bluecliffrecord.ca/case-8-cuiyans-eyebrows/"
+        },
+        {
+          "label": "Treetop Zen (BCR 8)",
+          "url": "https://www.treetopzencenter.org/blue-cliff-record-case-8-tsui-yens-eyebrows/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tongan Daopi",
+        "同安道丕"
+      ],
+      "floruit": 880,
+      "death": 930,
+      "teacher": "Yunju Daoying",
+      "school": "Caodong",
+      "notes": "Caodong lineage patriarch at Tongan Monastery near Nanchang. Successor of Yunju Daoying.",
+      "links": [
+        {
+          "label": "Terebess (Yunju)",
+          "url": "https://terebess.hu/zen/mesterek/YunjuDaoying.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Changqing Huileng",
+        "長慶慧稜"
+      ],
+      "floruit": 854,
+      "death": 932,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "Wore out seven sitting cushions before awakening.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/changqing.html"
+        },
+        {
+          "label": "BCR 22",
+          "url": "https://www.bluecliffrecord.ca/case-22-xuefengs-turtle-nosed-snake/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Jingqing Daofu",
+        "鏡清道怤"
+      ],
+      "floruit": 868,
+      "death": 937,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "Known for the 'what sound is that?' (raindrops) koan.",
+      "links": [
+        {
+          "label": "BCR 46",
+          "url": "https://www.bluecliffrecord.ca/case-46-jingqing-hears-raindrops/"
+        },
+        {
+          "label": "WisdomLib",
+          "url": "https://www.wisdomlib.org/definition/jing-qing-dao-fu"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nanta Guangyong",
+        "南塔光涌"
+      ],
+      "floruit": 850,
+      "death": 938,
+      "school": "Guiyang",
+      "teacher": "Yangshan Huiji",
+      "students": [
+        "Bajiao Huiqing"
+      ],
+      "notes": "Important figure in transmitting the Guiyang school.",
+      "links": [
+        {
+          "label": "Wikipedia (Guiyang school)",
+          "url": "https://en.wikipedia.org/wiki/Guiyang_school"
+        },
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q16581433"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Gushan Shenyan",
+        "鼓山神晏"
+      ],
+      "floruit": 860,
+      "death": 944,
+      "school": "Chan (unaffiliated)",
+      "teacher": "Xuefeng Yicun",
+      "notes": "Abbot of Gushan (Drum Mountain) monastery in Fuzhou.",
+      "links": [
+        {
+          "label": "Terebess (Gushan PDF)",
+          "url": "https://terebess.hu/zen/Wang.pdf"
+        },
+        {
+          "label": "Ferguson Lineage Chart",
+          "url": "https://www.cuke.com/pdf-2015/lineage-chart-zen-masters-Ferguson.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yunmen Wenyan",
+        "雲門",
+        "雲門文偃"
+      ],
+      "floruit": 864,
+      "death": 949,
+      "school": "Yunmen",
+      "teacher": "Xuefeng Yicun",
+      "students": [
+        "Dongshan Shouchu",
+        "Xianglin Chengyuan",
+        "Baling Haojian"
+      ],
+      "notes": "Founder of the Yunmen school. Born 864 in Jiaxing. Enlightened when Muzhou slammed the gate on his leg. Established Yunmen Monastery on Yunmen Mountain in Guangdong with 500+ monks. Known for terse, one-word answers: 'A dried shit-stick.' Famous for 'every day is a good day.' His mummified body was preserved.",
+      "region": "Guangdong",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yunmen_Wenyan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%9B%B2%E9%96%80%E6%96%87%E5%81%83"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yunmen.html"
+        },
+        {
+          "label": "Zen Master Yunmen (book)",
+          "url": "https://terebess.hu/zen/mesterek/Yunmen.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Bajiao Huiqing",
+        "芭蕉慧清"
+      ],
+      "floruit": 890,
+      "death": 950,
+      "school": "Guiyang",
+      "teacher": "Nanta Guangyong",
+      "notes": "'If you have a staff, I will give you a staff; if not, I will take it away.'",
+      "links": [
+        {
+          "label": "Gateless Gate 44 (Wikisource)",
+          "url": "https://en.wikisource.org/wiki/The_Gateless_Gate/Basho%27s_Staff"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/BajiaoHuiqing.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fayan Wenyi",
+        "法眼",
+        "法眼文益"
+      ],
+      "floruit": 885,
+      "death": 958,
+      "school": "Fayan",
+      "teacher": "Luohan Guichen",
+      "notes": "Founder of the Fayan school, last of the Five Houses. Emphasized integration of doctrinal study with Chan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fayan_Wenyi"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E6%B8%85%E6%B6%BC%E6%96%87%E7%9B%8A"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/fayan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhimen Guangzuo",
+        "智門光祚"
+      ],
+      "floruit": 900,
+      "death": 960,
+      "school": "Yunmen",
+      "teacher": "Xianglin Chengyuan",
+      "students": [
+        "Xuedou Chongxian"
+      ],
+      "notes": "Teacher of Xuedou Chongxian, key link in Yunmen lineage.",
+      "links": [
+        {
+          "label": "Wikipedia (Xuedou)",
+          "url": "https://en.wikipedia.org/wiki/Xuedou_Chongxian"
+        },
+        {
+          "label": "Terebess (Xuedou)",
+          "url": "https://terebess.hu/zen/Xuedou.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuzu Shijie",
+        "五祖師戒",
+        "師戒"
+      ],
+      "floruit": 900,
+      "death": 960,
+      "school": "Yunmen",
+      "notes": "Yunmen lineage monk who served as abbot of Wuzu Temple (Fifth Patriarch Mountain) in Huangmei. Famous for the legend, constructed by Huihong, that he was reborn as the poet Su Shi (Su Dongpo).",
+      "region": "Huangmei, Hubei",
+      "links": [
+        {
+          "label": "Wikipedia (Wuzu Temple)",
+          "url": "https://en.wikipedia.org/wiki/Wuzu_Temple"
+        },
+        {
+          "label": "Duke UP (Past Lives of Su Shi)",
+          "url": "https://read.dukeupress.edu/jclc/article-abstract/4/2/248/132812/The-Past-Lives-of-Su-Shi-Stories-of-Truth-and"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Qingliang Taiqin",
+        "清涼泰欽"
+      ],
+      "floruit": 940,
+      "death": 970,
+      "school": "Fayan",
+      "teacher": "Fayan Wenyi",
+      "notes": "Dharma heir of Fayan Wenyi. Resided at Qingliang monastery in Jinling. Famous for the tiger bell koan. Dates corrected: previously d.938 predates teacher Fayan (d.958).",
+      "region": "Jinling (Nanjing)",
+      "links": [
+        {
+          "label": "Wikipedia (Fayan school)",
+          "url": "https://en.wikipedia.org/wiki/Fayan_school"
+        },
+        {
+          "label": "Terebess (Fayan)",
+          "url": "https://terebess.hu/zen/fayan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baling Haojian",
+        "巴陵顥鑒"
+      ],
+      "floruit": 910,
+      "death": 970,
+      "school": "Yunmen",
+      "teacher": "Yunmen Wenyan",
+      "notes": "Direct heir of Yunmen. Known for his three turning phrases.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/baling.html"
+        },
+        {
+          "label": "BCR Case 13",
+          "url": "https://www.bluecliffrecord.ca/case-13-balings-silver-bowl/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tongan Guanzhi",
+        "同安觀志"
+      ],
+      "floruit": 910,
+      "death": 970,
+      "teacher": "Tongan Daopi",
+      "school": "Caodong",
+      "notes": "Caodong lineage patriarch. Transmitted the Caodong dharma from Tongan Daopi to Liangshan Yuanguan.",
+      "links": [
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tiantai Deshao",
+        "天台德韶"
+      ],
+      "floruit": 891,
+      "death": 972,
+      "school": "Fayan",
+      "teacher": "Fayan Wenyi",
+      "students": [
+        "Yongming Yanshou"
+      ],
+      "notes": "Most important heir of Fayan Wenyi. National teacher of Wuyue kingdom.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tiantai_Deshao"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hans/%E5%A4%A9%E5%8F%B0%E5%BE%B7%E9%9F%B6"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fengxue Yanzhao",
+        "風穴延沼"
+      ],
+      "floruit": 896,
+      "death": 973,
+      "school": "Linji",
+      "teacher": "Nanyuan Huiyong",
+      "students": [
+        "Shoushan Xingnian"
+      ],
+      "notes": "Preserved the Linji lineage during Five Dynasties persecutions.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/fengxue.html"
+        },
+        {
+          "label": "BCR 38 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2019/12/blue-cliff-record-38-book-of-serenity-29.html"
+        },
+        {
+          "label": "Story of Zen",
+          "url": "https://rickmcdaniel.blogspot.com/2020/07/fengxue-yanzhao-w-g-feng-hsueh-yen-chao.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yongming Yanshou",
+        "永明延壽"
+      ],
+      "floruit": 904,
+      "death": 975,
+      "school": "Fayan",
+      "teacher": "Tiantai Deshao",
+      "notes": "Advocated harmonization of Chan with Pure Land. Author of Zongjing Lu in 100 fascicles.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yongming_Yanshou"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E6%B0%B8%E6%98%8E%E5%BB%B6%E5%A3%BD"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/zongjing-lu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xianglin Chengyuan",
+        "香林澄遠"
+      ],
+      "floruit": 908,
+      "death": 987,
+      "school": "Yunmen",
+      "teacher": "Yunmen Wenyan",
+      "students": [
+        "Zhimen Guangzuo"
+      ],
+      "notes": "Served Yunmen for eighteen years before transmission.",
+      "links": [
+        {
+          "label": "Wikipedia (Yunmen)",
+          "url": "https://en.wikipedia.org/wiki/Yunmen_Wenyan"
+        },
+        {
+          "label": "Story of Zen blog",
+          "url": "https://rickmcdaniel.blogspot.com/2020/11/xianglin-chengyuan-w-g-hsiang-lin-cheng.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dongshan Shouchu",
+        "洞山守初"
+      ],
+      "floruit": 910,
+      "death": 990,
+      "school": "Yunmen",
+      "teacher": "Yunmen Wenyan",
+      "notes": "Known for the 'three pounds of hemp' koan.",
+      "links": [
+        {
+          "label": "Gateless Gate",
+          "url": "https://en.wikipedia.org/wiki/The_Gateless_Barrier"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dongshan_Shouchu"
+        },
+        {
+          "label": "BCR 12",
+          "url": "https://www.bluecliffrecord.ca/case-12-dongshans-three-pounds-of-flax/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shoushan Xingnian",
+        "首山省念"
+      ],
+      "floruit": 926,
+      "death": 993,
+      "school": "Linji",
+      "teacher": "Fengxue Yanzhao",
+      "students": [
+        "Fenyang Shanzhao",
+        "Shexian Guisheng"
+      ],
+      "notes": "Preserved the Linji transmission through the difficult Five Dynasties period.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/shoushan.html"
+        },
+        {
+          "label": "GG 43 (Hotetsu)",
+          "url": "https://www.bowzwestchester.org/2020/01/gateless-gate-43.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shexian Guisheng",
+        "葉縣歸省"
+      ],
+      "floruit": 960,
+      "death": 1010,
+      "teacher": "Shoushan Xingnian",
+      "school": "Linji",
+      "notes": "Linji master. Student of Shoushan Xingnian. Teacher of Fushan Fayuan, through whom the Caodong lineage was preserved.",
+      "links": [
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Liangshan Yuanguan",
+        "梁山緣觀"
+      ],
+      "floruit": 960,
+      "death": 1020,
+      "teacher": "Tongan Guanzhi",
+      "school": "Caodong",
+      "notes": "Caodong lineage patriarch. Teacher of Dayang Jingxuan, the last living Caodong lineage holder.",
+      "links": [
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fenyang Shanzhao",
+        "汾陽善昭"
+      ],
+      "floruit": 947,
+      "death": 1024,
+      "school": "Linji",
+      "teacher": "Shoushan Xingnian",
+      "students": [
+        "Shishuang Chuyuan",
+        "Langye Huijue"
+      ],
+      "notes": "Reviver of the Linji school. Pioneered verse commentary on old cases (songgu).",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fenyang_Shanzhao"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E6%B1%BE%E9%99%BD%E5%96%84%E6%98%AD"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dayang Jingxuan",
+        "大陽警玄"
+      ],
+      "floruit": 943,
+      "death": 1027,
+      "school": "Caodong",
+      "teacher": "Liangshan Yuanguan",
+      "notes": "Last living Caodong lineage holder. Entrusted lineage to Linji master Fushan Fayuan to preserve the school.",
+      "links": [
+        {
+          "label": "Caodong School",
+          "url": "https://en.wikipedia.org/wiki/Caodong_school"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dayang_Jingxuan"
+        },
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shishuang Chuyuan",
+        "石霜楚圓",
+        "慈明楚圓",
+        "Ciming Chuyuan"
+      ],
+      "floruit": 987,
+      "death": 1040,
+      "school": "Linji",
+      "teacher": "Fenyang Shanzhao",
+      "students": [
+        "Huanglong Huinan",
+        "Yangqi Fanghui"
+      ],
+      "notes": "His two greatest students founded the Huanglong and Yangqi branches.",
+      "links": [
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E7%9F%B3%E9%9C%9C%E6%A5%9A%E5%9C%86"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/shishuang-chuyuan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yangqi Fanghui",
+        "楊岐方會"
+      ],
+      "floruit": 992,
+      "death": 1049,
+      "school": "Linji",
+      "teacher": "Shishuang Chuyuan",
+      "students": [
+        "Baiyun Shouduan"
+      ],
+      "notes": "Founded the Yangqi branch, which became the dominant Chan lineage.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yangqi_Fanghui"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E6%9D%A8%E5%B2%90%E6%96%B9%E4%BC%9A"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/yangqi.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xuedou Chongxian",
+        "雪竇",
+        "雪竇重顯"
+      ],
+      "floruit": 980,
+      "death": 1052,
+      "school": "Yunmen",
+      "teacher": "Zhimen Guangzuo",
+      "notes": "His poetic verses on 100 cases became the foundation of the Blue Cliff Record. Greatest poet of the Chan tradition.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Xuedou_Chongxian"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/xuedou.html"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/Xuedou.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Langye Huijue",
+        "琅琊慧覺"
+      ],
+      "floruit": 980,
+      "death": 1056,
+      "school": "Linji",
+      "teacher": "Fenyang Shanzhao",
+      "notes": "Dharma brother of Shishuang Chuyuan.",
+      "links": [
+        {
+          "label": "Terebess (Heritage PDF)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        },
+        {
+          "label": "Pacific Zen Lineage",
+          "url": "https://www.pacificzen.org/ancestors-relatives-and-welcome-guests/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Kaixian Shanxian",
+        "開先善暹"
+      ],
+      "floruit": 1020,
+      "death": 1060,
+      "teacher": "Xuedou Chongxian",
+      "school": "Yunmen",
+      "notes": "Yunmen school master at Kaixian Temple on Mount Lushan. Teacher of Foyin Liaoyuan.",
+      "links": [
+        {
+          "label": "Wikipedia (Yunmen school)",
+          "url": "https://en.wikipedia.org/wiki/Yunmen_school"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Fushan Fayuan",
+        "浮山法遠"
+      ],
+      "floruit": 991,
+      "death": 1067,
+      "teacher": "Shexian Guisheng",
+      "school": "Linji",
+      "notes": "Received Linji transmission from Shexian Guisheng. Accepted Dayang Jingxuan’s Caodong materials and passed them to Touzi Yiqing, saving the Caodong school from extinction.",
+      "links": [
+        {
+          "label": "Wikipedia (Touzi Yiqing)",
+          "url": "https://en.wikipedia.org/wiki/Touzi_Yiqing"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huanglong Huinan",
+        "黃龍慧南"
+      ],
+      "floruit": 1002,
+      "death": 1069,
+      "school": "Linji",
+      "teacher": "Shishuang Chuyuan",
+      "students": [
+        "Huitang Zuxin",
+        "Zhenjing Kewen",
+        "Donglin Changzong"
+      ],
+      "notes": "Founded the Huanglong branch. Famous for his 'Three Barriers' test.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Huanglong_Huinan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E9%BB%84%E9%BE%99%E6%85%A7%E5%8D%97"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huanglong.html"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/HuanglongHuinan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baiyun Shouduan",
+        "白雲守端"
+      ],
+      "floruit": 1025,
+      "death": 1072,
+      "school": "Linji",
+      "teacher": "Yangqi Fanghui",
+      "students": [
+        "Wuzu Fayan"
+      ],
+      "notes": "Key transmitter in the Yangqi branch.",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q10743129"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/baiyun.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Touzi Yiqing",
+        "投子義青"
+      ],
+      "floruit": 1032,
+      "death": 1083,
+      "school": "Caodong",
+      "students": [
+        "Furong Daokai"
+      ],
+      "notes": "Received Caodong transmission via proxy through Fushan Fayuan. Saved the Caodong lineage from extinction.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Touzi_Yiqing"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/touzi-yiqing.html"
+        }
+      ],
+      "teacher": "Fushan Fayuan"
+    },
+    {
+      "names": [
+        "Donglin Changzong",
+        "東林常總"
+      ],
+      "floruit": 1025,
+      "death": 1091,
+      "teacher": "Huanglong Huinan",
+      "school": "Linji",
+      "notes": "Huanglong branch master at Donglin Temple on Mount Lu. Teacher of the poet Su Shi.",
+      "links": [
+        {
+          "label": "Wikipedia (Huanglong)",
+          "url": "https://en.wikipedia.org/wiki/Huanglong_Huinan"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Doushuai Congyue",
+        "兜率從悅"
+      ],
+      "floruit": 1044,
+      "death": 1091,
+      "teacher": "Zhenjing Kewen",
+      "school": "Linji",
+      "notes": "Huanglong branch master. Teacher of lay student Zhang Shangying, the Song chancellor.",
+      "links": [
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Foyin Liaoyuan",
+        "佛印了元"
+      ],
+      "floruit": 1032,
+      "death": 1098,
+      "school": "Yunmen",
+      "notes": "Famous for his close friendship with the poet Su Shi.",
+      "teacher": "Kaixian Shanxian",
+      "links": [
+        {
+          "label": "Baidu Baike",
+          "url": "https://baike.baidu.com/en/item/Shi%20Liaoyuan/33566"
+        },
+        {
+          "label": "Eight Winds (Sarasota Zen)",
+          "url": "https://sarasotazencenter.org/dharma-talks/2016/5/4/su-dong-po-and-zen-master-foyin"
+        },
+        {
+          "label": "Su Dongpo and Foyin",
+          "url": "https://peacelilysite.com/2023/02/24/su-dongpo-and-zen-master-foyin/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huitang Zuxin",
+        "晦堂祖心"
+      ],
+      "floruit": 1025,
+      "death": 1100,
+      "school": "Linji",
+      "teacher": "Huanglong Huinan",
+      "notes": "Taught Huang Tingjian using the scent of osmanthus.",
+      "links": [
+        {
+          "label": "Wikipedia (Huang Tingjian)",
+          "url": "https://en.wikipedia.org/wiki/Huang_Tingjian"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huitang.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Su Shi",
+        "蘇軾",
+        "蘇東坡"
+      ],
+      "floruit": 1037,
+      "death": 1101,
+      "school": "Chan (unaffiliated)",
+      "notes": "One of China's greatest poets. Deeply engaged with Chan Buddhism. Legend connected him to a rebirth of Wuzu Shijie.",
+      "teacher": "Donglin Changzong",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Su_Shi"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E8%8B%8F%E8%BD%BC"
+        },
+        {
+          "label": "Terebess (Buddhism in Su Shih)",
+          "url": "https://terebess.hu/zen/mesterek/su-shih.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhenjing Kewen",
+        "真淨克文",
+        "寶峰克文",
+        "Baofeng Kewen"
+      ],
+      "floruit": 1025,
+      "death": 1102,
+      "teacher": "Huanglong Huinan",
+      "school": "Linji",
+      "notes": "Also known as Baofeng Kewen. Second-generation Huanglong master. Known for expelling monks immediately after their awakening. Teacher of Doushuai Congyue.",
+      "links": [
+        {
+          "label": "Oxford Reference",
+          "url": "https://www.oxfordreference.com/view/10.1093/acref/9780190681159.001.0001/acref-9780190681159-e-5254"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuzu Fayan",
+        "五祖法演"
+      ],
+      "floruit": 1024,
+      "death": 1104,
+      "school": "Linji",
+      "teacher": "Baiyun Shouduan",
+      "students": [
+        "Yuanwu Keqin",
+        "Foyan Qingyuan"
+      ],
+      "notes": "His three principal disciples became the most influential Chan teachers of the next generation.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Wuzu_Fayan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-hant/%E4%BA%94%E7%A5%96%E6%B3%95%E6%BC%94"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/wuzu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Kaifu Daoning",
+        "開福道寧"
+      ],
+      "floruit": 1053,
+      "death": 1113,
+      "teacher": "Wuzu Fayan",
+      "school": "Linji",
+      "notes": "Fellow student of Yuanwu Keqin under Wuzu Fayan. His sub-lineage led to Wumen Huikai.",
+      "links": [
+        {
+          "label": "Terebess (Heritage)",
+          "url": "https://terebess.hu/zen/mesterek/herit.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sixin Wuxin",
+        "死心悟新"
+      ],
+      "floruit": 1044,
+      "death": 1115,
+      "teacher": "Huitang Zuxin",
+      "school": "Linji",
+      "notes": "Huanglong branch master. Enlightened by a thunderclap after working on Huitang’s fist koan. Teacher of Kongshi Daoren.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/SixinWuxin.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Danxia Zichun",
+        "丹霞子淳"
+      ],
+      "floruit": 1064,
+      "death": 1117,
+      "school": "Caodong",
+      "teacher": "Furong Daokai",
+      "students": [
+        "Hongzhi Zhengjue",
+        "Zhenxie Qingliao"
+      ],
+      "notes": "Teacher of Hongzhi Zhengjue. Key figure in the Caodong revival.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Danxia_Zichun"
+        },
+        {
+          "label": "Terebess (Hongzhi)",
+          "url": "https://terebess.hu/zen/Hongzhi.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Furong Daokai",
+        "芙蓉道楷"
+      ],
+      "floruit": 1043,
+      "death": 1118,
+      "school": "Caodong",
+      "teacher": "Touzi Yiqing",
+      "students": [
+        "Danxia Zichun"
+      ],
+      "notes": "Principal reviver of the Caodong school. Refused an imperial purple robe, preferring imprisonment.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Furong_Daokai"
+        },
+        {
+          "label": "Wikipedia (Caodong)",
+          "url": "https://en.wikipedia.org/wiki/Caodong_school"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Foyan Qingyuan",
+        "佛眼清遠"
+      ],
+      "floruit": 1067,
+      "death": 1120,
+      "school": "Linji",
+      "teacher": "Wuzu Fayan",
+      "notes": "Dharma brother of Yuanwu Keqin. Subtle, penetrating teaching style.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Foyan_Qingyuan"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E4%BD%9B%E7%9C%BC%E6%B8%85%E8%BF%9C"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/foyan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhang Shangying",
+        "張商英"
+      ],
+      "floruit": 1043,
+      "death": 1121,
+      "school": "Linji",
+      "notes": "High-ranking Song official who became devoted Chan patron. Author of Hufa lun.",
+      "teacher": "Doushuai Congyue",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q11066678"
+        },
+        {
+          "label": "Oxford Reference",
+          "url": "https://www.oxfordreference.com/display/10.1093/acref/9780190681159.001.0001/acref-9780190681159-e-5240"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Cishou Huaishen",
+        "慈受懷深"
+      ],
+      "floruit": 1077,
+      "death": 1132,
+      "school": "Yunmen",
+      "notes": "Known for literary skill and poetic dharma talks.",
+      "teacher": "Jingzhao Chongxin",
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q10563821"
+        },
+        {
+          "label": "Song Chan Revival",
+          "url": "https://www.selfdiscoveryportal.com/cmSongDynasty.htm"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yuanwu Keqin",
+        "圜悟",
+        "圜悟克勤"
+      ],
+      "floruit": 1063,
+      "death": 1135,
+      "school": "Linji",
+      "teacher": "Wuzu Fayan",
+      "students": [
+        "Dahui Zonggao",
+        "Huqiu Shaolong"
+      ],
+      "notes": "Compiler of the Blue Cliff Record, the most celebrated koan collection in Chan.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yuanwu_Keqin"
+        },
+        {
+          "label": "Wikipedia (Blue Cliff Record)",
+          "url": "https://en.wikipedia.org/wiki/Blue_Cliff_Record"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E5%9C%9C%E6%82%9F%E5%85%8B%E5%8B%A4"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/Yuanwu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huqiu Shaolong",
+        "虎丘紹隆"
+      ],
+      "floruit": 1077,
+      "death": 1136,
+      "school": "Linji",
+      "teacher": "Yuanwu Keqin",
+      "students": [
+        "Ying'an Tanhua"
+      ],
+      "notes": "His lineage transmitted to Japan as the dominant Rinzai line.",
+      "links": [
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/Category:Huqiu_Shaolong"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/huqiu.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Langye Yongqi",
+        "琅琊永起"
+      ],
+      "floruit": 1090,
+      "death": 1150,
+      "teacher": "Langye Huijue",
+      "school": "Linji",
+      "notes": "Song dynasty Chan master at Langye Mountain. Teacher of Yu Daopo, his only dharma heir.",
+      "links": [
+        {
+          "label": "Pacific Zen (lineage)",
+          "url": "https://www.pacificzen.org/ancestors-relatives-and-welcome-guests/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhenxie Qingliao",
+        "真歇清了"
+      ],
+      "floruit": 1089,
+      "death": 1151,
+      "school": "Caodong",
+      "teacher": "Danxia Zichun",
+      "notes": "Helped revive Caodong in the Southern Song. Abbot of Tiantong monastery.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Zhenxie_Qingliao"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/ZhenxieQingliao.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yue'an Shanguo",
+        "月庵善果"
+      ],
+      "floruit": 1079,
+      "death": 1152,
+      "teacher": "Kaifu Daoning",
+      "school": "Linji",
+      "notes": "Yangqi branch master. Link between Kaifu Daoning and Laona Zuzheng in the chain to Wumen Huikai.",
+      "links": [
+        {
+          "label": "Zen lineage charts",
+          "url": "https://en.wikipedia.org/wiki/Zen_lineage_charts"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Hongzhi Zhengjue",
+        "宏智",
+        "宏智正覺"
+      ],
+      "floruit": 1091,
+      "death": 1157,
+      "school": "Caodong",
+      "teacher": "Danxia Zichun",
+      "notes": "Leading Caodong master. Advocate of silent illumination (mozhao) Chan. Compiled the Book of Equanimity.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hongzhi_Zhengjue"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/Hongzhi.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Hongzhi_Zhengjue"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tiantong Zongjue",
+        "天童宗珏"
+      ],
+      "floruit": 1091,
+      "death": 1162,
+      "teacher": "Zhenxie Qingliao",
+      "school": "Caodong",
+      "notes": "Initially studied Yunmen, received Caodong transmission from Zhenxie Qingliao. Abbot of Tiantong monastery. Teacher of Xuedou Zhijian.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tiantong_Zongjue"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dahui Zonggao",
+        "大慧",
+        "大慧宗杲"
+      ],
+      "floruit": 1089,
+      "death": 1163,
+      "school": "Linji",
+      "teacher": "Yuanwu Keqin",
+      "students": [
+        "Miaozong"
+      ],
+      "notes": "Systematized kanhua (keyword investigation) Chan. Most influential Chan master of the Southern Song.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dahui_Zonggao"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Dahui_Zonggao"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Ying'an Tanhua",
+        "應庵曇華"
+      ],
+      "floruit": 1103,
+      "death": 1163,
+      "school": "Linji",
+      "teacher": "Huqiu Shaolong",
+      "students": [
+        "Mi'an Xianjie"
+      ],
+      "notes": "Key link in the Huqiu lineage.",
+      "links": [
+        {
+          "label": "Bokuseki (Wikipedia)",
+          "url": "https://en.wikipedia.org/wiki/Bokuseki"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/YinganTanhua.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Miaozong",
+        "妙總"
+      ],
+      "floruit": 1095,
+      "death": 1170,
+      "school": "Linji",
+      "teacher": "Dahui Zonggao",
+      "notes": "One of the most prominent female Chan masters. Known for her sharp repartee.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Miaozong"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/miaozong.html"
+        },
+        {
+          "label": "Zen Echoes (Terebess PDF)",
+          "url": "https://terebess.hu/zen/mesterek/echoes.pdf"
+        },
+        {
+          "label": "Lion's Roar",
+          "url": "https://www.lionsroar.com/an-unlikely-dharma-warrior/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yu Daopo",
+        "俞道婆"
+      ],
+      "floruit": 1100,
+      "death": 1170,
+      "school": "Linji",
+      "notes": "Laywoman who achieved awakening. Notable female figure in Song Chan.",
+      "teacher": "Langye Yongqi",
+      "links": [
+        {
+          "label": "Pacific Zen (Koan)",
+          "url": "https://www.pacificzen.org/library/koan/yu-the-doughnut-maker-mk75/"
+        },
+        {
+          "label": "Women Ancestors (Mountain Record)",
+          "url": "https://www.mountainrecord.org/essays/brief-biographies-of-women-zen-ancestors/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Miaodao",
+        "妙道"
+      ],
+      "floruit": 1130,
+      "death": 1170,
+      "school": "Linji",
+      "notes": "Female Chan master of the Southern Song.",
+      "teacher": "Dahui Zonggao",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Miaodao_(abbess)"
+        },
+        {
+          "label": "Academia (Dahui)",
+          "url": "https://www.academia.edu/8929891/Miao_tao_and_her_Teacher_Ta_hui_Miaodao_and_her_Teacher_Dahui"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Laona Zuzheng",
+        "老衲祖証",
+        "大洪祖証"
+      ],
+      "floruit": 1120,
+      "death": 1175,
+      "teacher": "Yue'an Shanguo",
+      "school": "Linji",
+      "notes": "Also known as Dahong Zuzheng. Song dynasty Yangqi-line master. Teacher of Yuelin Shiguan.",
+      "links": [
+        {
+          "label": "Wikipedia (PL)",
+          "url": "https://pl.wikipedia.org/wiki/Dahong_Zuzheng"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Mi'an Xianjie",
+        "密庵咸傑"
+      ],
+      "floruit": 1118,
+      "death": 1186,
+      "school": "Linji",
+      "teacher": "Ying'an Tanhua",
+      "students": [
+        "Songyuan Chongyue"
+      ],
+      "notes": "His most prominent heir Songyuan Chongyue continued the dominant Linji line through Po'an Zuxian and Yunan Puyan.",
+      "links": [
+        {
+          "label": "National Treasures Japan (Wikipedia)",
+          "url": "https://en.wikipedia.org/wiki/List_of_National_Treasures_of_Japan_(writings:_others)"
+        },
+        {
+          "label": "Terebess (Songyuan)",
+          "url": "https://terebess.hu/zen/mesterek/SongyuanChongyue.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xuedou Zhijian",
+        "雪竇智鑑"
+      ],
+      "floruit": 1105,
+      "death": 1192,
+      "teacher": "Tiantong Zongjue",
+      "school": "Caodong",
+      "notes": "Caodong master at Mount Xuedou. Teacher of Tiantong Rujing, who transmitted Caodong to Japan through Dogen.",
+      "links": [
+        {
+          "label": "Wikipedia (Rujing)",
+          "url": "https://en.wikipedia.org/wiki/Rujing"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Kongshi Daoren",
+        "空室道人"
+      ],
+      "floruit": 1130,
+      "death": 1200,
+      "school": "Linji",
+      "notes": "Female Chan practitioner of the Southern Song.",
+      "teacher": "Sixin Wuxin",
+      "links": [
+        {
+          "label": "Spark Zen (bathhouse koan)",
+          "url": "https://sparkzen.substack.com/p/zen-in-ten-what-washes-off-dirt-and"
+        },
+        {
+          "label": "Women Ancestors (Ancient Dragon)",
+          "url": "https://www.ancientdragon.org/2018/03/22/women-ancestors/"
+        },
+        {
+          "label": "Women Zen Ancestors (Mountain Record)",
+          "url": "https://www.mountainrecord.org/essays/brief-biographies-of-women-zen-ancestors/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Songyuan Chongyue",
+        "松源崇嶽"
+      ],
+      "floruit": 1139,
+      "death": 1209,
+      "school": "Linji",
+      "teacher": "Mi'an Xianjie",
+      "students": [
+        "Po'an Zuxian",
+        "Yunan Puyan"
+      ],
+      "notes": "Founded the Songyuan sub-lineage. His two main dharma heirs Po'an Zuxian and Yunan Puyan produced the lineages of Wuzhun Shifan and Xutang Zhiyu respectively.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/SongyuanChongyue.html"
+        },
+        {
+          "label": "Lingyin Temple",
+          "url": "http://en.lingyinsi.org/list_332.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Po'an Zuxian",
+        "破庵祖先"
+      ],
+      "floruit": 1136,
+      "death": 1211,
+      "school": "Linji",
+      "teacher": "Songyuan Chongyue",
+      "students": [
+        "Wuzhun Shifan"
+      ],
+      "notes": "Dharma heir of Songyuan Chongyue. Teacher of Wuzhun Shifan, through whom his lineage produced Xueyan Zuqin and Gaofeng Yuanmiao.",
+      "links": [
+        {
+          "label": "Wikipedia (Wuzhun)",
+          "url": "https://en.wikipedia.org/wiki/Wuzhun_Shifan"
+        },
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q45666597"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yuelin Shiguan",
+        "月林師觀"
+      ],
+      "floruit": 1143,
+      "death": 1217,
+      "teacher": "Laona Zuzheng",
+      "school": "Linji",
+      "notes": "Yangqi branch Linji master. Teacher of Wumen Huikai, compiler of the Gateless Barrier. Gave Wumen the koan of Zhaozhou’s ‘No’.",
+      "links": [
+        {
+          "label": "Wikipedia (Wumen)",
+          "url": "https://en.wikipedia.org/wiki/Wumen_Huikai"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yunan Puyan",
+        "運庵普巖",
+        "運庵"
+      ],
+      "floruit": 1156,
+      "death": 1226,
+      "school": "Linji",
+      "teacher": "Songyuan Chongyue",
+      "students": [
+        "Xutang Zhiyu"
+      ],
+      "notes": "Dharma heir of Songyuan Chongyue. Teacher of Xutang Zhiyu, whose recorded sayings became profoundly influential in Japanese Rinzai Zen.",
+      "links": [
+        {
+          "label": "Wikipedia (Xutang)",
+          "url": "https://en.wikipedia.org/wiki/Xutang_Zhiyu"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/YunanPuyan.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tiantong Rujing",
+        "天童如淨"
+      ],
+      "floruit": 1163,
+      "death": 1228,
+      "school": "Caodong",
+      "teacher": "Xuedou Zhijian",
+      "notes": "Abbot of Tiantong monastery. Transmitted Caodong to Japan through Dogen. Emphasized shikantaza (just sitting).",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tiantong_Rujing"
+        },
+        {
+          "label": "Terebess (Rujing Record)",
+          "url": "https://terebess.hu/zen/mesterek/rujing_record_compiled_by_dogen.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuzhun Shifan",
+        "無準師範"
+      ],
+      "floruit": 1178,
+      "death": 1249,
+      "school": "Linji",
+      "teacher": "Po'an Zuxian",
+      "students": [
+        "Xueyan Zuqin"
+      ],
+      "notes": "One of the most eminent Southern Song Chan masters. Dharma heir of Po'an Zuxian. His portrait is a Japanese national treasure.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Wuzhun_Shifan"
+        },
+        {
+          "label": "Met Museum portrait",
+          "url": "https://www.metmuseum.org/art/collection/search/40276"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wumen Huikai",
+        "無門",
+        "無門慧開"
+      ],
+      "floruit": 1183,
+      "death": 1260,
+      "school": "Linji",
+      "teacher": "Yuelin Shiguan",
+      "notes": "Compiler of the Wumenguan (無門關, Gateless Barrier), the most widely studied koan collection. Attained awakening after six years of working on Zhaozhou's 'No'. The Wumenguan's 48 cases with verse commentary became central to Rinzai training.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Wumen_Huikai"
+        },
+        {
+          "label": "Terebess (Mumonkan)",
+          "url": "https://terebess.hu/zen/mumonkan-eng.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xutang Zhiyu",
+        "虛堂智愚"
+      ],
+      "floruit": 1185,
+      "death": 1269,
+      "school": "Linji",
+      "teacher": "Yunan Puyan",
+      "notes": "Late Song Linji master whose recorded sayings became profoundly influential in Japanese Rinzai Zen. Dharma heir of Yunan Puyan (not Wuzhun Shifan as sometimes misattributed).",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Xutang_Zhiyu"
+        },
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q45677533"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xueyan Zuqin",
+        "雪巖祖欽"
+      ],
+      "floruit": 1216,
+      "death": 1287,
+      "school": "Linji",
+      "teacher": "Wuzhun Shifan",
+      "students": [
+        "Gaofeng Yuanmiao"
+      ],
+      "notes": "Known for extreme asceticism and fierce teaching style. His autobiography is a classic.",
+      "links": [
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/XueyanZuqin.html"
+        },
+        {
+          "label": "Chan Whip PDF",
+          "url": "https://beingwithoutself.org/wp-content/uploads/2020/08/chan-whip-at-the-barrier.pdf"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Gaofeng Yuanmiao",
+        "高峰原妙"
+      ],
+      "floruit": 1238,
+      "death": 1295,
+      "school": "Linji",
+      "teacher": "Xueyan Zuqin",
+      "students": [
+        "Zhongfeng Mingben"
+      ],
+      "notes": "Lived on Tianmu mountain in a hermitage. Writings on the huatou (critical phrase) method and 'great doubt' highly influential.",
+      "links": [
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E9%AB%98%E5%B3%B0%E5%8E%9F%E5%A6%99"
+        },
+        {
+          "label": "Portrait (MFA Boston)",
+          "url": "https://collections.mfa.org/objects/29015/portrait-of-chan-master-gaofeng-yuanmiao-123895"
+        },
+        {
+          "label": "Smithsonian portrait",
+          "url": "https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1911.317a-b/"
+        },
+        {
+          "label": "Three Essentials (Firefly Hall)",
+          "url": "http://fireflyhall.blogspot.com/2017/11/the-three-essentials-of-gaofeng-yuanmiao.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhongfeng Mingben",
+        "中峰明本"
+      ],
+      "floruit": 1263,
+      "death": 1323,
+      "school": "Linji",
+      "teacher": "Gaofeng Yuanmiao",
+      "students": [
+        "Tianru Weize"
+      ],
+      "notes": "Most celebrated Yuan-dynasty master. Declined imperial appointments. Strong ties with Korean and Japanese monks.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Zhongfeng_Mingben"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%B3%B0%E6%98%8E%E6%9C%AC"
+        },
+        {
+          "label": "Illusory Abiding (JSTOR)",
+          "url": "https://www.jstor.org/stable/j.ctt1x07wfx"
+        },
+        {
+          "label": "Oxford UP (Recorded Sayings)",
+          "url": "https://global.oup.com/academic/product/the-recorded-sayings-of-chan-master-zhongfeng-mingben-9780197672976"
+        },
+        {
+          "label": "Recorded Sayings (Oxford)",
+          "url": "https://academic.oup.com/book/46616"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yuansou Xingduan",
+        "元叟行端"
+      ],
+      "floruit": 1255,
+      "death": 1341,
+      "teacher": "Gaofeng Yuanmiao",
+      "school": "Linji",
+      "notes": "Yuan dynasty Linji master at Lingyin Temple, Hangzhou. Teacher of Chushi Fanqi.",
+      "links": [
+        {
+          "label": "Lingyin Temple",
+          "url": "http://en.lingyinsi.org/detail_10131.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tianru Weize",
+        "天如惟則"
+      ],
+      "floruit": 1286,
+      "death": 1354,
+      "school": "Linji",
+      "teacher": "Zhongfeng Mingben",
+      "notes": "Founded Shizi Lin (Lion Grove Garden) in Suzhou. Combined Chan with Pure Land.",
+      "links": [
+        {
+          "label": "Wikipedia (Lion Grove)",
+          "url": "https://en.wikipedia.org/wiki/Lion_Grove_Garden"
+        },
+        {
+          "label": "Lion Grove as Chan Garden (MDPI)",
+          "url": "https://www.mdpi.com/2673-8945/5/3/57"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Qianyan Yuanzhang",
+        "千巖元長"
+      ],
+      "floruit": 1284,
+      "death": 1357,
+      "teacher": "Zhongfeng Mingben",
+      "school": "Linji",
+      "notes": "Yuan dynasty Linji master. Dharma heir of Zhongfeng Mingben. His line continued through Wanfeng Shiwei to the Ming revival.",
+      "links": [
+        {
+          "label": "Terebess (Zhuhong lineage)",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Chushi Fanqi",
+        "楚石梵琦"
+      ],
+      "floruit": 1296,
+      "death": 1370,
+      "school": "Linji",
+      "notes": "Major Chan poet of the Yuan-Ming transition.",
+      "teacher": "Yuansou Xingduan",
+      "links": [
+        {
+          "label": "Calligraphy (MOA Museum)",
+          "url": "https://www.moaart.or.jp/en/?collections=101"
+        },
+        {
+          "label": "MindIsBuddha",
+          "url": "https://www.mindisbuddha.org/turn-the-illuminating-light-of-the-mind-inward-chushi-fanqi/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wanfeng Shiwei",
+        "萬峰時蔚"
+      ],
+      "floruit": 1303,
+      "death": 1381,
+      "teacher": "Qianyan Yuanzhang",
+      "school": "Linji",
+      "notes": "Late Yuan / early Ming Linji master. Key link between Yuan-era Chan and the Ming revival.",
+      "links": [
+        {
+          "label": "Terebess (Zhuhong lineage)",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Baofeng Mingxuan",
+        "寶峰明瑄"
+      ],
+      "floruit": 1420,
+      "death": 1472,
+      "teacher": "Wanfeng Shiwei",
+      "school": "Linji",
+      "notes": "Early Ming Linji master in the Zhongfeng Mingben line.",
+      "links": [
+        {
+          "label": "Terebess (Zhuhong lineage)",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tianqi Benrui",
+        "天奇本瑞"
+      ],
+      "floruit": 1450,
+      "death": 1508,
+      "teacher": "Baofeng Mingxuan",
+      "school": "Linji",
+      "notes": "Mid-Ming Linji master. His heir Wuwen Mingcong continued the lineage.",
+      "links": [
+        {
+          "label": "Terebess (Zhuhong lineage)",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Wuwen Mingcong",
+        "無聞明聰"
+      ],
+      "floruit": 1480,
+      "death": 1543,
+      "teacher": "Tianqi Benrui",
+      "school": "Linji",
+      "notes": "Ming dynasty Linji master. Teacher of both Xiaoyan Debao and Yungu Fahui.",
+      "links": [
+        {
+          "label": "Terebess (Zhuhong lineage)",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yungu Fahui",
+        "雲谷法會"
+      ],
+      "floruit": 1500,
+      "death": 1579,
+      "teacher": "Wuwen Mingcong",
+      "school": "Linji",
+      "notes": "Ming dynasty Chan master who pioneered 7-day meditation retreats. Teacher of Hanshan Deqing, one of the Four Great Monks of the Ming.",
+      "links": [
+        {
+          "label": "Wikipedia (Hanshan)",
+          "url": "https://en.wikipedia.org/wiki/Hanshan_Deqing"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Bianrong",
+        "遍融"
+      ],
+      "floruit": 1500,
+      "death": 1580,
+      "teacher": "Wuwen Mingcong",
+      "school": "Chan (unaffiliated)",
+      "notes": "Ming dynasty Chan elder at Fatong Temple in Beijing. Teacher of Zibo Zhenke for nine years.",
+      "links": [
+        {
+          "label": "Wikipedia (Zibo)",
+          "url": "https://en.wikipedia.org/wiki/Zibo_Zhenke"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xiaoyan Debao",
+        "笑巖德寶"
+      ],
+      "floruit": 1512,
+      "death": 1581,
+      "teacher": "Wuwen Mingcong",
+      "school": "Linji",
+      "notes": "Ming dynasty Linji master. Teacher of Yunqi Zhuhong. His teaching featured the stick and thunderous shout.",
+      "links": [
+        {
+          "label": "Wikipedia (Zhuhong)",
+          "url": "https://en.wikipedia.org/wiki/Yunqi_Zhuhong"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zibo Zhenke",
+        "紫柏真可"
+      ],
+      "floruit": 1543,
+      "death": 1603,
+      "school": "Linji",
+      "notes": "One of the 'four great monks' of late Ming. Spearheaded the Jiaxing canon printing project. Died in prison.",
+      "teacher": "Bianrong",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Zibo_Zhenke"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/ZiboZhenke.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Huanyou Zhengchuan",
+        "幻有正傳"
+      ],
+      "floruit": 1549,
+      "death": 1614,
+      "teacher": "Xiaoyan Debao",
+      "school": "Linji",
+      "notes": "Late Ming Linji master. Teacher of Miyun Yuanwu, the most influential 17th-century Chan figure.",
+      "links": [
+        {
+          "label": "Wikipedia (Miyun)",
+          "url": "https://en.wikipedia.org/wiki/Miyun_Yuanwu"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yunqi Zhuhong",
+        "雲棲祩宏"
+      ],
+      "floruit": 1535,
+      "death": 1615,
+      "school": "Linji",
+      "notes": "One of the 'four great monks'. Leading advocate of Chan-Pure Land synthesis.",
+      "teacher": "Xiaoyan Debao",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Yunqi_Zhuhong"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/Zhuhong.html"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Hanshan Deqing",
+        "憨山德清"
+      ],
+      "floruit": 1546,
+      "death": 1623,
+      "school": "Linji",
+      "notes": "One of the 'four great monks'. Prolific writer, exiled to Guangdong. His autobiography is a classic.",
+      "teacher": "Yungu Fahui",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hanshan_Deqing"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/HanshanDeqing.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Hanshan_Deqing"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xueling",
+        "雪嶺"
+      ],
+      "floruit": 1570,
+      "death": 1630,
+      "teacher": "Hanshan Deqing",
+      "school": "Linji",
+      "notes": "Disciple of Hanshan Deqing. Tonsure master of Ouyi Zhixu at Yunqi Temple.",
+      "links": [
+        {
+          "label": "Wikipedia (Ouyi)",
+          "url": "https://en.wikipedia.org/wiki/Ouyi_Zhixu"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Hanyue Fazang",
+        "漢月法藏"
+      ],
+      "floruit": 1573,
+      "death": 1635,
+      "school": "Linji",
+      "teacher": "Miyun Yuanwu",
+      "notes": "Clashed with his teacher over Linji's teaching, splitting the late Ming Linji revival.",
+      "links": [
+        {
+          "label": "Wikipedia (Miyun Yuanwu)",
+          "url": "https://en.wikipedia.org/wiki/Miyun_Yuanwu"
+        },
+        {
+          "label": "Enlightenment in Dispute (Oxford)",
+          "url": "https://oxford.universitypressscholarship.com/view/10.1093/acprof:oso/9780195333572.001.0001/acprof-9780195333572"
+        },
+        {
+          "label": "Hanyue's Attitude (Academia)",
+          "url": "https://www.academia.edu/37875520/_Chan_Master_Hanyue_s_Attitude_toward_Sutra_Teachings_in_the_Ming_"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Shiche Tongcheng",
+        "石車通乘"
+      ],
+      "floruit": 1598,
+      "death": 1638,
+      "teacher": "Miyun Yuanwu",
+      "school": "Linji",
+      "notes": "Dharma heir of Miyun Yuanwu. Teacher of the eminent nun Qiyuan Xinggang. Used huatou (critical phrase) practice.",
+      "links": [
+        {
+          "label": "DRBU (Qiyuan)",
+          "url": "https://www.drbu.edu/news/chan-master-qiyuan-and-her-poems/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Miyun Yuanwu",
+        "密雲圓悟"
+      ],
+      "floruit": 1567,
+      "death": 1642,
+      "school": "Linji",
+      "students": [
+        "Hanyue Fazang"
+      ],
+      "notes": "Central figure of the late Ming Linji revival. Made his line the dominant Chan transmission into the Qing.",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Miyun_Yuanwu"
+        },
+        {
+          "label": "中文维基",
+          "url": "https://zh.wikipedia.org/zh-tw/%E5%AF%86%E9%9B%B2%E5%9C%93%E6%82%9F"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/MiyunYuanwu.html"
+        }
+      ],
+      "teacher": "Huanyou Zhengchuan"
+    },
+    {
+      "names": [
+        "Qiyuan Xinggang",
+        "祇園行剛",
+        "知圓行剛"
+      ],
+      "floruit": 1597,
+      "death": 1654,
+      "school": "Linji",
+      "notes": "Linji master of the late Ming / early Qing transition.",
+      "teacher": "Shiche Tongcheng",
+      "students": [
+        "Yigong",
+        "Yikui Chaochen"
+      ],
+      "links": [
+        {
+          "label": "Wikidata",
+          "url": "https://www.wikidata.org/wiki/Q11832842"
+        },
+        {
+          "label": "Academia (Grant)",
+          "url": "https://www.academia.edu/6268600/Female_Holder_of_the_Lineage_Linji_Chan_Master_Zhiyuan_Xinggang_1597_1654"
+        },
+        {
+          "label": "DRBU poems",
+          "url": "https://www.drbu.edu/news/chan-master-qiyuan-and-her-poems/"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Ouyi Zhixu",
+        "蕅益智旭"
+      ],
+      "floruit": 1599,
+      "death": 1655,
+      "school": "Tiantai / Pure Land",
+      "notes": "Last of the 'four great monks'. Primarily Tiantai and Pure Land, fierce advocate of Vinaya reform.",
+      "teacher": "Xueling",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Ouyi_Zhixu"
+        },
+        {
+          "label": "Terebess",
+          "url": "https://terebess.hu/zen/mesterek/OuyiZhixu.html"
+        },
+        {
+          "label": "Encyclopedia of Buddhism",
+          "url": "https://encyclopediaofbuddhism.org/wiki/Ouyi_Zhixu"
+        }
+      ]
+    }
   ]
 }

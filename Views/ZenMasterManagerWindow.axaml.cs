@@ -1,8 +1,11 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -14,21 +17,26 @@ namespace ReadZen.App.Views;
 public partial class ZenMasterManagerWindow : Window
 {
     private readonly string? _repoRoot;
+    private readonly string? _parentRoot;
     private readonly string _baseFilePath;
     private MasterDatesEditorDialog? _editorWindow;
     private string? _pendingLandingName;
     private string? _pendingLandingUser;
     private bool _loaded;
 
+    /// <summary>Fired when the user double-clicks a corpus text to navigate to it in the reader.</summary>
+    public event EventHandler<NavigationRequest>? CorpusNavigationRequested;
+
     public ZenMasterManagerWindowViewModel ViewModel { get; }
 
-    public ZenMasterManagerWindow() : this(null, Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json"))
+    public ZenMasterManagerWindow() : this(null, null, Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json"))
     {
     }
 
-    public ZenMasterManagerWindow(string? repoRoot, string? baseFilePath = null)
+    public ZenMasterManagerWindow(string? repoRoot, string? parentRoot = null, string? baseFilePath = null)
     {
         _repoRoot = repoRoot;
+        _parentRoot = parentRoot ?? repoRoot;
         _baseFilePath = string.IsNullOrWhiteSpace(baseFilePath)
             ? Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json")
             : baseFilePath;
@@ -36,10 +44,23 @@ public partial class ZenMasterManagerWindow : Window
         InitializeComponent();
 
         var service = new ZenMasterManagerService(App.Services.GetRequiredService<IMasterDatesService>());
-        ViewModel = new ZenMasterManagerWindowViewModel(service, repoRoot, _baseFilePath);
+        ViewModel = new ZenMasterManagerWindowViewModel(service, repoRoot, _parentRoot, _baseFilePath);
         DataContext = ViewModel;
 
         WireEvents();
+
+        // Handle link clicks (TextBlocks with Name="LinkItem" and Tag=URL)
+        AddHandler(InputElement.PointerPressedEvent, (_, e) =>
+        {
+            if (e.Source is TextBlock tb && tb.Name == "LinkItem" && tb.Tag is string url
+                && !string.IsNullOrWhiteSpace(url))
+            {
+                try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+                catch { }
+                e.Handled = true;
+            }
+        }, RoutingStrategies.Tunnel);
+
         Opened += async (_, _) =>
         {
             if (!_loaded)
@@ -128,6 +149,40 @@ public partial class ZenMasterManagerWindow : Window
                         lineageGraph?.InvalidateVisual();
                     }
                 }
+            }
+        };
+
+        // Corpus search tab
+        var btnBuildIndex = this.FindControl<Button>("BtnBuildCorpusIndex");
+        if (btnBuildIndex != null)
+            btnBuildIndex.Click += async (_, _) => await ViewModel.BuildCorpusIndexAsync();
+
+        var btnCancelScan = this.FindControl<Button>("BtnCancelCorpusScan");
+        if (btnCancelScan != null)
+            btnCancelScan.Click += (_, _) => ViewModel.CancelCorpusScan();
+
+        // Double-click on corpus result -> navigate to text
+        var lstPrimary = this.FindControl<ListBox>("LstCorpusPrimary");
+        var lstSecondary = this.FindControl<ListBox>("LstCorpusSecondary");
+
+        WireCorpusListDoubleClick(lstPrimary);
+        WireCorpusListDoubleClick(lstSecondary);
+    }
+
+    private void WireCorpusListDoubleClick(ListBox? listBox)
+    {
+        if (listBox == null) return;
+
+        listBox.DoubleTapped += (_, e) =>
+        {
+            if (listBox.SelectedItem is MasterTextAppearance appearance)
+            {
+                CorpusNavigationRequested?.Invoke(this, new NavigationRequest
+                {
+                    RelPath = appearance.RelPath,
+                    Side = SearchSide.Original,
+                    MatchText = appearance.MatchedName,
+                });
             }
         };
     }
