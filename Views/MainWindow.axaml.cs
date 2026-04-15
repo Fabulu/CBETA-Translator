@@ -1354,6 +1354,15 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             try
             {
+                // Load master count
+                var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
+                var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                var catalog = await masterMgr.LoadAsync(_vm.Root);
+                Dispatcher.UIThread.Post(() =>
+                {
+                    txtStatus.Text = $"{catalog.Records.Count} masters catalogued";
+                });
+
                 var svc = new MasterCorpusSearchService();
                 var cacheDir = MasterCorpusSearchService.GetCacheDir(_vm.Root!);
                 var cached = await svc.TryLoadAsync(cacheDir);
