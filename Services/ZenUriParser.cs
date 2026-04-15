@@ -778,6 +778,9 @@ public static class ZenUriParser
     //  Shareable HTTPS URL builders for new deep-link kinds
     // ---------------------------------------------------------------
 
+    public static string BuildShareableMasterUrl(string name)
+        => $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}";
+
     public static string BuildShareableDictUrl(string term)
         => $"{ShareableBase}#/dict/{Uri.EscapeDataString(term)}";
 
