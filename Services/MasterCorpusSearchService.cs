@@ -21,6 +21,17 @@ public sealed class MasterCorpusSearchService
     private const string CacheFileName = "master-corpus-index.json";
     private const int MinNameLength = 2; // minimum CJK chars for matching
 
+    // Names that are also common Buddhist concepts. When matching these, require
+    // the master's longer name to also appear in the same file, otherwise skip.
+    private static readonly HashSet<string> ConceptNames = new()
+    {
+        "法眼",   // Fayan = "Dharma Eye"
+        "無門",   // Wumen = "Gateless"
+        "大慧",   // Dahui = "Great Wisdom"
+        "國師",   // National Teacher (too generic)
+        "六祖",   // Sixth Patriarch (too generic)
+    };
+
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         WriteIndented = true,
@@ -176,6 +187,17 @@ public sealed class MasterCorpusSearchService
             }
         }
 
+        // Build lookup of canonicalName -> all chinese names, used for concept-name disambiguation.
+        var namesByCanonical = new Dictionary<string, List<string>>(StringComparer.Ordinal);
+        foreach (var (canonicalName, chineseNames) in masters)
+        {
+            if (!namesByCanonical.ContainsKey(canonicalName))
+                namesByCanonical[canonicalName] = chineseNames
+                    .Where(n => n.Length >= MinNameLength)
+                    .Distinct()
+                    .ToList();
+        }
+
         var xmlFiles = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories).ToList();
         index.FileCount = xmlFiles.Count;
 
@@ -210,6 +232,22 @@ public sealed class MasterCorpusSearchService
 
                         int count = CountOccurrences(content, chineseName);
                         if (count == 0) continue;
+
+                        // Concept-name disambiguation: if the matched name is also a common
+                        // Buddhist concept, require a longer non-concept alias of the same
+                        // master to also appear in the file. Otherwise the match is too noisy.
+                        if (ConceptNames.Contains(chineseName))
+                        {
+                            if (!namesByCanonical.TryGetValue(canonicalName, out var allNames))
+                                continue;
+
+                            bool hasCorroboratingName = allNames.Any(n =>
+                                n.Length > chineseName.Length
+                                && !ConceptNames.Contains(n)
+                                && content.IndexOf(n, StringComparison.Ordinal) >= 0);
+
+                            if (!hasCorroboratingName) continue;
+                        }
 
                         // Check if this master is the author (primary)
                         bool isPrimary = header.Contains(chineseName, StringComparison.Ordinal);
@@ -261,6 +299,123 @@ public sealed class MasterCorpusSearchService
         var path = Path.Combine(cacheDir, CacheFileName);
         var json = JsonSerializer.Serialize(index, JsonOpts);
         await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+    }
+
+    /// <summary>
+    /// Exports a web-friendly masters.json with all master profiles.
+    /// Output format matches what views/master.js in the SPA expects.
+    /// </summary>
+    public static async Task ExportMastersJsonAsync(
+        string outputDir,
+        Models.ZenMasterCatalog catalog,
+        CancellationToken ct = default)
+    {
+        Directory.CreateDirectory(outputDir);
+        var path = Path.Combine(outputDir, "masters.json");
+
+        var masters = new List<Dictionary<string, object?>>();
+        foreach (var record in catalog.Records)
+        {
+            var entry = new Dictionary<string, object?>();
+            entry["names"] = record.Aliases;
+            var pv = record.PrimaryVariant;
+            if (pv != null)
+            {
+                if (pv.Floruit > 0) entry["floruit"] = pv.Floruit;
+                if (pv.Death > 0) entry["death"] = pv.Death;
+            }
+            if (!string.IsNullOrWhiteSpace(record.School)) entry["school"] = record.School;
+            if (!string.IsNullOrWhiteSpace(record.Teacher)) entry["teacher"] = record.Teacher;
+            if (record.Students.Count > 0) entry["students"] = record.Students;
+            if (!string.IsNullOrWhiteSpace(record.Notes)) entry["notes"] = record.Notes;
+            if (!string.IsNullOrWhiteSpace(record.Region)) entry["region"] = record.Region;
+            if (record.HasLinks)
+            {
+                entry["links"] = record.Links.Select(l => new Dictionary<string, string>
+                {
+                    ["label"] = l.Label,
+                    ["url"] = l.Url
+                }).ToList();
+            }
+            masters.Add(entry);
+        }
+
+        var output = new Dictionary<string, object>
+        {
+            ["version"] = 1,
+            ["count"] = masters.Count,
+            ["masters"] = masters,
+        };
+
+        var json = JsonSerializer.Serialize(output, JsonOpts);
+        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+    }
+
+    /// <summary>
+    /// Exports a compact web-friendly corpus index with per-master text appearances.
+    /// Top 5 primary + top 10 secondary per master. Matches format expected by SPA.
+    /// </summary>
+    public static async Task ExportMasterCorpusJsonAsync(
+        string outputDir,
+        MasterCorpusIndex index,
+        CancellationToken ct = default)
+    {
+        Directory.CreateDirectory(outputDir);
+        var path = Path.Combine(outputDir, "master-corpus.json");
+
+        var byMaster = new Dictionary<string, (List<MasterTextAppearance> Primary, List<MasterTextAppearance> Secondary, int TotalMentions)>();
+        foreach (var a in index.Appearances)
+        {
+            if (!byMaster.TryGetValue(a.MasterName, out var bucket))
+                bucket = (new List<MasterTextAppearance>(), new List<MasterTextAppearance>(), 0);
+            if (a.AppearanceType == "primary") bucket.Primary.Add(a);
+            else bucket.Secondary.Add(a);
+            bucket.TotalMentions += a.MentionCount;
+            byMaster[a.MasterName] = bucket;
+        }
+
+        var masters = new Dictionary<string, object>();
+        foreach (var (name, (primary, secondary, total)) in byMaster)
+        {
+            var primaryTop = primary.OrderByDescending(a => a.MentionCount).Take(5)
+                .Select(a => SerializeAppearance(a)).ToList();
+            var secondaryTop = secondary.OrderByDescending(a => a.MentionCount).Take(10)
+                .Select(a => SerializeAppearance(a)).ToList();
+
+            masters[name] = new Dictionary<string, object>
+            {
+                ["primary_count"] = primary.Count,
+                ["secondary_count"] = secondary.Count,
+                ["total_mentions"] = total,
+                ["primary"] = primaryTop,
+                ["secondary"] = secondaryTop,
+            };
+        }
+
+        var output = new Dictionary<string, object>
+        {
+            ["version"] = 1,
+            ["corpus"] = index.Corpus ?? "",
+            ["file_count"] = index.FileCount,
+            ["master_count"] = masters.Count,
+            ["masters"] = masters,
+        };
+
+        var json = JsonSerializer.Serialize(output, JsonOpts);
+        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+    }
+
+    private static Dictionary<string, object?> SerializeAppearance(MasterTextAppearance a)
+    {
+        var dict = new Dictionary<string, object?>
+        {
+            ["path"] = a.RelPath,
+            ["mentions"] = a.MentionCount,
+        };
+        if (!string.IsNullOrWhiteSpace(a.TextTitle)) dict["title"] = a.TextTitle;
+        if (!string.IsNullOrWhiteSpace(a.TextTitleZh)) dict["title_zh"] = a.TextTitleZh;
+        if (!string.IsNullOrWhiteSpace(a.Snippet)) dict["snippet"] = a.Snippet;
+        return dict;
     }
 
     /// <summary>Loads the cached index, or null if not available.</summary>
@@ -364,12 +519,42 @@ public sealed class MasterCorpusSearchService
         if (idx < 0) idx = text.IndexOf(pattern, StringComparison.Ordinal);
         if (idx < 0) return null;
 
-        int snippetStart = Math.Max(0, idx - 30);
-        int snippetEnd = Math.Min(text.Length, idx + pattern.Length + 30);
+        // 1. Take a wide raw window so we can safely strip tags and orphan fragments at the edges.
+        const int RawHalfWindow = 300;
+        const int CleanHalfWindow = 40;
 
-        // Clean up XML tags from snippet
-        var raw = text[snippetStart..snippetEnd];
-        var clean = System.Text.RegularExpressions.Regex.Replace(raw, "<[^>]+>", "").Trim();
-        return clean.Length > 80 ? clean[..77] + "..." : clean;
+        int rawStart = Math.Max(0, idx - RawHalfWindow);
+        int rawEnd = Math.Min(text.Length, idx + pattern.Length + RawHalfWindow);
+        var raw = text[rawStart..rawEnd];
+
+        // 2. Strip complete tags (use * to handle <> as well).
+        var cleaned = System.Text.RegularExpressions.Regex.Replace(raw, "<[^>]*>", "");
+        // 3. Strip a leading orphan tag fragment: anything up to the first '>' if no '<' precedes it.
+        cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, "^[^<]*?>", "");
+        // 4. Strip a trailing orphan tag fragment: anything from the last '<' if no '>' follows it.
+        cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, "<[^>]*$", "");
+        // 5. Collapse whitespace.
+        cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, @"\s+", " ").Trim();
+
+        if (cleaned.Length == 0) return null;
+
+        // 6. Find the pattern in the cleaned text.
+        int cleanIdx = cleaned.IndexOf(pattern, StringComparison.Ordinal);
+        if (cleanIdx < 0)
+        {
+            // Pattern was lost during cleaning (e.g. it straddled a tag). Fall back to a centered slice.
+            return cleaned.Length > 80 ? cleaned[..77] + "..." : cleaned;
+        }
+
+        // 7. Extract a tight window around the match in the cleaned text.
+        int snippetStart = Math.Max(0, cleanIdx - CleanHalfWindow);
+        int snippetEnd = Math.Min(cleaned.Length, cleanIdx + pattern.Length + CleanHalfWindow);
+        var snippet = cleaned[snippetStart..snippetEnd];
+
+        // 8. Add ellipsis to indicate truncation.
+        if (snippetStart > 0) snippet = "..." + snippet;
+        if (snippetEnd < cleaned.Length) snippet += "...";
+
+        return snippet;
     }
 }

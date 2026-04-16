@@ -162,6 +162,7 @@ public partial class ReadableTabView : UserControl
     private readonly List<IDisposable> _studyHoverDisposables = new();
     private DispatcherTimer? _studyContextDebounce;
     private CurrentSegmentContext? _pendingStudyContext;
+    private string? _currentStudyMaster;
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
 
     // -------------------------
@@ -212,6 +213,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
+
+    /// <summary>Fired when user clicks "View Master" button in study panel.</summary>
+    public event EventHandler<string>? OpenMasterRequested;
 
     // Coding mode events
     public event EventHandler<DocumentTag>? TagApplied;
@@ -794,6 +798,16 @@ public partial class ReadableTabView : UserControl
         var btnEditTags = this.FindControl<Button>("BtnEditTags");
         if (btnEditTags != null)
             btnEditTags.Click += (_, _) => TagEditorRequested?.Invoke(this, EventArgs.Empty);
+
+        var btnStudyMasterOpen = this.FindControl<Button>("BtnStudyMasterOpen");
+        if (btnStudyMasterOpen != null)
+        {
+            btnStudyMasterOpen.Click += (_, _) =>
+            {
+                if (!string.IsNullOrWhiteSpace(_currentStudyMaster))
+                    OpenMasterRequested?.Invoke(this, _currentStudyMaster);
+            };
+        }
 
         var btnCompareTags = this.FindControl<Button>("BtnCompareTags");
         if (btnCompareTags != null)
@@ -4835,6 +4849,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (string.IsNullOrWhiteSpace(zhText) || FindMasterByName == null)
         {
             border.IsVisible = false;
+            _currentStudyMaster = null;
             return;
         }
 
@@ -4846,10 +4861,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (match == null)
         {
             border.IsVisible = false;
+            _currentStudyMaster = null;
             return;
         }
 
         border.IsVisible = true;
+        _currentStudyMaster = match.CanonicalName;
 
         var txtName = this.FindControl<TextBlock>("TxtStudyMasterName");
         var txtDates = this.FindControl<TextBlock>("TxtStudyMasterDates");

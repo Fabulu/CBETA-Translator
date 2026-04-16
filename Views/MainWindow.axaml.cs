@@ -1058,6 +1058,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 _vm.HandleNavigationRequested(req);
             };
 
+            _readableView.OpenMasterRequested += async (_, masterName) =>
+            {
+                await OpenZenMasterManagerWindowAsync(masterName);
+            };
+
             _readableView.StudyPanelContextChanged += async (_, ctx) =>
             {
                 await _vm.RefreshReaderStudyPanelAsync(ctx);
