@@ -270,12 +270,17 @@
     <!-- Lineage Web tab -->
     <TabItem Header="Lineage Web">
       <Grid RowDefinitions="Auto,*" Margin="4">
-        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,4">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="0,0,0,4">
           <TextBox Name="TxtLineageSearch" Watermark="Search lineage..."
                    FontSize="12" Margin="0,0,8,0"/>
           <TextBlock Grid.Column="1" Name="TxtLineageInfo"
                      VerticalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,8,0"/>
-          <Button Grid.Column="2" Name="BtnLineageCenter" Content="Center" Padding="8,4"/>
+          <TextBlock Grid.Column="2" Text="Zoom" VerticalAlignment="Center" FontSize="11"
+                     Opacity="0.5" Margin="8,0,4,0"/>
+          <Slider Grid.Column="3" Name="SliderLineageZoom"
+                  Minimum="10" Maximum="300" Value="80"
+                  Width="120" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <Button Grid.Column="4" Name="BtnLineageCenter" Content="Center" Padding="8,4"/>
         </Grid>
         <local:LineageWebControl Grid.Row="1" Name="LineageGraph"/>
       </Grid>

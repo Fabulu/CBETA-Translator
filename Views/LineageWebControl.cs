@@ -25,6 +25,20 @@ public sealed class LineageWebControl : Control
     public event EventHandler<ZenMasterRecord>? NodeClicked;
     public event EventHandler<ZenMasterRecord>? NodeDoubleClicked;
 
+    /// <summary>Current zoom level (0.1 to 5.0). Used by zoom slider.</summary>
+    public double Zoom => _zoom;
+
+    /// <summary>Set zoom level centered on the viewport.</summary>
+    public void SetZoom(double newZoom)
+    {
+        var center = new Point(Bounds.Width / 2, Bounds.Height / 2);
+        var oldZoom = _zoom;
+        _zoom = Math.Clamp(newZoom, 0.1, 5.0);
+        _offsetX = center.X - (center.X - _offsetX) * (_zoom / oldZoom);
+        _offsetY = center.Y - (center.Y - _offsetY) * (_zoom / oldZoom);
+        InvalidateVisual();
+    }
+
     public LineageWebControl()
     {
         ClipToBounds = true;

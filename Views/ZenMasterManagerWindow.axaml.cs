@@ -132,6 +132,18 @@ public partial class ZenMasterManagerWindow : Window
             };
         }
 
+        // Zoom slider
+        var zoomSlider = this.FindControl<Slider>("SliderLineageZoom");
+        if (zoomSlider != null && lineageGraph != null)
+        {
+            zoomSlider.Value = lineageGraph.Zoom * 100;
+            zoomSlider.PropertyChanged += (_, args) =>
+            {
+                if (args.Property.Name == "Value")
+                    lineageGraph.SetZoom(zoomSlider.Value / 100.0);
+            };
+        }
+
         // Sync graph selection when List tab selection changes
         ViewModel.PropertyChanged += (_, args) =>
         {
