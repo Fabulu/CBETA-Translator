@@ -1333,8 +1333,8 @@ private async Task LoadConfigAndAutoloadAsync()
                     await svc.SaveAsync(cacheDir, index);
 
                     if (txtInfo != null)
-                        txtInfo.Text = $"Index ready: {index.MasterCount} masters, {index.Appearances.Count} appearances across {index.FileCount} files";
-                    _vm.SetStatus($"Master corpus index rebuilt ({index.MasterCount} masters).");
+                        txtInfo.Text = $"Index ready: {index.MasterCount} of {catalog.Records.Count} masters found in texts, {index.Appearances.Count} appearances across {index.FileCount} files";
+                    _vm.SetStatus($"Master corpus index rebuilt ({index.MasterCount} of {catalog.Records.Count} masters appear in texts).");
                 }
                 catch (Exception ex)
                 {
@@ -1375,7 +1375,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 Dispatcher.UIThread.Post(() =>
                 {
                     if (cached != null)
-                        txtCorpus.Text = $"Corpus index: {cached.MasterCount} masters found across {cached.FileCount} files ({cached.Appearances.Count} total appearances)";
+                        txtCorpus.Text = $"Corpus index: {cached.MasterCount} masters found in {cached.FileCount} files ({cached.Appearances.Count} total appearances)";
                     else
                         txtCorpus.Text = "No corpus index cached yet. Click 'Rebuild Corpus Index' or it will auto-build on next startup.";
                 });
