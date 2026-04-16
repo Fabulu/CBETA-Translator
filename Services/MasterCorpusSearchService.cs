@@ -249,8 +249,19 @@ public sealed class MasterCorpusSearchService
                             if (!hasCorroboratingName) continue;
                         }
 
-                        // Check if this master is the author (primary)
-                        bool isPrimary = header.Contains(chineseName, StringComparison.Ordinal);
+                        // Primary detection: prefer a non-concept alias in the header (strong signal).
+                        // Fallback: if the matched name is a concept, it can still count as primary
+                        // when the concept-filter passed (guaranteeing a longer non-concept alias
+                        // exists in the body) AND the concept appears in the header.
+                        bool isPrimary = false;
+                        if (namesByCanonical.TryGetValue(canonicalName, out var aliasesForPrimary))
+                        {
+                            isPrimary = aliasesForPrimary.Any(n =>
+                                !ConceptNames.Contains(n)
+                                && header.Contains(n, StringComparison.Ordinal));
+                        }
+                        if (!isPrimary && ConceptNames.Contains(chineseName))
+                            isPrimary = header.Contains(chineseName, StringComparison.Ordinal);
 
                         // Extract a snippet around the first body occurrence
                         string? snippet = ExtractSnippet(content, chineseName, headerEnd > 0 ? headerEnd : 0);
