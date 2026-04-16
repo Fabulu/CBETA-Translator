@@ -83,13 +83,33 @@
             <!-- Teacher -->
             <StackPanel Spacing="2" IsVisible="{Binding HasTeacher}">
               <TextBlock Text="Teacher" FontWeight="SemiBold"/>
-              <TextBlock Text="{Binding SelectedMaster.Teacher}" TextWrapping="Wrap"/>
+              <Button Name="BtnJumpTeacher" Classes="link"
+                      Content="{Binding SelectedMaster.Teacher}"
+                      HorizontalAlignment="Left" Padding="0" Background="Transparent"
+                      BorderThickness="0" Cursor="Hand"
+                      Foreground="{DynamicResource SystemAccentColor}"/>
             </StackPanel>
 
             <!-- Students -->
             <StackPanel Spacing="2" IsVisible="{Binding HasStudents}">
               <TextBlock Text="Students" FontWeight="SemiBold"/>
-              <TextBlock Text="{Binding SelectedStudentsText}" TextWrapping="Wrap"/>
+              <ItemsControl Name="StudentLinksList"
+                            ItemsSource="{Binding SelectedMaster.Students}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Button Classes="link student-link"
+                            Content="{Binding}"
+                            Margin="0,0,8,2" Padding="0" Background="Transparent"
+                            BorderThickness="0" Cursor="Hand"
+                            Foreground="{DynamicResource SystemAccentColor}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
             </StackPanel>
 
             <!-- Notes / Biography -->
