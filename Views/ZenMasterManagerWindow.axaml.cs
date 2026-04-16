@@ -164,6 +164,30 @@ public partial class ZenMasterManagerWindow : Window
             }
         };
 
+        // Teacher link click
+        var btnJumpTeacher = this.FindControl<Button>("BtnJumpTeacher");
+        if (btnJumpTeacher != null)
+            btnJumpTeacher.Click += (_, _) =>
+            {
+                var teacher = ViewModel.SelectedMaster?.Teacher;
+                if (!string.IsNullOrWhiteSpace(teacher))
+                    ViewModel.ApplyLanding(teacher);
+            };
+
+        // Student link click (delegated via ItemsControl)
+        var studentsList = this.FindControl<ItemsControl>("StudentLinksList");
+        if (studentsList != null)
+        {
+            studentsList.AddHandler(Button.ClickEvent, (object? _, RoutedEventArgs e) =>
+            {
+                if (e.Source is Button btn && btn.Classes.Contains("student-link") && btn.Content is string name)
+                {
+                    if (!string.IsNullOrWhiteSpace(name))
+                        ViewModel.ApplyLanding(name);
+                }
+            });
+        }
+
         // Master list context menu
         var mnuCopyLink = this.FindControl<MenuItem>("MnuCopyMasterLink");
         if (mnuCopyLink != null)
