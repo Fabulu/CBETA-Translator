@@ -580,7 +580,8 @@ public static class ZenUriParser
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Master,
-                    MasterName = Uri.UnescapeDataString(segments[1]),
+                    // Underscores in the URL path map to spaces in canonical master names
+                    MasterName = Uri.UnescapeDataString(segments[1]).Replace('_', ' '),
                     MasterUser = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
                 };
 
@@ -740,9 +741,13 @@ public static class ZenUriParser
             : $"{Scheme}://term/{Uri.EscapeDataString(term)}";
 
     public static string BuildMasterUri(string name, string? user = null)
-        => !string.IsNullOrEmpty(user)
-            ? $"{Scheme}://master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
-            : $"{Scheme}://master/{Uri.EscapeDataString(name)}";
+    {
+        // Use underscores instead of %20 for readable URIs
+        var nameSlug = Uri.EscapeDataString(name ?? "").Replace("%20", "_");
+        return !string.IsNullOrEmpty(user)
+            ? $"{Scheme}://master/{nameSlug}/{Uri.EscapeDataString(user)}"
+            : $"{Scheme}://master/{nameSlug}";
+    }
 
     public static string BuildCompareUri(
         string relPath,
@@ -779,7 +784,11 @@ public static class ZenUriParser
     // ---------------------------------------------------------------
 
     public static string BuildShareableMasterUrl(string name)
-        => $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}";
+    {
+        // Use underscores instead of %20 for readable URLs: "Fayan Wenyi" -> "Fayan_Wenyi"
+        var slug = Uri.EscapeDataString(name ?? "").Replace("%20", "_");
+        return $"{ShareableBase}#/master/{slug}";
+    }
 
     public static string BuildShareableDictUrl(string term)
         => $"{ShareableBase}#/dict/{Uri.EscapeDataString(term)}";
