@@ -872,6 +872,32 @@ public class ZenUriParserTests
         Assert.Equal("Linji Yixuan", result.MasterName);
         Assert.Equal("alice", result.MasterUser);
     }
+
+    [Fact]
+    public void TryParseDeepLink_MasterLink_UnderscoreFormat_ReturnsMasterKind()
+    {
+        // Preferred modern form uses underscores instead of %20 for readable URLs.
+        var result = ZenUriParser.TryParseDeepLink("zen://master/Linji_Yixuan");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Master, result.Kind);
+        Assert.Equal("Linji Yixuan", result.MasterName);
+    }
+
+    [Fact]
+    public void BuildMasterUri_UsesUnderscoreNotPercent20()
+    {
+        var uri = ZenUriParser.BuildMasterUri("Linji Yixuan");
+        Assert.Equal("zen://master/Linji_Yixuan", uri);
+    }
+
+    [Fact]
+    public void BuildShareableMasterUrl_UsesUnderscoreNotPercent20()
+    {
+        var url = ZenUriParser.BuildShareableMasterUrl("Linji Yixuan");
+        Assert.Contains("#/master/Linji_Yixuan", url);
+        Assert.DoesNotContain("%20", url);
+    }
     [Fact]
     public void TryParseDeepLink_HttpsDict_Works()
     {
