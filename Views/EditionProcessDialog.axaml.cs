@@ -42,6 +42,9 @@ public partial class EditionProcessDialog : Window
     private string? _finalText;
     private TextEditor? _editorPreview;
     private LocusHighlightRenderer? _locusHighlighter;
+    private WitnessTextRegistry? _witnessRegistry;
+    private ApparatusInfo? _apparatus;
+    private string? _editionDir;
 
     public void Load(
         ManifestInfo manifest,
@@ -86,6 +89,11 @@ public partial class EditionProcessDialog : Window
             timeline = timelineService?.TryLoad(xmlAbsPath);
             humanLog = humanLogService?.TryLoad(xmlAbsPath);
             witnessRegistry = witnessTextService?.TryLoad(xmlAbsPath);
+
+            // Cache for locus-aware actions in the apparatus + witnesses tabs
+            _witnessRegistry = witnessRegistry;
+            _apparatus = apparatus;
+            try { _editionDir = Path.GetDirectoryName(xmlAbsPath); } catch { _editionDir = null; }
         }
 
         // Store rendered doc for timeline text preview
@@ -443,6 +451,20 @@ public partial class EditionProcessDialog : Window
         if (apparatus?.Entries == null || apparatus.Entries.Count == 0)
         {
             host.Children.Add(MakeEmptyState("No apparatus entries available."));
+            // If no apparatus but witnesses are delivered, still expose witness-level access
+            if (_witnessRegistry?.Witnesses is { Count: > 0 } witnesses)
+            {
+                host.Children.Add(MakeSection($"Delivered witnesses ({witnesses.Count})"));
+                host.Children.Add(new TextBlock
+                {
+                    Text = "This edition has witness texts but no apparatus entries yet. " +
+                           "Open any witness's full text below.",
+                    FontSize = 11, Opacity = 0.7, TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(0, 0, 0, 8),
+                });
+                foreach (var w in witnesses)
+                    host.Children.Add(BuildWitnessOpenButton(w));
+            }
             return;
         }
 
@@ -452,10 +474,32 @@ public partial class EditionProcessDialog : Window
         {
             var card = new StackPanel { Spacing = 2 };
 
-            // Locus + status
-            var header = $"{entry.LocusId ?? "?"} [{entry.Status ?? "?"}]";
-            if (!string.IsNullOrWhiteSpace(entry.Section)) header = $"{entry.Section} / {header}";
-            card.Children.Add(new TextBlock { Text = header, FontWeight = FontWeight.SemiBold, FontSize = 11 });
+            // Locus + status + Compare button (right-aligned)
+            var headerDock = new DockPanel();
+            var headerText = $"{entry.LocusId ?? "?"} [{entry.Status ?? "?"}]";
+            if (!string.IsNullOrWhiteSpace(entry.Section)) headerText = $"{entry.Section} / {headerText}";
+            headerDock.Children.Add(new TextBlock
+            {
+                Text = headerText, FontWeight = FontWeight.SemiBold, FontSize = 11,
+                VerticalAlignment = VerticalAlignment.Center,
+            });
+
+            // Compare witnesses button — only when registry is loaded
+            if (_witnessRegistry?.Witnesses is { Count: > 0 } && !string.IsNullOrWhiteSpace(entry.LocusId))
+            {
+                var compareBtn = new Button
+                {
+                    Content = "Compare witnesses",
+                    FontSize = 10, Padding = new Thickness(6, 2),
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    Tag = entry.LocusId,
+                };
+                DockPanel.SetDock(compareBtn, Dock.Right);
+                compareBtn.Click += (_, _) => OpenWitnessComparisonForLocus(entry);
+                headerDock.Children.Insert(0, compareBtn);
+            }
+
+            card.Children.Add(headerDock);
 
             // Lemma
             if (!string.IsNullOrWhiteSpace(entry.Lemma))
@@ -485,6 +529,106 @@ public partial class EditionProcessDialog : Window
                 BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
             });
         }
+    }
+
+    private Border BuildWitnessOpenButton(WitnessTextEntry witness)
+    {
+        var stack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        stack.Children.Add(new Border
+        {
+            Background = new SolidColorBrush(Color.FromArgb(40, 140, 0, 200)),
+            CornerRadius = new CornerRadius(4), Padding = new Thickness(5, 1),
+            VerticalAlignment = VerticalAlignment.Center,
+            Child = new TextBlock { Text = witness.Siglum ?? witness.WitnessId ?? "?", FontSize = 10, FontWeight = FontWeight.Bold },
+        });
+        stack.Children.Add(new TextBlock
+        {
+            Text = witness.Label ?? witness.WitnessId ?? "(unlabeled)",
+            FontSize = 11, VerticalAlignment = VerticalAlignment.Center,
+            TextWrapping = TextWrapping.Wrap,
+        });
+        var btn = new Button
+        {
+            Content = "Open full text",
+            FontSize = 10, Padding = new Thickness(6, 2),
+            HorizontalAlignment = HorizontalAlignment.Right,
+        };
+        btn.Click += (_, _) => OpenWitnessFullText(witness);
+        DockPanel.SetDock(btn, Dock.Right);
+
+        var dock = new DockPanel();
+        dock.Children.Add(btn);
+        dock.Children.Add(stack);
+
+        return new Border
+        {
+            Padding = new Thickness(10, 6), CornerRadius = new CornerRadius(6),
+            BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
+            Child = dock,
+        };
+    }
+
+    private void OpenWitnessComparisonForLocus(ApparatusEntry entry)
+    {
+        if (_witnessRegistry == null || string.IsNullOrWhiteSpace(entry.LocusId)) return;
+
+        var groups = WitnessTextService.GetComparisonAtLocus(
+            _witnessRegistry, _apparatus, entry.LocusId, entry.Lemma);
+
+        if (groups == null || groups.Count == 0)
+        {
+            // No data for this locus yet — open viewer with empty state
+            ShowComparisonInPopup(entry.LocusId, entry.Lemma ?? "", new List<WitnessReadingGroup>(), entry);
+            return;
+        }
+
+        ShowComparisonInPopup(entry.LocusId, entry.Lemma ?? "", groups, entry);
+    }
+
+    private void ShowComparisonInPopup(string locusId, string lemma, List<WitnessReadingGroup> groups, ApparatusEntry? entry)
+    {
+        // Open in a small modal-style window so the user can copy + close without leaving the dialog
+        var win = new Window
+        {
+            Title = $"Witness Comparison · {locusId}",
+            Width = 640,
+            Height = 540,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Background = Application.Current?.Resources["AppBg"] as IBrush,
+        };
+
+        var panel = new WitnessComparisonPanel();
+        panel.SetComparison(locusId, lemma, groups);
+        // Wire the per-witness "open full text" event
+        panel.OpenWitnessFullTextRequested += (_, w) => OpenWitnessFullText(w);
+
+        var root = new Grid { RowDefinitions = new RowDefinitions("*,Auto") };
+        Grid.SetRow(panel, 0);
+        root.Children.Add(panel);
+
+        var closeBtn = new Button
+        {
+            Content = "Close", MinWidth = 80,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Margin = new Thickness(0, 8, 12, 8),
+        };
+        closeBtn.Click += (_, _) => win.Close();
+        Grid.SetRow(closeBtn, 1);
+        root.Children.Add(closeBtn);
+
+        win.Content = root;
+        win.Show(this);
+    }
+
+    private void OpenWitnessFullText(WitnessTextEntry witness)
+    {
+        if (string.IsNullOrEmpty(_editionDir)) return;
+        var viewer = new WitnessTextViewerWindow
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+        };
+        viewer.LoadWitness(witness, _editionDir);
+        viewer.Show(this);
     }
 
     // ── Stats tab ────────────────────────────────────────────────────────
