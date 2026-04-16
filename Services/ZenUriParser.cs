@@ -786,8 +786,10 @@ public static class ZenUriParser
     public static string BuildShareableMasterUrl(string name)
     {
         // Use underscores instead of %20 for readable URLs: "Fayan Wenyi" -> "Fayan_Wenyi"
+        // Path-routed (no #) so Reddit/clean paste: https://readzen.pages.dev/master/Fayan_Wenyi
+        // The SPA's 404 fallback handles path-routed forms identically to hash routes.
         var slug = Uri.EscapeDataString(name ?? "").Replace("%20", "_");
-        return $"{ShareableBase}#/master/{slug}";
+        return $"{ShareableBase}master/{slug}";
     }
 
     public static string BuildShareableDictUrl(string term)

@@ -892,11 +892,12 @@ public class ZenUriParserTests
     }
 
     [Fact]
-    public void BuildShareableMasterUrl_UsesUnderscoreNotPercent20()
+    public void BuildShareableMasterUrl_UsesUnderscoreAndNoHash()
     {
         var url = ZenUriParser.BuildShareableMasterUrl("Linji Yixuan");
-        Assert.Contains("#/master/Linji_Yixuan", url);
+        Assert.Equal("https://readzen.pages.dev/master/Linji_Yixuan", url);
         Assert.DoesNotContain("%20", url);
+        Assert.DoesNotContain("#", url);
     }
     [Fact]
     public void TryParseDeepLink_HttpsDict_Works()
