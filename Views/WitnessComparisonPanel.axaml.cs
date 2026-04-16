@@ -11,6 +11,7 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using ReadZen.App.Models;
 using ReadZen.App.Services;
 
 namespace ReadZen.App.Views;
@@ -20,6 +21,9 @@ public partial class WitnessComparisonPanel : UserControl
     private List<WitnessReadingGroup> _allGroups = new();
     private string? _locusId;
     private string? _lemma;
+
+    /// <summary>Fired when the user clicks "Open full text" on a witness siglum.</summary>
+    public event EventHandler<WitnessTextEntry>? OpenWitnessFullTextRequested;
 
     public WitnessComparisonPanel()
     {
@@ -114,23 +118,44 @@ public partial class WitnessComparisonPanel : UserControl
 
             stack.Children.Add(readingPanel);
 
-            // Witness sigla line
-            var sigla = new StringBuilder();
+            // Witness sigla line — clickable per-siglum buttons that open the full witness text
+            var siglaPanel = new WrapPanel { Orientation = Orientation.Horizontal };
+            siglaPanel.Children.Add(new TextBlock
+            {
+                Text = "Witnesses: ",
+                FontSize = 10, Opacity = 0.7,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, 4, 0),
+            });
             foreach (var w in group.Witnesses)
             {
-                if (sigla.Length > 0) sigla.Append(", ");
-                sigla.Append(w.Siglum ?? w.WitnessId ?? "?");
+                var siglumLabel = w.Siglum ?? w.WitnessId ?? "?";
+                var extras = new StringBuilder();
                 if (!string.IsNullOrWhiteSpace(w.Confidence) && w.Confidence != "high")
-                    sigla.Append($" [{w.Confidence}]");
+                    extras.Append($" [{w.Confidence}]");
                 if (w.HasOcr && !w.HasHumanCheck)
-                    sigla.Append(" (OCR)");
+                    extras.Append(" (OCR)");
+
+                var siglumBtn = new Button
+                {
+                    Content = siglumLabel + extras.ToString(),
+                    FontSize = 10,
+                    Padding = new Thickness(5, 1),
+                    Margin = new Thickness(0, 0, 4, 2),
+                    Background = Avalonia.Media.Brushes.Transparent,
+                    BorderThickness = new Thickness(1),
+                    Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                    Tag = w,
+                };
+                ToolTip.SetTip(siglumBtn, $"Open full witness text for {w.Label ?? siglumLabel}");
+                siglumBtn.Click += (_, _) =>
+                {
+                    if (siglumBtn.Tag is WitnessTextEntry witness)
+                        OpenWitnessFullTextRequested?.Invoke(this, witness);
+                };
+                siglaPanel.Children.Add(siglumBtn);
             }
-            stack.Children.Add(new TextBlock
-            {
-                Text = sigla.ToString(),
-                FontSize = 10,
-                Opacity = 0.7,
-            });
+            stack.Children.Add(siglaPanel);
 
             // Label if this is the adopted reading
             if (group.IsLemma)

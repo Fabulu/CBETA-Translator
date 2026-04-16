@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.WitnessTextViewerWindow"
+        Width="900"
+        Height="700"
+        Title="Witness Text"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+    <!-- Header -->
+    <StackPanel Grid.Row="0" Spacing="2" Margin="0,0,0,8">
+      <StackPanel Orientation="Horizontal" Spacing="10">
+        <Border Name="SiglumBadge"
+                Background="{DynamicResource AccentBrush}"
+                CornerRadius="4" Padding="6,2"
+                VerticalAlignment="Center">
+          <TextBlock Name="TxtSiglum" FontWeight="Bold" FontSize="13"/>
+        </Border>
+        <TextBlock Name="TxtLabel" FontSize="16" FontWeight="SemiBold"
+                   VerticalAlignment="Center" TextWrapping="Wrap"/>
+      </StackPanel>
+      <TextBlock Name="TxtMeta" FontSize="11" Opacity="0.7" Margin="0,4,0,0"
+                 TextWrapping="Wrap"/>
+    </StackPanel>
+
+    <!-- Status banner / source path -->
+    <Border Grid.Row="1"
+            Name="StatusBanner"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="10,6"
+            Margin="0,0,0,8"
+            IsVisible="False">
+      <TextBlock Name="TxtStatus" FontSize="11" TextWrapping="Wrap"/>
+    </Border>
+
+    <!-- Text body -->
+    <Border Grid.Row="2"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+        <SelectableTextBlock Name="TxtBody"
+                             FontFamily="Consolas, 'Microsoft YaHei', sans-serif"
+                             FontSize="13"
+                             Padding="12"
+                             TextWrapping="Wrap"/>
+      </ScrollViewer>
+    </Border>
+
+    <!-- Bottom buttons -->
+    <StackPanel Grid.Row="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8"
+                Margin="0,8,0,0">
+      <Button Name="BtnCopyAll" Content="Copy all" MinWidth="100"/>
+      <Button Name="BtnOpenSource" Content="Open source file..." MinWidth="140"/>
+      <Button Name="BtnClose" Content="Close" MinWidth="100"/>
+    </StackPanel>
+  </Grid>
+</Window>

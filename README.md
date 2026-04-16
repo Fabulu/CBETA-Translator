@@ -27,6 +27,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has six
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
 - `Masters`: database of 204 Chan/Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
+- `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support — driven by the `witnesses.json` delivery registry shipped with each critical edition
 
 There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
 
