@@ -19,12 +19,13 @@ It is built for actual text work:
 
 ## What Read Zen Covers Now
 
-Read Zen is no longer just a reader plus translation editor. The app now has five major work areas:
+Read Zen is no longer just a reader plus translation editor. The app now has six major work areas:
 - `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging
 - `Translate`: projection-based translation workflow with AI copy/paste, review, assistant, and source switching
 - `Search`: corpus search with KWIC, bilingual pairing, deep links, analytics, and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
+- `Masters`: database of 204 Chan/Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 
 There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
@@ -201,14 +202,35 @@ The Zen Dictionary / termbase can:
 - drive assistant highlights across Reader, Translate, and Scholar
 - open directly from deep links
 
-Zen Master management now has its own manager window.
-It centralizes:
-- master names
-- aliases
-- dates
-- community variants
+### Zen Master Database
 
-Both dictionary terms and masters support deep links.
+Read Zen ships with a curated database of **204 Chan/Zen masters** from Bodhidharma through the late Ming, covering the full arc of Chinese Chan history. Each master carries:
+
+- Dates (floruit + death), school, region
+- Full lineage connections — teacher + students, cross-linked
+- Biographical notes sourced from scholarly references
+- Reference links per master (Wikipedia EN/ZH, Terebess, encyclopedias, academic papers, museum pages) — **400+ links total**
+
+The **Masters tab** is a first-class tab in the main window with three sub-views:
+
+- **List** — filterable master list with rich detail pane (clickable teacher/student names jump between profiles)
+- **Corpus** — which texts in CBETA/OpenZen mention each master, split into primary (author/subject) vs secondary (quoted) with mention counts and snippets
+- **Lineage Web** — interactive graph of master-student relationships with pan, zoom (mousewheel + slider), search, and temporal Y-axis ordering
+
+The lineage taxonomy is rationalized per modern scholarship (McRae, Jia, Poceski) — Hongzhou, Caodong, Yunmen, Guiyang, Fayan, Linji, Heze, Early Chan. The polemical "Northern/Southern Chan" framing is avoided.
+
+### Master Corpus Search
+
+The app automatically scans all XML texts (~5,000 files) for zen master name mentions, building an index that:
+
+- Classifies each appearance as **primary** (master is author/subject) or **secondary** (mentioned/quoted)
+- Filters common Buddhist concept-names (法眼, 無門, 大慧, 國師, 六祖) that double as personal names, requiring longer-name corroboration
+- Extracts clean context snippets (XML fragments stripped)
+- Computes co-occurrence stats (who appears with whom in the same texts)
+
+Right-click any master to **Copy Link** or **Copy Reddit Link** — the latter produces a clean URL like `https://readzen.pages.dev/master/Linji_Yixuan` that opens a full profile page on the web. Deep links work both ways: `zen://master/...` URIs open the master manager in the app.
+
+In the Reader study panel, when a segment mentions a zen master the panel shows their bio with a **View Master →** button that jumps to their full profile.
 
 ## Community Sync
 
@@ -255,8 +277,10 @@ Every preview includes a download CTA for the desktop app, since the previews ar
 When the desktop app is installed, the preview page silently hands the link off to it on load and the browser tab becomes a no-op. This auto-open behavior can be disabled via a subtle footer toggle on the preview page for users who prefer to stay in the browser; an explicit "Open in Read Zen" button reappears when auto-open is off.
 
 **Examples:**
-- CBETA: the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/#/T48n2005/](https://readzen.pages.dev/#/T48n2005/)
-- OpenZen: the 1632 NDL Woodblock Reading Edition (*Wumenguan*, pd.wumenguan-1632) — [readzen.pages.dev/#/pd.wumenguan-1632/](https://readzen.pages.dev/#/pd.wumenguan-1632/)
+- CBETA: the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/T48n2005](https://readzen.pages.dev/T48n2005)
+- OpenZen: the 1632 NDL Woodblock Reading Edition (*Wumenguan*, pd.wumenguan-1632) — [readzen.pages.dev/pd.wumenguan-1632](https://readzen.pages.dev/pd.wumenguan-1632)
+- Zen Master: Linji Yixuan, founder of the Linji school — [readzen.pages.dev/master/Linji_Yixuan](https://readzen.pages.dev/master/Linji_Yixuan)
+- Zen Master: Wansong Xingxiu, compiler of the Book of Serenity — [readzen.pages.dev/master/Wansong_Xingxiu](https://readzen.pages.dev/master/Wansong_Xingxiu)
 
 ## Onboarding Tutorial
 

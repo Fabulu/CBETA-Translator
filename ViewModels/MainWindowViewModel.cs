@@ -886,7 +886,7 @@ public partial class MainWindowViewModel : ViewModelBase
                                 }
 
                                 if (!ct.IsCancellationRequested)
-                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} masters, {index.Appearances.Count} appearances)."));
+                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} of {catalog.Records.Count} masters found in {index.Appearances.Count} text appearances)."));
                             }
                         }
                     }
