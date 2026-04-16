@@ -871,6 +871,20 @@ public partial class MainWindowViewModel : ViewModelBase
                                 var index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
                                 await corpusSvc.SaveAsync(cacheDir, index, ct);
 
+                                // Export web-friendly versions to translations repo for readzen.pages.dev
+                                if (!string.IsNullOrEmpty(_translationRoot))
+                                {
+                                    try
+                                    {
+                                        await MasterCorpusSearchService.ExportMastersJsonAsync(_translationRoot, catalog, ct);
+                                        await MasterCorpusSearchService.ExportMasterCorpusJsonAsync(_translationRoot, index, ct);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}");
+                                    }
+                                }
+
                                 if (!ct.IsCancellationRequested)
                                     Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} masters, {index.Appearances.Count} appearances)."));
                             }
