@@ -52,7 +52,8 @@ public partial class EditionProcessDialog : Window
         DocumentsService? documentsService,
         TimelineService? timelineService = null,
         HumanLogService? humanLogService = null,
-        RenderedDocument? renderedTranslation = null)
+        RenderedDocument? renderedTranslation = null,
+        WitnessTextService? witnessTextService = null)
     {
         // Header
         var txtTitle = this.FindControl<TextBlock>("TxtDialogTitle");
@@ -75,6 +76,7 @@ public partial class EditionProcessDialog : Window
         TimelineInfo? timeline = null;
         string? humanLog = null;
 
+        WitnessTextRegistry? witnessRegistry = null;
         if (xmlAbsPath != null)
         {
             process = processService?.TryLoad(xmlAbsPath);
@@ -83,13 +85,14 @@ public partial class EditionProcessDialog : Window
             documents = documentsService?.TryLoad(xmlAbsPath);
             timeline = timelineService?.TryLoad(xmlAbsPath);
             humanLog = humanLogService?.TryLoad(xmlAbsPath);
+            witnessRegistry = witnessTextService?.TryLoad(xmlAbsPath);
         }
 
         // Store rendered doc for timeline text preview
         _finalRenderedDoc = renderedTranslation;
         _finalText = renderedTranslation?.Text;
 
-        PopulateSources(manifest);
+        PopulateSources(manifest, witnessRegistry);
         PopulateTimeline(timeline);
         PopulateLog(humanLog);
         PopulateProcess(process, manifest);
@@ -100,7 +103,7 @@ public partial class EditionProcessDialog : Window
 
     // ── Sources tab ──────────────────────────────────────────────────────
 
-    private void PopulateSources(ManifestInfo manifest)
+    private void PopulateSources(ManifestInfo manifest, WitnessTextRegistry? witnessRegistry)
     {
         var host = this.FindControl<StackPanel>("SourcesHost");
         if (host == null) return;
@@ -111,11 +114,49 @@ public partial class EditionProcessDialog : Window
             return;
         }
 
+        // If witnesses.json exists, show a banner noting the richer delivery data
+        if (witnessRegistry?.Witnesses is { Count: > 0 } entries)
+        {
+            var banner = new Border
+            {
+                Background = Avalonia.Media.Brushes.Transparent,
+                BorderBrush = Application.Current?.Resources["AccentBrush"] as Avalonia.Media.IBrush,
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(6),
+                Padding = new Thickness(10, 6),
+                Margin = new Thickness(0, 0, 0, 8),
+                Child = new TextBlock
+                {
+                    Text = $"✓ witnesses.json delivered — {entries.Count} witness(es) with locus-level comparison ready",
+                    FontSize = 11,
+                    FontWeight = Avalonia.Media.FontWeight.SemiBold,
+                    TextWrapping = TextWrapping.Wrap,
+                },
+            };
+            host.Children.Add(banner);
+        }
+
+        // Build lookup of witness_id -> registry entry for enriched cards
+        var registryByWitnessId = new Dictionary<string, WitnessTextEntry>(StringComparer.OrdinalIgnoreCase);
+        if (witnessRegistry?.Witnesses != null)
+        {
+            foreach (var entry in witnessRegistry.Witnesses)
+            {
+                if (!string.IsNullOrWhiteSpace(entry.WitnessId))
+                    registryByWitnessId[entry.WitnessId] = entry;
+            }
+        }
+
         foreach (var w in manifest.Witnesses)
-            host.Children.Add(BuildWitnessCard(w, manifest.BaseWitnessId));
+        {
+            WitnessTextEntry? enrichment = null;
+            if (!string.IsNullOrWhiteSpace(w.Id))
+                registryByWitnessId.TryGetValue(w.Id, out enrichment);
+            host.Children.Add(BuildWitnessCard(w, manifest.BaseWitnessId, enrichment));
+        }
     }
 
-    private static Border BuildWitnessCard(WitnessInfo w, string? baseWitnessId)
+    private static Border BuildWitnessCard(WitnessInfo w, string? baseWitnessId, WitnessTextEntry? enrichment = null)
     {
         var stack = new StackPanel { Spacing = 2 };
 
@@ -213,6 +254,60 @@ public partial class EditionProcessDialog : Window
                 Background = new SolidColorBrush(bg),
                 Child = new TextBlock { Text = $"vetting: {w.VettingConfidence}", FontSize = 10, FontWeight = FontWeight.SemiBold },
             });
+        }
+
+        // Enrichment from witnesses.json (delivery registry)
+        if (enrichment != null)
+        {
+            var sep = new Border
+            {
+                Height = 1,
+                Background = new SolidColorBrush(Color.FromArgb(60, 128, 128, 128)),
+                Margin = new Thickness(0, 4, 0, 4),
+            };
+            stack.Children.Add(sep);
+
+            var deliveryPanel = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+            deliveryPanel.Children.Add(new TextBlock
+            {
+                Text = "Delivery:",
+                FontSize = 10,
+                FontWeight = FontWeight.SemiBold,
+                Opacity = 0.8,
+                VerticalAlignment = VerticalAlignment.Center,
+            });
+            if (!string.IsNullOrWhiteSpace(enrichment.Siglum))
+            {
+                deliveryPanel.Children.Add(new Border
+                {
+                    Background = new SolidColorBrush(Color.FromArgb(40, 140, 0, 200)),
+                    CornerRadius = new CornerRadius(4), Padding = new Thickness(5, 1),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Child = new TextBlock { Text = enrichment.Siglum, FontSize = 10, FontWeight = FontWeight.Bold },
+                });
+            }
+            deliveryPanel.Children.Add(new TextBlock
+            {
+                Text = enrichment.StatusDisplay,
+                FontSize = 10, Opacity = 0.85,
+                VerticalAlignment = VerticalAlignment.Center,
+            });
+            stack.Children.Add(deliveryPanel);
+
+            var bits = new List<string>();
+            if (!string.IsNullOrWhiteSpace(enrichment.AlignmentMode))
+                bits.Add($"alignment: {enrichment.AlignmentMode}");
+            if (!string.IsNullOrWhiteSpace(enrichment.Completeness))
+                bits.Add(enrichment.Completeness);
+            if (!string.IsNullOrWhiteSpace(enrichment.Confidence))
+                bits.Add($"confidence: {enrichment.Confidence}");
+            if (enrichment.HasLocusMap) bits.Add("locus-map ready");
+            if (bits.Count > 0)
+                stack.Children.Add(new TextBlock
+                {
+                    Text = string.Join(" | ", bits),
+                    FontSize = 10, Opacity = 0.7,
+                });
         }
 
         return new Border
