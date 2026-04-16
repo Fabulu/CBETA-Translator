@@ -2006,6 +2006,7 @@ private async Task LoadConfigAndAutoloadAsync()
             var docsSvc = App.Services.GetService<DocumentsService>();
             var timelineSvc = App.Services.GetService<TimelineService>();
             var logSvc = App.Services.GetService<HumanLogService>();
+            var witnessSvc = App.Services.GetService<WitnessTextService>();
 
             // Get the current rendered translation for the text preview
             RenderedDocument? renderedTran = null;
@@ -2014,7 +2015,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
             dialog.Load(manifest, xmlAbsPath,
                 processSvc, apparatusSvc, statsSvc, docsSvc,
-                timelineSvc, logSvc, renderedTran);
+                timelineSvc, logSvc, renderedTran, witnessSvc);
 
             dialog.Closed += (_, _) => _editionDialogOpen = false;
             dialog.Show(this);

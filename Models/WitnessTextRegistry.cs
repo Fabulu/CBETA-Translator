@@ -82,6 +82,15 @@ public sealed class WitnessTextEntry
     public bool HasHumanCheck { get; set; }
 
     /// <summary>
+    /// Which alignment-status values this witness can report.
+    /// Subset of: "present", "omitted", "lacuna", "unreadable", "uncertain_span".
+    /// Informs UI badges and filters — if a witness never declares 'lacuna',
+    /// the UI can hide the "lacunae" filter option for it.
+    /// </summary>
+    [JsonPropertyName("alignment_statuses_supported")]
+    public List<string>? AlignmentStatusesSupported { get; set; }
+
+    /// <summary>
     /// Inline locus-level readings. Key = locus_id, value = reading text.
     /// Used for comparison when a separate locus map file doesn't exist.
     /// </summary>
