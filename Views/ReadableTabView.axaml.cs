@@ -5267,6 +5267,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 {
                     var win = new PdfEvidenceWindow();
                     win.LoadPageImageEvidence(imgPath, $"{witnessId} — {locus}");
+                    // Load OCR readings for the side panel
+                    var ocrPageId = PdfEvidenceWindow.ExtractPageIdFromLocus(locus);
+                    if (ocrPageId != null)
+                        win.LoadOcrReadings(ocrBase, witnessId, ocrPageId);
                     win.Show();
                 }
                 else

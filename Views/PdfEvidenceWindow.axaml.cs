@@ -9,6 +9,7 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using System.Linq;
 using ReadZen.App.Services;
 
 namespace ReadZen.App.Views;
@@ -27,6 +28,11 @@ public partial class PdfEvidenceWindow : Window
     private double _zoom = 1.0;
     private bool _downloadWired;
     private bool _witnessSelectorWired;
+    private bool _ocrToggleWired;
+    private bool _ocrPanelVisible;
+    private string? _ocrBaseDir2;
+    private string? _ocrSiglum;
+    private string? _ocrPageId;
 
     // Region coordinates (percentages 0.0-1.0), set when evidence has specific coords
     private double _regionX;
@@ -300,6 +306,9 @@ public partial class PdfEvidenceWindow : Window
             if (newPath != null)
             {
                 LoadPageImageEvidence(newPath, newSiglum);
+                // Reload OCR readings for the new witness
+                if (_ocrBaseDir2 != null && _ocrPageId != null)
+                    LoadOcrReadings(_ocrBaseDir2, newSiglum, _ocrPageId);
             }
             else
             {
@@ -410,5 +419,133 @@ public partial class PdfEvidenceWindow : Window
     {
         var banner = this.FindControl<Border>("StatusBanner");
         if (banner != null) banner.IsVisible = false;
+    }
+
+    /// <summary>
+    /// Loads OCR engine readings for a page and populates the side panel.
+    /// </summary>
+    /// <param name="ocrBaseDir">Base directory containing witness OCR data.</param>
+    /// <param name="siglum">Witness siglum (e.g. "T1").</param>
+    /// <param name="pageId">Page identifier (e.g. "p008").</param>
+    public void LoadOcrReadings(string ocrBaseDir, string siglum, string pageId)
+    {
+        _ocrBaseDir2 = ocrBaseDir;
+        _ocrSiglum = siglum;
+        _ocrPageId = pageId;
+
+        var engineTexts = WitnessOcrLoader.LoadAllEngineTexts(ocrBaseDir, siglum, pageId);
+
+        var panel = this.FindControl<Border>("OcrPanel");
+        var content = this.FindControl<StackPanel>("OcrContent");
+        var toggleBtn = this.FindControl<Button>("BtnToggleOcr");
+        if (content == null || toggleBtn == null) return;
+
+        content.Children.Clear();
+
+        // Engine display names
+        var engineLabels = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["rapidocr"] = "Rapid",
+            ["tesseract-full-pass"] = "Tess",
+            ["paddleocr-ppocrv4"] = "Paddle",
+            ["easyocr-full-pass"] = "Easy",
+        };
+
+        // Canonical order
+        var orderedEngines = new[] { "rapidocr", "tesseract-full-pass", "paddleocr-ppocrv4", "easyocr-full-pass" };
+
+        // Also include any engines not in canonical list
+        var allEngines = new List<string>(orderedEngines);
+        foreach (var key in engineTexts.Keys)
+        {
+            if (!allEngines.Contains(key, StringComparer.OrdinalIgnoreCase))
+                allEngines.Add(key);
+        }
+
+        bool anyEngine = false;
+        foreach (var engine in allEngines)
+        {
+            string label = engineLabels.TryGetValue(engine, out var l) ? l : engine;
+            string text;
+            bool hasText = engineTexts.TryGetValue(engine, out var t) && !string.IsNullOrWhiteSpace(t);
+            text = hasText ? t! : "(not available)";
+            if (hasText) anyEngine = true;
+
+            var header = new TextBlock
+            {
+                Text = label,
+                FontSize = 11,
+                FontWeight = FontWeight.SemiBold,
+                Opacity = hasText ? 1.0 : 0.5,
+                Margin = new Thickness(0, 4, 0, 2),
+            };
+
+            var body = new TextBlock
+            {
+                Text = text,
+                FontSize = 12,
+                FontFamily = new FontFamily("Consolas, monospace"),
+                TextWrapping = TextWrapping.Wrap,
+                Opacity = hasText ? 1.0 : 0.4,
+                Margin = new Thickness(0, 0, 0, 2),
+            };
+
+            var separator = new Border
+            {
+                Height = 1,
+                Opacity = 0.3,
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = Brushes.Gray,
+                Margin = new Thickness(0, 2, 0, 0),
+            };
+
+            content.Children.Add(header);
+            content.Children.Add(body);
+            content.Children.Add(separator);
+        }
+
+        // Show toggle button if any engine data exists (even "not available" entries)
+        if (allEngines.Count > 0 || anyEngine)
+        {
+            toggleBtn.IsVisible = true;
+            WireOcrToggle();
+        }
+    }
+
+    /// <summary>
+    /// Extracts a page ID from a locus string (e.g. "T1-p008.l01" becomes "p008").
+    /// </summary>
+    internal static string? ExtractPageIdFromLocus(string locus)
+    {
+        if (string.IsNullOrEmpty(locus)) return null;
+
+        // Strip .lNN suffix
+        var page = locus;
+        var dotIdx = locus.LastIndexOf('.');
+        if (dotIdx > 0 && dotIdx < locus.Length - 1 && locus[dotIdx + 1] == 'l')
+            page = locus[..dotIdx];
+
+        // Extract page portion after the last '-p'
+        var pIdx = page.LastIndexOf("-p", StringComparison.Ordinal);
+        if (pIdx < 0) return null;
+
+        return page[(pIdx + 1)..]; // e.g. "p008"
+    }
+
+    private void WireOcrToggle()
+    {
+        if (_ocrToggleWired) return;
+        _ocrToggleWired = true;
+
+        var toggleBtn = this.FindControl<Button>("BtnToggleOcr");
+        if (toggleBtn == null) return;
+
+        toggleBtn.Click += (_, _) =>
+        {
+            _ocrPanelVisible = !_ocrPanelVisible;
+            var panel = this.FindControl<Border>("OcrPanel");
+            if (panel != null) panel.IsVisible = _ocrPanelVisible;
+            toggleBtn.Content = _ocrPanelVisible ? "Hide OCR \u25C2" : "Show OCR \u25B8";
+        };
     }
 }
