@@ -79,9 +79,8 @@ public sealed class LineageGraphViewModel
         ["Fayan"] = Color.FromRgb(0, 150, 136),
         ["Guiyang"] = Color.FromRgb(255, 143, 0),
         ["Hongzhou"] = Color.FromRgb(76, 175, 80),
-        ["Northern Chan"] = Color.FromRgb(120, 144, 156),
-        ["Southern Chan"] = Color.FromRgb(255, 183, 77),
         ["Niutou"] = Color.FromRgb(121, 85, 72),
+        ["Early Chan"] = Color.FromRgb(180, 160, 130),
         ["Chan"] = Color.FromRgb(158, 158, 158),
     };
 
