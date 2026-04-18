@@ -104,6 +104,45 @@ public sealed class ManifestInfo
 
     [JsonPropertyName("year_composed")]
     public string? YearComposed { get; set; }
+
+    // ─── Structured date provenance (Phase D of RUN-20260416-2302) ───
+    // Critical editions have four meaningfully-distinct dates that the old
+    // `year_composed` alone collapses. These fields are optional; for
+    // backward-compat, editions without them fall back to displaying
+    // `year_composed`. Strings rather than ints so we can carry "ca. 1228"
+    // or "1632 (Waseda recut 1752)".
+
+    /// <summary>
+    /// When the original work was composed (e.g. 1228 for Wumen Huikai's
+    /// compilation). Distinct from when any specific physical witness was
+    /// made.
+    /// </summary>
+    [JsonPropertyName("composition_date")]
+    public string? CompositionDate { get; set; }
+
+    /// <summary>
+    /// When the physical manuscript / imprint used as the base witness was
+    /// produced (e.g. "1632" for the NDL Wumenguan woodblock).
+    /// </summary>
+    [JsonPropertyName("manuscript_date")]
+    public string? ManuscriptDate { get; set; }
+
+    /// <summary>
+    /// When the text was shaped by later hands after initial composition —
+    /// source-critical material like Anwan's case 49 addendum to the
+    /// Wumenguan. Free-text since redaction can span periods or involve
+    /// multiple hands.
+    /// </summary>
+    [JsonPropertyName("redaction_date")]
+    public string? RedactionDate { get; set; }
+
+    /// <summary>
+    /// When the editorial decisions about readings in THIS edition were
+    /// made (e.g. "2026-04" for our reading edition work). The layer of
+    /// modern textual criticism on top of the physical witness.
+    /// </summary>
+    [JsonPropertyName("textual_criticism_date")]
+    public string? TextualCriticismDate { get; set; }
 }
 
 public sealed class WitnessInfo

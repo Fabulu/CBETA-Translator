@@ -17,6 +17,46 @@ It is built for actual text work:
 - manage terminology, master metadata, tags, and reviews
 - sync personal and shared work through GitHub-backed workflows
 
+## Download & Install
+
+Read Zen ships as self-contained binaries — no .NET runtime install needed.
+
+### Get it
+
+Latest release: **[github.com/Fabulu/ReadZen/releases/latest](https://github.com/Fabulu/ReadZen/releases/latest)**
+
+| OS | Artifact | Notes |
+|---|---|---|
+| Windows | `ReadZen-win-x64-vX.Y.Z.zip` | Extract anywhere, run `ReadZen.App.exe`. SmartScreen warning expected on first launch (see below). |
+| Linux | `ReadZen-linux-x64-vX.Y.Z.tar.gz` | Extract, `chmod +x ReadZen.App`, run. AppImage auto-update coming in v4.5. |
+| macOS (Apple Silicon) | `ReadZen-osx-arm64-vX.Y.Z.zip` | Extract, may need to allow in System Settings → Privacy & Security on first launch. |
+| macOS (Intel) | `ReadZen-osx-x64-vX.Y.Z.zip` | Same as Apple Silicon. |
+
+A proper installer with auto-update (Velopack) lands in v4.5. Until then, updating means downloading a new zip.
+
+### Windows users: `winget install ReadZen`
+
+Once the manifest is live in microsoft/winget-pkgs (see `docs/WINGET_SETUP.md` for bootstrap status), you can install and update Read Zen through WinGet instead of the zip:
+
+```powershell
+winget install Fabulu.ReadZen
+```
+
+Microsoft serves the binary from its CDN, so there's no SmartScreen warning. `winget upgrade Fabulu.ReadZen` picks up new releases automatically — the CI workflow PRs an updated manifest on every GitHub release.
+
+### Known friction (and why)
+
+Read Zen is a small open-source project without commercial signing certificates. That means three things you should expect on first launch (unless you install via WinGet, which bypasses Windows SmartScreen entirely):
+
+- **Windows SmartScreen warning** — "Windows protected your PC". Click **More info → Run anyway**. We don't pay Microsoft $120/yr for an Azure Trusted Signing certificate. The source is at [Fabulu/ReadZen](https://github.com/Fabulu/ReadZen) — verify if you want. *Or skip all of this with `winget install Fabulu.ReadZen`.*
+- **macOS Gatekeeper block** — "Read Zen.app cannot be opened because the developer cannot be verified." On macOS 14: right-click the app → **Open**. On macOS 15+: System Settings → **Privacy & Security** → scroll to "Read Zen was blocked" → **Open Anyway**.
+- **Linux** — no signing involved, but you'll need to `chmod +x` the binary the first time. AppImage builds with auto-update arrive in v4.5.
+
+### Prerequisites for full functionality
+
+- **Git** is required for text download and sync. The app auto-discovers system Git or falls back to a bundled binary on Windows. [Install Git](https://git-scm.com/downloads) if you don't have it.
+- **GitHub account** is required only if you want to share translations or contribute back. Read-only browsing of all corpora works without one.
+
 ## What Read Zen Covers Now
 
 Read Zen is no longer just a reader plus translation editor. The app now has six major work areas:
@@ -29,7 +69,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has six
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 - `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support — driven by the `witnesses.json` delivery registry shipped with each critical edition
 
-There is also a built-in onboarding tutorial that walks through the current workflow inside the app.
+There is also a built-in onboarding tutorial that walks through the current workflow inside the app. The first 4 steps are **mandatory setup** (welcome → Git check → choose folder + download corpus → build search index); after that, everything is optional and you can skip out at any time. The tutorial can be replayed any time from **Settings → Onboarding Tour**.
 
 ## Important Licensing Note
 
@@ -103,12 +143,17 @@ What it does:
 - open the full Zen Dictionary with `Dict`
 - add and read community notes inline
 - create deep links or add passages to Scholar from right-click menus
+- find-in-text bar (`Ctrl+F`) with next/previous (`Enter` / `Shift+Enter`) and `Escape` to close
+- timeline slider for time-traveling translations to any prior commit (when version history is available)
+- markers legend for footnote / community-note color coding
+- version history picker (right-click translation → **Translation History**) browses and restores any prior Git version of a translation
 
 The Reader has a built-in **Study Assistant** panel that shows:
 - hover dictionary lookups (CC-CEDICT) on any Chinese text
 - recognized termbase entries highlighted in the text
 - translation memory matches from approved and reference TM
 - context from the active translation source
+- when a passage mentions a Zen master, a bio card with **View Master →** button
 
 The Reader has a **Provenance Panel** (toggle via "Provenance" checkbox in the toolbar) that shows:
 - source witnesses with SHA-256 hashes, capture dates, and vetting confidence
@@ -122,9 +167,10 @@ A **license chip** in the top bar shows the current file's SPDX license at a gla
 Reader also contains the coding/tagging workflow:
 - `F2` enters Coding Mode
 - create and manage tag vocabularies
-- apply tags by keyboard shortcuts
+- apply tags by keyboard shortcuts (`W`, `1`-`9`, `E`, `Q`, `Tab`, `Space+#`)
 - switch tag user with the existing user picker
-- compare your tag layer with another user's layer
+- compare your tag layer with another user's layer in **Compare Tags** (3-pane view: yours / theirs / overlay)
+- cross-reference tag layers with Scholar collections via the `N` key
 
 ## Translate
 
@@ -138,12 +184,17 @@ Key rules of the editor:
 - large numbered batch pastes across many blocks are supported
 
 Translate supports:
-- `Body` and `Notes` translation sections
-- `Copy for AI` to export numbered blocks with strict instructions
-- `Paste from AI` to reinsert numbered results safely
-- per-block review controls (approve / needs-work with `Alt+A` / `Alt+N`)
+- `Body` (`Ctrl+2`) and `Notes` (`Ctrl+3`) translation sections
+- `Copy for AI` (`Ctrl+Shift+C`) to export numbered blocks with strict instructions
+- `Paste from AI` (`Ctrl+Shift+V`) to reinsert numbered results safely
+- per-block review controls: approve (`Alt+A` or `F9`), needs-work (`F11`)
+- chunk-size selector for AI batching
+- block navigation (`F8`, `Alt+Right`, `Alt+Left`)
+- save (`Ctrl+S`), revert (`Ctrl+R`), undo/redo (`Ctrl+Z` / `Ctrl+Y`)
+- find Chinese in EN text (`Ctrl+Shift+F`) — surfaces accidental untranslated CJK
 - a `Fresh Start` option to reset the current writable translation back to untranslated state with confirmation
 - personal-vs-other-user translation source switching
+- **Translation History** dialog (right-click) — browse and restore any prior committed version of the current translation
 
 The Translate tab has a built-in **Translation Assistant** that shows:
 - termbase hits highlighted in the Chinese source text
@@ -165,6 +216,8 @@ Current features:
 - corpus exports in multiple formats
 - optional search analytics and a slower corpus-wide analytics mode
 - deep-linkable search state
+- index rebuild button (Search settings) — forces a full re-index across all roots
+- parallel passage search (`Ctrl+Shift+P`) — finds passages with shared phrasing across translations
 
 Search also supports:
 - hover dictionary on Chinese result content
@@ -193,6 +246,17 @@ Scholar has its own **Passage Assistant** that provides termbase hits and transl
 
 Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
 
+## Code Analytics
+
+The tagging/coding workflow has its own analytics surface available from the Reader's coding mode toolbar:
+
+- **Frequency Report** (`CodeFrequencyWindow`) — counts of every tag across selected files, sortable, exportable
+- **Co-occurrence Matrix** (`CodeCooccurrenceWindow`) — which tags appear together, normalized + raw counts
+- **Query Builder** (`QueryBuilderWindow`) — a small AND / OR / NOT DSL over tag combinations to surface passages matching complex tag queries
+- **Vocabulary Analysis** (`VocabularyAnalysisDialog`) — phrase-level frequency for a selected text or tag group, useful for terminology mining
+
+These tools are most useful once you have a tagged corpus of meaningful size — a few dozen tagged passages per tag minimum.
+
 ## Zen Dictionary And Zen Masters
 
 Read Zen includes a full terminology workflow.
@@ -214,9 +278,9 @@ Read Zen ships with a curated database of **204 Chan/Zen masters** from Bodhidha
 
 The **Masters tab** is a first-class tab in the main window with three sub-views:
 
-- **List** — filterable master list with rich detail pane (clickable teacher/student names jump between profiles)
+- **List** — searchable / filterable master list with rich detail pane (clickable teacher/student names jump between profiles), with **Edit Dates** for in-place metadata fixes and **Copy Link** / **Copy Reddit Link** right-click actions
 - **Corpus** — which texts in CBETA/OpenZen mention each master, split into primary (author/subject) vs secondary (quoted) with mention counts and snippets
-- **Lineage Web** — interactive graph of master-student relationships with pan, zoom (mousewheel + slider), search, and temporal Y-axis ordering
+- **Lineage Web** — interactive graph of master-student relationships with pan, zoom (mousewheel + zoom slider), search, **Center** button, and temporal Y-axis ordering (death year drives Y position)
 
 The lineage taxonomy is rationalized per modern scholarship (McRae, Jia, Poceski) — Hongzhou, Caodong, Yunmen, Guiyang, Fayan, Linji, Heze, Early Chan. The polemical "Northern/Southern Chan" framing is avoided.
 
@@ -242,9 +306,45 @@ Important model:
 - personal share files can auto-merge through the community data flow
 - canonical/shared translation updates are handled separately from personal translation storage
 - commits and pull requests target the translations repo only
-- recovery actions exist, but the normal `Sync` path is the intended workflow
+- GitHub authentication uses the **device flow** (`DeviceCodeDialog`) — no callback URL, paste a short code into github.com on any device
+- recovery actions exist (Advanced section), but the normal `Sync` path is the intended workflow
+- a **Cancel** button stops in-progress sync; **Pick Location** lets you change repo parent folder; the **Panic** button is a last-resort escape hatch
 
 Read Zen tries to protect local work during updates, but this is still a Git-backed workflow. If something feels destructive, stop and inspect before proceeding.
+
+## Settings, Updates, and Other Windows
+
+A few support surfaces worth knowing:
+
+- **Settings** — theme, username, hover dictionary on/off, **Restart onboarding tour on next launch** checkbox to re-run the tutorial
+- **Update notification bar** — when a newer release exists on GitHub, a green banner appears with a **Download** button. Currently this opens the GitHub releases page; v4.5 will deliver in-app auto-update via Velopack.
+- **Licenses Window** — app license + third-party notices in one place
+- **Document Variables** — show all metadata variables for the active document
+- **Witness Text Viewer** — opens the full delivered text of any witness from the Witness Comparison popup
+- **Edition Process Dialog** — for OpenZen critical editions, a multi-tab view of Sources / Timeline / Log / Process / Apparatus / Stats / Documents
+
+## Keyboard Shortcuts
+
+| Shortcut | Action | Where |
+|---|---|---|
+| `Ctrl+D` | Open Zen Dictionary | Reader, Translate |
+| `Ctrl+F` | Find in current text | Reader |
+| `F2` | Enter / exit Coding mode | Reader |
+| `Ctrl+2` / `Ctrl+3` | Switch Body / Notes | Translate |
+| `Ctrl+Shift+C` | Copy blocks for AI | Translate |
+| `Ctrl+Shift+V` | Paste numbered blocks from AI | Translate |
+| `F8` / `Alt+Right` | Next block | Translate |
+| `Alt+Left` | Previous block | Translate |
+| `Alt+A` / `F9` | Approve current block | Translate |
+| `F11` | Mark current block as needs work | Translate |
+| `Ctrl+S` | Save | Translate |
+| `Ctrl+R` | Revert | Translate |
+| `Ctrl+Z` / `Ctrl+Y` | Undo / Redo | Translate |
+| `Ctrl+Shift+F` | Find Chinese in EN text | Translate |
+| `Ctrl+Shift+P` | Parallel passages search | Search, Scholar |
+| `W` / `1`-`9` / `E` / `Q` / `Tab` / `Space+#` | Apply tag in Coding mode | Reader (Coding) |
+| `N` | Cross-reference scholar passage with tag layer | Reader (Coding) |
+| `Enter` / `Shift+Enter` / `Escape` | Find bar: next / previous / close | Reader |
 
 ## Deep Links And Web Preview
 
@@ -285,21 +385,21 @@ When the desktop app is installed, the preview page silently hands the link off 
 
 ## Onboarding Tutorial
 
-The app includes an in-app tutorial with **43 guided steps** covering:
-- initial text download / setup
-- Reader basics
-- hover dictionary and the full dictionary window
+The app includes an in-app tutorial with **56 guided steps**. The first 4 are mandatory setup (welcome → Git check → download corpus → build index) — the app can't function without them so the Skip button is hidden. Everything past that is opt-in, with Skip available on every step. Topics covered:
+
+- Reader basics, hover dictionary, full dictionary window
 - Study panel
-- tagging/coding mode
-- corpus switching and provenance
+- Tagging / coding mode
+- Corpus switching and provenance
 - Translate workflow
 - Search workflow
-- Scholar collections/workspace/shared model
-- Zen Dictionary and Zen Master Manager
-- Community sync
-- deep links and right-click actions
+- Scholar collections / workspace / shared model
+- Zen Dictionary and the **Masters tab** (List / Corpus / Lineage Web / Web profiles)
+- **Witness Comparison** and Witness Text Viewer (critical editions)
+- Community sync via GitHub device flow
+- Deep links and right-click actions
 
-The tutorial is the quickest way to see how the current app is supposed to be used.
+You can replay the tutorial any time from **Settings → Onboarding Tour → Restart onboarding tour on next launch**.
 
 ## Performance Philosophy
 
@@ -328,9 +428,9 @@ Built with:
 | [Fabulu/OpenZenTranslations](https://github.com/Fabulu/OpenZenTranslations) | OpenZenTexts translations + community data |
 | [Fabulu/readzen-page](https://github.com/Fabulu/readzen-page) | Web preview SPA (readzen.pages.dev) |
 
-## Building
+## For Developers
 
-If you just want to use Read Zen, use a release build.
+If you want to build from source instead of grabbing a release.
 
 ### Windows
 ```bash
@@ -359,16 +459,7 @@ Assets/Dict/cedict_ts.u8
 ```bash
 dotnet test
 ```
-882 automated tests covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, and view model logic.
-
-## Git / GitHub Requirements
-
-For text download and sync, you need Git available.
-For GitHub-backed sharing, you also need a GitHub account.
-
-Useful links:
-- Git: https://git-scm.com/downloads
-- GitHub signup: https://github.com/signup
+**1044 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
 
 ## Contributing
 

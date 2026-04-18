@@ -11,9 +11,44 @@ public sealed class OnboardingTourService
     public TourStep? CurrentStep => CurrentIndex >= 0 && CurrentIndex < Steps.Count ? Steps[CurrentIndex] : null;
     public bool IsActive { get; private set; }
 
+    /// <summary>
+    /// True when the service is running the mandatory setup phase (steps 0
+    /// through <see cref="SetupStepCount"/>-1). False during the optional
+    /// feature tour. Controls what progress text the tooltip shows.
+    /// </summary>
+    public bool IsInSetupPhase { get; private set; }
+
+    /// <summary>Number of mandatory setup steps (welcome → git → download → index).</summary>
+    public int SetupStepCount { get; private set; }
+
+    /// <summary>Number of optional feature-tour steps (everything after setup).</summary>
+    public int FeatureTourStepCount => Steps.Count - SetupStepCount;
+
+    /// <summary>
+    /// Returns the step index relative to the CURRENT PHASE so the tooltip
+    /// shows "Step 1 of 4" during setup and "Step 1 of 52" during the tour,
+    /// never "Step 1 of 56".
+    /// </summary>
+    public int PhaseRelativeIndex => IsInSetupPhase
+        ? CurrentIndex
+        : CurrentIndex - SetupStepCount;
+
+    /// <summary>Total steps in the current phase.</summary>
+    public int PhaseStepCount => IsInSetupPhase
+        ? SetupStepCount
+        : FeatureTourStepCount;
+
     public event EventHandler<TourStep>? StepChanged;
     public event EventHandler? TourCompleted;
     public event EventHandler? TourSkipped;
+
+    /// <summary>
+    /// Fires when the mandatory setup phase finishes (last mandatory step
+    /// advances). The UI should show a "Take the tour?" prompt; if the user
+    /// declines, call <see cref="Complete"/>. If they accept, call
+    /// <see cref="StartFeatureTour"/>.
+    /// </summary>
+    public event EventHandler? SetupPhaseCompleted;
 
     private DateTime _lastAdvanceUtc;
 
@@ -25,12 +60,32 @@ public sealed class OnboardingTourService
     public OnboardingTourService()
     {
         BuildSteps();
+        SetupStepCount = Steps.FindIndex(s => !s.IsMandatory);
+        if (SetupStepCount < 0) SetupStepCount = Steps.Count; // all mandatory (shouldn't happen)
     }
 
+    /// <summary>
+    /// Starts the mandatory setup phase. Progress shows "Step 1 of N"
+    /// where N is the number of mandatory steps — not the total.
+    /// </summary>
     public void Start(int startIndex = 0)
     {
         IsActive = true;
-        CurrentIndex = Math.Max(0, Math.Min(startIndex, Steps.Count - 1));
+        IsInSetupPhase = true;
+        CurrentIndex = Math.Max(0, Math.Min(startIndex, SetupStepCount - 1));
+        StepChanged?.Invoke(this, CurrentStep!);
+    }
+
+    /// <summary>
+    /// Starts the optional feature tour from the first non-mandatory step.
+    /// Called when the user clicks "Take the Tour" after setup completes.
+    /// </summary>
+    public void StartFeatureTour()
+    {
+        if (SetupStepCount >= Steps.Count) { Complete(); return; }
+        IsActive = true;
+        IsInSetupPhase = false;
+        CurrentIndex = SetupStepCount;
         StepChanged?.Invoke(this, CurrentStep!);
     }
 
@@ -39,6 +94,15 @@ public sealed class OnboardingTourService
         var now = DateTime.UtcNow;
         if ((now - _lastAdvanceUtc).TotalMilliseconds < DebounceMs) return;
         _lastAdvanceUtc = now;
+
+        // End of setup phase → fire SetupPhaseCompleted instead of advancing
+        // into the feature tour. The UI decides whether to continue.
+        if (IsInSetupPhase && CurrentIndex >= SetupStepCount - 1)
+        {
+            IsActive = false;
+            SetupPhaseCompleted?.Invoke(this, EventArgs.Empty);
+            return;
+        }
 
         if (CurrentIndex < Steps.Count - 1)
         {
@@ -53,15 +117,25 @@ public sealed class OnboardingTourService
 
     public void Previous()
     {
-        if (CurrentIndex > 0)
+        // Don't go back past the phase boundary
+        int lowerBound = IsInSetupPhase ? 0 : SetupStepCount;
+        if (CurrentIndex > lowerBound)
         {
             CurrentIndex--;
             StepChanged?.Invoke(this, CurrentStep!);
         }
     }
 
+    /// <summary>
+    /// True when the active step is part of the mandatory setup (git, download, index build).
+    /// Skip is refused while this is true — the app can't function without those steps.
+    /// </summary>
+    public bool IsCurrentStepMandatory =>
+        CurrentStep is { IsMandatory: true };
+
     public void Skip()
     {
+        if (IsCurrentStepMandatory) return; // refuse — mandatory setup must be completed
         IsActive = false;
         TourSkipped?.Invoke(this, EventArgs.Empty);
     }
@@ -89,9 +163,10 @@ public sealed class OnboardingTourService
         {
             Id = "welcome",
             Title = "Welcome to Read Zen",
-            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from two collections: CBETA and OpenZen.\n\nLet's get you set up \u2014 it only takes a minute.",
+            Body = "This tool helps you read, translate, and study classical Chinese Zen texts from two collections: CBETA and OpenZen.\n\nWe just need to do three quick things: check for Git, pick a folder, and download the texts.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Center,
+            IsMandatory = true
         });
 
         Steps.Add(new TourStep
@@ -101,7 +176,8 @@ public sealed class OnboardingTourService
             Body = "We need Git to download texts. Checking your system...",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Center,
-            WaitForEvent = "git-check-complete"
+            WaitForEvent = "git-check-complete",
+            IsMandatory = true
         });
 
         Steps.Add(new TourStep
@@ -115,7 +191,8 @@ public sealed class OnboardingTourService
             SwitchToTabIndex = 3,
             WaitForEvent = "root-cloned",
             ActionButtonLabel = "Choose Folder + Download",
-            CanSkipWait = true
+            CanSkipWait = true,
+            IsMandatory = true
         });
 
         Steps.Add(new TourStep
@@ -125,14 +202,15 @@ public sealed class OnboardingTourService
             Body = "Building a search index across the entire corpus. This runs automatically and takes a moment.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Center,
-            WaitForEvent = "index-built"
+            WaitForEvent = "index-built",
+            IsMandatory = true
         });
 
         Steps.Add(new TourStep
         {
             Id = "sidebar",
             Title = "Your Text Library",
-            Body = "Here are all the texts in the collection. Use the search box above the list to filter titles quickly. You can also collapse the sidebar or the top command bar later if you want more reading space.\n\nRed = not yet translated\nYellow = partially translated\nGreen = fully translated\n\nClick any text to start reading.",
+            Body = "Here's the text library. Use the search box above to filter by title.\n\n\u2022 Red = not yet translated\n\u2022 Yellow = partially translated\n\u2022 Green = fully translated\n\nClick any text to start reading.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
             TargetControlName = "FilesList"
@@ -524,13 +602,62 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "zen-master-manager",
-            Title = "Zen Master Manager",
-            Body = "Use the Zen Master Manager to browse information about Zen masters \u2014 names, aliases, dates, and community contributions \u2014 all in one place. You can also open a master directly from links shared by other users.",
+            Id = "masters-tab",
+            Title = "Zen Masters Tab",
+            Body = "The Masters tab is its own first-class workspace. Read Zen ships with **204 Chan/Zen masters** from Bodhidharma through the late Ming, with dates, schools, lineage connections, biographies, and 400+ reference links.\n\nIt has three sub-views: List, Corpus, and Lineage Web.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            SwitchToTabIndex = 5,
+            TargetControlName = "BtnOpenMasters"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "masters-list",
+            Title = "Browse Masters",
+            Body = "The List view lets you filter through all 204 masters, see their bio, school affiliation, and lineage connections. Teacher and student names are clickable \u2014 jump between profiles to trace any lineage.\n\nRight-click a master for **Copy Link** / **Copy Reddit Link** to share their web profile, or **Edit Dates** to fix metadata in place.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
-            SwitchToTabIndex = 4,
-            TargetControlName = "ScholarView"
+            SwitchToTabIndex = 5
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "masters-corpus",
+            Title = "Master Corpus Search",
+            Body = "The Corpus view shows you which texts in CBETA and OpenZen mention each master \u2014 split into **primary** appearances (master is author/subject) and **secondary** (mentioned/quoted). It runs over all ~5,000 corpus files automatically and gives you snippets with context.\n\nA concept-name filter (\u6cd5\u773c, \u7121\u9580, \u5927\u6167, \u570b\u5e2b, \u516d\u7956) keeps Buddhist concept-words from being mistaken for personal names.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 5
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "masters-lineage",
+            Title = "Lineage Web",
+            Body = "The Lineage Web is an interactive graph of master\u2013student relationships. Pan with the mouse, zoom with the wheel or the **zoom slider**, search for a master, and click **Center** to recenter.\n\nThe Y-axis is temporal \u2014 death year drives vertical position \u2014 so chronological flow is visible at a glance. School colors follow modern scholarship (Hongzhou, Caodong, Yunmen, Linji, Heze, Early Chan).",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 5
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "masters-web-profile",
+            Title = "Shareable Web Profiles",
+            Body = "Every master has a public web profile at **readzen.pages.dev/master/{Name}** \u2014 underscore URLs, no hash routing, Reddit/Twitter/email friendly.\n\nExamples:\n\u2022 readzen.pages.dev/master/Linji_Yixuan\n\u2022 readzen.pages.dev/master/Wansong_Xingxiu\n\nIn the Reader study panel, when a passage mentions a master, a bio card appears with a **View Master \u2192** button that jumps to the full profile.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "zen-master-manager",
+            Title = "Open from Anywhere",
+            Body = "You can also open the Zen Master Manager directly from `zen://master/...` deep links shared by other users \u2014 the link routes straight to the right master's profile inside the app.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center,
+            SwitchToTabIndex = 5
         });
 
         Steps.Add(new TourStep
@@ -585,11 +712,31 @@ public sealed class OnboardingTourService
             Placement = TourPlacement.Center
         });
 
+        // ===== Phase 5b: Critical Editions + Witnesses =====
+
+        Steps.Add(new TourStep
+        {
+            Id = "witness-comparison",
+            Title = "Compare Witnesses (Critical Editions)",
+            Body = "Some OpenZen texts are critical editions \u2014 they reconstruct a reading from multiple historical witnesses. Open one and you'll find an **Edition Process** dialog with seven tabs: Sources / Timeline / Log / Process / Apparatus / Stats / Documents.\n\nIn the Apparatus tab, every disagreement between witnesses gets a **Compare witnesses** button. Click it to see all witness readings side by side, with differing readings shown first and identical ones collapsed by default.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "witness-text-viewer",
+            Title = "Open a Witness's Full Text",
+            Body = "Click any witness siglum (e.g. T1, A1, ndl-1632) in the comparison popup to open the **Witness Text Viewer** \u2014 a read-only window showing that witness's full delivered text, with copy + source-open + a status banner.\n\nWitness data lives in `witnesses.json` next to each edition. The reference implementation ships with the 1632 NDL Wumenguan (`pd.wumenguan-1632`).",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
         Steps.Add(new TourStep
         {
             Id = "tour-complete",
             Title = "You're Ready!",
-            Body = "You now know everything you need to read, translate, research, and share classical Chinese Zen texts.\n\nTo restart this tour later, go to Settings.\n\nHappy studying! \ud83d\udcda",
+            Body = "You now know everything you need to read, translate, research, and share classical Chinese Zen texts.\n\nTo restart this tour later, go to Settings \u2192 Onboarding Tour.\n\nHappy studying! \ud83d\udcda",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });

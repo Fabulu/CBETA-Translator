@@ -23,10 +23,11 @@ public sealed class TranslationAssistantService : ITranslationAssistantService
         string? root,
         string? originalDir,
         string? translatedDir,
-        CancellationToken ct = default)
+        CancellationToken ct = default,
+        int maxResults = 8)
     {
-        var approvedTask = _tm.FindApprovedMatchesAsync(ctx, root, translatedDir, ct);
-        var referenceTask = _tm.FindReferenceMatchesAsync(ctx, root, translatedDir, ct);
+        var approvedTask = _tm.FindApprovedMatchesAsync(ctx, root, translatedDir, ct, maxResults);
+        var referenceTask = _tm.FindReferenceMatchesAsync(ctx, root, translatedDir, ct, maxResults);
         var termsTask = _terms.FindTermsAsync(ctx, root, ct);
         var communityTermsTask = _terms.FindCommunityTermsAsync(ctx, root, ct);
         await Task.WhenAll(approvedTask, referenceTask, termsTask, communityTermsTask).ConfigureAwait(false);

@@ -26,6 +26,21 @@ namespace ReadZen.App.Models
         /// <summary>Which corpus the last-loaded root belongs to. Defaults to CBETA.</summary>
         public CorpusKind ActiveCorpus { get; set; } = CorpusKind.Cbeta;
 
+        /// <summary>
+        /// When true, assistant panels (Translate, Reader Study, Scholar) show
+        /// concordance matches from untranslated texts alongside TM results.
+        /// These are Chinese-only — the source passage is shown without an
+        /// English translation. Useful for comparative research; off by default
+        /// because it adds a search query per assistant refresh.
+        /// </summary>
+        public bool EnableConcordance { get; set; }
+
+        /// <summary>
+        /// Maximum TM matches shown per assistant refresh. Default 8. Range 4–20.
+        /// Higher = more comprehensive but more scrolling in the assistant panel.
+        /// </summary>
+        public int TmMaxResults { get; set; } = 8;
+
         public int Version { get; set; } = 4;
     }
 }

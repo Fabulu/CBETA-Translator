@@ -63,35 +63,21 @@ public partial class App : Application
         try
         {
             await System.Threading.Tasks.Task.Delay(5000); // Don't slow down startup
-            using var http = new System.Net.Http.HttpClient();
-            http.DefaultRequestHeaders.UserAgent.ParseAdd("ReadZen-UpdateCheck/1.0");
-            var json = await http.GetStringAsync("https://api.github.com/repos/Fabulu/ReadZen/releases/latest");
 
-            var tagMatch = System.Text.RegularExpressions.Regex.Match(json, "\"tag_name\"\\s*:\\s*\"v?([^\"]+)\"");
-            var urlMatch = System.Text.RegularExpressions.Regex.Match(json, "\"html_url\"\\s*:\\s*\"([^\"]+)\"");
-            if (!tagMatch.Success) return;
+            var updater = Services.GetService<AppUpdateService>();
+            if (updater == null) return;
 
-            var latestVersion = tagMatch.Groups[1].Value;
-            var releaseUrl = urlMatch.Success ? urlMatch.Groups[1].Value : "https://github.com/Fabulu/ReadZen/releases";
+            var result = await updater.CheckForUpdatesAsync();
+            if (result.AvailableVersion == null) return; // no update available
 
-            var currentVersion = (System.Reflection.Assembly.GetEntryAssembly() ?? System.Reflection.Assembly.GetExecutingAssembly())
-                .GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
-
-            // Strip +metadata and -prerelease suffixes for comparison
-            var current = currentVersion.Split('+')[0].Split('-')[0];
-            var latest = latestVersion.Split('+')[0].Split('-')[0];
-
-            if (string.Compare(latest, current, StringComparison.OrdinalIgnoreCase) > 0)
+            await Dispatcher.UIThread.InvokeAsync(() =>
             {
-                await Dispatcher.UIThread.InvokeAsync(() =>
+                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                    && desktop.MainWindow is Views.MainWindow mainWin)
                 {
-                    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
-                        && desktop.MainWindow is Views.MainWindow mainWin)
-                    {
-                        mainWin.ShowUpdateNotification(latestVersion, releaseUrl);
-                    }
-                });
-            }
+                    mainWin.ShowUpdateNotification(result, updater);
+                }
+            });
         }
         catch
         {

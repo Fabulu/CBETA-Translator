@@ -16,5 +16,6 @@ public interface ITranslationAssistantService
         string? root,
         string? originalDir,
         string? translatedDir,
-        CancellationToken ct = default);
+        CancellationToken ct = default,
+        int maxResults = 8);
 }

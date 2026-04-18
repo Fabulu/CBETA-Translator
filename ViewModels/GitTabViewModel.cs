@@ -421,16 +421,26 @@ public partial class GitTabViewModel : ViewModelBase
         if (!Directory.Exists(transDir) || !Directory.Exists(Path.Combine(transDir, ".git")))
             return; // Clone/update failed or was canceled
 
-        // Phase 2: Share all community data
+        // Phase 2: Share all community data (only if already authenticated).
+        // Users without a GitHub account should never be prompted to log in
+        // during a routine Sync — they just want to pull updates. Sharing is
+        // available via the explicit "Share" button for users who have signed in.
         string? shareError = null;
-        try
+        if (!string.IsNullOrWhiteSpace(_githubAccessToken) && !string.IsNullOrWhiteSpace(_githubLogin))
         {
-            await ShareAllInternalAsync();
+            try
+            {
+                await ShareAllInternalAsync();
+            }
+            catch (OperationCanceledException) { return; }
+            catch (Exception ex)
+            {
+                shareError = ex.Message;
+            }
         }
-        catch (OperationCanceledException) { return; }
-        catch (Exception ex)
+        else
         {
-            shareError = ex.Message;
+            AppendLog("[sync] Sharing skipped — sign in to GitHub to share your work with the community.");
         }
 
         // Phase 3: Fetch + merge others' community data

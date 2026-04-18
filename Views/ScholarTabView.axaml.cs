@@ -14,6 +14,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Layout;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -31,6 +32,8 @@ public partial class ScholarTabView : UserControl
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
     private HoverDictionaryBehaviorTextBox? _hoverDict;
+    private DispatcherTimer? _scholarSelDebounce;
+    private bool _scholarSelWired;
     private Canvas? _dictOverlayCanvas;
 
     // Parallel passage finder
@@ -185,6 +188,31 @@ public partial class ScholarTabView : UserControl
 
             // Context menu with "Link to..." on passages list
             var ctxMenu = new ContextMenu();
+
+            // Plain-text copy of the passage text — the first entry. Copies ZH
+            // + EN together if both exist, ZH alone otherwise. Discoverability
+            // fix for users who don't think to select the passage and Ctrl+C.
+            var copyPassageText = new MenuItem { Header = "Copy Passage Text" };
+            copyPassageText.Click += async (_, _) =>
+            {
+                var passage = _vm.SelectedPassage;
+                if (passage == null) return;
+                var zh = passage.ZhText?.Trim() ?? "";
+                var en = passage.EnText?.Trim() ?? "";
+                string text = (zh.Length > 0 && en.Length > 0) ? $"{zh}\n\n{en}"
+                            : zh.Length > 0 ? zh
+                            : en;
+                if (string.IsNullOrEmpty(text)) return;
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                {
+                    await top.Clipboard.SetTextAsync(text);
+                    Status?.Invoke(this, "Passage text copied to clipboard.");
+                }
+            };
+            ctxMenu.Items.Add(copyPassageText);
+            ctxMenu.Items.Add(new Separator());
+
             var linkMenuItem = new MenuItem { Header = "Link to..." };
             linkMenuItem.Click += async (_, _) => await ShowLinkDialogAsync();
             ctxMenu.Items.Add(linkMenuItem);
@@ -505,6 +533,44 @@ public partial class ScholarTabView : UserControl
 
         try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar, _dictOverlayCanvas); }
         catch { /* dictionary not available */ }
+
+        // Selection-based TM: wire ONCE (not per passage change). The handler
+        // reads txtZhText.SelectedText at fire time, so it naturally reflects
+        // whichever passage is currently displayed. Previous versions leaked
+        // handlers + timers on every SetupHoverDictionary call.
+        if (!_scholarSelWired)
+        {
+            _scholarSelWired = true;
+            _scholarSelDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(250) };
+            _scholarSelDebounce.Tick += (_, _) =>
+            {
+                _scholarSelDebounce!.Stop();
+                var box = this.FindControl<TextBox>("TxtZhText");
+                var sel = box?.SelectedText ?? "";
+                int cjkCount = 0;
+                foreach (var c in sel)
+                {
+                    if (c >= '\u4E00' && c <= '\u9FFF' || c >= '\u3400' && c <= '\u4DBF' || c >= '\uF900' && c <= '\uFAFF')
+                        cjkCount++;
+                }
+                if (cjkCount >= 2)
+                {
+                    _lastRenderedPassageId = null;
+                    _ = RefreshAssistantAsync(zhOverride: sel);
+                }
+                else
+                {
+                    _lastRenderedPassageId = null;
+                    _ = RefreshAssistantAsync();
+                }
+            };
+
+            txtZhText.AddHandler(InputElement.PointerReleasedEvent, (_, _) =>
+            {
+                _scholarSelDebounce!.Stop();
+                _scholarSelDebounce.Start();
+            });
+        }
     }
 
     private void DisposeHoverDictionary()
@@ -1553,7 +1619,13 @@ public partial class ScholarTabView : UserControl
 
     // ----- Assistant panel -----
 
-    private async Task RefreshAssistantAsync()
+    /// <summary>
+    /// Refreshes the Scholar assistant panel. When <paramref name="zhOverride"/>
+    /// is non-null, uses that text for TM lookup instead of the full passage
+    /// ZhText — this powers selection-based TM: highlight a phrase in the
+    /// passage text box → get TM matches for just that phrase.
+    /// </summary>
+    private async Task RefreshAssistantAsync(string? zhOverride = null)
     {
         var passage = _vm.SelectedPassage ?? _vm.SelectedCommunityPassage;
         if (passage == null || string.IsNullOrWhiteSpace(passage.ZhText))
@@ -1566,7 +1638,10 @@ public partial class ScholarTabView : UserControl
             return;
         }
 
-        if (passage.Id == _lastRenderedPassageId) return;
+        // Skip if same passage AND no selection override (avoids redundant calls).
+        // When a selection override is present we always re-query because the
+        // user wants matches for a different text.
+        if (zhOverride == null && passage.Id == _lastRenderedPassageId) return;
 
         try
         {
@@ -1577,12 +1652,13 @@ public partial class ScholarTabView : UserControl
             // Dispose old CTS after cancellation propagates (avoids ObjectDisposedException)
             try { oldCts?.Dispose(); } catch (ObjectDisposedException) { }
 
+            var zhText = zhOverride ?? passage.ZhText ?? "";
             var ctx = new CurrentSegmentContext
             {
                 RelPath = passage.SourceRelPath ?? "",
-                ZhText = passage.ZhText ?? "",
+                ZhText = zhText,
                 EnText = passage.EnText ?? "",
-                ZhContextText = passage.ZhText ?? "",
+                ZhContextText = passage.ZhText ?? "", // always the full passage for context
                 BlockNumber = passage.StartBlockNumber ?? passage.EndBlockNumber ?? 0,
                 Mode = TranslationEditMode.Body
             };
@@ -1597,8 +1673,15 @@ public partial class ScholarTabView : UserControl
             }
 
             try { _assistantService.SetUsername(_currentUsername); } catch { }
+            var configSvc = App.Services.GetService<IAppConfigService>() as AppConfigService;
+            int maxResults = 8;
+            if (configSvc != null)
+            {
+                try { var cfg = await configSvc.TryLoadAsync(); maxResults = cfg?.TmMaxResults ?? 8; }
+                catch { }
+            }
             var snapshot = await _assistantService.BuildSnapshotAsync(
-                ctx, root, _originalDir, assistantTranslatedDir, ct);
+                ctx, root, _originalDir, assistantTranslatedDir, ct, maxResults);
 
             if (ct.IsCancellationRequested) return;
 

@@ -4,6 +4,7 @@ using System.IO;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using ReadZen.App.Models;
+using ReadZen.App.Text;
 
 namespace ReadZen.App.Views;
 
@@ -106,9 +107,23 @@ public partial class WitnessTextViewerWindow : Window
         try
         {
             var content = File.ReadAllText(resolved);
-            // For TEI/XML, optionally strip tags for readability — but the user explicitly
-            // asked for the full witness text. Show raw content; user can view source separately.
-            if (bodyBlock != null) bodyBlock.Text = content;
+            // For TEI/XML, render through TeiRenderer so the user sees
+            // readable Chinese/English text, not raw angle brackets.
+            // Falls back to raw content for non-XML formats (markdown, txt).
+            string displayText = content;
+            var trimmed = content.TrimStart();
+            if (trimmed.StartsWith("<?xml", StringComparison.Ordinal) ||
+                trimmed.StartsWith("<TEI", StringComparison.Ordinal))
+            {
+                try
+                {
+                    var rendered = TeiRenderer.Render(content);
+                    if (!rendered.IsEmpty)
+                        displayText = rendered.Text;
+                }
+                catch { /* malformed XML — fall back to raw */ }
+            }
+            if (bodyBlock != null) bodyBlock.Text = displayText;
 
             var fmt = witness.TextFormat ?? "(unknown format)";
             ShowStatus(statusBanner, statusBlock,

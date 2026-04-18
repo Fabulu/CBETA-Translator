@@ -83,7 +83,13 @@ public sealed class LineageWebControl : Control
         double vBottom = (bounds.Height - _offsetY) / _zoom + 200;
 
         // Edges (only if both endpoints potentially visible)
-        var edgePen = new Pen(new SolidColorBrush(Color.FromArgb(60, 255, 255, 255)), 1.2);
+        //
+        // When a focus set is active (user clicked a master), dim edges whose
+        // endpoints aren't both in the focus set so the traced line stays
+        // readable against the dimmed background.
+        bool focusActive = _vm.FocusedNodes.Count > 0;
+        var edgePenFocused = new Pen(new SolidColorBrush(Color.FromArgb(60, 255, 255, 255)), 1.2);
+        var edgePenDimmed = new Pen(new SolidColorBrush(Color.FromArgb(12, 255, 255, 255)), 1.2);
         foreach (var edge in _vm.Edges)
         {
             if (edge.From.X > vRight && edge.To.X > vRight) continue;
@@ -97,7 +103,10 @@ public sealed class LineageWebControl : Control
                 edge.To.X,
                 edge.To.Y + LineageGraphViewModel.NodeHeight / 2);
 
-            ctx.DrawLine(edgePen, fromPt, toPt);
+            var pen = (focusActive && !(_vm.FocusedNodes.Contains(edge.From) && _vm.FocusedNodes.Contains(edge.To)))
+                ? edgePenDimmed
+                : edgePenFocused;
+            ctx.DrawLine(pen, fromPt, toPt);
         }
 
         // Orphan section label
@@ -119,11 +128,16 @@ public sealed class LineageWebControl : Control
 
             var schoolColor = LineageGraphViewModel.GetSchoolColor(node.School);
 
+            // Focus dimming: when a focus set is active, nodes outside it drop
+            // to ~20% opacity so the selected master's lineage chain stands out.
+            bool isOutOfFocus = focusActive && !_vm.FocusedNodes.Contains(node);
+            double focusAttenuation = isOutOfFocus ? 0.25 : 1.0;
+
             // Background (orphans rendered dimmer)
             byte baseAlpha = node.IsOrphan ? (byte)60 : (byte)120;
-            var fillBrush = new SolidColorBrush(node.IsSelected
-                ? Color.FromArgb(200, schoolColor.R, schoolColor.G, schoolColor.B)
-                : Color.FromArgb(baseAlpha, schoolColor.R, schoolColor.G, schoolColor.B));
+            byte activeAlpha = (byte)(node.IsSelected ? 200 : baseAlpha);
+            byte finalAlpha = (byte)(activeAlpha * focusAttenuation);
+            var fillBrush = new SolidColorBrush(Color.FromArgb(finalAlpha, schoolColor.R, schoolColor.G, schoolColor.B));
 
             var rect = new Rect(node.X, node.Y, LineageGraphViewModel.NodeWidth, LineageGraphViewModel.NodeHeight);
             ctx.FillRectangle(fillBrush, rect, 4);
@@ -142,17 +156,23 @@ public sealed class LineageWebControl : Control
                 ctx.DrawRectangle(selPen, rect, 4);
             }
 
+            // Text labels — also dim when out-of-focus so they don't read through
+            byte textAlpha = (byte)(255 * focusAttenuation);
+            var textBrush = new SolidColorBrush(Color.FromArgb(textAlpha, 255, 255, 255));
+            byte datesAlpha = (byte)(180 * focusAttenuation);
+            var datesBrush = new SolidColorBrush(Color.FromArgb(datesAlpha, 255, 255, 255));
+
             // Name text
             var nameFt = new FormattedText(
                 node.CanonicalName.Length > 18 ? node.CanonicalName[..17] + "..." : node.CanonicalName,
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                new Typeface("Segoe UI", FontStyle.Normal, FontWeight.SemiBold), 10.5, Brushes.White);
+                new Typeface("Segoe UI", FontStyle.Normal, FontWeight.SemiBold), 10.5, textBrush);
             ctx.DrawText(nameFt, new Point(node.X + 4, node.Y + 3));
 
             // Dates text
             var datesFt = new FormattedText(node.DatesSummary,
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                Typeface.Default, 9, new SolidColorBrush(Color.FromArgb(180, 255, 255, 255)));
+                Typeface.Default, 9, datesBrush);
             ctx.DrawText(datesFt, new Point(node.X + 4, node.Y + 20));
         }
     }
@@ -177,6 +197,11 @@ public sealed class LineageWebControl : Control
                 hit.IsSelected = true;
                 _vm.SelectedNode = hit;
 
+                // Focus lineage view on clicked master — dims unrelated nodes
+                // + edges. Double-click keeps the focus and also opens the
+                // profile window.
+                _vm.FocusOn(hit);
+
                 if (e.ClickCount >= 2 && hit.Record != null)
                     NodeDoubleClicked?.Invoke(this, hit.Record);
                 else if (hit.Record != null)
@@ -184,6 +209,17 @@ public sealed class LineageWebControl : Control
 
                 InvalidateVisual();
                 return;
+            }
+
+            // Empty-space click clears focus so everyone is visible again,
+            // and releases the selection outline. Panning still starts so
+            // dragging an empty spot still pans the canvas.
+            if (_vm.FocusedNodes.Count > 0 || _vm.SelectedNode != null)
+            {
+                _vm.ClearFocus();
+                foreach (var n in _vm.Nodes) n.IsSelected = false;
+                _vm.SelectedNode = null;
+                InvalidateVisual();
             }
 
             // Start panning

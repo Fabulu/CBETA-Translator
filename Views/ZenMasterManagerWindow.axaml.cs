@@ -114,6 +114,30 @@ public partial class ZenMasterManagerWindow : Window
             };
         }
 
+        // Search: highlight on text change, center + zoom on Enter or "Go to" click
+        void GoToFirstMatch()
+        {
+            if (_lineageGraphVm == null || lineageGraph == null) return;
+            var match = _lineageGraphVm.Nodes.FirstOrDefault(n => n.IsHighlighted);
+            if (match == null) return;
+
+            // Select + focus the match
+            foreach (var n in _lineageGraphVm.Nodes) n.IsSelected = false;
+            match.IsSelected = true;
+            _lineageGraphVm.SelectedNode = match;
+            _lineageGraphVm.FocusOn(match);
+
+            // Center + zoom so the match fills a comfortable portion of the viewport
+            lineageGraph.CenterOnNode(match);
+            lineageGraph.SetZoom(1.2); // close enough to read labels clearly
+
+            // Sync the zoom slider
+            var slider = this.FindControl<Slider>("SliderLineageZoom");
+            if (slider != null) slider.Value = 120;
+
+            lineageGraph.InvalidateVisual();
+        }
+
         if (txtSearch != null)
         {
             txtSearch.TextChanged += (_, _) =>
@@ -121,15 +145,20 @@ public partial class ZenMasterManagerWindow : Window
                 _lineageGraphVm?.HighlightSearch(txtSearch.Text);
                 lineageGraph?.InvalidateVisual();
             };
+
+            txtSearch.KeyDown += (_, e) =>
+            {
+                if (e.Key == Avalonia.Input.Key.Enter)
+                {
+                    GoToFirstMatch();
+                    e.Handled = true;
+                }
+            };
         }
 
         if (btnCenter != null)
         {
-            btnCenter.Click += (_, _) =>
-            {
-                if (_lineageGraphVm?.SelectedNode != null && lineageGraph != null)
-                    lineageGraph.CenterOnNode(_lineageGraphVm.SelectedNode);
-            };
+            btnCenter.Click += (_, _) => GoToFirstMatch();
         }
 
         // Zoom slider

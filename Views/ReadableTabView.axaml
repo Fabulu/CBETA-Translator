@@ -72,11 +72,17 @@
 						Focusable="False"
 						ToolTip.Tip="Add a community note at the current cursor position"/>
 				<Button Name="BtnDictionary"
-						Content="Dict"
+						Content="Dictionary"
 						Padding="6,2"
 						FontSize="11"
 						Focusable="False"
 						ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)"/>
+				<Button Name="BtnFind"
+						Content="🔍 Find"
+						Padding="6,2"
+						FontSize="11"
+						Focusable="False"
+						ToolTip.Tip="Find in text (Ctrl+F)"/>
 			</StackPanel>
 
 			<Button Name="BtnCompareTranslations"
@@ -119,20 +125,20 @@
 					  VerticalAlignment="Center"
 					  Focusable="False"
 					  Margin="8,0,0,0"
-					  ToolTip.Tip="Show or hide the study panel with terms, TM matches, and contextual info"/>
+					  ToolTip.Tip="Show or hide the study panel with dictionary terms, translation memory matches, and contextual info"/>
 
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
 					  Content="Zen"
 					  VerticalAlignment="Center"
 					  Focusable="False"
-					  ToolTip.Tip="Flag this text as Zen (affects filtering and translation memory)"/>
+					  ToolTip.Tip="Mark this text as a Zen/Chan Buddhist text"/>
 
 			<!-- License chip lives in the top bar now (next to the corpus
 			     badge) so the action row stays uncluttered. -->
 
 			<!-- Annotation legend (collapsible flyout) -->
-			<Button Name="BtnMarkersLegend" Content="Markers ▾"
+			<Button Name="BtnMarkersLegend" Content="Legend ▾"
 			        FontSize="11" Padding="6,2" Background="Transparent"
 			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
 			        Margin="16,0,0,0">
@@ -141,7 +147,7 @@
 						<StackPanel Spacing="6" Margin="8">
 							<StackPanel Orientation="Horizontal" Spacing="4">
 								<Border Background="Gray" Width="10" Height="10" CornerRadius="2"/>
-								<TextBlock Text="CBETA editorial markers" FontSize="11"/>
+								<TextBlock Text="Source text editorial markers" FontSize="11"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" Spacing="4">
 								<Border Background="DarkOrange" Width="10" Height="10" CornerRadius="2"/>
@@ -356,7 +362,7 @@
 								Margin="6,0,0,0"
 								ToolTip.Tip="Open tag vocabulary editor to create, edit, and assign tags to code bar slots"/>
 					<ToggleButton Name="BtnCodingMode"
-								  Content="Coding (F2)"
+								  Content="Tagging (F2)"
 								  DockPanel.Dock="Right"
 								  Padding="8,2"
 								  FontSize="11"
@@ -381,12 +387,12 @@
 							ToolTip.Tip="Qualitative analytics: frequency, co-occurrence, variables, queries, export">
 						<Button.Flyout>
 							<MenuFlyout>
-								<MenuItem Name="MiCodeFrequency" Header="Code Frequency Report"/>
-								<MenuItem Name="MiCooccurrence" Header="Co-occurrence Matrix"/>
+								<MenuItem Name="MiCodeFrequency" Header="Tag Frequency Report"/>
+								<MenuItem Name="MiCooccurrence" Header="Tag Overlap Analysis"/>
 								<MenuItem Name="MiDocVariables" Header="Document Variables"/>
 								<MenuItem Name="MiQueryBuilder" Header="Query Builder"/>
 								<Separator/>
-								<MenuItem Name="MiExportQdpx" Header="Export QDPX"/>
+								<MenuItem Name="MiExportQdpx" Header="Export Coding Data"/>
 							</MenuFlyout>
 						</Button.Flyout>
 					</Button>
@@ -406,7 +412,7 @@
 			<StackPanel Name="CodingToggleRow" Orientation="Horizontal" Margin="0,4,0,0"
 						HorizontalAlignment="Left">
 				<ToggleButton Name="BtnCodingModeCompact"
-							  Content="Coding (F2)"
+							  Content="Tagging (F2)"
 							  Padding="8,2"
 							  FontSize="11"
 							  Focusable="False"

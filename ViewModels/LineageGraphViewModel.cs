@@ -17,6 +17,54 @@ public sealed class LineageGraphViewModel
     public LineageGraphNode? SelectedNode { get; set; }
     public double OrphanSectionY { get; set; }
 
+    /// <summary>
+    /// When non-empty, rendering dims every node + edge that's NOT in this set.
+    /// Populated by <see cref="FocusOn"/> (click-to-focus) and cleared by
+    /// <see cref="ClearFocus"/> (click empty space). Contains the focused node
+    /// itself plus every ancestor (teacher chain) and every descendant (student
+    /// chain) reachable through lineage edges.
+    /// </summary>
+    public HashSet<LineageGraphNode> FocusedNodes { get; } = new();
+
+    /// <summary>
+    /// Compute and store the lineage closure around <paramref name="node"/>:
+    /// all ancestors (teachers of teachers...) + all descendants (students of
+    /// students...). Replaces any prior focus. Safe to call repeatedly.
+    /// </summary>
+    public void FocusOn(LineageGraphNode node)
+    {
+        FocusedNodes.Clear();
+        FocusedNodes.Add(node);
+
+        // Walk ancestors (incoming edges — nodes pointing TO this one)
+        var ancestorQueue = new Queue<LineageGraphNode>();
+        ancestorQueue.Enqueue(node);
+        while (ancestorQueue.Count > 0)
+        {
+            var cur = ancestorQueue.Dequeue();
+            foreach (var edge in Edges)
+            {
+                if (edge.To == cur && FocusedNodes.Add(edge.From))
+                    ancestorQueue.Enqueue(edge.From);
+            }
+        }
+
+        // Walk descendants (outgoing edges — nodes this one points TO)
+        var descQueue = new Queue<LineageGraphNode>();
+        descQueue.Enqueue(node);
+        while (descQueue.Count > 0)
+        {
+            var cur = descQueue.Dequeue();
+            foreach (var edge in Edges)
+            {
+                if (edge.From == cur && FocusedNodes.Add(edge.To))
+                    descQueue.Enqueue(edge.To);
+            }
+        }
+    }
+
+    public void ClearFocus() => FocusedNodes.Clear();
+
     public const double NodeWidth = 130;
     public const double NodeHeight = 38;
     public const double HorizontalSpacing = 160;

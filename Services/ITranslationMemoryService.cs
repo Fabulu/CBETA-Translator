@@ -11,11 +11,13 @@ public interface ITranslationMemoryService
         CurrentSegmentContext ctx,
         string? root,
         string? translatedDir,
-        CancellationToken ct = default);
+        CancellationToken ct = default,
+        int maxResults = 8);
 
     Task<List<TranslationTmMatch>> FindReferenceMatchesAsync(
         CurrentSegmentContext ctx,
         string? root,
         string? translatedDir,
-        CancellationToken ct = default);
+        CancellationToken ct = default,
+        int maxResults = 8);
 }

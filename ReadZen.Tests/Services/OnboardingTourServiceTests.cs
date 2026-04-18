@@ -52,10 +52,13 @@ public class OnboardingTourServiceTests
     [Fact]
     public void Next_OnLastStep_CallsComplete_And_FiresTourCompleted()
     {
-        _svc.Start();
+        // Start the feature tour (skipping mandatory setup) so Next() can
+        // advance through the full step list.
+        _svc.StartFeatureTour();
 
         // Advance to last step
-        for (int i = 0; i < _svc.Steps.Count - 1; i++)
+        int featureSteps = _svc.FeatureTourStepCount;
+        for (int i = 0; i < featureSteps - 1; i++)
             _svc.Next();
 
         Assert.Equal(_svc.Steps.Count - 1, _svc.CurrentIndex);
@@ -106,13 +109,16 @@ public class OnboardingTourServiceTests
         Assert.False(fired);
     }
 
-    // ---- 6. Skip â€” sets IsActive=false, fires TourSkipped ----
+    // ---- 6. Skip on a non-mandatory step â€” sets IsActive=false, fires TourSkipped ----
 
     [Fact]
     public void Skip_SetsIsActiveFalse_And_FiresTourSkipped()
     {
-        _svc.Start();
+        // Use StartFeatureTour to reach non-mandatory steps (Next() now
+        // fires SetupPhaseCompleted instead of advancing past mandatory).
+        _svc.StartFeatureTour();
         Assert.True(_svc.IsActive);
+        Assert.False(_svc.IsCurrentStepMandatory);
 
         bool skipped = false;
         _svc.TourSkipped += (_, _) => skipped = true;
@@ -184,12 +190,199 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count stays 40 after tutorial rewrites ----
+    // ---- 10. Steps count: 56 after Phase 2 (Masters + Witness expansion) ----
 
     [Fact]
-    public void Steps_Count_Is43()
+    public void Steps_Count_Is56()
     {
-        Assert.Equal(49, _svc.Steps.Count);
+        Assert.Equal(56, _svc.Steps.Count);
+    }
+
+    // ---- Mandatory steps cannot be skipped ----
+
+    [Fact]
+    public void Skip_OnMandatoryStep_DoesNotEndTour()
+    {
+        _svc.Start();
+        Assert.True(_svc.IsActive);
+        Assert.True(_svc.CurrentStep!.IsMandatory, "Step 0 (welcome) should be mandatory");
+
+        bool skipped = false;
+        _svc.TourSkipped += (_, _) => skipped = true;
+
+        _svc.Skip();
+
+        Assert.True(_svc.IsActive, "Tour must remain active when Skip is called on a mandatory step");
+        Assert.False(skipped, "TourSkipped should NOT fire on a mandatory step");
+    }
+
+    [Fact]
+    public void Skip_OnFirstNonMandatoryStep_EndsTour()
+    {
+        // StartFeatureTour lands on the first non-mandatory step directly.
+        _svc.StartFeatureTour();
+
+        Assert.False(_svc.CurrentStep!.IsMandatory, "First feature-tour step should NOT be mandatory");
+
+        bool skipped = false;
+        _svc.TourSkipped += (_, _) => skipped = true;
+
+        _svc.Skip();
+
+        Assert.False(_svc.IsActive);
+        Assert.True(skipped);
+    }
+
+    [Fact]
+    public void MandatorySteps_AreExactlyTheFirstFour()
+    {
+        // welcome / git-check / download-texts / building-index are mandatory.
+        // Everything else (sidebar onward) is opt-in.
+        for (int i = 0; i < 4; i++)
+        {
+            Assert.True(_svc.Steps[i].IsMandatory,
+                $"Step {i} ({_svc.Steps[i].Id}) should be mandatory");
+        }
+        for (int i = 4; i < _svc.Steps.Count; i++)
+        {
+            Assert.False(_svc.Steps[i].IsMandatory,
+                $"Step {i} ({_svc.Steps[i].Id}) should NOT be mandatory");
+        }
+    }
+
+    [Fact]
+    public void IsCurrentStepMandatory_ReflectsCurrentStep()
+    {
+        _svc.Start();
+        Assert.True(_svc.IsCurrentStepMandatory, "Step 0 should be mandatory");
+
+        // StartFeatureTour to reach non-mandatory steps
+        _svc.StartFeatureTour();
+        Assert.False(_svc.IsCurrentStepMandatory, "Feature tour step should NOT be mandatory");
+    }
+
+    // ---- Tour split: setup phase ends, then optional feature tour starts ----
+
+    [Fact]
+    public void Next_OnLastMandatoryStep_FiresSetupPhaseCompleted_NotAdvance()
+    {
+        _svc.Start();
+        // Walk through mandatory steps until the last one
+        for (int i = 0; i < _svc.SetupStepCount - 1; i++) _svc.Next();
+
+        bool setupCompleted = false;
+        _svc.SetupPhaseCompleted += (_, _) => setupCompleted = true;
+
+        _svc.Next(); // should fire SetupPhaseCompleted, NOT advance
+
+        Assert.True(setupCompleted, "SetupPhaseCompleted should fire");
+        Assert.False(_svc.IsActive, "Service should be inactive after setup completes");
+    }
+
+    [Fact]
+    public void StartFeatureTour_BeginsAtFirstNonMandatoryStep()
+    {
+        _svc.StartFeatureTour();
+        Assert.True(_svc.IsActive);
+        Assert.False(_svc.IsInSetupPhase);
+        Assert.Equal(_svc.SetupStepCount, _svc.CurrentIndex);
+        Assert.False(_svc.CurrentStep!.IsMandatory);
+    }
+
+    [Fact]
+    public void PhaseRelativeIndex_ShowsSetupProgress_DuringSetup()
+    {
+        _svc.Start();
+        Assert.Equal(0, _svc.PhaseRelativeIndex);
+        Assert.Equal(_svc.SetupStepCount, _svc.PhaseStepCount);
+        // "Step 1 of 4" — not "Step 1 of 56"
+
+        _svc.Next();
+        Assert.Equal(1, _svc.PhaseRelativeIndex);
+    }
+
+    [Fact]
+    public void PhaseRelativeIndex_ShowsTourProgress_DuringFeatureTour()
+    {
+        _svc.StartFeatureTour();
+        Assert.Equal(0, _svc.PhaseRelativeIndex);
+        Assert.Equal(_svc.FeatureTourStepCount, _svc.PhaseStepCount);
+
+        _svc.Next();
+        Assert.Equal(1, _svc.PhaseRelativeIndex);
+    }
+
+    // ---- New v4.x feature steps exist ----
+
+    [Fact]
+    public void Tutorial_Includes_MastersTabStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "masters-tab");
+        Assert.Equal("BtnOpenMasters", step.TargetControlName);
+        Assert.Contains("204", step.Body);
+        Assert.Contains("Masters tab", step.Body);
+        Assert.Equal(5, step.SwitchToTabIndex);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_MastersListStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "masters-list");
+        Assert.Contains("Copy Link", step.Body);
+        Assert.Contains("Edit Dates", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_MastersCorpusStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "masters-corpus");
+        Assert.Contains("primary", step.Body);
+        Assert.Contains("secondary", step.Body);
+        Assert.Contains("concept-name filter", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_MastersLineageStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "masters-lineage");
+        Assert.Contains("zoom slider", step.Body);
+        Assert.Contains("Y-axis", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_MastersWebProfileStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "masters-web-profile");
+        Assert.Contains("readzen.pages.dev/master/", step.Body);
+        Assert.Contains("Linji_Yixuan", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_WitnessComparisonStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "witness-comparison");
+        Assert.Contains("Edition Process", step.Body);
+        Assert.Contains("Compare witnesses", step.Body);
+        Assert.Contains("differing readings", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_WitnessTextViewerStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "witness-text-viewer");
+        Assert.Contains("Witness Text Viewer", step.Body);
+        Assert.Contains("witnesses.json", step.Body);
+        Assert.Contains("wumenguan-1632", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_SidebarStep_DescribesTextLibrary()
+    {
+        // After the tour split, the sidebar step is the first feature-tour
+        // step. It describes the text library, not setup completion.
+        var step = Assert.Single(_svc.Steps, s => s.Id == "sidebar");
+        Assert.Contains("text library", step.Body);
+        Assert.Contains("Red", step.Body);
     }
 
     [Fact]
@@ -277,8 +470,10 @@ public class OnboardingTourServiceTests
     [Fact]
     public void Tutorial_Includes_ZenMasterManagerStep()
     {
+        // After Phase 2, the zen-master-manager step covers the deep-link entry path
+        // (the Masters tab's main features moved to dedicated masters-* steps).
         var step = Assert.Single(_svc.Steps, s => s.Id == "zen-master-manager");
-        Assert.Contains("Zen Master Manager", step.Title);
+        Assert.Contains("Zen Master Manager", step.Body);
         Assert.Contains("links shared by other users", step.Body);
     }
 
@@ -379,7 +574,8 @@ public class OnboardingTourServiceTests
         Assert.Null(_svc.Steps[4].WaitForEvent);
     }
 
-    // ---- 13. Steps with SwitchToTabIndex have valid tab indices (0-4) ----
+    // ---- 13. Steps with SwitchToTabIndex have valid tab indices (0-5) ----
+    // Masters tab is index 5 — added to MainWindow in v4.1.
 
     [Fact]
     public void Steps_WithSwitchToTabIndex_HaveValidIndices()
@@ -390,7 +586,7 @@ public class OnboardingTourServiceTests
 
         foreach (var step in stepsWithTab)
         {
-            Assert.InRange(step.SwitchToTabIndex!.Value, 0, 4);
+            Assert.InRange(step.SwitchToTabIndex!.Value, 0, 5);
         }
     }
 

@@ -73,6 +73,22 @@ public class TourStepTests
         Assert.False(step.CanSkipWait);
     }
 
+    // ---- IsMandatory defaults to false (only initial setup steps opt in) ----
+
+    [Fact]
+    public void TourStep_IsMandatory_DefaultsToFalse()
+    {
+        var step = new TourStep();
+        Assert.False(step.IsMandatory);
+    }
+
+    [Fact]
+    public void TourStep_IsMandatory_IsSettable()
+    {
+        var step = new TourStep { IsMandatory = true };
+        Assert.True(step.IsMandatory);
+    }
+
     // ---- ActionButtonLabel and CanSkipWait are settable ----
 
     [Fact]

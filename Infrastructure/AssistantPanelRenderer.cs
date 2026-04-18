@@ -99,6 +99,97 @@ internal static class AssistantPanelRenderer
         AddEmptyPlaceholderIfNeeded(qaHost, "No QA issues for this passage.", brushResolver);
     }
 
+    /// <summary>
+    /// Renders concordance hits into a host panel. Called AFTER <see cref="RenderSnapshot"/>
+    /// so TM results are already visible and concordance appears below them asynchronously.
+    /// This is the async-populate pattern: TM renders instantly, concordance streams in.
+    /// </summary>
+    public static void RenderConcordance(
+        IReadOnlyList<ConcordanceHit>? hits,
+        StackPanel? host,
+        Func<string, IBrush?>? brushResolver = null,
+        EventHandler<NavigationRequest>? navigationHandler = null)
+    {
+        if (host == null) return;
+
+        // Remove any previous concordance cards (tagged with "concordance" class)
+        for (int i = host.Children.Count - 1; i >= 0; i--)
+        {
+            if (host.Children[i] is Border b && b.Tag is string tag && tag == "concordance")
+                host.Children.RemoveAt(i);
+        }
+
+        if (hits == null || hits.Count == 0) return;
+
+        // Section header
+        var header = new Border
+        {
+            Tag = "concordance",
+            Margin = new Thickness(0, 8, 0, 4),
+            Child = new TextBlock
+            {
+                Text = $"Concordance — {hits.Count} match{(hits.Count == 1 ? "" : "es")} from untranslated texts",
+                FontSize = 11,
+                FontWeight = FontWeight.SemiBold,
+                Foreground = brushResolver?.Invoke("TextMutedFg") ?? Brushes.Gray,
+            }
+        };
+        host.Children.Add(header);
+
+        foreach (var hit in hits)
+        {
+            var stack = new StackPanel { Spacing = 2 };
+
+            // File name (clickable if navigation handler exists)
+            var nameBlock = new TextBlock
+            {
+                Text = hit.DisplayName,
+                FontSize = 10,
+                Foreground = brushResolver?.Invoke("AccentLinkFg") ?? new SolidColorBrush(Color.FromRgb(100, 180, 255)),
+                TextDecorations = TextDecorations.Underline,
+                Cursor = new Cursor(StandardCursorType.Hand),
+            };
+            if (navigationHandler != null)
+            {
+                var capturedRel = hit.RelPath;
+                nameBlock.PointerPressed += (s, e) =>
+                    navigationHandler(s, new NavigationRequest { RelPath = capturedRel, Side = SearchSide.Original });
+            }
+            stack.Children.Add(nameBlock);
+
+            // Chinese snippet
+            stack.Children.Add(new TextBlock
+            {
+                Text = hit.SnippetZh,
+                FontSize = 12,
+                TextWrapping = TextWrapping.Wrap,
+                Foreground = brushResolver?.Invoke("TextFg") ?? Brushes.White,
+            });
+
+            // "(no translation)" label
+            stack.Children.Add(new TextBlock
+            {
+                Text = "(no translation available)",
+                FontSize = 10,
+                FontStyle = FontStyle.Italic,
+                Foreground = brushResolver?.Invoke("TextMutedFg") ?? Brushes.Gray,
+            });
+
+            var card = new Border
+            {
+                Tag = "concordance",
+                Background = brushResolver?.Invoke("ControlBg") ?? Brushes.Transparent,
+                BorderBrush = brushResolver?.Invoke("BorderBrush"),
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(6),
+                Padding = new Thickness(8, 6),
+                Margin = new Thickness(0, 2),
+                Child = stack,
+            };
+            host.Children.Add(card);
+        }
+    }
+
     private static void AddEmptyPlaceholderIfNeeded(StackPanel? host, string text, Func<string, IBrush?>? brushResolver)
     {
         if (host == null || host.Children.Count > 0)

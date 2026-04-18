@@ -216,7 +216,25 @@ public partial class TranslationTabView : UserControl
             if (_editor.TextArea?.Caret != null)
                 _editor.TextArea.Caret.PositionChanged += (_, _) => PublishCurrentSegmentDebounced();
 
+            // Also refresh the assistant when the user changes the selection
+            // (for selection-based TM lookup: highlight Chinese text → get
+            // TM matches for just that phrase).
+            if (_editor.TextArea != null)
+                _editor.TextArea.SelectionChanged += (_, _) => PublishCurrentSegmentDebounced();
+
             _editor.ContextMenu = BuildScholarContextMenu();
+
+            // Install AvaloniaEdit's built-in SearchPanel (gives Ctrl+F
+            // find-in-text for free). The visible "Find" toolbar button
+            // calls Open() on it so users who don't know the shortcut can
+            // still discover the feature.
+            if (_editor.TextArea != null)
+            {
+                var searchPanel = AvaloniaEdit.Search.SearchPanel.Install(_editor);
+                var btnFind = this.FindControl<Button>("BtnFind");
+                if (btnFind != null)
+                    btnFind.Click += (_, _) => searchPanel.Open();
+            }
         }
     }
 
@@ -2066,6 +2084,20 @@ STRICT RULES:
 
             var b = blocks[ix];
 
+            // ── Selection-based TM lookup ──
+            // When the user highlights Chinese text, search TM for just that
+            // phrase instead of the whole block. Minimum 2 CJK characters to
+            // avoid matching everything. Falls back to per-block when no
+            // meaningful CJK selection exists.
+            string zhForLookup = b.Zh ?? "";
+            var sel = _editor.SelectedText ?? "";
+            if (sel.Length >= 2)
+            {
+                var cjkOnly = ExtractCjk(sel);
+                if (cjkOnly.Length >= 2)
+                    zhForLookup = cjkOnly;
+            }
+
             // Build a wider ZH context (prev + current + next) for TM search.
             // Phrases often span <lb> boundaries so the wider window improves match quality.
             string prevZh = ix > 0 ? blocks[ix - 1].Zh ?? "" : "";
@@ -2077,7 +2109,7 @@ STRICT RULES:
             CurrentSegmentChanged?.Invoke(this, new CurrentProjectionSegmentChangedEventArgs
             {
                 BlockNumber = b.BlockNumber,
-                Zh = b.Zh ?? "",
+                Zh = zhForLookup,
                 En = b.En ?? "",
                 ZhContext = zhContext,
                 BlockStartOffset = b.BlockStartOffset,
@@ -2088,6 +2120,24 @@ STRICT RULES:
         catch
         {
         }
+    }
+
+    /// <summary>
+    /// Extracts CJK characters from a mixed selection. Handles the common case
+    /// where the user selects across a ZH/EN boundary and gets some English
+    /// text mixed in. Returns only the CJK codepoints, concatenated.
+    /// </summary>
+    private static string ExtractCjk(string text)
+    {
+        var sb = new System.Text.StringBuilder(text.Length);
+        foreach (var c in text)
+        {
+            if (c >= '\u4E00' && c <= '\u9FFF' ||
+                c >= '\u3400' && c <= '\u4DBF' ||
+                c >= '\uF900' && c <= '\uFAFF')
+                sb.Append(c);
+        }
+        return sb.ToString();
     }
 
     public void SetAssistantSnapshot(TranslationAssistantSnapshot? snapshot)

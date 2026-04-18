@@ -22,6 +22,12 @@ public partial class SettingsWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool _restartTourRequested;
 
+    [ObservableProperty]
+    private bool _enableConcordance;
+
+    [ObservableProperty]
+    private int _tmMaxResults;
+
     private readonly AppConfig _template;
 
     /// <summary>
@@ -39,6 +45,8 @@ public partial class SettingsWindowViewModel : ViewModelBase
         _template = config;
         _isDarkTheme = config.IsDarkTheme;
         _enableHoverDictionary = config.EnableHoverDictionary;
+        _enableConcordance = config.EnableConcordance;
+        _tmMaxResults = config.TmMaxResults;
         _username = config.Username ?? string.Empty;
     }
 
@@ -59,6 +67,8 @@ public partial class SettingsWindowViewModel : ViewModelBase
             IsDarkTheme = IsDarkTheme,
             ZenOnly = _template.ZenOnly,
             EnableHoverDictionary = EnableHoverDictionary,
+            EnableConcordance = EnableConcordance,
+            TmMaxResults = Math.Clamp(TmMaxResults, 4, 20),
             Username = name,
             GitHubAccessToken = _template.GitHubAccessToken,
             GitHubUsername = _template.GitHubUsername,

@@ -22,7 +22,7 @@
                          Grid.Column="0"
                          HorizontalAlignment="Stretch"
                          Text="{Binding Query}"
-                         Watermark="Search CJK phrases or substrings&#x2026;"
+                         Watermark="Search Chinese text&#x2026;"
                          ToolTip.Tip="Enter Chinese characters or phrases to search"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
@@ -47,9 +47,9 @@
                             MinWidth="52"
                             Padding="5,2"
                             FontSize="10.5"
-                            Content="Index"
+                            Content="Update Index"
                             Command="{Binding BuildIndexCommand}"
-                            ToolTip.Tip="Force a full rebuild of the search index. Hold Shift when clicking for a forced rebuild."/>
+                            ToolTip.Tip="Update the search index. Hold Shift to rebuild from scratch."/>
                     <Button Name="BtnExport"
                             MinWidth="52"
                             Padding="5,2"
@@ -61,7 +61,7 @@
                             MinWidth="58"
                             Padding="5,2"
                             FontSize="10.5"
-                            Content="Link"
+                            Content="Copy Link"
                             ToolTip.Tip="Copy a shareable link for the current search state"/>
                 </StackPanel>
 
@@ -97,7 +97,7 @@
                                   Margin="0,0,8,0"
                                   ItemsSource="{Binding ContextItems}"
                                   SelectedIndex="{Binding SelectedContextIndex}"
-                                  ToolTip.Tip="KWIC width"/>
+                                  ToolTip.Tip="How much surrounding text to show"/>
                         <CheckBox Content="Zen only"
                                   IsChecked="{Binding ZenOnly}"
                                   ToolTip.Tip="Search only texts flagged as Zen/Chan Buddhist texts"/>
@@ -301,12 +301,12 @@
                                   Width="150"
                                   ItemsSource="{Binding AnalyticsScopeItems}"
                                   SelectedIndex="{Binding SelectedAnalyticsScopeIndex}"
-                                  ToolTip.Tip="Choose whether insights use current search results or a full filtered corpus scan"/>
+                                  ToolTip.Tip="Choose whether insights use current search results or scan all texts"/>
                         <ComboBox Grid.Column="3"
                                   Width="220"
                                   ItemsSource="{Binding CoocMetricItems}"
                                   SelectedIndex="{Binding SelectedCoocMetricIndex}"
-                                  ToolTip.Tip="Select statistical metric for search insights"/>
+                                  ToolTip.Tip="Choose how to measure word associations"/>
                     </Grid>
                 </Expander.Header>
 

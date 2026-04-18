@@ -42,28 +42,32 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         CurrentSegmentContext ctx,
         string? root,
         string? translatedDir,
-        CancellationToken ct = default)
+        CancellationToken ct = default,
+        int maxResults = 8)
     {
         return LoadAndMatchAsync(
             ctx,
             root,
             "translation-memory.approved.jsonl",
             TranslationResourceTrust.Approved,
-            ct);
+            ct,
+            maxResults);
     }
 
     public Task<List<TranslationTmMatch>> FindReferenceMatchesAsync(
         CurrentSegmentContext ctx,
         string? root,
         string? translatedDir,
-        CancellationToken ct = default)
+        CancellationToken ct = default,
+        int maxResults = 8)
     {
         return LoadAndMatchAsync(
             ctx,
             root,
             "translation-memory.reference.jsonl",
             TranslationResourceTrust.AiReference,
-            ct);
+            ct,
+            maxResults);
     }
 
     private async Task<List<TranslationTmMatch>> LoadAndMatchAsync(
@@ -71,7 +75,8 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         string? root,
         string fileName,
         TranslationResourceTrust trust,
-        CancellationToken ct)
+        CancellationToken ct,
+        int maxResults = 8)
     {
         var result = new List<TranslationTmMatch>();
 
@@ -138,7 +143,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
             .ThenByDescending(x => CjkMatchNormalizer.Normalize(x.SourceText).Length)
             .ThenBy(x => x.RelPath, StringComparer.OrdinalIgnoreCase)
             .ThenBy(x => x.BlockNumber)
-            .Take(8)
+            .Take(maxResults)
             .ToList(), ct).ConfigureAwait(false);
 
         return result;
