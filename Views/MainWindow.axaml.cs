@@ -782,12 +782,18 @@ private async Task LoadConfigAndAutoloadAsync()
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.RootDisplayText))
         {
-            // TxtRoot has been removed from the top bar — the corpus badge
-            // shows the active corpus, and its tooltip carries the full
-            // root path for users who need to verify which folder is loaded.
             if (_emptyStateOverlay != null)
                 _emptyStateOverlay.IsVisible = string.IsNullOrEmpty(_vm.RootDisplayText);
             UpdateCorpusBadge();
+
+            // If texts just loaded (root became non-empty) and the tour is
+            // still active, dismiss it — the user got texts via Open Folder
+            // outside the tour flow. Mark onboarding done so it doesn't
+            // restart on next launch.
+            if (!string.IsNullOrEmpty(_vm.RootDisplayText) && _tourService is { IsActive: true })
+            {
+                _tourService.Complete();
+            }
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.ActiveCorpus)
               || e.PropertyName == nameof(MainWindowViewModel.CorpusBadgeLabel)
@@ -831,13 +837,23 @@ private async Task LoadConfigAndAutoloadAsync()
             UpdateTopBarToggleState();
         }
 
-        if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) => await _vm.OpenRootAsync();
+        if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) =>
+        {
+            // Always allow Open Folder — it's the escape hatch if anything
+            // goes wrong with the tour or text download. If the tour is active,
+            // block other buttons but NOT this one.
+            await _vm.OpenRootAsync();
+        };
         if (_btnSettings != null) _btnSettings.Click += async (_, _) =>
         {
             if (BlockIfTourActive()) return;
             await _vm.OpenSettingsAsync();
         };
-        if (_btnLicenses != null) _btnLicenses.Click += async (_, _) => await _vm.OpenLicensesAsync();
+        if (_btnLicenses != null) _btnLicenses.Click += async (_, _) =>
+        {
+            if (BlockIfTourActive()) return;
+            await _vm.OpenLicensesAsync();
+        };
 
         var btnGetStarted = Find<Button>("BtnGetStarted");
         if (btnGetStarted != null)
@@ -845,7 +861,16 @@ private async Task LoadConfigAndAutoloadAsync()
 
         var btnOpenRootAlt = Find<Button>("BtnOpenRootAlt");
         if (btnOpenRootAlt != null)
-            btnOpenRootAlt.Click += async (_, _) => await _vm.OpenRootAsync();
+            btnOpenRootAlt.Click += async (_, _) =>
+            {
+                // If the tour is active, funnel them into the tour flow.
+                // If the tour is NOT active (e.g. it failed or was somehow dismissed),
+                // this is the user's escape hatch — let them pick a folder directly.
+                if (_tourService is { IsActive: true })
+                    StartTour();
+                else
+                    await _vm.OpenRootAsync();
+            };
 
         if (_btnSave != null)
             _btnSave.Click += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
@@ -997,7 +1022,17 @@ private async Task LoadConfigAndAutoloadAsync()
                     _tourService?.Skip();
             };
             _tourTooltip.ActionClicked += (_, _) => OnTourActionClicked();
-            _tourTooltip.SkipWaitClicked += (_, _) => _tourService?.Next();
+            _tourTooltip.SkipWaitClicked += (_, _) =>
+            {
+                // SkipWait on the download step lets the user pick an existing folder
+                // instead of downloading. Only advance if texts are actually loaded.
+                if (_tourService?.CurrentStep?.Id == "download-texts" && string.IsNullOrWhiteSpace(_vm.Root))
+                {
+                    _vm.SetStatus("Choose a folder with texts first, or click the download button.");
+                    return;
+                }
+                _tourService?.Next();
+            };
         }
 
         // Tour service events
@@ -2990,6 +3025,17 @@ private async Task LoadConfigAndAutoloadAsync()
 
         // Clean up sample scholar data
         await RemoveTourScholarSampleAsync();
+
+        // Only mark onboarding complete if texts are actually loaded.
+        // Without this check, a user who skips the download step ends up
+        // with HasCompletedOnboarding=true but no texts — permanently broken.
+        if (string.IsNullOrWhiteSpace(_vm.Root))
+        {
+            // Texts not loaded — don't mark onboarding done. Next launch
+            // will re-trigger the mandatory setup.
+            await _vm.SafeSaveConfigAsync();
+            return;
+        }
 
         _vm.Config.HasCompletedOnboarding = true;
         await _vm.SafeSaveConfigAsync();
