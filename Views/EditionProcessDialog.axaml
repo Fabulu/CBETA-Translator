@@ -46,8 +46,12 @@
             <!-- Apparatus tab -->
             <TabItem Header="Apparatus">
                 <DockPanel>
-                    <CheckBox DockPanel.Dock="Top" Name="ChkLeidenView" Content="Leiden notation" FontSize="11" Margin="8,4"
-                              ToolTip.Tip="Switch to traditional critical apparatus notation"/>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="8,4">
+                        <CheckBox Name="ChkLeidenView" Content="Leiden notation" FontSize="11"
+                                  ToolTip.Tip="Switch to traditional critical apparatus notation"/>
+                        <Button Name="BtnCopyApparatus" Content="Copy" FontSize="11" Padding="8,2"
+                                ToolTip.Tip="Copy apparatus entries to clipboard"/>
+                    </StackPanel>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Name="ApparatusHost" Spacing="8" Margin="8"/>
@@ -63,6 +67,8 @@
                             <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8">
                                 <TextBlock Text="Collation Table" FontWeight="Bold" FontSize="14"/>
                                 <TextBlock Name="TxtCollationInfo" FontSize="11" Opacity="0.7" VerticalAlignment="Center"/>
+                                <Button Name="BtnCopyCollation" Content="Copy" FontSize="11" Padding="8,2"
+                                        ToolTip.Tip="Copy collation table to clipboard as tab-separated text"/>
                             </StackPanel>
                             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <Grid Name="CollationGrid" Margin="8"/>
@@ -128,28 +134,28 @@
                 <Grid RowDefinitions="Auto,Auto,*">
                     <!-- Slider + controls -->
                     <DockPanel Grid.Row="0" Margin="8,8,8,0">
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="2">
+                        <WrapPanel DockPanel.Dock="Right" Orientation="Horizontal">
                             <Button Name="BtnBack50" Content="-50" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Back 50 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Back 50 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnBack10" Content="-10" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Back 10 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Back 10 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnBack5" Content="-5" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Back 5 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Back 5 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnTimelinePrev" Content="&#x25C0;" Padding="6,2" FontSize="11"
-                                    ToolTip.Tip="Previous event"/>
+                                    ToolTip.Tip="Previous event" Margin="1"/>
                             <Button Name="BtnTimelineNext" Content="&#x25B6;" Padding="6,2" FontSize="11"
-                                    ToolTip.Tip="Next event"/>
+                                    ToolTip.Tip="Next event" Margin="1"/>
                             <Button Name="BtnFwd5" Content="+5" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Forward 5 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Forward 5 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnFwd10" Content="+10" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Forward 10 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Forward 10 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnFwd50" Content="+50" Padding="4,2" FontSize="9"
-                                    ToolTip.Tip="Forward 50 events" Opacity="0.7"/>
+                                    ToolTip.Tip="Forward 50 events" Opacity="0.7" Margin="1"/>
                             <ComboBox Name="CmbTimelineStage" MinWidth="130" FontSize="11"
-                                      ToolTip.Tip="Jump to stage" Margin="4,0,0,0"/>
+                                      ToolTip.Tip="Jump to stage" Margin="4,1,0,1"/>
                             <CheckBox Name="ChkTextChangesOnly" Content="Text changes only"
-                                      FontSize="11" VerticalAlignment="Center" Margin="4,0,0,0"/>
-                        </StackPanel>
+                                      FontSize="11" VerticalAlignment="Center" Margin="4,1,0,1"/>
+                        </WrapPanel>
                         <Slider Name="SliderTimeline" Minimum="0" Maximum="1"
                                 IsSnapToTickEnabled="True" TickFrequency="1"
                                 VerticalAlignment="Center" Margin="0,0,8,0"/>

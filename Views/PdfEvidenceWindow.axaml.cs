@@ -200,17 +200,29 @@ public partial class PdfEvidenceWindow : Window
 
                 ShowStatus("Downloading PDF from Wikimedia Commons...", false);
 
-                var result = await _pdfService.DownloadPdfAsync(
-                    url, localFileName, expectedSha256,
-                    progress: p =>
-                    {
-                        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                string? result;
+                try
+                {
+                    result = await _pdfService.DownloadPdfAsync(
+                        url, localFileName, expectedSha256,
+                        progress: p =>
                         {
-                            if (progressBar != null) progressBar.Value = p * 100;
-                            btnDownload.Content = $"Downloading... {p:P0}";
-                        });
-                    },
-                    ct: CancellationToken.None);
+                            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                            {
+                                if (progressBar != null) progressBar.Value = p * 100;
+                                btnDownload.Content = $"Downloading... {p:P0}";
+                            });
+                        },
+                        ct: CancellationToken.None);
+                }
+                catch (System.Net.Http.HttpRequestException)
+                {
+                    ShowStatus("Download failed \u2014 check your internet connection.", true);
+                    btnDownload.IsEnabled = true;
+                    btnDownload.Content = "Retry Download";
+                    if (progressBar != null) progressBar.IsVisible = false;
+                    return;
+                }
 
                 if (result != null)
                 {
@@ -222,7 +234,7 @@ public partial class PdfEvidenceWindow : Window
                 }
                 else
                 {
-                    ShowStatus("Download failed or hash verification failed. Please try again.", true);
+                    ShowStatus("Downloaded file does not match the expected SHA-256 hash. The source may have been modified since the edition was produced.", true);
                     btnDownload.IsEnabled = true;
                     btnDownload.Content = "Retry Download";
                     if (progressBar != null) progressBar.IsVisible = false;

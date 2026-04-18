@@ -215,6 +215,7 @@ public sealed class PdfEvidenceService : IDisposable
             return destPath;
         }
         catch (OperationCanceledException) { throw; }
+        catch (System.Net.Http.HttpRequestException) { throw; }
         catch
         {
             return null;
