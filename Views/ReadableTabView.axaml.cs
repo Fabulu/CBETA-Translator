@@ -924,6 +924,7 @@ public partial class ReadableTabView : UserControl
         if (_correctionTimeline != null)
         {
             _correctionTimeline.StepChanged += (_, step) => OnCorrectionStepChanged(step);
+            _correctionTimeline.ReturnToPresent += (_, _) => OnReturnToPresent();
         }
 
         RewireButtons();
@@ -5404,6 +5405,29 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
 
         Say($"Correction {step} of {_correctionEntries.Count}");
+    }
+
+    /// <summary>
+    /// Handles "Return to Present" from the correction timeline bar.
+    /// Restores the live rendered documents to the text editors.
+    /// </summary>
+    private void OnReturnToPresent()
+    {
+        _syncingSelection = true;
+        try
+        {
+            // Restore the actual rendered documents (not reconstructed correction state)
+            if (_aeOrig != null)
+                _aeOrig.Text = _vm.RenderOrig.Text ?? "";
+            if (_aeTran != null)
+                _aeTran.Text = _vm.RenderTran.Text ?? "";
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+
+        Say("Returned to present");
     }
 
     // =========================

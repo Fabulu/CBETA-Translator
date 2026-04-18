@@ -6,7 +6,12 @@
 
     <DockPanel LastChildFill="True" Margin="8,0">
 
-        <!-- Left: Previous button -->
+        <!-- Left: Mode label + Previous button -->
+        <TextBlock DockPanel.Dock="Left" Text="Time-Travel Mode"
+                   FontSize="10" FontWeight="SemiBold" Opacity="0.7"
+                   Foreground="{DynamicResource TextMutedFg}"
+                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+
         <Button Name="BtnPrev" Content="&#x25C0;" Padding="4,2" FontSize="11"
                 DockPanel.Dock="Left" Focusable="False"
                 Background="{DynamicResource BtnBg}"
@@ -14,7 +19,7 @@
                 ToolTip.Tip="Previous correction"
                 Margin="0,0,4,0"/>
 
-        <!-- Right cluster: Next, Play/Pause, Speed, Progress -->
+        <!-- Right cluster: Next, Play/Pause, Speed, Progress, Return to Present -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"
                     Spacing="4" VerticalAlignment="Center">
 
@@ -36,10 +41,17 @@
                        ToolTip.Tip="Click to cycle speed: 0.5x / 1x / 2x / 5x"
                        Margin="2,0"/>
 
-            <TextBlock Name="TxtProgress" Text="0 / 0" FontSize="11"
+            <TextBlock Name="TxtProgress" Text="Correction 0 of 0" FontSize="11"
                        Foreground="{DynamicResource TextMutedFg}"
                        VerticalAlignment="Center"
                        Margin="4,0,0,0"/>
+
+            <Button Name="BtnReturnToPresent" Content="Return to Present" Padding="6,2" FontSize="10"
+                    Focusable="False"
+                    Background="{DynamicResource BtnBg}"
+                    Foreground="{DynamicResource BtnFg}"
+                    ToolTip.Tip="Exit time-travel mode and restore the current edition text"
+                    Margin="6,0,0,0"/>
         </StackPanel>
 
         <!-- Center: Slider (snaps to integer ticks) -->

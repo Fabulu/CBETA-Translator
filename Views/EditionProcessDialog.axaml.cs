@@ -47,6 +47,8 @@ public partial class EditionProcessDialog : Window
     private ApparatusInfo? _apparatus;
     private string? _editionDir;
     private bool _leidenMode;
+    private ManifestInfo? _manifest;
+    private string? _xmlAbsPath;
 
     public void Load(
         ManifestInfo manifest,
@@ -128,6 +130,130 @@ public partial class EditionProcessDialog : Window
         PopulateForensicData();
         PopulateStats(stats);
         PopulateDocuments(documents, xmlAbsPath, manifest.TextId);
+
+        // Store for export
+        _manifest = manifest;
+        _xmlAbsPath = xmlAbsPath;
+
+        // Wire export button
+        var btnExport = this.FindControl<Button>("BtnExportEdition");
+        if (btnExport != null)
+            btnExport.Click += async (_, _) => await OnExportEditionAsync();
+    }
+
+    // ── Export ───────────────────────────────────────────────────────────
+
+    private async System.Threading.Tasks.Task OnExportEditionAsync()
+    {
+        var dialog = new EditionExportFormatDialog();
+        await dialog.ShowDialog(this);
+        var format = dialog.SelectedFormat;
+        if (format == null) return;
+
+        var sp = GetTopLevel(this)?.StorageProvider;
+        if (sp == null) return;
+
+        var title = _manifest?.WorkName ?? "Edition";
+        var author = _manifest?.Author ?? "";
+
+        // Read base XML text for TEI export
+        string? baseXml = null;
+        if (_xmlAbsPath != null && File.Exists(_xmlAbsPath))
+        {
+            try { baseXml = File.ReadAllText(_xmlAbsPath); }
+            catch { /* fall through */ }
+        }
+
+        string? content = null;
+        string? defaultExt = null;
+        string? filterName = null;
+        byte[]? binaryContent = null;
+
+        switch (format.Value)
+        {
+            case EditionExportFormat.TeiXml:
+                if (baseXml != null && _apparatus != null)
+                    content = TeiApparatusExportService.ExportTeiWithApparatus(baseXml, _apparatus, _witnessRegistry);
+                else if (baseXml != null)
+                    content = baseXml;
+                defaultExt = "xml";
+                filterName = "TEI XML";
+                break;
+
+            case EditionExportFormat.Pdf:
+                var baseText = _finalText ?? baseXml ?? "";
+                try
+                {
+                    binaryContent = PdfEditionExportService.ExportPdf(title, author, baseText, _apparatus, _witnessRegistry);
+                }
+                catch { return; }
+                defaultExt = "pdf";
+                filterName = "PDF";
+                break;
+
+            case EditionExportFormat.Html:
+                content = HtmlEditionExportService.ExportHtml(title, author, _finalText ?? baseXml ?? "", _apparatus, _witnessRegistry);
+                defaultExt = "html";
+                filterName = "HTML";
+                break;
+
+            case EditionExportFormat.Latex:
+                if (_apparatus != null)
+                    content = LatexEditionExportService.ExportLatex(_finalText ?? baseXml ?? "", _apparatus, title, author);
+                defaultExt = "tex";
+                filterName = "LaTeX";
+                break;
+
+            case EditionExportFormat.Leiden:
+                if (_apparatus != null)
+                    content = ApparatusTextExportService.ExportLeiden(_apparatus);
+                defaultExt = "txt";
+                filterName = "Text";
+                break;
+
+            case EditionExportFormat.Csv:
+                if (_apparatus != null)
+                    content = ApparatusTextExportService.ExportCsv(_apparatus);
+                defaultExt = "csv";
+                filterName = "CSV";
+                break;
+        }
+
+        if (string.IsNullOrEmpty(content) && binaryContent == null) return;
+
+        var file = await sp.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+        {
+            Title = $"Save {filterName}",
+            DefaultExtension = defaultExt,
+            SuggestedFileName = SanitizeFileName(title),
+            FileTypeChoices = new[]
+            {
+                new Avalonia.Platform.Storage.FilePickerFileType(filterName ?? "File")
+                    { Patterns = new[] { $"*.{defaultExt}" } }
+            }
+        });
+
+        if (file == null) return;
+
+        await using var stream = await file.OpenWriteAsync();
+        if (binaryContent != null)
+        {
+            await stream.WriteAsync(binaryContent);
+        }
+        else if (content != null)
+        {
+            await using var writer = new System.IO.StreamWriter(stream, Encoding.UTF8);
+            await writer.WriteAsync(content);
+        }
+    }
+
+    private static string SanitizeFileName(string name)
+    {
+        var invalid = Path.GetInvalidFileNameChars();
+        var sb = new StringBuilder(name.Length);
+        foreach (var c in name)
+            sb.Append(Array.IndexOf(invalid, c) >= 0 ? '_' : c);
+        return sb.ToString();
     }
 
     // ── Sources tab ──────────────────────────────────────────────────────
@@ -785,12 +911,12 @@ public partial class EditionProcessDialog : Window
     }
 
     /// <summary>Creates a styled cell for the collation grid.</summary>
-    private static Border MakeCollationCell(string text, bool isHeader, IBrush? bg = null)
+    private Border MakeCollationCell(string text, bool isHeader, IBrush? bg = null)
     {
-        return new Border
+        // Use dynamic theme resource for border instead of hardcoded color
+        var border = new Border
         {
             Background = bg ?? Brushes.Transparent,
-            BorderBrush = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
             BorderThickness = new Thickness(0.5),
             Padding = new Thickness(4, 2),
             Child = new TextBlock
@@ -803,6 +929,10 @@ public partial class EditionProcessDialog : Window
                 VerticalAlignment = VerticalAlignment.Center,
             },
         };
+        // Use theme's BorderBrush instead of hardcoded color
+        if (Application.Current?.TryFindResource("BorderBrush", out var res) == true && res is IBrush themeBrush)
+            border.BorderBrush = themeBrush;
+        return border;
     }
 
     /// <summary>
@@ -1928,8 +2058,8 @@ public partial class EditionProcessDialog : Window
         if (corrLogPath == null || !File.Exists(corrLogPath) ||
             workingTextPath == null || !File.Exists(workingTextPath))
         {
-            // No correction log found — hide the tab entirely
-            tabCorrections.IsVisible = false;
+            // No correction log found — show empty state message
+            ShowCorrectionEmptyState();
             return;
         }
 
@@ -1938,7 +2068,7 @@ public partial class EditionProcessDialog : Window
 
         if (_corrections.Count == 0)
         {
-            tabCorrections.IsVisible = false;
+            ShowCorrectionEmptyState();
             return;
         }
 
@@ -1985,6 +2115,33 @@ public partial class EditionProcessDialog : Window
             int step = (int)slider.Value;
             ShowCorrectionState(step, editor, txtProgress, txtInfo, txtBasis);
         };
+    }
+
+    private void ShowCorrectionEmptyState()
+    {
+        // Hide the scrubber/editor content and show an empty-state message
+        var content = this.FindControl<Grid>("CorrectionContent");
+        if (content != null) content.IsVisible = false;
+
+        var tabCorrections = this.FindControl<TabItem>("TabCorrections");
+        if (tabCorrections?.Content is Grid parentGrid)
+        {
+            // Already hidden the content grid; nothing more needed
+        }
+
+        // Add an empty-state label to the tab
+        if (tabCorrections != null)
+        {
+            tabCorrections.Content = new TextBlock
+            {
+                Text = "No correction history available for this edition.",
+                FontSize = 13,
+                Opacity = 0.6,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 40, 0, 0)
+            };
+        }
     }
 
     private void ShowCorrectionState(
