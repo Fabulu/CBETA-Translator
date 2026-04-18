@@ -173,9 +173,11 @@ public partial class ReadableTabView : UserControl
     // Correction time-travel (CE editions)
     private CorrectionTimelineBar? _correctionTimeline;
     private Infrastructure.DriftGutterMargin? _driftGutter;
+    private CharacterProvenanceFlyout? _charProvenanceFlyout;
     private List<Services.CorrectionEntry>? _correctionEntries;
     private List<(string Locus, string Text)>? _correctionWorkingText;
     private List<Services.TranslationDiffEntry>? _translationDiffs;
+    private string? _editionDir; // edition XML directory, used for resolving witness page images
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
     private Dictionary<string, Services.CorrectionEntry>? _latestCorrectionByLocus;
@@ -5212,6 +5214,16 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _correctionEntries = Services.CorrectionLogService.ParseCorrectionLog(logPath);
         _correctionWorkingText = Services.CorrectionLogService.ParseWorkingText(workingTextPath);
 
+        // Derive the edition directory from the log path for resolving witness images.
+        // Log is at provenance/{slug}/process/correction-log.md → edition is at xml-open/{kind}/{slug}/
+        try
+        {
+            var processDir = System.IO.Path.GetDirectoryName(logPath);
+            var provSlugDir = processDir != null ? System.IO.Path.GetDirectoryName(processDir) : null;
+            _editionDir = provSlugDir; // provenance/{slug}/ — close enough for image resolution
+        }
+        catch { _editionDir = null; }
+
         // Look for a companion translation-diff-log.md in the same directory
         var diffLogPath = System.IO.Path.Combine(
             System.IO.Path.GetDirectoryName(logPath) ?? "",
@@ -5237,6 +5249,47 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             _driftGutter = new Infrastructure.DriftGutterMargin();
             _aeTran.TextArea.LeftMargins.Insert(0, _driftGutter);
         }
+
+        // Attach character provenance flyout to the Chinese pane
+        if (_aeOrig?.TextArea != null && _dictOverlayCanvas != null && _charProvenanceFlyout == null)
+        {
+            _charProvenanceFlyout = new CharacterProvenanceFlyout(_aeOrig, _dictOverlayCanvas);
+
+            // Wire the "View in witness" button from the provenance flyout
+            _charProvenanceFlyout.ViewWitnessPageRequested += (witnessId, locus) =>
+            {
+                if (_editionDir == null) return;
+                var slug = System.IO.Path.GetFileName(_editionDir);
+                var ocrBase = System.IO.Path.GetFullPath(
+                    System.IO.Path.Combine(_editionDir, "..", "..", "..", "provenance", slug, "ocr"));
+                var imgPath = Services.PdfEvidenceService.ResolvePageImagePath(ocrBase, witnessId, locus);
+                if (imgPath != null)
+                {
+                    var win = new PdfEvidenceWindow();
+                    win.LoadPageImageEvidence(imgPath, $"{witnessId} — {locus}");
+                    win.Show();
+                }
+                else
+                {
+                    Say($"No page image found for {witnessId} at {locus}");
+                }
+            };
+
+            // Load forensic provenance data if the provenance directory exists
+            if (!string.IsNullOrWhiteSpace(logPath))
+            {
+                var processDir = System.IO.Path.GetDirectoryName(logPath);
+                if (processDir != null)
+                {
+                    var ocrConsensus = Services.OcrConsensusLogService.Parse(
+                        System.IO.Path.Combine(processDir, "ocr-consensus-log.md"));
+                    var charProvenance = Services.CharacterProvenanceLogService.Parse(
+                        System.IO.Path.Combine(processDir, "character-provenance-log.md"));
+
+                    _charProvenanceFlyout.SetProvenanceData(ocrConsensus, charProvenance);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -5256,10 +5309,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             _driftGutter = null;
         }
 
+        _charProvenanceFlyout?.Detach();
+        _charProvenanceFlyout = null;
+
         _correctionEntries = null;
         _correctionWorkingText = null;
         _translationDiffs = null;
         _latestCorrectionByLocus = null;
+        _editionDir = null;
     }
 
     private void OnCorrectionStepChanged(int step)
@@ -5299,6 +5356,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         {
             _syncingSelection = false;
         }
+
+        // Update character provenance flyout with current reconstruction state
+        _charProvenanceFlyout?.SetReconstructionState(reconstructedLines);
 
         // Update drift gutter on the English pane
         if (_driftGutter != null && _aeTran != null)
