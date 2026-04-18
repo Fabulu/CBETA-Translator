@@ -12,13 +12,19 @@
     <DockPanel>
         <!-- Header -->
         <Border DockPanel.Dock="Top" Padding="16,12" Background="{DynamicResource BarBg}">
-            <StackPanel Spacing="2">
-                <TextBlock Name="TxtDialogTitle" FontWeight="Bold" FontSize="16" TextWrapping="Wrap"/>
-                <TextBlock Name="TxtDialogSubtitle" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
-            </StackPanel>
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Name="BtnExportEdition"
+                        Content="Export Edition" MinWidth="120"
+                        VerticalAlignment="Center" Margin="12,0,0,0"
+                        ToolTip.Tip="Export this edition in various scholarly formats"/>
+                <StackPanel Spacing="2">
+                    <TextBlock Name="TxtDialogTitle" FontWeight="Bold" FontSize="16" TextWrapping="Wrap"/>
+                    <TextBlock Name="TxtDialogSubtitle" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+                </StackPanel>
+            </DockPanel>
         </Border>
 
-        <!-- Tab control -->
+        <!-- Tab control (order: Sources, Editorial Process, Apparatus, Collation, Corrections, Timeline, Edition Log, Statistics, Documents) -->
         <TabControl Name="TabMain" Margin="8">
 
             <!-- Sources tab -->
@@ -27,6 +33,94 @@
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="SourcesHost" Spacing="8" Margin="8"/>
                 </ScrollViewer>
+            </TabItem>
+
+            <!-- Process tab -->
+            <TabItem Header="Editorial Process">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="ProcessHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Apparatus tab -->
+            <TabItem Header="Apparatus">
+                <DockPanel>
+                    <CheckBox DockPanel.Dock="Top" Name="ChkLeidenView" Content="Leiden notation" FontSize="11" Margin="8,4"
+                              ToolTip.Tip="Switch to traditional critical apparatus notation"/>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel Name="ApparatusHost" Spacing="8" Margin="8"/>
+                    </ScrollViewer>
+                </DockPanel>
+            </TabItem>
+
+            <!-- Collation tab -->
+            <TabItem Header="Collation">
+                <TabControl Name="CollationSubTabs">
+                    <TabItem Header="Table">
+                        <Grid RowDefinitions="Auto,*">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8">
+                                <TextBlock Text="Collation Table" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Name="TxtCollationInfo" FontSize="11" Opacity="0.7" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Grid Name="CollationGrid" Margin="8"/>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Stemma" Name="TabStemma">
+                        <Grid RowDefinitions="Auto,*">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8">
+                                <TextBlock Text="Witness Stemma" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Name="TxtStemmaInfo" FontSize="11" Opacity="0.7" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Border Grid.Row="1" Name="StemmaHost" Margin="8"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <!-- Corrections tab (CE time-travel) -->
+            <TabItem Header="Corrections" Name="TabCorrections">
+                <Grid RowDefinitions="Auto,Auto,*" Name="CorrectionContent" Margin="8">
+                    <!-- Scrubber -->
+                    <DockPanel Grid.Row="0">
+                        <TextBlock DockPanel.Dock="Right" Name="TxtCorrectionProgress"
+                                   FontSize="11" VerticalAlignment="Center" Margin="8,0,0,0" Opacity="0.7"/>
+                        <Slider Name="SliderCorrections" Minimum="0" Maximum="1"
+                                IsSnapToTickEnabled="True" TickFrequency="1"
+                                VerticalAlignment="Center"
+                                ToolTip.Tip="Scrub through correction history. Left = raw OCR, right = fully corrected."/>
+                    </DockPanel>
+
+                    <!-- Current correction info -->
+                    <Border Grid.Row="1" Background="{DynamicResource BarBg}" CornerRadius="6"
+                            Padding="10" Margin="0,4">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right" Name="BtnViewEvidence"
+                                    Content="View Evidence" MinWidth="120"
+                                    VerticalAlignment="Center" Margin="8,0,0,0"
+                                    IsVisible="False"
+                                    ToolTip.Tip="View the PDF page image that supports this correction"/>
+                            <StackPanel Spacing="2">
+                                <TextBlock Name="TxtCorrectionInfo" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                                <TextBlock Name="TxtCorrectionBasis" FontSize="10" Opacity="0.7" TextWrapping="Wrap"/>
+                                <TextBlock Name="TxtCorrectionReasoning" FontSize="10" Opacity="0.75"
+                                           TextWrapping="Wrap" IsVisible="False"
+                                           Margin="0,4,0,0" FontStyle="Italic"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- Text view -->
+                    <ae:TextEditor Grid.Row="2" Name="EditorCorrectionPreview"
+                                   IsReadOnly="True"
+                                   ShowLineNumbers="True"
+                                   WordWrap="True"
+                                   FontFamily="Consolas, Menlo, 'Noto Sans CJK SC', monospace"
+                                   FontSize="13"/>
+                </Grid>
             </TabItem>
 
             <!-- Timeline tab -->
@@ -101,99 +195,12 @@
                 </Grid>
             </TabItem>
 
-            <!-- Corrections tab (CE time-travel) -->
-            <TabItem Header="Corrections" Name="TabCorrections">
-                <Grid RowDefinitions="Auto,Auto,*" Margin="8">
-                    <!-- Scrubber -->
-                    <DockPanel Grid.Row="0">
-                        <TextBlock DockPanel.Dock="Right" Name="TxtCorrectionProgress"
-                                   FontSize="11" VerticalAlignment="Center" Margin="8,0,0,0" Opacity="0.7"/>
-                        <Slider Name="SliderCorrections" Minimum="0" Maximum="1"
-                                IsSnapToTickEnabled="True" TickFrequency="1"
-                                VerticalAlignment="Center"
-                                ToolTip.Tip="Scrub through correction history. Left = raw OCR, right = fully corrected."/>
-                    </DockPanel>
-
-                    <!-- Current correction info -->
-                    <Border Grid.Row="1" Background="{DynamicResource BarBg}" CornerRadius="6"
-                            Padding="10" Margin="0,4">
-                        <DockPanel>
-                            <Button DockPanel.Dock="Right" Name="BtnViewEvidence"
-                                    Content="View Evidence" MinWidth="120"
-                                    VerticalAlignment="Center" Margin="8,0,0,0"
-                                    IsVisible="False"
-                                    ToolTip.Tip="View the PDF page image that supports this correction"/>
-                            <StackPanel Spacing="2">
-                                <TextBlock Name="TxtCorrectionInfo" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
-                                <TextBlock Name="TxtCorrectionBasis" FontSize="10" Opacity="0.7" TextWrapping="Wrap"/>
-                                <TextBlock Name="TxtCorrectionReasoning" FontSize="10" Opacity="0.75"
-                                           TextWrapping="Wrap" IsVisible="False"
-                                           Margin="0,4,0,0" FontStyle="Italic"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </Border>
-
-                    <!-- Text view -->
-                    <ae:TextEditor Grid.Row="2" Name="EditorCorrectionPreview"
-                                   IsReadOnly="True"
-                                   ShowLineNumbers="True"
-                                   WordWrap="True"
-                                   FontFamily="Consolas, Menlo, 'Noto Sans CJK SC', monospace"
-                                   FontSize="13"/>
-                </Grid>
-            </TabItem>
-
-            <!-- Log tab -->
-            <TabItem Header="Log">
+            <!-- Edition Log tab -->
+            <TabItem Header="Edition Log">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="LogHost" Spacing="8" Margin="8"/>
                 </ScrollViewer>
-            </TabItem>
-
-            <!-- Process tab -->
-            <TabItem Header="Editorial Process">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Name="ProcessHost" Spacing="8" Margin="8"/>
-                </ScrollViewer>
-            </TabItem>
-
-            <!-- Apparatus tab -->
-            <TabItem Header="Apparatus">
-                <DockPanel>
-                    <CheckBox DockPanel.Dock="Top" Name="ChkLeidenView" Content="Leiden notation" FontSize="11" Margin="8,4"/>
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                  VerticalScrollBarVisibility="Auto">
-                        <StackPanel Name="ApparatusHost" Spacing="8" Margin="8"/>
-                    </ScrollViewer>
-                </DockPanel>
-            </TabItem>
-
-            <!-- Collation tab -->
-            <TabItem Header="Collation">
-                <TabControl Name="CollationSubTabs">
-                    <TabItem Header="Table">
-                        <Grid RowDefinitions="Auto,*">
-                            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8">
-                                <TextBlock Text="Collation Table" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Name="TxtCollationInfo" FontSize="11" Opacity="0.7" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                <Grid Name="CollationGrid" Margin="8"/>
-                            </ScrollViewer>
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="Stemma" Name="TabStemma">
-                        <Grid RowDefinitions="Auto,*">
-                            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8">
-                                <TextBlock Text="Witness Stemma" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Name="TxtStemmaInfo" FontSize="11" Opacity="0.7" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Border Grid.Row="1" Name="StemmaHost" Margin="8"/>
-                        </Grid>
-                    </TabItem>
-                </TabControl>
             </TabItem>
 
             <!-- Stats tab -->

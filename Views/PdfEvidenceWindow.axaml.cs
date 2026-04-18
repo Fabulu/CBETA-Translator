@@ -110,8 +110,8 @@ public partial class PdfEvidenceWindow : Window
         var txtMeta = this.FindControl<TextBlock>("TxtMeta");
 
         if (txtTitle != null)
-            txtTitle.Text = $"Witness Evidence \u2014 {witnessLabel} p.{pageNumber + 1}";
-        Title = $"Evidence \u00b7 {witnessLabel} p.{pageNumber + 1}";
+            txtTitle.Text = $"Witness Evidence \u2014 {witnessLabel} \u00b7 p.{pageNumber + 1}";
+        Title = $"Evidence \u00b7 {witnessLabel} \u00b7 p.{pageNumber + 1}";
 
         _hasRegion = regionX >= 0 && regionY >= 0;
         _regionX = Math.Max(0, regionX);
@@ -245,11 +245,14 @@ public partial class PdfEvidenceWindow : Window
         var txtMeta = this.FindControl<TextBlock>("TxtMeta");
 
         var fileName = System.IO.Path.GetFileName(pngPath);
+        // Extract locus from filename if available (e.g. "T1-p008.l01.png" -> "T1-p008.l01")
+        var locusFromFile = System.IO.Path.GetFileNameWithoutExtension(pngPath);
+        var locusDisplay = !string.IsNullOrEmpty(_currentLocus) ? _currentLocus : locusFromFile;
         if (txtTitle != null)
-            txtTitle.Text = $"Witness Evidence \u2014 {witnessLabel}";
+            txtTitle.Text = $"Witness Evidence \u2014 {witnessLabel} \u2014 {locusDisplay}";
         if (txtMeta != null)
             txtMeta.Text = $"Page image: {fileName}";
-        Title = $"Evidence \u00b7 {witnessLabel}";
+        Title = $"Evidence \u00b7 {witnessLabel} \u00b7 {locusDisplay}";
 
         _currentBitmap = _pdfService.LoadPageImage(pngPath);
         if (_currentBitmap == null)
@@ -504,10 +507,16 @@ public partial class PdfEvidenceWindow : Window
             content.Children.Add(separator);
         }
 
-        // Show toggle button if any engine data exists (even "not available" entries)
-        if (allEngines.Count > 0 || anyEngine)
+        // Always show the toggle button; disable if no OCR data exists
+        toggleBtn.IsVisible = true;
+        if (!anyEngine)
         {
-            toggleBtn.IsVisible = true;
+            toggleBtn.IsEnabled = false;
+            toggleBtn.Content = "No OCR data";
+        }
+        else
+        {
+            toggleBtn.IsEnabled = true;
             WireOcrToggle();
         }
     }

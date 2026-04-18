@@ -116,10 +116,10 @@ public partial class WitnessComparisonPanel : UserControl
                             // default foreground
                             break;
                         case CharDiffKind.Insert:
-                            run.Foreground = new SolidColorBrush(Color.FromRgb(0, 200, 0));
+                            run.Foreground = new SolidColorBrush(Color.FromRgb(80, 255, 80));
                             break;
                         case CharDiffKind.Delete:
-                            run.Foreground = new SolidColorBrush(Color.FromRgb(255, 80, 80));
+                            run.Foreground = new SolidColorBrush(Color.FromRgb(255, 120, 120));
                             run.TextDecorations = Avalonia.Media.TextDecorations.Strikethrough;
                             break;
                     }
@@ -194,15 +194,15 @@ public partial class WitnessComparisonPanel : UserControl
                 var capturedSiglum = siglumLabel;
                 var pageBtn = new Button
                 {
-                    Content = "\U0001F4C4",
+                    Content = "\U0001F4C4 Page",
                     FontSize = 10,
-                    Padding = new Thickness(3, 1),
+                    Padding = new Thickness(5, 1),
                     Margin = new Thickness(0, 0, 6, 2),
                     Background = Avalonia.Media.Brushes.Transparent,
-                    BorderThickness = new Thickness(0),
+                    BorderThickness = new Thickness(1),
                     Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
                 };
-                ToolTip.SetTip(pageBtn, $"View page image for {capturedSiglum}");
+                ToolTip.SetTip(pageBtn, $"View this witness\u2019s page image for this locus");
                 pageBtn.Click += (_, _) =>
                 {
                     if (_locusId != null)

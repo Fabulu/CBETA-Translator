@@ -20,7 +20,7 @@ namespace ReadZen.App.Infrastructure;
 public sealed class DriftGutterMargin : AbstractMargin
 {
     private const double MarginWidth = 16;
-    private const double DotDiameter = 8;
+    private const double DotDiameter = 12;
     private const double DotRadius = DotDiameter / 2;
 
     private static readonly IBrush DotBrush = new SolidColorBrush(Color.FromRgb(255, 165, 0));

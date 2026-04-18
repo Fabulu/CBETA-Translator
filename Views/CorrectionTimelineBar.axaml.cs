@@ -41,6 +41,9 @@ public partial class CorrectionTimelineBar : UserControl
     /// <summary>Fires when auto-advance reaches the last correction.</summary>
     public event EventHandler? PlaybackCompleted;
 
+    /// <summary>Fires when the user clicks "Return to Present" to exit time-travel mode.</summary>
+    public event EventHandler? ReturnToPresent;
+
     /// <summary>Current step position (0 = raw OCR, Count = fully corrected).</summary>
     public int CurrentStep
     {
@@ -90,6 +93,10 @@ public partial class CorrectionTimelineBar : UserControl
 
         if (_txtSpeed != null)
             _txtSpeed.PointerPressed += OnSpeedClicked;
+
+        var btnReturn = this.FindControl<Button>("BtnReturnToPresent");
+        if (btnReturn != null)
+            btnReturn.Click += (_, _) => OnReturnToPresent();
 
         // Playback timer (default 1 correction/second)
         _playbackTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.0) };
@@ -230,6 +237,16 @@ public partial class CorrectionTimelineBar : UserControl
         _playbackTimer.Interval = TimeSpan.FromSeconds(1.0 / multiplier);
     }
 
+    // ── Return to Present ──────────────────────────────────────
+
+    private void OnReturnToPresent()
+    {
+        StopPlayback();
+        if (_slider != null)
+            _slider.Value = _corrections.Count; // set to max (fully corrected)
+        ReturnToPresent?.Invoke(this, EventArgs.Empty);
+    }
+
     // ── UI helpers ──────────────────────────────────────────────
 
     private void UpdateProgressText()
@@ -237,6 +254,6 @@ public partial class CorrectionTimelineBar : UserControl
         if (_txtProgress == null) return;
         var current = _slider != null ? (int)_slider.Value : 0;
         var total = _corrections.Count;
-        _txtProgress.Text = $"{current} / {total}";
+        _txtProgress.Text = current == 0 ? "Raw OCR" : $"Correction {current} of {total}";
     }
 }

@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.EditionExportFormatDialog"
+        Title="Export Edition"
+        Width="420" Height="380"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <DockPanel Margin="16">
+        <!-- OK / Cancel -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,12,0,0">
+            <Button Name="BtnOk" Content="Export" MinWidth="80" IsDefault="True"/>
+            <Button Name="BtnCancel" Content="Cancel" MinWidth="80" IsCancel="True"/>
+        </StackPanel>
+
+        <!-- Format choices -->
+        <StackPanel Spacing="10">
+            <TextBlock Text="Choose export format:" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,4"/>
+
+            <RadioButton Name="RbTei" GroupName="Fmt" IsChecked="True">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="TEI P5 with apparatus (.xml)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Standard scholarly XML with listWit and listApp" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton Name="RbPdf" GroupName="Fmt">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="PDF with apparatus (.pdf)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Typeset critical edition with footnote apparatus" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton Name="RbHtml" GroupName="Fmt">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="HTML standalone (.html)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Self-contained web page with linked apparatus" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton Name="RbLatex" GroupName="Fmt">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="LaTeX / reledmac (.tex)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Compilable LaTeX with inline critical apparatus" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton Name="RbLeiden" GroupName="Fmt">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="Plain text Leiden (.txt)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Traditional Leiden-convention notation" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton Name="RbCsv" GroupName="Fmt">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="CSV collation (.csv)" FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Text="Spreadsheet-ready collation table" FontSize="11" Opacity="0.7"/>
+                </StackPanel>
+            </RadioButton>
+        </StackPanel>
+    </DockPanel>
+</Window>
