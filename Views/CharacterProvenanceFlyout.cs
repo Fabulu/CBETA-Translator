@@ -148,6 +148,10 @@ public sealed class CharacterProvenanceFlyout : IDisposable
             return;
         }
 
+        // Only open on Ctrl+click to avoid conflicting with text selection
+        if (!e.KeyModifiers.HasFlag(KeyModifiers.Control))
+            return;
+
         // Only activate when reconstruction state is loaded (time-travel mode)
         if (_reconstructionLines == null || _reconstructionLines.Count == 0)
             return;
@@ -430,7 +434,7 @@ public sealed class CharacterProvenanceFlyout : IDisposable
         // Close hint
         stack.Children.Add(new TextBlock
         {
-            Text = "Click anywhere to dismiss",
+            Text = "Click anywhere to dismiss \u2022 Ctrl+click a character for provenance details",
             FontSize = 10,
             Foreground = dimFg,
             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,

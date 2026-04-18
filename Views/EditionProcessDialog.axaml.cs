@@ -1,5 +1,5 @@
 // Views/EditionProcessDialog.axaml.cs
-// Full edition details dialog with 5 tabs: Sources, Process, Apparatus, Stats, Documents.
+// Full edition details dialog with 9 tabs: Sources, Editorial Process, Apparatus, Collation, Corrections, Timeline, Edition Log, Statistics, Documents.
 // Opened from ProvenancePanel's "View Edition Details..." button.
 
 using System;
@@ -125,6 +125,15 @@ public partial class EditionProcessDialog : Window
                     PopulateApparatus(_apparatus);
             };
         }
+
+        // Wire copy buttons
+        var btnCopyApp = this.FindControl<Button>("BtnCopyApparatus");
+        if (btnCopyApp != null)
+            btnCopyApp.Click += async (_, _) => await CopyApparatusToClipboard();
+
+        var btnCopyColl = this.FindControl<Button>("BtnCopyCollation");
+        if (btnCopyColl != null)
+            btnCopyColl.Click += async (_, _) => await CopyCollationToClipboard();
 
         PopulateCorrections(process, xmlAbsPath);
         PopulateForensicData();
@@ -554,7 +563,8 @@ public partial class EditionProcessDialog : Window
 
         return new Border
         {
-            Padding = new Thickness(10), CornerRadius = new CornerRadius(6),
+            BorderBrush = Application.Current?.Resources["BorderBrush"] as IBrush,
+            Padding = new Thickness(8, 6), CornerRadius = new CornerRadius(6),
             BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
             Child = stack,
         };
@@ -759,7 +769,8 @@ public partial class EditionProcessDialog : Window
 
             host.Children.Add(new Border
             {
-                Child = card, Padding = new Thickness(10), CornerRadius = new CornerRadius(6),
+                BorderBrush = Application.Current?.Resources["BorderBrush"] as IBrush,
+                Child = card, Padding = new Thickness(8, 6), CornerRadius = new CornerRadius(6),
                 BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
             });
         }
@@ -966,7 +977,18 @@ public partial class EditionProcessDialog : Window
 
         if (stemma == null || stemma.Edges.Count == 0)
         {
-            if (tabStemma != null) tabStemma.IsVisible = false;
+            if (txtStemmaInfo != null)
+                txtStemmaInfo.Text = "";
+            stemmaHost.Child = new TextBlock
+            {
+                Text = "No stemma (manuscript family tree) data available for this edition. " +
+                       "A stemma shows the transmission relationships between witnesses \u2014 " +
+                       "which manuscripts were copied from which.",
+                FontSize = 12,
+                Opacity = 0.7,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(8),
+            };
             return;
         }
 
@@ -1084,6 +1106,111 @@ public partial class EditionProcessDialog : Window
         }
     }
 
+    /// <summary>
+    /// Copies the current apparatus view to clipboard (Leiden or structured text).
+    /// </summary>
+    private async System.Threading.Tasks.Task CopyApparatusToClipboard()
+    {
+        if (_apparatus?.Entries is not { Count: > 0 }) return;
+        var sb = new StringBuilder();
+
+        if (_leidenMode)
+        {
+            // Leiden format: lemma ] reading1 W1 | reading2 W2
+            foreach (var entry in _apparatus.Entries)
+            {
+                if (entry.Readings is not { Count: > 0 }) continue;
+                var prefix = !string.IsNullOrWhiteSpace(entry.Section)
+                    ? $"{entry.Section} / {entry.LocusId ?? "?"}: "
+                    : $"{entry.LocusId ?? "?"}: ";
+                sb.Append(prefix);
+                sb.Append(entry.Lemma ?? "?");
+                sb.Append(" ] ");
+
+                var groups = entry.Readings.GroupBy(r => r.Reading ?? "").ToList();
+                for (int gi = 0; gi < groups.Count; gi++)
+                {
+                    if (gi > 0) sb.Append(" | ");
+                    var g = groups[gi];
+                    sb.Append(g.Key);
+                    sb.Append(' ');
+                    sb.Append(string.Join(" ", g.Select(r => r.WitnessId ?? "?")));
+                }
+                sb.AppendLine();
+            }
+        }
+        else
+        {
+            // Structured format
+            foreach (var entry in _apparatus.Entries)
+            {
+                var locus = entry.LocusId ?? "?";
+                sb.AppendLine($"[{locus}] Lemma: {entry.Lemma ?? "(none)"}");
+                if (entry.Readings != null)
+                {
+                    foreach (var r in entry.Readings)
+                        sb.AppendLine($"  {r.WitnessId ?? "?"}: {r.Reading ?? "\u2014"}");
+                }
+            }
+        }
+
+        var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+        if (clipboard != null)
+            await clipboard.SetTextAsync(sb.ToString());
+    }
+
+    /// <summary>
+    /// Copies the collation table to clipboard as tab-separated text.
+    /// </summary>
+    private async System.Threading.Tasks.Task CopyCollationToClipboard()
+    {
+        if (_apparatus?.Entries is not { Count: > 0 }) return;
+
+        // Collect witness IDs in order
+        var witnessIds = new List<string>();
+        var witnessIdSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var entry in _apparatus.Entries)
+        {
+            if (entry.Readings == null) continue;
+            foreach (var r in entry.Readings)
+            {
+                if (!string.IsNullOrWhiteSpace(r.WitnessId) && witnessIdSet.Add(r.WitnessId))
+                    witnessIds.Add(r.WitnessId);
+            }
+        }
+
+        if (witnessIds.Count == 0) return;
+
+        var sb = new StringBuilder();
+        // Header
+        sb.Append("Locus");
+        foreach (var wid in witnessIds)
+            sb.Append('\t').Append(wid);
+        sb.AppendLine();
+
+        // Data rows
+        foreach (var entry in _apparatus.Entries)
+        {
+            sb.Append(entry.LocusId ?? "?");
+            var readingByWitness = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            if (entry.Readings != null)
+            {
+                foreach (var r in entry.Readings)
+                {
+                    if (!string.IsNullOrWhiteSpace(r.WitnessId))
+                        readingByWitness.TryAdd(r.WitnessId, r.Reading ?? "\u2014");
+                }
+            }
+            foreach (var wid in witnessIds)
+                sb.Append('\t').Append(readingByWitness.TryGetValue(wid, out var v) ? v : "\u2014");
+            sb.AppendLine();
+        }
+
+        var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+        if (clipboard != null)
+            await clipboard.SetTextAsync(sb.ToString());
+    }
+
     private Border BuildWitnessOpenButton(WitnessTextEntry witness)
     {
         var stack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
@@ -1115,7 +1242,8 @@ public partial class EditionProcessDialog : Window
 
         return new Border
         {
-            Padding = new Thickness(10, 6), CornerRadius = new CornerRadius(6),
+            BorderBrush = Application.Current?.Resources["BorderBrush"] as IBrush,
+            Padding = new Thickness(8, 6), CornerRadius = new CornerRadius(6),
             BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
             Child = dock,
         };
@@ -1457,8 +1585,10 @@ public partial class EditionProcessDialog : Window
         {
             Background = Application.Current?.Resources["CardBackgroundBrush"] as IBrush
                 ?? new SolidColorBrush(Color.FromRgb(40, 40, 40)),
+            BorderBrush = Application.Current?.Resources["BorderBrush"] as IBrush,
+            BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(6),
-            Padding = new Thickness(12, 10),
+            Padding = new Thickness(8, 6),
             Margin = new Thickness(0, 10, 0, 0),
             Child = card,
         };
