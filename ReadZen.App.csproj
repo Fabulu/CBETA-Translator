@@ -9,8 +9,8 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 
 		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<Version>4.8.0</Version>
-		<InformationalVersion>4.8.0</InformationalVersion>
+		<Version>4.9.0</Version>
+		<InformationalVersion>4.9.0</InformationalVersion>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 		
 		<!-- Self-contained publishing configuration (only applied when RuntimeIdentifier is explicitly specified) -->
@@ -57,6 +57,7 @@
 		GitHub releases page in the user's browser.
 		-->
 		<PackageReference Include="Docnet.Core" Version="2.6.0" />
+		<PackageReference Include="QuestPDF" Version="2024.12.3" />
 		<PackageReference Include="Velopack" Version="0.0.942" />
 
 		<!-- Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration. -->
