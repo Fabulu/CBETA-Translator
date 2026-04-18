@@ -234,13 +234,30 @@ internal static class AssistantPanelRenderer
             postProcessor,
             AssistantHighlightStyle.Tm);
 
+        // Wrap editor + optional variant note in a vertical stack
+        var cardContent = new StackPanel { Spacing = 4 };
+        cardContent.Children.Add(editor);
+
+        if (match.IsVariantMatch && !string.IsNullOrEmpty(match.VariantNote))
+        {
+            cardContent.Children.Add(new TextBlock
+            {
+                Text = match.VariantNote,
+                FontStyle = FontStyle.Italic,
+                FontSize = 11,
+                Foreground = new SolidColorBrush(Color.Parse("#D4A017")), // amber
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Margin = new Thickness(2, 0, 0, 0),
+            });
+        }
+
         var border = new Border
         {
             BorderBrush = brushResolver?.Invoke("BorderBrush"),
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(6),
-            Child = editor,
+            Child = cardContent,
         };
 
         // Double-click on the TM card opens the source file in a new window.

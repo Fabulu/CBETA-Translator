@@ -550,6 +550,7 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.ClearReadable = () =>
         {
             _readableView?.Clear();
+            _readableView?.ClearCorrectionTimeline();
             UpdateLicenseChip(null);
         };
         // Late-arriving license push from the VM (after the indexTask builds
@@ -562,7 +563,10 @@ private async Task LoadConfigAndAutoloadAsync()
             UpdateLicenseChip(license);
         };
         _vm.SetCurrentFileProvenance = (manifest, license, corpus, xmlAbsPath) =>
+        {
             _readableView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
+            DiscoverAndSetCorrectionLog(xmlAbsPath);
+        };
         _vm.SetReadableProvenancePanelVisible = visible =>
             _readableView?.SetProvenancePanelVisible(visible);
         _vm.SetReadableHoverDict = enabled =>
@@ -1325,6 +1329,14 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.RefreshCommunityDataForCurrentFileAsync();
             };
             _gitView.CommunityDataFetched += _communityDataFetchedHandler;
+
+            // Refresh the sidebar file list after sync completes so new/renamed
+            // titles from upstream appear without restarting the app.
+            _gitView.SyncCompleted += async (_, _) =>
+            {
+                try { await _vm.LoadFileListFromCacheOrBuildAsync(); }
+                catch { /* non-critical — sidebar stays stale until restart */ }
+            };
         }
 
         if (_scholarView != null)
@@ -2169,6 +2181,57 @@ private async Task LoadConfigAndAutoloadAsync()
     }
 
     // ── Time Travel (Reader) ────────────────────────────────────────
+
+    /// <summary>
+    /// Discovers a correction-log.md for a CE file and enables the Reader's
+    /// time-travel bar if found. Convention: provenance at
+    /// ../../../provenance/{slug}/process/correction-log.md relative to the
+    /// edition directory.
+    /// </summary>
+    private void DiscoverAndSetCorrectionLog(string? xmlAbsPath)
+    {
+        if (xmlAbsPath == null || _readableView == null)
+        {
+            _readableView?.ClearCorrectionTimeline();
+            return;
+        }
+
+        try
+        {
+            var editionDir = System.IO.Path.GetDirectoryName(xmlAbsPath);
+            if (editionDir == null) { _readableView.ClearCorrectionTimeline(); return; }
+
+            var slug = System.IO.Path.GetFileName(editionDir);
+            var provRoot = System.IO.Path.GetFullPath(
+                System.IO.Path.Combine(editionDir, "..", "..", "..", "provenance", slug));
+
+            string? corrLogPath = null;
+            string? workingTextPath = null;
+
+            if (System.IO.Directory.Exists(provRoot))
+            {
+                var candidate = System.IO.Path.Combine(provRoot, "process", "correction-log.md");
+                if (System.IO.File.Exists(candidate)) corrLogPath = candidate;
+
+                var correctedDir = System.IO.Path.Combine(provRoot, "transcription", "corrected");
+                if (System.IO.Directory.Exists(correctedDir))
+                {
+                    try
+                    {
+                        workingTextPath = System.IO.Directory.GetFiles(correctedDir, "*working*")
+                            .FirstOrDefault();
+                    }
+                    catch { }
+                }
+            }
+
+            _readableView.SetCorrectionLog(corrLogPath, workingTextPath);
+        }
+        catch
+        {
+            _readableView.ClearCorrectionTimeline();
+        }
+    }
 
     private async Task PopulateReaderVersionPickerAsync()
     {

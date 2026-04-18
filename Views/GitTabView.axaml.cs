@@ -22,6 +22,7 @@ public partial class GitTabView : UserControl
     public event EventHandler<string>? Status;
     public event EventHandler<string>? RootCloned;
     public event EventHandler? CommunityDataFetched;
+    public event EventHandler? SyncCompleted;
     public event Func<Task>? PrepareCommunityShareRequested;
     public event Func<string, Task<bool>>? EnsurePersonalTranslatedForSelectedRequested;
     public event Func<string, Task<string?>>? EnsureTranslatedForSelectedRequested;
@@ -54,6 +55,7 @@ public partial class GitTabView : UserControl
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.RootCloned += (_, root) => RootCloned?.Invoke(this, root);
         _vm.CommunityDataFetched += (_, _) => CommunityDataFetched?.Invoke(this, EventArgs.Empty);
+        _vm.SyncCompleted += (_, _) => SyncCompleted?.Invoke(this, EventArgs.Empty);
         _vm.PrepareCommunityShareRequested += () =>
             PrepareCommunityShareRequested?.Invoke() ?? Task.CompletedTask;
         _vm.EnsurePersonalTranslatedForSelectedRequested += relPath =>

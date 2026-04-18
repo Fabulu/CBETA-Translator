@@ -52,6 +52,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMasterDatesService, MasterDatesService>();
         services.AddSingleton<OnboardingTourService>();
         services.AddSingleton<IDocumentVariableService, DocumentVariableService>();
+        services.AddSingleton<PdfEvidenceService>();
         services.AddSingleton<AppUpdateService>();
         return services;
     }

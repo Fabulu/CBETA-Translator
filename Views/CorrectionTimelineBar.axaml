@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.CorrectionTimelineBar"
+             Height="32"
+             IsVisible="False">
+
+    <DockPanel LastChildFill="True" Margin="8,0">
+
+        <!-- Left: Previous button -->
+        <Button Name="BtnPrev" Content="&#x25C0;" Padding="4,2" FontSize="11"
+                DockPanel.Dock="Left" Focusable="False"
+                Background="{DynamicResource BtnBg}"
+                Foreground="{DynamicResource BtnFg}"
+                ToolTip.Tip="Previous correction"
+                Margin="0,0,4,0"/>
+
+        <!-- Right cluster: Next, Play/Pause, Speed, Progress -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"
+                    Spacing="4" VerticalAlignment="Center">
+
+            <Button Name="BtnNext" Content="&#x25B6;" Padding="4,2" FontSize="11"
+                    Focusable="False"
+                    Background="{DynamicResource BtnBg}"
+                    Foreground="{DynamicResource BtnFg}"
+                    ToolTip.Tip="Next correction"/>
+
+            <Button Name="BtnPlayPause" Content="&#x25B6;&#xFE0E;" Padding="4,2" FontSize="11"
+                    Focusable="False"
+                    Background="{DynamicResource BtnBg}"
+                    Foreground="{DynamicResource BtnFg}"
+                    ToolTip.Tip="Play / Pause auto-advance"/>
+
+            <TextBlock Name="TxtSpeed" Text="1x" FontSize="11"
+                       Foreground="{DynamicResource TextMutedFg}"
+                       VerticalAlignment="Center" Cursor="Hand"
+                       ToolTip.Tip="Click to cycle speed: 0.5x / 1x / 2x / 5x"
+                       Margin="2,0"/>
+
+            <TextBlock Name="TxtProgress" Text="0 / 0" FontSize="11"
+                       Foreground="{DynamicResource TextMutedFg}"
+                       VerticalAlignment="Center"
+                       Margin="4,0,0,0"/>
+        </StackPanel>
+
+        <!-- Center: Slider (snaps to integer ticks) -->
+        <!-- Phase 3 enhancement: replace this Slider with a custom-drawn segmented
+             track colored by editorial stage (OCR / Collation / Apparatus / Review).
+             The stage boundaries would be determined by CorrectionEntry.ChangeType. -->
+        <Slider Name="SliderStep"
+                Minimum="0" Maximum="0"
+                Value="0"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1"
+                VerticalAlignment="Center"
+                Margin="4,0"/>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.PdfEvidenceWindow"
+        Width="850"
+        Height="750"
+        Title="Witness Evidence"
+        Background="{DynamicResource AppBg}"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+
+    <!-- Header -->
+    <StackPanel Grid.Row="0" Spacing="2" Margin="0,0,0,8">
+      <TextBlock Name="TxtTitle" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap"/>
+      <TextBlock Name="TxtMeta" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+    </StackPanel>
+
+    <!-- Status banner -->
+    <Border Grid.Row="1"
+            Name="StatusBanner"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="10,6"
+            Margin="0,0,0,8"
+            IsVisible="False">
+      <StackPanel Spacing="4">
+        <TextBlock Name="TxtStatus" FontSize="11" TextWrapping="Wrap"/>
+        <ProgressBar Name="DownloadProgress" IsVisible="False"
+                     Minimum="0" Maximum="100" Height="4"/>
+      </StackPanel>
+    </Border>
+
+    <!-- Image viewer with highlight overlay -->
+    <Border Grid.Row="2"
+            Background="{DynamicResource ControlBg}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            ClipToBounds="True">
+      <ScrollViewer Name="ImageScroller"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+        <Panel Name="ImageHost">
+          <Image Name="PageImage"
+                 Stretch="Uniform"
+                 RenderOptions.BitmapInterpolationMode="HighQuality"/>
+          <!-- Highlight overlay for the evidence region -->
+          <Canvas Name="HighlightCanvas" IsHitTestVisible="False"/>
+        </Panel>
+      </ScrollViewer>
+    </Border>
+
+    <!-- Bottom buttons -->
+    <StackPanel Grid.Row="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8"
+                Margin="0,8,0,0">
+      <TextBlock Name="TxtZoom" FontSize="11" Opacity="0.7"
+                 VerticalAlignment="Center" Margin="0,0,8,0"/>
+      <Button Name="BtnZoomIn" Content="+" MinWidth="36"
+              ToolTip.Tip="Zoom in"/>
+      <Button Name="BtnZoomOut" Content="-" MinWidth="36"
+              ToolTip.Tip="Zoom out"/>
+      <Button Name="BtnZoomFit" Content="Fit" MinWidth="60"
+              ToolTip.Tip="Fit to window"/>
+      <Button Name="BtnDownload" Content="Download PDF" MinWidth="140"
+              IsVisible="False"/>
+      <Button Name="BtnClose" Content="Close" MinWidth="100"/>
+    </StackPanel>
+  </Grid>
+</Window>
