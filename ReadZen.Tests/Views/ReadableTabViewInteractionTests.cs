@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
@@ -14,6 +16,11 @@ namespace ReadZen.Tests.Views;
 
 public class ReadableTabViewInteractionTests
 {
+    static ReadableTabViewInteractionTests()
+    {
+        AvaloniaTestInfrastructure.EnsureInitialized();
+    }
+
     private static ReadableTabView CreateViewShell(out ReadableTabViewModel vm)
     {
         var view = (ReadableTabView)RuntimeHelpers.GetUninitializedObject(typeof(ReadableTabView));
@@ -114,57 +121,63 @@ public class ReadableTabViewInteractionTests
     }
 
     [Fact]
-    public void ShowCommunityUserTags_SetsReadOnlyStatusAndDimsCodeBar()
+    public async Task ShowCommunityUserTags_SetsReadOnlyStatusAndDimsCodeBar()
     {
-        var view = CreateViewShell(out var vm);
-        vm.RenderOrig = MakeDoc();
-        vm.RenderTran = MakeDoc("translated");
-        vm.SetZenContext("T01/test.xml", isZen: true);
-
-        var status = new TextBlock();
-        var slots = new StackPanel();
-        SetField(view, "_txtCodeBarStatus", status);
-        SetField(view, "_codeBarSlots", slots);
-        SetField(view, "_communityTags", new Dictionary<string, List<DocumentTag>>(StringComparer.OrdinalIgnoreCase)
+        await Dispatcher.UIThread.InvokeAsync(() =>
         {
-            ["otheruser"] = new List<DocumentTag>
+            var view = CreateViewShell(out var vm);
+            vm.RenderOrig = MakeDoc();
+            vm.RenderTran = MakeDoc("translated");
+            vm.SetZenContext("T01/test.xml", isZen: true);
+
+            var status = new TextBlock();
+            var slots = new StackPanel();
+            SetField(view, "_txtCodeBarStatus", status);
+            SetField(view, "_codeBarSlots", slots);
+            SetField(view, "_communityTags", new Dictionary<string, List<DocumentTag>>(StringComparer.OrdinalIgnoreCase)
             {
-                new() { RelPath = "T01/test.xml", TagId = "other", FromLb = "0292a26", ToLb = "0292a30" }
-            }
-        });
-        SetField(view, "_communityVocabularies", new Dictionary<string, TagVocabulary>(StringComparer.OrdinalIgnoreCase)
-        {
-            ["otheruser"] = new TagVocabulary()
-        });
+                ["otheruser"] = new List<DocumentTag>
+                {
+                    new() { RelPath = "T01/test.xml", TagId = "other", FromLb = "0292a26", ToLb = "0292a30" }
+                }
+            });
+            SetField(view, "_communityVocabularies", new Dictionary<string, TagVocabulary>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["otheruser"] = new TagVocabulary()
+            });
 
-        InvokePrivate(view, "ShowCommunityUserTags", "otheruser");
+            InvokePrivate(view, "ShowCommunityUserTags", "otheruser");
 
-        Assert.Contains("Viewing otheruser's tags", status.Text);
-        Assert.Contains("read-only", status.Text);
-        Assert.Equal(0.35, slots.Opacity, 3);
+            Assert.Contains("Viewing otheruser's tags", status.Text);
+            Assert.Contains("read-only", status.Text);
+            Assert.Equal(0.35, slots.Opacity, 3);
+        });
     }
 
     [Fact]
-    public void CodingApplyTag_InCommunityMode_DoesNotApplyAndShowsReadOnlyStatus()
+    public async Task CodingApplyTag_InCommunityMode_DoesNotApplyAndShowsReadOnlyStatus()
     {
-        var view = CreateViewShell(out _);
-        var status = new TextBlock();
-        SetField(view, "_txtCodeBarStatus", status);
-        SetField(view, "_selectedTagUser", "otheruser");
-        SetField(view, "_tagVocabulary", new TagVocabulary
+        await Dispatcher.UIThread.InvokeAsync(() =>
         {
-            Tags = new List<TagDefinition> { new() { Id = "zen", Name = "Zen" } },
-            Pages = new Dictionary<int, string?[]> { [1] = new string?[] { "zen", null, null, null, null, null, null, null, null } }
+            var view = CreateViewShell(out _);
+            var status = new TextBlock();
+            SetField(view, "_txtCodeBarStatus", status);
+            SetField(view, "_selectedTagUser", "otheruser");
+            SetField(view, "_tagVocabulary", new TagVocabulary
+            {
+                Tags = new List<TagDefinition> { new() { Id = "zen", Name = "Zen" } },
+                Pages = new Dictionary<int, string?[]> { [1] = new string?[] { "zen", null, null, null, null, null, null, null, null } }
+            });
+
+            DocumentTag? applied = null;
+            view.TagApplied += (_, tag) => applied = tag;
+
+            InvokePrivate(view, "CodingApplyTag", 0);
+
+            Assert.Null(applied);
+            Assert.Contains("Viewing otheruser's tags", status.Text);
+            Assert.Contains("read-only", status.Text);
         });
-
-        DocumentTag? applied = null;
-        view.TagApplied += (_, tag) => applied = tag;
-
-        InvokePrivate(view, "CodingApplyTag", 0);
-
-        Assert.Null(applied);
-        Assert.Contains("Viewing otheruser's tags", status.Text);
-        Assert.Contains("read-only", status.Text);
     }
 
     [Fact]
