@@ -756,6 +756,11 @@ public partial class EditionProcessDialog : Window
         };
         viewer.LoadPageImageEvidence(pagePath, siglum);
 
+        // Load OCR readings for the side panel
+        var ocrPageId = PdfEvidenceWindow.ExtractPageIdFromLocus(locus);
+        if (ocrPageId != null)
+            viewer.LoadOcrReadings(ocrBaseDir, siglum, ocrPageId);
+
         // Set up witness selector with all available sigla from ocr directory
         var sigla = new System.Collections.Generic.List<string>();
         try

@@ -38,25 +38,52 @@
       </StackPanel>
     </Border>
 
-    <!-- Image viewer with highlight overlay -->
-    <Border Grid.Row="2"
-            Background="{DynamicResource ControlBg}"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="1"
-            CornerRadius="6"
-            ClipToBounds="True">
-      <ScrollViewer Name="ImageScroller"
-                    HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto">
-        <Panel Name="ImageHost">
-          <Image Name="PageImage"
-                 Stretch="Uniform"
-                 RenderOptions.BitmapInterpolationMode="HighQuality"/>
-          <!-- Highlight overlay for the evidence region -->
-          <Canvas Name="HighlightCanvas" IsHitTestVisible="False"/>
-        </Panel>
-      </ScrollViewer>
-    </Border>
+    <!-- Image viewer + OCR side panel -->
+    <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+
+      <!-- Image viewer with highlight overlay -->
+      <Border Grid.Column="0"
+              Background="{DynamicResource ControlBg}"
+              BorderBrush="{DynamicResource BorderBrush}"
+              BorderThickness="1"
+              CornerRadius="6"
+              ClipToBounds="True">
+        <ScrollViewer Name="ImageScroller"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
+          <Panel Name="ImageHost">
+            <Image Name="PageImage"
+                   Stretch="Uniform"
+                   RenderOptions.BitmapInterpolationMode="HighQuality"/>
+            <!-- Highlight overlay for the evidence region -->
+            <Canvas Name="HighlightCanvas" IsHitTestVisible="False"/>
+          </Panel>
+        </ScrollViewer>
+      </Border>
+
+      <!-- OCR Readings side panel (hidden by default) -->
+      <Border Grid.Column="1"
+              Name="OcrPanel"
+              IsVisible="False"
+              Width="300"
+              Background="{DynamicResource ControlBg}"
+              BorderBrush="{DynamicResource BorderBrush}"
+              BorderThickness="1,1,1,1"
+              CornerRadius="6"
+              Margin="4,0,0,0">
+        <Grid RowDefinitions="Auto,*">
+          <TextBlock Grid.Row="0" Text="OCR Readings"
+                     FontSize="13" FontWeight="SemiBold"
+                     Margin="8,6,8,4"/>
+          <ScrollViewer Grid.Row="1"
+                        VerticalScrollBarVisibility="Auto"
+                        Margin="0,0,0,4">
+            <StackPanel Name="OcrContent" Spacing="4" Margin="8,0,8,4"/>
+          </ScrollViewer>
+        </Grid>
+      </Border>
+
+    </Grid>
 
     <!-- Bottom buttons -->
     <StackPanel Grid.Row="3"
@@ -64,6 +91,9 @@
                 HorizontalAlignment="Right"
                 Spacing="8"
                 Margin="0,8,0,0">
+      <Button Name="BtnToggleOcr" Content="Show OCR &#x25B8;" MinWidth="90"
+              FontSize="11" ToolTip.Tip="Toggle OCR readings panel"
+              IsVisible="False"/>
       <TextBlock Name="TxtZoom" FontSize="11" Opacity="0.7"
                  VerticalAlignment="Center" Margin="0,0,8,0"/>
       <Button Name="BtnZoomIn" Content="+" MinWidth="36"
