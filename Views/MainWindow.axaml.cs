@@ -3094,16 +3094,19 @@ private async Task LoadConfigAndAutoloadAsync()
     /// </summary>
     public void MaybeStartTour()
     {
-        if (_vm.Config.HasCompletedOnboarding) return;
         if (IsSecondaryWindow) return;
 
-        // Don't start tour if launched via deep link  -  the user wants to go somewhere specific
+        // Don't start tour if launched via deep link — the user wants to go somewhere specific
         var hasDeepLink = App.StartupArgs?.Any(a =>
             a.StartsWith("zen://", StringComparison.OrdinalIgnoreCase)) == true;
         if (hasDeepLink) return;
 
-        // If root already loaded (returning user who requested tour restart),
-        // skip setup steps and go straight to feature walkthrough
+        // If root already loaded and onboarding complete, nothing to do
+        if (_vm.Config.HasCompletedOnboarding && !string.IsNullOrWhiteSpace(_vm.Root))
+            return;
+
+        // If root already loaded but onboarding not marked complete (returning
+        // user who requested tour restart), skip to feature walkthrough
         if (!string.IsNullOrWhiteSpace(_vm.Root))
         {
             _tourService?.Start(startIndex: 5); // Skip to "sidebar" step
@@ -3115,6 +3118,10 @@ private async Task LoadConfigAndAutoloadAsync()
             return;
         }
 
+        // No texts loaded — run the mandatory setup regardless of whether
+        // onboarding was previously "completed" (handles upgrades from older
+        // versions that set the flag without actually downloading texts).
+        _vm.Config.HasCompletedOnboarding = false;
         StartTour();
     }
 
