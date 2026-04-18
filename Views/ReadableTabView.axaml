@@ -27,7 +27,7 @@
 		</Style>
 	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
 
 		<!-- Row 0: Find bar (hidden by default, toggled with Ctrl+F) -->
 		<Border Name="FindBar" Grid.Row="0" IsVisible="False"
@@ -59,6 +59,10 @@
 		<!-- Row 2: Timeline slider (version history) -->
 	<local:TimelineSlider Grid.Row="2" Name="TimelineSlider"
 	                      IsVisible="False" Margin="0,0,0,4"/>
+
+	<!-- Row 3: Correction time-travel bar (CE editions only, hidden by default) -->
+	<local:CorrectionTimelineBar Grid.Row="3" Name="CorrectionTimeline"
+	                              IsVisible="False" Margin="0,0,0,4"/>
 
 	<DockPanel Grid.Row="1"
 				   Margin="0,0,0,8"
@@ -165,8 +169,8 @@
 			<Border/>
 		</DockPanel>
 
-		<!-- Row 3: two readable panes + study panel + empty state overlay -->
-		<Grid Grid.Row="3">
+		<!-- Row 4: two readable panes + study panel + empty state overlay -->
+		<Grid Grid.Row="4">
 			<Grid Name="ReaderOuterGrid" ColumnDefinitions="*,0,0">
 				<!-- Column 0: existing two-pane content -->
 				<Grid Grid.Column="0">
@@ -330,7 +334,7 @@
 		<!-- Row 3: coding mode bar + notes panel -->
 
 		<!-- Coding Mode toggle button - always visible -->
-		<StackPanel Grid.Row="4" Orientation="Vertical" Spacing="0">
+		<StackPanel Grid.Row="5" Orientation="Vertical" Spacing="0">
 
 			<!-- Code bar - visible only in coding mode -->
 			<Border Name="CodeBarPanel" IsVisible="False"

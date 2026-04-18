@@ -52,6 +52,12 @@ public sealed class TranslationTmMatch
     public TranslationResourceTrust Trust { get; set; } = TranslationResourceTrust.AiReference;
     public string ReviewStatus { get; set; } = "";
     public double Score { get; set; }
+
+    /// <summary>Human-readable note describing how the TM source differs from the query (variant reading).</summary>
+    public string? VariantNote { get; set; }
+
+    /// <summary>True when the TM source text is a textual variant of the query, not an exact match.</summary>
+    public bool IsVariantMatch { get; set; }
 }
 
 public sealed class TermHit

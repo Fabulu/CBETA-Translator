@@ -129,6 +129,7 @@ public partial class GitTabViewModel : ViewModelBase
     public event EventHandler<string>? StatusChanged;
     public event EventHandler<string>? RootCloned;
     public event EventHandler? CommunityDataFetched;
+    public event EventHandler? SyncCompleted;
     public event Func<Task>? PrepareCommunityShareRequested;
     public event Func<string, Task<bool>>? EnsurePersonalTranslatedForSelectedRequested;
     /// Returns the absolute path of the saved file, or null on failure.
@@ -587,6 +588,7 @@ public partial class GitTabViewModel : ViewModelBase
         AppendLog("\n[sync] Sync finished.");
         ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
         StatusChanged?.Invoke(this, ProgressText);
+        SyncCompleted?.Invoke(this, EventArgs.Empty);
     }
 
     [RelayCommand]

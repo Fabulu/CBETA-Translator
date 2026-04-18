@@ -105,6 +105,8 @@ public partial class EditionProcessDialog : Window
         PopulateLog(humanLog);
         PopulateProcess(process, manifest);
         PopulateApparatus(apparatus);
+        PopulateCorrections(process, xmlAbsPath);
+        PopulateForensicData();
         PopulateStats(stats);
         PopulateDocuments(documents, xmlAbsPath, manifest.TextId);
     }
@@ -762,6 +764,177 @@ public partial class EditionProcessDialog : Window
 
         if (!string.IsNullOrWhiteSpace(stats.GeneratedUtc))
             host.Children.Add(new TextBlock { Text = $"Generated: {stats.GeneratedUtc}", FontSize = 10, Opacity = 0.6, Margin = new Thickness(0, 8, 0, 0) });
+
+        // Drift statistics — only when correction data is available
+        var driftSection = BuildDriftStatsSection();
+        if (driftSection != null)
+            host.Children.Add(driftSection);
+    }
+
+    // ── Drift stats (embedded in Stats tab) ────────────────────────────
+
+    /// <summary>
+    /// Builds a bordered card showing translation drift statistics.
+    /// Returns null when correction or translation data is unavailable.
+    /// </summary>
+    private Border? BuildDriftStatsSection()
+    {
+        if (_corrections == null || _corrections.Count == 0 ||
+            _workingTextLines == null || _workingTextLines.Count == 0 ||
+            _finalRenderedDoc == null || _finalText == null)
+            return null;
+
+        // Build a translations dictionary keyed by segment key (locus)
+        var translations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var seg in _finalRenderedDoc.Segments)
+        {
+            if (seg.Start >= 0 && seg.EndExclusive <= _finalText.Length && seg.EndExclusive > seg.Start)
+            {
+                var text = _finalText.Substring(seg.Start, seg.EndExclusive - seg.Start).Trim();
+                if (!string.IsNullOrWhiteSpace(text))
+                    translations[seg.Key] = text;
+            }
+        }
+
+        if (translations.Count == 0) return null;
+
+        var report = TranslationDriftService.ComputeDrift(
+            _corrections, _workingTextLines, translations);
+
+        if (report.TranslatedSegments == 0) return null;
+
+        var card = new StackPanel { Spacing = 4 };
+
+        card.Children.Add(new TextBlock
+        {
+            Text = "Translation Drift",
+            FontWeight = FontWeight.Bold,
+            FontSize = 12,
+            Margin = new Thickness(0, 0, 0, 4),
+        });
+
+        // Progress bar: green (current) + orange (stale)
+        double currentPct = report.CurrentPercent;
+        double stalePct = report.TranslatedSegments > 0
+            ? report.StaleSegments * 100.0 / report.TranslatedSegments
+            : 0;
+
+        var barContainer = new Border
+        {
+            Height = 16,
+            CornerRadius = new CornerRadius(4),
+            ClipToBounds = true,
+            Background = new SolidColorBrush(Color.FromRgb(60, 60, 60)),
+            Margin = new Thickness(0, 2, 0, 4),
+        };
+
+        var barStack = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+        };
+
+        // We use a Grid to make the bars proportional to parent width
+        var barGrid = new Grid { HorizontalAlignment = HorizontalAlignment.Stretch };
+        barGrid.ColumnDefinitions.Add(new ColumnDefinition(currentPct, GridUnitType.Star));
+        if (stalePct > 0)
+            barGrid.ColumnDefinitions.Add(new ColumnDefinition(stalePct, GridUnitType.Star));
+        double remainPct = 100.0 - currentPct - stalePct;
+        if (remainPct > 0.1)
+            barGrid.ColumnDefinitions.Add(new ColumnDefinition(remainPct, GridUnitType.Star));
+
+        var greenBar = new Border
+        {
+            Background = new SolidColorBrush(Color.FromRgb(76, 175, 80)),
+            CornerRadius = new CornerRadius(4, 0, 0, 4),
+        };
+        Grid.SetColumn(greenBar, 0);
+        barGrid.Children.Add(greenBar);
+
+        if (stalePct > 0)
+        {
+            var orangeBar = new Border
+            {
+                Background = new SolidColorBrush(Color.FromRgb(255, 152, 0)),
+            };
+            Grid.SetColumn(orangeBar, 1);
+            barGrid.Children.Add(orangeBar);
+        }
+
+        barContainer.Child = barGrid;
+        card.Children.Add(barContainer);
+
+        // Summary text
+        var summaryParts = new List<string>
+        {
+            $"{currentPct:F0}% current",
+            $"{stalePct:F0}% stale",
+        };
+        if (report.UntranslatedSegments > 0)
+            summaryParts.Add($"{report.UntranslatedSegments} untranslated");
+        else
+            summaryParts.Add("0 untranslated");
+
+        card.Children.Add(new TextBlock
+        {
+            Text = string.Join(" \u00b7 ", summaryParts),
+            FontSize = 11,
+            Opacity = 0.85,
+        });
+
+        // Counts detail
+        card.Children.Add(new TextBlock
+        {
+            Text = $"{report.CurrentSegments} current / {report.StaleSegments} stale / {report.TranslatedSegments} translated of {report.TotalSegments} total",
+            FontSize = 10,
+            Opacity = 0.6,
+            Margin = new Thickness(0, 2, 0, 0),
+        });
+
+        // Collapsible stale entries
+        if (report.Drifts.Count > 0)
+        {
+            var driftList = new StackPanel { Spacing = 4 };
+            foreach (var d in report.Drifts)
+            {
+                var entryPanel = new StackPanel { Spacing = 1 };
+                entryPanel.Children.Add(new TextBlock
+                {
+                    Text = $"{d.Locus}  (step {d.CorrectionStep})",
+                    FontSize = 11,
+                    FontWeight = FontWeight.SemiBold,
+                    Opacity = 0.9,
+                });
+                entryPanel.Children.Add(new TextBlock
+                {
+                    Text = d.DiffSummary,
+                    FontSize = 10,
+                    Opacity = 0.75,
+                    TextWrapping = TextWrapping.Wrap,
+                    FontFamily = new FontFamily("Consolas, Courier New, monospace"),
+                });
+                driftList.Children.Add(entryPanel);
+            }
+
+            var expander = new Expander
+            {
+                Header = $"Stale segments ({report.Drifts.Count})",
+                Content = driftList,
+                FontSize = 11,
+                Margin = new Thickness(0, 4, 0, 0),
+            };
+            card.Children.Add(expander);
+        }
+
+        return new Border
+        {
+            Background = Application.Current?.Resources["CardBackgroundBrush"] as IBrush
+                ?? new SolidColorBrush(Color.FromRgb(40, 40, 40)),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(12, 10),
+            Margin = new Thickness(0, 10, 0, 0),
+            Child = card,
+        };
     }
 
     // ── Documents tab ────────────────────────────────────────────────────
@@ -1295,5 +1468,362 @@ public partial class EditionProcessDialog : Window
         if (bytes < 1024) return $"{bytes} B";
         if (bytes < 1024 * 1024) return $"{bytes / 1024.0:F1} KB";
         return $"{bytes / (1024.0 * 1024.0):F1} MB";
+    }
+
+    // ── Corrections tab (CE time-travel) ─────────────────────────────────
+
+    private List<CorrectionEntry>? _corrections;
+    private List<(string Locus, string Text)>? _workingTextLines;
+    private CorrectionEntry? _currentEvidenceCorrection;
+
+    // Forensic provenance logs (parsed from provenance/{slug}/process/)
+    private List<OcrConsensusEntry>? _ocrConsensus;
+    private List<RejectedReadingEntry>? _rejectedReadings;
+    private List<TranslationReasoningEntry>? _translationReasoning;
+    private List<CharacterProvenanceEntry>? _characterProvenance;
+
+    private void PopulateCorrections(ProcessInfo? process, string? xmlAbsPath)
+    {
+        var tabCorrections = this.FindControl<TabItem>("TabCorrections");
+        if (tabCorrections == null) return;
+
+        // Discover correction-log.md and working text from the provenance chain.
+        // Convention: edition dir is xml-open/{kind}/{slug}/, provenance is at
+        // ../../../provenance/{slug}/. Correction log at process/correction-log.md,
+        // working text at transcription/corrected/*working*.txt.
+        string? corrLogPath = null;
+        string? workingTextPath = null;
+
+        if (_editionDir != null)
+        {
+            var slug = Path.GetFileName(_editionDir);
+            // Try relative provenance path (3 levels up from edition dir)
+            var provRoot = Path.GetFullPath(Path.Combine(_editionDir, "..", "..", "..", "provenance", slug));
+            if (Directory.Exists(provRoot))
+            {
+                var candidate = Path.Combine(provRoot, "process", "correction-log.md");
+                if (File.Exists(candidate)) corrLogPath = candidate;
+
+                var correctedDir = Path.Combine(provRoot, "transcription", "corrected");
+                if (Directory.Exists(correctedDir))
+                {
+                    try
+                    {
+                        var wt = Directory.GetFiles(correctedDir, "*working*").FirstOrDefault();
+                        if (wt != null) workingTextPath = wt;
+                    }
+                    catch { }
+                }
+
+                // Parse forensic provenance logs from the same process directory
+                var processDir = Path.Combine(provRoot, "process");
+                _ocrConsensus = OcrConsensusLogService.Parse(
+                    Path.Combine(processDir, "ocr-consensus-log.md"));
+                _rejectedReadings = RejectedReadingsLogService.Parse(
+                    Path.Combine(processDir, "rejected-readings-log.md"));
+                _translationReasoning = TranslationReasoningLogService.Parse(
+                    Path.Combine(processDir, "translation-reasoning-log.md"));
+                _characterProvenance = CharacterProvenanceLogService.Parse(
+                    Path.Combine(processDir, "character-provenance-log.md"));
+            }
+        }
+
+        if (corrLogPath == null || !File.Exists(corrLogPath) ||
+            workingTextPath == null || !File.Exists(workingTextPath))
+        {
+            // No correction log found — hide the tab entirely
+            tabCorrections.IsVisible = false;
+            return;
+        }
+
+        _corrections = CorrectionLogService.ParseCorrectionLog(corrLogPath);
+        _workingTextLines = CorrectionLogService.ParseWorkingText(workingTextPath);
+
+        if (_corrections.Count == 0)
+        {
+            tabCorrections.IsVisible = false;
+            return;
+        }
+
+        // Wire the slider
+        var slider = this.FindControl<Slider>("SliderCorrections");
+        var editor = this.FindControl<AvaloniaEdit.TextEditor>("EditorCorrectionPreview");
+        var txtProgress = this.FindControl<TextBlock>("TxtCorrectionProgress");
+        var txtInfo = this.FindControl<TextBlock>("TxtCorrectionInfo");
+        var txtBasis = this.FindControl<TextBlock>("TxtCorrectionBasis");
+
+        if (slider == null || editor == null) return;
+
+        slider.Maximum = _corrections.Count;
+        slider.Value = _corrections.Count; // start at fully corrected
+
+        // Wire evidence button
+        var btnEvidence = this.FindControl<Button>("BtnViewEvidence");
+        if (btnEvidence != null)
+        {
+            btnEvidence.Click += (_, _) =>
+            {
+                if (_currentEvidenceCorrection is not { HasImageEvidence: true } c) return;
+
+                var pdfService = new PdfEvidenceService();
+                var viewer = new PdfEvidenceWindow(pdfService);
+                viewer.LoadEvidence(
+                    c.EvidencePdf!,
+                    c.EvidencePage!.Value,
+                    $"{c.Locus} ({c.ChangeType})",
+                    c.EvidenceRegionX ?? -1,
+                    c.EvidenceRegionY ?? -1,
+                    c.EvidenceRegionWidth ?? 1.0,
+                    c.EvidenceRegionHeight ?? 1.0);
+                viewer.Show(this);
+            };
+        }
+
+        // Show the initial state
+        ShowCorrectionState(_corrections.Count, editor, txtProgress, txtInfo, txtBasis);
+
+        slider.PropertyChanged += (_, args) =>
+        {
+            if (args.Property.Name != "Value") return;
+            int step = (int)slider.Value;
+            ShowCorrectionState(step, editor, txtProgress, txtInfo, txtBasis);
+        };
+    }
+
+    private void ShowCorrectionState(
+        int step,
+        AvaloniaEdit.TextEditor editor,
+        TextBlock? txtProgress,
+        TextBlock? txtInfo,
+        TextBlock? txtBasis)
+    {
+        if (_corrections == null || _workingTextLines == null) return;
+
+        var state = CorrectionLogService.ReconstructAtStep(_workingTextLines, _corrections, step);
+        editor.Text = state.ToDisplayText();
+
+        if (txtProgress != null)
+            txtProgress.Text = $"Correction {step} of {state.TotalCorrections}";
+
+        var btnEvidence = this.FindControl<Button>("BtnViewEvidence");
+
+        // Translation reasoning display (shown below basis when available)
+        var txtReasoning = this.FindControl<TextBlock>("TxtCorrectionReasoning");
+
+        if (step > 0 && step <= _corrections.Count)
+        {
+            var c = _corrections[step - 1];
+            if (txtInfo != null)
+                txtInfo.Text = $"[{c.Date}] {c.Locus}: {c.ChangeType} — \"{c.Before}\" → \"{c.After}\"";
+            if (txtBasis != null)
+                txtBasis.Text = c.Basis;
+
+            // Show translation reasoning if available for this step+locus
+            if (txtReasoning != null)
+            {
+                var reasoning = _translationReasoning?.FirstOrDefault(
+                    r => r.Step == step &&
+                         string.Equals(r.Locus, c.Locus, StringComparison.OrdinalIgnoreCase));
+                if (reasoning != null)
+                {
+                    txtReasoning.IsVisible = true;
+                    txtReasoning.Text = $"Translation: \"{reasoning.Chinese}\" → \"{reasoning.ChosenEnglish}\"\n" +
+                                        $"Reasoning: {reasoning.Reasoning}";
+                }
+                else
+                {
+                    txtReasoning.IsVisible = false;
+                }
+            }
+
+            // Show/hide evidence button based on whether this correction has image coords
+            if (btnEvidence != null)
+            {
+                btnEvidence.IsVisible = c.HasImageEvidence;
+                // Rewire click handler for current correction
+                _currentEvidenceCorrection = c;
+            }
+
+            // Try to scroll to the changed locus
+            if (state.HighlightLocus != null)
+            {
+                for (int i = 0; i < state.Lines.Count; i++)
+                {
+                    if (string.Equals(state.Lines[i].Locus, state.HighlightLocus, StringComparison.OrdinalIgnoreCase))
+                    {
+                        var line = Math.Min(i + 1, editor.Document.LineCount);
+                        editor.ScrollToLine(line);
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (txtInfo != null) txtInfo.Text = "Raw OCR output — no corrections applied";
+            if (txtBasis != null) txtBasis.Text = "Slide right to see how corrections improve the text.";
+            if (btnEvidence != null) btnEvidence.IsVisible = false;
+            if (txtReasoning != null) txtReasoning.IsVisible = false;
+        }
+    }
+
+    // ── Forensic provenance data (appended to Apparatus + Stats tabs) ───
+
+    /// <summary>
+    /// Appends forensic provenance sections to existing tabs when log data
+    /// was parsed from the provenance directory.
+    /// </summary>
+    private void PopulateForensicData()
+    {
+        PopulateForensicApparatus();
+        PopulateForensicStats();
+    }
+
+    private void PopulateForensicApparatus()
+    {
+        var host = this.FindControl<StackPanel>("ApparatusHost");
+        if (host == null) return;
+
+        // OCR Engine Consensus section
+        if (_ocrConsensus is { Count: > 0 })
+        {
+            host.Children.Add(MakeSection($"OCR Engine Consensus ({_ocrConsensus.Count} loci)"));
+
+            // Column headers
+            var headerRow = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 0, Margin = new Thickness(0, 2, 0, 4) };
+            headerRow.Children.Add(MakeTableCell("Locus", 80, true));
+            headerRow.Children.Add(MakeTableCell("Tesseract", 72, true));
+            headerRow.Children.Add(MakeTableCell("RapidOCR", 72, true));
+            headerRow.Children.Add(MakeTableCell("PaddleOCR", 72, true));
+            headerRow.Children.Add(MakeTableCell("EasyOCR", 72, true));
+            headerRow.Children.Add(MakeTableCell("Agreement", 80, true));
+            headerRow.Children.Add(MakeTableCell("Adopted", 72, true));
+
+            var rowsPanel = new StackPanel { Spacing = 1 };
+            rowsPanel.Children.Add(headerRow);
+
+            foreach (var e in _ocrConsensus)
+            {
+                var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 0 };
+                row.Children.Add(MakeTableCell(e.Locus, 80, false));
+                row.Children.Add(MakeTableCell(e.Tesseract, 72, false));
+                row.Children.Add(MakeTableCell(e.RapidOCR, 72, false));
+                row.Children.Add(MakeTableCell(e.PaddleOCR, 72, false));
+                row.Children.Add(MakeTableCell(e.EasyOCR, 72, false));
+                row.Children.Add(MakeTableCell(e.Agreement, 80, false));
+                row.Children.Add(MakeTableCell(e.Adopted, 72, false));
+                rowsPanel.Children.Add(row);
+            }
+
+            var scroll = new ScrollViewer
+            {
+                Content = rowsPanel,
+                MaxHeight = 240,
+                HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
+            };
+
+            host.Children.Add(new Border
+            {
+                Child = scroll, Padding = new Thickness(8), CornerRadius = new CornerRadius(6),
+                BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 8),
+            });
+        }
+
+        // Rejected Readings section
+        if (_rejectedReadings is { Count: > 0 })
+        {
+            host.Children.Add(MakeSection($"Rejected Readings ({_rejectedReadings.Count} entries)"));
+
+            var rejectedPanel = new StackPanel { Spacing = 4 };
+
+            foreach (var r in _rejectedReadings)
+            {
+                var card = new StackPanel { Spacing = 2 };
+                card.Children.Add(new TextBlock
+                {
+                    Text = $"{r.Locus}: \"{r.Rejected}\" (from {r.Source}) — adopted \"{r.Adopted}\"",
+                    FontSize = 11, FontWeight = FontWeight.SemiBold, TextWrapping = TextWrapping.Wrap,
+                });
+                card.Children.Add(new TextBlock
+                {
+                    Text = r.Reason, FontSize = 10, Opacity = 0.8,
+                    FontStyle = FontStyle.Italic, TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(12, 0, 0, 0),
+                });
+
+                rejectedPanel.Children.Add(new Border
+                {
+                    Child = card, Padding = new Thickness(8, 4), CornerRadius = new CornerRadius(4),
+                    BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 2),
+                });
+            }
+
+            var scroll = new ScrollViewer
+            {
+                Content = rejectedPanel,
+                MaxHeight = 300,
+            };
+
+            host.Children.Add(new Border
+            {
+                Child = scroll, Padding = new Thickness(4), CornerRadius = new CornerRadius(6),
+                BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 8),
+            });
+        }
+    }
+
+    private void PopulateForensicStats()
+    {
+        var host = this.FindControl<StackPanel>("StatsHost");
+        if (host == null) return;
+
+        if (_characterProvenance is not { Count: > 0 }) return;
+
+        host.Children.Add(MakeSection("Character Provenance Summary"));
+
+        // Count characters by confidence level
+        var byConfidence = _characterProvenance
+            .GroupBy(c => c.Confidence.Trim(), StringComparer.OrdinalIgnoreCase)
+            .OrderByDescending(g => g.Count())
+            .ToList();
+
+        var total = _characterProvenance.Count;
+        host.Children.Add(MakeKV("Total characters traced", total.ToString()));
+
+        foreach (var group in byConfidence)
+        {
+            var pct = total > 0 ? (group.Count() * 100.0 / total) : 0;
+            host.Children.Add(MakeKV(group.Key, $"{group.Count()} ({pct:F1}%)"));
+        }
+
+        // Source distribution
+        var bySrc = _characterProvenance
+            .GroupBy(c => c.Source.Trim(), StringComparer.OrdinalIgnoreCase)
+            .OrderByDescending(g => g.Count())
+            .ToList();
+
+        if (bySrc.Count > 1)
+        {
+            host.Children.Add(MakeSection("Character Source Distribution"));
+            foreach (var group in bySrc)
+            {
+                var pct = total > 0 ? (group.Count() * 100.0 / total) : 0;
+                host.Children.Add(MakeKV(group.Key, $"{group.Count()} ({pct:F1}%)"));
+            }
+        }
+    }
+
+    private static TextBlock MakeTableCell(string text, double width, bool isHeader)
+    {
+        return new TextBlock
+        {
+            Text = text,
+            Width = width,
+            FontSize = 10,
+            FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
+            Opacity = isHeader ? 0.9 : 0.8,
+            TextTrimming = TextTrimming.CharacterEllipsis,
+            Padding = new Thickness(2, 1),
+        };
     }
 }

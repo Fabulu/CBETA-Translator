@@ -169,6 +169,16 @@ public partial class ReadableTabView : UserControl
     // Find bar (Ctrl+F)
     // -------------------------
     private Border? _findBar;
+
+    // Correction time-travel (CE editions)
+    private CorrectionTimelineBar? _correctionTimeline;
+    private Infrastructure.DriftGutterMargin? _driftGutter;
+    private List<Services.CorrectionEntry>? _correctionEntries;
+    private List<(string Locus, string Text)>? _correctionWorkingText;
+    private List<Services.TranslationDiffEntry>? _translationDiffs;
+    // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
+    // scan on every slider tick during time-travel playback.
+    private Dictionary<string, Services.CorrectionEntry>? _latestCorrectionByLocus;
     private TextBox? _txtFindInput;
     private TextBlock? _txtFindCount;
     private Button? _btnFindNext;
@@ -410,6 +420,7 @@ public partial class ReadableTabView : UserControl
         _studyDictSenses = this.FindControl<StackPanel>("StudyDictSenses");
 
         _findBar = this.FindControl<Border>("FindBar");
+        _correctionTimeline = this.FindControl<CorrectionTimelineBar>("CorrectionTimeline");
         _txtFindInput = this.FindControl<TextBox>("TxtFindInput");
         _txtFindCount = this.FindControl<TextBlock>("TxtFindCount");
         _btnFindNext = this.FindControl<Button>("BtnFindNext");
@@ -906,6 +917,12 @@ public partial class ReadableTabView : UserControl
         // Visible Find button in the toolbar — same behavior as Ctrl+F.
         var btnFind = this.FindControl<Button>("BtnFind");
         if (btnFind != null) btnFind.Click += (_, _) => OpenFindBar();
+
+        // Correction time-travel bar
+        if (_correctionTimeline != null)
+        {
+            _correctionTimeline.StepChanged += (_, step) => OnCorrectionStepChanged(step);
+        }
 
         RewireButtons();
     }
@@ -5174,6 +5191,155 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (string.IsNullOrEmpty(s) || count <= 0) return "";
         return s.Length <= count ? s : s[^count..];
+    }
+
+    // =========================
+    // Correction time-travel (CE editions)
+    // =========================
+
+    /// <summary>
+    /// Loads a correction log + working text and enables the time-travel bar.
+    /// Called by MainWindow when a CE file with provenance is opened.
+    /// </summary>
+    public void SetCorrectionLog(string? logPath, string? workingTextPath)
+    {
+        ClearCorrectionTimeline();
+
+        if (string.IsNullOrWhiteSpace(logPath) || !System.IO.File.Exists(logPath) ||
+            string.IsNullOrWhiteSpace(workingTextPath) || !System.IO.File.Exists(workingTextPath))
+            return;
+
+        _correctionEntries = Services.CorrectionLogService.ParseCorrectionLog(logPath);
+        _correctionWorkingText = Services.CorrectionLogService.ParseWorkingText(workingTextPath);
+
+        // Look for a companion translation-diff-log.md in the same directory
+        var diffLogPath = System.IO.Path.Combine(
+            System.IO.Path.GetDirectoryName(logPath) ?? "",
+            "translation-diff-log.md");
+        _translationDiffs = Services.TranslationDiffLogService.ParseDiffLog(diffLogPath);
+
+        if (_correctionEntries.Count == 0 || _correctionWorkingText.Count == 0) return;
+
+        // Pre-build locus → latest correction lookup for O(1) per-line drift checks
+        _latestCorrectionByLocus = new Dictionary<string, Services.CorrectionEntry>(StringComparer.OrdinalIgnoreCase);
+        foreach (var c in _correctionEntries)
+            _latestCorrectionByLocus[c.Locus] = c; // last one wins (latest)
+
+        if (_correctionTimeline != null)
+        {
+            _correctionTimeline.SetCorrections(_correctionEntries);
+            _correctionTimeline.IsVisible = true;
+        }
+
+        // Attach drift gutter to the English pane
+        if (_aeTran?.TextArea != null && _driftGutter == null)
+        {
+            _driftGutter = new Infrastructure.DriftGutterMargin();
+            _aeTran.TextArea.LeftMargins.Insert(0, _driftGutter);
+        }
+    }
+
+    /// <summary>
+    /// Clears correction time-travel state when switching to a non-CE file.
+    /// </summary>
+    public void ClearCorrectionTimeline()
+    {
+        if (_correctionTimeline != null)
+        {
+            _correctionTimeline.IsVisible = false;
+            _correctionTimeline.Clear();
+        }
+
+        if (_driftGutter != null && _aeTran?.TextArea != null)
+        {
+            _aeTran.TextArea.LeftMargins.Remove(_driftGutter);
+            _driftGutter = null;
+        }
+
+        _correctionEntries = null;
+        _correctionWorkingText = null;
+        _translationDiffs = null;
+        _latestCorrectionByLocus = null;
+    }
+
+    private void OnCorrectionStepChanged(int step)
+    {
+        if (_correctionEntries == null || _correctionWorkingText == null || _aeOrig == null)
+            return;
+
+        string? highlightLocus = null;
+        List<(string Locus, string Text)>? reconstructedLines = null;
+
+        _syncingSelection = true;
+        try
+        {
+            if (_translationDiffs != null && _translationDiffs.Count > 0)
+            {
+                // Bilingual reconstruction: show both Chinese AND English at this step
+                var bilingual = Services.TranslationDiffLogService.ReconstructAtStep(
+                    _correctionWorkingText, _correctionEntries, _translationDiffs, step);
+
+                _aeOrig.Text = bilingual.ToChineseDisplay();
+                if (_aeTran != null) _aeTran.Text = bilingual.ToEnglishDisplay();
+                highlightLocus = bilingual.HighlightLocus;
+                reconstructedLines = bilingual.Lines.Select(l => (l.Locus, l.Chinese)).ToList();
+            }
+            else
+            {
+                // Chinese-only reconstruction (no translation diff log available)
+                var state = Services.CorrectionLogService.ReconstructAtStep(
+                    _correctionWorkingText, _correctionEntries, step);
+                _aeOrig.Text = state.ToDisplayText();
+                if (_aeTran != null) _aeTran.Text = "";
+                highlightLocus = state.HighlightLocus;
+                reconstructedLines = state.Lines;
+            }
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+
+        // Update drift gutter on the English pane
+        if (_driftGutter != null && _aeTran != null)
+        {
+            // For now, compute a simple stale-line set: any locus that was
+            // corrected AFTER step N has a stale translation.
+            var staleLines = new System.Collections.Generic.HashSet<int>();
+            var tooltips = new System.Collections.Generic.Dictionary<int, string>();
+
+            for (int i = 0; i < _correctionWorkingText.Count; i++)
+            {
+                var locus = _correctionWorkingText[i].Locus;
+                if (_latestCorrectionByLocus != null &&
+                    _latestCorrectionByLocus.TryGetValue(locus, out var correction) &&
+                    correction.Index + 1 > step)
+                {
+                    staleLines.Add(i);
+                    var diff = Infrastructure.CjkCharDiff.Diff(correction.Before, correction.After);
+                    tooltips[i] = $"Chinese will change: {Infrastructure.CjkCharDiff.FormatCompact(diff)}";
+                }
+            }
+
+            _driftGutter.SetStaleLines(staleLines);
+            _driftGutter.SetTooltips(tooltips);
+        }
+
+        // Scroll to the highlighted (most recently changed) locus
+        if (highlightLocus != null && reconstructedLines != null)
+        {
+            for (int i = 0; i < reconstructedLines.Count; i++)
+            {
+                if (string.Equals(reconstructedLines[i].Locus, highlightLocus, StringComparison.OrdinalIgnoreCase))
+                {
+                    var line = Math.Min(i + 1, _aeOrig.Document?.LineCount ?? 1);
+                    _aeOrig.ScrollToLine(line);
+                    break;
+                }
+            }
+        }
+
+        Say($"Correction {step} of {_correctionEntries.Count}");
     }
 
     // =========================
