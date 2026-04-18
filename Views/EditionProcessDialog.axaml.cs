@@ -690,6 +690,7 @@ public partial class EditionProcessDialog : Window
         panel.SetComparison(locusId, lemma, groups);
         // Wire the per-witness "open full text" event
         panel.OpenWitnessFullTextRequested += (_, w) => OpenWitnessFullText(w);
+        panel.OpenWitnessPageImageRequested += (_, args) => OpenWitnessPageImage(args.WitnessId, args.Locus);
 
         var root = new Grid { RowDefinitions = new RowDefinitions("*,Auto") };
         Grid.SetRow(panel, 0);
@@ -717,6 +718,63 @@ public partial class EditionProcessDialog : Window
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
         };
         viewer.LoadWitness(witness, _editionDir);
+        viewer.Show(this);
+    }
+
+    private void OpenWitnessPageImage(string siglum, string locus)
+    {
+        if (string.IsNullOrEmpty(_editionDir)) return;
+
+        var ocrBaseDir = System.IO.Path.Combine(_editionDir, "ocr");
+        var pagePath = PdfEvidenceService.ResolvePageImagePath(ocrBaseDir, siglum, locus);
+
+        if (pagePath == null)
+        {
+            // Fallback: show message in a simple dialog
+            var msgWin = new Window
+            {
+                Title = "Page Image Not Found",
+                Width = 400, Height = 150,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Content = new TextBlock
+                {
+                    Text = $"No page image found for witness {siglum} at locus {locus}.\n" +
+                           $"Expected in: {ocrBaseDir}/{siglum}/page-images/",
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(16),
+                    VerticalAlignment = VerticalAlignment.Center,
+                },
+            };
+            msgWin.Show(this);
+            return;
+        }
+
+        var pdfService = new PdfEvidenceService();
+        var viewer = new PdfEvidenceWindow(pdfService)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+        };
+        viewer.LoadPageImageEvidence(pagePath, siglum);
+
+        // Set up witness selector with all available sigla from ocr directory
+        var sigla = new System.Collections.Generic.List<string>();
+        try
+        {
+            if (System.IO.Directory.Exists(ocrBaseDir))
+            {
+                foreach (var dir in System.IO.Directory.GetDirectories(ocrBaseDir))
+                {
+                    var dirName = System.IO.Path.GetFileName(dir);
+                    if (!string.IsNullOrEmpty(dirName))
+                        sigla.Add(dirName);
+                }
+            }
+        }
+        catch { /* best-effort */ }
+
+        if (sigla.Count > 1)
+            viewer.SetWitnessSelector(sigla, siglum, locus, ocrBaseDir);
+
         viewer.Show(this);
     }
 

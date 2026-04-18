@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Avalonia;
@@ -12,6 +13,8 @@ using ReadZen.App.Services;
 
 namespace ReadZen.App.Views;
 
+// Guard flags to prevent event handler accumulation on repeated calls.
+
 /// <summary>
 /// Viewer window for PDF-based witness evidence.
 /// Shows a rendered PDF page with an optional highlighted region
@@ -22,6 +25,8 @@ public partial class PdfEvidenceWindow : Window
     private readonly PdfEvidenceService _pdfService;
     private Bitmap? _currentBitmap;
     private double _zoom = 1.0;
+    private bool _downloadWired;
+    private bool _witnessSelectorWired;
 
     // Region coordinates (percentages 0.0-1.0), set when evidence has specific coords
     private double _regionX;
@@ -29,6 +34,11 @@ public partial class PdfEvidenceWindow : Window
     private double _regionWidth = 1.0;
     private double _regionHeight = 1.0;
     private bool _hasRegion;
+
+    // Witness selector state
+    private string? _ocrBaseDir;
+    private string? _currentLocus;
+    private List<string> _availableSigla = new();
 
     public PdfEvidenceWindow() : this(new PdfEvidenceService()) { }
 
@@ -168,10 +178,11 @@ public partial class PdfEvidenceWindow : Window
             return;
         }
 
-        // Show download prompt
+        // Show download prompt (guard against handler accumulation)
         var btnDownload = this.FindControl<Button>("BtnDownload");
-        if (btnDownload != null)
+        if (btnDownload != null && !_downloadWired)
         {
+            _downloadWired = true;
             btnDownload.IsVisible = true;
             btnDownload.Click += async (_, _) =>
             {
@@ -214,6 +225,87 @@ public partial class PdfEvidenceWindow : Window
         }
 
         ShowStatus($"Source PDF not cached locally. Click 'Download PDF' to fetch from Commons.\n{url}", false);
+    }
+
+    /// <summary>
+    /// Load and display a PNG page image directly (no Pdfium).
+    /// </summary>
+    /// <param name="pngPath">Absolute path to the PNG file.</param>
+    /// <param name="witnessLabel">Display label for the witness.</param>
+    public void LoadPageImageEvidence(string pngPath, string witnessLabel)
+    {
+        _hasRegion = false;
+        var txtTitle = this.FindControl<TextBlock>("TxtTitle");
+        var txtMeta = this.FindControl<TextBlock>("TxtMeta");
+
+        var fileName = System.IO.Path.GetFileName(pngPath);
+        if (txtTitle != null)
+            txtTitle.Text = $"Witness Evidence \u2014 {witnessLabel}";
+        if (txtMeta != null)
+            txtMeta.Text = $"Page image: {fileName}";
+        Title = $"Evidence \u00b7 {witnessLabel}";
+
+        _currentBitmap = _pdfService.LoadPageImage(pngPath);
+        if (_currentBitmap == null)
+        {
+            ShowStatus($"Failed to load page image: {fileName}", true);
+            return;
+        }
+
+        var image = this.FindControl<Image>("PageImage");
+        if (image != null)
+        {
+            image.Source = _currentBitmap;
+            image.Width = _currentBitmap.PixelSize.Width;
+            image.Height = _currentBitmap.PixelSize.Height;
+        }
+
+        // Clear any highlight overlay
+        var canvas = this.FindControl<Canvas>("HighlightCanvas");
+        if (canvas != null) canvas.Children.Clear();
+
+        SetZoom(1.0);
+    }
+
+    /// <summary>
+    /// Configures the witness selector ComboBox with available sigla.
+    /// When the user switches witness, the page image for the same locus
+    /// is loaded from the new witness's page-images directory.
+    /// </summary>
+    /// <param name="sigla">Available witness sigla.</param>
+    /// <param name="currentSiglum">Currently displayed siglum.</param>
+    /// <param name="locus">Current locus ID (for resolving page paths on switch).</param>
+    /// <param name="ocrBaseDir">Base directory for OCR page images.</param>
+    public void SetWitnessSelector(List<string> sigla, string currentSiglum, string locus, string ocrBaseDir)
+    {
+        _availableSigla = sigla;
+        _currentLocus = locus;
+        _ocrBaseDir = ocrBaseDir;
+
+        var cb = this.FindControl<ComboBox>("CbWitness");
+        if (cb == null || sigla.Count <= 1) return;
+
+        cb.ItemsSource = sigla;
+        cb.SelectedItem = currentSiglum;
+        cb.IsVisible = true;
+
+        if (_witnessSelectorWired) return;
+        _witnessSelectorWired = true;
+        cb.SelectionChanged += (_, _) =>
+        {
+            if (cb.SelectedItem is not string newSiglum) return;
+            if (string.IsNullOrEmpty(_currentLocus) || string.IsNullOrEmpty(_ocrBaseDir)) return;
+
+            var newPath = PdfEvidenceService.ResolvePageImagePath(_ocrBaseDir, newSiglum, _currentLocus);
+            if (newPath != null)
+            {
+                LoadPageImageEvidence(newPath, newSiglum);
+            }
+            else
+            {
+                ShowStatus($"No page image found for witness {newSiglum} at locus {_currentLocus}", true);
+            }
+        };
     }
 
     // ── Private helpers ──────────────────────────────────────────────────
@@ -283,8 +375,9 @@ public partial class PdfEvidenceWindow : Window
             true);
 
         var btnDownload = this.FindControl<Button>("BtnDownload");
-        if (btnDownload != null)
+        if (btnDownload != null && !_downloadWired)
         {
+            _downloadWired = true;
             btnDownload.IsVisible = true;
             btnDownload.Content = "Open Commons page";
             btnDownload.Click += (_, _) =>

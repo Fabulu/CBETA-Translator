@@ -240,6 +240,55 @@ public sealed class PdfEvidenceService : IDisposable
         _cache.Clear();
     }
 
+    /// <summary>
+    /// Loads a PNG page image as an Avalonia Bitmap. No Pdfium involved.
+    /// </summary>
+    /// <param name="pngPath">Absolute path to the PNG file.</param>
+    /// <returns>Bitmap, or null if the file doesn't exist or can't be loaded.</returns>
+    public Bitmap? LoadPageImage(string pngPath)
+    {
+        if (!File.Exists(pngPath))
+            return null;
+        try
+        {
+            return new Bitmap(pngPath);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Resolves a page image path from a locus ID and witness siglum.
+    /// Convention: locus "T1-p008.l01" strips ".lNN" suffix to get page "T1-p008",
+    /// then maps to "{ocrBaseDir}/{siglum}/page-images/{siglum}-p008.png".
+    /// </summary>
+    /// <param name="ocrBaseDir">Base directory for OCR page images.</param>
+    /// <param name="siglum">Witness siglum (e.g. "T1").</param>
+    /// <param name="locus">Locus ID (e.g. "T1-p008.l01").</param>
+    /// <returns>Absolute path if the file exists, null otherwise.</returns>
+    public static string? ResolvePageImagePath(string ocrBaseDir, string siglum, string locus)
+    {
+        if (string.IsNullOrEmpty(ocrBaseDir) || string.IsNullOrEmpty(siglum) || string.IsNullOrEmpty(locus))
+            return null;
+
+        // Strip .lNN suffix to get the page portion
+        var page = locus;
+        var dotIdx = locus.LastIndexOf('.');
+        if (dotIdx > 0 && dotIdx < locus.Length - 1 && locus[dotIdx + 1] == 'l')
+            page = locus[..dotIdx];
+
+        // Extract page number portion after the last '-p'
+        var pIdx = page.LastIndexOf("-p", StringComparison.Ordinal);
+        if (pIdx < 0)
+            return null;
+        var pageSuffix = page[pIdx..]; // e.g. "-p008"
+
+        var path = Path.Combine(ocrBaseDir, siglum, "page-images", $"{siglum}{pageSuffix}.png");
+        return File.Exists(path) ? path : null;
+    }
+
     public void Dispose()
     {
         ClearCache();

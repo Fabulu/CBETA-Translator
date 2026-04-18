@@ -25,6 +25,9 @@ public partial class WitnessComparisonPanel : UserControl
     /// <summary>Fired when the user clicks "Open full text" on a witness siglum.</summary>
     public event EventHandler<WitnessTextEntry>? OpenWitnessFullTextRequested;
 
+    /// <summary>Fired when the user clicks the page-image button on a witness siglum.</summary>
+    public event EventHandler<(string WitnessId, string Locus)>? OpenWitnessPageImageRequested;
+
     public WitnessComparisonPanel()
     {
         InitializeComponent();
@@ -154,6 +157,26 @@ public partial class WitnessComparisonPanel : UserControl
                         OpenWitnessFullTextRequested?.Invoke(this, witness);
                 };
                 siglaPanel.Children.Add(siglumBtn);
+
+                // Page-image button
+                var capturedSiglum = siglumLabel;
+                var pageBtn = new Button
+                {
+                    Content = "\U0001F4C4",
+                    FontSize = 10,
+                    Padding = new Thickness(3, 1),
+                    Margin = new Thickness(0, 0, 6, 2),
+                    Background = Avalonia.Media.Brushes.Transparent,
+                    BorderThickness = new Thickness(0),
+                    Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                };
+                ToolTip.SetTip(pageBtn, $"View page image for {capturedSiglum}");
+                pageBtn.Click += (_, _) =>
+                {
+                    if (_locusId != null)
+                        OpenWitnessPageImageRequested?.Invoke(this, (capturedSiglum, _locusId));
+                };
+                siglaPanel.Children.Add(pageBtn);
             }
             stack.Children.Add(siglaPanel);
 
