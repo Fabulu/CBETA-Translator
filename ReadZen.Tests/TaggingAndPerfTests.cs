@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using Xunit;
@@ -13,6 +14,11 @@ namespace ReadZen.Tests;
 
 public class TaggingAndPerfTests
 {
+    static TaggingAndPerfTests()
+    {
+        AvaloniaTestInfrastructure.EnsureInitialized();
+    }
+
     // ---- Helper: build a minimal RenderedDocument ----
 
     private static RenderedDocument MakeDoc(params (string key, int start, int endExcl)[] segments)
@@ -185,53 +191,59 @@ public class TaggingAndPerfTests
     }
 
     [Fact]
-    public void RenderSnapshot_NullSnapshot_ClearsHostsWithoutPlaceholders()
+    public async Task RenderSnapshot_NullSnapshot_ClearsHostsWithoutPlaceholders()
     {
-        var qaHost = new StackPanel();
-        var termHost = new StackPanel();
-        var approvedHost = new StackPanel();
-        var referenceHost = new StackPanel();
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var qaHost = new StackPanel();
+            var termHost = new StackPanel();
+            var approvedHost = new StackPanel();
+            var referenceHost = new StackPanel();
 
-        qaHost.Children.Add(new TextBlock { Text = "stale" });
-        termHost.Children.Add(new TextBlock { Text = "stale" });
-        approvedHost.Children.Add(new TextBlock { Text = "stale" });
-        referenceHost.Children.Add(new TextBlock { Text = "stale" });
+            qaHost.Children.Add(new TextBlock { Text = "stale" });
+            termHost.Children.Add(new TextBlock { Text = "stale" });
+            approvedHost.Children.Add(new TextBlock { Text = "stale" });
+            referenceHost.Children.Add(new TextBlock { Text = "stale" });
 
-        AssistantPanelRenderer.RenderSnapshot(null, qaHost, termHost, approvedHost, referenceHost);
+            AssistantPanelRenderer.RenderSnapshot(null, qaHost, termHost, approvedHost, referenceHost);
 
-        Assert.Empty(qaHost.Children);
-        Assert.Empty(termHost.Children);
-        Assert.Empty(approvedHost.Children);
-        Assert.Empty(referenceHost.Children);
+            Assert.Empty(qaHost.Children);
+            Assert.Empty(termHost.Children);
+            Assert.Empty(approvedHost.Children);
+            Assert.Empty(referenceHost.Children);
+        });
     }
 
     [Fact]
-    public void RenderSnapshot_EmptySnapshot_AddsEmptyPlaceholders()
+    public async Task RenderSnapshot_EmptySnapshot_AddsEmptyPlaceholders()
     {
-        var snapshot = new TranslationAssistantSnapshot
+        await Dispatcher.UIThread.InvokeAsync(() =>
         {
-            Segment = new CurrentSegmentContext { RelPath = "T/T01/T01n0001.xml", ZhText = "test", EnText = "", BlockNumber = 1 },
-            ApprovedMatches = new List<TranslationTmMatch>(),
-            ReferenceMatches = new List<TranslationTmMatch>(),
-            Terms = new List<TermHit>(),
-            QaIssues = new List<QaIssue>()
-        };
+            var snapshot = new TranslationAssistantSnapshot
+            {
+                Segment = new CurrentSegmentContext { RelPath = "T/T01/T01n0001.xml", ZhText = "test", EnText = "", BlockNumber = 1 },
+                ApprovedMatches = new List<TranslationTmMatch>(),
+                ReferenceMatches = new List<TranslationTmMatch>(),
+                Terms = new List<TermHit>(),
+                QaIssues = new List<QaIssue>()
+            };
 
-        var qaHost = new StackPanel();
-        var termHost = new StackPanel();
-        var approvedHost = new StackPanel();
-        var referenceHost = new StackPanel();
+            var qaHost = new StackPanel();
+            var termHost = new StackPanel();
+            var approvedHost = new StackPanel();
+            var referenceHost = new StackPanel();
 
-        AssistantPanelRenderer.RenderSnapshot(snapshot, qaHost, termHost, approvedHost, referenceHost);
+            AssistantPanelRenderer.RenderSnapshot(snapshot, qaHost, termHost, approvedHost, referenceHost);
 
-        Assert.Single(qaHost.Children);
-        Assert.Single(termHost.Children);
-        Assert.Single(approvedHost.Children);
-        Assert.Single(referenceHost.Children);
-        Assert.Contains("No approved TM matches", ((TextBlock)((Border)approvedHost.Children[0]).Child!).Text);
-        Assert.Contains("No reference TM matches", ((TextBlock)((Border)referenceHost.Children[0]).Child!).Text);
-        Assert.Contains("No terminology hits", ((TextBlock)((Border)termHost.Children[0]).Child!).Text);
-        Assert.Contains("No QA issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
+            Assert.Single(qaHost.Children);
+            Assert.Single(termHost.Children);
+            Assert.Single(approvedHost.Children);
+            Assert.Single(referenceHost.Children);
+            Assert.Contains("No approved TM matches", ((TextBlock)((Border)approvedHost.Children[0]).Child!).Text);
+            Assert.Contains("No reference TM matches", ((TextBlock)((Border)referenceHost.Children[0]).Child!).Text);
+            Assert.Contains("No terminology hits", ((TextBlock)((Border)termHost.Children[0]).Child!).Text);
+            Assert.Contains("No QA issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
+        });
     }
 
 

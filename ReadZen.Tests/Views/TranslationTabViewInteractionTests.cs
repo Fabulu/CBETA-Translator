@@ -1,7 +1,9 @@
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Threading;
 using ReadZen.App.ViewModels;
 using ReadZen.App.Views;
 using Xunit;
@@ -10,6 +12,11 @@ namespace ReadZen.Tests.Views;
 
 public class TranslationTabViewInteractionTests
 {
+    static TranslationTabViewInteractionTests()
+    {
+        AvaloniaTestInfrastructure.EnsureInitialized();
+    }
+
     private static TranslationTabView CreateViewShell(out TranslationTabViewModel vm, out ComboBox cmb, out TextBlock review, out TextBlock progress)
     {
         var view = (TranslationTabView)RuntimeHelpers.GetUninitializedObject(typeof(TranslationTabView));
@@ -56,40 +63,50 @@ public class TranslationTabViewInteractionTests
         var slice = text.Substring(start, end - start).TrimEnd('\r', '\n');
 
         Assert.Equal("<2>\r\nZH: ?????????\r\nEN: ", slice);
-    }    [Fact]
-    public void SetTranslationSourceOptions_AndIndex_UpdateComboBox()
-    {
-        var view = CreateViewShell(out _, out var cmb, out _, out _);
-
-        view.SetTranslationSourceOptions(new() { "Community", "My Translation", "alice" });
-        view.SetTranslationSourceIndex(2);
-
-        Assert.Equal(3, ((System.Collections.ICollection)cmb.ItemsSource!).Count);
-        Assert.Equal(2, cmb.SelectedIndex);
     }
 
     [Fact]
-    public void SetCurrentReviewState_UpdatesVisibleReviewText()
+    public async Task SetTranslationSourceOptions_AndIndex_UpdateComboBox()
     {
-        var view = CreateViewShell(out _, out _, out var review, out _);
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out _, out var cmb, out _, out _);
 
-        view.SetCurrentReviewState("Approved", "alice", new DateTime(2026, 4, 5, 7, 0, 0, DateTimeKind.Utc));
+            view.SetTranslationSourceOptions(new() { "Community", "My Translation", "alice" });
+            view.SetTranslationSourceIndex(2);
 
-        Assert.False(string.IsNullOrWhiteSpace(review.Text));
-        Assert.Contains("Approved", review.Text);
-        Assert.Contains("alice", review.Text);
+            Assert.Equal(3, ((System.Collections.ICollection)cmb.ItemsSource!).Count);
+            Assert.Equal(2, cmb.SelectedIndex);
+        });
     }
 
     [Fact]
-    public void SetProgressStats_UpdatesVisibleProgressText()
+    public async Task SetCurrentReviewState_UpdatesVisibleReviewText()
     {
-        var view = CreateViewShell(out _, out _, out _, out var progress);
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out _, out _, out var review, out _);
 
-        view.SetProgressStats(3, 2, 10);
+            view.SetCurrentReviewState("Approved", "alice", new DateTime(2026, 4, 5, 7, 0, 0, DateTimeKind.Utc));
 
-        Assert.False(string.IsNullOrWhiteSpace(progress.Text));
-        Assert.Contains("3", progress.Text);
-        Assert.Contains("10", progress.Text);
+            Assert.False(string.IsNullOrWhiteSpace(review.Text));
+            Assert.Contains("Approved", review.Text);
+            Assert.Contains("alice", review.Text);
+        });
+    }
+
+    [Fact]
+    public async Task SetProgressStats_UpdatesVisibleProgressText()
+    {
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out _, out _, out _, out var progress);
+
+            view.SetProgressStats(3, 2, 10);
+
+            Assert.False(string.IsNullOrWhiteSpace(progress.Text));
+            Assert.Contains("3", progress.Text);
+            Assert.Contains("10", progress.Text);
+        });
     }
 }
-
