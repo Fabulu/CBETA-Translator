@@ -11,6 +11,8 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Controls.Documents;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 
@@ -92,15 +94,45 @@ public partial class WitnessComparisonPanel : UserControl
 
             var stack = new StackPanel { Spacing = 3 };
 
-            // Reading text (copyable)
+            // Reading text (copyable), with character-level diff highlighting for variants
             var readingPanel = new DockPanel();
-            readingPanel.Children.Add(new SelectableTextBlock
+            var readingTb = new SelectableTextBlock
             {
-                Text = group.Reading,
                 FontSize = 12,
                 FontWeight = group.IsLemma ? Avalonia.Media.FontWeight.Normal : Avalonia.Media.FontWeight.SemiBold,
                 TextWrapping = TextWrapping.Wrap,
-            });
+            };
+
+            if (!group.IsLemma && !string.IsNullOrEmpty(_lemma) && !string.IsNullOrEmpty(group.Reading) && group.Reading != _lemma)
+            {
+                // Character-level diff: show which characters differ from the lemma
+                var diffSpans = CjkCharDiff.Diff(_lemma, group.Reading);
+                foreach (var span in diffSpans)
+                {
+                    var run = new Run(span.Text);
+                    switch (span.Kind)
+                    {
+                        case CharDiffKind.Equal:
+                            // default foreground
+                            break;
+                        case CharDiffKind.Insert:
+                            run.Foreground = new SolidColorBrush(Color.FromRgb(0, 200, 0));
+                            break;
+                        case CharDiffKind.Delete:
+                            run.Foreground = new SolidColorBrush(Color.FromRgb(255, 80, 80));
+                            run.TextDecorations = Avalonia.Media.TextDecorations.Strikethrough;
+                            break;
+                    }
+                    readingTb.Inlines ??= new Avalonia.Controls.Documents.InlineCollection();
+                    readingTb.Inlines.Add(run);
+                }
+            }
+            else
+            {
+                readingTb.Text = group.Reading;
+            }
+
+            readingPanel.Children.Add(readingTb);
 
             // Copy button for this reading
             var copyBtn = new Button
