@@ -1,0 +1,39 @@
+name: WinGet Publish
+
+# Auto-PRs a manifest update to microsoft/winget-pkgs when a GitHub release is
+# published. This runs AFTER the main Build & Release workflow has created the
+# release + uploaded artifacts. See docs/WINGET_SETUP.md for one-time bootstrap.
+#
+# Required: a repository secret named WINGET_PAT containing a classic GitHub PAT
+# with `public_repo` scope (used to fork microsoft/winget-pkgs and open the PR).
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to publish (e.g. v4.5.0). Defaults to latest."
+        required: false
+
+jobs:
+  publish:
+    name: PR manifest to microsoft/winget-pkgs
+    runs-on: windows-latest
+    # Don't run on draft/prerelease releases — manifests should only advance
+    # when a stable version ships.
+    if: github.event_name == 'workflow_dispatch' || (github.event.release.draft == false && github.event.release.prerelease == false)
+
+    steps:
+      - name: Publish manifest
+        uses: vedantmgoyal2009/winget-releaser@v2
+        with:
+          # WinGet package identifier: <Publisher>.<PackageName>
+          identifier: Fabulu.ReadZen
+          # Only the Windows zip artifact is relevant for WinGet.
+          # The release.yml produces names like: ReadZen-win-x64-v4.5.0.zip
+          installers-regex: 'ReadZen-win-x64-v[\d.]+\.zip$'
+          # Override release tag when manually dispatched
+          release-tag: ${{ github.event.inputs.tag }}
+          # Fork + PR permissions
+          token: ${{ secrets.WINGET_PAT }}

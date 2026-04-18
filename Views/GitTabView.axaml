@@ -76,11 +76,11 @@
 			<StackPanel Spacing="6" Margin="0,4,0,0">
 				<WrapPanel Orientation="Horizontal">
 					<Button Classes="panic"
-							Content="Discard All"
+							Content="Reset to Last Sync"
 							Command="{Binding PanicResetCommand}"
 							IsEnabled="{Binding IsNotBusy}"
 							Padding="8,3"
-							ToolTip.Tip="Stash + drop ALL local uncommitted changes (irreversible)."/>
+							ToolTip.Tip="Permanently discard all unsaved local changes. This cannot be undone."/>
 				</WrapPanel>
 			</StackPanel>
 		</Expander>

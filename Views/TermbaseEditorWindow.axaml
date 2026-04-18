@@ -54,10 +54,10 @@
 							IsVisible="{Binding HasCommunityEntries}"
 							Orientation="Horizontal"
 							Spacing="8">
-					<TextBlock Text="Community Termbases"
+					<TextBlock Text="Community Dictionaries"
 							   FontWeight="Bold"
 							   Foreground="{DynamicResource AccentLinkFg}"/>
-					<Button Content="Adopt Term"
+					<Button Content="Copy to My Dictionary"
 							Command="{Binding AdoptSelectedTermCommand}"
 							FontSize="11"
 							Padding="8,2"/>
@@ -131,7 +131,7 @@
 						<TextBlock Text="Edit Term" FontWeight="Bold"/>
 
 						<Grid Grid.Row="1" ColumnDefinitions="140,*" ColumnSpacing="10">
-							<TextBlock Text="Source term"
+							<TextBlock Text="Chinese term"
 									   VerticalAlignment="Center"/>
 							<TextBox Name="TxtSourceTerm"
 									 Grid.Column="1"
@@ -139,7 +139,7 @@
 						</Grid>
 
 						<Grid Grid.Row="2" ColumnDefinitions="140,*" ColumnSpacing="10">
-							<TextBlock Text="Preferred target"
+							<TextBlock Text="English translation"
 									   VerticalAlignment="Center"/>
 							<TextBox Grid.Column="1"
 									 Text="{Binding PreferredTarget}"/>
@@ -186,7 +186,7 @@
 					</Grid>
 				</TabItem>
 
-				<TabItem Header="Corpus Usage">
+				<TabItem Header="Usage in Texts">
 					<Grid RowDefinitions="Auto,*" Margin="4">
 						<TextBlock Grid.Row="0" Text="{Binding CorpusStatusText}" Classes="muted" Margin="4"/>
 						<ListBox Grid.Row="1" Name="CorpusHitsList" ItemsSource="{Binding CorpusUsageHits}">

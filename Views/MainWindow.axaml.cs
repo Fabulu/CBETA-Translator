@@ -16,6 +16,7 @@ using Avalonia.Platform.Storage;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.Text;
@@ -195,10 +196,18 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Routes a non-passage deep link to the appropriate tab/handler.
+    /// Shows the green "update available" banner. On Velopack-packaged installs
+    /// (Setup.exe / AppImage / .pkg) the Download button performs an in-app update
+    /// and restart; on plain zip-extract installs it falls back to opening the
+    /// GitHub releases page in the user's default browser.
     /// </summary>
-    public void ShowUpdateNotification(string version, string url)
+    private bool _updateNotificationWired;
+
+    public void ShowUpdateNotification(Services.AppUpdateCheckResult result, Services.AppUpdateService updater)
     {
+        if (_updateNotificationWired) return; // prevent double-wiring if called again
+        _updateNotificationWired = true;
+
         var bar = Find<Border>("UpdateBar");
         var msg = Find<TextBlock>("TxtUpdateMessage");
         var download = Find<Button>("BtnDownloadUpdate");
@@ -206,15 +215,43 @@ public partial class MainWindow : Window
 
         if (bar == null || msg == null) return;
 
-        msg.Text = $"ReadZen v{version} is available";
+        msg.Text = $"ReadZen v{result.AvailableVersion} is available";
         bar.IsVisible = true;
 
         if (download != null)
         {
-            download.Click += (_, _) =>
+            // Relabel the button when in-app install is available so the user
+            // knows exactly what will happen.
+            if (result.CanInstallInApp && download.Content is string)
+                download.Content = "Install & Restart";
+
+            download.Click += async (_, _) =>
             {
-                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); }
-                catch { }
+                try
+                {
+                    if (result.CanInstallInApp)
+                    {
+                        msg.Text = $"Downloading ReadZen v{result.AvailableVersion}\u2026";
+                        download.IsEnabled = false;
+                        var ok = await updater.TryInstallAndRestartAsync(result);
+                        if (!ok)
+                        {
+                            // Velopack failed (stall / missing release / etc.) —
+                            // fall back to opening the release page. Avalonia
+                            // issue #146 mitigation per the run spec.
+                            msg.Text = $"In-app update failed. Opening release page\u2026";
+                            OpenInBrowser(result.ReleaseUrl);
+                            download.IsEnabled = true;
+                            download.Content = "Open Releases";
+                        }
+                        // On success the process restarts, so no UI update needed.
+                    }
+                    else
+                    {
+                        OpenInBrowser(result.ReleaseUrl);
+                    }
+                }
+                catch { /* never crash the main window from an update click */ }
             };
         }
 
@@ -222,6 +259,12 @@ public partial class MainWindow : Window
         {
             dismiss.Click += (_, _) => bar.IsVisible = false;
         }
+    }
+
+    private static void OpenInBrowser(string url)
+    {
+        try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); }
+        catch { }
     }
 
     public async Task HandleDeepLinkAsync(DeepLinkRequest request)
@@ -549,6 +592,13 @@ private async Task LoadConfigAndAutoloadAsync()
             if (_readableView != null) _readableView.CurrentTagUsername = username;
         };
         _vm.SetReadableStudySnapshot = snapshot => _readableView?.SetStudyPanelSnapshot(snapshot);
+        _vm.AppendReaderConcordance = hits =>
+        {
+            var host = _readableView?.FindControl<StackPanel>("StudyTmHost");
+            AssistantPanelRenderer.RenderConcordance(hits, host,
+                brushResolver: key => _readableView?.TryFindResource(key, out var obj) == true && obj is IBrush b ? b : null,
+                navigationHandler: (_, req) => _vm.HandleNavigationRequested(req));
+        };
         _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
 
         // Wire zen master lookup for study panel bio section
@@ -580,6 +630,13 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.ClearTranslation = () => _translationView?.Clear();
         _vm.SetTranslationHoverDict = enabled => _translationView?.SetHoverDictionaryEnabled(enabled);
         _vm.SetAssistantSnapshot = snapshot => _translationView?.SetAssistantSnapshot(snapshot);
+        _vm.AppendTranslateConcordance = hits =>
+        {
+            var host = _translationView?.FindControl<StackPanel>("ReferenceTmHost");
+            AssistantPanelRenderer.RenderConcordance(hits, host,
+                brushResolver: key => _translationView?.TryFindResource(key, out var obj) == true && obj is IBrush b ? b : null,
+                navigationHandler: (_, req) => _vm.HandleNavigationRequested(req));
+        };
         _vm.SetCurrentReviewState = (status, reviewer, date, agg) => _translationView?.SetCurrentReviewState(status, reviewer, date, agg);
         _vm.SetProgressStats = (a, n, t) => _translationView?.SetProgressStats(a, n, t);
         _vm.FillEnForCurrentBlock = (en, block) => _translationView?.FillEnForCurrentBlock(en, block);
@@ -912,9 +969,29 @@ private async Task LoadConfigAndAutoloadAsync()
         // Tour tooltip buttons
         if (_tourTooltip != null)
         {
-            _tourTooltip.NextClicked += (_, _) => _tourService?.Next();
+            _tourTooltip.NextClicked += (_, _) =>
+            {
+                if (_setupPromptActive)
+                {
+                    // "Next" on the setup-complete prompt = start feature tour
+                    _setupPromptActive = false;
+                    _tourService?.StartFeatureTour();
+                }
+                else
+                    _tourService?.Next();
+            };
             _tourTooltip.BackClicked += (_, _) => _tourService?.Previous();
-            _tourTooltip.SkipClicked += (_, _) => _tourService?.Skip();
+            _tourTooltip.SkipClicked += async (_, _) =>
+            {
+                if (_setupPromptActive)
+                {
+                    // "Skip Tour" on the setup-complete prompt = done, no tour
+                    _setupPromptActive = false;
+                    await OnTourFinished();
+                }
+                else
+                    _tourService?.Skip();
+            };
             _tourTooltip.ActionClicked += (_, _) => OnTourActionClicked();
             _tourTooltip.SkipWaitClicked += (_, _) => _tourService?.Next();
         }
@@ -925,6 +1002,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _tourService.StepChanged += (_, step) => Dispatcher.UIThread.Post(() => ShowTourStep(step));
             _tourService.TourCompleted += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
             _tourService.TourSkipped += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
+            _tourService.SetupPhaseCompleted += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnSetupPhaseCompleted);
         }
 
         // Recalculate tour spotlight on resize
@@ -1377,7 +1455,7 @@ private async Task LoadConfigAndAutoloadAsync()
                     if (cached != null)
                         txtCorpus.Text = $"Corpus index: {cached.MasterCount} masters found in {cached.FileCount} files ({cached.Appearances.Count} total appearances)";
                     else
-                        txtCorpus.Text = "No corpus index cached yet. Click 'Rebuild Corpus Index' or it will auto-build on next startup.";
+                        txtCorpus.Text = "Text scanning hasn't run yet. Click 'Scan Texts for Masters' or it will happen automatically next time you open the app.";
                 });
             }
             catch { }
@@ -1618,6 +1696,9 @@ private async Task LoadConfigAndAutoloadAsync()
         var tcs = new TaskCompletionSource<bool>();
         btnYes.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
         btnNo.Click += (_, _) => { win.Close(); tcs.TrySetResult(false); };
+        // Safety net: if the user closes via the window's X button (or Alt+F4),
+        // treat it as "No" so tcs.Task doesn't hang forever → app freeze.
+        win.Closed += (_, _) => tcs.TrySetResult(false);
 
         await win.ShowDialog(this);
         return await tcs.Task;
@@ -2143,10 +2224,14 @@ private async Task LoadConfigAndAutoloadAsync()
                 return;
             }
 
-            // Render the historical content and display it in the translated pane
+            // Render the historical content as Chinese-only. The English
+            // translation pane is blanked because the translation was written
+            // against a potentially different version of the Chinese source —
+            // showing old English next to historical Chinese is misleading,
+            // especially for critical editions where the source text evolves.
             var historicalDoc = Text.TeiRenderer.Render(content);
-            _readableView?.SetRenderedTranslationOnly(historicalDoc);
-            _vm.SetStatus($"Viewing historical version ({commitHash[..7]})");
+            _readableView?.SetRenderedOriginalOnly(historicalDoc);
+            _vm.SetStatus($"Viewing historical version ({commitHash[..7]}) — Chinese text only");
         }
         catch (Exception ex)
         {
@@ -2616,15 +2701,18 @@ private async Task LoadConfigAndAutoloadAsync()
 
         _tourSpotlight.TargetBounds = targetBounds;
 
-        // Update tooltip content
+        // Update tooltip content — show phase-relative progress so the user
+        // sees "Step 1 of 4" during setup, not "Step 1 of 56".
+        int lowerBound = _tourService.IsInSetupPhase ? 0 : _tourService.SetupStepCount;
         _tourTooltip.Update(
             step.Title,
             step.Body,
-            _tourService.CurrentIndex,
-            _tourService.Steps.Count,
-            canGoBack: _tourService.CurrentIndex > 0,
+            _tourService.PhaseRelativeIndex,
+            _tourService.PhaseStepCount,
+            canGoBack: _tourService.CurrentIndex > lowerBound,
             actionButtonLabel: step.ActionButtonLabel,
-            canSkipWait: step.CanSkipWait);
+            canSkipWait: step.CanSkipWait,
+            isMandatory: step.IsMandatory);
 
         // Position tooltip
         PositionTooltip(step, targetBounds);
@@ -2759,7 +2847,8 @@ private async Task LoadConfigAndAutoloadAsync()
                     "Git is available on your system. Ready to download texts.",
                     _tourService?.CurrentIndex ?? 1,
                     _tourService?.Steps.Count ?? 1,
-                    canGoBack: true);
+                    canGoBack: true,
+                    isMandatory: true);
                 await Task.Delay(3000);
             }
 
@@ -2768,8 +2857,71 @@ private async Task LoadConfigAndAutoloadAsync()
         }
     }
 
+    /// <summary>
+    /// Called when the mandatory setup phase (4 steps) finishes. Shows a
+    /// "Take the tour?" prompt via the tooltip. If the user declines, setup
+    /// is marked complete and they're free. If they accept, the optional
+    /// feature tour begins as a separate sequence with its own step counter.
+    /// </summary>
+    private async Task OnSetupPhaseCompleted()
+    {
+        if (_tourTooltip == null || _tourOverlayCanvas == null || _tourService == null)
+        {
+            await OnTourFinished();
+            return;
+        }
+
+        // Show a center-screen prompt — reuse the tooltip panel with custom
+        // content. No spotlight target, just a clean card.
+        _tourOverlayCanvas.IsVisible = true;
+        if (_tourSpotlight != null)
+            _tourSpotlight.TargetBounds = null;
+
+        _tourTooltip.Update(
+            "Setup Complete!",
+            "Read Zen is ready to use. You can start reading and translating right away.\n\n" +
+            "Want a quick walkthrough of all the features? It covers the Reader, Translate, " +
+            "Search, Scholar, Masters, and more. You can also take it later from Settings.",
+            stepIndex: 0,
+            totalSteps: 1, // no progress bar — this is a prompt, not a step
+            canGoBack: false,
+            actionButtonLabel: "Take the Tour",
+            canSkipWait: false,
+            isMandatory: false); // Skip button visible → "No thanks"
+
+        // Position center
+        if (_tourTooltip != null)
+        {
+            _tourTooltip.Measure(new Avalonia.Size(400, 300));
+            var sz = _tourTooltip.DesiredSize;
+            Avalonia.Controls.Canvas.SetLeft(_tourTooltip, (Bounds.Width - sz.Width) / 2);
+            Avalonia.Controls.Canvas.SetTop(_tourTooltip, (Bounds.Height - sz.Height) / 2);
+        }
+
+        // Rewire the buttons temporarily for this prompt:
+        // - "Take the Tour" (Action button) → starts feature tour
+        // - "Skip Tour" → finishes and marks onboarding done
+        // The existing wiring calls _tourService.Next() on Next and
+        // _tourService.Skip() on Skip. For this prompt:
+        //   Next click → StartFeatureTour
+        //   Skip click → Complete (finish)
+        //   Action click → StartFeatureTour
+        // Since the service is !IsActive after SetupPhaseCompleted, the
+        // existing Skip/Next handlers won't do anything useful. We handle
+        // it via the Action button (which fires OnTourActionClicked) and
+        // the Next button. Let's mark onboarding complete and start the
+        // feature tour from the action handler.
+        //
+        // The simplest approach: stash a flag so OnTourActionClicked and
+        // the existing Skip handler know what state we're in.
+        _setupPromptActive = true;
+    }
+
+    private bool _setupPromptActive;
+
     private async Task OnTourFinished()
     {
+        _setupPromptActive = false;
         if (_tourOverlayCanvas != null)
             _tourOverlayCanvas.IsVisible = false;
 
@@ -2816,6 +2968,14 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private async void OnTourActionClicked()
     {
+        // "Take the Tour" button on the setup-complete prompt
+        if (_setupPromptActive)
+        {
+            _setupPromptActive = false;
+            _tourService?.StartFeatureTour();
+            return;
+        }
+
         if (_tourService?.CurrentStep?.Id == "download-texts")
         {
             if (_gitView != null)
@@ -2830,7 +2990,8 @@ private async Task LoadConfigAndAutoloadAsync()
                     _tourService?.Steps.Count ?? 1,
                     canGoBack: false,
                     actionButtonLabel: null,
-                    canSkipWait: false);
+                    canSkipWait: false,
+                    isMandatory: true);
 
                 // Pipe git status updates to the tooltip body so the user sees live progress
                 void OnStatus(object? s, string msg)
@@ -2845,7 +3006,8 @@ private async Task LoadConfigAndAutoloadAsync()
                             _tourService?.Steps.Count ?? 1,
                             canGoBack: false,
                             actionButtonLabel: null,
-                            canSkipWait: false);
+                            canSkipWait: false,
+                            isMandatory: true);
                     });
                 }
 

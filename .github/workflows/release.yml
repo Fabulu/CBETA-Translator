@@ -235,6 +235,88 @@ jobs:
 
           ls -la dist
 
+      # ───────────────────────────────────────────────────────────────
+      # Velopack packaging (runs after zip packaging so both ship).
+      # Linux is first-class per ewk-friendly-install SPEC. Windows +
+      # macOS are unsigned for now (friction documented on the landing
+      # page); add signing certs later if download volume warrants it.
+      # ───────────────────────────────────────────────────────────────
+
+      - name: Install Velopack CLI (vpk)
+        shell: bash
+        run: |
+          dotnet tool install --global vpk --version 0.0.942
+          # Make the tool visible on PATH for later steps
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Velopack pack (Windows Setup.exe)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $tag = "${{ github.ref_name }}"
+          # Strip leading 'v' from the tag for SemVer compliance
+          $ver = $tag.TrimStart('v')
+          $pub = "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
+          $veloOut = "dist\velopack"
+          New-Item -ItemType Directory -Force $veloOut | Out-Null
+
+          & vpk pack `
+            --packId Fabulu.ReadZen `
+            --packVersion $ver `
+            --packDir "$pub" `
+            --mainExe ReadZen.App.exe `
+            --outputDir "$veloOut"
+
+          Get-ChildItem $veloOut | Format-Table -AutoSize
+          # Promote the installer + release metadata into dist/ for upload
+          Copy-Item "$veloOut\*" dist\ -Force
+
+      - name: Velopack pack (Linux AppImage)
+        if: matrix.rid == 'linux-x64'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VER="${TAG#v}"
+          PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          VELO_OUT="dist/velopack"
+          mkdir -p "$VELO_OUT"
+
+          vpk pack \
+            --packId Fabulu.ReadZen \
+            --packVersion "$VER" \
+            --packDir "$PUB" \
+            --mainExe ReadZen.App \
+            --outputDir "$VELO_OUT"
+
+          ls -la "$VELO_OUT"
+          cp "$VELO_OUT"/* dist/
+
+      - name: Velopack pack (macOS .pkg)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VER="${TAG#v}"
+          PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
+          VELO_OUT="dist/velopack"
+          mkdir -p "$VELO_OUT"
+
+          # macOS needs an unsigned bundle; notarization is a future upgrade
+          # (see docs/VELOPACK_SETUP.md for when/why to add $99/yr Apple Dev).
+          vpk pack \
+            --packId Fabulu.ReadZen \
+            --packVersion "$VER" \
+            --packDir "$PUB" \
+            --mainExe ReadZen.App \
+            --outputDir "$VELO_OUT" \
+            --noSignatureValidation || echo "Velopack macOS pack failed — non-fatal; zip still ships."
+
+          ls -la "$VELO_OUT" || true
+          cp -f "$VELO_OUT"/* dist/ 2>/dev/null || true
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:

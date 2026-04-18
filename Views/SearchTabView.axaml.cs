@@ -91,6 +91,20 @@ public partial class SearchTabView : UserControl
             resultsTree.PointerExited += (_, _) => ClearResultsHoverTooltip();
             resultsTree.PointerPressed += (_, _) => ClearResultsHoverTooltip();
 
+            // Plain-text copy of the hit snippet — the first menu entry for
+            // discoverability. Many users reach for right-click and don't know
+            // Ctrl+C will work here.
+            var copySnippetItem = new MenuItem { Header = "Copy Snippet" };
+            copySnippetItem.Click += async (_, _) =>
+            {
+                if (resultsTree.SelectedItem is not SearchResultChild child) return;
+                var text = child.PrimarySnippetText;
+                if (string.IsNullOrEmpty(text)) return;
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(text);
+            };
+
             var addToScholarItem = new MenuItem { Header = "Add to Scholar Collection" };
             addToScholarItem.Click += (_, _) =>
             {
@@ -130,6 +144,8 @@ public partial class SearchTabView : UserControl
             {
                 Items =
                 {
+                    copySnippetItem,
+                    new Separator(),
                     addToScholarItem,
                     new Separator(),
                     copyPassageLinkItem,

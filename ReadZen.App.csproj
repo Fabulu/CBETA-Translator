@@ -9,8 +9,8 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 
 		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<Version>4.4.0</Version>
-		<InformationalVersion>4.4.0</InformationalVersion>
+		<Version>4.5.0</Version>
+		<InformationalVersion>4.5.0</InformationalVersion>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 		
 		<!-- Self-contained publishing configuration (only applied when RuntimeIdentifier is explicitly specified) -->
@@ -49,6 +49,14 @@
 		<PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
 		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
 		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.11" />
+		<!--
+		Velopack handles installer packaging + in-app auto-update (Phase 5 of ewk-friendly-install).
+		Pinned to a known 0.0.x baseline; bump as Velopack stabilizes. When the installed build
+		was produced by `vpk pack` (Windows Setup.exe / Linux AppImage / macOS .pkg), the app
+		auto-updates in place; otherwise (raw zip extract) it falls back to opening the
+		GitHub releases page in the user's browser.
+		-->
+		<PackageReference Include="Velopack" Version="0.0.942" />
 
 		<!-- Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration. -->
 		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.11">

@@ -118,6 +118,30 @@
 				        Opacity="0.5"
 				        Margin="0,2,0,2"/>
 
+				<!-- Translation Memory -->
+				<StackPanel Spacing="6">
+					<TextBlock Text="Translation Memory"
+					           FontSize="14"
+					           FontWeight="SemiBold"
+					           Foreground="{DynamicResource TextFg}"/>
+					<CheckBox Content="Show matches from untranslated texts"
+					          IsChecked="{Binding EnableConcordance}"
+					          ToolTip.Tip="When on, the assistant panels (Translate, Reader Study, Scholar) also show Chinese-only matches from texts that haven't been translated yet. Useful for finding parallel passages across the corpus. Adds a search query per assistant refresh — may feel slightly slower on very large corpora."/>
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Text="Max translation memory results:"
+						           FontSize="12"
+						           VerticalAlignment="Center"
+						           Foreground="{DynamicResource TextFg}"/>
+						<NumericUpDown Value="{Binding TmMaxResults}"
+						               Minimum="4" Maximum="20" Increment="2"
+						               Width="120" MinWidth="120" FontSize="12"
+						               FormatString="0"
+						               ToolTip.Tip="How many translation memory matches to show per assistant refresh. Higher = more comprehensive but more scrolling. Default: 8."/>
+					</StackPanel>
+				</StackPanel>
+
+				<Border Height="1" Background="{DynamicResource BorderBrush}" Opacity="0.5" Margin="0,2,0,2"/>
+
 				<!-- Onboarding tour -->
 				<StackPanel Spacing="6">
 					<TextBlock Text="Onboarding Tour"

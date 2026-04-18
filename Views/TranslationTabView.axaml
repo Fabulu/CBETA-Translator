@@ -41,7 +41,7 @@
 						<ComboBoxItem Content="100"/>
 						<ComboBoxItem Content="150"/>
 					</ComboBox>
-					<Button Name="BtnNextUntranslated" Content="Next &#x2205;" ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block." Padding="8,3"/>
+					<Button Name="BtnNextUntranslated" Content="Next Empty" ToolTip.Tip="Jump to next block with empty EN (F8). Alt+Right / Alt+Left navigate any block." Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Review -->
@@ -53,7 +53,7 @@
 
 					<!-- File -->
 					<Button Name="BtnSave" Content="Save" ToolTip.Tip="Apply projection edits and save XML (Ctrl+S)" Padding="8,3"/>
-					<Button Name="BtnFreshStart" Content="Fresh Start" ToolTip.Tip="Replace the current writable translation with the original untranslated XML" Padding="8,3"/>
+					<Button Name="BtnFreshStart" Content="Start Over" ToolTip.Tip="Replace the current writable translation with the original untranslated XML" Padding="8,3"/>
 					<Button Name="BtnRevert" Content="&#x21BA;" ToolTip.Tip="Reload projection from XML (Ctrl+R)" Padding="8,3" Width="32"/>
 					<Button Name="BtnHistory" Content="&#x1F552;" ToolTip.Tip="Browse and restore older versions of this translation (git history)" Padding="8,3"/>
 					<Button Name="BtnUndo" Content="&#x21B6;" ToolTip.Tip="Undo (Ctrl+Z)" Padding="8,3" Width="32"/>
@@ -61,14 +61,15 @@
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Tools -->
-					<Button Name="BtnBuildReferenceTm" Content="Force Rebuild TM" IsVisible="False" ToolTip.Tip="Force a full rebuild of the reference translation memory. The TM is auto-built when translated texts change." Padding="8,3"/>
+					<Button Name="BtnBuildReferenceTm" Content="Refresh Translation Memory" IsVisible="False" ToolTip.Tip="Force a full rebuild of the reference translation memory. The TM is auto-built when translated texts change." Padding="8,3"/>
 					<Button Name="BtnManageTerms" Content="Dictionary" ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="8,3"/>
-					<Button Name="BtnFindChineseInEn" Content="Find CN" ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete." Padding="8,3"/>
+					<Button Name="BtnFind" Content="🔍 Find" ToolTip.Tip="Find in text (Ctrl+F)" Padding="8,3"/>
+					<Button Name="BtnFindChineseInEn" Content="Find Chinese" ToolTip.Tip="Find Chinese characters in EN lines and select the EN text (Ctrl+Shift+F). Use this to find the last Chinese characters that prevent your translation from registering as complete." Padding="8,3"/>
 					<TextBlock Text="|" Classes="muted" VerticalAlignment="Center" Margin="6,0"/>
 
 					<!-- Toggles -->
 					<CheckBox Name="ChkWrap" Content="Wrap" IsChecked="True" ToolTip.Tip="Toggle line wrapping" Padding="4,2"/>
-					<CheckBox Name="ChkAssistantVisible" Content="Asst" IsChecked="True" ToolTip.Tip="Show or hide the translation assistant pane" Padding="4,2"/>
+					<CheckBox Name="ChkAssistantVisible" Content="Assistant" IsChecked="True" ToolTip.Tip="Show or hide the translation assistant pane" Padding="4,2"/>
 				</WrapPanel>
 
 				<!-- Row 1: compact info line -->
@@ -170,7 +171,7 @@
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="Approved TM" FontWeight="Bold"/>
+											<TextBlock Text="Approved Translations" FontWeight="Bold"/>
 											<StackPanel Name="ApprovedTmHost" Spacing="10"/>
 										</StackPanel>
 									</Border>
@@ -180,7 +181,7 @@
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="Reference / AI" FontWeight="Bold"/>
+											<TextBlock Text="AI &amp; Reference Translations" FontWeight="Bold"/>
 											<StackPanel Name="ReferenceTmHost" Spacing="10"/>
 										</StackPanel>
 									</Border>

@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Text;
 
 namespace ReadZen.App.Views;
 
@@ -140,10 +141,14 @@ public partial class TranslationHistoryDialog : Window
             }
 
             _selectedContent = content;
-            // Show a truncated preview (first 3000 chars) to keep UI responsive
-            _txtPreview.Text = content.Length > 3000
-                ? content[..3000] + "\n\n... (truncated)"
-                : content;
+            // Render the preview as human-readable text instead of raw XML.
+            // Translation files committed to git are TEI XML (xml-p5t/*.xml);
+            // personal translation files (community/translations/) are
+            // projection markdown that's already readable.
+            var preview = RenderPreview(content);
+            _txtPreview.Text = preview.Length > 3000
+                ? preview[..3000] + "\n\n... (truncated)"
+                : preview;
             _btnRestore.IsEnabled = true;
         }
         catch (Exception ex)
@@ -158,5 +163,36 @@ public partial class TranslationHistoryDialog : Window
         if (_selectedContent == null) return;
         RestoredContent = _selectedContent;
         Close();
+    }
+
+    /// <summary>
+    /// Converts raw git content to a human-readable preview. TEI XML goes
+    /// through <see cref="TeiRenderer"/> so the user sees clean Chinese +
+    /// English text instead of angle brackets. Markdown / plain text is
+    /// returned as-is (already readable).
+    /// </summary>
+    private static string RenderPreview(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content)) return content;
+
+        // Heuristic: TEI XML starts with <?xml or <TEI or similar.
+        var trimmed = content.TrimStart();
+        if (trimmed.StartsWith("<?xml", StringComparison.Ordinal) ||
+            trimmed.StartsWith("<TEI", StringComparison.Ordinal) ||
+            trimmed.StartsWith("<tei", StringComparison.OrdinalIgnoreCase))
+        {
+            try
+            {
+                var doc = TeiRenderer.Render(content);
+                if (!doc.IsEmpty)
+                    return doc.Text;
+            }
+            catch
+            {
+                // Malformed XML / partial file — fall through to raw display
+            }
+        }
+
+        return content;
     }
 }

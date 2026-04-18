@@ -81,5 +81,30 @@ public sealed class TranslationAssistantSnapshot
     public List<TermHit> Terms { get; set; } = new();
     public List<QaIssue> QaIssues { get; set; } = new();
 
+    /// <summary>
+    /// Chinese-only concordance hits from untranslated files, populated async
+    /// after TM results. Null when concordance is disabled or not yet loaded;
+    /// empty list when loaded but nothing matched.
+    /// </summary>
+    public List<ConcordanceHit>? ConcordanceHits { get; set; }
+
     public DateTime GeneratedUtc { get; set; } = DateTime.UtcNow;
+}
+
+/// <summary>
+/// A concordance match — a similar Chinese passage found in an untranslated
+/// (or differently-translated) file. No English translation available; the
+/// assistant panel shows the Chinese snippet only with a "(no translation)"
+/// label. Populated by querying the existing search index.
+/// </summary>
+public sealed class ConcordanceHit
+{
+    /// <summary>Relative path of the file containing the match.</summary>
+    public string RelPath { get; set; } = "";
+
+    /// <summary>Human-readable file name (from title index or filename).</summary>
+    public string DisplayName { get; set; } = "";
+
+    /// <summary>The Chinese text snippet around the match.</summary>
+    public string SnippetZh { get; set; } = "";
 }

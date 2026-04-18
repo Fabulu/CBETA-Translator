@@ -45,7 +45,7 @@
                                 Spacing="6"
                                 DockPanel.Dock="Left">
                         <Button Name="BtnOpenRoot" Classes="compact-shell" Width="104" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Open Folder"
-                                ToolTip.Tip="Select the root folder containing CBETA XML files"/>
+                                ToolTip.Tip="Select the folder containing your text files"/>
                         <Button Name="BtnSettings" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Settings"
                                 ToolTip.Tip="Open application settings"/>
                         <Button Name="BtnLicenses" Classes="compact-shell" Width="84" MinHeight="24" Padding="8,2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="11" Content="Licenses"
@@ -257,9 +257,9 @@
                             <TextBlock Name="TxtMastersStatus" Text="Loading masters..."
                                        HorizontalAlignment="Center" FontSize="13" Opacity="0.7"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,8,0,0">
-                              <Button Name="BtnOpenMasters" Content="Open Master Manager" MinWidth="200" Padding="12,8"
+                              <Button Name="BtnOpenMasters" Content="Explore Zen Masters" MinWidth="200" Padding="12,8"
                                       HorizontalContentAlignment="Center"/>
-                              <Button Name="BtnBuildMasterIndex" Content="Rebuild Corpus Index" MinWidth="200" Padding="12,8"
+                              <Button Name="BtnBuildMasterIndex" Content="Scan Texts for Masters" MinWidth="200" Padding="12,8"
                                       HorizontalContentAlignment="Center"/>
                             </StackPanel>
                             <TextBlock Name="TxtMastersCorpusInfo" Text="" HorizontalAlignment="Center"

@@ -25,4 +25,10 @@ public sealed class TourStep
 
     /// <summary>If set, jumps the translation editor to this block number (1-based) when the step activates.</summary>
     public int? AutoJumpToBlock { get; set; }
+
+    /// <summary>
+    /// Mandatory steps (initial setup: welcome, git check, download, index build) cannot be skipped —
+    /// the app needs them to function. Skip button is hidden for these in the tooltip.
+    /// </summary>
+    public bool IsMandatory { get; set; }
 }

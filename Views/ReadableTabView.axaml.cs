@@ -470,6 +470,34 @@ public partial class ReadableTabView : UserControl
     private ContextMenu BuildScholarContextMenu(bool isTranslated)
     {
         var menu = new ContextMenu();
+
+        // Plain-text "Copy" as the first entry. Discoverability fix for users
+        // who don't know the Ctrl+C shortcut or assume the other Copy entries
+        // (Copy Link / Copy Reddit Link) also copy the raw text. Disabled when
+        // nothing is selected so users don't click and get confused.
+        var copyPlain = new MenuItem { Header = "Copy" };
+        copyPlain.Click += async (_, _) =>
+        {
+            var editor = isTranslated ? _aeTran : _aeOrig;
+            var selected = editor?.SelectedText;
+            if (string.IsNullOrEmpty(selected)) return;
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+            {
+                await top.Clipboard.SetTextAsync(selected);
+                Say("Copied.");
+            }
+        };
+        // Open-time enable/disable: peek at the current selection when the menu
+        // is about to open so the state reflects reality per click.
+        menu.Opening += (_, _) =>
+        {
+            var editor = isTranslated ? _aeTran : _aeOrig;
+            copyPlain.IsEnabled = !string.IsNullOrEmpty(editor?.SelectedText);
+        };
+        menu.Items.Add(copyPlain);
+        menu.Items.Add(new Separator());
+
         var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
         addItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated);
         menu.Items.Add(addItem);
@@ -875,6 +903,9 @@ public partial class ReadableTabView : UserControl
             _txtFindInput.TextChanged += (_, _) => OnFindTextChanged();
             _txtFindInput.KeyDown += OnFindInputKeyDown;
         }
+        // Visible Find button in the toolbar — same behavior as Ctrl+F.
+        var btnFind = this.FindControl<Button>("BtnFind");
+        if (btnFind != null) btnFind.Click += (_, _) => OpenFindBar();
 
         RewireButtons();
     }
@@ -1080,6 +1111,31 @@ public partial class ReadableTabView : UserControl
     }
     private DiffHighlightRenderer? _diffRenderer;
     private string? _currentTextForDiff;
+
+    /// <summary>
+    /// <summary>
+    /// Swaps the original (Chinese) pane to a historical version and blanks
+    /// the translation (English) pane. Used by the timeline slider — showing
+    /// Chinese-only avoids misleading English that was translated against a
+    /// different source version.
+    /// </summary>
+    public void SetRenderedOriginalOnly(RenderedDocument orig)
+    {
+        _vm.RenderOrig = orig ?? RenderedDocument.Empty;
+        _vm.RenderTran = RenderedDocument.Empty;
+        ResolveInnerEditors();
+
+        _syncingSelection = true;
+        try
+        {
+            if (_aeOrig != null) _aeOrig.Text = _vm.RenderOrig.Text ?? "";
+            if (_aeTran != null) _aeTran.Text = "";
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+    }
 
     /// <summary>
     /// Swaps only the translated pane to a historical version (read-only).
@@ -4987,6 +5043,36 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     private void DeriveReaderSegmentContext()
     {
         if (_aeOrig == null || _vm.RenderOrig.IsEmpty) return;
+
+        // ── Selection-based TM lookup ──
+        // When the user highlights Chinese text in the original pane, search
+        // TM for just that phrase instead of the entire segment. Minimum 2
+        // CJK characters. Falls back to per-segment when no selection.
+        var sel = _aeOrig.SelectedText ?? "";
+        if (sel.Length >= 2)
+        {
+            int cjkCount = 0;
+            foreach (var c in sel)
+            {
+                if (c >= '\u4E00' && c <= '\u9FFF' || c >= '\u3400' && c <= '\u4DBF' || c >= '\uF900' && c <= '\uFAFF')
+                    cjkCount++;
+            }
+            if (cjkCount >= 2)
+            {
+                string selKey = $"sel|{sel}";
+                if (selKey != _lastStudySegmentKey)
+                {
+                    _lastStudySegmentKey = selKey;
+                    QueueStudyPanelContext(new CurrentSegmentContext
+                    {
+                        RelPath = _vm.CurrentRelPathForZen ?? "",
+                        ZhText = sel,
+                        ZhContextText = sel
+                    });
+                }
+                return;
+            }
+        }
 
         int caret = GetCaretOffsetSafe(_aeOrig);
         if (caret < 0) caret = 0;

@@ -93,6 +93,106 @@ public class LineageGraphViewModelTests
         Assert.True(vm2.Edges.Count > 20, $"Service-loaded graph: expected 20+ edges, got {vm2.Edges.Count}");
     }
 
+    // ---- Focus mode (Phase C of RUN-20260416-2302) ----
+    //
+    // Builds a tiny synthetic lineage to validate FocusOn's BFS walk without
+    // depending on the bundled master-dates.json.
+    //   A → B → C
+    //       ↓
+    //       D
+    //   (X is an orphan not connected to the main chain)
+
+    private static LineageGraphViewModel BuildTinyGraph()
+    {
+        var vm = new LineageGraphViewModel();
+        var a = new LineageGraphNode { CanonicalName = "A" };
+        var b = new LineageGraphNode { CanonicalName = "B" };
+        var c = new LineageGraphNode { CanonicalName = "C" };
+        var d = new LineageGraphNode { CanonicalName = "D" };
+        var x = new LineageGraphNode { CanonicalName = "X" };
+        vm.Nodes.AddRange(new[] { a, b, c, d, x });
+        vm.Edges.Add(new LineageEdge { From = a, To = b });
+        vm.Edges.Add(new LineageEdge { From = b, To = c });
+        vm.Edges.Add(new LineageEdge { From = b, To = d });
+        return vm;
+    }
+
+    private static LineageGraphNode Node(LineageGraphViewModel vm, string name)
+        => vm.Nodes.First(n => n.CanonicalName == name);
+
+    [Fact]
+    public void FocusOn_IncludesTheNodeItself()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "B"));
+        Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void FocusOn_IncludesAncestors_ThroughTeacherChain()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "C"));
+        // C's lineage up: C ← B ← A
+        Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "A"), vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void FocusOn_IncludesDescendants_ThroughStudentChain()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "A"));
+        // A's lineage down: A → B → {C, D}
+        Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "C"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "D"), vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void FocusOn_ExcludesUnrelatedNodes()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "B"));
+        // X is orphaned — must not end up in the focus set
+        Assert.DoesNotContain(Node(vm, "X"), vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void FocusOn_OnMidChainNode_IncludesBothDirections()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "B"));
+        // B is mid-chain: ancestors {A} + descendants {C, D} + B itself
+        Assert.Equal(4, vm.FocusedNodes.Count);
+        Assert.Contains(Node(vm, "A"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "C"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "D"), vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void ClearFocus_EmptiesTheSet()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "A"));
+        Assert.NotEmpty(vm.FocusedNodes);
+        vm.ClearFocus();
+        Assert.Empty(vm.FocusedNodes);
+    }
+
+    [Fact]
+    public void FocusOn_ReplacesPriorFocus()
+    {
+        var vm = BuildTinyGraph();
+        vm.FocusOn(Node(vm, "X"));
+        Assert.Single(vm.FocusedNodes);
+        vm.FocusOn(Node(vm, "B"));
+        // Focus fully replaced, X no longer in the set
+        Assert.DoesNotContain(Node(vm, "X"), vm.FocusedNodes);
+        Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
+    }
+
     private sealed class MasterDateWrapper
     {
         public List<MasterDateEntry>? Masters { get; set; }

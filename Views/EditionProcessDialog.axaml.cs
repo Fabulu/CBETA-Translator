@@ -116,6 +116,12 @@ public partial class EditionProcessDialog : Window
         var host = this.FindControl<StackPanel>("SourcesHost");
         if (host == null) return;
 
+        // Structured date provenance (Phase D). Renders only when at least
+        // one of the four new date fields is present — editions that still
+        // use bare year_composed fall through silently.
+        var datesPanel = BuildDatesSection(manifest);
+        if (datesPanel != null) host.Children.Add(datesPanel);
+
         if (manifest.Witnesses == null || manifest.Witnesses.Count == 0)
         {
             host.Children.Add(MakeEmptyState("No witnesses recorded."));
@@ -162,6 +168,87 @@ public partial class EditionProcessDialog : Window
                 registryByWitnessId.TryGetValue(w.Id, out enrichment);
             host.Children.Add(BuildWitnessCard(w, manifest.BaseWitnessId, enrichment));
         }
+    }
+
+    /// <summary>
+    /// Renders the 4-field structured date section at the top of the Sources
+    /// tab when any of composition_date / manuscript_date / redaction_date /
+    /// textual_criticism_date is present. Returns null when no structured
+    /// dates are available so callers can skip adding an empty block.
+    ///
+    /// Backward-compat: if only `year_composed` is set (no structured dates),
+    /// renders a minimal single-line "Composed: YEAR" row instead.
+    /// </summary>
+    private static Border? BuildDatesSection(ManifestInfo m)
+    {
+        bool hasAnyStructured =
+            !string.IsNullOrWhiteSpace(m.CompositionDate) ||
+            !string.IsNullOrWhiteSpace(m.ManuscriptDate) ||
+            !string.IsNullOrWhiteSpace(m.RedactionDate) ||
+            !string.IsNullOrWhiteSpace(m.TextualCriticismDate);
+
+        bool hasLegacyOnly = !hasAnyStructured && !string.IsNullOrWhiteSpace(m.YearComposed);
+
+        if (!hasAnyStructured && !hasLegacyOnly) return null;
+
+        var stack = new StackPanel { Spacing = 4 };
+        stack.Children.Add(new TextBlock
+        {
+            Text = "Dates",
+            FontWeight = FontWeight.SemiBold,
+            FontSize = 12,
+        });
+
+        if (hasLegacyOnly)
+        {
+            // Editions predating the 4-field structure just get one line.
+            stack.Children.Add(BuildDateRow("Composed", m.YearComposed!));
+        }
+        else
+        {
+            // Four distinct axes, in chronological-source order:
+            //   composition → manuscript → redaction → textual criticism
+            if (!string.IsNullOrWhiteSpace(m.CompositionDate))
+                stack.Children.Add(BuildDateRow("Composition", m.CompositionDate!));
+            if (!string.IsNullOrWhiteSpace(m.ManuscriptDate))
+                stack.Children.Add(BuildDateRow("Manuscript", m.ManuscriptDate!));
+            if (!string.IsNullOrWhiteSpace(m.RedactionDate))
+                stack.Children.Add(BuildDateRow("Redaction", m.RedactionDate!));
+            if (!string.IsNullOrWhiteSpace(m.TextualCriticismDate))
+                stack.Children.Add(BuildDateRow("Textual criticism", m.TextualCriticismDate!));
+        }
+
+        return new Border
+        {
+            BorderBrush = Application.Current?.Resources["BorderBrush"] as Avalonia.Media.IBrush,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(12, 8),
+            Margin = new Thickness(0, 0, 0, 10),
+            Child = stack,
+        };
+    }
+
+    /// <summary>
+    /// One labeled row in the Dates section: "Label: value". Bolds the label,
+    /// wraps the value, keeps them on one visual line via inline runs so long
+    /// values can wrap without breaking label alignment.
+    /// </summary>
+    private static TextBlock BuildDateRow(string label, string value)
+    {
+        var tb = new TextBlock
+        {
+            FontSize = 11,
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(0, 1, 0, 1),
+        };
+        tb.Inlines ??= new Avalonia.Controls.Documents.InlineCollection();
+        tb.Inlines.Add(new Avalonia.Controls.Documents.Run($"{label}: ")
+        {
+            FontWeight = FontWeight.SemiBold,
+        });
+        tb.Inlines.Add(new Avalonia.Controls.Documents.Run(value));
+        return tb;
     }
 
     private static Border BuildWitnessCard(WitnessInfo w, string? baseWitnessId, WitnessTextEntry? enrichment = null)

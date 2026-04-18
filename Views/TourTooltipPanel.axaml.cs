@@ -53,7 +53,7 @@ public partial class TourTooltipPanel : UserControl
     }
 
     public void Update(string title, string body, int stepIndex, int totalSteps, bool canGoBack,
-        string? actionButtonLabel = null, bool canSkipWait = false)
+        string? actionButtonLabel = null, bool canSkipWait = false, bool isMandatory = false)
     {
         if (_txtTitle != null) _txtTitle.Text = title;
         if (_txtBody != null) _txtBody.Text = body;
@@ -74,5 +74,9 @@ public partial class TourTooltipPanel : UserControl
         // Skip wait link
         if (_txtSkipWait != null)
             _txtSkipWait.IsVisible = canSkipWait;
+
+        // Mandatory setup steps cannot be skipped — hide the Skip button entirely.
+        if (_btnSkip != null)
+            _btnSkip.IsVisible = !isMandatory;
     }
 }

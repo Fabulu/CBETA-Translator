@@ -13,7 +13,7 @@
 
   <TabControl Name="TabMain" Margin="8">
     <!-- List tab (existing layout) -->
-    <TabItem Header="List">
+    <TabItem Header="Browse">
       <Grid RowDefinitions="*,Auto" ColumnDefinitions="280,12,*" Margin="4">
         <Border Grid.Row="0" Grid.Column="0"
                 Background="{DynamicResource ControlBg}"
@@ -160,7 +160,7 @@
       <Grid RowDefinitions="Auto,*" Margin="4">
         <!-- Toolbar -->
         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Margin="0,0,0,4">
-          <Button Name="BtnBuildCorpusIndex" Content="Scan All Texts" Padding="8,4" Margin="0,0,8,0"
+          <Button Name="BtnBuildCorpusIndex" Content="Scan Texts for Masters" Padding="8,4" Margin="0,0,8,0"
                   ToolTip.Tip="Scan all XML files in the corpus for mentions of every zen master. This takes a few seconds."/>
           <Button Name="BtnCancelCorpusScan" Content="Cancel" Padding="8,4" Margin="0,0,8,0"
                   IsVisible="{Binding IsCorpusScanning}"/>
@@ -290,17 +290,19 @@
     <!-- Lineage Web tab -->
     <TabItem Header="Lineage Web">
       <Grid RowDefinitions="Auto,*" Margin="4">
-        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="0,0,0,4">
-          <TextBox Name="TxtLineageSearch" Watermark="Search lineage..."
-                   FontSize="12" Margin="0,0,8,0"/>
-          <TextBlock Grid.Column="1" Name="TxtLineageInfo"
-                     VerticalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,8,0"/>
-          <TextBlock Grid.Column="2" Text="Zoom" VerticalAlignment="Center" FontSize="11"
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" Margin="0,0,0,4">
+          <TextBox Name="TxtLineageSearch" Watermark="Search masters..."
+                   FontSize="12" Margin="0,0,4,0"
+                   ToolTip.Tip="Type a name to highlight matching masters. Press Enter to center on the first match."/>
+          <Button Grid.Column="1" Name="BtnLineageCenter" Content="Go to" Padding="8,4"
+                  ToolTip.Tip="Center and zoom to the highlighted search match"/>
+          <TextBlock Grid.Column="2" Name="TxtLineageInfo"
+                     VerticalAlignment="Center" FontSize="11" Opacity="0.7" Margin="8,0,8,0"/>
+          <TextBlock Grid.Column="3" Text="Zoom" VerticalAlignment="Center" FontSize="11"
                      Opacity="0.5" Margin="8,0,4,0"/>
-          <Slider Grid.Column="3" Name="SliderLineageZoom"
+          <Slider Grid.Column="4" Name="SliderLineageZoom"
                   Minimum="10" Maximum="300" Value="80"
                   Width="120" VerticalAlignment="Center" Margin="0,0,8,0"/>
-          <Button Grid.Column="4" Name="BtnLineageCenter" Content="Center" Padding="8,4"/>
         </Grid>
         <local:LineageWebControl Grid.Row="1" Name="LineageGraph"/>
       </Grid>

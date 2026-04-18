@@ -272,6 +272,21 @@ public partial class MainWindowViewModel : ViewModelBase
         _config.ActiveCorpus = target;
         await SafeSaveConfigAsync();
 
+        // Reload the per-corpus Zen-flag set + refresh the search resolver.
+        // Without this, the in-memory _zen from the previous corpus's
+        // zen_texts.json leaks into the new corpus's filter and breaks the
+        // "Zen only" checkbox (ticking it shows nothing until the user
+        // restarts the app). Fixes RUN-20260416-2302 post-run regression.
+        try
+        {
+            await _zenTexts.LoadAsync(_translationRoot ?? _root);
+            SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Zen texts reload after corpus switch failed: {ex.Message}");
+        }
+
         // Force a fresh nav rebuild from the new corpus's filesystem.
         SetStatus($"Switched to {target} corpus. Rebuilding nav…");
         try
@@ -347,6 +362,16 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action? ClearTranslation { get; set; }
     public Action<bool>? SetTranslationHoverDict { get; set; }
     public Action<TranslationAssistantSnapshot?>? SetAssistantSnapshot { get; set; }
+
+    /// <summary>
+    /// Appends concordance hits (Chinese-only matches from untranslated texts)
+    /// to the Translate assistant panel AFTER TM results are rendered. Wired by
+    /// code-behind to call AssistantPanelRenderer.RenderConcordance.
+    /// </summary>
+    public Action<IReadOnlyList<ConcordanceHit>>? AppendTranslateConcordance { get; set; }
+
+    /// <summary>Same as above but for the Reader study panel.</summary>
+    public Action<IReadOnlyList<ConcordanceHit>>? AppendReaderConcordance { get; set; }
     public Action<string?, string?, DateTime?, SegmentReviewAggregation?>? SetCurrentReviewState { get; set; }
     public Action<int, int, int>? SetProgressStats { get; set; }
     public Action<string, int>? FillEnForCurrentBlock { get; set; }
@@ -1645,6 +1670,14 @@ public partial class MainWindowViewModel : ViewModelBase
             SetStatus($"Loaded: {relPath} — Source: {sourceName} (O={readableOrig.Segments.Count:n0}, T={readableTran.Segments.Count:n0}, {swRender.ElapsedMilliseconds:n0}ms)");
             _ = RefreshProgressStatsAsync(); // Do not await; keep the UI responsive
             _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
+
+            // Rebuild the translation source dropdown for this specific file
+            // so only users who actually translated THIS file appear. Must run
+            // AFTER the baseline is set and _dirty is cleared — running it
+            // earlier triggers ComboBox SelectionChanged cascades that corrupt
+            // the dirty state and cause the "unsaved changes" dialog to fire
+            // on every file switch.
+            RefreshTranslationSources();
         }
         catch (OperationCanceledException) { return; }
         catch (Exception ex)
@@ -1739,7 +1772,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 _translationRoot,
                 _originalDir,
                 GetActiveTranslatedDir(),
-                ct).ConfigureAwait(false);
+                ct,
+                maxResults: _config.TmMaxResults).ConfigureAwait(false);
 
             if (ct.IsCancellationRequested) return;
 
@@ -1768,6 +1802,10 @@ public partial class MainWindowViewModel : ViewModelBase
             });
 
             await RefreshReviewBadgeAsync();
+
+            // Concordance (async-populate): TM results are already visible,
+            // now search the corpus for Chinese-only matches and append them.
+            _ = AppendConcordanceAsync(ctx.ZhText, _currentRelPath, AppendTranslateConcordance, ct);
         }
         catch
         {
@@ -1819,10 +1857,79 @@ public partial class MainWindowViewModel : ViewModelBase
                     readableOccurrenceHint,
                     readableAnchorSignal);
             });
+
+            // Concordance (async-populate): study panel TM results are already
+            // visible, now append Chinese-only corpus matches.
+            _ = AppendConcordanceAsync(ctx.ZhText, ctx.RelPath, AppendReaderConcordance, ct);
         }
         catch
         {
             // study panel errors must never break reader
+        }
+    }
+
+    /// <summary>
+    /// Fires a concordance search (Chinese-only matches from untranslated texts)
+    /// and appends results to the assistant panel via the provided delegate.
+    /// Runs AFTER TM results are rendered (async-populate pattern).
+    /// </summary>
+    private async Task AppendConcordanceAsync(
+        string zhText,
+        string? currentRelPath,
+        Action<IReadOnlyList<ConcordanceHit>>? appendDelegate,
+        CancellationToken ct)
+    {
+        if (!_config.EnableConcordance) return;
+        if (appendDelegate == null) return;
+        if (string.IsNullOrWhiteSpace(zhText) || zhText.Length < 2) return;
+        if (_translationRoot == null || _originalDir == null) return;
+
+        try
+        {
+            var manifest = await _searchIndex.TryLoadAsync(_translationRoot);
+            if (manifest == null || ct.IsCancellationRequested) return;
+
+            var hits = new List<ConcordanceHit>();
+            int maxHits = 5;
+
+            await foreach (var group in _searchIndex.SearchAllAsync(
+                _translationRoot, _originalDir!, GetActiveTranslatedDir() ?? _originalDir!,
+                manifest, zhText,
+                includeOriginal: true, includeTranslated: false,
+                fileMeta: rel =>
+                {
+                    _allItemsByRel.TryGetValue(NormalizeRel(rel), out var it);
+                    return it != null ? (it.DisplayShort, it.Tooltip, it.Status) : (rel, rel, null);
+                },
+                contextWidth: 40, ct: ct).WithCancellation(ct))
+            {
+                // Skip the file we're currently editing
+                if (string.Equals(group.RelPath, currentRelPath, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                var firstChild = group.Children.FirstOrDefault();
+                if (firstChild == null) continue;
+
+                var snippet = $"{firstChild.LeftText}{firstChild.MatchText}{firstChild.RightText}";
+                if (snippet.Length > 120) snippet = snippet[..117] + "...";
+
+                hits.Add(new ConcordanceHit
+                {
+                    RelPath = group.RelPath,
+                    DisplayName = group.DisplayName,
+                    SnippetZh = snippet
+                });
+
+                if (hits.Count >= maxHits) break;
+            }
+
+            if (ct.IsCancellationRequested || hits.Count == 0) return;
+
+            await Dispatcher.UIThread.InvokeAsync(() => appendDelegate(hits));
+        }
+        catch
+        {
+            // Concordance is best-effort — never break the assistant flow
         }
     }
 
@@ -3336,8 +3443,22 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                 foreach (var dir in Directory.GetDirectories(communityTransDir))
                 {
                     var username = Path.GetFileName(dir);
-                    if (!string.Equals(username, GetTranslationFolderKey(_config), StringComparison.OrdinalIgnoreCase))
-                        options.Add(username);
+                    if (string.Equals(username, GetTranslationFolderKey(_config), StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    // Only show this user if they have a file for the currently-
+                    // open text. File.Exists is fast (no XML parsing); the
+                    // meaningful-translation check (which reads + parses XML)
+                    // runs later when the source is actually selected, not
+                    // during dropdown population — avoids UI freeze.
+                    if (!string.IsNullOrWhiteSpace(_currentRelPath))
+                    {
+                        var candidatePath = Path.Combine(dir, _currentRelPath);
+                        if (!File.Exists(candidatePath))
+                            continue;
+                    }
+
+                    options.Add(username);
                 }
             }
         }
@@ -3358,6 +3479,12 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     public async Task SwitchTranslationSourceAsync(int index)
     {
         if (index < 0 || index >= _translationSourceOptions.Count) return;
+        // Guard: if the index didn't actually change, bail. This breaks the
+        // re-entrancy loop where RefreshTranslationSources (called at the end
+        // of LoadPairAsync) sets the ComboBox to the current value → fires
+        // SelectionChanged → calls SwitchTranslationSourceAsync → calls
+        // LoadPairAsync → RefreshTranslationSources → infinite loop → hang.
+        if (index == _translationSourceIndex) return;
 
         if (!await ConfirmNavigateIfDirtyAsync("switch translation source"))
         {
