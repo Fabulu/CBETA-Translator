@@ -19,6 +19,7 @@ using AvaloniaEdit.Rendering;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.ViewModels;
 
 namespace ReadZen.App.Views;
 
@@ -45,6 +46,7 @@ public partial class EditionProcessDialog : Window
     private WitnessTextRegistry? _witnessRegistry;
     private ApparatusInfo? _apparatus;
     private string? _editionDir;
+    private bool _leidenMode;
 
     public void Load(
         ManifestInfo manifest,
@@ -105,6 +107,23 @@ public partial class EditionProcessDialog : Window
         PopulateLog(humanLog);
         PopulateProcess(process, manifest);
         PopulateApparatus(apparatus);
+        PopulateCollation(apparatus, witnessRegistry);
+
+        var chkLeiden = this.FindControl<CheckBox>("ChkLeidenView");
+        if (chkLeiden != null)
+        {
+            chkLeiden.IsCheckedChanged += (_, _) =>
+            {
+                _leidenMode = chkLeiden.IsChecked == true;
+                var host = this.FindControl<StackPanel>("ApparatusHost");
+                if (host != null) host.Children.Clear();
+                if (_leidenMode && _apparatus?.Entries is { Count: > 0 })
+                    RenderLeidenApparatus(_apparatus);
+                else
+                    PopulateApparatus(_apparatus);
+            };
+        }
+
         PopulateCorrections(process, xmlAbsPath);
         PopulateForensicData();
         PopulateStats(stats);
@@ -616,6 +635,321 @@ public partial class EditionProcessDialog : Window
             {
                 Child = card, Padding = new Thickness(10), CornerRadius = new CornerRadius(6),
                 BorderThickness = new Thickness(1), Margin = new Thickness(0, 0, 0, 4),
+            });
+        }
+    }
+
+    // ── Collation tab ────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Populates the collation table grid and stemma visualization.
+    /// The table shows loci as rows and witnesses as columns, with color-coded
+    /// cells indicating agreement (green), divergence (amber), or absence (red).
+    /// </summary>
+    private void PopulateCollation(ApparatusInfo? apparatus, WitnessTextRegistry? witnessRegistry)
+    {
+        var collationGrid = this.FindControl<Grid>("CollationGrid");
+        var txtInfo = this.FindControl<TextBlock>("TxtCollationInfo");
+
+        if (collationGrid == null) return;
+
+        if (apparatus?.Entries is not { Count: > 0 })
+        {
+            if (txtInfo != null) txtInfo.Text = "No apparatus data for collation.";
+            // Still try stemma
+            PopulateStemma(witnessRegistry);
+            return;
+        }
+
+        // Collect unique witness IDs from apparatus entries
+        var witnessIds = new List<string>();
+        var witnessIdSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var entry in apparatus.Entries)
+        {
+            if (entry.Readings == null) continue;
+            foreach (var r in entry.Readings)
+            {
+                if (!string.IsNullOrWhiteSpace(r.WitnessId) && witnessIdSet.Add(r.WitnessId))
+                    witnessIds.Add(r.WitnessId);
+            }
+        }
+
+        if (witnessIds.Count == 0)
+        {
+            if (txtInfo != null) txtInfo.Text = "No witness readings in apparatus.";
+            PopulateStemma(witnessRegistry);
+            return;
+        }
+
+        // Build witness siglum lookup
+        var sigla = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        if (witnessRegistry?.Witnesses != null)
+        {
+            foreach (var w in witnessRegistry.Witnesses)
+            {
+                if (!string.IsNullOrWhiteSpace(w.WitnessId) && !string.IsNullOrWhiteSpace(w.Siglum))
+                    sigla[w.WitnessId] = w.Siglum;
+            }
+        }
+
+        int lociCount = apparatus.Entries.Count;
+        int witnessCount = witnessIds.Count;
+        if (txtInfo != null) txtInfo.Text = $"{lociCount} loci \u00d7 {witnessCount} witnesses";
+
+        // Define columns: Locus + one per witness
+        collationGrid.ColumnDefinitions.Clear();
+        collationGrid.ColumnDefinitions.Add(new ColumnDefinition(120, GridUnitType.Pixel)); // locus
+        for (int w = 0; w < witnessCount; w++)
+            collationGrid.ColumnDefinitions.Add(new ColumnDefinition(100, GridUnitType.Pixel));
+
+        // Define rows: header + one per locus
+        collationGrid.RowDefinitions.Clear();
+        collationGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto)); // header
+        for (int r = 0; r < lociCount; r++)
+            collationGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+
+        // Header row
+        var locusHeader = MakeCollationCell("Locus", isHeader: true);
+        Grid.SetRow(locusHeader, 0);
+        Grid.SetColumn(locusHeader, 0);
+        collationGrid.Children.Add(locusHeader);
+
+        for (int w = 0; w < witnessCount; w++)
+        {
+            var siglum = sigla.TryGetValue(witnessIds[w], out var s) ? s : witnessIds[w];
+            var header = MakeCollationCell(siglum, isHeader: true);
+            Grid.SetRow(header, 0);
+            Grid.SetColumn(header, w + 1);
+            collationGrid.Children.Add(header);
+        }
+
+        // Data rows
+        for (int r = 0; r < lociCount; r++)
+        {
+            var entry = apparatus.Entries[r];
+            int row = r + 1;
+
+            // Locus label
+            var locusLabel = entry.LocusId ?? $"#{r + 1}";
+            if (!string.IsNullOrWhiteSpace(entry.Section))
+                locusLabel = $"{entry.Section}/{locusLabel}";
+            var locusCell = MakeCollationCell(locusLabel, isHeader: false, bg: null);
+            Grid.SetRow(locusCell, row);
+            Grid.SetColumn(locusCell, 0);
+            collationGrid.Children.Add(locusCell);
+
+            // Build reading lookup for this entry
+            var readingByWitness = new Dictionary<string, ApparatusReading>(StringComparer.OrdinalIgnoreCase);
+            if (entry.Readings != null)
+            {
+                foreach (var rd in entry.Readings)
+                {
+                    if (!string.IsNullOrWhiteSpace(rd.WitnessId))
+                        readingByWitness.TryAdd(rd.WitnessId, rd);
+                }
+            }
+
+            for (int w = 0; w < witnessCount; w++)
+            {
+                string cellText;
+                IBrush cellBg;
+
+                if (readingByWitness.TryGetValue(witnessIds[w], out var reading))
+                {
+                    cellText = reading.Reading ?? "\u2014";
+                    bool matchesLemma = !string.IsNullOrWhiteSpace(entry.Lemma) &&
+                        string.Equals(reading.Reading?.Trim(), entry.Lemma.Trim(), StringComparison.Ordinal);
+
+                    if (matchesLemma)
+                        cellBg = new SolidColorBrush(Color.FromArgb(50, 76, 175, 80));   // green
+                    else if (string.IsNullOrWhiteSpace(reading.Reading) || reading.Reading == "\u2014")
+                        cellBg = new SolidColorBrush(Color.FromArgb(50, 244, 67, 54));    // red (lacuna)
+                    else
+                        cellBg = new SolidColorBrush(Color.FromArgb(50, 255, 152, 0));    // amber (variant)
+                }
+                else
+                {
+                    cellText = "\u2014";
+                    cellBg = new SolidColorBrush(Color.FromArgb(50, 244, 67, 54)); // red (absent)
+                }
+
+                var cell = MakeCollationCell(cellText, isHeader: false, bg: cellBg);
+                Grid.SetRow(cell, row);
+                Grid.SetColumn(cell, w + 1);
+                collationGrid.Children.Add(cell);
+            }
+        }
+
+        // Also populate stemma
+        PopulateStemma(witnessRegistry);
+    }
+
+    /// <summary>Creates a styled cell for the collation grid.</summary>
+    private static Border MakeCollationCell(string text, bool isHeader, IBrush? bg = null)
+    {
+        return new Border
+        {
+            Background = bg ?? Brushes.Transparent,
+            BorderBrush = new SolidColorBrush(Color.FromArgb(30, 255, 255, 255)),
+            BorderThickness = new Thickness(0.5),
+            Padding = new Thickness(4, 2),
+            Child = new TextBlock
+            {
+                Text = text,
+                FontSize = isHeader ? 11 : 10,
+                FontWeight = isHeader ? FontWeight.SemiBold : FontWeight.Normal,
+                Opacity = isHeader ? 0.9 : 0.85,
+                TextTrimming = TextTrimming.CharacterEllipsis,
+                VerticalAlignment = VerticalAlignment.Center,
+            },
+        };
+    }
+
+    /// <summary>
+    /// Loads and displays the witness stemma in the Stemma sub-tab.
+    /// Tries family-stemma.md first, falls back to registry-based generation.
+    /// </summary>
+    private void PopulateStemma(WitnessTextRegistry? witnessRegistry)
+    {
+        var stemmaHost = this.FindControl<Border>("StemmaHost");
+        var tabStemma = this.FindControl<TabItem>("TabStemma");
+        var txtStemmaInfo = this.FindControl<TextBlock>("TxtStemmaInfo");
+
+        if (stemmaHost == null) return;
+
+        // Try to load stemma from provenance directory
+        StemmaParserService.StemmaData? stemma = null;
+
+        if (_editionDir != null)
+        {
+            var slug = Path.GetFileName(_editionDir);
+            var provRoot = Path.GetFullPath(Path.Combine(_editionDir, "..", "..", "..", "provenance", slug));
+            if (Directory.Exists(provRoot))
+            {
+                var stemmaPath = Path.Combine(provRoot, "collation", "family-stemma.md");
+                stemma = StemmaParserService.TryParseFile(stemmaPath);
+            }
+        }
+
+        // Fallback: generate from witness registry families
+        stemma ??= StemmaParserService.GenerateFromRegistry(witnessRegistry);
+
+        if (stemma == null || stemma.Edges.Count == 0)
+        {
+            if (tabStemma != null) tabStemma.IsVisible = false;
+            return;
+        }
+
+        if (txtStemmaInfo != null)
+            txtStemmaInfo.Text = $"{stemma.NodeNames.Count} witnesses, {stemma.Edges.Count} relationships";
+
+        // Build the view model and create the control
+        var vm = StemmaViewModel.Build(stemma, witnessRegistry);
+        var webControl = new LineageWebControl
+        {
+            MinHeight = 400,
+        };
+        webControl.SetViewModel(vm);
+
+        stemmaHost.Child = webControl;
+    }
+
+    /// <summary>
+    /// Renders apparatus entries in traditional Leiden notation:
+    /// lemma ] reading1 W1 W3 | reading2 W2 A1
+    /// </summary>
+    private void RenderLeidenApparatus(ApparatusInfo apparatus)
+    {
+        var host = this.FindControl<StackPanel>("ApparatusHost");
+        if (host == null || apparatus.Entries == null) return;
+
+        host.Children.Add(MakeSection($"Apparatus – Leiden notation ({apparatus.Entries.Count} entries)"));
+
+        var siglaBrush = new SolidColorBrush(Color.FromRgb(100, 140, 220));
+
+        foreach (var entry in apparatus.Entries)
+        {
+            if (entry.Readings is not { Count: > 0 }) continue;
+
+            var tb = new SelectableTextBlock { FontSize = 12, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 2) };
+
+            // Lemma in bold
+            var lemmaText = entry.Lemma ?? "?";
+            tb.Inlines!.Add(new Avalonia.Controls.Documents.Run(lemmaText)
+            {
+                FontWeight = FontWeight.Bold,
+            });
+
+            // Separator
+            tb.Inlines.Add(new Avalonia.Controls.Documents.Run(" ] "));
+
+            // Group readings by identical text, collecting witness sigla
+            var groups = entry.Readings
+                .GroupBy(r => r.Reading ?? "")
+                .ToList();
+
+            for (int gi = 0; gi < groups.Count; gi++)
+            {
+                if (gi > 0)
+                    tb.Inlines.Add(new Avalonia.Controls.Documents.Run(" | "));
+
+                var g = groups[gi];
+                var readingText = g.Key;
+
+                // Check for type prefix (from any reading in the group)
+                var firstReading = g.First();
+                var typePrefix = firstReading.Type switch
+                {
+                    "om" => "om. ",
+                    "add" => "add. ",
+                    _ => !string.IsNullOrWhiteSpace(firstReading.Type) ? firstReading.Type + " " : "",
+                };
+
+                if (!string.IsNullOrEmpty(typePrefix))
+                {
+                    tb.Inlines.Add(new Avalonia.Controls.Documents.Run(typePrefix)
+                    {
+                        FontStyle = FontStyle.Italic,
+                    });
+                }
+
+                // Reading text
+                tb.Inlines.Add(new Avalonia.Controls.Documents.Run(readingText));
+
+                // Witness sigla in accent color
+                var sigla = string.Join(" ", g.Select(r => r.WitnessId ?? "?"));
+                tb.Inlines.Add(new Avalonia.Controls.Documents.Run(" " + sigla)
+                {
+                    Foreground = siglaBrush,
+                    FontSize = 10,
+                });
+
+                // Editor attribution if present
+                var editor = g.FirstOrDefault(r => !string.IsNullOrWhiteSpace(r.Editor))?.Editor;
+                if (!string.IsNullOrEmpty(editor))
+                {
+                    tb.Inlines.Add(new Avalonia.Controls.Documents.Run($" ({editor})")
+                    {
+                        FontStyle = FontStyle.Italic,
+                        FontSize = 10,
+                        Foreground = new SolidColorBrush(Color.FromArgb(180, 160, 160, 160)),
+                    });
+                }
+            }
+
+            // Section prefix if present
+            var prefix = !string.IsNullOrWhiteSpace(entry.Section)
+                ? $"{entry.Section} / {entry.LocusId ?? "?"}: "
+                : $"{entry.LocusId ?? "?"}: ";
+
+            var line = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 4 };
+            line.Children.Add(new TextBlock { Text = prefix, FontSize = 10, Opacity = 0.6, VerticalAlignment = VerticalAlignment.Center });
+            line.Children.Add(tb);
+
+            host.Children.Add(new Border
+            {
+                Child = line, Padding = new Thickness(8, 4), CornerRadius = new CornerRadius(4),
+                Margin = new Thickness(0, 0, 0, 2),
             });
         }
     }

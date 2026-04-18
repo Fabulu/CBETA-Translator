@@ -59,4 +59,10 @@ public sealed class ApparatusReading
 
     [JsonPropertyName("is_human_checked")]
     public bool? IsHumanChecked { get; set; }
+
+    [JsonPropertyName("type")]
+    public string? Type { get; set; } // om, add, transp, conj, subst — free text for now
+
+    [JsonPropertyName("editor")]
+    public string? Editor { get; set; } // attribution for conjectural emendations
 }
