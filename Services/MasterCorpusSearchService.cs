@@ -363,8 +363,8 @@ public sealed class MasterCorpusSearchService
     }
 
     /// <summary>
-    /// Exports a compact web-friendly corpus index with per-master text appearances.
-    /// Top 5 primary + top 10 secondary per master. Matches format expected by SPA.
+    /// Exports a web-friendly corpus index with all per-master text appearances.
+    /// Sorted by mention count descending. Matches format expected by SPA.
     /// </summary>
     public static async Task ExportMasterCorpusJsonAsync(
         string outputDir,
@@ -388,9 +388,9 @@ public sealed class MasterCorpusSearchService
         var masters = new Dictionary<string, object>();
         foreach (var (name, (primary, secondary, total)) in byMaster)
         {
-            var primaryTop = primary.OrderByDescending(a => a.MentionCount).Take(5)
+            var primaryTop = primary.OrderByDescending(a => a.MentionCount)
                 .Select(a => SerializeAppearance(a)).ToList();
-            var secondaryTop = secondary.OrderByDescending(a => a.MentionCount).Take(10)
+            var secondaryTop = secondary.OrderByDescending(a => a.MentionCount)
                 .Select(a => SerializeAppearance(a)).ToList();
 
             masters[name] = new Dictionary<string, object>
