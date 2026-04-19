@@ -38,6 +38,7 @@ public partial class TranslationTabView : UserControl
     private CheckBox? _chkWrap;
     private ComboBox? _cmbChunkSize;
     private ComboBox? _cmbTranslationSource;
+    private Button? _btnStarTranslation;
     private TextBlock? _txtModeInfo;
     private TextBlock? _txtQuickInfo;
     private TextBlock? _txtReviewState;
@@ -93,6 +94,9 @@ public partial class TranslationTabView : UserControl
 
     /// <summary>Fired when the user selects a different translation source.</summary>
     public event EventHandler<int>? TranslationSourceChanged;
+
+    /// <summary>Fired when user clicks the star/unstar button for the current translation source.</summary>
+    public event EventHandler? StarToggleRequested;
 
     /// <summary>
     /// Delegate that resolves the lb n-value for a given block number.
@@ -161,6 +165,7 @@ public partial class TranslationTabView : UserControl
 
         _cmbChunkSize = this.FindControl<ComboBox>("CmbChunkSize");
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
+        _btnStarTranslation = this.FindControl<Button>("BtnStarTranslation");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
         _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
 
@@ -472,6 +477,11 @@ public partial class TranslationTabView : UserControl
                 if (_cmbTranslationSource.SelectedIndex >= 0)
                     TranslationSourceChanged?.Invoke(this, _cmbTranslationSource.SelectedIndex);
             };
+        }
+
+        if (_btnStarTranslation != null)
+        {
+            _btnStarTranslation.Click += (_, _) => StarToggleRequested?.Invoke(this, EventArgs.Empty);
         }
 
         AddHandler(KeyDownEvent, OnKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel);
@@ -1129,6 +1139,16 @@ public partial class TranslationTabView : UserControl
     {
         if (_cmbTranslationSource != null && index >= 0)
             _cmbTranslationSource.SelectedIndex = index;
+    }
+
+    /// <summary>
+    /// Updates the star button to reflect the current starred state.
+    /// </summary>
+    public void UpdateStarButton(bool isStarred)
+    {
+        if (_btnStarTranslation == null) return;
+        _btnStarTranslation.Content = isStarred ? "\u2605" : "\u2606";
+        Avalonia.Controls.ToolTip.SetTip(_btnStarTranslation, isStarred ? "Unstar this translation" : "Star this translation");
     }
 
     /// <summary>

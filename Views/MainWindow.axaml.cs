@@ -514,6 +514,8 @@ private async Task LoadConfigAndAutoloadAsync()
             sp.GetRequiredService<ILicenseMetadataService>(),
             sp.GetRequiredService<IManifestService>());
 
+        _vm.SetStarService(sp.GetRequiredService<ITranslationStarService>());
+
         DataContext = _vm;
 
         _tourService = sp.GetRequiredService<OnboardingTourService>();
@@ -658,6 +660,8 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetReadableTranslationSourceOptions = options => _readableView?.SetTranslationSourceOptions(options);
         _vm.SetTranslationSourceIndex = index => _translationView?.SetTranslationSourceIndex(index);
         _vm.SetReadableTranslationSourceIndex = index => _readableView?.SetTranslationSourceIndex(index);
+        _vm.UpdateTranslationStarButton = isStarred => _translationView?.UpdateStarButton(isStarred);
+        _vm.UpdateReadableStarButton = isStarred => _readableView?.UpdateStarButton(isStarred);
         _vm.SetTranslationEditorReadOnly = readOnly => _translationView?.SetEditorReadOnly(readOnly);
         _vm.SignalCoreLoadComplete = () => _windowReady.TrySetResult();
 
@@ -1160,6 +1164,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.SwitchTranslationSourceAsync(idx);
             };
 
+            _readableView.StarToggleRequested += async (_, _) =>
+            {
+                await _vm.ToggleStarAsync();
+            };
+
             _readableView.VersionPickerChanged += async (_, commitHash) =>
             {
                 await LoadReaderHistoricalVersionAsync(commitHash);
@@ -1288,6 +1297,11 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.SwitchTranslationSourceAsync(idx);
             };
 
+            _translationView.StarToggleRequested += async (_, _) =>
+            {
+                await _vm.ToggleStarAsync();
+            };
+
             _translationView.ResolveLbForBlock = blockNumber =>
             {
                 var doc = _vm.IndexedDoc;
@@ -1371,6 +1385,9 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 try { await _vm.LoadFileListFromCacheOrBuildAsync(); }
                 catch { /* non-critical — sidebar stays stale until restart */ }
+
+                try { await _vm.ReloadStarsAsync(); }
+                catch { /* non-critical — star counts stay stale until restart */ }
             };
         }
 

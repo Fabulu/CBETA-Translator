@@ -82,6 +82,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly ITranslationReviewService _translationReview;
     private readonly IMasterDatesService _masterDatesSvc;
     private readonly IDocumentTagService _tagService;
+    private readonly ITranslationStarService _starService;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -144,7 +145,8 @@ public partial class GitTabViewModel : ViewModelBase
         ITermbaseStorageService termbaseSvc,
         ITranslationReviewService translationReview,
         IMasterDatesService masterDatesSvc,
-        IDocumentTagService tagService)
+        IDocumentTagService tagService,
+        ITranslationStarService starService)
     {
         _git = git;
         _auth = auth;
@@ -155,6 +157,7 @@ public partial class GitTabViewModel : ViewModelBase
         _translationReview = translationReview;
         _masterDatesSvc = masterDatesSvc;
         _tagService = tagService;
+        _starService = starService;
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -1677,6 +1680,17 @@ public partial class GitTabViewModel : ViewModelBase
             }
             catch (Exception ex) { AppendLog($"[warn] tag share failed: {ex.Message}"); }
 
+            // --- Write per-user star JSONL ---
+            try
+            {
+                ProgressText = "Writing per-user star JSONL\u2026";
+                var communityStarsDir = Path.Combine(repoDir, "community", "stars");
+                await _starService.WriteUserStarsJsonlAsync(communityStarsDir, _githubLogin!, ct);
+                var starJsonlRelPath = Path.Combine("community", "stars", _githubLogin + ".jsonl").Replace('\\', '/');
+                AppendLog($"[step] wrote star data to {starJsonlRelPath}");
+            }
+            catch (Exception ex) { AppendLog($"[warn] star share failed: {ex.Message}"); }
+
             // --- Ensure .gitattributes has merge=union for all community dirs ---
             var gitattribPath = Path.Combine(repoDir, ".gitattributes");
             string[] mergeRules =
@@ -1686,7 +1700,8 @@ public partial class GitTabViewModel : ViewModelBase
                 "community/reviews/*.jsonl merge=union",
                 "community/master-dates/*.jsonl merge=union",
                 "community/tags/*.jsonl merge=union",
-                "community/translation-licenses/*.jsonl merge=union"
+                "community/translation-licenses/*.jsonl merge=union",
+                "community/stars/*.jsonl merge=union"
             };
             string gitattribContent = File.Exists(gitattribPath)
                 ? await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct)
@@ -3329,6 +3344,7 @@ public partial class GitTabViewModel : ViewModelBase
         trackedPaths.Add($"community/master-dates/{login}.jsonl");
         trackedPaths.Add($"community/tags/{login}.jsonl");
         trackedPaths.Add($"community/tag-vocabularies/{login}.json");
+        trackedPaths.Add($"community/stars/{login}.jsonl");
 
         var translationUserDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(login));
         if (Directory.Exists(translationUserDir))
@@ -3367,6 +3383,7 @@ public partial class GitTabViewModel : ViewModelBase
             || string.Equals(normalized, $"community/master-dates/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/tags/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/tag-vocabularies/{login}.json", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, $"community/stars/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || normalized.StartsWith($"community/translations/{AppPaths.SanitizeUsername(login)}/", StringComparison.OrdinalIgnoreCase);
     }
     private bool IsTrackedCommunitySharePath(string relPath)
