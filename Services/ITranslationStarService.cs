@@ -11,4 +11,5 @@ public interface ITranslationStarService
     bool IsStarredByUser(string fileId, string translator, string username);
     Task SetStarAsync(string communityStarsDir, string username, string fileId, string translator, bool starred, CancellationToken ct);
     Task WriteUserStarsJsonlAsync(string communityStarsDir, string username, CancellationToken ct);
+    Task ExportAggregatedCountsAsync(string repoDir, CancellationToken ct);
 }

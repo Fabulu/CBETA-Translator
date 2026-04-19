@@ -1686,8 +1686,8 @@ public partial class GitTabViewModel : ViewModelBase
                 ProgressText = "Writing per-user star JSONL\u2026";
                 var communityStarsDir = Path.Combine(repoDir, "community", "stars");
                 await _starService.WriteUserStarsJsonlAsync(communityStarsDir, _githubLogin!, ct);
-                var starJsonlRelPath = Path.Combine("community", "stars", _githubLogin + ".jsonl").Replace('\\', '/');
-                AppendLog($"[step] wrote star data to {starJsonlRelPath}");
+                await _starService.ExportAggregatedCountsAsync(repoDir, ct);
+                AppendLog("[step] wrote star data + aggregated star-counts.json");
             }
             catch (Exception ex) { AppendLog($"[warn] star share failed: {ex.Message}"); }
 
@@ -3345,6 +3345,7 @@ public partial class GitTabViewModel : ViewModelBase
         trackedPaths.Add($"community/tags/{login}.jsonl");
         trackedPaths.Add($"community/tag-vocabularies/{login}.json");
         trackedPaths.Add($"community/stars/{login}.jsonl");
+        trackedPaths.Add("star-counts.json");
 
         var translationUserDir = Path.Combine(repoDir, "community", "translations", AppPaths.SanitizeUsername(login));
         if (Directory.Exists(translationUserDir))
@@ -3372,6 +3373,8 @@ public partial class GitTabViewModel : ViewModelBase
         if (string.Equals(normalized, NormalizeRel(ScholarCollectionsFile), StringComparison.OrdinalIgnoreCase))
             return true;
         if (string.Equals(normalized, "translation-review.jsonl", StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(normalized, "star-counts.json", StringComparison.OrdinalIgnoreCase))
             return true;
         if (string.IsNullOrWhiteSpace(_githubLogin))
             return false;
