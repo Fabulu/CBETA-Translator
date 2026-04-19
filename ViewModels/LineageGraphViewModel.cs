@@ -36,30 +36,11 @@ public sealed class LineageGraphViewModel
         FocusedNodes.Clear();
         FocusedNodes.Add(node);
 
-        // Walk ancestors (incoming edges — nodes pointing TO this one)
-        var ancestorQueue = new Queue<LineageGraphNode>();
-        ancestorQueue.Enqueue(node);
-        while (ancestorQueue.Count > 0)
+        // Direct connections only: immediate teacher + immediate students
+        foreach (var edge in Edges)
         {
-            var cur = ancestorQueue.Dequeue();
-            foreach (var edge in Edges)
-            {
-                if (edge.To == cur && FocusedNodes.Add(edge.From))
-                    ancestorQueue.Enqueue(edge.From);
-            }
-        }
-
-        // Walk descendants (outgoing edges — nodes this one points TO)
-        var descQueue = new Queue<LineageGraphNode>();
-        descQueue.Enqueue(node);
-        while (descQueue.Count > 0)
-        {
-            var cur = descQueue.Dequeue();
-            foreach (var edge in Edges)
-            {
-                if (edge.From == cur && FocusedNodes.Add(edge.To))
-                    descQueue.Enqueue(edge.To);
-            }
+            if (edge.To == node) FocusedNodes.Add(edge.From);   // teacher
+            if (edge.From == node) FocusedNodes.Add(edge.To);   // student
         }
     }
 
