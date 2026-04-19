@@ -3317,11 +3317,11 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             }
 
             int starCount = 0;
-            if (_starService != null)
+            if (_starService != null && index < _translationSourceOptions.Count)
             {
                 var translator = index == 0 ? GetTranslationFolderKey(_config)
                     : index == 1 ? "community"
-                    : _translationSourceOptions[index];
+                    : index < _translationSourceOptions.Count ? _translationSourceOptions[index] : "community";
                 starCount = _starService.GetStarCount(relKey, translator);
             }
 
