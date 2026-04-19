@@ -84,6 +84,7 @@ public partial class ReadableTabView : UserControl
     // -------------------------
     private CheckBox? _chkZenText;
     private ComboBox? _cmbTranslationSource;
+    private Button? _btnStarTranslation;
     private bool _suppressTranslationSourceEvents;
     private bool _suppressVersionPickerEvents;
 
@@ -240,6 +241,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler? CompareTranslationsRequested;
     public event EventHandler<int>? TranslationSourceChanged;
 
+    /// <summary>Fired when user clicks the star/unstar button for the current translation source.</summary>
+    public event EventHandler? StarToggleRequested;
+
     /// <summary>Fired when user selects a historical version from the version picker. Value is the commit hash, or null for "(current)".</summary>
     public event EventHandler<string?>? VersionPickerChanged;
 
@@ -383,6 +387,7 @@ public partial class ReadableTabView : UserControl
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
+        _btnStarTranslation = this.FindControl<Button>("BtnStarTranslation");
         _readableEmptyState = this.FindControl<Border>("ReadableEmptyState");
 
         // License chip controls are no longer in this view (they live in
@@ -879,6 +884,11 @@ public partial class ReadableTabView : UserControl
             };
         }
 
+        if (_btnStarTranslation != null)
+        {
+            _btnStarTranslation.Click += (_, _) => StarToggleRequested?.Invoke(this, EventArgs.Empty);
+        }
+
         var cmbVersion = this.FindControl<ComboBox>("CmbVersionPicker");
         if (cmbVersion != null)
         {
@@ -1129,6 +1139,17 @@ public partial class ReadableTabView : UserControl
             _suppressTranslationSourceEvents = false;
         }
     }
+
+    /// <summary>
+    /// Updates the star button to reflect the current starred state.
+    /// </summary>
+    public void UpdateStarButton(bool isStarred)
+    {
+        if (_btnStarTranslation == null) return;
+        _btnStarTranslation.Content = isStarred ? "\u2605" : "\u2606";
+        Avalonia.Controls.ToolTip.SetTip(_btnStarTranslation, isStarred ? "Unstar this translation" : "Star this translation");
+    }
+
     private DiffHighlightRenderer? _diffRenderer;
     private string? _currentTextForDiff;
 

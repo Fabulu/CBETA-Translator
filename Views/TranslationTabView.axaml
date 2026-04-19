@@ -76,6 +76,9 @@
 				<DockPanel Grid.Row="1" Margin="0,2,0,0">
 					<TextBlock DockPanel.Dock="Right" Text="Source:" VerticalAlignment="Center"
 							   FontSize="11" Margin="8,0,4,0" Opacity="0.7"/>
+					<Button Name="BtnStarTranslation" Content="&#x2606;" FontSize="16"
+							DockPanel.Dock="Right" Margin="4,0,0,0"
+							ToolTip.Tip="Star this translation" Padding="4,2" MinWidth="28"/>
 					<ComboBox Name="CmbTranslationSource" DockPanel.Dock="Right" MinWidth="170" FontSize="12" Margin="6,0,0,0"
 							  ToolTip.Tip="Select whose translation to view/edit"/>
 					<TextBlock Name="TxtProgress" DockPanel.Dock="Right" Opacity="0.7" Classes="muted" FontSize="11"/>

@@ -49,6 +49,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ISearchIndexService _searchIndex;
     private readonly IDocumentTagService _documentTagService;
     private readonly IGitRepoService _gitService;
+    private ITranslationStarService? _starService;
     private static readonly TranslationStatusService LiveTranslationStatusService = new();
 
     // Coding mode state
@@ -137,7 +138,8 @@ public partial class MainWindowViewModel : ViewModelBase
         TranslationStatus Status,
         bool IsCommunity,
         long TranslatedMtimeTicks,
-        DateTime LastWriteUtc);
+        DateTime LastWriteUtc,
+        int StarCount = 0);
 
     // ---- Observable properties ----
 
@@ -352,10 +354,12 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<List<DocumentTag>?, TagVocabulary?>? SetSearchTagFilterData { get; set; }
     public Action<List<string>>? SetReadableTranslationSourceOptions { get; set; }
     public Action<int>? SetReadableTranslationSourceIndex { get; set; }
+    public Action<bool>? UpdateReadableStarButton { get; set; }
 
     // TranslationTabView bridges
     public Action<List<string>>? SetTranslationSourceOptions { get; set; }
     public Action<int>? SetTranslationSourceIndex { get; set; }
+    public Action<bool>? UpdateTranslationStarButton { get; set; }
     public Action<bool>? SetTranslationEditorReadOnly { get; set; }
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
     public Func<string>? GetTranslationProjectionText { get; set; }
@@ -466,6 +470,22 @@ public partial class MainWindowViewModel : ViewModelBase
         _gitService = gitService;
         _licenseMetadata = licenseMetadata;
         _manifestService = manifestService;
+    }
+
+    /// <summary>Inject the star service after construction (optional dependency).</summary>
+    public void SetStarService(ITranslationStarService starService) => _starService = starService;
+
+    /// <summary>Reload star data from disk and refresh the translation source list so star counts update.</summary>
+    public async Task ReloadStarsAsync()
+    {
+        if (_starService == null || _translationRoot == null) return;
+        var starsDir = Path.Combine(_translationRoot, "community", "stars");
+        try
+        {
+            await _starService.LoadAllStarsAsync(starsDir, CancellationToken.None);
+            RefreshTranslationSources();
+        }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Star reload failed: {ex.Message}"); }
     }
 
     // ===========================================================
@@ -781,6 +801,13 @@ public partial class MainWindowViewModel : ViewModelBase
             await _translationReview.RefreshAggregationCacheAsync(_translationRoot!, reviewsDir);
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Review aggregation refresh failed: {ex.Message}"); }
+
+        if (_starService != null && _translationRoot != null)
+        {
+            var starsDir = Path.Combine(_translationRoot, "community", "stars");
+            try { await _starService.LoadAllStarsAsync(starsDir, CancellationToken.None); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Star data load failed: {ex.Message}"); }
+        }
 
         if (saveToConfig)
         {
@@ -3289,13 +3316,23 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                 catch { }
             }
 
+            int starCount = 0;
+            if (_starService != null)
+            {
+                var translator = index == 0 ? GetTranslationFolderKey(_config)
+                    : index == 1 ? "community"
+                    : _translationSourceOptions[index];
+                starCount = _starService.GetStarCount(relKey, translator);
+            }
+
             var evaluation = new TranslationSourceEvaluation(
                 index,
                 status == TranslationStatus.Red ? null : candidatePath,
                 status,
                 index == 1,
                 mtimeTicks,
-                writeUtc);
+                writeUtc,
+                starCount);
 
             if (IsBetterTranslationSource(evaluation, best))
                 best = evaluation;
@@ -3334,6 +3371,10 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         int bestRank = GetTranslationStatusRank(currentBest.Status);
         if (candidateRank != bestRank)
             return candidateRank > bestRank;
+
+        // Higher star count wins at equal quality
+        if (candidate.StarCount != currentBest.StarCount)
+            return candidate.StarCount > currentBest.StarCount;
 
         if (candidate.IsCommunity != currentBest.IsCommunity)
             return !candidate.IsCommunity; // Prefer personal over community at equal quality
@@ -3465,12 +3506,27 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
 
         _translationSourceOptions = options;
         _translationSourceIndex = Math.Clamp(_translationSourceIndex, 0, Math.Max(0, options.Count - 1));
-        SetTranslationSourceOptions?.Invoke(options);
-        SetReadableTranslationSourceOptions?.Invoke(options);
-        SetScholarDictionarySourceOptions?.Invoke(options);
+
+        // Build display list with star counts for the UI (raw usernames stay in _translationSourceOptions)
+        var displayOptions = new List<string>(options);
+        if (_starService != null && !string.IsNullOrWhiteSpace(_currentRelPath))
+        {
+            var relKey = NormalizeRel(_currentRelPath);
+            for (int i = 2; i < displayOptions.Count; i++)
+            {
+                var stars = _starService.GetStarCount(relKey, displayOptions[i]);
+                if (stars > 0)
+                    displayOptions[i] = $"{displayOptions[i]} ({stars}\u2605)";
+            }
+        }
+
+        SetTranslationSourceOptions?.Invoke(displayOptions);
+        SetReadableTranslationSourceOptions?.Invoke(displayOptions);
+        SetScholarDictionarySourceOptions?.Invoke(displayOptions);
         SetTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetReadableTranslationSourceIndex?.Invoke(_translationSourceIndex);
         SetScholarDictionarySourceIndex?.Invoke(_translationSourceIndex);
+        RefreshStarButtons();
     }
 
     /// <summary>
@@ -3639,6 +3695,65 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     /// </summary>
     public IReadOnlyList<string> GetTranslationSourceLabels() => _translationSourceOptions;
     public int GetActiveTranslationSourceIndex() => _translationSourceIndex;
+
+    /// <summary>
+    /// Toggles the star state for the current file + translation source combination.
+    /// </summary>
+    public async Task ToggleStarAsync()
+    {
+        if (_starService == null || string.IsNullOrWhiteSpace(_currentRelPath)) return;
+
+        var username = _config.GitHubUsername ?? _config.Username;
+        if (string.IsNullOrWhiteSpace(username)) { SetStatus("Cannot star: no username configured."); return; }
+
+        var translator = GetActiveTranslationUser() ?? "community";
+        var fileId = NormalizeRel(_currentRelPath);
+
+        var communityStarsDir = _translationRoot != null
+            ? Path.Combine(_translationRoot, "community", "stars")
+            : null;
+        if (string.IsNullOrWhiteSpace(communityStarsDir)) { SetStatus("Cannot star: no community directory found."); return; }
+
+        bool isCurrentlyStarred = _starService.IsStarredByUser(fileId, translator, username);
+        try
+        {
+            await _starService.SetStarAsync(communityStarsDir, username, fileId, translator, !isCurrentlyStarred, CancellationToken.None);
+            RefreshStarButtons();
+            SetStatus(isCurrentlyStarred ? "Star removed." : "Star added.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus($"Star toggle failed: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Refreshes the star button state on both views based on current file and source.
+    /// </summary>
+    public void RefreshStarButtons()
+    {
+        if (_starService == null || string.IsNullOrWhiteSpace(_currentRelPath))
+        {
+            UpdateReadableStarButton?.Invoke(false);
+            UpdateTranslationStarButton?.Invoke(false);
+            return;
+        }
+
+        var username = _config.GitHubUsername ?? _config.Username;
+        if (string.IsNullOrWhiteSpace(username))
+        {
+            UpdateReadableStarButton?.Invoke(false);
+            UpdateTranslationStarButton?.Invoke(false);
+            return;
+        }
+
+        var translator = GetActiveTranslationUser() ?? "community";
+        var fileId = NormalizeRel(_currentRelPath);
+        bool isStarred = _starService.IsStarredByUser(fileId, translator, username);
+
+        UpdateReadableStarButton?.Invoke(isStarred);
+        UpdateTranslationStarButton?.Invoke(isStarred);
+    }
 
     private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
 

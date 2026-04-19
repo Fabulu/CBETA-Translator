@@ -106,6 +106,9 @@
 					  Margin="4,0,0,0"
 					  IsVisible="False"
 					  ToolTip.Tip="View an older version of this translation (git history)"/>
+			<Button Name="BtnStarTranslation" Content="&#x2606;" FontSize="16"
+					DockPanel.Dock="Right" Margin="4,0,0,0"
+					ToolTip.Tip="Star this translation" Padding="4,2" MinWidth="28"/>
 			<ComboBox Name="CmbTranslationSource"
 					  DockPanel.Dock="Right"
 					  MinWidth="170"
