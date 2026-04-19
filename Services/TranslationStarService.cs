@@ -210,6 +210,22 @@ public sealed class TranslationStarService : ITranslationStarService
         File.Move(tmpPath, path, overwrite: true);
     }
 
+    public async Task ExportAggregatedCountsAsync(string repoDir, CancellationToken ct)
+    {
+        var map = new Dictionary<string, int>();
+        foreach (var ((fileId, translator), count) in _counts)
+        {
+            if (count > 0)
+                map[fileId + ":" + translator] = count;
+        }
+
+        var json = JsonSerializer.Serialize(map, WriteOpts);
+        var path = Path.Combine(repoDir, "star-counts.json");
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        File.Move(tmpPath, path, overwrite: true);
+    }
+
     private static string SanitizeFilename(string name)
     {
         var invalid = Path.GetInvalidFileNameChars();
