@@ -18,6 +18,7 @@ public sealed class LineageGraphNode
     public bool IsHighlighted { get; set; }
     public bool IsHidden { get; set; }
     public bool IsOrphan { get; set; }
+    public string Attestation { get; set; } = "";
     public ZenMasterRecord? Record { get; set; }
 }
 

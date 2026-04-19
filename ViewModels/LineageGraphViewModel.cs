@@ -80,6 +80,7 @@ public sealed class LineageGraphViewModel
         ["Guiyang"] = Color.FromRgb(255, 143, 0),
         ["Hongzhou"] = Color.FromRgb(76, 175, 80),
         ["Niutou"] = Color.FromRgb(121, 85, 72),
+        ["Korean Seon"] = Color.FromRgb(26, 122, 106),
         ["Early Chan"] = Color.FromRgb(180, 160, 130),
         ["Chan"] = Color.FromRgb(158, 158, 158),
     };
@@ -118,6 +119,7 @@ public sealed class LineageGraphViewModel
                 DatesSummary = rec.DatesSummary,
                 School = rec.School,
                 Notes = rec.Notes,
+                Attestation = rec.Attestation ?? "",
                 SortDate = variant.Death > 0 ? variant.Death : (variant.Floruit > 0 ? variant.Floruit + 50 : 0),
                 Record = rec,
             };
@@ -208,6 +210,10 @@ public sealed class LineageGraphViewModel
             node.Y = node.SortDate > 0
                 ? (node.SortDate - minYear) * PixelsPerYear + 60
                 : 60; // unknown date goes to top
+
+            // Push Korean Seon nodes rightward so they cluster apart from Chinese Chan
+            if (node.School?.Contains("Korean Seon", StringComparison.OrdinalIgnoreCase) == true)
+                node.X += HorizontalSpacing * 2;
         }
 
         // ── Collision resolution within each layer ──

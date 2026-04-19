@@ -16,6 +16,7 @@ public sealed class MasterDateEntry
     public string? School { get; set; }
     public string? Teacher { get; set; }
     public List<string>? Students { get; set; }
+    public string? Attestation { get; set; }
     public string? Region { get; set; }
     public string? ReferenceUrl { get; set; }
     public List<MasterLink>? Links { get; set; }
