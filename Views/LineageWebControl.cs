@@ -88,8 +88,6 @@ public sealed class LineageWebControl : Control
         // endpoints aren't both in the focus set so the traced line stays
         // readable against the dimmed background.
         bool focusActive = _vm.FocusedNodes.Count > 0;
-        var edgePenFocused = new Pen(new SolidColorBrush(Color.FromArgb(60, 255, 255, 255)), 1.2);
-        var edgePenDimmed = new Pen(new SolidColorBrush(Color.FromArgb(12, 255, 255, 255)), 1.2);
         foreach (var edge in _vm.Edges)
         {
             if (edge.From.X > vRight && edge.To.X > vRight) continue;
@@ -103,9 +101,23 @@ public sealed class LineageWebControl : Control
                 edge.To.X,
                 edge.To.Y + LineageGraphViewModel.NodeHeight / 2);
 
-            var pen = (focusActive && !(_vm.FocusedNodes.Contains(edge.From) && _vm.FocusedNodes.Contains(edge.To)))
-                ? edgePenDimmed
-                : edgePenFocused;
+            bool dimmed = focusActive && !(_vm.FocusedNodes.Contains(edge.From) && _vm.FocusedNodes.Contains(edge.To));
+            byte alpha = dimmed ? (byte)12 : (byte)60;
+
+            // Attestation-based edge style
+            var att = edge.To.Attestation ?? "";
+            DashStyle? dash = att switch
+            {
+                "D" => new DashStyle(new double[] { 2, 4 }, 0),
+                "C" => new DashStyle(new double[] { 3, 3 }, 0),
+                "B" => new DashStyle(new double[] { 6, 3 }, 0),
+                _ => null
+            };
+            byte attAlpha = att == "D" ? (byte)(alpha / 2) : alpha;
+            var pen = new Pen(new SolidColorBrush(Color.FromArgb(attAlpha, 255, 255, 255)), 1.2)
+            {
+                DashStyle = dash
+            };
             ctx.DrawLine(pen, fromPt, toPt);
         }
 
@@ -141,6 +153,14 @@ public sealed class LineageWebControl : Control
 
             var rect = new Rect(node.X, node.Y, LineageGraphViewModel.NodeWidth, LineageGraphViewModel.NodeHeight);
             ctx.FillRectangle(fillBrush, rect, 4);
+
+            // Node border — dashed for Korean Seon
+            bool isKorean = node.School?.Contains("Korean", StringComparison.OrdinalIgnoreCase) == true;
+            var borderPen = new Pen(new SolidColorBrush(Color.FromArgb((byte)(180 * focusAttenuation), schoolColor.R, schoolColor.G, schoolColor.B)), 1.0)
+            {
+                DashStyle = isKorean ? new DashStyle(new double[] { 4, 3 }, 0) : null
+            };
+            ctx.DrawRectangle(borderPen, rect, 4);
 
             // Highlight ring for search matches
             if (node.IsHighlighted)
