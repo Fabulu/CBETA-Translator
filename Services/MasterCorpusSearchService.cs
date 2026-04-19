@@ -30,6 +30,7 @@ public sealed class MasterCorpusSearchService
         "大慧",   // Dahui = "Great Wisdom"
         "國師",   // National Teacher (too generic)
         "六祖",   // Sixth Patriarch (too generic)
+        "延壽",   // Yanshou = "extend longevity" (matches Medicine Buddha texts)
     };
 
     private static readonly JsonSerializerOptions JsonOpts = new()
