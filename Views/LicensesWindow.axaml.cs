@@ -27,6 +27,19 @@ public partial class LicensesWindow : Window
                 catch { }
             };
         }
+
+        var contactLink = this.FindControl<TextBlock>("BtnContact");
+        if (contactLink != null)
+        {
+            contactLink.PointerPressed += (_, _) =>
+            {
+                // Assembled at runtime to defeat scrapers in decompiled binaries
+                var u = "fabian.trunz";
+                var d = "gmail.com";
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("mailto:" + u + "@" + d) { UseShellExecute = true }); }
+                catch { }
+            };
+        }
     }
 }
 
