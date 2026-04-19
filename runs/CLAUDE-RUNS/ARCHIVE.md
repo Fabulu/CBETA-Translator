@@ -32,6 +32,74 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-04-18 to 2026-04-19 — Archived (SPA + Korean Seon marathon, v4.9.3 → v5.0.1)
+
+### SPA Overhaul + Korean Seon Lineage + Translation Stars
+
+**Archived:** 2026-04-19
+**Created:** 2026-04-18
+**Duration:** ~30 hours across 2 days
+**Versions:** Desktop v4.9.3 → v5.0.1, SPA continuous deploy
+
+**Summary:**
+Three major workstreams in one marathon session: (1) transformed the SPA from a basic preview into a full reading/browsing tool, (2) built the translation star system across desktop + SPA + data repos, (3) researched and implemented Korean Seon Buddhism on the lineage graph with 42 masters, 4-tier attestation, and scholarly verification.
+
+**SPA (readzen.pages.dev):**
+- Search: browse all texts, translated/untranslated/Zen filters, paginated results
+- Passage reader: full text pagination (no more TOC-only), multi-edition TEI fix, bilingual toggle
+- Dictionary: 11,959 CC-CEDICT shards deployed (were gitignored, never on Cloudflare)
+- Lineage graph: Korean Seon color, dashed node borders, attestation edge styles, compact legend
+- Masters: pagination, school colors, Korean Seon entries
+- UX: font size buttons, scroll-to-top, home link, dismissible continue-reading, bookmark deep links
+- Install instructions: WinGet, Setup.exe, bundled Git documented
+- Feature showcase: web vs desktop distinction, desktop features section
+- OpenZen license corrected (CC0/CC BY 4.0), Start Here text IDs fixed
+
+**Desktop App:**
+- Translation star system: star/unstar toggle, per-user JSONL sync, aggregated star-counts.json, ranking integration, star button in Reader + Translate tabs
+- Critical onboarding fix: mandatory setup can't be bypassed, Open Folder always works as escape hatch
+- Korean Seon: 42 masters with attestation tiers, dashed node borders, attestation-based edge rendering (solid/dashed/dotted/faint), legend with tier explanations, rightward layout push
+- Author-field concept-name matching (fixes Yongming/Zongjing Lu detection)
+- Focus behavior: direct connections only (teacher + students)
+- Schools: Heze removed, normalized to 9 Chinese + Korean Seon
+- 99 broken student reverse-links fixed
+- 250 total masters (up from 205)
+
+**Korean Seon Research (20+ recon waves):**
+- 5-language web research (EN, ZH, KO, DE, ES)
+- 7 of 9 Mountain School founders confirmed in Zutangji (952 CE)
+- Legitimacy assessment: 4-tier system (A=Chinese source, B=Korean stele, C=textual, D=retroactive)
+- Scholarly verification: Buswell, Ahn, Jorgensen, Van Cutsem, Sorensen cited
+- Complete lineage chains: 9 Mountain Schools → Suseonsa → Dark Centuries → Hyujeong
+- Bridge figures: Shiwu Qinggong, Pingshan Chulin, Ji'an Zongxin, Gunabhadra
+- Musang/Wuxiang identified as early teacher of Mazu (Buswell 1989)
+
+**Data (all repos synced):**
+- master-dates.json / masters.json: 250 masters, 42 Korean Seon, 45 attestation fields
+- master-corpus.json: rebuilt with author-field fix, 217 reliable masters, 726 KB
+- zen_texts.json: curated list moved to translations repo
+- .gitattributes: star merge rules added
+- auto-merge workflow: star-counts.json added to allowlist
+
+**Key files modified (desktop):**
+- Models/StarEntry.cs, Services/ITranslationStarService.cs, Services/TranslationStarService.cs (NEW)
+- Models/LineageGraphNode.cs, Models/MasterDateEntry.cs, Models/ZenMasterModels.cs
+- Services/MasterCorpusSearchService.cs, Services/ZenMasterManagerService.cs
+- ViewModels/MainWindowViewModel.cs, ViewModels/GitTabViewModel.cs, ViewModels/LineageGraphViewModel.cs
+- Views/MainWindow.axaml.cs, Views/LineageWebControl.cs
+- Views/ReadableTabView.axaml + .cs, Views/TranslationTabView.axaml + .cs
+- Views/GitTabView.axaml.cs, Services/ServiceCollectionExtensions.cs
+
+**Key files modified (SPA):**
+- views/lineage-graph.js, views/masters-browse.js, views/passage.js, views/search.js
+- views/landing.js, views/master.js, views/shell.js
+- lib/github.js, lib/format.js, lib/tei.js, lib/reading-lists.js, lib/inline-dict.js
+- style.css, app.js, .gitignore
+
+**Outcome:** v5.0.1 released. SPA is now a standalone useful tool. Korean Seon lineage is the most thoroughly sourced visualization of Korean Buddhist transmission that exists online. Translation star system ready for community use.
+
+---
+
 ## 2026-04-16 to 2026-04-18 — Archived (marathon CE session, v4.5.0 → v4.9.2)
 
 | Run ID | Description | Outcome |
