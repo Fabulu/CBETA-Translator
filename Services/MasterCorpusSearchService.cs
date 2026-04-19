@@ -224,6 +224,23 @@ public sealed class MasterCorpusSearchService
                     var headerEnd = content.IndexOf("</teiHeader>", StringComparison.Ordinal);
                     var header = headerEnd > 0 ? content[..headerEnd] : "";
 
+                    // Extract <author> element text for targeted matching.
+                    // Short concept names (e.g. 延壽) are safe to match in this
+                    // controlled metadata field even though they'd be ambiguous
+                    // in body text.
+                    string authorField = "";
+                    if (header.Length > 0)
+                    {
+                        var authStart = header.IndexOf("<author>", StringComparison.Ordinal);
+                        if (authStart >= 0)
+                        {
+                            authStart += "<author>".Length;
+                            var authEnd = header.IndexOf("</author>", authStart, StringComparison.Ordinal);
+                            if (authEnd > authStart)
+                                authorField = header[authStart..authEnd];
+                        }
+                    }
+
                     // Search for each master's Chinese names
                     var foundMasters = new Dictionary<string, (string MatchedName, int Count, string? Snippet, bool IsPrimary)>();
 
@@ -237,7 +254,13 @@ public sealed class MasterCorpusSearchService
                         // Concept-name disambiguation: if the matched name is also a common
                         // Buddhist concept, require a longer non-concept alias of the same
                         // master to also appear in the file. Otherwise the match is too noisy.
-                        if (ConceptNames.Contains(chineseName))
+                        // Exception: if the concept name appears in the <author> field, it
+                        // genuinely refers to the person (e.g. <author>宋 延壽集</author>).
+                        bool foundInAuthorField = ConceptNames.Contains(chineseName)
+                            && authorField.Length > 0
+                            && authorField.Contains(chineseName, StringComparison.Ordinal);
+
+                        if (ConceptNames.Contains(chineseName) && !foundInAuthorField)
                         {
                             if (!namesByCanonical.TryGetValue(canonicalName, out var allNames))
                                 continue;
@@ -254,8 +277,9 @@ public sealed class MasterCorpusSearchService
                         // Fallback: if the matched name is a concept, it can still count as primary
                         // when the concept-filter passed (guaranteeing a longer non-concept alias
                         // exists in the body) AND the concept appears in the header.
-                        bool isPrimary = false;
-                        if (namesByCanonical.TryGetValue(canonicalName, out var aliasesForPrimary))
+                        // Special case: concept name found in <author> field is a strong primary signal.
+                        bool isPrimary = foundInAuthorField;
+                        if (!isPrimary && namesByCanonical.TryGetValue(canonicalName, out var aliasesForPrimary))
                         {
                             isPrimary = aliasesForPrimary.Any(n =>
                                 !ConceptNames.Contains(n)
