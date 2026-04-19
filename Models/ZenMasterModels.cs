@@ -17,6 +17,7 @@ public sealed class ZenMasterVariant
     public string? School { get; init; }
     public string? Teacher { get; init; }
     public List<string>? Students { get; init; }
+    public string? Attestation { get; init; }
     public string? Region { get; init; }
     public string? ReferenceUrl { get; init; }
     public List<MasterLink>? Links { get; init; }
@@ -73,6 +74,9 @@ public sealed class ZenMasterRecord
         .SelectMany(v => v.Students!)
         .Distinct(StringComparer.OrdinalIgnoreCase)
         .ToList();
+
+    /// <summary>Best available attestation level.</summary>
+    public string? Attestation => Variants.Select(v => v.Attestation).FirstOrDefault(a => !string.IsNullOrWhiteSpace(a));
 
     /// <summary>Best available region.</summary>
     public string? Region => Variants.Select(v => v.Region).FirstOrDefault(r => !string.IsNullOrWhiteSpace(r));
