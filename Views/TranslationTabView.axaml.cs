@@ -1144,11 +1144,17 @@ public partial class TranslationTabView : UserControl
     /// <summary>
     /// Updates the star button to reflect the current starred state.
     /// </summary>
-    public void UpdateStarButton(bool isStarred)
+    public void UpdateStarButton(bool? state)
     {
         if (_btnStarTranslation == null) return;
-        _btnStarTranslation.Content = isStarred ? "\u2605" : "\u2606";
-        Avalonia.Controls.ToolTip.SetTip(_btnStarTranslation, isStarred ? "Unstar this translation" : "Star this translation");
+        if (state == null)
+        {
+            _btnStarTranslation.IsVisible = false;
+            return;
+        }
+        _btnStarTranslation.IsVisible = true;
+        _btnStarTranslation.Content = state == true ? "\u2605" : "\u2606";
+        Avalonia.Controls.ToolTip.SetTip(_btnStarTranslation, state == true ? "Unstar this translation" : "Star this translation");
     }
 
     /// <summary>
