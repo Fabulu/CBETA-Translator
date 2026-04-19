@@ -297,7 +297,15 @@ public sealed class LineageWebControl : Control
         var entries = LineageGraphViewModel.SchoolColors;
         double legendHeight = entries.Count * lineHeight + 12;
 
-        ctx.FillRectangle(legendBg, new Rect(legendX, legendY, 160, legendHeight), 6);
+        // Attestation tier entries
+        var attEntries = new[] {
+            ("verified", (double[]?)null),
+            ("stele", new double[] { 6, 3 }),
+            ("textual", new double[] { 3, 3 }),
+            ("retro.", new double[] { 2, 4 }),
+        };
+        double totalHeight = entries.Count * lineHeight + attEntries.Length * lineHeight + 20;
+        ctx.FillRectangle(legendBg, new Rect(legendX, legendY, 160, totalHeight), 6);
 
         int i = 0;
         foreach (var (school, color) in entries)
@@ -311,6 +319,24 @@ public sealed class LineageWebControl : Control
                 new SolidColorBrush(Color.FromArgb(200, 255, 255, 255)));
             ctx.DrawText(ft, new Point(legendX + 26, y));
             i++;
+        }
+
+        // Attestation legend
+        double attY = legendY + 10 + entries.Count * lineHeight;
+        var lineBrush = new SolidColorBrush(Color.FromArgb(160, 180, 180, 180));
+        foreach (var (label, dashPattern) in attEntries)
+        {
+            var pen = new Pen(lineBrush, 1.5)
+            {
+                DashStyle = dashPattern != null ? new DashStyle(dashPattern, 0) : null
+            };
+            ctx.DrawLine(pen, new Point(legendX + 8, attY + 8), new Point(legendX + 22, attY + 8));
+
+            var ft = new FormattedText(label, CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight, Typeface.Default, 9,
+                new SolidColorBrush(Color.FromArgb(160, 200, 200, 200)));
+            ctx.DrawText(ft, new Point(legendX + 26, attY + 1));
+            attY += lineHeight;
         }
     }
 }
