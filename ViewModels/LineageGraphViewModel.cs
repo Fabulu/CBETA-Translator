@@ -211,9 +211,9 @@ public sealed class LineageGraphViewModel
                 ? (node.SortDate - minYear) * PixelsPerYear + 60
                 : 60; // unknown date goes to top
 
-            // Push Korean Seon nodes rightward so they cluster apart from Chinese Chan
-            if (node.School?.Contains("Korean Seon", StringComparison.OrdinalIgnoreCase) == true)
-                node.X += HorizontalSpacing * 2;
+            // Push Korean Seon nodes far rightward so they cluster apart from Chinese Chan
+            if (node.School?.Contains("Korean", StringComparison.OrdinalIgnoreCase) == true)
+                node.X += HorizontalSpacing * 5;
         }
 
         // ── Collision resolution within each layer ──
