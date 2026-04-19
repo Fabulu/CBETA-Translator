@@ -354,12 +354,12 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<List<DocumentTag>?, TagVocabulary?>? SetSearchTagFilterData { get; set; }
     public Action<List<string>>? SetReadableTranslationSourceOptions { get; set; }
     public Action<int>? SetReadableTranslationSourceIndex { get; set; }
-    public Action<bool>? UpdateReadableStarButton { get; set; }
+    public Action<bool?>? UpdateReadableStarButton { get; set; }
 
     // TranslationTabView bridges
     public Action<List<string>>? SetTranslationSourceOptions { get; set; }
     public Action<int>? SetTranslationSourceIndex { get; set; }
-    public Action<bool>? UpdateTranslationStarButton { get; set; }
+    public Action<bool?>? UpdateTranslationStarButton { get; set; }
     public Action<bool>? SetTranslationEditorReadOnly { get; set; }
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
     public Func<string>? GetTranslationProjectionText { get; set; }
@@ -3705,6 +3705,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
 
         var username = _config.GitHubUsername ?? _config.Username;
         if (string.IsNullOrWhiteSpace(username)) { SetStatus("Cannot star: no username configured."); return; }
+        if (_translationSourceIndex == 0) { SetStatus("Cannot star your own translation."); return; }
 
         // Use the folder key (sanitized) for index 0 to match EvaluateBestTranslationSource
         var translator = _translationSourceIndex == 0
@@ -3737,17 +3738,34 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     {
         if (_starService == null || string.IsNullOrWhiteSpace(_currentRelPath))
         {
-            UpdateReadableStarButton?.Invoke(false);
-            UpdateTranslationStarButton?.Invoke(false);
+            UpdateReadableStarButton?.Invoke(null);
+            UpdateTranslationStarButton?.Invoke(null);
             return;
         }
 
         var username = _config.GitHubUsername ?? _config.Username;
         if (string.IsNullOrWhiteSpace(username))
         {
-            UpdateReadableStarButton?.Invoke(false);
-            UpdateTranslationStarButton?.Invoke(false);
+            UpdateReadableStarButton?.Invoke(null);
+            UpdateTranslationStarButton?.Invoke(null);
             return;
+        }
+
+        // Hide the star button if the active source has no meaningful translation
+        // (identical to source, or Chinese-only with no English content).
+        if (_translationSourceIndex >= 0 && !string.IsNullOrWhiteSpace(_currentRelPath))
+        {
+            var candidateDir = ResolveTranslatedDirForSourceIndex(_translationSourceIndex);
+            if (candidateDir != null)
+            {
+                var candidatePath = Path.Combine(candidateDir, _currentRelPath);
+                if (!File.Exists(candidatePath) || !IsMeaningfullyTranslatedPath(_currentRelPath, candidatePath))
+                {
+                    UpdateReadableStarButton?.Invoke(null);
+                    UpdateTranslationStarButton?.Invoke(null);
+                    return;
+                }
+            }
         }
 
         // Use the folder key (sanitized) for index 0 to match EvaluateBestTranslationSource
