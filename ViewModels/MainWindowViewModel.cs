@@ -3706,7 +3706,10 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         var username = _config.GitHubUsername ?? _config.Username;
         if (string.IsNullOrWhiteSpace(username)) { SetStatus("Cannot star: no username configured."); return; }
 
-        var translator = GetActiveTranslationUser() ?? "community";
+        // Use the folder key (sanitized) for index 0 to match EvaluateBestTranslationSource
+        var translator = _translationSourceIndex == 0
+            ? GetTranslationFolderKey(_config)
+            : (GetActiveTranslationUser() ?? "community");
         var fileId = NormalizeRel(_currentRelPath);
 
         var communityStarsDir = _translationRoot != null
@@ -3747,7 +3750,10 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             return;
         }
 
-        var translator = GetActiveTranslationUser() ?? "community";
+        // Use the folder key (sanitized) for index 0 to match EvaluateBestTranslationSource
+        var translator = _translationSourceIndex == 0
+            ? GetTranslationFolderKey(_config)
+            : (GetActiveTranslationUser() ?? "community");
         var fileId = NormalizeRel(_currentRelPath);
         bool isStarred = _starService.IsStarredByUser(fileId, translator, username);
 
