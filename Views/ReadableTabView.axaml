@@ -257,6 +257,11 @@
 									  VerticalScrollBarVisibility="Auto">
 							<StackPanel Spacing="10">
 								<TextBlock Text="Study Panel" FontWeight="Bold"/>
+								<ProgressBar Name="StudyLoadingBar"
+											 IsIndeterminate="True"
+											 IsVisible="False"
+											 Height="3"
+											 Margin="0,4,0,0"/>
 
 								<Border Padding="8" CornerRadius="6"
 										BorderThickness="1"
@@ -286,7 +291,7 @@
 										BorderThickness="1"
 										BorderBrush="{DynamicResource BorderBrush}">
 									<StackPanel Spacing="6">
-										<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+										<TextBlock Text="Glossary" FontWeight="Bold"/>
 										<StackPanel Name="StudyTermHost" Spacing="10"/>
 									</StackPanel>
 								</Border>

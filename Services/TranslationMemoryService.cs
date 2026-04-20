@@ -149,6 +149,20 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         return result;
     }
 
+    /// <inheritdoc />
+    public async Task WarmupCacheAsync(string root, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root)) return;
+
+        var approvedPath = Path.Combine(root, "translation-memory.approved.jsonl");
+        var referencePath = Path.Combine(root, "translation-memory.reference.jsonl");
+
+        if (File.Exists(approvedPath))
+            await LoadRowsCachedAsync(approvedPath, TranslationResourceTrust.Approved, ct).ConfigureAwait(false);
+        if (File.Exists(referencePath))
+            await LoadRowsCachedAsync(referencePath, TranslationResourceTrust.AiReference, ct).ConfigureAwait(false);
+    }
+
     private async Task<List<TmRow>> LoadRowsCachedAsync(
         string path, TranslationResourceTrust trust, CancellationToken ct)
     {

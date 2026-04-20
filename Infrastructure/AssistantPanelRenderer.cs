@@ -37,6 +37,24 @@ internal enum AssistantHighlightStyle
 internal static class AssistantPanelRenderer
 {
     /// <summary>
+    /// Renders italic guidance text into a host panel (used when no snapshot is available yet).
+    /// </summary>
+    public static void RenderEmptyGuidance(StackPanel host, string message)
+    {
+        host.Children.Clear();
+        var tb = new TextBlock
+        {
+            Text = message,
+            FontStyle = FontStyle.Italic,
+            Foreground = new SolidColorBrush(Color.Parse("#999999")),
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(8),
+            FontSize = 12,
+        };
+        host.Children.Add(tb);
+    }
+
+    /// <summary>
     /// Populates the four assistant host panels with TM, term, and QA cards.
     /// </summary>
     /// <param name="snapshot">The snapshot to render (null clears all hosts).</param>
@@ -72,13 +90,13 @@ internal static class AssistantPanelRenderer
         if (approvedTmHost != null)
         {
             foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
-                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
+                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: true));
         }
 
         if (referenceTmHost != null)
         {
             foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
-                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler));
+                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: false));
         }
 
         if (termHost != null)
@@ -93,10 +111,10 @@ internal static class AssistantPanelRenderer
                 qaHost.Children.Add(BuildQaEntryControl(q, brushResolver, postProcessor));
         }
 
-        AddEmptyPlaceholderIfNeeded(approvedTmHost, "No approved TM matches for this passage.", brushResolver);
-        AddEmptyPlaceholderIfNeeded(referenceTmHost, "No reference TM matches for this passage.", brushResolver);
-        AddEmptyPlaceholderIfNeeded(termHost, "No terminology hits for this passage.", brushResolver);
-        AddEmptyPlaceholderIfNeeded(qaHost, "No QA issues for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(approvedTmHost, "No approved matches for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(referenceTmHost, "No reference translations for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(termHost, "No glossary entries for this passage.", brushResolver);
+        AddEmptyPlaceholderIfNeeded(qaHost, "No quality issues detected.", brushResolver);
     }
 
     /// <summary>
@@ -218,7 +236,8 @@ internal static class AssistantPanelRenderer
         Func<string, IBrush?>? brushResolver = null,
         Action<TextEditor>? postProcessor = null,
         EventHandler<NavigationRequest>? navigationHandler = null,
-        Action<ScholarPassage>? addToScholarHandler = null)
+        Action<ScholarPassage>? addToScholarHandler = null,
+        bool isApproved = true)
     {
         string title = titleResolver?.Invoke(match.RelPath) ?? match.RelPath ?? "";
         string currentZh = snapshot.Segment?.ZhText ?? "";
@@ -253,8 +272,8 @@ internal static class AssistantPanelRenderer
 
         var border = new Border
         {
-            BorderBrush = brushResolver?.Invoke("BorderBrush"),
-            BorderThickness = new Thickness(1),
+            BorderBrush = new SolidColorBrush(Color.Parse(isApproved ? "#4CAF50" : "#42A5F5")),
+            BorderThickness = new Thickness(3, 0, 0, 0),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(6),
             Child = cardContent,
@@ -331,8 +350,8 @@ internal static class AssistantPanelRenderer
 
         var border = new Border
         {
-            BorderBrush = brushResolver?.Invoke("BorderBrush"),
-            BorderThickness = new Thickness(1),
+            BorderBrush = new SolidColorBrush(Color.Parse("#FFA726")),
+            BorderThickness = new Thickness(3, 0, 0, 0),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(6),
             Child = editor
@@ -376,8 +395,8 @@ internal static class AssistantPanelRenderer
 
         return new Border
         {
-            BorderBrush = brushResolver?.Invoke("BorderBrush"),
-            BorderThickness = new Thickness(1),
+            BorderBrush = new SolidColorBrush(Color.Parse("#EF5350")),
+            BorderThickness = new Thickness(3, 0, 0, 0),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(6),
             Child = editor

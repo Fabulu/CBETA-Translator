@@ -2166,6 +2166,12 @@ STRICT RULES:
         return sb.ToString();
     }
 
+    public void SetAssistantLoading(bool isLoading)
+    {
+        var bar = this.FindControl<Avalonia.Controls.ProgressBar>("AssistantLoadingBar");
+        if (bar != null) bar.IsVisible = isLoading;
+    }
+
     public void SetAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
     {
         _vm.LastAssistantSnapshot = snapshot;
@@ -2175,6 +2181,18 @@ STRICT RULES:
     private void RenderAssistantSnapshot(TranslationAssistantSnapshot? snapshot)
     {
         ClearAssistantHoverBehaviors();
+
+        if (snapshot == null)
+        {
+            if (_qaHost != null)
+                AssistantPanelRenderer.RenderEmptyGuidance(_qaHost,
+                    "Select text to see glossary entries, translation memory matches, and quality checks.");
+            _termHost?.Children.Clear();
+            _approvedTmHost?.Children.Clear();
+            _referenceTmHost?.Children.Clear();
+            return;
+        }
+
         AssistantPanelRenderer.RenderSnapshot(
             snapshot,
             _qaHost, _termHost, _approvedTmHost, _referenceTmHost,

@@ -635,6 +635,12 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.GetTranslationProjectionText = () => _translationView?.GetCurrentProjectionText() ?? "";
         _vm.ClearTranslation = () => _translationView?.Clear();
         _vm.SetTranslationHoverDict = enabled => _translationView?.SetHoverDictionaryEnabled(enabled);
+        _vm.SetAssistantLoading = isLoading =>
+        {
+            _translationView?.SetAssistantLoading(isLoading);
+            _readableView?.SetStudyLoading(isLoading);
+            _scholarView?.SetScholarLoading(isLoading);
+        };
         _vm.SetAssistantSnapshot = snapshot => _translationView?.SetAssistantSnapshot(snapshot);
         _vm.AppendTranslateConcordance = hits =>
         {

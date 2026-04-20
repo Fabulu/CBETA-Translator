@@ -18,6 +18,13 @@ public sealed class TranslationAssistantService : ITranslationAssistantService
     /// </summary>
     public void SetUsername(string? username) => _terms.SetUsername(username);
 
+    /// <inheritdoc />
+    public async Task WarmupCacheAsync(string root, CancellationToken ct = default)
+    {
+        await _tm.WarmupCacheAsync(root, ct).ConfigureAwait(false);
+        await _terms.WarmupCacheAsync(root, ct).ConfigureAwait(false);
+    }
+
     public async Task<TranslationAssistantSnapshot> BuildSnapshotAsync(
         CurrentSegmentContext ctx,
         string? root,

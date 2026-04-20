@@ -16,4 +16,7 @@ public interface ITermbaseService
         CurrentSegmentContext ctx,
         string? root,
         CancellationToken ct = default);
+
+    /// <summary>Pre-loads termbase files into cache so the first assistant lookup is instant.</summary>
+    Task WarmupCacheAsync(string root, CancellationToken ct = default);
 }

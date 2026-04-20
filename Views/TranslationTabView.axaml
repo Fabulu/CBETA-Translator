@@ -148,13 +148,18 @@
 								<StackPanel Spacing="10">
 
 									<TextBlock Text="Assistant" FontWeight="Bold"/>
+									<ProgressBar Name="AssistantLoadingBar"
+												 IsIndeterminate="True"
+												 IsVisible="False"
+												 Height="3"
+												 Margin="0,4,0,0"/>
 
 									<Border Padding="8"
 											CornerRadius="6"
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="Warnings / QA" FontWeight="Bold"/>
+											<TextBlock Text="Quality Checks" FontWeight="Bold"/>
 											<StackPanel Name="QaHost" Spacing="10"/>
 										</StackPanel>
 									</Border>
@@ -164,7 +169,7 @@
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="Recognized Terms" FontWeight="Bold"/>
+											<TextBlock Text="Glossary" FontWeight="Bold"/>
 											<StackPanel Name="TermHost" Spacing="10"/>
 										</StackPanel>
 									</Border>
@@ -174,7 +179,7 @@
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="Approved Translations" FontWeight="Bold"/>
+											<TextBlock Text="Approved Matches" FontWeight="Bold"/>
 											<StackPanel Name="ApprovedTmHost" Spacing="10"/>
 										</StackPanel>
 									</Border>
@@ -184,7 +189,7 @@
 											BorderThickness="1"
 											BorderBrush="{DynamicResource BorderBrush}">
 										<StackPanel Spacing="6">
-											<TextBlock Text="AI &amp; Reference Translations" FontWeight="Bold"/>
+											<TextBlock Text="Reference Translations" FontWeight="Bold"/>
 											<StackPanel Name="ReferenceTmHost" Spacing="10"/>
 										</StackPanel>
 									</Border>

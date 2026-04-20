@@ -1630,9 +1630,12 @@ public partial class ScholarTabView : UserControl
         var passage = _vm.SelectedPassage ?? _vm.SelectedCommunityPassage;
         if (passage == null || string.IsNullOrWhiteSpace(passage.ZhText))
         {
-            AssistantPanelRenderer.RenderSnapshot(null,
-                _scholarQaHost, _scholarTermHost,
-                _scholarApprovedTmHost, _scholarReferenceTmHost);
+            if (_scholarQaHost != null)
+                AssistantPanelRenderer.RenderEmptyGuidance(_scholarQaHost,
+                    "Select a passage to see assistant results.");
+            _scholarTermHost?.Children.Clear();
+            _scholarApprovedTmHost?.Children.Clear();
+            _scholarReferenceTmHost?.Children.Clear();
             UpdateTermbaseHits(null);
             _lastRenderedPassageId = null;
             return;
@@ -1747,6 +1750,12 @@ public partial class ScholarTabView : UserControl
     }
 
     // ----- Public API -----
+
+    public void SetScholarLoading(bool isLoading)
+    {
+        var bar = this.FindControl<Avalonia.Controls.ProgressBar>("ScholarLoadingBar");
+        if (bar != null) bar.IsVisible = isLoading;
+    }
 
     public void SetTranslationDirs(string? origDir, string? tranDir)
     {
