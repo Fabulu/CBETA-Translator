@@ -247,6 +247,7 @@ public class StubTranslationAssistantService : ITranslationAssistantService
     public void SetUsername(string? username) { LastUsername = username; }
     public Task<TranslationAssistantSnapshot> BuildSnapshotAsync(CurrentSegmentContext ctx, string? root, string? originalDir, string? translatedDir, CancellationToken ct = default, int maxResults = 8)
         => Task.FromResult(new TranslationAssistantSnapshot());
+    public Task WarmupCacheAsync(string root, CancellationToken ct = default) => Task.CompletedTask;
 }
 
 // ---- ITranslationAssistantBuildService ----

@@ -18,4 +18,7 @@ public interface ITranslationAssistantService
         string? translatedDir,
         CancellationToken ct = default,
         int maxResults = 8);
+
+    /// <summary>Pre-loads TM and termbase files into cache so the first lookup is instant.</summary>
+    Task WarmupCacheAsync(string root, CancellationToken ct = default);
 }

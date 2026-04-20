@@ -26,6 +26,12 @@ public sealed class TermbaseService : ITermbaseService
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
+    // In-memory termbase cache — avoids re-reading JSON on every block change.
+    // Auto-invalidates when the file's last-write timestamp changes.
+    private string? _cachedTermsPath;
+    private DateTime _cachedTermsLastWrite;
+    private List<TermRow>? _cachedTerms;
+
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         PropertyNameCaseInsensitive = true
@@ -65,25 +71,7 @@ public sealed class TermbaseService : ITermbaseService
         if (!File.Exists(path))
             return result;
 
-        string rawJson;
-        try
-        {
-            rawJson = await File.ReadAllTextAsync(path, ct).ConfigureAwait(false);
-        }
-        catch
-        {
-            return result;
-        }
-
-        List<TermRow>? rows;
-        try
-        {
-            rows = JsonSerializer.Deserialize<List<TermRow>>(rawJson, JsonOpts);
-        }
-        catch
-        {
-            return result;
-        }
+        var rows = await LoadTermsCachedAsync(path, ct).ConfigureAwait(false);
 
         if (rows == null || rows.Count == 0)
             return result;
@@ -104,6 +92,62 @@ public sealed class TermbaseService : ITermbaseService
                 Note = t.Note
             })
             .ToList();
+    }
+
+    /// <inheritdoc />
+    public async Task WarmupCacheAsync(string root, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root)) return;
+
+        var sharedPath = Path.Combine(root, "termbase.json");
+        if (File.Exists(sharedPath))
+            await LoadTermsCachedAsync(sharedPath, ct).ConfigureAwait(false);
+    }
+
+    private async Task<List<TermRow>?> LoadTermsCachedAsync(string path, CancellationToken ct)
+    {
+        try
+        {
+            var lastWrite = File.GetLastWriteTimeUtc(path);
+            if (_cachedTerms != null &&
+                string.Equals(_cachedTermsPath, path, StringComparison.OrdinalIgnoreCase) &&
+                lastWrite == _cachedTermsLastWrite)
+            {
+                return _cachedTerms;
+            }
+        }
+        catch { /* fall through to disk read */ }
+
+        string rawJson;
+        try
+        {
+            rawJson = await File.ReadAllTextAsync(path, ct).ConfigureAwait(false);
+        }
+        catch
+        {
+            return null;
+        }
+
+        List<TermRow>? rows;
+        try
+        {
+            rows = JsonSerializer.Deserialize<List<TermRow>>(rawJson, JsonOpts);
+        }
+        catch
+        {
+            return null;
+        }
+
+        // Update cache
+        try
+        {
+            _cachedTermsPath = path;
+            _cachedTermsLastWrite = File.GetLastWriteTimeUtc(path);
+            _cachedTerms = rows;
+        }
+        catch { /* non-critical */ }
+
+        return rows;
     }
 
     private static string NormalizeForMatch(string s)

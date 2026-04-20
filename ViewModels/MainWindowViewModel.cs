@@ -365,6 +365,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Func<string>? GetTranslationProjectionText { get; set; }
     public Action? ClearTranslation { get; set; }
     public Action<bool>? SetTranslationHoverDict { get; set; }
+    public Action<bool>? SetAssistantLoading { get; set; }
     public Action<TranslationAssistantSnapshot?>? SetAssistantSnapshot { get; set; }
 
     /// <summary>
@@ -860,6 +861,13 @@ public partial class MainWindowViewModel : ViewModelBase
                     var cedict = App.Services.GetService<ICedictDictionary>();
                     if (cedict != null)
                         await cedict.EnsureLoadedAsync(ct);
+                }
+                catch { }
+
+                // Preload TM + termbase into cache so first assistant lookup is instant
+                try
+                {
+                    await _translationAssistant.WarmupCacheAsync(root, ct);
                 }
                 catch { }
 
@@ -1774,8 +1782,8 @@ public partial class MainWindowViewModel : ViewModelBase
             _assistantCts = new CancellationTokenSource();
             var ct = _assistantCts.Token;
 
-            // Clear stale assistant content immediately so the user doesn't see old data
-            SetAssistantSnapshot?.Invoke(null);
+            // Show loading indicator; keep old content visible until new data arrives
+            SetAssistantLoading?.Invoke(true);
 
             // Clear stale review state immediately so previous block's status doesn't linger
             SetCurrentReviewState?.Invoke(null, null, null, null);
@@ -1802,13 +1810,18 @@ public partial class MainWindowViewModel : ViewModelBase
                 ct,
                 maxResults: _config.TmMaxResults).ConfigureAwait(false);
 
-            if (ct.IsCancellationRequested) return;
+            if (ct.IsCancellationRequested)
+            {
+                SetAssistantLoading?.Invoke(false);
+                return;
+            }
 
             // Service calls used ConfigureAwait(false), so we may be on a
             // thread-pool thread here.  Marshal back to the UI thread for
             // all control-touching work.
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
+                SetAssistantLoading?.Invoke(false);
                 SetAssistantSnapshot?.Invoke(snapshot);
                 MaybeAutoFillFromExactMatch(snapshot);
                 UpdateTranslationTermHighlights?.Invoke(snapshot?.Terms, _currentSegmentContext?.ZhText);
@@ -1836,6 +1849,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
         catch
         {
+            SetAssistantLoading?.Invoke(false);
             // assistant errors must never break translation
         }
     }

@@ -20,4 +20,7 @@ public interface ITranslationMemoryService
         string? translatedDir,
         CancellationToken ct = default,
         int maxResults = 8);
+
+    /// <summary>Pre-loads TM files into cache so the first assistant lookup is instant.</summary>
+    Task WarmupCacheAsync(string root, CancellationToken ct = default);
 }

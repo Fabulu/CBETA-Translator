@@ -4906,6 +4906,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>
+    public void SetStudyLoading(bool isLoading)
+    {
+        var bar = this.FindControl<Avalonia.Controls.ProgressBar>("StudyLoadingBar");
+        if (bar != null) bar.IsVisible = isLoading;
+    }
+
     public void SetStudyPanelSnapshot(TranslationAssistantSnapshot? snapshot)
     {
         _vm.LastStudySnapshot = snapshot;
@@ -4916,6 +4922,18 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     private void RenderStudyPanelSnapshot(TranslationAssistantSnapshot? snapshot)
     {
         ClearStudyHoverBehaviors();
+
+        if (snapshot == null)
+        {
+            if (_studyTermHost != null)
+                AssistantPanelRenderer.RenderEmptyGuidance(_studyTermHost,
+                    "Select Chinese text to look up terms and translations.");
+            _studyTmHost?.Children.Clear();
+            if (_txtStudySegmentZh != null) _txtStudySegmentZh.Text = "";
+            if (_txtStudySegmentEn != null) _txtStudySegmentEn.Text = "";
+            UpdateStudyMasterBio(null);
+            return;
+        }
 
         // Update segment preview
         if (_txtStudySegmentZh != null)

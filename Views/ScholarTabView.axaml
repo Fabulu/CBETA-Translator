@@ -538,34 +538,41 @@
 
         <!-- Scholar Assistant stays outside TabControl, always visible -->
         <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
+          <StackPanel>
+            <ProgressBar Name="ScholarLoadingBar"
+                         IsIndeterminate="True"
+                         IsVisible="False"
+                         Height="3"
+                         Margin="0,4,0,0"/>
           <ScrollViewer MaxHeight="500">
             <StackPanel Spacing="8" Margin="4">
               <Border CornerRadius="4" Padding="6">
                 <StackPanel>
-                  <TextBlock Text="Warnings / QA" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <TextBlock Text="Quality Checks" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
                   <StackPanel Name="ScholarQaHost"/>
                 </StackPanel>
               </Border>
               <Border CornerRadius="4" Padding="6">
                 <StackPanel>
-                  <TextBlock Text="Recognized Terms" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <TextBlock Text="Glossary" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
                   <StackPanel Name="ScholarTermHost"/>
                 </StackPanel>
               </Border>
               <Border CornerRadius="4" Padding="6">
                 <StackPanel>
-                  <TextBlock Text="Approved Translations" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <TextBlock Text="Approved Matches" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
                   <StackPanel Name="ScholarApprovedTmHost"/>
                 </StackPanel>
               </Border>
               <Border CornerRadius="4" Padding="6">
                 <StackPanel>
-                  <TextBlock Text="AI &amp; Reference Translations" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
+                  <TextBlock Text="Reference Translations" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
                   <StackPanel Name="ScholarReferenceTmHost"/>
                 </StackPanel>
               </Border>
             </StackPanel>
           </ScrollViewer>
+          </StackPanel>
         </Expander>
       </Grid>
     </Border>
