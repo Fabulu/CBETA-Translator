@@ -10,6 +10,10 @@ using ReadZen.App.Models;
 using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace ReadZen.App.ViewModels;
 
@@ -181,6 +185,18 @@ public partial class SearchTabViewModel : ViewModelBase
     public ObservableCollection<CoocRow> CoocNgrams { get; } = new();
     public ObservableCollection<AnalyticsBubbleItem> CoocCharVisuals { get; } = new();
     public ObservableCollection<AnalyticsBubbleItem> CoocNgramVisuals { get; } = new();
+
+    [ObservableProperty]
+    private ISeries[] _charChartSeries = Array.Empty<ISeries>();
+
+    [ObservableProperty]
+    private ISeries[] _ngramChartSeries = Array.Empty<ISeries>();
+
+    [ObservableProperty]
+    private Axis[] _charChartYAxes = Array.Empty<Axis>();
+
+    [ObservableProperty]
+    private Axis[] _ngramChartYAxes = Array.Empty<Axis>();
 
     // ----- Events -----
 
@@ -723,6 +739,10 @@ public partial class SearchTabViewModel : ViewModelBase
         CoocNgrams.Clear();
         CoocCharVisuals.Clear();
         CoocNgramVisuals.Clear();
+        CharChartSeries = Array.Empty<ISeries>();
+        NgramChartSeries = Array.Empty<ISeries>();
+        CharChartYAxes = Array.Empty<Axis>();
+        NgramChartYAxes = Array.Empty<Axis>();
         CoocSummaryText = "No data yet.";
         ZipfText = "";
         LeftTitle = "Top characters";
@@ -858,6 +878,58 @@ public partial class SearchTabViewModel : ViewModelBase
             CoocNgramVisuals.Add(item);
 
         ZipfText = result.ExtraLine ?? "";
+
+        var (cs, cy) = BuildBarChartFromCoocRows(result.Left);
+        CharChartSeries = cs;
+        CharChartYAxes = cy;
+
+        var (ns, ny) = BuildBarChartFromCoocRows(result.Right);
+        NgramChartSeries = ns;
+        NgramChartYAxes = ny;
+    }
+
+    private static readonly SKColor DarkBarFill = new(69, 123, 157);
+    private static readonly SKColor LightBarFill = new(33, 76, 120);
+    private static readonly SKColor DarkLabelColor = new(200, 200, 200);
+    private static readonly SKColor LightLabelColor = new(50, 50, 50);
+
+    private (ISeries[] series, Axis[] yAxes) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
+    {
+        if (rows == null || rows.Count == 0)
+            return (Array.Empty<ISeries>(), Array.Empty<Axis>());
+
+        var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
+                     Avalonia.Styling.ThemeVariant.Dark;
+        var barColor = isDark ? DarkBarFill : LightBarFill;
+        var labelColor = isDark ? DarkLabelColor : LightLabelColor;
+
+        var top = rows.Take(maxItems).Reverse().ToArray();
+        var values = top.Select(r => (double)r.Freq).ToArray();
+        var labels = top.Select(r => r.Key).ToArray();
+
+        var series = new ISeries[]
+        {
+            new RowSeries<double>
+            {
+                Values = values,
+                Name = "Frequency",
+                Fill = new SolidColorPaint(barColor),
+                MaxBarWidth = 20,
+                Padding = 2,
+            }
+        };
+
+        var yAxes = new Axis[]
+        {
+            new Axis
+            {
+                Labels = labels,
+                TextSize = 12,
+                LabelsPaint = new SolidColorPaint(labelColor),
+            }
+        };
+
+        return (series, yAxes);
     }
 
     private static List<AnalyticsBubbleItem> BuildAnalyticsVisuals(IReadOnlyList<CoocRow> rows)
