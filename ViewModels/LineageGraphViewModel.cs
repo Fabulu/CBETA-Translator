@@ -191,10 +191,23 @@ public sealed class LineageGraphViewModel
             node.Y = node.SortDate > 0
                 ? (node.SortDate - minYear) * PixelsPerYear + 60
                 : 60; // unknown date goes to top
+        }
 
-            // Push Korean Seon nodes far rightward so they cluster apart from Chinese Chan
-            if (node.School?.Contains("Korean", StringComparison.OrdinalIgnoreCase) == true)
-                node.X += HorizontalSpacing * 5;
+        // Push Korean Seon nodes rightward past ALL Chinese nodes
+        bool IsKorean(LineageGraphNode n) =>
+            n.School?.Contains("Korean", StringComparison.OrdinalIgnoreCase) == true;
+
+        double maxChineseX = Nodes
+            .Where(n => connected.Contains(n) && !IsKorean(n))
+            .Select(n => n.X).DefaultIfEmpty(0).Max();
+        double koreanOffset = maxChineseX + HorizontalSpacing * 2;
+        int minKoreanLayer = Nodes
+            .Where(n => connected.Contains(n) && IsKorean(n))
+            .Select(n => n.Layer).DefaultIfEmpty(0).Min();
+
+        foreach (var node in Nodes.Where(n => connected.Contains(n) && IsKorean(n)))
+        {
+            node.X = koreanOffset + (node.Layer - minKoreanLayer) * HorizontalSpacing;
         }
 
         // ── Collision resolution within each layer ──
