@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:models="clr-namespace:ReadZen.App.Models"
              xmlns:vm="using:ReadZen.App.ViewModels"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              x:Class="ReadZen.App.Views.SearchTabView"
              x:DataType="vm:SearchTabViewModel">
 
@@ -310,7 +311,7 @@
                     </Grid>
                 </Expander.Header>
 
-                <Grid MaxHeight="360" Margin="0,6,0,0" RowDefinitions="Auto,Auto,*" RowSpacing="6">
+                <Grid MaxHeight="700" Margin="0,6,0,0" RowDefinitions="Auto,Auto,*" RowSpacing="6">
                     <StackPanel Grid.Row="0" Spacing="2">
                         <ProgressBar Height="8"
                                      Minimum="0"
@@ -404,12 +405,28 @@
                         </Border>
                     </Grid>
 
-                    <Grid Grid.Row="2" IsVisible="{Binding IsMetricViewVisible}" ColumnDefinitions="*,*" ColumnSpacing="10">
-                        <Border Grid.Column="0"
+                    <Grid Grid.Row="2" IsVisible="{Binding IsMetricViewVisible}" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="10">
+                        <!-- Charts row -->
+                        <lvc:CartesianChart Grid.Row="0" Grid.Column="0"
+                                            Series="{Binding CharChartSeries}"
+                                            YAxes="{Binding CharChartYAxes}"
+                                            Height="300"
+                                            TooltipPosition="Center"
+                                            ZoomMode="X"/>
+
+                        <lvc:CartesianChart Grid.Row="0" Grid.Column="1"
+                                            Series="{Binding NgramChartSeries}"
+                                            YAxes="{Binding NgramChartYAxes}"
+                                            Height="300"
+                                            TooltipPosition="Center"
+                                            ZoomMode="X"/>
+
+                        <!-- Data table row -->
+                        <Border Grid.Row="1" Grid.Column="0"
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
-                            <ListBox ItemsSource="{Binding CoocChars}" Height="180">
+                            <ListBox ItemsSource="{Binding CoocChars}" Height="100">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
                                         <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
@@ -436,11 +453,11 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Border>
-                        <Border Grid.Column="1"
+                        <Border Grid.Row="1" Grid.Column="1"
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
-                            <ListBox ItemsSource="{Binding CoocNgrams}" Height="180">
+                            <ListBox ItemsSource="{Binding CoocNgrams}" Height="100">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
                                         <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
