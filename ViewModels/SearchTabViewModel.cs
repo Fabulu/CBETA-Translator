@@ -187,6 +187,9 @@ public partial class SearchTabViewModel : ViewModelBase
     [ObservableProperty]
     private string _metricGuideText = "";
 
+    [ObservableProperty]
+    private string _metricTooltip = "Select a statistical metric for co-occurrence analysis";
+
     // ----- Collections -----
 
     public ObservableCollection<SearchResultGroup> ResultGroups { get; } = new();
@@ -267,7 +270,23 @@ public partial class SearchTabViewModel : ViewModelBase
     partial void OnSelectedContextIndexChanged(int value) => TriggerAutoRerunIfAllowed();
     partial void OnSearchOriginalChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSearchTranslatedChanged(bool value) => TriggerAutoRerunIfAllowed();
-    partial void OnSelectedCoocMetricIndexChanged(int value) => _ = RefreshCoocUiFromCurrentStateAsync();
+    partial void OnSelectedCoocMetricIndexChanged(int value)
+    {
+        MetricTooltip = value switch
+        {
+            0 => "Overview: balanced ranking by frequency and dispersion across texts",
+            1 => "Dispersion: stable evidence distributed across many documents",
+            2 => "Raw frequency: total count in context windows",
+            3 => "Range: number of distinct texts containing the term",
+            4 => "Dominance: concentration in a single text (>80% = artifact)",
+            5 => "PMI: association strength \u2014 rewards rare but tight collocations",
+            6 => "logDice: lexicography metric \u2014 dictionary-like collocation candidates",
+            7 => "t-score: statistically significant, frequency-biased collocations",
+            8 => "Guide: explanations of all metrics with examples",
+            _ => "Select a metric"
+        };
+        _ = RefreshCoocUiFromCurrentStateAsync();
+    }
     partial void OnSelectedAnalyticsScopeIndexChanged(int value) => _ = RefreshCoocUiFromCurrentStateAsync();
 
     // ----- Public wiring methods (called by MainWindow via code-behind) -----
@@ -596,6 +615,82 @@ public partial class SearchTabViewModel : ViewModelBase
     /// </summary>
     public Func<SearchExportFormat, string?, Task<string?>>? PickExportFileAsync { get; set; }
     public Func<Task<SearchExportFormat?>>? PickExportFormatAsync { get; set; }
+
+    [RelayCommand]
+    private async Task ExportAnalyticsTsvAsync()
+    {
+        if (CoocChars.Count == 0 && CoocNgrams.Count == 0)
+        {
+            StatusChanged?.Invoke(this, "No analytics data to export.");
+            return;
+        }
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("Type\tKey\tFrequency\tRange\tAssociation\tDominance");
+
+        foreach (var row in CoocChars)
+            sb.AppendLine($"char\t{row.Key}\t{row.Freq}\t{row.Range}\t{row.Assoc:0.###}\t{row.Dominance:0.##%}");
+
+        foreach (var row in CoocNgrams)
+            sb.AppendLine($"ngram\t{row.Key}\t{row.Freq}\t{row.Range}\t{row.Assoc:0.###}\t{row.Dominance:0.##%}");
+
+        var tsv = sb.ToString();
+
+        if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var clipboard = desktop.MainWindow?.Clipboard;
+            if (clipboard != null)
+                await clipboard.SetTextAsync(tsv);
+        }
+
+        StatusChanged?.Invoke(this, "Analytics TSV copied to clipboard.");
+    }
+
+    [RelayCommand]
+    private async Task SaveAnalyticsTsvAsync()
+    {
+        if (CoocChars.Count == 0 && CoocNgrams.Count == 0)
+        {
+            StatusChanged?.Invoke(this, "No analytics data to export.");
+            return;
+        }
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("Type\tKey\tFrequency\tRange\tAssociation\tDominance\tBar");
+
+        foreach (var row in CoocChars)
+            sb.AppendLine($"char\t{row.Key}\t{row.Freq}\t{row.Range}\t{row.Assoc:0.###}\t{row.Dominance:0.##%}\t{row.Bar}");
+
+        foreach (var row in CoocNgrams)
+            sb.AppendLine($"ngram\t{row.Key}\t{row.Freq}\t{row.Range}\t{row.Assoc:0.###}\t{row.Dominance:0.##%}\t{row.Bar}");
+
+        if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var window = desktop.MainWindow;
+            if (window == null) return;
+
+            var storageProvider = window.StorageProvider;
+            var file = await storageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+            {
+                Title = "Save Analytics as TSV",
+                DefaultExtension = "tsv",
+                FileTypeChoices = new[]
+                {
+                    new Avalonia.Platform.Storage.FilePickerFileType("Tab-Separated Values") { Patterns = new[] { "*.tsv" } },
+                    new Avalonia.Platform.Storage.FilePickerFileType("All Files") { Patterns = new[] { "*" } }
+                },
+                SuggestedFileName = "analytics-cooccurrence.tsv"
+            });
+
+            if (file != null)
+            {
+                await using var stream = await file.OpenWriteAsync();
+                await using var writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);
+                await writer.WriteAsync(sb.ToString());
+                StatusChanged?.Invoke(this, "Analytics TSV saved.");
+            }
+        }
+    }
 
     [RelayCommand]
     private async Task ExportAsync()
