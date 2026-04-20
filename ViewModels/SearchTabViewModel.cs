@@ -79,6 +79,9 @@ public partial class SearchTabViewModel : ViewModelBase
     // ----- Observable properties -----
 
     [ObservableProperty]
+    private int _selectedSearchSubTabIndex;
+
+    [ObservableProperty]
     private string _query = "";
 
     [ObservableProperty]
