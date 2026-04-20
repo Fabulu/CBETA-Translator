@@ -302,7 +302,7 @@ public sealed class SearchIndexService : ISearchIndexService
             int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
             chByFile.TryGetValue(key, out var byFile);
             double val = MetricValueFor(freq, range, byFile);
-            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
+            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Dominance = DominanceShare(byFile, freq), Bar = "" };
         }).ToList();
 
         var right = ngFreq.Select(kv =>
@@ -312,7 +312,7 @@ public sealed class SearchIndexService : ISearchIndexService
             int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
             ngByFile.TryGetValue(key, out var byFile);
             double val = MetricValueFor(freq, range, byFile);
-            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Bar = "" };
+            return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Dominance = DominanceShare(byFile, freq), Bar = "" };
         }).ToList();
 
         left = left.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();

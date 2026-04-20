@@ -948,7 +948,7 @@ public partial class SearchTabViewModel : ViewModelBase
                     SearchTranslated,
                     cw,
                     metric,
-                    topK: 30,
+                    topK: 20,
                     relPathFilter: relFilter,
                     statusFilter: statusFilter,
                     progress: corpusProgress,
@@ -957,7 +957,7 @@ public partial class SearchTabViewModel : ViewModelBase
         else
         {
             result = await Task.Run(() =>
-                SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 30));
+                SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 20));
         }
 
         if (myVer != Volatile.Read(ref _metricComputeVersion))
