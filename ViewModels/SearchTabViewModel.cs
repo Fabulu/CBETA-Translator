@@ -221,7 +221,8 @@ public partial class SearchTabViewModel : ViewModelBase
     public string[] AnalyticsScopeItems { get; } = new[]
     {
         "Current Results",
-        "Corpus Scan (slow)"
+        "Zen Corpus",
+        "Full Corpus (slow)"
     };
     // ----- Property change hooks (trigger auto-rerun) -----
 
@@ -760,9 +761,10 @@ public partial class SearchTabViewModel : ViewModelBase
             IsMetricViewVisible = true;
             IsMetricGuideVisible = false;
             IsAnalyticsBusy = true;
-            IsAnalyticsProgressVisible = SelectedAnalyticsScopeIndex == 1;
+            IsAnalyticsProgressVisible = SelectedAnalyticsScopeIndex >= 1;
             AnalyticsProgressPercent = 0;
-            CoocSummaryText = SelectedAnalyticsScopeIndex == 1 ? "Corpus scan 0%" : "Computing insights...";
+            var scopeLabel = SelectedAnalyticsScopeIndex == 1 ? "Zen corpus scan" : "Corpus scan";
+            CoocSummaryText = SelectedAnalyticsScopeIndex >= 1 ? $"{scopeLabel} 0%" : "Computing insights...";
         });
 
         int myVer = Interlocked.Increment(ref _metricComputeVersion);
@@ -771,10 +773,13 @@ public partial class SearchTabViewModel : ViewModelBase
         string q = _lastQuery;
         int cw = _lastContextWidth;
         var statusFilter = GetStatusFilter();
-        var relFilter = BuildRelPathFilter(ZenOnly);
+        // Scope 0 = current results, 1 = zen corpus, 2 = full corpus
+        var isCorpusScan = SelectedAnalyticsScopeIndex >= 1;
+        var forceZen = SelectedAnalyticsScopeIndex == 1;
+        var relFilter = forceZen ? BuildRelPathFilter(zenOnly: true) : BuildRelPathFilter(ZenOnly);
 
         SearchIndexService.CooccurrencePanelResult result;
-        if (SelectedAnalyticsScopeIndex == 1 &&
+        if (isCorpusScan &&
             !string.IsNullOrWhiteSpace(_originalDir) &&
             _translatedDirs is { Count: > 0 } &&
             _fileIndex.Count > 0)
@@ -791,7 +796,8 @@ public partial class SearchTabViewModel : ViewModelBase
 
                     var percent = p.total <= 0 ? 0d : Math.Clamp((double)p.done * 100d / p.total, 0d, 100d);
                     AnalyticsProgressPercent = percent;
-                    CoocSummaryText = $"Corpus scan {p.done:n0}/{p.total:n0} files ({percent:0}%)";
+                    var label = forceZen ? "Zen corpus scan" : "Corpus scan";
+                    CoocSummaryText = $"{label} {p.done:n0}/{p.total:n0} files ({percent:0}%)";
                 });
             });
 
