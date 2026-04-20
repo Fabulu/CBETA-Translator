@@ -50,6 +50,16 @@ public partial class SearchTabView : UserControl
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
 
+        KeyDown += (s, e) =>
+        {
+            if (e.Key == Key.A &&
+                e.KeyModifiers.HasFlag(KeyModifiers.Control | KeyModifiers.Shift))
+            {
+                _vm.SelectedSearchSubTabIndex = _vm.SelectedSearchSubTabIndex == 1 ? 0 : 1;
+                e.Handled = true;
+            }
+        };
+
         WireViewEvents();
     }
 

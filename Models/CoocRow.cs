@@ -7,6 +7,8 @@ public sealed class CoocRow
     public int Range { get; set; }                // distinct files containing it
     public double Assoc { get; set; }             // metric score (changes with selection)
     public double Dominance { get; set; }         // share of occurrences from top file [0..1]
+    /// <summary>True when dominance exceeds 0.8 (single-text artifact warning).</summary>
+    public bool IsDominanceHigh => Dominance > 0.8;
     public string Bar { get; set; } = "";
     public double BarRatio { get; set; }          // normalized bar value [0..1] for UI visuals
 

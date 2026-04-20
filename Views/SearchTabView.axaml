@@ -24,6 +24,7 @@
                          HorizontalAlignment="Stretch"
                          Text="{Binding Query}"
                          Watermark="Search Chinese text&#x2026;"
+                         AutomationProperties.Name="Search query"
                          ToolTip.Tip="Enter Chinese characters or phrases to search"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
@@ -31,6 +32,7 @@
                         Padding="8,3"
                         Content="Search"
                         Command="{Binding SearchCommand}"
+                        AutomationProperties.Name="Search"
                         ToolTip.Tip="Search the corpus"/>
                 <Button Grid.Row="0" Grid.Column="2"
                         MinWidth="60"
@@ -38,6 +40,7 @@
                         Content="Cancel"
                         IsEnabled="{Binding IsCancelEnabled}"
                         Command="{Binding CancelSearchCommand}"
+                        AutomationProperties.Name="Cancel search"
                         ToolTip.Tip="Cancel current search"/>
 
                 <StackPanel Grid.Row="0"
@@ -50,6 +53,7 @@
                             FontSize="10.5"
                             Content="Update Index"
                             Command="{Binding BuildIndexCommand}"
+                            AutomationProperties.Name="Build search index"
                             ToolTip.Tip="Update the search index. Hold Shift to rebuild from scratch."/>
                     <Button Name="BtnExport"
                             MinWidth="52"
@@ -57,6 +61,7 @@
                             FontSize="10.5"
                             Content="Export"
                             IsEnabled="{Binding IsExportEnabled}"
+                            AutomationProperties.Name="Export results"
                             ToolTip.Tip="Export search results in a selectable format"/>
                     <Button Name="BtnCopySearchLink"
                             MinWidth="58"
@@ -101,6 +106,7 @@
                                   ToolTip.Tip="How much surrounding text to show"/>
                         <CheckBox Content="Zen only"
                                   IsChecked="{Binding ZenOnly}"
+                                  AutomationProperties.Name="Restrict to Zen texts only"
                                   ToolTip.Tip="Search only texts flagged as Zen/Chan Buddhist texts"/>
                     </WrapPanel>
 
@@ -140,7 +146,8 @@
             </Grid>
         </Border>
 
-        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedSearchSubTabIndex}">
+        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedSearchSubTabIndex}"
+                    AutomationProperties.Name="Search results and analytics">
 
             <TabItem Header="Results">
                 <Border Background="{DynamicResource PanelBg}"
@@ -305,16 +312,30 @@
                         <ComboBox Width="150"
                                   ItemsSource="{Binding AnalyticsScopeItems}"
                                   SelectedIndex="{Binding SelectedAnalyticsScopeIndex}"
+                                  AutomationProperties.Name="Analytics scope"
                                   ToolTip.Tip="Choose whether insights use current search results or scan all texts"/>
                         <ComboBox Width="220"
                                   ItemsSource="{Binding CoocMetricItems}"
                                   SelectedIndex="{Binding SelectedCoocMetricIndex}"
-                                  ToolTip.Tip="Choose how to measure word associations"/>
+                                  AutomationProperties.Name="Co-occurrence metric"
+                                  ToolTip.Tip="{Binding MetricTooltip}"/>
                         <TextBlock Text="{Binding CoocSummaryText}"
                                    Classes="muted"
                                    TextWrapping="NoWrap"
                                    TextTrimming="CharacterEllipsis"
                                    VerticalAlignment="Center"/>
+                        <Button Content="Copy TSV"
+                                Command="{Binding ExportAnalyticsTsvCommand}"
+                                ToolTip.Tip="Copy co-occurrence data to clipboard as TSV"
+                                Padding="6,3"
+                                FontSize="11"
+                                Margin="8,0,0,0"/>
+                        <Button Content="Save TSV"
+                                Command="{Binding SaveAnalyticsTsvCommand}"
+                                ToolTip.Tip="Save co-occurrence data to a TSV file"
+                                Padding="6,3"
+                                FontSize="11"
+                                Margin="4,0,0,0"/>
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Spacing="2">
@@ -417,14 +438,16 @@
                                             YAxes="{Binding CharChartYAxes}"
                                             Height="300"
                                             TooltipPosition="Center"
-                                            ZoomMode="X"/>
+                                            ZoomMode="X"
+                                            AutomationProperties.Name="Character co-occurrences"/>
 
                         <lvc:CartesianChart Grid.Row="0" Grid.Column="1"
                                             Series="{Binding NgramChartSeries}"
                                             YAxes="{Binding NgramChartYAxes}"
                                             Height="300"
                                             TooltipPosition="Center"
-                                            ZoomMode="X"/>
+                                            ZoomMode="X"
+                                            AutomationProperties.Name="N-gram co-occurrences"/>
 
                         <!-- Scatter plot: collocational landscape -->
                         <lvc:CartesianChart Grid.Row="1" Grid.ColumnSpan="2"
@@ -434,7 +457,8 @@
                                             Height="250"
                                             TooltipPosition="Center"
                                             ZoomMode="Both"
-                                            Margin="0,8,0,0"/>
+                                            Margin="0,8,0,0"
+                                            AutomationProperties.Name="Collocational landscape scatter plot"/>
 
                         <!-- Data table row -->
                         <Border Grid.Row="2" Grid.Column="0"
@@ -444,22 +468,29 @@
                             <ListBox ItemsSource="{Binding CoocChars}" Height="100">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
-                                        <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
+                                        <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
                                             <TextBlock Grid.Column="0"
                                                        Text="{Binding Key}"
                                                        FontWeight="SemiBold"
                                                        VerticalAlignment="Center"/>
-                                            <ProgressBar Grid.Column="1"
+                                            <TextBlock Grid.Column="1"
+                                                       Text="&#x26A0;"
+                                                       FontSize="10"
+                                                       Foreground="#FFE57373"
+                                                       IsVisible="{Binding IsDominanceHigh}"
+                                                       ToolTip.Tip="Single-text artifact: &gt;80% from one file"
+                                                       VerticalAlignment="Center"/>
+                                            <ProgressBar Grid.Column="2"
                                                          Height="8"
                                                          Minimum="0"
                                                          Maximum="1"
                                                          Value="{Binding BarRatio}"
                                                          VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="2"
+                                            <TextBlock Grid.Column="3"
                                                        Text="{Binding Freq}"
                                                        Classes="muted"
                                                        VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="3"
+                                            <TextBlock Grid.Column="4"
                                                        Text="{Binding Assoc, StringFormat={}{0:0.###}}"
                                                        Classes="muted"
                                                        VerticalAlignment="Center"/>
@@ -475,22 +506,29 @@
                             <ListBox ItemsSource="{Binding CoocNgrams}" Height="100">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
-                                        <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
+                                        <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
                                             <TextBlock Grid.Column="0"
                                                        Text="{Binding Key}"
                                                        FontWeight="SemiBold"
                                                        VerticalAlignment="Center"/>
-                                            <ProgressBar Grid.Column="1"
+                                            <TextBlock Grid.Column="1"
+                                                       Text="&#x26A0;"
+                                                       FontSize="10"
+                                                       Foreground="#FFE57373"
+                                                       IsVisible="{Binding IsDominanceHigh}"
+                                                       ToolTip.Tip="Single-text artifact: &gt;80% from one file"
+                                                       VerticalAlignment="Center"/>
+                                            <ProgressBar Grid.Column="2"
                                                          Height="8"
                                                          Minimum="0"
                                                          Maximum="1"
                                                          Value="{Binding BarRatio}"
                                                          VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="2"
+                                            <TextBlock Grid.Column="3"
                                                        Text="{Binding Freq}"
                                                        Classes="muted"
                                                        VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="3"
+                                            <TextBlock Grid.Column="4"
                                                        Text="{Binding Assoc, StringFormat={}{0:0.###}}"
                                                        Classes="muted"
                                                        VerticalAlignment="Center"/>
