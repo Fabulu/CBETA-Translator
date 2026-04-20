@@ -73,7 +73,8 @@ public partial class SearchTabViewModel : ViewModelBase
     private Dictionary<string, string>? _tagNameById; // tagId -> displayName
     private Dictionary<string, string>? _tagIdByName; // displayName -> tagId
     private string? _pendingRestoredTagId;
-    private static readonly int[] ContextWidths = new[] { 20, 40, 80, 160, 240, 320, 480, 640 };
+    private bool _userChangedContextWidth;
+    private static readonly int[] ContextWidths = new[] { 5, 10, 15, 20, 40, 80, 160, 320 };
 
 
 
@@ -267,7 +268,7 @@ public partial class SearchTabViewModel : ViewModelBase
     partial void OnZenOnlyChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSelectedStatusIndexChanged(int value) => TriggerAutoRerunIfAllowed();
     partial void OnSelectedTagFilterIndexChanged(int value) => TriggerAutoRerunIfAllowed();
-    partial void OnSelectedContextIndexChanged(int value) => TriggerAutoRerunIfAllowed();
+    partial void OnSelectedContextIndexChanged(int value) { _userChangedContextWidth = true; TriggerAutoRerunIfAllowed(); }
     partial void OnSearchOriginalChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSearchTranslatedChanged(bool value) => TriggerAutoRerunIfAllowed();
     partial void OnSelectedCoocMetricIndexChanged(int value)
@@ -1246,6 +1247,14 @@ public partial class SearchTabViewModel : ViewModelBase
         string originalDir = _originalDir;
         string translatedDir = _translatedDirs is { Count: > 0 } ? _translatedDirs[0] : "";
         var metaFn = _meta;
+
+        // Auto-select context width based on query language:
+        // CJK queries → 10 chars (index 1), English → 80 chars (index 5)
+        bool hasCjk = q.Any(c => c >= '\u3400' && c <= '\u9FFF' || c >= '\uF900' && c <= '\uFAFF');
+        int autoIndex = hasCjk ? 1 : 5; // 10 chars for CJK, 80 for English
+        if (!_userChangedContextWidth)
+            SelectedContextIndex = autoIndex;
+
         int contextWidth = GetContextWidth();
 
         _lastQuery = q;

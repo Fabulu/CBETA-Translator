@@ -524,6 +524,9 @@ public sealed class SearchIndexService : ISearchIndexService
         if (ch <= 0x7F && char.IsLetter(ch))
             return false;
 
+        if (CooccurrenceStopChars.Contains(ch))
+            return false;
+
         return true;
     }
 
@@ -2088,12 +2091,26 @@ public sealed class SearchIndexService : ISearchIndexService
         return BuildCounterpartSnippet(collapsed, contextWidth);
     }
 
+    private static readonly HashSet<char> SentenceBreaks = new() { '\u3002', '\uFF01', '\uFF1F', '\n' }; // 。！？\n
+
     private static SearchHit BuildSnippetFromOffsets(string text, int matchStart, int matchEnd, int contextWidth)
     {
         int safeStart = Math.Clamp(matchStart, 0, text.Length);
         int safeEnd = Math.Clamp(matchEnd, safeStart, text.Length);
         int leftStart = Math.Max(0, safeStart - contextWidth);
         int rightEnd = Math.Min(text.Length, safeEnd + contextWidth);
+
+        // Clamp left: don't cross sentence boundary into the window
+        for (int i = safeStart - 1; i >= leftStart; i--)
+        {
+            if (SentenceBreaks.Contains(text[i])) { leftStart = i + 1; break; }
+        }
+
+        // Clamp right: stop at nearest sentence boundary
+        for (int i = safeEnd; i < rightEnd; i++)
+        {
+            if (SentenceBreaks.Contains(text[i])) { rightEnd = i + 1; break; }
+        }
 
         return new SearchHit
         {
