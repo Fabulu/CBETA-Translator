@@ -11,6 +11,7 @@ using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
@@ -178,6 +179,12 @@ public partial class SearchTabViewModel : ViewModelBase
     private bool _isMetricViewVisible = true;
 
     [ObservableProperty]
+    private string? _coocFilterTerm;
+
+    [ObservableProperty]
+    private bool _isCoocFilterActive;
+
+    [ObservableProperty]
     private string _metricGuideText = "";
 
     // ----- Collections -----
@@ -200,6 +207,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private Axis[] _ngramChartYAxes = Array.Empty<Axis>();
+
+    [ObservableProperty]
+    private ISeries[] _scatterSeries = Array.Empty<ISeries>();
+
+    [ObservableProperty]
+    private Axis[] _scatterXAxes = Array.Empty<Axis>();
+
+    [ObservableProperty]
+    private Axis[] _scatterYAxes = Array.Empty<Axis>();
 
     // ----- Events -----
 
@@ -746,6 +762,9 @@ public partial class SearchTabViewModel : ViewModelBase
         NgramChartSeries = Array.Empty<ISeries>();
         CharChartYAxes = Array.Empty<Axis>();
         NgramChartYAxes = Array.Empty<Axis>();
+        ScatterSeries = Array.Empty<ISeries>();
+        ScatterXAxes = Array.Empty<Axis>();
+        ScatterYAxes = Array.Empty<Axis>();
         CoocSummaryText = "No data yet.";
         ZipfText = "";
         LeftTitle = "Top characters";
@@ -889,6 +908,8 @@ public partial class SearchTabViewModel : ViewModelBase
         var (ns, ny) = BuildBarChartFromCoocRows(result.Right);
         NgramChartSeries = ns;
         NgramChartYAxes = ny;
+
+        BuildScatterPlot(result.Left, result.Right);
     }
 
     private static readonly SKColor DarkBarFill = new(69, 123, 157);
@@ -910,17 +931,24 @@ public partial class SearchTabViewModel : ViewModelBase
         var values = top.Select(r => (double)r.Freq).ToArray();
         var labels = top.Select(r => r.Key).ToArray();
 
-        var series = new ISeries[]
+        var rowSeries = new RowSeries<double>
         {
-            new RowSeries<double>
-            {
-                Values = values,
-                Name = "Frequency",
-                Fill = new SolidColorPaint(barColor),
-                MaxBarWidth = 20,
-                Padding = 2,
-            }
+            Values = values,
+            Name = "Frequency",
+            Fill = new SolidColorPaint(barColor),
+            MaxBarWidth = 20,
+            Padding = 2,
         };
+
+        rowSeries.ChartPointPointerDown += (sender, point) =>
+        {
+            if (point == null) return;
+            var idx = (int)point.Index;
+            if (idx >= 0 && idx < labels.Length)
+                Dispatcher.UIThread.Post(() => FilterByCooccurrent(labels[idx]));
+        };
+
+        var series = new ISeries[] { rowSeries };
 
         var yAxes = new Axis[]
         {
@@ -933,6 +961,105 @@ public partial class SearchTabViewModel : ViewModelBase
         };
 
         return (series, yAxes);
+    }
+
+    [RelayCommand]
+    private void FilterByCooccurrent(string? term)
+    {
+        if (string.IsNullOrEmpty(term) || _groups.Count == 0)
+        {
+            ClearCoocFilter();
+            return;
+        }
+
+        CoocFilterTerm = term;
+        IsCoocFilterActive = true;
+
+        ResultGroups.Clear();
+        foreach (var group in _groups)
+        {
+            bool hasMatch = group.Children.Any(c =>
+                c.Hit != null && (
+                (!string.IsNullOrEmpty(c.Hit.Left) && c.Hit.Left.Contains(term, StringComparison.Ordinal)) ||
+                (!string.IsNullOrEmpty(c.Hit.Match) && c.Hit.Match.Contains(term, StringComparison.Ordinal)) ||
+                (!string.IsNullOrEmpty(c.Hit.Right) && c.Hit.Right.Contains(term, StringComparison.Ordinal))));
+            if (hasMatch)
+                ResultGroups.Add(group);
+        }
+
+        SelectedSearchSubTabIndex = 0;
+    }
+
+    [RelayCommand]
+    private void ClearCoocFilter()
+    {
+        CoocFilterTerm = null;
+        IsCoocFilterActive = false;
+        ResultGroups.Clear();
+        foreach (var g in _groups)
+            ResultGroups.Add(g);
+    }
+
+    private void BuildScatterPlot(IReadOnlyList<CoocRow> chars, IReadOnlyList<CoocRow> ngrams)
+    {
+        if ((chars == null || chars.Count == 0) && (ngrams == null || ngrams.Count == 0))
+        {
+            ScatterSeries = Array.Empty<ISeries>();
+            return;
+        }
+
+        var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
+                     Avalonia.Styling.ThemeVariant.Dark;
+
+        var charPoints = (chars ?? Array.Empty<CoocRow>())
+            .Where(r => r.Freq > 0)
+            .Select(r => new ObservablePoint(Math.Log2(1 + r.Freq), r.Assoc))
+            .ToArray();
+
+        var ngramPoints = (ngrams ?? Array.Empty<CoocRow>())
+            .Where(r => r.Freq > 0)
+            .Select(r => new ObservablePoint(Math.Log2(1 + r.Freq), r.Assoc))
+            .ToArray();
+
+        ScatterSeries = new ISeries[]
+        {
+            new ScatterSeries<ObservablePoint>
+            {
+                Values = charPoints,
+                Name = "Characters",
+                GeometrySize = 8,
+                Fill = new SolidColorPaint(isDark ? new SKColor(69, 123, 157, 180) : new SKColor(33, 76, 120, 180)),
+            },
+            new ScatterSeries<ObservablePoint>
+            {
+                Values = ngramPoints,
+                Name = "N-grams",
+                GeometrySize = 8,
+                Fill = new SolidColorPaint(isDark ? new SKColor(233, 196, 106, 180) : new SKColor(180, 140, 50, 180)),
+            }
+        };
+
+        ScatterXAxes = new Axis[]
+        {
+            new Axis
+            {
+                Name = "log\u2082(Frequency)",
+                TextSize = 11,
+                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)),
+                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)),
+            }
+        };
+
+        ScatterYAxes = new Axis[]
+        {
+            new Axis
+            {
+                Name = "Association Score",
+                TextSize = 11,
+                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)),
+                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)),
+            }
+        };
     }
 
     private static List<AnalyticsBubbleItem> BuildAnalyticsVisuals(IReadOnlyList<CoocRow> rows)
