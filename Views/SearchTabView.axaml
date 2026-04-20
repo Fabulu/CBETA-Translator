@@ -149,8 +149,26 @@
                         CornerRadius="8"
                         Padding="4">
 
-                    <Grid>
-                        <TreeView Name="ResultsTree"
+                    <Grid RowDefinitions="Auto,*">
+                        <!-- Filter indicator when co-occurrence bar is clicked -->
+                        <Border Grid.Row="0"
+                                IsVisible="{Binding IsCoocFilterActive}"
+                                Background="#33457B9D"
+                                CornerRadius="4"
+                                Padding="8,4"
+                                Margin="0,0,0,4">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="{Binding CoocFilterTerm, StringFormat='Filtered by: {0}'}"
+                                           FontSize="12"/>
+                                <Button Content="&#x2715; Clear"
+                                        Command="{Binding ClearCoocFilterCommand}"
+                                        Padding="4,2"
+                                        FontSize="11"/>
+                            </StackPanel>
+                        </Border>
+
+                        <TreeView Grid.Row="1"
+                                  Name="ResultsTree"
                                   ItemsSource="{Binding ResultGroups}"
                                   Background="{DynamicResource ControlBg}"
                                   BorderBrush="{DynamicResource BorderBrush}"
@@ -392,7 +410,7 @@
                         </Border>
                     </Grid>
 
-                    <Grid Grid.Row="3" IsVisible="{Binding IsMetricViewVisible}" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="10">
+                    <Grid Grid.Row="3" IsVisible="{Binding IsMetricViewVisible}" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="6" ColumnSpacing="10">
                         <!-- Charts row -->
                         <lvc:CartesianChart Grid.Row="0" Grid.Column="0"
                                             Series="{Binding CharChartSeries}"
@@ -408,8 +426,18 @@
                                             TooltipPosition="Center"
                                             ZoomMode="X"/>
 
+                        <!-- Scatter plot: collocational landscape -->
+                        <lvc:CartesianChart Grid.Row="1" Grid.ColumnSpan="2"
+                                            Series="{Binding ScatterSeries}"
+                                            XAxes="{Binding ScatterXAxes}"
+                                            YAxes="{Binding ScatterYAxes}"
+                                            Height="250"
+                                            TooltipPosition="Center"
+                                            ZoomMode="Both"
+                                            Margin="0,8,0,0"/>
+
                         <!-- Data table row -->
-                        <Border Grid.Row="1" Grid.Column="0"
+                        <Border Grid.Row="2" Grid.Column="0"
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
@@ -440,7 +468,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Border>
-                        <Border Grid.Row="1" Grid.Column="1"
+                        <Border Grid.Row="2" Grid.Column="1"
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
