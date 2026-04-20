@@ -306,7 +306,8 @@
             </TabItem>
 
             <TabItem Header="Insights">
-                <Grid Margin="0,6,0,0" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid Margin="0,6,0,0" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
                         <ComboBox Width="150"
@@ -465,7 +466,7 @@
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
-                            <ListBox ItemsSource="{Binding CoocChars}" Height="100">
+                            <ListBox ItemsSource="{Binding CoocChars}" MaxHeight="250">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
                                         <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
@@ -503,7 +504,7 @@
                                 Background="{DynamicResource PanelAltBg}"
                                 CornerRadius="6"
                                 Padding="6">
-                            <ListBox ItemsSource="{Binding CoocNgrams}" Height="100">
+                            <ListBox ItemsSource="{Binding CoocNgrams}" MaxHeight="250">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:CoocRow">
                                         <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,0,0,4">
@@ -552,6 +553,7 @@
                         </Border>
                     </ScrollViewer>
                 </Grid>
+                </ScrollViewer>
             </TabItem>
 
         </TabControl>
