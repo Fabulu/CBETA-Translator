@@ -1,6 +1,7 @@
 // Views/SearchTabView.axaml.cs
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -77,6 +78,16 @@ public partial class SearchTabView : UserControl
                 {
                     _vm.SearchCommand.Execute(null);
                     e.Handled = true;
+                }
+            };
+
+            // Update tooltip with recent search history after each search
+            _vm.PropertyChanged += (_, args) =>
+            {
+                if (args.PropertyName == nameof(SearchTabViewModel.SearchHistory) && _vm.SearchHistory.Count > 0)
+                {
+                    var tip = "Recent: " + string.Join(", ", _vm.SearchHistory.Take(5));
+                    ToolTip.SetTip(txtQuery, tip);
                 }
             };
         }
