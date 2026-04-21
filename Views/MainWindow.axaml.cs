@@ -2663,7 +2663,8 @@ private async Task LoadConfigAndAutoloadAsync()
         "PanelBg","PanelBorder","PanelAltBg",
         "ErrorFg","WarningFg","SuccessFg",
         "ErrorBg","WarningBg","SuccessBg",
-        "AccentLinkFg","TermbaseHighlightBg"
+        "AccentLinkFg","TermbaseHighlightBg",
+        "TabFgMuted","TabAccent"
     };
 
     private void ApplyTheme(bool dark)
