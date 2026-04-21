@@ -46,6 +46,9 @@ public sealed class SearchIndexService : ISearchIndexService
 
     public SearchIndexServiceOptions Options { get; } = new();
 
+    /// <summary>Inverted bigram index built alongside bloom filters. Null until first build/load.</summary>
+    public InvertedSearchIndex? InvertedIndex { get; private set; }
+
     // Gate only for index file I/O (manifest/bin) so we can release before expensive verification.
     private static readonly SemaphoreSlim _indexIoGate = new(1, 1);
 
@@ -1083,6 +1086,22 @@ public sealed class SearchIndexService : ISearchIndexService
                 _cachedManifestWriteUtc = mpWriteUtc;
             }
 
+            // Try loading inverted index alongside bloom
+            if (InvertedIndex == null)
+            {
+                try
+                {
+                    var invPath = Path.Combine(root, "search.inverted.bin");
+                    var inv = new InvertedSearchIndex();
+                    if (await inv.TryLoadAsync(invPath, CancellationToken.None))
+                    {
+                        InvertedIndex = inv;
+                        Dbg($"Inverted index loaded: {inv.TermCount} terms, {inv.DocCount} docs");
+                    }
+                }
+                catch { /* inverted index is optional */ }
+            }
+
             return man;
         }
         catch
@@ -1698,6 +1717,8 @@ public sealed class SearchIndexService : ISearchIndexService
                 try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
                 try { if (File.Exists(tmpTextBin)) File.Delete(tmpTextBin); } catch { }
 
+                var invertedDocs = new List<(string relPath, string text)>();
+
                 try
                 {
                     using (var outFs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.Read))
@@ -1782,24 +1803,23 @@ public sealed class SearchIndexService : ISearchIndexService
                                 if (copiedText) textLenBytes = oldText.TextLengthBytes;
                             }
 
-                            if (!copiedBloom || !copiedText)
+                            // Always extract searchable text — needed for inverted index even when bloom/text are copied
+                            string xml = File.ReadAllText(absPath, Utf8NoBom);
+                            string searchable = MakeSearchableTextFromXml_Fast(xml, Options.HtmlDecodeIfAmpersandPresent);
+
+                            if (!copiedBloom)
                             {
-                                // FAST extraction: no regex; optional html decode only when '&' appears
-                                string xml = File.ReadAllText(absPath, Utf8NoBom);
-                                string searchable = MakeSearchableTextFromXml_Fast(xml, Options.HtmlDecodeIfAmpersandPresent);
-
-                                if (!copiedBloom)
-                                {
-                                    var bits = new ulong[BloomUlongs];
-                                    BuildBloomFromText(bits, searchable);
-                                    WriteBloom(outFs, bits);
-                                }
-
-                                if (!copiedText)
-                                {
-                                    textLenBytes = WriteTextBlockUtf8(outTextFs, searchable);
-                                }
+                                var bits = new ulong[BloomUlongs];
+                                BuildBloomFromText(bits, searchable);
+                                WriteBloom(outFs, bits);
                             }
+
+                            if (!copiedText)
+                            {
+                                textLenBytes = WriteTextBlockUtf8(outTextFs, searchable);
+                            }
+
+                            invertedDocs.Add((relKey, searchable));
 
                             manifest.Entries.Add(new SearchIndexEntry
                             {
@@ -1863,6 +1883,22 @@ public sealed class SearchIndexService : ISearchIndexService
                 ReplaceFileAtomicWithRetry(tmpTextBin, finalTextBin);
                 await SaveManifestAtomicAsync(root, manifest, ct);
                 await SaveTextManifestAtomicAsync(root, textManifest, ct);
+
+                // Build and save inverted index alongside bloom
+                try
+                {
+                    var invertedIndex = new InvertedSearchIndex();
+                    var sortedDocs = invertedDocs.OrderBy(d => d.relPath, StringComparer.OrdinalIgnoreCase).ToList();
+                    invertedIndex.Build(sortedDocs.Select(d => (d.relPath, d.text)).ToList());
+                    var invertedPath = Path.Combine(root, "search.inverted.bin");
+                    await invertedIndex.SaveAsync(invertedPath, ct);
+                    InvertedIndex = invertedIndex;
+                    Dbg($"Inverted index built: {invertedIndex.TermCount} terms, {invertedIndex.DocCount} docs");
+                }
+                catch (Exception ex)
+                {
+                    Dbg($"Inverted index build skipped: {ex.Message}");
+                }
 
                 // Phase C optional accelerator: compact-CJK bigram postings.
                 // If this build fails, search still works via bloom + verify fallback.
