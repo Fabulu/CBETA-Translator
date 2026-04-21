@@ -941,7 +941,8 @@ public partial class MainWindowViewModel : ViewModelBase
                                     }
                                     catch (Exception ex)
                                     {
-                                        System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}");
+                                        System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}\n{ex.StackTrace}");
+                                        Dispatcher.UIThread.Post(() => SetStatus($"Master export failed: {ex.Message}"));
                                     }
                                 }
 
