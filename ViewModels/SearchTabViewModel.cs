@@ -75,6 +75,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private string? _pendingRestoredTagId;
     private bool _userChangedContextWidth;
     private static readonly int[] ContextWidths = new[] { 5, 10, 15, 20, 40, 80, 160, 320 };
+    private static bool _firstSearchSupportShown;
 
 
 
@@ -825,6 +826,22 @@ public partial class SearchTabViewModel : ViewModelBase
         };
     }
 
+    private string GetMetricLabel()
+    {
+        return SelectedCoocMetricIndex switch
+        {
+            0 => "Co-occurrence",
+            1 => "Dispersion",
+            2 => "Frequency",
+            3 => "Range",
+            4 => "Dominance",
+            5 => "PMI",
+            6 => "logDice",
+            7 => "t-score",
+            _ => "Score"
+        };
+    }
+
     private async Task TriggerAutoRerunAsync()
     {
         if (string.IsNullOrWhiteSpace(_lastQuery) || _root == null || _meta == null)
@@ -1040,13 +1057,13 @@ public partial class SearchTabViewModel : ViewModelBase
         var labelColor = isDark ? DarkLabelColor : LightLabelColor;
 
         var top = rows.Take(maxItems).Reverse().ToArray();
-        var values = top.Select(r => (double)r.Freq).ToArray();
+        var values = top.Select(r => r.Assoc).ToArray();
         var labels = top.Select(r => r.Key).ToArray();
 
         var rowSeries = new RowSeries<double>
         {
             Values = values,
-            Name = "Frequency",
+            Name = GetMetricLabel(),
             Fill = new SolidColorPaint(barColor),
             MaxBarWidth = 20,
             Padding = 2,
@@ -1166,7 +1183,7 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             new Axis
             {
-                Name = "Association Score",
+                Name = GetMetricLabel() + " Score",
                 TextSize = 11,
                 NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)) { SKTypeface = CjkTypeface },
                 LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)) { SKTypeface = CjkTypeface },
@@ -1427,7 +1444,8 @@ public partial class SearchTabViewModel : ViewModelBase
 
                     var sortedGroups = localGroups
                         .Select(g => currentByRelPath.TryGetValue(g.RelPath, out var existing) ? existing : g)
-                        .OrderBy(g => g.RelPath, StringComparer.OrdinalIgnoreCase)
+                        .OrderByDescending(g => g.HitsOriginal + g.HitsTranslated)
+                        .ThenBy(g => g.RelPath, StringComparer.OrdinalIgnoreCase)
                         .ToList();
 
                     _groups.Clear();
@@ -1439,6 +1457,16 @@ public partial class SearchTabViewModel : ViewModelBase
 
                     SummaryText = $"Done: {sortedGroups.Count:n0} files - {totalHits:n0} hits";
                     ProgressText = $"Verified {sortedGroups.Count:n0} matching files";
+
+                    if (!_firstSearchSupportShown && sortedGroups.Count > 0)
+                    {
+                        _firstSearchSupportShown = true;
+                        _ = Task.Delay(3000).ContinueWith(_ =>
+                            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                                StatusChanged?.Invoke(this, "ReadZen is free and open source. Support on ko-fi.com/readzen \u2661")),
+                            System.Threading.Tasks.TaskScheduler.Default);
+                    }
+
                     SearchProgressPercent = 100;
                     IsSearchProgressIndeterminate = false;
                     IsResultsLoadingVisible = false;

@@ -1594,6 +1594,15 @@ private async Task LoadConfigAndAutoloadAsync()
             return;
         }
 
+        // Ctrl+K  -  jump to Search tab and focus query box
+        if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.K)
+        {
+            e.Handled = true;
+            ForceTab(2);
+            _searchView?.FocusQueryBox();
+            return;
+        }
+
         if (e.KeyModifiers != KeyModifiers.Alt) return;
         if (_tabs?.SelectedIndex != 1) return; // only active on Translation tab
 

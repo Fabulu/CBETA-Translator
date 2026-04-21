@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -517,6 +518,20 @@ public partial class SearchTabView : UserControl
     public void SetSearchTextAndExecute(string query)
     {
         _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
+    }
+
+    /// <summary>Focus the query text box and select all text so the user can type immediately.</summary>
+    public void FocusQueryBox()
+    {
+        var txtQuery = this.FindControl<TextBox>("TxtQuery");
+        if (txtQuery != null)
+        {
+            Dispatcher.UIThread.Post(() =>
+            {
+                txtQuery.Focus();
+                txtQuery.SelectAll();
+            }, DispatcherPriority.Background);
+        }
     }
 }
 

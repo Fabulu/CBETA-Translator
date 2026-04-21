@@ -204,8 +204,8 @@
                                                        TextWrapping="Wrap">
                                                 <Run Text="{Binding LeftText}"/>
                                                 <Run Text="{Binding MatchText}"
-                                                     FontWeight="SemiBold"
-                                                     Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+                                                     FontWeight="Bold"
+                                                     Foreground="#FFFFCC00"/>
                                                 <Run Text="{Binding RightText}"/>
                                             </TextBlock>
                                         </Grid>
@@ -236,8 +236,8 @@
                                                        FontSize="11">
                                                 <Run Text="{Binding SecondaryLeftText}"/>
                                                 <Run Text="{Binding SecondaryMatchText}"
-                                                     FontWeight="SemiBold"
-                                                     Foreground="{DynamicResource NoteMarkerCommunityFg}"/>
+                                                     FontWeight="Bold"
+                                                     Foreground="#FFFFCC00"/>
                                                 <Run Text="{Binding SecondaryRightText}"/>
                                             </TextBlock>
                                         </Grid>
