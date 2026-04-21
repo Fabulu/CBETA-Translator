@@ -931,19 +931,17 @@ public partial class MainWindowViewModel : ViewModelBase
                                 var index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
                                 await corpusSvc.SaveAsync(cacheDir, index, ct);
 
-                                // Export web-friendly versions to translations repo for readzen.pages.dev
-                                if (!string.IsNullOrEmpty(_translationRoot))
+                                // Export web-friendly versions next to the app
+                                var exportDir = AppContext.BaseDirectory;
+                                try
                                 {
-                                    try
-                                    {
-                                        await MasterCorpusSearchService.ExportMastersJsonAsync(_translationRoot, catalog, ct);
-                                        await MasterCorpusSearchService.ExportMasterCorpusJsonAsync(_translationRoot, index, ct);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}\n{ex.StackTrace}");
-                                        Dispatcher.UIThread.Post(() => SetStatus($"Master export failed: {ex.Message}"));
-                                    }
+                                    await MasterCorpusSearchService.ExportMastersJsonAsync(exportDir, catalog, ct);
+                                    await MasterCorpusSearchService.ExportMasterCorpusJsonAsync(exportDir, index, ct);
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}\n{ex.StackTrace}");
+                                    Dispatcher.UIThread.Post(() => SetStatus($"Master export failed: {ex.Message}"));
                                 }
 
                                 if (!ct.IsCancellationRequested)
