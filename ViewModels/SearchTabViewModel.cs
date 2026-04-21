@@ -67,6 +67,9 @@ public partial class SearchTabViewModel : ViewModelBase
     // Zen flag lookup (provided by MainWindow via SetZenResolver)
     private Func<string, bool>? _isZen;
 
+    // Master catalog for master card results
+    private ZenMasterCatalog? _masterCatalog;
+
     // Tag filter
     private List<string> _tagFilterItems = new() { "All Tags" };
     private Dictionary<string, HashSet<string>>? _tagsByName; // tagName -> set of RelPaths
@@ -247,15 +250,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
     public string[] CoocMetricItems { get; } = new[]
     {
-        "Top co-occurrences (overview)",
-        "Dispersion score (stable)",
-        "Frequency (raw)",
-        "Range (dispersion proxy)",
-        "Dominance (top-file share)",
-        "PMI (window-based)",
-        "logDice (lexicography)",
-        "t-score (frequency-biased)",
-        "Metric guide (how to read these)"
+        "Neighbors (what appears nearby)",
+        "Spread (how widespread)",
+        "Distinctive (uniquely associated)",
+        "Frequency (raw count)",
+        "Advanced: Dominance",
+        "Advanced: PMI",
+        "Advanced: logDice",
+        "Advanced: t-score",
+        "Metric guide"
     };
 
     public string[] AnalyticsScopeItems { get; } = new[]
@@ -276,13 +279,13 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         MetricTooltip = value switch
         {
-            0 => "Overview: balanced ranking by frequency and dispersion across texts",
-            1 => "Dispersion: stable evidence distributed across many documents",
-            2 => "Raw frequency: total count in context windows",
-            3 => "Range: number of distinct texts containing the term",
-            4 => "Dominance: concentration in a single text (>80% = artifact)",
-            5 => "PMI: association strength \u2014 rewards rare but tight collocations",
-            6 => "logDice: lexicography metric \u2014 dictionary-like collocation candidates",
+            0 => "Neighbors: what characters and phrases appear nearby, balanced by frequency and spread",
+            1 => "Spread: terms that appear consistently across many texts, not just one",
+            2 => "Distinctive: uniquely associated terms (rare but tightly linked collocations)",
+            3 => "Frequency: raw co-occurrence count in context windows",
+            4 => "Dominance: concentration in a single text (>80% = artifact warning)",
+            5 => "PMI: pointwise mutual information \u2014 rewards rare but tight collocations",
+            6 => "logDice: lexicography metric \u2014 stable collocation candidates",
             7 => "t-score: statistically significant, frequency-biased collocations",
             8 => "Guide: explanations of all metrics with examples",
             _ => "Select a metric"
@@ -331,6 +334,8 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         _isZen = resolver;
     }
+
+    public void SetMasterCatalog(ZenMasterCatalog? catalog) => _masterCatalog = catalog;
 
     /// <summary>
     /// Populates the tag filter ComboBox with the current user's tag vocabulary and applied tags.
@@ -815,11 +820,11 @@ public partial class SearchTabViewModel : ViewModelBase
         return SelectedCoocMetricIndex switch
         {
             0 => CoocMetric.TopCooccurrences,
-            1 => CoocMetric.DispersionScore,
-            2 => CoocMetric.Frequency,
-            3 => CoocMetric.Range,
+            1 => CoocMetric.Range,
+            2 => CoocMetric.PMI,
+            3 => CoocMetric.Frequency,
             4 => CoocMetric.Dominance,
-            5 => CoocMetric.PMI,
+            5 => CoocMetric.DispersionScore,
             6 => CoocMetric.LogDice,
             7 => CoocMetric.TScore,
             _ => CoocMetric.TopCooccurrences
@@ -830,12 +835,12 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         return SelectedCoocMetricIndex switch
         {
-            0 => "Co-occurrence",
-            1 => "Dispersion",
-            2 => "Frequency",
-            3 => "Range",
+            0 => "Neighbors",
+            1 => "Spread",
+            2 => "Distinctive",
+            3 => "Frequency",
             4 => "Dominance",
-            5 => "PMI",
+            5 => "Dispersion",
             6 => "logDice",
             7 => "t-score",
             _ => "Score"
@@ -1015,15 +1020,9 @@ public partial class SearchTabViewModel : ViewModelBase
         foreach (var row in result.Right)
             CoocNgrams.Add(row);
 
-        CoocCharVisuals.Clear();
-        foreach (var item in BuildAnalyticsVisuals(result.Left))
-            CoocCharVisuals.Add(item);
+        // Bubble visuals removed — charts are the primary view now
 
-        CoocNgramVisuals.Clear();
-        foreach (var item in BuildAnalyticsVisuals(result.Right))
-            CoocNgramVisuals.Add(item);
-
-        ZipfText = result.ExtraLine ?? "";
+        // ZipfText removed from UI — no longer displayed
 
         var (cs, cy) = BuildBarChartFromCoocRows(result.Left);
         CharChartSeries = cs;
@@ -1299,6 +1298,33 @@ public partial class SearchTabViewModel : ViewModelBase
             SummaryText = $"Search: {q}";
             ProgressText = "Preparing search...";
             ResultsLoadingText = $"Searching for \"{q}\"...";
+
+            // Insert master card at top if query matches a zen master name
+            if (_masterCatalog != null && !string.IsNullOrWhiteSpace(q))
+            {
+                var matchedMaster = _masterCatalog.Records.FirstOrDefault(r =>
+                    r.Aliases.Any(a => a.Contains(q, StringComparison.OrdinalIgnoreCase)));
+
+                if (matchedMaster != null)
+                {
+                    var variant = matchedMaster.PrimaryVariant;
+                    var school = matchedMaster.School;
+                    var dates = matchedMaster.DatesSummary;
+                    var tooltip = string.Join(" | ",
+                        new[] { school, dates, matchedMaster.Notes }
+                            .Where(s => !string.IsNullOrWhiteSpace(s)));
+
+                    var masterGroup = new SearchResultGroup
+                    {
+                        RelPath = "__master__",
+                        DisplayName = $"\u2638 Zen Master: {matchedMaster.CanonicalName}  ({dates})",
+                        Tooltip = tooltip,
+                        HitsOriginal = 0,
+                        HitsTranslated = 0
+                    };
+                    ResultGroups.Insert(0, masterGroup);
+                }
+            }
 
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 

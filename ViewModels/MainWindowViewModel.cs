@@ -393,6 +393,10 @@ public partial class MainWindowViewModel : ViewModelBase
     // SearchTabView bridges
     public Action<string, string, IReadOnlyList<string>>? SetSearchRootContext { get; set; }
     public Action<Func<string, bool>>? SetSearchZenResolver { get; set; }
+    public Action<ZenMasterCatalog>? SetSearchMasterCatalog { get; set; }
+
+    /// <summary>Permanently cached master catalog for downstream consumers (search, etc.).</summary>
+    public ZenMasterCatalog? MasterCatalog { get; private set; }
     public Action<string, string, IReadOnlyList<string>, Func<string, (string, string, TranslationStatus?)>>? SetSearchContext { get; set; }
     public Action? ClearSearch { get; set; }
 
@@ -924,6 +928,9 @@ public partial class MainWindowViewModel : ViewModelBase
                         var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
                         var masterMgr = new ZenMasterManagerService(masterDatesSvc);
                         var catalog = await masterMgr.LoadAsync(_root);
+                        MasterCatalog = catalog;
+                        if (catalog.Records.Count > 0)
+                            Dispatcher.UIThread.Post(() => SetSearchMasterCatalog?.Invoke(catalog));
 
                         if (index == null && catalog.Records.Count > 0)
                         {

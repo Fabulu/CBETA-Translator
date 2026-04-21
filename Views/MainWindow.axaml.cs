@@ -677,6 +677,7 @@ private async Task LoadConfigAndAutoloadAsync()
         // SearchTabView bridges
         _vm.SetSearchRootContext = (root, orig, tranDirs) => _searchView?.SetRootContext(root, orig, tranDirs);
         _vm.SetSearchZenResolver = resolver => _searchView?.SetZenResolver(resolver);
+        _vm.SetSearchMasterCatalog = catalog => _searchView?.SetMasterCatalog(catalog);
         _vm.SetSearchContext = (root, orig, tranDirs, meta) => _searchView?.SetContext(root, orig, tranDirs, fileMeta: meta);
         _vm.ClearSearch = () => _searchView?.Clear();
 
