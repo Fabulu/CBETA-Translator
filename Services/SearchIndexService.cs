@@ -1891,9 +1891,12 @@ public sealed class SearchIndexService : ISearchIndexService
                     var sortedDocs = invertedDocs.OrderBy(d => d.relPath, StringComparer.OrdinalIgnoreCase).ToList();
                     Dbg($"Inverted index: building from {sortedDocs.Count} docs...");
                     invertedIndex.Build(sortedDocs.Select(d => (d.relPath, d.text)).ToList());
+                    sortedDocs = null; // free text strings immediately
+                    invertedDocs.Clear();
                     var invertedPath = Path.Combine(root, "search.inverted.bin");
                     await invertedIndex.SaveAsync(invertedPath, ct);
                     InvertedIndex = invertedIndex;
+                    GC.Collect(2, GCCollectionMode.Aggressive, true, true);
                     Dbg($"Inverted index built: {invertedIndex.TermCount} terms, {invertedIndex.DocCount} docs");
                 }
                 catch (Exception ex)

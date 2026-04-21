@@ -19,7 +19,7 @@ public sealed class InvertedSearchIndex
 {
     private static readonly byte[] Magic = "IIDX"u8.ToArray();
     private const int Version = 2;
-    private const double MaxDocFrequencyRatio = 0.8; // skip bigrams in >80% of docs
+    private const double MaxDocFrequencyRatio = 0.8; // skip only truly ubiquitous bigrams (之所, 如是, etc.)
 
     private Dictionary<string, ushort[]>? _index;
     private string[]? _docPaths;
