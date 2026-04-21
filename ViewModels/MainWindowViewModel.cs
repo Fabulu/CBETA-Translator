@@ -836,7 +836,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void QueueAutoIndexBuild()
     {
-        if (_translationRoot == null || _originalDir == null || _translatedDir == null) return;
+        if (_translationRoot == null || _originalDir == null || _translatedDir == null)
+        {
+            System.Diagnostics.Debug.WriteLine($"[QueueAutoIndexBuild] SKIPPED: translationRoot={_translationRoot}, originalDir={_originalDir}, translatedDir={_translatedDir}");
+            return;
+        }
 
         _autoIndexCts?.Cancel();
         try { _autoIndexCts?.Dispose(); } catch { }
