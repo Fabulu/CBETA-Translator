@@ -1889,6 +1889,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     var invertedIndex = new InvertedSearchIndex();
                     var sortedDocs = invertedDocs.OrderBy(d => d.relPath, StringComparer.OrdinalIgnoreCase).ToList();
+                    Dbg($"Inverted index: building from {sortedDocs.Count} docs...");
                     invertedIndex.Build(sortedDocs.Select(d => (d.relPath, d.text)).ToList());
                     var invertedPath = Path.Combine(root, "search.inverted.bin");
                     await invertedIndex.SaveAsync(invertedPath, ct);
@@ -1897,7 +1898,8 @@ public sealed class SearchIndexService : ISearchIndexService
                 }
                 catch (Exception ex)
                 {
-                    Dbg($"Inverted index build skipped: {ex.Message}");
+                    Dbg($"Inverted index build FAILED: {ex.Message}\n{ex.StackTrace}");
+                    System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Inverted index FAILED: {ex.Message}\n{ex.StackTrace}");
                 }
 
                 // Phase C optional accelerator: compact-CJK bigram postings.
