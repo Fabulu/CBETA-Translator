@@ -612,8 +612,12 @@ public partial class SearchTabViewModel : ViewModelBase
         }
         finally
         {
-            IsBuildingIndex = false;
-            IsCancelEnabled = false;
+            await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                IsBuildingIndex = false;
+                IsCancelEnabled = false;
+                BuildIndexCommand.NotifyCanExecuteChanged();
+            });
         }
     }
 
