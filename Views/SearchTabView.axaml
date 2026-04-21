@@ -156,9 +156,16 @@
                         CornerRadius="8"
                         Padding="4">
 
-                    <Grid RowDefinitions="Auto,*">
+                    <Grid RowDefinitions="Auto,Auto,*">
+                        <!-- Result count header -->
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding ResultCountText}"
+                                   Classes="muted" FontSize="11"
+                                   Margin="8,4,8,0"
+                                   IsVisible="{Binding HasResults}"/>
+
                         <!-- Filter indicator when co-occurrence bar is clicked -->
-                        <Border Grid.Row="0"
+                        <Border Grid.Row="1"
                                 IsVisible="{Binding IsCoocFilterActive}"
                                 Background="#33457B9D"
                                 CornerRadius="4"
@@ -174,7 +181,7 @@
                             </StackPanel>
                         </Border>
 
-                        <TreeView Grid.Row="1"
+                        <TreeView Grid.Row="2"
                                   Name="ResultsTree"
                                   ItemsSource="{Binding ResultGroups}"
                                   Background="{DynamicResource ControlBg}"
@@ -185,9 +192,16 @@
 
                                 <TreeDataTemplate DataType="models:SearchResultGroup"
                                                   ItemsSource="{Binding Children}">
-                                    <TextBlock Text="{Binding HeaderText}"
-                                               ToolTip.Tip="{Binding Tooltip}"
-                                               TextWrapping="NoWrap"/>
+                                    <DockPanel>
+                                        <Border DockPanel.Dock="Right"
+                                                Background="#33457B9D" CornerRadius="8" Padding="6,1" Margin="4,0">
+                                            <TextBlock Text="{Binding HitCountBadge}" FontSize="10" Foreground="#FF88AAFF"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   ToolTip.Tip="{Binding Tooltip}"
+                                                   TextWrapping="NoWrap"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                    </DockPanel>
                                 </TreeDataTemplate>
 
                                 <DataTemplate DataType="models:SearchResultChild">
@@ -263,7 +277,8 @@
 
                         </TreeView>
 
-                        <Border IsVisible="{Binding IsSearchLoadingPlaceholderVisible}"
+                        <Border Grid.Row="2"
+                                IsVisible="{Binding IsSearchLoadingPlaceholderVisible}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Padding="14"
@@ -293,7 +308,8 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
+                        <Border Grid.Row="2"
+                                Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
                                 HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Padding="20">
                             <TextBlock Text="Enter a search query above and press Search to find text across the corpus.&#x0a;Right-click result rows for passage links, search links, and Scholar actions."

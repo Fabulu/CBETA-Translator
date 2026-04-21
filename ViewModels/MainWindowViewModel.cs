@@ -898,6 +898,15 @@ public partial class MainWindowViewModel : ViewModelBase
                         Dispatcher.UIThread.Post(() => SetStatus("Search index ready."));
                 }
 
+                // After search index is built/updated, warm it up
+                try
+                {
+                    var manifest = await _searchIndex.TryLoadAsync(root);
+                    if (manifest != null)
+                        System.Diagnostics.Debug.WriteLine("[MainWindowViewModel] Search index warmed up on startup");
+                }
+                catch { }
+
                 // TM Reference
                 bool tmStale = await _translationAssistantBuilder.IsReferenceStaleAsync(root, tranDir);
                 if (tmStale && !ct.IsCancellationRequested)

@@ -56,6 +56,8 @@ public sealed class SearchResultGroup : INotifyPropertyChanged
         }
     }
 
+    public string HitCountBadge => $"O:{HitsOriginal} T:{HitsTranslated}";
+
     public void ApplyEnrichment(IReadOnlyList<SearchResultChild> enrichedChildren)
     {
         if (enrichedChildren == null || enrichedChildren.Count == 0)

@@ -80,6 +80,11 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly int[] ContextWidths = new[] { 5, 10, 15, 20, 40, 80, 160, 320 };
     private static bool _firstSearchSupportShown;
 
+    // Search history (static so it persists across tab rebuilds within a session)
+    private static readonly List<string> _searchHistory = new(20);
+
+    public IReadOnlyList<string> SearchHistory => _searchHistory;
+
 
 
     // ----- Observable properties -----
@@ -95,6 +100,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
     [ObservableProperty]
     private string _summaryText = "Ready.";
+
+    [ObservableProperty]
+    private string _resultCountText = "";
+
+    [ObservableProperty]
+    private bool _hasResults;
 
     [ObservableProperty]
     private bool _isSearching;
@@ -503,6 +514,8 @@ public partial class SearchTabViewModel : ViewModelBase
 
         ProgressText = "No root loaded.";
         SummaryText = "Ready.";
+        ResultCountText = "";
+        HasResults = false;
         IsExportEnabled = false;
         IsResultsLoadingVisible = false;
         ResultsLoadingText = "Searching...";
@@ -1482,6 +1495,8 @@ public partial class SearchTabViewModel : ViewModelBase
                         ResultGroups.Add(group);
 
                     SummaryText = $"Done: {sortedGroups.Count:n0} files - {totalHits:n0} hits";
+                    ResultCountText = $"{ResultGroups.Count} texts \u00b7 {ResultGroups.Sum(g => g.HitsOriginal + g.HitsTranslated)} hits";
+                    HasResults = ResultGroups.Count > 0;
                     ProgressText = $"Verified {sortedGroups.Count:n0} matching files";
 
                     if (!_firstSearchSupportShown && sortedGroups.Count > 0)
@@ -1506,6 +1521,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
             if (mySearchVer == Volatile.Read(ref _searchRunVersion))
                 await RefreshCoocUiFromCurrentStateAsync();
+
+            // Track search history
+            if (!string.IsNullOrWhiteSpace(q) && !_searchHistory.Contains(q))
+            {
+                _searchHistory.Insert(0, q);
+                if (_searchHistory.Count > 20)
+                    _searchHistory.RemoveAt(20);
+                OnPropertyChanged(nameof(SearchHistory));
+            }
         }
         catch (OperationCanceledException)
         {
