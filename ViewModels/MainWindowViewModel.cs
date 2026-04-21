@@ -931,7 +931,7 @@ public partial class MainWindowViewModel : ViewModelBase
                                 var index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
                                 await corpusSvc.SaveAsync(cacheDir, index, ct);
 
-                                // Export web-friendly versions next to the app
+                                // Export web-friendly versions to the app directory
                                 var exportDir = AppContext.BaseDirectory;
                                 try
                                 {
