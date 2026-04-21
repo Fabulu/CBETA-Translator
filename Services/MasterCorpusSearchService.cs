@@ -441,6 +441,84 @@ public sealed class MasterCorpusSearchService
         await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
     }
 
+    /// <summary>
+    /// Exports per-master JSON shards into corpus/masters/ with an _index.json manifest.
+    /// Each master gets its own file (slug.json) for efficient lazy loading by the SPA.
+    /// </summary>
+    public static async Task ExportMasterCorpusShardedAsync(
+        string outputDir,
+        MasterCorpusIndex index,
+        CancellationToken ct = default)
+    {
+        var mastersDir = Path.Combine(outputDir, "corpus", "masters");
+        Directory.CreateDirectory(mastersDir);
+
+        // Group appearances by master
+        var byMaster = index.Appearances
+            .GroupBy(a => a.MasterName)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        var indexEntries = new Dictionary<string, object>();
+
+        foreach (var (masterName, appearances) in byMaster)
+        {
+            ct.ThrowIfCancellationRequested();
+
+            var primary = appearances
+                .Where(a => a.AppearanceType == "primary")
+                .OrderByDescending(a => a.MentionCount)
+                .ToList();
+            var secondary = appearances
+                .Where(a => a.AppearanceType == "secondary")
+                .OrderByDescending(a => a.MentionCount)
+                .ToList();
+
+            var shard = new
+            {
+                master = masterName,
+                primary_count = primary.Count,
+                secondary_count = secondary.Count,
+                total_mentions = appearances.Sum(a => a.MentionCount),
+                primary = primary.Select(a => SerializeAppearance(a)).ToList(),
+                secondary = secondary.Select(a => SerializeAppearance(a)).ToList(),
+            };
+
+            var slug = Slugify(masterName);
+            var shardPath = Path.Combine(mastersDir, slug + ".json");
+            var json = JsonSerializer.Serialize(shard, JsonOpts);
+            await File.WriteAllTextAsync(shardPath, json, new UTF8Encoding(false), ct);
+
+            indexEntries[masterName] = new
+            {
+                slug,
+                p = primary.Count,
+                s = secondary.Count,
+                m = appearances.Sum(a => a.MentionCount),
+            };
+        }
+
+        // Write index file
+        var indexObj = new
+        {
+            version = 2,
+            corpus = index.Corpus ?? "Cbeta",
+            file_count = index.FileCount,
+            master_count = byMaster.Count,
+            built_utc = index.BuiltUtc ?? DateTime.UtcNow.ToString("o"),
+            masters = indexEntries,
+        };
+
+        var indexPath = Path.Combine(mastersDir, "_index.json");
+        var indexJson = JsonSerializer.Serialize(indexObj, JsonOpts);
+        await File.WriteAllTextAsync(indexPath, indexJson, new UTF8Encoding(false), ct);
+    }
+
+    private static string Slugify(string name)
+        => name.ToLowerInvariant()
+               .Replace("\u2019", "")  // right single quote
+               .Replace("'", "")
+               .Replace(' ', '_');
+
     private static Dictionary<string, object?> SerializeAppearance(MasterTextAppearance a)
     {
         var dict = new Dictionary<string, object?>
