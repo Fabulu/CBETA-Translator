@@ -52,52 +52,50 @@ public sealed class InvertedSearchIndex
 
     public void Build(IReadOnlyList<(string relPath, string searchableText)> documents)
     {
-        // Deduplicate by relPath — merge text from both sides (Original + Translated)
-        var merged = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        // Deduplicate by relPath — keep first occurrence only (Original side)
+        var seenPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var dedupedDocs = new List<(string relPath, string text)>();
         foreach (var (relPath, text) in documents)
         {
-            if (merged.TryGetValue(relPath, out var existing))
-                merged[relPath] = existing + " " + text;
-            else
-                merged[relPath] = text;
+            if (seenPaths.Add(relPath))
+                dedupedDocs.Add((relPath, text));
         }
 
-        var dedupedDocs = merged.OrderBy(kv => kv.Key, StringComparer.OrdinalIgnoreCase).ToList();
         _docPaths = new string[dedupedDocs.Count];
-        var tempIndex = new Dictionary<string, List<ushort>>();
+        // Use long key (two chars packed into one long) to avoid string allocation
+        var tempIndex = new Dictionary<long, List<ushort>>(16384);
 
         for (int docId = 0; docId < dedupedDocs.Count; docId++)
         {
-            var (relPath, text) = (dedupedDocs[docId].Key, dedupedDocs[docId].Value);
+            var (relPath, text) = dedupedDocs[docId];
             _docPaths[docId] = relPath;
 
-            // Extract unique bigrams from this document
-            var seen = new HashSet<string>();
+            // Extract unique CJK bigrams — zero string allocation in hot loop
+            var seen = new HashSet<long>();
             for (int i = 0; i < text.Length - 1; i++)
             {
                 char c0 = text[i], c1 = text[i + 1];
-                // Skip non-meaningful characters
                 if (!IsIndexable(c0) || !IsIndexable(c1)) continue;
 
-                string bigram = string.Concat(c0, c1);
-                if (!seen.Add(bigram)) continue; // dedupe within doc
+                long key = ((long)c0 << 16) | c1;
+                if (!seen.Add(key)) continue;
 
-                if (!tempIndex.TryGetValue(bigram, out var list))
+                if (!tempIndex.TryGetValue(key, out var list))
                 {
                     list = new List<ushort>();
-                    tempIndex[bigram] = list;
+                    tempIndex[key] = list;
                 }
                 list.Add((ushort)docId);
             }
         }
 
-        // Convert to sorted arrays
+        // Convert to string-keyed dictionary (for Search compatibility) — doc IDs already sorted
         _index = new Dictionary<string, ushort[]>(tempIndex.Count);
-        foreach (var (term, list) in tempIndex)
+        foreach (var (key, list) in tempIndex)
         {
-            var arr = list.ToArray();
-            Array.Sort(arr);
-            _index[term] = arr;
+            char c0 = (char)(key >> 16), c1 = (char)(key & 0xFFFF);
+            var term = string.Concat(c0, c1);
+            _index[term] = list.ToArray(); // already sorted (docId increments)
         }
     }
 

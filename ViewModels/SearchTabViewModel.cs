@@ -576,6 +576,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         try
         {
+            IsBuildingIndex = true;
             IsCancelEnabled = true;
 
             ProgressText = force ? "Index rebuild..." : "Index update...";
@@ -611,6 +612,7 @@ public partial class SearchTabViewModel : ViewModelBase
         }
         finally
         {
+            IsBuildingIndex = false;
             IsCancelEnabled = false;
         }
     }
