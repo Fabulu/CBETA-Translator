@@ -200,7 +200,7 @@ public sealed class LineageGraphViewModel
         double maxChineseX = Nodes
             .Where(n => connected.Contains(n) && !IsKorean(n))
             .Select(n => n.X).DefaultIfEmpty(0).Max();
-        double koreanOffset = maxChineseX + HorizontalSpacing * 2;
+        double koreanOffset = maxChineseX + HorizontalSpacing;
         int minKoreanLayer = Nodes
             .Where(n => connected.Contains(n) && IsKorean(n))
             .Select(n => n.Layer).DefaultIfEmpty(0).Min();
