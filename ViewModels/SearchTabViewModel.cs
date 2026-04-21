@@ -207,19 +207,19 @@ public partial class SearchTabViewModel : ViewModelBase
     private ISeries[] _ngramChartSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
-    private Axis[] _charChartYAxes = Array.Empty<Axis>();
+    private Axis[] _charChartYAxes = new[] { new Axis() };
 
     [ObservableProperty]
-    private Axis[] _ngramChartYAxes = Array.Empty<Axis>();
+    private Axis[] _ngramChartYAxes = new[] { new Axis() };
 
     [ObservableProperty]
     private ISeries[] _scatterSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
-    private Axis[] _scatterXAxes = Array.Empty<Axis>();
+    private Axis[] _scatterXAxes = new[] { new Axis() };
 
     [ObservableProperty]
-    private Axis[] _scatterYAxes = Array.Empty<Axis>();
+    private Axis[] _scatterYAxes = new[] { new Axis() };
 
     // ----- Events -----
 
@@ -856,11 +856,11 @@ public partial class SearchTabViewModel : ViewModelBase
         CoocNgramVisuals.Clear();
         CharChartSeries = Array.Empty<ISeries>();
         NgramChartSeries = Array.Empty<ISeries>();
-        CharChartYAxes = Array.Empty<Axis>();
-        NgramChartYAxes = Array.Empty<Axis>();
+        CharChartYAxes = new[] { new Axis() };
+        NgramChartYAxes = new[] { new Axis() };
         ScatterSeries = Array.Empty<ISeries>();
-        ScatterXAxes = Array.Empty<Axis>();
-        ScatterYAxes = Array.Empty<Axis>();
+        ScatterXAxes = new[] { new Axis() };
+        ScatterYAxes = new[] { new Axis() };
         CoocSummaryText = "No data yet.";
         ZipfText = "";
         LeftTitle = "Top characters";
@@ -1013,10 +1013,15 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly SKColor DarkLabelColor = new(200, 200, 200);
     private static readonly SKColor LightLabelColor = new(50, 50, 50);
 
+    // CJK-capable font for chart labels (SkiaSharp default doesn't render Chinese)
+    private static readonly SKTypeface CjkTypeface = SKTypeface.FromFamilyName(
+        OperatingSystem.IsWindows() ? "Microsoft YaHei" :
+        OperatingSystem.IsMacOS() ? "PingFang SC" : "Noto Sans CJK SC");
+
     private (ISeries[] series, Axis[] yAxes) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
     {
         if (rows == null || rows.Count == 0)
-            return (Array.Empty<ISeries>(), Array.Empty<Axis>());
+            return (Array.Empty<ISeries>(), new[] { new Axis() });
 
         var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
                      Avalonia.Styling.ThemeVariant.Dark;
@@ -1052,7 +1057,7 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 Labels = labels,
                 TextSize = 12,
-                LabelsPaint = new SolidColorPaint(labelColor),
+                LabelsPaint = new SolidColorPaint(labelColor) { SKTypeface = CjkTypeface },
             }
         };
 
@@ -1141,8 +1146,8 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 Name = "log\u2082(Frequency)",
                 TextSize = 11,
-                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)),
-                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)),
+                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)) { SKTypeface = CjkTypeface },
+                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)) { SKTypeface = CjkTypeface },
             }
         };
 
@@ -1152,8 +1157,8 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 Name = "Association Score",
                 TextSize = 11,
-                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)),
-                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)),
+                NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)) { SKTypeface = CjkTypeface },
+                LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)) { SKTypeface = CjkTypeface },
             }
         };
     }
