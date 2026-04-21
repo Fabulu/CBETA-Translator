@@ -591,9 +591,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
             await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force, progress: prog, ct: ct);
 
-            ProgressText = force ? "Index rebuilt." : "Index updated.";
-            SummaryText = "Index ready. Search will be fast.";
-            StatusChanged?.Invoke(this, force ? "Search index rebuilt." : "Search index updated.");
+            await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                ProgressText = force ? "Index rebuilt." : "Index updated.";
+                SummaryText = "Index ready. Search will be fast.";
+                StatusChanged?.Invoke(this, force ? "Search index rebuilt." : "Search index updated.");
+            });
         }
         catch (OperationCanceledException)
         {
