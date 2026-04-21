@@ -2447,152 +2447,179 @@ public sealed class SearchIndexService : ISearchIndexService
 
         var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         var swCandidate = System.Diagnostics.Stopwatch.StartNew();
+        bool usedInvertedIndex = false;
 
-        // Hold gate only during candidate scan (bin access)
-        await _indexIoGate.WaitAsync(ct);
-        try
+        // Fast path: inverted index (0% false positives, sub-millisecond)
+        if (InvertedIndex?.IsLoaded == true && effectiveQuery.Length >= 2)
         {
-            Dbg($"Candidate phase START useBloom={useBloom}");
-
-            if (!useBloom)
+            var invertedHits = InvertedIndex.Search(effectiveQuery);
+            if (invertedHits != null)
             {
-                int seen = 0;
-                foreach (var e in entries)
+                int sideMask = (includeOriginal ? 1 : 0) | (includeTranslated ? 2 : 0);
+                foreach (var docId in invertedHits)
                 {
-                    ct.ThrowIfCancellationRequested();
+                    var relPath = InvertedIndex.GetRelPath(docId);
+                    if (relPath == null) continue;
+                    if (relPathFilter != null && !relPathFilter(relPath)) continue;
 
-                    if (!sideAllowed(e.Side)) continue;
-                    if (relPathFilter != null && !relPathFilter(e.RelPath)) continue;
-
-                    candidates.AddOrUpdate(
-                        e.RelPath,
-                        _ => e.Side == SearchSide.Original ? 1 : 2,
-                        (_, v) => v | (e.Side == SearchSide.Original ? 1 : 2));
-
-                    seen++;
-                    if (seen % 1000 == 0)
-                        Dbg($"Candidate phase (no bloom): scanned={seen}, candidateKeys={candidates.Count}");
+                    // The inverted index doesn't track sides per doc — apply the requested side mask.
+                    // The verification loop will check each side individually against actual file content.
+                    candidates.AddOrUpdate(relPath, _ => sideMask, (_, v) => v | sideMask);
                 }
 
-                Dbg($"Candidate phase (no bloom) DONE candidateKeys={candidates.Count}");
+                usedInvertedIndex = true;
+                Dbg($"Candidate phase inverted index DONE hits={invertedHits.Length} candidateKeys={candidates.Count}");
             }
-            else
-            {
-                string binPath = GetBinPath(root);
-                var binFull = Path.GetFullPath(binPath);
+        }
 
-                if (!File.Exists(binFull))
+        // Fallback: bloom filter scan (when inverted index unavailable or query too short)
+        if (!usedInvertedIndex)
+        {
+            await _indexIoGate.WaitAsync(ct);
+            try
+            {
+                Dbg($"Candidate phase START useBloom={useBloom}");
+
+                if (!useBloom)
                 {
-                    Dbg($"Candidate phase bloom: bin missing '{binFull}'");
-                }
-                else if (cjk2PrefilterIds != null && cjk2PrefilterIds.Count == 0)
-                {
-                    Dbg("Candidate phase bloom skipped by empty CJK2 prefilter set.");
+                    int seen = 0;
+                    foreach (var e in entries)
+                    {
+                        ct.ThrowIfCancellationRequested();
+
+                        if (!sideAllowed(e.Side)) continue;
+                        if (relPathFilter != null && !relPathFilter(e.RelPath)) continue;
+
+                        candidates.AddOrUpdate(
+                            e.RelPath,
+                            _ => e.Side == SearchSide.Original ? 1 : 2,
+                            (_, v) => v | (e.Side == SearchSide.Original ? 1 : 2));
+
+                        seen++;
+                        if (seen % 1000 == 0)
+                            Dbg($"Candidate phase (no bloom): scanned={seen}, candidateKeys={candidates.Count}");
+                    }
+
+                    Dbg($"Candidate phase (no bloom) DONE candidateKeys={candidates.Count}");
                 }
                 else
                 {
-                    var swBloom = System.Diagnostics.Stopwatch.StartNew();
+                    string binPath = GetBinPath(root);
+                    var binFull = Path.GetFullPath(binPath);
 
-                    // IMPORTANT FIX:
-                    // - Do NOT share one MemoryMappedViewAccessor across threads.
-                    // - Create one MMF for this search, and a THREAD-LOCAL accessor per worker.
-                    using var mmf = MemoryMappedFile.CreateFromFile(binFull, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
-
-                    int scannedEntries = 0;
-                    int bloomPass = 0;
-
-                    var po = new ParallelOptions
+                    if (!File.Exists(binFull))
                     {
-                        CancellationToken = ct,
-                        MaxDegreeOfParallelism = Math.Max(1, Options.MaxBloomDegreeOfParallelism)
-                    };
+                        Dbg($"Candidate phase bloom: bin missing '{binFull}'");
+                    }
+                    else if (cjk2PrefilterIds != null && cjk2PrefilterIds.Count == 0)
+                    {
+                        Dbg("Candidate phase bloom skipped by empty CJK2 prefilter set.");
+                    }
+                    else
+                    {
+                        var swBloom = System.Diagnostics.Stopwatch.StartNew();
 
-                    Dbg($"Candidate phase bloom: Parallel.ForEach START dop={po.MaxDegreeOfParallelism}, grams={grams.Count}");
+                        // IMPORTANT FIX:
+                        // - Do NOT share one MemoryMappedViewAccessor across threads.
+                        // - Create one MMF for this search, and a THREAD-LOCAL accessor per worker.
+                        using var mmf = MemoryMappedFile.CreateFromFile(binFull, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
 
-                    Parallel.ForEach(
-                        entries,
-                        po,
-                        localInit: () =>
+                        int scannedEntries = 0;
+                        int bloomPass = 0;
+
+                        var po = new ParallelOptions
                         {
-                            // Thread-local state: own accessor + scratch buffers
-                            var localAccessor = mmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
-                            return (accessor: localAccessor, arr: new byte[BloomBytes], bits: new ulong[BloomUlongs]);
-                        },
-                        body: (e, _, local) =>
-                        {
-                            po.CancellationToken.ThrowIfCancellationRequested();
+                            CancellationToken = ct,
+                            MaxDegreeOfParallelism = Math.Max(1, Options.MaxBloomDegreeOfParallelism)
+                        };
 
-                            Interlocked.Increment(ref scannedEntries);
+                        Dbg($"Candidate phase bloom: Parallel.ForEach START dop={po.MaxDegreeOfParallelism}, grams={grams.Count}");
 
-                            if (!sideAllowed(e.Side)) return local;
-                            if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return local;
-                            if (relPathFilter != null && !relPathFilter(e.RelPath)) return local;
-                            if (cjk2PrefilterIds != null && !cjk2PrefilterIds.Contains(e.Id)) return local;
-
-                            try
+                        Parallel.ForEach(
+                            entries,
+                            po,
+                            localInit: () =>
                             {
-                                local.accessor.ReadArray(e.BloomOffset, local.arr, 0, BloomBytes);
-                            }
-                            catch (Exception ex)
+                                // Thread-local state: own accessor + scratch buffers
+                                var localAccessor = mmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
+                                return (accessor: localAccessor, arr: new byte[BloomBytes], bits: new ulong[BloomUlongs]);
+                            },
+                            body: (e, _, local) =>
                             {
-                                Dbg($"Bloom ReadArray EXCEPTION rel={e.RelPath} side={e.Side} offset={e.BloomOffset}: {ex}");
-                                throw;
-                            }
+                                po.CancellationToken.ThrowIfCancellationRequested();
 
-                            for (int i = 0; i < BloomUlongs; i++)
-                            {
-                                int o = i * 8;
-                                ulong v =
-                                    ((ulong)local.arr[o + 0]) |
-                                    ((ulong)local.arr[o + 1] << 8) |
-                                    ((ulong)local.arr[o + 2] << 16) |
-                                    ((ulong)local.arr[o + 3] << 24) |
-                                    ((ulong)local.arr[o + 4] << 32) |
-                                    ((ulong)local.arr[o + 5] << 40) |
-                                    ((ulong)local.arr[o + 6] << 48) |
-                                    ((ulong)local.arr[o + 7] << 56);
+                                Interlocked.Increment(ref scannedEntries);
 
-                                local.bits[i] = v;
-                            }
+                                if (!sideAllowed(e.Side)) return local;
+                                if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return local;
+                                if (relPathFilter != null && !relPathFilter(e.RelPath)) return local;
+                                if (cjk2PrefilterIds != null && !cjk2PrefilterIds.Contains(e.Id)) return local;
 
-                            bool ok = true;
-                            for (int i = 0; i < grams.Count; i++)
-                            {
-                                var (n, start) = grams[i];
-                                if (start + n > effectiveQuery.Length) continue;
-
-                                if (!BloomMightContain(local.bits, effectiveQuery.AsSpan(start, n)))
+                                try
                                 {
-                                    ok = false;
-                                    break;
+                                    local.accessor.ReadArray(e.BloomOffset, local.arr, 0, BloomBytes);
                                 }
+                                catch (Exception ex)
+                                {
+                                    Dbg($"Bloom ReadArray EXCEPTION rel={e.RelPath} side={e.Side} offset={e.BloomOffset}: {ex}");
+                                    throw;
+                                }
+
+                                for (int i = 0; i < BloomUlongs; i++)
+                                {
+                                    int o = i * 8;
+                                    ulong v =
+                                        ((ulong)local.arr[o + 0]) |
+                                        ((ulong)local.arr[o + 1] << 8) |
+                                        ((ulong)local.arr[o + 2] << 16) |
+                                        ((ulong)local.arr[o + 3] << 24) |
+                                        ((ulong)local.arr[o + 4] << 32) |
+                                        ((ulong)local.arr[o + 5] << 40) |
+                                        ((ulong)local.arr[o + 6] << 48) |
+                                        ((ulong)local.arr[o + 7] << 56);
+
+                                    local.bits[i] = v;
+                                }
+
+                                bool ok = true;
+                                for (int i = 0; i < grams.Count; i++)
+                                {
+                                    var (n, start) = grams[i];
+                                    if (start + n > effectiveQuery.Length) continue;
+
+                                    if (!BloomMightContain(local.bits, effectiveQuery.AsSpan(start, n)))
+                                    {
+                                        ok = false;
+                                        break;
+                                    }
+                                }
+
+                                if (!ok) return local;
+
+                                int mask = (e.Side == SearchSide.Original) ? 1 : 2;
+                                candidates.AddOrUpdate(e.RelPath, _ => mask, (_, v) => v | mask);
+                                Interlocked.Increment(ref bloomPass);
+
+                                if (bloomPass % 500 == 0)
+                                    Dbg($"Candidate phase bloom progress: scanned={Volatile.Read(ref scannedEntries)}, bloomPass={bloomPass}, candidateKeys={candidates.Count}");
+
+                                return local;
+                            },
+                            localFinally: local =>
+                            {
+                                try { local.accessor.Dispose(); } catch { }
                             }
+                        );
 
-                            if (!ok) return local;
-
-                            int mask = (e.Side == SearchSide.Original) ? 1 : 2;
-                            candidates.AddOrUpdate(e.RelPath, _ => mask, (_, v) => v | mask);
-                            Interlocked.Increment(ref bloomPass);
-
-                            if (bloomPass % 500 == 0)
-                                Dbg($"Candidate phase bloom progress: scanned={Volatile.Read(ref scannedEntries)}, bloomPass={bloomPass}, candidateKeys={candidates.Count}");
-
-                            return local;
-                        },
-                        localFinally: local =>
-                        {
-                            try { local.accessor.Dispose(); } catch { }
-                        }
-                    );
-
-                    swBloom.Stop();
-                    Dbg($"Candidate phase bloom DONE in {swBloom.ElapsedMilliseconds}ms scanned={scannedEntries} bloomPass={bloomPass} candidateKeys={candidates.Count}");
+                        swBloom.Stop();
+                        Dbg($"Candidate phase bloom DONE in {swBloom.ElapsedMilliseconds}ms scanned={scannedEntries} bloomPass={bloomPass} candidateKeys={candidates.Count}");
+                    }
                 }
             }
-        }
-        finally
-        {
-            _indexIoGate.Release();
+            finally
+            {
+                _indexIoGate.Release();
+            }
         }
         swCandidate.Stop();
 
@@ -2612,7 +2639,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
         progress?.Report(new SearchProgress
         {
-            Phase = useBloom ? "Candidate filtering done" : "Brute candidates (1-char search)",
+            Phase = usedInvertedIndex ? "Candidate filtering done (inverted index)" : useBloom ? "Candidate filtering done" : "Brute candidates (1-char search)",
             Candidates = totalDocsToVerify,
             TotalDocsToVerify = totalDocsToVerify,
             CandidateMs = swCandidate.ElapsedMilliseconds,
