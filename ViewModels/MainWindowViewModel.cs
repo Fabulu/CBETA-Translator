@@ -939,7 +939,7 @@ public partial class MainWindowViewModel : ViewModelBase
                         // Always export (whether freshly built or loaded from cache)
                         if (index != null && catalog.Records.Count > 0)
                         {
-                            var exportDir = AppContext.BaseDirectory;
+                            var exportDir = cacheDir;
                             try
                             {
                                 await MasterCorpusSearchService.ExportMastersJsonAsync(exportDir, catalog, ct);
