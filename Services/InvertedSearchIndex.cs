@@ -44,14 +44,31 @@ public sealed class InvertedSearchIndex
     /// Build the inverted index from extracted text content.
     /// Call once per corpus scan with all (docId, relPath, searchableText) tuples.
     /// </summary>
+    /// <summary>Only CJK ideographs are worth indexing. English footnotes/annotations create massive bloat.</summary>
+    private static bool IsIndexable(char ch)
+        => (ch >= '\u4E00' && ch <= '\u9FFF')   // CJK Unified Ideographs
+        || (ch >= '\u3400' && ch <= '\u4DBF')   // CJK Extension A
+        || (ch >= '\uF900' && ch <= '\uFAFF');  // CJK Compatibility
+
     public void Build(IReadOnlyList<(string relPath, string searchableText)> documents)
     {
-        _docPaths = new string[documents.Count];
+        // Deduplicate by relPath — merge text from both sides (Original + Translated)
+        var merged = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var (relPath, text) in documents)
+        {
+            if (merged.TryGetValue(relPath, out var existing))
+                merged[relPath] = existing + " " + text;
+            else
+                merged[relPath] = text;
+        }
+
+        var dedupedDocs = merged.OrderBy(kv => kv.Key, StringComparer.OrdinalIgnoreCase).ToList();
+        _docPaths = new string[dedupedDocs.Count];
         var tempIndex = new Dictionary<string, List<ushort>>();
 
-        for (int docId = 0; docId < documents.Count; docId++)
+        for (int docId = 0; docId < dedupedDocs.Count; docId++)
         {
-            var (relPath, text) = documents[docId];
+            var (relPath, text) = (dedupedDocs[docId].Key, dedupedDocs[docId].Value);
             _docPaths[docId] = relPath;
 
             // Extract unique bigrams from this document
@@ -59,9 +76,8 @@ public sealed class InvertedSearchIndex
             for (int i = 0; i < text.Length - 1; i++)
             {
                 char c0 = text[i], c1 = text[i + 1];
-                // Skip whitespace/punctuation bigrams
-                if (char.IsWhiteSpace(c0) || char.IsWhiteSpace(c1)) continue;
-                if (char.IsControl(c0) || char.IsControl(c1)) continue;
+                // Skip non-meaningful characters
+                if (!IsIndexable(c0) || !IsIndexable(c1)) continue;
 
                 string bigram = string.Concat(c0, c1);
                 if (!seen.Add(bigram)) continue; // dedupe within doc
