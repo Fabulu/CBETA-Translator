@@ -1169,7 +1169,11 @@ public partial class MainWindowViewModel : ViewModelBase
         bool changed = false;
         int total = _allItems.Count;
         var progress = new Progress<int>(done =>
-            SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
+        {
+            // Only show every 500 to avoid flooding status bar over indexing messages
+            if (done % 500 == 0 && done < total)
+                SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}");
+        });
         var refilter = new Progress<int>(_ =>
         {
             // Re-apply the filter so the nav list reflects updated statuses progressively.
