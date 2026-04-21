@@ -915,38 +915,40 @@ public partial class MainWindowViewModel : ViewModelBase
                         var corpusSvc = new MasterCorpusSearchService();
                         var cacheDir = MasterCorpusSearchService.GetCacheDir(_root);
                         var cached = await corpusSvc.TryLoadAsync(cacheDir, ct);
-                        if (cached == null)
+                        MasterCorpusIndex? index = cached;
+
+                        var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
+                        var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                        var catalog = await masterMgr.LoadAsync(_root);
+
+                        if (index == null && catalog.Records.Count > 0)
                         {
                             Dispatcher.UIThread.Post(() => SetStatus("Auto-building master corpus index..."));
 
-                            var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
-                            var masterMgr = new ZenMasterManagerService(masterDatesSvc);
-                            var catalog = await masterMgr.LoadAsync(_root);
+                            var corpusProgress = new Progress<(int done, int total, string status)>(t =>
+                                Dispatcher.UIThread.Post(() => SetStatus($"Master corpus: {t.status}")));
 
-                            if (catalog.Records.Count > 0)
+                            index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
+                            await corpusSvc.SaveAsync(cacheDir, index, ct);
+                        }
+
+                        // Always export (whether freshly built or loaded from cache)
+                        if (index != null && catalog.Records.Count > 0)
+                        {
+                            var exportDir = AppContext.BaseDirectory;
+                            try
                             {
-                                var corpusProgress = new Progress<(int done, int total, string status)>(t =>
-                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus: {t.status}")));
-
-                                var index = await corpusSvc.BuildFullIndexAsync(_root, catalog, corpusProgress, ct);
-                                await corpusSvc.SaveAsync(cacheDir, index, ct);
-
-                                // Export web-friendly versions to the app directory
-                                var exportDir = AppContext.BaseDirectory;
-                                try
-                                {
-                                    await MasterCorpusSearchService.ExportMastersJsonAsync(exportDir, catalog, ct);
-                                    await MasterCorpusSearchService.ExportMasterCorpusJsonAsync(exportDir, index, ct);
-                                }
-                                catch (Exception ex)
-                                {
-                                    System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}\n{ex.StackTrace}");
-                                    Dispatcher.UIThread.Post(() => SetStatus($"Master export failed: {ex.Message}"));
-                                }
-
-                                if (!ct.IsCancellationRequested)
-                                    Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} of {catalog.Records.Count} masters found in {index.Appearances.Count} text appearances)."));
+                                await MasterCorpusSearchService.ExportMastersJsonAsync(exportDir, catalog, ct);
+                                await MasterCorpusSearchService.ExportMasterCorpusJsonAsync(exportDir, index, ct);
                             }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Master export failed: {ex.Message}\n{ex.StackTrace}");
+                                Dispatcher.UIThread.Post(() => SetStatus($"Master export failed: {ex.Message}"));
+                            }
+
+                            if (!ct.IsCancellationRequested)
+                                Dispatcher.UIThread.Post(() => SetStatus($"Master corpus index ready ({index.MasterCount} of {catalog.Records.Count} masters found in {index.Appearances.Count} text appearances)."));
                         }
                     }
                     catch (OperationCanceledException) { throw; }
