@@ -584,7 +584,9 @@ public partial class SearchTabViewModel : ViewModelBase
             var prog = new Progress<(int done, int total, string phase)>(p =>
             {
                 int percent = p.total <= 0 ? 0 : (int)Math.Round((double)p.done * 100 / p.total);
-                ProgressText = $"Index {Math.Clamp(percent, 0, 100)}% ? {p.phase}";
+                var msg = $"Index {Math.Clamp(percent, 0, 100)}% \u2014 {p.phase}";
+                ProgressText = msg;
+                StatusChanged?.Invoke(this, msg);
             });
 
             await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force, progress: prog, ct: ct);
