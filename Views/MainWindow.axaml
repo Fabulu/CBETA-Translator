@@ -295,7 +295,8 @@
             <Border Grid.Column="1" Margin="8,0,8,8">
                 <Grid>
                     <Carousel Name="MainTabContent"
-                              SelectedIndex="{Binding ElementName=MainTabs, Path=SelectedIndex, Mode=TwoWay}">
+                              SelectedIndex="{Binding ElementName=MainTabs, Path=SelectedIndex, Mode=TwoWay}"
+                              PointerWheelChanged="MainTabContent_OnPointerWheelChanged">
                         <views:ReadableTabView Name="ReadableView"/>
                         <views:TranslationTabView Name="TranslationView"/>
                         <views:SearchTabView Name="SearchView"/>

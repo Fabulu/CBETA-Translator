@@ -677,7 +677,11 @@ private async Task LoadConfigAndAutoloadAsync()
         // SearchTabView bridges
         _vm.SetSearchRootContext = (root, orig, tranDirs) => _searchView?.SetRootContext(root, orig, tranDirs);
         _vm.SetSearchZenResolver = resolver => _searchView?.SetZenResolver(resolver);
-        _vm.SetSearchMasterCatalog = catalog => _searchView?.SetMasterCatalog(catalog);
+        _vm.SetSearchMasterCatalog = catalog =>
+        {
+            _searchView?.SetMasterCatalog(catalog);
+            _searchView?.InitTypeahead(catalog, null);
+        };
         _vm.SetSearchContext = (root, orig, tranDirs, meta) => _searchView?.SetContext(root, orig, tranDirs, fileMeta: meta);
         _vm.ClearSearch = () => _searchView?.Clear();
 
@@ -1070,6 +1074,14 @@ private async Task LoadConfigAndAutoloadAsync()
     {
         e.Handled = true;
     }
+
+    private void MainTabContent_OnPointerWheelChanged(object? sender, PointerWheelEventArgs e)
+    {
+        // Prevent Carousel from interpreting wheel events as tab navigation.
+        // Inner ScrollViewers handle their own scrolling; anything that bubbles
+        // up to the Carousel should be swallowed, not used to switch tabs.
+        e.Handled = true;
+    }
     private void ToggleTopBarCommands()
     {
         var host = Find<Control>("TopBarCommandsHost");
@@ -1339,6 +1351,10 @@ private async Task LoadConfigAndAutoloadAsync()
             _searchView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
+            };
+            _searchView.OpenMasterRequested += async (_, masterName) =>
+            {
+                await OpenZenMasterManagerWindowAsync(masterName);
             };
             _searchAddToScholarHandler = async (_, passage) =>
             {

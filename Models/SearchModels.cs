@@ -28,6 +28,8 @@ public sealed class SearchResultGroup : INotifyPropertyChanged
     public string RelPath { get; set; } = "";
     public string DisplayName { get; set; } = "";   // titles/enShort if available
     public string Tooltip { get; set; } = "";       // full titles or relpath
+    public string ChineseTitle { get; set; } = "";   // zh title for side-by-side display
+    public bool HasChineseTitle => !string.IsNullOrWhiteSpace(ChineseTitle);
 
     public TranslationStatus? Status { get; set; }  // from your index cache (optional)
     public int HitsOriginal { get; set; }

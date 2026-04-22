@@ -33,6 +33,14 @@ public sealed class MasterCorpusSearchService
         "延壽",   // Yanshou = "extend longevity" (matches Medicine Buddha texts)
     };
 
+    // Manual primary-text overrides: the concept-name filter cannot detect these
+    // because the TEI <author> field and body text don't contain the full compound
+    // name. Key is canonical master name → set of RelPath prefixes.
+    private static readonly Dictionary<string, HashSet<string>> ManualPrimary = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["Wumen Huikai"] = new(StringComparer.OrdinalIgnoreCase) { @"T\T48\T48n2005" },
+    };
+
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         WriteIndented = true,
@@ -260,7 +268,11 @@ public sealed class MasterCorpusSearchService
                             && authorField.Length > 0
                             && authorField.Contains(chineseName, StringComparison.Ordinal);
 
-                        if (ConceptNames.Contains(chineseName) && !foundInAuthorField)
+                        // Manual override bypasses concept-name disambiguation
+                        bool isManualOverride = ManualPrimary.TryGetValue(canonicalName, out var manualPaths)
+                            && manualPaths.Any(p => relPath.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+
+                        if (ConceptNames.Contains(chineseName) && !foundInAuthorField && !isManualOverride)
                         {
                             if (!namesByCanonical.TryGetValue(canonicalName, out var allNames))
                                 continue;
@@ -287,6 +299,10 @@ public sealed class MasterCorpusSearchService
                         }
                         if (!isPrimary && ConceptNames.Contains(chineseName))
                             isPrimary = header.Contains(chineseName, StringComparison.Ordinal);
+
+                        // Manual primary override for texts the heuristic can't detect
+                        if (!isPrimary && isManualOverride)
+                            isPrimary = true;
 
                         // Extract a snippet around the first body occurrence
                         string? snippet = ExtractSnippet(content, chineseName, headerEnd > 0 ? headerEnd : 0);
