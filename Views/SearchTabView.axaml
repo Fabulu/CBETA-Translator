@@ -18,14 +18,30 @@
                   RowSpacing="4"
                   ColumnSpacing="4">
 
-                <TextBox Name="TxtQuery"
-                         Grid.Row="0"
-                         Grid.Column="0"
-                         HorizontalAlignment="Stretch"
-                         Text="{Binding Query}"
-                         Watermark="Search Chinese text&#x2026;"
-                         AutomationProperties.Name="Search query"
-                         ToolTip.Tip="Enter Chinese characters or phrases to search"/>
+                <Panel Grid.Row="0" Grid.Column="0">
+                    <TextBox Name="TxtQuery"
+                             HorizontalAlignment="Stretch"
+                             Text="{Binding Query}"
+                             Watermark="Search masters, titles, and full text&#x2026;"
+                             AutomationProperties.Name="Search query"
+                             ToolTip.Tip="Type to see suggestions. Press Enter to search full text."/>
+
+                    <Popup Name="TypeaheadPopup"
+                           PlacementTarget="{Binding #TxtQuery}"
+                           Placement="BottomEdgeAlignedLeft"
+                           IsOpen="False"
+                           IsLightDismissEnabled="True"
+                           MaxHeight="400">
+                        <Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+                                BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="0"
+                                MinWidth="360">
+                            <StackPanel Name="TypeaheadPanel" Spacing="0"/>
+                        </Border>
+                    </Popup>
+                </Panel>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         MinWidth="64"
@@ -197,10 +213,17 @@
                                                 Background="#33457B9D" CornerRadius="8" Padding="6,1" Margin="4,0">
                                             <TextBlock Text="{Binding HitCountBadge}" FontSize="10" Foreground="#FF88AAFF"/>
                                         </Border>
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   ToolTip.Tip="{Binding Tooltip}"
-                                                   TextWrapping="NoWrap"
-                                                   TextTrimming="CharacterEllipsis"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="8"
+                                                    ToolTip.Tip="{Binding Tooltip}">
+                                            <TextBlock Text="{Binding DisplayName}"
+                                                       TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding ChineseTitle}"
+                                                       Opacity="0.5"
+                                                       TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       IsVisible="{Binding HasChineseTitle}"/>
+                                        </StackPanel>
                                     </DockPanel>
                                 </TreeDataTemplate>
 
@@ -382,7 +405,7 @@
                                             YAxes="{Binding CharChartYAxes}"
                                             Height="300"
                                             TooltipPosition="Center"
-                                            ZoomMode="X"
+                                            ZoomMode="None"
                                             AutomationProperties.Name="Character co-occurrences"
                                             ToolTip.Tip="Longer bars = stronger association with your search term. High-ranking characters appear near your search term more than expected by chance. Look for surprises — these reveal thematic connections."/>
 
@@ -391,7 +414,7 @@
                                             YAxes="{Binding NgramChartYAxes}"
                                             Height="300"
                                             TooltipPosition="Center"
-                                            ZoomMode="X"
+                                            ZoomMode="None"
                                             AutomationProperties.Name="N-gram co-occurrences"
                                             ToolTip.Tip="Each bar is a multi-character phrase found near your search term. Phrases you don't recognize are worth looking up — they may be technical vocabulary specific to this genre."/>
 
@@ -405,7 +428,7 @@
                                                     YAxes="{Binding ScatterYAxes}"
                                                     Height="250"
                                                     TooltipPosition="Center"
-                                                    ZoomMode="Both"
+                                                    ZoomMode="None"
                                                     AutomationProperties.Name="Collocational landscape scatter plot"
                                                     ToolTip.Tip="Horizontal: frequency (each step doubles). Vertical: association strength. Blue = characters, Gold = phrases. Top-right = highest priority vocabulary (frequent AND linked). Top-left = rare but specific. Bottom-right = common but generic."/>
                             </StackPanel>

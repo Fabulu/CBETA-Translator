@@ -6,6 +6,9 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using SkiaSharp;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.Views;
@@ -26,6 +29,12 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        // Global CJK font for LiveCharts2 tooltips and labels
+        var cjkTypeface = SKTypeface.FromFamilyName(
+            OperatingSystem.IsWindows() ? "Microsoft YaHei" :
+            OperatingSystem.IsMacOS() ? "PingFang SC" : "Noto Sans CJK SC");
+        LiveCharts.Configure(config => config.HasGlobalSKTypeface(cjkTypeface));
+
         var sc = new ServiceCollection();
         sc.AddAppServices();
         Services = sc.BuildServiceProvider();

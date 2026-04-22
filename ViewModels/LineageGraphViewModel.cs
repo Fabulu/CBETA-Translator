@@ -193,27 +193,12 @@ public sealed class LineageGraphViewModel
                 : 60; // unknown date goes to top
         }
 
-        // Push Korean Seon nodes rightward past ALL Chinese nodes
         bool IsKorean(LineageGraphNode n) =>
             n.School?.Contains("Korean", StringComparison.OrdinalIgnoreCase) == true;
 
-        double maxChineseX = Nodes
-            .Where(n => connected.Contains(n) && !IsKorean(n))
-            .Select(n => n.X).DefaultIfEmpty(0).Max();
-        double koreanOffset = maxChineseX + HorizontalSpacing;
-        int minKoreanLayer = Nodes
-            .Where(n => connected.Contains(n) && IsKorean(n))
-            .Select(n => n.Layer).DefaultIfEmpty(0).Min();
-
-        foreach (var node in Nodes.Where(n => connected.Contains(n) && IsKorean(n)))
-        {
-            node.X = koreanOffset + (node.Layer - minKoreanLayer) * HorizontalSpacing;
-        }
-
-        // ── Collision resolution within each layer ──
-        // Multiple masters at the same generation + similar dates can overlap.
-        // Spread them vertically with minimum gap.
-        var layers = Nodes.Where(n => connected.Contains(n))
+        // ── Collision resolution within each layer (Chinese only first) ──
+        var chineseConnected = Nodes.Where(n => connected.Contains(n) && !IsKorean(n));
+        var layers = chineseConnected
             .GroupBy(n => n.Layer)
             .ToDictionary(g => g.Key, g => g.OrderBy(n => n.Y).ToList());
 
@@ -224,6 +209,49 @@ public sealed class LineageGraphViewModel
                 double minGap = NodeHeight + 6;
                 if (layerNodes[i].Y - layerNodes[i - 1].Y < minGap)
                     layerNodes[i].Y = layerNodes[i - 1].Y + minGap;
+            }
+        }
+
+        // ── Korean positioning AFTER Chinese collision resolution ──
+        var koreanNodes = Nodes.Where(n => connected.Contains(n) && IsKorean(n)).ToList();
+        if (koreanNodes.Count > 0)
+        {
+            const double MinGap = 200;
+            const double YProximity = NodeHeight * 15;
+
+            var chineseNodes = Nodes
+                .Where(n => connected.Contains(n) && !IsKorean(n)).ToList();
+
+            // Push each Korean node right of nearby Chinese (by final Y position)
+            foreach (var node in koreanNodes)
+            {
+                double maxNearbyX = 0;
+                foreach (var c in chineseNodes)
+                {
+                    if (Math.Abs(c.Y - node.Y) < YProximity && c.X > maxNearbyX)
+                        maxNearbyX = c.X;
+                }
+
+                double minX = maxNearbyX + NodeWidth + MinGap;
+                if (node.X < minX)
+                    node.X = minX;
+            }
+
+            // Korean-specific collision: push overlapping Korean nodes rightward
+            var sortedKorean = koreanNodes.OrderBy(n => n.X).ThenBy(n => n.Y).ToList();
+            for (int i = 0; i < sortedKorean.Count; i++)
+            {
+                for (int j = i + 1; j < sortedKorean.Count; j++)
+                {
+                    var a = sortedKorean[i];
+                    var b = sortedKorean[j];
+                    bool xOverlap = Math.Abs(a.X - b.X) < NodeWidth + 10;
+                    bool yOverlap = Math.Abs(a.Y - b.Y) < NodeHeight + 6;
+                    if (xOverlap && yOverlap)
+                    {
+                        b.X = a.X + NodeWidth + 20;
+                    }
+                }
             }
         }
 

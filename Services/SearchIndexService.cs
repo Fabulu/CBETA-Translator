@@ -334,6 +334,12 @@ public sealed class SearchIndexService : ISearchIndexService
         foreach (var r in left) r.Bar = MakeBar(r.Freq, maxC);
         foreach (var r in right) r.Bar = MakeBar(r.Freq, maxN);
 
+        // Normalize BarRatio by the selected metric (Assoc), not raw frequency
+        double maxAssocL = left.Count > 0 ? left.Max(r => Math.Abs(r.Assoc)) : 0;
+        double maxAssocR = right.Count > 0 ? right.Max(r => Math.Abs(r.Assoc)) : 0;
+        foreach (var r in left) r.BarRatio = maxAssocL > 0 ? Math.Clamp(r.Assoc / maxAssocL, 0, 1) : 0;
+        foreach (var r in right) r.BarRatio = maxAssocR > 0 ? Math.Clamp(r.Assoc / maxAssocR, 0, 1) : 0;
+
         var zip = right.OrderByDescending(r => r.Freq).Take(12).Select((r, i) => $"{i + 1}:{r.Freq}").ToArray();
         string zipLine = zip.Length > 0 ? ("Zipf-ish ranks (top ngrams): " + string.Join("  ", zip)) : "";
 
@@ -397,11 +403,18 @@ public sealed class SearchIndexService : ISearchIndexService
 
             if (children.Count > 0)
             {
+                var fileTooltip = string.IsNullOrWhiteSpace(file.Tooltip) ? file.RelPath : file.Tooltip;
+                var fileZh = "";
+                var fileNl = fileTooltip.IndexOf('\n');
+                if (fileNl >= 0 && fileNl < fileTooltip.Length - 1)
+                    fileZh = fileTooltip[(fileNl + 1)..];
+
                 groups.Add(new SearchResultGroup
                 {
                     RelPath = file.RelPath,
                     DisplayName = string.IsNullOrWhiteSpace(file.DisplayShort) ? file.FileName : file.DisplayShort,
-                    Tooltip = string.IsNullOrWhiteSpace(file.Tooltip) ? file.RelPath : file.Tooltip,
+                    Tooltip = fileTooltip,
+                    ChineseTitle = fileZh,
                     Status = file.Status,
                     Children = children,
                     HitsOriginal = children.Count(c => c.Side == SearchSide.Original),
@@ -2699,11 +2712,19 @@ public sealed class SearchIndexService : ISearchIndexService
                     int mask = candidates[relKey];
 
                     var meta = fileMeta(relKey);
+                    var tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip;
+                    // Extract Chinese title from tooltip (format: "English\nChinese")
+                    var zhTitle = "";
+                    var nlIdx = tooltip.IndexOf('\n');
+                    if (nlIdx >= 0 && nlIdx < tooltip.Length - 1)
+                        zhTitle = tooltip[(nlIdx + 1)..];
+
                     var group = new SearchResultGroup
                     {
                         RelPath = relKey,
                         DisplayName = string.IsNullOrWhiteSpace(meta.display) ? relKey : meta.display,
-                        Tooltip = string.IsNullOrWhiteSpace(meta.tooltip) ? relKey : meta.tooltip,
+                        Tooltip = tooltip,
+                        ChineseTitle = zhTitle,
                         Status = meta.status
                     };
 

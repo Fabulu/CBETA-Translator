@@ -69,6 +69,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // Master catalog for master card results
     private ZenMasterCatalog? _masterCatalog;
+    private ZenMasterRecord? _matchedMaster; // preserved across result rebuilds
 
     // Tag filter
     private List<string> _tagFilterItems = new() { "All Tags" };
@@ -240,6 +241,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
     public event EventHandler<string>? StatusChanged;
     public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler<string>? OpenMasterRequested;
 
     // ----- Status/Context combo items (exposed for XAML) -----
 
@@ -346,7 +348,24 @@ public partial class SearchTabViewModel : ViewModelBase
         _isZen = resolver;
     }
 
+    public ZenMasterCatalog? MasterCatalog => _masterCatalog;
     public void SetMasterCatalog(ZenMasterCatalog? catalog) => _masterCatalog = catalog;
+
+    private static SearchResultGroup BuildMasterCardGroup(ZenMasterRecord master)
+    {
+        var dates = master.DatesSummary;
+        var tooltip = string.Join(" | ",
+            new[] { master.School, dates, master.Notes }
+                .Where(s => !string.IsNullOrWhiteSpace(s)));
+        return new SearchResultGroup
+        {
+            RelPath = "__master__",
+            DisplayName = $"\u2638 Zen Master: {master.CanonicalName}  ({dates})",
+            Tooltip = tooltip,
+            HitsOriginal = 0,
+            HitsTranslated = 0
+        };
+    }
 
     /// <summary>
     /// Populates the tag filter ComboBox with the current user's tag vocabulary and applied tags.
@@ -545,6 +564,11 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         if (selectedItem is SearchResultGroup g && !string.IsNullOrWhiteSpace(g.RelPath))
         {
+            if (g.RelPath == "__master__" && _matchedMaster != null)
+            {
+                OpenMasterRequested?.Invoke(this, _matchedMaster.CanonicalName);
+                return;
+            }
             NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = g.RelPath });
         }
         else if (selectedItem is SearchResultChild c && !string.IsNullOrWhiteSpace(c.RelPath))
@@ -1071,14 +1095,21 @@ public partial class SearchTabViewModel : ViewModelBase
         var top = rows.Take(maxItems).Reverse().ToArray();
         var values = top.Select(r => r.Assoc).ToArray();
         var labels = top.Select(r => r.Key).ToArray();
+        var metricName = GetMetricLabel();
 
         var rowSeries = new RowSeries<double>
         {
             Values = values,
-            Name = GetMetricLabel(),
+            Name = metricName,
             Fill = new SolidColorPaint(barColor),
             MaxBarWidth = 20,
             Padding = 2,
+            YToolTipLabelFormatter = pt =>
+            {
+                var idx = pt.Index;
+                var label = idx >= 0 && idx < labels.Length ? labels[idx] : "?";
+                return $"{label}  {metricName}={pt.Coordinate.PrimaryValue:0.###}";
+            },
         };
 
         rowSeries.ChartPointPointerDown += (sender, point) =>
@@ -1141,6 +1172,14 @@ public partial class SearchTabViewModel : ViewModelBase
             ResultGroups.Add(g);
     }
 
+    private sealed class LabeledPoint
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public string Label { get; set; } = "";
+        public int Freq { get; set; }
+    }
+
     private void BuildScatterPlot(IReadOnlyList<CoocRow> chars, IReadOnlyList<CoocRow> ngrams)
     {
         if ((chars == null || chars.Count == 0) && (ngrams == null || ngrams.Count == 0))
@@ -1154,29 +1193,35 @@ public partial class SearchTabViewModel : ViewModelBase
 
         var charPoints = (chars ?? Array.Empty<CoocRow>())
             .Where(r => r.Freq > 0)
-            .Select(r => new ObservablePoint(Math.Log2(1 + r.Freq), r.Assoc))
+            .Select(r => new LabeledPoint { X = Math.Log2(1 + r.Freq), Y = r.Assoc, Label = r.Key, Freq = r.Freq })
             .ToArray();
 
         var ngramPoints = (ngrams ?? Array.Empty<CoocRow>())
             .Where(r => r.Freq > 0)
-            .Select(r => new ObservablePoint(Math.Log2(1 + r.Freq), r.Assoc))
+            .Select(r => new LabeledPoint { X = Math.Log2(1 + r.Freq), Y = r.Assoc, Label = r.Key, Freq = r.Freq })
             .ToArray();
+
+        var metricLabel = GetMetricLabel();
 
         ScatterSeries = new ISeries[]
         {
-            new ScatterSeries<ObservablePoint>
+            new ScatterSeries<LabeledPoint>
             {
                 Values = charPoints,
                 Name = "Characters",
                 GeometrySize = 8,
                 Fill = new SolidColorPaint(isDark ? new SKColor(69, 123, 157, 180) : new SKColor(33, 76, 120, 180)),
+                Mapping = (pt, _) => new(pt.X, pt.Y),
+                YToolTipLabelFormatter = pt => $"{((LabeledPoint)pt.Model!).Label}  freq={((LabeledPoint)pt.Model!).Freq}  {metricLabel}={pt.Coordinate.SecondaryValue:0.##}",
             },
-            new ScatterSeries<ObservablePoint>
+            new ScatterSeries<LabeledPoint>
             {
                 Values = ngramPoints,
                 Name = "N-grams",
                 GeometrySize = 8,
                 Fill = new SolidColorPaint(isDark ? new SKColor(233, 196, 106, 180) : new SKColor(180, 140, 50, 180)),
+                Mapping = (pt, _) => new(pt.X, pt.Y),
+                YToolTipLabelFormatter = pt => $"{((LabeledPoint)pt.Model!).Label}  freq={((LabeledPoint)pt.Model!).Freq}  {metricLabel}={pt.Coordinate.SecondaryValue:0.##}",
             }
         };
 
@@ -1313,30 +1358,15 @@ public partial class SearchTabViewModel : ViewModelBase
             ResultsLoadingText = $"Searching for \"{q}\"...";
 
             // Insert master card at top if query matches a zen master name
+            _matchedMaster = null;
             if (_masterCatalog != null && !string.IsNullOrWhiteSpace(q))
             {
-                var matchedMaster = _masterCatalog.Records.FirstOrDefault(r =>
+                _matchedMaster = _masterCatalog.Records.FirstOrDefault(r =>
+                    r.CanonicalName.Contains(q, StringComparison.OrdinalIgnoreCase) ||
                     r.Aliases.Any(a => a.Contains(q, StringComparison.OrdinalIgnoreCase)));
 
-                if (matchedMaster != null)
-                {
-                    var variant = matchedMaster.PrimaryVariant;
-                    var school = matchedMaster.School;
-                    var dates = matchedMaster.DatesSummary;
-                    var tooltip = string.Join(" | ",
-                        new[] { school, dates, matchedMaster.Notes }
-                            .Where(s => !string.IsNullOrWhiteSpace(s)));
-
-                    var masterGroup = new SearchResultGroup
-                    {
-                        RelPath = "__master__",
-                        DisplayName = $"\u2638 Zen Master: {matchedMaster.CanonicalName}  ({dates})",
-                        Tooltip = tooltip,
-                        HitsOriginal = 0,
-                        HitsTranslated = 0
-                    };
-                    ResultGroups.Insert(0, masterGroup);
-                }
+                if (_matchedMaster != null)
+                    ResultGroups.Insert(0, BuildMasterCardGroup(_matchedMaster));
             }
 
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
@@ -1491,12 +1521,15 @@ public partial class SearchTabViewModel : ViewModelBase
                     _groups.AddRange(sortedGroups);
 
                     ResultGroups.Clear();
+                    // Re-insert master card at top if one was matched
+                    if (_matchedMaster != null)
+                        ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
                     foreach (var group in sortedGroups)
                         ResultGroups.Add(group);
 
                     SummaryText = $"Done: {sortedGroups.Count:n0} files - {totalHits:n0} hits";
                     ResultCountText = $"{ResultGroups.Count} texts \u00b7 {ResultGroups.Sum(g => g.HitsOriginal + g.HitsTranslated)} hits";
-                    HasResults = ResultGroups.Count > 0;
+                    HasResults = ResultGroups.Count > 0 || _matchedMaster != null;
                     ProgressText = $"Verified {sortedGroups.Count:n0} matching files";
 
                     if (!_firstSearchSupportShown && sortedGroups.Count > 0)

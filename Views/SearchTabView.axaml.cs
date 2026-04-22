@@ -11,6 +11,7 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using Avalonia.Controls.Primitives;
 using Avalonia.VisualTree;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -26,10 +27,20 @@ public partial class SearchTabView : UserControl
     private TextBlock? _activeHoverTextBlock;
     private CancellationTokenSource? _hoverLookupCts;
 
+    // Typeahead
+    private TypeaheadService? _typeahead;
+    private DispatcherTimer? _typeaheadTimer;
+    private Popup? _typeaheadPopup;
+    private StackPanel? _typeaheadPanel;
+    private TextBox? _txtQuery;
+    private int _typeaheadActiveIndex = -1;
+    private List<TypeaheadDisplayItem> _typeaheadItems = new();
+
     public SearchTabViewModel ViewModel => _vm;
 
     public event EventHandler<string>? Status;
     public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler<string>? OpenMasterRequested;
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
 
     /// <summary>Returns the currently active translation user (null = community).</summary>
@@ -51,6 +62,7 @@ public partial class SearchTabView : UserControl
 
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
+        _vm.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
 
         KeyDown += (s, e) =>
         {
@@ -63,6 +75,7 @@ public partial class SearchTabView : UserControl
         };
 
         WireViewEvents();
+        WireTypeahead();
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -502,7 +515,11 @@ public partial class SearchTabView : UserControl
         => _vm.SetRootContext(root, originalDir, translatedDirs);
 
     public void SetFileIndex(List<FileNavItem> items)
-        => _vm.SetFileIndex(items);
+    {
+        _vm.SetFileIndex(items);
+        _typeahead ??= new TypeaheadService();
+        _typeahead.Initialize(_vm.MasterCatalog, items);
+    }
 
     public void SetContext(
         string root,
@@ -546,6 +563,237 @@ public partial class SearchTabView : UserControl
                 txtQuery.SelectAll();
             }, DispatcherPriority.Background);
         }
+    }
+
+    // ── Typeahead ──
+
+    public void InitTypeahead(ZenMasterCatalog? catalog, IReadOnlyList<FileNavItem>? fileIndex)
+    {
+        _typeahead ??= new TypeaheadService();
+        _typeahead.Initialize(catalog, fileIndex);
+    }
+
+    private void WireTypeahead()
+    {
+        _txtQuery = this.FindControl<TextBox>("TxtQuery");
+        _typeaheadPopup = this.FindControl<Popup>("TypeaheadPopup");
+        _typeaheadPanel = this.FindControl<StackPanel>("TypeaheadPanel");
+        if (_txtQuery == null || _typeaheadPopup == null || _typeaheadPanel == null) return;
+
+        _typeaheadTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(150) };
+        _typeaheadTimer.Tick += (_, _) =>
+        {
+            _typeaheadTimer.Stop();
+            RenderTypeahead();
+        };
+
+        _txtQuery.TextChanged += (_, _) =>
+        {
+            _typeaheadTimer?.Stop();
+            _typeaheadTimer?.Start();
+        };
+
+        _txtQuery.KeyDown += TypeaheadKeyDown;
+    }
+
+    private void TypeaheadKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (_typeaheadPopup == null || !_typeaheadPopup.IsOpen) return;
+
+        var selectableItems = _typeaheadItems
+            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+
+        switch (e.Key)
+        {
+            case Key.Down:
+                _typeaheadActiveIndex = Math.Min(_typeaheadActiveIndex + 1, selectableItems.Count - 1);
+                HighlightTypeaheadItem();
+                e.Handled = true;
+                break;
+            case Key.Up:
+                _typeaheadActiveIndex = Math.Max(_typeaheadActiveIndex - 1, 0);
+                HighlightTypeaheadItem();
+                e.Handled = true;
+                break;
+            case Key.Enter when _typeaheadActiveIndex >= 0 && _typeaheadActiveIndex < selectableItems.Count:
+                SelectTypeaheadItem(selectableItems[_typeaheadActiveIndex]);
+                e.Handled = true;
+                break;
+            case Key.Escape:
+                CloseTypeahead();
+                e.Handled = true;
+                break;
+        }
+    }
+
+    private void RenderTypeahead()
+    {
+        if (_typeahead == null || _typeaheadPanel == null || _typeaheadPopup == null) return;
+
+        var text = _txtQuery?.Text?.Trim() ?? "";
+        if (text.Length < 1)
+        {
+            CloseTypeahead();
+            return;
+        }
+
+        _typeaheadItems = _typeahead.Query(text);
+        if (_typeaheadItems.Count <= 1) // only fulltext action = no real suggestions
+        {
+            // Still show the fulltext action
+        }
+
+        _typeaheadPanel.Children.Clear();
+        _typeaheadActiveIndex = -1;
+
+        var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
+                     Avalonia.Styling.ThemeVariant.Dark;
+        int selectableIdx = 0;
+
+        foreach (var item in _typeaheadItems)
+        {
+            switch (item.Kind)
+            {
+                case TypeaheadItemKind.SectionHeader:
+                    _typeaheadPanel.Children.Add(new TextBlock
+                    {
+                        Text = item.HeaderText?.ToUpperInvariant() ?? "",
+                        FontSize = 10,
+                        FontWeight = Avalonia.Media.FontWeight.SemiBold,
+                        Opacity = 0.5,
+                        Padding = new Thickness(10, 8, 10, 2),
+                    });
+                    break;
+
+                case TypeaheadItemKind.Master:
+                {
+                    var panel = new StackPanel { Spacing = 1 };
+                    panel.Children.Add(new TextBlock
+                    {
+                        Text = item.DisplayName,
+                        FontSize = 13,
+                        FontWeight = Avalonia.Media.FontWeight.Medium,
+                    });
+                    if (!string.IsNullOrWhiteSpace(item.Meta))
+                    {
+                        panel.Children.Add(new TextBlock
+                        {
+                            Text = item.Meta,
+                            FontSize = 11,
+                            Opacity = 0.6,
+                        });
+                    }
+                    var border = MakeTypeaheadRow(panel, item, selectableIdx++);
+                    _typeaheadPanel.Children.Add(border);
+                    break;
+                }
+
+                case TypeaheadItemKind.Title:
+                {
+                    var panel = new StackPanel { Spacing = 1 };
+                    if (!string.IsNullOrWhiteSpace(item.ZhTitle))
+                    {
+                        panel.Children.Add(new TextBlock
+                        {
+                            Text = item.ZhTitle,
+                            FontSize = 13,
+                        });
+                    }
+                    if (!string.IsNullOrWhiteSpace(item.EnTitle))
+                    {
+                        panel.Children.Add(new TextBlock
+                        {
+                            Text = item.EnTitle,
+                            FontSize = 11,
+                            Opacity = 0.6,
+                        });
+                    }
+                    var border = MakeTypeaheadRow(panel, item, selectableIdx++);
+                    _typeaheadPanel.Children.Add(border);
+                    break;
+                }
+
+                case TypeaheadItemKind.FullTextAction:
+                {
+                    var tb = new TextBlock
+                    {
+                        Text = $"Search full text for \u201c{item.Query}\u201d",
+                        FontSize = 12,
+                        FontStyle = Avalonia.Media.FontStyle.Italic,
+                        Opacity = 0.6,
+                    };
+                    var border = MakeTypeaheadRow(tb, item, selectableIdx++);
+                    _typeaheadPanel.Children.Add(border);
+                    break;
+                }
+            }
+        }
+
+        _typeaheadPopup.IsOpen = true;
+    }
+
+    private Border MakeTypeaheadRow(Control content, TypeaheadDisplayItem item, int idx)
+    {
+        var border = new Border
+        {
+            Child = content,
+            Padding = new Thickness(10, 6),
+            CornerRadius = new CornerRadius(4),
+            Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+            Tag = item,
+        };
+        border.PointerEntered += (_, _) =>
+        {
+            var selectableItems = _typeaheadItems
+                .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+            _typeaheadActiveIndex = selectableItems.IndexOf(item);
+            HighlightTypeaheadItem();
+        };
+        border.PointerPressed += (_, _) => SelectTypeaheadItem(item);
+        return border;
+    }
+
+    private void HighlightTypeaheadItem()
+    {
+        if (_typeaheadPanel == null) return;
+        var selectableItems = _typeaheadItems
+            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+        int si = 0;
+        foreach (var child in _typeaheadPanel.Children)
+        {
+            if (child is Border b && b.Tag is TypeaheadDisplayItem)
+            {
+                var isActive = si == _typeaheadActiveIndex;
+                b.Background = isActive
+                    ? new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(30, 255, 255, 255))
+                    : null;
+                si++;
+            }
+        }
+    }
+
+    private void SelectTypeaheadItem(TypeaheadDisplayItem item)
+    {
+        CloseTypeahead();
+        switch (item.Kind)
+        {
+            case TypeaheadItemKind.Master when item.Master != null:
+                OpenMasterRequested?.Invoke(this, item.Master.CanonicalName);
+                break;
+            case TypeaheadItemKind.Title when item.FileItem != null:
+                NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = item.FileItem.RelPath });
+                break;
+            case TypeaheadItemKind.FullTextAction:
+                if (_txtQuery != null) _txtQuery.Text = item.Query;
+                _vm.SearchCommand.Execute(null);
+                break;
+        }
+    }
+
+    private void CloseTypeahead()
+    {
+        if (_typeaheadPopup != null) _typeaheadPopup.IsOpen = false;
+        _typeaheadActiveIndex = -1;
     }
 }
 
