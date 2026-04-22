@@ -1369,6 +1369,38 @@ public partial class SearchTabViewModel : ViewModelBase
                     ResultGroups.Insert(0, BuildMasterCardGroup(_matchedMaster));
             }
 
+            // Title matching: find texts whose title contains the query
+            if (_fileIndex.Count > 0 && !string.IsNullOrWhiteSpace(q))
+            {
+                var titleMatches = _fileIndex
+                    .Where(f => (!string.IsNullOrWhiteSpace(f.DisplayShort)
+                                  && f.DisplayShort.Contains(q, StringComparison.OrdinalIgnoreCase))
+                              || (!string.IsNullOrWhiteSpace(f.Tooltip)
+                                  && f.Tooltip.Contains(q, StringComparison.OrdinalIgnoreCase)))
+                    .Take(10)
+                    .ToList();
+
+                foreach (var item in titleMatches)
+                {
+                    var tooltip = item.Tooltip ?? "";
+                    var zhTitle = "";
+                    var nlIdx = tooltip.IndexOf('\n');
+                    if (nlIdx >= 0 && nlIdx < tooltip.Length - 1)
+                        zhTitle = tooltip[(nlIdx + 1)..];
+
+                    ResultGroups.Add(new SearchResultGroup
+                    {
+                        RelPath = item.RelPath,
+                        DisplayName = $"\uD83D\uDCD6 {item.DisplayShort ?? item.FileName}",
+                        Tooltip = item.Tooltip ?? item.RelPath,
+                        ChineseTitle = zhTitle,
+                        Status = item.Status,
+                        HitsOriginal = 0,
+                        HitsTranslated = 0
+                    });
+                }
+            }
+
             await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Render);
 
             await Task.Run(async () =>
