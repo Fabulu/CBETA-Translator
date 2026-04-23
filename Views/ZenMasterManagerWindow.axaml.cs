@@ -310,7 +310,7 @@ public partial class ZenMasterManagerWindow : Window
 
         var text = isReddit
             ? ZenUriParser.BuildShareableMasterUrl(selected.CanonicalName)
-            : ZenUriParser.BuildMasterUri(selected.CanonicalName);
+            : ZenUriParser.BuildShareableMasterUrl(selected.CanonicalName);
 
         var top = TopLevel.GetTopLevel(this);
         if (top?.Clipboard != null)
