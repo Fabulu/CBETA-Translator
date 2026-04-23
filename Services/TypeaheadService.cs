@@ -81,9 +81,11 @@ public sealed class TypeaheadService
             }
         }
 
-        // Titles — top 5
+        // Titles — top 5, prefix-sorted for consistency
         var titleHits = _titleBlobs
             .Where(b => b.Blob.Contains(lq))
+            .OrderBy(b => b.Blob.StartsWith(lq) ? 0 : 1)
+            .ThenBy(b => b.Item.DisplayShort, StringComparer.OrdinalIgnoreCase)
             .Take(5)
             .ToList();
 

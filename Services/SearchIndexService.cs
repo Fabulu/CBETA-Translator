@@ -2471,7 +2471,7 @@ public sealed class SearchIndexService : ISearchIndexService
         if (InvertedIndex?.IsLoaded == true && effectiveQuery.Length >= 2)
         {
             var invertedHits = InvertedIndex.Search(effectiveQuery);
-            if (invertedHits != null)
+            if (invertedHits != null && invertedHits.Length > 0)
             {
                 int sideMask = (includeOriginal ? 1 : 0) | (includeTranslated ? 2 : 0);
                 foreach (var docId in invertedHits)
