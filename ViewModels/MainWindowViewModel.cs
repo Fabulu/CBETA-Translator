@@ -1149,6 +1149,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 await ApplyFilterSafeAsync();
                 WireSearchTab();
+                SetSearchFileIndex?.Invoke(_allItems);
 
                 SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
                 return;
