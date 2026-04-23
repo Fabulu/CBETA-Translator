@@ -1145,6 +1145,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (cache?.Entries is { Count: > 0 } && !_forceRebuildIndex)
             {
                 _allItems = cache.Entries;
+                MergeSecondaryCorpusTitles();
                 RebuildLookup();
 
                 await ApplyFilterSafeAsync();
@@ -1166,6 +1167,7 @@ public partial class MainWindowViewModel : ViewModelBase
             await _indexCacheService.SaveAsync(_translationRoot, built, _originalsRepoRoot);
 
             _allItems = built.Entries ?? new List<FileNavItem>();
+            MergeSecondaryCorpusTitles();
             RebuildLookup();
 
             await ApplyFilterSafeAsync();
@@ -3822,6 +3824,63 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     }
 
     private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
+
+    /// <summary>
+    /// Merges file items from the secondary corpus (if present) into _allItems.
+    /// This ensures typeahead and title matching find texts from both corpora.
+    /// </summary>
+    private void MergeSecondaryCorpusTitles()
+    {
+        if (_availableCorpora.Count < 2) return;
+
+        var existingPaths = new HashSet<string>(
+            _allItems.Select(i => i.RelPath), StringComparer.OrdinalIgnoreCase);
+
+        foreach (var layout in _availableCorpora)
+        {
+            if (layout.Kind == ActiveCorpus) continue; // skip the primary (already loaded)
+
+            var titlesPath = Path.Combine(layout.TranslationsRepoRoot, "titles.jsonl");
+            if (!File.Exists(titlesPath)) continue;
+
+            try
+            {
+                foreach (var line in File.ReadLines(titlesPath, System.Text.Encoding.UTF8))
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    try
+                    {
+                        using var doc = System.Text.Json.JsonDocument.Parse(line);
+                        var r = doc.RootElement;
+                        if (!r.TryGetProperty("path", out var pathEl)) continue;
+                        var path = pathEl.GetString();
+                        if (string.IsNullOrWhiteSpace(path) || existingPaths.Contains(path)) continue;
+
+                        string? zh = r.TryGetProperty("zh", out var zhEl) ? zhEl.GetString() : null;
+                        string? en = r.TryGetProperty("en", out var enEl) ? enEl.GetString() : null;
+                        string? enShort = r.TryGetProperty("enShort", out var esEl) ? esEl.GetString() : null;
+
+                        var tooltipParts = new List<string>();
+                        if (!string.IsNullOrWhiteSpace(en)) tooltipParts.Add(en);
+                        if (!string.IsNullOrWhiteSpace(zh)) tooltipParts.Add(zh);
+                        if (tooltipParts.Count == 0) tooltipParts.Add(path);
+
+                        _allItems.Add(new FileNavItem
+                        {
+                            RelPath = path,
+                            FileName = Path.GetFileName(path),
+                            DisplayShort = !string.IsNullOrWhiteSpace(enShort) ? enShort : Path.GetFileName(path),
+                            Tooltip = string.Join("\n", tooltipParts),
+                            Status = TranslationStatus.Green, // OpenZen texts are community-translated
+                        });
+                        existingPaths.Add(path);
+                    }
+                    catch { /* skip bad lines */ }
+                }
+            }
+            catch { /* skip if titles.jsonl unreadable */ }
+        }
+    }
 
     /// <summary>
     /// Builds a list of all translation directories: community xml-p5t first,
