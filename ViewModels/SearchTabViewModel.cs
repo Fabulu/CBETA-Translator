@@ -133,7 +133,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private bool _searchOriginal = true;
 
     [ObservableProperty]
-    private bool _searchTranslated;
+    private bool _searchTranslated = true;
 
     [ObservableProperty]
     private bool _zenOnly;
