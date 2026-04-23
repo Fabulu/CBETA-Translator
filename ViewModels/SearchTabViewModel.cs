@@ -43,6 +43,8 @@ public partial class SearchTabViewModel : ViewModelBase
     private string? _root;
     private string? _originalDir;
     private IReadOnlyList<string>? _translatedDirs;
+    private IReadOnlyList<string>? _additionalOriginalDirs;
+    private IReadOnlyList<string>? _additionalTranslatedDirs;
     private bool _forceRebuildNextClick;
 
     private List<FileNavItem> _fileIndex = new();
@@ -333,9 +335,13 @@ public partial class SearchTabViewModel : ViewModelBase
         string root,
         string originalDir,
         IReadOnlyList<string> translatedDirs,
-        Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta)
+        Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null)
     {
         _root = root;
+        _additionalOriginalDirs = additionalOriginalDirs;
+        _additionalTranslatedDirs = additionalTranslatedDirs;
         _originalDir = originalDir;
         _translatedDirs = translatedDirs;
         _meta = fileMeta;
@@ -641,7 +647,8 @@ public partial class SearchTabViewModel : ViewModelBase
                 StatusChanged?.Invoke(this, msg);
             });
 
-            await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force, progress: prog, ct: ct);
+            await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force,
+                additionalOriginalDirs: _additionalOriginalDirs, progress: prog, ct: ct);
 
             await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
             {
@@ -1574,6 +1581,8 @@ public partial class SearchTabViewModel : ViewModelBase
                                    contextWidth: contextWidth,
                                    progress: prog,
                                    relPathFilter: relFilter,
+                                   additionalOriginalDirs: _additionalOriginalDirs,
+                                   additionalTranslatedDirs: _additionalTranslatedDirs,
                                    ct: ct))
                 {
                     ct.ThrowIfCancellationRequested();

@@ -708,6 +708,24 @@ public sealed class SearchIndexService : ISearchIndexService
     private static string NormalizeRelKey(string p)
         => (p ?? "").Replace('\\', '/').TrimStart('/');
 
+    /// <summary>Resolve a RelPath to an absolute filesystem path, trying primary dir first then additionals.</summary>
+    private static string ResolveAbsPath(string primaryDir, IReadOnlyList<string>? additionalDirs, string relKey)
+    {
+        var relFs = relKey.Replace('/', Path.DirectorySeparatorChar);
+        var primary = Path.Combine(primaryDir, relFs);
+        if (File.Exists(primary)) return primary;
+
+        if (additionalDirs != null)
+        {
+            foreach (var dir in additionalDirs)
+            {
+                var candidate = Path.Combine(dir, relFs);
+                if (File.Exists(candidate)) return candidate;
+            }
+        }
+        return primary; // fallback — VerifyFileAllHits handles missing files gracefully
+    }
+
     public string GetManifestPath(string root) => Path.Combine(root, ManifestFileName);
     public string GetBinPath(string root) => Path.Combine(root, BinFileName);
     public string GetTextManifestPath(string root) => Path.Combine(root, TextManifestFileName);
@@ -1619,13 +1637,14 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild: true, progress, ct);
+        => BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild: true, additionalOriginalDirs: null, progress: progress, ct: ct);
 
     public Task BuildOrUpdateAsync(
         string root,
         string originalDir,
         IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
     {
@@ -1681,6 +1700,21 @@ public sealed class SearchIndexService : ISearchIndexService
                 var origFiles = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories)
                     .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f)))
                     .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
+
+                // Scan additional original dirs (e.g., OpenZen alongside CBETA)
+                if (additionalOriginalDirs != null)
+                {
+                    foreach (var addDir in additionalOriginalDirs)
+                    {
+                        if (string.IsNullOrWhiteSpace(addDir) || !Directory.Exists(addDir)) continue;
+                        foreach (var f in Directory.EnumerateFiles(addDir, "*.xml", SearchOption.AllDirectories))
+                        {
+                            var rel = NormalizeRelKey(Path.GetRelativePath(addDir, f));
+                            if (!origFiles.ContainsKey(rel))
+                                origFiles[rel] = (rel, f, new FileInfo(f));
+                        }
+                    }
+                }
 
                 var tranFiles = new Dictionary<string, (string rel, string abs, FileInfo fi)>(StringComparer.OrdinalIgnoreCase);
                 foreach (var tDir in translatedDirs)
@@ -2366,6 +2400,8 @@ public sealed class SearchIndexService : ISearchIndexService
     int contextWidth,
     IProgress<SearchProgress>? progress = null,
     Func<string, bool>? relPathFilter = null,
+    IReadOnlyList<string>? additionalOriginalDirs = null,
+    IReadOnlyList<string>? additionalTranslatedDirs = null,
     [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)
     {
         query = (query ?? "").Trim();
@@ -2735,7 +2771,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
                     if ((mask & 1) != 0)
                     {
-                        string abs = Path.Combine(originalDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                        string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
                         entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
                         textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
                         originalHits = VerifyFileAllHits(
@@ -2756,7 +2792,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
                     if ((mask & 2) != 0)
                     {
-                        string abs = Path.Combine(translatedDir, relKey.Replace('/', Path.DirectorySeparatorChar));
+                        string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
                         entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
                         textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
                         translatedHits = VerifyFileAllHits(
