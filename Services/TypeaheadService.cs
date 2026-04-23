@@ -94,6 +94,33 @@ public sealed class TypeaheadService
             .Take(5)
             .ToList();
 
+        // If masters matched, also find texts by master's Chinese names
+        if (masterHits.Count > 0 && titleHits.Count < 5)
+        {
+            var matchedPaths = new HashSet<string>(
+                titleHits.Select(t => t.Item.RelPath), StringComparer.OrdinalIgnoreCase);
+            foreach (var (record, _) in masterHits)
+            {
+                foreach (var alias in record.Aliases)
+                {
+                    if (string.IsNullOrWhiteSpace(alias) || alias.Length < 2) continue;
+                    var la = alias.ToLowerInvariant();
+                    foreach (var tb in _titleBlobs)
+                    {
+                        if (matchedPaths.Contains(tb.Item.RelPath)) continue;
+                        if (tb.Blob.Contains(la))
+                        {
+                            titleHits.Add(tb);
+                            matchedPaths.Add(tb.Item.RelPath);
+                            if (titleHits.Count >= 5) break;
+                        }
+                    }
+                    if (titleHits.Count >= 5) break;
+                }
+                if (titleHits.Count >= 5) break;
+            }
+        }
+
         if (titleHits.Count > 0)
         {
             results.Add(new TypeaheadDisplayItem { Kind = TypeaheadItemKind.SectionHeader, HeaderText = "Texts" });
