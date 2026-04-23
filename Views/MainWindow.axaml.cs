@@ -683,6 +683,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _searchView?.InitTypeahead(catalog, null);
         };
         _vm.SetSearchContext = (root, orig, tranDirs, meta) => _searchView?.SetContext(root, orig, tranDirs, fileMeta: meta);
+        _vm.SetSearchFileIndex = items => _searchView?.SetFileIndex(items);
         _vm.ClearSearch = () => _searchView?.Clear();
 
         // GitTabView bridges
