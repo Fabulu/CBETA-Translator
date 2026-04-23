@@ -12,16 +12,21 @@ public sealed class TypeaheadService
 
     public void Initialize(ZenMasterCatalog? catalog, IReadOnlyList<FileNavItem>? fileIndex)
     {
-        _masterBlobs = catalog?.Records
-            .Select(r =>
-            {
-                var parts = new List<string> { r.CanonicalName };
-                parts.AddRange(r.Aliases);
-                return (r, string.Join(" ", parts).ToLowerInvariant());
-            })
-            .ToList() ?? new();
+        // Only update the parts that are provided (don't overwrite with empty)
+        if (catalog == null && fileIndex == null) return;
 
-        _titleBlobs = fileIndex?
+        if (catalog != null)
+            _masterBlobs = catalog.Records
+                .Select(r =>
+                {
+                    var parts = new List<string> { r.CanonicalName };
+                    parts.AddRange(r.Aliases);
+                    return (r, string.Join(" ", parts).ToLowerInvariant());
+                })
+                .ToList();
+
+        if (fileIndex != null)
+        _titleBlobs = fileIndex
             .Select(f =>
             {
                 // Tooltip typically has "English Title · 中文標題" or just one
@@ -45,7 +50,7 @@ public sealed class TypeaheadService
                 var blob = $"{f.DisplayShort} {f.Tooltip} {f.FileName} {f.RelPath}".ToLowerInvariant();
                 return (f, blob, zhTitle, enTitle);
             })
-            .ToList() ?? new();
+            .ToList();
     }
 
     public List<TypeaheadDisplayItem> Query(string input)
