@@ -26,5 +26,7 @@ public interface ISearchEngine
         int contextWidth,
         IProgress<SearchIndexService.SearchProgress>? progress = null,
         Func<string, bool>? relPathFilter = null,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         CancellationToken ct = default);
 }

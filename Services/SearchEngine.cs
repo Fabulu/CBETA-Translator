@@ -35,11 +35,13 @@ public sealed class SearchEngine : ISearchEngine
         int contextWidth,
         IProgress<SearchIndexService.SearchProgress>? progress = null,
         Func<string, bool>? relPathFilter = null,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         CancellationToken ct = default)
     {
         return _facade.SearchAllAsync(
             root, originalDir, translatedDir, manifest, query,
             includeOriginal, includeTranslated, fileMeta, contextWidth,
-            progress, relPathFilter, ct);
+            progress, relPathFilter, additionalOriginalDirs, additionalTranslatedDirs, ct);
     }
 }

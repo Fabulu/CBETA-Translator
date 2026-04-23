@@ -525,8 +525,10 @@ public partial class SearchTabView : UserControl
         string root,
         string originalDir,
         IReadOnlyList<string> translatedDirs,
-        Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta)
-        => _vm.SetContext(root, originalDir, translatedDirs, fileMeta);
+        Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null)
+        => _vm.SetContext(root, originalDir, translatedDirs, fileMeta, additionalOriginalDirs, additionalTranslatedDirs);
 
     public void SetZenResolver(Func<string, bool> isZenResolver)
         => _vm.SetZenResolver(isZenResolver);

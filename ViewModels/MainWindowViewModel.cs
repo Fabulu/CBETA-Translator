@@ -397,7 +397,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     /// <summary>Permanently cached master catalog for downstream consumers (search, etc.).</summary>
     public ZenMasterCatalog? MasterCatalog { get; private set; }
-    public Action<string, string, IReadOnlyList<string>, Func<string, (string, string, TranslationStatus?)>>? SetSearchContext { get; set; }
+    public Action<string, string, IReadOnlyList<string>, Func<string, (string, string, TranslationStatus?)>, IReadOnlyList<string>?, IReadOnlyList<string>?>? SetSearchContext { get; set; }
     public Action<List<FileNavItem>>? SetSearchFileIndex { get; set; }
     public Action? ClearSearch { get; set; }
 
@@ -892,8 +892,12 @@ public partial class MainWindowViewModel : ViewModelBase
                     var progress = new Progress<(int done, int total, string phase)>(t =>
                         Dispatcher.UIThread.Post(() => SetStatus($"Indexing: {t.phase} ({t.done}/{t.total})")));
 
+                    var addOrigDirsAuto = _availableCorpora
+                        .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
+                        .Select(c => c.OriginalDir).ToList();
                     await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDirs,
-                        forceRebuild: false, progress, ct);
+                        forceRebuild: false, additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,
+                        progress: progress, ct: ct);
 
                     if (!ct.IsCancellationRequested)
                         Dispatcher.UIThread.Post(() => SetStatus("Search index ready."));
@@ -1128,12 +1132,21 @@ public partial class MainWindowViewModel : ViewModelBase
 
         void WireSearchTab()
         {
+            var addOrigDirs = _availableCorpora
+                .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
+                .Select(c => c.OriginalDir).ToList();
+            var addTransDirs = _availableCorpora
+                .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
+                .Select(c => c.TranslatedDir).ToList();
+
             SetSearchContext?.Invoke((_translationRoot ?? _root)!, _originalDir!, BuildAllTranslatedDirs(),
                 relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
                     return it != null ? (it.DisplayShort, it.Tooltip, it.Status) : (relKey, relKey, null);
-                });
+                },
+                addOrigDirs.Count > 0 ? addOrigDirs : null,
+                addTransDirs.Count > 0 ? addTransDirs : null);
 
             SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
         }
@@ -3910,12 +3923,20 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         var allTranslatedDirs = BuildAllTranslatedDirs();
         var indexRoot = _translationRoot ?? _root;
         SetSearchRootContext?.Invoke(indexRoot, _originalDir, allTranslatedDirs);
+        var addOrigDirs2 = _availableCorpora
+            .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
+            .Select(c => c.OriginalDir).ToList();
+        var addTransDirs2 = _availableCorpora
+            .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
+            .Select(c => c.TranslatedDir).ToList();
         SetSearchContext?.Invoke(indexRoot, _originalDir, allTranslatedDirs,
             relKey =>
             {
                 _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
                 return it != null ? (it.DisplayShort, it.Tooltip, it.Status) : (relKey, relKey, null);
-            });
+            },
+            addOrigDirs2.Count > 0 ? addOrigDirs2 : null,
+            addTransDirs2.Count > 0 ? addTransDirs2 : null);
         SetSearchZenResolver?.Invoke(rel => _zenTexts.IsZen(rel));
     }
 

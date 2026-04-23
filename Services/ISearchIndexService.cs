@@ -35,6 +35,7 @@ public interface ISearchIndexService : IDisposable
         string originalDir,
         IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 
@@ -52,5 +53,7 @@ public interface ISearchIndexService : IDisposable
         int contextWidth,
         IProgress<SearchIndexService.SearchProgress>? progress = null,
         Func<string, bool>? relPathFilter = null,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         CancellationToken ct = default);
 }
