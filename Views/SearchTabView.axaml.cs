@@ -764,8 +764,12 @@ public partial class SearchTabView : UserControl
             if (child is Border b && b.Tag is TypeaheadDisplayItem)
             {
                 var isActive = si == _typeaheadActiveIndex;
+                var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
+                             Avalonia.Styling.ThemeVariant.Dark;
                 b.Background = isActive
-                    ? new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(30, 255, 255, 255))
+                    ? new Avalonia.Media.SolidColorBrush(isDark
+                        ? Avalonia.Media.Color.FromArgb(40, 255, 255, 255)
+                        : Avalonia.Media.Color.FromArgb(60, 50, 100, 180))
                     : null;
                 si++;
             }

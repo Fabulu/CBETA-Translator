@@ -398,6 +398,7 @@ public partial class MainWindowViewModel : ViewModelBase
     /// <summary>Permanently cached master catalog for downstream consumers (search, etc.).</summary>
     public ZenMasterCatalog? MasterCatalog { get; private set; }
     public Action<string, string, IReadOnlyList<string>, Func<string, (string, string, TranslationStatus?)>>? SetSearchContext { get; set; }
+    public Action<List<FileNavItem>>? SetSearchFileIndex { get; set; }
     public Action? ClearSearch { get; set; }
 
     // GitTabView bridges
@@ -1168,6 +1169,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await ApplyFilterSafeAsync();
             WireSearchTab();
+            SetSearchFileIndex?.Invoke(_allItems);
 
             SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
             _forceRebuildIndex = false;
