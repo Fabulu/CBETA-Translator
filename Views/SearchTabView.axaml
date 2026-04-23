@@ -95,14 +95,7 @@
                     <WrapPanel Grid.Column="0"
                                Orientation="Horizontal"
                                ItemWidth="NaN">
-                        <CheckBox Content="Original"
-                                  Margin="0,0,8,0"
-                                  IsChecked="{Binding SearchOriginal}"
-                                  ToolTip.Tip="Search in original Chinese texts"/>
-                        <CheckBox Content="Translated"
-                                  Margin="0,0,8,0"
-                                  IsChecked="{Binding SearchTranslated}"
-                                  ToolTip.Tip="Search in translated English texts"/>
+                        <!-- Original/Translated always both searched now -->
                         <ComboBox Width="124"
                                   Margin="0,0,8,0"
                                   ItemsSource="{Binding StatusItems}"
