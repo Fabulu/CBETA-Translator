@@ -202,6 +202,14 @@ public partial class SearchTabViewModel : ViewModelBase
     private bool _isCoocFilterActive;
 
     [ObservableProperty]
+    private bool _isMasterFilterActive;
+
+    [ObservableProperty]
+    private string? _masterFilterName;
+
+    private HashSet<string>? _masterFilterRelPaths;
+
+    [ObservableProperty]
     private string _metricGuideText = "";
 
     [ObservableProperty]
@@ -1170,6 +1178,40 @@ public partial class SearchTabViewModel : ViewModelBase
         ResultGroups.Clear();
         foreach (var g in _groups)
             ResultGroups.Add(g);
+    }
+
+    public void ApplyMasterFilter(string masterName, IReadOnlyList<string>? relPaths)
+    {
+        MasterFilterName = masterName;
+        _masterFilterRelPaths = relPaths != null ? new HashSet<string>(relPaths, StringComparer.OrdinalIgnoreCase) : null;
+        IsMasterFilterActive = true;
+
+        if (_masterFilterRelPaths != null && _groups.Count > 0)
+        {
+            ResultGroups.Clear();
+            if (_matchedMaster != null)
+                ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
+            foreach (var g in _groups)
+            {
+                if (_masterFilterRelPaths.Contains(g.RelPath))
+                    ResultGroups.Add(g);
+            }
+            HasResults = ResultGroups.Count > 0;
+        }
+    }
+
+    [RelayCommand]
+    private void ClearMasterFilter()
+    {
+        MasterFilterName = null;
+        _masterFilterRelPaths = null;
+        IsMasterFilterActive = false;
+        ResultGroups.Clear();
+        if (_matchedMaster != null)
+            ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
+        foreach (var g in _groups)
+            ResultGroups.Add(g);
+        HasResults = ResultGroups.Count > 0;
     }
 
     private sealed class LabeledPoint

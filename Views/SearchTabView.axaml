@@ -172,7 +172,7 @@
                         CornerRadius="8"
                         Padding="4">
 
-                    <Grid RowDefinitions="Auto,Auto,*">
+                    <Grid RowDefinitions="Auto,Auto,Auto,*">
                         <!-- Result count header -->
                         <TextBlock Grid.Row="0"
                                    Text="{Binding ResultCountText}"
@@ -197,7 +197,24 @@
                             </StackPanel>
                         </Border>
 
-                        <TreeView Grid.Row="2"
+                        <!-- Master corpus filter indicator -->
+                        <Border Grid.Row="2"
+                                IsVisible="{Binding IsMasterFilterActive}"
+                                Background="#331A7A6A"
+                                CornerRadius="4"
+                                Padding="8,4"
+                                Margin="0,0,0,4">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="{Binding MasterFilterName, StringFormat='Filtered to: {0}'}"
+                                           FontSize="12" Foreground="#FF30A898"/>
+                                <Button Content="&#x2715; Clear"
+                                        Command="{Binding ClearMasterFilterCommand}"
+                                        Padding="4,2"
+                                        FontSize="11"/>
+                            </StackPanel>
+                        </Border>
+
+                        <TreeView Grid.Row="3"
                                   Name="ResultsTree"
                                   ItemsSource="{Binding ResultGroups}"
                                   Background="{DynamicResource ControlBg}"
@@ -300,7 +317,7 @@
 
                         </TreeView>
 
-                        <Border Grid.Row="2"
+                        <Border Grid.Row="3"
                                 IsVisible="{Binding IsSearchLoadingPlaceholderVisible}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -331,7 +348,7 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Row="2"
+                        <Border Grid.Row="3"
                                 Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
                                 HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Padding="20">
