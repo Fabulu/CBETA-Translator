@@ -1412,6 +1412,7 @@ public partial class SearchTabViewModel : ViewModelBase
             }
 
             // Title matching: find texts whose title contains the query
+            // Also include master's primary texts if a master was matched
             if (_fileIndex.Count > 0 && !string.IsNullOrWhiteSpace(q))
             {
                 var titleMatches = _fileIndex
@@ -1421,6 +1422,27 @@ public partial class SearchTabViewModel : ViewModelBase
                                   && f.Tooltip.Contains(q, StringComparison.OrdinalIgnoreCase)))
                     .Take(10)
                     .ToList();
+
+                // If a master was matched, also find texts with their Chinese name in the title
+                if (_matchedMaster != null)
+                {
+                    var matchedRelPaths = new HashSet<string>(
+                        titleMatches.Select(t => t.RelPath), StringComparer.OrdinalIgnoreCase);
+                    foreach (var alias in _matchedMaster.Aliases)
+                    {
+                        if (string.IsNullOrWhiteSpace(alias) || alias.Length < 2) continue;
+                        var masterTexts = _fileIndex
+                            .Where(f => !matchedRelPaths.Contains(f.RelPath)
+                                && !string.IsNullOrWhiteSpace(f.Tooltip)
+                                && f.Tooltip.Contains(alias, StringComparison.Ordinal))
+                            .Take(5);
+                        foreach (var mt in masterTexts)
+                        {
+                            matchedRelPaths.Add(mt.RelPath);
+                            titleMatches.Add(mt);
+                        }
+                    }
+                }
 
                 foreach (var item in titleMatches)
                 {
