@@ -1552,10 +1552,19 @@ public partial class SearchTabViewModel : ViewModelBase
                     _groups.Clear();
                     _groups.AddRange(sortedGroups);
 
+                    // Preserve title matches (📖 prefixed) from initial insert
+                    var titleMatches = ResultGroups
+                        .Where(g => g.DisplayName.StartsWith("\uD83D\uDCD6"))
+                        .ToList();
+
                     ResultGroups.Clear();
                     // Re-insert master card at top if one was matched
                     if (_matchedMaster != null)
                         ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
+                    // Re-insert title matches
+                    foreach (var tm in titleMatches)
+                        ResultGroups.Add(tm);
+                    // Then full-text results
                     foreach (var group in sortedGroups)
                         ResultGroups.Add(group);
 
