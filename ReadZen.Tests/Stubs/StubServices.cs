@@ -144,10 +144,10 @@ public class StubSearchIndexService : ISearchIndexService
     public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
 
-    public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
+    public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
 
-    public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(string root, string originalDir, string translatedDir, SearchIndexManifest manifest, string query, bool includeOriginal, bool includeTranslated, Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta, int contextWidth, IProgress<SearchIndexService.SearchProgress>? progress = null, Func<string, bool>? relPathFilter = null, [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)
+    public async IAsyncEnumerable<SearchResultGroup> SearchAllAsync(string root, string originalDir, string translatedDir, SearchIndexManifest manifest, string query, bool includeOriginal, bool includeTranslated, Func<string, (string display, string tooltip, TranslationStatus? status)> fileMeta, int contextWidth, IProgress<SearchIndexService.SearchProgress>? progress = null, Func<string, bool>? relPathFilter = null, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null, [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct = default)
     {
         await Task.CompletedTask;
         yield break;
