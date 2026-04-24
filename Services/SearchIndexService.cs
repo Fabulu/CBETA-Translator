@@ -1637,7 +1637,8 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string> translatedDirs,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild: true, additionalOriginalDirs: null, progress: progress, ct: ct);
+        => BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild: true,
+            additionalOriginalDirs: null, additionalTranslatedDirs: null, progress: progress, ct: ct);
 
     public Task BuildOrUpdateAsync(
         string root,
@@ -1645,6 +1646,7 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
     {
@@ -1723,8 +1725,22 @@ public sealed class SearchIndexService : ISearchIndexService
                     foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
                     {
                         var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
-                        if (!tranFiles.ContainsKey(rel)) // First dir wins (community first)
+                        if (!tranFiles.ContainsKey(rel))
                             tranFiles[rel] = (rel, f, new FileInfo(f));
+                    }
+                }
+                // Scan additional translated dirs (e.g., OpenZen translations)
+                if (additionalTranslatedDirs != null)
+                {
+                    foreach (var tDir in additionalTranslatedDirs)
+                    {
+                        if (string.IsNullOrWhiteSpace(tDir) || !Directory.Exists(tDir)) continue;
+                        foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
+                        {
+                            var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
+                            if (!tranFiles.ContainsKey(rel))
+                                tranFiles[rel] = (rel, f, new FileInfo(f));
+                        }
                     }
                 }
 

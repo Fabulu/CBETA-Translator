@@ -895,8 +895,13 @@ public partial class MainWindowViewModel : ViewModelBase
                     var addOrigDirsAuto = _availableCorpora
                         .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
                         .Select(c => c.OriginalDir).ToList();
+                    var addTransDirsAuto = _availableCorpora
+                        .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
+                        .Select(c => c.TranslatedDir).ToList();
                     await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDirs,
-                        forceRebuild: false, additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,
+                        forceRebuild: false,
+                        additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,
+                        additionalTranslatedDirs: addTransDirsAuto.Count > 0 ? addTransDirsAuto : null,
                         progress: progress, ct: ct);
 
                     if (!ct.IsCancellationRequested)
