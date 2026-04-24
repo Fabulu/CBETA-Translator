@@ -1163,12 +1163,11 @@ public partial class MainWindowViewModel : ViewModelBase
             if (cache?.Entries is { Count: > 0 } && !_forceRebuildIndex)
             {
                 _allItems = cache.Entries;
-                MergeSecondaryCorpusTitles();
                 RebuildLookup();
 
                 await ApplyFilterSafeAsync();
                 WireSearchTab();
-                SetSearchFileIndex?.Invoke(_allItems);
+                SetSearchFileIndex?.Invoke(BuildSearchFileIndex());
 
                 SetStatus("Loaded index cache: " + _allItems.Count.ToString("n0") + " files.");
                 return;
@@ -1185,12 +1184,11 @@ public partial class MainWindowViewModel : ViewModelBase
             await _indexCacheService.SaveAsync(_translationRoot, built, _originalsRepoRoot);
 
             _allItems = built.Entries ?? new List<FileNavItem>();
-            MergeSecondaryCorpusTitles();
             RebuildLookup();
 
             await ApplyFilterSafeAsync();
             WireSearchTab();
-            SetSearchFileIndex?.Invoke(_allItems);
+            SetSearchFileIndex?.Invoke(BuildSearchFileIndex());
 
             SetStatus("Index cache created: " + _allItems.Count.ToString("n0") + " files.");
             _forceRebuildIndex = false;
@@ -3844,19 +3842,21 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
     private string GetSearchTranslatedDir() => _activeTranslatedDir ?? _translatedDir!;
 
     /// <summary>
-    /// Merges file items from the secondary corpus (if present) into _allItems.
-    /// This ensures typeahead and title matching find texts from both corpora.
+    /// Builds a search file index that includes both the active corpus's items
+    /// AND secondary corpus titles. Does NOT modify _allItems (nav stays clean).
     /// </summary>
-    private void MergeSecondaryCorpusTitles()
+    private List<FileNavItem> BuildSearchFileIndex()
     {
-        if (_availableCorpora.Count < 2) return;
+        var result = new List<FileNavItem>(_allItems);
+        if (_availableCorpora.Count < 2) return result;
 
         var existingPaths = new HashSet<string>(
-            _allItems.Select(i => i.RelPath), StringComparer.OrdinalIgnoreCase);
+            result.Select(i => i.RelPath), StringComparer.OrdinalIgnoreCase);
 
         foreach (var layout in _availableCorpora)
         {
-            if (layout.Kind == ActiveCorpus) continue; // skip the primary (already loaded)
+            if (layout.Kind == ActiveCorpus) continue;
+            var corpusLabel = layout.Kind == CorpusKind.Open ? "[OpenZen] " : "[CBETA] ";
 
             var titlesPath = Path.Combine(layout.TranslationsRepoRoot, "titles.jsonl");
             if (!File.Exists(titlesPath)) continue;
@@ -3883,13 +3883,13 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                         if (!string.IsNullOrWhiteSpace(zh)) tooltipParts.Add(zh);
                         if (tooltipParts.Count == 0) tooltipParts.Add(path);
 
-                        _allItems.Add(new FileNavItem
+                        result.Add(new FileNavItem
                         {
                             RelPath = path,
                             FileName = Path.GetFileName(path),
-                            DisplayShort = !string.IsNullOrWhiteSpace(enShort) ? enShort : Path.GetFileName(path),
+                            DisplayShort = corpusLabel + (!string.IsNullOrWhiteSpace(enShort) ? enShort : Path.GetFileName(path)),
                             Tooltip = string.Join("\n", tooltipParts),
-                            Status = TranslationStatus.Green, // OpenZen texts are community-translated
+                            Status = TranslationStatus.Green,
                         });
                         existingPaths.Add(path);
                     }
@@ -3898,6 +3898,7 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             }
             catch { /* skip if titles.jsonl unreadable */ }
         }
+        return result;
     }
 
     /// <summary>
