@@ -122,6 +122,15 @@ public partial class SearchTabView : UserControl
             {
                 _vm.HandleResultDoubleTap(resultsTree.SelectedItem);
             };
+            resultsTree.SelectionChanged += (_, _) =>
+            {
+                if (resultsTree.SelectedItem is SearchResultGroup g
+                    && g.RelPath == "__master__"
+                    && _vm.HasResults)
+                {
+                    _vm.HandleMasterCardClick();
+                }
+            };
             resultsTree.PointerMoved += ResultsTree_PointerMoved;
             resultsTree.PointerExited += (_, _) => ClearResultsHoverTooltip();
             resultsTree.PointerPressed += (_, _) => ClearResultsHoverTooltip();
