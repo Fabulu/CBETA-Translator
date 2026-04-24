@@ -346,6 +346,12 @@ public partial class SearchTabViewModel : ViewModelBase
         _translatedDirs = translatedDirs;
         _meta = fileMeta;
 
+        // Clear stale caches from previous corpus
+        _svc.ClearBloomCache();
+        _svc.ClearVerifyTextCache();
+        _groups.Clear();
+        ResultGroups.Clear();
+
         ProgressText = "Ready.";
         SummaryText = "Ready.";
         ClearCoocUi();
@@ -1187,6 +1193,37 @@ public partial class SearchTabViewModel : ViewModelBase
         ResultGroups.Clear();
         foreach (var g in _groups)
             ResultGroups.Add(g);
+    }
+
+    public void HandleMasterCardClick()
+    {
+        if (_matchedMaster == null || _groups.Count == 0) return;
+        if (IsMasterFilterActive) { ClearMasterFilter(); return; } // toggle off
+
+        // Find texts that contain any of the master's Chinese aliases
+        var aliases = _matchedMaster.Aliases
+            .Where(a => !string.IsNullOrWhiteSpace(a) && a.Length >= 2)
+            .ToList();
+        if (aliases.Count == 0) return;
+
+        var matchingPaths = _groups
+            .Where(g => g.Children.Any(c =>
+                aliases.Any(a =>
+                    (c.Hit.Left?.Contains(a, StringComparison.Ordinal) == true) ||
+                    (c.Hit.Match?.Contains(a, StringComparison.Ordinal) == true) ||
+                    (c.Hit.Right?.Contains(a, StringComparison.Ordinal) == true))))
+            .Select(g => g.RelPath)
+            .ToList();
+
+        // Also include title matches that contain the alias
+        var titlePaths = _fileIndex
+            .Where(f => aliases.Any(a =>
+                f.Tooltip?.Contains(a, StringComparison.Ordinal) == true))
+            .Select(f => f.RelPath)
+            .ToList();
+
+        matchingPaths.AddRange(titlePaths);
+        ApplyMasterFilter(_matchedMaster.CanonicalName, matchingPaths);
     }
 
     public void ApplyMasterFilter(string masterName, IReadOnlyList<string>? relPaths)
