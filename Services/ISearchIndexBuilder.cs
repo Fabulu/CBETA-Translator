@@ -35,6 +35,7 @@ public interface ISearchIndexBuilder
         IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default);
 }

@@ -648,7 +648,9 @@ public partial class SearchTabViewModel : ViewModelBase
             });
 
             await _svc.BuildOrUpdateAsync(_root, _originalDir, _translatedDirs, forceRebuild: force,
-                additionalOriginalDirs: _additionalOriginalDirs, progress: prog, ct: ct);
+                additionalOriginalDirs: _additionalOriginalDirs,
+                additionalTranslatedDirs: _additionalTranslatedDirs,
+                progress: prog, ct: ct);
 
             await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
             {

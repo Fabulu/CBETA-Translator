@@ -50,7 +50,9 @@ public sealed class SearchIndexBuilder : ISearchIndexBuilder
         IReadOnlyList<string> translatedDirs,
         bool forceRebuild,
         IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
         IProgress<(int done, int total, string phase)>? progress = null,
         CancellationToken ct = default)
-        => _facade.BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild, additionalOriginalDirs, progress, ct);
+        => _facade.BuildOrUpdateAsync(root, originalDir, translatedDirs, forceRebuild,
+            additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
 }
