@@ -60,12 +60,12 @@ Read Zen is a small open-source project without commercial signing certificates.
 ## What Read Zen Covers Now
 
 Read Zen is no longer just a reader plus translation editor. The app now has six major work areas:
-- `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging
+- `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging, Ctrl+MouseWheel zoom, bookmarks, document outline
 - `Translate`: projection-based translation workflow with AI copy/paste, review, assistant, and source switching
-- `Search`: corpus search with KWIC, bilingual pairing, deep links, analytics, and exports
+- `Search`: corpus search with typeahead (hit counts + history), post-search filtering, multi-master intersection, insights charts, command palette (Ctrl+Shift+P), and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
-- `Masters`: database of 204 Chan/Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
+- `Masters`: database of 301 Chan/Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 - `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support — driven by the `witnesses.json` delivery registry shipped with each critical edition
 
@@ -136,6 +136,8 @@ Existing CBETA-only users get the OpenZen pair automatically on their next sync.
 
 The Reader is the main side-by-side reading view.
 
+![Reader with side-by-side Chinese/English and hover dictionary](screenshots/reader-side-by-side/reader-side-by-side.png)
+
 What it does:
 - Chinese on the left, selected English source on the right
 - click text to highlight matching text on the other side
@@ -143,7 +145,11 @@ What it does:
 - open the full Zen Dictionary with `Dict`
 - add and read community notes inline
 - create deep links or add passages to Scholar from right-click menus
+- **"Search corpus for selection"** in the right-click context menu to search the entire corpus for highlighted text
 - find-in-text bar (`Ctrl+F`) with next/previous (`Enter` / `Shift+Enter`) and `Escape` to close
+- **Ctrl+MouseWheel** to zoom in/out, **Ctrl+0** to reset zoom
+- **Bookmarks** (`Ctrl+B`) to save your place in a text and jump back later
+- **Document Outline** for structured navigation within long texts
 - timeline slider for time-traveling translations to any prior commit (when version history is available)
 - markers legend for footnote / community-note color coding
 - version history picker (right-click translation → **Translation History**) browses and restores any prior Git version of a translation
@@ -196,6 +202,8 @@ Translate supports:
 - personal-vs-other-user translation source switching
 - **Translation History** dialog (right-click) — browse and restore any prior committed version of the current translation
 
+![Translation editor with assistant panel](screenshots/translate-editor/translate-editor.png)
+
 The Translate tab has a built-in **Translation Assistant** that shows:
 - termbase hits highlighted in the Chinese source text
 - translation memory matches (approved and reference) with shared-phrase highlighting
@@ -208,22 +216,34 @@ The editor is designed to preserve XML structure on save and reject unsafe proje
 
 Search is a full corpus workflow, not just a title filter.
 
+![Search typeahead with masters, titles, and hit counts](screenshots/search-typeahead/search-typeahead.png)
+
 Current features:
 - search original Chinese, translated English, or both
+- **typeahead popup** showing matching masters, titles, and hit counts as you type
+- **search history** — recent queries appear in the typeahead for quick re-runs
 - `Zen only`, status, tag, source, and KWIC controls
 - paired bilingual result rows when counterpart text is available
-- right-click result rows for passage links, shareable links, search-state links, and `Add to Scholar`
+- **post-search result filter** — narrow results by master, text, or status without re-running
+- **multi-master intersection filter** — combine master chips to find texts mentioning multiple masters
+- results grouped by text with **hit count badges** and lazy-expand ("Show N more")
+- right-click result rows for passage links, shareable links, search-state links, **"Open in new window"**, and `Add to Scholar`
 - corpus exports in multiple formats
-- optional search analytics and a slower corpus-wide analytics mode
+- **Insights panel** with bar charts and scatter plots showing distribution across texts, masters, and time periods
 - deep-linkable search state
 - index rebuild button (Search settings) — forces a full re-index across all roots
-- parallel passage search (`Ctrl+Shift+P`) — finds passages with shared phrasing across translations
+- **Command Palette** (`Ctrl+Shift+P`) — jump to any action, tab, or tool from anywhere
+
+![Search results with master cards and filter chips](screenshots/search-results/search-results.png)
+
+![Search insights with bar charts and scatter plot](screenshots/search-insights/search-insights.png)
 
 Search also supports:
 - hover dictionary on Chinese result content
 - incremental result population while search is running
 - progress indication in the header
 - shareable search links via the web launcher site
+- **toast notifications** when background tasks like index builds complete
 
 ## Scholar
 
@@ -243,6 +263,8 @@ What you can do there:
 - export in readable and research-friendly formats
 
 Scholar has its own **Passage Assistant** that provides termbase hits and translation memory context for any selected passage, using the same TM and termbase data as the other tabs.
+
+![Scholar tab with collection and passage list](screenshots/scholar-collections/scholar-collections.png)
 
 Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
 
@@ -269,7 +291,7 @@ The Zen Dictionary / termbase can:
 
 ### Zen Master Database
 
-Read Zen ships with a curated database of **204 Chan/Zen masters** from Bodhidharma through the late Ming, covering the full arc of Chinese Chan history. Each master carries:
+Read Zen ships with a curated database of **301 Chan/Zen masters** from Bodhidharma through the late Ming, covering the full arc of Chinese Chan history. Each master carries:
 
 - Dates (floruit + death), school, region
 - Full lineage connections — teacher + students, cross-linked
@@ -280,7 +302,9 @@ The **Masters tab** is a first-class tab in the main window with three sub-views
 
 - **List** — searchable / filterable master list with rich detail pane (clickable teacher/student names jump between profiles), with **Edit Dates** for in-place metadata fixes and **Copy Link** / **Copy Reddit Link** right-click actions
 - **Corpus** — which texts in CBETA/OpenZen mention each master, split into primary (author/subject) vs secondary (quoted) with mention counts and snippets
-- **Lineage Web** — interactive graph of master-student relationships with pan, zoom (mousewheel + zoom slider), search, **Center** button, and temporal Y-axis ordering (death year drives Y position)
+- **Lineage Web** — interactive graph (including Korean lineage connections) of master-student relationships with pan, zoom (mousewheel + zoom slider), search, **Center** button, and temporal Y-axis ordering (death year drives Y position)
+
+![Lineage web with Korean masters visible](screenshots/lineage-graph/lineage-graph.png)
 
 The lineage taxonomy is rationalized per modern scholarship (McRae, Jia, Poceski) — Hongzhou, Caodong, Yunmen, Guiyang, Fayan, Linji, Heze, Early Chan. The polemical "Northern/Southern Chan" framing is avoided.
 
@@ -323,6 +347,8 @@ A few support surfaces worth knowing:
 - **Witness Text Viewer** — opens the full delivered text of any witness from the Witness Comparison popup
 - **Edition Process Dialog** — for OpenZen critical editions, a multi-tab view of Sources / Timeline / Log / Process / Apparatus / Stats / Documents
 
+![Command palette overlay](screenshots/command-palette/command-palette.png)
+
 ## Keyboard Shortcuts
 
 | Shortcut | Action | Where |
@@ -341,7 +367,11 @@ A few support surfaces worth knowing:
 | `Ctrl+R` | Revert | Translate |
 | `Ctrl+Z` / `Ctrl+Y` | Undo / Redo | Translate |
 | `Ctrl+Shift+F` | Find Chinese in EN text | Translate |
-| `Ctrl+Shift+P` | Parallel passages search | Search, Scholar |
+| `Ctrl+Shift+P` | Open Command Palette | Global |
+| `Ctrl+K` | Focus search box | Global |
+| `Ctrl+B` | Add bookmark | Reader |
+| `Ctrl+MouseWheel` | Zoom in / out | Reader, Translate |
+| `Ctrl+0` | Reset zoom | Reader, Translate |
 | `W` / `1`-`9` / `E` / `Q` / `Tab` / `Space+#` | Apply tag in Coding mode | Reader (Coding) |
 | `N` | Cross-reference scholar passage with tag layer | Reader (Coding) |
 | `Enter` / `Shift+Enter` / `Escape` | Find bar: next / previous / close | Reader |
@@ -385,19 +415,20 @@ When the desktop app is installed, the preview page silently hands the link off 
 
 ## Onboarding Tutorial
 
-The app includes an in-app tutorial with **56 guided steps**. The first 4 are mandatory setup (welcome → Git check → download corpus → build index) — the app can't function without them so the Skip button is hidden. Everything past that is opt-in, with Skip available on every step. Topics covered:
+The app includes an in-app tutorial with **61 guided steps**. The first 4 are mandatory setup (welcome → Git check → download corpus → build index) — the app can't function without them so the Skip button is hidden. Everything past that is opt-in, with Skip available on every step. Topics covered:
 
-- Reader basics, hover dictionary, full dictionary window
+- Reader basics, hover dictionary, full dictionary window, zoom controls
 - Study panel
 - Tagging / coding mode
 - Corpus switching and provenance
 - Translate workflow
-- Search workflow
+- Search workflow — typeahead, post-search filter, multi-master intersection, insights
 - Scholar collections / workspace / shared model
 - Zen Dictionary and the **Masters tab** (List / Corpus / Lineage Web / Web profiles)
 - **Witness Comparison** and Witness Text Viewer (critical editions)
 - Community sync via GitHub device flow
-- Deep links and right-click actions
+- Command Palette, toast notifications, and deep links
+- Right-click actions including "Search corpus for selection" and "Open in new window"
 
 You can replay the tutorial any time from **Settings → Onboarding Tour → Restart onboarding tour on next launch**.
 
@@ -459,7 +490,7 @@ Assets/Dict/cedict_ts.u8
 ```bash
 dotnet test
 ```
-**1044 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
+**1199 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
 
 ## Contributing
 

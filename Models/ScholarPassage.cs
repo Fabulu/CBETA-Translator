@@ -36,6 +36,13 @@ public sealed class ScholarPassage
 
     // Display helpers (not serialized)
     [JsonIgnore]
+    public string DisplayTitle =>
+        !string.IsNullOrWhiteSpace(ZhText) ? ZhText
+        : !string.IsNullOrWhiteSpace(EnText) ? EnText
+        : !string.IsNullOrWhiteSpace(SourceRelPath) ? Path.GetFileNameWithoutExtension(SourceRelPath)
+        : "(untitled passage)";
+
+    [JsonIgnore]
     public string TagsSummary => Tags.Count > 0 ? "Tags: " + string.Join(", ", Tags) : "";
     [JsonIgnore]
     public bool HasTags => Tags.Count > 0;

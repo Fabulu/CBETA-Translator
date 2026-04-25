@@ -116,7 +116,7 @@
                               IsChecked="{Binding IsSelectedForCompare, Mode=TwoWay}"
                               ToolTip.Tip="Check to include in comparison"/>
                     <StackPanel Spacing="1">
-                      <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
+                      <TextBlock Text="{Binding DisplayTitle}" FontWeight="SemiBold"
                                  TextTrimming="CharacterEllipsis" MaxLines="1"/>
                       <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="10.5"
                                  TextTrimming="CharacterEllipsis" MaxLines="1"
@@ -537,7 +537,7 @@
         </Grid>
 
         <!-- Scholar Assistant stays outside TabControl, always visible -->
-        <Expander Grid.Row="1" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
+        <Expander Grid.Row="1" Name="ScholarAssistantExpander" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
           <StackPanel>
             <ProgressBar Name="ScholarLoadingBar"
                          IsIndeterminate="True"
