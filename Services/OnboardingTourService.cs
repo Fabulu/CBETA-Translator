@@ -334,9 +334,18 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "zoom-controls",
+            Title = "Zoom In and Out",
+            Body = "Hold Ctrl and scroll the mouse wheel to zoom in or out. Ctrl+0 resets to the default size. Works in Reader and Translate.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "right-click",
             Title = "Right-Click to Collect",
-            Body = "Right-click selected text to add it to Scholar, create zen:// deep links, or copy shareable URLs.\nThis works in Reader, Translate, and Search.",
+            Body = "Right-click selected text to add it to Scholar, create zen:// deep links, copy shareable URLs, or search the corpus for the selected phrase.\nThis works in Reader, Translate, and Search.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });
@@ -494,7 +503,7 @@ public sealed class OnboardingTourService
         {
             Id = "search-tab",
             Title = "Search the Corpus",
-            Body = "Switching to the Search tab.\n\nSearch the entire text collection for Chinese or English phrases. Use the Original and Translated toggles to choose which side to search, then narrow results by Zen-only filter, translation status, tags, or how much surrounding context to show.",
+            Body = "Switching to the Search tab.\n\nSearch the entire text collection for Chinese or English phrases. The typeahead popup shows matching masters, titles, and hit counts as you type. Your recent searches appear below for quick re-runs.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 2,
@@ -505,10 +514,30 @@ public sealed class OnboardingTourService
         {
             Id = "search-results",
             Title = "Working with Results",
-            Body = "Results show your search match with surrounding text for context. When translations exist, each row shows both the Chinese and English side by side. Double-click a result to open it. Right-click for links, sharing options, or to add it to Scholar.",
+            Body = "Results are grouped by text with hit count badges. Each group starts collapsed \u2014 click to expand, or use \u201cShow N more\u201d to load additional matches. Double-click a result to open it, or right-click for links, sharing, \u201cOpen in new window\u201d, or Add to Scholar.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             TargetControlName = "ResultsTree"
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "search-post-filter",
+            Title = "Filter After Searching",
+            Body = "After a search completes, use the post-search filter to narrow results by master, text, or translation status without re-running the query. Combine multiple master chips for intersection filtering.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            SwitchToTabIndex = 2
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "search-insights",
+            Title = "Search Insights",
+            Body = "Expand the Insights panel below search results to see bar charts and scatter plots showing how your search terms distribute across texts, masters, and time periods.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            SwitchToTabIndex = 2
         });
 
         Steps.Add(new TourStep
@@ -604,7 +633,7 @@ public sealed class OnboardingTourService
         {
             Id = "masters-tab",
             Title = "Zen Masters Tab",
-            Body = "The Masters tab is its own first-class workspace. Read Zen ships with **204 Chan/Zen masters** from Bodhidharma through the late Ming, with dates, schools, lineage connections, biographies, and 400+ reference links.\n\nIt has three sub-views: List, Corpus, and Lineage Web.",
+            Body = "The Masters tab is its own first-class workspace. Read Zen ships with **301 Chan/Zen masters** from Bodhidharma through the late Ming, with dates, schools, lineage connections, biographies, and 400+ reference links.\n\nIt has three sub-views: List, Corpus, and Lineage Web.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 5,
@@ -615,7 +644,7 @@ public sealed class OnboardingTourService
         {
             Id = "masters-list",
             Title = "Browse Masters",
-            Body = "The List view lets you filter through all 204 masters, see their bio, school affiliation, and lineage connections. Teacher and student names are clickable \u2014 jump between profiles to trace any lineage.\n\nRight-click a master for **Copy Link** / **Copy Reddit Link** to share their web profile, or **Edit Dates** to fix metadata in place.",
+            Body = "The List view lets you filter through all 298 masters, see their bio, school affiliation, and lineage connections. Teacher and student names are clickable \u2014 jump between profiles to trace any lineage.\n\nRight-click a master for **Copy Link** / **Copy Reddit Link** to share their web profile, or **Edit Dates** to fix metadata in place.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 5
@@ -728,6 +757,24 @@ public sealed class OnboardingTourService
             Id = "witness-text-viewer",
             Title = "Open a Witness's Full Text",
             Body = "Click any witness siglum (e.g. T1, A1, ndl-1632) in the comparison popup to open the **Witness Text Viewer** \u2014 a read-only window showing that witness's full delivered text, with copy + source-open + a status banner.\n\nWitness data lives in `witnesses.json` next to each edition. The reference implementation ships with the 1632 NDL Wumenguan (`pd.wumenguan-1632`).",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "command-palette",
+            Title = "Command Palette",
+            Body = "Press Ctrl+Shift+P to open the Command Palette \u2014 a quick-access overlay that lets you jump to any action, tab, or tool by typing a few letters. It works from anywhere in the app.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Center
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "toast-notifications",
+            Title = "Toast Notifications",
+            Body = "When background tasks finish \u2014 like building the search index or syncing \u2014 a small toast notification appears briefly in the corner so you know it\u2019s done without interrupting your work.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center
         });

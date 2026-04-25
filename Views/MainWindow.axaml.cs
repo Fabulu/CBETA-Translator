@@ -1567,6 +1567,13 @@ private async Task LoadConfigAndAutoloadAsync()
 
                 try { await _vm.ReloadStarsAsync(); }
                 catch { /* non-critical — star counts stay stale until restart */ }
+
+                // Background index rebuild — old index stays usable while building
+                if (_searchView?.ViewModel.BuildIndexCommand.CanExecute(null) == true)
+                {
+                    ShowToast("Updating search index in background...", 4000);
+                    _searchView.ViewModel.BuildIndexCommand.Execute(null);
+                }
             };
         }
 

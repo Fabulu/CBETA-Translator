@@ -190,12 +190,12 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count: 56 after Phase 2 (Masters + Witness expansion) ----
+    // ---- 10. Steps count: 61 after Phase 2 (Masters + Witness expansion + Wave 3-5 features) ----
 
     [Fact]
     public void Steps_Count_Is56()
     {
-        Assert.Equal(56, _svc.Steps.Count);
+        Assert.Equal(61, _svc.Steps.Count);
     }
 
     // ---- Mandatory steps cannot be skipped ----
@@ -319,7 +319,7 @@ public class OnboardingTourServiceTests
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "masters-tab");
         Assert.Equal("BtnOpenMasters", step.TargetControlName);
-        Assert.Contains("204", step.Body);
+        Assert.Contains("301", step.Body);
         Assert.Contains("Masters tab", step.Body);
         Assert.Equal(5, step.SwitchToTabIndex);
     }
@@ -442,9 +442,8 @@ public class OnboardingTourServiceTests
     public void Tutorial_SearchResultsStep_CoversBilingualResultsAndScholarAction()
     {
         var step = Assert.Single(_svc.Steps, s => s.Id == "search-results");
-        Assert.Contains("Chinese and English side by side", step.Body);
+        Assert.Contains("hit count badges", step.Body);
         Assert.Contains("Double-click", step.Body);
-        Assert.Contains("sharing options", step.Body);
         Assert.Contains("Scholar", step.Body);
     }
 

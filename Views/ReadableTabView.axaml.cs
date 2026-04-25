@@ -825,6 +825,24 @@ public partial class ReadableTabView : UserControl
             }
         }
 
+        // Last-resort fallback: if the other side's text is still empty but the other
+        // editor has content, use proportional range mapping to grab a corresponding excerpt.
+        if (string.IsNullOrWhiteSpace(otherText) && otherEditor?.Text?.Length > 0)
+        {
+            int srcLen = editor.Text?.Length ?? 1;
+            int dstLen = otherEditor.Text.Length;
+            if (srcLen > 0)
+            {
+                int selStart = GetSelectionStartSafe(editor);
+                int selEnd = GetSelectionEndSafe(editor);
+                double ratio = (double)dstLen / srcLen;
+                int s = Math.Clamp((int)(selStart * ratio), 0, dstLen);
+                int e = Math.Clamp((int)(selEnd * ratio), 0, dstLen);
+                if (e > s)
+                    otherText = otherEditor.Text.Substring(s, e - s).Trim();
+            }
+        }
+
         var passage = new ScholarPassage
         {
             ZhText = isTranslated ? otherText : selectedText,

@@ -1307,10 +1307,10 @@ public partial class EditionProcessDialog : Window
         if (string.IsNullOrEmpty(_editionDir)) return;
         var viewer = new WitnessTextViewerWindow
         {
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            WindowStartupLocation = WindowStartupLocation.CenterScreen,
         };
         viewer.LoadWitness(witness, _editionDir);
-        viewer.Show(this);
+        viewer.Show();
     }
 
     private void OpenWitnessPageImage(string siglum, string locus)
@@ -1327,7 +1327,7 @@ public partial class EditionProcessDialog : Window
             {
                 Title = "Page Image Not Found",
                 Width = 400, Height = 150,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 Content = new TextBlock
                 {
                     Text = $"No page image found for witness {siglum} at locus {locus}.\n" +
@@ -1337,7 +1337,7 @@ public partial class EditionProcessDialog : Window
                     VerticalAlignment = VerticalAlignment.Center,
                 },
             };
-            msgWin.Show(this);
+            msgWin.Show();
             return;
         }
 
