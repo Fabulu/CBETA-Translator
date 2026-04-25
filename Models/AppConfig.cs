@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ReadZen.App.Models
 {
     public sealed class AppConfig
@@ -52,5 +54,8 @@ namespace ReadZen.App.Models
         public int TmMaxResults { get; set; } = 8;
 
         public int Version { get; set; } = 4;
+
+        /// <summary>Persisted search history (most recent first, max 20).</summary>
+        public List<string> SearchHistory { get; set; } = new();
     }
 }

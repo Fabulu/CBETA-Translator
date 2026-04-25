@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -55,6 +55,10 @@ public partial class SearchTabViewModel : ViewModelBase
     private readonly List<SearchResultGroup> _groups = new();
     private int _batchedStateDepth;
 
+    // 5B: cap visible children per group
+    private const int MaxVisibleChildren = 5;
+    private readonly Dictionary<string, List<SearchResultChild>> _fullChildrenMap = new(StringComparer.OrdinalIgnoreCase);
+
     // remember last search so dropdown recompute works
     private string _lastQuery = "";
     private int _lastContextWidth = 80;
@@ -83,12 +87,41 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly int[] ContextWidths = new[] { 5, 10, 15, 20, 40, 80, 160, 320 };
     private static bool _firstSearchSupportShown;
 
-    // Search history (static so it persists across tab rebuilds within a session)
+    // Search history (static so it persists across tab rebuilds within a session).
+    // Thread safety: all mutations happen on the UI thread (LoadHistory during config load,
+    // AddToHistory at end of StartSearchAsync which is Dispatcher-marshalled).
     private static readonly List<string> _searchHistory = new(20);
 
     public IReadOnlyList<string> SearchHistory => _searchHistory;
 
+    /// <summary>Populate in-memory history from a previously loaded config.</summary>
+    public void LoadHistory(IEnumerable<string> saved)
+    {
+        _searchHistory.Clear();
+        foreach (var s in saved.Take(20))
+            if (!string.IsNullOrWhiteSpace(s))
+                _searchHistory.Add(s);
+        OnPropertyChanged(nameof(SearchHistory));
+    }
 
+    /// <summary>Return a snapshot suitable for writing to AppConfig.</summary>
+    public List<string> SnapshotHistory() => _searchHistory.ToList();
+
+    // 4A: returns relPaths that the inverted index associates with the given query
+    public HashSet<string>? GetIndexedRelPaths(string query)
+    {
+        if (_svc is not SearchIndexService concrete) return null;
+        if (concrete.InvertedIndex?.IsLoaded != true) return null;
+        var hits = concrete.InvertedIndex.Search(query);
+        if (hits == null || hits.Length == 0) return null;
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var docId in hits)
+        {
+            var rp = concrete.InvertedIndex.GetRelPath(docId);
+            if (rp != null) result.Add(rp);
+        }
+        return result;
+    }
 
     // ----- Observable properties -----
 
@@ -206,10 +239,35 @@ public partial class SearchTabViewModel : ViewModelBase
     [ObservableProperty]
     private bool _isMasterFilterActive;
 
-    [ObservableProperty]
-    private string? _masterFilterName;
+    // Multi-master intersection filter: each entry narrows the result set.
+    private readonly ObservableCollection<ActiveMasterFilter> _activeMasterFilters = new();
+    public ObservableCollection<ActiveMasterFilter> ActiveMasterFilters => _activeMasterFilters;
+
+    /// <summary>
+    /// Display name for the current filter — joins all active master names with the intersection symbol.
+    /// </summary>
+    public string? MasterFilterName =>
+        _activeMasterFilters.Count == 0
+            ? null
+            : string.Join(" \u2229 ", _activeMasterFilters.Select(m => m.MasterName));
 
     private HashSet<string>? _masterFilterRelPaths;
+
+    [ObservableProperty]
+    private string _resultFilter = "";
+
+    private DispatcherTimer? _resultFilterDebounce;
+
+    partial void OnResultFilterChanged(string value)
+    {
+        if (_resultFilterDebounce == null)
+        {
+            _resultFilterDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(150) };
+            _resultFilterDebounce.Tick += (_, _) => { _resultFilterDebounce.Stop(); ApplyResultFilter(); };
+        }
+        _resultFilterDebounce.Stop();
+        _resultFilterDebounce.Start();
+    }
 
     [ObservableProperty]
     private string _metricGuideText = "";
@@ -549,6 +607,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         _groups.Clear();
         ResultGroups.Clear();
+        _fullChildrenMap.Clear();
         RefreshSearchPlaceholderVisibility();
 
         ProgressText = "No root loaded.";
@@ -561,6 +620,13 @@ public partial class SearchTabViewModel : ViewModelBase
 
         _lastQuery = "";
         _lastContextWidth = 80;
+
+        _activeMasterFilters.Clear();
+        OnPropertyChanged(nameof(MasterFilterName));
+        _masterFilterRelPaths = null;
+        IsMasterFilterActive = false;
+
+        ResultFilter = "";
 
         ZenOnly = false;
         _tagsByName = null;
@@ -608,6 +674,27 @@ public partial class SearchTabViewModel : ViewModelBase
     }
 
     // ----- Commands -----
+
+    /// <summary>
+    /// 5B: Expands a capped group to show all children when the user clicks "Show N more…".
+    /// </summary>
+    [RelayCommand]
+    private void ShowMore(SearchResultShowMoreItem item)
+    {
+        if (item == null) return;
+        var key = item.GroupRelPath;
+        if (!_fullChildrenMap.TryGetValue(key, out var full)) return;
+
+        // Find the group in ResultGroups and replace its children with the full list.
+        foreach (var g in ResultGroups)
+        {
+            if (string.Equals(g.RelPath, key, StringComparison.OrdinalIgnoreCase))
+            {
+                g.Children = new List<SearchResultChild>(full);
+                break;
+            }
+        }
+    }
 
     [RelayCommand]
     private async Task SearchAsync()
@@ -1158,6 +1245,55 @@ public partial class SearchTabViewModel : ViewModelBase
         return (series, yAxes);
     }
 
+    /// <summary>
+    /// Rebuilds ResultGroups from _groups applying all active filters in order:
+    /// master filter → cooc filter → text filter (ResultFilter).
+    /// This is the single source of truth for ResultGroups reconstruction.
+    /// </summary>
+    private void ApplyResultFilter()
+    {
+        ResultGroups.Clear();
+
+        // Always re-insert the master card if present
+        if (_matchedMaster != null)
+            ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
+
+        // Start from all groups
+        IEnumerable<SearchResultGroup> source = _groups;
+
+        // Layer 1: master filter
+        if (IsMasterFilterActive && _masterFilterRelPaths != null)
+            source = source.Where(g => _masterFilterRelPaths.Contains(g.RelPath));
+
+        // Layer 2: cooc filter
+        if (IsCoocFilterActive && !string.IsNullOrEmpty(CoocFilterTerm))
+        {
+            var term = CoocFilterTerm!;
+            source = source.Where(g => g.Children.Any(c =>
+                c.Hit != null && (
+                (!string.IsNullOrEmpty(c.Hit.Left) && c.Hit.Left.Contains(term, StringComparison.Ordinal)) ||
+                (!string.IsNullOrEmpty(c.Hit.Match) && c.Hit.Match.Contains(term, StringComparison.Ordinal)) ||
+                (!string.IsNullOrEmpty(c.Hit.Right) && c.Hit.Right.Contains(term, StringComparison.Ordinal)))));
+        }
+
+        // Layer 3: text filter
+        if (!string.IsNullOrEmpty(ResultFilter))
+        {
+            var tf = ResultFilter;
+            source = source.Where(g =>
+                g.DisplayName.Contains(tf, StringComparison.OrdinalIgnoreCase) ||
+                (g.Tooltip != null && g.Tooltip.Contains(tf, StringComparison.OrdinalIgnoreCase)) ||
+                g.Children.Any(c =>
+                    c.PrimarySnippetText.Contains(tf, StringComparison.OrdinalIgnoreCase) ||
+                    c.SecondarySnippetText.Contains(tf, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        foreach (var g in source)
+            ResultGroups.Add(g);
+
+        HasResults = ResultGroups.Count > 0;
+    }
+
     [RelayCommand]
     private void FilterByCooccurrent(string? term)
     {
@@ -1169,19 +1305,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         CoocFilterTerm = term;
         IsCoocFilterActive = true;
-
-        ResultGroups.Clear();
-        foreach (var group in _groups)
-        {
-            bool hasMatch = group.Children.Any(c =>
-                c.Hit != null && (
-                (!string.IsNullOrEmpty(c.Hit.Left) && c.Hit.Left.Contains(term, StringComparison.Ordinal)) ||
-                (!string.IsNullOrEmpty(c.Hit.Match) && c.Hit.Match.Contains(term, StringComparison.Ordinal)) ||
-                (!string.IsNullOrEmpty(c.Hit.Right) && c.Hit.Right.Contains(term, StringComparison.Ordinal))));
-            if (hasMatch)
-                ResultGroups.Add(group);
-        }
-
+        ApplyResultFilter();
         SelectedSearchSubTabIndex = 0;
     }
 
@@ -1190,74 +1314,131 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         CoocFilterTerm = null;
         IsCoocFilterActive = false;
-        ResultGroups.Clear();
-        foreach (var g in _groups)
-            ResultGroups.Add(g);
+        ApplyResultFilter();
     }
 
     public void HandleMasterCardClick()
     {
         if (_matchedMaster == null || _groups.Count == 0) return;
-        if (IsMasterFilterActive) { ClearMasterFilter(); return; } // toggle off
 
-        // Find texts that contain any of the master's Chinese aliases
+        var masterName = _matchedMaster.CanonicalName;
+
+        // Toggle off: if this master is already in the filter, remove it
+        var existing = _activeMasterFilters.FirstOrDefault(m =>
+            string.Equals(m.MasterName, masterName, StringComparison.OrdinalIgnoreCase));
+        if (existing != null)
+        {
+            _activeMasterFilters.Remove(existing);
+            OnPropertyChanged(nameof(MasterFilterName));
+            RebuildMasterFilterRelPaths();
+            IsMasterFilterActive = _activeMasterFilters.Count > 0;
+            RebuildResultGroupsFromMasterFilter();
+            return;
+        }
+
+        // Build rel-path set for this master using aliases against KWIC text and file index titles
         var aliases = _matchedMaster.Aliases
             .Where(a => !string.IsNullOrWhiteSpace(a) && a.Length >= 2)
             .ToList();
         if (aliases.Count == 0) return;
 
-        var matchingPaths = _groups
-            .Where(g => g.Children.Any(c =>
+        var matchingPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var g in _groups)
+        {
+            if (g.Children.Any(c =>
                 aliases.Any(a =>
                     (c.Hit.Left?.Contains(a, StringComparison.Ordinal) == true) ||
                     (c.Hit.Match?.Contains(a, StringComparison.Ordinal) == true) ||
                     (c.Hit.Right?.Contains(a, StringComparison.Ordinal) == true))))
-            .Select(g => g.RelPath)
-            .ToList();
+            {
+                matchingPaths.Add(g.RelPath);
+            }
+        }
 
-        // Also include title matches that contain the alias
-        var titlePaths = _fileIndex
-            .Where(f => aliases.Any(a =>
-                f.Tooltip?.Contains(a, StringComparison.Ordinal) == true))
-            .Select(f => f.RelPath)
-            .ToList();
+        // Also include title/tooltip matches from the file index
+        foreach (var f in _fileIndex)
+        {
+            if (aliases.Any(a => f.Tooltip?.Contains(a, StringComparison.Ordinal) == true))
+                matchingPaths.Add(f.RelPath);
+        }
 
-        matchingPaths.AddRange(titlePaths);
-        ApplyMasterFilter(_matchedMaster.CanonicalName, matchingPaths);
+        _activeMasterFilters.Add(new ActiveMasterFilter
+        {
+            MasterName = masterName,
+            RelPaths = matchingPaths
+        });
+
+        OnPropertyChanged(nameof(MasterFilterName));
+        RebuildMasterFilterRelPaths();
+        IsMasterFilterActive = _activeMasterFilters.Count > 0;
+        RebuildResultGroupsFromMasterFilter();
     }
 
+    /// <summary>
+    /// External entry point (e.g. from the master nav panel) to activate a named master filter.
+    /// Adds the master to the intersection set; does NOT toggle-off.
+    /// </summary>
     public void ApplyMasterFilter(string masterName, IReadOnlyList<string>? relPaths)
     {
-        MasterFilterName = masterName;
-        _masterFilterRelPaths = relPaths != null ? new HashSet<string>(relPaths, StringComparer.OrdinalIgnoreCase) : null;
-        IsMasterFilterActive = true;
+        // Remove any existing entry for this master first (idempotent add)
+        var existing = _activeMasterFilters.FirstOrDefault(m =>
+            string.Equals(m.MasterName, masterName, StringComparison.OrdinalIgnoreCase));
+        if (existing != null)
+            _activeMasterFilters.Remove(existing);
 
-        if (_masterFilterRelPaths != null && _groups.Count > 0)
+        _activeMasterFilters.Add(new ActiveMasterFilter
         {
-            ResultGroups.Clear();
-            if (_matchedMaster != null)
-                ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
-            foreach (var g in _groups)
-            {
-                if (_masterFilterRelPaths.Contains(g.RelPath))
-                    ResultGroups.Add(g);
-            }
-            HasResults = ResultGroups.Count > 0;
-        }
+            MasterName = masterName,
+            RelPaths = relPaths != null
+                ? new HashSet<string>(relPaths, StringComparer.OrdinalIgnoreCase)
+                : new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        });
+
+        OnPropertyChanged(nameof(MasterFilterName));
+        RebuildMasterFilterRelPaths();
+        IsMasterFilterActive = _activeMasterFilters.Count > 0;
+        RebuildResultGroupsFromMasterFilter();
+    }
+
+    /// <summary>
+    /// Recomputes _masterFilterRelPaths as the intersection of all active master filters.
+    /// </summary>
+    private void RebuildMasterFilterRelPaths()
+    {
+        if (_activeMasterFilters.Count == 0) { _masterFilterRelPaths = null; return; }
+        var intersection = new HashSet<string>(_activeMasterFilters[0].RelPaths, StringComparer.OrdinalIgnoreCase);
+        for (int i = 1; i < _activeMasterFilters.Count; i++)
+            intersection.IntersectWith(_activeMasterFilters[i].RelPaths);
+        _masterFilterRelPaths = intersection;
+    }
+
+    /// <summary>
+    /// Rebuilds ResultGroups using the current _masterFilterRelPaths intersection.
+    /// Delegates to ApplyResultFilter so all filter layers are honoured.
+    /// </summary>
+    private void RebuildResultGroupsFromMasterFilter() => ApplyResultFilter();
+
+    [RelayCommand]
+    private void RemoveMasterFilter(string masterName)
+    {
+        var toRemove = _activeMasterFilters.FirstOrDefault(m =>
+            string.Equals(m.MasterName, masterName, StringComparison.OrdinalIgnoreCase));
+        if (toRemove == null) return;
+        _activeMasterFilters.Remove(toRemove);
+        OnPropertyChanged(nameof(MasterFilterName));
+        RebuildMasterFilterRelPaths();
+        IsMasterFilterActive = _activeMasterFilters.Count > 0;
+        RebuildResultGroupsFromMasterFilter();
     }
 
     [RelayCommand]
     private void ClearMasterFilter()
     {
-        MasterFilterName = null;
+        _activeMasterFilters.Clear();
+        OnPropertyChanged(nameof(MasterFilterName));
         _masterFilterRelPaths = null;
         IsMasterFilterActive = false;
-        ResultGroups.Clear();
-        if (_matchedMaster != null)
-            ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
-        foreach (var g in _groups)
-            ResultGroups.Add(g);
-        HasResults = ResultGroups.Count > 0;
+        ApplyResultFilter();
     }
 
     private sealed class LabeledPoint
@@ -1361,6 +1542,21 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // ----- Search -----
 
+    private static void ApplyDefaultExpansion(IEnumerable<SearchResultGroup> groups)
+    {
+        bool firstFullTextSeen = false;
+        foreach (var g in groups)
+        {
+            if (g.RelPath == "__master__" || g.RelPath == "__title_section__")
+            {
+                g.IsExpanded = true;
+                continue;
+            }
+            g.IsExpanded = !firstFullTextSeen;
+            firstFullTextSeen = true;
+        }
+    }
+
     private async Task StartSearchAsync()
     {
         if (_root == null || _originalDir == null || _translatedDirs == null || _meta == null)
@@ -1411,6 +1607,7 @@ public partial class SearchTabViewModel : ViewModelBase
 
         _groups.Clear();
         ResultGroups.Clear();
+        _fullChildrenMap.Clear();
         IsExportEnabled = false;
         ClearCoocUi();
         IsSearching = true;
@@ -1578,7 +1775,10 @@ public partial class SearchTabViewModel : ViewModelBase
                         }
 
                         for (int i = 0; i < batch.Length; i++)
+                        {
+                            ApplyChildrenCap(batch[i]); // 5B: cap before first render
                             ResultGroups.Add(batch[i]);
+                        }
 
                         RefreshSearchPlaceholderVisibility();
 
@@ -1680,6 +1880,8 @@ public partial class SearchTabViewModel : ViewModelBase
                     foreach (var group in sortedGroups)
                         ResultGroups.Add(group);
 
+                    ApplyDefaultExpansion(ResultGroups);
+
                     SummaryText = $"Done: {sortedGroups.Count:n0} files - {totalHits:n0} hits";
                     ResultCountText = $"{ResultGroups.Count} texts \u00b7 {ResultGroups.Sum(g => g.HitsOriginal + g.HitsTranslated)} hits";
                     HasResults = ResultGroups.Count > 0 || _matchedMaster != null;
@@ -1762,7 +1964,46 @@ public partial class SearchTabViewModel : ViewModelBase
         if (group.Children == null || group.Children.Count == 0)
             return false;
 
-        return group.Children.Any(c => !c.HasSecondaryDisplayText || c.PrimaryIsContextOnly || c.SecondaryIsContextOnly);
+        // Ignore the ShowMore sentinel when deciding whether enrichment is needed.
+        return group.Children.Any(c => c is not SearchResultShowMoreItem &&
+            (!c.HasSecondaryDisplayText || c.PrimaryIsContextOnly || c.SecondaryIsContextOnly));
+    }
+
+    /// <summary>
+    /// 5B: If <paramref name="group"/> has more than <see cref="MaxVisibleChildren"/> real children,
+    /// stores the full list in <see cref="_fullChildrenMap"/> and replaces the group's Children with a
+    /// capped list followed by a <see cref="SearchResultShowMoreItem"/> sentinel.
+    /// Safe to call multiple times (idempotent — re-reads the full map if already stored).
+    /// </summary>
+    private void ApplyChildrenCap(SearchResultGroup group)
+    {
+        if (group == null || string.IsNullOrEmpty(group.RelPath)) return;
+
+        // Strip any existing sentinel to get the real children.
+        var real = group.Children
+            .Where(c => c is not SearchResultShowMoreItem)
+            .ToList();
+
+        if (real.Count <= MaxVisibleChildren)
+        {
+            // Ensure no stale sentinel remains.
+            if (group.Children.Any(c => c is SearchResultShowMoreItem))
+                group.Children = real;
+            return;
+        }
+
+        // Store the full list for later expansion.
+        _fullChildrenMap[group.RelPath] = real;
+
+        var capped = new List<SearchResultChild>(MaxVisibleChildren + 1);
+        capped.AddRange(real.Take(MaxVisibleChildren));
+        capped.Add(new SearchResultShowMoreItem
+        {
+            RelPath = group.RelPath,
+            GroupRelPath = group.RelPath,
+            RemainingCount = real.Count - MaxVisibleChildren
+        });
+        group.Children = capped;
     }
 
     private async Task QueueDeferredEnrichmentAsync(SearchResultGroup group, string originalDir, string translatedDir, string query, bool includeOriginal, bool includeTranslated, int contextWidth, int searchVersion)
@@ -1802,9 +2043,13 @@ public partial class SearchTabViewModel : ViewModelBase
                 }
 
                 target.ApplyEnrichment(displayChildren);
+                ApplyChildrenCap(target); // 5B: re-apply cap after enrichment replaces children
 
                 if (!ReferenceEquals(target, group))
+                {
                     group.ApplyEnrichment(displayChildren);
+                    ApplyChildrenCap(group); // 5B: re-apply cap on backing group too
+                }
             }, DispatcherPriority.Background);
         }
         catch

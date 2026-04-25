@@ -32,6 +32,7 @@ public partial class SearchTabView : UserControl
     private DispatcherTimer? _typeaheadTimer;
     private Popup? _typeaheadPopup;
     private StackPanel? _typeaheadPanel;
+    private Border? _typeaheadBorder;
     private TextBox? _txtQuery;
     private int _typeaheadActiveIndex = -1;
     private List<TypeaheadDisplayItem> _typeaheadItems = new();
@@ -42,6 +43,15 @@ public partial class SearchTabView : UserControl
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler<string>? OpenMasterRequested;
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
+
+    /// <summary>Fired after each search so MainWindow can persist history to config.</summary>
+    public event EventHandler? SearchHistoryChanged;
+
+    /// <summary>
+    /// Fired when the user selects "Open in new window" on a search result group.
+    /// The argument is the RelPath of the result group.
+    /// </summary>
+    public event EventHandler<string>? OpenInNewWindowRequested;
 
     /// <summary>Returns the currently active translation user (null = community).</summary>
     public Func<string?>? GetTranslationUser { get; set; }
@@ -101,6 +111,8 @@ public partial class SearchTabView : UserControl
                 {
                     var tip = "Recent: " + string.Join(", ", _vm.SearchHistory.Take(5));
                     ToolTip.SetTip(txtQuery, tip);
+                    // 4C: notify MainWindow so it can persist history to config
+                    SearchHistoryChanged?.Invoke(this, EventArgs.Empty);
                 }
             };
         }
@@ -184,6 +196,35 @@ public partial class SearchTabView : UserControl
                 await CopySearchLinkAsync(shareable: true);
             };
 
+            // 4J: Open the selected result's document in a new independent reader window.
+            var openInNewWindowItem = new MenuItem { Header = "Open in new window" };
+            openInNewWindowItem.Click += (_, _) =>
+            {
+                string? relPath = null;
+                if (resultsTree.SelectedItem is SearchResultGroup group && group.RelPath != "__master__")
+                    relPath = group.RelPath;
+                else if (resultsTree.SelectedItem is SearchResultChild child)
+                    relPath = child.RelPath;
+
+                if (!string.IsNullOrEmpty(relPath))
+                    OpenInNewWindowRequested?.Invoke(this, relPath);
+            };
+
+            // 5D-2: Expand All / Collapse All
+            var expandAllItem = new MenuItem { Header = "Expand All" };
+            expandAllItem.Click += (_, _) =>
+            {
+                foreach (var g in _vm.ResultGroups)
+                    g.IsExpanded = true;
+            };
+
+            var collapseAllItem = new MenuItem { Header = "Collapse All" };
+            collapseAllItem.Click += (_, _) =>
+            {
+                foreach (var g in _vm.ResultGroups)
+                    g.IsExpanded = false;
+            };
+
             resultsTree.ContextMenu = new ContextMenu
             {
                 Items =
@@ -196,7 +237,12 @@ public partial class SearchTabView : UserControl
                     copyPassageRedditLink,
                     new Separator(),
                     copySearchLinkItem,
-                    copyShareableSearchLinkItem
+                    copyShareableSearchLinkItem,
+                    new Separator(),
+                    expandAllItem,
+                    collapseAllItem,
+                    new Separator(),
+                    openInNewWindowItem
                 }
             };
         }
@@ -562,6 +608,12 @@ public partial class SearchTabView : UserControl
         _ = _vm.ApplyUiStateAsync(new SearchTabViewModel.SearchUiState { Query = query }, executeSearch: true);
     }
 
+    /// <summary>
+    /// Sets the query text and immediately executes a search.
+    /// Called by MainWindow when the user selects "Search corpus for selection" in the reader.
+    /// </summary>
+    public void SetQueryAndSearch(string query) => SetSearchTextAndExecute(query);
+
     /// <summary>Focus the query text box and select all text so the user can type immediately.</summary>
     public void FocusQueryBox()
     {
@@ -589,6 +641,7 @@ public partial class SearchTabView : UserControl
         _txtQuery = this.FindControl<TextBox>("TxtQuery");
         _typeaheadPopup = this.FindControl<Popup>("TypeaheadPopup");
         _typeaheadPanel = this.FindControl<StackPanel>("TypeaheadPanel");
+        _typeaheadBorder = this.FindControl<Border>("TypeaheadBorder");
         if (_txtQuery == null || _typeaheadPopup == null || _typeaheadPanel == null) return;
 
         _typeaheadTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(150) };
@@ -612,7 +665,7 @@ public partial class SearchTabView : UserControl
         if (_typeaheadPopup == null || !_typeaheadPopup.IsOpen) return;
 
         var selectableItems = _typeaheadItems
-            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader && i.Kind != TypeaheadItemKind.CountFooter).ToList();
 
         switch (e.Key)
         {
@@ -637,6 +690,17 @@ public partial class SearchTabView : UserControl
         }
     }
 
+    private void SyncTypeaheadWidth()
+    {
+        if (_txtQuery == null || _typeaheadBorder == null) return;
+        var w = _txtQuery.Bounds.Width;
+        if (w > 100)
+        {
+            _typeaheadBorder.MinWidth = w;
+            _typeaheadBorder.MaxWidth = w;
+        }
+    }
+
     private void RenderTypeahead()
     {
         if (_typeahead == null || _typeaheadPanel == null || _typeaheadPopup == null) return;
@@ -644,7 +708,11 @@ public partial class SearchTabView : UserControl
         var text = _txtQuery?.Text?.Trim() ?? "";
         if (text.Length < 1)
         {
-            CloseTypeahead();
+            // 4C: show recent history when input is empty, otherwise close
+            if (_vm.SearchHistory.Count > 0)
+                RenderHistory();
+            else
+                CloseTypeahead();
             return;
         }
 
@@ -652,6 +720,62 @@ public partial class SearchTabView : UserControl
         if (_typeaheadItems.Count <= 1) // only fulltext action = no real suggestions
         {
             // Still show the fulltext action
+        }
+
+        // 4A: one inverted-index lookup for all title matches
+        HashSet<string>? indexedPaths = _vm?.GetIndexedRelPaths(text);
+        if (indexedPaths != null)
+        {
+            foreach (var it in _typeaheadItems)
+            {
+                if (it.Kind == TypeaheadItemKind.Title && it.FileItem != null)
+                    it.InIndex = indexedPaths.Contains(it.FileItem.RelPath);
+            }
+        }
+
+        // 4D: co-occurrence suggestions when Insights tab is active
+        if (_vm.SelectedSearchSubTabIndex == 1)
+        {
+            var coocTerms = _vm.CoocChars
+                .Take(5)
+                .Select(r => r.Key)
+                .Concat(_vm.CoocNgrams.Take(3).Select(r => r.Key))
+                .Where(t => !string.IsNullOrWhiteSpace(t) && t != text)
+                .Distinct()
+                .Take(6)
+                .ToList();
+
+            if (coocTerms.Count > 0)
+            {
+                _typeaheadItems.Add(new TypeaheadDisplayItem
+                {
+                    Kind = TypeaheadItemKind.SectionHeader,
+                    HeaderText = "Related"
+                });
+                foreach (var term in coocTerms)
+                {
+                    _typeaheadItems.Add(new TypeaheadDisplayItem
+                    {
+                        Kind = TypeaheadItemKind.CoocTerm,
+                        Query = term,
+                        DisplayName = term
+                    });
+                }
+            }
+        }
+
+        // 4B: append trailing count footer for CJK queries
+        if (HasTwoCjkChars(text))
+        {
+            var paths = indexedPaths ?? _vm?.GetIndexedRelPaths(text);
+            if (paths != null)
+            {
+                _typeaheadItems.Add(new TypeaheadDisplayItem
+                {
+                    Kind = TypeaheadItemKind.CountFooter,
+                    CountLabel = $"~{paths.Count} texts",
+                });
+            }
         }
 
         _typeaheadPanel.Children.Clear();
@@ -719,6 +843,23 @@ public partial class SearchTabView : UserControl
                             Opacity = 0.6,
                         });
                     }
+                    if (item.InIndex)
+                    {
+                        panel.Children.Add(new Border
+                        {
+                            Background = new Avalonia.Media.SolidColorBrush(
+                                Avalonia.Media.Color.FromArgb(60, 0, 200, 100)),
+                            CornerRadius = new CornerRadius(3),
+                            Padding = new Thickness(4, 1),
+                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left,
+                            Child = new TextBlock
+                            {
+                                Text = "in index",
+                                FontSize = 9,
+                                Opacity = 0.8,
+                            },
+                        });
+                    }
                     var border = MakeTypeaheadRow(panel, item, selectableIdx++);
                     _typeaheadPanel.Children.Add(border);
                     break;
@@ -737,10 +878,101 @@ public partial class SearchTabView : UserControl
                     _typeaheadPanel.Children.Add(border);
                     break;
                 }
+
+                case TypeaheadItemKind.CountFooter:
+                {
+                    _typeaheadPanel.Children.Add(new TextBlock
+                    {
+                        Text = item.CountLabel ?? "",
+                        FontSize = 10,
+                        FontStyle = Avalonia.Media.FontStyle.Italic,
+                        Opacity = 0.45,
+                        Padding = new Thickness(10, 4, 10, 6),
+                        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                    });
+                    // Not selectable — do NOT call MakeTypeaheadRow
+                    break;
+                }
+
+                case TypeaheadItemKind.RecentSearch:
+                {
+                    var tb = new TextBlock
+                    {
+                        Text = item.DisplayName,
+                        FontSize = 12,
+                    };
+                    var border = MakeTypeaheadRow(tb, item, selectableIdx++);
+                    _typeaheadPanel.Children.Add(border);
+                    break;
+                }
+
+                case TypeaheadItemKind.CoocTerm:
+                {
+                    var tb = new TextBlock
+                    {
+                        Text = item.DisplayName,
+                        FontSize = 13,
+                    };
+                    var border = MakeTypeaheadRow(tb, item, selectableIdx++);
+                    _typeaheadPanel.Children.Add(border);
+                    break;
+                }
             }
         }
 
+        SyncTypeaheadWidth();
         _typeaheadPopup.IsOpen = true;
+    }
+
+    /// <summary>4C: Render recent search history when input box is empty.</summary>
+    private void RenderHistory()
+    {
+        if (_typeaheadPanel == null || _typeaheadPopup == null) return;
+        _typeaheadPanel.Children.Clear();
+        _typeaheadActiveIndex = -1;
+        _typeaheadItems = new List<TypeaheadDisplayItem>();
+
+        // Header (not selectable)
+        _typeaheadItems.Add(new TypeaheadDisplayItem
+        {
+            Kind = TypeaheadItemKind.SectionHeader,
+            HeaderText = "Recent"
+        });
+        _typeaheadPanel.Children.Add(new TextBlock
+        {
+            Text = "RECENT",
+            FontSize = 10,
+            FontWeight = Avalonia.Media.FontWeight.SemiBold,
+            Opacity = 0.5,
+            Padding = new Thickness(10, 8, 10, 2),
+        });
+
+        int selectableIdx = 0;
+        foreach (var q in _vm.SearchHistory.Take(8))
+        {
+            var item = new TypeaheadDisplayItem
+            {
+                Kind = TypeaheadItemKind.RecentSearch,
+                Query = q,
+                DisplayName = q
+            };
+            _typeaheadItems.Add(item);
+
+            var tb = new TextBlock { Text = q, FontSize = 12 };
+            var row = MakeTypeaheadRow(tb, item, selectableIdx++);
+            _typeaheadPanel.Children.Add(row);
+        }
+
+        SyncTypeaheadWidth();
+        _typeaheadPopup.IsOpen = true;
+    }
+
+    private static bool HasTwoCjkChars(string text)
+    {
+        int count = 0;
+        foreach (var ch in text)
+            if (ch >= '\u4E00' && ch <= '\u9FFF' && ++count >= 2) return true;
+        return false;
     }
 
     private Border MakeTypeaheadRow(Control content, TypeaheadDisplayItem item, int idx)
@@ -756,7 +988,7 @@ public partial class SearchTabView : UserControl
         border.PointerEntered += (_, _) =>
         {
             var selectableItems = _typeaheadItems
-                .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+                .Where(i => i.Kind != TypeaheadItemKind.SectionHeader && i.Kind != TypeaheadItemKind.CountFooter).ToList();
             _typeaheadActiveIndex = selectableItems.IndexOf(item);
             HighlightTypeaheadItem();
         };
@@ -768,7 +1000,7 @@ public partial class SearchTabView : UserControl
     {
         if (_typeaheadPanel == null) return;
         var selectableItems = _typeaheadItems
-            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader).ToList();
+            .Where(i => i.Kind != TypeaheadItemKind.SectionHeader && i.Kind != TypeaheadItemKind.CountFooter).ToList();
         int si = 0;
         foreach (var child in _typeaheadPanel.Children)
         {
@@ -779,8 +1011,8 @@ public partial class SearchTabView : UserControl
                              Avalonia.Styling.ThemeVariant.Dark;
                 b.Background = isActive
                     ? new Avalonia.Media.SolidColorBrush(isDark
-                        ? Avalonia.Media.Color.FromArgb(40, 255, 255, 255)
-                        : Avalonia.Media.Color.FromArgb(60, 50, 100, 180))
+                        ? Avalonia.Media.Color.FromArgb(80, 255, 255, 255)
+                        : Avalonia.Media.Color.FromArgb(120, 50, 100, 180))
                     : null;
                 si++;
             }
@@ -799,6 +1031,16 @@ public partial class SearchTabView : UserControl
                 NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = item.FileItem.RelPath });
                 break;
             case TypeaheadItemKind.FullTextAction:
+                if (_txtQuery != null) _txtQuery.Text = item.Query;
+                _vm.SearchCommand.Execute(null);
+                break;
+            case TypeaheadItemKind.RecentSearch:
+                // 4C: populate the query box and execute search
+                if (_txtQuery != null) _txtQuery.Text = item.Query;
+                _vm.SearchCommand.Execute(null);
+                break;
+            case TypeaheadItemKind.CoocTerm:
+                // 4D: use the co-occurrence term as the new search query
                 if (_txtQuery != null) _txtQuery.Text = item.Query;
                 _vm.SearchCommand.Execute(null);
                 break;

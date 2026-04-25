@@ -60,6 +60,18 @@ public sealed class SearchResultGroup : INotifyPropertyChanged
 
     public string HitCountBadge => $"O:{HitsOriginal} T:{HitsTranslated}";
 
+    private bool _isExpanded;
+    public bool IsExpanded
+    {
+        get => _isExpanded;
+        set
+        {
+            if (_isExpanded == value) return;
+            _isExpanded = value;
+            OnPropertyChanged();
+        }
+    }
+
     public void ApplyEnrichment(IReadOnlyList<SearchResultChild> enrichedChildren)
     {
         if (enrichedChildren == null || enrichedChildren.Count == 0)
@@ -100,7 +112,7 @@ public sealed class SearchResultGroup : INotifyPropertyChanged
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
-public sealed class SearchResultChild : INotifyPropertyChanged
+public class SearchResultChild : INotifyPropertyChanged
 {
     private SearchHit _hit = new();
     private bool _primaryIsContextOnly;
@@ -260,6 +272,19 @@ public sealed class SearchResultChild : INotifyPropertyChanged
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
+/// <summary>
+/// Sentinel child appended to a <see cref="SearchResultGroup"/> when its full child list has been
+/// capped at <c>MaxVisibleChildren</c>. Rendered as a "Show N more…" button in the TreeView.
+/// </summary>
+public sealed class SearchResultShowMoreItem : SearchResultChild
+{
+    /// <summary>Number of children hidden behind this sentinel.</summary>
+    public int RemainingCount { get; set; }
+
+    /// <summary>RelPath of the parent group, used as the command parameter key.</summary>
+    public string GroupRelPath { get; set; } = "";
+}
+
 public sealed class AnalyticsBubbleItem
 {
     public string Label { get; set; } = "";
@@ -334,5 +359,14 @@ public sealed class SearchCjkBigramPosting
 {
     public string Gram { get; set; } = "";
     public List<int> EntryIds { get; set; } = new();
+}
+
+/// <summary>
+/// Represents one master currently active in the multi-master intersection filter.
+/// </summary>
+public sealed class ActiveMasterFilter
+{
+    public string MasterName { get; set; } = "";
+    public HashSet<string> RelPaths { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 }
 

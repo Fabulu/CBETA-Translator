@@ -110,6 +110,23 @@ public sealed class SearchIndexService : ISearchIndexService
         '\u7136', '\u54C9', '\u4E0D', '\u662F', '\u6709', '\u7121', '\u6B64', '\u5F7C', '\u4F55'
     };
 
+    /// <summary>Holds pre-computed results for a single work item during parallel index build (Phase 1).</summary>
+    private struct ComputedEntry
+    {
+        public string RelKey;
+        public SearchSide Side;
+        public long Ticks;
+        public long LenBytes;
+        public ulong[]? Bits;           // null when CopiedBloom = true
+        public byte[]? TextBytes;       // null when CopiedText = true
+        public string SearchableText;   // always populated (needed for inverted index)
+        public bool CopiedBloom;
+        public bool CopiedText;
+        public long OldBloomOffset;     // valid only when CopiedBloom = true
+        public long OldTextOffset;      // valid only when CopiedText = true
+        public int OldTextLen;          // valid only when CopiedText = true
+    }
+
     // ==========================================================
     // CO-OCCURRENCE METRICS (dropdown controls what panel shows)
     // ==========================================================
@@ -1823,84 +1840,152 @@ public sealed class SearchIndexService : ISearchIndexService
                             return true;
                         }
 
-                        static int WriteTextBlockUtf8(Stream dst, string text)
+                        // ── Build flat work list (preserves deterministic ordering) ──
+                        var workItems = new List<(string relKey, SearchSide side, string absPath, FileInfo fi)>(total);
+                        foreach (var relKey in allRel)
                         {
-                            if (string.IsNullOrEmpty(text)) return 0;
-                            var bytes = SearchIndexService.Utf8NoBom.GetBytes(text);
-                            dst.Write(bytes, 0, bytes.Length);
-                            return bytes.Length;
+                            if (origFiles.TryGetValue(relKey, out var o))
+                                workItems.Add((relKey, SearchSide.Original, o.abs, o.fi));
+                            if (tranFiles.TryGetValue(relKey, out var t))
+                                workItems.Add((relKey, SearchSide.Translated, t.abs, t.fi));
                         }
 
-                        void IndexOne(string relKey, SearchSide side, string absPath, FileInfo fi)
-                        {
-                            ct.ThrowIfCancellationRequested();
+                        // ── Phase 1: Parallel compute (CPU+IO bound) ──
+                        var buildSw = System.Diagnostics.Stopwatch.StartNew();
+                        progress?.Report((0, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
 
+                        var computed = new ComputedEntry[workItems.Count];
+                        bool htmlDecode = Options.HtmlDecodeIfAmpersandPresent;
+
+                        Parallel.For(0, workItems.Count, new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = Math.Max(1, Options.MaxBloomDegreeOfParallelism),
+                            CancellationToken = ct
+                        }, i =>
+                        {
+                            var (relKey, side, absPath, fi) = workItems[i];
                             long ticks = fi.LastWriteTimeUtc.Ticks;
                             long lenBytes = fi.Length;
 
                             bool copiedBloom = false;
                             bool copiedText = false;
-                            int textLenBytes = 0;
+                            long oldBloomOffset = -1;
+                            long oldTextOffset = -1;
+                            int oldTextLen = 0;
 
-                            long entryBloomOffset = bloomOffset;
-                            long entryTextOffset = textOffset;
-
-                            if (!forceRebuild && oldFs != null &&
+                            if (!forceRebuild &&
                                 oldMap.TryGetValue((relKey, side), out var old) &&
                                 old.LastWriteUtcTicks == ticks &&
                                 old.LengthBytes == lenBytes &&
                                 old.BloomOffset >= 0)
                             {
-                                CopyBloomBlock(oldFs, old.BloomOffset, outFs);
                                 copiedBloom = true;
+                                oldBloomOffset = old.BloomOffset;
                             }
 
-                            if (!forceRebuild && oldTextFs != null &&
+                            if (!forceRebuild &&
                                 oldTextMap.TryGetValue((relKey, side), out var oldText) &&
                                 oldText.LastWriteUtcTicks == ticks &&
                                 oldText.LengthBytes == lenBytes &&
                                 oldText.TextOffset >= 0 &&
                                 oldText.TextLengthBytes >= 0)
                             {
-                                copiedText = CopyTextBlock(oldTextFs, oldText.TextOffset, oldText.TextLengthBytes, outTextFs);
-                                if (copiedText) textLenBytes = oldText.TextLengthBytes;
+                                copiedText = true;
+                                oldTextOffset = oldText.TextOffset;
+                                oldTextLen = oldText.TextLengthBytes;
                             }
 
-                            // Always extract searchable text — needed for inverted index even when bloom/text are copied
+                            // Always read XML and extract searchable text — needed for inverted index
                             string xml = File.ReadAllText(absPath, Utf8NoBom);
-                            string searchable = MakeSearchableTextFromXml_Fast(xml, Options.HtmlDecodeIfAmpersandPresent);
+                            string searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecode);
+
+                            ulong[]? bits = null;
+                            byte[]? textBytes = null;
 
                             if (!copiedBloom)
                             {
-                                var bits = new ulong[BloomUlongs];
+                                bits = new ulong[BloomUlongs];
                                 BuildBloomFromText(bits, searchable);
-                                WriteBloom(outFs, bits);
                             }
 
                             if (!copiedText)
                             {
-                                textLenBytes = WriteTextBlockUtf8(outTextFs, searchable);
+                                textBytes = string.IsNullOrEmpty(searchable)
+                                    ? Array.Empty<byte>()
+                                    : Utf8NoBom.GetBytes(searchable);
                             }
 
-                            invertedDocs.Add((relKey, searchable));
+                            computed[i] = new ComputedEntry
+                            {
+                                RelKey = relKey,
+                                Side = side,
+                                Ticks = ticks,
+                                LenBytes = lenBytes,
+                                SearchableText = searchable,
+                                Bits = bits,
+                                TextBytes = textBytes,
+                                CopiedBloom = copiedBloom,
+                                CopiedText = copiedText,
+                                OldBloomOffset = oldBloomOffset,
+                                OldTextOffset = oldTextOffset,
+                                OldTextLen = oldTextLen
+                            };
+                        });
+
+                        var phase1Ms = buildSw.ElapsedMilliseconds;
+                        Dbg($"Index build Phase 1 (parallel compute) done in {phase1Ms} ms for {workItems.Count} items");
+
+                        // ── Phase 2: Sequential write (maintains exact byte ordering) ──
+                        for (int i = 0; i < computed.Length; i++)
+                        {
+                            ct.ThrowIfCancellationRequested();
+                            var entry = computed[i];
+
+                            long entryBloomOffset = bloomOffset;
+                            long entryTextOffset = textOffset;
+                            int textLenBytes;
+
+                            if (entry.CopiedBloom && oldFs != null)
+                            {
+                                CopyBloomBlock(oldFs, entry.OldBloomOffset, outFs);
+                            }
+                            else if (entry.Bits != null)
+                            {
+                                WriteBloom(outFs, entry.Bits);
+                            }
+
+                            if (entry.CopiedText && oldTextFs != null)
+                            {
+                                bool ok = CopyTextBlock(oldTextFs, entry.OldTextOffset, entry.OldTextLen, outTextFs);
+                                textLenBytes = ok ? entry.OldTextLen : 0;
+                            }
+                            else
+                            {
+                                var tb = entry.TextBytes ?? Array.Empty<byte>();
+                                if (tb.Length > 0)
+                                    outTextFs.Write(tb, 0, tb.Length);
+                                textLenBytes = tb.Length;
+                            }
+
+                            invertedDocs.Add((entry.RelKey, entry.SearchableText));
 
                             manifest.Entries.Add(new SearchIndexEntry
                             {
                                 Id = id++,
-                                RelPath = relKey,
-                                Side = side,
-                                LastWriteUtcTicks = ticks,
-                                LengthBytes = lenBytes,
+                                RelPath = entry.RelKey,
+                                Side = entry.Side,
+                                LastWriteUtcTicks = entry.Ticks,
+                                LengthBytes = entry.LenBytes,
                                 BloomOffset = entryBloomOffset
                             });
 
                             textManifest.Entries.Add(new SearchTextEntry
                             {
                                 Id = id - 1,
-                                RelPath = relKey,
-                                Side = side,
-                                LastWriteUtcTicks = ticks,
-                                LengthBytes = lenBytes,
+                                RelPath = entry.RelKey,
+                                Side = entry.Side,
+                                LastWriteUtcTicks = entry.Ticks,
+                                LengthBytes = entry.LenBytes,
                                 TextOffset = entryTextOffset,
                                 TextLengthBytes = textLenBytes
                             });
@@ -1911,20 +1996,14 @@ public sealed class SearchIndexService : ISearchIndexService
 
                             if (done % 200 == 0 || done == total)
                                 progress?.Report((done, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
+
+                            // Release large buffers eagerly to reduce peak memory.
+                            // Must clear array slot (struct copy), not local variable.
+                            computed[i] = default;
                         }
 
-                        progress?.Report((0, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
-
-                        foreach (var relKey in allRel)
-                        {
-                            ct.ThrowIfCancellationRequested();
-
-                            if (origFiles.TryGetValue(relKey, out var o))
-                                IndexOne(relKey, SearchSide.Original, o.abs, o.fi);
-
-                            if (tranFiles.TryGetValue(relKey, out var t))
-                                IndexOne(relKey, SearchSide.Translated, t.abs, t.fi);
-                        }
+                        buildSw.Stop();
+                        Dbg($"Index build total: {buildSw.ElapsedMilliseconds} ms (Phase 1: {phase1Ms} ms, Phase 2: {buildSw.ElapsedMilliseconds - phase1Ms} ms)");
 
                         outFs.Flush(true);
                         outTextFs.Flush(true);
