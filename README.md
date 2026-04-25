@@ -3,6 +3,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Tests: 1199](https://img.shields.io/badge/Tests-1199-brightgreen)
 ![Masters: 301](https://img.shields.io/badge/Zen_Masters-301-blueviolet)
+![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
+![OpenZenTexts: CC0 / Commercial OK](https://img.shields.io/badge/OpenZenTexts-CC0%20%2F%20Commercial%20OK-brightgreen)
 [![Support on Ko-fi](https://img.shields.io/badge/Support_on-Ko--fi-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/readzen)
 
 # Read Zen
