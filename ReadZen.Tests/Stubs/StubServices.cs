@@ -322,6 +322,19 @@ public class StubMasterDatesService : IMasterDatesService
     public Task<Dictionary<string, List<MasterDateEntry>>> LoadAllCommunityMasterDatesAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<MasterDateEntry>>());
 }
 
+// ---- ITranslationStarService ----
+
+public class StubTranslationStarService : ITranslationStarService
+{
+    public Task LoadAllStarsAsync(string communityStarsDir, CancellationToken ct) => Task.CompletedTask;
+    public int GetStarCount(string fileId, string translator) => 0;
+    public string? GetMostStarredTranslator(string fileId) => null;
+    public bool IsStarredByUser(string fileId, string translator, string username) => false;
+    public Task SetStarAsync(string communityStarsDir, string username, string fileId, string translator, bool starred, CancellationToken ct) => Task.CompletedTask;
+    public Task WriteUserStarsJsonlAsync(string communityStarsDir, string username, CancellationToken ct) => Task.CompletedTask;
+    public Task ExportAggregatedCountsAsync(string repoDir, CancellationToken ct) => Task.CompletedTask;
+}
+
 // ---- IDocumentTagService ----
 
 public class StubDocumentTagService : IDocumentTagService

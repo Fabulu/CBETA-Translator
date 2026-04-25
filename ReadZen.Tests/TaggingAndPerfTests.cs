@@ -239,10 +239,10 @@ public class TaggingAndPerfTests
             Assert.Single(termHost.Children);
             Assert.Single(approvedHost.Children);
             Assert.Single(referenceHost.Children);
-            Assert.Contains("No approved TM matches", ((TextBlock)((Border)approvedHost.Children[0]).Child!).Text);
-            Assert.Contains("No reference TM matches", ((TextBlock)((Border)referenceHost.Children[0]).Child!).Text);
-            Assert.Contains("No terminology hits", ((TextBlock)((Border)termHost.Children[0]).Child!).Text);
-            Assert.Contains("No QA issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
+            Assert.Contains("No approved matches", ((TextBlock)((Border)approvedHost.Children[0]).Child!).Text);
+            Assert.Contains("No reference", ((TextBlock)((Border)referenceHost.Children[0]).Child!).Text);
+            Assert.Contains("No glossary entries", ((TextBlock)((Border)termHost.Children[0]).Child!).Text);
+            Assert.Contains("No quality issues", ((TextBlock)((Border)qaHost.Children[0]).Child!).Text);
         });
     }
 

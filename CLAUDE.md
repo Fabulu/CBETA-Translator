@@ -431,6 +431,9 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | Run ID | Description | Status | Working Directory |
 |--------|-------------|--------|-------------------|
 | RUN-20260416-1401 | Faith-in-Mind critical edition migration | Pending (waiting for curator signal) | runs/CLAUDE-RUNS/RUN-20260416-1401-faith-in-mind-migration/ |
+| RUN-20260421-2042 | Unified search redesign (4-wave plan) | Ready for Review | runs/CLAUDE-RUNS/RUN-20260421-2042-unified-search-redesign/ |
+| RUN-20260420-2353 | Pagefind full-text search + master corpus sharding | In Progress (spec complete, ready for implementation) | runs/CLAUDE-RUNS/RUN-20260420-2353-pagefind-and-master-shards/ |
+| RUN-20260421-2127 | Search parity + Insights overhaul (5-phase plan) | In Progress | runs/CLAUDE-RUNS/RUN-20260421-2127-search-parity-and-insights/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 

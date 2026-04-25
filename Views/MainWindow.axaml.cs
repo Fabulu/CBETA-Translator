@@ -146,6 +146,25 @@ public partial class MainWindow : Window
             try { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); } catch { }
             if (!await _vm.ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
 
+            // Persist window position/size/maximized state (primary window only)
+            if (!IsSecondaryWindow)
+            {
+                try
+                {
+                    var cfg = _vm.Config;
+                    cfg.IsMaximized = WindowState == WindowState.Maximized;
+                    if (WindowState == WindowState.Normal)
+                    {
+                        cfg.WindowX = Position.X;
+                        cfg.WindowY = Position.Y;
+                        cfg.WindowWidth = Width;
+                        cfg.WindowHeight = Height;
+                    }
+                    await _vm.SafeSaveConfigAsync();
+                }
+                catch { /* non-critical */ }
+            }
+
             // Issue 2: Unsubscribe from static event to prevent leak
             if (_scholarDataChangedHandler != null)
                 ScholarTabView.ScholarDataChanged -= _scholarDataChangedHandler;
@@ -430,15 +449,72 @@ private async Task LoadConfigAndAutoloadAsync()
         try
         {
             await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
+            RestoreWindowState();
             MaybeStartTour();
         }
         finally
         {
             _windowReady.TrySetResult();
+
+            // Close splash screen once the main window is ready
+            if (!IsSecondaryWindow && App.SplashScreen is { } splash)
+            {
+                App.SplashScreen = null;
+                splash.Close();
+            }
         }
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
+
+    /// <summary>
+    /// Restores saved window position, size, and maximized state from config.
+    /// Validates that the saved position is still on a visible screen.
+    /// </summary>
+    private void RestoreWindowState()
+    {
+        var cfg = _vm.Config;
+
+        if (cfg.WindowWidth.HasValue && cfg.WindowHeight.HasValue
+            && cfg.WindowWidth.Value > 100 && cfg.WindowHeight.Value > 100
+            && cfg.WindowWidth.Value < 8000 && cfg.WindowHeight.Value < 8000)
+        {
+            Width = cfg.WindowWidth.Value;
+            Height = cfg.WindowHeight.Value;
+        }
+
+        if (cfg.WindowX.HasValue && cfg.WindowY.HasValue)
+        {
+            var x = (int)cfg.WindowX.Value;
+            var y = (int)cfg.WindowY.Value;
+
+            // Verify that the saved position is at least partially on a visible screen
+            bool onScreen = false;
+            if (Screens?.All != null)
+            {
+                foreach (var screen in Screens.All)
+                {
+                    var wa = screen.WorkingArea;
+                    // Consider the window on-screen if its top-left quadrant overlaps
+                    // a working area by at least 50px in each direction
+                    if (x + 50 < wa.X + wa.Width && x + (int)(Width * screen.Scaling) > wa.X + 50
+                        && y + 50 < wa.Y + wa.Height && y + (int)(Height * screen.Scaling) > wa.Y + 50)
+                    {
+                        onScreen = true;
+                        break;
+                    }
+                }
+            }
+
+            if (onScreen)
+                Position = new Avalonia.PixelPoint(x, y);
+            // else: fall back to OS default placement
+        }
+
+        if (cfg.IsMaximized)
+            WindowState = WindowState.Maximized;
+    }
+
     private T? Find<T>(string name) where T : Control => this.FindControl<T>(name);
 
     private void FindControls()

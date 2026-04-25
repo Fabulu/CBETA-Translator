@@ -24,7 +24,8 @@ public class GitTabViewModelTests
             new StubTermbaseStorageService(),
             new StubTranslationReviewService(),
             new StubMasterDatesService(),
-            new StubDocumentTagService());
+            new StubDocumentTagService(),
+            new StubTranslationStarService());
     }
 
     // ---- Initial state ----
@@ -458,7 +459,8 @@ public class GitTabViewModelTests
             new StubTermbaseStorageService(),
             new StubTranslationReviewService(),
             new StubMasterDatesService(),
-            new StubDocumentTagService());
+            new StubDocumentTagService(),
+            new StubTranslationStarService());
 
         vm.LoadPersistedAuth("ghp_test", "Fabulu");
         vm.SetUsername("dota2nub");

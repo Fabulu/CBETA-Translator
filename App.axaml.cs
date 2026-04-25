@@ -22,6 +22,11 @@ public partial class App : Application
     public static SingleInstanceManager? SingleInstance { get; set; }
     public static string[]? StartupArgs { get; set; }
 
+    /// <summary>
+    /// Splash window shown during startup. MainWindow closes it once loaded.
+    /// </summary>
+    internal static Views.SplashWindow? SplashScreen { get; set; }
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -41,6 +46,11 @@ public partial class App : Application
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            // Show splash screen immediately while MainWindow loads
+            var splash = new Views.SplashWindow();
+            SplashScreen = splash;
+            splash.Show();
+
             // Always create and show the primary window (normal flow)
             desktop.MainWindow = new MainWindow();
 
