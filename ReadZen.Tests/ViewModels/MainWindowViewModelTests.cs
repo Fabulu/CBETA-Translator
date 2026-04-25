@@ -651,7 +651,7 @@ public class MainWindowViewModelTests
         try
         {
             vm.SetSearchRootContext = (_, _, translatedDirs) => rootContextTranslatedDirs = translatedDirs;
-            vm.SetSearchContext = (_, _, translatedDirs, _) => searchContextTranslatedDirs = translatedDirs;
+            vm.SetSearchContext = (_, _, translatedDirs, _, _, _) => searchContextTranslatedDirs = translatedDirs;
             vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
             await vm.LoadRootAsync(root, saveToConfig: false);
 

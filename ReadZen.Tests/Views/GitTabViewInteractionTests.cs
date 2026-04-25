@@ -22,7 +22,8 @@ public class GitTabViewInteractionTests
             new StubTermbaseStorageService(),
             new StubTranslationReviewService(),
             new StubMasterDatesService(),
-            new StubDocumentTagService());
+            new StubDocumentTagService(),
+            new StubTranslationStarService());
         SetField(typeof(GitTabView), view, "_vm", vm);
         return view;
     }

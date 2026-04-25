@@ -23,6 +23,13 @@ namespace ReadZen.App.Models
 
         public bool EnableProvenancePanel { get; set; }
 
+        // Window state persistence
+        public double? WindowX { get; set; }
+        public double? WindowY { get; set; }
+        public double? WindowWidth { get; set; }
+        public double? WindowHeight { get; set; }
+        public bool IsMaximized { get; set; }
+
         /// <summary>Which corpus the last-loaded root belongs to. Defaults to CBETA.</summary>
         public CorpusKind ActiveCorpus { get; set; } = CorpusKind.Cbeta;
 

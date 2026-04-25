@@ -135,7 +135,7 @@ public class SearchTabViewModelTests
         Assert.False(vm.IsSearching);
         Assert.False(vm.IsBuildingIndex);
         Assert.True(vm.SearchOriginal);
-        Assert.False(vm.SearchTranslated);
+        Assert.True(vm.SearchTranslated); // Always search both languages now
         Assert.False(vm.ZenOnly);
         Assert.False(vm.IsCancelEnabled);
         Assert.False(vm.IsExportEnabled);
@@ -164,14 +164,14 @@ public class SearchTabViewModelTests
         var vm = MakeVm();
         Assert.Equal(new[]
         {
+            "5 chars",
+            "10 chars",
+            "15 chars",
             "20 chars",
             "40 chars",
             "80 chars",
             "160 chars",
-            "240 chars",
-            "320 chars",
-            "480 chars",
-            "640 chars"
+            "320 chars"
         }, vm.ContextItems);
     }
 
@@ -590,7 +590,7 @@ public class SearchTabViewModelTests
     {
         var vm = MakeVm();
 
-        Assert.Equal(new[] { "Current Results", "Corpus Scan (slow)" }, vm.AnalyticsScopeItems);
+        Assert.Equal(new[] { "Current Results", "Zen Corpus", "Full Corpus (slow)" }, vm.AnalyticsScopeItems);
         Assert.Equal(0, vm.SelectedAnalyticsScopeIndex);
     }
 }

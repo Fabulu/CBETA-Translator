@@ -369,6 +369,15 @@
                                   SelectedIndex="{Binding SelectedCoocMetricIndex}"
                                   AutomationProperties.Name="Co-occurrence metric"
                                   ToolTip.Tip="{Binding MetricTooltip}"/>
+                        <Button Content="?"
+                                FontWeight="Bold"
+                                FontSize="12"
+                                Padding="5,2"
+                                MinWidth="24"
+                                VerticalAlignment="Center"
+                                ToolTip.Tip="{Binding MetricTooltip}"
+                                ToolTip.ShowDelay="0"
+                                AutomationProperties.Name="Metric guide help"/>
                         <TextBlock Text="{Binding CoocSummaryText}"
                                    Classes="muted"
                                    TextWrapping="NoWrap"

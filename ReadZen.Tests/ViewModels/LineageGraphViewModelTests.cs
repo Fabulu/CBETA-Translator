@@ -133,9 +133,8 @@ public class LineageGraphViewModelTests
     {
         var vm = BuildTinyGraph();
         vm.FocusOn(Node(vm, "C"));
-        // C's lineage up: C ← B ← A
+        // Direct connections only: C ← B (immediate teacher)
         Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
-        Assert.Contains(Node(vm, "A"), vm.FocusedNodes);
     }
 
     [Fact]
@@ -143,10 +142,8 @@ public class LineageGraphViewModelTests
     {
         var vm = BuildTinyGraph();
         vm.FocusOn(Node(vm, "A"));
-        // A's lineage down: A → B → {C, D}
+        // Direct connections only: A → B (immediate student)
         Assert.Contains(Node(vm, "B"), vm.FocusedNodes);
-        Assert.Contains(Node(vm, "C"), vm.FocusedNodes);
-        Assert.Contains(Node(vm, "D"), vm.FocusedNodes);
     }
 
     [Fact]
