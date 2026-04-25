@@ -1,21 +1,41 @@
 ![.NET 8](https://img.shields.io/badge/.NET-8-blue)
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
-![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
-![OpenZenTexts: CC0 / Commercial OK](https://img.shields.io/badge/OpenZenTexts-CC0%20%2F%20Commercial%20OK-brightgreen)
+![Tests: 1199](https://img.shields.io/badge/Tests-1199-brightgreen)
+![Masters: 301](https://img.shields.io/badge/Zen_Masters-301-blueviolet)
 [![Support on Ko-fi](https://img.shields.io/badge/Support_on-Ko--fi-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/readzen)
 
 # Read Zen
 
-Read Zen is a desktop app for reading, translating, searching, annotating, and sharing Chinese Zen texts across two corpora — **CBETA** (non-commercial, ~5000 texts) and **OpenZen** (commercial-OK, CC0/CC BY-SA, growing collection of freely-licensed witnesses) — without having to live in terminals, XML editors, or Git command lines.
+A desktop + web environment for reading, translating, searching, and researching Chinese Zen Buddhist texts across **~5000 CBETA texts** and a growing **OpenZen** freely-licensed corpus.
 
-It is built for actual text work:
-- read Chinese and English side by side
-- maintain personal translations and compare them with community ones
-- search the corpus with bilingual context and exportable results
-- build research collections in Scholar
-- manage terminology, master metadata, tags, and reviews
-- sync personal and shared work through GitHub-backed workflows
+**[Try it now — readzen.pages.dev](https://readzen.pages.dev)** | **[Download desktop app](https://github.com/Fabulu/ReadZen/releases/latest)** | **[Support on Ko-fi](https://ko-fi.com/readzen)**
+
+![Read Zen — side-by-side bilingual reader with hover dictionary](Screenshots/reader-side-by-side/reader-side-by-side.png)
+
+Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZen collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
+
+- **Read and search on the web** at [readzen.pages.dev](https://readzen.pages.dev) — no install needed
+- **Read side by side** with hover dictionary, provenance, and license visibility
+- **Translate** with structure-aware tools and AI-assisted workflows
+- **Search** with bilingual context, analytics, and exports
+- **Collect** Scholar passages with linking, comparison, and BibTeX export
+- **Explore** 301 Zen masters with interactive lineage graph and corpus text appearances
+- **Manage** terminology, master metadata, notes, reviews, and tags
+- **Sync** personal and shared work without living in Git
+
+### Why Read Zen?
+
+| | What | Where |
+|---|---|---|
+| **Read** | Side-by-side Chinese / English with hover dictionary | Desktop + Web |
+| **Search** | Full-corpus bilingual search with analytics and typeahead | Desktop + Web |
+| **Explore** | 301 Zen master profiles with interactive lineage graph | Desktop + Web |
+| **Translate** | Structure-aware editor with AI workflow, TM, and review | Desktop |
+| **Research** | Scholar collections, passage linking, BibTeX export | Desktop |
+| **Annotate** | Qualitative coding/tagging with frequency and co-occurrence analytics | Desktop |
+| **Collaborate** | GitHub-backed sync for translations, termbases, collections, and reviews | Desktop |
+| **Provenance** | Critical edition viewer with witness comparison and editorial documentation | Desktop |
 
 ## Download & Install
 
@@ -540,17 +560,5 @@ Data sources and their terms:
 - **CC-CEDICT**: `CC BY-SA 4.0`
 
 See `THIRD_PARTY_NOTICES.txt` for details.
-
-## Short Version
-
-Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZen collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
-- read and search the corpus on the web at [readzen.pages.dev](https://readzen.pages.dev) — no install needed
-- read side by side with hover dictionary, provenance, and license visibility
-- translate with structure-aware tools and AI-assisted workflows
-- search with bilingual context, analytics, and exports
-- build Scholar collections with passage linking, comparison, and BibTeX export
-- explore 301 Zen masters with lineage graph and corpus text appearances
-- manage terms, masters, notes, reviews, and tags
-- sync personal and shared work without living in Git
 
 Built for actual use, not demos.
