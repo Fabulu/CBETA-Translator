@@ -169,6 +169,50 @@
 				</Button.Flyout>
 			</Button>
 
+			<!-- Bookmarks flyout -->
+			<Button Name="BtnBookmarks" Content="Bookmarks ▾"
+			        FontSize="11" Padding="6,2" Background="Transparent"
+			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
+			        Margin="8,0,0,0"
+			        ToolTip.Tip="Manage bookmarks (Ctrl+B to add)">
+				<Button.Flyout>
+					<Flyout Placement="BottomEdgeAlignedLeft">
+						<StackPanel Width="280" MaxHeight="360">
+							<Button Name="BtnAddBookmark" Content="+ Bookmark here"
+							        HorizontalAlignment="Stretch" Padding="8,6"
+							        FontSize="11" Margin="4"/>
+							<Separator Margin="0,2"/>
+							<ScrollViewer MaxHeight="300"
+							              VerticalScrollBarVisibility="Auto"
+							              HorizontalScrollBarVisibility="Disabled">
+								<StackPanel Name="BookmarkList" Spacing="2" Margin="4"/>
+							</ScrollViewer>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
+
+			<!-- Document outline / TOC flyout -->
+			<Button Name="BtnOutline" Content="Outline ▾"
+			        FontSize="11" Padding="6,2" Background="Transparent"
+			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
+			        Margin="8,0,0,0"
+			        ToolTip.Tip="Jump to a heading in the document">
+				<Button.Flyout>
+					<Flyout Placement="BottomEdgeAlignedLeft">
+						<ScrollViewer Width="320" MaxHeight="400"
+						              VerticalScrollBarVisibility="Auto"
+						              HorizontalScrollBarVisibility="Disabled">
+							<StackPanel Name="OutlineList" Spacing="2" Margin="4"/>
+						</ScrollViewer>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
+
+			<TextBlock Name="TxtReadingProgress" Text=""
+			           FontSize="11" Opacity="0.6"
+			           VerticalAlignment="Center"
+			           Margin="12,0,0,0"/>
 			<Border/>
 		</DockPanel>
 

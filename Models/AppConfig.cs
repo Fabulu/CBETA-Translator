@@ -21,6 +21,9 @@ namespace ReadZen.App.Models
 
         public bool EnableStudyPanel { get; set; }
 
+        /// <summary>Font size for the reader panes. Default 14, range 8–32.</summary>
+        public double EditorFontSize { get; set; } = 14.0;
+
         public bool EnableProvenancePanel { get; set; }
 
         // Window state persistence
