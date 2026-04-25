@@ -136,7 +136,7 @@ Existing CBETA-only users get the OpenZen pair automatically on their next sync.
 
 The Reader is the main side-by-side reading view.
 
-![Reader with side-by-side Chinese/English and hover dictionary](screenshots/reader-side-by-side/reader-side-by-side.png)
+![Reader with side-by-side Chinese/English and hover dictionary](Screenshots/reader-side-by-side/reader-side-by-side.png)
 
 What it does:
 - Chinese on the left, selected English source on the right
@@ -202,7 +202,7 @@ Translate supports:
 - personal-vs-other-user translation source switching
 - **Translation History** dialog (right-click) — browse and restore any prior committed version of the current translation
 
-![Translation editor with assistant panel](screenshots/translate-editor/translate-editor.png)
+![Translation editor with assistant panel](Screenshots/translate-editor/translate-editor.png)
 
 The Translate tab has a built-in **Translation Assistant** that shows:
 - termbase hits highlighted in the Chinese source text
@@ -216,7 +216,7 @@ The editor is designed to preserve XML structure on save and reject unsafe proje
 
 Search is a full corpus workflow, not just a title filter.
 
-![Search typeahead with masters, titles, and hit counts](screenshots/search-typeahead/search-typeahead.png)
+![Search typeahead with masters, titles, and hit counts](Screenshots/search-typeahead/search-typeahead.png)
 
 Current features:
 - search original Chinese, translated English, or both
@@ -234,9 +234,9 @@ Current features:
 - index rebuild button (Search settings) — forces a full re-index across all roots
 - **Command Palette** (`Ctrl+Shift+P`) — jump to any action, tab, or tool from anywhere
 
-![Search results with master cards and filter chips](screenshots/search-results/search-results.png)
+![Search results with master cards and filter chips](Screenshots/search-results/search-results.png)
 
-![Search insights with bar charts and scatter plot](screenshots/search-insights/search-insights.png)
+![Search insights with bar charts and scatter plot](Screenshots/search-insights/search-insights.png)
 
 Search also supports:
 - hover dictionary on Chinese result content
@@ -264,7 +264,7 @@ What you can do there:
 
 Scholar has its own **Passage Assistant** that provides termbase hits and translation memory context for any selected passage, using the same TM and termbase data as the other tabs.
 
-![Scholar tab with collection and passage list](screenshots/scholar-collections/scholar-collections.png)
+![Scholar tab with collection and passage list](Screenshots/scholar-collections/scholar-collections.png)
 
 Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
 
@@ -304,7 +304,7 @@ The **Masters tab** is a first-class tab in the main window with three sub-views
 - **Corpus** — which texts in CBETA/OpenZen mention each master, split into primary (author/subject) vs secondary (quoted) with mention counts and snippets
 - **Lineage Web** — interactive graph (including Korean lineage connections) of master-student relationships with pan, zoom (mousewheel + zoom slider), search, **Center** button, and temporal Y-axis ordering (death year drives Y position)
 
-![Lineage web with Korean masters visible](screenshots/lineage-graph/lineage-graph.png)
+![Lineage web with Korean masters visible](Screenshots/lineage-graph/lineage-graph.png)
 
 The lineage taxonomy is rationalized per modern scholarship (McRae, Jia, Poceski) — Hongzhou, Caodong, Yunmen, Guiyang, Fayan, Linji, Heze, Early Chan. The polemical "Northern/Southern Chan" framing is avoided.
 
@@ -347,7 +347,7 @@ A few support surfaces worth knowing:
 - **Witness Text Viewer** — opens the full delivered text of any witness from the Witness Comparison popup
 - **Edition Process Dialog** — for OpenZen critical editions, a multi-tab view of Sources / Timeline / Log / Process / Apparatus / Stats / Documents
 
-![Command palette overlay](screenshots/command-palette/command-palette.png)
+![Command palette overlay](Screenshots/command-palette/command-palette.png)
 
 ## Keyboard Shortcuts
 
