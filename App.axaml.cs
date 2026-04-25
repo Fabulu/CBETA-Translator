@@ -51,6 +51,9 @@ public partial class App : Application
             SplashScreen = splash;
             splash.Show();
 
+            // Let the splash paint before blocking with MainWindow constructor
+            Dispatcher.UIThread.RunJobs(DispatcherPriority.Render);
+
             // Always create and show the primary window (normal flow)
             desktop.MainWindow = new MainWindow();
 
