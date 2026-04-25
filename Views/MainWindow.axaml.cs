@@ -1328,6 +1328,15 @@ private async Task LoadConfigAndAutoloadAsync()
                 _vm.Config.EnableProvenancePanel = visible;
                 _ = _vm.SafeSaveConfigAsync();
             };
+
+            _readableView.FontSizeChanged += (_, size) =>
+            {
+                _vm.Config.EditorFontSize = size;
+                _ = _vm.SafeSaveConfigAsync();
+            };
+
+            // Apply persisted font size
+            _readableView.SetEditorFontSize(_vm.Config.EditorFontSize);
         }
 
         if (_translationView != null)

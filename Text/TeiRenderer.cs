@@ -124,6 +124,12 @@ public static class TeiRenderer
         bool lastWasNewline = false;       // for main sb
         bool noteLastWasNewline = false;   // for noteSb
 
+        // heading capture state (for <head> ... </head>)
+        var headings = new List<HeadingInfo>(capacity: 32);
+        bool inHeadCapture = false;
+        var headSb = new StringBuilder(128);
+        int headRenderedOffset = 0;
+
         void StartNewSegment(string newKey)
         {
             int end = sb.Length;
@@ -146,7 +152,10 @@ public static class TeiRenderer
             {
                 // trailing text
                 if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && !inNoteCapture)
+                {
                     AppendText(sb, baseToXml, s.Slice(i), absStartXmlIndex: i, ref lastWasNewline);
+                    if (inHeadCapture) AppendPlainText(headSb, s.Slice(i));
+                }
                 else if (inNoteCapture)
                     AppendText(noteSb, map: null, s.Slice(i), absStartXmlIndex: i, ref noteLastWasNewline);
                 break;
@@ -166,6 +175,7 @@ public static class TeiRenderer
                 else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
                 {
                     AppendText(sb, baseToXml, rawText, absStartXmlIndex: i, ref lastWasNewline);
+                    if (inHeadCapture) AppendPlainText(headSb, rawText);
                 }
             }
 
@@ -178,7 +188,10 @@ public static class TeiRenderer
                 if (inNoteCapture)
                     AppendText(noteSb, map: null, tail, absStartXmlIndex: lt, ref noteLastWasNewline);
                 else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
+                {
                     AppendText(sb, baseToXml, tail, absStartXmlIndex: lt, ref lastWasNewline);
+                    if (inHeadCapture) AppendPlainText(headSb, tail);
+                }
                 break;
             }
 
@@ -228,6 +241,16 @@ public static class TeiRenderer
                         noteResp = null;
                         noteXmlStart = -1;
                         noteXmlEndExclusive = -1;
+                    }
+
+                    // finish heading capture
+                    if (EqualsIgnoreCase(tagName, "head") && inHeadCapture)
+                    {
+                        inHeadCapture = false;
+                        var headText = headSb.ToString().Trim();
+                        if (!string.IsNullOrWhiteSpace(headText))
+                            headings.Add(new HeadingInfo(headText, headRenderedOffset, Level: 1));
+                        headSb.Clear();
                     }
 
                     // paragraph end spacing (only in main rendered part)
@@ -334,6 +357,14 @@ public static class TeiRenderer
                         {
                             // INSERTED paragraph break should map AFTER the tag that caused it.
                             EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
+
+                            // Start heading capture when <head> opens
+                            if (EqualsIgnoreCase(tagName, "head"))
+                            {
+                                inHeadCapture = true;
+                                headSb.Clear();
+                                headRenderedOffset = sb.Length;
+                            }
                         }
                     }
                     else
@@ -408,7 +439,8 @@ public static class TeiRenderer
             markers,
             baseToXmlIndex: baseToXmlIndex,
             baseTextLength: baseText.Length,
-            license: null);
+            license: null,
+            headings: headings);
     }
 
     // ------------------------------------------------------------
@@ -621,6 +653,26 @@ public static class TeiRenderer
             return;
 
         lastWasNewline = outSb.Length > 0 && outSb[outSb.Length - 1] == '\n';
+    }
+
+    /// <summary>
+    /// Appends visible characters from a raw span into a plain-text StringBuilder (for heading capture).
+    /// Skips CR, collapses whitespace runs. No index-map tracking needed.
+    /// </summary>
+    private static void AppendPlainText(StringBuilder dst, ReadOnlySpan<char> raw)
+    {
+        for (int j = 0; j < raw.Length; j++)
+        {
+            char ch = raw[j];
+            if (ch == '\r') continue;
+            if (ch == '\n' || char.IsWhiteSpace(ch))
+            {
+                if (dst.Length > 0 && !char.IsWhiteSpace(dst[dst.Length - 1]))
+                    dst.Append(' ');
+                continue;
+            }
+            dst.Append(ch);
+        }
     }
 
     private static void AppendNewline(StringBuilder sb, List<int>? map, int xmlIndexForInserted, ref bool lastWasNewline)

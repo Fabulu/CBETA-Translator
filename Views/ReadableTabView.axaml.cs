@@ -167,6 +167,16 @@ public partial class ReadableTabView : UserControl
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
 
     // -------------------------
+    // Bookmarks + Outline
+    // -------------------------
+    private Button? _btnBookmarks;
+    private Button? _btnAddBookmark;
+    private StackPanel? _bookmarkList;
+    private Button? _btnOutline;
+    private StackPanel? _outlineList;
+    private readonly BookmarkService _bookmarkService = App.Services.GetRequiredService<BookmarkService>();
+
+    // -------------------------
     // Find bar (Ctrl+F)
     // -------------------------
     private Border? _findBar;
@@ -191,6 +201,17 @@ public partial class ReadableTabView : UserControl
     private FindHighlightTransformer? _findHighlightTran;
     private List<(bool IsTranslated, int Start, int Length)> _findMatches = new();
     private int _findCurrentIndex = -1;
+
+    // Font size control
+    private double _editorFontSize = 14.0;
+    private const double MinFontSize = 8.0;
+    private const double MaxFontSize = 32.0;
+
+    // Reading progress
+    private TextBlock? _txtReadingProgress;
+    private bool _readingProgressSubscribed;
+
+    public event EventHandler<double>? FontSizeChanged;
 
     // Local state kept in code-behind (UI suppression flags / hot-path counters)
     private bool _suppressZenEvents;
@@ -426,6 +447,13 @@ public partial class ReadableTabView : UserControl
         _txtStudyDictPinyin = this.FindControl<TextBlock>("TxtStudyDictPinyin");
         _studyDictSenses = this.FindControl<StackPanel>("StudyDictSenses");
 
+        _btnBookmarks = this.FindControl<Button>("BtnBookmarks");
+        _btnAddBookmark = this.FindControl<Button>("BtnAddBookmark");
+        _bookmarkList = this.FindControl<StackPanel>("BookmarkList");
+        _btnOutline = this.FindControl<Button>("BtnOutline");
+        _outlineList = this.FindControl<StackPanel>("OutlineList");
+        _txtReadingProgress = this.FindControl<TextBlock>("TxtReadingProgress");
+
         _findBar = this.FindControl<Border>("FindBar");
         _correctionTimeline = this.FindControl<CorrectionTimelineBar>("CorrectionTimeline");
         _txtFindInput = this.FindControl<TextBox>("TxtFindInput");
@@ -462,6 +490,8 @@ public partial class ReadableTabView : UserControl
                 _aeTran.TextArea.TextView.LineTransformers.Add(_findHighlightTran);
             }
         }
+        ApplyEditorFontSize();
+        SubscribeReadingProgress();
     }
 
     private void RebuildContextMenus()
@@ -918,6 +948,13 @@ public partial class ReadableTabView : UserControl
 
         // Find bar (Ctrl+F)
         AddHandler(InputElement.KeyDownEvent, OnFindKeyDown_Tunnel, RoutingStrategies.Tunnel, handledEventsToo: false);
+        AddHandler(InputElement.KeyDownEvent, (_, e) =>
+        {
+            if (e.KeyModifiers != KeyModifiers.Control) return;
+            if (e.Key == Key.OemPlus || e.Key == Key.Add) { ZoomIn(); e.Handled = true; }
+            else if (e.Key == Key.OemMinus || e.Key == Key.Subtract) { ZoomOut(); e.Handled = true; }
+            else if (e.Key == Key.D0) { ZoomReset(); e.Handled = true; }
+        }, RoutingStrategies.Tunnel, handledEventsToo: false);
         if (_btnFindClose != null) _btnFindClose.Click += (_, _) => CloseFindBar();
         if (_btnFindNext != null) _btnFindNext.Click += (_, _) => FindNext();
         if (_btnFindPrev != null) _btnFindPrev.Click += (_, _) => FindPrev();
@@ -936,6 +973,14 @@ public partial class ReadableTabView : UserControl
             _correctionTimeline.StepChanged += (_, step) => OnCorrectionStepChanged(step);
             _correctionTimeline.ReturnToPresent += (_, _) => OnReturnToPresent();
         }
+
+        // Bookmark flyout: refresh list on open
+        if (_btnBookmarks?.Flyout is Flyout bmFlyout)
+            bmFlyout.Opening += (_, _) => RefreshBookmarkList();
+
+        // Outline flyout: populate on open
+        if (_btnOutline?.Flyout is Flyout outFlyout)
+            outFlyout.Opening += (_, _) => PopulateOutline();
 
         RewireButtons();
     }
@@ -964,6 +1009,12 @@ public partial class ReadableTabView : UserControl
         {
             _btnDictionary.Click -= BtnDictionary_Click;
             _btnDictionary.Click += BtnDictionary_Click;
+        }
+
+        if (_btnAddBookmark != null)
+        {
+            _btnAddBookmark.Click -= BtnAddBookmark_Click;
+            _btnAddBookmark.Click += BtnAddBookmark_Click;
         }
 
         UpdateButtonsState();
@@ -5486,6 +5537,11 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             OpenFindBar();
             e.Handled = true;
         }
+        else if (e.Key == Key.B && e.KeyModifiers == KeyModifiers.Control)
+        {
+            BtnAddBookmark_Click(this, new RoutedEventArgs());
+            e.Handled = true;
+        }
         else if (e.Key == Key.Escape && _findBar is { IsVisible: true })
         {
             CloseFindBar();
@@ -5668,6 +5724,284 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _aeOrig?.TextArea.TextView.Redraw();
         _aeTran?.TextArea.TextView.Redraw();
         if (_txtFindCount != null) _txtFindCount.Text = "";
+    }
+
+    // =========================
+    // Bookmarks
+    // =========================
+
+    private void BtnAddBookmark_Click(object? sender, RoutedEventArgs e)
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath)) return;
+
+        var editor = _aeTran ?? _aeOrig;
+        if (editor == null) return;
+
+        int offset = 0;
+        try { offset = editor.TextArea?.Caret.Offset ?? 0; } catch { }
+
+        // Build label from surrounding text
+        string label = "";
+        try
+        {
+            var text = editor.Text ?? "";
+            int snippetStart = Math.Max(0, offset - 20);
+            int snippetEnd = Math.Min(text.Length, offset + 30);
+            label = text.Substring(snippetStart, snippetEnd - snippetStart)
+                        .Replace('\n', ' ').Replace('\r', ' ').Trim();
+            if (label.Length > 50) label = label.Substring(0, 47) + "...";
+        }
+        catch { }
+
+        var bookmark = new Bookmark
+        {
+            RelPath = relPath,
+            DisplayOffset = offset,
+            Label = label,
+            CreatedUtc = DateTime.UtcNow
+        };
+
+        _bookmarkService.Add(bookmark);
+        RefreshBookmarkList();
+        Say("Bookmark added.");
+    }
+
+    /// <summary>Rebuilds the bookmark flyout list for the current file and all cross-file bookmarks.</summary>
+    public void RefreshBookmarkList()
+    {
+        if (_bookmarkList == null) return;
+        _bookmarkList.Children.Clear();
+
+        var relPath = _vm.CurrentRelPathForZen;
+        var allBookmarks = _bookmarkService.All();
+
+        if (allBookmarks.Count == 0)
+        {
+            _bookmarkList.Children.Add(new TextBlock
+            {
+                Text = "No bookmarks yet.",
+                FontSize = 11,
+                Opacity = 0.6,
+                Margin = new Thickness(4)
+            });
+            return;
+        }
+
+        foreach (var bm in allBookmarks)
+        {
+            bool sameFile = string.Equals(bm.RelPath, relPath, StringComparison.OrdinalIgnoreCase);
+
+            var row = new DockPanel { Margin = new Thickness(2) };
+
+            // Delete button
+            var captured = bm;
+            var btnDel = new Button
+            {
+                Content = "\u2715",
+                FontSize = 10,
+                Padding = new Thickness(4, 1),
+                Background = Brushes.Transparent,
+                BorderThickness = new Thickness(0),
+                Cursor = new Cursor(StandardCursorType.Hand),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            btnDel.Click += (_, _) =>
+            {
+                _bookmarkService.Remove(captured);
+                RefreshBookmarkList();
+            };
+            DockPanel.SetDock(btnDel, Dock.Right);
+            row.Children.Add(btnDel);
+
+            // Navigate button (label)
+            var labelText = sameFile
+                ? (string.IsNullOrWhiteSpace(bm.Label) ? $"Offset {bm.DisplayOffset}" : bm.Label)
+                : $"[{System.IO.Path.GetFileNameWithoutExtension(bm.RelPath)}] {bm.Label}";
+
+            var btnNav = new Button
+            {
+                Content = labelText,
+                FontSize = 11,
+                Padding = new Thickness(6, 3),
+                Background = Brushes.Transparent,
+                BorderThickness = new Thickness(0),
+                Cursor = new Cursor(StandardCursorType.Hand),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                HorizontalContentAlignment = HorizontalAlignment.Left,
+                FontWeight = sameFile ? FontWeight.Normal : FontWeight.Light,
+                Opacity = sameFile ? 1.0 : 0.8
+            };
+            btnNav.Click += (_, _) =>
+            {
+                if (sameFile)
+                {
+                    NavigateToBookmark(captured);
+                }
+                else
+                {
+                    // Cross-file: fire navigation event
+                    NavigationRequested?.Invoke(this, new NavigationRequest
+                    {
+                        RelPath = captured.RelPath,
+                        AnchorStartHint = captured.DisplayOffset
+                    });
+                }
+
+                // Close the flyout
+                if (_btnBookmarks?.Flyout is { } fly) fly.Hide();
+            };
+            row.Children.Add(btnNav);
+
+            _bookmarkList.Children.Add(row);
+        }
+    }
+
+    private void NavigateToBookmark(Bookmark bm)
+    {
+        var editor = _aeTran ?? _aeOrig;
+        if (editor == null) return;
+
+        int docLen = editor.Document?.TextLength ?? 0;
+        int offset = Math.Clamp(bm.DisplayOffset, 0, docLen);
+
+        CenterByCaret(editor, offset);
+    }
+
+    // =========================
+    // Document Outline / TOC
+    // =========================
+
+    /// <summary>Populates the outline flyout from the translated document's headings.</summary>
+    public void PopulateOutline()
+    {
+        if (_outlineList == null) return;
+        _outlineList.Children.Clear();
+
+        // Prefer translated doc headings; fall back to original.
+        // Track source so NavigateToHeading uses the correct editor.
+        bool headingsFromOrig = false;
+        var headings = _vm.RenderTran?.Headings;
+        if (headings == null || headings.Count == 0)
+        {
+            headings = _vm.RenderOrig?.Headings;
+            headingsFromOrig = true;
+        }
+
+        if (headings == null || headings.Count == 0)
+        {
+            _outlineList.Children.Add(new TextBlock
+            {
+                Text = "No headings found.",
+                FontSize = 11,
+                Opacity = 0.6,
+                Margin = new Thickness(4)
+            });
+            return;
+        }
+
+        foreach (var h in headings)
+        {
+            var captured = h;
+            var btn = new Button
+            {
+                Content = h.Text,
+                FontSize = 12,
+                Padding = new Thickness(6 + (h.Level - 1) * 12, 4, 6, 4),
+                Background = Brushes.Transparent,
+                BorderThickness = new Thickness(0),
+                Cursor = new Cursor(StandardCursorType.Hand),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                HorizontalContentAlignment = HorizontalAlignment.Left,
+                FontWeight = h.Level <= 1 ? FontWeight.SemiBold : FontWeight.Normal
+            };
+            var fromOrig = headingsFromOrig;
+            btn.Click += (_, _) =>
+            {
+                NavigateToHeading(captured, fromOrig);
+                if (_btnOutline?.Flyout is { } fly) fly.Hide();
+            };
+            _outlineList.Children.Add(btn);
+        }
+    }
+
+    private void NavigateToHeading(HeadingInfo heading, bool fromOriginal = false)
+    {
+        // Navigate in the matching editor (original if headings came from original doc)
+        var editor = fromOriginal ? (_aeOrig ?? _aeTran) : (_aeTran ?? _aeOrig);
+        if (editor == null) return;
+
+        int docLen = editor.Document?.TextLength ?? 0;
+        int offset = Math.Clamp(heading.RenderedOffset, 0, docLen);
+
+        CenterByCaret(editor, offset);
+    }
+
+    // =========================
+    // Font size (Ctrl+= / Ctrl+- / Ctrl+0)
+    // =========================
+
+    public void SetEditorFontSize(double size)
+    {
+        _editorFontSize = Math.Clamp(size, MinFontSize, MaxFontSize);
+        ApplyEditorFontSize();
+    }
+
+    private void ApplyEditorFontSize()
+    {
+        if (_aeOrig != null) _aeOrig.FontSize = _editorFontSize;
+        if (_aeTran != null) _aeTran.FontSize = _editorFontSize;
+    }
+
+    private void ZoomIn()
+    {
+        _editorFontSize = Math.Min(_editorFontSize + 1, MaxFontSize);
+        ApplyEditorFontSize();
+        FontSizeChanged?.Invoke(this, _editorFontSize);
+    }
+
+    private void ZoomOut()
+    {
+        _editorFontSize = Math.Max(_editorFontSize - 1, MinFontSize);
+        ApplyEditorFontSize();
+        FontSizeChanged?.Invoke(this, _editorFontSize);
+    }
+
+    private void ZoomReset()
+    {
+        _editorFontSize = 14.0;
+        ApplyEditorFontSize();
+        FontSizeChanged?.Invoke(this, _editorFontSize);
+    }
+
+    // =========================
+    // Reading progress
+    // =========================
+
+    private void SubscribeReadingProgress()
+    {
+        if (_readingProgressSubscribed) return;
+        _readingProgressSubscribed = true;
+        if (_aeOrig?.TextArea?.Caret != null)
+            _aeOrig.TextArea.Caret.PositionChanged += OnCaretPositionChanged_ReadingProgress;
+        if (_aeTran?.TextArea?.Caret != null)
+            _aeTran.TextArea.Caret.PositionChanged += OnCaretPositionChanged_ReadingProgress;
+    }
+
+    private void OnCaretPositionChanged_ReadingProgress(object? sender, EventArgs e)
+    {
+        var editor = _aeTran ?? _aeOrig;
+        if (editor?.Document == null || _txtReadingProgress == null) return;
+        int line = editor.TextArea.Caret.Line;
+        int total = editor.Document.LineCount;
+        int pct = total > 0 ? (int)Math.Round(100.0 * line / total) : 0;
+        _txtReadingProgress.Text = $"Line {line}/{total} ({pct}%)";
+    }
+
+    private void ResetReadingProgress()
+    {
+        _readingProgressSubscribed = false;
+        if (_txtReadingProgress != null) _txtReadingProgress.Text = "";
     }
 
     /// <summary>

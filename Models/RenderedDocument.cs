@@ -49,10 +49,14 @@ public sealed class RenderedDocument
             new List<AnnotationMarkerInserter.MarkerSpan>(),
             baseToXmlIndex: null,
             baseTextLength: null,
-            license: null);
+            license: null,
+            headings: null);
 
     /// <summary>License/attribution metadata, if extracted from the source TEI header.</summary>
     public TextLicenseInfo? License { get; }
+
+    /// <summary>Headings extracted from TEI &lt;head&gt; elements, ordered by rendered offset.</summary>
+    public List<HeadingInfo> Headings { get; }
 
     public RenderedDocument(
         string text,
@@ -61,7 +65,8 @@ public sealed class RenderedDocument
         List<AnnotationMarkerInserter.MarkerSpan> markers,
         int[]? baseToXmlIndex = null,
         int? baseTextLength = null,
-        TextLicenseInfo? license = null)
+        TextLicenseInfo? license = null,
+        List<HeadingInfo>? headings = null)
     {
         Text = text ?? "";
         Segments = segments ?? new List<RenderSegment>();
@@ -71,6 +76,7 @@ public sealed class RenderedDocument
         BaseToXmlIndex = baseToXmlIndex;
         BaseTextLength = baseTextLength;
         License = license;
+        Headings = headings ?? new List<HeadingInfo>();
 
         // CRITICAL: binary search requires sorted markers
         if (AnnotationMarkers.Count > 1)
