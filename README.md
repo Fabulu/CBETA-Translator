@@ -376,9 +376,9 @@ A few support surfaces worth knowing:
 | `N` | Cross-reference scholar passage with tag layer | Reader (Coding) |
 | `Enter` / `Shift+Enter` / `Escape` | Find bar: next / previous / close | Reader |
 
-## Deep Links And Web Preview
+## Deep Links
 
-Read Zen supports a broad `zen://` deep-link surface for in-app navigation, plus a companion web preview page at **[readzen.pages.dev](https://readzen.pages.dev)** so the same links can be shared with people who don't have the desktop app installed.
+Read Zen supports a broad `zen://` deep-link surface for in-app navigation. Links work in both the desktop app and the web app — the same URL opens the same content in either environment.
 
 Supported link kinds:
 - passages (with or without a line range)
@@ -389,23 +389,24 @@ Supported link kinds:
 - tags on a work
 - compare views (two translations side by side)
 
-These links are produced throughout the app — Reader, Translate, Search, Scholar, and the dictionary/master tooling — usually via right-click menus. They embed the same routing the app uses internally, so every link round-trips: open it on the web, click "open in Read Zen", and you land in the same place.
+These links are produced throughout the app via right-click menus. OpenZen files use synthetic line identifiers (e.g. `wm32.case01.l01`) that never collide with CBETA notation.
 
-OpenZen files use synthetic line identifiers (e.g. `wm32.case01.l01`) that never collide with CBETA notation. Both formats work in deep links and the web preview.
+## Web App (readzen.pages.dev)
 
-### Web preview (readzen.pages.dev)
+**[readzen.pages.dev](https://readzen.pages.dev)** is a full-featured web companion that runs entirely in the browser with zero installation. It fetches data directly from the public CBETA and OpenZen repos on GitHub.
 
-The preview page is a zero-install fallback that fetches data directly from the public CBETA and OpenZen repos. It recognizes both file-ID formats and dispatches to the correct repo automatically:
+What it does:
+- **Read** any text side-by-side (Chinese / English) with paginated navigation and translator switching
+- **Search** the full corpus — title search, full-text search via Pagefind, typeahead with master and title suggestions
+- **Browse** 301 Zen masters with biographical profiles, lineage connections, and corpus text appearances
+- **Explore** the interactive lineage graph with pan, zoom, and school color-coding
+- **Look up** Chinese characters on hover (mouse) or click (touch) via the CC-CEDICT dictionary with grammar particle hints
+- **Compare** translations side by side against the original
+- **Share** any passage, search, or master profile via direct URLs
 
-- **Passage** links to a line range render side-by-side ZH/EN with the chosen translator
-- **Passage** links without a line range render a bilingual body preview for translated works, or a navigable source TOC for untranslated ones
-- **Compare** links render two translations side-by-side against the original
-- **Tags / Scholar / Search** previews stream the relevant community files (tag lists, collection passages, title search) and link into ranged passage URLs
-- **Dictionary / Termbase / Master** previews resolve a single lookup card with falls-back from per-user to shared sources
+The web app and the desktop app share the same URL format. When the desktop app is installed, the web app can hand off to it via the "Open in Read Zen" button. This can be toggled per user preference.
 
-Every preview includes a download CTA for the desktop app, since the previews are deliberately limited to "proof of value" — the full reading, translation, search, and scholarship workflows live in the app.
-
-When the desktop app is installed, the preview page silently hands the link off to it on load and the browser tab becomes a no-op. This auto-open behavior can be disabled via a subtle footer toggle on the preview page for users who prefer to stay in the browser; an explicit "Open in Read Zen" button reappears when auto-open is off.
+The desktop app adds the workbench layer on top: translation editing, terminology management, Scholar research collections, qualitative coding/tagging, review workflows, community sync via GitHub, and exportable analytics. These collaborative and authoring features require local file access and Git integration that the browser cannot provide.
 
 **Examples:**
 - CBETA: the Gateless Barrier (*Wumenguan* / *Mumonkan*, T48n2005) — [readzen.pages.dev/T48n2005](https://readzen.pages.dev/T48n2005)
@@ -457,7 +458,7 @@ Built with:
 | [Fabulu/CbetaZenTranslations](https://github.com/Fabulu/CbetaZenTranslations) | CBETA translations + community data |
 | [Fabulu/OpenZenTexts](https://github.com/Fabulu/OpenZenTexts) | OpenZenTexts originals + provenance + curation docs |
 | [Fabulu/OpenZenTranslations](https://github.com/Fabulu/OpenZenTranslations) | OpenZenTexts translations + community data |
-| [Fabulu/readzen-page](https://github.com/Fabulu/readzen-page) | Web preview SPA (readzen.pages.dev) |
+| [Fabulu/readzen-page](https://github.com/Fabulu/readzen-page) | Web app (readzen.pages.dev) |
 
 ## For Developers
 
@@ -512,6 +513,23 @@ ReadZen and OpenZen are free and open-source. If this work is useful to your pra
 
 Your support funds new woodblock transcriptions, translation tools, and a growing freely-licensed corpus.
 
+## Citing Read Zen
+
+If you use Read Zen in academic work, please cite:
+
+```bibtex
+@software{readzen2026,
+  author       = {Trunz, Fabian},
+  title        = {Read Zen: A Desktop and Web Environment for Chinese Zen Buddhist Text Study},
+  year         = {2026},
+  url          = {https://github.com/Fabulu/ReadZen},
+  version      = {6.0.0},
+  note         = {Desktop app (Avalonia/.NET 8) + web app (readzen.pages.dev). Supports CBETA and OpenZen corpora.}
+}
+```
+
+Or in prose: Trunz, F. (2026). *Read Zen* (Version 6.0.0) [Computer software]. https://github.com/Fabulu/ReadZen
+
 ## Legal
 
 Read Zen: MIT License
@@ -526,12 +544,13 @@ See `THIRD_PARTY_NOTICES.txt` for details.
 ## Short Version
 
 Read Zen is a full working environment for Chinese Zen study and translation across both the CBETA corpus (non-commercial, ~5000 texts) and the OpenZen collection (commercial-OK, freely-licensed witnesses with full provenance tracking):
-- read side by side with provenance and license visibility
-- translate with structure-aware tools
-- search with context and exports
-- build Scholar collections
+- read and search the corpus on the web at [readzen.pages.dev](https://readzen.pages.dev) — no install needed
+- read side by side with hover dictionary, provenance, and license visibility
+- translate with structure-aware tools and AI-assisted workflows
+- search with bilingual context, analytics, and exports
+- build Scholar collections with passage linking, comparison, and BibTeX export
+- explore 301 Zen masters with lineage graph and corpus text appearances
 - manage terms, masters, notes, reviews, and tags
 - sync personal and shared work without living in Git
-- share deep links that work in both the desktop app and on the web at [readzen.pages.dev](https://readzen.pages.dev)
 
 Built for actual use, not demos.

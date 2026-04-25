@@ -32,6 +32,41 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-04-25 — Archived (v6.0.0 marathon)
+
+### [RUN-20260421-2127] Search Parity + Insights Overhaul (5-phase plan)
+
+**Archived:** 2026-04-25
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260421-2127-search-parity-and-insights/`
+
+**Summary:** Shipped Waves 3-5 as v6.0.0. Wave 3: post-search filter, lazy-expand TreeView, multi-master intersection filter, typeahead polish. Wave 4: hit count badges, search history, cooc suggestions, toasts, command palette (Ctrl+Shift+P), context menus, open-in-new-window. Wave 5: parallel index build, children cap, fuzzy command palette, context menu parity. 50 new tests (1199 total). Full pipeline per wave: recons → architect → implementers → reviewer → QA → test writer.
+
+**Outcome:** All 5 phases shipped, reviewed, tested. Version 5.9.0 → 6.0.0.
+
+---
+
+### [RUN-20260421-2042] Unified Search Redesign (4-wave plan)
+
+**Archived:** 2026-04-25
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260421-2042-unified-search-redesign/`
+
+**Summary:** Original 4-wave search redesign plan. Superseded by RUN-20260421-2127 which expanded the scope to 5 phases and shipped everything.
+
+**Outcome:** Merged into RUN-20260421-2127. All deliverables shipped in v6.0.0.
+
+---
+
+### [RUN-20260420-2353] Pagefind Full-Text Search + Master Corpus Sharding
+
+**Archived:** 2026-04-25
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260420-2353-pagefind-and-master-shards/`
+
+**Summary:** Pagefind deployed to SPA (local build + wrangler deploy). Master corpus sharded into per-master JSON files with _index.json. Dict shards bundled from 12K → 201 bucket files to fit Cloudflare 20K file limit. Hover dictionary added to SPA.
+
+**Outcome:** SPA full-text search live. Dict bucketing shipped. Hover dict working.
+
+---
+
 ## 2026-04-18 to 2026-04-19 — Archived (SPA + Korean Seon marathon, v4.9.3 → v5.0.1)
 
 ### SPA Overhaul + Korean Seon Lineage + Translation Stars
