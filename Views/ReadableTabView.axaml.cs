@@ -248,6 +248,9 @@ public partial class ReadableTabView : UserControl
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
 
+    /// <summary>Fired when user right-clicks and selects "Search corpus for selection".</summary>
+    public event EventHandler<string>? SearchCorpusRequested;
+
     /// <summary>Fired when user clicks "View Master" button in study panel.</summary>
     public event EventHandler<string>? OpenMasterRequested;
 
@@ -571,6 +574,29 @@ public partial class ReadableTabView : UserControl
                 menu.Items.Add(adoptItem);
             }
         }
+
+        // 4H: "Search corpus for this" — fires SearchCorpusRequested with the selected text.
+        var searchCorpusItem = new MenuItem { Header = "Search corpus for selection" };
+        searchCorpusItem.Click += (_, _) =>
+        {
+            var editor = isTranslated ? _aeTran : _aeOrig;
+            var selected = editor?.SelectedText?.Trim();
+            if (!string.IsNullOrEmpty(selected))
+                SearchCorpusRequested?.Invoke(this, selected);
+        };
+        menu.Items.Add(new Separator());
+        menu.Items.Add(searchCorpusItem);
+
+        // 4I: "Look up in dictionary" — reuses the existing DictionaryRequested event.
+        var dictItem = new MenuItem { Header = "Look up in dictionary" };
+        dictItem.Click += (_, _) =>
+        {
+            var ed = isTranslated ? _aeTran : _aeOrig;
+            var selected = ed?.SelectedText?.Trim();
+            if (!string.IsNullOrEmpty(selected))
+                DictionaryRequested?.Invoke(this, EventArgs.Empty);
+        };
+        menu.Items.Add(dictItem);
 
         // License-aware items — only added when the active file has license
         // metadata that makes them meaningful. Hiding empty entries keeps
@@ -955,6 +981,15 @@ public partial class ReadableTabView : UserControl
             else if (e.Key == Key.OemMinus || e.Key == Key.Subtract) { ZoomOut(); e.Handled = true; }
             else if (e.Key == Key.D0) { ZoomReset(); e.Handled = true; }
         }, RoutingStrategies.Tunnel, handledEventsToo: false);
+
+        // Ctrl+MouseWheel zoom (works on all keyboard layouts)
+        AddHandler(InputElement.PointerWheelChangedEvent, (_, e) =>
+        {
+            if (e.KeyModifiers != KeyModifiers.Control) return;
+            if (e.Delta.Y > 0) ZoomIn();
+            else if (e.Delta.Y < 0) ZoomOut();
+            e.Handled = true;
+        }, RoutingStrategies.Tunnel, handledEventsToo: true);
         if (_btnFindClose != null) _btnFindClose.Click += (_, _) => CloseFindBar();
         if (_btnFindNext != null) _btnFindNext.Click += (_, _) => FindNext();
         if (_btnFindPrev != null) _btnFindPrev.Click += (_, _) => FindPrev();

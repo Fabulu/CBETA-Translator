@@ -32,7 +32,8 @@
                            IsOpen="False"
                            IsLightDismissEnabled="True"
                            MaxHeight="400">
-                        <Border Background="{DynamicResource PanelAltBg}"
+                        <Border Name="TypeaheadBorder"
+                                Background="{DynamicResource PanelAltBg}"
                                 BorderBrush="{DynamicResource BorderBrush}"
                                 BorderThickness="1"
                                 CornerRadius="6"
@@ -165,7 +166,7 @@
                         CornerRadius="8"
                         Padding="4">
 
-                    <Grid RowDefinitions="Auto,Auto,Auto,*">
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
                         <!-- Result count header -->
                         <TextBlock Grid.Row="0"
                                    Text="{Binding ResultCountText}"
@@ -190,7 +191,7 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Master corpus filter indicator -->
+                        <!-- Master corpus filter indicator (multi-master chip banner) -->
                         <Border Grid.Row="2"
                                 IsVisible="{Binding IsMasterFilterActive}"
                                 Background="#331A7A6A"
@@ -198,21 +199,66 @@
                                 Padding="8,4"
                                 Margin="0,0,0,4">
                             <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="{Binding MasterFilterName, StringFormat='Filtered to: {0}'}"
-                                           FontSize="12" Foreground="#FF30A898"/>
-                                <Button Content="&#x2715; Clear"
+                                <TextBlock Text="Filtered to:"
+                                           FontSize="12"
+                                           Foreground="#FF30A898"
+                                           VerticalAlignment="Center"/>
+                                <ItemsControl ItemsSource="{Binding ActiveMasterFilters}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#441A7A6A" CornerRadius="4" Padding="6,2">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <TextBlock Text="{Binding MasterName}"
+                                                               FontSize="12"
+                                                               Foreground="#FF30A898"
+                                                               VerticalAlignment="Center"/>
+                                                    <Button Content="&#x2715;"
+                                                            Command="{Binding $parent[UserControl].DataContext.RemoveMasterFilterCommand}"
+                                                            CommandParameter="{Binding MasterName}"
+                                                            Padding="2,1"
+                                                            FontSize="10"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Button Content="&#x2715; Clear all"
                                         Command="{Binding ClearMasterFilterCommand}"
                                         Padding="4,2"
                                         FontSize="11"/>
                             </StackPanel>
                         </Border>
 
-                        <TreeView Grid.Row="3"
+                        <!-- Post-search result filter -->
+                        <Border Grid.Row="3"
+                                IsVisible="{Binding HasResults}"
+                                Padding="0,0,0,4">
+                            <TextBox Name="TxtResultFilter"
+                                     Text="{Binding ResultFilter}"
+                                     Watermark="Filter results&#x2026;"
+                                     FontSize="11"
+                                     Padding="6,3"/>
+                        </Border>
+
+                        <TreeView Grid.Row="4"
                                   Name="ResultsTree"
                                   ItemsSource="{Binding ResultGroups}"
                                   Background="{DynamicResource ControlBg}"
                                   BorderBrush="{DynamicResource BorderBrush}"
                                   BorderThickness="1">
+
+                            <TreeView.ItemContainerTheme>
+                                <ControlTheme x:DataType="models:SearchResultGroup"
+                                              TargetType="TreeViewItem"
+                                              BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                                </ControlTheme>
+                            </TreeView.ItemContainerTheme>
 
                             <TreeView.DataTemplates>
 
@@ -236,6 +282,18 @@
                                         </StackPanel>
                                     </DockPanel>
                                 </TreeDataTemplate>
+
+                                <DataTemplate DataType="models:SearchResultShowMoreItem">
+                                    <Button Content="{Binding RemainingCount, StringFormat='Show {0} more\u2026'}"
+                                            HorizontalAlignment="Left"
+                                            Padding="4,2"
+                                            FontSize="11"
+                                            Foreground="{DynamicResource AccentBrush}"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Command="{Binding $parent[TreeView].((vm:SearchTabViewModel)DataContext).ShowMoreCommand}"
+                                            CommandParameter="{Binding}"/>
+                                </DataTemplate>
 
                                 <DataTemplate DataType="models:SearchResultChild">
                                     <StackPanel Orientation="Vertical" Spacing="2">
@@ -310,7 +368,7 @@
 
                         </TreeView>
 
-                        <Border Grid.Row="3"
+                        <Border Grid.Row="4"
                                 IsVisible="{Binding IsSearchLoadingPlaceholderVisible}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -341,7 +399,7 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Row="3"
+                        <Border Grid.Row="4"
                                 Name="SearchEmptyState" IsVisible="{Binding IsEmptyStateVisible}"
                                 HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Padding="20">

@@ -379,6 +379,51 @@
                 <TextBlock Name="TxtStatus" Classes="muted"/>
             </DockPanel>
         </Border>
+
+        <!-- Toast notification container -->
+        <StackPanel Name="ToastContainer"
+                    Grid.Row="0" Grid.RowSpan="4"
+                    ZIndex="500"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,16,48"
+                    Spacing="4"/>
+
+        <!-- Command Palette scrim (click-outside-to-dismiss) -->
+        <Panel Name="CommandPaletteScrim"
+               Grid.Row="0" Grid.RowSpan="4"
+               IsVisible="False"
+               ZIndex="599"
+               Background="Transparent"/>
+
+        <!-- Command Palette Overlay (Ctrl+Shift+P) -->
+        <Border Name="CommandPaletteOverlay"
+                Grid.Row="0" Grid.RowSpan="4"
+                IsVisible="False"
+                ZIndex="600"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,60,0,0"
+                Background="{DynamicResource PanelBg}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="0"
+                Width="500"
+                BoxShadow="0 8 24 0 #40000000">
+            <StackPanel>
+                <TextBox Name="CommandPaletteInput"
+                         Watermark="Type a command..."
+                         FontSize="14"
+                         Padding="12,10"
+                         BorderThickness="0,0,0,1"
+                         BorderBrush="{DynamicResource BorderBrush}"/>
+                <ListBox Name="CommandPaletteList"
+                         MaxHeight="300"
+                         Background="Transparent"
+                         BorderThickness="0"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
 

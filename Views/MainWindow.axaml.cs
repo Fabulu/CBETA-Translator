@@ -82,6 +82,12 @@ public partial class MainWindow : Window
     private bool _suppressNavSelectionChanged;
     private bool _suppressTabEvents;
 
+    // Command palette
+    private Border? _commandPaletteOverlay;
+    private TextBox? _commandPaletteInput;
+    private ListBox? _commandPaletteList;
+    private List<(string Label, Action Execute)> _allCommands = new();
+
     // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
@@ -570,6 +576,11 @@ private async Task LoadConfigAndAutoloadAsync()
         _tourOverlayCanvas = Find<Canvas>("TourOverlayCanvas");
         _tourSpotlight = Find<TourSpotlightOverlay>("TourSpotlight");
         _tourTooltip = Find<TourTooltipPanel>("TourTooltip");
+
+        _commandPaletteOverlay = Find<Border>("CommandPaletteOverlay");
+        _commandPaletteInput = Find<TextBox>("CommandPaletteInput");
+        _commandPaletteList = Find<ListBox>("CommandPaletteList");
+        SetupCommandPalette();
     }
 
     private void CreateViewModel()
@@ -842,6 +853,9 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.OnConfigLoaded = config =>
         {
             if (_chkZenOnly != null) _chkZenOnly.IsChecked = config.ZenOnly;
+            // 4C: restore persisted search history into the search view model
+            if (config.SearchHistory.Count > 0)
+                _searchView?.ViewModel.LoadHistory(config.SearchHistory);
         };
 
         // Index cache save debounce
@@ -1300,6 +1314,14 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.OpenTermbaseEditorAsync();
             };
 
+            // 4H: Jump to Search tab and run the selected text as a corpus query.
+            _readableView.SearchCorpusRequested += (_, query) =>
+            {
+                ForceTab(2);
+                _searchView?.FocusQueryBox();
+                _searchView?.SetQueryAndSearch(query);
+            };
+
             _readableView.StudyPanelVisibilityChanged += (_, visible) =>
             {
                 _vm.Config.EnableStudyPanel = visible;
@@ -1413,6 +1435,14 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.ToggleStarAsync();
             };
 
+            // 5D-1: Jump to Search tab and run the selected text as a corpus query.
+            _translationView.SearchCorpusRequested += (_, query) =>
+            {
+                ForceTab(2);
+                _searchView?.FocusQueryBox();
+                _searchView?.SetQueryAndSearch(query);
+            };
+
             _translationView.ResolveLbForBlock = blockNumber =>
             {
                 var doc = _vm.IndexedDoc;
@@ -1436,7 +1466,14 @@ private async Task LoadConfigAndAutoloadAsync()
             _searchView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
             _searchView.GetTranslationSourceKey = () => _vm.GetActiveSearchSourceKey();
             _searchView.GetShareableTranslationSourceKey = () => _vm.GetActiveSearchSourceKey(forShareableLink: true);
-            _searchView.Status += (_, msg) => _vm.SetStatus(msg);
+            _searchView.Status += (_, msg) =>
+            {
+                _vm.SetStatus(msg);
+                // 4E: Toast for index build completion
+                if (msg.StartsWith("Search index rebuilt", StringComparison.OrdinalIgnoreCase) ||
+                    msg.StartsWith("Search index updated", StringComparison.OrdinalIgnoreCase))
+                    ShowToast(msg);
+            };
             _searchView.NavigationRequested += (_, req) =>
             {
                 _vm.HandleNavigationRequested(req);
@@ -1450,11 +1487,35 @@ private async Task LoadConfigAndAutoloadAsync()
                 await HandleAddToScholarAsync(passage);
             };
             _searchView.AddToScholarRequested += _searchAddToScholarHandler;
+
+            // 4C: persist search history to config after each search
+            _searchView.SearchHistoryChanged += (_, _) =>
+            {
+                _vm.Config.SearchHistory = _searchView.ViewModel.SnapshotHistory();
+                _ = _vm.SafeSaveConfigAsync();
+            };
+
+            // 4J: open a search result document in a new independent reader window.
+            _searchView.OpenInNewWindowRequested += (_, relPath) =>
+            {
+                var root = _vm.TranslationRoot ?? _vm.Root;
+                if (string.IsNullOrEmpty(root)) return;
+                WindowNavigationService.OpenAndNavigate(root, new NavigationRequest { RelPath = relPath });
+            };
         }
 
         if (_gitView != null)
         {
-            _gitStatusHandler = (_, msg) => _vm.SetStatus(msg);
+            _gitStatusHandler = (_, msg) =>
+            {
+                _vm.SetStatus(msg);
+                // 4E: Toast for significant git operations
+                if (msg.StartsWith("PR created:", StringComparison.OrdinalIgnoreCase) ||
+                    msg.StartsWith("Local commit ready", StringComparison.OrdinalIgnoreCase) ||
+                    msg.StartsWith("Community data shared", StringComparison.OrdinalIgnoreCase) ||
+                    msg.StartsWith("Scholar collections shared", StringComparison.OrdinalIgnoreCase))
+                    ShowToast(msg);
+            };
             _gitView.Status += _gitStatusHandler;
 
             _gitView.GitHubAuthCompleted += async (_, args) =>
@@ -1496,8 +1557,11 @@ private async Task LoadConfigAndAutoloadAsync()
 
             // Refresh the sidebar file list after sync completes so new/renamed
             // titles from upstream appear without restarting the app.
+            // 4E: Also show a toast on sync completion.
             _gitView.SyncCompleted += async (_, _) =>
             {
+                ShowToast("Sync completed successfully");
+
                 try { await _vm.LoadFileListFromCacheOrBuildAsync(); }
                 catch { /* non-critical — sidebar stays stale until restart */ }
 
@@ -1692,6 +1756,14 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
     {
+        // Ctrl+Shift+P  -  open command palette
+        if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift) && e.Key == Key.P)
+        {
+            e.Handled = true;
+            ToggleCommandPalette();
+            return;
+        }
+
         // Ctrl+D  -  open dictionary from any tab
         if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.D)
         {
@@ -1901,6 +1973,177 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_tourService?.IsActive != true) return false;
         _vm.SetStatus("Complete or skip the tutorial first.");
         return true;
+    }
+
+    // ===========================================================
+    // Command palette
+    // ===========================================================
+
+    private void SetupCommandPalette()
+    {
+        _allCommands = new List<(string Label, Action Execute)>
+        {
+            ("Read: Open reader",            () => ForceTab(0)),
+            ("Translate: Open editor",       () => ForceTab(1)),
+            ("Search: Open search",          () => ForceTab(2)),
+            ("Sync: Open git sync",          () => ForceTab(3)),
+            ("Collect: Open collections",    () => ForceTab(4)),
+            ("Lineage: Open masters",        () => ForceTab(5)),
+            ("Settings: Open preferences",   () => _ = _vm.OpenSettingsAsync()),
+            ("Termbase: Open editor",        () => _ = _vm.OpenTermbaseEditorAsync()),
+            ("Index: Build search index",    () => _searchView?.ViewModel.BuildIndexCommand.Execute(null)),
+            ("Theme: Toggle dark/light",     () => ToggleDarkLight()),
+            ("Search: Clear all filters",    () => _searchView?.Clear()),
+            ("Search: Focus query",          () => { ForceTab(2); _searchView?.FocusQueryBox(); }),
+            ("Reader: Toggle sidebar",       () => { if (_navPanel != null) _navPanel.IsVisible = !_navPanel.IsVisible; }),
+            ("Export: Export search results", () => _searchView?.ViewModel.ExportCommand.Execute(null)),
+        };
+
+        if (_commandPaletteInput != null)
+        {
+            _commandPaletteInput.TextChanged += (_, _) => FilterCommandPalette();
+            _commandPaletteInput.KeyDown += CommandPaletteInput_KeyDown;
+        }
+
+        if (_commandPaletteList != null)
+        {
+            _commandPaletteList.DoubleTapped += (_, _) => ExecuteSelectedCommand();
+        }
+    }
+
+    private void ToggleDarkLight()
+    {
+        var isDark = _vm.Config.IsDarkTheme;
+        ApplyTheme(!isDark);
+        _vm.Config.IsDarkTheme = !isDark;
+        _ = _vm.SafeSaveConfigAsync();
+    }
+
+    private Panel? _commandPaletteScrim;
+
+    private void ToggleCommandPalette()
+    {
+        if (_commandPaletteOverlay == null) return;
+        _commandPaletteScrim ??= this.FindControl<Panel>("CommandPaletteScrim");
+
+        if (_commandPaletteOverlay.IsVisible)
+        {
+            _commandPaletteOverlay.IsVisible = false;
+            if (_commandPaletteScrim != null) _commandPaletteScrim.IsVisible = false;
+        }
+        else
+        {
+            if (_commandPaletteScrim != null)
+            {
+                _commandPaletteScrim.IsVisible = true;
+                _commandPaletteScrim.PointerPressed -= OnCommandPaletteScrimPressed;
+                _commandPaletteScrim.PointerPressed += OnCommandPaletteScrimPressed;
+            }
+            _commandPaletteOverlay.IsVisible = true;
+            if (_commandPaletteInput != null)
+                _commandPaletteInput.Text = string.Empty;
+            PopulateCommandPalette(string.Empty);
+            Dispatcher.UIThread.Post(() => _commandPaletteInput?.Focus(), DispatcherPriority.Input);
+        }
+    }
+
+    private void OnCommandPaletteScrimPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (_commandPaletteOverlay != null) _commandPaletteOverlay.IsVisible = false;
+        if (_commandPaletteScrim != null) _commandPaletteScrim.IsVisible = false;
+    }
+
+    private static int FuzzyScore(string text, string query)
+    {
+        int qi = 0;
+        int score = 0;
+        int lastMatch = -1;
+        var lower = text.ToLowerInvariant();
+        var qLower = query.ToLowerInvariant();
+
+        for (int ti = 0; ti < lower.Length && qi < qLower.Length; ti++)
+        {
+            if (lower[ti] == qLower[qi])
+            {
+                score += (ti == lastMatch + 1) ? 3 : 1; // consecutive bonus
+                if (ti == 0 || text[ti - 1] == ' ' || text[ti - 1] == ':') score += 2; // word boundary bonus
+                lastMatch = ti;
+                qi++;
+            }
+        }
+        return qi == qLower.Length ? score : -1; // -1 = no match
+    }
+
+    private void PopulateCommandPalette(string filter)
+    {
+        if (_commandPaletteList == null) return;
+        List<string> items;
+        if (string.IsNullOrWhiteSpace(filter))
+        {
+            items = _allCommands.Select(c => c.Label).ToList();
+        }
+        else
+        {
+            items = _allCommands
+                .Select(c => (c.Label, Score: FuzzyScore(c.Label, filter)))
+                .Where(x => x.Score >= 0)
+                .OrderByDescending(x => x.Score)
+                .Select(x => x.Label)
+                .ToList();
+        }
+        _commandPaletteList.ItemsSource = items;
+        if (items.Count > 0)
+            _commandPaletteList.SelectedIndex = 0;
+    }
+
+    private void FilterCommandPalette()
+    {
+        var text = _commandPaletteInput?.Text ?? string.Empty;
+        PopulateCommandPalette(text);
+    }
+
+    private void CommandPaletteInput_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            e.Handled = true;
+            if (_commandPaletteOverlay != null)
+                _commandPaletteOverlay.IsVisible = false;
+            return;
+        }
+
+        if (e.Key == Key.Enter)
+        {
+            e.Handled = true;
+            ExecuteSelectedCommand();
+            return;
+        }
+
+        if (e.Key == Key.Down && _commandPaletteList != null)
+        {
+            e.Handled = true;
+            var count = (_commandPaletteList.ItemsSource as System.Collections.IList)?.Count ?? 0;
+            if (count > 0)
+                _commandPaletteList.SelectedIndex = Math.Min((_commandPaletteList.SelectedIndex + 1), count - 1);
+            return;
+        }
+
+        if (e.Key == Key.Up && _commandPaletteList != null)
+        {
+            e.Handled = true;
+            _commandPaletteList.SelectedIndex = Math.Max((_commandPaletteList.SelectedIndex - 1), 0);
+            return;
+        }
+    }
+
+    private void ExecuteSelectedCommand()
+    {
+        if (_commandPaletteList?.SelectedItem is not string label) return;
+        var cmd = _allCommands.FirstOrDefault(c => c.Label == label);
+        if (cmd.Execute == null) return;
+        if (_commandPaletteOverlay != null)
+            _commandPaletteOverlay.IsVisible = false;
+        cmd.Execute();
     }
 
     // ===========================================================
@@ -3493,6 +3736,44 @@ private async Task LoadConfigAndAutoloadAsync()
             };
             _corpusSwitcherPanel.Children.Add(hint);
         }
+    }
+
+    // -------------------------
+    // Toast Notification System
+    // -------------------------
+
+    /// <summary>
+    /// Displays a non-blocking toast notification in the bottom-right corner.
+    /// Must be called on the UI thread.
+    /// </summary>
+    private StackPanel? _toastContainer;
+
+    private void ShowToast(string message, int durationMs = 3000)
+    {
+        _toastContainer ??= this.FindControl<StackPanel>("ToastContainer");
+        var container = _toastContainer;
+        if (container == null) return;
+
+        var border = new Border
+        {
+            Background = new SolidColorBrush(Color.FromArgb(230, 30, 30, 30)),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(12, 8),
+            MaxWidth = 350,
+            Child = new TextBlock
+            {
+                Text = message,
+                Foreground = Brushes.White,
+                FontSize = 12,
+                TextWrapping = TextWrapping.Wrap
+            }
+        };
+
+        container.Children.Add(border);
+
+        var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(durationMs) };
+        timer.Tick += (_, _) => { timer.Stop(); container.Children.Remove(border); };
+        timer.Start();
     }
 }
 

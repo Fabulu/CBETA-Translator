@@ -98,6 +98,9 @@ public partial class TranslationTabView : UserControl
     /// <summary>Fired when user clicks the star/unstar button for the current translation source.</summary>
     public event EventHandler? StarToggleRequested;
 
+    /// <summary>Fired when user selects "Search corpus for selection" in the editor context menu.</summary>
+    public event EventHandler<string>? SearchCorpusRequested;
+
     /// <summary>
     /// Delegate that resolves the lb n-value for a given block number.
     /// Wired by MainWindow from the current IndexedTranslationDocument.
@@ -339,6 +342,17 @@ public partial class TranslationTabView : UserControl
             Status?.Invoke(this, "Reddit link copied to clipboard.");
         };
         menu.Items.Add(copyRedditLink);
+
+        // 5D-1: Search corpus for selection
+        menu.Items.Add(new Separator());
+        var searchCorpusItem = new MenuItem { Header = "Search corpus for selection" };
+        searchCorpusItem.Click += (_, _) =>
+        {
+            var selected = _editor?.SelectedText?.Trim();
+            if (!string.IsNullOrEmpty(selected))
+                SearchCorpusRequested?.Invoke(this, selected);
+        };
+        menu.Items.Add(searchCorpusItem);
 
         return menu;
     }
