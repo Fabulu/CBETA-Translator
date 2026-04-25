@@ -28,11 +28,11 @@ Latest release: **[github.com/Fabulu/ReadZen/releases/latest](https://github.com
 | OS | Artifact | Notes |
 |---|---|---|
 | Windows | `ReadZen-win-x64-vX.Y.Z.zip` | Extract anywhere, run `ReadZen.App.exe`. SmartScreen warning expected on first launch (see below). |
-| Linux | `ReadZen-linux-x64-vX.Y.Z.tar.gz` | Extract, `chmod +x ReadZen.App`, run. AppImage auto-update coming in v4.5. |
+| Linux | `ReadZen-linux-x64-vX.Y.Z.tar.gz` | Extract, `chmod +x ReadZen.App`, run. |
 | macOS (Apple Silicon) | `ReadZen-osx-arm64-vX.Y.Z.zip` | Extract, may need to allow in System Settings → Privacy & Security on first launch. |
 | macOS (Intel) | `ReadZen-osx-x64-vX.Y.Z.zip` | Same as Apple Silicon. |
 
-A proper installer with auto-update (Velopack) lands in v4.5. Until then, updating means downloading a new zip.
+Windows installer builds include in-app auto-update via Velopack — the app checks GitHub Releases on launch and can update in place. Zip and Linux/macOS builds show a notification banner with a download link when a newer release is available.
 
 ### Windows users: `winget install ReadZen`
 
@@ -50,7 +50,7 @@ Read Zen is a small open-source project without commercial signing certificates.
 
 - **Windows SmartScreen warning** — "Windows protected your PC". Click **More info → Run anyway**. We don't pay Microsoft $120/yr for an Azure Trusted Signing certificate. The source is at [Fabulu/ReadZen](https://github.com/Fabulu/ReadZen) — verify if you want. *Or skip all of this with `winget install Fabulu.ReadZen`.*
 - **macOS Gatekeeper block** — "Read Zen.app cannot be opened because the developer cannot be verified." On macOS 14: right-click the app → **Open**. On macOS 15+: System Settings → **Privacy & Security** → scroll to "Read Zen was blocked" → **Open Anyway**.
-- **Linux** — no signing involved, but you'll need to `chmod +x` the binary the first time. AppImage builds with auto-update arrive in v4.5.
+- **Linux** — no signing involved, but you'll need to `chmod +x` the binary the first time.
 
 ### Prerequisites for full functionality
 
@@ -59,7 +59,7 @@ Read Zen is a small open-source project without commercial signing certificates.
 
 ## What Read Zen Covers Now
 
-Read Zen is no longer just a reader plus translation editor. The app now has six major work areas:
+Read Zen is no longer just a reader plus translation editor. The app now has eight major work areas:
 - `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging, Ctrl+MouseWheel zoom, bookmarks, document outline
 - `Translate`: projection-based translation workflow with AI copy/paste, review, assistant, and source switching
 - `Search`: corpus search with typeahead (hit counts + history), post-search filtering, multi-master intersection, insights charts, command palette (Ctrl+Shift+P), and exports
@@ -341,7 +341,7 @@ Read Zen tries to protect local work during updates, but this is still a Git-bac
 A few support surfaces worth knowing:
 
 - **Settings** — theme, username, hover dictionary on/off, **Restart onboarding tour on next launch** checkbox to re-run the tutorial
-- **Update notification bar** — when a newer release exists on GitHub, a green banner appears with a **Download** button. Currently this opens the GitHub releases page; v4.5 will deliver in-app auto-update via Velopack.
+- **Update notification bar** — when a newer release exists on GitHub, a green banner appears. Windows installer builds update in place via Velopack; other builds link to the GitHub releases page.
 - **Licenses Window** — app license + third-party notices in one place
 - **Document Variables** — show all metadata variables for the active document
 - **Witness Text Viewer** — opens the full delivered text of any witness from the Witness Comparison popup
