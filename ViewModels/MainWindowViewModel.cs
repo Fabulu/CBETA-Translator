@@ -123,6 +123,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private CurrentSegmentContext? _currentSegmentContext;
 
     private bool _suppressConfigSaves;
+    public void SuppressConfigSavesForSecondaryWindow() => _suppressConfigSaves = true;
     private bool _suppressNavSelection;
     private bool _userHasManuallySelectedSource;
 

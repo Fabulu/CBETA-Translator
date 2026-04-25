@@ -130,6 +130,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         FindControls();
         CreateViewModel();
+        if (isSecondaryWindow) _vm.SuppressConfigSavesForSecondaryWindow();
         WireBridges();
         WireEvents();
         WireChildViewEvents();
