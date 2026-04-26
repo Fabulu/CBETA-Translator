@@ -12,6 +12,7 @@
 using System;
 using System.Text;
 using System.Text.Json;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
@@ -111,42 +112,19 @@ public sealed class CitationService : ICitationService
     // CBETA Canonical Reference
     // ---------------------------------------------------------------
 
+    /// <summary>
+    /// Delegates to <see cref="CbetaReferenceHelper.FormatCbetaReference"/>.
+    /// Kept as instance method so existing callers (Reader, Editor, Search) are unaffected.
+    /// </summary>
     public string? FormatCbetaReference(string? lbValue, string? canon, int? volume, string? number)
-    {
-        if (string.IsNullOrEmpty(canon) || !volume.HasValue || string.IsNullOrEmpty(number))
-            return null;
-
-        // Base reference without page: "T no. 2005, 48"
-        var refBase = $"{canon} no. {number}, {volume.Value}";
-
-        if (string.IsNullOrEmpty(lbValue)) return refBase;
-
-        // Parse lb value: "0292c18" -> page=292, col=c, line=18
-        var pageRef = FormatLbAsPageRef(lbValue);
-        if (pageRef == null) return refBase;
-
-        return $"{refBase}: {pageRef}";
-    }
+        => CbetaReferenceHelper.FormatCbetaReference(lbValue, canon, volume, number);
 
     /// <summary>
-    /// Convert lb n-value "0292c18" to page reference "292c18".
-    /// Strips leading zeros from the 4-digit page number.
+    /// Delegates to <see cref="CbetaReferenceHelper.FormatLbAsPageRef"/>.
+    /// Kept internal for any existing test references.
     /// </summary>
-    internal static string? FormatLbAsPageRef(string lbValue)
-    {
-        if (string.IsNullOrEmpty(lbValue) || lbValue.Length < 5) return null;
-
-        // Format: PPPP + column_letter + LL (e.g., 0292c18)
-        // Page is first 4 chars, rest is column+line
-        var pageStr = lbValue.Substring(0, 4);
-        var rest = lbValue.Substring(4); // "c18"
-
-        // Strip leading zeros from page
-        var page = pageStr.TrimStart('0');
-        if (page.Length == 0) page = "0";
-
-        return page + rest;
-    }
+    internal static string? FormatLbAsPageRef(string? lbValue)
+        => CbetaReferenceHelper.FormatLbAsPageRef(lbValue);
 
     // ---------------------------------------------------------------
     // Style Formatters
@@ -586,50 +564,15 @@ public sealed class CitationService : ICitationService
         return $"cbeta:{fileId}:{lb}";
     }
 
+    /// <summary>
+    /// Delegates to <see cref="CbetaReferenceHelper.EscapeBibTeX"/> (5-replacement version).
+    /// </summary>
     private static string EscapeBibTeX(string value)
-    {
-        return value.Replace("{", "\\{").Replace("}", "\\}");
-    }
+        => CbetaReferenceHelper.EscapeBibTeX(value);
 
     /// <summary>
-    /// Try to parse CBETA canon/volume/number from a FileId like "T48n2005".
-    /// This provides a fallback when the enhanced TextLicenseExtractor (1A) has
-    /// not yet been integrated.
+    /// Delegates to <see cref="CbetaReferenceHelper.TryParseCbetaFromFileId"/>.
     /// </summary>
     private static void TryParseCbetaFromFileId(string fileId, out string? canon, out int? volume, out string? number)
-    {
-        canon = null;
-        volume = null;
-        number = null;
-
-        if (string.IsNullOrEmpty(fileId)) return;
-
-        // Match pattern like "T48n2005", "X70n1363", "J26nB180"
-        // Canon = letter(s), Volume = digits before 'n', Number = digits after 'n'
-        int nIdx = fileId.IndexOf('n');
-        if (nIdx < 2) return; // need at least 1 canon char + 1 vol digit
-
-        // Find where digits start (after canon letter(s))
-        int volStart = 0;
-        for (int i = 0; i < nIdx; i++)
-        {
-            if (char.IsDigit(fileId[i]))
-            {
-                volStart = i;
-                break;
-            }
-        }
-        if (volStart == 0) return; // no canon prefix found
-
-        var canonStr = fileId.Substring(0, volStart);
-        var volStr = fileId.Substring(volStart, nIdx - volStart);
-        var numStr = fileId.Substring(nIdx + 1);
-
-        if (int.TryParse(volStr, out var vol) && !string.IsNullOrEmpty(numStr))
-        {
-            canon = canonStr;
-            volume = vol;
-            number = numStr;
-        }
-    }
+        => CbetaReferenceHelper.TryParseCbetaFromFileId(fileId, out canon, out volume, out number);
 }

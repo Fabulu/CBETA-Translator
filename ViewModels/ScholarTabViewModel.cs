@@ -182,7 +182,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public Func<ScholarExportFormat, string?, Task<string?>>? PickExportFileAsync { get; set; }
     public Func<Task<string?>>? PickImportFileAsync { get; set; }
-    public Func<Task<ScholarExportFormat?>>? PickExportFormatAsync { get; set; }
+    public Func<Task<ExportDialogResult?>>? PickExportFormatAsync { get; set; }
 
     // ----- Events -----
 
@@ -460,17 +460,19 @@ public partial class ScholarTabViewModel : ViewModelBase
         try
         {
             var chosenFormat = ScholarExportFormat.Json;
+            var chosenStyle = CitationStyle.Chicago;
             if (PickExportFormatAsync != null)
             {
-                var pickedFormat = await PickExportFormatAsync();
-                if (pickedFormat == null)
+                var dialogResult = await PickExportFormatAsync();
+                if (dialogResult == null)
                 {
                     StatusMessage = "Export cancelled.";
                     StatusChanged?.Invoke(this, StatusMessage);
                     return;
                 }
 
-                chosenFormat = pickedFormat.Value;
+                chosenFormat = dialogResult.Format;
+                chosenStyle = dialogResult.CitationStyle;
             }
 
             ScholarCollection? target = null;
@@ -505,7 +507,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             else
             {
                 var exportSvc = App.Services.GetRequiredService<IScholarExportService>();
-                await exportSvc.ExportAsync(path, target!, chosenFormat);
+                await exportSvc.ExportAsync(path, target!, chosenFormat, chosenStyle);
                 StatusMessage = $"Exported '{target!.Name}' as {chosenFormat} to {Path.GetFileName(path)}.";
             }
 

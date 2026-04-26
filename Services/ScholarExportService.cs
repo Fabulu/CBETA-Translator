@@ -7,13 +7,14 @@ using System.Text.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
 
 public sealed class ScholarExportService : IScholarExportService
 {
-    public async Task ExportAsync(string filePath, ScholarCollection collection, ScholarExportFormat format, CancellationToken ct = default)
+    public async Task ExportAsync(string filePath, ScholarCollection collection, ScholarExportFormat format, CitationStyle citationStyle = CitationStyle.Chicago, CancellationToken ct = default)
     {
         if (format == ScholarExportFormat.ReaderTagTsv)
         {
@@ -29,15 +30,15 @@ public sealed class ScholarExportService : IScholarExportService
 
         var content = format switch
         {
-            ScholarExportFormat.Html => BuildHtml(collection),
-            ScholarExportFormat.Markdown => BuildMarkdown(collection),
+            ScholarExportFormat.Html => BuildHtml(collection, citationStyle),
+            ScholarExportFormat.Markdown => BuildMarkdown(collection, citationStyle),
             ScholarExportFormat.PlainText => BuildPlainText(collection),
-            ScholarExportFormat.Csv => BuildDelimited(collection, ","),
-            ScholarExportFormat.Tsv => BuildDelimited(collection, "	"),
+            ScholarExportFormat.Csv => BuildDelimited(collection, ",", citationStyle),
+            ScholarExportFormat.Tsv => BuildDelimited(collection, "	", citationStyle),
             ScholarExportFormat.ReaderTagBundle => BuildReaderTagBundle(collection),
             ScholarExportFormat.BibTex => BuildBibTex(collection),
             ScholarExportFormat.CslJson => BuildCslJson(collection),
-            ScholarExportFormat.PaperDraft => BuildPaperDraft(collection),
+            ScholarExportFormat.PaperDraft => BuildPaperDraft(collection, citationStyle),
             ScholarExportFormat.Ris => BuildRis(collection),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
@@ -76,7 +77,8 @@ public sealed class ScholarExportService : IScholarExportService
         "added_utc",
         "modified_utc",
         "zen_link",
-        "share_url"
+        "share_url",
+        "formatted_citation"
     };
     private static readonly string[] ReaderTagHeaders =
     {
@@ -442,7 +444,7 @@ public sealed class ScholarExportService : IScholarExportService
         return collapsed.Length <= 120 ? collapsed : collapsed[..120] + "...";
     }
 
-    private static string BuildHtml(ScholarCollection collection)
+    private static string BuildHtml(ScholarCollection collection, CitationStyle citationStyle = CitationStyle.Chicago)
     {
         var sb = new StringBuilder();
         sb.AppendLine("<!DOCTYPE html>");
@@ -515,6 +517,11 @@ public sealed class ScholarExportService : IScholarExportService
                 sb.AppendLine("</div>");
             }
 
+            // Citation line (3C)
+            var citationLine = BuildPassageCitationLine(p);
+            if (!string.IsNullOrWhiteSpace(citationLine))
+                sb.AppendLine($"<div class=\"citation-box\"><span class=\"citation-label\">Cite:</span> {Esc(citationLine)}</div>");
+
             sb.AppendLine("</div>");
         }
 
@@ -543,6 +550,15 @@ public sealed class ScholarExportService : IScholarExportService
                 sb.AppendLine("</div>");
             }
             sb.AppendLine("</div>");
+        }
+
+        // Works Cited section (3C)
+        var worksCitedHtml = BuildWorksCitedHtml(collection);
+        if (!string.IsNullOrWhiteSpace(worksCitedHtml))
+        {
+            sb.AppendLine("<hr>");
+            sb.AppendLine("<h2>Works Cited</h2>");
+            sb.AppendLine(worksCitedHtml);
         }
 
         sb.AppendLine("</body>");
@@ -755,9 +771,19 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 .links-table th { background: #2A2A3A; font-size: 0.85em; color: #AAA; }
 .links-table a { color: #7AABFF; text-decoration: none; }
 .links-table a:hover { text-decoration: underline; }
+.citation-box {
+    font-size: 0.82em;
+    color: #9BA3C7;
+    background: #1E1E2E;
+    border: 1px solid #3A3A4A;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-top: 8px;
+}
+.citation-label { font-weight: 600; color: #C6D0F5; }
 ";
 
-    private static string BuildMarkdown(ScholarCollection collection)
+    private static string BuildMarkdown(ScholarCollection collection, CitationStyle citationStyle = CitationStyle.Chicago)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"# {collection.Name}");
@@ -811,6 +837,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             if (cats.Count > 0)
                 sb.AppendLine($"**Categories:** {string.Join(" ? ", cats)}");
 
+            // Citation line (3C)
+            var mdCitationLine = BuildPassageCitationLine(p);
+            if (!string.IsNullOrWhiteSpace(mdCitationLine))
+                sb.AppendLine($"**Cite:** {mdCitationLine}");
+
             sb.AppendLine();
             sb.AppendLine("---");
             sb.AppendLine();
@@ -833,6 +864,15 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             }
 
             sb.AppendLine();
+        }
+
+        // Works Cited section (3C)
+        var worksCitedMd = BuildWorksCitedMarkdown(collection);
+        if (!string.IsNullOrWhiteSpace(worksCitedMd))
+        {
+            sb.AppendLine("## Works Cited");
+            sb.AppendLine();
+            sb.AppendLine(worksCitedMd);
         }
 
         return sb.ToString();
@@ -1087,40 +1127,10 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
     }
 
     /// <summary>
-    /// Try to parse CBETA canon/volume/number from a FileId like "T48n2005".
+    /// Delegates to <see cref="CbetaReferenceHelper.TryParseCbetaFromFileId"/>.
     /// </summary>
     private static void TryParseCbetaFromFileId(string fileId, out string? canon, out int? volume, out string? number)
-    {
-        canon = null;
-        volume = null;
-        number = null;
-
-        if (string.IsNullOrEmpty(fileId)) return;
-
-        int nIdx = fileId.IndexOf('n');
-        if (nIdx < 2) return;
-
-        int volStart = 0;
-        for (int i = 0; i < nIdx; i++)
-        {
-            if (char.IsDigit(fileId[i]))
-            {
-                volStart = i;
-                break;
-            }
-        }
-        if (volStart == 0) return;
-
-        var volStr = fileId.Substring(volStart, nIdx - volStart);
-        var numStr = fileId.Substring(nIdx + 1);
-
-        if (int.TryParse(volStr, out var vol) && !string.IsNullOrEmpty(numStr))
-        {
-            canon = fileId.Substring(0, volStart);
-            volume = vol;
-            number = numStr;
-        }
-    }
+        => CbetaReferenceHelper.TryParseCbetaFromFileId(fileId, out canon, out volume, out number);
 
     private static void AppendBibTexField(StringBuilder sb, string name, string? value, bool required = false)
     {
@@ -1199,16 +1209,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         return string.Empty;
     }
 
+    /// <summary>
+    /// Delegates to <see cref="CbetaReferenceHelper.EscapeBibTeX"/>.
+    /// </summary>
     private static string EscapeBibTex(string value)
-    {
-        return value
-            .Replace("\\", "\\\\")
-            .Replace("{", "\\{")
-            .Replace("}", "\\}")
-            .Replace("\r\n", " ")
-            .Replace("\n", " ")
-            .Replace("\r", " ");
-    }
+        => CbetaReferenceHelper.EscapeBibTeX(value);
 
     private static string SanitizeBibTexKeySegment(string? value)
     {
@@ -1337,23 +1342,29 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         };
         return JsonSerializer.Serialize(items, options);
     }
-    private static string BuildPaperDraft(ScholarCollection collection)
+    private static string BuildPaperDraft(ScholarCollection collection, CitationStyle citationStyle = CitationStyle.Chicago)
     {
         var sb = new StringBuilder();
+        var footnotes = new List<PaperFootnote>();
+
+        // --- YAML frontmatter ---
         sb.AppendLine("---");
         sb.AppendLine($"title: \"{EscapeYaml(collection.Name)}\"");
-        sb.AppendLine($"collection_id: \"{EscapeYaml(collection.Id)}\"");
         if (!string.IsNullOrWhiteSpace(collection.CreatedBy))
-            sb.AppendLine($"created_by: \"{EscapeYaml(collection.CreatedBy)}\"");
-        if (collection.CreatedUtc != default)
-            sb.AppendLine($"created_utc: \"{FormatIsoTimestamp(collection.CreatedUtc)}\"");
-        if (collection.ModifiedUtc.HasValue)
-            sb.AppendLine($"modified_utc: \"{FormatIsoTimestamp(collection.ModifiedUtc)}\"");
+            sb.AppendLine($"author: \"{EscapeYaml(collection.CreatedBy)}\"");
+        sb.AppendLine($"date: \"{FormatIsoTimestamp(DateTimeOffset.UtcNow)}\"");
         sb.AppendLine("export_format: \"paper-draft\"");
         sb.AppendLine("---");
         sb.AppendLine();
 
-        sb.AppendLine($"# {collection.Name}");
+        // --- Abstract ---
+        sb.AppendLine("# Abstract");
+        sb.AppendLine();
+        sb.AppendLine("[TODO: Write abstract summarizing argument, sources, and conclusions.]");
+        sb.AppendLine();
+
+        // --- Introduction ---
+        sb.AppendLine("# Introduction");
         sb.AppendLine();
         if (!string.IsNullOrWhiteSpace(collection.Description))
         {
@@ -1361,13 +1372,17 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             sb.AppendLine();
         }
 
-        sb.AppendLine("Research draft scaffold from the selected collection. This is an editable outline, not a finished paper.");
+        var uniqueTexts = collection.Passages
+            .Select(p => CbetaReferenceHelper.ExtractFileIdFromRelPath(p.SourceRelPath))
+            .Where(id => !string.IsNullOrEmpty(id))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        sb.AppendLine($"This study draws on {collection.Passages.Count} passage(s) from {uniqueTexts.Count} source text(s) in the Chinese Buddhist canon.");
         sb.AppendLine();
-        sb.AppendLine("Claim to develop:");
-        sb.AppendLine();
-        sb.AppendLine("Why this evidence matters:");
+        sb.AppendLine("[TODO: Describe methodology and analytical framework.]");
         sb.AppendLine();
 
+        // --- Body sections (grouped) ---
         var groups = collection.Passages
             .Select((passage, index) => new DraftPassageGroup(Group: GetDraftGroupLabel(passage), Passage: passage, OriginalIndex: index))
             .GroupBy(x => x.Group)
@@ -1376,7 +1391,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
         foreach (var group in groups)
         {
-            sb.AppendLine($"## {group.Key}");
+            sb.AppendLine($"# {group.Key}");
             sb.AppendLine();
 
             foreach (var entry in group.OrderBy(x => x.Passage.SourceRelPath, StringComparer.OrdinalIgnoreCase)
@@ -1384,69 +1399,191 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
                                        .ThenBy(x => x.Passage.StartBlockNumber ?? int.MaxValue)
                                        .ThenBy(x => x.OriginalIndex))
             {
-                AppendPaperDraftPassage(sb, entry.Passage, entry.OriginalIndex + 1);
+                var footnote = AppendPaperDraftPassage(sb, entry.Passage, footnotes.Count + 1);
+                footnotes.Add(footnote);
             }
+        }
+
+        // --- Conclusion ---
+        sb.AppendLine("# Conclusion");
+        sb.AppendLine();
+        sb.AppendLine("[TODO: Summarize findings, restate thesis, suggest further research.]");
+        sb.AppendLine();
+
+        // --- Abbreviations ---
+        var canonsUsed = collection.Passages
+            .Select(p => ExtractCanonCode(p.SourceRelPath))
+            .Where(c => !string.IsNullOrEmpty(c))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(c => c, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (canonsUsed.Count > 0)
+        {
+            sb.AppendLine("# Abbreviations");
+            sb.AppendLine();
+            foreach (var canon in canonsUsed)
+            {
+                var fullName = GetCanonFullName(canon);
+                sb.AppendLine($"- **{canon}** = {fullName}");
+            }
+            sb.AppendLine();
+        }
+
+        // --- Primary Sources (bibliography) ---
+        var primarySources = collection.Passages
+            .Select(p => new { FileId = CbetaReferenceHelper.ExtractFileIdFromRelPath(p.SourceRelPath), RelPath = p.SourceRelPath })
+            .Where(x => !string.IsNullOrEmpty(x.FileId))
+            .GroupBy(x => x.FileId, StringComparer.OrdinalIgnoreCase)
+            .Select(g => g.First())
+            .OrderBy(x => x.FileId, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (primarySources.Count > 0)
+        {
+            sb.AppendLine("# Primary Sources");
+            sb.AppendLine();
+            foreach (var src in primarySources)
+            {
+                var parsed = ParseFileIdComponents(src.FileId);
+                sb.AppendLine($"- *{src.FileId}*. {parsed.Canon} no. {parsed.Number}, {parsed.Volume}. CBETA. https://readzen.pages.dev/{src.FileId}");
+            }
+            sb.AppendLine();
+        }
+
+        // --- Notes (footnote definitions) ---
+        if (footnotes.Count > 0)
+        {
+            sb.AppendLine("# Notes");
+            sb.AppendLine();
+            foreach (var fn in footnotes)
+            {
+                sb.AppendLine($"[^{fn.Index}]: {fn.Reference}");
+            }
+            sb.AppendLine();
         }
 
         return sb.ToString();
     }
 
-    private static void AppendPaperDraftPassage(StringBuilder sb, ScholarPassage passage, int index)
+    /// <summary>
+    /// Appends a single passage as a blockquote with footnote marker. Returns footnote data.
+    /// </summary>
+    private static PaperFootnote AppendPaperDraftPassage(StringBuilder sb, ScholarPassage passage, int footnoteIndex)
     {
-        sb.AppendLine($"### Passage {index}. {BuildDraftPassageLabel(passage, index)}");
-        sb.AppendLine();
-
         if (!string.IsNullOrWhiteSpace(passage.ZhText))
         {
-            sb.AppendLine("> Chinese");
             foreach (var line in passage.ZhText.Split('\n'))
                 sb.AppendLine($"> {line.TrimEnd('\r')}");
-            sb.AppendLine(">");
         }
 
         if (!string.IsNullOrWhiteSpace(passage.EnText))
         {
-            sb.AppendLine("> Translation");
+            if (!string.IsNullOrWhiteSpace(passage.ZhText))
+                sb.AppendLine(">");
             foreach (var line in passage.EnText.Split('\n'))
                 sb.AppendLine($"> {line.TrimEnd('\r')}");
-            sb.AppendLine();
         }
 
-        sb.AppendLine("Interpretive note:");
-        sb.AppendLine(string.IsNullOrWhiteSpace(passage.Notes) ? "[Add analysis here.]" : passage.Notes);
+        sb.AppendLine();
+        sb.AppendLine($"[^{footnoteIndex}]");
+        sb.AppendLine();
+        sb.AppendLine("[TODO: Analysis of this passage.]");
         sb.AppendLine();
 
-        if (passage.Tags.Count > 0)
-            sb.AppendLine($"Tags: {string.Join(", ", passage.Tags)}");
-        if (passage.MasterNames.Count > 0)
-            sb.AppendLine($"Masters: {string.Join(", ", passage.MasterNames)}");
-        var cats = BuildCategoryList(passage);
-        if (cats.Count > 0)
-            sb.AppendLine($"Facets: {string.Join("; ", cats)}");
-        sb.AppendLine();
+        // Build footnote reference
+        var fileId = CbetaReferenceHelper.ExtractFileIdFromRelPath(passage.SourceRelPath);
+        var reference = BuildCbetaFootnoteReference(fileId, passage.FromLb);
 
-        sb.AppendLine("Citation:");
-        sb.AppendLine($"- Source: {ExtractSourceTitle(passage.SourceRelPath)}");
-        sb.AppendLine($"- Path: {passage.SourceRelPath}");
-        var lineBreaks = FormatLineBreakRange(passage.FromLb, passage.ToLb);
-        if (!string.IsNullOrWhiteSpace(lineBreaks))
-            sb.AppendLine($"- Anchor: lb {lineBreaks}");
-        var blocks = FormatBlockRange(passage.StartBlockNumber, passage.EndBlockNumber);
-        if (!string.IsNullOrWhiteSpace(blocks))
-            sb.AppendLine($"- Blocks: {blocks}");
-        if (!string.IsNullOrWhiteSpace(passage.CreatedBy))
-            sb.AppendLine($"- Created by: {passage.CreatedBy}");
-        if (passage.AddedUtc != default)
-            sb.AppendLine($"- Added: {FormatTimestamp(passage.AddedUtc)}");
-        if (passage.ModifiedUtc.HasValue)
-            sb.AppendLine($"- Modified: {FormatTimestamp(passage.ModifiedUtc)}");
-        var zenLink = BuildZenLink(passage);
-        if (!string.IsNullOrWhiteSpace(zenLink))
-            sb.AppendLine($"- Zen link: {zenLink}");
-        var shareUrl = BuildShareUrl(passage);
-        if (!string.IsNullOrWhiteSpace(shareUrl))
-            sb.AppendLine($"- Share URL: {shareUrl}");
-        sb.AppendLine();
+        return new PaperFootnote(footnoteIndex, reference);
+    }
+
+    /// <summary>
+    /// Builds a CBETA-style footnote reference string.
+    /// </summary>
+    private static string BuildCbetaFootnoteReference(string fileId, string? fromLb)
+    {
+        if (string.IsNullOrEmpty(fileId))
+            return "(source unavailable)";
+
+        var parsed = ParseFileIdComponents(fileId);
+        var formattedLb = FormatLbValue(fromLb);
+        var lbSuffix = !string.IsNullOrEmpty(formattedLb) ? $": {formattedLb}" : "";
+        var urlAnchor = !string.IsNullOrEmpty(fromLb) ? $"/{fromLb}" : "";
+
+        return $"{fileId}, {parsed.Canon} no. {parsed.Number}, {parsed.Volume}{lbSuffix}. CBETA. https://readzen.pages.dev/{fileId}{urlAnchor}";
+    }
+
+    /// <summary>
+    /// Parses a FileId like "T48n2005" into canon code, volume, and number.
+    /// </summary>
+    private static (string Canon, string Volume, string Number) ParseFileIdComponents(string fileId)
+    {
+        if (string.IsNullOrEmpty(fileId))
+            return ("?", "?", "?");
+
+        int i = 0;
+        while (i < fileId.Length && char.IsLetter(fileId[i])) i++;
+        var canon = fileId[..i];
+
+        int volStart = i;
+        while (i < fileId.Length && char.IsDigit(fileId[i])) i++;
+        var volume = i > volStart ? fileId[volStart..i] : "?";
+
+        // skip 'n'
+        if (i < fileId.Length && fileId[i] == 'n') i++;
+
+        var number = i < fileId.Length ? fileId[i..] : "?";
+
+        return (canon, volume, number);
+    }
+
+    /// <summary>
+    /// Formats an lb value by stripping leading zeros from the page number.
+    /// E.g. "0292c18" becomes "292c18".
+    /// </summary>
+    private static string FormatLbValue(string? lb)
+    {
+        if (string.IsNullOrWhiteSpace(lb))
+            return "";
+
+        int i = 0;
+        while (i < lb.Length - 1 && lb[i] == '0') i++;
+        return lb[i..];
+    }
+
+    /// <summary>
+    /// Extracts the canon code letter(s) from a SourceRelPath.
+    /// </summary>
+    private static string ExtractCanonCode(string relPath)
+    {
+        var fileId = CbetaReferenceHelper.ExtractFileIdFromRelPath(relPath);
+        if (string.IsNullOrEmpty(fileId))
+            return "";
+
+        int i = 0;
+        while (i < fileId.Length && char.IsLetter(fileId[i])) i++;
+        return i > 0 ? fileId[..i] : "";
+    }
+
+    /// <summary>
+    /// Returns the full scholarly name for a canon abbreviation.
+    /// </summary>
+    private static string GetCanonFullName(string canonCode)
+    {
+        return canonCode.ToUpperInvariant() switch
+        {
+            "T" => "Taish\u014d shinsh\u016b daiz\u014dky\u014d",
+            "X" => "Xuzangjing (Wan Xu zangjing)",
+            "J" => "Jiaxing Canon",
+            "B" => "Supplement to the Canon",
+            "L" => "Qianlong Canon (L\u00f3ng z\u00e0ng)",
+            "K" => "Tripi\u1e6daka Koreana",
+            "S" => "Song Canon",
+            "P" => "P\u00ecnqi\u00e9 Canon",
+            "GA" => "Gandh\u0101ran Buddhist Texts",
+            _ => $"({canonCode})"
+        };
     }
 
     private static string GetDraftGroupLabel(ScholarPassage passage)
@@ -1460,23 +1597,12 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         return "Untagged Passages";
     }
 
-    private static string BuildDraftPassageLabel(ScholarPassage passage, int index)
-    {
-        if (!string.IsNullOrWhiteSpace(passage.ZhText))
-            return CollapseWhitespace(passage.ZhText).Length > 24 ? CollapseWhitespace(passage.ZhText)[..24] + "..." : CollapseWhitespace(passage.ZhText);
-        if (passage.Tags.Count > 0 && !string.IsNullOrWhiteSpace(passage.Tags[0]))
-            return passage.Tags[0];
-        var source = ExtractSourceTitle(passage.SourceRelPath);
-        var range = FormatLineBreakRange(passage.FromLb, passage.ToLb);
-        if (!string.IsNullOrWhiteSpace(range))
-            return $"{source} {range}";
-        return $"{source} #{index}";
-    }
-
     private static string EscapeYaml(string value) => value.Replace("\\", "\\\\").Replace("\"", "\\\"");
 
     private readonly record struct DraftPassageGroup(string Group, ScholarPassage Passage, int OriginalIndex);
-    private static string BuildDelimited(ScholarCollection collection, string delimiter)
+
+    private readonly record struct PaperFootnote(int Index, string Reference);
+    private static string BuildDelimited(ScholarCollection collection, string delimiter, CitationStyle citationStyle = CitationStyle.Chicago)
     {
         var sb = new StringBuilder();
         sb.AppendLine(string.Join(delimiter, DelimitedHeaders.Select(h => EscapeDelimited(h, delimiter))));
@@ -1515,6 +1641,7 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
                 FormatTimestamp(passage.ModifiedUtc),
                 BuildZenLink(passage) ?? string.Empty,
                 BuildShareUrl(passage) ?? string.Empty,
+                BuildPassageCitationLine(passage) ?? string.Empty,  // 3D: formatted_citation (31st column)
             };
 
             sb.AppendLine(string.Join(delimiter, row.Select(v => EscapeDelimited(v, delimiter))));
@@ -1563,6 +1690,88 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
             fileName = fileName[..dotIdx];
 
         return fileName;
+    }
+
+    // ---------------------------------------------------------------
+    // Citation helpers (3C / 3D)
+    // ---------------------------------------------------------------
+
+    /// <summary>
+    /// Build a short Chicago-note-form citation for a single passage.
+    /// Format: "{Canon} no. {Number}, {Volume}: {PageRef}. CBETA. {ShareUrl}"
+    /// Returns null when there is insufficient CBETA metadata to form a reference.
+    /// </summary>
+    private static string? BuildPassageCitationLine(ScholarPassage passage)
+    {
+        var fileId = ExtractSourceTitle(passage.SourceRelPath);
+        CbetaReferenceHelper.TryParseCbetaFromFileId(fileId, out var canon, out var vol, out var number);
+        var cbetaRef = CbetaReferenceHelper.FormatCbetaReference(passage.FromLb, canon, vol, number);
+        if (cbetaRef == null) return null;
+
+        var shareUrl = BuildShareUrl(passage);
+        return string.IsNullOrWhiteSpace(shareUrl)
+            ? $"{cbetaRef}. CBETA."
+            : $"{cbetaRef}. CBETA. {shareUrl}";
+    }
+
+    /// <summary>
+    /// Build a deduplicated Works Cited block in HTML for all passages in the collection.
+    /// One &lt;p&gt; entry per unique source text (keyed by FileId).
+    /// </summary>
+    private static string BuildWorksCitedHtml(ScholarCollection collection)
+    {
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var sb = new StringBuilder();
+        foreach (var p in collection.Passages)
+        {
+            var fileId = ExtractSourceTitle(p.SourceRelPath);
+            if (!seen.Add(fileId)) continue;
+            CbetaReferenceHelper.TryParseCbetaFromFileId(fileId, out var canon, out var vol, out var number);
+            if (canon == null || !vol.HasValue || number == null) continue;
+
+            var author = p.MasterNames.Count > 0 ? p.MasterNames[0] : null;
+            var entry = BuildPrimarySourceEntryText(fileId, author, canon, vol.Value, number);
+            sb.AppendLine($"<p>{Esc(entry)}</p>");
+        }
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Build a deduplicated Works Cited block in Markdown for all passages in the collection.
+    /// One entry per unique source text (keyed by FileId).
+    /// </summary>
+    private static string BuildWorksCitedMarkdown(ScholarCollection collection)
+    {
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var sb = new StringBuilder();
+        foreach (var p in collection.Passages)
+        {
+            var fileId = ExtractSourceTitle(p.SourceRelPath);
+            if (!seen.Add(fileId)) continue;
+            CbetaReferenceHelper.TryParseCbetaFromFileId(fileId, out var canon, out var vol, out var number);
+            if (canon == null || !vol.HasValue || number == null) continue;
+
+            var author = p.MasterNames.Count > 0 ? p.MasterNames[0] : null;
+            var entry = BuildPrimarySourceEntryText(fileId, author, canon, vol.Value, number);
+            sb.AppendLine(entry);
+            sb.AppendLine();
+        }
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Format a single primary-source bibliography entry.
+    /// Example: "Wumen Huikai. Wumenguan. T no. 2005, vol. 48."
+    /// </summary>
+    private static string BuildPrimarySourceEntryText(
+        string fileId, string? author, string canon, int volume, string number)
+    {
+        var sb = new StringBuilder();
+        if (!string.IsNullOrWhiteSpace(author))
+            sb.Append(author).Append(". ");
+        sb.Append(fileId);
+        sb.Append($". {canon} no. {number}, vol. {volume}.");
+        return sb.ToString();
     }
 
     private static string Esc(string s) => WebUtility.HtmlEncode(s);

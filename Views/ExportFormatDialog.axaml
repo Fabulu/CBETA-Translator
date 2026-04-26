@@ -21,7 +21,7 @@
 		</Style>
 	</Window.Styles>
 
-	<Grid RowDefinitions="Auto,*,Auto" Margin="20">
+	<Grid RowDefinitions="Auto,*,Auto,Auto" Margin="20">
 
 		<TextBlock Grid.Row="0"
 				   Text="Choose export format"
@@ -179,7 +179,29 @@
 			</StackPanel>
 		</ScrollViewer>
 
-		<StackPanel Grid.Row="2"
+		<StackPanel Grid.Row="2" Margin="0,14,0,0" Spacing="4"
+					Name="CitationStylePanel">
+			<TextBlock Text="Citation style"
+					   FontSize="12"
+					   FontWeight="SemiBold"
+					   Foreground="{DynamicResource TextFg}"/>
+			<ComboBox Name="CbCitationStyle"
+					  SelectedIndex="1"
+					  Width="200"
+					  HorizontalAlignment="Left">
+				<ComboBoxItem Content="Plain"/>
+				<ComboBoxItem Content="Chicago (default)"/>
+				<ComboBoxItem Content="APA"/>
+				<ComboBoxItem Content="MLA"/>
+				<ComboBoxItem Content="SBL"/>
+				<ComboBoxItem Content="CBETA Reference"/>
+			</ComboBox>
+			<TextBlock Text="Applied to inline citations in the export"
+					   FontSize="11"
+					   Foreground="{DynamicResource TextMutedFg}"/>
+		</StackPanel>
+
+		<StackPanel Grid.Row="3"
 					Orientation="Horizontal"
 					HorizontalAlignment="Right"
 					Spacing="10"

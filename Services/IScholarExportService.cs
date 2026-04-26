@@ -8,6 +8,6 @@ public enum ScholarExportFormat { Json, Html, Markdown, PlainText, Csv, Tsv, Rea
 
 public interface IScholarExportService
 {
-    Task ExportAsync(string filePath, ScholarCollection collection, ScholarExportFormat format, CancellationToken ct = default);
+    Task ExportAsync(string filePath, ScholarCollection collection, ScholarExportFormat format, CitationStyle citationStyle = CitationStyle.Chicago, CancellationToken ct = default);
 }
 

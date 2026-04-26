@@ -866,7 +866,7 @@ public partial class ScholarTabView : UserControl
 
     // ----- Export format picker -----
 
-    private async Task<ScholarExportFormat?> PickExportFormatAsync()
+    private async Task<ExportDialogResult?> PickExportFormatAsync()
     {
         var topLevel = TopLevel.GetTopLevel(this) as Window;
         if (topLevel == null) return null;
@@ -876,7 +876,7 @@ public partial class ScholarTabView : UserControl
             WindowStartupLocation = WindowStartupLocation.CenterOwner
         };
 
-        var result = await dlg.ShowDialog<ScholarExportFormat?>(topLevel);
+        var result = await dlg.ShowDialog<ExportDialogResult?>(topLevel);
         return result;
     }
 
