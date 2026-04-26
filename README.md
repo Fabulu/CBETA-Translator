@@ -46,18 +46,19 @@ Read Zen is a full working environment for Chinese Zen study and translation acr
 | [**Read the Gateless Barrier**](https://readzen.pages.dev/T48n2005) | [**Compare the 1632 Woodblock**](https://readzen.pages.dev/pd.wumenguan-1632) | [**Explore Linji's Lineage**](https://readzen.pages.dev/master/Linji_Yixuan) |
 | Side-by-side *Wumenguan* with hover dictionary and Zen master links | The 1632 NDL woodblock reading edition - provenance, license, and witness text | Profile, corpus mentions, and teacher/student connections across 301 masters |
 
-### From witness to working translation
+### From reading to published translation
 
-This is the workflow Read Zen is built for - not just reading, but producing and sharing serious text work:
+This is the workflow Read Zen is built for:
 
-1. **Find a witness** - locate a freely-licensed woodblock scan or digital text in the [witness collection](https://github.com/Fabulu/woodblockeditionprocess)
-2. **Verify provenance** - check source, license, SHA-256 hash, and editorial documentation in the Provenance panel
-3. **Read side by side** - Chinese and English with hover dictionary, linked selection, and bookmarks
-4. **Compare witnesses** - view variant readings across editions in the Witness Comparison viewer
-5. **Translate safely** - block-by-block structure-aware editor with AI copy/paste, termbase, and translation memory
-6. **Annotate and tag** - qualitative coding with frequency analytics and co-occurrence matrices
-7. **Collect and cite** - build Scholar collections with passage linking, comparison, and BibTeX/CSL-JSON export
-8. **Share and sync** - push translations, termbases, and collections via GitHub; share web links that work for everyone
+1. **Read side by side** - open any text with Chinese and English, hover dictionary, linked selection, and bookmarks
+2. **Search the corpus** - find passages across ~5000 texts with bilingual context, analytics, and master associations
+3. **Compare witnesses** - view variant readings across editions in the Witness Comparison viewer
+4. **Translate** - block-by-block structure-aware editor with AI copy/paste, termbase, and translation memory
+5. **Review and annotate** - approve blocks, tag passages, run frequency and co-occurrence analytics
+6. **Collect and cite** - build Scholar collections with passage linking, comparison, and BibTeX/CSL-JSON export
+7. **Share** - push translations, termbases, and collections via GitHub; share web links that work for everyone
+
+New editions are produced through the [Woodblock Edition Process](https://github.com/Fabulu/woodblockeditionprocess) pipeline (126 witness folders, 50+ text families) and published into OpenZen. Once there, they're immediately available in Read Zen.
 
 ### How Read Zen differs from text aggregators
 
