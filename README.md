@@ -398,6 +398,17 @@ Right-click any master to **Copy Link** or **Copy Reddit Link** — the latter p
 
 In the Reader study panel, when a segment mentions a zen master the panel shows their bio with a **View Master →** button that jumps to their full profile.
 
+## Critical Edition Pipeline
+
+Read Zen is the reader and workbench; the editions themselves are produced through a separate documented pipeline in the **[Woodblock Edition Process](https://github.com/Fabulu/woodblockeditionprocess)** repository.
+
+The pipeline covers witness acquisition, rights verification, OCR, collation, apparatus construction, and TEI packaging. Currently:
+
+- **Wumenguan (Gateless Barrier)**: published — the 1632 NDL woodblock reading edition with 13 witnesses, CC0 licensed, [readable on the web](https://readzen.pages.dev/pd.wumenguan-1632) and in the desktop app
+- **Faith in Mind (Xinxin Ming)**: in progress — 30 locked witness items across 4 textual families, currently in scaffold/freeze phase before OCR and collation
+
+126 witness folders span 50+ text families from NDL, NLC, Kyoto University, Korea National Library, Harvard-Yenching, Waseda, and Wikisource. Finished editions flow into [OpenZenTexts](https://github.com/Fabulu/OpenZenTexts) and become available in Read Zen with provenance browsing, witness comparison, and time-travel through editorial corrections.
+
 ## Community Sync
 
 The Community tab handles downloading texts, updating your local repos, and syncing shareable work through GitHub.
@@ -536,6 +547,7 @@ Built with:
 | [Fabulu/OpenZenTexts](https://github.com/Fabulu/OpenZenTexts) | OpenZenTexts originals + provenance + curation docs |
 | [Fabulu/OpenZenTranslations](https://github.com/Fabulu/OpenZenTranslations) | OpenZenTexts translations + community data |
 | [Fabulu/readzen-page](https://github.com/Fabulu/readzen-page) | Web app (readzen.pages.dev) |
+| [Fabulu/woodblockeditionprocess](https://github.com/Fabulu/woodblockeditionprocess) | Critical edition pipeline (126 witness folders, 50+ text families) |
 
 ## For Developers
 
