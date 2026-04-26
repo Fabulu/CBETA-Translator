@@ -64,14 +64,14 @@ New editions are produced through the [Woodblock Edition Process](https://github
 
 | Need | General aggregators | Read Zen |
 |------|---------------------|----------|
-| Browse many texts | Very strong (multi-tradition, multi-language) | Focused on Chinese Chan/Zen (~5000 CBETA + OpenZen) |
+| Browse many texts | Very strong (multi-tradition, multi-language) | Focused on Chinese Zen (~5000 CBETA + OpenZen) |
 | Read bilingual online | Strong | Strong, with desktop handoff and hover dictionary |
 | Translate texts | Usually view-only | Structure-safe translation editor with TM and review |
 | Preserve TEI/XML structure | Not the main focus | Core design principle - XML never silently mangled |
 | Compare source witnesses | Usually unavailable | Provenance-tracked witness comparison with apparatus |
 | Use commercially-safe editions | Mixed or unclear licensing | OpenZen: per-file CC0/CC BY-SA, separated from CBETA |
 | Build research notebooks | General annotations | Scholar collections with links, tags, and export |
-| Study Chan lineage | Broad knowledge graphs | 301-master Chan/Zen-focused database with corpus search |
+| Study Zen lineage | Broad knowledge graphs | 301-master Zen-focused database with corpus search |
 | Do long-form translation work | Not the main product | Desktop workbench built for it |
 
 ### OpenZen: a provenance-first freely-licensed corpus
@@ -144,7 +144,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has eig
 - `Search`: corpus search with typeahead (hit counts + history), post-search filtering, multi-master intersection, insights charts, command palette (Ctrl+Shift+P), and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
-- `Masters`: database of 301 Chan/Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
+- `Masters`: database of 301 Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 - `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support - driven by the `witnesses.json` delivery registry shipped with each critical edition
 
@@ -370,7 +370,7 @@ The Zen Dictionary / termbase can:
 
 ### Zen Master Database
 
-Read Zen ships with a curated database of **301 Chan/Zen masters** from Bodhidharma through the late Ming, covering the full arc of Chinese Chan history. Each master carries:
+Read Zen ships with a curated database of **301 Zen masters** from Bodhidharma through the late Ming, covering the full arc of Chinese Chan history. Each master carries:
 
 - Dates (floruit + death), school, region
 - Full lineage connections - teacher + students, cross-linked
