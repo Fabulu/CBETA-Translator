@@ -138,8 +138,6 @@ public sealed class SearchIndexService : ISearchIndexService
         public long OldBloomOffset;     // valid only when CopiedBloom = true
         public long OldTextOffset;      // valid only when CopiedText = true
         public int OldTextLen;          // valid only when CopiedText = true
-        public Dictionary<char, int>? CharFreqs;    // per-file CJK char frequencies (build-time only)
-        public Dictionary<string, int>? BigramFreqs; // per-file CJK bigram frequencies (build-time only)
     }
 
     // ==========================================================
@@ -1977,11 +1975,6 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 var invertedDocs = new List<(string relPath, string text)>();
 
-                // Corpus frequency accumulators — merged during Phase 2 before entries are cleared
-                var corpusCharFreqs = new Dictionary<string, int>(32768);
-                var corpusBigramFreqs = new Dictionary<string, int>(65536);
-                long corpusTotalChars = 0;
-
                 try
                 {
                     using (var outFs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.Read))
@@ -2039,6 +2032,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
                         var computed = new ComputedEntry[workItems.Count];
                         bool htmlDecode = Options.HtmlDecodeIfAmpersandPresent;
+                        int phase1Done = 0;
 
                         Parallel.For(0, workItems.Count, new ParallelOptions
                         {
@@ -2082,29 +2076,6 @@ public sealed class SearchIndexService : ISearchIndexService
                             string xml = File.ReadAllText(absPath, Utf8NoBom);
                             string searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecode);
 
-                            // Count CJK character and bigram frequencies for corpus freq index
-                            var charFreqs = new Dictionary<char, int>(256);
-                            var bigramFreqs = new Dictionary<string, int>(512);
-                            char prevIndexable = '\0';
-                            bool hasPrev = false;
-
-                            for (int ci = 0; ci < searchable.Length; ci++)
-                            {
-                                char ch = searchable[ci];
-                                if (!IsIndexableCjk(ch)) { hasPrev = false; continue; }
-
-                                charFreqs[ch] = charFreqs.TryGetValue(ch, out var cf) ? cf + 1 : 1;
-
-                                if (hasPrev)
-                                {
-                                    string bg = string.Concat(prevIndexable, ch);
-                                    bigramFreqs[bg] = bigramFreqs.TryGetValue(bg, out var bf) ? bf + 1 : 1;
-                                }
-
-                                prevIndexable = ch;
-                                hasPrev = true;
-                            }
-
                             ulong[]? bits = null;
                             byte[]? textBytes = null;
 
@@ -2134,10 +2105,13 @@ public sealed class SearchIndexService : ISearchIndexService
                                 CopiedText = copiedText,
                                 OldBloomOffset = oldBloomOffset,
                                 OldTextOffset = oldTextOffset,
-                                OldTextLen = oldTextLen,
-                                CharFreqs = charFreqs,
-                                BigramFreqs = bigramFreqs
+                                OldTextLen = oldTextLen
                             };
+
+                            // Phase 1 progress (thread-safe)
+                            int p1 = System.Threading.Interlocked.Increment(ref phase1Done);
+                            if (p1 % 200 == 0)
+                                progress?.Report((p1 / 2, total, "Reading files..."));
                         });
 
                         var phase1Ms = buildSw.ElapsedMilliseconds;
@@ -2204,22 +2178,6 @@ public sealed class SearchIndexService : ISearchIndexService
 
                             if (done % 200 == 0 || done == total)
                                 progress?.Report((done, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
-
-                            // Merge per-file frequencies into corpus-wide accumulators (must happen before default clear)
-                            if (entry.CharFreqs != null)
-                            {
-                                foreach (var kv in entry.CharFreqs)
-                                {
-                                    string key = kv.Key.ToString();
-                                    corpusCharFreqs[key] = corpusCharFreqs.TryGetValue(key, out var v) ? v + kv.Value : kv.Value;
-                                    corpusTotalChars += kv.Value;
-                                }
-                            }
-                            if (entry.BigramFreqs != null)
-                            {
-                                foreach (var kv in entry.BigramFreqs)
-                                    corpusBigramFreqs[kv.Key] = corpusBigramFreqs.TryGetValue(kv.Key, out var v) ? v + kv.Value : kv.Value;
-                            }
 
                             // Release large buffers eagerly to reduce peak memory.
                             // Must clear array slot (struct copy), not local variable.
@@ -2289,9 +2247,55 @@ public sealed class SearchIndexService : ISearchIndexService
                     catch { }
                 }
 
-                // Build and save corpus frequency index
+                // Build corpus frequency index from text.bin (sequential pass, no parallel alloc)
                 try
                 {
+                    progress?.Report((total, total, "Building frequency index..."));
+                    var corpusCharFreqs = new Dictionary<string, int>(32768);
+                    var corpusBigramFreqs = new Dictionary<string, int>(65536);
+                    long corpusTotalChars = 0;
+
+                    var textBinPath = Path.Combine(root, "search.text.bin");
+                    if (File.Exists(textBinPath) && textManifest.Entries.Count > 0)
+                    {
+                        using var textFs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.Read, 65536);
+                        foreach (var te in textManifest.Entries)
+                        {
+                            if (te.TextLengthBytes <= 0) continue;
+                            ct.ThrowIfCancellationRequested();
+                            textFs.Seek(te.TextOffset, SeekOrigin.Begin);
+                            var buf = new byte[te.TextLengthBytes];
+                            int read = 0;
+                            while (read < buf.Length)
+                            {
+                                int n = textFs.Read(buf, read, buf.Length - read);
+                                if (n == 0) break;
+                                read += n;
+                            }
+                            var searchable = Utf8NoBom.GetString(buf, 0, read);
+
+                            char prev = '\0';
+                            bool hasPrev = false;
+                            for (int ci = 0; ci < searchable.Length; ci++)
+                            {
+                                char ch = searchable[ci];
+                                if (!IsIndexableCjk(ch)) { hasPrev = false; continue; }
+
+                                var ck = ch.ToString();
+                                corpusCharFreqs[ck] = corpusCharFreqs.TryGetValue(ck, out var cv) ? cv + 1 : 1;
+                                corpusTotalChars++;
+
+                                if (hasPrev)
+                                {
+                                    var bk = string.Concat(prev, ch);
+                                    corpusBigramFreqs[bk] = corpusBigramFreqs.TryGetValue(bk, out var bv) ? bv + 1 : 1;
+                                }
+                                prev = ch;
+                                hasPrev = true;
+                            }
+                        }
+                    }
+
                     Dbg($"Corpus freq index: {corpusCharFreqs.Count} unique chars, {corpusBigramFreqs.Count} unique bigrams, {corpusTotalChars} total chars");
 
                     var freqManifest = new CorpusFreqManifest
@@ -2304,22 +2308,17 @@ public sealed class SearchIndexService : ISearchIndexService
                         UniqueBigrams = corpusBigramFreqs.Count
                     };
 
-                    // Write manifest
                     var freqManifestFinal = Path.Combine(root, "search.corpusfreq.manifest.json");
                     var freqManifestTmp = freqManifestFinal + ".tmp";
                     var freqManifestJson = JsonSerializer.Serialize(freqManifest, JsonOpts);
                     await File.WriteAllTextAsync(freqManifestTmp, freqManifestJson, Utf8NoBom, ct);
                     ReplaceFileAtomicWithRetry(freqManifestTmp, freqManifestFinal);
 
-                    // Write binary: [magic 4B][charCount 4B][bigramCount 4B][totalChars 8B]
-                    //   char entries: [char 2B][freq 4B] x charCount
-                    //   bigram entries: [char1 2B + char2 2B][freq 4B] x bigramCount
                     var freqBinFinal = Path.Combine(root, "search.corpusfreq.bin");
                     var freqBinTmp = freqBinFinal + ".tmp";
                     using (var fs = new FileStream(freqBinTmp, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
                     using (var bw = new BinaryWriter(fs, Utf8NoBom, leaveOpen: false))
                     {
-                        // Magic: "CF01"
                         bw.Write((byte)'C'); bw.Write((byte)'F'); bw.Write((byte)'0'); bw.Write((byte)'1');
                         bw.Write(corpusCharFreqs.Count);
                         bw.Write(corpusBigramFreqs.Count);
@@ -2327,20 +2326,18 @@ public sealed class SearchIndexService : ISearchIndexService
 
                         foreach (var kv in corpusCharFreqs)
                         {
-                            bw.Write(kv.Key[0]); // single char as UTF-16
+                            bw.Write(kv.Key[0]);
                             bw.Write(kv.Value);
                         }
-
                         foreach (var kv in corpusBigramFreqs)
                         {
-                            bw.Write(kv.Key[0]); // first char
-                            bw.Write(kv.Key[1]); // second char
+                            bw.Write(kv.Key[0]);
+                            bw.Write(kv.Key[1]);
                             bw.Write(kv.Value);
                         }
                     }
                     ReplaceFileAtomicWithRetry(freqBinTmp, freqBinFinal);
 
-                    // Populate in-memory properties immediately
                     CorpusCharFreqs = corpusCharFreqs;
                     CorpusBigramFreqs = corpusBigramFreqs;
                     CorpusTotalChars = corpusTotalChars;

@@ -1257,6 +1257,8 @@ public partial class SearchTabViewModel : ViewModelBase
             {
                 Labels = labels,
                 TextSize = 12,
+                MinStep = 1,
+                ForceStepToMin = true,
                 LabelsPaint = new SolidColorPaint(labelColor) { SKTypeface = CjkTypeface },
             }
         };
