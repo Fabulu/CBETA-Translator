@@ -342,7 +342,7 @@ public partial class SearchTabViewModel : ViewModelBase
         "Distinctive (uniquely associated)",
         "Frequency (raw count)",
         "Advanced: Dominance",
-        "Advanced: PMI",
+        "Advanced: Dispersion",
         "Advanced: logDice",
         "Advanced: t-score",
         "Metric guide"
@@ -371,7 +371,7 @@ public partial class SearchTabViewModel : ViewModelBase
             2 => "Distinctive: uniquely associated terms (rare but tightly linked collocations)",
             3 => "Frequency: raw co-occurrence count in context windows",
             4 => "Dominance: concentration in a single text (>80% = artifact warning)",
-            5 => "PMI: pointwise mutual information \u2014 rewards rare but tight collocations",
+            5 => "Dispersion: frequency balanced by spread across texts",
             6 => "logDice: lexicography metric \u2014 stable collocation candidates",
             7 => "t-score: statistically significant, frequency-biased collocations",
             8 => "Guide: explanations of all metrics with examples",
@@ -974,13 +974,10 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             0 => CoocMetric.TopCooccurrences,
             1 => CoocMetric.Range,
-            // Index 2 ("Distinctive") and index 5 ("Advanced: PMI") both use CoocMetric.PMI
-            // intentionally: PMI is the mathematical basis for distinctiveness; index 5 exposes
-            // the same metric directly under its technical name.
-            2 => CoocMetric.PMI,
+            2 => CoocMetric.PMI,          // "Distinctive" - uniquely associated terms
             3 => CoocMetric.Frequency,
             4 => CoocMetric.Dominance,
-            5 => CoocMetric.PMI,
+            5 => CoocMetric.DispersionScore, // "Dispersion" - freq balanced by spread
             6 => CoocMetric.LogDice,
             7 => CoocMetric.TScore,
             _ => CoocMetric.TopCooccurrences
@@ -996,7 +993,7 @@ public partial class SearchTabViewModel : ViewModelBase
             2 => "Distinctive",
             3 => "Frequency",
             4 => "Dominance",
-            5 => "PMI",
+            5 => "Dispersion",
             6 => "logDice",
             7 => "t-score",
             _ => "Score"
