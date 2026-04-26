@@ -9,7 +9,7 @@
 
 # Read Zen
 
-A desktop + web environment for reading, translating, searching, and researching Chinese Zen Buddhist texts across **~5000 CBETA texts** and a growing **OpenZen** freely-licensed corpus.
+A desktop + web environment for reading, translating, searching, and researching Chinese Zen texts across **~5000 CBETA texts** and a growing **OpenZen** freely-licensed corpus.
 
 **[Try it now — readzen.pages.dev](https://readzen.pages.dev)** | **[Download desktop app](https://github.com/Fabulu/ReadZen/releases/latest)** | **[Support on Ko-fi](https://ko-fi.com/readzen)**
 
@@ -58,11 +58,11 @@ This is the workflow Read Zen is built for — not just reading, but producing a
 7. **Collect and cite** — build Scholar collections with passage linking, comparison, and BibTeX/CSL-JSON export
 8. **Share and sync** — push translations, termbases, and collections via GitHub; share web links that work for everyone
 
-### How Read Zen differs from Buddhist text aggregators
+### How Read Zen differs from text aggregators
 
 | Need | General aggregators | Read Zen |
 |------|---------------------|----------|
-| Browse many Buddhist texts | Very strong (multi-tradition, multi-language) | Focused on Chinese Chan/Zen (~5000 CBETA + OpenZen) |
+| Browse many texts | Very strong (multi-tradition, multi-language) | Focused on Chinese Chan/Zen (~5000 CBETA + OpenZen) |
 | Read bilingual online | Strong | Strong, with desktop handoff and hover dictionary |
 | Translate texts | Usually view-only | Structure-safe translation editor with TM and review |
 | Preserve TEI/XML structure | Not the main focus | Core design principle — XML never silently mangled |
@@ -597,7 +597,7 @@ If you use Read Zen in academic work, please cite:
 ```bibtex
 @software{readzen2026,
   author       = {Trunz, Fabian},
-  title        = {Read Zen: A Desktop and Web Environment for Chinese Zen Buddhist Text Study},
+  title        = {Read Zen: A Desktop and Web Environment for Chinese Zen Text Study},
   year         = {2026},
   url          = {https://github.com/Fabulu/ReadZen},
   version      = {6.0.0},
