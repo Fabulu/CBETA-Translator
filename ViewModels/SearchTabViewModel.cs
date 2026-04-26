@@ -297,6 +297,12 @@ public partial class SearchTabViewModel : ViewModelBase
     private Axis[] _ngramChartYAxes = new[] { new Axis() };
 
     [ObservableProperty]
+    private double _charChartHeight = 300;
+
+    [ObservableProperty]
+    private double _ngramChartHeight = 300;
+
+    [ObservableProperty]
     private ISeries[] _scatterSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
@@ -968,10 +974,13 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             0 => CoocMetric.TopCooccurrences,
             1 => CoocMetric.Range,
+            // Index 2 ("Distinctive") and index 5 ("Advanced: PMI") both use CoocMetric.PMI
+            // intentionally: PMI is the mathematical basis for distinctiveness; index 5 exposes
+            // the same metric directly under its technical name.
             2 => CoocMetric.PMI,
             3 => CoocMetric.Frequency,
             4 => CoocMetric.Dominance,
-            5 => CoocMetric.DispersionScore,
+            5 => CoocMetric.PMI,
             6 => CoocMetric.LogDice,
             7 => CoocMetric.TScore,
             _ => CoocMetric.TopCooccurrences
@@ -987,7 +996,7 @@ public partial class SearchTabViewModel : ViewModelBase
             2 => "Distinctive",
             3 => "Frequency",
             4 => "Dominance",
-            5 => "Dispersion",
+            5 => "PMI",
             6 => "logDice",
             7 => "t-score",
             _ => "Score"
@@ -1171,13 +1180,15 @@ public partial class SearchTabViewModel : ViewModelBase
 
         // ZipfText removed from UI — no longer displayed
 
-        var (cs, cy) = BuildBarChartFromCoocRows(result.Left);
+        var (cs, cy, ch) = BuildBarChartFromCoocRows(result.Left);
         CharChartSeries = cs;
         CharChartYAxes = cy;
+        CharChartHeight = ch;
 
-        var (ns, ny) = BuildBarChartFromCoocRows(result.Right);
+        var (ns, ny, nh) = BuildBarChartFromCoocRows(result.Right);
         NgramChartSeries = ns;
         NgramChartYAxes = ny;
+        NgramChartHeight = nh;
 
         BuildScatterPlot(result.Left, result.Right);
     }
@@ -1191,10 +1202,10 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly SKTypeface CjkTypeface =
         SKFontManager.Default.MatchCharacter('\u6c49') ?? SKTypeface.Default;
 
-    private (ISeries[] series, Axis[] yAxes) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
+    private (ISeries[] series, Axis[] yAxes, double height) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
     {
         if (rows == null || rows.Count == 0)
-            return (Array.Empty<ISeries>(), new[] { new Axis() });
+            return (Array.Empty<ISeries>(), new[] { new Axis() }, 200);
 
         var isDark = Avalonia.Application.Current?.ActualThemeVariant ==
                      Avalonia.Styling.ThemeVariant.Dark;
@@ -1206,6 +1217,8 @@ public partial class SearchTabViewModel : ViewModelBase
         var labels = top.Select(r => r.Key).ToArray();
         var metricName = GetMetricLabel();
 
+        var height = Math.Max(200, labels.Length * 28 + 40);
+
         var rowSeries = new RowSeries<double>
         {
             Values = values,
@@ -1213,12 +1226,10 @@ public partial class SearchTabViewModel : ViewModelBase
             Fill = new SolidColorPaint(barColor),
             MaxBarWidth = 20,
             Padding = 2,
-            YToolTipLabelFormatter = pt =>
-            {
-                var idx = pt.Index;
-                var label = idx >= 0 && idx < labels.Length ? labels[idx] : "?";
-                return $"{label}  {metricName}={pt.Coordinate.PrimaryValue:0.###}";
-            },
+            DataLabelsPaint = new SolidColorPaint(labelColor) { SKTypeface = CjkTypeface },
+            DataLabelsSize = 11,
+            DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.End,
+            DataLabelsFormatter = pt => $"{pt.Coordinate.PrimaryValue:0.##}",
         };
 
         rowSeries.ChartPointPointerDown += (sender, point) =>
@@ -1241,7 +1252,7 @@ public partial class SearchTabViewModel : ViewModelBase
             }
         };
 
-        return (series, yAxes);
+        return (series, yAxes, height);
     }
 
     /// <summary>
