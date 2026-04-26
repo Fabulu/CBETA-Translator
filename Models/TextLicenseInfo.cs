@@ -53,6 +53,33 @@ public sealed record TextLicenseInfo
     public bool ShareAlikeRequired { get; init; }
     public bool CommercialUseAllowed { get; init; }
 
+    /// <summary>Chinese title from &lt;title xml:lang="zh-Hant" level="m"&gt;.</summary>
+    public string? TitleZh { get; init; }
+
+    /// <summary>CBETA canon letter, e.g. "T", "J", "X", "B", "A".</summary>
+    public string? CbetaCanon { get; init; }
+
+    /// <summary>CBETA volume number, e.g. 48.</summary>
+    public int? CbetaVolume { get; init; }
+
+    /// <summary>CBETA text number, e.g. "2005" or "B137".</summary>
+    public string? CbetaNumber { get; init; }
+
+    /// <summary>Source edition description from sourceDesc/bibl, e.g. "大正新脩大藏經".</summary>
+    public string? SourceEdition { get; init; }
+
+    /// <summary>Extent of the work, e.g. "1卷", "22卷".</summary>
+    public string? Extent { get; init; }
+
+    /// <summary>Dynasty extracted from author prefix, e.g. "宋", "唐", "後秦".</summary>
+    public string? Dynasty { get; init; }
+
+    /// <summary>CBETA data version date from publicationStmt/date.</summary>
+    public string? CbetaVersionDate { get; init; }
+
+    /// <summary>Derived file identifier, e.g. "T48n2005".</summary>
+    public string? FileId { get; init; }
+
     /// <summary>Rel-path (or file id) this info was extracted for, for diagnostics.</summary>
     public string? RelPath { get; init; }
 

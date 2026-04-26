@@ -47,6 +47,14 @@ public static class TextLicenseExtractor
         catch (Exception) { return null; }
     }
 
+    // Dynasty prefixes commonly found in CBETA author fields, ordered longest-first
+    // to avoid partial matches (e.g. "後秦" before "秦").
+    private static readonly string[] DynastyPrefixes =
+    {
+        "北魏", "東晉", "西晉", "劉宋", "後秦", "後漢",
+        "宋", "唐", "梁", "隋", "明", "元", "清", "陳", "齊", "吳", "秦"
+    };
+
     /// <summary>Extract from a pre-parsed XDocument (cheaper when the caller already has one).</summary>
     public static TextLicenseInfo? Extract(XDocument doc, string? relPath = null)
     {
@@ -64,8 +72,10 @@ public static class TextLicenseExtractor
 
         // --- title / author / year ---
         string? title = null;
+        string? titleZh = null;
         string? author = null;
         string? year = null;
+        string? dynasty = null;
         if (titleStmt != null)
         {
             var titles = titleStmt.Elements(Tei + "title").Concat(titleStmt.Elements("title")).ToList();
@@ -74,12 +84,90 @@ public static class TextLicenseExtractor
             var nonAlt = titles.FirstOrDefault(t => (string?)t.Attribute("type") != "alt");
             title = (en ?? nonAlt ?? titles.FirstOrDefault())?.Value?.Trim();
 
+            // Chinese title: <title xml:lang="zh-Hant" level="m">
+            var zhM = titles.FirstOrDefault(t =>
+                (string?)t.Attribute(XNamespace.Xml + "lang") == "zh-Hant" &&
+                (string?)t.Attribute("level") == "m");
+            titleZh = zhM?.Value?.Trim();
+
             author = (titleStmt.Element(Tei + "author") ?? titleStmt.Element("author"))?.Value?.Trim();
+
+            // Extract dynasty prefix from author (e.g. "唐 慧菀述" -> "唐")
+            if (!string.IsNullOrWhiteSpace(author))
+            {
+                foreach (var dp in DynastyPrefixes)
+                {
+                    if (author.StartsWith(dp, StringComparison.Ordinal))
+                    {
+                        dynasty = dp;
+                        break;
+                    }
+                }
+            }
         }
+
+        // --- CBETA-specific identifiers from publicationStmt ---
+        string? cbetaCanon = null;
+        int? cbetaVolume = null;
+        string? cbetaNumber = null;
+        string? cbetaVersionDate = null;
         if (pubStmt != null)
         {
             var date = pubStmt.Element(Tei + "date") ?? pubStmt.Element("date");
             year = (string?)date?.Attribute("when") ?? date?.Value?.Trim();
+            cbetaVersionDate = date?.Value?.Trim();
+
+            // <idno type="CBETA"> contains nested <idno type="canon">, <idno type="vol">, <idno type="no">
+            foreach (var idno in pubStmt.Descendants(Tei + "idno").Concat(pubStmt.Descendants("idno")))
+            {
+                var idnoType = (string?)idno.Attribute("type");
+                if (idnoType == null) continue;
+
+                // Direct text content (excluding child elements)
+                var directText = string.Concat(idno.Nodes().OfType<XText>().Select(t => t.Value)).Trim();
+
+                switch (idnoType)
+                {
+                    case "canon":
+                        cbetaCanon = directText;
+                        break;
+                    case "vol":
+                        if (int.TryParse(directText, out var vol))
+                            cbetaVolume = vol;
+                        break;
+                    case "no":
+                        cbetaNumber = directText;
+                        break;
+                }
+            }
+        }
+
+        // --- sourceDesc/bibl -> SourceEdition ---
+        string? sourceEdition = null;
+        if (sourceDesc != null)
+        {
+            var bibl = sourceDesc.Element(Tei + "bibl") ?? sourceDesc.Element("bibl");
+            var biblText = bibl?.Value?.Trim();
+            if (!string.IsNullOrWhiteSpace(biblText))
+                sourceEdition = biblText;
+        }
+
+        // --- extent ---
+        string? extent = null;
+        var extentEl = fileDesc?.Element(Tei + "extent") ?? fileDesc?.Element("extent");
+        if (extentEl != null)
+        {
+            var extText = extentEl.Value?.Trim();
+            if (!string.IsNullOrWhiteSpace(extText))
+                extent = extText;
+        }
+
+        // --- Derive FileId: Canon + Volume + "n" + Number (e.g. "T48n2005") ---
+        string? fileId = null;
+        if (!string.IsNullOrWhiteSpace(cbetaCanon) && !string.IsNullOrWhiteSpace(cbetaNumber))
+        {
+            var volPart = cbetaVolume.HasValue ? cbetaVolume.Value.ToString() : "";
+            fileId = $"{cbetaCanon}{volPart}n{cbetaNumber}";
         }
 
         // --- availability text bucket ---
@@ -160,6 +248,7 @@ public static class TextLicenseExtractor
             ShortLabel = string.IsNullOrEmpty(shortLabel) ? "Unknown" : shortLabel,
             LongText = availText.Trim(),
             Title = title,
+            TitleZh = titleZh,
             Author = author,
             YearComposed = year,
             SourceUrl = sourceUrl,
@@ -171,6 +260,14 @@ public static class TextLicenseExtractor
             AttributionRequired = attrReq,
             ShareAlikeRequired = shareAlike,
             CommercialUseAllowed = commOk,
+            CbetaCanon = cbetaCanon,
+            CbetaVolume = cbetaVolume,
+            CbetaNumber = cbetaNumber,
+            SourceEdition = sourceEdition,
+            Extent = extent,
+            Dynasty = dynasty,
+            CbetaVersionDate = cbetaVersionDate,
+            FileId = fileId,
             RelPath = relPath
         };
     }
