@@ -39,6 +39,61 @@ Read Zen is a full working environment for Chinese Zen study and translation acr
 | **Collaborate** | GitHub-backed sync for translations, termbases, collections, and reviews | Desktop |
 | **Provenance** | Critical edition viewer with witness comparison and editorial documentation | Desktop |
 
+### Try it now
+
+- **[Read the Gateless Barrier side by side](https://readzen.pages.dev/T48n2005)** — the *Wumenguan* with dictionary and master links
+- **[Compare the 1632 woodblock edition](https://readzen.pages.dev/pd.wumenguan-1632)** — OpenZen provenance, license, and witness text
+- **[Explore Linji Yixuan's lineage](https://readzen.pages.dev/master/Linji_Yixuan)** — profile, corpus mentions, and teacher/student connections
+
+### From witness to working translation
+
+This is the workflow Read Zen is built for — not just reading, but producing and sharing serious text work:
+
+1. **Find a witness** — locate a freely-licensed woodblock scan or digital text in the [witness collection](https://github.com/Fabulu/woodblockeditionprocess)
+2. **Verify provenance** — check source, license, SHA-256 hash, and editorial documentation in the Provenance panel
+3. **Read side by side** — Chinese and English with hover dictionary, linked selection, and bookmarks
+4. **Compare witnesses** — view variant readings across editions in the Witness Comparison viewer
+5. **Translate safely** — block-by-block structure-aware editor with AI copy/paste, termbase, and translation memory
+6. **Annotate and tag** — qualitative coding with frequency analytics and co-occurrence matrices
+7. **Collect and cite** — build Scholar collections with passage linking, comparison, and BibTeX/CSL-JSON export
+8. **Share and sync** — push translations, termbases, and collections via GitHub; share web links that work for everyone
+
+### How Read Zen differs from Buddhist text aggregators
+
+| Need | General aggregators | Read Zen |
+|------|---------------------|----------|
+| Browse many Buddhist texts | Very strong (multi-tradition, multi-language) | Focused on Chinese Chan/Zen (~5000 CBETA + OpenZen) |
+| Read bilingual online | Strong | Strong, with desktop handoff and hover dictionary |
+| Translate texts | Usually view-only | Structure-safe translation editor with TM and review |
+| Preserve TEI/XML structure | Not the main focus | Core design principle — XML never silently mangled |
+| Compare source witnesses | Usually unavailable | Provenance-tracked witness comparison with apparatus |
+| Use commercially-safe editions | Mixed or unclear licensing | OpenZen: per-file CC0/CC BY-SA, separated from CBETA |
+| Build research notebooks | General annotations | Scholar collections with links, tags, and export |
+| Study Chan lineage | Broad knowledge graphs | 301-master Chan/Zen-focused database with corpus search |
+| Do long-form translation work | Not the main product | Desktop workbench built for it |
+
+### OpenZen: a provenance-first freely-licensed corpus
+
+OpenZen is not just another corpus. It is a provenance-first, license-clear path for creating, translating, and reusing Chinese Zen editions without inheriting CBETA's non-commercial restrictions. Each text carries:
+
+- Per-file SPDX license declaration (CC0, CC BY-SA) in the TEI header
+- Source witness attribution with SHA-256 audit trail
+- Editorial documentation and process logs
+- Complete separation from CBETA so licenses never cross-contaminate
+
+For publishers, translators, teachers, app developers, and practitioners who need commercial-safe texts with verifiable provenance, OpenZen is the path.
+
+### Built for corpus integrity
+
+| | |
+|---|---|
+| **1,199 automated tests** | URI parsing, search, translation status, corpus detection, Scholar exports, witness loading, master corpus search |
+| **Structure-preserving editor** | Translation changes never break TEI validity — unsafe states are rejected, not silently mangled |
+| **Separate repositories** | Originals and translations in different repos; CBETA and OpenZen in different repos |
+| **Local-first work model** | All text work happens on your machine; sync is explicit and reversible |
+| **Provenance manifests** | Source witness hashes, capture dates, vetting confidence, editorial actor logs |
+| **Recovery actions** | Sync problems have escape hatches; destructive actions require confirmation |
+
 ## Download & Install
 
 Read Zen ships as self-contained binaries — no .NET runtime install needed.
