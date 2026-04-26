@@ -38,6 +38,7 @@ public sealed class ScholarExportService : IScholarExportService
             ScholarExportFormat.BibTex => BuildBibTex(collection),
             ScholarExportFormat.CslJson => BuildCslJson(collection),
             ScholarExportFormat.PaperDraft => BuildPaperDraft(collection),
+            ScholarExportFormat.Ris => BuildRis(collection),
             _ => throw new ArgumentOutOfRangeException(nameof(format)),
         };
 
@@ -1058,14 +1059,67 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
     private static void AppendBibTexEntry(StringBuilder sb, ScholarCollection collection, ScholarPassage passage, int index)
     {
         var key = BuildBibTexKey(collection, passage, index);
-        sb.AppendLine($"@misc{{{key},");
+        var fileId = ExtractSourceTitle(passage.SourceRelPath);
+        TryParseCbetaFromFileId(fileId, out var canon, out var volume, out _);
+        bool hasCbeta = !string.IsNullOrWhiteSpace(canon) && volume.HasValue;
+
+        var entryType = hasCbeta ? "incollection" : "misc";
+        sb.AppendLine($"@{entryType}{{{key},");
         AppendBibTexField(sb, "title", BuildBibTexTitle(passage, index), true);
+
+        if (passage.MasterNames.Count > 0)
+            AppendBibTexField(sb, "author", passage.MasterNames[0]);
+
+        if (hasCbeta)
+        {
+            AppendBibTexField(sb, "booktitle", "Taish\\={o} shinsh\\={u} daiz\\={o}ky\\={o}");
+            sb.AppendLine($"  editor = {{Takakusu Junjir\\=o and Watanabe Kaikyoku}},");
+            sb.AppendLine($"  volume = {{{volume!.Value}}},");
+        }
+
         AppendBibTexField(sb, "howpublished", BuildZenLink(passage));
         AppendBibTexField(sb, "url", BuildShareUrl(passage));
         AppendBibTexField(sb, "keywords", BuildBibTexKeywords(collection, passage));
         AppendBibTexField(sb, "note", BuildBibTexNote(collection, passage));
         AppendBibTexField(sb, "abstract", BuildBibTexAbstract(passage));
+        sb.AppendLine($"  publisher = {{CBETA}},");
         sb.AppendLine("}");
+    }
+
+    /// <summary>
+    /// Try to parse CBETA canon/volume/number from a FileId like "T48n2005".
+    /// </summary>
+    private static void TryParseCbetaFromFileId(string fileId, out string? canon, out int? volume, out string? number)
+    {
+        canon = null;
+        volume = null;
+        number = null;
+
+        if (string.IsNullOrEmpty(fileId)) return;
+
+        int nIdx = fileId.IndexOf('n');
+        if (nIdx < 2) return;
+
+        int volStart = 0;
+        for (int i = 0; i < nIdx; i++)
+        {
+            if (char.IsDigit(fileId[i]))
+            {
+                volStart = i;
+                break;
+            }
+        }
+        if (volStart == 0) return;
+
+        var volStr = fileId.Substring(volStart, nIdx - volStart);
+        var numStr = fileId.Substring(nIdx + 1);
+
+        if (int.TryParse(volStr, out var vol) && !string.IsNullOrEmpty(numStr))
+        {
+            canon = fileId.Substring(0, volStart);
+            volume = vol;
+            number = numStr;
+        }
     }
 
     private static void AppendBibTexField(StringBuilder sb, string name, string? value, bool required = false)
@@ -1167,6 +1221,61 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
     private static string CollapseWhitespace(string value) =>
         string.Join(" ", value.Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+
+    private static string BuildRis(ScholarCollection collection)
+    {
+        var sb = new StringBuilder();
+        for (int i = 0; i < collection.Passages.Count; i++)
+        {
+            if (i > 0) sb.Append("\r\n");
+            AppendRisEntry(sb, collection, collection.Passages[i]);
+        }
+        return sb.ToString();
+    }
+
+    private static void AppendRisEntry(StringBuilder sb, ScholarCollection collection, ScholarPassage passage)
+    {
+        sb.Append("TY  - BOOK\r\n");
+
+        // Title
+        var title = ExtractSourceTitle(passage.SourceRelPath);
+        sb.Append("TI  - ").Append(title).Append("\r\n");
+
+        // Author from master names
+        if (passage.MasterNames.Count > 0)
+            sb.Append("AU  - ").Append(passage.MasterNames[0]).Append("\r\n");
+
+        // Volume / pages from lb values
+        if (!string.IsNullOrWhiteSpace(passage.FromLb))
+            sb.Append("SP  - ").Append(passage.FromLb).Append("\r\n");
+        if (!string.IsNullOrWhiteSpace(passage.ToLb))
+            sb.Append("EP  - ").Append(passage.ToLb).Append("\r\n");
+
+        sb.Append("PB  - CBETA / Read Zen\r\n");
+
+        var shareUrl = BuildShareUrl(passage);
+        if (!string.IsNullOrWhiteSpace(shareUrl))
+            sb.Append("UR  - ").Append(shareUrl).Append("\r\n");
+
+        sb.Append("DB  - CBETA\r\n");
+
+        // Keywords from tags
+        var keywords = collection.Tags
+            .Concat(passage.Tags)
+            .Concat(passage.MasterNames)
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+        foreach (var kw in keywords)
+            sb.Append("KW  - ").Append(kw).Append("\r\n");
+
+        // CBETA ref in M1 and N1
+        var fileId = ExtractSourceTitle(passage.SourceRelPath);
+        sb.Append("M1  - ").Append(fileId).Append("\r\n");
+        sb.Append("N1  - CBETA ").Append(fileId).Append("\r\n");
+
+        sb.Append("ER  - \r\n");
+    }
+
     private static string BuildCslJson(ScholarCollection collection)
     {
         var items = new List<Dictionary<string, object?>>();

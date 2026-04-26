@@ -349,36 +349,34 @@ public partial class TranslationTabView : UserControl
         };
         menu.Items.Add(copyRedditLink);
 
-        // Citation
+        // Citation flyout
         menu.Items.Add(new Separator());
-        var copyCitation = new MenuItem { Header = "Copy with citation" };
-        copyCitation.Click += async (_, _) =>
-        {
-            var selected = _editor?.SelectedText?.Trim();
-            if (string.IsNullOrEmpty(selected)) return;
-
-            // Resolve lb from block number
-            string? lbValue = null;
-            var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
-            if (blocks.Count > 0 && _editor != null)
+        var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
+            _citationService,
+            CitationMenuHelper.GetPreferredStyle(),
+            buildMetadata: () =>
             {
-                int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
-                if (ix >= 0 && ix < blocks.Count)
-                    lbValue = ResolveLbForBlock?.Invoke(blocks[ix].BlockNumber);
-            }
-
-            var metadata = _citationService.BuildMetadata(
-                _currentLicense, fromLb: lbValue, quotedText: selected);
-            var citation = _citationService.Generate(metadata, CitationStyle.Plain);
-
-            var top = TopLevel.GetTopLevel(this);
-            if (top?.Clipboard != null)
+                string? lbValue = null;
+                var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
+                if (blocks.Count > 0 && _editor != null)
+                {
+                    int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+                    if (ix >= 0 && ix < blocks.Count)
+                        lbValue = ResolveLbForBlock?.Invoke(blocks[ix].BlockNumber);
+                }
+                return _citationService.BuildMetadata(
+                    _currentLicense, fromLb: lbValue,
+                    quotedText: _editor?.SelectedText?.Trim(),
+                    translatorName: GetTranslationUser?.Invoke());
+            },
+            copyToClipboard: async text =>
             {
-                await top.Clipboard.SetTextAsync(citation);
-                Status?.Invoke(this, "Citation copied to clipboard.");
-            }
-        };
-        menu.Items.Add(copyCitation);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(text);
+            },
+            onCopied: msg => Status?.Invoke(this, msg));
+        menu.Items.Add(citeFlyout);
 
         // 5D-1: Search corpus for selection
         menu.Items.Add(new Separator());

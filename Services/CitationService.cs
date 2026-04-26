@@ -18,6 +18,25 @@ namespace ReadZen.App.Services;
 
 public sealed class CitationService : ICitationService
 {
+    /// <summary>
+    /// Default citation style index, matching <see cref="CitationStyle"/> ordinal.
+    /// Set from AppConfig.PreferredCitationStyleIndex on startup.
+    /// Default 3 = Chicago.
+    /// </summary>
+    public static int DefaultStyleIndex { get; set; } = 3;
+
+    /// <summary>
+    /// Get the preferred <see cref="CitationStyle"/> from the static default index.
+    /// Falls back to <see cref="CitationStyle.Chicago"/> if the index is out of range.
+    /// </summary>
+    public static CitationStyle GetPreferredStyle()
+    {
+        var values = Enum.GetValues<CitationStyle>();
+        if (DefaultStyleIndex >= 0 && DefaultStyleIndex < values.Length)
+            return values[DefaultStyleIndex];
+        return CitationStyle.Chicago;
+    }
+
     public string Generate(CitationMetadata m, CitationStyle style)
     {
         return style switch
@@ -29,6 +48,8 @@ public sealed class CitationService : ICitationService
             CitationStyle.BibTeX         => FormatBibTeX(m),
             CitationStyle.CslJson        => FormatCslJson(m),
             CitationStyle.CbetaReference => FormatCbetaRefOnly(m),
+            CitationStyle.Ris            => FormatRis(m),
+            CitationStyle.Sbl            => FormatSbl(m),
             _                            => FormatPlain(m),
         };
     }
@@ -215,6 +236,10 @@ public sealed class CitationService : ICitationService
         var title = m.TitleEn ?? m.TitleZh ?? "Untitled";
         sb.Append(title);
 
+        // Translator attribution (APA: after title in parentheses)
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+            sb.Append(" (Trans. ").Append(m.TranslatorName).Append(')');
+
         // CBETA ref in parentheses
         var cbetaRef = FormatCbetaReference(m.FromLb, m.CbetaCanon, m.CbetaVolume, m.CbetaNumber);
         if (cbetaRef != null)
@@ -245,6 +270,10 @@ public sealed class CitationService : ICitationService
         var title = BuildDisplayTitle(m);
         sb.Append('\u201C').Append(title).Append(".\u201D ");
 
+        // Translator attribution (MLA: after title)
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+            sb.Append("Trans. ").Append(m.TranslatorName).Append(". ");
+
         // Container (the Tripitaka series)
         if (!string.IsNullOrWhiteSpace(m.SourceEdition))
             sb.Append(m.SourceEdition).Append(", ");
@@ -266,14 +295,20 @@ public sealed class CitationService : ICitationService
     }
 
     /// <summary>
-    /// BibTeX @misc entry.
-    /// Phase 1 uses @misc; Phase 2 upgrades to @incollection with booktitle/editor.
+    /// BibTeX entry. Uses @incollection with Taisho booktitle/editor when CBETA
+    /// provenance is available (CbetaCanon + CbetaVolume). Falls back to @misc
+    /// for OpenZen texts and texts without CBETA provenance.
     /// </summary>
     private string FormatBibTeX(CitationMetadata m)
     {
         var key = BuildBibTeXKey(m);
         var sb = new StringBuilder();
-        sb.AppendLine($"@misc{{{key},");
+
+        bool hasCbetaProvenance = !string.IsNullOrWhiteSpace(m.CbetaCanon) && m.CbetaVolume.HasValue;
+
+        // @incollection for CBETA texts, @misc for everything else
+        var entryType = hasCbetaProvenance ? "incollection" : "misc";
+        sb.AppendLine($"@{entryType}{{{key},");
 
         var title = BuildDisplayTitle(m);
         sb.AppendLine($"  title = {{{EscapeBibTeX(title)}}},");
@@ -282,10 +317,26 @@ public sealed class CitationService : ICitationService
         if (!string.IsNullOrWhiteSpace(authorClean))
             sb.AppendLine($"  author = {{{EscapeBibTeX(authorClean)}}},");
 
-        if (m.CbetaVolume.HasValue)
-            sb.AppendLine($"  volume = {{{m.CbetaVolume.Value}}},");
-        if (!string.IsNullOrWhiteSpace(m.CbetaNumber))
-            sb.AppendLine($"  number = {{{EscapeBibTeX(m.CbetaNumber!)}}},");
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+            sb.AppendLine($"  translator = {{{EscapeBibTeX(m.TranslatorName!)}}},");
+
+        if (hasCbetaProvenance)
+        {
+            // Taisho-specific fields
+            var booktitle = m.SourceEdition ?? "Taish\\={o} shinsh\\={u} daiz\\={o}ky\\={o}";
+            sb.AppendLine($"  booktitle = {{{EscapeBibTeX(booktitle)}}},");
+            sb.AppendLine($"  editor = {{Takakusu Junjir\\=o and Watanabe Kaikyoku}},");
+            sb.AppendLine($"  volume = {{{m.CbetaVolume!.Value}}},");
+            if (!string.IsNullOrWhiteSpace(m.CbetaNumber))
+                sb.AppendLine($"  number = {{{EscapeBibTeX(m.CbetaNumber!)}}},");
+        }
+        else
+        {
+            if (m.CbetaVolume.HasValue)
+                sb.AppendLine($"  volume = {{{m.CbetaVolume.Value}}},");
+            if (!string.IsNullOrWhiteSpace(m.CbetaNumber))
+                sb.AppendLine($"  number = {{{EscapeBibTeX(m.CbetaNumber!)}}},");
+        }
 
         var cbetaRef = FormatCbetaReference(m.FromLb, m.CbetaCanon, m.CbetaVolume, m.CbetaNumber);
         if (cbetaRef != null)
@@ -325,6 +376,18 @@ public sealed class CitationService : ICitationService
             };
         }
 
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+        {
+            entry["translator"] = new[]
+            {
+                new System.Collections.Generic.Dictionary<string, string>
+                {
+                    ["family"] = m.TranslatorName!,
+                    ["literal"] = m.TranslatorName!
+                }
+            };
+        }
+
         if (!string.IsNullOrWhiteSpace(m.SourceEdition))
             entry["container-title"] = m.SourceEdition;
         if (m.CbetaVolume.HasValue)
@@ -348,6 +411,118 @@ public sealed class CitationService : ICitationService
     {
         return FormatCbetaReference(m.FromLb, m.CbetaCanon, m.CbetaVolume, m.CbetaNumber)
             ?? "(no CBETA reference available)";
+    }
+
+    /// <summary>
+    /// RIS format for single citation. TY=BOOK for whole works.
+    /// Tags: TY, AU, TI, PY, VL, SP, EP, PB, UR, DB, KW, M1, N1, A4, ER.
+    /// </summary>
+    private string FormatRis(CitationMetadata m)
+    {
+        var sb = new StringBuilder();
+        sb.Append("TY  - BOOK\r\n");
+
+        // Author
+        var authorClean = StripDynasty(m.Author, m.Dynasty);
+        if (!string.IsNullOrWhiteSpace(authorClean))
+            sb.Append("AU  - ").Append(authorClean).Append("\r\n");
+
+        // Title: "ZhTitle [EnTitle]"
+        var title = BuildRisTitle(m);
+        sb.Append("TI  - ").Append(title).Append("\r\n");
+
+        // Year
+        if (!string.IsNullOrWhiteSpace(m.YearComposed))
+            sb.Append("PY  - ").Append(m.YearComposed).Append("\r\n");
+
+        // Volume
+        if (m.CbetaVolume.HasValue)
+            sb.Append("VL  - ").Append(m.CbetaVolume.Value).Append("\r\n");
+
+        // Start/end page from lb
+        var pageRef = !string.IsNullOrEmpty(m.FromLb) ? FormatLbAsPageRef(m.FromLb) : null;
+        if (pageRef != null)
+            sb.Append("SP  - ").Append(pageRef).Append("\r\n");
+        var endRef = !string.IsNullOrEmpty(m.ToLb) ? FormatLbAsPageRef(m.ToLb) : null;
+        if (endRef != null)
+            sb.Append("EP  - ").Append(endRef).Append("\r\n");
+
+        sb.Append("PB  - CBETA\r\n");
+
+        if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+            sb.Append("UR  - ").Append(m.ShareableUrl).Append("\r\n");
+
+        sb.Append("DB  - CBETA\r\n");
+
+        // CBETA ref in M1 and N1
+        var cbetaRef = FormatCbetaReference(m.FromLb, m.CbetaCanon, m.CbetaVolume, m.CbetaNumber);
+        if (!string.IsNullOrWhiteSpace(m.FileId))
+            sb.Append("M1  - ").Append(m.FileId).Append("\r\n");
+        if (cbetaRef != null)
+            sb.Append("N1  - ").Append(cbetaRef).Append("\r\n");
+
+        // Translator in A4
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+            sb.Append("A4  - ").Append(m.TranslatorName).Append("\r\n");
+
+        sb.Append("ER  - \r\n");
+        return sb.ToString();
+    }
+
+    private static string BuildRisTitle(CitationMetadata m)
+    {
+        if (!string.IsNullOrWhiteSpace(m.TitleZh) && !string.IsNullOrWhiteSpace(m.TitleEn))
+            return $"{m.TitleZh} [{m.TitleEn}]";
+        return m.TitleEn ?? m.TitleZh ?? "Untitled";
+    }
+
+    /// <summary>
+    /// Society of Biblical Literature (SBL) style, adapted for Buddhist Studies.
+    /// Footnote: Author, Title ZhTitle, CBETA ref.
+    /// Bibliography: Author ZhAuthor. Title ZhTitle. CBETA ref, vol.
+    /// </summary>
+    private string FormatSbl(CitationMetadata m)
+    {
+        var sb = new StringBuilder();
+
+        var authorClean = StripDynasty(m.Author, m.Dynasty);
+        if (!string.IsNullOrWhiteSpace(authorClean))
+        {
+            sb.Append(authorClean);
+            // Add Chinese name if available (SBL convention for non-Latin authors)
+            if (!string.IsNullOrWhiteSpace(m.Dynasty) && !string.IsNullOrWhiteSpace(m.Author))
+            {
+                var zhName = m.Author; // Author field often has Chinese name
+                if (zhName != authorClean)
+                    sb.Append(' ').Append(zhName);
+            }
+            sb.Append(", ");
+        }
+
+        // Title: TitleEn TitleZh
+        if (!string.IsNullOrWhiteSpace(m.TitleEn) && !string.IsNullOrWhiteSpace(m.TitleZh))
+            sb.Append(m.TitleEn).Append(' ').Append(m.TitleZh);
+        else if (!string.IsNullOrWhiteSpace(m.TitleEn))
+            sb.Append(m.TitleEn);
+        else if (!string.IsNullOrWhiteSpace(m.TitleZh))
+            sb.Append(m.TitleZh);
+
+        // Translator
+        if (!string.IsNullOrWhiteSpace(m.TranslatorName))
+            sb.Append(", trans. ").Append(m.TranslatorName);
+
+        sb.Append(", ");
+
+        // CBETA canonical reference (passage-level)
+        var cbetaRef = FormatCbetaReference(m.FromLb, m.CbetaCanon, m.CbetaVolume, m.CbetaNumber);
+        if (cbetaRef != null)
+            sb.Append(cbetaRef).Append('.');
+        else if (m.CbetaCanon != null && m.CbetaVolume.HasValue && !string.IsNullOrEmpty(m.CbetaNumber))
+            sb.Append(m.CbetaCanon).Append(" no. ").Append(m.CbetaNumber).Append(", vol. ").Append(m.CbetaVolume.Value).Append('.');
+        else
+            sb.Append("CBETA.");
+
+        return sb.ToString().TrimEnd();
     }
 
     // ---------------------------------------------------------------

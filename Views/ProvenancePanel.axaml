@@ -49,6 +49,22 @@
             <TextBlock Name="TxtWitnessCount" FontSize="11" Opacity="0.7"
                        IsVisible="False"/>
 
+            <!-- SHA-256 (copyable, 2I) -->
+            <Border Name="PnlSha256" IsVisible="False" Margin="0,4,0,0">
+                <StackPanel Spacing="2">
+                    <TextBlock Text="SHA-256" FontSize="10" Opacity="0.6"/>
+                    <SelectableTextBlock Name="TxtSha256"
+                                         FontSize="10" FontFamily="Consolas,monospace"
+                                         TextWrapping="Wrap" Opacity="0.8"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Editorial declaration summary (2I) -->
+            <TextBlock Name="TxtEditorialDecl"
+                       FontSize="11" Opacity="0.7"
+                       TextWrapping="Wrap"
+                       IsVisible="False"/>
+
             <!-- Source links -->
             <StackPanel Name="SourceLinksHost" Spacing="2" IsVisible="False"/>
 
@@ -81,6 +97,22 @@
                     <TextBlock Text="Source: CBETA"
                                Foreground="{DynamicResource WarningFg}"
                                FontWeight="SemiBold" FontSize="12"/>
+                    <!-- Dynasty badge (2H) -->
+                    <Border Name="BadgeCbetaDynasty"
+                            Background="{DynamicResource BarBg}"
+                            CornerRadius="8" Padding="6,2"
+                            IsVisible="False"
+                            HorizontalAlignment="Left">
+                        <TextBlock Name="TxtCbetaDynasty"
+                                   FontSize="10" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource WarningFg}"/>
+                    </Border>
+                    <!-- Chinese title (2H) -->
+                    <TextBlock Name="TxtCbetaTitleZh"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="12" FontWeight="SemiBold"
+                               TextWrapping="Wrap" Opacity="0.9"
+                               IsVisible="False"/>
                     <TextBlock Name="TxtCbetaCatalogRef"
                                Foreground="{DynamicResource WarningFg}"
                                FontSize="11" TextWrapping="Wrap" Opacity="0.85"
@@ -94,6 +126,11 @@
                                FontSize="11" TextWrapping="Wrap" Opacity="0.85"
                                IsVisible="False"/>
                     <TextBlock Name="TxtCbetaVersionDate"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"
+                               IsVisible="False"/>
+                    <!-- Contributors list (2H) -->
+                    <TextBlock Name="TxtCbetaContributors"
                                Foreground="{DynamicResource WarningFg}"
                                FontSize="11" TextWrapping="Wrap" Opacity="0.85"
                                IsVisible="False"/>

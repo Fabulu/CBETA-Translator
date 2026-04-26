@@ -28,6 +28,16 @@ namespace ReadZen.App.Models
 
         public bool EnableProvenancePanel { get; set; }
 
+        /// <summary>Preferred citation style used as default across all citation surfaces.</summary>
+        public CitationStyle PreferredCitationStyle { get; set; } = CitationStyle.Chicago;
+
+        /// <summary>
+        /// Preferred citation style index, matching <see cref="CitationStyle"/> ordinal.
+        /// 0=Plain, 1=Chicago, 2=APA, 3=MLA, 4=BibTeX, 5=CslJson, 6=CbetaReference, 7=Ris, 8=Sbl.
+        /// Default 1 = Chicago.
+        /// </summary>
+        public int PreferredCitationStyleIndex { get; set; } = 1;
+
         // Window state persistence
         public double? WindowX { get; set; }
         public double? WindowY { get; set; }
@@ -53,7 +63,7 @@ namespace ReadZen.App.Models
         /// </summary>
         public int TmMaxResults { get; set; } = 8;
 
-        public int Version { get; set; } = 4;
+        public int Version { get; set; } = 5;
 
         /// <summary>Persisted search history (most recent first, max 20).</summary>
         public List<string> SearchHistory { get; set; } = new();

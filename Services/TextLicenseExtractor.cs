@@ -216,6 +216,24 @@ public static class TextLicenseExtractor
             sourceUrl = sdUrls.FirstOrDefault();
         }
 
+        // --- respStmt contributors ---
+        var contributors = new List<string>();
+        if (titleStmt != null)
+        {
+            foreach (var resp in titleStmt.Elements(Tei + "respStmt").Concat(titleStmt.Elements("respStmt")))
+            {
+                var respRole = (resp.Element(Tei + "resp") ?? resp.Element("resp"))?.Value?.Trim();
+                var respName = (resp.Element(Tei + "name") ?? resp.Element("name"))?.Value?.Trim();
+                if (!string.IsNullOrWhiteSpace(respName))
+                {
+                    var entry = !string.IsNullOrWhiteSpace(respRole)
+                        ? $"{respName} ({respRole})"
+                        : respName;
+                    contributors.Add(entry);
+                }
+            }
+        }
+
         // --- corpus hint ---
         // Detection priority:
         //   1. Explicit OpenZenTexts marker or "no CBETA material" provenance
@@ -268,7 +286,8 @@ public static class TextLicenseExtractor
             Dynasty = dynasty,
             CbetaVersionDate = cbetaVersionDate,
             FileId = fileId,
-            RelPath = relPath
+            RelPath = relPath,
+            Contributors = contributors.Count > 0 ? contributors : null
         };
     }
 

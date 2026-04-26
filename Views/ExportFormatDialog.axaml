@@ -134,7 +134,19 @@
 						 Foreground="{DynamicResource TextFg}">
 					<StackPanel Spacing="2">
 						<TextBlock Text="BibTeX (.bib)" FontWeight="SemiBold"/>
-						<TextBlock Text="One @misc entry per passage in the selected collection"
+						<TextBlock Text="One entry per passage; uses @incollection for CBETA texts with Taisho metadata"
+								   FontSize="11"
+								   Foreground="{DynamicResource TextMutedFg}"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+				</RadioButton>
+
+				<RadioButton Name="RbRis"
+						 GroupName="Format"
+						 Foreground="{DynamicResource TextFg}">
+					<StackPanel Spacing="2">
+						<TextBlock Text="RIS (.ris)" FontWeight="SemiBold"/>
+						<TextBlock Text="Reference manager import format for Zotero, Mendeley, and EndNote"
 								   FontSize="11"
 								   Foreground="{DynamicResource TextMutedFg}"
 								   TextWrapping="Wrap"/>

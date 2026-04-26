@@ -31,6 +31,7 @@ public partial class ScholarTabView : UserControl
     // Hover dictionary
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
+    private readonly ICitationService _citationService = new CitationService();
     private HoverDictionaryBehaviorTextBox? _hoverDict;
     private DispatcherTimer? _scholarSelDebounce;
     private bool _scholarSelWired;
@@ -293,6 +294,34 @@ public partial class ScholarTabView : UserControl
                 Status?.Invoke(this, "Reddit link copied to clipboard.");
             };
             ctxMenu.Items.Add(copyRedditLink);
+
+            ctxMenu.Items.Add(new Separator());
+            var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
+                _citationService,
+                CitationMenuHelper.GetPreferredStyle(),
+                buildMetadata: () =>
+                {
+                    var passage = _vm.SelectedPassage;
+                    if (passage == null) return new CitationMetadata();
+                    var fileId = string.IsNullOrEmpty(passage.SourceRelPath)
+                        ? null : ZenUriParser.RelPathToFileId(passage.SourceRelPath);
+                    return new CitationMetadata
+                    {
+                        FileId = fileId,
+                        FromLb = passage.FromLb,
+                        ToLb = passage.ToLb,
+                        QuotedText = passage.ZhText ?? passage.EnText,
+                        ShareableUrl = fileId != null ? ZenUriParser.ShareableBase + fileId : null,
+                    };
+                },
+                copyToClipboard: async text =>
+                {
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null)
+                        await top.Clipboard.SetTextAsync(text);
+                },
+                onCopied: msg => Status?.Invoke(this, msg));
+            ctxMenu.Items.Add(citeFlyout);
 
             passagesList.ContextMenu = ctxMenu;
         }

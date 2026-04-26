@@ -47,6 +47,14 @@ public sealed class AppConfigService : IAppConfigService
                 cfg.Version = 4;
             }
 
+            // v4 -> v5 migration: add preferred citation style (default Chicago = 1).
+            if (cfg.Version < 5)
+            {
+                cfg.PreferredCitationStyleIndex = 1; // Chicago
+                cfg.PreferredCitationStyle = CitationStyle.Chicago;
+                cfg.Version = 5;
+            }
+
             return cfg;
         }
         catch

@@ -226,6 +226,10 @@ public partial class ZenMasterManagerWindow : Window
         if (mnuCopyReddit != null)
             mnuCopyReddit.Click += async (_, _) => await CopyMasterLinkAsync(isReddit: true);
 
+        var mnuCiteMaster = this.FindControl<MenuItem>("MnuCiteMaster");
+        if (mnuCiteMaster != null)
+            mnuCiteMaster.Click += async (_, _) => await CopyMasterCitationAsync();
+
         // Corpus search tab
         var btnBuildIndex = this.FindControl<Button>("BtnBuildCorpusIndex");
         if (btnBuildIndex != null)
@@ -319,6 +323,22 @@ public partial class ZenMasterManagerWindow : Window
         ViewModel.StatusText = isReddit
             ? $"Reddit link copied for {selected.CanonicalName}."
             : $"Copied link for {selected.CanonicalName}.";
+    }
+
+    private async Task CopyMasterCitationAsync()
+    {
+        var master = ViewModel.SelectedMaster;
+        if (master == null) return;
+
+        var name = master.CanonicalName;
+        var dates = master.DatesSummary;
+        var citation = $"{name} ({dates}). 301 Zen Master Database, Read Zen. https://readzen.app/masters/{Uri.EscapeDataString(name)}";
+
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard != null)
+            await top.Clipboard.SetTextAsync(citation);
+
+        ViewModel.StatusText = $"Citation copied for {name}.";
     }
 
     private async Task OpenEditorAsync()

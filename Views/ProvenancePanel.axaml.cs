@@ -115,6 +115,23 @@ public partial class ProvenancePanel : UserControl
                         txtLicenseFlags.Text = flags.ToString();
                     }
 
+                    // 2H: Dynasty badge
+                    var badgeDynasty = this.FindControl<Border>("BadgeCbetaDynasty");
+                    var txtDynasty = this.FindControl<TextBlock>("TxtCbetaDynasty");
+                    if (badgeDynasty != null && txtDynasty != null && !string.IsNullOrWhiteSpace(license.Dynasty))
+                    {
+                        txtDynasty.Text = $"Dynasty: {license.Dynasty}";
+                        badgeDynasty.IsVisible = true;
+                    }
+
+                    // 2H: Chinese title
+                    var txtTitleZh = this.FindControl<TextBlock>("TxtCbetaTitleZh");
+                    if (txtTitleZh != null && !string.IsNullOrWhiteSpace(license.TitleZh))
+                    {
+                        txtTitleZh.Text = license.TitleZh;
+                        txtTitleZh.IsVisible = true;
+                    }
+
                     // Enhanced CBETA provenance fields
                     var txtCatalogRef = this.FindControl<TextBlock>("TxtCbetaCatalogRef");
                     if (txtCatalogRef != null && !string.IsNullOrWhiteSpace(license.CbetaCanon))
@@ -145,6 +162,14 @@ public partial class ProvenancePanel : UserControl
                     {
                         txtVersionDate.Text = $"CBETA version: {license.CbetaVersionDate}";
                         txtVersionDate.IsVisible = true;
+                    }
+
+                    // 2H: Contributors from respStmt
+                    var txtContributors = this.FindControl<TextBlock>("TxtCbetaContributors");
+                    if (txtContributors != null && license.Contributors != null && license.Contributors.Count > 0)
+                    {
+                        txtContributors.Text = "Contributors: " + string.Join("; ", license.Contributors);
+                        txtContributors.IsVisible = true;
                     }
 
                     if (!string.IsNullOrWhiteSpace(license.RequiredAttribution) && btnCopy != null)
@@ -221,6 +246,28 @@ public partial class ProvenancePanel : UserControl
             var count = manifest.Witnesses.Count;
             txtWitnessCount.Text = $"{count} witness{(count != 1 ? "es" : "")} consulted";
             txtWitnessCount.IsVisible = true;
+        }
+
+        // 2I: SHA-256 from base witness
+        var pnlSha256 = this.FindControl<Border>("PnlSha256");
+        var txtSha256 = this.FindControl<SelectableTextBlock>("TxtSha256");
+        if (pnlSha256 != null && txtSha256 != null && manifest.Witnesses != null)
+        {
+            var baseW256 = manifest.Witnesses.FirstOrDefault(w =>
+                string.Equals(w.Id, manifest.BaseWitnessId, StringComparison.OrdinalIgnoreCase));
+            if (baseW256 != null && !string.IsNullOrWhiteSpace(baseW256.CapturedSha256))
+            {
+                txtSha256.Text = baseW256.CapturedSha256;
+                pnlSha256.IsVisible = true;
+            }
+        }
+
+        // 2I: Editorial declaration from production_notes
+        var txtEditorialDecl = this.FindControl<TextBlock>("TxtEditorialDecl");
+        if (txtEditorialDecl != null && !string.IsNullOrWhiteSpace(manifest.ProductionNotes))
+        {
+            txtEditorialDecl.Text = manifest.ProductionNotes;
+            txtEditorialDecl.IsVisible = true;
         }
 
         // Source links (upstream URLs from witnesses)
