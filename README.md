@@ -41,9 +41,10 @@ Read Zen is a full working environment for Chinese Zen study and translation acr
 
 ### Try it now
 
-- **[Read the Gateless Barrier side by side](https://readzen.pages.dev/T48n2005)** — the *Wumenguan* with dictionary and master links
-- **[Compare the 1632 woodblock edition](https://readzen.pages.dev/pd.wumenguan-1632)** — OpenZen provenance, license, and witness text
-- **[Explore Linji Yixuan's lineage](https://readzen.pages.dev/master/Linji_Yixuan)** — profile, corpus mentions, and teacher/student connections
+| | | |
+|:---:|:---:|:---:|
+| [**Read the Gateless Barrier**](https://readzen.pages.dev/T48n2005) | [**Compare the 1632 Woodblock**](https://readzen.pages.dev/pd.wumenguan-1632) | [**Explore Linji's Lineage**](https://readzen.pages.dev/master/Linji_Yixuan) |
+| Side-by-side *Wumenguan* with hover dictionary and Zen master links | The 1632 NDL woodblock reading edition — provenance, license, and witness text | Profile, corpus mentions, and teacher/student connections across 301 masters |
 
 ### From witness to working translation
 
