@@ -110,6 +110,12 @@ public partial class TranslationTabView : UserControl
     /// <summary>Returns the currently active translation user (null = community).</summary>
     public Func<string?>? GetTranslationUser { get; set; }
 
+    private TextLicenseInfo? _currentLicense;
+    private readonly ICitationService _citationService = new CitationService();
+
+    /// <summary>Set the license metadata for the currently loaded file (wired by MainWindow).</summary>
+    public void SetLicense(TextLicenseInfo? license) => _currentLicense = license;
+
     public TranslationTabView()
     {
         _vm = new TranslationTabViewModel();
@@ -342,6 +348,37 @@ public partial class TranslationTabView : UserControl
             Status?.Invoke(this, "Reddit link copied to clipboard.");
         };
         menu.Items.Add(copyRedditLink);
+
+        // Citation
+        menu.Items.Add(new Separator());
+        var copyCitation = new MenuItem { Header = "Copy with citation" };
+        copyCitation.Click += async (_, _) =>
+        {
+            var selected = _editor?.SelectedText?.Trim();
+            if (string.IsNullOrEmpty(selected)) return;
+
+            // Resolve lb from block number
+            string? lbValue = null;
+            var blocks = ParseProjectionBlocksWithOffsets(_editor?.Text ?? "");
+            if (blocks.Count > 0 && _editor != null)
+            {
+                int ix = FindBlockIndexAtOrAfterCaret(blocks, _editor.CaretOffset);
+                if (ix >= 0 && ix < blocks.Count)
+                    lbValue = ResolveLbForBlock?.Invoke(blocks[ix].BlockNumber);
+            }
+
+            var metadata = _citationService.BuildMetadata(
+                _currentLicense, fromLb: lbValue, quotedText: selected);
+            var citation = _citationService.Generate(metadata, CitationStyle.Plain);
+
+            var top = TopLevel.GetTopLevel(this);
+            if (top?.Clipboard != null)
+            {
+                await top.Clipboard.SetTextAsync(citation);
+                Status?.Invoke(this, "Citation copied to clipboard.");
+            }
+        };
+        menu.Items.Add(copyCitation);
 
         // 5D-1: Search corpus for selection
         menu.Items.Add(new Separator());

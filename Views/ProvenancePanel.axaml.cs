@@ -114,7 +114,44 @@ public partial class ProvenancePanel : UserControl
                         if (license.AttributionRequired) flags.Append(" | Attribution required");
                         txtLicenseFlags.Text = flags.ToString();
                     }
+
+                    // Enhanced CBETA provenance fields
+                    var txtCatalogRef = this.FindControl<TextBlock>("TxtCbetaCatalogRef");
+                    if (txtCatalogRef != null && !string.IsNullOrWhiteSpace(license.CbetaCanon))
+                    {
+                        var refParts = new StringBuilder(license.CbetaCanon);
+                        if (license.CbetaVolume.HasValue) refParts.Append($" vol. {license.CbetaVolume}");
+                        if (!string.IsNullOrWhiteSpace(license.CbetaNumber)) refParts.Append($", no. {license.CbetaNumber}");
+                        txtCatalogRef.Text = $"Catalog: {refParts}";
+                        txtCatalogRef.IsVisible = true;
+                    }
+
+                    var txtSourceEdition = this.FindControl<TextBlock>("TxtCbetaSourceEdition");
+                    if (txtSourceEdition != null && !string.IsNullOrWhiteSpace(license.SourceEdition))
+                    {
+                        txtSourceEdition.Text = $"Source edition: {license.SourceEdition}";
+                        txtSourceEdition.IsVisible = true;
+                    }
+
+                    var txtExtent = this.FindControl<TextBlock>("TxtCbetaExtent");
+                    if (txtExtent != null && !string.IsNullOrWhiteSpace(license.Extent))
+                    {
+                        txtExtent.Text = $"Extent: {license.Extent}";
+                        txtExtent.IsVisible = true;
+                    }
+
+                    var txtVersionDate = this.FindControl<TextBlock>("TxtCbetaVersionDate");
+                    if (txtVersionDate != null && !string.IsNullOrWhiteSpace(license.CbetaVersionDate))
+                    {
+                        txtVersionDate.Text = $"CBETA version: {license.CbetaVersionDate}";
+                        txtVersionDate.IsVisible = true;
+                    }
+
                     if (!string.IsNullOrWhiteSpace(license.RequiredAttribution) && btnCopy != null)
+                        btnCopy.IsVisible = true;
+
+                    // Show copy citation for CBETA texts with extracted metadata
+                    if (btnCopy != null && !string.IsNullOrWhiteSpace(license.FileId))
                         btnCopy.IsVisible = true;
                 }
             }
@@ -263,6 +300,8 @@ public partial class ProvenancePanel : UserControl
         {
             if (!string.IsNullOrWhiteSpace(_license.Title)) sb.Append(_license.Title);
             if (!string.IsNullOrWhiteSpace(_license.Author)) sb.Append($" by {_license.Author}");
+            if (!string.IsNullOrWhiteSpace(_license.FileId)) sb.Append($" [{_license.FileId}]");
+            if (!string.IsNullOrWhiteSpace(_license.SourceEdition)) sb.Append($". {_license.SourceEdition}");
             if (!string.IsNullOrWhiteSpace(_license.ShortLabel)) sb.Append($". {_license.ShortLabel}");
             sb.Append('.');
         }

@@ -77,10 +77,26 @@
                     Background="{DynamicResource WarningBg}"
                     CornerRadius="6" Padding="10"
                     IsVisible="False">
-                <StackPanel Spacing="3">
+                <StackPanel Spacing="4">
                     <TextBlock Text="Source: CBETA"
                                Foreground="{DynamicResource WarningFg}"
                                FontWeight="SemiBold" FontSize="12"/>
+                    <TextBlock Name="TxtCbetaCatalogRef"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"
+                               IsVisible="False"/>
+                    <TextBlock Name="TxtCbetaSourceEdition"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"
+                               IsVisible="False"/>
+                    <TextBlock Name="TxtCbetaExtent"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"
+                               IsVisible="False"/>
+                    <TextBlock Name="TxtCbetaVersionDate"
+                               Foreground="{DynamicResource WarningFg}"
+                               FontSize="11" TextWrapping="Wrap" Opacity="0.85"
+                               IsVisible="False"/>
                     <TextBlock Text="Non-commercial use only. See CBETA license terms."
                                Foreground="{DynamicResource WarningFg}"
                                FontSize="11" TextWrapping="Wrap" Opacity="0.85"/>

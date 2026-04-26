@@ -24,6 +24,7 @@ public partial class SearchTabView : UserControl
 {
     private readonly SearchTabViewModel _vm;
     private readonly ICedictDictionary _cedict;
+    private readonly ICitationService _citationService = new CitationService();
     private TextBlock? _activeHoverTextBlock;
     private CancellationTokenSource? _hoverLookupCts;
 
@@ -225,11 +226,37 @@ public partial class SearchTabView : UserControl
                     g.IsExpanded = false;
             };
 
+            var copyCitationItem = new MenuItem { Header = "Copy with citation" };
+            copyCitationItem.Click += async (_, _) =>
+            {
+                if (resultsTree.SelectedItem is not SearchResultChild child) return;
+                var snippetText = child.PrimarySnippetText;
+                if (string.IsNullOrEmpty(snippetText)) return;
+
+                // Build minimal citation from search result context.
+                // License info is not readily available in search context, so we
+                // derive what we can from the RelPath (FileId -> CBETA fields).
+                var metadata = new CitationMetadata
+                {
+                    FileId = string.IsNullOrEmpty(child.RelPath) ? null : ZenUriParser.RelPathToFileId(child.RelPath),
+                    QuotedText = snippetText,
+                    ShareableUrl = string.IsNullOrEmpty(child.RelPath)
+                        ? null
+                        : ZenUriParser.ShareableBase + ZenUriParser.RelPathToFileId(child.RelPath),
+                };
+                var citation = _citationService.Generate(metadata, CitationStyle.Plain);
+
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(citation);
+            };
+
             resultsTree.ContextMenu = new ContextMenu
             {
                 Items =
                 {
                     copySnippetItem,
+                    copyCitationItem,
                     new Separator(),
                     addToScholarItem,
                     new Separator(),

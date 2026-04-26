@@ -512,8 +512,8 @@ public class SearchIndexServiceTests
         var result = SearchIndexService.ComputeCooccurrences(groups, "\u95DC", 80, CoocMetric.Frequency, topK: 10);
 
         Assert.Contains("result-scoped", result.Summary);
-        Assert.Contains("current results", result.LeftTitle);
-        Assert.Contains("current results", result.RightTitle);
+        Assert.Contains("Character pairs", result.LeftTitle);
+        Assert.Contains("Recurring phrases", result.RightTitle);
         Assert.Contains("not corpus-wide", result.ExtraLine);
     }
     [Fact]
@@ -557,8 +557,8 @@ public class SearchIndexServiceTests
                 progress: new Progress<(int done, int total)>(p => progress.Add(p)));
 
             Assert.Contains("corpus-scan", result.Summary);
-            Assert.Contains("across filtered corpus", result.LeftTitle);
-            Assert.Contains("across filtered corpus", result.RightTitle);
+            Assert.Contains("Character pairs", result.LeftTitle);
+            Assert.Contains("Recurring phrases", result.RightTitle);
             Assert.Contains("Filtered files scanned: 1", result.ExtraLine);
             Assert.Contains("Corpus scan is slower", result.ExtraLine);
             Assert.Contains(progress, p => p.done == 1 && p.total == 1);
