@@ -1,13 +1,12 @@
-﻿namespace ReadZen.App.Models;
+namespace ReadZen.App.Models;
 
 public enum CoocMetric
 {
-    TopCooccurrences = 0,   
-    DispersionScore = 1,    
-    Frequency = 2,
-    Range = 3,
-    Dominance = 4,
-    PMI = 5,
-    LogDice = 6,
-    TScore = 7
+    LogDice = 0,
+    MI = 1,
+    MI3 = 2,
+    TScore = 3,
+    LogLikelihood = 4,
+    Frequency = 5,
+    Dominance = 6,
 }

@@ -10,6 +10,15 @@ public interface ISearchIndexService : IDisposable
 {
     SearchIndexService.SearchIndexServiceOptions Options { get; }
 
+    /// <summary>Corpus-wide character frequencies (populated after index build/load). Null if not yet available.</summary>
+    IReadOnlyDictionary<string, int>? CorpusCharFreqs { get; }
+    /// <summary>Corpus-wide bigram frequencies (populated after index build/load). Null if not yet available.</summary>
+    IReadOnlyDictionary<string, int>? CorpusBigramFreqs { get; }
+    /// <summary>Total CJK characters counted across the corpus. 0 if not yet available.</summary>
+    long CorpusTotalChars { get; }
+    /// <summary>True when corpus frequency data is loaded and usable.</summary>
+    bool HasCorpusFrequencies { get; }
+
     string GetManifestPath(string root);
     string GetBinPath(string root);
     string GetTextManifestPath(string root);

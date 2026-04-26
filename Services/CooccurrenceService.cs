@@ -16,10 +16,13 @@ public sealed class CooccurrenceService : ICooccurrenceService
         string query,
         int contextWidth,
         CoocMetric metric,
+        IReadOnlyDictionary<string, int>? corpusCharFreqs = null,
+        IReadOnlyDictionary<string, int>? corpusBigramFreqs = null,
+        long corpusTotalChars = 0,
         int topK = 30)
     {
         // Delegate to the static implementation that was already on SearchIndexService.
         // This preserves exact behavior.
-        return SearchIndexService.ComputeCooccurrences(groups, query, contextWidth, metric, topK);
+        return SearchIndexService.ComputeCooccurrences(groups, query, contextWidth, metric, corpusCharFreqs, corpusBigramFreqs, corpusTotalChars, topK);
     }
 }
