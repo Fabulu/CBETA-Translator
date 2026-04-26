@@ -412,6 +412,7 @@ public sealed class SearchIndexService : ISearchIndexService
         // G2 significance floor: filter out statistically insignificant collocates
         if (hasCorpusFreqs && metric != CoocMetric.Frequency && metric != CoocMetric.Dominance)
         {
+            int leftBefore = left.Count, rightBefore = right.Count;
             left = left.Where(r =>
             {
                 int f_x = LookupCollocateFreq(r.Key);
@@ -422,6 +423,12 @@ public sealed class SearchIndexService : ISearchIndexService
                 int f_x = LookupCollocateFreq(r.Key);
                 return ComputeG2(r.Freq, f_x, queryCorpusFreq, N) >= 6.63;
             }).ToList();
+            int removed = (leftBefore - left.Count) + (rightBefore - right.Count);
+            if (removed > 0)
+                fallbackNotice = (fallbackNotice ?? "") +
+                    (left.Count + right.Count == 0
+                        ? "No statistically significant collocates found (G2 < 6.63). Try Frequency mode."
+                        : $"{removed} weak collocates filtered by significance (p < 0.01).");
         }
 
         left = left.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
