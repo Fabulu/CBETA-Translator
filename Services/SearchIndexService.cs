@@ -147,8 +147,8 @@ public sealed class SearchIndexService : ISearchIndexService
     public sealed class CooccurrencePanelResult
     {
         public string Summary { get; set; } = "";
-        public string LeftTitle { get; set; } = "Top characters";
-        public string RightTitle { get; set; } = "Top bigrams / trigrams";
+        public string LeftTitle { get; set; } = "Character pairs";
+        public string RightTitle { get; set; } = "Recurring phrases";
         public List<CoocRow> Left { get; set; } = new();
         public List<CoocRow> Right { get; set; } = new();
         public string ExtraLine { get; set; } = "";
@@ -331,10 +331,18 @@ public sealed class SearchIndexService : ISearchIndexService
                 corpusCharFreqs!.TryGetValue(key, out var f);
                 return f;
             }
-            else
+            else if (key.Length == 2)
             {
                 corpusBigramFreqs!.TryGetValue(key, out var f);
                 return f;
+            }
+            else
+            {
+                // Trigram corpus frequencies are not indexed in v1.
+                // Association metrics (logDice, MI, t-score, G2) return 0 for trigrams,
+                // which causes the G2 floor to filter them out. Trigrams still appear
+                // under Frequency ranking. This is correct — we simply lack the data.
+                return 0;
             }
         }
 
@@ -377,13 +385,13 @@ public sealed class SearchIndexService : ISearchIndexService
 
         string metricName = metric switch
         {
-            CoocMetric.LogDice => "logDice",
-            CoocMetric.MI => "MI",
-            CoocMetric.MI3 => "MI\u00B3",
-            CoocMetric.TScore => "t-score",
-            CoocMetric.LogLikelihood => "Log-likelihood",
+            CoocMetric.LogDice => "Typicality",
+            CoocMetric.MI => "Distinctive",
+            CoocMetric.MI3 => "Balanced MI",
+            CoocMetric.TScore => "Common patterns",
+            CoocMetric.LogLikelihood => "Significance",
             CoocMetric.Frequency => "Frequency",
-            CoocMetric.Dominance => "Dominance (top-file share)",
+            CoocMetric.Dominance => "Concentration",
             _ => "Frequency"
         };
 
@@ -469,8 +477,8 @@ public sealed class SearchIndexService : ISearchIndexService
         return new CooccurrencePanelResult
         {
             Summary = $"result-scoped metric={metricName}   hits={totalHits:n0}, windows={totalWindows:n0}, result files={Nfiles:n0}, context={contextWidth} chars",
-            LeftTitle = $"Top characters within current results by {metricName}",
-            RightTitle = $"Top bigrams / trigrams within current results by {metricName}",
+            LeftTitle = $"Character pairs by {metricName}",
+            RightTitle = $"Recurring phrases by {metricName}",
             Left = left,
             Right = right,
             ExtraLine = string.Join("\n", new[] { "Window-scoped analytics from current search results; not corpus-wide.", fallbackNotice, extra }.Where(s => !string.IsNullOrWhiteSpace(s)))
@@ -541,8 +549,12 @@ public sealed class SearchIndexService : ISearchIndexService
 
         var result = ComputeCooccurrences(groups, query, contextWidth, metric, corpusCharFreqs, corpusBigramFreqs, corpusTotalChars, topK);
         result.Summary = result.Summary.Replace("result-scoped", "corpus-scan", StringComparison.OrdinalIgnoreCase);
-        result.LeftTitle = result.LeftTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
-        result.RightTitle = result.RightTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
+        // Corpus-scan titles: extract metric name suffix from result-scoped title and prepend "(corpus)"
+        var metricSuffix = result.LeftTitle.IndexOf(" by ", StringComparison.Ordinal) is int idx and >= 0
+            ? result.LeftTitle[(idx + 4)..]
+            : "Typicality";
+        result.LeftTitle = $"Character pairs (corpus) by {metricSuffix}";
+        result.RightTitle = $"Recurring phrases (corpus) by {metricSuffix}";
         result.ExtraLine = string.Join("\n", new[]
         {
             $"Filtered files scanned: {selectedFiles.Count:n0}",

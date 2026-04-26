@@ -219,10 +219,10 @@ public partial class SearchTabViewModel : ViewModelBase
     private bool _hasValidationError;
 
     [ObservableProperty]
-    private string _leftTitle = "Top characters";
+    private string _leftTitle = "Character pairs";
 
     [ObservableProperty]
-    private string _rightTitle = "Top bigrams / trigrams";
+    private string _rightTitle = "Recurring phrases";
 
     [ObservableProperty]
     private bool _isMetricGuideVisible;
@@ -337,13 +337,13 @@ public partial class SearchTabViewModel : ViewModelBase
 
     public string[] CoocMetricItems { get; } = new[]
     {
-        "logDice (default)",
-        "MI (distinctive)",
-        "MI\u00B3 (balanced)",
-        "t-score (frequent)",
-        "Log-likelihood",
+        "Typicality (default)",
+        "Distinctive",
+        "Balanced MI",
+        "Common patterns",
+        "Significance",
         "Frequency (raw)",
-        "Dominance (artifact)",
+        "Concentration (artifact)",
         "Metric guide"
     };
 
@@ -365,14 +365,14 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         MetricTooltip = value switch
         {
-            0 => "logDice: lexicography standard. Stable, N-independent collocation ranking. Range 0\u201314.",
-            1 => "MI: Mutual Information. Highlights rare but distinctive collocations. Requires O\u22655.",
-            2 => "MI\u00B3: MI cubed variant. Balances distinctiveness with frequency. Requires O\u22655.",
-            3 => "t-score: frequency-biased significance. Good for finding common collocations.",
-            4 => "Log-likelihood (G2): robust significance test. Best all-round metric for comparing collocations.",
+            0 => "Typicality (logDice): stable, corpus-size independent. Best default for most queries. Range 0\u201314.",
+            1 => "Distinctive (MI): finds rare but exclusive pairs. Needs \u22655 observations. Can be noisy.",
+            2 => "Balanced MI (MI\u00B3): middle ground between distinctiveness and frequency.",
+            3 => "Common patterns (t-score): frequency-biased. Surfaces high-volume collocations.",
+            4 => "Significance (G2): statistical significance test. Used as a noise floor internally.",
             5 => "Frequency: raw co-occurrence count in KWIC windows. No corpus data needed.",
-            6 => "Dominance: concentration in a single text. >80% flags single-source artifacts.",
-            7 => "Guide: explanations of all metrics with examples.",
+            6 => "Concentration: percentage from one text. \u226595% = single-source artifact.",
+            7 => "Guide: descriptions of all metrics.",
             _ => "Select a metric"
         };
         _ = RefreshCoocUiFromCurrentStateAsync();
@@ -985,13 +985,13 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         return SelectedCoocMetricIndex switch
         {
-            0 => "logDice",
-            1 => "MI",
-            2 => "MI\u00B3",
-            3 => "t-score",
-            4 => "Log-likelihood",
+            0 => "Typicality",
+            1 => "Distinctive",
+            2 => "Balanced MI",
+            3 => "Common patterns",
+            4 => "Significance",
             5 => "Frequency",
-            6 => "Dominance",
+            6 => "Concentration",
             _ => "Score"
         };
     }
@@ -1189,15 +1189,26 @@ public partial class SearchTabViewModel : ViewModelBase
 
         // ZipfText removed from UI — no longer displayed
 
-        var (cs, cy, ch) = BuildBarChartFromCoocRows(result.Left);
+        var currentMetric = GetSelectedMetric();
+        var (cs, cy, ch) = BuildBarChartFromCoocRows(result.Left, currentMetric);
         CharChartSeries = cs;
         CharChartYAxes = cy;
         CharChartHeight = ch;
 
-        var (ns, ny, nh) = BuildBarChartFromCoocRows(result.Right);
+        var (ns, ny, nh) = BuildBarChartFromCoocRows(result.Right, currentMetric);
         NgramChartSeries = ns;
         NgramChartYAxes = ny;
         NgramChartHeight = nh;
+
+        // Change 4b: warn if all Concentration results come from a single text
+        if (currentMetric == CoocMetric.Dominance)
+        {
+            var allRows = result.Left.Concat(result.Right).ToList();
+            if (allRows.Count > 0 && allRows.All(r => r.Dominance >= 0.95))
+            {
+                CoocSummaryText += " | All results from one text \u2014 try Zen Corpus or Full Corpus scope.";
+            }
+        }
 
         BuildScatterPlot(result.Left, result.Right);
     }
@@ -1211,7 +1222,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly SKTypeface CjkTypeface =
         SKFontManager.Default.MatchCharacter('\u6c49') ?? SKTypeface.Default;
 
-    private (ISeries[] series, Axis[] yAxes, double height) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
+    private (ISeries[] series, Axis[] yAxes, double height) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, CoocMetric metric, int maxItems = 20)
     {
         if (rows == null || rows.Count == 0)
             return (Array.Empty<ISeries>(), new[] { new Axis() }, 200);
@@ -1225,8 +1236,9 @@ public partial class SearchTabViewModel : ViewModelBase
         var values = top.Select(r => r.Assoc).ToArray();
         var labels = top.Select(r => r.Key).ToArray();
         var metricName = GetMetricLabel();
+        var isConcentration = metric == CoocMetric.Dominance;
 
-        var height = Math.Max(200, labels.Length * 28 + 40);
+        var height = Math.Max(200, labels.Length * 36 + 40);
 
         var rowSeries = new RowSeries<double>
         {
@@ -1238,7 +1250,9 @@ public partial class SearchTabViewModel : ViewModelBase
             DataLabelsPaint = new SolidColorPaint(labelColor) { SKTypeface = CjkTypeface },
             DataLabelsSize = 11,
             DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.End,
-            DataLabelsFormatter = pt => $"{pt.Coordinate.PrimaryValue:0.##}",
+            DataLabelsFormatter = pt => isConcentration
+                ? $"{pt.Coordinate.PrimaryValue * 100:0}%"
+                : $"{pt.Coordinate.PrimaryValue:0.##}",
         };
 
         rowSeries.ChartPointPointerDown += (sender, point) =>
@@ -1256,7 +1270,7 @@ public partial class SearchTabViewModel : ViewModelBase
             new Axis
             {
                 Labels = labels,
-                TextSize = 12,
+                TextSize = 14,
                 MinStep = 1,
                 ForceStepToMin = true,
                 LabelsPaint = new SolidColorPaint(labelColor) { SKTypeface = CjkTypeface },
@@ -2153,74 +2167,56 @@ public partial class SearchTabViewModel : ViewModelBase
     private static string GetMetricGuideText()
     {
         return
-@"Metric guide (using KWIC windows)
+@"Metric guide
 
-All metrics are computed from the SAME evidence:
-each hit contributes a window string = Left + Match + Right using your Context width.
+Two panels show what appears near your search term:
+  Left  — single characters (names, particles, punctuation patterns)
+  Right — bigrams and trigrams (phrase fragments, compounds)
 
-Two lists are shown:
-- Left panel: single characters (fast signal; useful for names, particles, punctuation patterns)
-- Right panel: bigrams + trigrams (phrase fragments; stronger collocation signal)
-
-Fields in each row:
-- freq  = total occurrences inside all windows (how often it appears near your query)
-- range = number of distinct files where it appears at least once (dispersion proxy)
-- score = depends on selected metric
-- bar   = tiny visual scale of freq
+Each row shows: key | freq (how often) | range (how many files) | score (selected metric)
 
 Metrics:
-1) Top co-occurrences (overview)
-   Ranking = your stable dispersion-aware score:
-   score = (freq / sqrt(1 + totalWindows)) * log(1 + range)
-   What it tells you: 'what repeatedly shows up near this query, across many files'
-   Best default.
 
-2) Dispersion score (stable)
-   Same as overview, but explicitly framed as 'reliable evidence over many documents'.
-   Use when you want to avoid one-file artifacts.
+Typicality (logDice)
+  Stable, corpus-size independent ranking. Best default.
+  Score: 14 + log2(2 * freq / (f_collocate + f_query))
+  Ignores raw frequency; rewards consistent co-occurrence across the corpus.
+  Range roughly 0-14; higher = more typical pairing.
 
-3) Frequency (raw)
-   score = freq
-   Use when you only care about 'what shows up most', even if it's dominated by one text.
-   Good for: spotting formulaic refrains in a single long discourse.
+Distinctive (MI)
+  Finds rare but exclusive pairs — things that appear near your query
+  but rarely elsewhere. Can surface unique terminology or nicknames.
+  Requires at least 5 observations. Can be noisy for low-frequency items.
+  Score: log2(freq * N / (f_collocate * f_query))
 
-4) Range (dispersion proxy)
-   score = range
-   Use when you want 'breadth' rather than 'intensity'.
-   Good for: whether a phrase is widespread across the corpus.
+Balanced MI (MI3)
+  Middle ground: rewards distinctiveness but dampens noise from very
+  rare collocates. Score: log2(freq^3 * N / (f_collocate * f_query))
+  Requires at least 5 observations.
 
-5) Dominance (top-file share)
-   score = topFileShare = maxCountInSingleFile / freq
-   Interpretation:
-   - 80-100% = probably a single-document artifact
-   - 20-40%  = fairly dispersed
-   Use when results look suspiciously 'too specific'.
+Common patterns (t-score)
+  Frequency-biased. Surfaces collocations with lots of evidence —
+  formulaic phrases, stock expressions, high-volume names.
+  Score: (freq - expected) / sqrt(freq)
 
-6) PMI (window-based)
-   PMI is association strength. It rewards exclusivity.
-   High PMI often surfaces rare but very 'tight' collocations.
-   Warning: PMI loves low-frequency one-offs. Always sanity-check freq + range.
+Significance (G2)
+  Statistical significance test (log-likelihood ratio). Used internally
+  as a noise floor (p < 0.01 threshold). Selecting it shows the raw G2
+  values so you can inspect borderline items.
 
-7) logDice
-   A lexicography-friendly association measure (more stable than PMI).
-   Good for: 'dictionary-like' collocation candidates.
+Frequency (raw)
+  Just the count: how many times the item appeared inside context windows.
+  No corpus data needed. Useful for spotting formulaic refrains.
 
-8) t-score
-   Frequency-biased association: prefers collocations with lots of evidence.
-   Good for: robust collocations that occur often.
-
-How a researcher uses this:
-Example query: \u6d1e\u5c71 (Dongshan)
-- Start with Top co-occurrences (overview): find names/titles that reliably surround Dongshan.
-- Switch to Range: see which collocates appear across many files (tradition-wide usage).
-- Switch to Dominance: verify you're not just seeing one famous text dominating.
-- Switch to PMI/logDice: hunt for tighter phrase fragments (nicknames, technical terms).
-- Use t-score to prioritize collocations with real volume.
+Concentration (artifact detector)
+  Shows what fraction of occurrences come from a single text.
+  100% = entirely one-text artifact. Use to spot search results
+  dominated by one document. Displayed as a percentage on bars.
 
 Rule of thumb:
-PMI/logDice = 'interesting and specific'
-t-score/dispersion = 'reliable and common'
-dominance = 'artifact detector'";
+  Start with Typicality (default) for reliable collocates.
+  Switch to Distinctive to hunt for unique terminology.
+  Use Concentration to verify results aren't one-book artifacts.";
     }
 }
 
