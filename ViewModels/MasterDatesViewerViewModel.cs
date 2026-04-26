@@ -12,17 +12,19 @@ namespace ReadZen.App.ViewModels;
 
 public partial class MasterDatesViewerViewModel : ViewModelBase
 {
-    // School colors
+    // School colors — lighter variants for dark background contrast
     private static readonly Dictionary<string, SKColor> SchoolColors = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["Linji"] = new SKColor(0xE5, 0x39, 0x35),
-        ["Caodong"] = new SKColor(0x1E, 0x88, 0xE5),
-        ["Fayan"] = new SKColor(0x43, 0xA0, 0x47),
-        ["Yunmen"] = new SKColor(0xFB, 0x8C, 0x00),
-        ["Guiyang"] = new SKColor(0x8E, 0x24, 0xAA),
-        ["Early Chan"] = new SKColor(0x78, 0x90, 0x9C),
+        ["Linji"] = new SKColor(255, 107, 107),      // #FF6B6B
+        ["Caodong"] = new SKColor(89, 179, 255),     // #59B3FF
+        ["Fayan"] = new SKColor(81, 217, 150),       // #51D996
+        ["Yunmen"] = new SKColor(255, 179, 71),      // #FFB347
+        ["Guiyang"] = new SKColor(200, 84, 217),     // #C854D9
+        ["Early Chan"] = new SKColor(126, 207, 255), // #7ECFFF
+        ["Korean Seon"] = new SKColor(255, 167, 196),// #FFA7C4
+        ["Hongzhou"] = new SKColor(178, 223, 138),   // #B2DF8A
     };
-    private static readonly SKColor OtherColor = new(0x75, 0x75, 0x75);
+    private static readonly SKColor OtherColor = new(0xAA, 0xAA, 0xAA);
 
     private readonly List<MasterDateEntry> _allMasters;
     private List<MasterDateEntry> _filteredMasters;
@@ -52,13 +54,13 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
     private Axis[] _centuryYAxes = { new Axis() };
 
     [ObservableProperty]
-    private ISeries[] _regionBarSeries = Array.Empty<ISeries>();
+    private ISeries[] _lineageBarSeries = Array.Empty<ISeries>();
 
     [ObservableProperty]
-    private Axis[] _regionYAxes = { new Axis() };
+    private Axis[] _lineageYAxes = { new Axis() };
 
     [ObservableProperty]
-    private Axis[] _regionXAxes = { new Axis() };
+    private Axis[] _lineageXAxes = { new Axis() };
 
     // Selected master card
     [ObservableProperty]
@@ -124,15 +126,16 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
     {
         RebuildTimeline(30);
         BuildSchoolPie();
-        BuildCenturyHistogram();
-        BuildRegionBars();
+        BuildCenturyChart();
+        BuildLineageChart();
     }
 
     public void RebuildTimeline(int count)
     {
+        // Include masters with either floruit or death year
         var masters = _filteredMasters
-            .Where(m => m.Floruit > 0)
-            .OrderBy(m => m.Floruit)
+            .Where(m => m.Floruit > 0 || m.Death > 0)
+            .OrderBy(m => m.Floruit > 0 ? m.Floruit : (m.Death > 0 ? m.Death - 30 : 0))
             .Take(count)
             .Reverse()
             .ToList();
@@ -153,7 +156,7 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
         var seriesList = new List<ISeries>();
         var labels = masters.Select(m => m.Names.FirstOrDefault() ?? "?").ToArray();
 
-        // Build a stacked row series per school
+        // Build a row series per school
         foreach (var group in schoolGroups)
         {
             var color = GetSchoolColor(group.Key);
@@ -163,8 +166,10 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
                 var idx = masters.IndexOf(m);
                 if (idx >= 0)
                 {
-                    var start = m.Floruit;
-                    var end = m.Death > 0 ? m.Death : m.Floruit + 40; // estimate if no death
+                    int start = m.Floruit > 0 ? m.Floruit : (m.Death > 0 ? m.Death - 30 : 0);
+                    int end = m.Death > 0 ? m.Death : (m.Floruit > 0 ? m.Floruit + 20 : 0);
+                    // Validate: skip if start >= end (data error)
+                    if (start >= end) end = start + 5;
                     values[idx] = end - start;
                 }
             }
@@ -213,6 +218,7 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
             .OrderByDescending(g => g.Count())
             .ToList();
 
+        var total = (double)_filteredMasters.Count;
         var series = groups.Select(g => new PieSeries<int>
         {
             Values = new[] { g.Count() },
@@ -221,13 +227,13 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
             DataLabelsPaint = new SolidColorPaint(SKColors.White),
             DataLabelsSize = 12,
             DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-            DataLabelsFormatter = p => g.Key,
+            DataLabelsFormatter = p => $"{g.Key} {(g.Count() / total):P0}",
         } as ISeries).ToArray();
 
         SchoolPieSeries = series;
     }
 
-    private void BuildCenturyHistogram()
+    private void BuildCenturyChart()
     {
         var byFlor = _filteredMasters.Where(m => m.Floruit > 0).ToList();
         if (byFlor.Count == 0)
@@ -236,37 +242,32 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
             return;
         }
 
-        var minCentury = (byFlor.Min(m => m.Floruit) / 100) * 100;
-        var maxCentury = (byFlor.Max(m => m.Floruit) / 100) * 100;
-
+        var minC = (byFlor.Min(m => m.Floruit) / 100) * 100;
+        var maxC = (byFlor.Max(m => m.Floruit) / 100) * 100;
         var centuries = new List<string>();
-        var counts = new List<double>();
+        for (int c = minC; c <= maxC; c += 100)
+            centuries.Add($"{c}s");
 
-        for (int c = minCentury; c <= maxCentury; c += 100)
+        var schoolGroups = byFlor.GroupBy(m => NormalizeSchool(m.School)).ToList();
+        var series = new List<ISeries>();
+
+        foreach (var group in schoolGroups.OrderByDescending(g => g.Count()))
         {
-            var label = $"{c}-{c + 99}";
-            var count = byFlor.Count(m => m.Floruit >= c && m.Floruit < c + 100);
-            centuries.Add(label);
-            counts.Add(count);
+            var values = new List<double>();
+            for (int c = minC; c <= maxC; c += 100)
+                values.Add(group.Count(m => m.Floruit >= c && m.Floruit < c + 100));
+
+            var color = GetSchoolColor(group.Key);
+            series.Add(new StackedColumnSeries<double>
+            {
+                Values = values.ToArray(),
+                Fill = new SolidColorPaint(color),
+                Name = group.Key,
+                MaxBarWidth = 40,
+            });
         }
 
-        CenturyHistogramSeries = new ISeries[]
-        {
-            new ColumnSeries<double>
-            {
-                Values = counts.ToArray(),
-                Name = "Masters active",
-                Fill = new SolidColorPaint(new SKColor(0x42, 0xA5, 0xF5)),
-                MaxBarWidth = 40,
-                DataLabelsPaint = new SolidColorPaint(SKColors.White),
-                DataLabelsSize = 11,
-                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
-                DataLabelsFormatter = p => p.Coordinate.PrimaryValue > 0
-                    ? ((int)p.Coordinate.PrimaryValue).ToString()
-                    : "",
-            }
-        };
-
+        CenturyHistogramSeries = series.ToArray();
         CenturyXAxes = new[]
         {
             new Axis
@@ -281,49 +282,64 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
         {
             new Axis
             {
-                Name = "Count",
+                Name = "Masters",
                 TextSize = 11,
                 MinLimit = 0,
             }
         };
     }
 
-    private void BuildRegionBars()
+    private void BuildLineageChart()
     {
-        var groups = _filteredMasters
-            .Where(m => !string.IsNullOrWhiteSpace(m.Region))
-            .GroupBy(m => m.Region!.Trim())
-            .OrderByDescending(g => g.Count())
+        var teachers = _filteredMasters
+            .Where(m => m.Students != null && m.Students.Count > 0)
+            .OrderByDescending(m => m.Students!.Count)
             .Take(20)
             .Reverse()
             .ToList();
 
-        if (groups.Count == 0)
+        if (teachers.Count == 0)
         {
-            RegionBarSeries = Array.Empty<ISeries>();
+            LineageBarSeries = Array.Empty<ISeries>();
             return;
         }
 
-        var labels = groups.Select(g => g.Key).ToArray();
-        var values = groups.Select(g => (double)g.Count()).ToArray();
+        var labels = teachers.Select(m => m.Names.FirstOrDefault() ?? "?").ToArray();
+        var values = teachers.Select(m => (double)m.Students!.Count).ToArray();
 
-        RegionBarSeries = new ISeries[]
+        // Color each bar by the teacher's school
+        var points = new List<ISeries>();
+        var schoolGrouped = teachers.GroupBy(m => NormalizeSchool(m.School)).ToList();
+
+        foreach (var group in schoolGrouped)
         {
-            new RowSeries<double>
+            var color = GetSchoolColor(group.Key);
+            var rowValues = new double[teachers.Count];
+            foreach (var m in group)
             {
-                Values = values,
-                Name = "Masters per region",
-                Fill = new SolidColorPaint(new SKColor(0x66, 0xBB, 0x6A)),
-                MaxBarWidth = 20,
-                Padding = 2,
-                DataLabelsSize = 11,
-                DataLabelsPaint = new SolidColorPaint(SKColors.White),
-                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.End,
-                DataLabelsFormatter = p => ((int)p.Coordinate.PrimaryValue).ToString(),
+                var idx = teachers.IndexOf(m);
+                if (idx >= 0)
+                    rowValues[idx] = m.Students!.Count;
             }
-        };
 
-        RegionYAxes = new[]
+            points.Add(new RowSeries<double>
+            {
+                Values = rowValues,
+                Fill = new SolidColorPaint(color),
+                Name = group.Key,
+                MaxBarWidth = 18,
+                Padding = 1,
+                DataLabelsPaint = new SolidColorPaint(SKColors.White),
+                DataLabelsSize = 11,
+                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.End,
+                DataLabelsFormatter = p => p.Coordinate.PrimaryValue > 0
+                    ? ((int)p.Coordinate.PrimaryValue).ToString()
+                    : "",
+            });
+        }
+
+        LineageBarSeries = points.ToArray();
+        LineageYAxes = new[]
         {
             new Axis
             {
@@ -333,11 +349,11 @@ public partial class MasterDatesViewerViewModel : ViewModelBase
                 ForceStepToMin = true,
             }
         };
-        RegionXAxes = new[]
+        LineageXAxes = new[]
         {
             new Axis
             {
-                Name = "Count",
+                Name = "Number of Students",
                 TextSize = 11,
                 MinLimit = 0,
             }

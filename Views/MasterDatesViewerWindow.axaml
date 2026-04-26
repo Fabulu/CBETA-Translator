@@ -69,12 +69,12 @@
                                     TooltipPosition="Center"/>
             </TabItem>
 
-            <TabItem Header="Regions">
+            <TabItem Header="Prolific Teachers">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <lvc:CartesianChart x:Name="RegionChart"
-                                        Series="{Binding RegionBarSeries}"
-                                        YAxes="{Binding RegionYAxes}"
-                                        XAxes="{Binding RegionXAxes}"
+                    <lvc:CartesianChart x:Name="LineageChart"
+                                        Series="{Binding LineageBarSeries}"
+                                        YAxes="{Binding LineageYAxes}"
+                                        XAxes="{Binding LineageXAxes}"
                                         MinHeight="500"
                                         TooltipPosition="Center"/>
                 </ScrollViewer>
