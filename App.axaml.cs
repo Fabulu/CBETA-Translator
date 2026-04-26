@@ -34,10 +34,10 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        // Global CJK font for LiveCharts2 tooltips and labels
-        var cjkTypeface = SKTypeface.FromFamilyName(
-            OperatingSystem.IsWindows() ? "Microsoft YaHei" :
-            OperatingSystem.IsMacOS() ? "PingFang SC" : "Noto Sans CJK SC");
+        // Global CJK font for LiveCharts2 tooltips and labels.
+        // MatchCharacter asks the OS font subsystem for any installed font that can
+        // render CJK, so it works on any platform without hard-coding family names.
+        var cjkTypeface = SKFontManager.Default.MatchCharacter('汉') ?? SKTypeface.Default;
         LiveCharts.Configure(config => config.HasGlobalSKTypeface(cjkTypeface));
 
         var sc = new ServiceCollection();

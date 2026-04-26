@@ -1498,7 +1498,7 @@ public partial class SearchTabViewModel : ViewModelBase
         {
             new Axis
             {
-                Name = "log\u2082(Frequency)",
+                Name = "log2(Frequency)",
                 TextSize = 11,
                 NamePaint = new SolidColorPaint(isDark ? new SKColor(200, 200, 200) : new SKColor(50, 50, 50)) { SKTypeface = CjkTypeface },
                 LabelsPaint = new SolidColorPaint(isDark ? new SKColor(180, 180, 180) : new SKColor(70, 70, 70)) { SKTypeface = CjkTypeface },

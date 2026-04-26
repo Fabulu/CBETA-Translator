@@ -481,7 +481,9 @@
                                             Series="{Binding CharChartSeries}"
                                             YAxes="{Binding CharChartYAxes}"
                                             Height="300"
-                                            TooltipPosition="Center"
+                                            TooltipPosition="Left"
+                                            TooltipFindingStrategy="CompareOnlyYTakeClosest"
+                                            TooltipTextSize="11"
                                             ZoomMode="None"
                                             AutomationProperties.Name="Character co-occurrences"
                                             ToolTip.Tip="Longer bars = stronger association with your search term. High-ranking characters appear near your search term more than expected by chance. Look for surprises — these reveal thematic connections."/>
@@ -490,7 +492,9 @@
                                             Series="{Binding NgramChartSeries}"
                                             YAxes="{Binding NgramChartYAxes}"
                                             Height="300"
-                                            TooltipPosition="Center"
+                                            TooltipPosition="Left"
+                                            TooltipFindingStrategy="CompareOnlyYTakeClosest"
+                                            TooltipTextSize="11"
                                             ZoomMode="None"
                                             AutomationProperties.Name="N-gram co-occurrences"
                                             ToolTip.Tip="Each bar is a multi-character phrase found near your search term. Phrases you don't recognize are worth looking up — they may be technical vocabulary specific to this genre."/>
@@ -504,7 +508,9 @@
                                                     XAxes="{Binding ScatterXAxes}"
                                                     YAxes="{Binding ScatterYAxes}"
                                                     Height="250"
-                                                    TooltipPosition="Center"
+                                                    TooltipPosition="Auto"
+                                                    TooltipFindingStrategy="CompareAllTakeClosest"
+                                                    TooltipTextSize="11"
                                                     ZoomMode="None"
                                                     AutomationProperties.Name="Collocational landscape scatter plot"
                                                     ToolTip.Tip="Horizontal: frequency (each step doubles). Vertical: association strength. Blue = characters, Gold = phrases. Top-right = highest priority vocabulary (frequent AND linked). Top-left = rare but specific. Bottom-right = common but generic."/>
