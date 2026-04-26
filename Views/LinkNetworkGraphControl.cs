@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
@@ -25,6 +25,18 @@ public class LinkNetworkGraphControl : Control
     private static readonly IPen s_selectedOutline = new Pen(Brushes.White, 3);
     private static readonly IBrush s_labelBrush = Brushes.White;
     private static readonly IBrush s_bgBrush = new SolidColorBrush(Color.FromRgb(30, 30, 35));
+    private static readonly IBrush s_shadowBrush = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
+
+    // School colors optimized for dark background contrast
+    private static readonly Dictionary<string, IBrush> s_schoolBrushes = new()
+    {
+        ["Linji"] = new SolidColorBrush(Color.FromRgb(255, 107, 107)),      // #FF6B6B
+        ["Caodong"] = new SolidColorBrush(Color.FromRgb(89, 179, 255)),     // #59B3FF
+        ["Fayan"] = new SolidColorBrush(Color.FromRgb(81, 217, 150)),       // #51D996
+        ["Yunmen"] = new SolidColorBrush(Color.FromRgb(255, 179, 71)),      // #FFB347
+        ["Guiyang"] = new SolidColorBrush(Color.FromRgb(200, 84, 217)),     // #C854D9
+        ["Early Chan"] = new SolidColorBrush(Color.FromRgb(126, 207, 255)), // #7ECFFF
+    };
 
     public event EventHandler<string>? NodeSelected; // PassageId
     public event EventHandler<string>? NodeDoubleClicked; // PassageId
@@ -32,7 +44,8 @@ public class LinkNetworkGraphControl : Control
 
     static LinkNetworkGraphControl()
     {
-        foreach (var (key, hex) in LinkGraphViewModel.RelationColors)
+        // Use semantic edge color groups for better visual grouping
+        foreach (var (key, hex) in LinkGraphViewModel.EdgeColorGroups)
         {
             if (Color.TryParse(hex, out var c))
                 s_edgeBrushes[key] = new SolidColorBrush(c);
@@ -59,8 +72,10 @@ public class LinkNetworkGraphControl : Control
             return;
         }
 
+        double zoom = _vm.Zoom;
+
         using var transform = context.PushTransform(
-            Matrix.CreateScale(_vm.Zoom, _vm.Zoom) *
+            Matrix.CreateScale(zoom, zoom) *
             Matrix.CreateTranslation(_vm.OffsetX, _vm.OffsetY));
 
         // Draw edges
@@ -71,21 +86,66 @@ public class LinkNetworkGraphControl : Control
             context.DrawLine(pen, new Point(edge.From.X, edge.From.Y), new Point(edge.To.X, edge.To.Y));
         }
 
+        // Adaptive label sizing
+        double zoomFactor = Math.Min(zoom, 1.5) * 0.85;
+        double primaryFontSize = Math.Max(7, 11.0 * zoomFactor);
+        double secondaryFontSize = Math.Max(6, 8.0 * zoomFactor);
+
         // Draw nodes
         foreach (var node in _vm.Nodes)
         {
             bool sel = node.IsSelected;
-            double r = sel ? 16 : 12;
-            var fill = sel ? s_selectedFill : s_nodeFill;
+            double r = sel ? 16 : 8 + Math.Min(node.Degree * 2, 14);
+            var fill = sel ? s_selectedFill : GetNodeBrush(node);
             var outline = sel ? s_selectedOutline : s_nodeOutline;
             context.DrawEllipse(fill, outline, new Point(node.X, node.Y), r, r);
 
-            // Label
+            // Label visibility: hide labels below 0.4x zoom (except selected)
+            bool showLabel = node.IsSelected || zoom >= 0.4;
+            if (!showLabel) continue;
+
+            // At 0.4-0.7x zoom, only show hubs (degree >= 3) and selected
+            if (zoom < 0.7 && !node.IsSelected && node.Degree < 3) continue;
+
+            // Draw shadow text (offset 1,1)
+            var shadowText = new FormattedText(node.Label, CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Consolas, 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif"),
+                primaryFontSize, s_shadowBrush);
+            context.DrawText(shadowText, new Point(node.X - shadowText.Width / 2 + 1, node.Y + r + 3));
+
+            // Draw actual label text
             var ft = new FormattedText(node.Label, CultureInfo.InvariantCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Consolas, 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif"),
-                10, s_labelBrush);
+                primaryFontSize, s_labelBrush);
             context.DrawText(ft, new Point(node.X - ft.Width / 2, node.Y + r + 2));
+        }
+    }
+
+    /// <summary>
+    /// Returns node brush based on the current color mode and node properties.
+    /// </summary>
+    private IBrush GetNodeBrush(GraphNode node)
+    {
+        if (_vm == null) return s_nodeFill;
+
+        switch (_vm.CurrentColorMode)
+        {
+            case GraphColorMode.Importance:
+                // Scale brightness by degree
+                int brightness = Math.Min(255, 100 + node.Degree * 30);
+                return new SolidColorBrush(Color.FromRgb((byte)brightness, (byte)(brightness * 0.6), 50));
+
+            case GraphColorMode.School:
+                // Would need school info on the node; fall through to default for now
+                return s_nodeFill;
+
+            case GraphColorMode.ReadingStatus:
+            default:
+                // Default blue with opacity based on degree (more connected = more prominent)
+                byte alpha = (byte)Math.Min(255, 150 + node.Degree * 20);
+                return new SolidColorBrush(Color.FromArgb(alpha, 66, 133, 244));
         }
     }
 

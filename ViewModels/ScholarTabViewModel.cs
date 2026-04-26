@@ -166,6 +166,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     public ObservableCollection<ScholarPassage> Passages { get; } = new();
     public ObservableCollection<ScholarCollection> CommunityCollections { get; } = new();
     public ObservableCollection<ScholarPassage> CommunityPassages { get; } = new();
+    public ObservableCollection<CollectionTreeNode> CollectionTreeNodes { get; } = new();
 
     // Backing list for collection filtering
     private readonly List<ScholarCollection> _allCollections = new();
@@ -290,6 +291,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                 _allCollections.Clear();
                 _allCollections.AddRange(loaded);
                 RefreshCollectionsList();
+                RebuildTree();
 
                 RefreshIsEmptyState();
                 StatusMessage = _loadedFromLegacyIdentity && !string.IsNullOrWhiteSpace(_loadedLegacyUsername)
@@ -970,6 +972,34 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         OnPropertyChanged(nameof(HasSelectedCollection));
         OnPropertyChanged(nameof(ShowWorkspaceHelper));
+    }
+
+    private void RebuildTree()
+    {
+        CollectionTreeNodes.Clear();
+        foreach (var collection in _allCollections)
+        {
+            var cNode = new CollectionTreeNode
+            {
+                Id = collection.Id,
+                Title = collection.Name ?? "Untitled",
+                Kind = TreeNodeKind.Collection,
+                ItemCount = collection.Passages.Count,
+                IsExpanded = collection == SelectedCollection,
+                Tag = collection
+            };
+            foreach (var passage in collection.Passages)
+            {
+                cNode.Children.Add(new CollectionTreeNode
+                {
+                    Id = passage.Id,
+                    Title = passage.DisplayTitle,
+                    Kind = TreeNodeKind.Passage,
+                    Tag = passage
+                });
+            }
+            CollectionTreeNodes.Add(cNode);
+        }
     }
 
     private void RefreshPassagesList()

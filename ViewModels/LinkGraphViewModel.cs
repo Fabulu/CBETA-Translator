@@ -5,6 +5,8 @@ using System.Linq;
 
 namespace ReadZen.App.ViewModels;
 
+public enum GraphColorMode { ReadingStatus, Importance, School, DoctrinalTopic }
+
 public class LinkGraphViewModel
 {
     public List<GraphNode> Nodes { get; } = new();
@@ -13,8 +15,9 @@ public class LinkGraphViewModel
     public double OffsetX { get; set; }
     public double OffsetY { get; set; }
     public double Zoom { get; set; } = 1.0;
+    public GraphColorMode CurrentColorMode { get; set; } = GraphColorMode.ReadingStatus;
 
-    // Relation type -> color hex
+    // Relation type -> color hex (legacy, kept for backward compat)
     public static readonly Dictionary<string, string> RelationColors = new()
     {
         ["quotes"] = "#4285F4",
@@ -28,6 +31,20 @@ public class LinkGraphViewModel
         ["summarizes"] = "#9E9E9E"
     };
 
+    // Semantic edge color groups (improved contrast on dark backgrounds)
+    public static readonly Dictionary<string, string> EdgeColorGroups = new()
+    {
+        ["quotes"] = "#59B3FF",        // Direct Reference (blue)
+        ["translates"] = "#59B3FF",
+        ["is-variant-of"] = "#59B3FF",
+        ["comments-on"] = "#51D996",   // Commentary (green)
+        ["responds-to"] = "#51D996",
+        ["summarizes"] = "#51D996",
+        ["alludes-to"] = "#C854D9",    // Allusion (purple)
+        ["parallels"] = "#C854D9",
+        ["contradicts"] = "#FF6B6B",   // Opposition (red)
+    };
+
     public void BuildGraph(IReadOnlyList<ScholarPassage> passages, IReadOnlyList<PassageLink> links)
     {
         Nodes.Clear();
@@ -36,17 +53,24 @@ public class LinkGraphViewModel
         OffsetX = 0; OffsetY = 0; Zoom = 1.0;
 
         var nodeMap = new Dictionary<string, GraphNode>();
-        var rng = new Random(42); // deterministic for consistent layout
 
-        foreach (var p in passages)
+        double width = 500;
+        double height = 400;
+        double centerX = width / 2.0;
+        double centerY = height / 2.0;
+        double initRadius = Math.Min(width, height) * 0.35;
+
+        for (int i = 0; i < passages.Count; i++)
         {
+            var p = passages[i];
             var label = p.ZhText?.Length > 8 ? p.ZhText[..8] + "\u2026" : p.ZhText ?? "?";
+            double angle = (2.0 * Math.PI * i) / passages.Count;
             var node = new GraphNode
             {
                 PassageId = p.Id ?? "",
                 Label = label,
-                X = rng.NextDouble() * 400,
-                Y = rng.NextDouble() * 400
+                X = centerX + initRadius * Math.Cos(angle),
+                Y = centerY + initRadius * Math.Sin(angle)
             };
             Nodes.Add(node);
             nodeMap[p.Id ?? ""] = node;
@@ -58,11 +82,13 @@ public class LinkGraphViewModel
                 nodeMap.TryGetValue(link.ToPassageId ?? "", out var to))
             {
                 Edges.Add(new GraphEdge { From = from, To = to, RelationType = link.RelationType ?? "parallels" });
+                from.Degree++;
+                to.Degree++;
             }
         }
     }
 
-    public void RunLayout(int iterations = 80, double width = 500, double height = 400)
+    public void RunLayout(int iterations = 150, double width = 500, double height = 400)
     {
         if (Nodes.Count <= 1) return;
 
@@ -70,21 +96,31 @@ public class LinkGraphViewModel
         double k = Math.Sqrt(area / Nodes.Count);
         double temperature = width / 10.0;
         const double cooling = 0.95;
+        double centerX = width / 2.0;
+        double centerY = height / 2.0;
 
         for (int iter = 0; iter < iterations; iter++)
         {
             // Reset velocities
             foreach (var n in Nodes) { n.Vx = 0; n.Vy = 0; }
 
-            // Repulsive forces between all pairs
+            // Repulsive forces between all pairs (label-aware)
             for (int i = 0; i < Nodes.Count; i++)
             {
                 for (int j = i + 1; j < Nodes.Count; j++)
                 {
                     double dx = Nodes[i].X - Nodes[j].X;
                     double dy = Nodes[i].Y - Nodes[j].Y;
-                    double dist = Math.Max(Math.Sqrt(dx * dx + dy * dy), 0.01);
-                    double force = (k * k) / dist;
+                    double dist = Math.Sqrt(dx * dx + dy * dy) + 0.01;
+
+                    // Label-aware minimum separation
+                    double labelBuffer = 45;
+                    double r_i = 8 + Math.Min(Nodes[i].Degree * 2, 14) + labelBuffer;
+                    double r_j = 8 + Math.Min(Nodes[j].Degree * 2, 14) + labelBuffer;
+                    double minSeparation = r_i + r_j;
+                    double effectiveDist = Math.Max(dist, minSeparation * 0.5);
+
+                    double force = (k * k) / effectiveDist;
                     double fx = (dx / dist) * force;
                     double fy = (dy / dist) * force;
                     Nodes[i].Vx += fx;
@@ -107,6 +143,17 @@ public class LinkGraphViewModel
                 edge.From.Vy -= fy;
                 edge.To.Vx += fx;
                 edge.To.Vy += fy;
+            }
+
+            // Gravity toward center
+            double gravityStrength = 0.008 * k;
+            foreach (var node in Nodes)
+            {
+                double dx = centerX - node.X;
+                double dy = centerY - node.Y;
+                double dist = Math.Sqrt(dx * dx + dy * dy) + 0.01;
+                node.Vx += (dx / dist) * gravityStrength * dist * 0.01;
+                node.Vy += (dy / dist) * gravityStrength * dist * 0.01;
             }
 
             // Apply with temperature clamping
