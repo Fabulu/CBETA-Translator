@@ -1,0 +1,107 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        xmlns:vm="using:ReadZen.App.ViewModels"
+        x:Class="ReadZen.App.Views.MasterDatesViewerWindow"
+        x:DataType="vm:MasterDatesViewerViewModel"
+        Title="Zen Master Chronology"
+        Width="950" Height="700"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Styles>
+        <Style Selector="TextBlock.section-header">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,4,0,2"/>
+        </Style>
+        <Style Selector="TextBlock.card-label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Search bar -->
+        <Border Grid.Row="0" Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <TextBlock Grid.Column="0" Text="Filter:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBox Grid.Column="1" x:Name="FilterBox" Watermark="Search masters by name, school, region..."
+                         KeyUp="FilterBox_KeyUp"/>
+                <TextBlock Grid.Column="2" x:Name="CountLabel" VerticalAlignment="Center" Margin="8,0,0,0"
+                           FontSize="12" Opacity="0.7"/>
+            </Grid>
+        </Border>
+
+        <!-- Tab charts -->
+        <TabControl Grid.Row="1" Margin="8,0,8,0">
+            <TabItem Header="Timeline">
+                <Grid RowDefinitions="Auto,*">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,4" Spacing="8">
+                        <TextBlock Text="Top masters by floruit (scroll for more)" VerticalAlignment="Center"
+                                   FontSize="12" Opacity="0.7"/>
+                        <Slider x:Name="TimelineCountSlider" Minimum="10" Maximum="80" Value="30"
+                                Width="160" VerticalAlignment="Center"
+                                ValueChanged="TimelineCountSlider_ValueChanged"/>
+                        <TextBlock x:Name="TimelineCountLabel" Text="30" VerticalAlignment="Center" FontSize="12"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <lvc:CartesianChart x:Name="TimelineChart"
+                                            Series="{Binding TimelineSeries}"
+                                            YAxes="{Binding TimelineYAxes}"
+                                            XAxes="{Binding TimelineXAxes}"
+                                            MinHeight="600"
+                                            TooltipPosition="Center"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Schools">
+                <lvc:PieChart x:Name="SchoolsChart"
+                              Series="{Binding SchoolPieSeries}"
+                              TooltipPosition="Center"/>
+            </TabItem>
+
+            <TabItem Header="Centuries">
+                <lvc:CartesianChart x:Name="CenturyChart"
+                                    Series="{Binding CenturyHistogramSeries}"
+                                    XAxes="{Binding CenturyXAxes}"
+                                    YAxes="{Binding CenturyYAxes}"
+                                    TooltipPosition="Center"/>
+            </TabItem>
+
+            <TabItem Header="Regions">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <lvc:CartesianChart x:Name="RegionChart"
+                                        Series="{Binding RegionBarSeries}"
+                                        YAxes="{Binding RegionYAxes}"
+                                        XAxes="{Binding RegionXAxes}"
+                                        MinHeight="500"
+                                        TooltipPosition="Center"/>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- Master detail card -->
+        <Border Grid.Row="2" Padding="12,8" BorderThickness="0,1,0,0"
+                BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+                IsVisible="{Binding HasSelectedMaster}">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+                <StackPanel Grid.Row="0" Grid.Column="0" Spacing="2">
+                    <TextBlock Text="{Binding SelectedMasterName}" FontSize="15" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding SelectedMasterDates}" FontSize="12" Opacity="0.8"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" Spacing="2">
+                    <TextBlock Text="{Binding SelectedMasterSchool}" FontSize="12"/>
+                    <TextBlock Text="{Binding SelectedMasterRegion}" FontSize="12" Opacity="0.8"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,4,0,0">
+                    <TextBlock Text="{Binding SelectedMasterTeacher}" FontSize="12" Classes="card-label"/>
+                    <TextBlock Text="{Binding SelectedMasterStudents}" FontSize="12" TextWrapping="Wrap" MaxWidth="800"/>
+                </StackPanel>
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                           Text="{Binding SelectedMasterNotes}" FontSize="12" TextWrapping="Wrap"
+                           MaxLines="3" Margin="0,4,0,0" Opacity="0.85"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -57,8 +57,6 @@ public partial class ScholarTabView : UserControl
     // Graph + link stats controls
     private LinkNetworkGraphControl? _graphControl;
     private Button? _btnGraphRelayout;
-    private Button? _btnSaveGraph;
-    private Button? _btnSaveCurrent;
     private TextBlock? _txtGraphInfo;
     private StackPanel? _pnlLinkStats;
     private TextBlock? _txtLinkCoverage;
@@ -66,8 +64,9 @@ public partial class ScholarTabView : UserControl
     private CancellationTokenSource? _graphSaveCts;
     private readonly LinkGraphViewModel _graphVm = new();
     private string? _currentGraphCollectionId;
-    private ComboBox? _cmbDictionarySource;
-    private bool _suppressDictionarySourceChanged;
+
+    // Autosave debounce
+    private CancellationTokenSource? _autosaveCts;
 
     public event EventHandler<string>? Status;
     public Func<string?, string>? SourceTitleResolver { get; set; }
@@ -93,10 +92,10 @@ public partial class ScholarTabView : UserControl
         _vm.ConfirmAsync = ShowYesNoAsync;
         _vm.PickExportFormatAsync = PickExportFormatAsync;
 
-        _scholarQaHost = this.FindControl<StackPanel>("ScholarQaHost");
-        _scholarTermHost = this.FindControl<StackPanel>("ScholarTermHost");
-        _scholarApprovedTmHost = this.FindControl<StackPanel>("ScholarApprovedTmHost");
-        _scholarReferenceTmHost = this.FindControl<StackPanel>("ScholarReferenceTmHost");
+        _scholarQaHost = this.FindControl<StackPanel>("PnlQualityChecks");
+        _scholarTermHost = this.FindControl<StackPanel>("PnlGlossary");
+        _scholarApprovedTmHost = this.FindControl<StackPanel>("PnlApprovedTm");
+        _scholarReferenceTmHost = this.FindControl<StackPanel>("PnlRefTm");
 
         // Re-render assistant when Expander opens (AvaloniaEdit needs visual tree for text layout)
         var scholarExpander = this.FindControl<Expander>("ScholarAssistantExpander");
@@ -113,13 +112,10 @@ public partial class ScholarTabView : UserControl
         }
 
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
-        _cmbDictionarySource = this.FindControl<ComboBox>("CmbDictionarySource");
 
         // Graph + link stats controls
         _graphControl = this.FindControl<LinkNetworkGraphControl>("GraphControl");
         _btnGraphRelayout = this.FindControl<Button>("BtnGraphRelayout");
-        _btnSaveGraph = this.FindControl<Button>("BtnSaveGraph");
-        _btnSaveCurrent = this.FindControl<Button>("BtnSaveCurrent");
         _txtGraphInfo = this.FindControl<TextBlock>("TxtGraphInfo");
         _pnlLinkStats = this.FindControl<StackPanel>("PnlLinkStats");
         _txtLinkCoverage = this.FindControl<TextBlock>("TxtLinkCoverage");
@@ -139,14 +135,91 @@ public partial class ScholarTabView : UserControl
         if (_btnGraphRelayout != null)
             _btnGraphRelayout.Click += (_, _) => RefreshGraph(true);
 
-        if (_btnSaveGraph != null)
-            _btnSaveGraph.Click += async (_, _) => await PersistGraphLayoutAsync("Graph layout saved.");
-
-        if (_btnSaveCurrent != null)
-            _btnSaveCurrent.Click += async (_, _) => await SaveAllCurrentAsync();
-
         if (_btnAddLink != null)
             _btnAddLink.Click += async (_, _) => await ShowLinkDialogAsync();
+
+        // Tree panel toggle
+        var btnToggle = this.FindControl<Button>("BtnToggleTree");
+        if (btnToggle != null)
+        {
+            btnToggle.Click += (_, _) =>
+            {
+                var panel = this.FindControl<Border>("TreePanel");
+                if (panel != null)
+                    panel.Width = panel.Width > 32 ? 32 : 240;
+            };
+        }
+
+        // Tree selection -> passage loading
+        var tree = this.FindControl<TreeView>("CollectionsTree");
+        if (tree != null)
+        {
+            tree.SelectionChanged += (_, e) =>
+            {
+                if (tree.SelectedItem is ScholarPassage passage)
+                    SelectPassage(passage);
+                else if (tree.SelectedItem is ScholarCollection col)
+                    _vm.SelectedCollection = col;
+            };
+        }
+
+        // Bottom drawer toggle
+        var btnShowGraph = this.FindControl<Button>("BtnShowGraph");
+        if (btnShowGraph != null)
+        {
+            btnShowGraph.Click += (_, _) =>
+            {
+                var drawer = this.FindControl<Border>("BottomDrawer");
+                if (drawer != null)
+                    drawer.Height = drawer.Height > 0 ? 0 : 280;
+            };
+        }
+        var btnCloseDrawer = this.FindControl<Button>("BtnCloseDrawer");
+        if (btnCloseDrawer != null)
+        {
+            btnCloseDrawer.Click += (_, _) =>
+            {
+                var drawer = this.FindControl<Border>("BottomDrawer");
+                if (drawer != null)
+                    drawer.Height = 0;
+            };
+        }
+
+        // Graph full screen button
+        var btnGraphFullScreen = this.FindControl<Button>("BtnGraphFullScreen");
+        if (btnGraphFullScreen != null)
+        {
+            btnGraphFullScreen.Click += (_, _) => RefreshGraph(true);
+        }
+
+        // Summary/Notes field autosave on lost focus
+        var txtSummary = this.FindControl<TextBox>("TxtSummary");
+        if (txtSummary != null)
+        {
+            txtSummary.LostFocus += (_, _) =>
+            {
+                if (_vm.SelectedPassage != null)
+                {
+                    _vm.SelectedPassage.Notes = txtSummary.Text ?? "";
+                    ScheduleAutosave();
+                }
+            };
+        }
+
+        // Export button
+        var btnExport = this.FindControl<Button>("BtnExport");
+        if (btnExport != null)
+            btnExport.Click += (_, _) => _vm.ExportCollectionsCommand.Execute(null);
+
+        // Open in Reader button
+        var btnOpenInReader = this.FindControl<Button>("BtnOpenInReader");
+        if (btnOpenInReader != null)
+            btnOpenInReader.Click += (_, _) => _vm.NavigateToPassageCommand.Execute(null);
+
+        // Delete passage button
+        var btnDeletePassage = this.FindControl<Button>("BtnDeletePassage");
+        if (btnDeletePassage != null)
+            btnDeletePassage.Click += (_, _) => _vm.DeletePassageCommand.Execute(null);
 
         WireViewEvents();
         SetupHoverDictionary();
@@ -160,6 +233,8 @@ public partial class ScholarTabView : UserControl
             try { _parallelCts?.Dispose(); } catch (ObjectDisposedException) { }
             try { _graphSaveCts?.Cancel(); } catch (ObjectDisposedException) { }
             try { _graphSaveCts?.Dispose(); } catch (ObjectDisposedException) { }
+            try { _autosaveCts?.Cancel(); } catch (ObjectDisposedException) { }
+            try { _autosaveCts?.Dispose(); } catch (ObjectDisposedException) { }
         };
     }
 
@@ -172,237 +247,23 @@ public partial class ScholarTabView : UserControl
         {
             if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift))
             {
-                if (e.Key == Key.C)
+                if (e.Key == Key.P)
                 {
-                    var btnCompare = this.FindControl<Button>("BtnCompare");
-                    if (btnCompare != null)
-                    {
-                        btnCompare.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
-                        e.Handled = true;
-                    }
-                }
-                else if (e.Key == Key.P)
-                {
-                    var btnParallels = this.FindControl<Button>("BtnFindParallels");
-                    if (btnParallels != null)
-                    {
-                        btnParallels.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
-                        e.Handled = true;
-                    }
+                    _ = OnFindParallelsClickedAsync(null);
+                    e.Handled = true;
                 }
             }
         };
 
-        var passagesList = this.FindControl<ListBox>("PassagesList");
-        if (passagesList != null)
-        {
-            passagesList.DoubleTapped += (_, _) =>
-            {
-                _vm.NavigateToPassageCommand.Execute(null);
-            };
-
-            // Context menu with "Link to..." on passages list
-            var ctxMenu = new ContextMenu();
-
-            // Plain-text copy of the passage text — the first entry. Copies ZH
-            // + EN together if both exist, ZH alone otherwise. Discoverability
-            // fix for users who don't think to select the passage and Ctrl+C.
-            var copyPassageText = new MenuItem { Header = "Copy Passage Text" };
-            copyPassageText.Click += async (_, _) =>
-            {
-                var passage = _vm.SelectedPassage;
-                if (passage == null) return;
-                var zh = passage.ZhText?.Trim() ?? "";
-                var en = passage.EnText?.Trim() ?? "";
-                string text = (zh.Length > 0 && en.Length > 0) ? $"{zh}\n\n{en}"
-                            : zh.Length > 0 ? zh
-                            : en;
-                if (string.IsNullOrEmpty(text)) return;
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null)
-                {
-                    await top.Clipboard.SetTextAsync(text);
-                    Status?.Invoke(this, "Passage text copied to clipboard.");
-                }
-            };
-            ctxMenu.Items.Add(copyPassageText);
-            ctxMenu.Items.Add(new Separator());
-
-            var linkMenuItem = new MenuItem { Header = "Link to..." };
-            linkMenuItem.Click += async (_, _) => await ShowLinkDialogAsync();
-            ctxMenu.Items.Add(linkMenuItem);
-
-            var copyLinkItem = new MenuItem { Header = "Copy Link" };
-            copyLinkItem.Click += async (_, _) =>
-            {
-                var passage = _vm.SelectedPassage;
-                if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
-
-                string? highlight = null;
-                if (string.IsNullOrWhiteSpace(passage.FromLb))
-                {
-                    highlight = passage.PreferredSide == SearchSide.Translated
-                        ? passage.EnText
-                        : passage.ZhText;
-                    if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
-                        highlight = highlight.Substring(0, 80);
-                    if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
-                }
-
-                var uri = ZenUriParser.BuildUri(
-                    passage.SourceRelPath,
-                    fromLb: passage.FromLb,
-                    toLb: passage.ToLb,
-                    highlightText: highlight,
-                    side: passage.PreferredSide,
-                    blockNumber: passage.StartBlockNumber,
-                    user: passage.TranslationUser);
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null)
-                    await top.Clipboard.SetTextAsync(uri);
-                Status?.Invoke(this, "Link copied to clipboard.");
-            };
-            ctxMenu.Items.Add(copyLinkItem);
-
-            var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
-            copyRedditLink.Click += async (_, _) =>
-            {
-                var passage = _vm.SelectedPassage;
-                if (passage == null || string.IsNullOrWhiteSpace(passage.SourceRelPath)) return;
-
-                string? highlight = null;
-                if (string.IsNullOrWhiteSpace(passage.FromLb))
-                {
-                    highlight = passage.PreferredSide == SearchSide.Translated
-                        ? passage.EnText
-                        : passage.ZhText;
-                    if (!string.IsNullOrWhiteSpace(highlight) && highlight.Length > 80)
-                        highlight = highlight.Substring(0, 80);
-                    if (string.IsNullOrWhiteSpace(highlight)) highlight = null;
-                }
-
-                var url = ZenUriParser.BuildShareableUrl(
-                    passage.SourceRelPath,
-                    fromLb: passage.FromLb,
-                    toLb: passage.ToLb,
-                    highlightText: highlight,
-                    side: passage.PreferredSide,
-                    user: passage.TranslationUser);
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null)
-                    await top.Clipboard.SetTextAsync(url);
-                Status?.Invoke(this, "Reddit link copied to clipboard.");
-            };
-            ctxMenu.Items.Add(copyRedditLink);
-
-            ctxMenu.Items.Add(new Separator());
-            var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
-                _citationService,
-                CitationMenuHelper.GetPreferredStyle(),
-                buildMetadata: () =>
-                {
-                    var passage = _vm.SelectedPassage;
-                    if (passage == null) return new CitationMetadata();
-                    var fileId = string.IsNullOrEmpty(passage.SourceRelPath)
-                        ? null : ZenUriParser.RelPathToFileId(passage.SourceRelPath);
-                    return new CitationMetadata
-                    {
-                        FileId = fileId,
-                        FromLb = passage.FromLb,
-                        ToLb = passage.ToLb,
-                        QuotedText = passage.ZhText ?? passage.EnText,
-                        ShareableUrl = fileId != null ? ZenUriParser.ShareableBase + fileId : null,
-                    };
-                },
-                copyToClipboard: async text =>
-                {
-                    var top = TopLevel.GetTopLevel(this);
-                    if (top?.Clipboard != null)
-                        await top.Clipboard.SetTextAsync(text);
-                },
-                onCopied: msg => Status?.Invoke(this, msg));
-            ctxMenu.Items.Add(citeFlyout);
-
-            passagesList.ContextMenu = ctxMenu;
-        }
-
-        // Compare button
-        var btnCompare = this.FindControl<Button>("BtnCompare");
-        if (btnCompare != null)
-        {
-            btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
-        }
-
-        // Vocabulary button
-        var btnVocab = this.FindControl<Button>("BtnVocabulary");
-        if (btnVocab != null)
-        {
-            btnVocab.Click += async (_, _) => await OnVocabularyClickedAsync(btnVocab);
-        }
-
-        // Dictionary button
-        var btnDict = this.FindControl<Button>("BtnDictionary");
-        if (btnDict != null)
-        {
-            btnDict.Click += (_, _) => DictionaryRequested?.Invoke(this, EventArgs.Empty);
-        }
-
-        if (_cmbDictionarySource != null)
-        {
-            _cmbDictionarySource.SelectionChanged += (_, _) =>
-            {
-                if (_suppressDictionarySourceChanged) return;
-                if (_cmbDictionarySource.SelectedIndex >= 0)
-                    DictionarySourceChanged?.Invoke(this, _cmbDictionarySource.SelectedIndex);
-            };
-        }
-
-        var btnZenMasters = this.FindControl<Button>("BtnZenMasters");
-        if (btnZenMasters != null)
-        {
-            btnZenMasters.Click += (_, _) => ZenMastersRequested?.Invoke(this, EventArgs.Empty);
-        }
-
-        // Edit Master Dates button
-        var btnEditMasterDates = this.FindControl<Button>("BtnEditMasterDates");
-        if (btnEditMasterDates != null)
-        {
-            btnEditMasterDates.Click += async (_, _) => await OnEditMasterDatesClickedAsync();
-        }
-
-        // Find Parallels button
-        var btnFindParallels = this.FindControl<Button>("BtnFindParallels");
-        if (btnFindParallels != null)
-        {
-            btnFindParallels.Click += async (_, _) => await OnFindParallelsClickedAsync(btnFindParallels);
-        }
-
         // Insert reference: populate the list when the flyout opens, then insert the selected passage.
-        var refList = this.FindControl<ListBox>("ReferencePassageList");
-        if (refList != null)
-        {
-            refList.SelectionChanged += (_, _) =>
-            {
-                if (refList.SelectedItem is ScholarPassage p)
-                {
-                    InsertPassageReference(p);
-                    refList.SelectedItem = null;
-                    // Close the flyout
-                    var btn = this.FindControl<Button>("BtnInsertReference");
-                    if (btn?.Flyout is Flyout fly) fly.Hide();
-                }
-            };
-        }
-
         var btnInsertRef = this.FindControl<Button>("BtnInsertReference");
         if (btnInsertRef?.Flyout is Flyout flyout)
         {
             flyout.Opening += (_, _) =>
             {
-                var list = this.FindControl<ListBox>("ReferencePassageList");
-                if (list != null && _vm.SelectedCollection != null)
+                if (_vm.SelectedCollection != null)
                 {
-                    list.ItemsSource = _vm.SelectedCollection.Passages;
+                    // Flyout content is managed by the button's flyout template
                 }
             };
         }
@@ -517,6 +378,54 @@ public partial class ScholarTabView : UserControl
         }
     }
 
+    private void SelectPassage(ScholarPassage passage)
+    {
+        _vm.SelectedPassage = passage;
+        UpdateDetailVisibility();
+        RefreshBacklinks();
+    }
+
+    private void UpdateDetailVisibility()
+    {
+        var empty = this.FindControl<Border>("EmptyState");
+        var detail = this.FindControl<StackPanel>("PassageDetail");
+        bool hasPassage = _vm.SelectedPassage != null;
+        if (empty != null) empty.IsVisible = !hasPassage;
+        if (detail != null) detail.IsVisible = hasPassage;
+    }
+
+    private void ScheduleAutosave()
+    {
+        _autosaveCts?.Cancel();
+        _autosaveCts = new CancellationTokenSource();
+        var token = _autosaveCts.Token;
+        _ = Task.Delay(2000, token).ContinueWith(async _ =>
+        {
+            if (!token.IsCancellationRequested)
+                await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(async () => await _vm.SaveCurrentStateAsync());
+        }, token, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.Default);
+    }
+
+    private void RefreshBacklinks()
+    {
+        var panel = this.FindControl<ItemsControl>("PnlBacklinks");
+        var noBacklinks = this.FindControl<TextBlock>("TxtNoBacklinks");
+        if (panel == null || _vm.SelectedPassage == null || _vm.SelectedCollection == null) return;
+
+        var backlinks = _vm.SelectedCollection.Links
+            .Where(l => l.ToPassageId == _vm.SelectedPassage.Id)
+            .Select(l =>
+            {
+                var source = _vm.SelectedCollection.Passages.FirstOrDefault(p => p.Id == l.FromPassageId);
+                return source != null ? $"{l.RelationType}: {source.DisplayTitle}" : null;
+            })
+            .Where(s => s != null)
+            .ToList();
+
+        panel.ItemsSource = backlinks;
+        if (noBacklinks != null) noBacklinks.IsVisible = backlinks.Count == 0;
+    }
+
     private void UpdateDetailFields()
     {
         var passage = _vm.SelectedPassage;
@@ -531,9 +440,8 @@ public partial class ScholarTabView : UserControl
         SetupHoverDictionary();
         RefreshLinksPanel();
         RefreshLinkedTextsPanel();
-
-        var categoriesEmpty = this.FindControl<TextBlock>("TxtCategoriesEmpty");
-        if (categoriesEmpty != null) categoriesEmpty.IsVisible = passage == null;
+        UpdateDetailVisibility();
+        RefreshBacklinks();
     }
 
     private void UpdateCommunityDetailFields()
@@ -886,31 +794,17 @@ public partial class ScholarTabView : UserControl
 
     private async Task OnCompareClickedAsync()
     {
-        var passagesList = this.FindControl<ListBox>("PassagesList");
-        if (passagesList == null)
-        {
-            _compareMode = false;
-            return;
-        }
-
         if (!_compareMode)
         {
-            // Enter compare mode and reveal the per-row checkboxes.
+            // Enter compare mode
             _compareMode = true;
-            passagesList.Tag = true; // Makes CheckBoxes visible via binding
-            var btnCompare = this.FindControl<Button>("BtnCompare");
-            if (btnCompare != null) btnCompare.Content = "Go Compare";
-            Status?.Invoke(this, "Check 2-4 passages, then click 'Go Compare'.");
+            Status?.Invoke(this, "Check 2-4 passages, then trigger compare again.");
             return;
         }
 
-        // Collect checked passages from the bound models so virtualization does not lose off-screen selections.
+        // Collect checked passages from the bound models
         var checked_ = _vm.Passages.Where(p => p.IsSelectedForCompare).ToList();
-        // Exit compare mode
         _compareMode = false;
-        passagesList.Tag = false;
-        var btn = this.FindControl<Button>("BtnCompare");
-        if (btn != null) btn.Content = "Compare";
         foreach (var passage in _vm.Passages)
             passage.IsSelectedForCompare = false;
 
@@ -930,7 +824,7 @@ public partial class ScholarTabView : UserControl
 
     private void RefreshLinksPanel()
     {
-        var panel = this.FindControl<ItemsControl>("PnlLinks");
+        var panel = this.FindControl<ItemsControl>("PnlOutgoingLinks");
         var emptyText = this.FindControl<TextBlock>("TxtLinksEmpty");
         var tabHeader = this.FindControl<TextBlock>("TxtLinksTabHeader");
         if (panel == null) return;
@@ -1445,7 +1339,7 @@ public partial class ScholarTabView : UserControl
 
     // ----- Find Parallels -----
 
-    private async Task OnFindParallelsClickedAsync(Button anchorButton)
+    private async Task OnFindParallelsClickedAsync(Button? anchorButton)
     {
         var passage = _vm.SelectedPassage ?? _vm.SelectedCommunityPassage;
         if (passage == null || string.IsNullOrWhiteSpace(passage.ZhText))
@@ -1467,7 +1361,7 @@ public partial class ScholarTabView : UserControl
         var ct = _parallelCts.Token;
         try { oldParallelCts?.Dispose(); } catch (ObjectDisposedException) { }
 
-        anchorButton.IsEnabled = false;
+        if (anchorButton != null) anchorButton.IsEnabled = false;
         Status?.Invoke(this, "Searching for parallel passages...");
 
         try
@@ -1490,8 +1384,9 @@ public partial class ScholarTabView : UserControl
 
             Status?.Invoke(this, $"Found {results.Count} parallel passage(s).");
 
-            // Show results in a flyout
-            ShowParallelResultsFlyout(anchorButton, results);
+            // Show results in a flyout if we have an anchor
+            if (anchorButton != null)
+                ShowParallelResultsFlyout(anchorButton, results);
         }
         catch (Exception ex)
         {
@@ -1500,7 +1395,7 @@ public partial class ScholarTabView : UserControl
         }
         finally
         {
-            anchorButton.IsEnabled = true;
+            if (anchorButton != null) anchorButton.IsEnabled = true;
         }
     }
 
@@ -1645,19 +1540,19 @@ public partial class ScholarTabView : UserControl
 
     private void InsertPassageReference(ScholarPassage passage)
     {
-        var txtStudyNotes = this.FindControl<TextBox>("TxtStudyNotes");
-        if (txtStudyNotes == null) return;
+        var txtNotes = this.FindControl<TextBox>("TxtPassageNotes");
+        if (txtNotes == null) return;
 
         var reference = $"[[{passage.Id}]]";
-        var caretIndex = txtStudyNotes.CaretIndex;
-        var currentText = txtStudyNotes.Text ?? "";
+        var caretIndex = txtNotes.CaretIndex;
+        var currentText = txtNotes.Text ?? "";
 
         if (caretIndex < 0 || caretIndex > currentText.Length)
             caretIndex = currentText.Length;
 
         var newText = currentText.Insert(caretIndex, reference);
-        txtStudyNotes.Text = newText;
-        txtStudyNotes.CaretIndex = caretIndex + reference.Length;
+        txtNotes.Text = newText;
+        txtNotes.CaretIndex = caretIndex + reference.Length;
     }
 
     // ----- Assistant panel -----
@@ -1831,18 +1726,12 @@ public partial class ScholarTabView : UserControl
 
     public void SetDictionarySourceOptions(List<string> options)
     {
-        if (_cmbDictionarySource == null) return;
-        _suppressDictionarySourceChanged = true;
-        try { _cmbDictionarySource.ItemsSource = options; }
-        finally { _suppressDictionarySourceChanged = false; }
+        // Dictionary source combo was removed from the new layout (moved to overflow menu)
     }
 
     public void SetDictionarySourceIndex(int index)
     {
-        if (_cmbDictionarySource == null) return;
-        _suppressDictionarySourceChanged = true;
-        try { _cmbDictionarySource.SelectedIndex = index; }
-        finally { _suppressDictionarySourceChanged = false; }
+        // Dictionary source combo was removed from the new layout (moved to overflow menu)
     }
     public void SetUsername(string? username)
     {

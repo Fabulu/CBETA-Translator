@@ -6,595 +6,200 @@
              x:DataType="vm:ScholarTabViewModel"
              x:Class="ReadZen.App.Views.ScholarTabView">
 
-  <Grid ColumnDefinitions="320,Auto,*">
+  <Grid RowDefinitions="Auto,*,Auto">
 
-    <!-- Left: mode-based navigator -->
-    <Border Grid.Column="0" Margin="4">
-      <TabControl TabStripPlacement="Top" SelectedIndex="{Binding NavigatorTabIndex}">
-        <TabItem Header="Collections">
-          <Grid RowDefinitions="Auto,Auto,*" Margin="4">
-            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="6" Margin="0,0,0,4">
-              <TextBlock Grid.Column="0" Text="Collections" FontWeight="SemiBold" VerticalAlignment="Center"/>
-              <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
-                <Button Content="+" Command="{Binding AddCollectionCommand}"
-                        ToolTip.Tip="Create new collection" Padding="8,3" MinWidth="28"/>
-                <Button Content="&#x2212;" Command="{Binding DeleteCollectionCommand}"
-                        ToolTip.Tip="Delete selected collection" Padding="8,3" MinWidth="28"/>
-                <Button Content="Import" Command="{Binding ImportCollectionsCommand}"
-                        ToolTip.Tip="Import collections from file" Padding="6,2"/>
-                <Button Content="Export" Command="{Binding ExportCollectionsCommand}"
-                        ToolTip.Tip="Export collections to file" Padding="6,2"/>
-              </StackPanel>
-            </Grid>
+    <!-- ROW 0: Slim Toolbar -->
+    <Border Grid.Row="0" Padding="8,4" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <DockPanel LastChildFill="False">
+        <!-- LEFT side -->
+        <Button DockPanel.Dock="Left" Name="BtnToggleTree" Content="&#x2630;" ToolTip.Tip="Toggle tree panel" Padding="6,4" Margin="0,0,8,0"/>
+        <ComboBox DockPanel.Dock="Left" Name="CmbCollections" MinWidth="180" Margin="0,0,8,0"
+                  ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}"/>
+        <TextBox DockPanel.Dock="Left" Name="TxtFilter" Watermark="Filter passages..." Width="160" Margin="0,0,8,0"/>
+        <ComboBox DockPanel.Dock="Left" Name="CmbSort" Width="100" Margin="0,0,8,0"/>
 
-            <StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,4">
-              <TextBox Watermark="Filter collections..."
-                       Text="{Binding CollectionFilter}"/>
-            </StackPanel>
-
-            <ListBox Grid.Row="2"
-                     ItemsSource="{Binding Collections}"
-                     SelectedItem="{Binding SelectedCollection}">
-              <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:ScholarCollection">
-                  <Grid Margin="2" RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="6">
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                               Text="{Binding Name}" FontWeight="SemiBold"
-                               TextTrimming="CharacterEllipsis"/>
-                    <Border Grid.Row="0" Grid.Column="1"
-                            Background="{DynamicResource PanelAltBg}"
-                            BorderBrush="{DynamicResource PanelBorder}"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="5,0">
-                      <TextBlock Text="{Binding Passages.Count, StringFormat='{}{0}'}"
-                                 FontSize="10"
-                                 Classes="muted"/>
-                    </Border>
-                    <TextBlock Grid.Row="1" Grid.Column="0"
-                               Text="{Binding Description}" Classes="muted" FontSize="10.5"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                  </Grid>
-                </DataTemplate>
-              </ListBox.ItemTemplate>
-            </ListBox>
-          </Grid>
-        </TabItem>
-
-        <TabItem Header="Workspace">
-          <Grid RowDefinitions="Auto,*" Margin="4">
-            <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,4">
-              <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="4">
-                <TextBlock Grid.Column="0" Text="Snippets" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                <ComboBox Grid.Column="1"
-                          ItemsSource="{Binding Collections}"
-                          SelectedItem="{Binding SelectedCollection}"
-                          HorizontalAlignment="Stretch"
-                          ToolTip.Tip="Choose the collection you want to work in">
-                  <ComboBox.ItemTemplate>
-                    <DataTemplate x:DataType="models:ScholarCollection">
-                      <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
-                    </DataTemplate>
-                  </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button Grid.Column="2" Content="Compare" Name="BtnCompare"
-                        ToolTip.Tip="Select 2-4 passages (Ctrl+click), then Compare (Ctrl+Shift+C)" Padding="6,2" MinWidth="66"/>
-                <Button Grid.Column="3" Content="&#x2212;" Command="{Binding DeletePassageCommand}"
-                        ToolTip.Tip="Remove selected passage" Padding="8,3" MinWidth="28"/>
-              </Grid>
-
-              <TextBlock Text="Choose a collection or add your first snippet from Reader, Translate, or Search. Shared collections stay available in Shared."
-                         Classes="muted"
-                         FontSize="10.5"
-                         TextWrapping="Wrap"
-                         IsVisible="{Binding ShowWorkspaceHelper}"/>
-
-              <Grid ColumnDefinitions="*,104,112" ColumnSpacing="4">
-                <TextBox Grid.Column="0" Watermark="Filter passages..."
-                         Text="{Binding SearchFilter}"/>
-                <ComboBox Grid.Column="1" Width="104" Padding="4,2"
-                          ItemsSource="{Binding SortModes}"
-                          SelectedItem="{Binding SortMode}"
-                          ToolTip.Tip="Sort order"/>
-                <ComboBox Grid.Column="2" Width="112" Padding="4,2"
-                          ItemsSource="{Binding SearchFilterModes}"
-                          SelectedItem="{Binding SearchFilterMode}"
-                          ToolTip.Tip="Filter scope"/>
-              </Grid>
-            </StackPanel>
-
-            <ListBox Grid.Row="1" Name="PassagesList"
-                     ItemsSource="{Binding Passages}"
-                     SelectedItem="{Binding SelectedPassage}">
-              <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:ScholarPassage">
-                  <DockPanel Margin="2" ToolTip.Tip="{Binding SourceRelPath}">
-                    <CheckBox DockPanel.Dock="Left" Name="CompareCheck"
-                              VerticalAlignment="Top" Margin="0,1,6,0"
-                              IsVisible="{Binding #PassagesList.Tag, FallbackValue=False}"
-                              IsChecked="{Binding IsSelectedForCompare, Mode=TwoWay}"
-                              ToolTip.Tip="Check to include in comparison"/>
-                    <StackPanel Spacing="1">
-                      <TextBlock Text="{Binding DisplayTitle}" FontWeight="SemiBold"
-                                 TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                      <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="10.5"
-                                 TextTrimming="CharacterEllipsis" MaxLines="1"
-                                 IsVisible="{Binding EnText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                      <WrapPanel Orientation="Horizontal" ItemHeight="16">
-                        <Border Background="{DynamicResource PanelAltBg}"
-                                BorderBrush="{DynamicResource PanelBorder}"
-                                BorderThickness="1"
-                                CornerRadius="8"
-                                Padding="5,0"
-                                Margin="0,0,4,0"
-                                IsVisible="{Binding HasTags}">
-                          <TextBlock Text="{Binding Tags.Count, StringFormat='{}{0} tags'}"
-                                     FontSize="9.5"
-                                     Classes="muted"/>
-                        </Border>
-                        <Border Background="{DynamicResource PanelAltBg}"
-                                BorderBrush="{DynamicResource PanelBorder}"
-                                BorderThickness="1"
-                                CornerRadius="8"
-                                Padding="5,0"
-                                Margin="0,0,4,0"
-                                IsVisible="{Binding HasMasterNames}">
-                          <TextBlock Text="{Binding MasterNames.Count, StringFormat='{}{0} masters'}"
-                                     FontSize="9.5"
-                                     Classes="muted"/>
-                        </Border>
-                        <TextBlock Text="{Binding SourceRelPath}"
-                                   Classes="muted"
-                                   FontSize="9.5"
-                                   MaxWidth="168"
-                                   TextTrimming="CharacterEllipsis"/>
-                      </WrapPanel>
-                    </StackPanel>
-                  </DockPanel>
-                </DataTemplate>
-              </ListBox.ItemTemplate>
-            </ListBox>
-          </Grid>
-        </TabItem>
-        <TabItem Header="Shared" IsVisible="{Binding HasCommunityCollections}">
-          <Grid RowDefinitions="Auto,*,Auto,*,Auto" Margin="4">
-            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="4" Margin="0,0,0,4">
-              <TextBox Grid.Column="0" Watermark="Filter collections..."
-                       Text="{Binding CommunityFilter}"/>
-              <ComboBox Grid.Column="1" ItemsSource="{Binding CommunityUsernames}"
-                        SelectedIndex="{Binding SelectedCommunityUserIndex}"
-                        MinWidth="120" FontSize="11"
-                        ToolTip.Tip="Filter by community user"/>
-            </Grid>
-
-            <ListBox Grid.Row="1" Name="CommunityCollectionsList"
-                     ItemsSource="{Binding CommunityCollections}"
-                     SelectedItem="{Binding SelectedCommunityCollection}">
-              <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:ScholarCollection">
-                  <Grid Margin="2" RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="6">
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                               Text="{Binding Name}" FontWeight="SemiBold"
-                               TextTrimming="CharacterEllipsis"/>
-                    <Border Grid.Row="0" Grid.Column="1"
-                            Background="{DynamicResource PanelAltBg}"
-                            BorderBrush="{DynamicResource PanelBorder}"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="5,0">
-                      <TextBlock Text="{Binding Passages.Count, StringFormat='{}{0}'}"
-                                 FontSize="10"
-                                 Classes="muted"/>
-                    </Border>
-                    <TextBlock Grid.Row="1" Grid.Column="0"
-                               Text="{Binding Description}" Classes="muted" FontSize="10.5"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="10"
-                               Foreground="{DynamicResource AccentLinkFg}"
-                               HorizontalAlignment="Right"
-                               IsVisible="{Binding CreatedBy, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                      <TextBlock.Text>
-                        <MultiBinding StringFormat="by {0}">
-                          <Binding Path="CreatedBy"/>
-                        </MultiBinding>
-                      </TextBlock.Text>
-                    </TextBlock>
-                  </Grid>
-                </DataTemplate>
-              </ListBox.ItemTemplate>
-            </ListBox>
-
-            <TextBlock Grid.Row="2" Text="Passages" FontWeight="SemiBold" Margin="0,8,0,4"/>
-
-            <ListBox Grid.Row="3" Name="CommunityPassagesList"
-                     ItemsSource="{Binding CommunityPassages}"
-                     SelectedItem="{Binding SelectedCommunityPassage}">
-              <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:ScholarPassage">
-                  <StackPanel Margin="2" Spacing="1" ToolTip.Tip="{Binding SourceRelPath}">
-                    <TextBlock Text="{Binding ZhText}" FontWeight="SemiBold"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                    <TextBlock Text="{Binding EnText}" Classes="muted" FontSize="10.5"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               IsVisible="{Binding EnText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <WrapPanel Orientation="Horizontal" ItemHeight="16">
-                      <Border Background="{DynamicResource PanelAltBg}"
-                              BorderBrush="{DynamicResource PanelBorder}"
-                              BorderThickness="1"
-                              CornerRadius="8"
-                              Padding="5,0"
-                              Margin="0,0,4,0"
-                              IsVisible="{Binding HasTags}">
-                        <TextBlock Text="{Binding Tags.Count, StringFormat='{}{0} tags'}"
-                                   FontSize="9.5"
-                                   Classes="muted"/>
-                      </Border>
-                      <TextBlock Text="{Binding SourceRelPath}"
-                                 Classes="muted"
-                                 FontSize="9.5"
-                                 MaxWidth="168"
-                                 TextTrimming="CharacterEllipsis"/>
-                    </WrapPanel>
-                  </StackPanel>
-                </DataTemplate>
-              </ListBox.ItemTemplate>
-            </ListBox>
-
-            <DockPanel Grid.Row="4" Margin="0,8,0,0"
-                       IsVisible="{Binding SelectedCommunityPassage, Converter={x:Static ObjectConverters.IsNotNull}}">
-              <Button Content="Copy to Collection" DockPanel.Dock="Right" Command="{Binding AdoptSelectedPassageCommand}"
-                      ToolTip.Tip="Copy this passage into the selected local collection" Padding="8,3"/>
-              <ComboBox ItemsSource="{Binding Collections}"
-                        SelectedItem="{Binding AdoptTargetCollection}"
-                        Margin="0,0,4,0" HorizontalAlignment="Stretch">
-                <ComboBox.ItemTemplate>
-                  <DataTemplate x:DataType="models:ScholarCollection">
-                    <TextBlock Text="{Binding Name}"/>
-                  </DataTemplate>
-                </ComboBox.ItemTemplate>
-              </ComboBox>
-            </DockPanel>
-          </Grid>
-        </TabItem>
-      </TabControl>
+        <!-- RIGHT side -->
+        <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" ToolTip.Tip="More tools" Padding="8,4"/>
+        <Button DockPanel.Dock="Right" Name="BtnAddCollection" Content="+" ToolTip.Tip="New collection" Padding="8,4" Margin="0,0,4,0"/>
+        <Button DockPanel.Dock="Right" Name="BtnExport" Content="Export" ToolTip.Tip="Export collection" Padding="8,4" Margin="0,0,4,0"/>
+        <Button DockPanel.Dock="Right" Name="BtnOpenInReader" Content="Open in Reader" ToolTip.Tip="View in Reader tab" Padding="8,4" Margin="0,0,4,0"/>
+      </DockPanel>
     </Border>
-    <!-- Splitter -->
-    <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
-    <!-- Right: Detail editor -->
-    <Border Grid.Column="2" CornerRadius="6" Padding="12" Margin="4">
-      <Grid RowDefinitions="*,Auto">
-        <!-- Dictionary hover overlay (hit-test-invisible Canvas prevents flicker) -->
-        <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500" Grid.RowSpan="2"/>
-        <!-- Tab area -->
-        <Grid Grid.Row="0" RowDefinitions="Auto,*">
-          <DockPanel Grid.Row="0" Margin="0,0,0,8" LastChildFill="False">
-            <TextBlock Text="Scholar Workspace" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <ComboBox Name="CmbDictionarySource" DockPanel.Dock="Right" MinWidth="150" FontSize="11" Margin="8,0,0,0"
-                      ToolTip.Tip="Select whose dictionary powers Scholar assistant and highlights across the app."/>
-            <Button Name="BtnSaveCurrent" DockPanel.Dock="Right" Content="Save Now"
-                    Padding="12,4" Margin="8,0,0,0"
-                    ToolTip.Tip="Persist the selected passage, collection notes, categories, links, and graph layout now."/>
-            <Button Content="Dictionary" DockPanel.Dock="Right" Name="BtnDictionary"
-                    ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)" Padding="6,2" Margin="8,0,0,0"/>
-            <Button Content="Vocabulary" DockPanel.Dock="Right" Name="BtnVocabulary"
-                    ToolTip.Tip="Vocabulary frequency analysis" Padding="6,2" Margin="6,0,0,0"/>
-            <Button Content="Masters" DockPanel.Dock="Right" Name="BtnZenMasters"
-                    ToolTip.Tip="Browse Zen masters and their date variants" Padding="6,2" Margin="6,0,0,0" MinWidth="70"/>
-            <Button Content="Dates" DockPanel.Dock="Right" Name="BtnEditMasterDates"
-                    ToolTip.Tip="Edit master dates for chronological sort" Padding="6,2" Margin="6,0,0,0" MinWidth="56"/>
-            <TextBlock DockPanel.Dock="Right" Text="Autosaves on switch."
-                       Classes="muted" FontSize="11" VerticalAlignment="Center" Margin="8,0,0,0"/>
-          </DockPanel>
 
-          <TabControl Grid.Row="1">
-          <TabItem Header="Detail">
-            <ScrollViewer>
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="4">
+    <!-- ROW 1: Main Content (Tree + Splitter + Detail) -->
+    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
 
-                <TextBlock Grid.Row="0" Text="Passage Detail" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,8"/>
-
-                <!-- Source file -->
-                <TextBlock Grid.Row="1" Name="TxtSourcePath" Text="" Classes="muted" FontSize="11" Margin="0,0,0,4"/>
-
-                <!-- Linked Texts -->
-                <ItemsControl Name="PnlLinkedTexts" Grid.Row="2" Margin="0,0,0,4"
-                              IsVisible="False">
-                  <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                      <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                  </ItemsControl.ItemsPanel>
-                </ItemsControl>
-
-                <!-- Chinese text (TextBox for hover dictionary support) -->
-                <Border Grid.Row="3" CornerRadius="4" Padding="8" Margin="0,0,0,4">
-                  <ScrollViewer MaxHeight="200">
-                    <TextBox Name="TxtZhText" Text="" TextWrapping="Wrap" FontSize="14"
-                             IsReadOnly="True" BorderThickness="0" Background="Transparent"
-                             Cursor="Arrow"
-                             Padding="0" Margin="0"/>
-                  </ScrollViewer>
-                </Border>
-
-                <!-- Termbase hits for current passage -->
-                <ItemsControl Name="PnlTermbaseHits" Grid.Row="4" Margin="8,0,0,8"
-                              IsVisible="False">
-                  <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                      <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                  </ItemsControl.ItemsPanel>
-                </ItemsControl>
-
-                <!-- English text -->
-                <Border Grid.Row="5" CornerRadius="4" Padding="8" Margin="0,0,0,8">
-                  <ScrollViewer MaxHeight="200">
-                    <TextBlock Name="TxtEnText" Text="" TextWrapping="Wrap" FontSize="14"/>
-                  </ScrollViewer>
-                </Border>
-
-                <!-- Tags (bubble chips) -->
-                <StackPanel Grid.Row="6" Margin="0,0,0,4" Spacing="4"
-                            IsEnabled="{Binding IsEditorEnabled}">
-                  <TextBlock Text="Tags:" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,2"/>
-                  <ItemsControl Name="TagBubblesHost" ItemsSource="{Binding TagBubbles}">
-                    <ItemsControl.ItemsPanel>
-                      <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                      </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                      <DataTemplate x:DataType="x:String">
-                        <Border Background="{DynamicResource SystemAccentColorLight2}" CornerRadius="10"
-                                Padding="8,3" Margin="0,0,4,4" VerticalAlignment="Center">
-                          <StackPanel Orientation="Horizontal" Spacing="4">
-                            <TextBlock Text="{Binding}" FontSize="12" VerticalAlignment="Center"
-                                       Foreground="White"/>
-                            <Button Content="&#x2715;" Padding="2,0" FontSize="10"
-                                    Background="Transparent" Foreground="White"
-                                    Name="BtnRemoveTag" Tag="{Binding}"
-                                    ToolTip.Tip="Remove tag"/>
-                          </StackPanel>
-                        </Border>
-                      </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                  </ItemsControl>
-                  <TextBox Name="TxtAddTag" Watermark="Add tag (Enter to add)..."
-                           ToolTip.Tip="Type a tag and press Enter"/>
+      <!-- LEFT: Collections Tree Panel -->
+      <Border Grid.Column="0" Name="TreePanel" Width="240" BorderThickness="0,0,1,0"
+              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+        <Grid RowDefinitions="Auto,*">
+          <TextBox Grid.Row="0" Name="TxtTreeFilter" Watermark="Search collections..." Margin="4"/>
+          <TreeView Grid.Row="1" Name="CollectionsTree" Margin="4"
+                    ItemsSource="{Binding CollectionTreeNodes}">
+            <TreeView.ItemTemplate>
+              <TreeDataTemplate ItemsSource="{Binding Children}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                  <TextBlock Text="{Binding ItemCount, StringFormat='({0})'}" FontSize="10" Opacity="0.6"
+                             IsVisible="{Binding ItemCount}"/>
                 </StackPanel>
-
-                <!-- Master Names (bubble chips + autocomplete) -->
-                <StackPanel Grid.Row="7" Margin="0,0,0,4" Spacing="4"
-                            IsEnabled="{Binding IsEditorEnabled}">
-                  <TextBlock Text="Masters:" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,2"/>
-                  <ItemsControl Name="MasterBubblesHost" ItemsSource="{Binding MasterBubbles}">
-                    <ItemsControl.ItemsPanel>
-                      <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                      </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                      <DataTemplate x:DataType="x:String">
-                        <Border Background="{DynamicResource SystemAccentColor}" CornerRadius="10"
-                                Padding="8,3" Margin="0,0,4,4" VerticalAlignment="Center">
-                          <StackPanel Orientation="Horizontal" Spacing="4">
-                            <TextBlock Text="{Binding}" FontSize="12" VerticalAlignment="Center"
-                                       Foreground="White"/>
-                            <Button Content="&#x2715;" Padding="2,0" FontSize="10"
-                                    Background="Transparent" Foreground="White"
-                                    Name="BtnRemoveMaster" Tag="{Binding}"
-                                    ToolTip.Tip="Remove master"/>
-                          </StackPanel>
-                        </Border>
-                      </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                  </ItemsControl>
-                  <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (type to search)..."
-                                   FilterMode="Contains" MinimumPrefixLength="1"
-                                   ToolTip.Tip="Type to search the Zen masters list"/>
-                </StackPanel>
-
-                <!-- Notes -->
-                <DockPanel Grid.Row="8" Margin="0,0,0,4">
-                  <TextBlock Text="Notes:" Width="100" VerticalAlignment="Top"/>
-                  <TextBox Text="{Binding PassageNotes}" Watermark="Personal notes..."
-                           AcceptsReturn="True" TextWrapping="Wrap" Height="80"
-                           IsEnabled="{Binding IsEditorEnabled}"
-                           ToolTip.Tip="Your personal notes about this passage"/>
-                </DockPanel>
-
-                <!-- Actions -->
-                <StackPanel Grid.Row="9" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
-                  <Button Name="BtnFindParallels" Content="Find Parallels" IsVisible="False"
-                          ToolTip.Tip="Search the corpus for parallel passages (Ctrl+Shift+P)" Padding="12,4"/>
-                  <Button Content="Open in Reader" Command="{Binding NavigateToPassageCommand}"
-                          ToolTip.Tip="Open this passage in the Reader tab" Padding="12,4"/>
-                  <Button Content="Save" Command="{Binding SaveCommand}" Padding="12,4"
-                          IsEnabled="{Binding IsEditorEnabled}" ToolTip.Tip="Save passage edits"/>
-                </StackPanel>
-              </Grid>
-            </ScrollViewer>
-          </TabItem>
-
-          <TabItem Header="Categories">
-            <ScrollViewer>
-              <StackPanel Spacing="12" Margin="8">
-                <TextBlock Name="TxtCategoriesEmpty"
-                           Text="Select a passage to assign categories."
-                           TextWrapping="Wrap" Classes="muted" FontSize="11"
-                           IsVisible="True"/>
-                <DockPanel>
-                  <TextBlock Text="Doctrinal Topic" Width="130" VerticalAlignment="Center"/>
-                  <ComboBox IsEditable="True" ItemsSource="{Binding DoctrinalTopicOptions}"
-                            Text="{Binding DoctrinalTopic}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"
-                            ToolTip.Tip="Classify the primary doctrinal topic of this passage"/>
-                </DockPanel>
-                <DockPanel>
-                  <TextBlock Text="Literary Form" Width="130" VerticalAlignment="Center"/>
-                  <ComboBox IsEditable="True" ItemsSource="{Binding LiteraryFormOptions}"
-                            Text="{Binding LiteraryForm}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"
-                            ToolTip.Tip="Classify the literary form of this passage"/>
-                </DockPanel>
-                <DockPanel>
-                  <TextBlock Text="Lineage" Width="130" VerticalAlignment="Center"/>
-                  <ComboBox IsEditable="True" ItemsSource="{Binding LineageOptions}"
-                            Text="{Binding Lineage}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"
-                            ToolTip.Tip="Specify the Zen lineage associated with this passage"/>
-                </DockPanel>
-                <DockPanel>
-                  <TextBlock Text="Rhetorical Function" Width="130" VerticalAlignment="Center"/>
-                  <ComboBox IsEditable="True" ItemsSource="{Binding RhetoricalFunctionOptions}"
-                            Text="{Binding RhetoricalFunction}" HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding IsEditorEnabled}"
-                            ToolTip.Tip="Describe the rhetorical function of this passage"/>
-                </DockPanel>
-                <Button Content="Save Categories" Command="{Binding SaveCommand}"
-                        HorizontalAlignment="Right" Padding="12,4" Margin="0,8,0,0"
-                        IsEnabled="{Binding IsEditorEnabled}"/>
-              </StackPanel>
-            </ScrollViewer>
-          </TabItem>
-
-          <TabItem>
-            <TabItem.Header>
-              <TextBlock Name="TxtLinksTabHeader" Text="Links"/>
-            </TabItem.Header>
-            <ScrollViewer>
-              <StackPanel Margin="8">
-                <!-- Link Statistics -->
-                <Expander Header="Statistics" IsExpanded="True" Margin="0,0,0,8">
-                    <StackPanel Spacing="6">
-                        <StackPanel Name="PnlLinkStats" Spacing="3"/>
-                        <TextBlock Name="TxtLinkCoverage" FontSize="11" Classes="muted"/>
-                    </StackPanel>
-                </Expander>
-                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,4">
-                  <Button Name="BtnAddLink" Content="+ Link" Padding="8,3" FontSize="11"
-                          IsEnabled="{Binding IsEditorEnabled}"/>
-                  <Button Content="Save Links" Command="{Binding SaveCommand}" Padding="8,3" FontSize="11"
-                          IsEnabled="{Binding IsEditorEnabled}"/>
-                </StackPanel>
-                <TextBlock Name="TxtLinksEmpty"
-                           Text="No links yet. Right-click a passage and choose 'Link to...' to connect related passages."
-                           TextWrapping="Wrap" Classes="muted" FontSize="11"
-                           IsVisible="True"/>
-                <ItemsControl Name="PnlLinks">
-                  <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                      <StackPanel Spacing="4"/>
-                    </ItemsPanelTemplate>
-                  </ItemsControl.ItemsPanel>
-                </ItemsControl>
-              </StackPanel>
-            </ScrollViewer>
-          </TabItem>
-
-          <TabItem Header="Graph">
-            <Grid RowDefinitions="Auto,*">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="8,4">
-                    <Button Name="BtnGraphRelayout" Content="Rearrange" Padding="8,3" FontSize="11"/>
-                    <Button Name="BtnSaveGraph" Content="Save Layout" Padding="8,3" FontSize="11"/>
-                    <TextBlock Name="TxtGraphInfo" VerticalAlignment="Center" Classes="muted" FontSize="11"/>
-                </StackPanel>
-                <local:LinkNetworkGraphControl Grid.Row="1" Name="GraphControl"
-                    ClipToBounds="True" Margin="4"/>
-            </Grid>
-          </TabItem>
-
-          <TabItem Header="Notes">
-            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-              <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-                <Button Name="BtnInsertReference" Content="Insert Reference"
-                        ToolTip.Tip="Insert a [[passage-id]] reference at cursor position" Padding="8,4">
-                  <Button.Flyout>
-                    <Flyout Placement="BottomEdgeAlignedLeft">
-                      <ListBox Name="ReferencePassageList" MaxHeight="300" MinWidth="300">
-                        <ListBox.ItemTemplate>
-                          <DataTemplate x:DataType="models:ScholarPassage">
-                            <TextBlock Text="{Binding ZhText}" TextTrimming="CharacterEllipsis"
-                                       MaxLines="1" MaxWidth="280"/>
-                          </DataTemplate>
-                        </ListBox.ItemTemplate>
-                      </ListBox>
-                    </Flyout>
-                  </Button.Flyout>
-                </Button>
-              </StackPanel>
-              <TextBox Grid.Row="1" Name="TxtStudyNotes" Text="{Binding StudyNotes}"
-                       AcceptsReturn="True" TextWrapping="Wrap"
-                       Watermark="Collection study notes... Use Insert Reference to embed [[passage-id]] links."
-                       VerticalAlignment="Stretch"/>
-              <Button Grid.Row="2" Content="Save Notes" Command="{Binding SaveCommand}"
-                      HorizontalAlignment="Right" Padding="12,4" Margin="0,8,0,0"/>
-            </Grid>
-          </TabItem>
-        </TabControl>
+              </TreeDataTemplate>
+            </TreeView.ItemTemplate>
+          </TreeView>
         </Grid>
+      </Border>
 
-        <!-- Scholar Assistant stays outside TabControl, always visible -->
-        <Expander Grid.Row="1" Name="ScholarAssistantExpander" Header="Scholar Assistant" IsExpanded="False" Margin="0,8,0,0">
-          <StackPanel>
-            <ProgressBar Name="ScholarLoadingBar"
-                         IsIndeterminate="True"
-                         IsVisible="False"
-                         Height="3"
-                         Margin="0,4,0,0"/>
-          <ScrollViewer MaxHeight="500">
-            <StackPanel Spacing="8" Margin="4">
-              <Border CornerRadius="4" Padding="6">
-                <StackPanel>
-                  <TextBlock Text="Quality Checks" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
-                  <StackPanel Name="ScholarQaHost"/>
-                </StackPanel>
+      <!-- SPLITTER -->
+      <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
+
+      <!-- RIGHT: Scrollable Detail Panel -->
+      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="12">
+        <StackPanel Spacing="12" Name="DetailPanel">
+
+          <!-- EMPTY STATE (shown when no passage selected) -->
+          <Border Name="EmptyState" IsVisible="True" Padding="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="16" MaxWidth="500" HorizontalAlignment="Center">
+              <TextBlock Text="Scholar Workspace" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+              <TextBlock Text="Build a research collection of Zen passages with annotations, links, and visualization."
+                         TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7"/>
+              <StackPanel Spacing="8" Margin="0,12,0,0">
+                <TextBlock Text="1. Create a collection to organize passages by theme" Opacity="0.8"/>
+                <TextBlock Text="2. Add passages from Reader, Translate, or Search" Opacity="0.8"/>
+                <TextBlock Text="3. Annotate, link, and visualize relationships" Opacity="0.8"/>
+              </StackPanel>
+              <Button Name="BtnCreateFirst" Content="Create First Collection" HorizontalAlignment="Center" Padding="16,8" Margin="0,8,0,0"/>
+            </StackPanel>
+          </Border>
+
+          <!-- PASSAGE DETAIL (shown when passage is selected) -->
+          <StackPanel Name="PassageDetail" IsVisible="False" Spacing="12">
+
+            <!-- Section 1: Summary + Core Texts (always visible) -->
+            <StackPanel Spacing="8">
+              <TextBox Name="TxtSummary" Watermark="Summary (your paraphrase of this passage)..."
+                       FontWeight="SemiBold" FontSize="15" MaxLength="120"/>
+              <TextBlock Name="TxtSourcePath" FontSize="11" Opacity="0.5"/>
+
+              <!-- Chinese text -->
+              <Border CornerRadius="4" Padding="8" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+                <ScrollViewer MaxHeight="300">
+                  <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
+                           BorderThickness="0" Background="Transparent"/>
+                </ScrollViewer>
               </Border>
-              <Border CornerRadius="4" Padding="6">
-                <StackPanel>
-                  <TextBlock Text="Glossary" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
-                  <StackPanel Name="ScholarTermHost"/>
-                </StackPanel>
-              </Border>
-              <Border CornerRadius="4" Padding="6">
-                <StackPanel>
-                  <TextBlock Text="Approved Matches" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
-                  <StackPanel Name="ScholarApprovedTmHost"/>
-                </StackPanel>
-              </Border>
-              <Border CornerRadius="4" Padding="6">
-                <StackPanel>
-                  <TextBlock Text="Reference Translations" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,4"/>
-                  <StackPanel Name="ScholarReferenceTmHost"/>
-                </StackPanel>
+
+              <!-- Termbase hits -->
+              <ItemsControl Name="PnlTermbaseHits"/>
+
+              <!-- English text -->
+              <Border CornerRadius="4" Padding="8" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+                <ScrollViewer MaxHeight="300">
+                  <TextBlock Name="TxtEnText" TextWrapping="Wrap" FontSize="14"/>
+                </ScrollViewer>
               </Border>
             </StackPanel>
-          </ScrollViewer>
-          </StackPanel>
-        </Expander>
-      </Grid>
-    </Border>
 
-    <!-- Empty state overlay -->
-    <Border Grid.ColumnSpan="3" Name="ScholarEmptyState" IsVisible="{Binding IsEmptyState}"
-            Background="{DynamicResource AppBg}">
-      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-        <TextBlock Text="Scholar" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-        <TextBlock Text="Create your first collection, or browse Shared collections when available. Add passages from Reader, Translate, or Search to start building your own workspace."
-                   TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Classes="muted"/>
-      </StackPanel>
+            <!-- Section 2: Keywords & Metadata (expanded by default) -->
+            <Expander Header="Keywords &amp; Metadata" IsExpanded="True" Name="ExpanderMetadata">
+              <StackPanel Spacing="8" Margin="0,8,0,0">
+                <!-- Tags -->
+                <StackPanel Spacing="4">
+                  <TextBlock Text="Tags" FontWeight="SemiBold" FontSize="12"/>
+                  <WrapPanel Name="PnlTags" Orientation="Horizontal"/>
+                  <TextBox Name="TxtAddTag" Watermark="Add tag (Enter)..." FontSize="11"/>
+                </StackPanel>
+                <!-- Masters -->
+                <StackPanel Spacing="4">
+                  <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12"/>
+                  <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
+                  <TextBox Name="TxtAddMaster" Watermark="Add master (Enter)..." FontSize="11"/>
+                </StackPanel>
+                <!-- Linked Texts -->
+                <StackPanel Spacing="4" Name="PnlLinkedTexts">
+                  <TextBlock Text="Linked Texts" FontWeight="SemiBold" FontSize="12"/>
+                </StackPanel>
+              </StackPanel>
+            </Expander>
+
+            <!-- Section 3: Categorization (collapsed by default) -->
+            <Expander Header="Categorization" IsExpanded="False" Name="ExpanderCategories">
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" Margin="0,8,0,0" RowSpacing="8">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"/>
+              </Grid>
+            </Expander>
+
+            <!-- Section 4: Connections + Backlinks (collapsed by default) -->
+            <Expander Header="Connections" IsExpanded="False" Name="ExpanderConnections">
+              <StackPanel Spacing="8" Margin="0,8,0,0">
+                <TextBlock Text="Outgoing Links" FontWeight="SemiBold" FontSize="12"/>
+                <ItemsControl Name="PnlOutgoingLinks"/>
+                <Button Name="BtnAddLink" Content="+ Add Link" Padding="8,3" FontSize="11"/>
+                <TextBlock Text="Referenced By (Backlinks)" FontWeight="SemiBold" FontSize="12" Margin="0,8,0,0"/>
+                <ItemsControl Name="PnlBacklinks"/>
+                <TextBlock Name="TxtNoBacklinks" Text="No incoming references yet." FontSize="11" Opacity="0.5"/>
+              </StackPanel>
+            </Expander>
+
+            <!-- Section 5: Research Notes (collapsed by default) -->
+            <Expander Header="Research Notes" IsExpanded="False" Name="ExpanderNotes">
+              <StackPanel Spacing="8" Margin="0,8,0,0">
+                <TextBox Name="TxtPassageNotes" AcceptsReturn="True" TextWrapping="Wrap"
+                         MinHeight="100" Watermark="Personal notes... Use [[passage-id]] for references"/>
+                <DockPanel>
+                  <Button Name="BtnInsertReference" Content="Insert Reference" DockPanel.Dock="Left" Padding="8,4" FontSize="11"/>
+                </DockPanel>
+              </StackPanel>
+            </Expander>
+
+            <!-- Section 6: Scholar Assistant (collapsed by default) -->
+            <Expander Header="Scholar Assistant" IsExpanded="False" Name="ScholarAssistantExpander">
+              <StackPanel Spacing="8" Margin="0,8,0,0">
+                <Expander Header="Quality Checks" IsExpanded="False" Name="ExpanderQA">
+                  <StackPanel Name="PnlQualityChecks" Spacing="4"/>
+                </Expander>
+                <Expander Header="Glossary" IsExpanded="False" Name="ExpanderGlossary">
+                  <StackPanel Name="PnlGlossary" Spacing="4"/>
+                </Expander>
+                <Expander Header="Approved Matches" IsExpanded="False" Name="ExpanderApprovedTm">
+                  <StackPanel Name="PnlApprovedTm" Spacing="4"/>
+                </Expander>
+                <Expander Header="Reference Translations" IsExpanded="False" Name="ExpanderRefTm">
+                  <StackPanel Name="PnlRefTm" Spacing="4"/>
+                </Expander>
+              </StackPanel>
+            </Expander>
+
+            <!-- Bottom action bar -->
+            <DockPanel Margin="0,16,0,0">
+              <Button Name="BtnShowGraph" Content="Show Graph" DockPanel.Dock="Right" Padding="8,4"/>
+              <Button Name="BtnDeletePassage" Content="Delete" DockPanel.Dock="Right" Padding="8,4" Margin="0,0,8,0"/>
+            </DockPanel>
+          </StackPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+
+    <!-- ROW 2: Bottom Drawer (Graph) - initially hidden -->
+    <Border Grid.Row="2" Name="BottomDrawer" Height="0" BorderThickness="0,1,0,0"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <Grid RowDefinitions="Auto,*">
+        <DockPanel Grid.Row="0" Margin="8,4">
+          <TextBlock Text="Graph" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+          <Button DockPanel.Dock="Right" Name="BtnCloseDrawer" Content="&#x2715;" Padding="6,2"/>
+          <Button DockPanel.Dock="Right" Name="BtnGraphFullScreen" Content="&#x26F6;" ToolTip.Tip="Full screen" Padding="6,2" Margin="0,0,4,0"/>
+          <Button DockPanel.Dock="Right" Name="BtnGraphRelayout" Content="Rearrange" Padding="6,2" Margin="0,0,4,0"/>
+          <!-- Color mode dropdown -->
+          <ComboBox DockPanel.Dock="Right" Name="CmbGraphColorMode" MinWidth="120" Margin="0,0,8,0"/>
+        </DockPanel>
+        <local:LinkNetworkGraphControl Grid.Row="1" Name="GraphControl" ClipToBounds="True" Margin="4"/>
+      </Grid>
     </Border>
   </Grid>
 </UserControl>
-
-
-
-
-
-
-
-
-
-

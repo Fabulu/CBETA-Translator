@@ -9,4 +9,5 @@ public class GraphNode
     public double Vx { get; set; }
     public double Vy { get; set; }
     public bool IsSelected { get; set; }
+    public int Degree { get; set; }
 }
