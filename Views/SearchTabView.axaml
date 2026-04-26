@@ -466,13 +466,13 @@
                     <Grid Grid.Row="2" IsVisible="{Binding IsMetricViewVisible}" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6" ColumnSpacing="10">
                         <!-- Chart titles -->
                         <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,4">
-                            <TextBlock Text="Common Neighbors" FontWeight="SemiBold" FontSize="13"/>
-                            <TextBlock Text="Characters that appear most often alongside your search term, ranked by association strength."
+                            <TextBlock Text="Character pairs" FontWeight="SemiBold" FontSize="13"/>
+                            <TextBlock Text="Single characters that co-occur with your search term, ranked by the selected metric."
                                        Classes="muted" FontSize="11" TextWrapping="Wrap"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,4">
-                            <TextBlock Text="Common Phrases" FontWeight="SemiBold" FontSize="13"/>
-                            <TextBlock Text="Multi-character expressions clustered around your search term — compound words, technical terms, and stock phrases."
+                            <TextBlock Text="Recurring phrases" FontWeight="SemiBold" FontSize="13"/>
+                            <TextBlock Text="Multi-character sequences found near your search term."
                                        Classes="muted" FontSize="11" TextWrapping="Wrap"/>
                         </StackPanel>
 
@@ -602,7 +602,6 @@
 
                     <ScrollViewer Grid.Row="2"
                                   IsVisible="{Binding IsMetricGuideVisible}"
-                                  MaxHeight="220"
                                   VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled">
                         <Border Background="{DynamicResource PanelAltBg}"
