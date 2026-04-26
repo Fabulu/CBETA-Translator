@@ -642,7 +642,7 @@ public class ScholarExportServiceTests : IDisposable
         Assert.Contains("@misc{readzen:col-bib:T0200:0292a26:1,", bib);
         Assert.Contains("@misc{readzen:col-bib:T0200:8:2,", bib);
         Assert.Contains("title = {Passage from T0200 0292a26 - 0292a29}", bib);
-        Assert.DoesNotContain("author =", bib);
+        Assert.Contains("author = {Zhaozhou Congshen}", bib);
         Assert.Contains("howpublished = {zen://T0200/0292a26-0292a29?block=4}", bib);
         Assert.Contains("url = {https://readzen.pages.dev/T0200/0292a26-0292a29}", bib);
         Assert.Contains("keywords = {zen, citation, koan, Zhaozhou Congshen}", bib);

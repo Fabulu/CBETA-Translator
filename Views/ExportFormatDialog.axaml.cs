@@ -29,6 +29,8 @@ public partial class ExportFormatDialog : Window
             return ScholarExportFormat.PaperDraft;
         if (IsChecked("RbCslJson"))
             return ScholarExportFormat.CslJson;
+        if (IsChecked("RbRis"))
+            return ScholarExportFormat.Ris;
         if (IsChecked("RbBibTex"))
             return ScholarExportFormat.BibTex;
         if (IsChecked("RbReaderTagBundle"))

@@ -38,12 +38,11 @@ public class AppConfigTests
     }
 
     [Fact]
-    public void Version_DefaultsTo4()
+    public void Version_DefaultsTo5()
     {
-        // Bumped from 3 to 4 when ActiveCorpus was added; AppConfigService
-        // migrates v3 configs forward by setting ActiveCorpus = Cbeta.
+        // Bumped to 5 when PreferredCitationStyle was added.
         var config = new AppConfig();
-        Assert.Equal(4, config.Version);
+        Assert.Equal(5, config.Version);
     }
 
     [Fact]

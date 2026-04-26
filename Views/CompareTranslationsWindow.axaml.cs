@@ -21,6 +21,7 @@ public partial class CompareTranslationsWindow : Window
 {
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
+    private readonly ICitationService _citationService = new CitationService();
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
     private Canvas? _dictOverlayCanvas;
     private TextEditor? _edOriginal, _edTransA, _edTransB;
@@ -134,6 +135,31 @@ public partial class CompareTranslationsWindow : Window
         var copyReddit = new MenuItem { Header = "Copy Reddit Link" };
         copyReddit.Click += async (_, _) => await CopyCompareLinkAsync(pane, editor, doc, shareable: true);
         menu.Items.Add(copyReddit);
+
+        menu.Items.Add(new Separator());
+        var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
+            _citationService,
+            CitationMenuHelper.GetPreferredStyle(),
+            buildMetadata: () =>
+            {
+                var selected = editor.SelectedText?.Trim();
+                return new CitationMetadata
+                {
+                    QuotedText = selected,
+                    FileId = !string.IsNullOrWhiteSpace(_relPath) ? ZenUriParser.RelPathToFileId(_relPath) : null,
+                    ShareableUrl = !string.IsNullOrWhiteSpace(_relPath)
+                        ? ZenUriParser.ShareableBase + ZenUriParser.RelPathToFileId(_relPath) : null,
+                };
+            },
+            copyToClipboard: async text =>
+            {
+                var comparison = $"Comparison of {_sourceAKey} and {_sourceBKey} for {_relPath ?? "unknown text"}";
+                var fullCitation = text + "\n\n" + comparison;
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(fullCitation);
+            });
+        menu.Items.Add(citeFlyout);
 
         return menu;
     }

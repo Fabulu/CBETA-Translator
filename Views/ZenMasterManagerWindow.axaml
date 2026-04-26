@@ -29,6 +29,8 @@
                 <ContextMenu>
                   <MenuItem Name="MnuCopyMasterLink" Header="Copy Link"/>
                   <MenuItem Name="MnuCopyMasterRedditLink" Header="Copy Reddit Link"/>
+                  <Separator/>
+                  <MenuItem Name="MnuCiteMaster" Header="Cite this master"/>
                 </ContextMenu>
               </ListBox.ContextMenu>
               <ListBox.ItemTemplate>

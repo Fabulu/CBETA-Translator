@@ -47,6 +47,7 @@ public partial class ReadableTabView : UserControl
     private Canvas? _dictOverlayCanvas;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
+    private readonly ICitationService _citationService = new CitationService();
 
     // -------------------------
     // Selection mirroring
@@ -607,18 +608,25 @@ public partial class ReadableTabView : UserControl
 
         if (hasLicense)
         {
-            var copyAttr = new MenuItem { Header = "Copy with attribution" };
-            copyAttr.Click += async (_, _) =>
-            {
-                var editor = isTranslated ? _aeTran : _aeOrig;
-                if (editor == null) return;
-                string selected = editor.SelectedText ?? "";
-                var block = AttributionFormatter.Plain(_currentFileLicense, string.IsNullOrWhiteSpace(selected) ? null : selected);
-                var top = TopLevel.GetTopLevel(this);
-                if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(block);
-                Say("Copied with attribution.");
-            };
-            menu.Items.Add(copyAttr);
+            var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
+                _citationService,
+                CitationMenuHelper.GetPreferredStyle(),
+                buildMetadata: () =>
+                {
+                    var editor = isTranslated ? _aeTran : _aeOrig;
+                    string selected = editor?.SelectedText ?? "";
+                    return _citationService.BuildMetadata(
+                        _currentFileLicense,
+                        quotedText: string.IsNullOrWhiteSpace(selected) ? null : selected);
+                },
+                copyToClipboard: async text =>
+                {
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null)
+                        await top.Clipboard.SetTextAsync(text);
+                },
+                onCopied: msg => Say(msg));
+            menu.Items.Add(citeFlyout);
         }
 
         if (hasSourceUrl)

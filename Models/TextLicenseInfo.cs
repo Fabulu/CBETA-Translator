@@ -6,6 +6,8 @@
 // This record is the MVP contract — any display surface (top-bar badge, reader
 // chip, flyout, copy-with-attribution) reads from here.
 
+using System.Collections.Generic;
+
 namespace ReadZen.App.Models;
 
 public sealed record TextLicenseInfo
@@ -82,6 +84,9 @@ public sealed record TextLicenseInfo
 
     /// <summary>Rel-path (or file id) this info was extracted for, for diagnostics.</summary>
     public string? RelPath { get; init; }
+
+    /// <summary>Contributors from &lt;respStmt&gt; elements (name + optional role).</summary>
+    public List<string>? Contributors { get; init; }
 
     /// <summary>Unknown-state sentinel record used when no teiHeader is present.</summary>
     public static TextLicenseInfo UnknownDefault { get; } = new()
