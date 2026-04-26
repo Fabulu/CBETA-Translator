@@ -1171,7 +1171,9 @@ public partial class SearchTabViewModel : ViewModelBase
 
     private void ApplyCooccurrenceResult(SearchIndexService.CooccurrencePanelResult result)
     {
-        CoocSummaryText = result.Summary;
+        CoocSummaryText = string.IsNullOrWhiteSpace(result.ExtraLine)
+            ? result.Summary
+            : result.Summary + " | " + result.ExtraLine.Replace("\n", " | ");
         LeftTitle = result.LeftTitle;
         RightTitle = result.RightTitle;
 
