@@ -1188,9 +1188,8 @@ public partial class SearchTabViewModel : ViewModelBase
     private static readonly SKColor LightLabelColor = new(50, 50, 50);
 
     // CJK-capable font for chart labels (SkiaSharp default doesn't render Chinese)
-    private static readonly SKTypeface CjkTypeface = SKTypeface.FromFamilyName(
-        OperatingSystem.IsWindows() ? "Microsoft YaHei" :
-        OperatingSystem.IsMacOS() ? "PingFang SC" : "Noto Sans CJK SC");
+    private static readonly SKTypeface CjkTypeface =
+        SKFontManager.Default.MatchCharacter('\u6c49') ?? SKTypeface.Default;
 
     private (ISeries[] series, Axis[] yAxes) BuildBarChartFromCoocRows(IReadOnlyList<CoocRow> rows, int maxItems = 20)
     {
