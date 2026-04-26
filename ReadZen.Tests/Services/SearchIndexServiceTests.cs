@@ -434,7 +434,7 @@ public class SearchIndexServiceTests
             }
         };
 
-        var result = SearchIndexService.ComputeCooccurrences(groups, "\u9580\u95DC", 80, CoocMetric.TopCooccurrences, topK: 10);
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u9580\u95DC", 80, CoocMetric.Frequency, topK: 10);
 
         Assert.DoesNotContain(result.Left, row => row.Key == "\u9580" || row.Key == "\u95DC" || row.Key == "!" || row.Key == "\u3002");
         Assert.Contains(result.Left, row => row.Key == "\u96F2");
@@ -456,7 +456,7 @@ public class SearchIndexServiceTests
             }
         };
 
-        var result = SearchIndexService.ComputeCooccurrences(groups, "\u4F5B\u6CD5", 80, CoocMetric.TopCooccurrences, topK: 20);
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u4F5B\u6CD5", 80, CoocMetric.Frequency, topK: 20);
 
         Assert.DoesNotContain(result.Right, row => row.Key == "\u4E4B\u4E4E" || row.Key == "\u4E4E\u8005" || row.Key == "\u8005\u4E5F");
         Assert.Contains(result.Right, row => row.Key.Contains("\u96F2\u9580") || row.Key.Contains("\u9580\u95DC"));
@@ -509,7 +509,7 @@ public class SearchIndexServiceTests
             }
         };
 
-        var result = SearchIndexService.ComputeCooccurrences(groups, "\u95DC", 80, CoocMetric.DispersionScore, topK: 10);
+        var result = SearchIndexService.ComputeCooccurrences(groups, "\u95DC", 80, CoocMetric.Frequency, topK: 10);
 
         Assert.Contains("result-scoped", result.Summary);
         Assert.Contains("current results", result.LeftTitle);
@@ -553,7 +553,7 @@ public class SearchIndexServiceTests
                 includeOriginal: true,
                 includeTranslated: true,
                 contextWidth: 40,
-                metric: CoocMetric.TopCooccurrences,
+                metric: CoocMetric.Frequency,
                 progress: new Progress<(int done, int total)>(p => progress.Add(p)));
 
             Assert.Contains("corpus-scan", result.Summary);

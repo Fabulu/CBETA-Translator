@@ -14,5 +14,8 @@ public interface ICooccurrenceService
         string query,
         int contextWidth,
         CoocMetric metric,
+        IReadOnlyDictionary<string, int>? corpusCharFreqs = null,
+        IReadOnlyDictionary<string, int>? corpusBigramFreqs = null,
+        long corpusTotalChars = 0,
         int topK = 30);
 }

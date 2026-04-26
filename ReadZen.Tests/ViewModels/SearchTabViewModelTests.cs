@@ -28,6 +28,10 @@ public class SearchTabViewModelTests
         public TaskCompletionSource<bool> FirstYieldGate { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
         public TaskCompletionSource<bool> FinishGate { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
         public SearchIndexService.SearchIndexServiceOptions Options => new();
+        public IReadOnlyDictionary<string, int>? CorpusCharFreqs => null;
+        public IReadOnlyDictionary<string, int>? CorpusBigramFreqs => null;
+        public long CorpusTotalChars => 0;
+        public bool HasCorpusFrequencies => false;
         public string GetManifestPath(string root) => "";
         public string GetBinPath(string root) => "";
         public string GetTextManifestPath(string root) => "";
@@ -176,10 +180,10 @@ public class SearchTabViewModelTests
     }
 
     [Fact]
-    public void CoocMetricItems_HasNineEntries()
+    public void CoocMetricItems_HasEightEntries()
     {
         var vm = MakeVm();
-        Assert.Equal(9, vm.CoocMetricItems.Length);
+        Assert.Equal(8, vm.CoocMetricItems.Length);
     }
 
     // ---- SetRootContext ----

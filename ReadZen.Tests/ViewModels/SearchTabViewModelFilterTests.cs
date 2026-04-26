@@ -38,6 +38,10 @@ public class SearchTabViewModelFilterTests
         }
 
         public SearchIndexService.SearchIndexServiceOptions Options => new();
+        public IReadOnlyDictionary<string, int>? CorpusCharFreqs => null;
+        public IReadOnlyDictionary<string, int>? CorpusBigramFreqs => null;
+        public long CorpusTotalChars => 0;
+        public bool HasCorpusFrequencies => false;
         public string GetManifestPath(string root) => "";
         public string GetBinPath(string root) => "";
         public string GetTextManifestPath(string root) => "";

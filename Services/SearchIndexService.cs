@@ -49,6 +49,18 @@ public sealed class SearchIndexService : ISearchIndexService
     /// <summary>Inverted bigram index built alongside bloom filters. Null until first build/load.</summary>
     public InvertedSearchIndex? InvertedIndex { get; private set; }
 
+    /// <summary>Corpus-wide CJK character frequencies (key = single char as string). Null until loaded/built.</summary>
+    public IReadOnlyDictionary<string, int>? CorpusCharFreqs { get; private set; }
+
+    /// <summary>Corpus-wide CJK bigram frequencies (key = 2-char string). Null until loaded/built.</summary>
+    public IReadOnlyDictionary<string, int>? CorpusBigramFreqs { get; private set; }
+
+    /// <summary>Total CJK characters counted across the entire corpus.</summary>
+    public long CorpusTotalChars { get; private set; }
+
+    /// <summary>True when corpus frequency data has been loaded or built.</summary>
+    public bool HasCorpusFrequencies => CorpusCharFreqs != null;
+
     // Gate only for index file I/O (manifest/bin) so we can release before expensive verification.
     private static readonly SemaphoreSlim _indexIoGate = new(1, 1);
 
@@ -99,6 +111,7 @@ public sealed class SearchIndexService : ISearchIndexService
     private const string TextBuildGuid = "search-v1-text-sidecar";
     private const int Cjk2ManifestVersion = 1;
     private const string Cjk2BuildGuid = "search-v1-cjk2-postings";
+    private const string CorpusFreqBuildGuid = "search-v1-corpusfreq";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
@@ -125,6 +138,8 @@ public sealed class SearchIndexService : ISearchIndexService
         public long OldBloomOffset;     // valid only when CopiedBloom = true
         public long OldTextOffset;      // valid only when CopiedText = true
         public int OldTextLen;          // valid only when CopiedText = true
+        public Dictionary<char, int>? CharFreqs;    // per-file CJK char frequencies (build-time only)
+        public Dictionary<string, int>? BigramFreqs; // per-file CJK bigram frequencies (build-time only)
     }
 
     // ==========================================================
@@ -146,6 +161,9 @@ public sealed class SearchIndexService : ISearchIndexService
         string query,
         int contextWidth,
         CoocMetric metric,
+        IReadOnlyDictionary<string, int>? corpusCharFreqs = null,
+        IReadOnlyDictionary<string, int>? corpusBigramFreqs = null,
+        long corpusTotalChars = 0,
         int topK = 30)
     {
         query ??= "";
@@ -265,8 +283,38 @@ public sealed class SearchIndexService : ISearchIndexService
             }
         }
 
-        double DispersionScore(int freq, int range)
-            => (freq / Math.Sqrt(1.0 + totalWindows)) * Math.Log(1.0 + range);
+        bool hasCorpusFreqs = corpusCharFreqs != null && corpusBigramFreqs != null && corpusTotalChars > 0;
+        long N = corpusTotalChars;
+        string fallbackNotice = "";
+
+        // Compute query term corpus frequency (f_y) once
+        long queryCorpusFreq = 0;
+        if (hasCorpusFreqs && !string.IsNullOrEmpty(compactQuery))
+        {
+            if (compactQuery.Length == 1)
+            {
+                corpusCharFreqs!.TryGetValue(compactQuery, out var qf);
+                queryCorpusFreq = qf;
+            }
+            else
+            {
+                long minBg = long.MaxValue;
+                for (int i = 0; i < compactQuery.Length - 1; i++)
+                {
+                    string bg = compactQuery.Substring(i, 2);
+                    corpusBigramFreqs!.TryGetValue(bg, out var bgf);
+                    if (bgf < minBg) minBg = bgf;
+                }
+                queryCorpusFreq = minBg == long.MaxValue ? 0 : minBg;
+            }
+        }
+
+        // If corpus-dependent metric selected but no freq data, fall back to frequency
+        if (!hasCorpusFreqs && metric != CoocMetric.Frequency && metric != CoocMetric.Dominance)
+        {
+            metric = CoocMetric.Frequency;
+            fallbackNotice = "Build the search index to enable association metrics.";
+        }
 
         double DominanceShare(Dictionary<string, int>? perFile, int freq)
         {
@@ -277,42 +325,68 @@ public sealed class SearchIndexService : ISearchIndexService
             return (double)max / freq;
         }
 
-        double LogDiceApprox(int f_xq, int f_x, int f_q)
-            => 14.0 + Math.Log((2.0 * f_xq) / (f_x + (double)f_q + 1e-9), 2.0);
-
-        double PmiSurrogate(int freq, int range)
-            => (Math.Log(1.0 + freq, 2.0) - Math.Log(1.0 + range, 2.0));
-
-        double TScoreSurrogate(int freq, int range)
-            => Math.Sqrt(Math.Max(0, freq)) * Math.Log(1.0 + Math.Max(0, range));
-
-        double MetricValueFor(int freq, int range, Dictionary<string, int>? perFile)
+        int LookupCollocateFreq(string key)
         {
+            if (!hasCorpusFreqs) return 0;
+            if (key.Length == 1)
+            {
+                corpusCharFreqs!.TryGetValue(key, out var f);
+                return f;
+            }
+            else
+            {
+                corpusBigramFreqs!.TryGetValue(key, out var f);
+                return f;
+            }
+        }
+
+        static double ComputeG2(int O11, long f_x, long f_y, long NN)
+        {
+            if (O11 <= 0 || NN <= 0) return 0;
+            long O12 = f_x - O11; if (O12 < 0) O12 = 0;
+            long O21 = f_y - O11; if (O21 < 0) O21 = 0;
+            long O22 = NN - f_x - f_y + O11; if (O22 < 0) O22 = 0;
+            double E11 = (double)f_x * f_y / NN;
+            double E12 = (double)f_x * (NN - f_y) / NN;
+            double E21 = (double)(NN - f_x) * f_y / NN;
+            double E22 = (double)(NN - f_x) * (NN - f_y) / NN;
+            double g2 = 0;
+            if (O11 > 0 && E11 > 0) g2 += O11 * Math.Log(O11 / E11);
+            if (O12 > 0 && E12 > 0) g2 += O12 * Math.Log(O12 / E12);
+            if (O21 > 0 && E21 > 0) g2 += O21 * Math.Log(O21 / E21);
+            if (O22 > 0 && E22 > 0) g2 += O22 * Math.Log(O22 / E22);
+            return 2 * g2;
+        }
+
+        double MetricValueFor(string key, int freq, int range, Dictionary<string, int>? perFile)
+        {
+            int f_x = LookupCollocateFreq(key);
+            long f_y = queryCorpusFreq;
+            double E = N > 0 ? (double)f_x * f_y / N : 0;
+
             return metric switch
             {
-                CoocMetric.TopCooccurrences => DispersionScore(freq, range),
-                CoocMetric.DispersionScore => DispersionScore(freq, range),
+                CoocMetric.LogDice => f_x + f_y > 0 ? 14.0 + Math.Log2(2.0 * freq / (f_x + f_y)) : 0,
+                CoocMetric.MI => E > 0 && freq >= 5 ? Math.Log2(freq / E) : 0,
+                CoocMetric.MI3 => E > 0 && freq >= 5 ? Math.Log2((double)freq * freq * freq / E) : 0,
+                CoocMetric.TScore => E > 0 ? (freq - E) / Math.Sqrt(Math.Max(1, freq)) : 0,
+                CoocMetric.LogLikelihood => ComputeG2(freq, f_x, f_y, N),
                 CoocMetric.Frequency => freq,
-                CoocMetric.Range => range,
                 CoocMetric.Dominance => DominanceShare(perFile, freq),
-                CoocMetric.PMI => PmiSurrogate(freq, range),
-                CoocMetric.LogDice => LogDiceApprox(freq, freq, Math.Max(1, totalWindows)),
-                CoocMetric.TScore => TScoreSurrogate(freq, range),
-                _ => DispersionScore(freq, range)
+                _ => freq
             };
         }
 
         string metricName = metric switch
         {
-            CoocMetric.TopCooccurrences => "Top co-occurrences",
-            CoocMetric.DispersionScore => "Dispersion score",
-            CoocMetric.Frequency => "Frequency",
-            CoocMetric.Range => "Range",
-            CoocMetric.Dominance => "Dominance (top-file share)",
-            CoocMetric.PMI => "PMI (window-based)",
             CoocMetric.LogDice => "logDice",
+            CoocMetric.MI => "MI",
+            CoocMetric.MI3 => "MI\u00B3",
             CoocMetric.TScore => "t-score",
-            _ => "Dispersion score"
+            CoocMetric.LogLikelihood => "Log-likelihood",
+            CoocMetric.Frequency => "Frequency",
+            CoocMetric.Dominance => "Dominance (top-file share)",
+            _ => "Frequency"
         };
 
         var left = chFreq.Select(kv =>
@@ -321,7 +395,7 @@ public sealed class SearchIndexService : ISearchIndexService
             int freq = kv.Value;
             int range = chRange.TryGetValue(key, out var s) ? s.Count : 0;
             chByFile.TryGetValue(key, out var byFile);
-            double val = MetricValueFor(freq, range, byFile);
+            double val = MetricValueFor(key, freq, range, byFile);
             return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Dominance = DominanceShare(byFile, freq), Bar = "" };
         }).ToList();
 
@@ -331,9 +405,24 @@ public sealed class SearchIndexService : ISearchIndexService
             int freq = kv.Value;
             int range = ngRange.TryGetValue(key, out var s) ? s.Count : 0;
             ngByFile.TryGetValue(key, out var byFile);
-            double val = MetricValueFor(freq, range, byFile);
+            double val = MetricValueFor(key, freq, range, byFile);
             return new CoocRow { Key = key, Freq = freq, Range = range, Assoc = val, Dominance = DominanceShare(byFile, freq), Bar = "" };
         }).ToList();
+
+        // G2 significance floor: filter out statistically insignificant collocates
+        if (hasCorpusFreqs && metric != CoocMetric.Frequency && metric != CoocMetric.Dominance)
+        {
+            left = left.Where(r =>
+            {
+                int f_x = LookupCollocateFreq(r.Key);
+                return ComputeG2(r.Freq, f_x, queryCorpusFreq, N) >= 6.63;
+            }).ToList();
+            right = right.Where(r =>
+            {
+                int f_x = LookupCollocateFreq(r.Key);
+                return ComputeG2(r.Freq, f_x, queryCorpusFreq, N) >= 6.63;
+            }).ToList();
+        }
 
         left = left.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
         right = right.OrderByDescending(r => r.Assoc).ThenByDescending(r => r.Freq).Take(topK).ToList();
@@ -379,7 +468,7 @@ public sealed class SearchIndexService : ISearchIndexService
             RightTitle = $"Top bigrams / trigrams within current results by {metricName}",
             Left = left,
             Right = right,
-            ExtraLine = string.Join("\n", new[] { "Window-scoped analytics from current search results; not corpus-wide.", extra }.Where(s => !string.IsNullOrWhiteSpace(s)))
+            ExtraLine = string.Join("\n", new[] { "Window-scoped analytics from current search results; not corpus-wide.", fallbackNotice, extra }.Where(s => !string.IsNullOrWhiteSpace(s)))
         };
     }
 
@@ -396,6 +485,9 @@ public sealed class SearchIndexService : ISearchIndexService
         Func<string, bool>? relPathFilter = null,
         TranslationStatus? statusFilter = null,
         IProgress<(int done, int total)>? progress = null,
+        IReadOnlyDictionary<string, int>? corpusCharFreqs = null,
+        IReadOnlyDictionary<string, int>? corpusBigramFreqs = null,
+        long corpusTotalChars = 0,
         CancellationToken ct = default)
     {
         var selectedFiles = (files ?? Array.Empty<FileNavItem>())
@@ -442,7 +534,7 @@ public sealed class SearchIndexService : ISearchIndexService
             progress?.Report((i + 1, selectedFiles.Count));
         }
 
-        var result = ComputeCooccurrences(groups, query, contextWidth, metric, topK);
+        var result = ComputeCooccurrences(groups, query, contextWidth, metric, corpusCharFreqs, corpusBigramFreqs, corpusTotalChars, topK);
         result.Summary = result.Summary.Replace("result-scoped", "corpus-scan", StringComparison.OrdinalIgnoreCase);
         result.LeftTitle = result.LeftTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
         result.RightTitle = result.RightTitle.Replace("within current results", "across filtered corpus", StringComparison.OrdinalIgnoreCase);
@@ -970,6 +1062,16 @@ public sealed class SearchIndexService : ISearchIndexService
     }
 
     // ---------------------------
+    // CJK character classification (shared with InvertedSearchIndex)
+    // ---------------------------
+
+    /// <summary>Returns true if the character is in a CJK range suitable for indexing.</summary>
+    internal static bool IsIndexableCjk(char ch)
+        => (ch >= '\u4E00' && ch <= '\u9FFF')
+        || (ch >= '\u3400' && ch <= '\u4DBF')
+        || (ch >= '\uF900' && ch <= '\uFAFF');
+
+    // ---------------------------
     // FAST body extraction / normalization (NO REGEX)
     // ---------------------------
 
@@ -1150,11 +1252,80 @@ public sealed class SearchIndexService : ISearchIndexService
                 catch { /* inverted index is optional */ }
             }
 
+            // Try loading corpus frequency index alongside bloom
+            if (CorpusCharFreqs == null)
+            {
+                try { await TryLoadCorpusFrequenciesAsync(root); }
+                catch { /* corpus freq index is optional */ }
+            }
+
             return man;
         }
         catch
         {
             return null;
+        }
+    }
+
+    /// <summary>Loads the corpus frequency index from disk. Returns true on success.</summary>
+    public async Task<bool> TryLoadCorpusFrequenciesAsync(string root)
+    {
+        var manifestPath = Path.Combine(root, "search.corpusfreq.manifest.json");
+        var binPath = Path.Combine(root, "search.corpusfreq.bin");
+
+        if (!File.Exists(manifestPath) || !File.Exists(binPath))
+            return false;
+
+        try
+        {
+            var json = await File.ReadAllTextAsync(manifestPath, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json)) return false;
+
+            var freqManifest = JsonSerializer.Deserialize<CorpusFreqManifest>(json, JsonOpts);
+            if (freqManifest == null || freqManifest.Version != 1) return false;
+            if (!string.Equals(freqManifest.BuildGuid, CorpusFreqBuildGuid, StringComparison.Ordinal)) return false;
+
+            var bytes = await File.ReadAllBytesAsync(binPath);
+            using var ms = new MemoryStream(bytes);
+            using var br = new BinaryReader(ms, Utf8NoBom, leaveOpen: false);
+
+            // Validate magic "CF01"
+            byte m0 = br.ReadByte(), m1 = br.ReadByte(), m2 = br.ReadByte(), m3 = br.ReadByte();
+            if (m0 != (byte)'C' || m1 != (byte)'F' || m2 != (byte)'0' || m3 != (byte)'1')
+                return false;
+
+            int charCount = br.ReadInt32();
+            int bigramCount = br.ReadInt32();
+            long totalChars = br.ReadInt64();
+
+            var charFreqs = new Dictionary<string, int>(charCount);
+            for (int i = 0; i < charCount; i++)
+            {
+                char ch = br.ReadChar();
+                int freq = br.ReadInt32();
+                charFreqs[ch.ToString()] = freq;
+            }
+
+            var bigramFreqs = new Dictionary<string, int>(bigramCount);
+            for (int i = 0; i < bigramCount; i++)
+            {
+                char c1 = br.ReadChar();
+                char c2 = br.ReadChar();
+                int freq = br.ReadInt32();
+                bigramFreqs[string.Concat(c1, c2)] = freq;
+            }
+
+            CorpusCharFreqs = charFreqs;
+            CorpusBigramFreqs = bigramFreqs;
+            CorpusTotalChars = totalChars;
+
+            Dbg($"Corpus freq index loaded: {charCount} chars, {bigramCount} bigrams, {totalChars} total");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Dbg($"Corpus freq load failed: {ex.Message}");
+            return false;
         }
     }
 
@@ -1799,6 +1970,11 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 var invertedDocs = new List<(string relPath, string text)>();
 
+                // Corpus frequency accumulators — merged during Phase 2 before entries are cleared
+                var corpusCharFreqs = new Dictionary<string, int>(32768);
+                var corpusBigramFreqs = new Dictionary<string, int>(65536);
+                long corpusTotalChars = 0;
+
                 try
                 {
                     using (var outFs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.Read))
@@ -1899,6 +2075,29 @@ public sealed class SearchIndexService : ISearchIndexService
                             string xml = File.ReadAllText(absPath, Utf8NoBom);
                             string searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecode);
 
+                            // Count CJK character and bigram frequencies for corpus freq index
+                            var charFreqs = new Dictionary<char, int>(256);
+                            var bigramFreqs = new Dictionary<string, int>(512);
+                            char prevIndexable = '\0';
+                            bool hasPrev = false;
+
+                            for (int ci = 0; ci < searchable.Length; ci++)
+                            {
+                                char ch = searchable[ci];
+                                if (!IsIndexableCjk(ch)) { hasPrev = false; continue; }
+
+                                charFreqs[ch] = charFreqs.TryGetValue(ch, out var cf) ? cf + 1 : 1;
+
+                                if (hasPrev)
+                                {
+                                    string bg = string.Concat(prevIndexable, ch);
+                                    bigramFreqs[bg] = bigramFreqs.TryGetValue(bg, out var bf) ? bf + 1 : 1;
+                                }
+
+                                prevIndexable = ch;
+                                hasPrev = true;
+                            }
+
                             ulong[]? bits = null;
                             byte[]? textBytes = null;
 
@@ -1928,7 +2127,9 @@ public sealed class SearchIndexService : ISearchIndexService
                                 CopiedText = copiedText,
                                 OldBloomOffset = oldBloomOffset,
                                 OldTextOffset = oldTextOffset,
-                                OldTextLen = oldTextLen
+                                OldTextLen = oldTextLen,
+                                CharFreqs = charFreqs,
+                                BigramFreqs = bigramFreqs
                             };
                         });
 
@@ -1997,6 +2198,22 @@ public sealed class SearchIndexService : ISearchIndexService
                             if (done % 200 == 0 || done == total)
                                 progress?.Report((done, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
 
+                            // Merge per-file frequencies into corpus-wide accumulators (must happen before default clear)
+                            if (entry.CharFreqs != null)
+                            {
+                                foreach (var kv in entry.CharFreqs)
+                                {
+                                    string key = kv.Key.ToString();
+                                    corpusCharFreqs[key] = corpusCharFreqs.TryGetValue(key, out var v) ? v + kv.Value : kv.Value;
+                                    corpusTotalChars += kv.Value;
+                                }
+                            }
+                            if (entry.BigramFreqs != null)
+                            {
+                                foreach (var kv in entry.BigramFreqs)
+                                    corpusBigramFreqs[kv.Key] = corpusBigramFreqs.TryGetValue(kv.Key, out var v) ? v + kv.Value : kv.Value;
+                            }
+
                             // Release large buffers eagerly to reduce peak memory.
                             // Must clear array slot (struct copy), not local variable.
                             computed[i] = default;
@@ -2063,6 +2280,69 @@ public sealed class SearchIndexService : ISearchIndexService
                         if (File.Exists(oldCjk2)) File.Delete(oldCjk2);
                     }
                     catch { }
+                }
+
+                // Build and save corpus frequency index
+                try
+                {
+                    Dbg($"Corpus freq index: {corpusCharFreqs.Count} unique chars, {corpusBigramFreqs.Count} unique bigrams, {corpusTotalChars} total chars");
+
+                    var freqManifest = new CorpusFreqManifest
+                    {
+                        Version = 1,
+                        BuildGuid = CorpusFreqBuildGuid,
+                        BuiltUtc = DateTime.UtcNow,
+                        TotalCharacters = corpusTotalChars,
+                        UniqueCharacters = corpusCharFreqs.Count,
+                        UniqueBigrams = corpusBigramFreqs.Count
+                    };
+
+                    // Write manifest
+                    var freqManifestFinal = Path.Combine(root, "search.corpusfreq.manifest.json");
+                    var freqManifestTmp = freqManifestFinal + ".tmp";
+                    var freqManifestJson = JsonSerializer.Serialize(freqManifest, JsonOpts);
+                    await File.WriteAllTextAsync(freqManifestTmp, freqManifestJson, Utf8NoBom, ct);
+                    ReplaceFileAtomicWithRetry(freqManifestTmp, freqManifestFinal);
+
+                    // Write binary: [magic 4B][charCount 4B][bigramCount 4B][totalChars 8B]
+                    //   char entries: [char 2B][freq 4B] x charCount
+                    //   bigram entries: [char1 2B + char2 2B][freq 4B] x bigramCount
+                    var freqBinFinal = Path.Combine(root, "search.corpusfreq.bin");
+                    var freqBinTmp = freqBinFinal + ".tmp";
+                    using (var fs = new FileStream(freqBinTmp, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
+                    using (var bw = new BinaryWriter(fs, Utf8NoBom, leaveOpen: false))
+                    {
+                        // Magic: "CF01"
+                        bw.Write((byte)'C'); bw.Write((byte)'F'); bw.Write((byte)'0'); bw.Write((byte)'1');
+                        bw.Write(corpusCharFreqs.Count);
+                        bw.Write(corpusBigramFreqs.Count);
+                        bw.Write(corpusTotalChars);
+
+                        foreach (var kv in corpusCharFreqs)
+                        {
+                            bw.Write(kv.Key[0]); // single char as UTF-16
+                            bw.Write(kv.Value);
+                        }
+
+                        foreach (var kv in corpusBigramFreqs)
+                        {
+                            bw.Write(kv.Key[0]); // first char
+                            bw.Write(kv.Key[1]); // second char
+                            bw.Write(kv.Value);
+                        }
+                    }
+                    ReplaceFileAtomicWithRetry(freqBinTmp, freqBinFinal);
+
+                    // Populate in-memory properties immediately
+                    CorpusCharFreqs = corpusCharFreqs;
+                    CorpusBigramFreqs = corpusBigramFreqs;
+                    CorpusTotalChars = corpusTotalChars;
+
+                    Dbg($"Corpus freq index saved: {new FileInfo(freqBinFinal).Length} bytes");
+                }
+                catch (Exception ex)
+                {
+                    Dbg($"Corpus frequency build FAILED: {ex.Message}");
                 }
 
                 // Warm mmap cache after rebuild so next search click is faster

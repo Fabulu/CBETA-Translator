@@ -337,14 +337,13 @@ public partial class SearchTabViewModel : ViewModelBase
 
     public string[] CoocMetricItems { get; } = new[]
     {
-        "Neighbors (what appears nearby)",
-        "Spread (how widespread)",
-        "Distinctive (uniquely associated)",
-        "Frequency (raw count)",
-        "Advanced: Dominance",
-        "Advanced: Dispersion",
-        "Advanced: logDice",
-        "Advanced: t-score",
+        "logDice (default)",
+        "MI (distinctive)",
+        "MI\u00B3 (balanced)",
+        "t-score (frequent)",
+        "Log-likelihood",
+        "Frequency (raw)",
+        "Dominance (artifact)",
         "Metric guide"
     };
 
@@ -366,15 +365,14 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         MetricTooltip = value switch
         {
-            0 => "Neighbors: what characters and phrases appear nearby, balanced by frequency and spread",
-            1 => "Spread: terms that appear consistently across many texts, not just one",
-            2 => "Distinctive: uniquely associated terms (rare but tightly linked collocations)",
-            3 => "Frequency: raw co-occurrence count in context windows",
-            4 => "Dominance: concentration in a single text (>80% = artifact warning)",
-            5 => "Dispersion: frequency balanced by spread across texts",
-            6 => "logDice: lexicography metric \u2014 stable collocation candidates",
-            7 => "t-score: statistically significant, frequency-biased collocations",
-            8 => "Guide: explanations of all metrics with examples",
+            0 => "logDice: lexicography standard. Stable, N-independent collocation ranking. Range 0\u201314.",
+            1 => "MI: Mutual Information. Highlights rare but distinctive collocations. Requires O\u22655.",
+            2 => "MI\u00B3: MI cubed variant. Balances distinctiveness with frequency. Requires O\u22655.",
+            3 => "t-score: frequency-biased significance. Good for finding common collocations.",
+            4 => "Log-likelihood (G2): robust significance test. Best all-round metric for comparing collocations.",
+            5 => "Frequency: raw co-occurrence count in KWIC windows. No corpus data needed.",
+            6 => "Dominance: concentration in a single text. >80% flags single-source artifacts.",
+            7 => "Guide: explanations of all metrics with examples.",
             _ => "Select a metric"
         };
         _ = RefreshCoocUiFromCurrentStateAsync();
@@ -966,21 +964,20 @@ public partial class SearchTabViewModel : ViewModelBase
 
     // ----- Co-occurrence helpers -----
 
-    private bool IsGuideSelected() => SelectedCoocMetricIndex == 8;
+    private bool IsGuideSelected() => SelectedCoocMetricIndex == 7;
 
     private CoocMetric GetSelectedMetric()
     {
         return SelectedCoocMetricIndex switch
         {
-            0 => CoocMetric.TopCooccurrences,
-            1 => CoocMetric.Range,
-            2 => CoocMetric.PMI,          // "Distinctive" - uniquely associated terms
-            3 => CoocMetric.Frequency,
-            4 => CoocMetric.Dominance,
-            5 => CoocMetric.DispersionScore, // "Dispersion" - freq balanced by spread
-            6 => CoocMetric.LogDice,
-            7 => CoocMetric.TScore,
-            _ => CoocMetric.TopCooccurrences
+            0 => CoocMetric.LogDice,
+            1 => CoocMetric.MI,
+            2 => CoocMetric.MI3,
+            3 => CoocMetric.TScore,
+            4 => CoocMetric.LogLikelihood,
+            5 => CoocMetric.Frequency,
+            6 => CoocMetric.Dominance,
+            _ => CoocMetric.LogDice
         };
     }
 
@@ -988,14 +985,13 @@ public partial class SearchTabViewModel : ViewModelBase
     {
         return SelectedCoocMetricIndex switch
         {
-            0 => "Neighbors",
-            1 => "Spread",
-            2 => "Distinctive",
-            3 => "Frequency",
-            4 => "Dominance",
-            5 => "Dispersion",
-            6 => "logDice",
-            7 => "t-score",
+            0 => "logDice",
+            1 => "MI",
+            2 => "MI\u00B3",
+            3 => "t-score",
+            4 => "Log-likelihood",
+            5 => "Frequency",
+            6 => "Dominance",
             _ => "Score"
         };
     }
@@ -1096,6 +1092,17 @@ public partial class SearchTabViewModel : ViewModelBase
         var snapshotGroups = _groups.ToList();
         string q = _lastQuery;
         int cw = _lastContextWidth;
+
+        // Capture corpus frequency data for association metrics (may be null if index not built)
+        IReadOnlyDictionary<string, int>? corpusCharFreqs = null;
+        IReadOnlyDictionary<string, int>? corpusBigramFreqs = null;
+        long corpusTotalChars = 0;
+        if (_svc is SearchIndexService concrete && concrete.HasCorpusFrequencies)
+        {
+            corpusCharFreqs = concrete.CorpusCharFreqs;
+            corpusBigramFreqs = concrete.CorpusBigramFreqs;
+            corpusTotalChars = concrete.CorpusTotalChars;
+        }
         var statusFilter = GetStatusFilter();
         // Scope 0 = current results, 1 = zen corpus, 2 = full corpus
         var isCorpusScan = SelectedAnalyticsScopeIndex >= 1;
@@ -1139,12 +1146,15 @@ public partial class SearchTabViewModel : ViewModelBase
                     relPathFilter: relFilter,
                     statusFilter: statusFilter,
                     progress: corpusProgress,
+                    corpusCharFreqs: corpusCharFreqs,
+                    corpusBigramFreqs: corpusBigramFreqs,
+                    corpusTotalChars: corpusTotalChars,
                     ct: CancellationToken.None));
         }
         else
         {
             result = await Task.Run(() =>
-                SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, topK: 20));
+                SearchIndexService.ComputeCooccurrences(snapshotGroups, q, cw, metric, corpusCharFreqs, corpusBigramFreqs, corpusTotalChars, topK: 20));
         }
 
         if (myVer != Volatile.Read(ref _metricComputeVersion))
