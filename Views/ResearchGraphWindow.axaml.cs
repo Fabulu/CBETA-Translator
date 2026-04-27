@@ -94,6 +94,9 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.EdgeDropped += async (_, args) =>
         {
+            var validTypes = EdgeTypeRegistry.GetValidTypes(args.From.NodeType, args.To.NodeType);
+            if (validTypes.Count == 0) return; // No valid edge types for this node pair
+
             var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType);
             var result = await picker.ShowDialog<object?>(this);
             if (result is EdgeTypeDefinition edgeType)
@@ -232,8 +235,9 @@ public partial class ResearchGraphWindow : Window
 
     private void DeleteNode(string nodeId)
     {
-        _vm?.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
-        _vm!.SelectedNode = null;
+        if (_vm == null) return;
+        _vm.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
+        _vm.SelectedNode = null;
         UpdateInspector();
         UpdateStatusBar();
         UpdateEmptyState();

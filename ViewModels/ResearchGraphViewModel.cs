@@ -129,7 +129,7 @@ public class ResearchGraphViewModel
 
         // Add master nodes (from passage MasterNames)
         var masterNames = _collection.Passages
-            .SelectMany(p => p.MasterNames)
+            .SelectMany(p => p.MasterNames ?? new List<string>())
             .Distinct()
             .ToList();
         foreach (var name in masterNames)
@@ -176,7 +176,7 @@ public class ResearchGraphViewModel
 
     public void RunForceDirectedLayout(double width, double height)
     {
-        if (Nodes.Count == 0) return;
+        if (Nodes.Count <= 1) return;
 
         var k = Math.Sqrt((width * height) / Nodes.Count);
         double temp = width / 10.0;
@@ -230,7 +230,7 @@ public class ResearchGraphViewModel
             }
 
             // Gravity
-            double gravity = 0.008 * k;
+            double gravity = 0.015 * k;
             double cx = width / 2, cy = height / 2;
             foreach (var n in nodeList)
             {
@@ -297,6 +297,11 @@ public class ResearchGraphViewModel
         from.Degree++;
         to.Degree++;
         ComputeStats();
+    }
+
+    public void RestoreNodeToMap(ResearchGraphNode node)
+    {
+        _nodeMap[node.NodeId] = node;
     }
 
     public void RemoveNode(string nodeId)

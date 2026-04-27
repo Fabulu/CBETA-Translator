@@ -39,6 +39,13 @@ public partial class EdgeTypePickerPopup : Window
             });
         }
 
+        if (_items.Count == 0)
+        {
+            // No valid types for this pair -- defer close until after ShowDialog
+            Opened += (_, _) => Close(null);
+            return;
+        }
+
         var listBox = this.FindControl<ListBox>("TypeList");
         if (listBox != null)
         {

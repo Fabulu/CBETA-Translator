@@ -238,7 +238,7 @@ public partial class GraphInspectorPanel : UserControl
     private void AddButton(StackPanel parent, string label, Action onClick)
     {
         var btn = new Button { Content = label, Padding = new Avalonia.Thickness(8, 4), FontSize = 11 };
-        btn.Click += (_, _) => onClick();
+        btn.Click += (_, _) => { try { onClick(); } catch { /* safe */ } };
         parent.Children.Add(btn);
     }
 }

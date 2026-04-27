@@ -221,6 +221,15 @@ public partial class ScholarTabView : UserControl
         if (btnDeletePassage != null)
             btnDeletePassage.Click += (_, _) => _vm.DeletePassageCommand.Execute(null);
 
+        // Wire collection creation buttons
+        var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
+        if (btnAddCollection != null)
+            btnAddCollection.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
+
+        var btnCreateFirst = this.FindControl<Button>("BtnCreateFirst");
+        if (btnCreateFirst != null)
+            btnCreateFirst.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
+
         WireViewEvents();
         SetupHoverDictionary();
 
@@ -382,7 +391,51 @@ public partial class ScholarTabView : UserControl
     {
         _vm.SelectedPassage = passage;
         UpdateDetailVisibility();
+        PopulatePassageMetadata();
         RefreshBacklinks();
+    }
+
+    /// <summary>Populates tag and master chip panels from the currently selected passage.</summary>
+    private void PopulatePassageMetadata()
+    {
+        var passage = _vm?.SelectedPassage;
+        if (passage == null) return;
+
+        // Populate tag chips in PnlTags
+        var tagsPanel = this.FindControl<WrapPanel>("PnlTags");
+        if (tagsPanel != null)
+        {
+            tagsPanel.Children.Clear();
+            foreach (var tag in passage.Tags ?? new())
+            {
+                var chip = new Border
+                {
+                    CornerRadius = new CornerRadius(3),
+                    Padding = new Thickness(6, 2),
+                    Background = Brushes.DarkSlateGray,
+                    Child = new TextBlock { Text = tag, FontSize = 10 }
+                };
+                tagsPanel.Children.Add(chip);
+            }
+        }
+
+        // Populate master chips in PnlMasters
+        var mastersPanel = this.FindControl<WrapPanel>("PnlMasters");
+        if (mastersPanel != null)
+        {
+            mastersPanel.Children.Clear();
+            foreach (var master in passage.MasterNames ?? new())
+            {
+                var chip = new Border
+                {
+                    CornerRadius = new CornerRadius(3),
+                    Padding = new Thickness(6, 2),
+                    Background = Brushes.DarkGoldenrod,
+                    Child = new TextBlock { Text = master, FontSize = 10 }
+                };
+                mastersPanel.Children.Add(chip);
+            }
+        }
     }
 
     private void UpdateDetailVisibility()
@@ -441,6 +494,7 @@ public partial class ScholarTabView : UserControl
         RefreshLinksPanel();
         RefreshLinkedTextsPanel();
         UpdateDetailVisibility();
+        PopulatePassageMetadata();
         RefreshBacklinks();
     }
 

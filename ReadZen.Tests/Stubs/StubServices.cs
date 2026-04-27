@@ -305,6 +305,7 @@ public class StubScholarCollectionsService : IScholarCollectionsService
     public Task<List<ScholarCollection>> ImportAsync(string filePath, CancellationToken ct = default) => Task.FromResult(new List<ScholarCollection>());
     public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
     public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>(CommunityData));
+    public Task WriteIndexJsonAsync(string communityCollectionsDir, CancellationToken ct = default) => Task.CompletedTask;
     public Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default)
     {
         if (ThrowOnLoad) throw new InvalidOperationException("Load failed");

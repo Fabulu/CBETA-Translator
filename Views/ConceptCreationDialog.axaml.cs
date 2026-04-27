@@ -36,6 +36,12 @@ public partial class ConceptCreationDialog : Window
         BuildSwatches();
         WireButtons();
         KeyDown += OnKeyDown;
+
+        Opened += (_, _) =>
+        {
+            var txtName = this.FindControl<TextBox>("TxtName");
+            txtName?.Focus();
+        };
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -99,6 +105,11 @@ public partial class ConceptCreationDialog : Window
         {
             Result = null;
             Close(null as object);
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Return || e.Key == Key.Enter)
+        {
+            TryConfirm();
             e.Handled = true;
         }
     }

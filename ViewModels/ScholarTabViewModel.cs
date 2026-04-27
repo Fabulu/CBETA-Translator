@@ -54,7 +54,18 @@ public partial class ScholarTabViewModel : ViewModelBase
     public static string[] SortModes { get; } =
         { "Default", "A-Z (Chinese)", "Chronological" };
 
-    
+    /// <summary>Index-based accessor for SortMode, suitable for ComboBox.SelectedIndex binding.</summary>
+    public int SortModeIndex
+    {
+        get => Array.IndexOf(SortModes, SortMode) is var i && i >= 0 ? i : 0;
+        set
+        {
+            if (value >= 0 && value < SortModes.Length)
+                SortMode = SortModes[value];
+        }
+    }
+
+
     [ObservableProperty]
     private ScholarCollection? _selectedCollection;
 
@@ -376,6 +387,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         Collections.Add(c);
         SelectedCollection = c;
         IsEmptyState = false;
+        RebuildTree();
         await SaveAsync();
     }
 
@@ -938,6 +950,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     partial void OnSortModeChanged(string value)
     {
+        OnPropertyChanged(nameof(SortModeIndex));
         RefreshPassagesList();
     }
 
