@@ -845,7 +845,7 @@ public class ScholarTabViewModelTests
         var vm = new ScholarTabViewModel(trackingSvc)
         {
             PickExportFileAsync = (_, _) => Task.FromResult<string?>("/tmp/should-not-export.json"),
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(null)
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(null)
         };
 
         await vm.ExportCollectionsCommand.ExecuteAsync(null);
@@ -860,7 +860,7 @@ public class ScholarTabViewModelTests
         var trackingSvc = new TrackingScholarCollectionsService();
         var vm = new ScholarTabViewModel(trackingSvc)
         {
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.Html)
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(new ExportDialogResult(ScholarExportFormat.Html, CitationStyle.Chicago))
         };
 
         var pickerCalled = false;
@@ -882,7 +882,7 @@ public class ScholarTabViewModelTests
         var trackingSvc = new TrackingScholarCollectionsService();
         var vm = new ScholarTabViewModel(trackingSvc)
         {
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.Json),
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(new ExportDialogResult(ScholarExportFormat.Json, CitationStyle.Chicago)),
             PickExportFileAsync = (format, name) =>
             {
                 Assert.Equal(ScholarExportFormat.Json, format);
@@ -906,7 +906,7 @@ public class ScholarTabViewModelTests
         var trackingSvc = new TrackingScholarCollectionsService();
         var vm = new ScholarTabViewModel(trackingSvc)
         {
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.ReaderTagBundle),
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(new ExportDialogResult(ScholarExportFormat.ReaderTagBundle, CitationStyle.Chicago)),
             PickExportFileAsync = (format, name) =>
             {
                 Assert.Equal(ScholarExportFormat.ReaderTagBundle, format);
@@ -928,7 +928,7 @@ public class ScholarTabViewModelTests
         var trackingSvc = new TrackingScholarCollectionsService();
         var vm = new ScholarTabViewModel(trackingSvc)
         {
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.ReaderTagTsv),
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(new ExportDialogResult(ScholarExportFormat.ReaderTagTsv, CitationStyle.Chicago)),
             PickExportFileAsync = (format, name) =>
             {
                 Assert.Equal(ScholarExportFormat.ReaderTagTsv, format);
@@ -949,7 +949,7 @@ public class ScholarTabViewModelTests
         var trackingSvc = new TrackingScholarCollectionsService();
         var vm = new ScholarTabViewModel(trackingSvc)
         {
-            PickExportFormatAsync = () => Task.FromResult<ScholarExportFormat?>(ScholarExportFormat.PaperDraft),
+            PickExportFormatAsync = () => Task.FromResult<ExportDialogResult?>(new ExportDialogResult(ScholarExportFormat.PaperDraft, CitationStyle.Chicago)),
             PickExportFileAsync = (format, name) =>
             {
                 Assert.Equal(ScholarExportFormat.PaperDraft, format);
@@ -2498,6 +2498,7 @@ internal class TrackingScholarCollectionsService : IScholarCollectionsService
         => Task.FromResult(new List<ScholarCollection>(ImportResult));
     public Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default) => Task.CompletedTask;
     public Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default) => Task.FromResult(new Dictionary<string, List<ScholarCollection>>());
+    public Task WriteIndexJsonAsync(string communityCollectionsDir, CancellationToken ct = default) => Task.CompletedTask;
     public Task<List<ScholarCollection>> LoadUserAsync(string root, string username, CancellationToken ct = default)
         => Task.FromResult(new List<ScholarCollection>());
     public Task SaveUserAsync(string root, string username, List<ScholarCollection> collections, CancellationToken ct = default)

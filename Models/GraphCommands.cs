@@ -83,9 +83,35 @@ public sealed class RemoveNodeCommand : IGraphCommand
     {
         // Restore node
         _vm.Nodes.Add(_savedNode);
-        // Restore edges
+        _vm.RestoreNodeToMap(_savedNode);
+
+        // Restore edges without duplicating in _collection.Edges
         foreach (var edge in _savedEdges)
-            _vm.AddEdge(edge);
+        {
+            // Only add to collection if not already present (AddEdge always adds)
+            if (!_vm.GetCollection().Edges.Any(e => e.Id == edge.Id))
+                _vm.GetCollection().Edges.Add(edge);
+
+            // Build the VM edge
+            var fromNode = _vm.Nodes.FirstOrDefault(n => n.NodeId == edge.FromNodeId);
+            var toNode = _vm.Nodes.FirstOrDefault(n => n.NodeId == edge.ToNodeId);
+            if (fromNode != null && toNode != null)
+            {
+                var edgeDef = EdgeTypeRegistry.GetById(edge.RelationType);
+                _vm.Edges.Add(new ResearchGraphEdgeVm
+                {
+                    EdgeId = edge.Id,
+                    From = fromNode,
+                    To = toNode,
+                    RelationType = edge.RelationType,
+                    Label = edgeDef?.DisplayName ?? edge.RelationType,
+                    IsDirectional = edgeDef?.IsDirectional ?? true,
+                    ColorHex = edgeDef?.ColorHex ?? "#9E9E9E"
+                });
+                fromNode.Degree++;
+                toNode.Degree++;
+            }
+        }
     }
 }
 

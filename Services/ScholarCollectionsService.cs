@@ -72,7 +72,6 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         foreach (var c in collections)
         {
             MigrateToV2(c);
-            c.Links.Clear(); // V2 uses Edges exclusively
         }
 
         var json = JsonSerializer.Serialize(collections, WriteOpts);
@@ -139,7 +138,6 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         foreach (var c in collections)
         {
             MigrateToV2(c);
-            c.Links.Clear(); // V2 uses Edges exclusively
         }
 
         var sb = new StringBuilder();
@@ -248,7 +246,6 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         foreach (var c in collections)
         {
             MigrateToV2(c);
-            c.Links.Clear(); // V2 uses Edges exclusively
         }
 
         var sb = new StringBuilder();
@@ -285,8 +282,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
             if (string.IsNullOrEmpty(link.FromPassageId) || string.IsNullOrEmpty(link.ToPassageId))
                 continue;
 
-            // Skip if already migrated
-            if (collection.Edges.Any(e => e.Id == link.Id)) continue;
+            // Skip if already migrated (dedup by content, not Id — empty Ids match everything)
+            var relType = link.RelationType ?? "parallels";
+            if (collection.Edges.Any(e =>
+                e.FromNodeId == link.FromPassageId &&
+                e.ToNodeId == link.ToPassageId &&
+                e.RelationType == relType)) continue;
 
             collection.Edges.Add(new ScholarGraphEdge
             {

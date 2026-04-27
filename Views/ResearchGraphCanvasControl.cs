@@ -28,6 +28,11 @@ public class ResearchGraphCanvasControl : Control
     private ResearchGraphNode? _edgeSource;
     private Point _edgePreviewEnd;
 
+    // Cached pens for node rendering
+    private static readonly IPen DefaultNodePen = new Pen(Brushes.White, 1.5);
+    private static readonly IPen SelectedNodePen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 3);
+    private static readonly Dictionary<string, IBrush> _edgeBrushCache = new();
+
     // Node type colors
     private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
     {
@@ -39,7 +44,7 @@ public class ResearchGraphCanvasControl : Control
     };
 
     private static readonly IBrush SelectedBrush = new SolidColorBrush(Color.Parse("#FFD700"));
-    private static readonly IBrush DimmedBrush = new SolidColorBrush(Color.FromArgb(60, 255, 255, 255));
+    private static readonly IBrush DimmedBrush = new SolidColorBrush(Color.FromArgb(90, 130, 130, 130));
     private static readonly IPen EdgePen = new Pen(new SolidColorBrush(Color.FromArgb(150, 150, 150, 150)), 1.5);
     private static readonly IPen HandlePen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2);
     private static readonly IPen PreviewPen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2) { DashStyle = DashStyle.Dash };
@@ -101,7 +106,7 @@ public class ResearchGraphCanvasControl : Control
         double r = GetNodeRadius(node);
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
-        var pen = node.IsSelected ? new Pen(SelectedBrush, 3) : new Pen(Brushes.White, 1.5);
+        var pen = node.IsSelected ? SelectedNodePen : DefaultNodePen;
 
         switch (node.NodeType)
         {
@@ -123,7 +128,7 @@ public class ResearchGraphCanvasControl : Control
         // Label (only at sufficient zoom)
         if (_zoom >= 0.5)
         {
-            var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
+            var labelSize = Math.Max(10, 13 * _zoom);
             var ft = new FormattedText(
                 node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label,
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
@@ -153,7 +158,7 @@ public class ResearchGraphCanvasControl : Control
         {
             for (int i = 0; i < 6; i++)
             {
-                double angle = Math.PI / 3 * i - Math.PI / 6;
+                double angle = Math.PI / 3 * i;
                 var pt = new Point(center.X + size * Math.Cos(angle), center.Y + size * Math.Sin(angle));
                 if (i == 0) gc.BeginFigure(pt, true);
                 else gc.LineTo(pt);
@@ -167,19 +172,24 @@ public class ResearchGraphCanvasControl : Control
     {
         var from = new Point(edge.From.X, edge.From.Y);
         var to = new Point(edge.To.X, edge.To.Y);
-        Color edgeColor;
-        try { edgeColor = Color.Parse(edge.ColorHex ?? "#9E9E9E"); }
-        catch { edgeColor = Color.Parse("#9E9E9E"); }
-        var brush = new SolidColorBrush(edgeColor);
+        double dx = to.X - from.X, dy = to.Y - from.Y;
+        double len = Math.Sqrt(dx * dx + dy * dy);
+        if (len < 1) return; // Skip degenerate edges
+
+        var hex = edge.ColorHex ?? "#9E9E9E";
+        if (!_edgeBrushCache.TryGetValue(hex, out var brush))
+        {
+            Color c;
+            try { c = Color.Parse(hex); } catch { c = Color.Parse("#9E9E9E"); }
+            brush = new SolidColorBrush(c);
+            _edgeBrushCache[hex] = brush;
+        }
         var pen = new Pen(brush, 1.5);
         ctx.DrawLine(pen, from, to);
 
         // Arrowhead for directional edges
         if (edge.IsDirectional)
         {
-            double dx = to.X - from.X, dy = to.Y - from.Y;
-            double len = Math.Sqrt(dx * dx + dy * dy);
-            if (len < 1) return;
             double nx = dx / len, ny = dy / len;
             double targetR = GetNodeRadius(edge.To);
             var tip = new Point(to.X - nx * targetR, to.Y - ny * targetR);
@@ -217,13 +227,14 @@ public class ResearchGraphCanvasControl : Control
 
     private double GetNodeRadius(ResearchGraphNode node)
     {
+        var degree = Math.Max(0, node.Degree);
         return node.NodeType switch
         {
-            ScholarNodeType.Passage => 10 + Math.Min(node.Degree * 2, 12),
-            ScholarNodeType.Concept => 12 + Math.Min(node.Degree * 2, 14),
-            ScholarNodeType.ZenMaster => 14 + Math.Min(node.Degree * 1.5, 10),
-            ScholarNodeType.TermbaseEntry => 12 + Math.Min(node.Degree * 1.5, 10),
-            ScholarNodeType.Collection => 14 + Math.Min(node.Degree * 2, 12),
+            ScholarNodeType.Passage => 10 + Math.Min(degree * 2, 18),
+            ScholarNodeType.Concept => 12 + Math.Min(degree * 2, 20),
+            ScholarNodeType.ZenMaster => 14 + Math.Min(degree * 1.5, 14),
+            ScholarNodeType.TermbaseEntry => 12 + Math.Min(degree * 1.5, 14),
+            ScholarNodeType.Collection => 14 + Math.Min(degree * 2, 18),
             _ => 12
         };
     }

@@ -18,6 +18,7 @@ public sealed class ConceptNode
     public string Description { get; set; } = "";
     public string ColorHex { get; set; } = "#FF8A65";
     public List<string> Tags { get; set; } = new();
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public ConceptStatus Status { get; set; } = ConceptStatus.Active;
     public string? MergedIntoConceptId { get; set; }
     public string? CreatedBy { get; set; }

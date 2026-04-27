@@ -15,8 +15,10 @@
         <Button DockPanel.Dock="Left" Name="BtnToggleTree" Content="&#x2630;" ToolTip.Tip="Toggle tree panel" Padding="6,4" Margin="0,0,8,0"/>
         <ComboBox DockPanel.Dock="Left" Name="CmbCollections" MinWidth="180" Margin="0,0,8,0"
                   ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}"/>
-        <TextBox DockPanel.Dock="Left" Name="TxtFilter" Watermark="Filter passages..." Width="160" Margin="0,0,8,0"/>
-        <ComboBox DockPanel.Dock="Left" Name="CmbSort" Width="100" Margin="0,0,8,0"/>
+        <TextBox DockPanel.Dock="Left" Name="TxtFilter" Watermark="Filter passages..." Width="160" Margin="0,0,8,0"
+                 Text="{Binding SearchFilter, Mode=TwoWay}"/>
+        <ComboBox DockPanel.Dock="Left" Name="CmbSort" Width="100" Margin="0,0,8,0"
+                  ItemsSource="{Binding SortModes}" SelectedIndex="{Binding SortModeIndex}"/>
 
         <!-- RIGHT side -->
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" ToolTip.Tip="More tools" Padding="8,4"/>
