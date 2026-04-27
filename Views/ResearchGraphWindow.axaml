@@ -13,7 +13,13 @@
             BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
       <DockPanel LastChildFill="False">
         <!-- Left: Collection + Add nodes -->
-        <ComboBox DockPanel.Dock="Left" Name="CmbCollection" MinWidth="200" Margin="0,0,12,0"/>
+        <ComboBox DockPanel.Dock="Left" Name="CmbCollection" MinWidth="200" Margin="0,0,12,0">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
         <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddMaster" Content="+ Master" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>

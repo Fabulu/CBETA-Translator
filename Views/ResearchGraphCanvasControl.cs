@@ -406,4 +406,38 @@ public class ResearchGraphCanvasControl : Control
         _edgeSource = source;
         _edgePreviewEnd = new Point(source.X, source.Y);
     }
+
+    /// <summary>
+    /// Adjusts zoom and pan so that all visible nodes fit within the viewport with padding.
+    /// </summary>
+    public void FitToView()
+    {
+        if (_vm == null || _vm.Nodes.Count == 0) return;
+
+        var visible = _vm.GetVisibleNodes();
+        if (visible.Count == 0) return;
+
+        double minX = visible.Min(n => n.X);
+        double maxX = visible.Max(n => n.X);
+        double minY = visible.Min(n => n.Y);
+        double maxY = visible.Max(n => n.Y);
+
+        double graphWidth = maxX - minX + 80;  // padding
+        double graphHeight = maxY - minY + 80;
+
+        double viewWidth = Bounds.Width > 0 ? Bounds.Width : 800;
+        double viewHeight = Bounds.Height > 0 ? Bounds.Height : 600;
+
+        double scaleX = viewWidth / graphWidth;
+        double scaleY = viewHeight / graphHeight;
+        _zoom = Math.Min(scaleX, scaleY);
+        _zoom = Math.Clamp(_zoom, 0.1, 5.0);
+
+        double cx = (minX + maxX) / 2.0;
+        double cy = (minY + maxY) / 2.0;
+        _offsetX = viewWidth / 2.0 - cx * _zoom;
+        _offsetY = viewHeight / 2.0 - cy * _zoom;
+
+        InvalidateVisual();
+    }
 }
