@@ -133,13 +133,20 @@ public partial class MainWindow : Window
     {
         IsSecondaryWindow = isSecondaryWindow;
 
+        StartupLog("MainWindow ctor: InitializeComponent...");
         InitializeComponent();
+        StartupLog("MainWindow ctor: FindControls...");
         FindControls();
+        StartupLog("MainWindow ctor: CreateViewModel...");
         CreateViewModel();
         if (isSecondaryWindow) _vm.SuppressConfigSavesForSecondaryWindow();
+        StartupLog("MainWindow ctor: WireBridges...");
         WireBridges();
+        StartupLog("MainWindow ctor: WireEvents...");
         WireEvents();
+        StartupLog("MainWindow ctor: WireChildViewEvents...");
         WireChildViewEvents();
+        StartupLog("MainWindow ctor: DONE, starting async load...");
 
         _vm.SetStatus("Ready.");
         _vm.UpdateSaveButtonState();
@@ -451,13 +458,30 @@ private async Task HandleTagsDeepLinkAsync(string? relPath, string? user, string
     _vm.SetStatus($"Tags: opened {relPath}" + (suffix.Count > 0 ? $" ({string.Join(", ", suffix)})" : ""), StatusSeverity.Info);
 }
 
+private static void StartupLog(string msg)
+    {
+        try
+        {
+            var path = System.IO.Path.Combine(AppContext.BaseDirectory, "startup-diag.log");
+            System.IO.File.AppendAllText(path, $"[{DateTime.Now:HH:mm:ss.fff}] {msg}\n");
+        }
+        catch { }
+    }
+
 private async Task LoadConfigAndAutoloadAsync()
     {
         try
         {
+            StartupLog("LoadConfigAndAutoloadAsync START");
             await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
+            StartupLog("Config loaded, restoring window state...");
             RestoreWindowState();
             MaybeStartTour();
+            StartupLog("LoadConfigAndAutoloadAsync DONE");
+        }
+        catch (Exception ex)
+        {
+            StartupLog($"LoadConfigAndAutoloadAsync CRASHED: {ex}");
         }
         finally
         {
@@ -469,6 +493,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 App.SplashScreen = null;
                 splash.Close();
             }
+            StartupLog("Splash closed, window ready");
         }
     }
 

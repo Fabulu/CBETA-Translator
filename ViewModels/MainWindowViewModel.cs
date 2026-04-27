@@ -520,13 +520,25 @@ public partial class MainWindowViewModel : ViewModelBase
     // Root + config
     // ===========================================================
 
+    private static void SLog(string msg)
+    {
+        try
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "startup-diag.log");
+            File.AppendAllText(path, $"[{DateTime.Now:HH:mm:ss.fff}] [VM] {msg}\n");
+        }
+        catch { }
+    }
+
     public async Task LoadConfigApplyThemeAndMaybeAutoloadAsync(bool isSecondaryWindow)
     {
         try
         {
+            SLog("LoadConfig START — loading config.json...");
             try { _config = await _configService.TryLoadAsync() ?? new AppConfig { IsDarkTheme = true }; }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Config load failed: {ex.Message}"); _config = new AppConfig { IsDarkTheme = true }; }
 
+            SLog($"Config loaded. TextRootPath={_config.TextRootPath}");
             ApplyTheme?.Invoke(_config.IsDarkTheme);
             ApplySettingsToChildViews();
 
@@ -534,6 +546,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (!string.IsNullOrWhiteSpace(_config.TextRootPath) && Directory.Exists(_config.TextRootPath))
             {
+                SLog("TextRootPath exists, checking migration...");
                 // Check for legacy single-repo layout needing migration
                 var configPath = _config.TextRootPath!;
                 if (LegacyRepoMigration.IsLegacySingleRepoLayout(configPath))
@@ -590,7 +603,9 @@ public partial class MainWindowViewModel : ViewModelBase
                 }
 
                 SetStatus("Auto-loading last root...");
+                SLog("About to LoadRootAsync...");
                 await LoadRootAsync(_config.TextRootPath!, saveToConfig: false);
+                SLog("LoadRootAsync DONE");
 
                 if (!_config.HasCompletedOnboarding && _root != null)
                 {
@@ -605,10 +620,12 @@ public partial class MainWindowViewModel : ViewModelBase
                 if (!hasDeepLink && !string.IsNullOrWhiteSpace(_config.LastSelectedRelPath))
                 {
                     var rel = NormalizeRel(_config.LastSelectedRelPath);
+                    SLog($"About to LoadPairAsync({rel})...");
                     _suppressNavSelection = true;
                     SelectInNav(rel);
                     _suppressNavSelection = false;
                     await LoadPairAsync(rel);
+                    SLog("LoadPairAsync DONE");
                 }
             }
         }
