@@ -34,10 +34,18 @@ public sealed class ScholarPassage
     // Linked texts: RelPaths of text files this passage appears in
     public List<string> LinkedTexts { get; set; } = new();
 
+    // Scholar Tab Phase 4 fields
+    public string? Summary { get; set; }
+    public string? ReadingStatus { get; set; }
+    public int? SortIndex { get; set; }
+    public int? Importance { get; set; }
+    public string? AnnotationType { get; set; }
+
     // Display helpers (not serialized)
     [JsonIgnore]
     public string DisplayTitle =>
-        !string.IsNullOrWhiteSpace(ZhText) ? ZhText
+        !string.IsNullOrWhiteSpace(Summary) ? Summary
+        : !string.IsNullOrWhiteSpace(ZhText) ? ZhText
         : !string.IsNullOrWhiteSpace(EnText) ? EnText
         : !string.IsNullOrWhiteSpace(SourceRelPath) ? Path.GetFileNameWithoutExtension(SourceRelPath)
         : "(untitled passage)";
