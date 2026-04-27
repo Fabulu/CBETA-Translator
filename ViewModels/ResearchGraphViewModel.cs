@@ -215,6 +215,8 @@ public class ResearchGraphViewModel
             }
         }
 
+        // No saved positions — run force-directed layout
+        if (Nodes.Count > 1) RunForceDirectedLayout(800, 600);
         ComputeStats();
     }
 
@@ -304,18 +306,21 @@ public class ResearchGraphViewModel
     public void AddConcept(ConceptNode concept)
     {
         _collection.Concepts.Add(concept);
+        // Place near centroid of existing nodes (or center if graph is empty)
+        double cx = Nodes.Count > 0 ? Nodes.Average(n => n.X) : 400;
+        double cy = Nodes.Count > 0 ? Nodes.Average(n => n.Y) : 300;
         var node = new ResearchGraphNode
         {
             NodeId = concept.Id,
             NodeType = ScholarNodeType.Concept,
             Label = concept.DisplayTitle,
             ColorHex = concept.ColorHex ?? "#FF8A65",
-            X = 400,  // Will be repositioned by layout
-            Y = 300
+            X = cx + 30,  // Slight offset from centroid to avoid overlap
+            Y = cy + 30
         };
         Nodes.Add(node);
         _nodeMap[concept.Id] = node;
-        RunForceDirectedLayout(800, 600);
+        // Don't re-layout entire graph — preserve user's arrangement
         ComputeStats();
     }
 
