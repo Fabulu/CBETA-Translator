@@ -44,8 +44,11 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
             if (string.IsNullOrWhiteSpace(json))
                 return new List<ScholarCollection>();
 
-            return JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
+            var collections = JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
                    ?? new List<ScholarCollection>();
+            foreach (var c in collections)
+                MigrateToV2(c);
+            return collections;
         }
         catch (OperationCanceledException) { throw; }
         catch
@@ -65,6 +68,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
 
         var path = GetPath(root);
         Directory.CreateDirectory(root);
+
+        foreach (var c in collections)
+        {
+            MigrateToV2(c);
+            c.Links.Clear(); // V2 uses Edges exclusively
+        }
 
         var json = JsonSerializer.Serialize(collections, WriteOpts);
         var tmpPath = path + ".tmp";
@@ -102,8 +111,11 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         if (string.IsNullOrWhiteSpace(json))
             return new List<ScholarCollection>();
 
-        return JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
+        var imported = JsonSerializer.Deserialize<List<ScholarCollection>>(json, ReadOpts)
                ?? new List<ScholarCollection>();
+        foreach (var c in imported)
+            MigrateToV2(c);
+        return imported;
     }
 
     public async Task WriteUserJsonlAsync(string communityDir, string username, List<ScholarCollection> collections, CancellationToken ct = default)
@@ -124,6 +136,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         var fullDir = Path.GetFullPath(communityDir);
         if (!fullPath.StartsWith(fullDir, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Username produces a path outside the community directory.", nameof(username));
+        foreach (var c in collections)
+        {
+            MigrateToV2(c);
+            c.Links.Clear(); // V2 uses Edges exclusively
+        }
+
         var sb = new StringBuilder();
 
         foreach (var c in collections)
@@ -134,34 +152,6 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
         File.Move(tmpPath, path, overwrite: true);
-
-        // Update community INDEX.json
-        var collectionsDir = Path.GetDirectoryName(path);
-        if (collectionsDir != null)
-            await WriteIndexJsonAsync(collectionsDir, ct);
-    }
-
-    public async Task WriteIndexJsonAsync(string communityCollectionsDir, CancellationToken ct = default)
-    {
-        if (!Directory.Exists(communityCollectionsDir)) return;
-
-        var users = new List<object>();
-        foreach (var file in Directory.GetFiles(communityCollectionsDir, "*.jsonl"))
-        {
-            var username = Path.GetFileNameWithoutExtension(file);
-            var lines = await File.ReadAllLinesAsync(file, ct);
-            var collectionCount = lines.Count(l => !string.IsNullOrWhiteSpace(l));
-            var lastUpdated = File.GetLastWriteTimeUtc(file);
-            users.Add(new { name = username, collections = collectionCount, lastUpdated = lastUpdated.ToString("o") });
-        }
-
-        var index = new { users };
-        var json = JsonSerializer.Serialize(index, CompactOpts);
-
-        var indexPath = Path.Combine(Path.GetDirectoryName(communityCollectionsDir)!, "INDEX.json");
-        var tmpPath = indexPath + ".tmp";
-        await File.WriteAllTextAsync(tmpPath, json, ct);
-        File.Move(tmpPath, indexPath, overwrite: true);
     }
 
     public async Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
@@ -187,7 +177,10 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
                 {
                     var c = JsonSerializer.Deserialize<ScholarCollection>(line, ReadOpts);
                     if (c != null)
+                    {
+                        MigrateToV2(c);
                         collections.Add(c);
+                    }
                 }
                 catch
                 {
@@ -224,7 +217,11 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
                 try
                 {
                     var c = JsonSerializer.Deserialize<ScholarCollection>(line, ReadOpts);
-                    if (c != null) collections.Add(c);
+                    if (c != null)
+                    {
+                        MigrateToV2(c);
+                        collections.Add(c);
+                    }
                 }
                 catch { }
             }
@@ -247,6 +244,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         var dir = GetCommunityCollectionsDir(root);
         Directory.CreateDirectory(dir);
         var path = GetUserPath(root, username);
+
+        foreach (var c in collections)
+        {
+            MigrateToV2(c);
+            c.Links.Clear(); // V2 uses Edges exclusively
+        }
 
         var sb = new StringBuilder();
         foreach (var c in collections)
@@ -272,8 +275,58 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         return sb.Length > 0 ? sb.ToString() : "unknown";
     }
 
+    private static void MigrateToV2(ScholarCollection collection)
+    {
+        if (collection.SchemaVersion >= 2) return;
+
+        // Convert old PassageLinks to new ScholarGraphEdges
+        foreach (var link in collection.Links)
+        {
+            // Skip if already migrated
+            if (collection.Edges.Any(e => e.Id == link.Id)) continue;
+
+            collection.Edges.Add(new ScholarGraphEdge
+            {
+                Id = link.Id,
+                FromNodeId = link.FromPassageId,
+                FromNodeType = ScholarNodeType.Passage,
+                ToNodeId = link.ToPassageId,
+                ToNodeType = ScholarNodeType.Passage,
+                RelationType = link.RelationType ?? "parallels",
+                Note = link.Note,
+                CreatedUtc = link.CreatedUtc,
+                Weight = 1.0
+            });
+        }
+
+        collection.SchemaVersion = 2;
+    }
+
     public static string GetPath(string root)
     {
         return Path.Combine(root, "scholar-collections.json");
+    }
+
+    public async Task WriteIndexJsonAsync(string communityCollectionsDir, CancellationToken ct = default)
+    {
+        if (!Directory.Exists(communityCollectionsDir)) return;
+
+        var users = new List<object>();
+        foreach (var file in Directory.GetFiles(communityCollectionsDir, "*.jsonl"))
+        {
+            var username = Path.GetFileNameWithoutExtension(file);
+            var lines = await File.ReadAllLinesAsync(file, ct);
+            var collectionCount = lines.Count(l => !string.IsNullOrWhiteSpace(l));
+            var lastUpdated = File.GetLastWriteTimeUtc(file);
+            users.Add(new { name = username, collections = collectionCount, lastUpdated = lastUpdated.ToString("o") });
+        }
+
+        var index = new { users };
+        var json = JsonSerializer.Serialize(index, CompactOpts);
+
+        var indexPath = Path.Combine(Path.GetDirectoryName(communityCollectionsDir)!, "INDEX.json");
+        var tmpPath = indexPath + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, ct);
+        File.Move(tmpPath, indexPath, overwrite: true);
     }
 }

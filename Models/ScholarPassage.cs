@@ -34,18 +34,10 @@ public sealed class ScholarPassage
     // Linked texts: RelPaths of text files this passage appears in
     public List<string> LinkedTexts { get; set; } = new();
 
-    // Scholar Tab redesign fields (Phase 4)
-    public string? Summary { get; set; }
-    public string? ReadingStatus { get; set; }
-    public int? SortIndex { get; set; }
-    public int? Importance { get; set; }
-    public string? AnnotationType { get; set; }
-
     // Display helpers (not serialized)
     [JsonIgnore]
     public string DisplayTitle =>
-        !string.IsNullOrWhiteSpace(Summary) ? Summary
-        : !string.IsNullOrWhiteSpace(ZhText) ? ZhText
+        !string.IsNullOrWhiteSpace(ZhText) ? ZhText
         : !string.IsNullOrWhiteSpace(EnText) ? EnText
         : !string.IsNullOrWhiteSpace(SourceRelPath) ? Path.GetFileNameWithoutExtension(SourceRelPath)
         : "(untitled passage)";
@@ -64,15 +56,6 @@ public sealed class ScholarPassage
     public bool HasLinkedTexts => LinkedTexts.Count > 0;
 
     [JsonIgnore]
-    public string ZhSnippet => ZhText?.Length > 20 ? ZhText[..20] + "\u2026" : ZhText ?? "";
-
-    [JsonIgnore]
-    public string AutoSummary =>
-        !string.IsNullOrWhiteSpace(Summary) ? Summary
-        : (!string.IsNullOrWhiteSpace(ZhText) ? (ZhText.Length > 30 ? ZhText[..30] : ZhText) : "")
-          + (!string.IsNullOrWhiteSpace(EnText) ? " \u2014 " + (EnText.Contains('.') ? EnText[..EnText.IndexOf('.')] : EnText.Length > 40 ? EnText[..40] + "\u2026" : EnText) : "");
-
-    [JsonIgnore]
     public bool IsSelectedForCompare { get; set; }
 }
 
@@ -87,6 +70,15 @@ public sealed class ScholarCollection
     public string? CreatedBy { get; set; }
     public List<ScholarPassage> Passages { get; set; } = new();
     public List<PassageLink> Links { get; set; } = new();
+
+    // Research Graph schema v2
+    public int SchemaVersion { get; set; } = 1;
+    public List<ConceptNode> Concepts { get; set; } = new();
+    public List<ScholarGraphEdge> Edges { get; set; } = new();
+    public List<EdgeTypeDefinition> CustomEdgeTypes { get; set; } = new();
+    public List<CollectionRefNode> CollectionRefs { get; set; } = new();
+    public EdgeTypePreferences EdgePreferences { get; set; } = new();
+
     public string StudyNotes { get; set; } = "";
     public ScholarGraphLayout GraphLayout { get; set; } = new();
 }
@@ -104,3 +96,4 @@ public sealed class GraphNodeLayout
     public double X { get; set; }
     public double Y { get; set; }
 }
+
