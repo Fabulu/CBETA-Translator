@@ -2,6 +2,7 @@ using ReadZen.App.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -133,6 +134,34 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
         File.Move(tmpPath, path, overwrite: true);
+
+        // Update community INDEX.json
+        var collectionsDir = Path.GetDirectoryName(path);
+        if (collectionsDir != null)
+            await WriteIndexJsonAsync(collectionsDir, ct);
+    }
+
+    public async Task WriteIndexJsonAsync(string communityCollectionsDir, CancellationToken ct = default)
+    {
+        if (!Directory.Exists(communityCollectionsDir)) return;
+
+        var users = new List<object>();
+        foreach (var file in Directory.GetFiles(communityCollectionsDir, "*.jsonl"))
+        {
+            var username = Path.GetFileNameWithoutExtension(file);
+            var lines = await File.ReadAllLinesAsync(file, ct);
+            var collectionCount = lines.Count(l => !string.IsNullOrWhiteSpace(l));
+            var lastUpdated = File.GetLastWriteTimeUtc(file);
+            users.Add(new { name = username, collections = collectionCount, lastUpdated = lastUpdated.ToString("o") });
+        }
+
+        var index = new { users };
+        var json = JsonSerializer.Serialize(index, CompactOpts);
+
+        var indexPath = Path.Combine(Path.GetDirectoryName(communityCollectionsDir)!, "INDEX.json");
+        var tmpPath = indexPath + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, ct);
+        File.Move(tmpPath, indexPath, overwrite: true);
     }
 
     public async Task<Dictionary<string, List<ScholarCollection>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
