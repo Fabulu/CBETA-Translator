@@ -192,6 +192,39 @@ public partial class ScholarTabView : UserControl
             btnGraphFullScreen.Click += (_, _) => RefreshGraph(true);
         }
 
+        // Open Research Graph in separate window
+        var btnOpenGraphWindow = this.FindControl<Button>("BtnOpenGraphWindow");
+        if (btnOpenGraphWindow != null)
+        {
+            btnOpenGraphWindow.Click += async (_, _) =>
+            {
+                if (_vm.SelectedCollection == null) return;
+
+                // Load termbase data for the picker dialog
+                List<TermDisplayItem>? termData = null;
+                try
+                {
+                    var termService = App.Services.GetRequiredService<ITermbaseService>();
+                    var root = _vm.GetRoot();
+                    if (!string.IsNullOrEmpty(root))
+                    {
+                        var hits = await termService.GetAllTermsAsync(root);
+                        termData = hits.Select(h => new TermDisplayItem
+                        {
+                            SourceTerm = h.SourceTerm,
+                            PreferredTarget = h.PreferredTarget,
+                            AlternateTargets = h.AlternateTargets ?? new()
+                        }).ToList();
+                    }
+                }
+                catch { /* term data is optional — graph works without it */ }
+
+                var graphWindow = new ResearchGraphWindow(
+                    _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+                graphWindow.Show();
+            };
+        }
+
         // Summary/Notes field autosave on lost focus
         var txtSummary = this.FindControl<TextBox>("TxtSummary");
         if (txtSummary != null)

@@ -19,4 +19,7 @@ public interface ITermbaseService
 
     /// <summary>Pre-loads termbase files into cache so the first assistant lookup is instant.</summary>
     Task WarmupCacheAsync(string root, CancellationToken ct = default);
+
+    /// <summary>Returns all terms from the termbase as display items for picker dialogs.</summary>
+    Task<List<TermHit>> GetAllTermsAsync(string? root, CancellationToken ct = default);
 }

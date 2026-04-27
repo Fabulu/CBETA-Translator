@@ -195,6 +195,7 @@
         <DockPanel Grid.Row="0" Margin="8,4">
           <TextBlock Text="Graph" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center"/>
           <Button DockPanel.Dock="Right" Name="BtnCloseDrawer" Content="&#x2715;" Padding="6,2"/>
+          <Button DockPanel.Dock="Right" Name="BtnOpenGraphWindow" Content="Open in Window" ToolTip.Tip="Open Research Graph in separate window" Padding="6,2" Margin="0,0,4,0"/>
           <Button DockPanel.Dock="Right" Name="BtnGraphFullScreen" Content="&#x26F6;" ToolTip.Tip="Full screen" Padding="6,2" Margin="0,0,4,0"/>
           <Button DockPanel.Dock="Right" Name="BtnGraphRelayout" Content="Rearrange" Padding="6,2" Margin="0,0,4,0"/>
           <!-- Color mode dropdown -->
