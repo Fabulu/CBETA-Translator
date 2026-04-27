@@ -28,11 +28,6 @@ public class ResearchGraphCanvasControl : Control
     private ResearchGraphNode? _edgeSource;
     private Point _edgePreviewEnd;
 
-    // Cached pens for node rendering
-    private static readonly IPen DefaultNodePen = new Pen(Brushes.White, 1.5);
-    private static readonly IPen SelectedNodePen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 3);
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, IBrush> _edgeBrushCache = new();
-
     // Node type colors
     private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
     {
@@ -44,7 +39,7 @@ public class ResearchGraphCanvasControl : Control
     };
 
     private static readonly IBrush SelectedBrush = new SolidColorBrush(Color.Parse("#FFD700"));
-    private static readonly IBrush DimmedBrush = new SolidColorBrush(Color.FromArgb(90, 130, 130, 130));
+    private static readonly IBrush DimmedBrush = new SolidColorBrush(Color.FromArgb(60, 255, 255, 255));
     private static readonly IPen EdgePen = new Pen(new SolidColorBrush(Color.FromArgb(150, 150, 150, 150)), 1.5);
     private static readonly IPen HandlePen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2);
     private static readonly IPen PreviewPen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2) { DashStyle = DashStyle.Dash };
@@ -52,6 +47,7 @@ public class ResearchGraphCanvasControl : Control
     public event EventHandler<ResearchGraphNode>? NodeClicked;
     public event EventHandler<ResearchGraphNode>? NodeDoubleClicked;
     public event EventHandler<(ResearchGraphNode From, ResearchGraphNode To)>? EdgeDropped;
+    public event EventHandler<ResearchGraphEdgeVm>? EdgeClicked;
 
     public void SetViewModel(ResearchGraphViewModel vm)
     {
@@ -106,7 +102,7 @@ public class ResearchGraphCanvasControl : Control
         double r = GetNodeRadius(node);
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
-        var pen = node.IsSelected ? SelectedNodePen : DefaultNodePen;
+        var pen = node.IsSelected ? new Pen(SelectedBrush, 3) : new Pen(Brushes.White, 1.5);
 
         switch (node.NodeType)
         {
@@ -128,7 +124,7 @@ public class ResearchGraphCanvasControl : Control
         // Label (only at sufficient zoom)
         if (_zoom >= 0.5)
         {
-            var labelSize = Math.Max(10, 13 * _zoom);
+            var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
             var ft = new FormattedText(
                 node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label,
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
@@ -158,7 +154,7 @@ public class ResearchGraphCanvasControl : Control
         {
             for (int i = 0; i < 6; i++)
             {
-                double angle = Math.PI / 3 * i - Math.PI / 2; // pointy-top hexagon
+                double angle = Math.PI / 3 * i - Math.PI / 6;
                 var pt = new Point(center.X + size * Math.Cos(angle), center.Y + size * Math.Sin(angle));
                 if (i == 0) gc.BeginFigure(pt, true);
                 else gc.LineTo(pt);
@@ -172,23 +168,19 @@ public class ResearchGraphCanvasControl : Control
     {
         var from = new Point(edge.From.X, edge.From.Y);
         var to = new Point(edge.To.X, edge.To.Y);
-        double dx = to.X - from.X, dy = to.Y - from.Y;
-        double len = Math.Sqrt(dx * dx + dy * dy);
-        if (len < 1) return; // Skip degenerate edges
-
-        var hex = edge.ColorHex ?? "#9E9E9E";
-        var brush = _edgeBrushCache.GetOrAdd(hex, h =>
-        {
-            Color c;
-            try { c = Color.Parse(h); } catch { c = Color.Parse("#9E9E9E"); }
-            return new SolidColorBrush(c);
-        });
+        Color edgeColor;
+        try { edgeColor = Color.Parse(edge.ColorHex ?? "#9E9E9E"); }
+        catch { edgeColor = Color.Parse("#9E9E9E"); }
+        var brush = new SolidColorBrush(edgeColor);
         var pen = new Pen(brush, 1.5);
         ctx.DrawLine(pen, from, to);
 
         // Arrowhead for directional edges
         if (edge.IsDirectional)
         {
+            double dx = to.X - from.X, dy = to.Y - from.Y;
+            double len = Math.Sqrt(dx * dx + dy * dy);
+            if (len < 1) return;
             double nx = dx / len, ny = dy / len;
             double targetR = GetNodeRadius(edge.To);
             var tip = new Point(to.X - nx * targetR, to.Y - ny * targetR);
@@ -226,14 +218,13 @@ public class ResearchGraphCanvasControl : Control
 
     private double GetNodeRadius(ResearchGraphNode node)
     {
-        var degree = Math.Max(0, node.Degree);
         return node.NodeType switch
         {
-            ScholarNodeType.Passage => 10 + Math.Min(degree * 2, 18),
-            ScholarNodeType.Concept => 12 + Math.Min(degree * 2, 20),
-            ScholarNodeType.ZenMaster => 14 + Math.Min(degree * 1.5, 14),
-            ScholarNodeType.TermbaseEntry => 12 + Math.Min(degree * 1.5, 14),
-            ScholarNodeType.Collection => 14 + Math.Min(degree * 2, 18),
+            ScholarNodeType.Passage => 10 + Math.Min(node.Degree * 2, 12),
+            ScholarNodeType.Concept => 12 + Math.Min(node.Degree * 2, 14),
+            ScholarNodeType.ZenMaster => 14 + Math.Min(node.Degree * 1.5, 10),
+            ScholarNodeType.TermbaseEntry => 12 + Math.Min(node.Degree * 1.5, 10),
+            ScholarNodeType.Collection => 14 + Math.Min(node.Degree * 2, 12),
             _ => 12
         };
     }
@@ -298,10 +289,41 @@ public class ResearchGraphCanvasControl : Control
         }
         else
         {
-            _isPanning = true;
-            _panStart = pos;
+            // Try edge hit before panning
+            var hitEdge = HitTestEdge(pos.X, pos.Y);
+            if (hitEdge != null)
+            {
+                EdgeClicked?.Invoke(this, hitEdge);
+            }
+            else
+            {
+                _isPanning = true;
+                _panStart = pos;
+            }
         }
         e.Pointer.Capture(this);
+    }
+
+    private ResearchGraphEdgeVm? HitTestEdge(double x, double y)
+    {
+        if (_vm == null) return null;
+        double gx = (x - _offsetX) / _zoom;
+        double gy = (y - _offsetY) / _zoom;
+        ResearchGraphEdgeVm? nearest = null;
+        double minDist = double.MaxValue;
+        foreach (var edge in _vm.GetVisibleEdges())
+        {
+            double x1 = edge.From.X, y1 = edge.From.Y;
+            double x2 = edge.To.X, y2 = edge.To.Y;
+            double dx = x2 - x1, dy = y2 - y1;
+            double len2 = dx * dx + dy * dy;
+            if (len2 < 0.01) continue;
+            double t = Math.Clamp(((gx - x1) * dx + (gy - y1) * dy) / len2, 0, 1);
+            double cx2 = x1 + t * dx, cy2 = y1 + t * dy;
+            double dist = Math.Sqrt((gx - cx2) * (gx - cx2) + (gy - cy2) * (gy - cy2));
+            if (dist <= 5 && dist < minDist) { minDist = dist; nearest = edge; }
+        }
+        return nearest;
     }
 
     protected override void OnPointerMoved(PointerEventArgs e)
@@ -375,22 +397,6 @@ public class ResearchGraphCanvasControl : Control
         _offsetX = pos.X - (pos.X - _offsetX) * (newZoom / _zoom);
         _offsetY = pos.Y - (pos.Y - _offsetY) * (newZoom / _zoom);
         _zoom = newZoom;
-        InvalidateVisual();
-    }
-
-    public void FitToView()
-    {
-        if (_vm == null || _vm.Nodes.Count == 0) return;
-        var nodes = _vm.GetVisibleNodes();
-        if (nodes.Count == 0) return;
-        double minX = nodes.Min(n => n.X), maxX = nodes.Max(n => n.X);
-        double minY = nodes.Min(n => n.Y), maxY = nodes.Max(n => n.Y);
-        double graphW = maxX - minX + 80;
-        double graphH = maxY - minY + 80;
-        if (graphW < 1 || graphH < 1) return;
-        _zoom = Math.Clamp(Math.Min(Bounds.Width / graphW, Bounds.Height / graphH), 0.2, 4.0);
-        _offsetX = Bounds.Width / 2 - (minX + maxX) / 2 * _zoom;
-        _offsetY = Bounds.Height / 2 - (minY + maxY) / 2 * _zoom;
         InvalidateVisual();
     }
 

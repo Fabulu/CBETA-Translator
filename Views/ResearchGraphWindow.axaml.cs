@@ -19,9 +19,6 @@ public partial class ResearchGraphWindow : Window
 {
     private ResearchGraphViewModel? _vm;
     private ResearchGraphCanvasControl? _canvas;
-    private GraphFilterPanel? _filterPanel;
-    private GraphStatisticsPanel? _statsPanel;
-    private GraphLegendPanel? _legendPanel;
 
     public ResearchGraphWindow()
     {
@@ -36,7 +33,6 @@ public partial class ResearchGraphWindow : Window
 
         SetupToolbar();
         SetupCanvas();
-        SetupLeftPanels();
         SetupKeyBindings();
         SetupEmptyState();
         UpdateStatusBar();
@@ -60,142 +56,11 @@ public partial class ResearchGraphWindow : Window
         var btnRedo = this.FindControl<Button>("BtnRedo");
         btnRedo!.Click += (_, _) => _vm?.Redo();
 
-        // Dead toolbar buttons: show status message instead of doing nothing
-        foreach (var name in new[] { "BtnAddPassage", "BtnAddMaster", "BtnAddTerm", "BtnAddCollection" })
-        {
-            var btn = this.FindControl<Button>(name);
-            if (btn != null) btn.Click += (_, _) => ShowStatus("Feature coming soon");
-        }
-
-        var btnOverflow = this.FindControl<Button>("BtnOverflow");
-        if (btnOverflow != null) btnOverflow.Click += (_, _) => ShowStatus("More options coming soon");
-
-        // Close inspector button
-        var btnCloseInspector = this.FindControl<Button>("BtnCloseInspector");
-        if (btnCloseInspector != null)
-        {
-            btnCloseInspector.Click += (_, _) =>
-            {
-                var inspectorColumn = this.FindControl<Grid>(null!);
-                // Toggle the right panel visibility by finding the Column="4" Border
-                var mainGrid = this.FindControl<Grid>("CanvasHost")?.Parent as Grid;
-                if (mainGrid != null && mainGrid.Children.Count > 4)
-                {
-                    var inspectorBorder = mainGrid.Children
-                        .OfType<Border>()
-                        .FirstOrDefault(b => Grid.GetColumn(b) == 4);
-                    if (inspectorBorder != null)
-                        inspectorBorder.IsVisible = !inspectorBorder.IsVisible;
-                }
-            };
-        }
-
-        var cmbCollection = this.FindControl<ComboBox>("CmbCollection");
-        if (cmbCollection != null && _vm != null)
-        {
-            cmbCollection.ItemsSource = _vm.GetAllCollections();
-            cmbCollection.SelectedItem = _vm.GetCollection();
-            cmbCollection.SelectionChanged += (_, e) =>
-            {
-                if (cmbCollection.SelectedItem is ScholarCollection selected)
-                {
-                    _vm.SwitchToCollection(selected.Id);
-                    _canvas?.InvalidateVisual();
-                    UpdateStatusBar();
-                    UpdateEmptyState();
-                    UpdateInspector();
-                    UpdateLeftPanels();
-                    Title = $"Research Graph \u2014 {selected.Name}";
-                }
-            };
-        }
-
         var txtSearch = this.FindControl<TextBox>("TxtSearch");
         txtSearch!.TextChanged += (_, _) =>
         {
             if (_vm != null) _vm.SearchText = txtSearch.Text ?? "";
         };
-    }
-
-    private void SetupLeftPanels()
-    {
-        // Filter panel
-        var filterHost = this.FindControl<StackPanel>("FilterPanel");
-        if (filterHost != null)
-        {
-            _filterPanel = new GraphFilterPanel();
-            filterHost.Children.Add(_filterPanel);
-            _filterPanel.FiltersChanged += (_, _) =>
-            {
-                if (_vm == null || _filterPanel == null) return;
-                _vm.ShowPassages = _filterPanel.ShowPassages;
-                _vm.ShowConcepts = _filterPanel.ShowConcepts;
-                _vm.ShowMasters = _filterPanel.ShowMasters;
-                _vm.ShowTerms = _filterPanel.ShowTerms;
-                _vm.ShowCollections = _filterPanel.ShowCollections;
-                _canvas?.InvalidateVisual();
-            };
-        }
-
-        // Stats panel
-        var statsHost = this.FindControl<StackPanel>("StatsPanel");
-        if (statsHost != null)
-        {
-            _statsPanel = new GraphStatisticsPanel();
-            statsHost.Children.Add(_statsPanel);
-        }
-
-        // Legend panel
-        var legendHost = this.FindControl<StackPanel>("LegendPanel");
-        if (legendHost != null)
-        {
-            _legendPanel = new GraphLegendPanel();
-            legendHost.Children.Add(_legendPanel);
-        }
-
-        UpdateLeftPanels();
-    }
-
-    private void UpdateLeftPanels()
-    {
-        if (_vm == null) return;
-
-        // Update stats panel
-        _statsPanel?.UpdateStats(
-            _vm.OrphanPassageCount,
-            _vm.OrphanConceptCount,
-            _vm.OverloadedConceptCount,
-            _vm.WeakConceptCount,
-            _vm.QualityScore);
-
-        // Update quality in status bar
-        var txtQuality = this.FindControl<TextBlock>("TxtQuality");
-        if (txtQuality != null)
-            txtQuality.Text = $"Quality: {_vm.QualityScore:F0}%";
-
-        // Update legend with distinct edge types currently in the graph
-        if (_legendPanel != null)
-        {
-            var edgeEntries = _vm.Edges
-                .Select(e => e.RelationType)
-                .Distinct()
-                .Select(rt =>
-                {
-                    var def = EdgeTypeRegistry.GetById(rt);
-                    return new EdgeLegendEntry(
-                        rt,
-                        def?.ColorHex ?? "#9E9E9E",
-                        def?.DisplayName ?? rt);
-                })
-                .ToList();
-            _legendPanel.UpdateLegend(edgeEntries);
-        }
-    }
-
-    private void ShowStatus(string message)
-    {
-        var txtStatus = this.FindControl<TextBlock>("TxtStatus");
-        if (txtStatus != null) txtStatus.Text = message;
     }
 
     private void SetupCanvas()
@@ -217,42 +82,18 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.NodeDoubleClicked += (_, node) =>
         {
-            if (node.NodeType == ScholarNodeType.Collection)
+            // Navigate based on type — for now just select
+            if (_vm != null)
             {
-                var collId = node.NodeId.StartsWith("collection:") ? node.NodeId[11..] : node.NodeId;
-                _vm?.SwitchToCollection(collId);
-                _canvas?.InvalidateVisual();
-                UpdateStatusBar();
-                UpdateLeftPanels();
-                UpdateEmptyState();
+                _vm.SelectedNode = node;
+                foreach (var n in _vm.Nodes) n.IsSelected = n == node;
                 UpdateInspector();
-
-                // Sync the collection dropdown
-                var cmb = this.FindControl<ComboBox>("CmbCollection");
-                if (cmb != null && _vm != null)
-                {
-                    cmb.SelectedItem = _vm.GetCollection();
-                    Title = $"Research Graph \u2014 {_vm.GetCollection().Name}";
-                }
-            }
-            else
-            {
-                // Default: select and inspect
-                if (_vm != null)
-                {
-                    _vm.SelectedNode = node;
-                    foreach (var n in _vm.Nodes) n.IsSelected = n == node;
-                    UpdateInspector();
-                    _canvas?.InvalidateVisual();
-                }
+                _canvas?.InvalidateVisual();
             }
         };
 
         _canvas.EdgeDropped += async (_, args) =>
         {
-            var validTypes = EdgeTypeRegistry.GetValidTypes(args.From.NodeType, args.To.NodeType);
-            if (validTypes.Count == 0) return; // No valid edge types for this node pair
-
             var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType);
             var result = await picker.ShowDialog<object?>(this);
             if (result is EdgeTypeDefinition edgeType)
@@ -270,7 +111,6 @@ public partial class ResearchGraphWindow : Window
                 _vm!.ExecuteCommand(new AddEdgeCommand(_vm!, edge));
                 _canvas.InvalidateVisual();
                 UpdateStatusBar();
-                UpdateLeftPanels();
             }
         };
 
@@ -379,7 +219,6 @@ public partial class ResearchGraphWindow : Window
         {
             _vm.ExecuteCommand(new AddConceptCommand(_vm, result));
             UpdateStatusBar();
-            UpdateLeftPanels();
             UpdateEmptyState();
             _canvas?.InvalidateVisual();
         }
@@ -393,12 +232,10 @@ public partial class ResearchGraphWindow : Window
 
     private void DeleteNode(string nodeId)
     {
-        if (_vm == null) return;
-        _vm.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
-        _vm.SelectedNode = null;
+        _vm?.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
+        _vm!.SelectedNode = null;
         UpdateInspector();
         UpdateStatusBar();
-        UpdateLeftPanels();
         UpdateEmptyState();
         _canvas?.InvalidateVisual();
     }
@@ -463,110 +300,24 @@ public partial class ResearchGraphWindow : Window
         // Degree
         content.Children.Add(new TextBlock { Text = $"Connections: {node.Degree}", FontSize = 11, Opacity = 0.7, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
 
-        // Type-specific content using SourceData
-        if (node.NodeType == ScholarNodeType.Passage && node.SourceData is ScholarPassage passage)
+        // Type-specific content from collection data
+        if (node.NodeType == ScholarNodeType.Passage)
         {
-            // Summary highlight box
-            if (!string.IsNullOrWhiteSpace(passage.Summary))
+            var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+            if (passage != null)
             {
-                var summaryBorder = new Avalonia.Controls.Border
-                {
-                    BorderThickness = new Avalonia.Thickness(2, 0, 0, 0),
-                    BorderBrush = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#d4ab58")),
-                    Padding = new Avalonia.Thickness(8, 4),
-                    Margin = new Avalonia.Thickness(0, 8, 0, 0)
-                };
-                summaryBorder.Child = new TextBlock { Text = passage.Summary, TextWrapping = Avalonia.Media.TextWrapping.Wrap, FontSize = 12 };
-                content.Children.Add(summaryBorder);
+                if (!string.IsNullOrWhiteSpace(passage.ZhText))
+                    content.Children.Add(new TextBlock { Text = passage.ZhText.Length > 200 ? passage.ZhText[..200] + "\u2026" : passage.ZhText, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+                if (!string.IsNullOrWhiteSpace(passage.EnText))
+                    content.Children.Add(new TextBlock { Text = passage.EnText.Length > 200 ? passage.EnText[..200] + "\u2026" : passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
             }
-
-            // Chinese text
-            if (!string.IsNullOrWhiteSpace(passage.ZhText))
-                AddSection(content, "Chinese", passage.ZhText.Length > 300 ? passage.ZhText[..300] + "\u2026" : passage.ZhText);
-
-            // English text
-            if (!string.IsNullOrWhiteSpace(passage.EnText))
-                AddSection(content, "English", passage.EnText.Length > 300 ? passage.EnText[..300] + "\u2026" : passage.EnText);
-
-            // Tags
-            if (passage.Tags?.Count > 0)
-                AddChips(content, "Tags", passage.Tags);
-
-            // Masters
-            if (passage.MasterNames?.Count > 0)
-                AddChips(content, "Masters", passage.MasterNames);
-
-            // Reading status + importance
-            if (!string.IsNullOrWhiteSpace(passage.ReadingStatus))
-                AddSection(content, "Status", passage.ReadingStatus);
-            if (passage.Importance.HasValue && passage.Importance > 0)
-                AddSection(content, "Importance", new string('\u2605', passage.Importance.Value) + new string('\u2606', 5 - passage.Importance.Value));
-
-            // Facets
-            if (!string.IsNullOrWhiteSpace(passage.DoctrinalTopic))
-                AddSection(content, "Doctrine", passage.DoctrinalTopic);
-            if (!string.IsNullOrWhiteSpace(passage.Lineage))
-                AddSection(content, "Lineage", passage.Lineage);
-
-            // Notes
-            if (!string.IsNullOrWhiteSpace(passage.Notes))
-                AddSection(content, "Notes", passage.Notes.Length > 200 ? passage.Notes[..200] + "\u2026" : passage.Notes);
-
-            // Source reference
-            if (!string.IsNullOrWhiteSpace(passage.SourceRelPath))
-                AddSection(content, "Source", passage.SourceRelPath);
         }
-        else if (node.NodeType == ScholarNodeType.Concept && node.SourceData is ConceptNode concept)
+        else if (node.NodeType == ScholarNodeType.Concept)
         {
-            if (!string.IsNullOrWhiteSpace(concept.Description))
-                AddSection(content, "Description", concept.Description);
-
-            if (concept.Tags?.Count > 0)
-                AddChips(content, "Tags", concept.Tags);
-
-            if (concept.Status != ConceptStatus.Active)
-                AddSection(content, "Status", concept.Status.ToString());
-
-            // Count linked edges
-            var linkedCount = _vm.Edges.Count(e =>
-                e.From.NodeId == concept.Id || e.To.NodeId == concept.Id);
-            AddSection(content, "Connections", $"{linkedCount} edges");
+            var concept = _vm.GetCollection()?.Concepts.FirstOrDefault(c => c.Id == node.NodeId);
+            if (concept != null && !string.IsNullOrWhiteSpace(concept.Description))
+                content.Children.Add(new TextBlock { Text = concept.Description, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
         }
-        else
-        {
-            // Master/Term/Collection -- show what we have
-            AddSection(content, "Type", node.NodeType.ToString());
-            AddSection(content, "Connections", $"{node.Degree} edges");
-        }
-    }
-
-    private static void AddSection(StackPanel parent, string label, string value)
-    {
-        var section = new StackPanel { Spacing = 2, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
-        section.Children.Add(new TextBlock { Text = label, FontSize = 11, FontWeight = Avalonia.Media.FontWeight.SemiBold, Opacity = 0.6 });
-        section.Children.Add(new TextBlock { Text = value, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap });
-        parent.Children.Add(section);
-    }
-
-    private static void AddChips(StackPanel parent, string label, List<string> items)
-    {
-        var section = new StackPanel { Spacing = 4, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
-        section.Children.Add(new TextBlock { Text = label, FontSize = 11, FontWeight = Avalonia.Media.FontWeight.SemiBold, Opacity = 0.6 });
-        var wrap = new Avalonia.Controls.WrapPanel();
-        foreach (var item in items.Take(8))
-        {
-            var chip = new Avalonia.Controls.Border
-            {
-                Background = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(40, 255, 255, 255)),
-                CornerRadius = new Avalonia.CornerRadius(3),
-                Padding = new Avalonia.Thickness(6, 2),
-                Margin = new Avalonia.Thickness(0, 0, 4, 4)
-            };
-            chip.Child = new TextBlock { Text = item, FontSize = 10 };
-            wrap.Children.Add(chip);
-        }
-        section.Children.Add(wrap);
-        parent.Children.Add(section);
     }
 
     private void SetupEmptyState()
