@@ -1,0 +1,107 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.ResearchGraphWindow"
+        x:CompileBindings="False"
+        Title="Research Graph"
+        Width="1400" Height="900"
+        WindowStartupLocation="CenterOwner">
+
+  <Grid RowDefinitions="Auto,*,Auto">
+
+    <!-- ROW 0: Toolbar -->
+    <Border Grid.Row="0" Padding="8,6" BorderThickness="0,0,0,1"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <DockPanel LastChildFill="False">
+        <!-- Left: Collection + Add nodes -->
+        <ComboBox DockPanel.Dock="Left" Name="CmbCollection" MinWidth="200" Margin="0,0,12,0"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddMaster" Content="+ Master" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddTerm" Content="+ Term" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddCollection" Content="+ Collection" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
+
+        <!-- Center: Layout controls -->
+        <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
+
+        <!-- Right: Search + Overflow -->
+        <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3"/>
+        <TextBox DockPanel.Dock="Right" Name="TxtSearch" Watermark="Search nodes..." Width="180" Margin="0,0,8,0" FontSize="11"/>
+
+        <!-- Undo/Redo -->
+        <Button DockPanel.Dock="Right" Name="BtnRedo" Content="&#x21B7;" Padding="6,3" Margin="0,0,2,0" ToolTip.Tip="Redo (Ctrl+Y)"/>
+        <Button DockPanel.Dock="Right" Name="BtnUndo" Content="&#x21B6;" Padding="6,3" Margin="0,0,8,0" ToolTip.Tip="Undo (Ctrl+Z)"/>
+      </DockPanel>
+    </Border>
+
+    <!-- ROW 1: Main Content -->
+    <Grid Grid.Row="1" ColumnDefinitions="240,Auto,*,Auto,320">
+
+      <!-- Left: Filters/Stats/Legend tabs -->
+      <Border Grid.Column="0" BorderThickness="0,0,1,0"
+              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+        <TabControl Name="LeftTabs" TabStripPlacement="Top">
+          <TabItem Header="Filters">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8">
+              <StackPanel Name="FilterPanel" Spacing="8"/>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="Stats">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8">
+              <StackPanel Name="StatsPanel" Spacing="8"/>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="Legend">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8">
+              <StackPanel Name="LegendPanel" Spacing="8"/>
+            </ScrollViewer>
+          </TabItem>
+        </TabControl>
+      </Border>
+
+      <!-- Splitter -->
+      <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
+
+      <!-- Center: Graph Canvas -->
+      <Border Grid.Column="2" ClipToBounds="True" Name="CanvasHost">
+        <!-- Canvas control will be added in code-behind -->
+      </Border>
+
+      <!-- Splitter -->
+      <GridSplitter Grid.Column="3" Width="6" ResizeDirection="Columns"/>
+
+      <!-- Right: Inspector -->
+      <Border Grid.Column="4" BorderThickness="1,0,0,0"
+              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+        <Grid RowDefinitions="Auto,*,Auto">
+          <Border Grid.Row="0" Padding="12,8" BorderThickness="0,0,0,1"
+                  BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+            <DockPanel>
+              <TextBlock DockPanel.Dock="Left" Name="InspectorTitle" Text="Inspector" FontWeight="SemiBold"/>
+              <Button DockPanel.Dock="Right" Name="BtnCloseInspector" Content="&#x2715;" Padding="4,2"/>
+            </DockPanel>
+          </Border>
+          <ScrollViewer Grid.Row="1" Padding="12">
+            <StackPanel Name="InspectorContent" Spacing="8">
+              <!-- Empty state -->
+              <TextBlock Name="InspectorEmpty" Text="Click a node to inspect" Opacity="0.5"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40"/>
+            </StackPanel>
+          </ScrollViewer>
+          <StackPanel Grid.Row="2" Name="InspectorActions" Orientation="Horizontal" Spacing="4" Margin="12,4"/>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <!-- ROW 2: Status Bar -->
+    <Border Grid.Row="2" Padding="8,4" BorderThickness="0,1,0,0"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <DockPanel LastChildFill="False">
+        <TextBlock DockPanel.Dock="Left" Name="TxtStatus" Text="Ready" FontSize="11" Opacity="0.7"/>
+        <TextBlock DockPanel.Dock="Right" Name="TxtNodeCount" Text="0 nodes, 0 edges" FontSize="11" Opacity="0.7"/>
+        <TextBlock DockPanel.Dock="Right" Name="TxtQuality" Text="" FontSize="11" Opacity="0.7" Margin="0,0,16,0"/>
+      </DockPanel>
+    </Border>
+  </Grid>
+</Window>
