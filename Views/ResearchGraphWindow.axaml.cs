@@ -21,15 +21,18 @@ public partial class ResearchGraphWindow : Window
     private ResearchGraphCanvasControl? _canvas;
     private GraphStatisticsPanel? _statsPanel;
     private GraphLegendPanel? _legendPanel;
+    private List<TermDisplayItem>? _termData;
 
     public ResearchGraphWindow()
     {
         InitializeComponent();
     }
 
-    public ResearchGraphWindow(ScholarCollection collection, List<ScholarCollection> allCollections)
+    public ResearchGraphWindow(ScholarCollection collection, List<ScholarCollection> allCollections,
+        List<TermDisplayItem>? termData = null)
     {
         InitializeComponent();
+        _termData = termData;
         _vm = new ResearchGraphViewModel(collection, allCollections);
         DataContext = _vm;
 
@@ -125,30 +128,47 @@ public partial class ResearchGraphWindow : Window
             btnAddTerm.Click += async (_, _) =>
             {
                 if (_vm == null) return;
-                var renameWindow = new Window
-                {
-                    Title = "Add Term", Width = 350, Height = 150,
-                    WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
-                };
-                var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
-                var txt = new TextBox { Watermark = "Enter Chinese or English term..." };
-                var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
-                var btnOk = new Button { Content = "Add Term", Padding = new Avalonia.Thickness(12, 6) };
-                var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
-                btnPanel.Children.Add(btnCancel);
-                btnPanel.Children.Add(btnOk);
-                Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
-                grid.Children.Add(txt); grid.Children.Add(btnPanel);
-                renameWindow.Content = grid;
+
                 string? termName = null;
-                btnOk.Click += (_, _) => { termName = txt.Text?.Trim(); renameWindow.Close(); };
-                btnCancel.Click += (_, _) => renameWindow.Close();
-                renameWindow.KeyDown += (_, e) =>
+                string? termLabel = null;
+
+                if (_termData != null && _termData.Count > 0)
                 {
-                    if (e.Key == Key.Return) { termName = txt.Text?.Trim(); renameWindow.Close(); }
-                    if (e.Key == Key.Escape) renameWindow.Close();
-                };
-                await renameWindow.ShowDialog(this);
+                    var dialog = new TermPickerDialog(_termData);
+                    var result = await dialog.ShowDialog<TermDisplayItem?>(this);
+                    if (result == null) return;
+                    termName = result.SourceTerm;
+                    termLabel = result.Display;
+                }
+                else
+                {
+                    // Fallback: simple text input when no termbase loaded
+                    var renameWindow = new Window
+                    {
+                        Title = "Add Term", Width = 350, Height = 150,
+                        WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+                    };
+                    var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
+                    var txt = new TextBox { Watermark = "Enter Chinese or English term..." };
+                    var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+                    var btnOk = new Button { Content = "Add Term", Padding = new Avalonia.Thickness(12, 6) };
+                    var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
+                    btnPanel.Children.Add(btnCancel);
+                    btnPanel.Children.Add(btnOk);
+                    Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+                    grid.Children.Add(txt); grid.Children.Add(btnPanel);
+                    renameWindow.Content = grid;
+                    btnOk.Click += (_, _) => { termName = txt.Text?.Trim(); renameWindow.Close(); };
+                    btnCancel.Click += (_, _) => renameWindow.Close();
+                    renameWindow.KeyDown += (_, e) =>
+                    {
+                        if (e.Key == Key.Return) { termName = txt.Text?.Trim(); renameWindow.Close(); }
+                        if (e.Key == Key.Escape) renameWindow.Close();
+                    };
+                    await renameWindow.ShowDialog(this);
+                    termLabel = termName;
+                }
+
                 if (!string.IsNullOrEmpty(termName))
                 {
                     var nodeId = $"term:{termName}";
@@ -156,7 +176,7 @@ public partial class ResearchGraphWindow : Window
                     var node = new ResearchGraphNode
                     {
                         NodeId = nodeId, NodeType = ScholarNodeType.TermbaseEntry,
-                        Label = termName, ColorHex = "#81C784",
+                        Label = termLabel ?? termName, ColorHex = "#81C784",
                         X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
                         Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
                     };

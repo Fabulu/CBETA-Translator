@@ -204,4 +204,41 @@ public sealed class TermbaseService : ITermbaseService
             .OrderByDescending(t => t.SourceTerm.Length)
             .ToList();
     }
+
+    public async Task<List<TermHit>> GetAllTermsAsync(string? root, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(root))
+            return new();
+
+        string path;
+        if (_username != null)
+        {
+            var userPath = ITermbaseStorageService.GetUserPath(root, _username);
+            path = File.Exists(userPath) ? userPath : Path.Combine(root, "termbase.json");
+        }
+        else
+        {
+            path = Path.Combine(root, "termbase.json");
+        }
+
+        if (!File.Exists(path))
+            return new();
+
+        var rows = await LoadTermsCachedAsync(path, ct).ConfigureAwait(false);
+        if (rows == null || rows.Count == 0)
+            return new();
+
+        return rows
+            .Where(t => !string.IsNullOrWhiteSpace(t.SourceTerm))
+            .Select(t => new TermHit
+            {
+                SourceTerm = t.SourceTerm,
+                PreferredTarget = t.PreferredTarget,
+                AlternateTargets = t.AlternateTargets ?? new(),
+                Status = t.Status,
+                Note = t.Note
+            })
+            .OrderBy(t => t.SourceTerm)
+            .ToList();
+    }
 }
