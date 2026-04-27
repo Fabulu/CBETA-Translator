@@ -158,7 +158,7 @@ public class ResearchGraphCanvasControl : Control
         {
             for (int i = 0; i < 6; i++)
             {
-                double angle = Math.PI / 3 * i;
+                double angle = Math.PI / 3 * i - Math.PI / 2; // pointy-top hexagon
                 var pt = new Point(center.X + size * Math.Cos(angle), center.Y + size * Math.Sin(angle));
                 if (i == 0) gc.BeginFigure(pt, true);
                 else gc.LineTo(pt);
