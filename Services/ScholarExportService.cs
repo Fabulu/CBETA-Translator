@@ -979,6 +979,12 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         AddMetadata(items, "Added", FormatTimestamp(passage.AddedUtc));
         AddMetadata(items, "Modified", FormatTimestamp(passage.ModifiedUtc));
 
+        AddMetadata(items, "Summary", passage.Summary);
+        AddMetadata(items, "Reading Status", passage.ReadingStatus);
+        if (passage.Importance.HasValue && passage.Importance > 0)
+            AddMetadata(items, "Importance", $"{passage.Importance}/5");
+        AddMetadata(items, "Annotation Type", passage.AnnotationType);
+
         var zenLink = BuildZenLink(passage);
         if (!string.IsNullOrWhiteSpace(zenLink))
             items.Add(new KeyValuePair<string, string>("Zen link", zenLink));

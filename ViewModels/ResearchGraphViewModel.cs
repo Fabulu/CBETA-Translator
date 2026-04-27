@@ -20,6 +20,7 @@ public class ResearchGraphNode
     public bool IsDimmed { get; set; }
     public int Degree { get; set; }
     public string ColorHex { get; set; } = "#6EAFF8";
+    public object? SourceData { get; set; }
 }
 
 public class ResearchGraphEdgeVm
@@ -131,7 +132,8 @@ public class ResearchGraphViewModel
                 NodeType = ScholarNodeType.Passage,
                 Label = p.DisplayTitle,
                 SecondaryLabel = snippet,
-                ColorHex = "#6EAFF8"
+                ColorHex = "#6EAFF8",
+                SourceData = p
             };
             Nodes.Add(node);
             _nodeMap[p.Id] = node;
@@ -146,7 +148,8 @@ public class ResearchGraphViewModel
                 NodeType = ScholarNodeType.Concept,
                 Label = c.DisplayTitle,
                 SecondaryLabel = c.Description.Length > 40 ? c.Description[..40] + "\u2026" : c.Description,
-                ColorHex = c.ColorHex ?? "#FF8A65"
+                ColorHex = c.ColorHex ?? "#FF8A65",
+                SourceData = c
             };
             Nodes.Add(node);
             _nodeMap[c.Id] = node;
@@ -316,7 +319,8 @@ public class ResearchGraphViewModel
             Label = concept.DisplayTitle,
             ColorHex = concept.ColorHex ?? "#FF8A65",
             X = cx + 30,  // Slight offset from centroid to avoid overlap
-            Y = cy + 30
+            Y = cy + 30,
+            SourceData = concept
         };
         Nodes.Add(node);
         _nodeMap[concept.Id] = node;
