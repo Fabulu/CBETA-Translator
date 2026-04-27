@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.MasterPickerDialog"
+        Title="Add Master to Graph"
+        Width="450" Height="500"
+        WindowStartupLocation="CenterOwner" CanResize="False">
+  <Grid RowDefinitions="Auto,*,Auto" Margin="12">
+    <TextBox Grid.Row="0" Name="TxtSearch" Watermark="Search master name..." Margin="0,0,0,8"/>
+    <ListBox Grid.Row="1" Name="LstMasters" SelectionMode="Single"/>
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+      <Button Name="BtnCancel" Content="Cancel" Padding="12,6"/>
+      <Button Name="BtnOk" Content="Add Master" Padding="12,6"/>
+    </StackPanel>
+  </Grid>
+</Window>
