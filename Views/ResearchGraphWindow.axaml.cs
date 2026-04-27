@@ -68,8 +68,8 @@ public partial class ResearchGraphWindow : Window
         _canvas = new ResearchGraphCanvasControl();
         _canvas.SetViewModel(_vm!);
 
-        var canvasHost = this.FindControl<Border>("CanvasHost");
-        canvasHost!.Child = _canvas;
+        var canvasHost = this.FindControl<Grid>("CanvasHost");
+        canvasHost!.Children.Insert(0, _canvas);
 
         _canvas.NodeClicked += (_, node) =>
         {
@@ -102,7 +102,7 @@ public partial class ResearchGraphWindow : Window
                     RelationType = edgeType.Id,
                     CreatedUtc = DateTimeOffset.UtcNow
                 };
-                _vm!.AddEdge(edge);
+                _vm!.ExecuteCommand(new AddEdgeCommand(_vm!, edge));
                 _canvas.InvalidateVisual();
                 UpdateStatusBar();
             }
@@ -213,7 +213,7 @@ public partial class ResearchGraphWindow : Window
             Name = "New Concept",
             CreatedUtc = DateTimeOffset.UtcNow
         };
-        _vm.AddConcept(concept);
+        _vm.ExecuteCommand(new AddConceptCommand(_vm, concept));
         UpdateStatusBar();
         UpdateEmptyState();
     }
@@ -226,7 +226,7 @@ public partial class ResearchGraphWindow : Window
 
     private void DeleteNode(string nodeId)
     {
-        _vm?.RemoveNode(nodeId);
+        _vm?.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
         _vm!.SelectedNode = null;
         UpdateInspector();
         UpdateStatusBar();

@@ -282,12 +282,15 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         // Convert old PassageLinks to new ScholarGraphEdges
         foreach (var link in collection.Links)
         {
+            if (string.IsNullOrEmpty(link.FromPassageId) || string.IsNullOrEmpty(link.ToPassageId))
+                continue;
+
             // Skip if already migrated
             if (collection.Edges.Any(e => e.Id == link.Id)) continue;
 
             collection.Edges.Add(new ScholarGraphEdge
             {
-                Id = link.Id,
+                Id = !string.IsNullOrEmpty(link.Id) ? link.Id : Guid.NewGuid().ToString("N")[..8],
                 FromNodeId = link.FromPassageId,
                 FromNodeType = ScholarNodeType.Passage,
                 ToNodeId = link.ToPassageId,

@@ -167,7 +167,10 @@ public class ResearchGraphCanvasControl : Control
     {
         var from = new Point(edge.From.X, edge.From.Y);
         var to = new Point(edge.To.X, edge.To.Y);
-        var brush = new SolidColorBrush(Color.Parse(edge.ColorHex));
+        Color edgeColor;
+        try { edgeColor = Color.Parse(edge.ColorHex ?? "#9E9E9E"); }
+        catch { edgeColor = Color.Parse("#9E9E9E"); }
+        var brush = new SolidColorBrush(edgeColor);
         var pen = new Pen(brush, 1.5);
         ctx.DrawLine(pen, from, to);
 
@@ -245,6 +248,32 @@ public class ResearchGraphCanvasControl : Control
     {
         base.OnPointerPressed(e);
         var pos = e.GetPosition(this);
+
+        // Edge handle detection
+        if (_hoverNode != null && !_isCreatingEdge)
+        {
+            double gx = (pos.X - _offsetX) / _zoom;
+            double gy = (pos.Y - _offsetY) / _zoom;
+            double r = GetNodeRadius(_hoverNode);
+            var handles = new (double X, double Y)[]
+            {
+                (_hoverNode.X, _hoverNode.Y - r - 8),
+                (_hoverNode.X + r + 8, _hoverNode.Y),
+                (_hoverNode.X, _hoverNode.Y + r + 8),
+                (_hoverNode.X - r - 8, _hoverNode.Y),
+            };
+            foreach (var h in handles)
+            {
+                double dx = gx - h.X, dy = gy - h.Y;
+                if (dx * dx + dy * dy <= 64)
+                {
+                    StartEdgeCreation(_hoverNode);
+                    e.Pointer.Capture(this);
+                    return;
+                }
+            }
+        }
+
         var hit = HitTest(pos.X, pos.Y);
 
         if (hit != null)

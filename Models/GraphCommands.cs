@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ReadZen.App.ViewModels;
@@ -44,7 +45,12 @@ public sealed class AddEdgeCommand : IGraphCommand
     public void Undo()
     {
         var edgeVm = _vm.Edges.FirstOrDefault(e => e.EdgeId == _edge.Id);
-        if (edgeVm != null) _vm.Edges.Remove(edgeVm);
+        if (edgeVm != null)
+        {
+            edgeVm.From.Degree--;
+            edgeVm.To.Degree--;
+            _vm.Edges.Remove(edgeVm);
+        }
         _vm.GetCollection().Edges.RemoveAll(e => e.Id == _edge.Id);
     }
 }
@@ -65,7 +71,8 @@ public sealed class RemoveNodeCommand : IGraphCommand
     {
         _vm = vm;
         _nodeId = nodeId;
-        _savedNode = vm.Nodes.First(n => n.NodeId == nodeId);
+        _savedNode = vm.Nodes.FirstOrDefault(n => n.NodeId == nodeId)
+            ?? throw new InvalidOperationException($"Node '{nodeId}' not found for removal");
         _savedEdges = vm.GetCollection().Edges
             .Where(e => e.FromNodeId == nodeId || e.ToNodeId == nodeId)
             .ToList();

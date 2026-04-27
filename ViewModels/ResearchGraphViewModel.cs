@@ -277,6 +277,7 @@ public class ResearchGraphViewModel
 
     public void AddEdge(ScholarGraphEdge edge)
     {
+        if (edge.FromNodeId == edge.ToNodeId) return;
         _collection.Edges.Add(edge);
         if (!_nodeMap.TryGetValue(edge.FromNodeId, out var from)) return;
         if (!_nodeMap.TryGetValue(edge.ToNodeId, out var to)) return;
@@ -307,6 +308,8 @@ public class ResearchGraphViewModel
         var connected = Edges.Where(e => e.From.NodeId == nodeId || e.To.NodeId == nodeId).ToList();
         foreach (var e in connected)
         {
+            if (e.From.NodeId != nodeId) e.From.Degree--;
+            if (e.To.NodeId != nodeId) e.To.Degree--;
             Edges.Remove(e);
             _collection.Edges.RemoveAll(se => se.Id == e.EdgeId);
         }
@@ -316,6 +319,7 @@ public class ResearchGraphViewModel
 
         // Remove from collection
         _collection.Concepts.RemoveAll(c => c.Id == nodeId);
+        _collection.Passages.RemoveAll(p => p.Id == nodeId);
         ComputeStats();
     }
 
@@ -335,6 +339,13 @@ public class ResearchGraphViewModel
         _undoStack.Push(cmd);
     }
 
+    public void ExecuteCommand(IGraphCommand cmd)
+    {
+        cmd.Execute();
+        _undoStack.Push(cmd);
+        _redoStack.Clear();
+    }
+
     public void SetEgoMode(string? nodeId)
     {
         if (nodeId == null)
@@ -342,6 +353,7 @@ public class ResearchGraphViewModel
             foreach (var n in Nodes) n.IsDimmed = false;
             return;
         }
+        if (!_nodeMap.ContainsKey(nodeId)) return;
         var connected = new HashSet<string> { nodeId };
         foreach (var e in Edges)
         {
