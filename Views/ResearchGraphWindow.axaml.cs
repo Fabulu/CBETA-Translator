@@ -343,24 +343,110 @@ public partial class ResearchGraphWindow : Window
         // Degree
         content.Children.Add(new TextBlock { Text = $"Connections: {node.Degree}", FontSize = 11, Opacity = 0.7, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
 
-        // Type-specific content from collection data
-        if (node.NodeType == ScholarNodeType.Passage)
+        // Type-specific content using SourceData
+        if (node.NodeType == ScholarNodeType.Passage && node.SourceData is ScholarPassage passage)
         {
-            var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
-            if (passage != null)
+            // Summary highlight box
+            if (!string.IsNullOrWhiteSpace(passage.Summary))
             {
-                if (!string.IsNullOrWhiteSpace(passage.ZhText))
-                    content.Children.Add(new TextBlock { Text = passage.ZhText.Length > 200 ? passage.ZhText[..200] + "\u2026" : passage.ZhText, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
-                if (!string.IsNullOrWhiteSpace(passage.EnText))
-                    content.Children.Add(new TextBlock { Text = passage.EnText.Length > 200 ? passage.EnText[..200] + "\u2026" : passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                var summaryBorder = new Avalonia.Controls.Border
+                {
+                    BorderThickness = new Avalonia.Thickness(2, 0, 0, 0),
+                    BorderBrush = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#d4ab58")),
+                    Padding = new Avalonia.Thickness(8, 4),
+                    Margin = new Avalonia.Thickness(0, 8, 0, 0)
+                };
+                summaryBorder.Child = new TextBlock { Text = passage.Summary, TextWrapping = Avalonia.Media.TextWrapping.Wrap, FontSize = 12 };
+                content.Children.Add(summaryBorder);
             }
+
+            // Chinese text
+            if (!string.IsNullOrWhiteSpace(passage.ZhText))
+                AddSection(content, "Chinese", passage.ZhText.Length > 300 ? passage.ZhText[..300] + "\u2026" : passage.ZhText);
+
+            // English text
+            if (!string.IsNullOrWhiteSpace(passage.EnText))
+                AddSection(content, "English", passage.EnText.Length > 300 ? passage.EnText[..300] + "\u2026" : passage.EnText);
+
+            // Tags
+            if (passage.Tags?.Count > 0)
+                AddChips(content, "Tags", passage.Tags);
+
+            // Masters
+            if (passage.MasterNames?.Count > 0)
+                AddChips(content, "Masters", passage.MasterNames);
+
+            // Reading status + importance
+            if (!string.IsNullOrWhiteSpace(passage.ReadingStatus))
+                AddSection(content, "Status", passage.ReadingStatus);
+            if (passage.Importance.HasValue && passage.Importance > 0)
+                AddSection(content, "Importance", new string('\u2605', passage.Importance.Value) + new string('\u2606', 5 - passage.Importance.Value));
+
+            // Facets
+            if (!string.IsNullOrWhiteSpace(passage.DoctrinalTopic))
+                AddSection(content, "Doctrine", passage.DoctrinalTopic);
+            if (!string.IsNullOrWhiteSpace(passage.Lineage))
+                AddSection(content, "Lineage", passage.Lineage);
+
+            // Notes
+            if (!string.IsNullOrWhiteSpace(passage.Notes))
+                AddSection(content, "Notes", passage.Notes.Length > 200 ? passage.Notes[..200] + "\u2026" : passage.Notes);
+
+            // Source reference
+            if (!string.IsNullOrWhiteSpace(passage.SourceRelPath))
+                AddSection(content, "Source", passage.SourceRelPath);
         }
-        else if (node.NodeType == ScholarNodeType.Concept)
+        else if (node.NodeType == ScholarNodeType.Concept && node.SourceData is ConceptNode concept)
         {
-            var concept = _vm.GetCollection()?.Concepts.FirstOrDefault(c => c.Id == node.NodeId);
-            if (concept != null && !string.IsNullOrWhiteSpace(concept.Description))
-                content.Children.Add(new TextBlock { Text = concept.Description, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+            if (!string.IsNullOrWhiteSpace(concept.Description))
+                AddSection(content, "Description", concept.Description);
+
+            if (concept.Tags?.Count > 0)
+                AddChips(content, "Tags", concept.Tags);
+
+            if (concept.Status != ConceptStatus.Active)
+                AddSection(content, "Status", concept.Status.ToString());
+
+            // Count linked edges
+            var linkedCount = _vm.Edges.Count(e =>
+                e.From.NodeId == concept.Id || e.To.NodeId == concept.Id);
+            AddSection(content, "Connections", $"{linkedCount} edges");
         }
+        else
+        {
+            // Master/Term/Collection -- show what we have
+            AddSection(content, "Type", node.NodeType.ToString());
+            AddSection(content, "Connections", $"{node.Degree} edges");
+        }
+    }
+
+    private static void AddSection(StackPanel parent, string label, string value)
+    {
+        var section = new StackPanel { Spacing = 2, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
+        section.Children.Add(new TextBlock { Text = label, FontSize = 11, FontWeight = Avalonia.Media.FontWeight.SemiBold, Opacity = 0.6 });
+        section.Children.Add(new TextBlock { Text = value, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap });
+        parent.Children.Add(section);
+    }
+
+    private static void AddChips(StackPanel parent, string label, List<string> items)
+    {
+        var section = new StackPanel { Spacing = 4, Margin = new Avalonia.Thickness(0, 4, 0, 0) };
+        section.Children.Add(new TextBlock { Text = label, FontSize = 11, FontWeight = Avalonia.Media.FontWeight.SemiBold, Opacity = 0.6 });
+        var wrap = new Avalonia.Controls.WrapPanel();
+        foreach (var item in items.Take(8))
+        {
+            var chip = new Avalonia.Controls.Border
+            {
+                Background = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(40, 255, 255, 255)),
+                CornerRadius = new Avalonia.CornerRadius(3),
+                Padding = new Avalonia.Thickness(6, 2),
+                Margin = new Avalonia.Thickness(0, 0, 4, 4)
+            };
+            chip.Child = new TextBlock { Text = item, FontSize = 10 };
+            wrap.Children.Add(chip);
+        }
+        section.Children.Add(wrap);
+        parent.Children.Add(section);
     }
 
     private void SetupEmptyState()
