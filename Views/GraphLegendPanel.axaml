@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.GraphLegendPanel">
+  <StackPanel Spacing="12" Margin="4">
+    <TextBlock Text="Node Types" FontWeight="SemiBold" FontSize="12"/>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="12" Height="12" Fill="#6EAFF8"/>
+      <TextBlock Text="Passage — source text" FontSize="10" VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Border Width="12" Height="12" Background="#FF8A65" CornerRadius="2">
+        <Border.RenderTransform>
+          <RotateTransform Angle="45"/>
+        </Border.RenderTransform>
+      </Border>
+      <TextBlock Text="Concept — thematic node" FontSize="10" VerticalAlignment="Center" Margin="4,0,0,0"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="12" Height="12" Fill="#64B5F6"/>
+      <TextBlock Text="Master — Zen teacher" FontSize="10" VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Border Width="12" Height="12" Background="#AED581" CornerRadius="6"/>
+      <TextBlock Text="Term — termbase entry" FontSize="10" VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Border Width="12" Height="12" Background="#CE93D8" CornerRadius="2"/>
+      <TextBlock Text="Collection — passage group" FontSize="10" VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <TextBlock Text="Edge Colors" FontWeight="SemiBold" FontSize="12" Margin="0,8,0,0"/>
+    <StackPanel Name="EdgeLegendPanel" Spacing="4"/>
+  </StackPanel>
+</UserControl>

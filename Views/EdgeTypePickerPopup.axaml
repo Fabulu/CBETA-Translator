@@ -1,0 +1,76 @@
+<!-- Views/EdgeTypePickerPopup.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:ReadZen.App.Views"
+        x:Class="ReadZen.App.Views.EdgeTypePickerPopup"
+        Width="280" Height="400"
+        MaxWidth="280" MaxHeight="400"
+        Background="{DynamicResource AppBg}"
+        Title="Select Edge Type"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="ListBoxItem">
+			<Setter Property="Padding" Value="8,6"/>
+		</Style>
+		<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="12">
+
+		<!-- Header -->
+		<TextBlock Grid.Row="0"
+		           Text="Choose relationship type:"
+		           FontSize="13"
+		           FontWeight="SemiBold"
+		           Foreground="{DynamicResource TextFg}"
+		           Margin="0,0,0,8"/>
+
+		<!-- Edge type list -->
+		<ListBox Grid.Row="1"
+		         Name="TypeList"
+		         SelectionMode="Single"
+		         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="local:EdgeTypeItemVm">
+					<Grid ColumnDefinitions="14,*" ColumnSpacing="8">
+						<!-- Color dot -->
+						<Ellipse Grid.Column="0"
+						         Width="10" Height="10"
+						         VerticalAlignment="Center"
+						         Fill="{Binding ColorHex}"/>
+						<!-- Name + description -->
+						<StackPanel Grid.Column="1" Spacing="1">
+							<StackPanel Orientation="Horizontal" Spacing="6">
+								<TextBlock Text="{Binding DisplayName}"
+								           FontSize="13"
+								           FontWeight="Medium"
+								           Foreground="{DynamicResource TextFg}"/>
+								<TextBlock Text="{Binding ShortcutHint}"
+								           FontSize="11"
+								           Foreground="{DynamicResource TextMutedFg}"
+								           VerticalAlignment="Center"/>
+							</StackPanel>
+							<TextBlock Text="{Binding Description}"
+							           FontSize="11"
+							           Foreground="{DynamicResource TextMutedFg}"
+							           TextWrapping="Wrap"/>
+						</StackPanel>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<!-- Footer hint -->
+		<TextBlock Grid.Row="2"
+		           Text="1-9 quick-select | Enter confirm | Esc cancel"
+		           FontSize="11"
+		           Foreground="{DynamicResource TextMutedFg}"
+		           HorizontalAlignment="Center"
+		           Margin="0,8,0,0"/>
+	</Grid>
+
+</Window>
