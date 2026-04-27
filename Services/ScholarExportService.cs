@@ -78,7 +78,11 @@ public sealed class ScholarExportService : IScholarExportService
         "modified_utc",
         "zen_link",
         "share_url",
-        "formatted_citation"
+        "formatted_citation",
+        "summary",
+        "reading_status",
+        "importance",
+        "annotation_type",
     };
     private static readonly string[] ReaderTagHeaders =
     {
@@ -1648,6 +1652,10 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
                 BuildZenLink(passage) ?? string.Empty,
                 BuildShareUrl(passage) ?? string.Empty,
                 BuildPassageCitationLine(passage) ?? string.Empty,  // 3D: formatted_citation (31st column)
+                passage.Summary ?? string.Empty,
+                passage.ReadingStatus ?? string.Empty,
+                passage.Importance?.ToString() ?? string.Empty,
+                passage.AnnotationType ?? string.Empty,
             };
 
             sb.AppendLine(string.Join(delimiter, row.Select(v => EscapeDelimited(v, delimiter))));

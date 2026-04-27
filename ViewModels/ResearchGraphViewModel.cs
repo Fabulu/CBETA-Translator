@@ -175,6 +175,26 @@ public class ResearchGraphViewModel
             _nodeMap[nodeId] = node;
         }
 
+        // Add collection reference nodes
+        if (_collection.CollectionRefs != null)
+        {
+            foreach (var collRef in _collection.CollectionRefs)
+            {
+                var nodeId = $"collection:{collRef.CollectionId}";
+                if (_nodeMap.ContainsKey(nodeId)) continue;
+                var node = new ResearchGraphNode
+                {
+                    NodeId = nodeId,
+                    NodeType = ScholarNodeType.Collection,
+                    Label = collRef.CollectionName ?? collRef.CollectionId,
+                    SecondaryLabel = collRef.IsShared ? $"by {collRef.OwnerUsername}" : "local",
+                    ColorHex = "#AB47BC"
+                };
+                Nodes.Add(node);
+                _nodeMap[nodeId] = node;
+            }
+        }
+
         // Build edges from ScholarGraphEdge
         foreach (var edge in _collection.Edges)
         {

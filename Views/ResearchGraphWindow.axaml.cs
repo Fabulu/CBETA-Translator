@@ -19,6 +19,9 @@ public partial class ResearchGraphWindow : Window
 {
     private ResearchGraphViewModel? _vm;
     private ResearchGraphCanvasControl? _canvas;
+    private GraphFilterPanel? _filterPanel;
+    private GraphStatisticsPanel? _statsPanel;
+    private GraphLegendPanel? _legendPanel;
 
     public ResearchGraphWindow()
     {
@@ -33,6 +36,7 @@ public partial class ResearchGraphWindow : Window
 
         SetupToolbar();
         SetupCanvas();
+        SetupLeftPanels();
         SetupKeyBindings();
         SetupEmptyState();
         UpdateStatusBar();
@@ -56,6 +60,36 @@ public partial class ResearchGraphWindow : Window
         var btnRedo = this.FindControl<Button>("BtnRedo");
         btnRedo!.Click += (_, _) => _vm?.Redo();
 
+        // Dead toolbar buttons: show status message instead of doing nothing
+        foreach (var name in new[] { "BtnAddPassage", "BtnAddMaster", "BtnAddTerm", "BtnAddCollection" })
+        {
+            var btn = this.FindControl<Button>(name);
+            if (btn != null) btn.Click += (_, _) => ShowStatus("Feature coming soon");
+        }
+
+        var btnOverflow = this.FindControl<Button>("BtnOverflow");
+        if (btnOverflow != null) btnOverflow.Click += (_, _) => ShowStatus("More options coming soon");
+
+        // Close inspector button
+        var btnCloseInspector = this.FindControl<Button>("BtnCloseInspector");
+        if (btnCloseInspector != null)
+        {
+            btnCloseInspector.Click += (_, _) =>
+            {
+                var inspectorColumn = this.FindControl<Grid>(null!);
+                // Toggle the right panel visibility by finding the Column="4" Border
+                var mainGrid = this.FindControl<Grid>("CanvasHost")?.Parent as Grid;
+                if (mainGrid != null && mainGrid.Children.Count > 4)
+                {
+                    var inspectorBorder = mainGrid.Children
+                        .OfType<Border>()
+                        .FirstOrDefault(b => Grid.GetColumn(b) == 4);
+                    if (inspectorBorder != null)
+                        inspectorBorder.IsVisible = !inspectorBorder.IsVisible;
+                }
+            };
+        }
+
         var cmbCollection = this.FindControl<ComboBox>("CmbCollection");
         if (cmbCollection != null && _vm != null)
         {
@@ -70,6 +104,7 @@ public partial class ResearchGraphWindow : Window
                     UpdateStatusBar();
                     UpdateEmptyState();
                     UpdateInspector();
+                    UpdateLeftPanels();
                     Title = $"Research Graph \u2014 {selected.Name}";
                 }
             };
@@ -80,6 +115,87 @@ public partial class ResearchGraphWindow : Window
         {
             if (_vm != null) _vm.SearchText = txtSearch.Text ?? "";
         };
+    }
+
+    private void SetupLeftPanels()
+    {
+        // Filter panel
+        var filterHost = this.FindControl<StackPanel>("FilterPanel");
+        if (filterHost != null)
+        {
+            _filterPanel = new GraphFilterPanel();
+            filterHost.Children.Add(_filterPanel);
+            _filterPanel.FiltersChanged += (_, _) =>
+            {
+                if (_vm == null || _filterPanel == null) return;
+                _vm.ShowPassages = _filterPanel.ShowPassages;
+                _vm.ShowConcepts = _filterPanel.ShowConcepts;
+                _vm.ShowMasters = _filterPanel.ShowMasters;
+                _vm.ShowTerms = _filterPanel.ShowTerms;
+                _vm.ShowCollections = _filterPanel.ShowCollections;
+                _canvas?.InvalidateVisual();
+            };
+        }
+
+        // Stats panel
+        var statsHost = this.FindControl<StackPanel>("StatsPanel");
+        if (statsHost != null)
+        {
+            _statsPanel = new GraphStatisticsPanel();
+            statsHost.Children.Add(_statsPanel);
+        }
+
+        // Legend panel
+        var legendHost = this.FindControl<StackPanel>("LegendPanel");
+        if (legendHost != null)
+        {
+            _legendPanel = new GraphLegendPanel();
+            legendHost.Children.Add(_legendPanel);
+        }
+
+        UpdateLeftPanels();
+    }
+
+    private void UpdateLeftPanels()
+    {
+        if (_vm == null) return;
+
+        // Update stats panel
+        _statsPanel?.UpdateStats(
+            _vm.OrphanPassageCount,
+            _vm.OrphanConceptCount,
+            _vm.OverloadedConceptCount,
+            _vm.WeakConceptCount,
+            _vm.QualityScore);
+
+        // Update quality in status bar
+        var txtQuality = this.FindControl<TextBlock>("TxtQuality");
+        if (txtQuality != null)
+            txtQuality.Text = $"Quality: {_vm.QualityScore:F0}%";
+
+        // Update legend with distinct edge types currently in the graph
+        if (_legendPanel != null)
+        {
+            var edgeEntries = _vm.Edges
+                .Select(e => e.RelationType)
+                .Distinct()
+                .Select(rt =>
+                {
+                    var def = EdgeTypeRegistry.GetById(rt);
+                    return new EdgeLegendEntry(
+                        rt,
+                        def?.ColorHex ?? "#9E9E9E",
+                        def?.DisplayName ?? rt);
+                })
+                .ToList();
+            _legendPanel.UpdateLegend(edgeEntries);
+        }
+    }
+
+    private void ShowStatus(string message)
+    {
+        var txtStatus = this.FindControl<TextBlock>("TxtStatus");
+        if (txtStatus != null) txtStatus.Text = message;
     }
 
     private void SetupCanvas()
@@ -107,6 +223,7 @@ public partial class ResearchGraphWindow : Window
                 _vm?.SwitchToCollection(collId);
                 _canvas?.InvalidateVisual();
                 UpdateStatusBar();
+                UpdateLeftPanels();
                 UpdateEmptyState();
                 UpdateInspector();
 
@@ -153,6 +270,7 @@ public partial class ResearchGraphWindow : Window
                 _vm!.ExecuteCommand(new AddEdgeCommand(_vm!, edge));
                 _canvas.InvalidateVisual();
                 UpdateStatusBar();
+                UpdateLeftPanels();
             }
         };
 
@@ -261,6 +379,7 @@ public partial class ResearchGraphWindow : Window
         {
             _vm.ExecuteCommand(new AddConceptCommand(_vm, result));
             UpdateStatusBar();
+            UpdateLeftPanels();
             UpdateEmptyState();
             _canvas?.InvalidateVisual();
         }
@@ -279,6 +398,7 @@ public partial class ResearchGraphWindow : Window
         _vm.SelectedNode = null;
         UpdateInspector();
         UpdateStatusBar();
+        UpdateLeftPanels();
         UpdateEmptyState();
         _canvas?.InvalidateVisual();
     }

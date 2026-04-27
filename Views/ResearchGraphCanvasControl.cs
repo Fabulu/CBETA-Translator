@@ -31,7 +31,7 @@ public class ResearchGraphCanvasControl : Control
     // Cached pens for node rendering
     private static readonly IPen DefaultNodePen = new Pen(Brushes.White, 1.5);
     private static readonly IPen SelectedNodePen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 3);
-    private static readonly Dictionary<string, IBrush> _edgeBrushCache = new();
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, IBrush> _edgeBrushCache = new();
 
     // Node type colors
     private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
@@ -177,13 +177,12 @@ public class ResearchGraphCanvasControl : Control
         if (len < 1) return; // Skip degenerate edges
 
         var hex = edge.ColorHex ?? "#9E9E9E";
-        if (!_edgeBrushCache.TryGetValue(hex, out var brush))
+        var brush = _edgeBrushCache.GetOrAdd(hex, h =>
         {
             Color c;
-            try { c = Color.Parse(hex); } catch { c = Color.Parse("#9E9E9E"); }
-            brush = new SolidColorBrush(c);
-            _edgeBrushCache[hex] = brush;
-        }
+            try { c = Color.Parse(h); } catch { c = Color.Parse("#9E9E9E"); }
+            return new SolidColorBrush(c);
+        });
         var pen = new Pen(brush, 1.5);
         ctx.DrawLine(pen, from, to);
 
@@ -376,6 +375,22 @@ public class ResearchGraphCanvasControl : Control
         _offsetX = pos.X - (pos.X - _offsetX) * (newZoom / _zoom);
         _offsetY = pos.Y - (pos.Y - _offsetY) * (newZoom / _zoom);
         _zoom = newZoom;
+        InvalidateVisual();
+    }
+
+    public void FitToView()
+    {
+        if (_vm == null || _vm.Nodes.Count == 0) return;
+        var nodes = _vm.GetVisibleNodes();
+        if (nodes.Count == 0) return;
+        double minX = nodes.Min(n => n.X), maxX = nodes.Max(n => n.X);
+        double minY = nodes.Min(n => n.Y), maxY = nodes.Max(n => n.Y);
+        double graphW = maxX - minX + 80;
+        double graphH = maxY - minY + 80;
+        if (graphW < 1 || graphH < 1) return;
+        _zoom = Math.Clamp(Math.Min(Bounds.Width / graphW, Bounds.Height / graphH), 0.2, 4.0);
+        _offsetX = Bounds.Width / 2 - (minX + maxX) / 2 * _zoom;
+        _offsetY = Bounds.Height / 2 - (minY + maxY) / 2 * _zoom;
         InvalidateVisual();
     }
 
