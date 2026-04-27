@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.GraphInspectorPanel"
+             Width="320">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <!-- Header -->
+    <Border Grid.Row="0" Padding="12,8" BorderThickness="0,0,0,1"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Ellipse Name="TypeIndicator" Width="12" Height="12" Fill="#6EAFF8"/>
+        <TextBlock Name="TitleText" Text="Inspector" FontWeight="SemiBold" FontSize="14"
+                   VerticalAlignment="Center"/>
+      </StackPanel>
+    </Border>
+
+    <!-- Content -->
+    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="12,8">
+      <StackPanel Name="ContentPanel" Spacing="10">
+        <TextBlock Name="EmptyText" Text="Click a node to preview"
+                   Opacity="0.5" HorizontalAlignment="Center" Margin="0,40"/>
+      </StackPanel>
+    </ScrollViewer>
+
+    <!-- Footer actions -->
+    <Border Grid.Row="2" Padding="8,6" BorderThickness="0,1,0,0"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+      <StackPanel Name="ActionPanel" Orientation="Horizontal" Spacing="4"/>
+    </Border>
+  </Grid>
+</UserControl>
