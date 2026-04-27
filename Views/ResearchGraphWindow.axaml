@@ -64,7 +64,7 @@
       <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
       <!-- Center: Graph Canvas -->
-      <Border Grid.Column="2" ClipToBounds="True" Name="CanvasHost">
+      <Grid Grid.Column="2" ClipToBounds="True" Name="CanvasHost">
         <!-- Canvas control will be added in code-behind -->
 
         <!-- Empty state overlay (shown when graph is empty) -->
@@ -96,7 +96,7 @@
             </Border>
           </StackPanel>
         </Border>
-      </Border>
+      </Grid>
 
       <!-- Splitter -->
       <GridSplitter Grid.Column="3" Width="6" ResizeDirection="Columns"/>
