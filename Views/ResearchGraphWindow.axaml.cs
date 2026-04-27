@@ -56,6 +56,25 @@ public partial class ResearchGraphWindow : Window
         var btnRedo = this.FindControl<Button>("BtnRedo");
         btnRedo!.Click += (_, _) => _vm?.Redo();
 
+        var cmbCollection = this.FindControl<ComboBox>("CmbCollection");
+        if (cmbCollection != null && _vm != null)
+        {
+            cmbCollection.ItemsSource = _vm.GetAllCollections();
+            cmbCollection.SelectedItem = _vm.GetCollection();
+            cmbCollection.SelectionChanged += (_, e) =>
+            {
+                if (cmbCollection.SelectedItem is ScholarCollection selected)
+                {
+                    _vm.SwitchToCollection(selected.Id);
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar();
+                    UpdateEmptyState();
+                    UpdateInspector();
+                    Title = $"Research Graph \u2014 {selected.Name}";
+                }
+            };
+        }
+
         var txtSearch = this.FindControl<TextBox>("TxtSearch");
         txtSearch!.TextChanged += (_, _) =>
         {
@@ -82,13 +101,33 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.NodeDoubleClicked += (_, node) =>
         {
-            // Navigate based on type — for now just select
-            if (_vm != null)
+            if (node.NodeType == ScholarNodeType.Collection)
             {
-                _vm.SelectedNode = node;
-                foreach (var n in _vm.Nodes) n.IsSelected = n == node;
-                UpdateInspector();
+                var collId = node.NodeId.StartsWith("collection:") ? node.NodeId[11..] : node.NodeId;
+                _vm?.SwitchToCollection(collId);
                 _canvas?.InvalidateVisual();
+                UpdateStatusBar();
+                UpdateEmptyState();
+                UpdateInspector();
+
+                // Sync the collection dropdown
+                var cmb = this.FindControl<ComboBox>("CmbCollection");
+                if (cmb != null && _vm != null)
+                {
+                    cmb.SelectedItem = _vm.GetCollection();
+                    Title = $"Research Graph \u2014 {_vm.GetCollection().Name}";
+                }
+            }
+            else
+            {
+                // Default: select and inspect
+                if (_vm != null)
+                {
+                    _vm.SelectedNode = node;
+                    foreach (var n in _vm.Nodes) n.IsSelected = n == node;
+                    UpdateInspector();
+                    _canvas?.InvalidateVisual();
+                }
             }
         };
 

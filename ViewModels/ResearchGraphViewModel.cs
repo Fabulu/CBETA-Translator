@@ -82,6 +82,31 @@ public class ResearchGraphViewModel
     public bool CanRedo => _redoStack.Count > 0;
 
     public ScholarCollection GetCollection() => _collection;
+    public List<ScholarCollection> GetAllCollections() => _allCollections;
+
+    public void SwitchToCollection(string collectionId)
+    {
+        var target = _allCollections.FirstOrDefault(c => c.Id == collectionId);
+        if (target == null) return;
+
+        // Save current layout
+        SaveLayoutToCollection();
+
+        // Switch
+        _collection = target;
+        RebuildGraph();
+    }
+
+    public void SaveLayoutToCollection()
+    {
+        var layout = _collection.GraphLayout ?? new ScholarGraphLayout();
+        layout.NodePositions.Clear();
+        foreach (var node in Nodes)
+        {
+            layout.NodePositions[node.NodeId] = new GraphNodeLayout { X = node.X, Y = node.Y };
+        }
+        _collection.GraphLayout = layout;
+    }
 
     public ResearchGraphViewModel(ScholarCollection collection, List<ScholarCollection> allCollections)
     {
@@ -169,8 +194,27 @@ public class ResearchGraphViewModel
             toNode.Degree++;
         }
 
-        // Initial layout
-        RunForceDirectedLayout(800, 600);
+        // Apply saved positions if available
+        var savedLayout = _collection.GraphLayout;
+        if (savedLayout?.NodePositions != null && savedLayout.NodePositions.Count > 0)
+        {
+            bool hasPositions = false;
+            foreach (var node in Nodes)
+            {
+                if (savedLayout.NodePositions.TryGetValue(node.NodeId, out var pos))
+                {
+                    node.X = pos.X;
+                    node.Y = pos.Y;
+                    hasPositions = true;
+                }
+            }
+            if (hasPositions)
+            {
+                ComputeStats();
+                return; // Skip force layout — use saved positions
+            }
+        }
+
         ComputeStats();
     }
 
@@ -180,7 +224,7 @@ public class ResearchGraphViewModel
 
         var k = Math.Sqrt((width * height) / Nodes.Count);
         double temp = width / 10.0;
-        var nodeList = Nodes.ToList();
+        var nodeList = Nodes.OrderBy(n => n.NodeId).ToList();
 
         // Circular initial positions
         for (int i = 0; i < nodeList.Count; i++)
@@ -229,16 +273,15 @@ public class ResearchGraphViewModel
                 e.To.Vy += fy;
             }
 
-            // Gravity
-            double gravity = 0.015 * k;
+            // Gravity: D3-style linear spring toward center
+            // See: https://d3js.org/d3-force/simulation (forceCenter)
+            // Formula: node.vx += (center - node.x) * strength
+            double gravityStrength = 0.01;
             double cx = width / 2, cy = height / 2;
             foreach (var n in nodeList)
             {
-                double dx = cx - n.X;
-                double dy = cy - n.Y;
-                double dist = Math.Sqrt(dx * dx + dy * dy) + 0.01;
-                n.Vx += (dx / dist) * gravity * dist * 0.01;
-                n.Vy += (dy / dist) * gravity * dist * 0.01;
+                n.Vx += (cx - n.X) * gravityStrength;
+                n.Vy += (cy - n.Y) * gravityStrength;
             }
 
             // Apply with temperature
@@ -267,11 +310,12 @@ public class ResearchGraphViewModel
             NodeType = ScholarNodeType.Concept,
             Label = concept.DisplayTitle,
             ColorHex = concept.ColorHex ?? "#FF8A65",
-            X = 400 + Random.Shared.NextDouble() * 100,
-            Y = 300 + Random.Shared.NextDouble() * 100
+            X = 400,  // Will be repositioned by layout
+            Y = 300
         };
         Nodes.Add(node);
         _nodeMap[concept.Id] = node;
+        RunForceDirectedLayout(800, 600);
         ComputeStats();
     }
 
