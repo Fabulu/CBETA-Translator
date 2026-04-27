@@ -101,6 +101,9 @@ public partial class TranslationTabView : UserControl
     /// <summary>Fired when user selects "Search corpus for selection" in the editor context menu.</summary>
     public event EventHandler<string>? SearchCorpusRequested;
 
+    /// <summary>Fired when user selects "Create Termbase Entry" in the editor context menu.</summary>
+    public event EventHandler<string>? CreateTermbaseEntryRequested;
+
     /// <summary>
     /// Delegate that resolves the lb n-value for a given block number.
     /// Wired by MainWindow from the current IndexedTranslationDocument.
@@ -388,6 +391,16 @@ public partial class TranslationTabView : UserControl
                 SearchCorpusRequested?.Invoke(this, selected);
         };
         menu.Items.Add(searchCorpusItem);
+
+        // Create Termbase Entry — opens the termbase editor with a new entry pre-filled.
+        var createTermItem = new MenuItem { Header = "Create Termbase Entry" };
+        createTermItem.Click += (_, _) =>
+        {
+            var selected = _editor?.SelectedText?.Trim();
+            if (!string.IsNullOrEmpty(selected))
+                CreateTermbaseEntryRequested?.Invoke(this, selected);
+        };
+        menu.Items.Add(createTermItem);
 
         return menu;
     }

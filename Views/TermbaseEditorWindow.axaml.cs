@@ -110,6 +110,12 @@ public partial class TermbaseEditorWindow : Window
         _vm.ConfigureLanding(term, communityUser);
         _vm.ApplyLandingRequest();
     }
+
+    /// <summary>
+    /// Creates a new termbase entry with the source term pre-filled.
+    /// Called after the window is opened via the "Create Termbase Entry" context menu.
+    /// </summary>
+    public void PreFillNewEntry(string sourceTerm) => _vm.PreFillNewEntry(sourceTerm);
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }
 

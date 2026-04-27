@@ -274,6 +274,29 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
         StatusMessage = "New term created.";
     }
 
+    /// <summary>
+    /// Creates a new termbase entry with the source term pre-filled.
+    /// Used by the "Create Termbase Entry" context menu action in reader views.
+    /// </summary>
+    public void PreFillNewEntry(string sourceTerm)
+    {
+        if (string.IsNullOrWhiteSpace(sourceTerm)) return;
+
+        var entry = new TermbaseEntry
+        {
+            SourceTerm = sourceTerm.Trim(),
+            PreferredTarget = "",
+            Status = "preferred",
+            Note = "",
+            AlternateTargets = new List<string>()
+        };
+
+        AllEntries.Add(entry);
+        ApplyFilter();
+        SelectedEntry = entry;
+        StatusMessage = $"New entry created for \"{sourceTerm.Trim()}\".";
+    }
+
     [RelayCommand]
     private void DeleteTerm()
     {
@@ -497,7 +520,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
                 foreach (var child in group.Children.Take(3))
                 {
                     var snippet = $"{child.LeftText}{child.MatchText}{child.RightText}";
-                    if (snippet.Length > 120) snippet = snippet[..120] + "…";
+                    if (snippet.Length > 120) snippet = snippet[..120] + "ï¿½";
 
                     hits.Add(new CorpusUsageHit
                     {

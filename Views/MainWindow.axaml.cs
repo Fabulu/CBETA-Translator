@@ -1324,6 +1324,13 @@ private async Task LoadConfigAndAutoloadAsync()
                 _searchView?.SetQueryAndSearch(query);
             };
 
+            // Create Termbase Entry from selected text in reader.
+            _readableView.CreateTermbaseEntryRequested += async (_, sourceTerm) =>
+            {
+                await _vm.OpenTermbaseEditorAsync();
+                _termbaseEditorWindow?.PreFillNewEntry(sourceTerm);
+            };
+
             _readableView.StudyPanelVisibilityChanged += (_, visible) =>
             {
                 _vm.Config.EnableStudyPanel = visible;
@@ -1443,6 +1450,13 @@ private async Task LoadConfigAndAutoloadAsync()
                 ForceTab(2);
                 _searchView?.FocusQueryBox();
                 _searchView?.SetQueryAndSearch(query);
+            };
+
+            // Create Termbase Entry from selected text in translation editor.
+            _translationView.CreateTermbaseEntryRequested += async (_, sourceTerm) =>
+            {
+                await _vm.OpenTermbaseEditorAsync();
+                _termbaseEditorWindow?.PreFillNewEntry(sourceTerm);
             };
 
             _translationView.ResolveLbForBlock = blockNumber =>
