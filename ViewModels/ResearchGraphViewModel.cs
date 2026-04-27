@@ -81,6 +81,8 @@ public class ResearchGraphViewModel
     public bool CanUndo => _undoStack.Count > 0;
     public bool CanRedo => _redoStack.Count > 0;
 
+    public ScholarCollection GetCollection() => _collection;
+
     public ResearchGraphViewModel(ScholarCollection collection, List<ScholarCollection> allCollections)
     {
         _collection = collection;

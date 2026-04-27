@@ -66,6 +66,36 @@
       <!-- Center: Graph Canvas -->
       <Border Grid.Column="2" ClipToBounds="True" Name="CanvasHost">
         <!-- Canvas control will be added in code-behind -->
+
+        <!-- Empty state overlay (shown when graph is empty) -->
+        <Border Name="EmptyStateOverlay" IsVisible="True" Padding="40"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+          <StackPanel Spacing="16" MaxWidth="500" HorizontalAlignment="Center">
+            <TextBlock Text="Research Graph" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Build a disciplined knowledge graph over your Zen text research. Connect passages to concepts, trace lineages, and discover patterns."
+                       TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7"/>
+
+            <StackPanel Spacing="8" Margin="0,12,0,0">
+              <TextBlock Text="1. Add passages from your collection to the graph" Opacity="0.8"/>
+              <TextBlock Text="2. Create concepts &#x2014; name the patterns you see" Opacity="0.8"/>
+              <TextBlock Text="3. Draw edges between nodes to build your meaning web" Opacity="0.8"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,12,0,0">
+              <Button Name="BtnEmptyAddPassages" Content="Add Passages" Padding="12,6"/>
+              <Button Name="BtnEmptyAddConcept" Content="Create First Concept" Padding="12,6"/>
+            </StackPanel>
+
+            <Border Margin="0,16,0,0" Padding="12" CornerRadius="6" Opacity="0.8"
+                    BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+              <StackPanel Spacing="4">
+                <TextBlock Text="No passages yet? No problem." FontWeight="SemiBold" FontSize="12"/>
+                <TextBlock Text="Browse community collections in the Scholar tab &#x2014; view other scholars' research graphs, passages, and concept maps. The Scholar tab works even without your own snippets."
+                           TextWrapping="Wrap" FontSize="11" Opacity="0.8"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
       </Border>
 
       <!-- Splitter -->
