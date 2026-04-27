@@ -252,6 +252,9 @@ public partial class ReadableTabView : UserControl
     /// <summary>Fired when user right-clicks and selects "Search corpus for selection".</summary>
     public event EventHandler<string>? SearchCorpusRequested;
 
+    /// <summary>Fired when user right-clicks and selects "Create Termbase Entry".</summary>
+    public event EventHandler<string>? CreateTermbaseEntryRequested;
+
     /// <summary>Fired when user clicks "View Master" button in study panel.</summary>
     public event EventHandler<string>? OpenMasterRequested;
 
@@ -598,6 +601,17 @@ public partial class ReadableTabView : UserControl
                 DictionaryRequested?.Invoke(this, EventArgs.Empty);
         };
         menu.Items.Add(dictItem);
+
+        // "Create Termbase Entry" — opens the termbase editor with a new entry pre-filled.
+        var createTermItem = new MenuItem { Header = "Create Termbase Entry" };
+        createTermItem.Click += (_, _) =>
+        {
+            var ed = isTranslated ? _aeTran : _aeOrig;
+            var selected = ed?.SelectedText?.Trim();
+            if (!string.IsNullOrEmpty(selected))
+                CreateTermbaseEntryRequested?.Invoke(this, selected);
+        };
+        menu.Items.Add(createTermItem);
 
         // License-aware items — only added when the active file has license
         // metadata that makes them meaningful. Hiding empty entries keeps
