@@ -800,19 +800,22 @@ public class ScholarExportServiceTests : IDisposable
         var draft = await File.ReadAllTextAsync(path);
 
         Assert.Contains("export_format: \"paper-draft\"", draft);
-        Assert.Contains("# Draft Collection", draft);
-        Assert.Contains("Research draft scaffold from the selected collection.", draft);
-        Assert.Contains("## Nonduality", draft);
-        Assert.Contains("## Zhaozhou Congshen", draft);
-        Assert.Contains("### Passage 1. 第一則話頭", draft);
-        Assert.Contains("> Chinese", draft);
-        Assert.Contains("> Translation", draft);
-        Assert.Contains("Interpretive note:", draft);
-        Assert.Contains("Develop this into an argument.", draft);
-        Assert.Contains("Citation:", draft);
-        Assert.Contains("- Anchor: lb 0292a26 - 0292a29", draft);
-        Assert.Contains("- Zen link: zen://T0600/0292a26-0292a29?block=2", draft);
-        Assert.Contains("- Share URL: https://readzen.pages.dev/T0600/0292a26-0292a29", draft);
+        Assert.Contains("title: \"Draft Collection\"", draft);
+        Assert.Contains("author: \"owner\"", draft);
+        Assert.Contains("# Abstract", draft);
+        Assert.Contains("# Introduction", draft);
+        Assert.Contains("Collected koan material.", draft);
+        Assert.Contains("2 passage(s) from 2 source text(s)", draft);
+        Assert.Contains("# Nonduality", draft);
+        Assert.Contains("# Zhaozhou Congshen", draft);
+        Assert.Contains("> 第一則話頭", draft);
+        Assert.Contains("> First case", draft);
+        Assert.Contains("[^1]", draft);
+        Assert.Contains("[TODO: Analysis of this passage.]", draft);
+        Assert.Contains("# Conclusion", draft);
+        Assert.Contains("# Primary Sources", draft);
+        Assert.Contains("# Notes", draft);
+        Assert.Contains("readzen.pages.dev/T0600/0292a26", draft);
     }
 
     [Fact]
@@ -837,9 +840,9 @@ public class ScholarExportServiceTests : IDisposable
         await _svc.ExportAsync(path, collection, ScholarExportFormat.PaperDraft);
         var draft = await File.ReadAllTextAsync(path);
 
-        Assert.Contains("## Untagged Passages", draft);
-        Assert.Contains("[Add analysis here.]", draft);
-        Assert.DoesNotContain("- Anchor:", draft);
+        Assert.Contains("# Untagged Passages", draft);
+        Assert.Contains("[TODO: Analysis of this passage.]", draft);
+        Assert.Contains("> 無備註段落", draft);
     }
 
     [Fact]
