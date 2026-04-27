@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ReadZen.App.Views.GraphFilterPanel">
+  <StackPanel Spacing="8" Margin="4">
+    <TextBlock Text="Node Types" FontWeight="SemiBold" FontSize="12"/>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="10" Height="10" Fill="#6EAFF8" VerticalAlignment="Center"/>
+      <CheckBox Name="ChkPassages" Content="Passages" IsChecked="True"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="10" Height="10" Fill="#FF8A65" VerticalAlignment="Center"/>
+      <CheckBox Name="ChkConcepts" Content="Concepts" IsChecked="True"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="10" Height="10" Fill="#64B5F6" VerticalAlignment="Center"/>
+      <CheckBox Name="ChkMasters" Content="Masters" IsChecked="True"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="10" Height="10" Fill="#AED581" VerticalAlignment="Center"/>
+      <CheckBox Name="ChkTerms" Content="Terms" IsChecked="True"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Ellipse Width="10" Height="10" Fill="#CE93D8" VerticalAlignment="Center"/>
+      <CheckBox Name="ChkCollections" Content="Collections" IsChecked="True"/>
+    </StackPanel>
+
+    <Button Name="BtnShowAll" Content="Show All" Padding="8,4" FontSize="11" Margin="0,8,0,0"/>
+  </StackPanel>
+</UserControl>
