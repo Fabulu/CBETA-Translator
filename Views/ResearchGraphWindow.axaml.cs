@@ -19,6 +19,8 @@ public partial class ResearchGraphWindow : Window
 {
     private ResearchGraphViewModel? _vm;
     private ResearchGraphCanvasControl? _canvas;
+    private GraphStatisticsPanel? _statsPanel;
+    private GraphLegendPanel? _legendPanel;
 
     public ResearchGraphWindow()
     {
@@ -33,10 +35,12 @@ public partial class ResearchGraphWindow : Window
 
         SetupToolbar();
         SetupCanvas();
+        SetupLeftPanels();
         SetupKeyBindings();
         SetupEmptyState();
         UpdateStatusBar();
         UpdateEmptyState();
+        UpdateLeftPanels();
     }
 
     private void SetupToolbar()
@@ -45,10 +49,10 @@ public partial class ResearchGraphWindow : Window
         btnAddConcept!.Click += OnAddConcept;
 
         var btnRelayout = this.FindControl<Button>("BtnRelayout");
-        btnRelayout!.Click += (_, _) => _vm?.RunForceDirectedLayout(800, 600);
+        btnRelayout!.Click += (_, _) => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); };
 
         var btnFitView = this.FindControl<Button>("BtnFitView");
-        btnFitView!.Click += (_, _) => { /* TODO: fit view */ };
+        btnFitView!.Click += (_, _) => _canvas?.FitToView();
 
         var btnUndo = this.FindControl<Button>("BtnUndo");
         btnUndo!.Click += (_, _) => _vm?.Undo();
@@ -61,6 +65,158 @@ public partial class ResearchGraphWindow : Window
         {
             if (_vm != null) _vm.SearchText = txtSearch.Text ?? "";
         };
+
+        // + Passage button
+        var btnAddPassage = this.FindControl<Button>("BtnAddPassage");
+        if (btnAddPassage != null)
+            btnAddPassage.Click += async (_, _) =>
+            {
+                if (_vm?.GetCollection() == null) return;
+                var dialog = new PassagePickerDialog(_vm.GetCollection().Passages);
+                var result = await dialog.ShowDialog<ScholarPassage?>(this);
+                if (result != null && !_vm.Nodes.Any(n => n.NodeId == result.Id))
+                {
+                    var node = new ResearchGraphNode
+                    {
+                        NodeId = result.Id, NodeType = ScholarNodeType.Passage,
+                        Label = result.DisplayTitle, ColorHex = "#6EAFF8",
+                        X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                        Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300,
+                        SourceData = result
+                    };
+                    _vm.Nodes.Add(node);
+                    _vm.RestoreNodeToMap(node);
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar(); UpdateEmptyState(); UpdateLeftPanels();
+                }
+            };
+
+        // + Master button
+        var btnAddMaster = this.FindControl<Button>("BtnAddMaster");
+        if (btnAddMaster != null)
+            btnAddMaster.Click += async (_, _) =>
+            {
+                if (_vm == null) return;
+                var masterNames = _vm.GetCollection().Passages
+                    .SelectMany(p => p.MasterNames ?? new List<string>())
+                    .Distinct().OrderBy(n => n).ToList();
+                if (masterNames.Count == 0) return;
+                var dialog = new MasterPickerDialog(masterNames);
+                var result = await dialog.ShowDialog<string?>(this);
+                if (!string.IsNullOrEmpty(result) && !_vm.Nodes.Any(n => n.NodeId == $"master:{result}"))
+                {
+                    var node = new ResearchGraphNode
+                    {
+                        NodeId = $"master:{result}", NodeType = ScholarNodeType.ZenMaster,
+                        Label = result, ColorHex = "#64B5F6",
+                        X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                        Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
+                    };
+                    _vm.Nodes.Add(node);
+                    _vm.RestoreNodeToMap(node);
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar(); UpdateLeftPanels();
+                }
+            };
+
+        // + Term button
+        var btnAddTerm = this.FindControl<Button>("BtnAddTerm");
+        if (btnAddTerm != null)
+            btnAddTerm.Click += async (_, _) =>
+            {
+                if (_vm == null) return;
+                var renameWindow = new Window
+                {
+                    Title = "Add Term", Width = 350, Height = 150,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+                };
+                var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
+                var txt = new TextBox { Watermark = "Enter Chinese or English term..." };
+                var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+                var btnOk = new Button { Content = "Add Term", Padding = new Avalonia.Thickness(12, 6) };
+                var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
+                btnPanel.Children.Add(btnCancel);
+                btnPanel.Children.Add(btnOk);
+                Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+                grid.Children.Add(txt); grid.Children.Add(btnPanel);
+                renameWindow.Content = grid;
+                string? termName = null;
+                btnOk.Click += (_, _) => { termName = txt.Text?.Trim(); renameWindow.Close(); };
+                btnCancel.Click += (_, _) => renameWindow.Close();
+                renameWindow.KeyDown += (_, e) =>
+                {
+                    if (e.Key == Key.Return) { termName = txt.Text?.Trim(); renameWindow.Close(); }
+                    if (e.Key == Key.Escape) renameWindow.Close();
+                };
+                await renameWindow.ShowDialog(this);
+                if (!string.IsNullOrEmpty(termName))
+                {
+                    var nodeId = $"term:{termName}";
+                    if (_vm.Nodes.Any(n => n.NodeId == nodeId)) return;
+                    var node = new ResearchGraphNode
+                    {
+                        NodeId = nodeId, NodeType = ScholarNodeType.TermbaseEntry,
+                        Label = termName, ColorHex = "#81C784",
+                        X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                        Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
+                    };
+                    _vm.Nodes.Add(node);
+                    _vm.RestoreNodeToMap(node);
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar(); UpdateLeftPanels();
+                }
+            };
+
+        // + Collection button
+        var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
+        if (btnAddCollection != null)
+            btnAddCollection.Click += async (_, _) =>
+            {
+                if (_vm == null) return;
+                var others = _vm.GetAllCollections().Where(c => c.Id != _vm.GetCollection().Id).ToList();
+                if (others.Count == 0) return;
+                var dialog = new MasterPickerDialog(others.Select(c => c.Name ?? c.Id));
+                dialog.Title = "Add Collection Reference";
+                var result = await dialog.ShowDialog<string?>(this);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    var target = others.FirstOrDefault(c => (c.Name ?? c.Id) == result);
+                    if (target == null) return;
+                    var nodeId = $"collection:{target.Id}";
+                    if (_vm.Nodes.Any(n => n.NodeId == nodeId)) return;
+                    var node = new ResearchGraphNode
+                    {
+                        NodeId = nodeId, NodeType = ScholarNodeType.Collection,
+                        Label = target.Name ?? target.Id, ColorHex = "#AB47BC",
+                        X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                        Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
+                    };
+                    _vm.Nodes.Add(node);
+                    _vm.RestoreNodeToMap(node);
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar(); UpdateLeftPanels();
+                }
+            };
+
+        // Overflow menu
+        var btnOverflow = this.FindControl<Button>("BtnOverflow");
+        if (btnOverflow != null)
+            btnOverflow.Click += (_, _) =>
+            {
+                var menu = new ContextMenu();
+                menu.Items.Add(CreateMenuItem("Fit to View", () => _canvas?.FitToView()));
+                menu.Items.Add(CreateMenuItem("Relayout", () => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); }));
+                menu.Open(btnOverflow);
+            };
+
+        // Close inspector
+        var btnCloseInspector = this.FindControl<Button>("BtnCloseInspector");
+        if (btnCloseInspector != null)
+            btnCloseInspector.Click += (_, _) =>
+            {
+                var inspectorContent = this.FindControl<StackPanel>("InspectorContent");
+                if (inspectorContent != null) inspectorContent.IsVisible = !inspectorContent.IsVisible;
+            };
     }
 
     private void SetupCanvas()
@@ -111,6 +267,7 @@ public partial class ResearchGraphWindow : Window
                 _vm!.ExecuteCommand(new AddEdgeCommand(_vm!, edge));
                 _canvas.InvalidateVisual();
                 UpdateStatusBar();
+                UpdateLeftPanels();
             }
         };
 
@@ -123,6 +280,48 @@ public partial class ResearchGraphWindow : Window
                 ShowContextMenu(_canvas, pos);
             }
         };
+    }
+
+    private void SetupLeftPanels()
+    {
+        var filterHost = this.FindControl<StackPanel>("FilterPanel");
+        if (filterHost != null)
+        {
+            var fp = new GraphFilterPanel();
+            filterHost.Children.Add(fp);
+            fp.FiltersChanged += (_, _) =>
+            {
+                if (_vm == null) return;
+                _vm.ShowPassages = fp.ShowPassages;
+                _vm.ShowConcepts = fp.ShowConcepts;
+                _vm.ShowMasters = fp.ShowMasters;
+                _vm.ShowTerms = fp.ShowTerms;
+                _vm.ShowCollections = fp.ShowCollections;
+                _canvas?.InvalidateVisual();
+            };
+        }
+
+        var statsHost = this.FindControl<StackPanel>("StatsPanel");
+        if (statsHost != null)
+        {
+            _statsPanel = new GraphStatisticsPanel();
+            statsHost.Children.Add(_statsPanel);
+        }
+
+        var legendHost = this.FindControl<StackPanel>("LegendPanel");
+        if (legendHost != null)
+        {
+            _legendPanel = new GraphLegendPanel();
+            legendHost.Children.Add(_legendPanel);
+        }
+    }
+
+    private void UpdateLeftPanels()
+    {
+        if (_vm == null) return;
+        _statsPanel?.UpdateStats(
+            _vm.OrphanPassageCount, _vm.OrphanConceptCount,
+            _vm.OverloadedConceptCount, _vm.WeakConceptCount, _vm.QualityScore);
     }
 
     private void SetupKeyBindings()
@@ -196,8 +395,8 @@ public partial class ResearchGraphWindow : Window
             // Canvas context menu (no node selected)
             menu.Items.Add(CreateMenuItem("Add Concept (Ctrl+Shift+C)", () => OnAddConcept(null, null)));
             menu.Items.Add(new Separator());
-            menu.Items.Add(CreateMenuItem("Fit to View", () => { /* TODO */ }));
-            menu.Items.Add(CreateMenuItem("Relayout", () => _vm?.RunForceDirectedLayout(800, 600)));
+            menu.Items.Add(CreateMenuItem("Fit to View", () => _canvas?.FitToView()));
+            menu.Items.Add(CreateMenuItem("Relayout", () => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); }));
         }
 
         menu.Open(target);
@@ -220,6 +419,7 @@ public partial class ResearchGraphWindow : Window
             _vm.ExecuteCommand(new AddConceptCommand(_vm, result));
             UpdateStatusBar();
             UpdateEmptyState();
+            UpdateLeftPanels();
             _canvas?.InvalidateVisual();
         }
     }
@@ -237,6 +437,7 @@ public partial class ResearchGraphWindow : Window
         UpdateInspector();
         UpdateStatusBar();
         UpdateEmptyState();
+        UpdateLeftPanels();
         _canvas?.InvalidateVisual();
     }
 
@@ -252,9 +453,41 @@ public partial class ResearchGraphWindow : Window
         _canvas?.InvalidateVisual();
     }
 
-    private void RenameSelected()
+    private async void RenameSelected()
     {
-        // TODO: inline rename for concepts
+        if (_vm?.SelectedNode == null) return;
+        var node = _vm.SelectedNode;
+
+        var renameWindow = new Window
+        {
+            Title = "Rename Node", Width = 350, Height = 150,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+        };
+        var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
+        var txt = new TextBox { Text = node.Label };
+        var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+        var btnOk = new Button { Content = "Rename", Padding = new Avalonia.Thickness(12, 6) };
+        var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
+        btnPanel.Children.Add(btnCancel);
+        btnPanel.Children.Add(btnOk);
+        Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+        grid.Children.Add(txt); grid.Children.Add(btnPanel);
+        renameWindow.Content = grid;
+        string? newLabel = null;
+        btnOk.Click += (_, _) => { newLabel = txt.Text?.Trim(); renameWindow.Close(); };
+        btnCancel.Click += (_, _) => renameWindow.Close();
+        renameWindow.KeyDown += (_, e) =>
+        {
+            if (e.Key == Key.Return) { newLabel = txt.Text?.Trim(); renameWindow.Close(); }
+            if (e.Key == Key.Escape) renameWindow.Close();
+        };
+        await renameWindow.ShowDialog(this);
+        if (!string.IsNullOrEmpty(newLabel) && newLabel != node.Label)
+        {
+            node.Label = newLabel;
+            UpdateInspector();
+            _canvas?.InvalidateVisual();
+        }
     }
 
     private void ToggleLinkMode()
@@ -323,7 +556,7 @@ public partial class ResearchGraphWindow : Window
     private void SetupEmptyState()
     {
         var btnAddPassages = this.FindControl<Button>("BtnEmptyAddPassages");
-        btnAddPassages?.AddHandler(Button.ClickEvent, (_, _) => OnAddPassage());
+        btnAddPassages?.AddHandler(Button.ClickEvent, (_, _) => OnAddPassageFromEmpty());
 
         var btnAddConcept = this.FindControl<Button>("BtnEmptyAddConcept");
         btnAddConcept?.AddHandler(Button.ClickEvent, (_, _) => OnAddConcept(null, null));
@@ -336,9 +569,26 @@ public partial class ResearchGraphWindow : Window
         overlay.IsVisible = _vm == null || _vm.Nodes.Count == 0;
     }
 
-    private void OnAddPassage()
+    private async void OnAddPassageFromEmpty()
     {
-        // TODO: open passage picker dialog
+        if (_vm?.GetCollection() == null) return;
+        var dialog = new PassagePickerDialog(_vm.GetCollection().Passages);
+        var result = await dialog.ShowDialog<ScholarPassage?>(this);
+        if (result != null && !_vm.Nodes.Any(n => n.NodeId == result.Id))
+        {
+            var node = new ResearchGraphNode
+            {
+                NodeId = result.Id, NodeType = ScholarNodeType.Passage,
+                Label = result.DisplayTitle, ColorHex = "#6EAFF8",
+                X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300,
+                SourceData = result
+            };
+            _vm.Nodes.Add(node);
+            _vm.RestoreNodeToMap(node);
+            _canvas?.InvalidateVisual();
+            UpdateStatusBar(); UpdateEmptyState(); UpdateLeftPanels();
+        }
     }
 
     private void UpdateStatusBar()
