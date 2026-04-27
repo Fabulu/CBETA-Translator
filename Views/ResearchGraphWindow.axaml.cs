@@ -82,8 +82,14 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.NodeDoubleClicked += (_, node) =>
         {
-            // Navigate based on type
-            // TODO: open in Reader for passages, etc.
+            // Navigate based on type — for now just select
+            if (_vm != null)
+            {
+                _vm.SelectedNode = node;
+                foreach (var n in _vm.Nodes) n.IsSelected = n == node;
+                UpdateInspector();
+                _canvas?.InvalidateVisual();
+            }
         };
 
         _canvas.EdgeDropped += async (_, args) =>
@@ -137,7 +143,7 @@ public partial class ResearchGraphWindow : Window
             {
                 switch (e.Key)
                 {
-                    case Key.C: OnAddConcept(null, null!); e.Handled = true; break;
+                    case Key.C: OnAddConcept(null, null); e.Handled = true; break;
                 }
             }
             else if (e.KeyModifiers == KeyModifiers.None)
@@ -188,7 +194,7 @@ public partial class ResearchGraphWindow : Window
         else
         {
             // Canvas context menu (no node selected)
-            menu.Items.Add(CreateMenuItem("Add Concept (Ctrl+Shift+C)", () => OnAddConcept(null, null!)));
+            menu.Items.Add(CreateMenuItem("Add Concept (Ctrl+Shift+C)", () => OnAddConcept(null, null)));
             menu.Items.Add(new Separator());
             menu.Items.Add(CreateMenuItem("Fit to View", () => { /* TODO */ }));
             menu.Items.Add(CreateMenuItem("Relayout", () => _vm?.RunForceDirectedLayout(800, 600)));
@@ -204,18 +210,18 @@ public partial class ResearchGraphWindow : Window
         return item;
     }
 
-    private void OnAddConcept(object? sender, RoutedEventArgs e)
+    private async void OnAddConcept(object? sender, RoutedEventArgs? e)
     {
         if (_vm == null) return;
-        var concept = new ConceptNode
+        var dialog = new ConceptCreationDialog();
+        var result = await dialog.ShowDialog<ConceptNode?>(this);
+        if (result != null)
         {
-            Id = Guid.NewGuid().ToString("N")[..8],
-            Name = "New Concept",
-            CreatedUtc = DateTimeOffset.UtcNow
-        };
-        _vm.ExecuteCommand(new AddConceptCommand(_vm, concept));
-        UpdateStatusBar();
-        UpdateEmptyState();
+            _vm.ExecuteCommand(new AddConceptCommand(_vm, result));
+            UpdateStatusBar();
+            UpdateEmptyState();
+            _canvas?.InvalidateVisual();
+        }
     }
 
     private void DeleteSelected()
@@ -265,7 +271,53 @@ public partial class ResearchGraphWindow : Window
 
     private void UpdateInspector()
     {
-        // TODO: update inspector panel with selected node details
+        var content = this.FindControl<StackPanel>("InspectorContent");
+        var empty = this.FindControl<TextBlock>("InspectorEmpty");
+        var title = this.FindControl<TextBlock>("InspectorTitle");
+        if (content == null) return;
+
+        content.Children.Clear();
+
+        if (_vm?.SelectedNode == null)
+        {
+            if (empty != null) { empty.IsVisible = true; content.Children.Add(empty); }
+            if (title != null) title.Text = "Inspector";
+            return;
+        }
+        if (empty != null) empty.IsVisible = false;
+
+        var node = _vm.SelectedNode;
+        if (title != null) title.Text = node.Label;
+
+        // Type badge
+        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection" };
+        var typeName = typeNames[(int)node.NodeType];
+        content.Children.Add(new TextBlock { Text = typeName, FontSize = 11, Opacity = 0.6 });
+
+        // Node label
+        content.Children.Add(new TextBlock { Text = node.Label, FontSize = 16, FontWeight = Avalonia.Media.FontWeight.Bold, TextWrapping = Avalonia.Media.TextWrapping.Wrap });
+
+        // Degree
+        content.Children.Add(new TextBlock { Text = $"Connections: {node.Degree}", FontSize = 11, Opacity = 0.7, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+
+        // Type-specific content from collection data
+        if (node.NodeType == ScholarNodeType.Passage)
+        {
+            var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+            if (passage != null)
+            {
+                if (!string.IsNullOrWhiteSpace(passage.ZhText))
+                    content.Children.Add(new TextBlock { Text = passage.ZhText.Length > 200 ? passage.ZhText[..200] + "\u2026" : passage.ZhText, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+                if (!string.IsNullOrWhiteSpace(passage.EnText))
+                    content.Children.Add(new TextBlock { Text = passage.EnText.Length > 200 ? passage.EnText[..200] + "\u2026" : passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+            }
+        }
+        else if (node.NodeType == ScholarNodeType.Concept)
+        {
+            var concept = _vm.GetCollection()?.Concepts.FirstOrDefault(c => c.Id == node.NodeId);
+            if (concept != null && !string.IsNullOrWhiteSpace(concept.Description))
+                content.Children.Add(new TextBlock { Text = concept.Description, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+        }
     }
 
     private void SetupEmptyState()
@@ -274,7 +326,7 @@ public partial class ResearchGraphWindow : Window
         btnAddPassages?.AddHandler(Button.ClickEvent, (_, _) => OnAddPassage());
 
         var btnAddConcept = this.FindControl<Button>("BtnEmptyAddConcept");
-        btnAddConcept?.AddHandler(Button.ClickEvent, (_, _) => OnAddConcept(null, null!));
+        btnAddConcept?.AddHandler(Button.ClickEvent, (_, _) => OnAddConcept(null, null));
     }
 
     private void UpdateEmptyState()
