@@ -27,6 +27,7 @@ public class ResearchGraphCanvasControl : Control
     private bool _isCreatingEdge;
     private ResearchGraphNode? _edgeSource;
     private Point _edgePreviewEnd;
+    private ResearchGraphEdgeVm? _hoverEdge;
 
     // Node type colors
     private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
@@ -43,6 +44,16 @@ public class ResearchGraphCanvasControl : Control
     private static readonly IPen EdgePen = new Pen(new SolidColorBrush(Color.FromArgb(150, 150, 150, 150)), 1.5);
     private static readonly IPen HandlePen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2);
     private static readonly IPen PreviewPen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2) { DashStyle = DashStyle.Dash };
+    private static readonly IBrush _handleFillBrush = new SolidColorBrush(Color.FromArgb(180, 81, 217, 150));
+
+    // --- Cached brushes and pens (avoid per-frame allocation) ---
+    private static readonly IBrush _bgBrush = new SolidColorBrush(Color.Parse("#1E1E23"));
+    private static readonly IBrush _labelShadowBrush = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0));
+    private static readonly IBrush _shadowBrushOuter = new SolidColorBrush(Color.FromArgb(40, 0, 0, 0));
+    private static readonly IBrush _shadowBrushInner = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
+    private static readonly IPen _selectedPen = new Pen(SelectedBrush, 3);
+    private static readonly IPen _hoverPen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 2.5);
+    private static readonly IPen _defaultNodePen = new Pen(new SolidColorBrush(Color.FromArgb(153, 255, 255, 255)), 1.2);
 
     public event EventHandler<ResearchGraphNode>? NodeClicked;
     public event EventHandler<ResearchGraphNode>? NodeDoubleClicked;
@@ -59,7 +70,7 @@ public class ResearchGraphCanvasControl : Control
     {
         base.Render(context);
         var bounds = Bounds;
-        context.DrawRectangle(new SolidColorBrush(Color.Parse("#1E1E23")), null, new Rect(bounds.Size));
+        context.DrawRectangle(_bgBrush, null, new Rect(bounds.Size));
 
         if (_vm == null) return;
 
@@ -102,7 +113,40 @@ public class ResearchGraphCanvasControl : Control
         double r = GetNodeRadius(node);
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
-        var pen = node.IsSelected ? new Pen(SelectedBrush, 3) : new Pen(Brushes.White, 1.5);
+        IPen pen;
+        if (node.IsSelected)
+            pen = _selectedPen;
+        else if (node == _hoverNode)
+            pen = _hoverPen;
+        else
+            pen = _defaultNodePen;
+
+        // Drop shadow (skip for dimmed nodes; limit to selected/hovered on large graphs)
+        bool drawShadow = !node.IsDimmed &&
+            (_vm!.Nodes.Count < 500 || node.IsSelected || node == _hoverNode);
+        if (drawShadow)
+        {
+            var shadowCenter = new Point(node.X + 2.5, node.Y + 2.5);
+            switch (node.NodeType)
+            {
+                case ScholarNodeType.Passage:
+                    ctx.DrawEllipse(_shadowBrushOuter, null, shadowCenter, r + 2, r + 2);
+                    ctx.DrawEllipse(_shadowBrushInner, null, shadowCenter, r + 1, r + 1);
+                    break;
+                case ScholarNodeType.Concept:
+                    DrawDiamond(ctx, _shadowBrushOuter, null, shadowCenter, r + 1);
+                    break;
+                case ScholarNodeType.ZenMaster:
+                    DrawHexagon(ctx, _shadowBrushOuter, null, shadowCenter, r + 1);
+                    break;
+                case ScholarNodeType.TermbaseEntry:
+                case ScholarNodeType.Collection:
+                    ctx.DrawRectangle(_shadowBrushOuter, null,
+                        new Rect(node.X - r + 2.5, node.Y - r * 0.7 + 2.5, r * 2, r * 1.4),
+                        r * 0.2, r * 0.2);
+                    break;
+            }
+        }
 
         switch (node.NodeType)
         {
@@ -121,19 +165,33 @@ public class ResearchGraphCanvasControl : Control
                 break;
         }
 
-        // Label (only at sufficient zoom)
+        // Label with shadow outline (only at sufficient zoom)
         if (_zoom >= 0.5)
         {
             var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
-            var ft = new FormattedText(
-                node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label,
-                CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+            var labelText = node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label;
+            var labelY = node.Y + r + 3;
+
+            // Shadow pass: draw black text at 4 offsets (up/down/left/right) for outline effect
+            var shadowFt = new FormattedText(
+                labelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                new Typeface("Segoe UI"), labelSize, _labelShadowBrush);
+            var baseX = node.X - shadowFt.Width / 2;
+            double so = 1.2; // shadow offset
+            ctx.DrawText(shadowFt, new Point(baseX - so, labelY));
+            ctx.DrawText(shadowFt, new Point(baseX + so, labelY));
+            ctx.DrawText(shadowFt, new Point(baseX, labelY - so));
+            ctx.DrawText(shadowFt, new Point(baseX, labelY + so));
+
+            // Main pass: white text on top
+            var mainFt = new FormattedText(
+                labelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
                 new Typeface("Segoe UI"), labelSize, Brushes.White);
-            ctx.DrawText(ft, new Point(node.X - ft.Width / 2, node.Y + r + 3));
+            ctx.DrawText(mainFt, new Point(baseX, labelY));
         }
     }
 
-    private void DrawDiamond(DrawingContext ctx, IBrush fill, IPen pen, Point center, double size)
+    private void DrawDiamond(DrawingContext ctx, IBrush fill, IPen? pen, Point center, double size)
     {
         var geo = new StreamGeometry();
         using (var gc = geo.Open())
@@ -147,7 +205,7 @@ public class ResearchGraphCanvasControl : Control
         ctx.DrawGeometry(fill, pen, geo);
     }
 
-    private void DrawHexagon(DrawingContext ctx, IBrush fill, IPen pen, Point center, double size)
+    private void DrawHexagon(DrawingContext ctx, IBrush fill, IPen? pen, Point center, double size)
     {
         var geo = new StreamGeometry();
         using (var gc = geo.Open())
@@ -171,9 +229,44 @@ public class ResearchGraphCanvasControl : Control
         Color edgeColor;
         try { edgeColor = Color.Parse(edge.ColorHex ?? "#9E9E9E"); }
         catch { edgeColor = Color.Parse("#9E9E9E"); }
+
+        bool isHovered = edge == _hoverEdge;
+        double thickness = isHovered ? 3.0 : 1.5;
+
+        // Glow layer for hovered edge (wide, semi-transparent)
+        if (isHovered)
+        {
+            var glowBrush = new SolidColorBrush(Color.FromArgb(60, edgeColor.R, edgeColor.G, edgeColor.B));
+            var glowPen = new Pen(glowBrush, 8);
+            ctx.DrawLine(glowPen, from, to);
+        }
+
         var brush = new SolidColorBrush(edgeColor);
-        var pen = new Pen(brush, 1.5);
+        var pen = new Pen(brush, thickness);
+
+        // Non-directional edges: dashed
+        if (!edge.IsDirectional)
+        {
+            pen = new Pen(brush, thickness) { DashStyle = DashStyle.Dash };
+        }
+
         ctx.DrawLine(pen, from, to);
+
+        // Edge type label at midpoint (only on hover)
+        if (isHovered && !string.IsNullOrEmpty(edge.RelationType))
+        {
+            double midX = (from.X + to.X) / 2;
+            double midY = (from.Y + to.Y) / 2;
+            var labelFt = new FormattedText(
+                edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                new Typeface("Segoe UI"), 9, new SolidColorBrush(edgeColor));
+            // Shadow behind label for readability
+            var bgFt = new FormattedText(
+                edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                new Typeface("Segoe UI"), 9, _labelShadowBrush);
+            ctx.DrawText(bgFt, new Point(midX - bgFt.Width / 2 + 0.8, midY - 12 + 0.8));
+            ctx.DrawText(labelFt, new Point(midX - labelFt.Width / 2, midY - 12));
+        }
 
         // Arrowhead for directional edges
         if (edge.IsDirectional)
@@ -185,7 +278,7 @@ public class ResearchGraphCanvasControl : Control
             double targetR = GetNodeRadius(edge.To);
             var tip = new Point(to.X - nx * targetR, to.Y - ny * targetR);
             double angle = Math.Atan2(dy, dx);
-            double sz = 7;
+            double sz = isHovered ? 10 : 7;
             var p1 = new Point(tip.X - sz * Math.Cos(angle - 0.4), tip.Y - sz * Math.Sin(angle - 0.4));
             var p2 = new Point(tip.X - sz * Math.Cos(angle + 0.4), tip.Y - sz * Math.Sin(angle + 0.4));
             var arrow = new StreamGeometry();
@@ -212,7 +305,7 @@ public class ResearchGraphCanvasControl : Control
         };
         foreach (var pos in positions)
         {
-            ctx.DrawEllipse(new SolidColorBrush(Color.FromArgb(180, 81, 217, 150)), HandlePen, pos, 5, 5);
+            ctx.DrawEllipse(_handleFillBrush, HandlePen, pos, 5, 5);
         }
     }
 
@@ -361,6 +454,22 @@ public class ResearchGraphCanvasControl : Control
         {
             _hoverNode = hover;
             InvalidateVisual();
+        }
+
+        // Edge hover detection (only when not over a node)
+        if (hover == null)
+        {
+            var edgeHover = HitTestEdge(pos.X, pos.Y);
+            if (edgeHover != _hoverEdge)
+            {
+                _hoverEdge = edgeHover;
+                InvalidateVisual();
+            }
+        }
+        else if (_hoverEdge != null)
+        {
+            _hoverEdge = null;
+            // InvalidateVisual() already called by node hover change
         }
     }
 
