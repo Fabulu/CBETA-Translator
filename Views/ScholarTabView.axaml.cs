@@ -755,6 +755,37 @@ public partial class ScholarTabView : UserControl
         }
     }
 
+    /// <summary>Opens the Research Graph window for the currently selected collection. Called by deep links.</summary>
+    public async void OpenGraphForCurrentCollection()
+    {
+        if (_vm.SelectedCollection == null) return;
+
+        List<TermDisplayItem>? termData = null;
+        try
+        {
+            var termService = App.Services.GetRequiredService<ITermbaseService>();
+            var root = _vm.GetRoot();
+            if (!string.IsNullOrEmpty(root))
+            {
+                var hits = await termService.GetAllTermsAsync(root);
+                termData = hits.Select(h => new TermDisplayItem
+                {
+                    SourceTerm = h.SourceTerm,
+                    PreferredTarget = h.PreferredTarget,
+                    AlternateTargets = h.AlternateTargets ?? new()
+                }).ToList();
+            }
+        }
+        catch { }
+
+        var graphWindow = new ResearchGraphWindow(
+            _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+        graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
+        graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
+        graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
+        graphWindow.Show();
+    }
+
     private async Task RenameSelectedCollectionAsync()
     {
         var col = _vm.SelectedCollection;

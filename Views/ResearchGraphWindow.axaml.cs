@@ -565,6 +565,15 @@ public partial class ResearchGraphWindow : Window
                 _vm?.RunForceDirectedLayout(w, h);
                 _canvas?.InvalidateVisual();
             }));
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Copy Graph Web Link", async () =>
+            {
+                var col = _vm?.GetCollection();
+                if (col == null) return;
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Id ?? col.Name ?? "");
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+            }));
         }
 
         menu.Open(target);

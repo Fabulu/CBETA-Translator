@@ -306,6 +306,9 @@ public partial class MainWindow : Window
         case DeepLinkKind.Scholar:
             await HandleScholarDeepLinkAsync(request.ScholarCollectionId, request.ScholarPassageId, request.ScholarUser);
             break;
+        case DeepLinkKind.ScholarGraph:
+            await HandleScholarGraphDeepLinkAsync(request.ScholarCollectionId, request.ScholarUser);
+            break;
         case DeepLinkKind.Search:
             await HandleSearchDeepLinkAsync(request);
             break;
@@ -383,6 +386,28 @@ private async Task HandleScholarDeepLinkAsync(string? collectionId, string? pass
         bool found = await vm.TryNavigateToPassageAsync(collectionId, passageId, user);
         if (!found)
             _vm.SetStatus("This scholar passage isn't available. The person who shared this link may not have synced their data yet.", StatusSeverity.Warning);
+    }
+}
+
+private async Task HandleScholarGraphDeepLinkAsync(string? collectionId, string? user)
+{
+    if (string.IsNullOrWhiteSpace(collectionId))
+    {
+        _vm.SetStatus("Graph link: no collection specified.", StatusSeverity.Warning);
+        return;
+    }
+
+    ForceTab(4);
+
+    if (_scholarView != null)
+    {
+        var vm = (ScholarTabViewModel)_scholarView.DataContext!;
+        // Navigate to the collection first, then open graph
+        await vm.TryNavigateToPassageAsync(collectionId, null, user);
+        if (vm.SelectedCollection != null)
+            _scholarView.OpenGraphForCurrentCollection();
+        else
+            _vm.SetStatus("Collection not found for graph link.", StatusSeverity.Warning);
     }
 }
 
