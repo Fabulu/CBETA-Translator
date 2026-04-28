@@ -101,90 +101,87 @@
               </Border>
             </StackPanel>
 
-            <!-- Section 2: Keywords & Metadata (expanded by default) -->
-            <Expander Header="Keywords &amp; Metadata" IsExpanded="True" Name="ExpanderMetadata">
-              <StackPanel Spacing="8" Margin="0,8,0,0">
-                <!-- Tags -->
-                <StackPanel Spacing="4">
-                  <TextBlock Text="Tags" FontWeight="SemiBold" FontSize="12"/>
-                  <WrapPanel Name="PnlTags" Orientation="Horizontal"/>
-                  <TextBox Name="TxtAddTag" Watermark="Add tag (Enter)..." FontSize="11"/>
-                </StackPanel>
-                <!-- Masters -->
-                <StackPanel Spacing="4">
-                  <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12"/>
-                  <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
-                  <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (Enter)..." FontSize="11"
-                                   FilterMode="ContainsOrdinal" MinimumPrefixLength="1"/>
-                </StackPanel>
-                <!-- Linked Texts -->
-                <StackPanel Spacing="4" Name="PnlLinkedTexts">
-                  <TextBlock Text="Linked Texts" FontWeight="SemiBold" FontSize="12"/>
-                </StackPanel>
+            <!-- Keywords & Metadata -->
+            <StackPanel Spacing="8">
+              <TextBlock Text="Keywords &amp; Metadata" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
+              <!-- Tags -->
+              <StackPanel Spacing="4">
+                <TextBlock Text="Tags" FontWeight="SemiBold" FontSize="12"/>
+                <WrapPanel Name="PnlTags" Orientation="Horizontal"/>
+                <TextBox Name="TxtAddTag" Watermark="Add tag (Enter)..." FontSize="11"/>
               </StackPanel>
-            </Expander>
+              <!-- Masters -->
+              <StackPanel Spacing="4">
+                <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12"/>
+                <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
+                <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (Enter)..." FontSize="11"
+                                 FilterMode="ContainsOrdinal" MinimumPrefixLength="1"/>
+              </StackPanel>
+              <!-- Linked Texts -->
+              <StackPanel Spacing="4" Name="PnlLinkedTexts">
+                <TextBlock Text="Linked Texts" FontWeight="SemiBold" FontSize="12"/>
+              </StackPanel>
+            </StackPanel>
 
-            <!-- Section 3: Categorization (collapsed by default) -->
-            <Expander Header="Categorization" IsExpanded="False" Name="ExpanderCategories">
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" Margin="0,8,0,0" RowSpacing="8">
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center"/>
+            <!-- Categorization -->
+            <StackPanel Spacing="4">
+              <TextBlock Text="Categorization" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" RowSpacing="6">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center" FontSize="12"/>
                 <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"
                           ItemsSource="{Binding DoctrinalTopicOptions}" SelectedItem="{Binding DoctrinalTopic}" IsEditable="True"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center" FontSize="12"/>
                 <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"
                           ItemsSource="{Binding LiteraryFormOptions}" SelectedItem="{Binding LiteraryForm}" IsEditable="True"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center" FontSize="12"/>
                 <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"
                           ItemsSource="{Binding LineageOptions}" SelectedItem="{Binding Lineage}" IsEditable="True"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center" FontSize="12"/>
                 <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"
                           ItemsSource="{Binding RhetoricalFunctionOptions}" SelectedItem="{Binding RhetoricalFunction}" IsEditable="True"/>
               </Grid>
-            </Expander>
+            </StackPanel>
 
-            <!-- Section 4: Connections + Backlinks (collapsed by default) -->
-            <Expander Header="Connections" IsExpanded="False" Name="ExpanderConnections">
-              <StackPanel Spacing="8" Margin="0,8,0,0">
-                <TextBlock Text="Outgoing Links" FontWeight="SemiBold" FontSize="12"/>
-                <ItemsControl Name="PnlOutgoingLinks"/>
-                <Button Name="BtnAddLink" Content="+ Add Link" Padding="8,3" FontSize="11"/>
-                <TextBlock Text="Referenced By (Backlinks)" FontWeight="SemiBold" FontSize="12" Margin="0,8,0,0"/>
-                <ItemsControl Name="PnlBacklinks"/>
-                <TextBlock Name="TxtNoBacklinks" Text="No incoming references yet." FontSize="11" Opacity="0.5"/>
-              </StackPanel>
-            </Expander>
+            <!-- Connections & Backlinks -->
+            <StackPanel Spacing="8">
+              <TextBlock Text="Connections" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
+              <TextBlock Text="Outgoing Links" FontWeight="SemiBold" FontSize="12"/>
+              <ItemsControl Name="PnlOutgoingLinks"/>
+              <Button Name="BtnAddLink" Content="+ Add Link" Padding="8,3" FontSize="11"/>
+              <TextBlock Text="Referenced By (Backlinks)" FontWeight="SemiBold" FontSize="12" Margin="0,8,0,0"/>
+              <ItemsControl Name="PnlBacklinks"/>
+              <TextBlock Name="TxtNoBacklinks" Text="No incoming references yet." FontSize="11" Opacity="0.5"/>
+            </StackPanel>
 
-            <!-- Section 5: Research Notes (collapsed by default) -->
-            <Expander Header="Research Notes" IsExpanded="False" Name="ExpanderNotes">
-              <StackPanel Spacing="8" Margin="0,8,0,0">
-                <TextBox Name="TxtPassageNotes" AcceptsReturn="True" TextWrapping="Wrap"
-                         MinHeight="100" Watermark="Personal notes... Use [[passage-id]] for references"/>
-                <DockPanel>
-                  <Button Name="BtnInsertReference" Content="Insert Reference" DockPanel.Dock="Left" Padding="8,4" FontSize="11"/>
-                </DockPanel>
-              </StackPanel>
-            </Expander>
+            <!-- Research Notes -->
+            <StackPanel Spacing="8">
+              <TextBlock Text="Research Notes" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
+              <TextBox Name="TxtPassageNotes" AcceptsReturn="True" TextWrapping="Wrap"
+                       MinHeight="80" Watermark="Personal notes... Use [[passage-id]] for references"/>
+              <Button Name="BtnInsertReference" Content="Insert Reference" Padding="8,4" FontSize="11"
+                      HorizontalAlignment="Left"/>
+            </StackPanel>
 
-            <!-- Section 6: Scholar Assistant (collapsed by default) -->
-            <Expander Header="Scholar Assistant" IsExpanded="False" Name="ScholarAssistantExpander">
-              <StackPanel Spacing="8" Margin="0,8,0,0">
-                <Expander Header="Quality Checks" IsExpanded="False" Name="ExpanderQA">
-                  <StackPanel Name="PnlQualityChecks" Spacing="4"/>
-                </Expander>
-                <Expander Header="Glossary" IsExpanded="False" Name="ExpanderGlossary">
-                  <StackPanel Name="PnlGlossary" Spacing="4"/>
-                </Expander>
-                <Expander Header="Approved Matches" IsExpanded="False" Name="ExpanderApprovedTm">
-                  <StackPanel Name="PnlApprovedTm" Spacing="4"/>
-                </Expander>
-                <Expander Header="Reference Translations" IsExpanded="False" Name="ExpanderRefTm">
-                  <StackPanel Name="PnlRefTm" Spacing="4"/>
-                </Expander>
-              </StackPanel>
-            </Expander>
+            <!-- Scholar Assistant (sub-expanders kept for data density) -->
+            <StackPanel Spacing="8">
+              <TextBlock Text="Scholar Assistant" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"
+                         Name="ScholarAssistantHeader"/>
+              <Expander Header="Quality Checks" IsExpanded="False" Name="ExpanderQA">
+                <StackPanel Name="PnlQualityChecks" Spacing="4"/>
+              </Expander>
+              <Expander Header="Glossary" IsExpanded="False" Name="ExpanderGlossary">
+                <StackPanel Name="PnlGlossary" Spacing="4"/>
+              </Expander>
+              <Expander Header="Approved Matches" IsExpanded="False" Name="ExpanderApprovedTm">
+                <StackPanel Name="PnlApprovedTm" Spacing="4"/>
+              </Expander>
+              <Expander Header="Reference Translations" IsExpanded="False" Name="ExpanderRefTm">
+                <StackPanel Name="PnlRefTm" Spacing="4"/>
+              </Expander>
+            </StackPanel>
 
-            <!-- Bottom action bar -->
-            <DockPanel Margin="0,16,0,0">
+            <!-- Action bar -->
+            <DockPanel Margin="0,8,0,0">
               <Button Name="BtnShowGraph" Content="Research Graph" DockPanel.Dock="Right" Padding="8,4"
                       ToolTip.Tip="Open the Research Graph for this collection in a separate window"/>
               <Button Name="BtnDeletePassage" Content="Delete" DockPanel.Dock="Right" Padding="8,4" Margin="0,0,8,0"/>
