@@ -24,6 +24,8 @@ public partial class ResearchGraphWindow : Window
     private List<TermDisplayItem>? _termData;
 
     public event EventHandler<NavigationRequest>? NavigationRequested;
+    public event EventHandler<string>? OpenMasterRequested;
+    public event EventHandler<string>? DictionaryRequested;
 
     public ResearchGraphWindow()
     {
@@ -185,6 +187,9 @@ public partial class ResearchGraphWindow : Window
                     termLabel = termName;
                 }
 
+                // Find the full TermDisplayItem for SourceData
+                TermDisplayItem? termItem = _termData?.FirstOrDefault(t => t.SourceTerm == termName);
+
                 if (!string.IsNullOrEmpty(termName))
                 {
                     var nodeId = $"term:{termName}";
@@ -193,6 +198,8 @@ public partial class ResearchGraphWindow : Window
                     {
                         NodeId = nodeId, NodeType = ScholarNodeType.TermbaseEntry,
                         Label = termLabel ?? termName, ColorHex = "#81C784",
+                        SecondaryLabel = termItem?.PreferredTarget ?? "",
+                        SourceData = termItem,
                         X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
                         Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
                     };
@@ -316,20 +323,36 @@ public partial class ResearchGraphWindow : Window
                 UpdateInspector();
                 _canvas?.InvalidateVisual();
 
-                // Navigate for Passage nodes
-                if (node.NodeType == ScholarNodeType.Passage)
+                // Navigate based on node type
+                switch (node.NodeType)
                 {
-                    var passage = node.SourceData as ScholarPassage
-                        ?? _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
-                    if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
-                    {
-                        NavigationRequested?.Invoke(this, new NavigationRequest
+                    case ScholarNodeType.Passage:
+                        var passage = node.SourceData as ScholarPassage
+                            ?? _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+                        if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
                         {
-                            RelPath = passage.SourceRelPath,
-                            Side = passage.PreferredSide,
-                            MatchText = passage.ZhText?.Length > 20 ? passage.ZhText[..20] : passage.ZhText
-                        });
-                    }
+                            NavigationRequested?.Invoke(this, new NavigationRequest
+                            {
+                                RelPath = passage.SourceRelPath,
+                                Side = passage.PreferredSide,
+                                MatchText = passage.ZhText?.Length > 20 ? passage.ZhText[..20] : passage.ZhText
+                            });
+                        }
+                        break;
+                    case ScholarNodeType.ZenMaster:
+                        OpenMasterRequested?.Invoke(this, node.Label);
+                        break;
+                    case ScholarNodeType.TermbaseEntry:
+                        DictionaryRequested?.Invoke(this, node.Label);
+                        break;
+                    case ScholarNodeType.Collection:
+                        // Switch to the referenced collection in-place
+                        var collId = node.NodeId.StartsWith("collection:") ? node.NodeId["collection:".Length..] : node.NodeId;
+                        _vm.SwitchToCollection(collId);
+                        _canvas?.InvalidateVisual();
+                        UpdateStatusBar(); UpdateLeftPanels(); UpdateEmptyState();
+                        Title = $"Research Graph \u2014 {_vm.GetCollection().Name ?? _vm.GetCollection().Id}";
+                        break;
                 }
             }
         };
@@ -708,10 +731,20 @@ public partial class ResearchGraphWindow : Window
             if (!string.IsNullOrEmpty(node.SecondaryLabel))
                 content.Children.Add(new TextBlock
                 {
-                    Text = node.SecondaryLabel,
-                    FontSize = 11, Opacity = 0.7, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Text = $"Preferred: {node.SecondaryLabel}",
+                    FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
                     Margin = new Avalonia.Thickness(0, 4, 0, 0)
                 });
+            // Show alternate targets if SourceData is TermDisplayItem
+            if (node.SourceData is TermDisplayItem termItem && termItem.AlternateTargets.Count > 0)
+            {
+                content.Children.Add(new TextBlock
+                {
+                    Text = "Alternates: " + string.Join(", ", termItem.AlternateTargets),
+                    FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Margin = new Avalonia.Thickness(0, 2, 0, 0)
+                });
+            }
         }
     }
 
