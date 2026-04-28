@@ -171,6 +171,96 @@ public partial class ScholarTabView : UserControl
                 else if (tree.SelectedItem is ScholarCollection col)
                     _vm.SelectedCollection = col;
             };
+
+            // Context menus on tree items
+            tree.ContextRequested += (_, e) =>
+            {
+                if (tree.SelectedItem is not CollectionTreeNode node) return;
+
+                var menu = new ContextMenu();
+
+                if (node.Kind == TreeNodeKind.Passage && node.Tag is ScholarPassage passage)
+                {
+                    var openItem = new MenuItem { Header = "Open in Reader" };
+                    openItem.Click += (_, _) =>
+                    {
+                        NavigationRequested?.Invoke(this, new NavigationRequest
+                        {
+                            RelPath = passage.SourceRelPath ?? "",
+                            Side = SearchSide.Original
+                        });
+                    };
+                    menu.Items.Add(openItem);
+
+                    var copyLinkItem = new MenuItem { Header = "Copy Deep Link" };
+                    copyLinkItem.Click += async (_, _) =>
+                    {
+                        var link = $"zen://scholar/{passage.Id}";
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top?.Clipboard != null)
+                            await top.Clipboard.SetTextAsync(link);
+                        Status?.Invoke(this, "Deep link copied.");
+                    };
+                    menu.Items.Add(copyLinkItem);
+
+                    menu.Items.Add(new Separator());
+
+                    var deleteItem = new MenuItem { Header = "Delete Passage" };
+                    deleteItem.Click += (_, _) => _vm.DeletePassageCommand.Execute(null);
+                    menu.Items.Add(deleteItem);
+                }
+                else if (node.Kind == TreeNodeKind.Collection && node.Tag is ScholarCollection col)
+                {
+                    var renameItem = new MenuItem { Header = "Rename Collection" };
+                    renameItem.Click += async (_, _) =>
+                    {
+                        var dlg = new Window
+                        {
+                            Title = "Rename Collection", Width = 350, Height = 130,
+                            WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+                        };
+                        var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Thickness(12) };
+                        var txt = new TextBox { Text = col.Name ?? "" };
+                        var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal,
+                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+                        var btnOk = new Button { Content = "Rename", Padding = new Thickness(12, 6) };
+                        var btnCancel = new Button { Content = "Cancel", Padding = new Thickness(12, 6) };
+                        btnPanel.Children.Add(btnCancel); btnPanel.Children.Add(btnOk);
+                        Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+                        grid.Children.Add(txt); grid.Children.Add(btnPanel);
+                        dlg.Content = grid;
+                        string? newName = null;
+                        btnOk.Click += (_, _) => { newName = txt.Text?.Trim(); dlg.Close(); };
+                        btnCancel.Click += (_, _) => dlg.Close();
+                        txt.KeyDown += (_, ke) => { if (ke.Key == Key.Enter) { newName = txt.Text?.Trim(); dlg.Close(); } };
+                        var top = TopLevel.GetTopLevel(this) as Window;
+                        if (top != null) await dlg.ShowDialog(top);
+                        if (!string.IsNullOrEmpty(newName) && newName != col.Name)
+                        {
+                            col.Name = newName;
+                            _vm.SyncAndSave();
+                            Status?.Invoke(this, $"Collection renamed to '{newName}'.");
+                        }
+                    };
+                    menu.Items.Add(renameItem);
+
+                    var exportItem = new MenuItem { Header = "Export Collection" };
+                    exportItem.Click += (_, _) => _vm.ExportCollectionsCommand.Execute(null);
+                    menu.Items.Add(exportItem);
+
+                    menu.Items.Add(new Separator());
+
+                    var deleteItem = new MenuItem { Header = "Delete Collection" };
+                    deleteItem.Click += (_, _) => _vm.DeleteCollectionCommand.Execute(null);
+                    menu.Items.Add(deleteItem);
+                }
+
+                if (menu.Items.Count > 0)
+                {
+                    tree.ContextMenu = menu;
+                    menu.Open(tree);
+                }
+            };
         }
 
         // Bottom drawer toggle
