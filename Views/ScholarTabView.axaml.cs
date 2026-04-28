@@ -439,6 +439,12 @@ public partial class ScholarTabView : UserControl
         if (btnCreateFirst != null)
             btnCreateFirst.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
 
+        // Copy/Cite buttons for Chinese and English text
+        WireCopyCiteButton("BtnCopyZh", () => _vm.SelectedPassage?.ZhText, "Chinese text copied.");
+        WireCopyCiteButton("BtnCopyEn", () => _vm.SelectedPassage?.EnText, "English text copied.");
+        WireCiteButton("BtnCiteZh", () => _vm.SelectedPassage?.ZhText);
+        WireCiteButton("BtnCiteEn", () => _vm.SelectedPassage?.EnText);
+
         WireViewEvents();
         SetupHoverDictionary();
 
@@ -713,7 +719,7 @@ public partial class ScholarTabView : UserControl
         var passage = _vm.SelectedPassage;
         var txtSourcePath = this.FindControl<TextBlock>("TxtSourcePath");
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
-        var txtEnText = this.FindControl<TextBlock>("TxtEnText");
+        var txtEnText = this.FindControl<TextBox>("TxtEnText");
         var txtSummary = this.FindControl<TextBox>("TxtSummary");
         var txtPassageNotes = this.FindControl<TextBox>("TxtPassageNotes");
 
@@ -737,7 +743,7 @@ public partial class ScholarTabView : UserControl
 
         var txtSourcePath = this.FindControl<TextBlock>("TxtSourcePath");
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
-        var txtEnText = this.FindControl<TextBlock>("TxtEnText");
+        var txtEnText = this.FindControl<TextBox>("TxtEnText");
 
         if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
@@ -767,9 +773,10 @@ public partial class ScholarTabView : UserControl
         DisposeHoverDictionary();
 
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
-        if (txtZhText == null) return;
+        var dictCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
+        if (txtZhText == null || dictCanvas == null) return;
 
-        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar); }
+        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar, dictCanvas); }
         catch { /* dictionary not available */ }
 
         // Selection-based TM: wire ONCE (not per passage change). The handler
@@ -808,6 +815,49 @@ public partial class ScholarTabView : UserControl
                 _scholarSelDebounce!.Stop();
                 _scholarSelDebounce.Start();
             });
+        }
+    }
+
+    private void WireCopyCiteButton(string btnName, Func<string?> getText, string statusMsg)
+    {
+        var btn = this.FindControl<Button>(btnName);
+        if (btn != null)
+        {
+            btn.Click += async (_, _) =>
+            {
+                var text = getText();
+                if (string.IsNullOrEmpty(text)) return;
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(text);
+                Status?.Invoke(this, statusMsg);
+            };
+        }
+    }
+
+    private void WireCiteButton(string btnName, Func<string?> getQuotedText)
+    {
+        var btn = this.FindControl<Button>(btnName);
+        if (btn != null)
+        {
+            btn.Click += async (_, _) =>
+            {
+                var passage = _vm.SelectedPassage;
+                if (passage == null) return;
+                var quoted = getQuotedText();
+                if (string.IsNullOrEmpty(quoted)) quoted = passage.ZhText;
+                var metadata = _citationService.BuildMetadata(
+                    null,
+                    fromLb: passage.StartBlockNumber?.ToString(),
+                    quotedText: quoted?.Length > 200 ? quoted[..200] + "..." : quoted,
+                    translatorName: passage.TranslationUser);
+                var style = CitationMenuHelper.GetPreferredStyle();
+                var citation = _citationService.Generate(metadata, style);
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null)
+                    await top.Clipboard.SetTextAsync(citation);
+                Status?.Invoke(this, $"{style} citation copied.");
+            };
         }
     }
 
