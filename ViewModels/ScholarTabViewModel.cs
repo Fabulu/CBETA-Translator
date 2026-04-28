@@ -1313,6 +1313,13 @@ public partial class ScholarTabViewModel : ViewModelBase
             SelectedCollection.StudyNotes = StudyNotes ?? "";
     }
 
+    /// <summary>Syncs editor fields to the passage and saves. Called by code-behind after field edits.</summary>
+    public void SyncAndSave()
+    {
+        SyncEditorFieldsToPassage();
+        _ = SafeFireAndForget(SaveAsync());
+    }
+
     public void AddTag(string tag)
     {
         tag = tag.Trim();

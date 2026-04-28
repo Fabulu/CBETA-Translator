@@ -164,14 +164,35 @@ public partial class ScholarTabView : UserControl
         }
 
         // Bottom drawer toggle
+        // "Research Graph" button opens the graph window directly
         var btnShowGraph = this.FindControl<Button>("BtnShowGraph");
         if (btnShowGraph != null)
         {
-            btnShowGraph.Click += (_, _) =>
+            btnShowGraph.Click += async (_, _) =>
             {
-                var drawer = this.FindControl<Border>("BottomDrawer");
-                if (drawer != null)
-                    drawer.Height = drawer.Height > 0 ? 0 : 280;
+                if (_vm.SelectedCollection == null) return;
+
+                List<TermDisplayItem>? termData = null;
+                try
+                {
+                    var termService = App.Services.GetRequiredService<ITermbaseService>();
+                    var root = _vm.GetRoot();
+                    if (!string.IsNullOrEmpty(root))
+                    {
+                        var hits = await termService.GetAllTermsAsync(root);
+                        termData = hits.Select(h => new TermDisplayItem
+                        {
+                            SourceTerm = h.SourceTerm,
+                            PreferredTarget = h.PreferredTarget,
+                            AlternateTargets = h.AlternateTargets ?? new()
+                        }).ToList();
+                    }
+                }
+                catch { }
+
+                var graphWindow = new ResearchGraphWindow(
+                    _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+                graphWindow.Show();
             };
         }
         var btnCloseDrawer = this.FindControl<Button>("BtnCloseDrawer");
@@ -225,7 +246,7 @@ public partial class ScholarTabView : UserControl
             };
         }
 
-        // Summary/Notes field autosave on lost focus
+        // Summary field autosave on lost focus
         var txtSummary = this.FindControl<TextBox>("TxtSummary");
         if (txtSummary != null)
         {
@@ -233,8 +254,23 @@ public partial class ScholarTabView : UserControl
             {
                 if (_vm.SelectedPassage != null)
                 {
-                    _vm.SelectedPassage.Notes = txtSummary.Text ?? "";
+                    _vm.SelectedPassage.Summary = txtSummary.Text ?? "";
+                    _vm.SelectedPassage.ModifiedUtc = DateTimeOffset.UtcNow;
                     ScheduleAutosave();
+                }
+            };
+        }
+
+        // Research Notes field autosave on lost focus
+        var txtPassageNotes = this.FindControl<TextBox>("TxtPassageNotes");
+        if (txtPassageNotes != null)
+        {
+            txtPassageNotes.LostFocus += (_, _) =>
+            {
+                if (_vm.SelectedPassage != null)
+                {
+                    _vm.PassageNotes = txtPassageNotes.Text ?? "";
+                    _vm.SyncAndSave();
                 }
             };
         }
@@ -499,7 +535,9 @@ public partial class ScholarTabView : UserControl
         var empty = this.FindControl<Border>("EmptyState");
         var detail = this.FindControl<StackPanel>("PassageDetail");
         bool hasPassage = _vm.SelectedPassage != null;
-        if (empty != null) empty.IsVisible = !hasPassage;
+        // Show empty state only when there are no collections at all (true empty),
+        // not just when no passage is selected.
+        if (empty != null) empty.IsVisible = _vm.IsEmptyState;
         if (detail != null) detail.IsVisible = hasPassage;
     }
 
@@ -541,10 +579,14 @@ public partial class ScholarTabView : UserControl
         var txtSourcePath = this.FindControl<TextBlock>("TxtSourcePath");
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         var txtEnText = this.FindControl<TextBlock>("TxtEnText");
+        var txtSummary = this.FindControl<TextBox>("TxtSummary");
+        var txtPassageNotes = this.FindControl<TextBox>("TxtPassageNotes");
 
         if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
+        if (txtSummary != null) txtSummary.Text = passage?.Summary ?? "";
+        if (txtPassageNotes != null) txtPassageNotes.Text = _vm.PassageNotes ?? "";
 
         SetupHoverDictionary();
         RefreshLinksPanel();
