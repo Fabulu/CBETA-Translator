@@ -991,7 +991,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowWorkspaceHelper));
     }
 
-    private void RebuildTree()
+    public void RebuildTree()
     {
         CollectionTreeNodes.Clear();
         foreach (var collection in _allCollections)

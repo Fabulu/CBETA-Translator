@@ -326,57 +326,6 @@ public partial class ScholarTabView : UserControl
                 graphWindow.Show();
             };
         }
-        var btnCloseDrawer = this.FindControl<Button>("BtnCloseDrawer");
-        if (btnCloseDrawer != null)
-        {
-            btnCloseDrawer.Click += (_, _) =>
-            {
-                var drawer = this.FindControl<Border>("BottomDrawer");
-                if (drawer != null)
-                    drawer.Height = 0;
-            };
-        }
-
-        // Graph full screen button
-        var btnGraphFullScreen = this.FindControl<Button>("BtnGraphFullScreen");
-        if (btnGraphFullScreen != null)
-        {
-            btnGraphFullScreen.Click += (_, _) => RefreshGraph(true);
-        }
-
-        // Open Research Graph in separate window
-        var btnOpenGraphWindow = this.FindControl<Button>("BtnOpenGraphWindow");
-        if (btnOpenGraphWindow != null)
-        {
-            btnOpenGraphWindow.Click += async (_, _) =>
-            {
-                if (_vm.SelectedCollection == null) return;
-
-                // Load termbase data for the picker dialog
-                List<TermDisplayItem>? termData = null;
-                try
-                {
-                    var termService = App.Services.GetRequiredService<ITermbaseService>();
-                    var root = _vm.GetRoot();
-                    if (!string.IsNullOrEmpty(root))
-                    {
-                        var hits = await termService.GetAllTermsAsync(root);
-                        termData = hits.Select(h => new TermDisplayItem
-                        {
-                            SourceTerm = h.SourceTerm,
-                            PreferredTarget = h.PreferredTarget,
-                            AlternateTargets = h.AlternateTargets ?? new()
-                        }).ToList();
-                    }
-                }
-                catch { /* term data is optional — graph works without it */ }
-
-                var graphWindow = new ResearchGraphWindow(
-                    _vm.SelectedCollection, _vm.Collections.ToList(), termData);
-                graphWindow.Show();
-            };
-        }
-
         // Summary field: sync to VM on every keystroke, autosave on lost focus
         var txtSummary = this.FindControl<TextBox>("TxtSummary");
         if (txtSummary != null)
@@ -394,16 +343,19 @@ public partial class ScholarTabView : UserControl
         }
 
         // Research Notes field autosave on lost focus
+        // Research Notes: sync on every keystroke, save on blur
         var txtPassageNotes = this.FindControl<TextBox>("TxtPassageNotes");
         if (txtPassageNotes != null)
         {
+            txtPassageNotes.TextChanged += (_, _) =>
+            {
+                if (_vm.SelectedPassage != null)
+                    _vm.PassageNotes = txtPassageNotes.Text ?? "";
+            };
             txtPassageNotes.LostFocus += (_, _) =>
             {
                 if (_vm.SelectedPassage != null)
-                {
-                    _vm.PassageNotes = txtPassageNotes.Text ?? "";
                     _vm.SyncAndSave();
-                }
             };
         }
 
@@ -420,10 +372,25 @@ public partial class ScholarTabView : UserControl
         if (btnExport != null)
             btnExport.Click += (_, _) => _vm.ExportCollectionsCommand.Execute(null);
 
-        // Open in Reader button
+        // Open in Reader button (guarded — only works when a passage is selected)
         var btnOpenInReader = this.FindControl<Button>("BtnOpenInReader");
         if (btnOpenInReader != null)
-            btnOpenInReader.Click += (_, _) => _vm.NavigateToPassageCommand.Execute(null);
+            btnOpenInReader.Click += (_, _) => { if (_vm.SelectedPassage != null) _vm.NavigateToPassageCommand.Execute(null); };
+
+        // Overflow menu
+        var btnOverflow = this.FindControl<Button>("BtnOverflow");
+        if (btnOverflow != null)
+        {
+            btnOverflow.Click += (_, _) =>
+            {
+                var menu = new ContextMenu();
+                menu.Items.Add(CreateScholarMenuItem("Import Collections", () => _vm.ImportCollectionsCommand.Execute(null)));
+                menu.Items.Add(CreateScholarMenuItem("Rebuild Tree", () => _vm.RebuildTree()));
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateScholarMenuItem("Delete Collection", () => _vm.DeleteCollectionCommand.Execute(null)));
+                menu.Open(btnOverflow);
+            };
+        }
 
         // Delete passage button
         var btnDeletePassage = this.FindControl<Button>("BtnDeletePassage");
@@ -440,8 +407,8 @@ public partial class ScholarTabView : UserControl
             btnCreateFirst.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
 
         // Copy/Cite buttons for Chinese and English text
-        WireCopyCiteButton("BtnCopyZh", () => _vm.SelectedPassage?.ZhText, "Chinese text copied.");
-        WireCopyCiteButton("BtnCopyEn", () => _vm.SelectedPassage?.EnText, "English text copied.");
+        WireCopyCiteButton("BtnCopyZh", "TxtZhText", () => _vm.SelectedPassage?.ZhText, "Chinese text copied.");
+        WireCopyCiteButton("BtnCopyEn", "TxtEnText", () => _vm.SelectedPassage?.EnText, "English text copied.");
         WireCiteButton("BtnCiteZh", () => _vm.SelectedPassage?.ZhText);
         WireCiteButton("BtnCiteEn", () => _vm.SelectedPassage?.EnText);
 
@@ -818,19 +785,29 @@ public partial class ScholarTabView : UserControl
         }
     }
 
-    private void WireCopyCiteButton(string btnName, Func<string?> getText, string statusMsg)
+    private static MenuItem CreateScholarMenuItem(string header, Action action)
+    {
+        var item = new MenuItem { Header = header };
+        item.Click += (_, _) => action();
+        return item;
+    }
+
+    private void WireCopyCiteButton(string btnName, string textBoxName, Func<string?> getFullText, string statusMsg)
     {
         var btn = this.FindControl<Button>(btnName);
         if (btn != null)
         {
             btn.Click += async (_, _) =>
             {
-                var text = getText();
+                // Prefer selected text, fall back to full text
+                var box = this.FindControl<TextBox>(textBoxName);
+                var text = !string.IsNullOrEmpty(box?.SelectedText) ? box.SelectedText : getFullText();
                 if (string.IsNullOrEmpty(text)) return;
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null)
                     await top.Clipboard.SetTextAsync(text);
-                Status?.Invoke(this, statusMsg);
+                var what = !string.IsNullOrEmpty(box?.SelectedText) ? "Selection copied." : statusMsg;
+                Status?.Invoke(this, what);
             };
         }
     }
@@ -844,7 +821,12 @@ public partial class ScholarTabView : UserControl
             {
                 var passage = _vm.SelectedPassage;
                 if (passage == null) return;
-                var quoted = getQuotedText();
+                // Check for selection in the matching text box
+                var zhBox = this.FindControl<TextBox>("TxtZhText");
+                var enBox = this.FindControl<TextBox>("TxtEnText");
+                var selectedText = !string.IsNullOrEmpty(zhBox?.SelectedText) ? zhBox.SelectedText
+                    : !string.IsNullOrEmpty(enBox?.SelectedText) ? enBox.SelectedText : null;
+                var quoted = selectedText ?? getQuotedText();
                 if (string.IsNullOrEmpty(quoted)) quoted = passage.ZhText;
                 var metadata = _citationService.BuildMetadata(
                     null,
