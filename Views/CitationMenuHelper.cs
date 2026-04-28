@@ -33,20 +33,38 @@ internal static class CitationMenuHelper
     /// <summary>
     /// Resolve the user's preferred citation style from AppConfig via DI.
     /// Falls back to Chicago if config is unavailable.
+    /// Uses a cached value to avoid synchronous async-over-sync (.GetAwaiter().GetResult())
+    /// which was causing UI thread deadlocks during view construction.
     /// </summary>
+    private static CitationStyle? _cachedPreferredStyle;
+
     internal static CitationStyle GetPreferredStyle()
+    {
+        if (_cachedPreferredStyle.HasValue)
+            return _cachedPreferredStyle.Value;
+
+        // Kick off async load without blocking — use Chicago until loaded
+        _ = LoadPreferredStyleAsync();
+        return CitationStyle.Chicago;
+    }
+
+    private static async Task LoadPreferredStyleAsync()
     {
         try
         {
             var svc = App.Services.GetService<IAppConfigService>();
-            var cfg = svc?.TryLoadAsync().GetAwaiter().GetResult();
-            return cfg?.PreferredCitationStyle ?? CitationStyle.Chicago;
+            if (svc == null) return;
+            var cfg = await svc.TryLoadAsync();
+            _cachedPreferredStyle = cfg?.PreferredCitationStyle ?? CitationStyle.Chicago;
         }
         catch
         {
-            return CitationStyle.Chicago;
+            _cachedPreferredStyle = CitationStyle.Chicago;
         }
     }
+
+    /// <summary>Called by MainWindow after config is loaded to set the cached style.</summary>
+    internal static void SetPreferredStyle(CitationStyle style) => _cachedPreferredStyle = style;
 
     /// <summary>
     /// Creates a "Cite as..." MenuItem with a flyout submenu.
