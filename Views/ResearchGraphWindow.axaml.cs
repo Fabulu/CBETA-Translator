@@ -293,6 +293,25 @@ public partial class ResearchGraphWindow : Window
             }
         };
 
+        _canvas.EdgeClicked += (_, edge) =>
+        {
+            var menu = new ContextMenu();
+            menu.Items.Add(new MenuItem
+            {
+                Header = $"Edge Info: {edge.RelationType}",
+                IsEnabled = false
+            });
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Delete Edge", () =>
+            {
+                _vm!.ExecuteCommand(new RemoveEdgeCommand(_vm!, edge.EdgeId));
+                _canvas.InvalidateVisual();
+                UpdateStatusBar();
+                UpdateLeftPanels();
+            }));
+            menu.Open(_canvas);
+        };
+
         // Right-click context menu
         _canvas.PointerPressed += (_, e) =>
         {
@@ -344,6 +363,12 @@ public partial class ResearchGraphWindow : Window
         _statsPanel?.UpdateStats(
             _vm.OrphanPassageCount, _vm.OrphanConceptCount,
             _vm.OverloadedConceptCount, _vm.WeakConceptCount, _vm.QualityScore);
+
+        var legendEntries = _vm.GetVisibleEdges()
+            .GroupBy(e => e.RelationType)
+            .Select(g => new EdgeLegendEntry(g.Key, g.First().ColorHex, g.First().Label ?? g.Key))
+            .ToList();
+        _legendPanel?.UpdateLegend(legendEntries);
     }
 
     private void SetupKeyBindings()

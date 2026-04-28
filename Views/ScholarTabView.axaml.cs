@@ -35,7 +35,6 @@ public partial class ScholarTabView : UserControl
     private HoverDictionaryBehaviorTextBox? _hoverDict;
     private DispatcherTimer? _scholarSelDebounce;
     private bool _scholarSelWired;
-    private Canvas? _dictOverlayCanvas;
 
     // Parallel passage finder
     private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
@@ -54,12 +53,9 @@ public partial class ScholarTabView : UserControl
     private StackPanel? _scholarApprovedTmHost;
     private StackPanel? _scholarReferenceTmHost;
 
-    // Graph + link stats controls
+    // Graph controls
     private LinkNetworkGraphControl? _graphControl;
     private Button? _btnGraphRelayout;
-    private TextBlock? _txtGraphInfo;
-    private StackPanel? _pnlLinkStats;
-    private TextBlock? _txtLinkCoverage;
     private Button? _btnAddLink;
     private CancellationTokenSource? _graphSaveCts;
     private readonly LinkGraphViewModel _graphVm = new();
@@ -114,14 +110,9 @@ public partial class ScholarTabView : UserControl
             }
         }
 
-        _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
-
-        // Graph + link stats controls
+        // Graph controls
         _graphControl = this.FindControl<LinkNetworkGraphControl>("GraphControl");
         _btnGraphRelayout = this.FindControl<Button>("BtnGraphRelayout");
-        _txtGraphInfo = this.FindControl<TextBlock>("TxtGraphInfo");
-        _pnlLinkStats = this.FindControl<StackPanel>("PnlLinkStats");
-        _txtLinkCoverage = this.FindControl<TextBlock>("TxtLinkCoverage");
         _btnAddLink = this.FindControl<Button>("BtnAddLink");
 
         if (_graphControl != null)
@@ -591,16 +582,6 @@ public partial class ScholarTabView : UserControl
             };
         }
 
-        // Master bubble remove buttons
-        var masterBubblesHost = this.FindControl<ItemsControl>("MasterBubblesHost");
-        if (masterBubblesHost != null)
-        {
-            masterBubblesHost.AddHandler(Button.ClickEvent, (sender, e) =>
-            {
-                if (e.Source is Button btn && btn.Name == "BtnRemoveMaster" && btn.Tag is string name)
-                    _vm.RemoveMaster(name);
-            });
-        }
     }
 
     private void SelectPassage(ScholarPassage passage)
@@ -788,7 +769,7 @@ public partial class ScholarTabView : UserControl
         var txtZhText = this.FindControl<TextBox>("TxtZhText");
         if (txtZhText == null) return;
 
-        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar, _dictOverlayCanvas); }
+        try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar); }
         catch { /* dictionary not available */ }
 
         // Selection-based TM: wire ONCE (not per passage change). The handler
@@ -1131,8 +1112,6 @@ public partial class ScholarTabView : UserControl
     private void RefreshLinksPanel()
     {
         var panel = this.FindControl<ItemsControl>("PnlOutgoingLinks");
-        var emptyText = this.FindControl<TextBlock>("TxtLinksEmpty");
-        var tabHeader = this.FindControl<TextBlock>("TxtLinksTabHeader");
         if (panel == null) return;
 
         var passage = _vm.SelectedPassage;
@@ -1141,15 +1120,10 @@ public partial class ScholarTabView : UserControl
             panel.ItemsSource = null;
             RefreshLinkStats();
             RefreshGraph();
-            if (emptyText != null) emptyText.IsVisible = true;
-            if (tabHeader != null) tabHeader.Text = "Links";
             return;
         }
 
         var links = _vm.GetLinksForPassage(passage.Id);
-
-        if (emptyText != null) emptyText.IsVisible = links.Count == 0;
-        if (tabHeader != null) tabHeader.Text = links.Count > 0 ? $"Links ({links.Count})" : "Links";
 
         if (links.Count == 0)
         {
@@ -1266,57 +1240,7 @@ public partial class ScholarTabView : UserControl
 
     private void RefreshLinkStats()
     {
-        if (_pnlLinkStats == null) return;
-        _pnlLinkStats.Children.Clear();
-
-        var collection = _vm.SelectedCollection;
-        if (collection == null) return;
-
-        var links = collection.Links ?? new();
-        var passages = collection.Passages;
-
-        if (links.Count == 0)
-        {
-            if (_txtLinkCoverage != null) _txtLinkCoverage.Text = "";
-            return;
-        }
-
-        // By relation type
-        var byType = links.GroupBy(l => l.RelationType ?? "unknown")
-            .OrderByDescending(g => g.Count())
-            .ToList();
-
-        foreach (var group in byType)
-        {
-            var colorHex = LinkGraphViewModel.RelationColors.GetValueOrDefault(group.Key, "#9E9E9E");
-            Color.TryParse(colorHex, out var color);
-            var row = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, Spacing = 6 };
-            row.Children.Add(new Border
-            {
-                Width = Math.Max(20, group.Count() * 20),
-                Height = 14,
-                CornerRadius = new CornerRadius(3),
-                Background = new SolidColorBrush(color)
-            });
-            row.Children.Add(new TextBlock
-            {
-                Text = $"{group.Key} ({group.Count()})",
-                FontSize = 11,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
-            });
-            _pnlLinkStats.Children.Add(row);
-        }
-
-        // Coverage
-        var linkedIds = new HashSet<string>();
-        foreach (var l in links) { linkedIds.Add(l.FromPassageId ?? ""); linkedIds.Add(l.ToPassageId ?? ""); }
-        linkedIds.Remove("");
-        int total = passages.Count;
-        int linked = linkedIds.Count(id => passages.Any(p => p.Id == id));
-        int orphans = total - linked;
-
-        if (_txtLinkCoverage != null)
-            _txtLinkCoverage.Text = $"{linked}/{total} passages linked ({(total > 0 ? linked * 100 / total : 0)}%) \u00b7 {orphans} orphans";
+        // Link stats panel was removed in Phase 4 overhaul; this is now a no-op.
     }
 
     private void RefreshGraph(bool forceRelayout = false)
@@ -1350,8 +1274,6 @@ public partial class ScholarTabView : UserControl
 
         _currentGraphCollectionId = collection.Id;
         _graphControl?.SetViewModel(_graphVm);
-        if (_txtGraphInfo != null)
-            _txtGraphInfo.Text = $"{_graphVm.Nodes.Count} passages, {_graphVm.Edges.Count} links";
 
         if (forceRelayout)
             ScheduleGraphLayoutSave();
@@ -1998,8 +1920,7 @@ public partial class ScholarTabView : UserControl
 
     public void SetScholarLoading(bool isLoading)
     {
-        var bar = this.FindControl<Avalonia.Controls.ProgressBar>("ScholarLoadingBar");
-        if (bar != null) bar.IsVisible = isLoading;
+        // ScholarLoadingBar was removed in Phase 4 overhaul; nothing to update.
     }
 
     public void SetTranslationDirs(string? origDir, string? tranDir)
