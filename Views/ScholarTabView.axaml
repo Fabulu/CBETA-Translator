@@ -6,7 +6,7 @@
              x:DataType="vm:ScholarTabViewModel"
              x:Class="ReadZen.App.Views.ScholarTabView">
 
-  <Grid RowDefinitions="Auto,*,Auto">
+  <Grid RowDefinitions="Auto,*">
 
     <!-- ROW 0: Slim Toolbar -->
     <Border Grid.Row="0" Padding="8,4" BorderThickness="0,0,0,1"
@@ -346,22 +346,6 @@
       </ScrollViewer>
     </Grid>
 
-    <!-- ROW 2: Bottom Drawer (Graph) - initially hidden -->
-    <Border Grid.Row="2" Name="BottomDrawer" Height="0" BorderThickness="0,1,0,0"
-            BorderBrush="{DynamicResource BorderBrush}"
-            Background="{DynamicResource PanelBg}">
-      <Grid RowDefinitions="Auto,*">
-        <DockPanel Grid.Row="0" Margin="8,4">
-          <TextBlock Text="Graph" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center"/>
-          <Button DockPanel.Dock="Right" Name="BtnCloseDrawer" Content="&#x2715;" Padding="6,2"/>
-          <Button DockPanel.Dock="Right" Name="BtnOpenGraphWindow" Content="Open in Window" ToolTip.Tip="Open Research Graph in separate window" Padding="6,2" Margin="0,0,4,0"/>
-          <Button DockPanel.Dock="Right" Name="BtnGraphFullScreen" Content="&#x26F6;" ToolTip.Tip="Full screen" Padding="6,2" Margin="0,0,4,0"/>
-          <Button DockPanel.Dock="Right" Name="BtnGraphRelayout" Content="Rearrange" Padding="6,2" Margin="0,0,4,0"/>
-          <!-- Color mode dropdown -->
-          <ComboBox DockPanel.Dock="Right" Name="CmbGraphColorMode" MinWidth="120" Margin="0,0,8,0"/>
-        </DockPanel>
-        <local:LinkNetworkGraphControl Grid.Row="1" Name="GraphControl" ClipToBounds="True" Margin="4"/>
-      </Grid>
-    </Border>
+    <!-- Graph drawer removed — Research Graph button opens a separate window -->
   </Grid>
 </UserControl>
