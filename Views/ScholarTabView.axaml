@@ -16,7 +16,13 @@
         <!-- LEFT side -->
         <Button DockPanel.Dock="Left" Name="BtnToggleTree" Content="&#x2630;" ToolTip.Tip="Toggle tree panel" Padding="6,4" Margin="0,0,8,0"/>
         <ComboBox DockPanel.Dock="Left" Name="CmbCollections" MinWidth="180" Margin="0,0,8,0"
-                  ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}"/>
+                  ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="models:ScholarCollection">
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBox DockPanel.Dock="Left" Name="TxtFilter" Watermark="Filter passages..." Width="160" Margin="0,0,8,0"
                  Text="{Binding SearchFilter, Mode=TwoWay}"/>
         <ComboBox DockPanel.Dock="Left" Name="CmbSort" Width="100" Margin="0,0,8,0"
@@ -26,6 +32,15 @@
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" ToolTip.Tip="More tools" Padding="8,4"/>
         <Button DockPanel.Dock="Right" Name="BtnAddCollection" Content="+" ToolTip.Tip="New collection" Padding="8,4" Margin="0,0,4,0"/>
         <Button DockPanel.Dock="Right" Name="BtnExport" Content="Export" ToolTip.Tip="Export collection" Padding="8,4" Margin="0,0,4,0"/>
+        <Button DockPanel.Dock="Right" Name="BtnShowGraph" ToolTip.Tip="Open the Research Graph for this collection"
+                Padding="8,4" Margin="0,0,4,0"
+                Background="#FFD4AF37" Foreground="#FF111111"
+                BorderThickness="0" CornerRadius="4" FontWeight="SemiBold">
+          <StackPanel Orientation="Horizontal" Spacing="4">
+            <TextBlock Text="&#x2B21;" FontSize="11" VerticalAlignment="Center" Foreground="#FF111111"/>
+            <TextBlock Text="Graph" VerticalAlignment="Center" Foreground="#FF111111" FontWeight="SemiBold"/>
+          </StackPanel>
+        </Button>
         <Button DockPanel.Dock="Right" Name="BtnOpenInReader" Content="Open in Reader" ToolTip.Tip="View in Reader tab" Padding="8,4" Margin="0,0,4,0"/>
       </DockPanel>
     </Border>
@@ -318,22 +333,11 @@
 
             <!-- Action bar -->
             <DockPanel Margin="0,8,0,4">
-              <!-- Research Graph — primary accent button -->
-              <Button Name="BtnShowGraph" DockPanel.Dock="Right" Padding="12,6"
-                      ToolTip.Tip="Open the Research Graph for this collection in a separate window"
-                      Background="#FFD4AF37" Foreground="#FF111111"
-                      BorderThickness="0" CornerRadius="6"
-                      FontWeight="SemiBold">
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                  <TextBlock Text="&#x2B21;" FontSize="12" VerticalAlignment="Center"
-                             Foreground="#FF111111"/>
-                  <TextBlock Text="Research Graph" VerticalAlignment="Center"
-                             Foreground="#FF111111" FontWeight="SemiBold"/>
-                </StackPanel>
-              </Button>
-              <!-- Delete — danger-tinted button -->
+              <Button Name="BtnMoveUp" DockPanel.Dock="Left" Content="&#x25B2;" Padding="8,4"
+                      ToolTip.Tip="Move passage up" FontSize="12" Margin="0,0,4,0"/>
+              <Button Name="BtnMoveDown" DockPanel.Dock="Left" Content="&#x25BC;" Padding="8,4"
+                      ToolTip.Tip="Move passage down" FontSize="12" Margin="0,0,4,0"/>
               <Button Name="BtnDeletePassage" DockPanel.Dock="Right" Padding="12,6"
-                      Margin="0,0,8,0"
                       Background="{DynamicResource ErrorBg}"
                       Foreground="{DynamicResource ErrorFg}"
                       BorderBrush="{DynamicResource ErrorFg}"
