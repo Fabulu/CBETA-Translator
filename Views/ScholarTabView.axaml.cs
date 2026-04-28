@@ -1199,13 +1199,14 @@ public partial class ScholarTabView : UserControl
 
     private void RefreshLinkedTextsPanel()
     {
-        var panel = this.FindControl<ItemsControl>("PnlLinkedTexts");
+        var panel = this.FindControl<StackPanel>("PnlLinkedTexts");
         if (panel == null) return;
 
         var passage = _vm.SelectedPassage;
+        // Keep the header TextBlock (first child), clear the rest
+        while (panel.Children.Count > 1) panel.Children.RemoveAt(panel.Children.Count - 1);
         if (passage == null || passage.LinkedTexts.Count == 0)
         {
-            panel.ItemsSource = null;
             panel.IsVisible = false;
             return;
         }
@@ -1264,7 +1265,7 @@ public partial class ScholarTabView : UserControl
             controls.Add(chip);
         }
 
-        panel.ItemsSource = controls;
+        foreach (var c in controls) panel.Children.Add(c);
         panel.IsVisible = true;
     }
 
