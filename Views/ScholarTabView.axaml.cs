@@ -156,7 +156,14 @@ public partial class ScholarTabView : UserControl
         {
             tree.SelectionChanged += (_, e) =>
             {
-                if (tree.SelectedItem is ScholarPassage passage)
+                if (tree.SelectedItem is CollectionTreeNode node)
+                {
+                    if (node.Kind == TreeNodeKind.Passage && node.Tag is ScholarPassage passage)
+                        SelectPassage(passage);
+                    else if (node.Kind == TreeNodeKind.Collection && node.Tag is ScholarCollection col)
+                        _vm.SelectedCollection = col;
+                }
+                else if (tree.SelectedItem is ScholarPassage passage)
                     SelectPassage(passage);
                 else if (tree.SelectedItem is ScholarCollection col)
                     _vm.SelectedCollection = col;
@@ -246,18 +253,19 @@ public partial class ScholarTabView : UserControl
             };
         }
 
-        // Summary field autosave on lost focus
+        // Summary field: sync to VM on every keystroke, autosave on lost focus
         var txtSummary = this.FindControl<TextBox>("TxtSummary");
         if (txtSummary != null)
         {
+            txtSummary.TextChanged += (_, _) =>
+            {
+                if (_vm.SelectedPassage != null)
+                    _vm.PassageSummary = txtSummary.Text ?? "";
+            };
             txtSummary.LostFocus += (_, _) =>
             {
                 if (_vm.SelectedPassage != null)
-                {
-                    _vm.SelectedPassage.Summary = txtSummary.Text ?? "";
-                    _vm.SelectedPassage.ModifiedUtc = DateTimeOffset.UtcNow;
-                    ScheduleAutosave();
-                }
+                    _vm.SyncAndSave();
             };
         }
 
@@ -370,6 +378,11 @@ public partial class ScholarTabView : UserControl
                     _vm.SelectedCommunityPassage = null;
                     _suppressSelectionSync = false;
                 }
+            }
+            else if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCollection)
+                  || e.PropertyName == nameof(ScholarTabViewModel.IsEmptyState))
+            {
+                UpdateDetailVisibility();
             }
             else if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCommunityPassage))
             {
@@ -585,7 +598,7 @@ public partial class ScholarTabView : UserControl
         if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
-        if (txtSummary != null) txtSummary.Text = passage?.Summary ?? "";
+        if (txtSummary != null) txtSummary.Text = _vm.PassageSummary ?? "";
         if (txtPassageNotes != null) txtPassageNotes.Text = _vm.PassageNotes ?? "";
 
         SetupHoverDictionary();
