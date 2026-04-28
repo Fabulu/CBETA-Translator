@@ -116,6 +116,59 @@ public sealed class RemoveNodeCommand : IGraphCommand
 }
 
 /// <summary>
+/// Command to remove a single edge from the research graph (supports undo).
+/// </summary>
+public sealed class RemoveEdgeCommand : IGraphCommand
+{
+    private readonly ResearchGraphViewModel _vm;
+    private readonly string _edgeId;
+    private ScholarGraphEdge? _savedCollectionEdge;
+    private ResearchGraphEdgeVm? _savedVm;
+
+    public string Description => $"Remove edge: {_savedVm?.RelationType ?? _edgeId}";
+
+    public RemoveEdgeCommand(ResearchGraphViewModel vm, string edgeId)
+    {
+        _vm = vm;
+        _edgeId = edgeId;
+    }
+
+    public void Execute()
+    {
+        _savedVm = _vm.Edges.FirstOrDefault(e => e.EdgeId == _edgeId);
+        _savedCollectionEdge = _vm.GetCollection().Edges.FirstOrDefault(e => e.Id == _edgeId);
+        _vm.RemoveEdge(_edgeId);
+    }
+
+    public void Undo()
+    {
+        if (_savedCollectionEdge == null || _savedVm == null) return;
+
+        if (!_vm.GetCollection().Edges.Any(e => e.Id == _savedCollectionEdge.Id))
+            _vm.GetCollection().Edges.Add(_savedCollectionEdge);
+
+        var fromNode = _vm.Nodes.FirstOrDefault(n => n.NodeId == _savedCollectionEdge.FromNodeId);
+        var toNode = _vm.Nodes.FirstOrDefault(n => n.NodeId == _savedCollectionEdge.ToNodeId);
+        if (fromNode != null && toNode != null)
+        {
+            var edgeDef = EdgeTypeRegistry.GetById(_savedCollectionEdge.RelationType);
+            _vm.Edges.Add(new ResearchGraphEdgeVm
+            {
+                EdgeId = _savedCollectionEdge.Id,
+                From = fromNode,
+                To = toNode,
+                RelationType = _savedCollectionEdge.RelationType,
+                Label = edgeDef?.DisplayName ?? _savedCollectionEdge.RelationType,
+                IsDirectional = edgeDef?.IsDirectional ?? true,
+                ColorHex = edgeDef?.ColorHex ?? "#9E9E9E"
+            });
+            fromNode.Degree++;
+            toNode.Degree++;
+        }
+    }
+}
+
+/// <summary>
 /// Command to rename a concept node in the research graph (supports undo).
 /// </summary>
 public sealed class RenameConceptCommand : IGraphCommand

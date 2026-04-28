@@ -377,6 +377,20 @@ public class ResearchGraphViewModel
         _nodeMap[node.NodeId] = node;
     }
 
+    /// <summary>
+    /// Removes a single edge by its edge ID, updating degrees and the backing collection.
+    /// </summary>
+    public void RemoveEdge(string edgeId)
+    {
+        var edgeVm = Edges.FirstOrDefault(e => e.EdgeId == edgeId);
+        if (edgeVm == null) return;
+        edgeVm.From.Degree--;
+        edgeVm.To.Degree--;
+        Edges.Remove(edgeVm);
+        _collection.Edges.RemoveAll(e => e.Id == edgeId);
+        ComputeStats();
+    }
+
     public void RemoveNode(string nodeId)
     {
         var node = Nodes.FirstOrDefault(n => n.NodeId == nodeId);

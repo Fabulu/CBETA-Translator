@@ -9,7 +9,9 @@
   <Grid RowDefinitions="Auto,*,Auto">
 
     <!-- ROW 0: Slim Toolbar -->
-    <Border Grid.Row="0" Padding="8,4" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+    <Border Grid.Row="0" Padding="8,4" BorderThickness="0,0,0,1"
+            BorderBrush="{DynamicResource BorderBrush}"
+            Background="{DynamicResource BarBg}">
       <DockPanel LastChildFill="False">
         <!-- LEFT side -->
         <Button DockPanel.Dock="Left" Name="BtnToggleTree" Content="&#x2630;" ToolTip.Tip="Toggle tree panel" Padding="6,4" Margin="0,0,8,0"/>
@@ -31,13 +33,23 @@
     <!-- ROW 1: Main Content (Tree + Splitter + Detail) -->
     <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,*">
 
-      <!-- LEFT: Collections Tree Panel -->
+      <!-- LEFT: Collections Tree Panel — slightly darker background for contrast -->
       <Border Grid.Column="0" Name="TreePanel" Width="240" BorderThickness="0,0,1,0"
-              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+              BorderBrush="{DynamicResource BorderBrush}"
+              Background="{DynamicResource PanelBg}">
         <Grid RowDefinitions="Auto,*">
-          <TextBox Grid.Row="0" Name="TxtTreeFilter" Watermark="Search collections..." Margin="4"/>
-          <TreeView Grid.Row="1" Name="CollectionsTree" Margin="4"
+          <TextBox Grid.Row="0" Name="TxtTreeFilter" Watermark="Search collections..."
+                   Margin="8,8,8,4" CornerRadius="4"
+                   Text="{Binding CollectionFilter, Mode=TwoWay}"/>
+          <TreeView Grid.Row="1" Name="CollectionsTree" Margin="4,0,4,4"
                     ItemsSource="{Binding CollectionTreeNodes}">
+            <TreeView.ItemContainerTheme>
+              <ControlTheme x:DataType="vm:CollectionTreeNode"
+                            TargetType="TreeViewItem"
+                            BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+              </ControlTheme>
+            </TreeView.ItemContainerTheme>
             <TreeView.ItemTemplate>
               <TreeDataTemplate ItemsSource="{Binding Children}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
@@ -55,117 +67,219 @@
       <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
       <!-- RIGHT: Scrollable Detail Panel -->
-      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="12">
+      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14">
         <StackPanel Spacing="12" Name="DetailPanel">
 
           <!-- EMPTY STATE (shown when no passage selected) -->
-          <Border Name="EmptyState" IsVisible="True" Padding="40" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Spacing="16" MaxWidth="500" HorizontalAlignment="Center">
-              <TextBlock Text="Scholar Workspace" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+          <Border Name="EmptyState" IsVisible="True" Padding="48,56"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  CornerRadius="12"
+                  BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"
+                  Background="{DynamicResource PanelBg}">
+            <StackPanel Spacing="20" MaxWidth="500" HorizontalAlignment="Center">
+              <!-- Large icon -->
+              <TextBlock Text="&#x1F4DA;" FontSize="52" HorizontalAlignment="Center"
+                         TextAlignment="Center"/>
+              <TextBlock Text="Scholar Workspace" FontSize="24" FontWeight="Bold"
+                         HorizontalAlignment="Center" TextAlignment="Center"
+                         Foreground="#FFD4AF37"/>
               <TextBlock Text="Build a research collection of Zen passages with annotations, links, and visualization."
-                         TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7"/>
-              <StackPanel Spacing="8" Margin="0,12,0,0">
-                <TextBlock Text="1. Create a collection to organize passages by theme" Opacity="0.8"/>
-                <TextBlock Text="2. Add passages from Reader, Translate, or Search" Opacity="0.8"/>
-                <TextBlock Text="3. Annotate, link, and visualize relationships" Opacity="0.8"/>
-              </StackPanel>
-              <Button Name="BtnCreateFirst" Content="Create First Collection" HorizontalAlignment="Center" Padding="16,8" Margin="0,8,0,0"/>
+                         TextWrapping="Wrap" TextAlignment="Center" FontSize="13"
+                         Opacity="0.75" Margin="0,0,0,4"/>
+              <!-- Numbered steps as card -->
+              <Border CornerRadius="8" Padding="20,14"
+                      Background="{DynamicResource PanelAltBg}"
+                      BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                <StackPanel Spacing="10">
+                  <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border CornerRadius="11" Width="22" Height="22" Background="#22D4AF37">
+                      <TextBlock Text="1" FontSize="11" FontWeight="Bold" Foreground="#FFD4AF37"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Create a collection to organize passages by theme"
+                               VerticalAlignment="Center" FontSize="12" Opacity="0.85"/>
+                  </StackPanel>
+                  <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border CornerRadius="11" Width="22" Height="22" Background="#22D4AF37">
+                      <TextBlock Text="2" FontSize="11" FontWeight="Bold" Foreground="#FFD4AF37"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Add passages from Reader, Translate, or Search"
+                               VerticalAlignment="Center" FontSize="12" Opacity="0.85"/>
+                  </StackPanel>
+                  <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border CornerRadius="11" Width="22" Height="22" Background="#22D4AF37">
+                      <TextBlock Text="3" FontSize="11" FontWeight="Bold" Foreground="#FFD4AF37"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Annotate, link, and visualize relationships"
+                               VerticalAlignment="Center" FontSize="12" Opacity="0.85"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
+              <Button Name="BtnCreateFirst" Content="Create First Collection"
+                      HorizontalAlignment="Center" Padding="20,10" Margin="0,4,0,0"
+                      Background="#FFD4AF37" Foreground="#FF111111"
+                      BorderThickness="0" CornerRadius="6"
+                      FontWeight="SemiBold"/>
+            </StackPanel>
+          </Border>
+
+          <!-- NO PASSAGE SELECTED STATE (collections exist but nothing picked) -->
+          <Border Name="NoPassageState" IsVisible="False" Padding="40"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  CornerRadius="10" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"
+                  Background="{DynamicResource PanelBg}">
+            <StackPanel Spacing="10" MaxWidth="500" HorizontalAlignment="Center">
+              <TextBlock Text="&#x1F50D;" FontSize="32" HorizontalAlignment="Center" TextAlignment="Center"/>
+              <TextBlock Text="No passage selected" FontSize="16" FontWeight="SemiBold"
+                         HorizontalAlignment="Center" Opacity="0.75"/>
+              <TextBlock Text="Select a passage from the tree, or add one from Reader or Search."
+                         TextWrapping="Wrap" TextAlignment="Center" Opacity="0.55"/>
             </StackPanel>
           </Border>
 
           <!-- PASSAGE DETAIL (shown when passage is selected) -->
-          <StackPanel Name="PassageDetail" IsVisible="False" Spacing="12">
+          <StackPanel Name="PassageDetail" IsVisible="False" Spacing="16">
 
-            <!-- Section 1: Summary + Core Texts (always visible) -->
-            <StackPanel Spacing="8">
+            <!-- Section 1: Summary + Core Texts -->
+            <StackPanel Spacing="10">
               <TextBox Name="TxtSummary" Watermark="Summary (your paraphrase of this passage)..."
-                       FontWeight="SemiBold" FontSize="15" MaxLength="120"/>
-              <TextBlock Name="TxtSourcePath" FontSize="11" Opacity="0.5"/>
+                       FontWeight="SemiBold" FontSize="15" MaxLength="120"
+                       CornerRadius="4" Padding="8,6"/>
+              <TextBlock Name="TxtSourcePath" FontSize="11" Opacity="0.5" Margin="2,0,0,0"/>
 
-              <!-- Chinese text -->
-              <Border CornerRadius="4" Padding="8" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
-                <ScrollViewer MaxHeight="300">
-                  <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
-                           BorderThickness="0" Background="Transparent"/>
-                </ScrollViewer>
-              </Border>
+              <!-- Chinese Source -->
+              <StackPanel Spacing="4">
+                <TextBlock Text="CHINESE SOURCE" FontSize="10" FontWeight="SemiBold"
+                           Foreground="#FFD4AF37" LetterSpacing="1.0" Margin="2,0,0,0"/>
+                <Border CornerRadius="6" Padding="10,8"
+                        Background="#0FD4AF37"
+                        BorderThickness="1" BorderBrush="#33D4AF37">
+                  <ScrollViewer MaxHeight="300">
+                    <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
+                             BorderThickness="0" Background="Transparent"/>
+                  </ScrollViewer>
+                </Border>
+              </StackPanel>
 
               <!-- Termbase hits -->
               <ItemsControl Name="PnlTermbaseHits"/>
 
-              <!-- English text -->
-              <Border CornerRadius="4" Padding="8" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
-                <ScrollViewer MaxHeight="300">
-                  <TextBlock Name="TxtEnText" TextWrapping="Wrap" FontSize="14"/>
-                </ScrollViewer>
+              <!-- English Translation -->
+              <StackPanel Spacing="4">
+                <TextBlock Text="ENGLISH TRANSLATION" FontSize="10" FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentLinkFg}" LetterSpacing="1.0" Margin="2,0,0,0"/>
+                <Border CornerRadius="6" Padding="10,8"
+                        Background="#0A88AAFF"
+                        BorderThickness="1" BorderBrush="#2288AAFF">
+                  <ScrollViewer MaxHeight="300">
+                    <TextBlock Name="TxtEnText" TextWrapping="Wrap" FontSize="14"/>
+                  </ScrollViewer>
+                </Border>
+              </StackPanel>
+            </StackPanel>
+
+            <!-- Section: Keywords & Metadata -->
+            <StackPanel Spacing="10">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Keywords &amp; Metadata" FontWeight="Bold" FontSize="13"
+                           Foreground="#FFD4AF37" Margin="0,4,0,0"/>
+                <Border Height="1" Background="{DynamicResource BorderBrush}"/>
+              </StackPanel>
+              <!-- Tags — card-tinted -->
+              <Border CornerRadius="6" Padding="10,8"
+                      Background="{DynamicResource PanelAltBg}"
+                      BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="Tags" FontWeight="SemiBold" FontSize="12" Opacity="0.85"/>
+                  <WrapPanel Name="PnlTags" Orientation="Horizontal"/>
+                  <TextBox Name="TxtAddTag" Watermark="Add tag (Enter)..." FontSize="11"
+                           CornerRadius="4" Padding="6,4"/>
+                </StackPanel>
+              </Border>
+              <!-- Masters — card-tinted -->
+              <Border CornerRadius="6" Padding="10,8"
+                      Background="{DynamicResource PanelAltBg}"
+                      BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12" Opacity="0.85"/>
+                  <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
+                  <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (Enter)..." FontSize="11"
+                                   FilterMode="ContainsOrdinal" MinimumPrefixLength="1"/>
+                </StackPanel>
+              </Border>
+              <!-- Linked Texts -->
+              <StackPanel Spacing="4" Name="PnlLinkedTexts">
+                <TextBlock Text="Linked Texts" FontWeight="SemiBold" FontSize="12" Opacity="0.85"/>
+              </StackPanel>
+            </StackPanel>
+
+            <!-- Section: Categorization -->
+            <StackPanel Spacing="10">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Categorization" FontWeight="Bold" FontSize="13"
+                           Foreground="#FFD4AF37" Margin="0,4,0,0"/>
+                <Border Height="1" Background="{DynamicResource BorderBrush}"/>
+              </StackPanel>
+              <Border CornerRadius="6" Padding="10,10"
+                      Background="{DynamicResource PanelAltBg}"
+                      BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" RowSpacing="8">
+                  <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center" FontSize="12" Opacity="0.8"/>
+                  <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding DoctrinalTopicOptions}" SelectedItem="{Binding DoctrinalTopic}" IsEditable="True"/>
+                  <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center" FontSize="12" Opacity="0.8"/>
+                  <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding LiteraryFormOptions}" SelectedItem="{Binding LiteraryForm}" IsEditable="True"/>
+                  <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center" FontSize="12" Opacity="0.8"/>
+                  <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding LineageOptions}" SelectedItem="{Binding Lineage}" IsEditable="True"/>
+                  <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center" FontSize="12" Opacity="0.8"/>
+                  <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding RhetoricalFunctionOptions}" SelectedItem="{Binding RhetoricalFunction}" IsEditable="True"/>
+                </Grid>
               </Border>
             </StackPanel>
 
-            <!-- Keywords & Metadata -->
-            <StackPanel Spacing="8">
-              <TextBlock Text="Keywords &amp; Metadata" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
-              <!-- Tags -->
-              <StackPanel Spacing="4">
-                <TextBlock Text="Tags" FontWeight="SemiBold" FontSize="12"/>
-                <WrapPanel Name="PnlTags" Orientation="Horizontal"/>
-                <TextBox Name="TxtAddTag" Watermark="Add tag (Enter)..." FontSize="11"/>
+            <!-- Section: Connections & Backlinks -->
+            <StackPanel Spacing="10">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Connections" FontWeight="Bold" FontSize="13"
+                           Foreground="#FFD4AF37" Margin="0,4,0,0"/>
+                <Border Height="1" Background="{DynamicResource BorderBrush}"/>
               </StackPanel>
-              <!-- Masters -->
-              <StackPanel Spacing="4">
-                <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12"/>
-                <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
-                <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (Enter)..." FontSize="11"
-                                 FilterMode="ContainsOrdinal" MinimumPrefixLength="1"/>
-              </StackPanel>
-              <!-- Linked Texts -->
-              <StackPanel Spacing="4" Name="PnlLinkedTexts">
-                <TextBlock Text="Linked Texts" FontWeight="SemiBold" FontSize="12"/>
-              </StackPanel>
-            </StackPanel>
-
-            <!-- Categorization -->
-            <StackPanel Spacing="4">
-              <TextBlock Text="Categorization" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" RowSpacing="6">
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center" FontSize="12"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"
-                          ItemsSource="{Binding DoctrinalTopicOptions}" SelectedItem="{Binding DoctrinalTopic}" IsEditable="True"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center" FontSize="12"/>
-                <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"
-                          ItemsSource="{Binding LiteraryFormOptions}" SelectedItem="{Binding LiteraryForm}" IsEditable="True"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center" FontSize="12"/>
-                <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"
-                          ItemsSource="{Binding LineageOptions}" SelectedItem="{Binding Lineage}" IsEditable="True"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center" FontSize="12"/>
-                <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"
-                          ItemsSource="{Binding RhetoricalFunctionOptions}" SelectedItem="{Binding RhetoricalFunction}" IsEditable="True"/>
-              </Grid>
-            </StackPanel>
-
-            <!-- Connections & Backlinks -->
-            <StackPanel Spacing="8">
-              <TextBlock Text="Connections" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
-              <TextBlock Text="Outgoing Links" FontWeight="SemiBold" FontSize="12"/>
+              <TextBlock Text="Outgoing Links" FontWeight="SemiBold" FontSize="12" Opacity="0.85"/>
               <ItemsControl Name="PnlOutgoingLinks"/>
-              <Button Name="BtnAddLink" Content="+ Add Link" Padding="8,3" FontSize="11"/>
-              <TextBlock Text="Referenced By (Backlinks)" FontWeight="SemiBold" FontSize="12" Margin="0,8,0,0"/>
+              <Button Name="BtnAddLink" Content="+ Add Link" Padding="8,3" FontSize="11" CornerRadius="4"/>
+              <TextBlock Text="Referenced By (Backlinks)" FontWeight="SemiBold" FontSize="12"
+                         Opacity="0.85" Margin="0,6,0,0"/>
               <ItemsControl Name="PnlBacklinks"/>
               <TextBlock Name="TxtNoBacklinks" Text="No incoming references yet." FontSize="11" Opacity="0.5"/>
             </StackPanel>
 
-            <!-- Research Notes -->
-            <StackPanel Spacing="8">
-              <TextBlock Text="Research Notes" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"/>
+            <!-- Section: Research Notes -->
+            <StackPanel Spacing="10">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Research Notes" FontWeight="Bold" FontSize="13"
+                           Foreground="#FFD4AF37" Margin="0,4,0,0"/>
+                <Border Height="1" Background="{DynamicResource BorderBrush}"/>
+              </StackPanel>
               <TextBox Name="TxtPassageNotes" AcceptsReturn="True" TextWrapping="Wrap"
-                       MinHeight="80" Watermark="Personal notes... Use [[passage-id]] for references"/>
+                       MinHeight="80" Watermark="Personal notes... Use [[passage-id]] for references"
+                       CornerRadius="4" Padding="8,6"/>
               <Button Name="BtnInsertReference" Content="Insert Reference" Padding="8,4" FontSize="11"
-                      HorizontalAlignment="Left"/>
+                      HorizontalAlignment="Left" CornerRadius="4"/>
             </StackPanel>
 
-            <!-- Scholar Assistant (sub-expanders kept for data density) -->
-            <StackPanel Spacing="8">
-              <TextBlock Text="Scholar Assistant" FontWeight="Bold" FontSize="13" Margin="0,4,0,0"
-                         Name="ScholarAssistantHeader"/>
+            <!-- Section: Scholar Assistant -->
+            <StackPanel Spacing="10">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Scholar Assistant" FontWeight="Bold" FontSize="13"
+                           Foreground="#FFD4AF37" Margin="0,4,0,0"
+                           Name="ScholarAssistantHeader"/>
+                <Border Height="1" Background="{DynamicResource BorderBrush}"/>
+              </StackPanel>
               <Expander Header="Quality Checks" IsExpanded="False" Name="ExpanderQA">
                 <StackPanel Name="PnlQualityChecks" Spacing="4"/>
               </Expander>
@@ -181,10 +295,29 @@
             </StackPanel>
 
             <!-- Action bar -->
-            <DockPanel Margin="0,8,0,0">
-              <Button Name="BtnShowGraph" Content="Research Graph" DockPanel.Dock="Right" Padding="8,4"
-                      ToolTip.Tip="Open the Research Graph for this collection in a separate window"/>
-              <Button Name="BtnDeletePassage" Content="Delete" DockPanel.Dock="Right" Padding="8,4" Margin="0,0,8,0"/>
+            <DockPanel Margin="0,8,0,4">
+              <!-- Research Graph — primary accent button -->
+              <Button Name="BtnShowGraph" DockPanel.Dock="Right" Padding="12,6"
+                      ToolTip.Tip="Open the Research Graph for this collection in a separate window"
+                      Background="#FFD4AF37" Foreground="#FF111111"
+                      BorderThickness="0" CornerRadius="6"
+                      FontWeight="SemiBold">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <TextBlock Text="&#x2B21;" FontSize="12" VerticalAlignment="Center"
+                             Foreground="#FF111111"/>
+                  <TextBlock Text="Research Graph" VerticalAlignment="Center"
+                             Foreground="#FF111111" FontWeight="SemiBold"/>
+                </StackPanel>
+              </Button>
+              <!-- Delete — danger-tinted button -->
+              <Button Name="BtnDeletePassage" DockPanel.Dock="Right" Padding="12,6"
+                      Margin="0,0,8,0"
+                      Background="{DynamicResource ErrorBg}"
+                      Foreground="{DynamicResource ErrorFg}"
+                      BorderBrush="{DynamicResource ErrorFg}"
+                      BorderThickness="1" CornerRadius="6">
+                <TextBlock Text="Delete" Foreground="{DynamicResource ErrorFg}"/>
+              </Button>
             </DockPanel>
           </StackPanel>
         </StackPanel>
@@ -193,7 +326,8 @@
 
     <!-- ROW 2: Bottom Drawer (Graph) - initially hidden -->
     <Border Grid.Row="2" Name="BottomDrawer" Height="0" BorderThickness="0,1,0,0"
-            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+            BorderBrush="{DynamicResource BorderBrush}"
+            Background="{DynamicResource PanelBg}">
       <Grid RowDefinitions="Auto,*">
         <DockPanel Grid.Row="0" Margin="8,4">
           <TextBlock Text="Graph" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center"/>
