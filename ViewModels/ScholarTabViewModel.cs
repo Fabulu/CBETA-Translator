@@ -86,6 +86,9 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     // Editor fields (bound to detail panel)
     [ObservableProperty]
+    private string _passageSummary = "";
+
+    [ObservableProperty]
     private string _passageNotes = "";
 
     [ObservableProperty]
@@ -1261,6 +1264,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         if (value != null)
         {
+            PassageSummary = value.Summary ?? "";
             PassageNotes = value.Notes ?? "";
             PassageTags = string.Join(", ", value.Tags ?? new List<string>());
             PassageMasterNames = string.Join(", ", value.MasterNames ?? new List<string>());
@@ -1280,6 +1284,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
         else
         {
+            PassageSummary = "";
             PassageNotes = "";
             PassageTags = "";
             PassageMasterNames = "";
@@ -1299,6 +1304,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (SelectedPassage == null) return;
 
+        SelectedPassage.Summary = string.IsNullOrWhiteSpace(PassageSummary) ? null : PassageSummary.Trim();
         SelectedPassage.Notes = PassageNotes ?? "";
         SelectedPassage.Tags = SplitCommaSeparated(PassageTags);
         SelectedPassage.MasterNames = SplitCommaSeparated(PassageMasterNames);

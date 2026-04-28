@@ -50,6 +50,7 @@ public partial class MainWindow : Window
     private TextBlock? _txtLicenseChipTopBar;
     private LicenseDetailsView? _licenseDetailsTopBar;
     private bool _navAutoHiddenByStudyPanel;
+    private bool _navAutoHiddenByTab;
 
     private ListBox? _filesList;
     private TextBox? _navSearch;
@@ -1078,6 +1079,23 @@ private async Task LoadConfigAndAutoloadAsync()
                 }
                 await _vm.OnTabSelectionChangedAsync();
                 _vm.UpdateSaveButtonState();
+
+                // Hide the file navigation panel on tabs that have their own navigation
+                // (Scholar tab has its own tree panel; Masters tab is a launcher)
+                if (_navPanel != null)
+                {
+                    bool hideNav = _tabs.SelectedIndex >= 4; // Scholar (4) and Masters (5)
+                    if (hideNav && _navPanel.IsVisible)
+                    {
+                        _navPanel.IsVisible = false;
+                        _navAutoHiddenByTab = true;
+                    }
+                    else if (!hideNav && _navAutoHiddenByTab)
+                    {
+                        _navPanel.IsVisible = true;
+                        _navAutoHiddenByTab = false;
+                    }
+                }
             };
             _vm.SetLastTabIndex(_tabs.SelectedIndex);
         }
