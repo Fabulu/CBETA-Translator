@@ -34,6 +34,7 @@ public partial class ResearchGraphWindow : Window
         InitializeComponent();
         _termData = termData;
         _vm = new ResearchGraphViewModel(collection, allCollections);
+        Title = $"Research Graph \u2014 {collection.Name ?? collection.Id}";
         DataContext = _vm;
 
         SetupToolbar();
