@@ -149,32 +149,54 @@
                        CornerRadius="4" Padding="8,6"/>
               <TextBlock Name="TxtSourcePath" FontSize="11" Opacity="0.5" Margin="2,0,0,0"/>
 
-              <!-- Chinese Source -->
+              <!-- Chinese Source (with hover dictionary overlay) -->
               <StackPanel Spacing="4">
-                <TextBlock Text="CHINESE SOURCE" FontSize="10" FontWeight="SemiBold"
-                           Foreground="#FFD4AF37" LetterSpacing="1.0" Margin="2,0,0,0"/>
+                <DockPanel>
+                  <TextBlock Text="CHINESE SOURCE" FontSize="10" FontWeight="SemiBold"
+                             Foreground="#FFD4AF37" LetterSpacing="1.0" Margin="2,0,0,0"
+                             DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                  <StackPanel Orientation="Horizontal" Spacing="4" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <Button Name="BtnCopyZh" Content="Copy" Padding="6,2" FontSize="10"
+                            ToolTip.Tip="Copy Chinese text to clipboard"/>
+                    <Button Name="BtnCiteZh" Content="Cite" Padding="6,2" FontSize="10"
+                            ToolTip.Tip="Copy with citation"/>
+                  </StackPanel>
+                </DockPanel>
                 <Border CornerRadius="6" Padding="10,8"
                         Background="#0FD4AF37"
                         BorderThickness="1" BorderBrush="#33D4AF37">
-                  <ScrollViewer MaxHeight="300">
-                    <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
-                             BorderThickness="0" Background="Transparent"/>
-                  </ScrollViewer>
+                  <Grid>
+                    <ScrollViewer MaxHeight="300">
+                      <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
+                               BorderThickness="0" Background="Transparent"/>
+                    </ScrollViewer>
+                    <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False"/>
+                  </Grid>
                 </Border>
               </StackPanel>
 
               <!-- Termbase hits -->
               <ItemsControl Name="PnlTermbaseHits"/>
 
-              <!-- English Translation -->
+              <!-- English Translation (selectable) -->
               <StackPanel Spacing="4">
-                <TextBlock Text="ENGLISH TRANSLATION" FontSize="10" FontWeight="SemiBold"
-                           Foreground="{DynamicResource AccentLinkFg}" LetterSpacing="1.0" Margin="2,0,0,0"/>
+                <DockPanel>
+                  <TextBlock Text="ENGLISH TRANSLATION" FontSize="10" FontWeight="SemiBold"
+                             Foreground="{DynamicResource AccentLinkFg}" LetterSpacing="1.0" Margin="2,0,0,0"
+                             DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                  <StackPanel Orientation="Horizontal" Spacing="4" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <Button Name="BtnCopyEn" Content="Copy" Padding="6,2" FontSize="10"
+                            ToolTip.Tip="Copy English text to clipboard"/>
+                    <Button Name="BtnCiteEn" Content="Cite" Padding="6,2" FontSize="10"
+                            ToolTip.Tip="Copy with citation"/>
+                  </StackPanel>
+                </DockPanel>
                 <Border CornerRadius="6" Padding="10,8"
                         Background="#0A88AAFF"
                         BorderThickness="1" BorderBrush="#2288AAFF">
                   <ScrollViewer MaxHeight="300">
-                    <TextBlock Name="TxtEnText" TextWrapping="Wrap" FontSize="14"/>
+                    <TextBox Name="TxtEnText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
+                             BorderThickness="0" Background="Transparent"/>
                   </ScrollViewer>
                 </Border>
               </StackPanel>
