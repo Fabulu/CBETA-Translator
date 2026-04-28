@@ -1,6 +1,6 @@
 namespace ReadZen.App.Models;
 
-public enum DeepLinkKind { Passage, Dictionary, Scholar, Search, Tags, Termbase, Master, Compare }
+public enum DeepLinkKind { Passage, Dictionary, Scholar, ScholarGraph, Search, Tags, Termbase, Master, Compare }
 
 public sealed class DeepLinkRequest
 {

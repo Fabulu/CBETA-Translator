@@ -518,6 +518,14 @@ public static class ZenUriParser
                 };
 
             case "scholar":
+                // Detect graph sub-route: zen://scholar/{collectionId}/graph/{user?}
+                if (segments.Length >= 3 && segments[2].Equals("graph", StringComparison.OrdinalIgnoreCase))
+                    return new DeepLinkRequest
+                    {
+                        Kind = DeepLinkKind.ScholarGraph,
+                        ScholarCollectionId = Uri.UnescapeDataString(segments[1]),
+                        ScholarUser = segments.Length >= 4 ? Uri.UnescapeDataString(segments[3]) : null,
+                    };
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Scholar,
@@ -800,6 +808,14 @@ public static class ZenUriParser
         var url = passageId != null
             ? $"{ShareableBase}#/scholar/{collectionId}/{passageId}"
             : $"{ShareableBase}#/scholar/{collectionId}";
+        if (!string.IsNullOrEmpty(user))
+            url += "/" + Uri.EscapeDataString(user);
+        return url;
+    }
+
+    public static string BuildShareableGraphUrl(string collectionId, string? user = null)
+    {
+        var url = $"{ShareableBase}#/scholar/{Uri.EscapeDataString(collectionId)}/graph";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         return url;
