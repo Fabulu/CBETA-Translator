@@ -128,13 +128,17 @@
             <Expander Header="Categorization" IsExpanded="False" Name="ExpanderCategories">
               <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="130,*" Margin="0,8,0,0" RowSpacing="8">
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Doctrinal Topic" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Name="CmbDoctrinalTopic" HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding DoctrinalTopicOptions}" SelectedItem="{Binding DoctrinalTopic}" IsEditable="True"/>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Literary Form" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="CmbLiteraryForm" HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding LiteraryFormOptions}" SelectedItem="{Binding LiteraryForm}" IsEditable="True"/>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Lineage" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbLineage" HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding LineageOptions}" SelectedItem="{Binding Lineage}" IsEditable="True"/>
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Rhetorical Function" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"/>
+                <ComboBox Grid.Row="3" Grid.Column="1" Name="CmbRhetoricalFunction" HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding RhetoricalFunctionOptions}" SelectedItem="{Binding RhetoricalFunction}" IsEditable="True"/>
               </Grid>
             </Expander>
 
@@ -181,7 +185,8 @@
 
             <!-- Bottom action bar -->
             <DockPanel Margin="0,16,0,0">
-              <Button Name="BtnShowGraph" Content="Show Graph" DockPanel.Dock="Right" Padding="8,4"/>
+              <Button Name="BtnShowGraph" Content="Research Graph" DockPanel.Dock="Right" Padding="8,4"
+                      ToolTip.Tip="Open the Research Graph for this collection in a separate window"/>
               <Button Name="BtnDeletePassage" Content="Delete" DockPanel.Dock="Right" Padding="8,4" Margin="0,0,8,0"/>
             </DockPanel>
           </StackPanel>

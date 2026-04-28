@@ -421,8 +421,8 @@ internal static class AssistantPanelRenderer
             FontFamily = new FontFamily("Consolas, Menlo, 'DejaVu Sans Mono', 'Noto Sans CJK SC', 'Source Han Sans SC', monospace"),
             HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled,
             VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto,
-            Background = brushResolver?.Invoke("XmlViewerBg"),
-            Foreground = brushResolver?.Invoke("TextFg"),
+            Background = brushResolver?.Invoke("XmlViewerBg") ?? Brushes.Black,
+            Foreground = brushResolver?.Invoke("TextFg") ?? Brushes.White,
             MinHeight = minHeight,
             MaxHeight = maxHeight
         };
