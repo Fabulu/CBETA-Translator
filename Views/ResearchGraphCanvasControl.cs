@@ -54,6 +54,7 @@ public class ResearchGraphCanvasControl : Control
     private static readonly IPen _selectedPen = new Pen(SelectedBrush, 3);
     private static readonly IPen _hoverPen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 2.5);
     private static readonly IPen _defaultNodePen = new Pen(new SolidColorBrush(Color.FromArgb(153, 255, 255, 255)), 1.2);
+    private static readonly IPen _searchHighlightPen = new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 3);
 
     public event EventHandler<ResearchGraphNode>? NodeClicked;
     public event EventHandler<ResearchGraphNode>? NodeDoubleClicked;
@@ -118,6 +119,8 @@ public class ResearchGraphCanvasControl : Control
             pen = _selectedPen;
         else if (node == _hoverNode)
             pen = _hoverPen;
+        else if (_vm!.HighlightedNodeIds.Contains(node.NodeId))
+            pen = _searchHighlightPen;
         else
             pen = _defaultNodePen;
 
@@ -331,7 +334,7 @@ public class ResearchGraphCanvasControl : Control
 
         foreach (var node in _vm.GetVisibleNodes().Reverse())
         {
-            double r = GetNodeRadius(node) + 4;
+            double r = GetNodeRadius(node) + 15;  // Include edge-creation handles (drawn at r+8, radius 5)
             double dx = gx - node.X, dy = gy - node.Y;
             if (dx * dx + dy * dy <= r * r) return node;
         }

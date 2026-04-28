@@ -23,6 +23,8 @@ public partial class ResearchGraphWindow : Window
     private GraphLegendPanel? _legendPanel;
     private List<TermDisplayItem>? _termData;
 
+    public event EventHandler<NavigationRequest>? NavigationRequested;
+
     public ResearchGraphWindow()
     {
         InitializeComponent();
@@ -55,21 +57,32 @@ public partial class ResearchGraphWindow : Window
         btnAddConcept!.Click += OnAddConcept;
 
         var btnRelayout = this.FindControl<Button>("BtnRelayout");
-        btnRelayout!.Click += (_, _) => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); };
+        btnRelayout!.Click += (_, _) =>
+        {
+            double w = _canvas?.Bounds.Width > 0 ? _canvas.Bounds.Width : 800;
+            double h = _canvas?.Bounds.Height > 0 ? _canvas.Bounds.Height : 600;
+            _vm?.RunForceDirectedLayout(w, h);
+            _canvas?.InvalidateVisual();
+        };
 
         var btnFitView = this.FindControl<Button>("BtnFitView");
         btnFitView!.Click += (_, _) => _canvas?.FitToView();
 
         var btnUndo = this.FindControl<Button>("BtnUndo");
-        btnUndo!.Click += (_, _) => _vm?.Undo();
+        btnUndo!.Click += (_, _) => { _vm?.Undo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); };
 
         var btnRedo = this.FindControl<Button>("BtnRedo");
-        btnRedo!.Click += (_, _) => _vm?.Redo();
+        btnRedo!.Click += (_, _) => { _vm?.Redo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); };
 
         var txtSearch = this.FindControl<TextBox>("TxtSearch");
         txtSearch!.TextChanged += (_, _) =>
         {
-            if (_vm != null) _vm.SearchText = txtSearch.Text ?? "";
+            if (_vm != null)
+            {
+                _vm.SearchText = txtSearch.Text ?? "";
+                _vm.HighlightSearch();
+                _canvas?.InvalidateVisual();
+            }
         };
 
         // + Passage button
@@ -221,6 +234,26 @@ public partial class ResearchGraphWindow : Window
                 }
             };
 
+        // Wire collection switcher
+        var cmbCollection = this.FindControl<ComboBox>("CmbCollection");
+        if (cmbCollection != null && _vm != null)
+        {
+            cmbCollection.ItemsSource = _vm.GetAllCollections();
+            cmbCollection.SelectedItem = _vm.GetCollection();
+            cmbCollection.SelectionChanged += (_, _) =>
+            {
+                if (cmbCollection.SelectedItem is ScholarCollection selected && _vm != null)
+                {
+                    _vm.SwitchToCollection(selected.Id);
+                    Title = $"Research Graph \u2014 {selected.Name ?? selected.Id}";
+                    _canvas?.InvalidateVisual();
+                    UpdateStatusBar();
+                    UpdateLeftPanels();
+                    UpdateEmptyState();
+                }
+            };
+        }
+
         // Overflow menu
         var btnOverflow = this.FindControl<Button>("BtnOverflow");
         if (btnOverflow != null)
@@ -228,18 +261,16 @@ public partial class ResearchGraphWindow : Window
             {
                 var menu = new ContextMenu();
                 menu.Items.Add(CreateMenuItem("Fit to View", () => _canvas?.FitToView()));
-                menu.Items.Add(CreateMenuItem("Relayout", () => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); }));
+                menu.Items.Add(CreateMenuItem("Relayout", () =>
+                {
+                    double w = _canvas?.Bounds.Width > 0 ? _canvas.Bounds.Width : 800;
+                    double h = _canvas?.Bounds.Height > 0 ? _canvas.Bounds.Height : 600;
+                    _vm?.RunForceDirectedLayout(w, h);
+                    _canvas?.InvalidateVisual();
+                }));
                 menu.Open(btnOverflow);
             };
 
-        // Close inspector
-        var btnCloseInspector = this.FindControl<Button>("BtnCloseInspector");
-        if (btnCloseInspector != null)
-            btnCloseInspector.Click += (_, _) =>
-            {
-                var inspectorContent = this.FindControl<StackPanel>("InspectorContent");
-                if (inspectorContent != null) inspectorContent.IsVisible = !inspectorContent.IsVisible;
-            };
     }
 
     private void SetupCanvas()
@@ -249,6 +280,23 @@ public partial class ResearchGraphWindow : Window
 
         var canvasHost = this.FindControl<Grid>("CanvasHost");
         canvasHost!.Children.Insert(0, _canvas);
+
+        _canvas.AttachedToVisualTree += (_, _) =>
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            {
+                if (_canvas.Bounds.Width > 0 && _canvas.Bounds.Height > 0 && _vm != null)
+                {
+                    var saved = _vm.GetCollection().GraphLayout;
+                    bool hasSaved = saved?.NodePositions != null && saved.NodePositions.Count > 0;
+                    if (!hasSaved && _vm.Nodes.Count > 1)
+                    {
+                        _vm.RunForceDirectedLayout(_canvas.Bounds.Width, _canvas.Bounds.Height);
+                        _canvas.InvalidateVisual();
+                    }
+                }
+            }, Avalonia.Threading.DispatcherPriority.Loaded);
+        };
 
         _canvas.NodeClicked += (_, node) =>
         {
@@ -261,13 +309,28 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.NodeDoubleClicked += (_, node) =>
         {
-            // Navigate based on type — for now just select
             if (_vm != null)
             {
                 _vm.SelectedNode = node;
                 foreach (var n in _vm.Nodes) n.IsSelected = n == node;
                 UpdateInspector();
                 _canvas?.InvalidateVisual();
+
+                // Navigate for Passage nodes
+                if (node.NodeType == ScholarNodeType.Passage)
+                {
+                    var passage = node.SourceData as ScholarPassage
+                        ?? _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+                    if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
+                    {
+                        NavigationRequested?.Invoke(this, new NavigationRequest
+                        {
+                            RelPath = passage.SourceRelPath,
+                            Side = passage.PreferredSide,
+                            MatchText = passage.ZhText?.Length > 20 ? passage.ZhText[..20] : passage.ZhText
+                        });
+                    }
+                }
             }
         };
 
@@ -380,8 +443,8 @@ public partial class ResearchGraphWindow : Window
             {
                 switch (e.Key)
                 {
-                    case Key.Z: _vm?.Undo(); e.Handled = true; break;
-                    case Key.Y: _vm?.Redo(); e.Handled = true; break;
+                    case Key.Z: _vm?.Undo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); e.Handled = true; break;
+                    case Key.Y: _vm?.Redo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); e.Handled = true; break;
                     case Key.L: ToggleLinkMode(); e.Handled = true; break;
                     case Key.F: FocusSearch(); e.Handled = true; break;
                 }
@@ -444,7 +507,13 @@ public partial class ResearchGraphWindow : Window
             menu.Items.Add(CreateMenuItem("Add Concept (Ctrl+Shift+C)", () => OnAddConcept(null, null)));
             menu.Items.Add(new Separator());
             menu.Items.Add(CreateMenuItem("Fit to View", () => _canvas?.FitToView()));
-            menu.Items.Add(CreateMenuItem("Relayout", () => { _vm?.RunForceDirectedLayout(800, 600); _canvas?.InvalidateVisual(); }));
+            menu.Items.Add(CreateMenuItem("Relayout", () =>
+            {
+                double w = _canvas?.Bounds.Width > 0 ? _canvas.Bounds.Width : 800;
+                double h = _canvas?.Bounds.Height > 0 ? _canvas.Bounds.Height : 600;
+                _vm?.RunForceDirectedLayout(w, h);
+                _canvas?.InvalidateVisual();
+            }));
         }
 
         menu.Open(target);
@@ -598,6 +667,51 @@ public partial class ResearchGraphWindow : Window
             var concept = _vm.GetCollection()?.Concepts.FirstOrDefault(c => c.Id == node.NodeId);
             if (concept != null && !string.IsNullOrWhiteSpace(concept.Description))
                 content.Children.Add(new TextBlock { Text = concept.Description, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+        }
+        else if (node.NodeType == ScholarNodeType.ZenMaster)
+        {
+            if (node.SourceData is Dictionary<string, object> masterData)
+            {
+                if (masterData.TryGetValue("PassageCount", out var countObj))
+                    content.Children.Add(new TextBlock
+                    {
+                        Text = $"Referenced in {countObj} passage(s)",
+                        FontSize = 11, Opacity = 0.8,
+                        Margin = new Avalonia.Thickness(0, 8, 0, 0)
+                    });
+                if (masterData.TryGetValue("Passages", out var listObj) && listObj is List<string> titles)
+                {
+                    foreach (var t in titles.Take(5))
+                        content.Children.Add(new TextBlock
+                        {
+                            Text = $"\u2022 {t}",
+                            FontSize = 11, Opacity = 0.7, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                            Margin = new Avalonia.Thickness(8, 2, 0, 0)
+                        });
+                    if (titles.Count > 5)
+                        content.Children.Add(new TextBlock
+                        {
+                            Text = $"... and {titles.Count - 5} more",
+                            FontSize = 10, Opacity = 0.5, Margin = new Avalonia.Thickness(8, 2, 0, 0)
+                        });
+                }
+            }
+        }
+        else if (node.NodeType == ScholarNodeType.TermbaseEntry)
+        {
+            content.Children.Add(new TextBlock
+            {
+                Text = $"Term: {node.Label}",
+                FontSize = 12, Opacity = 0.9,
+                Margin = new Avalonia.Thickness(0, 8, 0, 0)
+            });
+            if (!string.IsNullOrEmpty(node.SecondaryLabel))
+                content.Children.Add(new TextBlock
+                {
+                    Text = node.SecondaryLabel,
+                    FontSize = 11, Opacity = 0.7, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Margin = new Avalonia.Thickness(0, 4, 0, 0)
+                });
         }
     }
 

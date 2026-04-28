@@ -310,6 +310,7 @@ public partial class ScholarTabView : UserControl
 
                 var graphWindow = new ResearchGraphWindow(
                     _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+                graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
                 graphWindow.Show();
             };
         }
