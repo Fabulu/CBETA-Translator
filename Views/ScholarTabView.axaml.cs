@@ -233,34 +233,8 @@ public partial class ScholarTabView : UserControl
                     var renameItem = new MenuItem { Header = "Rename Collection" };
                     renameItem.Click += async (_, _) =>
                     {
-                        var dlg = new Window
-                        {
-                            Title = "Rename Collection", Width = 350, Height = 130,
-                            WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
-                        };
-                        var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Thickness(12) };
-                        var txt = new TextBox { Text = col.Name ?? "" };
-                        var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal,
-                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
-                        var btnOk = new Button { Content = "Rename", Padding = new Thickness(12, 6) };
-                        var btnCancel = new Button { Content = "Cancel", Padding = new Thickness(12, 6) };
-                        btnPanel.Children.Add(btnCancel); btnPanel.Children.Add(btnOk);
-                        Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
-                        grid.Children.Add(txt); grid.Children.Add(btnPanel);
-                        dlg.Content = grid;
-                        string? newName = null;
-                        btnOk.Click += (_, _) => { newName = txt.Text?.Trim(); dlg.Close(); };
-                        btnCancel.Click += (_, _) => dlg.Close();
-                        txt.KeyDown += (_, ke) => { if (ke.Key == Key.Enter) { newName = txt.Text?.Trim(); dlg.Close(); } };
-                        var top = TopLevel.GetTopLevel(this) as Window;
-                        if (top != null) await dlg.ShowDialog(top);
-                        if (!string.IsNullOrEmpty(newName) && newName != col.Name)
-                        {
-                            col.Name = newName;
-                            _vm.SyncAndSave();
-                            _vm.RebuildTree();
-                            Status?.Invoke(this, $"Collection renamed to '{newName}'.");
-                        }
+                        _vm.SelectedCollection = col;
+                        await RenameSelectedCollectionAsync();
                     };
                     menu.Items.Add(renameItem);
 
@@ -379,6 +353,7 @@ public partial class ScholarTabView : UserControl
             btnOverflow.Click += (_, _) =>
             {
                 var menu = new ContextMenu();
+                menu.Items.Add(CreateScholarMenuItem("Rename Collection", async () => await RenameSelectedCollectionAsync()));
                 menu.Items.Add(CreateScholarMenuItem("Import Collections", () => _vm.ImportCollectionsCommand.Execute(null)));
                 menu.Items.Add(CreateScholarMenuItem("Rebuild Tree", () => _vm.RebuildTree()));
                 menu.Items.Add(new Separator());
@@ -777,6 +752,40 @@ public partial class ScholarTabView : UserControl
                 _scholarSelDebounce!.Stop();
                 _scholarSelDebounce.Start();
             });
+        }
+    }
+
+    private async Task RenameSelectedCollectionAsync()
+    {
+        var col = _vm.SelectedCollection;
+        if (col == null) return;
+        var dlg = new Window
+        {
+            Title = "Rename Collection", Width = 350, Height = 130,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+        };
+        var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Thickness(12) };
+        var txt = new TextBox { Text = col.Name ?? "" };
+        var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal,
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+        var btnOk = new Button { Content = "Rename", Padding = new Thickness(12, 6) };
+        var btnCancel = new Button { Content = "Cancel", Padding = new Thickness(12, 6) };
+        btnPanel.Children.Add(btnCancel); btnPanel.Children.Add(btnOk);
+        Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+        grid.Children.Add(txt); grid.Children.Add(btnPanel);
+        dlg.Content = grid;
+        string? newName = null;
+        btnOk.Click += (_, _) => { newName = txt.Text?.Trim(); dlg.Close(); };
+        btnCancel.Click += (_, _) => dlg.Close();
+        txt.KeyDown += (_, ke) => { if (ke.Key == Key.Enter) { newName = txt.Text?.Trim(); dlg.Close(); } };
+        var top = TopLevel.GetTopLevel(this) as Window;
+        if (top != null) await dlg.ShowDialog(top);
+        if (!string.IsNullOrEmpty(newName) && newName != col.Name)
+        {
+            col.Name = newName;
+            _vm.SyncAndSave();
+            _vm.RebuildTree();
+            Status?.Invoke(this, $"Collection renamed to '{newName}'.");
         }
     }
 
