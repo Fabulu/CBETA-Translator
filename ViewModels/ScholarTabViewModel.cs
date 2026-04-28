@@ -445,6 +445,38 @@ public partial class ScholarTabViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task MovePassageUp()
+    {
+        var passage = SelectedPassage;
+        var col = SelectedCollection;
+        if (passage == null || col == null) return;
+        var idx = col.Passages.IndexOf(passage);
+        if (idx <= 0) return;
+        col.Passages.RemoveAt(idx);
+        col.Passages.Insert(idx - 1, passage);
+        RefreshPassagesList();
+        SelectedPassage = passage;
+        RebuildTree();
+        await SaveAsync();
+    }
+
+    [RelayCommand]
+    private async Task MovePassageDown()
+    {
+        var passage = SelectedPassage;
+        var col = SelectedCollection;
+        if (passage == null || col == null) return;
+        var idx = col.Passages.IndexOf(passage);
+        if (idx < 0 || idx >= col.Passages.Count - 1) return;
+        col.Passages.RemoveAt(idx);
+        col.Passages.Insert(idx + 1, passage);
+        RefreshPassagesList();
+        SelectedPassage = passage;
+        RebuildTree();
+        await SaveAsync();
+    }
+
+    [RelayCommand]
     private void NavigateToPassage()
     {
         if (SelectedPassage == null) return;
@@ -1376,7 +1408,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private void LoadFacetOptions()
     {
         // Hardcoded defaults
-        string[] defaultDoctrinalTopics = { "Buddha-nature", "Emptiness", "Dependent origination", "Karma", "Nirvana", "Precepts", "Meditation", "Wisdom", "Compassion", "Mind-only", "Sudden awakening", "Gradual cultivation" };
+        string[] defaultDoctrinalTopics = { "Buddha-nature", "Emptiness (\u015b\u016bnyat\u0101)", "Original face", "No-mind (wuxin)", "Sudden awakening", "Koan practice", "Direct pointing", "Mind-to-mind transmission", "Non-duality", "True nature", "Dharma transmission", "Living word / dead word" };
         string[] defaultLiteraryForms = { "Koan case", "Verse commentary", "Prose commentary", "Encounter dialogue", "Dharma talk", "Transmission record", "Sutra", "Letter", "Preface", "Biography" };
         string[] defaultLineages = { "Linji/Rinzai", "Caodong/Soto", "Yunmen", "Fayan", "Guiyang", "Hongzhou", "Niutou", "Early Chan", "Pre-Chan" };
         string[] defaultRhetoricalFunctions = { "Assertion", "Negation", "Paradox", "Question", "Narrative", "Exhortation", "Pedagogy", "Polemic" };

@@ -53,13 +53,7 @@ public partial class ScholarTabView : UserControl
     private StackPanel? _scholarApprovedTmHost;
     private StackPanel? _scholarReferenceTmHost;
 
-    // Graph controls
-    private LinkNetworkGraphControl? _graphControl;
-    private Button? _btnGraphRelayout;
     private Button? _btnAddLink;
-    private CancellationTokenSource? _graphSaveCts;
-    private readonly LinkGraphViewModel _graphVm = new();
-    private string? _currentGraphCollectionId;
 
     // Autosave debounce
     private CancellationTokenSource? _autosaveCts;
@@ -110,25 +104,7 @@ public partial class ScholarTabView : UserControl
             }
         }
 
-        // Graph controls
-        _graphControl = this.FindControl<LinkNetworkGraphControl>("GraphControl");
-        _btnGraphRelayout = this.FindControl<Button>("BtnGraphRelayout");
         _btnAddLink = this.FindControl<Button>("BtnAddLink");
-
-        if (_graphControl != null)
-        {
-            _graphControl.NodeSelected += (_, passageId) => _vm.SelectPassageById(passageId);
-            _graphControl.NodeDoubleClicked += (_, passageId) =>
-            {
-                _vm.SelectPassageById(passageId);
-                _vm.NavigateToPassageCommand.Execute(null);
-            };
-            _graphControl.GraphChanged += (_, _) => ScheduleGraphLayoutSave();
-        }
-
-        if (_btnGraphRelayout != null)
-            _btnGraphRelayout.Click += (_, _) => RefreshGraph(true);
-
         if (_btnAddLink != null)
             _btnAddLink.Click += async (_, _) => await ShowLinkDialogAsync();
 
@@ -218,8 +194,18 @@ public partial class ScholarTabView : UserControl
                         buildMetadata: () =>
                         {
                             string? lbValue = passage.StartBlockNumber?.ToString();
+                            TextLicenseInfo? licInfo = null;
+                            if (!string.IsNullOrEmpty(_originalDir) && !string.IsNullOrEmpty(passage.SourceRelPath))
+                            {
+                                try
+                                {
+                                    var lSvc = App.Services.GetRequiredService<ILicenseMetadataService>();
+                                    lSvc.TryGet(Path.Combine(_originalDir, passage.SourceRelPath), out licInfo);
+                                }
+                                catch { }
+                            }
                             return _citationService.BuildMetadata(
-                                null, fromLb: lbValue,
+                                licInfo, fromLb: lbValue,
                                 quotedText: passage.ZhText?.Length > 80
                                     ? passage.ZhText[..80] + "..."
                                     : passage.ZhText,
@@ -270,6 +256,7 @@ public partial class ScholarTabView : UserControl
                         {
                             col.Name = newName;
                             _vm.SyncAndSave();
+                            _vm.RebuildTree();
                             Status?.Invoke(this, $"Collection renamed to '{newName}'.");
                         }
                     };
@@ -338,7 +325,10 @@ public partial class ScholarTabView : UserControl
             txtSummary.LostFocus += (_, _) =>
             {
                 if (_vm.SelectedPassage != null)
+                {
                     _vm.SyncAndSave();
+                    _vm.RebuildTree();
+                }
             };
         }
 
@@ -397,6 +387,14 @@ public partial class ScholarTabView : UserControl
         if (btnDeletePassage != null)
             btnDeletePassage.Click += (_, _) => _vm.DeletePassageCommand.Execute(null);
 
+        var btnMoveUp = this.FindControl<Button>("BtnMoveUp");
+        if (btnMoveUp != null)
+            btnMoveUp.Click += async (_, _) => await _vm.MovePassageUpCommand.ExecuteAsync(null);
+
+        var btnMoveDown = this.FindControl<Button>("BtnMoveDown");
+        if (btnMoveDown != null)
+            btnMoveDown.Click += async (_, _) => await _vm.MovePassageDownCommand.ExecuteAsync(null);
+
         // Wire collection creation buttons
         var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
         if (btnAddCollection != null)
@@ -422,8 +420,6 @@ public partial class ScholarTabView : UserControl
             try { _assistantCts?.Dispose(); } catch (ObjectDisposedException) { }
             try { _parallelCts?.Cancel(); } catch (ObjectDisposedException) { }
             try { _parallelCts?.Dispose(); } catch (ObjectDisposedException) { }
-            try { _graphSaveCts?.Cancel(); } catch (ObjectDisposedException) { }
-            try { _graphSaveCts?.Dispose(); } catch (ObjectDisposedException) { }
             try { _autosaveCts?.Cancel(); } catch (ObjectDisposedException) { }
             try { _autosaveCts?.Dispose(); } catch (ObjectDisposedException) { }
         };
@@ -460,15 +456,6 @@ public partial class ScholarTabView : UserControl
         }
 
         // Update detail text fields when selected passage changes
-        _vm.PropertyChanging += (_, e) =>
-        {
-            if (e.PropertyName == nameof(ScholarTabViewModel.SelectedCollection))
-            {
-                CancelPendingGraphSave();
-                CaptureCurrentGraphLayout();
-            }
-        };
-
         _vm.PropertyChanged += (_, e) =>
         {
             if (_suppressSelectionSync) return;
@@ -642,11 +629,14 @@ public partial class ScholarTabView : UserControl
     {
         var empty = this.FindControl<Border>("EmptyState");
         var detail = this.FindControl<StackPanel>("PassageDetail");
+        var noPassage = this.FindControl<Border>("NoPassageState");
+        bool isEmptyState = _vm.IsEmptyState;
         bool hasPassage = _vm.SelectedPassage != null;
         // Show empty state only when there are no collections at all (true empty),
         // not just when no passage is selected.
-        if (empty != null) empty.IsVisible = _vm.IsEmptyState;
+        if (empty != null) empty.IsVisible = isEmptyState;
         if (detail != null) detail.IsVisible = hasPassage;
+        if (noPassage != null) noPassage.IsVisible = !isEmptyState && !hasPassage;
     }
 
     private void ScheduleAutosave()
@@ -828,8 +818,19 @@ public partial class ScholarTabView : UserControl
                     : !string.IsNullOrEmpty(enBox?.SelectedText) ? enBox.SelectedText : null;
                 var quoted = selectedText ?? getQuotedText();
                 if (string.IsNullOrEmpty(quoted)) quoted = passage.ZhText;
+                TextLicenseInfo? licenseInfo = null;
+                if (!string.IsNullOrEmpty(_originalDir) && !string.IsNullOrEmpty(passage.SourceRelPath))
+                {
+                    var absPath = Path.Combine(_originalDir, passage.SourceRelPath);
+                    try
+                    {
+                        var licenseSvc = App.Services.GetRequiredService<ILicenseMetadataService>();
+                        licenseSvc.TryGet(absPath, out licenseInfo);
+                    }
+                    catch { }
+                }
                 var metadata = _citationService.BuildMetadata(
-                    null,
+                    licenseInfo,
                     fromLb: passage.StartBlockNumber?.ToString(),
                     quotedText: quoted?.Length > 200 ? quoted[..200] + "..." : quoted,
                     translatorName: passage.TranslationUser);
@@ -1150,8 +1151,6 @@ public partial class ScholarTabView : UserControl
         if (passage == null || _vm.SelectedCollection == null)
         {
             panel.ItemsSource = null;
-            RefreshLinkStats();
-            RefreshGraph();
             return;
         }
 
@@ -1266,101 +1265,10 @@ public partial class ScholarTabView : UserControl
         }
 
         panel.ItemsSource = controls;
-        RefreshLinkStats();
-        RefreshGraph();
-    }
-
-    private void RefreshLinkStats()
-    {
-        // Link stats panel was removed in Phase 4 overhaul; this is now a no-op.
-    }
-
-    private void RefreshGraph(bool forceRelayout = false)
-    {
-        var collection = _vm.SelectedCollection;
-        if (collection == null) return;
-
-        var liveLayout = !forceRelayout && string.Equals(_currentGraphCollectionId, collection.Id, StringComparison.Ordinal)
-            ? _graphVm.CaptureLayout()
-            : null;
-
-        _graphVm.BuildGraph(collection.Passages, collection.Links ?? new());
-
-        double width = _graphControl?.Bounds.Width > 0 ? _graphControl.Bounds.Width : 500;
-        double height = _graphControl?.Bounds.Height > 0 ? _graphControl.Bounds.Height : 400;
-
-        bool appliedLayout = false;
-        if (!forceRelayout && liveLayout?.NodePositions?.Count > 0)
-        {
-            _graphVm.ApplyLayout(liveLayout);
-            appliedLayout = true;
-        }
-        else if (!forceRelayout && collection.GraphLayout?.NodePositions?.Count > 0)
-        {
-            _graphVm.ApplyLayout(collection.GraphLayout);
-            appliedLayout = true;
-        }
-
-        if (!appliedLayout)
-            _graphVm.RunLayout(80, width, height);
-
-        _currentGraphCollectionId = collection.Id;
-        _graphControl?.SetViewModel(_graphVm);
-
-        if (forceRelayout)
-            ScheduleGraphLayoutSave();
-    }
-
-    private void CaptureCurrentGraphLayout()
-    {
-        var collection = _vm.SelectedCollection;
-        if (collection == null || _graphVm.Nodes.Count == 0)
-            return;
-
-        collection.GraphLayout = _graphVm.CaptureLayout();
-        _currentGraphCollectionId = collection.Id;
-    }
-
-    private void CancelPendingGraphSave()
-    {
-        try { _graphSaveCts?.Cancel(); } catch (ObjectDisposedException) { }
-        try { _graphSaveCts?.Dispose(); } catch (ObjectDisposedException) { }
-        _graphSaveCts = null;
-    }
-
-    private void ScheduleGraphLayoutSave()
-    {
-        CancelPendingGraphSave();
-
-        _graphSaveCts = new CancellationTokenSource();
-        var token = _graphSaveCts.Token;
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await Task.Delay(300, token);
-                if (token.IsCancellationRequested) return;
-                await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(async () => await PersistGraphLayoutAsync());
-            }
-            catch (TaskCanceledException) { }
-            catch (ObjectDisposedException) { }
-        }, token);
-    }
-
-    private async Task PersistGraphLayoutAsync(string? statusMessage = null)
-    {
-        if (_vm.SelectedCollection == null || _graphControl == null)
-            return;
-
-        CaptureCurrentGraphLayout();
-        await _vm.SaveCurrentStateAsync();
-        if (!string.IsNullOrWhiteSpace(statusMessage))
-            Status?.Invoke(this, statusMessage);
     }
 
     private async Task SaveAllCurrentAsync(string? statusMessage = "Saved current Scholar state.")
     {
-        CaptureCurrentGraphLayout();
         await _vm.SaveCurrentStateAsync();
         _lastRenderedPassageId = null;
         _ = RefreshAssistantAsync();
@@ -1502,7 +1410,8 @@ public partial class ScholarTabView : UserControl
 
             var header = new TextBlock
             {
-                Text = "Select target passage and relationship type",
+                Text = "1. Click a passage below\n2. Choose the relationship type\n3. Click Link",
+                TextWrapping = TextWrapping.Wrap,
                 FontSize = 14,
                 FontWeight = FontWeight.SemiBold
             };
@@ -1970,9 +1879,7 @@ public partial class ScholarTabView : UserControl
         if (string.Equals(_vm.GetRoot(), root, StringComparison.OrdinalIgnoreCase))
             return;
 
-        CaptureCurrentGraphLayout();
         _lastRenderedPassageId = null;
-        _currentGraphCollectionId = null;
         _vm.SetRoot(root);
         _ = RefreshAssistantAsync();
     }
@@ -2002,10 +1909,8 @@ public partial class ScholarTabView : UserControl
     {
         try { _assistantCts?.Cancel(); } catch (ObjectDisposedException) { }
         try { _assistantCts?.Dispose(); } catch (ObjectDisposedException) { }
-        CaptureCurrentGraphLayout();
         _assistantCts = null;
         _lastRenderedPassageId = null;
-        _currentGraphCollectionId = null;
         _vm.Clear();
     }
     public void ReloadCommunity() => _vm.LoadCommunityCommand.Execute(null);

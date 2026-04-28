@@ -414,7 +414,6 @@ internal static class AssistantPanelRenderer
     {
         var editor = new TextEditor
         {
-            Text = text ?? "",
             IsReadOnly = true,
             ShowLineNumbers = false,
             WordWrap = true,
@@ -426,6 +425,11 @@ internal static class AssistantPanelRenderer
             MinHeight = minHeight,
             MaxHeight = maxHeight
         };
+
+        // Ensure Document is initialized before setting text (AvaloniaEdit
+        // may not create it during the object initializer).
+        editor.Document ??= new AvaloniaEdit.Document.TextDocument();
+        editor.Document.Text = text ?? "";
 
         if (editor.TextArea?.TextView != null && highlightRanges.Count > 0)
         {
