@@ -164,12 +164,21 @@ public class ResearchGraphViewModel
         {
             var nodeId = $"master:{name}";
             if (_nodeMap.ContainsKey(nodeId)) continue;
+            var relatedPassages = _collection.Passages
+                .Where(p => p.MasterNames != null && p.MasterNames.Contains(name))
+                .Select(p => p.DisplayTitle)
+                .ToList();
             var node = new ResearchGraphNode
             {
                 NodeId = nodeId,
                 NodeType = ScholarNodeType.ZenMaster,
                 Label = name,
-                ColorHex = "#64B5F6"
+                ColorHex = "#64B5F6",
+                SourceData = new Dictionary<string, object>
+                {
+                    ["PassageCount"] = relatedPassages.Count,
+                    ["Passages"] = relatedPassages
+                }
             };
             Nodes.Add(node);
             _nodeMap[nodeId] = node;
@@ -245,19 +254,27 @@ public class ResearchGraphViewModel
 
     public void RunForceDirectedLayout(double width, double height)
     {
-        if (Nodes.Count <= 1) return;
-
-        var k = Math.Sqrt((width * height) / Nodes.Count);
-        double temp = width / 10.0;
-        var nodeList = Nodes.OrderBy(n => n.NodeId).ToList();
-
-        // Circular initial positions
-        for (int i = 0; i < nodeList.Count; i++)
+        if (Nodes.Count <= 1)
         {
-            var angle = (2.0 * Math.PI * i) / nodeList.Count;
-            var radius = Math.Min(width, height) * 0.35;
-            nodeList[i].X = width / 2 + radius * Math.Cos(angle);
-            nodeList[i].Y = height / 2 + radius * Math.Sin(angle);
+            if (Nodes.Count == 1) { Nodes[0].X = width / 2; Nodes[0].Y = height / 2; }
+            return;
+        }
+
+        var nodeList = Nodes.OrderBy(n => n.NodeId).ToList();
+        int N = nodeList.Count;
+
+        // SPA-aligned parameters
+        double R = Math.Sqrt(N) * 80;
+        double k = Math.Sqrt((R * R * 4) / N);
+        double temp = R / 5;
+        double cx = width / 2, cy = height / 2;
+
+        // Circular initial positions centered on viewport
+        for (int i = 0; i < N; i++)
+        {
+            double angle = (2.0 * Math.PI * i) / N;
+            nodeList[i].X = cx + R * Math.Cos(angle);
+            nodeList[i].Y = cy + R * Math.Sin(angle);
             nodeList[i].Vx = 0;
             nodeList[i].Vy = 0;
         }
@@ -265,10 +282,12 @@ public class ResearchGraphViewModel
         // Force-directed iterations
         for (int iter = 0; iter < 150; iter++)
         {
-            // Repulsion (all pairs)
-            for (int i = 0; i < nodeList.Count; i++)
+            double maxDisp = 0;
+
+            // Repulsion (all pairs): force = k^2 / dist
+            for (int i = 0; i < N; i++)
             {
-                for (int j = i + 1; j < nodeList.Count; j++)
+                for (int j = i + 1; j < N; j++)
                 {
                     double dx = nodeList[i].X - nodeList[j].X;
                     double dy = nodeList[i].Y - nodeList[j].Y;
@@ -283,7 +302,7 @@ public class ResearchGraphViewModel
                 }
             }
 
-            // Attraction (edges)
+            // Attraction (edges): force = dist^2 / k
             foreach (var e in Edges)
             {
                 double dx = e.From.X - e.To.X;
@@ -298,31 +317,32 @@ public class ResearchGraphViewModel
                 e.To.Vy += fy;
             }
 
-            // Gravity: D3-style linear spring toward center
-            // See: https://d3js.org/d3-force/simulation (forceCenter)
-            // Formula: node.vx += (center - node.x) * strength
-            double gravityStrength = 0.01;
-            double cx = width / 2, cy = height / 2;
+            // Gravity: pull toward viewport center
             foreach (var n in nodeList)
             {
-                n.Vx += (cx - n.X) * gravityStrength;
-                n.Vy += (cy - n.Y) * gravityStrength;
+                n.Vx -= (n.X - cx) * 0.01;
+                n.Vy -= (n.Y - cy) * 0.01;
             }
 
-            // Apply with temperature
+            // Apply with temperature clamping
             foreach (var n in nodeList)
             {
                 double disp = Math.Sqrt(n.Vx * n.Vx + n.Vy * n.Vy) + 0.01;
                 double scale = Math.Min(disp, temp) / disp;
-                n.X += n.Vx * scale;
-                n.Y += n.Vy * scale;
+                double moveX = n.Vx * scale;
+                double moveY = n.Vy * scale;
+                n.X += moveX;
+                n.Y += moveY;
                 n.X = Math.Max(30, Math.Min(width - 30, n.X));
                 n.Y = Math.Max(30, Math.Min(height - 30, n.Y));
                 n.Vx = 0;
                 n.Vy = 0;
+                maxDisp = Math.Max(maxDisp, Math.Abs(moveX) + Math.Abs(moveY));
             }
 
+            // Cooling + convergence
             temp *= 0.95;
+            if (maxDisp < 0.5) break;  // Early exit on convergence
         }
     }
 

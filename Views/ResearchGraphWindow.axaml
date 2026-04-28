@@ -115,7 +115,6 @@
                   BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
             <DockPanel>
               <TextBlock DockPanel.Dock="Left" Name="InspectorTitle" Text="Inspector" FontWeight="SemiBold"/>
-              <Button DockPanel.Dock="Right" Name="BtnCloseInspector" Content="&#x2715;" Padding="4,2"/>
             </DockPanel>
           </Border>
           <ScrollViewer Grid.Row="1" Padding="12">
