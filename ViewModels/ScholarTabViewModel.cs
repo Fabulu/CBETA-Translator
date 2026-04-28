@@ -1408,7 +1408,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private void LoadFacetOptions()
     {
         // Hardcoded defaults
-        string[] defaultDoctrinalTopics = { "Buddha-nature", "Emptiness", "Precepts", "Wisdom", "Compassion", "Mind-only", "Sudden awakening" };
+        string[] defaultDoctrinalTopics = { "Buddha-nature", "Emptiness", "Precepts", "Wisdom", "Compassion", "One mind", "Sudden awakening" };
         string[] defaultLiteraryForms = { "Koan case", "Verse commentary", "Prose commentary", "Encounter dialogue", "Dharma talk", "Transmission record", "Sutra", "Letter", "Preface", "Biography" };
         string[] defaultLineages = { "Linji/Rinzai", "Caodong/Soto", "Yunmen", "Fayan", "Guiyang", "Hongzhou", "Niutou", "Early Chan", "Pre-Chan" };
         string[] defaultRhetoricalFunctions = { "Assertion", "Negation", "Paradox", "Question", "Narrative", "Exhortation", "Pedagogy", "Polemic" };
