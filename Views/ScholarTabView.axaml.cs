@@ -97,18 +97,21 @@ public partial class ScholarTabView : UserControl
         _scholarApprovedTmHost = this.FindControl<StackPanel>("PnlApprovedTm");
         _scholarReferenceTmHost = this.FindControl<StackPanel>("PnlRefTm");
 
-        // Re-render assistant when Expander opens (AvaloniaEdit needs visual tree for text layout)
-        var scholarExpander = this.FindControl<Expander>("ScholarAssistantExpander");
-        if (scholarExpander != null)
+        // Re-render assistant when any sub-expander opens (AvaloniaEdit needs visual tree for text layout)
+        foreach (var expName in new[] { "ExpanderQA", "ExpanderGlossary", "ExpanderApprovedTm", "ExpanderRefTm" })
         {
-            scholarExpander.PropertyChanged += (_, e) =>
+            var exp = this.FindControl<Expander>(expName);
+            if (exp != null)
             {
-                if (e.Property.Name == "IsExpanded" && scholarExpander.IsExpanded)
+                exp.PropertyChanged += (_, e) =>
                 {
-                    _lastRenderedPassageId = null;
-                    _ = RefreshAssistantAsync();
-                }
-            };
+                    if (e.Property.Name == "IsExpanded" && exp.IsExpanded)
+                    {
+                        _lastRenderedPassageId = null;
+                        _ = RefreshAssistantAsync();
+                    }
+                };
+            }
         }
 
         _dictOverlayCanvas = this.FindControl<Canvas>("DictOverlayCanvas");
