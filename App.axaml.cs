@@ -32,30 +32,17 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    private static void AppLog(string msg)
-    {
-        try
-        {
-            var path = System.IO.Path.Combine(AppContext.BaseDirectory, "startup-diag.log");
-            System.IO.File.AppendAllText(path, $"[{DateTime.Now:HH:mm:ss.fff}] [App] {msg}\n");
-        }
-        catch { }
-    }
-
     public override void OnFrameworkInitializationCompleted()
     {
-        AppLog("OnFrameworkInitializationCompleted START");
         // Global CJK font for LiveCharts2 tooltips and labels.
         // MatchCharacter asks the OS font subsystem for any installed font that can
         // render CJK, so it works on any platform without hard-coding family names.
         var cjkTypeface = SKFontManager.Default.MatchCharacter('汉') ?? SKTypeface.Default;
         LiveCharts.Configure(config => config.HasGlobalSKTypeface(cjkTypeface));
-        AppLog("LiveCharts configured");
 
         var sc = new ServiceCollection();
         sc.AddAppServices();
         Services = sc.BuildServiceProvider();
-        AppLog("DI container built");
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -63,23 +50,12 @@ public partial class App : Application
             var splash = new Views.SplashWindow();
             SplashScreen = splash;
             splash.Show();
-            AppLog("Splash shown");
 
             // Let the splash paint before blocking with MainWindow constructor
             Dispatcher.UIThread.RunJobs(DispatcherPriority.Render);
-            AppLog("Render jobs flushed, creating MainWindow...");
 
             // Always create and show the primary window (normal flow)
-            try
-            {
-                desktop.MainWindow = new MainWindow();
-                AppLog("MainWindow created successfully");
-            }
-            catch (Exception ex)
-            {
-                AppLog($"MainWindow constructor CRASHED: {ex}");
-                throw;
-            }
+            desktop.MainWindow = new MainWindow();
 
             // Check for deep link after window is created
             var startupUri = StartupArgs?.FirstOrDefault(a =>
