@@ -416,6 +416,14 @@ public partial class ScholarTabView : UserControl
             };
         }
 
+        // Categorization dropdowns: save on selection change
+        foreach (var cmbName in new[] { "CmbDoctrinalTopic", "CmbLiteraryForm", "CmbLineage", "CmbRhetoricalFunction" })
+        {
+            var cmb = this.FindControl<ComboBox>(cmbName);
+            if (cmb != null)
+                cmb.SelectionChanged += (_, _) => { if (_vm.SelectedPassage != null) _vm.SyncAndSave(); };
+        }
+
         // Export button
         var btnExport = this.FindControl<Button>("BtnExport");
         if (btnExport != null)
