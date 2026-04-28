@@ -64,6 +64,8 @@ public partial class ScholarTabView : UserControl
     public event EventHandler? DictionaryRequested;
     public event EventHandler<int>? DictionarySourceChanged;
     public event EventHandler? ZenMastersRequested;
+    public event EventHandler<string>? OpenMasterRequested;
+    public event EventHandler<string>? OpenDictionaryTermRequested;
 
     public ScholarTabView()
     {
@@ -311,6 +313,8 @@ public partial class ScholarTabView : UserControl
                 var graphWindow = new ResearchGraphWindow(
                     _vm.SelectedCollection, _vm.Collections.ToList(), termData);
                 graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
+                graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
+                graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
                 graphWindow.Show();
             };
         }
