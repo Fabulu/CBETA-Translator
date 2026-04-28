@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using ReadZen.App.Models;
+using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 
 namespace ReadZen.App.Views;
@@ -498,31 +499,58 @@ public partial class ResearchGraphWindow : Window
         if (_vm?.SelectedNode != null)
         {
             var node = _vm.SelectedNode;
+
+            // Type-specific actions first
             switch (node.NodeType)
             {
                 case ScholarNodeType.Passage:
-                    menu.Items.Add(new MenuItem { Header = "Open in Reader" });
-                    menu.Items.Add(new Separator());
-                    menu.Items.Add(CreateMenuItem("Focus (Ego Network)", () => _vm.SetEgoMode(node.NodeId)));
-                    menu.Items.Add(CreateMenuItem("Clear Focus", () => _vm.SetEgoMode(null)));
-                    menu.Items.Add(new Separator());
-                    menu.Items.Add(CreateMenuItem("Remove from Graph", () => DeleteNode(node.NodeId)));
+                    var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+                    menu.Items.Add(CreateMenuItem("Open in Reader", () =>
+                    {
+                        if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
+                            NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = passage.SourceRelPath, Side = passage.PreferredSide });
+                    }));
+                    if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
+                    {
+                        menu.Items.Add(CreateMenuItem("Copy Web Link", async () =>
+                        {
+                            var url = ZenUriParser.BuildShareableUrl(passage.SourceRelPath, fromLb: passage.StartBlockNumber?.ToString());
+                            var top = TopLevel.GetTopLevel(this);
+                            if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+                        }));
+                    }
+                    break;
+                case ScholarNodeType.ZenMaster:
+                    menu.Items.Add(CreateMenuItem("Open Master Page", () => OpenMasterRequested?.Invoke(this, node.Label)));
+                    menu.Items.Add(CreateMenuItem("Copy Web Link", async () =>
+                    {
+                        var url = ZenUriParser.BuildShareableMasterUrl(node.Label);
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+                    }));
+                    break;
+                case ScholarNodeType.TermbaseEntry:
+                    menu.Items.Add(CreateMenuItem("Open in Dictionary", () => DictionaryRequested?.Invoke(this, node.Label)));
                     break;
                 case ScholarNodeType.Concept:
                     menu.Items.Add(CreateMenuItem("Rename (F2)", () => RenameSelected()));
-                    menu.Items.Add(new Separator());
-                    menu.Items.Add(CreateMenuItem("Focus (Ego Network)", () => _vm.SetEgoMode(node.NodeId)));
-                    menu.Items.Add(CreateMenuItem("Clear Focus", () => _vm.SetEgoMode(null)));
-                    menu.Items.Add(new Separator());
-                    menu.Items.Add(CreateMenuItem("Remove from Graph", () => DeleteNode(node.NodeId)));
                     break;
-                default:
-                    menu.Items.Add(CreateMenuItem("Focus (Ego Network)", () => _vm.SetEgoMode(node.NodeId)));
-                    menu.Items.Add(CreateMenuItem("Clear Focus", () => _vm.SetEgoMode(null)));
-                    menu.Items.Add(new Separator());
-                    menu.Items.Add(CreateMenuItem("Remove from Graph", () => DeleteNode(node.NodeId)));
+                case ScholarNodeType.Collection:
+                    menu.Items.Add(CreateMenuItem("Switch to Collection", () =>
+                    {
+                        var collId = node.NodeId.StartsWith("collection:") ? node.NodeId["collection:".Length..] : node.NodeId;
+                        _vm.SwitchToCollection(collId);
+                        _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels();
+                    }));
                     break;
             }
+
+            // Common actions for all nodes
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Focus (Ego Network)", () => _vm.SetEgoMode(node.NodeId)));
+            menu.Items.Add(CreateMenuItem("Clear Focus", () => _vm.SetEgoMode(null)));
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Remove from Graph", () => DeleteNode(node.NodeId)));
         }
         else
         {
@@ -679,8 +707,28 @@ public partial class ResearchGraphWindow : Window
             var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
             if (passage != null)
             {
+                // Source file
+                if (!string.IsNullOrWhiteSpace(passage.SourceRelPath))
+                    content.Children.Add(new TextBlock { Text = $"Source: {System.IO.Path.GetFileNameWithoutExtension(passage.SourceRelPath)}", FontSize = 10, Opacity = 0.5, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                // Date added
+                if (passage.AddedUtc != default)
+                    content.Children.Add(new TextBlock { Text = $"Added: {passage.AddedUtc.LocalDateTime:yyyy-MM-dd}", FontSize = 10, Opacity = 0.5 });
+                // Tags
+                if (passage.Tags?.Count > 0)
+                    content.Children.Add(new TextBlock { Text = $"Tags: {string.Join(", ", passage.Tags)}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                // Masters
+                if (passage.MasterNames?.Count > 0)
+                    content.Children.Add(new TextBlock { Text = $"Masters: {string.Join(", ", passage.MasterNames)}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap });
+                // Doctrinal topic
+                if (!string.IsNullOrWhiteSpace(passage.DoctrinalTopic))
+                    content.Children.Add(new TextBlock { Text = $"Topic: {passage.DoctrinalTopic}", FontSize = 10, Opacity = 0.6 });
+                // Translator
+                if (!string.IsNullOrWhiteSpace(passage.TranslationUser))
+                    content.Children.Add(new TextBlock { Text = $"Translator: {passage.TranslationUser}", FontSize = 10, Opacity = 0.6 });
+                // Chinese text
                 if (!string.IsNullOrWhiteSpace(passage.ZhText))
                     content.Children.Add(new TextBlock { Text = passage.ZhText.Length > 200 ? passage.ZhText[..200] + "\u2026" : passage.ZhText, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+                // English text
                 if (!string.IsNullOrWhiteSpace(passage.EnText))
                     content.Children.Add(new TextBlock { Text = passage.EnText.Length > 200 ? passage.EnText[..200] + "\u2026" : passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
             }
