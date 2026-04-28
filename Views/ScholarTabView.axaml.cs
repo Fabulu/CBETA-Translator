@@ -192,6 +192,22 @@ public partial class ScholarTabView : UserControl
                     };
                     menu.Items.Add(openItem);
 
+                    // Copy Web Link (readzen.pages.dev)
+                    var copyWebLink = new MenuItem { Header = "Copy Web Link" };
+                    copyWebLink.Click += async (_, _) =>
+                    {
+                        var url = ZenUriParser.BuildShareableUrl(
+                            passage.SourceRelPath ?? "",
+                            fromLb: passage.StartBlockNumber?.ToString(),
+                            toLb: passage.EndBlockNumber?.ToString());
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top?.Clipboard != null)
+                            await top.Clipboard.SetTextAsync(url);
+                        Status?.Invoke(this, "Web link copied.");
+                    };
+                    menu.Items.Add(copyWebLink);
+
+                    // Copy Deep Link (zen://)
                     var copyLinkItem = new MenuItem { Header = "Copy Deep Link" };
                     copyLinkItem.Click += async (_, _) =>
                     {
@@ -202,6 +218,30 @@ public partial class ScholarTabView : UserControl
                         Status?.Invoke(this, "Deep link copied.");
                     };
                     menu.Items.Add(copyLinkItem);
+
+                    // Citation flyout
+                    menu.Items.Add(new Separator());
+                    var citeFlyout = CitationMenuHelper.BuildCiteAsFlyout(
+                        _citationService,
+                        CitationMenuHelper.GetPreferredStyle(),
+                        buildMetadata: () =>
+                        {
+                            string? lbValue = passage.StartBlockNumber?.ToString();
+                            return _citationService.BuildMetadata(
+                                null, fromLb: lbValue,
+                                quotedText: passage.ZhText?.Length > 80
+                                    ? passage.ZhText[..80] + "..."
+                                    : passage.ZhText,
+                                translatorName: passage.TranslationUser);
+                        },
+                        copyToClipboard: async text =>
+                        {
+                            var top = TopLevel.GetTopLevel(this);
+                            if (top?.Clipboard != null)
+                                await top.Clipboard.SetTextAsync(text);
+                        },
+                        onCopied: msg => Status?.Invoke(this, msg));
+                    menu.Items.Add(citeFlyout);
 
                     menu.Items.Add(new Separator());
 
