@@ -357,7 +357,7 @@ public partial class ScholarTabView : UserControl
             }
         };
 
-        // Tag bubble: Enter to add, X buttons to remove
+        // Tag bubble: Enter to add
         var txtAddTag = this.FindControl<TextBox>("TxtAddTag");
         if (txtAddTag != null)
         {
@@ -372,16 +372,9 @@ public partial class ScholarTabView : UserControl
             };
         }
 
-        // Tag bubble remove buttons: use AddHandler on the ItemsControl so generated chips keep working.
-        var tagBubblesHost = this.FindControl<ItemsControl>("TagBubblesHost");
-        if (tagBubblesHost != null)
-        {
-            tagBubblesHost.AddHandler(Button.ClickEvent, (sender, e) =>
-            {
-                if (e.Source is Button btn && btn.Name == "BtnRemoveTag" && btn.Tag is string tag)
-                    _vm.RemoveTag(tag);
-            });
-        }
+        // Refresh tag/master chip UI whenever the observable collections change
+        _vm.TagBubbles.CollectionChanged += (_, _) => PopulatePassageMetadata();
+        _vm.MasterBubbles.CollectionChanged += (_, _) => PopulatePassageMetadata();
 
         // Master autocomplete: populate items, add on selection or Enter
         var acbMaster = this.FindControl<AutoCompleteBox>("AcbAddMaster");
@@ -434,37 +427,67 @@ public partial class ScholarTabView : UserControl
         var passage = _vm?.SelectedPassage;
         if (passage == null) return;
 
-        // Populate tag chips in PnlTags
+        // Populate tag chips in PnlTags (with × remove buttons)
         var tagsPanel = this.FindControl<WrapPanel>("PnlTags");
         if (tagsPanel != null)
         {
             tagsPanel.Children.Clear();
             foreach (var tag in passage.Tags ?? new())
             {
+                var capturedTag = tag;
+                var removeBtn = new Button
+                {
+                    Content = "\u00d7", Padding = new Thickness(2, 0),
+                    FontSize = 9, MinWidth = 14, MinHeight = 14,
+                    Background = Brushes.Transparent, Foreground = Brushes.LightGray,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                };
+                removeBtn.Click += (_, _) => _vm.RemoveTag(capturedTag);
                 var chip = new Border
                 {
                     CornerRadius = new CornerRadius(3),
                     Padding = new Thickness(6, 2),
+                    Margin = new Thickness(0, 0, 4, 4),
                     Background = Brushes.DarkSlateGray,
-                    Child = new TextBlock { Text = tag, FontSize = 10 }
+                    Child = new StackPanel
+                    {
+                        Orientation = Avalonia.Layout.Orientation.Horizontal,
+                        Spacing = 4,
+                        Children = { new TextBlock { Text = tag, FontSize = 10, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center }, removeBtn }
+                    }
                 };
                 tagsPanel.Children.Add(chip);
             }
         }
 
-        // Populate master chips in PnlMasters
+        // Populate master chips in PnlMasters (with × remove buttons)
         var mastersPanel = this.FindControl<WrapPanel>("PnlMasters");
         if (mastersPanel != null)
         {
             mastersPanel.Children.Clear();
             foreach (var master in passage.MasterNames ?? new())
             {
+                var capturedMaster = master;
+                var removeBtn = new Button
+                {
+                    Content = "\u00d7", Padding = new Thickness(2, 0),
+                    FontSize = 9, MinWidth = 14, MinHeight = 14,
+                    Background = Brushes.Transparent, Foreground = Brushes.LightGray,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                };
+                removeBtn.Click += (_, _) => _vm.RemoveMaster(capturedMaster);
                 var chip = new Border
                 {
                     CornerRadius = new CornerRadius(3),
                     Padding = new Thickness(6, 2),
+                    Margin = new Thickness(0, 0, 4, 4),
                     Background = Brushes.DarkGoldenrod,
-                    Child = new TextBlock { Text = master, FontSize = 10 }
+                    Child = new StackPanel
+                    {
+                        Orientation = Avalonia.Layout.Orientation.Horizontal,
+                        Spacing = 4,
+                        Children = { new TextBlock { Text = master, FontSize = 10, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center }, removeBtn }
+                    }
                 };
                 mastersPanel.Children.Add(chip);
             }
