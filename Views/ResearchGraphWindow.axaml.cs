@@ -44,6 +44,8 @@ public partial class ResearchGraphWindow : Window
         UpdateStatusBar();
         UpdateEmptyState();
         UpdateLeftPanels();
+
+        Closing += (_, _) => _vm?.SaveLayoutToCollection();
     }
 
     private void SetupToolbar()

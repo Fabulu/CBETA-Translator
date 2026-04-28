@@ -932,6 +932,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         OnPropertyChanged(nameof(HasSelectedCollection));
         OnPropertyChanged(nameof(ShowWorkspaceHelper));
         RefreshPassagesList();
+        RebuildTree();
     }
 
     partial void OnStudyNotesChanged(string value)
