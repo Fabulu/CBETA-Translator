@@ -114,7 +114,8 @@
                 <StackPanel Spacing="4">
                   <TextBlock Text="Masters" FontWeight="SemiBold" FontSize="12"/>
                   <WrapPanel Name="PnlMasters" Orientation="Horizontal"/>
-                  <TextBox Name="TxtAddMaster" Watermark="Add master (Enter)..." FontSize="11"/>
+                  <AutoCompleteBox Name="AcbAddMaster" Watermark="Add master (Enter)..." FontSize="11"
+                                   FilterMode="ContainsOrdinal" MinimumPrefixLength="1"/>
                 </StackPanel>
                 <!-- Linked Texts -->
                 <StackPanel Spacing="4" Name="PnlLinkedTexts">
