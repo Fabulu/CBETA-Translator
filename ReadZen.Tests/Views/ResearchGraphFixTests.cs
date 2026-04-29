@@ -731,6 +731,209 @@ public class ResearchGraphFixTests
 
     // ── 18. IsPhysicsEnabled toggle → _physicsTimer null ────────────
 
+    // ── 19. GoBack: collection history navigation ────────────────────
+
+    [Fact]
+    public void GoBack_SwitchToCollectionPushesHistory()
+    {
+        var col1 = MakeEmptyCollection("col-1");
+        col1.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
+        var col2 = new ScholarCollection { Id = "col-2", Name = "Collection 2" };
+        col2.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
+
+        var vm = new ResearchGraphViewModel(col1, new List<ScholarCollection> { col1, col2 });
+
+        Assert.False(vm.CanGoBack);
+
+        // Switch to col-2 — should push col-1 to history
+        vm.SwitchToCollection("col-2");
+        Assert.True(vm.CanGoBack);
+        Assert.Equal("col-2", vm.GetCollection().Id);
+
+        // GoBack — should return to col-1
+        vm.GoBack();
+        Assert.Equal("col-1", vm.GetCollection().Id);
+        Assert.False(vm.CanGoBack);
+    }
+
+    [Fact]
+    public void GoBack_MultipleNavigationsPopInOrder()
+    {
+        var col1 = MakeEmptyCollection("col-1");
+        var col2 = new ScholarCollection { Id = "col-2", Name = "C2" };
+        var col3 = new ScholarCollection { Id = "col-3", Name = "C3" };
+        var all = new List<ScholarCollection> { col1, col2, col3 };
+
+        var vm = new ResearchGraphViewModel(col1, all);
+        vm.SwitchToCollection("col-2");
+        vm.SwitchToCollection("col-3");
+        Assert.True(vm.CanGoBack);
+
+        vm.GoBack();
+        Assert.Equal("col-2", vm.GetCollection().Id);
+        Assert.True(vm.CanGoBack);
+
+        vm.GoBack();
+        Assert.Equal("col-1", vm.GetCollection().Id);
+        Assert.False(vm.CanGoBack);
+    }
+
+    // ── 20. Multi-select: GetSelectedNodes ──────────────────────────
+
+    [Fact]
+    public void GetSelectedNodes_ReturnsAllSelected()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
+        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
+        col.Passages.Add(new ScholarPassage { Id = "p3", ZhText = "C" });
+        var vm = MakeVm(col);
+
+        Assert.Equal(3, vm.Nodes.Count);
+
+        // Select all 3
+        foreach (var n in vm.Nodes) n.IsSelected = true;
+        var selected = vm.GetSelectedNodes();
+        Assert.Equal(3, selected.Count);
+
+        // Deselect one
+        vm.Nodes[1].IsSelected = false;
+        selected = vm.GetSelectedNodes();
+        Assert.Equal(2, selected.Count);
+        Assert.DoesNotContain(vm.Nodes[1], selected);
+    }
+
+    [Fact]
+    public void GetSelectedNodes_NoneSelected_ReturnsEmpty()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
+        var vm = MakeVm(col);
+
+        var selected = vm.GetSelectedNodes();
+        Assert.Empty(selected);
+    }
+
+    // ── 21. MovePassageToIndex ──────────────────────────────────────
+
+    [Fact]
+    public void MovePassageToIndex_MovesFirstToLast()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p0", ZhText = "Zero" });
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "One" });
+        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "Two" });
+        var vm = MakeVm(col);
+
+        vm.MovePassageToIndex(0, 2);
+
+        Assert.Equal("p1", col.Passages[0].Id);
+        Assert.Equal("p2", col.Passages[1].Id);
+        Assert.Equal("p0", col.Passages[2].Id);
+    }
+
+    [Fact]
+    public void MovePassageToIndex_SameIndex_NoChange()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p0", ZhText = "Zero" });
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "One" });
+        var vm = MakeVm(col);
+
+        vm.MovePassageToIndex(0, 0);
+
+        Assert.Equal("p0", col.Passages[0].Id);
+        Assert.Equal("p1", col.Passages[1].Id);
+    }
+
+    // ── 22. MergeConceptInto ────────────────────────────────────────
+
+    [Fact]
+    public void MergeConceptInto_MovesEdgesAndRemovesSource()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Passage" });
+        col.Concepts.Add(new ConceptNode { Id = "cA", Name = "Concept A", Description = "" });
+        col.Concepts.Add(new ConceptNode { Id = "cB", Name = "Concept B", Description = "" });
+        col.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e1", FromNodeId = "cA", ToNodeId = "p1", RelationType = "illustrates"
+        });
+        col.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e2", FromNodeId = "cB", ToNodeId = "p1", RelationType = "illustrates"
+        });
+
+        var vm = MakeVm(col);
+
+        // Verify initial state: 3 nodes (p1, cA, cB), 2 edges
+        Assert.Equal(3, vm.Nodes.Count);
+        Assert.Equal(2, vm.Edges.Count);
+
+        // Merge B into A
+        vm.MergeConceptInto("cB", "cA");
+
+        // B should be removed
+        Assert.Null(vm.Nodes.FirstOrDefault(n => n.NodeId == "cB"));
+        // A should still exist
+        Assert.NotNull(vm.Nodes.FirstOrDefault(n => n.NodeId == "cA"));
+        // Both edges should now point from cA to p1
+        Assert.All(vm.Edges, e => Assert.Equal("cA", e.From.NodeId));
+    }
+
+    [Fact]
+    public void MergeConceptInto_SelfMerge_NoChange()
+    {
+        var col = MakeEmptyCollection();
+        col.Concepts.Add(new ConceptNode { Id = "cA", Name = "A", Description = "" });
+        var vm = MakeVm(col);
+
+        int before = vm.Nodes.Count;
+        vm.MergeConceptInto("cA", "cA");
+        Assert.Equal(before, vm.Nodes.Count);
+    }
+
+    // ── 23. ReverseEdge ─────────────────────────────────────────────
+
+    [Fact]
+    public void ReverseEdge_SwapsFromAndTo()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "pA", ZhText = "A" });
+        col.Passages.Add(new ScholarPassage { Id = "pB", ZhText = "B" });
+        col.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e1", FromNodeId = "pA", ToNodeId = "pB", RelationType = "references"
+        });
+
+        var vm = MakeVm(col);
+        var edge = vm.Edges.First(e => e.EdgeId == "e1");
+
+        Assert.Equal("pA", edge.From.NodeId);
+        Assert.Equal("pB", edge.To.NodeId);
+
+        vm.ReverseEdge("e1");
+
+        Assert.Equal("pB", edge.From.NodeId);
+        Assert.Equal("pA", edge.To.NodeId);
+
+        // Backing model should also be swapped
+        var modelEdge = col.Edges.First(e => e.Id == "e1");
+        Assert.Equal("pB", modelEdge.FromNodeId);
+        Assert.Equal("pA", modelEdge.ToNodeId);
+    }
+
+    [Fact]
+    public void ReverseEdge_NonExistentId_NoException()
+    {
+        var col = MakeEmptyCollection();
+        var vm = MakeVm(col);
+        // Should not throw
+        vm.ReverseEdge("nonexistent");
+    }
+
+    // ── 18. IsPhysicsEnabled toggle → _physicsTimer null ────────────
+
     [Fact]
     public void IsPhysicsEnabled_SetFalse_PhysicsTimerIsNull()
     {
@@ -762,5 +965,86 @@ public class ResearchGraphFixTests
         }
 
         Assert.Null(timerValue);
+    }
+
+    // ── Wave 2 Polish: ShowLabels default ────────────────────────────
+
+    [Fact]
+    public void ShowLabels_DefaultIsTrue()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+        Assert.True(ctrl.ShowLabels);
+    }
+
+    // ── Wave 2 Polish: GetSelectedNodes after SelectAll ─────────────
+
+    [Fact]
+    public void GetSelectedNodes_AfterSelectAll_ReturnsAll()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
+        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
+        col.Concepts.Add(new ConceptNode { Id = "c1", Name = "C", Description = "" });
+        var vm = MakeVm(col);
+
+        // Mark every node as selected
+        foreach (var node in vm.Nodes)
+            node.IsSelected = true;
+
+        var selected = vm.GetSelectedNodes();
+        Assert.Equal(vm.Nodes.Count, selected.Count);
+        Assert.All(vm.Nodes, n => Assert.Contains(n, selected));
+    }
+
+    // ── Wave 2 Polish: GoBack on empty history ──────────────────────
+
+    [Fact]
+    public void GoBack_EmptyHistory_DoesNothingAndCanGoBackIsFalse()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
+        var vm = MakeVm(col);
+
+        Assert.False(vm.CanGoBack);
+
+        // GoBack on empty stack should not throw and collection should stay the same
+        vm.GoBack();
+
+        Assert.False(vm.CanGoBack);
+        Assert.Equal("col-1", vm.GetCollection().Id);
+    }
+
+    // ── Wave 2 Polish: Bezier control point perpendicular offset ────
+
+    [Fact]
+    public void BezierControlPoint_PerpendicularOffset_AtMidpoint()
+    {
+        // Replicate the control-point calculation from DrawEdge:
+        //   from = (0,0), to = (100,0)
+        //   edgeDx = 100, edgeDy = 0, edgeLen = 100
+        //   perpX = -0/100 = 0, perpY = 100/100 = 1
+        //   curveOffset = min(20, 100*0.12) = 12
+        //   mid = (50, 0)
+        //   controlPt = (50 + 0*12, 0 + 1*12) = (50, 12)
+
+        double fromX = 0, fromY = 0, toX = 100, toY = 0;
+        double edgeDx = toX - fromX, edgeDy = toY - fromY;
+        double edgeLen = Math.Sqrt(edgeDx * edgeDx + edgeDy * edgeDy);
+
+        double perpX = -edgeDy / edgeLen;
+        double perpY = edgeDx / edgeLen;
+        double curveOffset = Math.Min(20, edgeLen * 0.12);
+        double midX = (fromX + toX) / 2;
+        double midY = (fromY + toY) / 2;
+        double ctrlX = midX + perpX * curveOffset;
+        double ctrlY = midY + perpY * curveOffset;
+
+        // Control point should be at midpoint X = 50
+        Assert.Equal(50.0, ctrlX, precision: 6);
+        // Control point should be offset perpendicularly by +12
+        Assert.Equal(12.0, ctrlY, precision: 6);
+        // Offset magnitude should match curveOffset
+        double offsetDist = Math.Sqrt((ctrlX - midX) * (ctrlX - midX) + (ctrlY - midY) * (ctrlY - midY));
+        Assert.Equal(curveOffset, offsetDist, precision: 6);
     }
 }

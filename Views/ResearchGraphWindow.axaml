@@ -27,7 +27,8 @@
                 ToolTip.Tip="Return to previous collection"/>
         <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"
                 Background="#3A3520" Foreground="#FFD700" BorderBrush="#5A5530" BorderThickness="1"/>
-        <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"
+                ToolTip.Tip="Add Concept (Ctrl+Shift+C)"/>
         <Button DockPanel.Dock="Left" Name="BtnAddMaster" Content="+ Master" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddTerm" Content="+ Term" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddCollection" Content="+ Collection" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
@@ -35,15 +36,20 @@
         <!-- Center: Layout controls -->
         <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"
                 Background="#2A2A35" Foreground="#B8B8C8"/>
-        <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,4,0" FontSize="11"
+                ToolTip.Tip="Fit all nodes to view"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnPhysics" Content="Physics" IsChecked="True"
-                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                      Padding="6,3" Margin="0,0,4,0" FontSize="11"
                       ToolTip.Tip="Toggle continuous physics simulation"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnLabels" Content="Labels" IsChecked="True"
+                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                      ToolTip.Tip="Show/hide node labels"/>
 
         <!-- Right: Search + Overflow -->
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3"/>
-        <TextBox DockPanel.Dock="Right" Name="TxtSearch" Watermark="Search nodes..." Width="180" Margin="0,0,8,0" FontSize="11"/>
+        <TextBox DockPanel.Dock="Right" Name="TxtSearch" Watermark="Search nodes..." Width="180" Margin="0,0,8,0" FontSize="11"
+                 ToolTip.Tip="Search nodes (Ctrl+F)"/>
 
         <!-- Undo/Redo -->
         <Button DockPanel.Dock="Right" Name="BtnRedo" Content="&#x21B7;" Padding="6,3" Margin="0,0,2,0" ToolTip.Tip="Redo (Ctrl+Y)"/>

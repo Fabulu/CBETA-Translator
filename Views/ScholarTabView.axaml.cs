@@ -15,6 +15,7 @@ using Avalonia.Media;
 using Avalonia.Layout;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -39,6 +40,11 @@ public partial class ScholarTabView : UserControl
     // Parallel passage finder
     private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
     private CancellationTokenSource? _parallelCts;
+
+    // Tree drag-and-drop
+    private static readonly DataFormat<string> PassageDragFormat = DataFormat.CreateStringApplicationFormat("scholar/passage-id");
+    private CollectionTreeNode? _dragCandidate;
+    private Point? _dragStartPoint;
 
     // Assistant panel
     private readonly ITranslationAssistantService _assistantService = App.Services.GetRequiredService<ITranslationAssistantService>();
@@ -255,6 +261,71 @@ public partial class ScholarTabView : UserControl
                     menu.Open(tree);
                 }
             };
+
+            // Drag-and-drop reorder for passages
+            DragDrop.SetAllowDrop(tree, true);
+
+            tree.PointerPressed += (_, e) =>
+            {
+                if (e.GetCurrentPoint(tree).Properties.IsLeftButtonPressed &&
+                    tree.SelectedItem is CollectionTreeNode node &&
+                    node.Kind == TreeNodeKind.Passage)
+                {
+                    _dragCandidate = node;
+                    _dragStartPoint = e.GetPosition(tree);
+                }
+            };
+
+            tree.PointerMoved += async (_, e) =>
+            {
+                if (_dragStartPoint == null || _dragCandidate == null) return;
+                var pos = e.GetPosition(tree);
+                var delta = pos - _dragStartPoint.Value;
+                if (Math.Abs(delta.X) < 5 && Math.Abs(delta.Y) < 5) return;
+
+                _dragStartPoint = null;
+                var passage = _dragCandidate.Tag as ScholarPassage;
+                if (passage == null) { _dragCandidate = null; return; }
+
+                var data = new DataTransfer();
+                data.Add(DataTransferItem.Create(PassageDragFormat, passage.Id));
+                await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Move);
+                _dragCandidate = null;
+            };
+
+            tree.AddHandler(DragDrop.DropEvent, async (_, args) =>
+            {
+                if (!args.DataTransfer.Contains(PassageDragFormat)) return;
+                var sourceId = args.DataTransfer.TryGetValue(PassageDragFormat);
+                if (string.IsNullOrEmpty(sourceId)) return;
+
+                var col = _vm.SelectedCollection;
+                if (col == null) return;
+
+                var sourcePassage = col.Passages.FirstOrDefault(p => p.Id == sourceId);
+                if (sourcePassage == null) return;
+
+                int targetIndex = col.Passages.Count;
+                if (args.Source is Control ctrl)
+                {
+                    var tvi = ctrl as TreeViewItem ?? ctrl.FindAncestorOfType<TreeViewItem>();
+                    if (tvi?.DataContext is CollectionTreeNode targetNode &&
+                        targetNode.Kind == TreeNodeKind.Passage &&
+                        targetNode.Tag is ScholarPassage targetPassage)
+                    {
+                        targetIndex = col.Passages.IndexOf(targetPassage);
+                    }
+                }
+
+                await _vm.MovePassageToIndexAsync(sourcePassage, targetIndex);
+                Status?.Invoke(this, "Passage reordered.");
+            });
+
+            tree.PointerReleased += (_, _) =>
+            {
+                _dragCandidate = null;
+                _dragStartPoint = null;
+            };
         }
 
         // Bottom drawer toggle
@@ -289,6 +360,15 @@ public partial class ScholarTabView : UserControl
                 graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
                 graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
                 graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
+                graphWindow.AdoptPassageRequested += async (_, passage) =>
+                {
+                    var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
+                    if (target != null)
+                    {
+                        await _vm.AdoptPassageToCollectionAsync(passage, target);
+                        Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+                    }
+                };
                 graphWindow.Show();
             };
         }
@@ -586,7 +666,7 @@ public partial class ScholarTabView : UserControl
                     Background = Brushes.Transparent, Foreground = Brushes.LightGray,
                     VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
                 };
-                removeBtn.Click += (_, _) => _vm.RemoveTag(capturedTag);
+                removeBtn.Click += (_, _) => _vm?.RemoveTag(capturedTag);
                 var chip = new Border
                 {
                     CornerRadius = new CornerRadius(3),
@@ -619,7 +699,7 @@ public partial class ScholarTabView : UserControl
                     Background = Brushes.Transparent, Foreground = Brushes.LightGray,
                     VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
                 };
-                removeBtn.Click += (_, _) => _vm.RemoveMaster(capturedMaster);
+                removeBtn.Click += (_, _) => _vm?.RemoveMaster(capturedMaster);
                 var chip = new Border
                 {
                     CornerRadius = new CornerRadius(3),
@@ -838,6 +918,15 @@ public partial class ScholarTabView : UserControl
         graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
         graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
         graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
+        graphWindow.AdoptPassageRequested += async (_, passage) =>
+        {
+            var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
+            if (target != null)
+            {
+                await _vm.AdoptPassageToCollectionAsync(passage, target);
+                Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+            }
+        };
         graphWindow.Show();
     }
 
