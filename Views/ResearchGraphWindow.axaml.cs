@@ -172,9 +172,35 @@ public partial class ResearchGraphWindow : Window
             btnAddMaster.Click += async (_, _) =>
             {
                 if (_vm == null) return;
-                var masterNames = _vm.GetCollection().Passages
-                    .SelectMany(p => p.MasterNames ?? new List<string>())
-                    .Distinct().OrderBy(n => n).ToList();
+                // Get ALL known masters from the master-dates.json catalog
+                var masterNames = new List<string>();
+                try
+                {
+                    var path = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
+                    if (System.IO.File.Exists(path))
+                    {
+                        var json = System.IO.File.ReadAllText(path);
+                        using var doc = System.Text.Json.JsonDocument.Parse(json);
+                        if (doc.RootElement.TryGetProperty("masters", out var mastersEl))
+                        {
+                            foreach (var m in mastersEl.EnumerateArray())
+                            {
+                                if (m.TryGetProperty("names", out var names) && names.GetArrayLength() > 0)
+                                {
+                                    var name = names[0].GetString();
+                                    if (!string.IsNullOrEmpty(name)) masterNames.Add(name);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch { }
+                // Fallback to passage-derived masters if catalog unavailable
+                if (masterNames.Count == 0)
+                    masterNames = _vm.GetCollection().Passages
+                        .SelectMany(p => p.MasterNames ?? new List<string>())
+                        .Distinct().ToList();
+                masterNames = masterNames.OrderBy(n => n).ToList();
                 if (masterNames.Count == 0) return;
                 var dialog = new MasterPickerDialog(masterNames);
                 dialog.Title = "Add Master to Graph";

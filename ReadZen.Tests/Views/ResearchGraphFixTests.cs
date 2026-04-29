@@ -694,28 +694,28 @@ public class ResearchGraphFixTests
     public void StatusDotColor_Read_ReturnsGreen()
     {
         var node = new CollectionTreeNode { ReadingStatus = "read" };
-        Assert.Equal("#4CAF50", node.StatusDotColor);
+        Assert.Equal(Avalonia.Media.Color.Parse("#4CAF50"), node.StatusDotColor);
     }
 
     [Fact]
     public void StatusDotColor_Skimmed_ReturnsYellow()
     {
         var node = new CollectionTreeNode { ReadingStatus = "skimmed" };
-        Assert.Equal("#FFC107", node.StatusDotColor);
+        Assert.Equal(Avalonia.Media.Color.Parse("#FFC107"), node.StatusDotColor);
     }
 
     [Fact]
     public void StatusDotColor_Null_ReturnsGray()
     {
         var node = new CollectionTreeNode { ReadingStatus = null };
-        Assert.Equal("#9E9E9E", node.StatusDotColor);
+        Assert.Equal(Avalonia.Media.Color.Parse("#9E9E9E"), node.StatusDotColor);
     }
 
     [Fact]
     public void StatusDotColor_Unknown_ReturnsGray()
     {
         var node = new CollectionTreeNode { ReadingStatus = "unknown-status" };
-        Assert.Equal("#9E9E9E", node.StatusDotColor);
+        Assert.Equal(Avalonia.Media.Color.Parse("#9E9E9E"), node.StatusDotColor);
     }
 
     // ── 28. SearchAllCollections: cross-collection passage search ────
