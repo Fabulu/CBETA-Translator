@@ -236,13 +236,17 @@ public partial class ScholarTabView : UserControl
                 }
                 else if (node.Kind == TreeNodeKind.Collection && node.Tag is ScholarCollection col)
                 {
-                    var renameItem = new MenuItem { Header = "Rename Collection" };
-                    renameItem.Click += async (_, _) =>
+                    // Only show rename for own collections
+                    if (string.IsNullOrWhiteSpace(col.CreatedBy) || col.CreatedBy == _currentUsername)
                     {
-                        _vm.SelectedCollection = col;
-                        await RenameSelectedCollectionAsync();
-                    };
-                    menu.Items.Add(renameItem);
+                        var renameItem = new MenuItem { Header = "Rename Collection" };
+                        renameItem.Click += async (_, _) =>
+                        {
+                            _vm.SelectedCollection = col;
+                            await RenameSelectedCollectionAsync();
+                        };
+                        menu.Items.Add(renameItem);
+                    }
 
                     var exportItem = new MenuItem { Header = "Export Collection" };
                     exportItem.Click += (_, _) => _vm.ExportCollectionsCommand.Execute(null);
@@ -306,9 +310,12 @@ public partial class ScholarTabView : UserControl
                 if (sourcePassage == null) return;
 
                 int targetIndex = col.Passages.Count;
-                if (args.Source is Control ctrl)
+                // Use pointer position to find drop target (args.Source is the drag source, not drop target)
+                var pos = args.GetPosition(tree);
+                var hitResult = tree.InputHitTest(pos);
+                if (hitResult is Control hitCtrl)
                 {
-                    var tvi = ctrl as TreeViewItem ?? ctrl.FindAncestorOfType<TreeViewItem>();
+                    var tvi = hitCtrl as TreeViewItem ?? hitCtrl.FindAncestorOfType<TreeViewItem>();
                     if (tvi?.DataContext is CollectionTreeNode targetNode &&
                         targetNode.Kind == TreeNodeKind.Passage &&
                         targetNode.Tag is ScholarPassage targetPassage)
@@ -456,7 +463,9 @@ public partial class ScholarTabView : UserControl
             btnOverflow.Click += (_, _) =>
             {
                 var menu = new ContextMenu();
-                menu.Items.Add(CreateScholarMenuItem("Rename Collection", async () => await RenameSelectedCollectionAsync()));
+                var selCol = _vm.SelectedCollection;
+                if (selCol == null || string.IsNullOrWhiteSpace(selCol.CreatedBy) || selCol.CreatedBy == _currentUsername)
+                    menu.Items.Add(CreateScholarMenuItem("Rename Collection", async () => await RenameSelectedCollectionAsync()));
                 menu.Items.Add(CreateScholarMenuItem("Import Collections", () => _vm.ImportCollectionsCommand.Execute(null)));
                 menu.Items.Add(CreateScholarMenuItem("Rebuild Tree", () => _vm.RebuildTree()));
                 menu.Items.Add(new Separator());
@@ -954,6 +963,12 @@ public partial class ScholarTabView : UserControl
     {
         var col = _vm.SelectedCollection;
         if (col == null) return;
+        if (col.CreatedBy != null && !string.IsNullOrWhiteSpace(col.CreatedBy) &&
+            col.CreatedBy != _currentUsername)
+        {
+            Status?.Invoke(this, "Cannot rename other users' collections.");
+            return;
+        }
         var dlg = new Window
         {
             Title = "Rename Collection", Width = 350, Height = 130,
