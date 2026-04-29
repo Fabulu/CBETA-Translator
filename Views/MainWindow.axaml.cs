@@ -1634,6 +1634,15 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 await _vm.OpenTermbaseEditorAsync();
             };
+            _scholarView.OpenDictionaryTermRequested += async (_, term) =>
+            {
+                await _vm.OpenTermbaseEditorAsync();
+                // TODO: could pre-select the term in the editor
+            };
+            _scholarView.OpenMasterRequested += (_, name) =>
+            {
+                _ = _vm.OpenZenMasterManagerWindowAsync(name);
+            };
             _scholarView.DictionarySourceChanged += async (_, idx) =>
             {
                 await _vm.SwitchTranslationSourceAsync(idx);

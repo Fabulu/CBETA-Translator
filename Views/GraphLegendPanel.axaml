@@ -19,17 +19,17 @@
     </StackPanel>
 
     <StackPanel Orientation="Horizontal" Spacing="6">
-      <Ellipse Width="12" Height="12" Fill="#64B5F6"/>
+      <Polygon Points="6,0 12,4 10,11 2,11 0,4" Fill="#64B5F6" Width="12" Height="12"/>
       <TextBlock Text="Master — Zen teacher" FontSize="10" VerticalAlignment="Center"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal" Spacing="6">
-      <Border Width="12" Height="12" Background="#AED581" CornerRadius="6"/>
+      <Border Width="16" Height="10" Background="#81C784" CornerRadius="3"/>
       <TextBlock Text="Term — termbase entry" FontSize="10" VerticalAlignment="Center"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal" Spacing="6">
-      <Border Width="12" Height="12" Background="#CE93D8" CornerRadius="2"/>
+      <Border Width="12" Height="12" Background="#AB47BC" CornerRadius="1"/>
       <TextBlock Text="Collection — passage group" FontSize="10" VerticalAlignment="Center"/>
     </StackPanel>
 

@@ -259,8 +259,12 @@ public class ResearchGraphCanvasControl : Control
                 DrawHexagon(ctx, brush, pen, center, r);
                 break;
             case ScholarNodeType.TermbaseEntry:
+                // Wide rounded pill shape (distinct from Collection's square)
+                ctx.DrawRectangle(brush, pen, new Rect(node.X - r * 1.2, node.Y - r * 0.5, r * 2.4, r * 1.0), r * 0.4, r * 0.4);
+                break;
             case ScholarNodeType.Collection:
-                ctx.DrawRectangle(brush, pen, new Rect(node.X - r, node.Y - r * 0.7, r * 2, r * 1.4), r * 0.2, r * 0.2);
+                // Square with minimal rounding
+                ctx.DrawRectangle(brush, pen, new Rect(node.X - r * 0.8, node.Y - r * 0.8, r * 1.6, r * 1.6), r * 0.1, r * 0.1);
                 break;
         }
 
@@ -868,12 +872,12 @@ public class ResearchGraphCanvasControl : Control
 
         double R = Math.Sqrt(N) * 80;
         double k = Math.Sqrt((R * R * 4) / N);
-        double alpha = 0.03;
+        double alpha = 0.02;
 
-        // Center of mass for gravity
-        double cx = 0, cy = 0;
-        foreach (var n in nodes) { cx += n.X; cy += n.Y; }
-        cx /= N; cy /= N;
+        // Gravity pulls toward FIXED viewport center (not center of mass,
+        // which drifts with the nodes and can never pull them back)
+        double cx = Bounds.Width > 0 ? Bounds.Width / 2.0 / (_zoom > 0 ? _zoom : 1) - _offsetX / (_zoom > 0 ? _zoom : 1) : 400;
+        double cy = Bounds.Height > 0 ? Bounds.Height / 2.0 / (_zoom > 0 ? _zoom : 1) - _offsetY / (_zoom > 0 ? _zoom : 1) : 300;
 
         // Dampen existing velocities (inter-frame decay for subtle wobble)
         foreach (var n in nodes) { n.Vx *= 0.92; n.Vy *= 0.92; }
@@ -898,8 +902,8 @@ public class ResearchGraphCanvasControl : Control
         foreach (var n in nodes)
         {
             if (n.IsPinned || n == _dragNode) continue;
-            n.Vx -= (n.X - cx) * 0.008;
-            n.Vy -= (n.Y - cy) * 0.008;
+            n.Vx -= (n.X - cx) * 0.02;
+            n.Vy -= (n.Y - cy) * 0.02;
         }
 
         // Edge attraction (keeps connected nodes loosely together)
