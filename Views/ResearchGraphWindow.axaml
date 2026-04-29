@@ -43,8 +43,14 @@
                       Padding="6,3" Margin="0,0,4,0" FontSize="11"
                       ToolTip.Tip="Toggle continuous physics simulation"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnLabels" Content="Labels" IsChecked="True"
-                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                      Padding="6,3" Margin="0,0,4,0" FontSize="11"
                       ToolTip.Tip="Show/hide node labels"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnMinimap" Content="Minimap" IsChecked="True"
+                      Padding="6,3" Margin="0,0,4,0" FontSize="11"
+                      ToolTip.Tip="Show/hide minimap overlay"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnClusters" Content="Clusters" IsChecked="False"
+                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                      ToolTip.Tip="Show type-based cluster backgrounds"/>
 
         <!-- Right: Search + Overflow -->
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3"/>
