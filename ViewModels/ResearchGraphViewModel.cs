@@ -99,6 +99,11 @@ public class ResearchGraphViewModel
         RebuildGraph();
     }
 
+    /// <summary>Zoom and pan state from the canvas, set by the window before saving.</summary>
+    public double SavedZoom { get; set; } = 1.0;
+    public double SavedOffsetX { get; set; }
+    public double SavedOffsetY { get; set; }
+
     public void SaveLayoutToCollection()
     {
         var layout = _collection.GraphLayout ?? new ScholarGraphLayout();
@@ -107,7 +112,19 @@ public class ResearchGraphViewModel
         {
             layout.NodePositions[node.NodeId] = new GraphNodeLayout { X = node.X, Y = node.Y };
         }
+        layout.Zoom = SavedZoom;
+        layout.OffsetX = SavedOffsetX;
+        layout.OffsetY = SavedOffsetY;
         _collection.GraphLayout = layout;
+    }
+
+    /// <summary>Returns the saved zoom/pan if a layout exists, otherwise null.</summary>
+    public (double zoom, double offsetX, double offsetY)? GetSavedViewport()
+    {
+        var layout = _collection.GraphLayout;
+        if (layout?.NodePositions != null && layout.NodePositions.Count > 0 && layout.Zoom > 0.01)
+            return (layout.Zoom, layout.OffsetX, layout.OffsetY);
+        return null;
     }
 
     public ResearchGraphViewModel(ScholarCollection collection, List<ScholarCollection> allCollections)
