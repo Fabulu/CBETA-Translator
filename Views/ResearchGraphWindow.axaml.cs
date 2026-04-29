@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -28,6 +29,7 @@ public partial class ResearchGraphWindow : Window
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler<string>? OpenMasterRequested;
     public event EventHandler<string>? DictionaryRequested;
+    public event EventHandler<ScholarPassage>? AdoptPassageRequested;
 
     public ResearchGraphWindow()
     {
@@ -87,6 +89,16 @@ public partial class ResearchGraphWindow : Window
         {
             if (_canvas != null)
                 _canvas.IsPhysicsEnabled = btnPhysics.IsChecked == true;
+        };
+
+        var btnLabels = this.FindControl<ToggleButton>("BtnLabels");
+        btnLabels!.IsCheckedChanged += (_, _) =>
+        {
+            if (_canvas != null)
+            {
+                _canvas.ShowLabels = btnLabels.IsChecked == true;
+                _canvas.InvalidateVisual();
+            }
         };
 
         var btnFitView = this.FindControl<Button>("BtnFitView");
@@ -322,6 +334,8 @@ public partial class ResearchGraphWindow : Window
                 menu.Items.Add(CreateMenuItem("Export Nodes CSV", () => { _ = ExportNodesCsvAsync(); }));
                 menu.Items.Add(CreateMenuItem("Export Edges CSV", () => { _ = ExportEdgesCsvAsync(); }));
                 menu.Items.Add(CreateMenuItem("Copy Summary", () => { _ = CopySummaryAsync(); }));
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateMenuItem("Copy Screenshot", () => { _ = CopyScreenshotAsync(); }));
                 menu.Open(btnOverflow);
             };
 
@@ -362,11 +376,22 @@ public partial class ResearchGraphWindow : Window
             }, Avalonia.Threading.DispatcherPriority.Loaded);
         };
 
-        _canvas.NodeClicked += (_, node) =>
+        _canvas.NodeClicked += (_, args) =>
         {
-            _vm!.SelectedNode = node;
-            node.IsSelected = true;
-            foreach (var n in _vm.Nodes.Where(n => n != node)) n.IsSelected = false;
+            var node = args.Node;
+            if (args.IsCtrlHeld)
+            {
+                // Toggle selection without clearing others
+                node.IsSelected = !node.IsSelected;
+                _vm!.SelectedNode = node.IsSelected ? node : _vm.Nodes.FirstOrDefault(n => n.IsSelected);
+            }
+            else
+            {
+                // Single select: clear all, select clicked
+                _vm!.SelectedNode = node;
+                node.IsSelected = true;
+                foreach (var n in _vm.Nodes.Where(n => n != node)) n.IsSelected = false;
+            }
             UpdateInspector();
             _canvas.InvalidateVisual();
         };
@@ -494,6 +519,74 @@ public partial class ResearchGraphWindow : Window
                 IsEnabled = false
             });
             menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Change Edge Type", async () =>
+            {
+                var customTypes = _vm?.GetCollection()?.CustomEdgeTypes;
+                var picker = new EdgeTypePickerPopup(edge.From.NodeType, edge.To.NodeType, customTypes,
+                    fromTypeName: edge.From.Label, toTypeName: edge.To.Label);
+                var result = await picker.ShowDialog<object?>(this);
+                if (result is EdgeTypeDefinition edgeType)
+                {
+                    // Update backing model
+                    var collEdge = _vm!.GetCollection().Edges.FirstOrDefault(e => e.Id == edge.EdgeId);
+                    if (collEdge != null) collEdge.RelationType = edgeType.Id;
+                    // Update VM edge
+                    edge.RelationType = edgeType.Id;
+                    var def = EdgeTypeRegistry.GetById(edgeType.Id);
+                    edge.Label = def?.DisplayName ?? edgeType.Id;
+                    edge.IsDirectional = def?.IsDirectional ?? true;
+                    edge.ColorHex = def?.ColorHex ?? "#9E9E9E";
+                    _canvas.InvalidateVisual();
+                    UpdateStatusBar(); UpdateLeftPanels();
+                }
+            }));
+            menu.Items.Add(CreateMenuItem("Reverse Direction", () =>
+            {
+                // Swap on backing model
+                var collEdge = _vm!.GetCollection().Edges.FirstOrDefault(e => e.Id == edge.EdgeId);
+                if (collEdge != null)
+                {
+                    (collEdge.FromNodeId, collEdge.ToNodeId) = (collEdge.ToNodeId, collEdge.FromNodeId);
+                    (collEdge.FromNodeType, collEdge.ToNodeType) = (collEdge.ToNodeType, collEdge.FromNodeType);
+                }
+                // Swap on VM edge
+                (edge.From, edge.To) = (edge.To, edge.From);
+                _canvas.InvalidateVisual();
+            }));
+            menu.Items.Add(CreateMenuItem("Edit Note", async () =>
+            {
+                var collEdge = _vm!.GetCollection().Edges.FirstOrDefault(e => e.Id == edge.EdgeId);
+                var noteWin = new Window
+                {
+                    Title = "Edit Edge Note", Width = 350, Height = 150,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+                };
+                var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
+                var txt = new TextBox { Text = collEdge?.Note ?? "", Watermark = "Enter note..." };
+                var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+                var btnOk = new Button { Content = "Save", Padding = new Avalonia.Thickness(12, 6) };
+                var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
+                btnPanel.Children.Add(btnCancel); btnPanel.Children.Add(btnOk);
+                Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+                grid.Children.Add(txt); grid.Children.Add(btnPanel);
+                noteWin.Content = grid;
+                string? newNote = null;
+                btnOk.Click += (_, _) => { newNote = txt.Text?.Trim(); noteWin.Close(); };
+                btnCancel.Click += (_, _) => noteWin.Close();
+                noteWin.KeyDown += (_, e2) =>
+                {
+                    if (e2.Key == Key.Return) { newNote = txt.Text?.Trim(); noteWin.Close(); }
+                    if (e2.Key == Key.Escape) noteWin.Close();
+                };
+                await noteWin.ShowDialog(this);
+                if (newNote != null && collEdge != null)
+                {
+                    collEdge.Note = newNote;
+                    edge.Label = string.IsNullOrEmpty(newNote) ? (EdgeTypeRegistry.GetById(edge.RelationType)?.DisplayName ?? edge.RelationType) : newNote;
+                    _canvas.InvalidateVisual();
+                }
+            }));
+            menu.Items.Add(new Separator());
             menu.Items.Add(CreateMenuItem("Delete Edge", () =>
             {
                 _vm!.ExecuteCommand(new RemoveEdgeCommand(_vm!, edge.EdgeId));
@@ -575,6 +668,12 @@ public partial class ResearchGraphWindow : Window
                     case Key.Y: _vm?.Redo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); e.Handled = true; break;
                     case Key.L: ToggleLinkMode(); e.Handled = true; break;
                     case Key.F: FocusSearch(); e.Handled = true; break;
+                    case Key.A:
+                        if (_vm != null) foreach (var n in _vm.Nodes) n.IsSelected = true;
+                        _canvas?.InvalidateVisual(); e.Handled = true; break;
+                    case Key.D:
+                        if (_vm != null) foreach (var n in _vm.Nodes) n.IsSelected = false;
+                        _canvas?.InvalidateVisual(); e.Handled = true; break;
                 }
             }
             else if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift))
@@ -600,6 +699,30 @@ public partial class ResearchGraphWindow : Window
     {
         var menu = new ContextMenu();
 
+        // Check for multi-selection
+        var selectedNodes = _canvas?.GetSelectedNodes();
+        if (selectedNodes != null && selectedNodes.Count > 1)
+        {
+            int count = selectedNodes.Count;
+            menu.Items.Add(CreateMenuItem($"Delete Selected ({count})", () =>
+            {
+                foreach (var n in selectedNodes.ToList())
+                    DeleteNode(n.NodeId);
+            }));
+            menu.Items.Add(CreateMenuItem("Pin Selected", () =>
+            {
+                foreach (var n in selectedNodes) n.IsPinned = true;
+                _canvas?.InvalidateVisual();
+            }));
+            menu.Items.Add(CreateMenuItem("Unpin Selected", () =>
+            {
+                foreach (var n in selectedNodes) n.IsPinned = false;
+                _canvas?.InvalidateVisual();
+            }));
+            menu.Open(target);
+            return;
+        }
+
         if (_vm?.SelectedNode != null)
         {
             var node = _vm.SelectedNode;
@@ -623,6 +746,12 @@ public partial class ResearchGraphWindow : Window
                             if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
                         }));
                     }
+                    if (passage != null)
+                    {
+                        menu.Items.Add(new Separator());
+                        menu.Items.Add(CreateMenuItem("Add to My Collection", () =>
+                            AdoptPassageRequested?.Invoke(this, passage)));
+                    }
                     break;
                 case ScholarNodeType.ZenMaster:
                     menu.Items.Add(CreateMenuItem("Open Master Page", () => OpenMasterRequested?.Invoke(this, node.Label)));
@@ -638,6 +767,40 @@ public partial class ResearchGraphWindow : Window
                     break;
                 case ScholarNodeType.Concept:
                     menu.Items.Add(CreateMenuItem("Rename (F2)", () => RenameSelected()));
+                    menu.Items.Add(CreateMenuItem("Merge with Concept...", async () =>
+                    {
+                        var otherConcepts = _vm.Nodes
+                            .Where(n => n.NodeType == ScholarNodeType.Concept && n.NodeId != node.NodeId)
+                            .Select(n => n.Label)
+                            .ToList();
+                        if (otherConcepts.Count == 0) return;
+                        var picker = new MasterPickerDialog(otherConcepts);
+                        picker.Title = "Select Concept to Merge Into This One";
+                        var result = await picker.ShowDialog<string?>(this);
+                        if (string.IsNullOrEmpty(result)) return;
+                        var mergedNode = _vm.Nodes.FirstOrDefault(n => n.NodeType == ScholarNodeType.Concept && n.Label == result);
+                        if (mergedNode == null) return;
+                        // Move all edges from merged to surviving
+                        var edgesToMove = _vm.Edges.Where(e => e.From.NodeId == mergedNode.NodeId || e.To.NodeId == mergedNode.NodeId).ToList();
+                        foreach (var e in edgesToMove)
+                        {
+                            var collEdge = _vm.GetCollection().Edges.FirstOrDefault(ce => ce.Id == e.EdgeId);
+                            if (e.From.NodeId == mergedNode.NodeId) { e.From.Degree--; e.From = node; node.Degree++; if (collEdge != null) collEdge.FromNodeId = node.NodeId; }
+                            if (e.To.NodeId == mergedNode.NodeId) { e.To.Degree--; e.To = node; node.Degree++; if (collEdge != null) collEdge.ToNodeId = node.NodeId; }
+                            // Remove self-edges
+                            if (e.From.NodeId == e.To.NodeId)
+                            {
+                                e.From.Degree--; e.To.Degree--;
+                                _vm.Edges.Remove(e);
+                                _vm.GetCollection().Edges.RemoveAll(ce => ce.Id == e.EdgeId);
+                            }
+                        }
+                        // Remove merged node
+                        _vm.Nodes.Remove(mergedNode);
+                        _vm.GetCollection().Concepts.RemoveAll(c => c.Id == mergedNode.NodeId);
+                        _canvas?.InvalidateVisual();
+                        UpdateStatusBar(); UpdateLeftPanels();
+                    }));
                     break;
                 case ScholarNodeType.Collection:
                     menu.Items.Add(CreateMenuItem("Switch to Collection", () =>
@@ -674,6 +837,32 @@ public partial class ResearchGraphWindow : Window
                 if (_vm != null)
                     foreach (var n in _vm.Nodes) n.IsPinned = false;
                 _canvas?.InvalidateVisual();
+            }));
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Select All (Ctrl+A)", () =>
+            {
+                if (_vm != null)
+                    foreach (var n in _vm.Nodes) n.IsSelected = true;
+                _canvas?.InvalidateVisual();
+            }));
+            menu.Items.Add(CreateMenuItem("Deselect All (Ctrl+D)", () =>
+            {
+                if (_vm != null)
+                    foreach (var n in _vm.Nodes) n.IsSelected = false;
+                _canvas?.InvalidateVisual();
+            }));
+            menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Zoom to 100%", () =>
+            {
+                if (_canvas != null && _vm != null)
+                {
+                    var visible = _vm.GetVisibleNodes();
+                    double cx = visible.Count > 0 ? visible.Average(n => n.X) : 0;
+                    double cy = visible.Count > 0 ? visible.Average(n => n.Y) : 0;
+                    double viewW = _canvas.Bounds.Width > 0 ? _canvas.Bounds.Width : 800;
+                    double viewH = _canvas.Bounds.Height > 0 ? _canvas.Bounds.Height : 600;
+                    _canvas.SetViewport(1.0, viewW / 2.0 - cx, viewH / 2.0 - cy);
+                }
             }));
             menu.Items.Add(new Separator());
             menu.Items.Add(CreateMenuItem("Copy Graph Web Link", async () =>
@@ -719,8 +908,9 @@ public partial class ResearchGraphWindow : Window
 
     private void DeleteNode(string nodeId)
     {
-        _vm?.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
-        _vm!.SelectedNode = null;
+        if (_vm == null) return;
+        _vm.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
+        _vm.SelectedNode = null;
         UpdateInspector();
         UpdateStatusBar();
         UpdateEmptyState();
@@ -1077,6 +1267,36 @@ public partial class ResearchGraphWindow : Window
             sb.AppendLine($"  {e.From.Label} --[{e.RelationType}]--> {e.To.Label}");
 
         await clipboard.SetTextAsync(sb.ToString());
+    }
+
+    private async System.Threading.Tasks.Task CopyScreenshotAsync()
+    {
+        if (_canvas == null) return;
+        int w = (int)_canvas.Bounds.Width;
+        int h = (int)_canvas.Bounds.Height;
+        if (w < 1 || h < 1) return;
+
+        try
+        {
+            var rtb = new RenderTargetBitmap(new PixelSize(w, h));
+            rtb.Render(_canvas);
+
+            // Save to temp file and copy the file path (Avalonia clipboard bitmap support is limited)
+            var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"research-graph-{DateTime.Now:yyyyMMdd-HHmmss}.png");
+            rtb.Save(tempPath);
+
+            var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+            if (clipboard != null)
+                await clipboard.SetTextAsync(tempPath);
+
+            var status = this.FindControl<TextBlock>("TxtStatus");
+            if (status != null) status.Text = $"Screenshot saved: {tempPath}";
+        }
+        catch (Exception ex)
+        {
+            var status = this.FindControl<TextBlock>("TxtStatus");
+            if (status != null) status.Text = $"Screenshot failed: {ex.Message}";
+        }
     }
 
     private static string EscapeCsv(string s) => s.Replace("\"", "\"\"");

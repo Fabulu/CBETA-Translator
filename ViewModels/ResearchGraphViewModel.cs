@@ -561,4 +561,101 @@ public class ResearchGraphViewModel
             !HiddenEdgeTypes.Contains(e.RelationType)
         ).ToList();
     }
+
+    /// <summary>Returns all nodes that currently have IsSelected = true.</summary>
+    public IReadOnlyList<ResearchGraphNode> GetSelectedNodes()
+    {
+        return Nodes.Where(n => n.IsSelected).ToList();
+    }
+
+    /// <summary>
+    /// Moves a passage from its current index to a target index within the collection.
+    /// This reorders the backing list and rebuilds the graph.
+    /// </summary>
+    public void MovePassageToIndex(int sourceIndex, int targetIndex)
+    {
+        var passages = _collection.Passages;
+        if (sourceIndex < 0 || sourceIndex >= passages.Count) return;
+        if (targetIndex < 0 || targetIndex >= passages.Count) return;
+        if (sourceIndex == targetIndex) return;
+
+        var item = passages[sourceIndex];
+        passages.RemoveAt(sourceIndex);
+        passages.Insert(targetIndex, item);
+    }
+
+    /// <summary>
+    /// Merges concept B into concept A: all edges referencing B are re-pointed to A,
+    /// then B is removed from the graph and collection.
+    /// </summary>
+    public void MergeConceptInto(string sourceConceptId, string targetConceptId)
+    {
+        if (sourceConceptId == targetConceptId) return;
+        if (!_nodeMap.ContainsKey(sourceConceptId) || !_nodeMap.ContainsKey(targetConceptId)) return;
+
+        var targetNode = _nodeMap[targetConceptId];
+
+        // Re-point all edges from source to target
+        foreach (var edge in Edges.ToList())
+        {
+            bool changed = false;
+            if (edge.From.NodeId == sourceConceptId)
+            {
+                edge.From.Degree--;
+                edge.From = targetNode;
+                targetNode.Degree++;
+                changed = true;
+            }
+            if (edge.To.NodeId == sourceConceptId)
+            {
+                edge.To.Degree--;
+                edge.To = targetNode;
+                targetNode.Degree++;
+                changed = true;
+            }
+            if (changed)
+            {
+                // Update the backing model edge
+                var modelEdge = _collection.Edges.FirstOrDefault(e => e.Id == edge.EdgeId);
+                if (modelEdge != null)
+                {
+                    if (modelEdge.FromNodeId == sourceConceptId) modelEdge.FromNodeId = targetConceptId;
+                    if (modelEdge.ToNodeId == sourceConceptId) modelEdge.ToNodeId = targetConceptId;
+                }
+            }
+        }
+
+        // Remove self-loops that may have resulted from merging
+        var selfLoops = Edges.Where(e => e.From.NodeId == e.To.NodeId).ToList();
+        foreach (var loop in selfLoops)
+        {
+            loop.From.Degree--;
+            loop.To.Degree--;
+            Edges.Remove(loop);
+            _collection.Edges.RemoveAll(e => e.Id == loop.EdgeId);
+        }
+
+        // Remove source node
+        RemoveNode(sourceConceptId);
+    }
+
+    /// <summary>
+    /// Reverses the direction of an edge by swapping its From and To endpoints.
+    /// </summary>
+    public void ReverseEdge(string edgeId)
+    {
+        var edgeVm = Edges.FirstOrDefault(e => e.EdgeId == edgeId);
+        if (edgeVm == null) return;
+
+        // Swap the VM endpoints
+        (edgeVm.From, edgeVm.To) = (edgeVm.To, edgeVm.From);
+
+        // Swap the backing model
+        var modelEdge = _collection.Edges.FirstOrDefault(e => e.Id == edgeId);
+        if (modelEdge != null)
+        {
+            (modelEdge.FromNodeId, modelEdge.ToNodeId) = (modelEdge.ToNodeId, modelEdge.FromNodeId);
+            (modelEdge.FromNodeType, modelEdge.ToNodeType) = (modelEdge.ToNodeType, modelEdge.FromNodeType);
+        }
+    }
 }

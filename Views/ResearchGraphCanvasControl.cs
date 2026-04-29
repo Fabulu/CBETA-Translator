@@ -66,10 +66,20 @@ public class ResearchGraphCanvasControl : Control
     private static readonly IPen _defaultNodePen = new Pen(new SolidColorBrush(Color.FromArgb(153, 255, 255, 255)), 1.2);
     private static readonly IPen _searchHighlightPen = new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 3);
 
-    public event EventHandler<ResearchGraphNode>? NodeClicked;
+    /// <summary>Whether node labels are drawn. Toggled via toolbar.</summary>
+    public bool ShowLabels { get; set; } = true;
+
+    public event EventHandler<(ResearchGraphNode Node, bool IsCtrlHeld)>? NodeClicked;
     public event EventHandler<ResearchGraphNode>? NodeDoubleClicked;
     public event EventHandler<(ResearchGraphNode From, ResearchGraphNode To)>? EdgeDropped;
     public event EventHandler<ResearchGraphEdgeVm>? EdgeClicked;
+
+    /// <summary>Returns all nodes that currently have IsSelected = true.</summary>
+    public IReadOnlyList<ResearchGraphNode> GetSelectedNodes()
+    {
+        if (_vm == null) return Array.Empty<ResearchGraphNode>();
+        return _vm.Nodes.Where(n => n.IsSelected).ToList();
+    }
 
     public void SetViewModel(ResearchGraphViewModel vm)
     {
@@ -205,7 +215,7 @@ public class ResearchGraphCanvasControl : Control
         }
 
         // Label with shadow outline (only at sufficient zoom and after entry animation starts)
-        if (_zoom >= 0.5 && _entryProgress > 0.3)
+        if (ShowLabels && _zoom >= 0.5 && _entryProgress > 0.3)
         {
             var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
             var labelText = node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label;
@@ -291,12 +301,43 @@ public class ResearchGraphCanvasControl : Control
         double entryScale = EaseOutCubic(_entryProgress);
         var finalColor = Color.FromArgb((byte)(alphaColor.A * entryScale), alphaColor.R, alphaColor.G, alphaColor.B);
 
+        // Calculate edge length to decide straight vs curved
+        double edgeDx = to.X - from.X, edgeDy = to.Y - from.Y;
+        double edgeLen = Math.Sqrt(edgeDx * edgeDx + edgeDy * edgeDy);
+        bool useCurve = edgeLen >= 50;
+
+        // Calculate Bezier control point (perpendicular offset)
+        Point controlPt = default;
+        if (useCurve)
+        {
+            double perpX = -edgeDy / edgeLen;
+            double perpY = edgeDx / edgeLen;
+            double curveOffset = Math.Min(20, edgeLen * 0.12);
+            double midX2 = (from.X + to.X) / 2;
+            double midY2 = (from.Y + to.Y) / 2;
+            controlPt = new Point(midX2 + perpX * curveOffset, midY2 + perpY * curveOffset);
+        }
+
         // Glow layer for hovered edge (wide, semi-transparent)
         if (isHovered)
         {
             var glowBrush = new SolidColorBrush(Color.FromArgb(60, edgeColor.R, edgeColor.G, edgeColor.B));
             var glowPen = new Pen(glowBrush, 8);
-            ctx.DrawLine(glowPen, from, to);
+            if (useCurve)
+            {
+                var glowGeo = new StreamGeometry();
+                using (var gc = glowGeo.Open())
+                {
+                    gc.BeginFigure(from, false);
+                    gc.QuadraticBezierTo(controlPt, to);
+                    gc.EndFigure(false);
+                }
+                ctx.DrawGeometry(null, glowPen, glowGeo);
+            }
+            else
+            {
+                ctx.DrawLine(glowPen, from, to);
+            }
         }
 
         var brush = new SolidColorBrush(finalColor);
@@ -308,13 +349,28 @@ public class ResearchGraphCanvasControl : Control
             pen = new Pen(brush, thickness) { DashStyle = DashStyle.Dash };
         }
 
-        ctx.DrawLine(pen, from, to);
+        if (useCurve)
+        {
+            var edgeGeo = new StreamGeometry();
+            using (var gc = edgeGeo.Open())
+            {
+                gc.BeginFigure(from, false);
+                gc.QuadraticBezierTo(controlPt, to);
+                gc.EndFigure(false);
+            }
+            ctx.DrawGeometry(null, pen, edgeGeo);
+        }
+        else
+        {
+            ctx.DrawLine(pen, from, to);
+        }
 
         // Edge type label: show on hover OR on ego-relevant edges at sufficient zoom
+        // Respect ShowLabels toggle — when labels are hidden, suppress edge labels too
         bool showLabel = false;
-        if (isHovered && !string.IsNullOrEmpty(edge.RelationType))
+        if (ShowLabels && isHovered && !string.IsNullOrEmpty(edge.RelationType))
             showLabel = true;
-        else if (hasEgo && _zoom >= 0.7 && !string.IsNullOrEmpty(edge.RelationType))
+        else if (ShowLabels && hasEgo && _zoom >= 0.7 && !string.IsNullOrEmpty(edge.RelationType))
         {
             string egoId = _vm.SelectedNode!.NodeId;
             if (edge.From.NodeId == egoId || edge.To.NodeId == egoId)
@@ -323,8 +379,19 @@ public class ResearchGraphCanvasControl : Control
 
         if (showLabel)
         {
-            double midX = (from.X + to.X) / 2;
-            double midY = (from.Y + to.Y) / 2;
+            // For curved edges, use the midpoint on the curve (t=0.5 of quadratic Bezier)
+            double midX, midY;
+            if (useCurve)
+            {
+                // B(0.5) = 0.25*from + 0.5*control + 0.25*to
+                midX = 0.25 * from.X + 0.5 * controlPt.X + 0.25 * to.X;
+                midY = 0.25 * from.Y + 0.5 * controlPt.Y + 0.25 * to.Y;
+            }
+            else
+            {
+                midX = (from.X + to.X) / 2;
+                midY = (from.Y + to.Y) / 2;
+            }
             var labelColor = new SolidColorBrush(Color.FromArgb((byte)(isHovered ? 255 : 200), edgeColor.R, edgeColor.G, edgeColor.B));
             var labelFt = new FormattedText(
                 edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
@@ -340,13 +407,25 @@ public class ResearchGraphCanvasControl : Control
         // Arrowhead for directional edges
         if (edge.IsDirectional)
         {
-            double dx = to.X - from.X, dy = to.Y - from.Y;
-            double len = Math.Sqrt(dx * dx + dy * dy);
-            if (len < 1) return;
-            double nx = dx / len, ny = dy / len;
+            // For curved edges, use the tangent at t=1 for arrowhead direction
+            double arrowDx, arrowDy;
+            if (useCurve)
+            {
+                // Tangent at t=1 of quadratic Bezier: B'(1) = 2*(to - control)
+                arrowDx = to.X - controlPt.X;
+                arrowDy = to.Y - controlPt.Y;
+            }
+            else
+            {
+                arrowDx = to.X - from.X;
+                arrowDy = to.Y - from.Y;
+            }
+            double arrowLen = Math.Sqrt(arrowDx * arrowDx + arrowDy * arrowDy);
+            if (arrowLen < 1) return;
+            double nx = arrowDx / arrowLen, ny = arrowDy / arrowLen;
             double targetR = GetNodeRadius(edge.To);
             var tip = new Point(to.X - nx * targetR, to.Y - ny * targetR);
-            double angle = Math.Atan2(dy, dx);
+            double angle = Math.Atan2(arrowDy, arrowDx);
             double sz = isHovered ? 10 : 7;
             var p1 = new Point(tip.X - sz * Math.Cos(angle - 0.4), tip.Y - sz * Math.Sin(angle - 0.4));
             var p2 = new Point(tip.X - sz * Math.Cos(angle + 0.4), tip.Y - sz * Math.Sin(angle + 0.4));
@@ -453,7 +532,8 @@ public class ResearchGraphCanvasControl : Control
                 return;
             }
             _dragNode = hit;
-            NodeClicked?.Invoke(this, hit);
+            bool ctrlHeld = e.KeyModifiers.HasFlag(KeyModifiers.Control);
+            NodeClicked?.Invoke(this, (hit, ctrlHeld));
         }
         else
         {

@@ -476,6 +476,25 @@ public partial class ScholarTabViewModel : ViewModelBase
         await SaveAsync();
     }
 
+    /// <summary>
+    /// Moves a passage to a specific index within the selected collection.
+    /// Used by drag-and-drop reorder in the tree view.
+    /// </summary>
+    public async Task MovePassageToIndexAsync(ScholarPassage passage, int targetIndex)
+    {
+        var col = SelectedCollection;
+        if (col == null) return;
+        var currentIndex = col.Passages.IndexOf(passage);
+        if (currentIndex < 0 || currentIndex == targetIndex) return;
+        col.Passages.RemoveAt(currentIndex);
+        if (targetIndex > currentIndex) targetIndex--;
+        col.Passages.Insert(Math.Clamp(targetIndex, 0, col.Passages.Count), passage);
+        RefreshPassagesList();
+        SelectedPassage = passage;
+        RebuildTree();
+        await SaveAsync();
+    }
+
     [RelayCommand]
     private void NavigateToPassage()
     {
