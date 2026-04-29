@@ -3,8 +3,10 @@
         x:Class="ReadZen.App.Views.ResearchGraphWindow"
         x:CompileBindings="False"
         Title="Research Graph"
-        Width="1400" Height="900"
-        WindowStartupLocation="CenterOwner">
+        Width="1200" Height="750"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="Manual"
+        CanResize="True">
 
   <Grid RowDefinitions="Auto,*,Auto">
 

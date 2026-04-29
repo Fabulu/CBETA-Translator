@@ -301,6 +301,15 @@ public partial class ScholarTabView : UserControl
                 if (_vm.SelectedPassage != null)
                     _vm.PassageSummary = txtSummary.Text ?? "";
             };
+            txtSummary.KeyDown += (_, e) =>
+            {
+                if (e.Key == Key.Enter && _vm.SelectedPassage != null)
+                {
+                    _vm.SyncAndSave();
+                    _vm.RebuildTree();
+                    e.Handled = true;
+                }
+            };
             txtSummary.LostFocus += (_, _) =>
             {
                 if (_vm.SelectedPassage != null)
