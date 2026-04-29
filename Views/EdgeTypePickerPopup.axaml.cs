@@ -10,6 +10,9 @@ using ReadZen.App.Models;
 
 namespace ReadZen.App.Views;
 
+/// <summary>Direction of the edge as chosen by the user in the picker dialog.</summary>
+public enum EdgeDirection { Forward, Reverse, Bidirectional, Undirected }
+
 public partial class EdgeTypePickerPopup : Window
 {
     private readonly List<EdgeTypeItemVm> _items = new();
@@ -30,16 +33,28 @@ public partial class EdgeTypePickerPopup : Window
     /// </summary>
     public EdgeTypeDefinition? SelectedType { get; private set; }
 
+    /// <summary>Direction chosen by the user (Forward by default).</summary>
+    public EdgeDirection SelectedDirection { get; private set; } = EdgeDirection.Forward;
+
+    /// <summary>Display name of the source node.</summary>
+    public string FromTypeName { get; private set; } = "Source";
+
+    /// <summary>Display name of the target node.</summary>
+    public string ToTypeName { get; private set; } = "Target";
+
     public EdgeTypePickerPopup()
     {
         InitializeComponent();
     }
 
     public EdgeTypePickerPopup(ScholarNodeType fromType, ScholarNodeType toType,
-        IEnumerable<EdgeTypeDefinition>? customTypes = null) : this()
+        IEnumerable<EdgeTypeDefinition>? customTypes = null,
+        string? fromTypeName = null, string? toTypeName = null) : this()
     {
         _fromType = fromType;
         _toType = toType;
+        FromTypeName = fromTypeName ?? fromType.ToString();
+        ToTypeName = toTypeName ?? toType.ToString();
 
         var validTypes = EdgeTypeRegistry.GetValidTypes(fromType, toType, customTypes);
         for (int i = 0; i < validTypes.Count; i++)
@@ -72,12 +87,71 @@ public partial class EdgeTypePickerPopup : Window
                 listBox.SelectedIndex = 0;
 
             listBox.DoubleTapped += OnListDoubleTapped;
+            listBox.SelectionChanged += OnTypeSelectionChanged;
         }
 
+        SetupPreview();
         KeyDown += OnKeyDown;
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
+
+    private static readonly Dictionary<ScholarNodeType, string> NodeColorMap = new()
+    {
+        [ScholarNodeType.Passage] = "#6EAFF8",
+        [ScholarNodeType.Concept] = "#FF8A65",
+        [ScholarNodeType.ZenMaster] = "#64B5F6",
+        [ScholarNodeType.TermbaseEntry] = "#81C784",
+        [ScholarNodeType.Collection] = "#AB47BC"
+    };
+
+    private void SetupPreview()
+    {
+        var fromLabel = this.FindControl<TextBlock>("PreviewFromLabel");
+        var toLabel = this.FindControl<TextBlock>("PreviewToLabel");
+        var fromDot = this.FindControl<Avalonia.Controls.Shapes.Ellipse>("PreviewFromDot");
+        var toDot = this.FindControl<Avalonia.Controls.Shapes.Ellipse>("PreviewToDot");
+
+        if (fromLabel != null) fromLabel.Text = FromTypeName;
+        if (toLabel != null) toLabel.Text = ToTypeName;
+        if (fromDot != null && NodeColorMap.TryGetValue(_fromType, out var fc))
+            fromDot.Fill = new SolidColorBrush(Color.Parse(fc));
+        if (toDot != null && NodeColorMap.TryGetValue(_toType, out var tc))
+            toDot.Fill = new SolidColorBrush(Color.Parse(tc));
+
+        // Show initial edge label if something is selected
+        UpdatePreviewEdge();
+    }
+
+    private void OnTypeSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        UpdatePreviewEdge();
+    }
+
+    private void UpdatePreviewEdge()
+    {
+        var listBox = this.FindControl<ListBox>("TypeList");
+        var edgeLabel = this.FindControl<TextBlock>("PreviewEdgeLabel");
+        var edgeLine = this.FindControl<Avalonia.Controls.Border>("PreviewEdgeLine");
+
+        if (listBox?.SelectedItem is EdgeTypeItemVm item)
+        {
+            if (edgeLabel != null) edgeLabel.Text = item.DisplayName;
+            if (edgeLine != null) edgeLine.Background = item.ColorHex;
+        }
+    }
+
+    private void ReadDirection()
+    {
+        var rbReverse = this.FindControl<RadioButton>("RbReverse");
+        var rbBidirectional = this.FindControl<RadioButton>("RbBidirectional");
+        var rbUndirected = this.FindControl<RadioButton>("RbUndirected");
+
+        SelectedDirection = (rbReverse?.IsChecked == true) ? EdgeDirection.Reverse
+            : (rbBidirectional?.IsChecked == true) ? EdgeDirection.Bidirectional
+            : (rbUndirected?.IsChecked == true) ? EdgeDirection.Undirected
+            : EdgeDirection.Forward;
+    }
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
@@ -122,6 +196,7 @@ public partial class EdgeTypePickerPopup : Window
 
         if (index >= 0 && index < _items.Count)
         {
+            ReadDirection();
             SelectedType = _items[index].Definition;
             Close(SelectedType);
             e.Handled = true;
@@ -135,6 +210,7 @@ public partial class EdgeTypePickerPopup : Window
 
     private async System.Threading.Tasks.Task ConfirmSelectionAsync()
     {
+        ReadDirection();
         var listBox = this.FindControl<ListBox>("TypeList");
         if (listBox?.SelectedItem is EdgeTypeItemVm item)
         {

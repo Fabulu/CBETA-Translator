@@ -22,6 +22,9 @@
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
+        <Button DockPanel.Dock="Left" Name="BtnBack" Content="&#x2190; Back" Padding="6,3"
+                Margin="0,0,12,0" FontSize="11" IsVisible="False"
+                ToolTip.Tip="Return to previous collection"/>
         <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"
                 Background="#3A3520" Foreground="#FFD700" BorderBrush="#5A5530" BorderThickness="1"/>
         <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>

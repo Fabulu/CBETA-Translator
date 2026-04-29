@@ -431,16 +431,40 @@ public partial class ScholarTabView : UserControl
             }
         };
 
-        // Insert reference: populate the list when the flyout opens, then insert the selected passage.
+        // Insert reference: show a passage picker flyout
         var btnInsertRef = this.FindControl<Button>("BtnInsertReference");
-        if (btnInsertRef?.Flyout is Flyout flyout)
+        if (btnInsertRef != null)
         {
-            flyout.Opening += (_, _) =>
+            btnInsertRef.Click += (_, _) =>
             {
-                if (_vm.SelectedCollection != null)
+                if (_vm.SelectedCollection == null || _vm.SelectedPassage == null) return;
+
+                var otherPassages = _vm.SelectedCollection.Passages
+                    .Where(p => p.Id != _vm.SelectedPassage.Id)
+                    .ToList();
+                if (otherPassages.Count == 0) return;
+
+                var insertFlyout = new Flyout();
+                var listBox = new ListBox
                 {
-                    // Flyout content is managed by the button's flyout template
-                }
+                    MaxHeight = 300,
+                    MinWidth = 250,
+                    ItemsSource = otherPassages
+                };
+                listBox.ItemTemplate = new Avalonia.Controls.Templates.FuncDataTemplate<ScholarPassage>((p, _) =>
+                {
+                    return new TextBlock { Text = p.DisplayTitle, FontSize = 12 };
+                });
+                listBox.SelectionChanged += (_, _) =>
+                {
+                    if (listBox.SelectedItem is ScholarPassage selected)
+                    {
+                        InsertPassageReference(selected);
+                        insertFlyout.Hide();
+                    }
+                };
+                insertFlyout.Content = listBox;
+                insertFlyout.ShowAt(btnInsertRef);
             };
         }
 
@@ -646,18 +670,40 @@ public partial class ScholarTabView : UserControl
         var noBacklinks = this.FindControl<TextBlock>("TxtNoBacklinks");
         if (panel == null || _vm.SelectedPassage == null || _vm.SelectedCollection == null) return;
 
-        var backlinks = _vm.SelectedCollection.Links
+        var chips = new List<Control>();
+        var links = _vm.SelectedCollection.Links
             .Where(l => l.ToPassageId == _vm.SelectedPassage.Id)
-            .Select(l =>
-            {
-                var source = _vm.SelectedCollection.Passages.FirstOrDefault(p => p.Id == l.FromPassageId);
-                return source != null ? $"{l.RelationType}: {source.DisplayTitle}" : null;
-            })
-            .Where(s => s != null)
             .ToList();
 
-        panel.ItemsSource = backlinks;
-        if (noBacklinks != null) noBacklinks.IsVisible = backlinks.Count == 0;
+        foreach (var link in links)
+        {
+            var source = _vm.SelectedCollection.Passages.FirstOrDefault(p => p.Id == link.FromPassageId);
+            if (source == null) continue;
+
+            var chip = new Border
+            {
+                Padding = new Thickness(8, 4),
+                Margin = new Thickness(0, 0, 4, 4),
+                CornerRadius = new CornerRadius(4),
+                Background = Avalonia.Media.Brushes.DimGray,
+                Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                Child = new TextBlock
+                {
+                    Text = $"{link.RelationType}: {source.DisplayTitle}",
+                    FontSize = 12,
+                    Foreground = Avalonia.Media.Brushes.White
+                }
+            };
+            var capturedSource = source;
+            chip.PointerPressed += (_, _) =>
+            {
+                _vm.SelectPassageById(capturedSource.Id);
+            };
+            chips.Add(chip);
+        }
+
+        panel.ItemsSource = chips;
+        if (noBacklinks != null) noBacklinks.IsVisible = chips.Count == 0;
     }
 
     private void UpdateDetailFields()

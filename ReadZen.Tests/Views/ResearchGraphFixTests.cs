@@ -14,7 +14,7 @@ namespace ReadZen.Tests.Views;
 /// convergence early-exit, HitTest radius, ZenMaster SourceData,
 /// search highlight, single-node centering, and undo/redo state.
 /// </summary>
-public class ResearchGraphFixTests : IClassFixture<AvaloniaFixture>
+public class ResearchGraphFixTests
 {
 
     // ── Helpers ───────────────────────────────────────────────────────
