@@ -62,10 +62,21 @@ public partial class ResearchGraphWindow : Window
         var btnRelayout = this.FindControl<Button>("BtnRelayout");
         btnRelayout!.Click += (_, _) =>
         {
+            if (_vm != null)
+            {
+                foreach (var n in _vm.Nodes) n.IsPinned = false;
+            }
             double w = _canvas?.Bounds.Width > 0 ? _canvas.Bounds.Width : 800;
             double h = _canvas?.Bounds.Height > 0 ? _canvas.Bounds.Height : 600;
             _vm?.RunForceDirectedLayout(w, h);
             _canvas?.InvalidateVisual();
+        };
+
+        var btnPhysics = this.FindControl<ToggleButton>("BtnPhysics");
+        btnPhysics!.IsCheckedChanged += (_, _) =>
+        {
+            if (_canvas != null)
+                _canvas.IsPhysicsEnabled = btnPhysics.IsChecked == true;
         };
 
         var btnFitView = this.FindControl<Button>("BtnFitView");

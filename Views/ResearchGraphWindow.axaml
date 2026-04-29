@@ -33,7 +33,10 @@
         <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"
                 Background="#2A2A35" Foreground="#B8B8C8"/>
         <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
-        <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+        <ToggleButton DockPanel.Dock="Left" Name="BtnPhysics" Content="Physics" IsChecked="True"
+                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                      ToolTip.Tip="Toggle continuous physics simulation"/>
 
         <!-- Right: Search + Overflow -->
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3"/>
