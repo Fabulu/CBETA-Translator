@@ -801,13 +801,13 @@ public static class ZenUriParser
     }
 
     public static string BuildShareableDictUrl(string term)
-        => $"{ShareableBase}#/dict/{Uri.EscapeDataString(term)}";
+        => $"{ShareableBase}dict/{Uri.EscapeDataString(term)}";
 
     public static string BuildShareableScholarUrl(string collectionId, string? passageId = null, string? user = null)
     {
         var url = passageId != null
-            ? $"{ShareableBase}#/scholar/{collectionId}/{passageId}"
-            : $"{ShareableBase}#/scholar/{collectionId}";
+            ? $"{ShareableBase}scholar/{collectionId}/{passageId}"
+            : $"{ShareableBase}scholar/{collectionId}";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         return url;
@@ -815,7 +815,7 @@ public static class ZenUriParser
 
     public static string BuildShareableGraphUrl(string collectionId, string? user = null)
     {
-        var url = $"{ShareableBase}#/scholar/{Uri.EscapeDataString(collectionId)}/graph";
+        var url = $"{ShareableBase}scholar/{Uri.EscapeDataString(collectionId)}/graph";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         return url;
@@ -854,12 +854,12 @@ public static class ZenUriParser
         if (!string.IsNullOrEmpty(translationSource))
             queryParts.Add("src=" + Uri.EscapeDataString(translationSource));
 
-        return $"{ShareableBase}#/search?{string.Join("&", queryParts)}";
+        return $"{ShareableBase}search?{string.Join("&", queryParts)}";
     }
 
     public static string BuildShareableTagsUrl(string fileId, string? user = null, string? tagId = null)
     {
-        var url = $"{ShareableBase}#/tags/{fileId}";
+        var url = $"{ShareableBase}tags/{fileId}";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         if (!string.IsNullOrEmpty(tagId))
@@ -873,13 +873,13 @@ public static class ZenUriParser
 
     public static string BuildShareableTermUrl(string term, string? user = null)
         => !string.IsNullOrEmpty(user)
-            ? $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
-            : $"{ShareableBase}#/term/{Uri.EscapeDataString(term)}";
+            ? $"{ShareableBase}term/{Uri.EscapeDataString(term)}/{Uri.EscapeDataString(user)}"
+            : $"{ShareableBase}term/{Uri.EscapeDataString(term)}";
 
     public static string BuildShareableMasterUrl(string name, string? user = null)
         => !string.IsNullOrEmpty(user)
-            ? $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
-            : $"{ShareableBase}#/master/{Uri.EscapeDataString(name)}";
+            ? $"{ShareableBase}master/{Uri.EscapeDataString(name)}/{Uri.EscapeDataString(user)}"
+            : $"{ShareableBase}master/{Uri.EscapeDataString(name)}";
 
     public static string BuildShareableCompareUrl(
         string relPath,
@@ -891,7 +891,7 @@ public static class ZenUriParser
         string? highlightText = null)
     {
         var fileId = RelPathToFileId(relPath);
-        var url = $"{ShareableBase}#/compare/{Uri.EscapeDataString(fileId)}/{PaneToSegment(pane)}/{Uri.EscapeDataString(sourceAKey)}/{Uri.EscapeDataString(sourceBKey)}";
+        var url = $"{ShareableBase}compare/{Uri.EscapeDataString(fileId)}/{PaneToSegment(pane)}/{Uri.EscapeDataString(sourceAKey)}/{Uri.EscapeDataString(sourceBKey)}";
 
         var queryParts = new List<string>();
         if (!string.IsNullOrWhiteSpace(fromLb))
