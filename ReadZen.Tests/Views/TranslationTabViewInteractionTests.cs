@@ -12,10 +12,7 @@ namespace ReadZen.Tests.Views;
 
 public class TranslationTabViewInteractionTests
 {
-    static TranslationTabViewInteractionTests()
-    {
-        AvaloniaTestInfrastructure.EnsureInitialized();
-    }
+    // Avalonia initialization handled by ModuleInit.cs [ModuleInitializer]
 
     private static TranslationTabView CreateViewShell(out TranslationTabViewModel vm, out ComboBox cmb, out TextBlock review, out TextBlock progress)
     {

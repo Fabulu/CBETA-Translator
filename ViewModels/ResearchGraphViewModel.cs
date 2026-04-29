@@ -83,13 +83,20 @@ public class ResearchGraphViewModel
     public bool CanUndo => _undoStack.Count > 0;
     public bool CanRedo => _redoStack.Count > 0;
 
+    // Collection navigation history
+    private readonly Stack<string> _collectionHistory = new();
+    public bool CanGoBack => _collectionHistory.Count > 0;
+
     public ScholarCollection GetCollection() => _collection;
     public List<ScholarCollection> GetAllCollections() => _allCollections;
 
-    public void SwitchToCollection(string collectionId)
+    public void SwitchToCollection(string collectionId, bool pushHistory = true)
     {
         var target = _allCollections.FirstOrDefault(c => c.Id == collectionId);
         if (target == null) return;
+
+        if (pushHistory)
+            _collectionHistory.Push(_collection.Id);
 
         // Save current layout
         SaveLayoutToCollection();
@@ -97,6 +104,13 @@ public class ResearchGraphViewModel
         // Switch
         _collection = target;
         RebuildGraph();
+    }
+
+    public void GoBack()
+    {
+        if (_collectionHistory.Count == 0) return;
+        var previousId = _collectionHistory.Pop();
+        SwitchToCollection(previousId, pushHistory: false);
     }
 
     /// <summary>Zoom and pan state from the canvas, set by the window before saving.</summary>

@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="using:ReadZen.App.Views"
         x:Class="ReadZen.App.Views.EdgeTypePickerPopup"
-        Width="280" Height="400"
-        MaxWidth="280" MaxHeight="400"
+        Width="280" Height="520"
+        MaxWidth="280" MaxHeight="520"
         Background="{DynamicResource AppBg}"
         Title="Select Edge Type"
         CanResize="False"
@@ -19,7 +19,7 @@
 		</Style>
 	</Window.Styles>
 
-	<Grid RowDefinitions="Auto,*,Auto" Margin="12">
+	<Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
 
 		<!-- Header -->
 		<TextBlock Grid.Row="0"
@@ -29,8 +29,45 @@
 		           Foreground="{DynamicResource TextFg}"
 		           Margin="0,0,0,8"/>
 
+		<!-- Preview -->
+		<Border Grid.Row="1" Padding="8" Margin="0,0,0,8"
+		        Background="#2A2A35" CornerRadius="6" MinHeight="60">
+		  <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="Auto,Auto">
+		    <!-- From node -->
+		    <StackPanel Grid.Column="0" HorizontalAlignment="Center" Spacing="2">
+		      <Ellipse Width="28" Height="28" Name="PreviewFromDot" Fill="#6EAFF8"/>
+		      <TextBlock Name="PreviewFromLabel" Text="Source" FontSize="10"
+		                 HorizontalAlignment="Center" Foreground="{DynamicResource TextMutedFg}"/>
+		    </StackPanel>
+		    <!-- Edge line + label -->
+		    <StackPanel Grid.Column="1" HorizontalAlignment="Center" Spacing="2" Margin="8,0">
+		      <Border Name="PreviewEdgeLine" Height="3" Width="60" CornerRadius="1" Background="#9E9E9E"/>
+		      <TextBlock Name="PreviewEdgeLabel" Text="" FontSize="10"
+		                 HorizontalAlignment="Center" Foreground="{DynamicResource TextMutedFg}"/>
+		    </StackPanel>
+		    <!-- To node -->
+		    <StackPanel Grid.Column="2" HorizontalAlignment="Center" Spacing="2">
+		      <Ellipse Width="28" Height="28" Name="PreviewToDot" Fill="#FF8A65"/>
+		      <TextBlock Name="PreviewToLabel" Text="Target" FontSize="10"
+		                 HorizontalAlignment="Center" Foreground="{DynamicResource TextMutedFg}"/>
+		    </StackPanel>
+		    <!-- Direction radio buttons -->
+		    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal"
+		                HorizontalAlignment="Center" Spacing="8" Margin="0,8,0,0">
+		      <RadioButton Name="RbForward" Content="&#x2192;" GroupName="Dir" IsChecked="True"
+		                   ToolTip.Tip="Forward" FontSize="14" Padding="4,2"/>
+		      <RadioButton Name="RbReverse" Content="&#x2190;" GroupName="Dir"
+		                   ToolTip.Tip="Reverse" FontSize="14" Padding="4,2"/>
+		      <RadioButton Name="RbBidirectional" Content="&#x2194;" GroupName="Dir"
+		                   ToolTip.Tip="Bidirectional" FontSize="14" Padding="4,2"/>
+		      <RadioButton Name="RbUndirected" Content="&#x2014;" GroupName="Dir"
+		                   ToolTip.Tip="Undirected" FontSize="14" Padding="4,2"/>
+		    </StackPanel>
+		  </Grid>
+		</Border>
+
 		<!-- Edge type list -->
-		<ListBox Grid.Row="1"
+		<ListBox Grid.Row="2"
 		         Name="TypeList"
 		         SelectionMode="Single"
 		         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -65,7 +102,7 @@
 		</ListBox>
 
 		<!-- Footer hint -->
-		<TextBlock Grid.Row="2"
+		<TextBlock Grid.Row="3"
 		           Text="1-9 quick-select | Enter confirm | Esc cancel"
 		           FontSize="11"
 		           Foreground="{DynamicResource TextMutedFg}"

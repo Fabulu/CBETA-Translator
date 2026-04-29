@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
@@ -279,9 +280,29 @@ public partial class ResearchGraphWindow : Window
                     UpdateStatusBar();
                     UpdateLeftPanels();
                     UpdateEmptyState();
+                    var btnBackCmb = this.FindControl<Button>("BtnBack");
+                    if (btnBackCmb != null) btnBackCmb.IsVisible = _vm.CanGoBack;
                 }
             };
         }
+
+        // Back button
+        var btnBack = this.FindControl<Button>("BtnBack");
+        if (btnBack != null)
+            btnBack.Click += (_, _) =>
+            {
+                if (_vm == null || !_vm.CanGoBack) return;
+                _vm.GoBack();
+                var viewport = _vm.GetSavedViewport();
+                if (viewport.HasValue)
+                    _canvas?.SetViewport(viewport.Value.zoom, viewport.Value.offsetX, viewport.Value.offsetY);
+                else
+                    _canvas?.FitToView();
+                _canvas?.InvalidateVisual();
+                Title = $"Research Graph \u2014 {_vm.GetCollection().Name ?? _vm.GetCollection().Id}";
+                UpdateStatusBar(); UpdateLeftPanels(); UpdateEmptyState();
+                btnBack.IsVisible = _vm.CanGoBack;
+            };
 
         // Overflow menu
         var btnOverflow = this.FindControl<Button>("BtnOverflow");
@@ -297,6 +318,10 @@ public partial class ResearchGraphWindow : Window
                     _vm?.RunForceDirectedLayout(w, h);
                     _canvas?.InvalidateVisual();
                 }));
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateMenuItem("Export Nodes CSV", () => { _ = ExportNodesCsvAsync(); }));
+                menu.Items.Add(CreateMenuItem("Export Edges CSV", () => { _ = ExportEdgesCsvAsync(); }));
+                menu.Items.Add(CreateMenuItem("Copy Summary", () => { _ = CopySummaryAsync(); }));
                 menu.Open(btnOverflow);
             };
 
@@ -384,6 +409,8 @@ public partial class ResearchGraphWindow : Window
                         _canvas?.InvalidateVisual();
                         UpdateStatusBar(); UpdateLeftPanels(); UpdateEmptyState();
                         Title = $"Research Graph \u2014 {_vm.GetCollection().Name ?? _vm.GetCollection().Id}";
+                        var btnBackDblClick = this.FindControl<Button>("BtnBack");
+                        if (btnBackDblClick != null) btnBackDblClick.IsVisible = _vm.CanGoBack;
                         break;
                 }
             }
@@ -392,7 +419,8 @@ public partial class ResearchGraphWindow : Window
         _canvas.EdgeDropped += async (_, args) =>
         {
             var customTypes = _vm?.GetCollection()?.CustomEdgeTypes;
-            var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType, customTypes);
+            var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType, customTypes,
+                fromTypeName: args.From.Label, toTypeName: args.To.Label);
             var result = await picker.ShowDialog<object?>(this);
             if (result is EdgeTypeDefinition edgeType)
             {
@@ -404,17 +432,53 @@ public partial class ResearchGraphWindow : Window
                         collection.CustomEdgeTypes.Add(edgeType);
                 }
 
+                var fromId = args.From.NodeId;
+                var toId = args.To.NodeId;
+                var fromType = args.From.NodeType;
+                var toType = args.To.NodeType;
+
+                switch (picker.SelectedDirection)
+                {
+                    case EdgeDirection.Reverse:
+                        (fromId, toId) = (toId, fromId);
+                        (fromType, toType) = (toType, fromType);
+                        break;
+                    case EdgeDirection.Bidirectional:
+                        // Create second (reverse) edge after the forward one
+                        break;
+                    case EdgeDirection.Undirected:
+                        // Single edge, but not directional
+                        break;
+                }
+
                 var edge = new ScholarGraphEdge
                 {
                     Id = Guid.NewGuid().ToString("N")[..8],
-                    FromNodeId = args.From.NodeId,
-                    FromNodeType = args.From.NodeType,
-                    ToNodeId = args.To.NodeId,
-                    ToNodeType = args.To.NodeType,
+                    FromNodeId = fromId,
+                    FromNodeType = fromType,
+                    ToNodeId = toId,
+                    ToNodeType = toType,
                     RelationType = edgeType.Id,
                     CreatedUtc = DateTimeOffset.UtcNow
                 };
                 _vm!.ExecuteCommand(new AddEdgeCommand(_vm!, edge));
+
+                // For bidirectional: add the reverse edge too
+                if (picker.SelectedDirection == EdgeDirection.Bidirectional)
+                {
+                    var reverseEdge = new ScholarGraphEdge
+                    {
+                        Id = Guid.NewGuid().ToString("N")[..8],
+                        FromNodeId = toId,
+                        FromNodeType = toType,
+                        ToNodeId = fromId,
+                        ToNodeType = fromType,
+                        RelationType = edgeType.Id,
+                        CreatedUtc = DateTimeOffset.UtcNow
+                    };
+                    _vm.ExecuteCommand(new AddEdgeCommand(_vm, reverseEdge));
+                }
+
                 _canvas.InvalidateVisual();
                 UpdateStatusBar();
                 UpdateLeftPanels();
@@ -943,4 +1007,77 @@ public partial class ResearchGraphWindow : Window
         if (nodeCount != null)
             nodeCount.Text = $"{_vm.NodeCount} nodes, {_vm.EdgeCount} edges";
     }
+
+    private async System.Threading.Tasks.Task ExportNodesCsvAsync()
+    {
+        if (_vm == null) return;
+        var storage = TopLevel.GetTopLevel(this)?.StorageProvider;
+        if (storage == null) return;
+
+        var file = await storage.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export Nodes CSV",
+            DefaultExtension = "csv",
+            FileTypeChoices = new[] { new FilePickerFileType("CSV") { Patterns = new[] { "*.csv" } } },
+            SuggestedFileName = $"{_vm.GetCollection().Name ?? "graph"}-nodes.csv"
+        });
+        if (file == null) return;
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("NodeId,Type,Label,X,Y,Degree");
+        foreach (var n in _vm.Nodes)
+            sb.AppendLine($"\"{EscapeCsv(n.NodeId)}\",\"{n.NodeType}\",\"{EscapeCsv(n.Label)}\",{n.X:F1},{n.Y:F1},{n.Degree}");
+
+        await using var stream = await file.OpenWriteAsync();
+        await using var writer = new System.IO.StreamWriter(stream);
+        await writer.WriteAsync(sb.ToString());
+    }
+
+    private async System.Threading.Tasks.Task ExportEdgesCsvAsync()
+    {
+        if (_vm == null) return;
+        var storage = TopLevel.GetTopLevel(this)?.StorageProvider;
+        if (storage == null) return;
+
+        var file = await storage.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export Edges CSV",
+            DefaultExtension = "csv",
+            FileTypeChoices = new[] { new FilePickerFileType("CSV") { Patterns = new[] { "*.csv" } } },
+            SuggestedFileName = $"{_vm.GetCollection().Name ?? "graph"}-edges.csv"
+        });
+        if (file == null) return;
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("From,To,RelationType,IsDirectional");
+        foreach (var e in _vm.Edges)
+            sb.AppendLine($"\"{EscapeCsv(e.From.NodeId)}\",\"{EscapeCsv(e.To.NodeId)}\",\"{EscapeCsv(e.RelationType)}\",{e.IsDirectional}");
+
+        await using var stream = await file.OpenWriteAsync();
+        await using var writer = new System.IO.StreamWriter(stream);
+        await writer.WriteAsync(sb.ToString());
+    }
+
+    private async System.Threading.Tasks.Task CopySummaryAsync()
+    {
+        if (_vm == null) return;
+        var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+        if (clipboard == null) return;
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine($"Research Graph: {_vm.GetCollection().Name ?? _vm.GetCollection().Id}");
+        sb.AppendLine($"Nodes: {_vm.NodeCount}  Edges: {_vm.EdgeCount}  Quality: {_vm.QualityScore:F0}%");
+        sb.AppendLine();
+        sb.AppendLine("--- Nodes ---");
+        foreach (var n in _vm.Nodes)
+            sb.AppendLine($"  [{n.NodeType}] {n.Label} (degree {n.Degree})");
+        sb.AppendLine();
+        sb.AppendLine("--- Edges ---");
+        foreach (var e in _vm.Edges)
+            sb.AppendLine($"  {e.From.Label} --[{e.RelationType}]--> {e.To.Label}");
+
+        await clipboard.SetTextAsync(sb.ToString());
+    }
+
+    private static string EscapeCsv(string s) => s.Replace("\"", "\"\"");
 }

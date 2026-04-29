@@ -14,12 +14,7 @@ namespace ReadZen.Tests.Views;
 /// node brushes, cached pens, node radius, label truncation,
 /// shadow alpha, performance guard, and window title.
 /// </summary>
-public class AvaloniaFixture
-{
-    public AvaloniaFixture() { AvaloniaTestInfrastructure.EnsureInitialized(); }
-}
-
-public class ResearchGraphVisualTests : IClassFixture<AvaloniaFixture>
+public class ResearchGraphVisualTests
 {
 
     // Helper: read a private static field via reflection

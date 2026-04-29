@@ -16,10 +16,7 @@ namespace ReadZen.Tests.Views;
 
 public class ReadableTabViewInteractionTests
 {
-    static ReadableTabViewInteractionTests()
-    {
-        AvaloniaTestInfrastructure.EnsureInitialized();
-    }
+    // Avalonia initialization handled by ModuleInit.cs [ModuleInitializer]
 
     private static ReadableTabView CreateViewShell(out ReadableTabViewModel vm)
     {

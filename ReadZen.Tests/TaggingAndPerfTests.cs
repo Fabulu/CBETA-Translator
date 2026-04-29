@@ -14,10 +14,7 @@ namespace ReadZen.Tests;
 
 public class TaggingAndPerfTests
 {
-    static TaggingAndPerfTests()
-    {
-        AvaloniaTestInfrastructure.EnsureInitialized();
-    }
+    // Avalonia initialization handled by ModuleInit.cs [ModuleInitializer]
 
     // ---- Helper: build a minimal RenderedDocument ----
 

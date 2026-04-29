@@ -13,10 +13,7 @@ namespace ReadZen.Tests.ViewModels;
 
 public class SearchTabViewModelTests
 {
-    static SearchTabViewModelTests()
-    {
-        AvaloniaTestInfrastructure.EnsureInitialized();
-    }
+    // Avalonia initialization handled by ModuleInit.cs [ModuleInitializer]
 
     private static SearchTabViewModel MakeVm()
     {

@@ -16,10 +16,7 @@ namespace ReadZen.Tests.ViewModels;
 /// </summary>
 public class SearchTabViewModelFilterTests
 {
-    static SearchTabViewModelFilterTests()
-    {
-        AvaloniaTestInfrastructure.EnsureInitialized();
-    }
+    // Avalonia initialization handled by ModuleInit.cs [ModuleInitializer]
 
     // ======================================================================
     // Helpers
