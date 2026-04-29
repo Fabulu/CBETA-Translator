@@ -30,6 +30,10 @@ public class ResearchGraphCanvasControl : Control
     private Point _edgePreviewEnd;
     private ResearchGraphEdgeVm? _hoverEdge;
 
+    // Physics simulation
+    private DispatcherTimer? _physicsTimer;
+    private bool _physicsEnabled = true;
+
     // Entry animation
     private double _entryProgress = 0;
     private DateTime _entryStart;
@@ -84,6 +88,7 @@ public class ResearchGraphCanvasControl : Control
             Avalonia.Threading.Dispatcher.UIThread.Post(() => StartEntryAnimation(),
                 Avalonia.Threading.DispatcherPriority.Loaded);
         }
+        if (_physicsEnabled) StartPhysics();
     }
 
     public override void Render(DrawingContext context)
@@ -546,7 +551,11 @@ public class ResearchGraphCanvasControl : Control
         }
 
         _isPanning = false;
-        _dragNode = null;
+        if (_dragNode != null)
+        {
+            _dragNode.IsPinned = true;
+            _dragNode = null;
+        }
         e.Pointer.Capture(null);
     }
 
@@ -607,8 +616,108 @@ public class ResearchGraphCanvasControl : Control
 
     private static double EaseOutCubic(double t) => 1 - Math.Pow(1 - t, 3);
 
+    // --- Physics simulation ---
+
+    /// <summary>
+    /// Gets or sets whether the continuous physics simulation is active.
+    /// </summary>
+    public bool IsPhysicsEnabled
+    {
+        get => _physicsEnabled;
+        set
+        {
+            _physicsEnabled = value;
+            if (value) StartPhysics();
+            else StopPhysics();
+        }
+    }
+
+    private void StartPhysics()
+    {
+        if (_physicsTimer != null) return;
+        _physicsTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(33) };
+        _physicsTimer.Tick += PhysicsTick;
+        _physicsTimer.Start();
+    }
+
+    private void StopPhysics()
+    {
+        if (_physicsTimer != null)
+        {
+            _physicsTimer.Stop();
+            _physicsTimer.Tick -= PhysicsTick;
+            _physicsTimer = null;
+        }
+    }
+
+    private void PhysicsTick(object? sender, EventArgs e)
+    {
+        if (_vm == null || _vm.Nodes.Count <= 1 || _vm.Nodes.Count > 300) return;
+
+        var nodes = _vm.Nodes;
+        int N = nodes.Count;
+
+        double R = Math.Sqrt(N) * 80;
+        double k = Math.Sqrt((R * R * 4) / N);
+        double alpha = 0.05;
+
+        // Center of mass for gravity
+        double cx = 0, cy = 0;
+        foreach (var n in nodes) { cx += n.X; cy += n.Y; }
+        cx /= N; cy /= N;
+
+        // Dampen existing velocities (inter-frame decay for subtle wobble)
+        foreach (var n in nodes) { n.Vx *= 0.85; n.Vy *= 0.85; }
+
+        // Repulsion (all pairs)
+        for (int i = 0; i < N; i++)
+        {
+            if (nodes[i].IsPinned || nodes[i] == _dragNode) continue;
+            for (int j = 0; j < N; j++)
+            {
+                if (i == j) continue;
+                double dx = nodes[i].X - nodes[j].X;
+                double dy = nodes[i].Y - nodes[j].Y;
+                double dist = Math.Sqrt(dx * dx + dy * dy) + 0.01;
+                double force = (k * k) / dist * alpha;
+                nodes[i].Vx += (dx / dist) * force;
+                nodes[i].Vy += (dy / dist) * force;
+            }
+        }
+
+        // Gravity toward center of mass
+        foreach (var n in nodes)
+        {
+            if (n.IsPinned || n == _dragNode) continue;
+            n.Vx -= (n.X - cx) * 0.005;
+            n.Vy -= (n.Y - cy) * 0.005;
+        }
+
+        // Apply with max displacement clamp (damping already applied above)
+        bool moved = false;
+        foreach (var n in nodes)
+        {
+            if (n.IsPinned || n == _dragNode) continue;
+            double disp = Math.Sqrt(n.Vx * n.Vx + n.Vy * n.Vy);
+            if (disp > 2.0)
+            {
+                n.Vx = n.Vx / disp * 2.0;
+                n.Vy = n.Vy / disp * 2.0;
+            }
+            if (disp > 0.01)
+            {
+                n.X += n.Vx;
+                n.Y += n.Vy;
+                moved = true;
+            }
+        }
+
+        if (moved) InvalidateVisual();
+    }
+
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
+        StopPhysics();
         _entryTimer?.Stop();
         _entryTimer = null;
         base.OnDetachedFromVisualTree(e);

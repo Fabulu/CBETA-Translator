@@ -21,6 +21,7 @@ public class ResearchGraphNode
     public int Degree { get; set; }
     public string ColorHex { get; set; } = "#6EAFF8";
     public object? SourceData { get; set; }
+    public bool IsPinned { get; set; }
 }
 
 public class ResearchGraphEdgeVm
