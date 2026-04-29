@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ReadZen.App.ViewModels;
@@ -31,11 +32,11 @@ public partial class CollectionTreeNode : ObservableObject
             ? new string('\u2605', Importance) + new string('\u2606', 5 - Importance)
             : "";
 
-    /// <summary>Returns a color hex string based on reading status.</summary>
-    public string StatusDotColor => ReadingStatus switch
+    /// <summary>Returns a Color based on reading status.</summary>
+    public Color StatusDotColor => ReadingStatus switch
     {
-        "read" => "#4CAF50",
-        "skimmed" => "#FFC107",
-        _ => "#9E9E9E"
+        "read" => Color.Parse("#4CAF50"),
+        "skimmed" => Color.Parse("#FFC107"),
+        _ => Color.Parse("#9E9E9E")
     };
 }
