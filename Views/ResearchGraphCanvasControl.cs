@@ -32,7 +32,7 @@ public class ResearchGraphCanvasControl : Control
 
     // Physics simulation
     private DispatcherTimer? _physicsTimer;
-    private bool _physicsEnabled = true;
+    private bool _physicsEnabled = false;
 
     // Entry animation
     private double _entryProgress = 0;
