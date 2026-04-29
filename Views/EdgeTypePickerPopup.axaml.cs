@@ -13,6 +13,17 @@ namespace ReadZen.App.Views;
 public partial class EdgeTypePickerPopup : Window
 {
     private readonly List<EdgeTypeItemVm> _items = new();
+    private readonly ScholarNodeType _fromType;
+    private readonly ScholarNodeType _toType;
+
+    /// <summary>
+    /// Sentinel item representing "Custom..." at the bottom of the list.
+    /// </summary>
+    private static readonly EdgeTypeDefinition CustomSentinel = new()
+    {
+        Id = "__custom__", DisplayName = "Custom...", Description = "Define a custom edge type",
+        ColorHex = "#9E9E9E", IsBuiltIn = false, IsDirectional = true
+    };
 
     /// <summary>
     /// The edge type selected by the user, or null if cancelled.
@@ -24,9 +35,13 @@ public partial class EdgeTypePickerPopup : Window
         InitializeComponent();
     }
 
-    public EdgeTypePickerPopup(ScholarNodeType fromType, ScholarNodeType toType) : this()
+    public EdgeTypePickerPopup(ScholarNodeType fromType, ScholarNodeType toType,
+        IEnumerable<EdgeTypeDefinition>? customTypes = null) : this()
     {
-        var validTypes = EdgeTypeRegistry.GetValidTypes(fromType, toType);
+        _fromType = fromType;
+        _toType = toType;
+
+        var validTypes = EdgeTypeRegistry.GetValidTypes(fromType, toType, customTypes);
         for (int i = 0; i < validTypes.Count; i++)
         {
             _items.Add(new EdgeTypeItemVm
@@ -39,12 +54,15 @@ public partial class EdgeTypePickerPopup : Window
             });
         }
 
-        if (_items.Count == 0)
+        // Always add the "Custom..." sentinel at the end
+        _items.Add(new EdgeTypeItemVm
         {
-            // No valid types for this pair -- defer close until after ShowDialog
-            Opened += (_, _) => Close(null);
-            return;
-        }
+            Definition = CustomSentinel,
+            DisplayName = "Custom\u2026",
+            Description = "Define a custom edge type",
+            ColorHex = new SolidColorBrush(Color.Parse("#9E9E9E")),
+            ShortcutHint = ""
+        });
 
         var listBox = this.FindControl<ListBox>("TypeList");
         if (listBox != null)
@@ -73,7 +91,7 @@ public partial class EdgeTypePickerPopup : Window
 
         if (e.Key == Key.Enter || e.Key == Key.Return)
         {
-            ConfirmSelection();
+            _ = ConfirmSelectionAsync();
             e.Handled = true;
             return;
         }
@@ -112,16 +130,29 @@ public partial class EdgeTypePickerPopup : Window
 
     private void OnListDoubleTapped(object? sender, Avalonia.Input.TappedEventArgs e)
     {
-        ConfirmSelection();
+        _ = ConfirmSelectionAsync();
     }
 
-    private void ConfirmSelection()
+    private async System.Threading.Tasks.Task ConfirmSelectionAsync()
     {
         var listBox = this.FindControl<ListBox>("TypeList");
         if (listBox?.SelectedItem is EdgeTypeItemVm item)
         {
-            SelectedType = item.Definition;
-            Close(SelectedType);
+            if (item.Definition.Id == CustomSentinel.Id)
+            {
+                var dialog = new CustomEdgeTypeDialog(_fromType, _toType);
+                var result = await dialog.ShowDialog<EdgeTypeDefinition?>(this);
+                if (result != null)
+                {
+                    SelectedType = result;
+                    Close(SelectedType);
+                }
+            }
+            else
+            {
+                SelectedType = item.Definition;
+                Close(SelectedType);
+            }
         }
     }
 }
