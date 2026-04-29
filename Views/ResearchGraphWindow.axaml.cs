@@ -124,6 +124,7 @@ public partial class ResearchGraphWindow : Window
                     .Distinct().OrderBy(n => n).ToList();
                 if (masterNames.Count == 0) return;
                 var dialog = new MasterPickerDialog(masterNames);
+                dialog.Title = "Add Master to Graph";
                 var result = await dialog.ShowDialog<string?>(this);
                 if (!string.IsNullOrEmpty(result) && !_vm.Nodes.Any(n => n.NodeId == $"master:{result}"))
                 {
@@ -360,10 +361,19 @@ public partial class ResearchGraphWindow : Window
 
         _canvas.EdgeDropped += async (_, args) =>
         {
-            var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType);
+            var customTypes = _vm?.GetCollection()?.CustomEdgeTypes;
+            var picker = new EdgeTypePickerPopup(args.From.NodeType, args.To.NodeType, customTypes);
             var result = await picker.ShowDialog<object?>(this);
             if (result is EdgeTypeDefinition edgeType)
             {
+                // If user created a custom type, persist it to the collection
+                if (!edgeType.IsBuiltIn && _vm != null)
+                {
+                    var collection = _vm.GetCollection();
+                    if (!collection.CustomEdgeTypes.Any(t => t.Id == edgeType.Id))
+                        collection.CustomEdgeTypes.Add(edgeType);
+                }
+
                 var edge = new ScholarGraphEdge
                 {
                     Id = Guid.NewGuid().ToString("N")[..8],
