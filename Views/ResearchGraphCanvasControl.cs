@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Threading;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
 using System;
@@ -28,6 +29,11 @@ public class ResearchGraphCanvasControl : Control
     private ResearchGraphNode? _edgeSource;
     private Point _edgePreviewEnd;
     private ResearchGraphEdgeVm? _hoverEdge;
+
+    // Entry animation
+    private double _entryProgress = 0;
+    private DateTime _entryStart;
+    private DispatcherTimer? _entryTimer;
 
     // Node type colors
     private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
@@ -64,7 +70,7 @@ public class ResearchGraphCanvasControl : Control
     public void SetViewModel(ResearchGraphViewModel vm)
     {
         _vm = vm;
-        InvalidateVisual();
+        StartEntryAnimation();
     }
 
     public override void Render(DrawingContext context)
@@ -112,6 +118,9 @@ public class ResearchGraphCanvasControl : Control
     private void DrawNode(DrawingContext ctx, ResearchGraphNode node)
     {
         double r = GetNodeRadius(node);
+        double entryScale = EaseOutCubic(_entryProgress);
+        r *= entryScale;
+        if (r < 0.5) return; // skip tiny nodes during animation start
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
         IPen pen;
@@ -168,8 +177,8 @@ public class ResearchGraphCanvasControl : Control
                 break;
         }
 
-        // Label with shadow outline (only at sufficient zoom)
-        if (_zoom >= 0.5)
+        // Label with shadow outline (only at sufficient zoom and after entry animation starts)
+        if (_zoom >= 0.5 && _entryProgress > 0.3)
         {
             var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
             var labelText = node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label;
@@ -215,7 +224,7 @@ public class ResearchGraphCanvasControl : Control
         {
             for (int i = 0; i < 6; i++)
             {
-                double angle = Math.PI / 3 * i - Math.PI / 6;
+                double angle = Math.PI / 3 * i - Math.PI / 2;
                 var pt = new Point(center.X + size * Math.Cos(angle), center.Y + size * Math.Sin(angle));
                 if (i == 0) gc.BeginFigure(pt, true);
                 else gc.LineTo(pt);
@@ -236,6 +245,25 @@ public class ResearchGraphCanvasControl : Control
         bool isHovered = edge == _hoverEdge;
         double thickness = isHovered ? 3.0 : 1.5;
 
+        // Ego-aware alpha: 0.6 default, 0.8 ego-relevant, 0.35 non-relevant
+        byte alpha;
+        bool hasEgo = _vm!.SelectedNode != null;
+        if (isHovered)
+            alpha = 230;
+        else if (!hasEgo)
+            alpha = 153; // 0.6 * 255
+        else
+        {
+            string egoId = _vm.SelectedNode!.NodeId;
+            bool relevant = edge.From.NodeId == egoId || edge.To.NodeId == egoId;
+            alpha = relevant ? (byte)204 : (byte)89; // 0.8 vs 0.35
+        }
+        var alphaColor = Color.FromArgb(alpha, edgeColor.R, edgeColor.G, edgeColor.B);
+
+        // Entry animation fade
+        double entryScale = EaseOutCubic(_entryProgress);
+        var finalColor = Color.FromArgb((byte)(alphaColor.A * entryScale), alphaColor.R, alphaColor.G, alphaColor.B);
+
         // Glow layer for hovered edge (wide, semi-transparent)
         if (isHovered)
         {
@@ -244,7 +272,7 @@ public class ResearchGraphCanvasControl : Control
             ctx.DrawLine(glowPen, from, to);
         }
 
-        var brush = new SolidColorBrush(edgeColor);
+        var brush = new SolidColorBrush(finalColor);
         var pen = new Pen(brush, thickness);
 
         // Non-directional edges: dashed
@@ -255,14 +283,25 @@ public class ResearchGraphCanvasControl : Control
 
         ctx.DrawLine(pen, from, to);
 
-        // Edge type label at midpoint (only on hover)
+        // Edge type label: show on hover OR on ego-relevant edges at sufficient zoom
+        bool showLabel = false;
         if (isHovered && !string.IsNullOrEmpty(edge.RelationType))
+            showLabel = true;
+        else if (hasEgo && _zoom >= 0.7 && !string.IsNullOrEmpty(edge.RelationType))
+        {
+            string egoId = _vm.SelectedNode!.NodeId;
+            if (edge.From.NodeId == egoId || edge.To.NodeId == egoId)
+                showLabel = true;
+        }
+
+        if (showLabel)
         {
             double midX = (from.X + to.X) / 2;
             double midY = (from.Y + to.Y) / 2;
+            var labelColor = new SolidColorBrush(Color.FromArgb((byte)(isHovered ? 255 : 200), edgeColor.R, edgeColor.G, edgeColor.B));
             var labelFt = new FormattedText(
                 edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                new Typeface("Segoe UI"), 9, new SolidColorBrush(edgeColor));
+                new Typeface("Segoe UI"), 9, labelColor);
             // Shadow behind label for readability
             var bgFt = new FormattedText(
                 edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
@@ -551,5 +590,34 @@ public class ResearchGraphCanvasControl : Control
         _offsetY = viewHeight / 2.0 - cy * _zoom;
 
         InvalidateVisual();
+    }
+
+    private static double EaseOutCubic(double t) => 1 - Math.Pow(1 - t, 3);
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        _entryTimer?.Stop();
+        _entryTimer = null;
+        base.OnDetachedFromVisualTree(e);
+    }
+
+    private void StartEntryAnimation()
+    {
+        _entryProgress = 0;
+        _entryStart = DateTime.UtcNow;
+        _entryTimer?.Stop();
+        _entryTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
+        _entryTimer.Tick += (_, _) =>
+        {
+            double elapsed = (DateTime.UtcNow - _entryStart).TotalMilliseconds;
+            _entryProgress = Math.Min(elapsed / 400.0, 1.0);
+            InvalidateVisual();
+            if (_entryProgress >= 1.0)
+            {
+                _entryProgress = 1.0;
+                _entryTimer.Stop();
+            }
+        };
+        _entryTimer.Start();
     }
 }

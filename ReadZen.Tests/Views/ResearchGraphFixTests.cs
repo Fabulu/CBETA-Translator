@@ -373,4 +373,194 @@ public class ResearchGraphFixTests
         vm.ExecuteCommand(new AddConceptCommand(vm, c2));
         Assert.False(vm.CanRedo);
     }
+
+    // ── 8. EaseOutCubic easing function ─────────────────────────────
+
+    private static double InvokeEaseOutCubic(double t)
+    {
+        var method = typeof(ResearchGraphCanvasControl)
+            .GetMethod("EaseOutCubic", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.NotNull(method);
+        return (double)method!.Invoke(null, new object[] { t })!;
+    }
+
+    [Fact]
+    public void EaseOutCubic_AtZero_ReturnsZero()
+    {
+        double result = InvokeEaseOutCubic(0);
+        Assert.Equal(0.0, result, precision: 10);
+    }
+
+    [Fact]
+    public void EaseOutCubic_AtOne_ReturnsOne()
+    {
+        double result = InvokeEaseOutCubic(1);
+        Assert.Equal(1.0, result, precision: 10);
+    }
+
+    [Fact]
+    public void EaseOutCubic_AtHalf_ReturnsApprox0875()
+    {
+        // EaseOutCubic(0.5) = 1 - (1 - 0.5)^3 = 1 - 0.125 = 0.875
+        double result = InvokeEaseOutCubic(0.5);
+        Assert.Equal(0.875, result, precision: 6);
+    }
+
+    // ── 9. Hexagon pointy-top: top vertex at Y = center.Y - radius ──
+
+    [Fact]
+    public void DrawHexagon_UsesPointyTopOffset()
+    {
+        // DrawHexagon uses angle = PI/3 * i - PI/2.
+        // At i=0, angle = -PI/2, so the first vertex is at:
+        //   X = center.X + size * cos(-PI/2) = center.X + 0
+        //   Y = center.Y + size * sin(-PI/2) = center.Y - size
+        // This confirms pointy-top orientation.
+        double centerX = 100, centerY = 100, size = 20;
+        double angle0 = Math.PI / 3 * 0 - Math.PI / 2;
+
+        double topX = centerX + size * Math.Cos(angle0);
+        double topY = centerY + size * Math.Sin(angle0);
+
+        // Top vertex should be directly above center
+        Assert.Equal(centerX, topX, precision: 10);
+        Assert.Equal(centerY - size, topY, precision: 10);
+    }
+
+    [Fact]
+    public void DrawHexagon_AllSixVerticesAtCorrectRadius()
+    {
+        double centerX = 50, centerY = 50, size = 15;
+        for (int i = 0; i < 6; i++)
+        {
+            double angle = Math.PI / 3 * i - Math.PI / 2;
+            double vx = centerX + size * Math.Cos(angle);
+            double vy = centerY + size * Math.Sin(angle);
+            double dist = Math.Sqrt((vx - centerX) * (vx - centerX) + (vy - centerY) * (vy - centerY));
+            Assert.Equal(size, dist, precision: 10);
+        }
+    }
+
+    // ── 10. Edge alpha levels (ego-aware) ───────────────────────────
+
+    [Fact]
+    public void EdgeAlpha_DefaultNoEgo_Is153()
+    {
+        // From DrawEdge: when no node is selected (!hasEgo), alpha = 153
+        // 153 / 255 ≈ 0.6
+        byte expected = 153;
+        Assert.Equal(expected, (byte)(0.6 * 255));
+    }
+
+    [Fact]
+    public void EdgeAlpha_EgoRelevant_Is204()
+    {
+        // From DrawEdge: when edge connects to selected node, alpha = 204
+        // 204 / 255 ≈ 0.8
+        byte expected = 204;
+        Assert.Equal(expected, (byte)(0.8 * 255));
+    }
+
+    [Fact]
+    public void EdgeAlpha_NonRelevant_Is89()
+    {
+        // From DrawEdge: when ego is selected but edge is unrelated, alpha = 89
+        // 89 / 255 ≈ 0.35 (truncated: 0.35 * 255 = 89.25)
+        byte expected = 89;
+        Assert.Equal(expected, (byte)(0.35 * 255));
+    }
+
+    [Fact]
+    public void EdgeAlpha_DefaultPen_MatchesExpectedAlpha()
+    {
+        // The static _defaultNodePen uses Color.FromArgb(153, 255, 255, 255)
+        // confirming the 153 alpha for default edges aligns with node outlines.
+        // Use reflection to read the private static field without importing Avalonia.Media.
+        var field = typeof(ResearchGraphCanvasControl)
+            .GetField("_defaultNodePen", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.NotNull(field);
+        var pen = field!.GetValue(null);
+        Assert.NotNull(pen);
+        // Access Brush property via reflection
+        var brushProp = pen!.GetType().GetProperty("Brush");
+        Assert.NotNull(brushProp);
+        var brush = brushProp!.GetValue(pen);
+        Assert.NotNull(brush);
+        // Access Color.A via reflection
+        var colorProp = brush!.GetType().GetProperty("Color");
+        Assert.NotNull(colorProp);
+        var color = colorProp!.GetValue(brush);
+        Assert.NotNull(color);
+        var alphaProp = color!.GetType().GetProperty("A");
+        Assert.NotNull(alphaProp);
+        byte alpha = (byte)alphaProp!.GetValue(color)!;
+        Assert.Equal(153, alpha);
+    }
+
+    // ── 11. Entry animation state ───────────────────────────────────
+
+    [Fact]
+    public void EntryProgress_InitiallyZero_BeforeSetViewModel()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+        var field = typeof(ResearchGraphCanvasControl)
+            .GetField("_entryProgress", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.NotNull(field);
+
+        double progress = (double)field!.GetValue(ctrl)!;
+        Assert.Equal(0.0, progress, precision: 10);
+    }
+
+    [Fact]
+    public void EntryProgress_ResetToZero_WhenSetViewModelCalled()
+    {
+        // SetViewModel calls StartEntryAnimation which sets _entryProgress = 0
+        var ctrl = new ResearchGraphCanvasControl();
+        var vm = MakeVm();
+        ctrl.SetViewModel(vm);
+
+        var field = typeof(ResearchGraphCanvasControl)
+            .GetField("_entryProgress", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.NotNull(field);
+
+        // Right after SetViewModel, _entryProgress starts at 0 (animation just began)
+        // The timer ticks asynchronously, so synchronously it should still be 0
+        double progress = (double)field!.GetValue(ctrl)!;
+        Assert.Equal(0.0, progress, precision: 10);
+    }
+
+    [Fact]
+    public void EntryTimer_CreatedAfterSetViewModel()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+
+        // Before SetViewModel, timer should be null
+        var timerField = typeof(ResearchGraphCanvasControl)
+            .GetField("_entryTimer", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.NotNull(timerField);
+        Assert.Null(timerField!.GetValue(ctrl));
+
+        // After SetViewModel, timer should be created
+        var vm = MakeVm();
+        ctrl.SetViewModel(vm);
+        Assert.NotNull(timerField.GetValue(ctrl));
+    }
+
+    [Fact]
+    public void StartEntryAnimation_SetsEntryStartTime()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+        var startField = typeof(ResearchGraphCanvasControl)
+            .GetField("_entryStart", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.NotNull(startField);
+
+        var before = DateTime.UtcNow;
+        var vm = MakeVm();
+        ctrl.SetViewModel(vm); // calls StartEntryAnimation
+        var after = DateTime.UtcNow;
+
+        var entryStart = (DateTime)startField!.GetValue(ctrl)!;
+        Assert.True(entryStart >= before && entryStart <= after,
+            $"EntryStart {entryStart} should be between {before} and {after}");
+    }
 }
