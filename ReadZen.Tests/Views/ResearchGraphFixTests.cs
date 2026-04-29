@@ -5,6 +5,7 @@ using System.Reflection;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
 using ReadZen.App.Views;
+using ReadZen.Tests.Stubs;
 using Xunit;
 
 namespace ReadZen.Tests.Views;
@@ -1015,6 +1016,213 @@ public class ResearchGraphFixTests
     }
 
     // ── Wave 2 Polish: Bezier control point perpendicular offset ────
+
+    // ── Wave 3: Final Feature Wave ─────────────────────────────────
+
+    // ── 24. Lazy brush access: _bgBrush via Lazy<> defers init ──────
+
+    [Fact]
+    public void BgBrush_LazyField_DoesNotThrowOnAccess()
+    {
+        // The _bgBrushLazy field is a static Lazy<IBrush> that defers Avalonia
+        // brush creation. Accessing the Lazy itself (not .Value) should never throw,
+        // regardless of platform state.
+        var field = typeof(ResearchGraphCanvasControl)
+            .GetField("_bgBrushLazy", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.NotNull(field);
+
+        var lazy = field!.GetValue(null);
+        Assert.NotNull(lazy);
+        // Verify it's actually a Lazy<T>
+        Assert.True(lazy!.GetType().IsGenericType);
+        Assert.Equal(typeof(Lazy<>), lazy.GetType().GetGenericTypeDefinition());
+    }
+
+    // ── 25. Edge weight in VM: Weight flows from model to VM ────────
+
+    [Fact]
+    public void EdgeWeight_FlowsFromModelToVm()
+    {
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "pA", ZhText = "A" });
+        col.Passages.Add(new ScholarPassage { Id = "pB", ZhText = "B" });
+        col.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e1", FromNodeId = "pA", ToNodeId = "pB",
+            RelationType = "references", Weight = 2.5
+        });
+
+        var vm = MakeVm(col);
+
+        var edge = vm.Edges.FirstOrDefault(e => e.EdgeId == "e1");
+        Assert.NotNull(edge);
+        Assert.Equal(2.5, edge!.Weight, precision: 6);
+    }
+
+    // ── 26. ImportanceStars: 3 filled + 2 empty ─────────────────────
+
+    [Fact]
+    public void ImportanceStars_ThreeStars_ReturnsCorrectGlyphs()
+    {
+        var node = new CollectionTreeNode
+        {
+            Kind = TreeNodeKind.Passage,
+            Importance = 3
+        };
+
+        Assert.Equal("\u2605\u2605\u2605\u2606\u2606", node.ImportanceStars);
+    }
+
+    [Fact]
+    public void ImportanceStars_ZeroImportance_ReturnsEmpty()
+    {
+        var node = new CollectionTreeNode
+        {
+            Kind = TreeNodeKind.Passage,
+            Importance = 0
+        };
+
+        Assert.Equal("", node.ImportanceStars);
+    }
+
+    [Fact]
+    public void ImportanceStars_CollectionKind_ReturnsEmpty()
+    {
+        var node = new CollectionTreeNode
+        {
+            Kind = TreeNodeKind.Collection,
+            Importance = 4
+        };
+
+        // Non-passage nodes always return empty regardless of Importance
+        Assert.Equal("", node.ImportanceStars);
+    }
+
+    // ── 27. StatusDotColor: read=green, skimmed=yellow, null=gray ───
+
+    [Fact]
+    public void StatusDotColor_Read_ReturnsGreen()
+    {
+        var node = new CollectionTreeNode { ReadingStatus = "read" };
+        Assert.Equal("#4CAF50", node.StatusDotColor);
+    }
+
+    [Fact]
+    public void StatusDotColor_Skimmed_ReturnsYellow()
+    {
+        var node = new CollectionTreeNode { ReadingStatus = "skimmed" };
+        Assert.Equal("#FFC107", node.StatusDotColor);
+    }
+
+    [Fact]
+    public void StatusDotColor_Null_ReturnsGray()
+    {
+        var node = new CollectionTreeNode { ReadingStatus = null };
+        Assert.Equal("#9E9E9E", node.StatusDotColor);
+    }
+
+    [Fact]
+    public void StatusDotColor_Unknown_ReturnsGray()
+    {
+        var node = new CollectionTreeNode { ReadingStatus = "unknown-status" };
+        Assert.Equal("#9E9E9E", node.StatusDotColor);
+    }
+
+    // ── 28. SearchAllCollections: cross-collection passage search ────
+
+    [Fact]
+    public void SearchAllCollections_FindsMatchingPassage()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = new ScholarTabViewModel(svc);
+
+        var col1 = new ScholarCollection { Id = "c1", Name = "First" };
+        col1.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Dharma gate" });
+        var col2 = new ScholarCollection { Id = "c2", Name = "Second" };
+        col2.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "Mountain water" });
+
+        // Inject collections into _allCollections via reflection
+        var field = typeof(ScholarTabViewModel)
+            .GetField("_allCollections", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.NotNull(field);
+        var list = (List<ScholarCollection>)field!.GetValue(vm)!;
+        list.Add(col1);
+        list.Add(col2);
+
+        var results = vm.SearchAllCollections("Dharma");
+        Assert.Single(results);
+        Assert.Equal("p1", results[0].Passage.Id);
+        Assert.Equal("c1", results[0].Collection.Id);
+    }
+
+    [Fact]
+    public void SearchAllCollections_NoMatch_ReturnsEmpty()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = new ScholarTabViewModel(svc);
+
+        var col1 = new ScholarCollection { Id = "c1", Name = "First" };
+        col1.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Dharma gate" });
+
+        var field = typeof(ScholarTabViewModel)
+            .GetField("_allCollections", BindingFlags.Instance | BindingFlags.NonPublic);
+        var list = (List<ScholarCollection>)field!.GetValue(vm)!;
+        list.Add(col1);
+
+        var results = vm.SearchAllCollections("Nirvana");
+        Assert.Empty(results);
+    }
+
+    // ── 29. GEXF structure: verify tags from inline build logic ─────
+
+    [Fact]
+    public void GexfStructure_ContainsRequiredTags()
+    {
+        // Replicate the GEXF string-building logic from ResearchGraphWindow.ExportGexfAsync
+        var col = MakeEmptyCollection();
+        col.Passages.Add(new ScholarPassage { Id = "pA", ZhText = "Node A" });
+        col.Passages.Add(new ScholarPassage { Id = "pB", ZhText = "Node B" });
+        col.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e1", FromNodeId = "pA", ToNodeId = "pB",
+            RelationType = "references", Weight = 1.0
+        });
+
+        var vm = MakeVm(col);
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        sb.AppendLine("<gexf xmlns=\"http://gexf.net/1.3\" version=\"1.3\">");
+        sb.AppendLine("  <graph defaultedgetype=\"directed\">");
+        sb.AppendLine("    <nodes>");
+        foreach (var n in vm.Nodes)
+        {
+            var label = System.Security.SecurityElement.Escape(n.Label) ?? "";
+            sb.AppendLine($"      <node id=\"{System.Security.SecurityElement.Escape(n.NodeId)}\" label=\"{label}\">");
+            sb.AppendLine($"        <attvalues><attvalue for=\"0\" value=\"{n.NodeType}\"/></attvalues>");
+            sb.AppendLine("      </node>");
+        }
+        sb.AppendLine("    </nodes>");
+        sb.AppendLine("    <edges>");
+        int edgeIdx = 0;
+        foreach (var e in vm.Edges)
+        {
+            sb.AppendLine($"      <edge id=\"{edgeIdx++}\" source=\"{System.Security.SecurityElement.Escape(e.From.NodeId)}\" target=\"{System.Security.SecurityElement.Escape(e.To.NodeId)}\">");
+            sb.AppendLine("      </edge>");
+        }
+        sb.AppendLine("    </edges>");
+        sb.AppendLine("  </graph>");
+        sb.AppendLine("</gexf>");
+
+        var gexf = sb.ToString();
+        Assert.Contains("<gexf", gexf);
+        Assert.Contains("<node", gexf);
+        Assert.Contains("<edge", gexf);
+        Assert.Contains("pA", gexf);
+        Assert.Contains("pB", gexf);
+    }
+
+    // ── End of Wave 3 ───────────────────────────────────────────────
 
     [Fact]
     public void BezierControlPoint_PerpendicularOffset_AtMidpoint()

@@ -336,6 +336,8 @@ public partial class ResearchGraphWindow : Window
                 menu.Items.Add(CreateMenuItem("Copy Summary", () => { _ = CopySummaryAsync(); }));
                 menu.Items.Add(new Separator());
                 menu.Items.Add(CreateMenuItem("Copy Screenshot", () => { _ = CopyScreenshotAsync(); }));
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateMenuItem("Export GEXF", () => { _ = ExportGexfAsync(); }));
                 menu.Open(btnOverflow);
             };
 
@@ -814,6 +816,39 @@ public partial class ResearchGraphWindow : Window
 
             // Common actions for all nodes
             menu.Items.Add(new Separator());
+            menu.Items.Add(CreateMenuItem("Add Note", async () =>
+            {
+                var collection = _vm.GetCollection();
+                if (collection == null) return;
+                var existing = collection.NodeAnnotations.TryGetValue(node.NodeId, out var note) ? note : "";
+                var noteWindow = new Window
+                {
+                    Title = "Node Note", Width = 400, Height = 180,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
+                };
+                var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
+                var txt = new TextBox { Text = existing, AcceptsReturn = true, TextWrapping = Avalonia.Media.TextWrapping.Wrap };
+                var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
+                var btnOk = new Button { Content = "Save", Padding = new Avalonia.Thickness(12, 6) };
+                var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
+                btnPanel.Children.Add(btnCancel);
+                btnPanel.Children.Add(btnOk);
+                Grid.SetRow(txt, 0); Grid.SetRow(btnPanel, 1);
+                grid.Children.Add(txt); grid.Children.Add(btnPanel);
+                noteWindow.Content = grid;
+                string? result = null;
+                btnOk.Click += (_, _) => { result = txt.Text?.Trim(); noteWindow.Close(); };
+                btnCancel.Click += (_, _) => noteWindow.Close();
+                await noteWindow.ShowDialog(this);
+                if (result != null)
+                {
+                    if (string.IsNullOrWhiteSpace(result))
+                        collection.NodeAnnotations.Remove(node.NodeId);
+                    else
+                        collection.NodeAnnotations[node.NodeId] = result;
+                    UpdateInspector();
+                }
+            }));
             menu.Items.Add(CreateMenuItem("Focus (Ego Network)", () => _vm.SetEgoMode(node.NodeId)));
             menu.Items.Add(CreateMenuItem("Clear Focus", () => _vm.SetEgoMode(null)));
             menu.Items.Add(new Separator());
@@ -1010,6 +1045,19 @@ public partial class ResearchGraphWindow : Window
         // Degree
         content.Children.Add(new TextBlock { Text = $"Connections: {node.Degree}", FontSize = 11, Opacity = 0.7, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
 
+        // Node annotation
+        var collection = _vm.GetCollection();
+        if (collection?.NodeAnnotations != null && collection.NodeAnnotations.TryGetValue(node.NodeId, out var annotation) && !string.IsNullOrWhiteSpace(annotation))
+        {
+            content.Children.Add(new TextBlock
+            {
+                Text = $"Note: {annotation}",
+                FontSize = 11, FontStyle = Avalonia.Media.FontStyle.Italic,
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Opacity = 0.8, Margin = new Avalonia.Thickness(0, 4, 0, 0)
+            });
+        }
+
         // Type-specific content from collection data
         if (node.NodeType == ScholarNodeType.Passage)
         {
@@ -1047,6 +1095,8 @@ public partial class ResearchGraphWindow : Window
             var concept = _vm.GetCollection()?.Concepts.FirstOrDefault(c => c.Id == node.NodeId);
             if (concept != null && !string.IsNullOrWhiteSpace(concept.Description))
                 content.Children.Add(new TextBlock { Text = concept.Description, FontSize = 11, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+            if (concept?.Tags?.Count > 0)
+                content.Children.Add(new TextBlock { Text = $"Tags: {string.Join(", ", concept.Tags)}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
         }
         else if (node.NodeType == ScholarNodeType.ZenMaster)
         {
@@ -1242,6 +1292,54 @@ public partial class ResearchGraphWindow : Window
         sb.AppendLine("From,To,RelationType,IsDirectional");
         foreach (var e in _vm.Edges)
             sb.AppendLine($"\"{EscapeCsv(e.From.NodeId)}\",\"{EscapeCsv(e.To.NodeId)}\",\"{EscapeCsv(e.RelationType)}\",{e.IsDirectional}");
+
+        await using var stream = await file.OpenWriteAsync();
+        await using var writer = new System.IO.StreamWriter(stream);
+        await writer.WriteAsync(sb.ToString());
+    }
+
+    private async System.Threading.Tasks.Task ExportGexfAsync()
+    {
+        if (_vm == null) return;
+        var storage = TopLevel.GetTopLevel(this)?.StorageProvider;
+        if (storage == null) return;
+
+        var file = await storage.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export GEXF",
+            DefaultExtension = "gexf",
+            FileTypeChoices = new[] { new FilePickerFileType("GEXF") { Patterns = new[] { "*.gexf" } } },
+            SuggestedFileName = $"{_vm.GetCollection().Name ?? "graph"}.gexf"
+        });
+        if (file == null) return;
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        sb.AppendLine("<gexf xmlns=\"http://gexf.net/1.3\" version=\"1.3\">");
+        sb.AppendLine("  <graph defaultedgetype=\"directed\">");
+        sb.AppendLine("    <attributes class=\"node\"><attribute id=\"0\" title=\"type\" type=\"string\"/><attribute id=\"1\" title=\"color\" type=\"string\"/></attributes>");
+        sb.AppendLine("    <attributes class=\"edge\"><attribute id=\"0\" title=\"weight\" type=\"float\"/><attribute id=\"1\" title=\"relation\" type=\"string\"/></attributes>");
+        sb.AppendLine("    <nodes>");
+        foreach (var n in _vm.Nodes)
+        {
+            var label = System.Security.SecurityElement.Escape(n.Label) ?? "";
+            sb.AppendLine($"      <node id=\"{System.Security.SecurityElement.Escape(n.NodeId)}\" label=\"{label}\">");
+            sb.AppendLine($"        <attvalues><attvalue for=\"0\" value=\"{n.NodeType}\"/><attvalue for=\"1\" value=\"{n.ColorHex}\"/></attvalues>");
+            sb.AppendLine("      </node>");
+        }
+        sb.AppendLine("    </nodes>");
+        sb.AppendLine("    <edges>");
+        int edgeIdx = 0;
+        foreach (var e in _vm.Edges)
+        {
+            var rel = System.Security.SecurityElement.Escape(e.RelationType) ?? "";
+            sb.AppendLine($"      <edge id=\"{edgeIdx++}\" source=\"{System.Security.SecurityElement.Escape(e.From.NodeId)}\" target=\"{System.Security.SecurityElement.Escape(e.To.NodeId)}\">");
+            sb.AppendLine($"        <attvalues><attvalue for=\"0\" value=\"{e.Weight:F2}\"/><attvalue for=\"1\" value=\"{rel}\"/></attvalues>");
+            sb.AppendLine("      </edge>");
+        }
+        sb.AppendLine("    </edges>");
+        sb.AppendLine("  </graph>");
+        sb.AppendLine("</gexf>");
 
         await using var stream = await file.OpenWriteAsync();
         await using var writer = new System.IO.StreamWriter(stream);

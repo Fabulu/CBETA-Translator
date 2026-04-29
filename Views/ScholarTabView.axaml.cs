@@ -400,6 +400,20 @@ public partial class ScholarTabView : UserControl
             };
         }
 
+        // Study Notes: save on blur
+        var txtStudyNotes = this.FindControl<TextBox>("TxtStudyNotes");
+        if (txtStudyNotes != null)
+        {
+            txtStudyNotes.LostFocus += (_, _) =>
+            {
+                if (_vm.SelectedCollection != null)
+                {
+                    _vm.SelectedCollection.StudyNotes = _vm.StudyNotes;
+                    _vm.SyncAndSave();
+                }
+            };
+        }
+
         // Research Notes field autosave on lost focus
         // Research Notes: sync on every keystroke, save on blur
         var txtPassageNotes = this.FindControl<TextBox>("TxtPassageNotes");
@@ -445,6 +459,8 @@ public partial class ScholarTabView : UserControl
                 menu.Items.Add(CreateScholarMenuItem("Rename Collection", async () => await RenameSelectedCollectionAsync()));
                 menu.Items.Add(CreateScholarMenuItem("Import Collections", () => _vm.ImportCollectionsCommand.Execute(null)));
                 menu.Items.Add(CreateScholarMenuItem("Rebuild Tree", () => _vm.RebuildTree()));
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateScholarMenuItem("Search All Collections", async () => await SearchAllCollectionsAsync()));
                 menu.Items.Add(new Separator());
                 menu.Items.Add(CreateScholarMenuItem("Delete Collection", () => _vm.DeleteCollectionCommand.Execute(null)));
                 menu.Open(btnOverflow);
@@ -962,6 +978,63 @@ public partial class ScholarTabView : UserControl
             _vm.RebuildTree();
             Status?.Invoke(this, $"Collection renamed to '{newName}'.");
         }
+    }
+
+    private async Task SearchAllCollectionsAsync()
+    {
+        var searchWindow = new Window
+        {
+            Title = "Search All Collections", Width = 500, Height = 400,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner
+        };
+        var grid = new Grid { RowDefinitions = RowDefinitions.Parse("Auto,*"), Margin = new Thickness(12) };
+        var searchBar = new DockPanel { Margin = new Thickness(0, 0, 0, 8) };
+        var txtQuery = new TextBox { Watermark = "Search...", Margin = new Thickness(0, 0, 8, 0) };
+        DockPanel.SetDock(txtQuery, Dock.Left);
+        var btnSearch = new Button { Content = "Search", Padding = new Thickness(12, 6) };
+        DockPanel.SetDock(btnSearch, Dock.Right);
+        searchBar.Children.Add(btnSearch);
+        searchBar.Children.Add(txtQuery);
+
+        var resultList = new ListBox();
+        Grid.SetRow(searchBar, 0); Grid.SetRow(resultList, 1);
+        grid.Children.Add(searchBar); grid.Children.Add(resultList);
+        searchWindow.Content = grid;
+
+        var resultData = new List<(Models.ScholarCollection c, Models.ScholarPassage p)>();
+
+        btnSearch.Click += (_, _) =>
+        {
+            var query = txtQuery.Text?.Trim() ?? "";
+            if (string.IsNullOrEmpty(query)) return;
+            resultData = _vm.SearchAllCollections(query);
+            var items = new ObservableCollection<string>();
+            foreach (var (c, p) in resultData)
+                items.Add($"{c.Name} > {p.DisplayTitle}");
+            resultList.ItemsSource = items;
+        };
+
+        txtQuery.KeyDown += (_, e) =>
+        {
+            if (e.Key == Avalonia.Input.Key.Return)
+                btnSearch.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        };
+
+        resultList.DoubleTapped += (_, _) =>
+        {
+            if (resultList.SelectedIndex >= 0 && resultList.SelectedIndex < resultData.Count)
+            {
+                var (c, p) = resultData[resultList.SelectedIndex];
+                _vm.NavigateToPassageInCollection(c, p);
+                searchWindow.Close();
+            }
+        };
+
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        if (topLevel != null)
+            await searchWindow.ShowDialog(topLevel);
+        else
+            searchWindow.Show();
     }
 
     private static MenuItem CreateScholarMenuItem(string header, Action action)

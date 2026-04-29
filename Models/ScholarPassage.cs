@@ -89,6 +89,7 @@ public sealed class ScholarCollection
 
     public string StudyNotes { get; set; } = "";
     public ScholarGraphLayout GraphLayout { get; set; } = new();
+    public Dictionary<string, string> NodeAnnotations { get; set; } = new();
 }
 
 public sealed class ScholarGraphLayout

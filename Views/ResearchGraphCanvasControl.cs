@@ -39,32 +39,59 @@ public class ResearchGraphCanvasControl : Control
     private DateTime _entryStart;
     private DispatcherTimer? _entryTimer;
 
-    // Node type colors
-    private static readonly Dictionary<ScholarNodeType, IBrush> NodeBrushes = new()
+    // Node type colors (lazy-initialized to avoid TypeInitializationException in tests)
+    private static readonly Lazy<Dictionary<ScholarNodeType, IBrush>> _nodeBrushesLazy = new(() => new Dictionary<ScholarNodeType, IBrush>
     {
         [ScholarNodeType.Passage] = new SolidColorBrush(Color.Parse("#6EAFF8")),
         [ScholarNodeType.Concept] = new SolidColorBrush(Color.Parse("#FF8A65")),
         [ScholarNodeType.ZenMaster] = new SolidColorBrush(Color.Parse("#64B5F6")),
         [ScholarNodeType.TermbaseEntry] = new SolidColorBrush(Color.Parse("#81C784")),
         [ScholarNodeType.Collection] = new SolidColorBrush(Color.Parse("#AB47BC")),
-    };
+    });
+    private static Dictionary<ScholarNodeType, IBrush> NodeBrushes => _nodeBrushesLazy.Value;
 
-    private static readonly IBrush SelectedBrush = new SolidColorBrush(Color.Parse("#FFD700"));
-    private static readonly IBrush DimmedBrush = new SolidColorBrush(Color.FromArgb(60, 255, 255, 255));
-    private static readonly IPen EdgePen = new Pen(new SolidColorBrush(Color.FromArgb(150, 150, 150, 150)), 1.5);
-    private static readonly IPen HandlePen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2);
-    private static readonly IPen PreviewPen = new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2) { DashStyle = DashStyle.Dash };
-    private static readonly IBrush _handleFillBrush = new SolidColorBrush(Color.FromArgb(180, 81, 217, 150));
+    private static readonly Lazy<IBrush> _selectedBrushLazy = new(() => new SolidColorBrush(Color.Parse("#FFD700")));
+    private static IBrush SelectedBrush => _selectedBrushLazy.Value;
 
-    // --- Cached brushes and pens (avoid per-frame allocation) ---
-    private static readonly IBrush _bgBrush = new SolidColorBrush(Color.Parse("#1E1E23"));
-    private static readonly IBrush _labelShadowBrush = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0));
-    private static readonly IBrush _shadowBrushOuter = new SolidColorBrush(Color.FromArgb(40, 0, 0, 0));
-    private static readonly IBrush _shadowBrushInner = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
-    private static readonly IPen _selectedPen = new Pen(SelectedBrush, 3);
-    private static readonly IPen _hoverPen = new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 2.5);
-    private static readonly IPen _defaultNodePen = new Pen(new SolidColorBrush(Color.FromArgb(153, 255, 255, 255)), 1.2);
-    private static readonly IPen _searchHighlightPen = new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 3);
+    private static readonly Lazy<IBrush> _dimmedBrushLazy = new(() => new SolidColorBrush(Color.FromArgb(60, 255, 255, 255)));
+    private static IBrush DimmedBrush => _dimmedBrushLazy.Value;
+
+    private static readonly Lazy<IPen> _edgePenLazy = new(() => new Pen(new SolidColorBrush(Color.FromArgb(150, 150, 150, 150)), 1.5));
+    private static IPen EdgePen => _edgePenLazy.Value;
+
+    private static readonly Lazy<IPen> _handlePenLazy = new(() => new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2));
+    private static IPen HandlePen => _handlePenLazy.Value;
+
+    private static readonly Lazy<IPen> _previewPenLazy = new(() => new Pen(new SolidColorBrush(Color.Parse("#51D996")), 2) { DashStyle = DashStyle.Dash });
+    private static IPen PreviewPen => _previewPenLazy.Value;
+
+    private static readonly Lazy<IBrush> _handleFillBrushLazy = new(() => new SolidColorBrush(Color.FromArgb(180, 81, 217, 150)));
+    private static IBrush _handleFillBrush => _handleFillBrushLazy.Value;
+
+    // --- Cached brushes and pens (lazy-initialized to avoid per-frame allocation) ---
+    private static readonly Lazy<IBrush> _bgBrushLazy = new(() => new SolidColorBrush(Color.Parse("#1E1E23")));
+    private static IBrush _bgBrush => _bgBrushLazy.Value;
+
+    private static readonly Lazy<IBrush> _labelShadowBrushLazy = new(() => new SolidColorBrush(Color.FromArgb(200, 0, 0, 0)));
+    private static IBrush _labelShadowBrush => _labelShadowBrushLazy.Value;
+
+    private static readonly Lazy<IBrush> _shadowBrushOuterLazy = new(() => new SolidColorBrush(Color.FromArgb(40, 0, 0, 0)));
+    private static IBrush _shadowBrushOuter => _shadowBrushOuterLazy.Value;
+
+    private static readonly Lazy<IBrush> _shadowBrushInnerLazy = new(() => new SolidColorBrush(Color.FromArgb(60, 0, 0, 0)));
+    private static IBrush _shadowBrushInner => _shadowBrushInnerLazy.Value;
+
+    private static readonly Lazy<IPen> _selectedPenLazy = new(() => new Pen(SelectedBrush, 3));
+    private static IPen _selectedPen => _selectedPenLazy.Value;
+
+    private static readonly Lazy<IPen> _hoverPenLazy = new(() => new Pen(new SolidColorBrush(Color.Parse("#FFD700")), 2.5));
+    private static IPen _hoverPen => _hoverPenLazy.Value;
+
+    private static readonly Lazy<IPen> _defaultNodePenLazy = new(() => new Pen(new SolidColorBrush(Color.FromArgb(153, 255, 255, 255)), 1.2));
+    private static IPen _defaultNodePen => _defaultNodePenLazy.Value;
+
+    private static readonly Lazy<IPen> _searchHighlightPenLazy = new(() => new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 3));
+    private static IPen _searchHighlightPen => _searchHighlightPenLazy.Value;
 
     /// <summary>Whether node labels are drawn. Toggled via toolbar.</summary>
     public bool ShowLabels { get; set; } = true;
@@ -280,7 +307,7 @@ public class ResearchGraphCanvasControl : Control
         catch { edgeColor = Color.Parse("#9E9E9E"); }
 
         bool isHovered = edge == _hoverEdge;
-        double thickness = isHovered ? 3.0 : 1.5;
+        double thickness = (isHovered ? 3.0 : 1.5) * Math.Clamp(edge.Weight, 0.5, 4.0);
 
         // Ego-aware alpha: 0.6 default, 0.8 ego-relevant, 0.35 non-relevant
         byte alpha;
