@@ -10,7 +10,7 @@
 
     <!-- ROW 0: Toolbar -->
     <Border Grid.Row="0" Padding="8,6" BorderThickness="0,0,0,1"
-            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+            BorderBrush="#3A3A42" Background="#252529">
       <DockPanel LastChildFill="False">
         <!-- Left: Collection + Add nodes -->
         <ComboBox DockPanel.Dock="Left" Name="CmbCollection" MinWidth="200" Margin="0,0,12,0">
@@ -20,14 +20,16 @@
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddPassage" Content="+ Passage" Padding="6,3" Margin="0,0,2,0" FontSize="11"
+                Background="#3A3520" Foreground="#FFD700" BorderBrush="#5A5530" BorderThickness="1"/>
         <Button DockPanel.Dock="Left" Name="BtnAddConcept" Content="+ Concept" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddMaster" Content="+ Master" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddTerm" Content="+ Term" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddCollection" Content="+ Collection" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
 
         <!-- Center: Layout controls -->
-        <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"
+                Background="#2A2A35" Foreground="#B8B8C8"/>
         <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
 
@@ -46,7 +48,7 @@
 
       <!-- Left: Filters/Stats/Legend tabs -->
       <Border Grid.Column="0" BorderThickness="0,0,1,0"
-              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+              BorderBrush="#3A3A42" Background="#1E1E23">
         <TabControl Name="LeftTabs" TabStripPlacement="Top">
           <TabItem Header="Filters">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8">
@@ -77,14 +79,29 @@
         <Border Name="EmptyStateOverlay" IsVisible="True" Padding="40"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
           <StackPanel Spacing="16" MaxWidth="500" HorizontalAlignment="Center">
-            <TextBlock Text="Research Graph" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Research Graph" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FFD700"/>
             <TextBlock Text="Build a disciplined knowledge graph over your Zen text research. Connect passages to concepts, trace lineages, and discover patterns."
                        TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7"/>
 
-            <StackPanel Spacing="8" Margin="0,12,0,0">
-              <TextBlock Text="1. Add passages from your collection to the graph" Opacity="0.8"/>
-              <TextBlock Text="2. Create concepts &#x2014; name the patterns you see" Opacity="0.8"/>
-              <TextBlock Text="3. Draw edges between nodes to build your meaning web" Opacity="0.8"/>
+            <StackPanel Spacing="10" Margin="0,12,0,0">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Border Width="22" Height="22" CornerRadius="11" Background="#3A3520" VerticalAlignment="Center">
+                  <TextBlock Text="1" FontSize="11" Foreground="#FFD700" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Add passages from your collection to the graph" Opacity="0.8" VerticalAlignment="Center"/>
+              </StackPanel>
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Border Width="22" Height="22" CornerRadius="11" Background="#3A3520" VerticalAlignment="Center">
+                  <TextBlock Text="2" FontSize="11" Foreground="#FFD700" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Create concepts &#x2014; name the patterns you see" Opacity="0.8" VerticalAlignment="Center"/>
+              </StackPanel>
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Border Width="22" Height="22" CornerRadius="11" Background="#3A3520" VerticalAlignment="Center">
+                  <TextBlock Text="3" FontSize="11" Foreground="#FFD700" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Draw edges between nodes to build your meaning web" Opacity="0.8" VerticalAlignment="Center"/>
+              </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,12,0,0">
@@ -109,12 +126,12 @@
 
       <!-- Right: Inspector -->
       <Border Grid.Column="4" BorderThickness="1,0,0,0"
-              BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+              BorderBrush="#3A3A42" Background="#1E1E23">
         <Grid RowDefinitions="Auto,*,Auto">
           <Border Grid.Row="0" Padding="12,8" BorderThickness="0,0,0,1"
-                  BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+                  BorderBrush="#3A3A42" Background="#252529">
             <DockPanel>
-              <TextBlock DockPanel.Dock="Left" Name="InspectorTitle" Text="Inspector" FontWeight="SemiBold"/>
+              <TextBlock DockPanel.Dock="Left" Name="InspectorTitle" Text="Inspector" FontWeight="SemiBold" Foreground="#FFD700"/>
             </DockPanel>
           </Border>
           <ScrollViewer Grid.Row="1" Padding="12">
@@ -131,7 +148,7 @@
 
     <!-- ROW 2: Status Bar -->
     <Border Grid.Row="2" Padding="8,4" BorderThickness="0,1,0,0"
-            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
+            BorderBrush="#3A3A42" Background="#1A1A1F">
       <DockPanel LastChildFill="False">
         <TextBlock DockPanel.Dock="Left" Name="TxtStatus" Text="Ready" FontSize="11" Opacity="0.7"/>
         <TextBlock DockPanel.Dock="Right" Name="TxtNodeCount" Text="0 nodes, 0 edges" FontSize="11" Opacity="0.7"/>

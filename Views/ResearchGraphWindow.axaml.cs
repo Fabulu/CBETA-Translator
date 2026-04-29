@@ -803,6 +803,53 @@ public partial class ResearchGraphWindow : Window
                 });
             }
         }
+
+        // Inspector action buttons
+        var actions = this.FindControl<StackPanel>("InspectorActions");
+        if (actions != null)
+        {
+            actions.Children.Clear();
+
+            if (node.NodeType == ScholarNodeType.Passage)
+            {
+                var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
+                var openBtn = new Button { Content = "Open in Reader", Padding = new Thickness(8, 4), FontSize = 11 };
+                openBtn.Click += (_, _) =>
+                {
+                    if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
+                        NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = passage.SourceRelPath, Side = passage.PreferredSide });
+                };
+                actions.Children.Add(openBtn);
+
+                if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
+                {
+                    var copyLinkBtn = new Button { Content = "Copy Web Link", Padding = new Thickness(8, 4), FontSize = 11 };
+                    copyLinkBtn.Click += async (_, _) =>
+                    {
+                        var url = ZenUriParser.BuildShareableUrl(passage.SourceRelPath, fromLb: passage.StartBlockNumber?.ToString());
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+                    };
+                    actions.Children.Add(copyLinkBtn);
+                }
+            }
+
+            if (node.NodeType == ScholarNodeType.ZenMaster)
+            {
+                var profileBtn = new Button { Content = "Master Profile", Padding = new Thickness(8, 4), FontSize = 11 };
+                profileBtn.Click += (_, _) => OpenMasterRequested?.Invoke(this, node.Label);
+                actions.Children.Add(profileBtn);
+
+                var copyLinkBtn = new Button { Content = "Copy Web Link", Padding = new Thickness(8, 4), FontSize = 11 };
+                copyLinkBtn.Click += async (_, _) =>
+                {
+                    var url = ZenUriParser.BuildShareableMasterUrl(node.Label);
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+                };
+                actions.Children.Add(copyLinkBtn);
+            }
+        }
     }
 
     private void SetupEmptyState()
