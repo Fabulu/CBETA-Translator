@@ -1051,10 +1051,18 @@ public partial class ScholarTabViewModel : ViewModelBase
         foreach (var c in source)
             Collections.Add(c);
 
-        // Restore previous selection if still visible, otherwise pick first
-        SelectedCollection = (prev != null && Collections.Contains(prev))
-            ? prev
-            : Collections.FirstOrDefault();
+        // Restore previous selection if still visible, otherwise prefer user-owned collection
+        if (prev != null && Collections.Contains(prev))
+        {
+            SelectedCollection = prev;
+        }
+        else
+        {
+            var owned = Collections.FirstOrDefault(c =>
+                string.IsNullOrWhiteSpace(c.CreatedBy) ||
+                GetCurrentIdentityKeys().Contains(c.CreatedBy?.Trim() ?? ""));
+            SelectedCollection = owned ?? Collections.FirstOrDefault();
+        }
 
         OnPropertyChanged(nameof(HasSelectedCollection));
         OnPropertyChanged(nameof(ShowWorkspaceHelper));
