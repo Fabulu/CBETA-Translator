@@ -741,6 +741,25 @@ public partial class ResearchGraphWindow : Window
                 foreach (var n in selectedNodes) n.IsPinned = false;
                 _canvas?.InvalidateVisual();
             }));
+
+            // Compare selected passages (2-4 passage nodes)
+            var selectedPassages = selectedNodes
+                .Where(n => n.NodeType == ScholarNodeType.Passage)
+                .Select(n => n.SourceData as ScholarPassage
+                    ?? _vm?.GetCollection()?.Passages.FirstOrDefault(p => p.Id == n.NodeId))
+                .Where(p => p != null)
+                .ToList();
+            if (selectedPassages.Count >= 2 && selectedPassages.Count <= 4)
+            {
+                menu.Items.Add(new Separator());
+                menu.Items.Add(CreateMenuItem($"Compare {selectedPassages.Count} Passages", async () =>
+                {
+                    var window = new ComparePassagesWindow(selectedPassages!);
+                    var owner = TopLevel.GetTopLevel(this) as Window ?? this;
+                    await window.ShowDialog(owner);
+                }));
+            }
+
             menu.Open(target);
             return;
         }
