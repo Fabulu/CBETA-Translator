@@ -70,7 +70,20 @@ public class ResearchGraphCanvasControl : Control
     public void SetViewModel(ResearchGraphViewModel vm)
     {
         _vm = vm;
-        StartEntryAnimation();
+        // Don't start animation immediately — the window may not be visible yet.
+        // Defer to AttachedToVisualTree so the user actually sees the scale-in.
+        _entryProgress = 0;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        if (_vm != null && _entryProgress < 1.0)
+        {
+            // Small delay so the window has time to paint its first frame
+            Avalonia.Threading.Dispatcher.UIThread.Post(() => StartEntryAnimation(),
+                Avalonia.Threading.DispatcherPriority.Loaded);
+        }
     }
 
     public override void Render(DrawingContext context)
