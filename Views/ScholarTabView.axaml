@@ -52,30 +52,81 @@
       <Border Grid.Column="0" Name="TreePanel" Width="240" BorderThickness="0,0,1,0"
               BorderBrush="{DynamicResource BorderBrush}"
               Background="{DynamicResource PanelBg}">
-        <Grid RowDefinitions="Auto,*">
-          <TextBox Grid.Row="0" Name="TxtTreeFilter" Watermark="Search collections..."
-                   Margin="8,8,8,4" CornerRadius="4"
-                   Text="{Binding CollectionFilter, Mode=TwoWay}"/>
-          <TreeView Grid.Row="1" Name="CollectionsTree" Margin="4,0,4,4"
-                    ItemsSource="{Binding CollectionTreeNodes}">
-            <TreeView.ItemContainerTheme>
-              <ControlTheme x:DataType="vm:CollectionTreeNode"
-                            TargetType="TreeViewItem"
-                            BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
-              </ControlTheme>
-            </TreeView.ItemContainerTheme>
-            <TreeView.ItemTemplate>
-              <TreeDataTemplate ItemsSource="{Binding Children}">
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                  <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
-                  <TextBlock Text="{Binding ItemCount, StringFormat='({0})'}" FontSize="10" Opacity="0.6"
-                             IsVisible="{Binding ItemCount}"/>
-                </StackPanel>
-              </TreeDataTemplate>
-            </TreeView.ItemTemplate>
-          </TreeView>
-        </Grid>
+        <TabControl SelectedIndex="{Binding NavigatorTabIndex}">
+          <!-- Tab 1: My Collections -->
+          <TabItem Header="My Collections">
+            <Grid RowDefinitions="Auto,*">
+              <TextBox Grid.Row="0" Name="TxtTreeFilter" Watermark="Search collections..."
+                       Margin="8,8,8,4" CornerRadius="4"
+                       Text="{Binding CollectionFilter, Mode=TwoWay}"/>
+              <TreeView Grid.Row="1" Name="CollectionsTree" Margin="4,0,4,4"
+                        ItemsSource="{Binding CollectionTreeNodes}">
+                <TreeView.ItemContainerTheme>
+                  <ControlTheme x:DataType="vm:CollectionTreeNode"
+                                TargetType="TreeViewItem"
+                                BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                  </ControlTheme>
+                </TreeView.ItemContainerTheme>
+                <TreeView.ItemTemplate>
+                  <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                      <!-- Reading status dot -->
+                      <Border Width="8" Height="8" CornerRadius="4"
+                              IsVisible="{Binding ReadingStatus, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                              VerticalAlignment="Center" Margin="0,0,2,0">
+                        <Border.Background>
+                          <SolidColorBrush Color="{Binding StatusDotColor}"/>
+                        </Border.Background>
+                      </Border>
+                      <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                      <TextBlock Text="{Binding ItemCount, StringFormat='({0})'}" FontSize="10" Opacity="0.6"
+                                 IsVisible="{Binding ItemCount}"/>
+                      <!-- Importance stars -->
+                      <TextBlock Text="{Binding ImportanceStars}" FontSize="10" Foreground="#FFD4AF37"
+                                 VerticalAlignment="Center"
+                                 IsVisible="{Binding ImportanceStars, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    </StackPanel>
+                  </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+              </TreeView>
+            </Grid>
+          </TabItem>
+          <!-- Tab 2: Community Browser -->
+          <TabItem Header="Community">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+              <ComboBox Grid.Row="0" Margin="8,8,8,4"
+                        ItemsSource="{Binding CommunityUsernames}"
+                        SelectedIndex="{Binding SelectedCommunityUserIndex}"
+                        HorizontalAlignment="Stretch"/>
+              <ListBox Grid.Row="1" MaxHeight="120" Margin="8,0,8,4"
+                       ItemsSource="{Binding CommunityCollections}"
+                       SelectedItem="{Binding SelectedCommunityCollection}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:ScholarCollection">
+                    <TextBlock Text="{Binding Name}" FontSize="12"/>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+              <ListBox Grid.Row="2" Margin="8,0,8,4"
+                       ItemsSource="{Binding CommunityPassages}"
+                       SelectedItem="{Binding SelectedCommunityPassage}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:ScholarPassage">
+                    <StackPanel Spacing="2">
+                      <TextBlock Text="{Binding DisplayTitle}" FontSize="12" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding TagsSummary}" FontSize="10" Opacity="0.6"
+                                 IsVisible="{Binding HasTags}"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+              <Button Grid.Row="3" Content="Adopt to My Collection" Margin="8,0,8,8"
+                      HorizontalAlignment="Stretch" Padding="8,6"
+                      Command="{Binding AdoptSelectedPassageCommand}"/>
+            </Grid>
+          </TabItem>
+        </TabControl>
       </Border>
 
       <!-- SPLITTER -->
@@ -84,6 +135,18 @@
       <!-- RIGHT: Scrollable Detail Panel -->
       <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14">
         <StackPanel Spacing="12" Name="DetailPanel">
+
+          <!-- Loading indicator (shown during async operations) -->
+          <ProgressBar IsIndeterminate="True" IsVisible="{Binding IsBusy}" Height="2" Margin="0,0,0,4"/>
+
+          <!-- Collection Study Notes (shown when a collection is selected) -->
+          <Expander Header="Collection Study Notes" IsExpanded="False" Name="ExpanderStudyNotes"
+                    IsVisible="{Binding HasSelectedCollection}">
+            <TextBox Name="TxtStudyNotes" AcceptsReturn="True" TextWrapping="Wrap"
+                     MinHeight="60" Watermark="Collection-level study notes..."
+                     CornerRadius="4" Padding="8,6"
+                     Text="{Binding StudyNotes, Mode=TwoWay}"/>
+          </Expander>
 
           <!-- EMPTY STATE (shown when no passage selected) -->
           <Border Name="EmptyState" IsVisible="True" Padding="48,56"

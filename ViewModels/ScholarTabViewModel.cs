@@ -34,6 +34,9 @@ public partial class ScholarTabViewModel : ViewModelBase
     private bool _isEmptyState = true;
 
     [ObservableProperty]
+    private bool _isBusy;
+
+    [ObservableProperty]
     private string _searchFilter = "";
 
     [ObservableProperty]
@@ -295,6 +298,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (!await EnsureStorageContextAsync()) return;
 
+        IsBusy = true;
         try
         {
             var loaded = await LoadOwnedCollectionsAsync();
@@ -318,6 +322,10 @@ public partial class ScholarTabViewModel : ViewModelBase
         {
             StatusMessage = "Load failed: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
+        }
+        finally
+        {
+            IsBusy = false;
         }
     }
 
@@ -597,6 +605,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             return;
         }
 
+        IsBusy = true;
         try
         {
             var path = await PickImportFileAsync();
@@ -658,6 +667,10 @@ public partial class ScholarTabViewModel : ViewModelBase
             StatusMessage = "Import failed: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
         }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     // ----- Community collections -----
@@ -667,6 +680,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (!await EnsureStorageContextAsync()) return;
 
+        IsBusy = true;
         try
         {
             if (string.IsNullOrWhiteSpace(_root)) return;
@@ -714,6 +728,10 @@ public partial class ScholarTabViewModel : ViewModelBase
         {
             StatusMessage = "Community load failed: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
+        }
+        finally
+        {
+            IsBusy = false;
         }
     }
 
@@ -1063,11 +1081,44 @@ public partial class ScholarTabViewModel : ViewModelBase
                     Id = passage.Id,
                     Title = passage.DisplayTitle,
                     Kind = TreeNodeKind.Passage,
-                    Tag = passage
+                    Tag = passage,
+                    Importance = passage.Importance ?? 0,
+                    ReadingStatus = passage.ReadingStatus
                 });
             }
             CollectionTreeNodes.Add(cNode);
         }
+    }
+
+    /// <summary>Search all collections for passages matching a query string.</summary>
+    public List<(ScholarCollection Collection, ScholarPassage Passage)> SearchAllCollections(string query)
+    {
+        var results = new List<(ScholarCollection, ScholarPassage)>();
+        if (string.IsNullOrWhiteSpace(query)) return results;
+        var q = query.Trim();
+        foreach (var c in _allCollections)
+        {
+            foreach (var p in c.Passages)
+            {
+                if ((p.ZhText ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                    (p.EnText ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                    (p.Summary ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                    (p.Notes ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) ||
+                    p.Tags.Any(t => t.Contains(q, StringComparison.OrdinalIgnoreCase)) ||
+                    p.MasterNames.Any(m => m.Contains(q, StringComparison.OrdinalIgnoreCase)))
+                {
+                    results.Add((c, p));
+                }
+            }
+        }
+        return results;
+    }
+
+    /// <summary>Navigate to a specific passage in a specific collection.</summary>
+    public void NavigateToPassageInCollection(ScholarCollection collection, ScholarPassage passage)
+    {
+        SelectedCollection = collection;
+        SelectedPassage = passage;
     }
 
     private void RefreshPassagesList()

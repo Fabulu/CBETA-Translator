@@ -33,6 +33,7 @@ public class ResearchGraphEdgeVm
     public string? Label { get; set; }
     public bool IsDirectional { get; set; } = true;
     public string ColorHex { get; set; } = "#9E9E9E";
+    public double Weight { get; set; } = 1.0;
 }
 
 public interface IGraphCommand
@@ -251,7 +252,8 @@ public class ResearchGraphViewModel
                 RelationType = edge.RelationType,
                 Label = edgeDef?.DisplayName ?? edge.RelationType,
                 IsDirectional = edgeDef?.IsDirectional ?? true,
-                ColorHex = edgeDef?.ColorHex ?? "#9E9E9E"
+                ColorHex = edgeDef?.ColorHex ?? "#9E9E9E",
+                Weight = edge.Weight
             };
             Edges.Add(vm);
             fromNode.Degree++;
