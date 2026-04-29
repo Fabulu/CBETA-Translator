@@ -195,6 +195,15 @@ public class ResearchGraphCanvasControl : Control
                 break;
         }
 
+        // Pin indicator: small dot at top-right corner of pinned nodes
+        if (node.IsPinned)
+        {
+            double pinR = 3.5;
+            var pinCenter = new Point(node.X + r * 0.7, node.Y - r * 0.7);
+            ctx.DrawEllipse(Brushes.White, null, pinCenter, pinR, pinR);
+            ctx.DrawEllipse(new SolidColorBrush(Color.Parse("#FF5252")), null, pinCenter, pinR - 0.8, pinR - 0.8);
+        }
+
         // Label with shadow outline (only at sufficient zoom and after entry animation starts)
         if (_zoom >= 0.5 && _entryProgress > 0.3)
         {
@@ -434,6 +443,12 @@ public class ResearchGraphCanvasControl : Control
         {
             if (e.ClickCount >= 2)
             {
+                if (hit.IsPinned)
+                {
+                    hit.IsPinned = false;
+                    InvalidateVisual();
+                    return;
+                }
                 NodeDoubleClicked?.Invoke(this, hit);
                 return;
             }
@@ -653,13 +668,14 @@ public class ResearchGraphCanvasControl : Control
     private void PhysicsTick(object? sender, EventArgs e)
     {
         if (_vm == null || _vm.Nodes.Count <= 1 || _vm.Nodes.Count > 300) return;
+        if (_dragNode != null) return;  // pause physics while user is dragging
 
         var nodes = _vm.Nodes;
         int N = nodes.Count;
 
         double R = Math.Sqrt(N) * 80;
         double k = Math.Sqrt((R * R * 4) / N);
-        double alpha = 0.05;
+        double alpha = 0.03;
 
         // Center of mass for gravity
         double cx = 0, cy = 0;
@@ -667,7 +683,7 @@ public class ResearchGraphCanvasControl : Control
         cx /= N; cy /= N;
 
         // Dampen existing velocities (inter-frame decay for subtle wobble)
-        foreach (var n in nodes) { n.Vx *= 0.85; n.Vy *= 0.85; }
+        foreach (var n in nodes) { n.Vx *= 0.92; n.Vy *= 0.92; }
 
         // Repulsion (all pairs)
         for (int i = 0; i < N; i++)
@@ -689,8 +705,31 @@ public class ResearchGraphCanvasControl : Control
         foreach (var n in nodes)
         {
             if (n.IsPinned || n == _dragNode) continue;
-            n.Vx -= (n.X - cx) * 0.005;
-            n.Vy -= (n.Y - cy) * 0.005;
+            n.Vx -= (n.X - cx) * 0.008;
+            n.Vy -= (n.Y - cy) * 0.008;
+        }
+
+        // Edge attraction (keeps connected nodes loosely together)
+        if (_vm != null)
+        {
+            foreach (var edge in _vm.GetVisibleEdges())
+            {
+                if (edge.From.IsPinned && edge.To.IsPinned) continue;
+                double dx = edge.To.X - edge.From.X;
+                double dy = edge.To.Y - edge.From.Y;
+                double dist = Math.Sqrt(dx * dx + dy * dy) + 0.01;
+                double attract = dist * 0.002;
+                if (!edge.From.IsPinned && edge.From != _dragNode)
+                {
+                    edge.From.Vx += (dx / dist) * attract;
+                    edge.From.Vy += (dy / dist) * attract;
+                }
+                if (!edge.To.IsPinned && edge.To != _dragNode)
+                {
+                    edge.To.Vx -= (dx / dist) * attract;
+                    edge.To.Vy -= (dy / dist) * attract;
+                }
+            }
         }
 
         // Apply with max displacement clamp (damping already applied above)
@@ -699,15 +738,18 @@ public class ResearchGraphCanvasControl : Control
         {
             if (n.IsPinned || n == _dragNode) continue;
             double disp = Math.Sqrt(n.Vx * n.Vx + n.Vy * n.Vy);
-            if (disp > 2.0)
+            if (disp > 0.8)
             {
-                n.Vx = n.Vx / disp * 2.0;
-                n.Vy = n.Vy / disp * 2.0;
+                n.Vx = n.Vx / disp * 0.8;
+                n.Vy = n.Vy / disp * 0.8;
             }
             if (disp > 0.01)
             {
                 n.X += n.Vx;
                 n.Y += n.Vy;
+                // Soft bounds: clamp to [-2000, 2000]
+                n.X = Math.Clamp(n.X, -2000, 2000);
+                n.Y = Math.Clamp(n.Y, -2000, 2000);
                 moved = true;
             }
         }

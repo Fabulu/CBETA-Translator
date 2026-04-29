@@ -586,6 +586,12 @@ public partial class ResearchGraphWindow : Window
                 _vm?.RunForceDirectedLayout(w, h);
                 _canvas?.InvalidateVisual();
             }));
+            menu.Items.Add(CreateMenuItem("Unpin All Nodes", () =>
+            {
+                if (_vm != null)
+                    foreach (var n in _vm.Nodes) n.IsPinned = false;
+                _canvas?.InvalidateVisual();
+            }));
             menu.Items.Add(new Separator());
             menu.Items.Add(CreateMenuItem("Copy Graph Web Link", async () =>
             {
