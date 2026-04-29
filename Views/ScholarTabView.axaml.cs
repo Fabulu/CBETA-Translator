@@ -42,7 +42,7 @@ public partial class ScholarTabView : UserControl
     private CancellationTokenSource? _parallelCts;
 
     // Tree drag-and-drop
-    private static readonly DataFormat<string> PassageDragFormat = DataFormat.CreateStringApplicationFormat("scholar/passage-id");
+    private static readonly DataFormat<string> PassageDragFormat = DataFormat.CreateStringApplicationFormat("ScholarPassageId");
     private CollectionTreeNode? _dragCandidate;
     private Point? _dragStartPoint;
 

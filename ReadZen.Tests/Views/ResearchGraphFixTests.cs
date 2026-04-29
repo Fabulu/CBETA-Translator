@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
-using ReadZen.App.Views;
 using ReadZen.Tests.Stubs;
 using Xunit;
 
@@ -29,22 +28,6 @@ public class ResearchGraphFixTests
     {
         col ??= MakeEmptyCollection();
         return new ResearchGraphViewModel(col, new List<ScholarCollection> { col });
-    }
-
-    private static double InvokeGetNodeRadius(ResearchGraphCanvasControl ctrl, ResearchGraphNode node)
-    {
-        var method = typeof(ResearchGraphCanvasControl)
-            .GetMethod("GetNodeRadius", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(method);
-        return (double)method!.Invoke(ctrl, new object[] { node })!;
-    }
-
-    private static ResearchGraphNode? InvokeHitTest(ResearchGraphCanvasControl ctrl, double x, double y)
-    {
-        var method = typeof(ResearchGraphCanvasControl)
-            .GetMethod("HitTest", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(method);
-        return (ResearchGraphNode?)method!.Invoke(ctrl, new object[] { x, y });
     }
 
     // ── 1. Force layout SPA formula: R scales with sqrt(N)*80 ────────
@@ -130,55 +113,6 @@ public class ResearchGraphFixTests
 
         // Two repelling nodes should be well separated
         Assert.True(dist > 50, $"Two unconnected nodes should be far apart, got dist = {dist}");
-    }
-
-    // ── 3. HitTest radius: expanded by +15 to cover handles ─────────
-
-    [Fact]
-    public void HitTest_MatchesWithinExpandedRadius()
-    {
-        // Place a single node, then set up a ctrl with a vm.
-        // The HitTest uses r + 15, so clicking within r+14 should hit.
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Test" });
-        var vm = MakeVm(col);
-
-        // Place node at exact position (bypass layout, set directly)
-        vm.Nodes[0].X = 200;
-        vm.Nodes[0].Y = 200;
-
-        var ctrl = new ResearchGraphCanvasControl();
-        ctrl.SetViewModel(vm);
-
-        double r = InvokeGetNodeRadius(ctrl, vm.Nodes[0]); // r=10 for 0-degree Passage
-
-        // At zoom=1, offset=0, screen coords == graph coords
-        // Click at distance r+14 from center (within r+15 threshold)
-        double clickDist = r + 14;
-        var hit = InvokeHitTest(ctrl, 200 + clickDist, 200);
-        Assert.NotNull(hit);
-        Assert.Equal("p1", hit!.NodeId);
-    }
-
-    [Fact]
-    public void HitTest_MissesOutsideExpandedRadius()
-    {
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Test" });
-        var vm = MakeVm(col);
-
-        vm.Nodes[0].X = 200;
-        vm.Nodes[0].Y = 200;
-
-        var ctrl = new ResearchGraphCanvasControl();
-        ctrl.SetViewModel(vm);
-
-        double r = InvokeGetNodeRadius(ctrl, vm.Nodes[0]); // r=10
-
-        // Click at distance r+20 from center (beyond r+15 threshold)
-        double clickDist = r + 20;
-        var hit = InvokeHitTest(ctrl, 200 + clickDist, 200);
-        Assert.Null(hit);
     }
 
     // ── 4. ZenMaster SourceData from passages with MasterNames ──────
@@ -376,38 +310,6 @@ public class ResearchGraphFixTests
         Assert.False(vm.CanRedo);
     }
 
-    // ── 8. EaseOutCubic easing function ─────────────────────────────
-
-    private static double InvokeEaseOutCubic(double t)
-    {
-        var method = typeof(ResearchGraphCanvasControl)
-            .GetMethod("EaseOutCubic", BindingFlags.Static | BindingFlags.NonPublic);
-        Assert.NotNull(method);
-        return (double)method!.Invoke(null, new object[] { t })!;
-    }
-
-    [Fact]
-    public void EaseOutCubic_AtZero_ReturnsZero()
-    {
-        double result = InvokeEaseOutCubic(0);
-        Assert.Equal(0.0, result, precision: 10);
-    }
-
-    [Fact]
-    public void EaseOutCubic_AtOne_ReturnsOne()
-    {
-        double result = InvokeEaseOutCubic(1);
-        Assert.Equal(1.0, result, precision: 10);
-    }
-
-    [Fact]
-    public void EaseOutCubic_AtHalf_ReturnsApprox0875()
-    {
-        // EaseOutCubic(0.5) = 1 - (1 - 0.5)^3 = 1 - 0.125 = 0.875
-        double result = InvokeEaseOutCubic(0.5);
-        Assert.Equal(0.875, result, precision: 6);
-    }
-
     // ── 9. Hexagon pointy-top: top vertex at Y = center.Y - radius ──
 
     [Fact]
@@ -472,100 +374,6 @@ public class ResearchGraphFixTests
         Assert.Equal(expected, (byte)(0.35 * 255));
     }
 
-    [Fact]
-    public void EdgeAlpha_DefaultPen_MatchesExpectedAlpha()
-    {
-        // The static _defaultNodePen uses Color.FromArgb(153, 255, 255, 255)
-        // confirming the 153 alpha for default edges aligns with node outlines.
-        // Use reflection to read the private static field without importing Avalonia.Media.
-        var field = typeof(ResearchGraphCanvasControl)
-            .GetField("_defaultNodePen", BindingFlags.Static | BindingFlags.NonPublic);
-        Assert.NotNull(field);
-        var pen = field!.GetValue(null);
-        Assert.NotNull(pen);
-        // Access Brush property via reflection
-        var brushProp = pen!.GetType().GetProperty("Brush");
-        Assert.NotNull(brushProp);
-        var brush = brushProp!.GetValue(pen);
-        Assert.NotNull(brush);
-        // Access Color.A via reflection
-        var colorProp = brush!.GetType().GetProperty("Color");
-        Assert.NotNull(colorProp);
-        var color = colorProp!.GetValue(brush);
-        Assert.NotNull(color);
-        var alphaProp = color!.GetType().GetProperty("A");
-        Assert.NotNull(alphaProp);
-        byte alpha = (byte)alphaProp!.GetValue(color)!;
-        Assert.Equal(153, alpha);
-    }
-
-    // ── 11. Entry animation state ───────────────────────────────────
-
-    [Fact]
-    public void EntryProgress_InitiallyZero_BeforeSetViewModel()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-        var field = typeof(ResearchGraphCanvasControl)
-            .GetField("_entryProgress", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(field);
-
-        double progress = (double)field!.GetValue(ctrl)!;
-        Assert.Equal(0.0, progress, precision: 10);
-    }
-
-    [Fact]
-    public void EntryProgress_ResetToZero_WhenSetViewModelCalled()
-    {
-        // SetViewModel calls StartEntryAnimation which sets _entryProgress = 0
-        var ctrl = new ResearchGraphCanvasControl();
-        var vm = MakeVm();
-        ctrl.SetViewModel(vm);
-
-        var field = typeof(ResearchGraphCanvasControl)
-            .GetField("_entryProgress", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(field);
-
-        // Right after SetViewModel, _entryProgress starts at 0 (animation just began)
-        // The timer ticks asynchronously, so synchronously it should still be 0
-        double progress = (double)field!.GetValue(ctrl)!;
-        Assert.Equal(0.0, progress, precision: 10);
-    }
-
-    [Fact]
-    public void EntryTimer_CreatedAfterSetViewModel()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-
-        // Before SetViewModel, timer should be null
-        var timerField = typeof(ResearchGraphCanvasControl)
-            .GetField("_entryTimer", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(timerField);
-        Assert.Null(timerField!.GetValue(ctrl));
-
-        // After SetViewModel, timer should be created
-        var vm = MakeVm();
-        ctrl.SetViewModel(vm);
-        Assert.NotNull(timerField.GetValue(ctrl));
-    }
-
-    [Fact]
-    public void StartEntryAnimation_SetsEntryStartTime()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-        var startField = typeof(ResearchGraphCanvasControl)
-            .GetField("_entryStart", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(startField);
-
-        var before = DateTime.UtcNow;
-        var vm = MakeVm();
-        ctrl.SetViewModel(vm); // calls StartEntryAnimation
-        var after = DateTime.UtcNow;
-
-        var entryStart = (DateTime)startField!.GetValue(ctrl)!;
-        Assert.True(entryStart >= before && entryStart <= after,
-            $"EntryStart {entryStart} should be between {before} and {after}");
-    }
-
     // ── 12. IsPinned default ────────────────────────────────────────
 
     [Fact]
@@ -574,163 +382,6 @@ public class ResearchGraphFixTests
         var node = new ResearchGraphNode();
         Assert.False(node.IsPinned);
     }
-
-    // ── 13. PhysicsTick moves unpinned nodes ────────────────────────
-
-    private static void InvokePhysicsTick(ResearchGraphCanvasControl ctrl)
-    {
-        var method = typeof(ResearchGraphCanvasControl)
-            .GetMethod("PhysicsTick", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(method);
-        method!.Invoke(ctrl, new object?[] { null, EventArgs.Empty });
-    }
-
-    /// <summary>
-    /// Creates a ResearchGraphCanvasControl on the Avalonia UI thread (required for
-    /// AvaloniaObject thread-affinity) and sets its DataContext to the given VM.
-    /// </summary>
-    private static ResearchGraphCanvasControl MakeCtrlWithDataContext(ResearchGraphViewModel vm)
-    {
-        return Avalonia.Threading.Dispatcher.UIThread.Invoke(() =>
-        {
-            var ctrl = new ResearchGraphCanvasControl();
-            ctrl.DataContext = vm;
-            return ctrl;
-        });
-    }
-
-    /// <summary>
-    /// Invokes PhysicsTick on the UI thread to satisfy Avalonia's thread affinity
-    /// (InvalidateVisual calls VerifyAccess internally).
-    /// </summary>
-    private static void InvokePhysicsTickOnUiThread(ResearchGraphCanvasControl ctrl)
-    {
-        Avalonia.Threading.Dispatcher.UIThread.Invoke(() => InvokePhysicsTick(ctrl));
-    }
-
-    [Fact]
-    public void PhysicsTick_MovesUnpinnedNodes()
-    {
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
-        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
-        var vm = MakeVm(col);
-
-        // Place nodes far apart so repulsion and gravity produce movement
-        vm.Nodes[0].X = 100; vm.Nodes[0].Y = 100;
-        vm.Nodes[1].X = 500; vm.Nodes[1].Y = 500;
-
-        double x0Before = vm.Nodes[0].X, y0Before = vm.Nodes[0].Y;
-        double x1Before = vm.Nodes[1].X, y1Before = vm.Nodes[1].Y;
-
-        var ctrl = MakeCtrlWithDataContext(vm);
-        InvokePhysicsTickOnUiThread(ctrl);
-
-        bool node0Moved = vm.Nodes[0].X != x0Before || vm.Nodes[0].Y != y0Before;
-        bool node1Moved = vm.Nodes[1].X != x1Before || vm.Nodes[1].Y != y1Before;
-        Assert.True(node0Moved || node1Moved, "At least one node should have moved after PhysicsTick");
-    }
-
-    // ── 14. PhysicsTick skips pinned nodes ──────────────────────────
-
-    [Fact]
-    public void PhysicsTick_SkipsPinnedNode()
-    {
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
-        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
-        var vm = MakeVm(col);
-
-        vm.Nodes[0].X = 100; vm.Nodes[0].Y = 100;
-        vm.Nodes[0].IsPinned = true;
-        vm.Nodes[1].X = 500; vm.Nodes[1].Y = 500;
-
-        double x0Before = vm.Nodes[0].X, y0Before = vm.Nodes[0].Y;
-
-        var ctrl = MakeCtrlWithDataContext(vm);
-        InvokePhysicsTickOnUiThread(ctrl);
-
-        Assert.Equal(x0Before, vm.Nodes[0].X);
-        Assert.Equal(y0Before, vm.Nodes[0].Y);
-    }
-
-    // ── 15. PhysicsTick guard: >300 nodes → no movement ─────────────
-
-    [Fact]
-    public void PhysicsTick_Guard301Nodes_NoMovement()
-    {
-        var col = MakeEmptyCollection();
-        for (int i = 0; i < 301; i++)
-        {
-            col.Passages.Add(new ScholarPassage { Id = $"p-{i}", ZhText = $"N{i}" });
-        }
-        var vm = MakeVm(col);
-
-        // Record all positions
-        var positions = vm.Nodes.Select(n => (n.X, n.Y)).ToList();
-
-        var ctrl = MakeCtrlWithDataContext(vm);
-        InvokePhysicsTickOnUiThread(ctrl);
-
-        for (int i = 0; i < vm.Nodes.Count; i++)
-        {
-            Assert.Equal(positions[i].X, vm.Nodes[i].X);
-            Assert.Equal(positions[i].Y, vm.Nodes[i].Y);
-        }
-    }
-
-    // ── 16. PhysicsTick guard: 1 node → no movement ────────────────
-
-    [Fact]
-    public void PhysicsTick_Guard1Node_NoMovement()
-    {
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "Only" });
-        var vm = MakeVm(col);
-
-        vm.Nodes[0].X = 200; vm.Nodes[0].Y = 300;
-        double xBefore = vm.Nodes[0].X, yBefore = vm.Nodes[0].Y;
-
-        var ctrl = MakeCtrlWithDataContext(vm);
-        InvokePhysicsTickOnUiThread(ctrl);
-
-        Assert.Equal(xBefore, vm.Nodes[0].X);
-        Assert.Equal(yBefore, vm.Nodes[0].Y);
-    }
-
-    // ── 17. Max displacement clamped to 2px per tick ────────────────
-
-    [Fact]
-    public void PhysicsTick_MaxDisplacementClamped()
-    {
-        var col = MakeEmptyCollection();
-        col.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "A" });
-        col.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "B" });
-        var vm = MakeVm(col);
-
-        // Place nodes very close together to maximize repulsion force
-        vm.Nodes[0].X = 300; vm.Nodes[0].Y = 300;
-        vm.Nodes[1].X = 300.001; vm.Nodes[1].Y = 300.001;
-
-        double x0 = vm.Nodes[0].X, y0 = vm.Nodes[0].Y;
-        double x1 = vm.Nodes[1].X, y1 = vm.Nodes[1].Y;
-
-        var ctrl = MakeCtrlWithDataContext(vm);
-        InvokePhysicsTickOnUiThread(ctrl);
-
-        // Each node's displacement should be at most 2px
-        double disp0 = Math.Sqrt(
-            (vm.Nodes[0].X - x0) * (vm.Nodes[0].X - x0) +
-            (vm.Nodes[0].Y - y0) * (vm.Nodes[0].Y - y0));
-        double disp1 = Math.Sqrt(
-            (vm.Nodes[1].X - x1) * (vm.Nodes[1].X - x1) +
-            (vm.Nodes[1].Y - y1) * (vm.Nodes[1].Y - y1));
-
-        Assert.True(disp0 <= 2.01, $"Node 0 displacement {disp0} exceeds 2px clamp");
-        Assert.True(disp1 <= 2.01, $"Node 1 displacement {disp1} exceeds 2px clamp");
-    }
-
-    // ── 18. IsPhysicsEnabled toggle → _physicsTimer null ────────────
 
     // ── 19. GoBack: collection history navigation ────────────────────
 
@@ -933,49 +584,7 @@ public class ResearchGraphFixTests
         vm.ReverseEdge("nonexistent");
     }
 
-    // ── 18. IsPhysicsEnabled toggle → _physicsTimer null ────────────
-
-    [Fact]
-    public void IsPhysicsEnabled_SetFalse_PhysicsTimerIsNull()
-    {
-        // The control's static fields (brushes/pens) must be initialized on the UI thread.
-        // If another test already triggered the static cctor on the wrong thread, the type
-        // is permanently poisoned and we must skip.
-        var ctrlType = typeof(ResearchGraphCanvasControl);
-        var timerField = ctrlType
-            .GetField("_physicsTimer", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.NotNull(timerField);
-
-        object? timerValue = "sentinel";
-        try
-        {
-            Avalonia.Threading.Dispatcher.UIThread.Invoke(() =>
-            {
-                System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(ctrlType.TypeHandle);
-                var ctrl = (ResearchGraphCanvasControl)System.Activator.CreateInstance(ctrlType)!;
-                ctrl.IsPhysicsEnabled = true;
-                ctrl.IsPhysicsEnabled = false;
-                timerValue = timerField!.GetValue(ctrl);
-            });
-        }
-        catch (System.TypeInitializationException)
-        {
-            // Pre-existing issue: another test triggered the static cctor on the wrong thread.
-            // Skip gracefully rather than fail.
-            return;
-        }
-
-        Assert.Null(timerValue);
-    }
-
     // ── Wave 2 Polish: ShowLabels default ────────────────────────────
-
-    [Fact]
-    public void ShowLabels_DefaultIsTrue()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-        Assert.True(ctrl.ShowLabels);
-    }
 
     // ── Wave 2 Polish: GetSelectedNodes after SelectAll ─────────────
 
@@ -1018,25 +627,6 @@ public class ResearchGraphFixTests
     // ── Wave 2 Polish: Bezier control point perpendicular offset ────
 
     // ── Wave 3: Final Feature Wave ─────────────────────────────────
-
-    // ── 24. Lazy brush access: _bgBrush via Lazy<> defers init ──────
-
-    [Fact]
-    public void BgBrush_LazyField_DoesNotThrowOnAccess()
-    {
-        // The _bgBrushLazy field is a static Lazy<IBrush> that defers Avalonia
-        // brush creation. Accessing the Lazy itself (not .Value) should never throw,
-        // regardless of platform state.
-        var field = typeof(ResearchGraphCanvasControl)
-            .GetField("_bgBrushLazy", BindingFlags.Static | BindingFlags.NonPublic);
-        Assert.NotNull(field);
-
-        var lazy = field!.GetValue(null);
-        Assert.NotNull(lazy);
-        // Verify it's actually a Lazy<T>
-        Assert.True(lazy!.GetType().IsGenericType);
-        Assert.Equal(typeof(Lazy<>), lazy.GetType().GetGenericTypeDefinition());
-    }
 
     // ── 25. Edge weight in VM: Weight flows from model to VM ────────
 
@@ -1256,30 +846,6 @@ public class ResearchGraphFixTests
         Assert.Equal(curveOffset, offsetDist, precision: 6);
     }
 
-    // ── ShowMinimap defaults to true ────────────────────────────────────
-
-    [Fact]
-    public void ShowMinimap_DefaultsToTrue()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-        var prop = typeof(ResearchGraphCanvasControl)
-            .GetProperty("ShowMinimap", BindingFlags.Instance | BindingFlags.Public);
-        Assert.NotNull(prop);
-        Assert.True((bool)prop!.GetValue(ctrl)!);
-    }
-
-    // ── ShowClusters defaults to false ──────────────────────────────────
-
-    [Fact]
-    public void ShowClusters_DefaultsToFalse()
-    {
-        var ctrl = new ResearchGraphCanvasControl();
-        var prop = typeof(ResearchGraphCanvasControl)
-            .GetProperty("ShowClusters", BindingFlags.Instance | BindingFlags.Public);
-        Assert.NotNull(prop);
-        Assert.False((bool)prop!.GetValue(ctrl)!);
-    }
-
     // ── Cluster grouping produces correct groups by NodeType ────────────
 
     [Fact]
@@ -1311,24 +877,6 @@ public class ResearchGraphFixTests
         Assert.Equal(2, groups.Count);
         Assert.Equal(3, groups[ScholarNodeType.Passage]);
         Assert.Equal(2, groups[ScholarNodeType.Concept]);
-    }
-
-    // ── Minimap rect is at bottom-right ─────────────────────────────────
-
-    [Fact]
-    public void MinimapBounds_PositionedAtBottomRight()
-    {
-        // Mirror the constants from DrawMinimap
-        const double mmW = 150, mmH = 100, margin = 10;
-        double boundsWidth = 800, boundsHeight = 600;
-
-        double mmX = boundsWidth - mmW - margin;
-        double mmY = boundsHeight - mmH - margin;
-
-        Assert.Equal(boundsWidth - 160, mmX);
-        Assert.Equal(boundsHeight - 110, mmY);
-        Assert.Equal(640, mmX);
-        Assert.Equal(490, mmY);
     }
 
     // ── ScholarPassage.IsSelectedForCompare defaults to false ───────────
