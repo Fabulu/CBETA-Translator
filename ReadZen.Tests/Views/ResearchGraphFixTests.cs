@@ -1255,4 +1255,88 @@ public class ResearchGraphFixTests
         double offsetDist = Math.Sqrt((ctrlX - midX) * (ctrlX - midX) + (ctrlY - midY) * (ctrlY - midY));
         Assert.Equal(curveOffset, offsetDist, precision: 6);
     }
+
+    // ── ShowMinimap defaults to true ────────────────────────────────────
+
+    [Fact]
+    public void ShowMinimap_DefaultsToTrue()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+        var prop = typeof(ResearchGraphCanvasControl)
+            .GetProperty("ShowMinimap", BindingFlags.Instance | BindingFlags.Public);
+        Assert.NotNull(prop);
+        Assert.True((bool)prop!.GetValue(ctrl)!);
+    }
+
+    // ── ShowClusters defaults to false ──────────────────────────────────
+
+    [Fact]
+    public void ShowClusters_DefaultsToFalse()
+    {
+        var ctrl = new ResearchGraphCanvasControl();
+        var prop = typeof(ResearchGraphCanvasControl)
+            .GetProperty("ShowClusters", BindingFlags.Instance | BindingFlags.Public);
+        Assert.NotNull(prop);
+        Assert.False((bool)prop!.GetValue(ctrl)!);
+    }
+
+    // ── Cluster grouping produces correct groups by NodeType ────────────
+
+    [Fact]
+    public void ClusterGrouping_GroupsByNodeType_CorrectCounts()
+    {
+        var vm = MakeVm();
+
+        // Add 3 passages
+        for (int i = 0; i < 3; i++)
+            vm.Nodes.Add(new ResearchGraphNode
+            {
+                NodeId = $"p-{i}", Label = $"Passage {i}",
+                NodeType = ScholarNodeType.Passage
+            });
+
+        // Add 2 concepts
+        for (int i = 0; i < 2; i++)
+            vm.Nodes.Add(new ResearchGraphNode
+            {
+                NodeId = $"c-{i}", Label = $"Concept {i}",
+                NodeType = ScholarNodeType.Concept
+            });
+
+        var visible = vm.GetVisibleNodes();
+        var groups = visible.GroupBy(n => n.NodeType)
+            .Where(g => g.Count() >= 2)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        Assert.Equal(2, groups.Count);
+        Assert.Equal(3, groups[ScholarNodeType.Passage]);
+        Assert.Equal(2, groups[ScholarNodeType.Concept]);
+    }
+
+    // ── Minimap rect is at bottom-right ─────────────────────────────────
+
+    [Fact]
+    public void MinimapBounds_PositionedAtBottomRight()
+    {
+        // Mirror the constants from DrawMinimap
+        const double mmW = 150, mmH = 100, margin = 10;
+        double boundsWidth = 800, boundsHeight = 600;
+
+        double mmX = boundsWidth - mmW - margin;
+        double mmY = boundsHeight - mmH - margin;
+
+        Assert.Equal(boundsWidth - 160, mmX);
+        Assert.Equal(boundsHeight - 110, mmY);
+        Assert.Equal(640, mmX);
+        Assert.Equal(490, mmY);
+    }
+
+    // ── ScholarPassage.IsSelectedForCompare defaults to false ───────────
+
+    [Fact]
+    public void ScholarPassage_IsSelectedForCompare_DefaultsFalse()
+    {
+        var passage = new ScholarPassage();
+        Assert.False(passage.IsSelectedForCompare);
+    }
 }

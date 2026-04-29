@@ -400,6 +400,9 @@
                       ToolTip.Tip="Move passage up" FontSize="12" Margin="0,0,4,0"/>
               <Button Name="BtnMoveDown" DockPanel.Dock="Left" Content="&#x25BC;" Padding="8,4"
                       ToolTip.Tip="Move passage down" FontSize="12" Margin="0,0,4,0"/>
+              <Button Name="BtnCompare" DockPanel.Dock="Left" Content="Compare" Padding="8,4"
+                      ToolTip.Tip="Select 2-4 passages (Ctrl+click in tree), then Compare"
+                      FontSize="12" Margin="0,0,4,0"/>
               <Button Name="BtnDeletePassage" DockPanel.Dock="Right" Padding="12,6"
                       Background="{DynamicResource ErrorBg}"
                       Foreground="{DynamicResource ErrorFg}"

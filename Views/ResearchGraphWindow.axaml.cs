@@ -101,6 +101,26 @@ public partial class ResearchGraphWindow : Window
             }
         };
 
+        var btnMinimap = this.FindControl<ToggleButton>("BtnMinimap");
+        btnMinimap!.IsCheckedChanged += (_, _) =>
+        {
+            if (_canvas != null)
+            {
+                _canvas.ShowMinimap = btnMinimap.IsChecked == true;
+                _canvas.InvalidateVisual();
+            }
+        };
+
+        var btnClusters = this.FindControl<ToggleButton>("BtnClusters");
+        btnClusters!.IsCheckedChanged += (_, _) =>
+        {
+            if (_canvas != null)
+            {
+                _canvas.ShowClusters = btnClusters.IsChecked == true;
+                _canvas.InvalidateVisual();
+            }
+        };
+
         var btnFitView = this.FindControl<Button>("BtnFitView");
         btnFitView!.Click += (_, _) => _canvas?.FitToView();
 

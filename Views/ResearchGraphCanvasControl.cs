@@ -96,6 +96,32 @@ public class ResearchGraphCanvasControl : Control
     /// <summary>Whether node labels are drawn. Toggled via toolbar.</summary>
     public bool ShowLabels { get; set; } = true;
 
+    /// <summary>Whether the minimap overlay is drawn. Toggled via toolbar.</summary>
+    public bool ShowMinimap { get; set; } = true;
+
+    /// <summary>Whether type-based cluster backgrounds are drawn. Off by default.</summary>
+    public bool ShowClusters { get; set; } = false;
+
+    // Minimap cached resources
+    private static readonly Lazy<IBrush> _minimapBgLazy = new(() =>
+        new SolidColorBrush(Color.FromArgb(128, 0, 0, 0)));
+    private static IBrush _minimapBg => _minimapBgLazy.Value;
+
+    private static readonly Lazy<IPen> _minimapBorderPenLazy = new(() =>
+        new Pen(new SolidColorBrush(Color.FromArgb(77, 255, 255, 255)), 1));
+    private static IPen _minimapBorderPen => _minimapBorderPenLazy.Value;
+
+    private static readonly Lazy<IPen> _minimapViewportPenLazy = new(() =>
+        new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 1));
+    private static IPen _minimapViewportPen => _minimapViewportPenLazy.Value;
+
+    private static readonly Lazy<IPen> _minimapEdgePenLazy = new(() =>
+        new Pen(new SolidColorBrush(Color.FromArgb(80, 150, 150, 150)), 0.5));
+    private static IPen _minimapEdgePen => _minimapEdgePenLazy.Value;
+
+    // Cached cluster brushes to avoid per-frame allocations in DrawClusters
+    private readonly Dictionary<Color, SolidColorBrush> _clusterBrushCache = new();
+
     public event EventHandler<(ResearchGraphNode Node, bool IsCtrlHeld)>? NodeClicked;
     public event EventHandler<ResearchGraphNode>? NodeDoubleClicked;
     public event EventHandler<(ResearchGraphNode From, ResearchGraphNode To)>? EdgeDropped;
@@ -144,6 +170,9 @@ public class ResearchGraphCanvasControl : Control
             var visibleEdges = _vm.GetVisibleEdges();
             var visibleNodes = _vm.GetVisibleNodes();
 
+            // Draw cluster backgrounds (behind everything)
+            DrawClusters(context);
+
             // Draw edges
             foreach (var edge in visibleEdges)
             {
@@ -168,6 +197,9 @@ public class ResearchGraphCanvasControl : Control
                 DrawHandles(context, _hoverNode);
             }
         }
+
+        // Minimap overlay (screen space, after transform pop)
+        DrawMinimap(context);
     }
 
     private void DrawNode(DrawingContext ctx, ResearchGraphNode node)
@@ -517,6 +549,47 @@ public class ResearchGraphCanvasControl : Control
     {
         base.OnPointerPressed(e);
         var pos = e.GetPosition(this);
+
+        // Minimap click-to-pan
+        if (ShowMinimap)
+        {
+            const double mmW = 150, mmH = 100, margin = 10;
+            double bw = Bounds.Width, bh = Bounds.Height;
+            double mmX = bw - mmW - margin;
+            double mmY = bh - mmH - margin;
+
+            if (pos.X >= mmX && pos.X <= mmX + mmW &&
+                pos.Y >= mmY && pos.Y <= mmY + mmH)
+            {
+                var nodes = _vm?.GetVisibleNodes();
+                if (nodes != null && nodes.Count > 0)
+                {
+                    double minGX = double.MaxValue, minGY = double.MaxValue;
+                    double maxGX = double.MinValue, maxGY = double.MinValue;
+                    foreach (var n in nodes)
+                    {
+                        if (n.X < minGX) minGX = n.X;
+                        if (n.Y < minGY) minGY = n.Y;
+                        if (n.X > maxGX) maxGX = n.X;
+                        if (n.Y > maxGY) maxGY = n.Y;
+                    }
+                    double gw = Math.Max(maxGX - minGX, 1);
+                    double gh = Math.Max(maxGY - minGY, 1);
+                    double pad = Math.Max(gw, gh) * 0.1;
+                    minGX -= pad; minGY -= pad; gw += 2 * pad; gh += 2 * pad;
+                    double scaleM = Math.Min(mmW / gw, mmH / gh);
+
+                    double graphX = minGX + (pos.X - mmX) / scaleM;
+                    double graphY = minGY + (pos.Y - mmY) / scaleM;
+
+                    _offsetX = bw / 2 - graphX * _zoom;
+                    _offsetY = bh / 2 - graphY * _zoom;
+                    InvalidateVisual();
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
 
         // Edge handle detection
         if (_hoverNode != null && !_isCreatingEdge)
@@ -883,6 +956,133 @@ public class ResearchGraphCanvasControl : Control
         _entryTimer?.Stop();
         _entryTimer = null;
         base.OnDetachedFromVisualTree(e);
+    }
+
+    private void DrawClusters(DrawingContext ctx)
+    {
+        if (_vm == null || !ShowClusters) return;
+        var nodes = _vm.GetVisibleNodes();
+        if (nodes.Count == 0) return;
+
+        var groups = nodes.GroupBy(n => n.NodeType)
+            .Where(g => g.Count() >= 2);
+
+        foreach (var group in groups)
+        {
+            double minX = double.MaxValue, minY = double.MaxValue;
+            double maxX = double.MinValue, maxY = double.MinValue;
+
+            foreach (var n in group)
+            {
+                double r = GetNodeRadius(n);
+                if (n.X - r < minX) minX = n.X - r;
+                if (n.Y - r < minY) minY = n.Y - r;
+                if (n.X + r > maxX) maxX = n.X + r;
+                if (n.Y + r > maxY) maxY = n.Y + r;
+            }
+
+            const double pad = 30;
+            minX -= pad; minY -= pad;
+            maxX += pad; maxY += pad;
+
+            double w = maxX - minX;
+            double h = maxY - minY;
+            double cornerRadius = Math.Min(w, h) * 0.3;
+
+            var typeBrush = NodeBrushes.GetValueOrDefault(group.Key)
+                ?? NodeBrushes[ScholarNodeType.Passage];
+            Color baseColor;
+            if (typeBrush is SolidColorBrush scb)
+                baseColor = scb.Color;
+            else
+                baseColor = Color.Parse("#6EAFF8");
+
+            var clusterColor = Color.FromArgb(25, baseColor.R, baseColor.G, baseColor.B);
+            if (!_clusterBrushCache.TryGetValue(clusterColor, out var clusterBrush))
+            {
+                clusterBrush = new SolidColorBrush(clusterColor);
+                _clusterBrushCache[clusterColor] = clusterBrush;
+            }
+
+            ctx.DrawRectangle(clusterBrush, null,
+                new Rect(minX, minY, w, h),
+                cornerRadius, cornerRadius);
+        }
+    }
+
+    private void DrawMinimap(DrawingContext ctx)
+    {
+        if (_vm == null || !ShowMinimap) return;
+        var nodes = _vm.GetVisibleNodes();
+        if (nodes.Count == 0) return;
+
+        const double mmW = 150, mmH = 100, margin = 10;
+        double bw = Bounds.Width, bh = Bounds.Height;
+        double mmX = bw - mmW - margin;
+        double mmY = bh - mmH - margin;
+
+        // Compute graph bounding box
+        double minX = double.MaxValue, minY = double.MaxValue;
+        double maxX = double.MinValue, maxY = double.MinValue;
+        foreach (var n in nodes)
+        {
+            if (n.X < minX) minX = n.X;
+            if (n.Y < minY) minY = n.Y;
+            if (n.X > maxX) maxX = n.X;
+            if (n.Y > maxY) maxY = n.Y;
+        }
+        double gw = Math.Max(maxX - minX, 1);
+        double gh = Math.Max(maxY - minY, 1);
+        double pad = Math.Max(gw, gh) * 0.1;
+        minX -= pad; minY -= pad; gw += 2 * pad; gh += 2 * pad;
+
+        double scaleX = mmW / gw, scaleY = mmH / gh;
+        double scale = Math.Min(scaleX, scaleY);
+
+        // Background
+        ctx.DrawRectangle(_minimapBg, _minimapBorderPen,
+            new Rect(mmX, mmY, mmW, mmH));
+
+        // Draw edges as thin gray lines
+        foreach (var edge in _vm.GetVisibleEdges())
+        {
+            double x1 = mmX + (edge.From.X - minX) * scale;
+            double y1 = mmY + (edge.From.Y - minY) * scale;
+            double x2 = mmX + (edge.To.X - minX) * scale;
+            double y2 = mmY + (edge.To.Y - minY) * scale;
+            ctx.DrawLine(_minimapEdgePen, new Point(x1, y1), new Point(x2, y2));
+        }
+
+        // Draw nodes as 2px dots
+        foreach (var n in nodes)
+        {
+            double nx = mmX + (n.X - minX) * scale;
+            double ny = mmY + (n.Y - minY) * scale;
+            var brush = NodeBrushes.GetValueOrDefault(n.NodeType)
+                ?? NodeBrushes[ScholarNodeType.Passage];
+            ctx.DrawEllipse(brush, null, new Point(nx, ny), 2, 2);
+        }
+
+        // Viewport rectangle
+        double vLeft = (0 - _offsetX) / _zoom;
+        double vTop = (0 - _offsetY) / _zoom;
+        double vRight = (bw - _offsetX) / _zoom;
+        double vBottom = (bh - _offsetY) / _zoom;
+
+        double vrX = mmX + (vLeft - minX) * scale;
+        double vrY = mmY + (vTop - minY) * scale;
+        double vrW = (vRight - vLeft) * scale;
+        double vrH = (vBottom - vTop) * scale;
+
+        // Clamp to minimap bounds
+        vrX = Math.Max(vrX, mmX);
+        vrY = Math.Max(vrY, mmY);
+        vrW = Math.Min(vrW, mmX + mmW - vrX);
+        vrH = Math.Min(vrH, mmY + mmH - vrY);
+
+        if (vrW > 0 && vrH > 0)
+            ctx.DrawRectangle(null, _minimapViewportPen,
+                new Rect(vrX, vrY, vrW, vrH));
     }
 
     private void StartEntryAnimation()

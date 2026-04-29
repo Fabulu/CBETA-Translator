@@ -480,6 +480,10 @@ public partial class ScholarTabView : UserControl
         if (btnMoveDown != null)
             btnMoveDown.Click += async (_, _) => await _vm.MovePassageDownCommand.ExecuteAsync(null);
 
+        var btnCompare = this.FindControl<Button>("BtnCompare");
+        if (btnCompare != null)
+            btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
+
         // Wire collection creation buttons
         var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
         if (btnAddCollection != null)
