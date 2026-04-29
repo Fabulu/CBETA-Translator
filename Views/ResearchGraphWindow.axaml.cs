@@ -51,7 +51,16 @@ public partial class ResearchGraphWindow : Window
         UpdateEmptyState();
         UpdateLeftPanels();
 
-        Closing += (_, _) => _vm?.SaveLayoutToCollection();
+        Closing += (_, _) =>
+        {
+            if (_vm != null && _canvas != null)
+            {
+                _vm.SavedZoom = _canvas.CurrentZoom;
+                _vm.SavedOffsetX = _canvas.CurrentOffsetX;
+                _vm.SavedOffsetY = _canvas.CurrentOffsetY;
+                _vm.SaveLayoutToCollection();
+            }
+        };
     }
 
     private void SetupToolbar()
@@ -307,12 +316,22 @@ public partial class ResearchGraphWindow : Window
             {
                 if (_canvas.Bounds.Width > 0 && _canvas.Bounds.Height > 0 && _vm != null)
                 {
-                    var saved = _vm.GetCollection().GraphLayout;
-                    bool hasSaved = saved?.NodePositions != null && saved.NodePositions.Count > 0;
-                    if (!hasSaved && _vm.Nodes.Count > 1)
+                    var savedViewport = _vm.GetSavedViewport();
+                    if (savedViewport.HasValue)
                     {
+                        // Restore saved zoom/pan exactly as user left it
+                        _canvas.SetViewport(savedViewport.Value.zoom,
+                            savedViewport.Value.offsetX, savedViewport.Value.offsetY);
+                    }
+                    else if (_vm.Nodes.Count > 1)
+                    {
+                        // No saved layout — run force layout then FitToView
                         _vm.RunForceDirectedLayout(_canvas.Bounds.Width, _canvas.Bounds.Height);
-                        _canvas.InvalidateVisual();
+                        _canvas.FitToView();
+                    }
+                    else if (_vm.Nodes.Count == 1)
+                    {
+                        _canvas.FitToView();
                     }
                 }
             }, Avalonia.Threading.DispatcherPriority.Loaded);

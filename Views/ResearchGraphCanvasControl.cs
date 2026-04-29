@@ -629,6 +629,19 @@ public class ResearchGraphCanvasControl : Control
         InvalidateVisual();
     }
 
+    /// <summary>Current zoom/pan state for save/restore.</summary>
+    public double CurrentZoom => _zoom;
+    public double CurrentOffsetX => _offsetX;
+    public double CurrentOffsetY => _offsetY;
+
+    public void SetViewport(double zoom, double offsetX, double offsetY)
+    {
+        _zoom = Math.Clamp(zoom, 0.1, 5.0);
+        _offsetX = offsetX;
+        _offsetY = offsetY;
+        InvalidateVisual();
+    }
+
     private static double EaseOutCubic(double t) => 1 - Math.Pow(1 - t, 3);
 
     // --- Physics simulation ---
