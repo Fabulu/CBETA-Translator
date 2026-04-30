@@ -1148,7 +1148,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedPassage = passage;
     }
 
-    private void RefreshPassagesList()
+    public void RefreshPassagesList()
     {
         Passages.Clear();
         if (SelectedCollection == null)

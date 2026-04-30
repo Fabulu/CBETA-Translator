@@ -1788,10 +1788,30 @@ private async Task LoadConfigAndAutoloadAsync()
 
             EnsureScholarContextReady();
 
-            if (await _scholarView.TryAddPassageAsync(passage))
-                _vm.SetStatus("Passage added to Scholar collection.");
+            var scholarVm = _scholarView.DataContext as ScholarTabViewModel;
+            if (scholarVm != null && scholarVm.Collections.Count > 0)
+            {
+                var picker = new CollectionPickerDialog(scholarVm.Collections);
+                var selected = await picker.ShowDialog<ScholarCollection?>(this);
+                if (selected == null) return; // user cancelled
+
+                // If this is a newly created collection (not yet in VM), add it
+                if (!scholarVm.Collections.Any(c => c.Id == selected.Id))
+                    scholarVm.Collections.Add(selected);
+
+                await scholarVm.AddPassageToCollectionAsync(selected.Id, passage);
+                scholarVm.RefreshPassagesList();
+                scholarVm.RebuildTree();
+                _vm.SetStatus($"Passage added to '{selected.Name}'.");
+            }
             else
-                _vm.SetStatus("Could not add passage. " + (_scholarView.DataContext is ScholarTabViewModel svm ? svm.StatusMessage : ""));
+            {
+                // Auto-create if empty
+                if (await _scholarView.TryAddPassageAsync(passage))
+                    _vm.SetStatus("Passage added to Scholar collection.");
+                else
+                    _vm.SetStatus("Could not add passage. " + (scholarVm != null ? scholarVm.StatusMessage : ""));
+            }
         }
         catch (Exception ex)
         {

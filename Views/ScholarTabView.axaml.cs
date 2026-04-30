@@ -375,11 +375,24 @@ public partial class ScholarTabView : UserControl
                 graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
                 graphWindow.AdoptPassageRequested += async (_, passage) =>
                 {
-                    var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
-                    if (target != null)
+                    if (_vm.Collections.Count > 0)
                     {
-                        await _vm.AdoptPassageToCollectionAsync(passage, target);
-                        Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+                        var picker = new CollectionPickerDialog(_vm.Collections);
+                        var selected = await picker.ShowDialog<ScholarCollection?>(graphWindow);
+                        if (selected == null) return;
+                        if (!_vm.Collections.Any(c => c.Id == selected.Id))
+                            _vm.Collections.Add(selected);
+                        await _vm.AdoptPassageToCollectionAsync(passage, selected);
+                        Status?.Invoke(this, $"Passage adopted to '{selected.Name}'.");
+                    }
+                    else
+                    {
+                        var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
+                        if (target != null)
+                        {
+                            await _vm.AdoptPassageToCollectionAsync(passage, target);
+                            Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+                        }
                     }
                 };
                 graphWindow.SaveRequested += () => _vm.SyncAndSave();
@@ -966,11 +979,24 @@ public partial class ScholarTabView : UserControl
         graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
         graphWindow.AdoptPassageRequested += async (_, passage) =>
         {
-            var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
-            if (target != null)
+            if (_vm.Collections.Count > 0)
             {
-                await _vm.AdoptPassageToCollectionAsync(passage, target);
-                Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+                var picker = new CollectionPickerDialog(_vm.Collections);
+                var selected = await picker.ShowDialog<ScholarCollection?>(graphWindow);
+                if (selected == null) return;
+                if (!_vm.Collections.Any(c => c.Id == selected.Id))
+                    _vm.Collections.Add(selected);
+                await _vm.AdoptPassageToCollectionAsync(passage, selected);
+                Status?.Invoke(this, $"Passage adopted to '{selected.Name}'.");
+            }
+            else
+            {
+                var target = _vm.SelectedCollection ?? _vm.Collections.FirstOrDefault();
+                if (target != null)
+                {
+                    await _vm.AdoptPassageToCollectionAsync(passage, target);
+                    Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
+                }
             }
         };
         graphWindow.SaveRequested += () => _vm.SyncAndSave();
