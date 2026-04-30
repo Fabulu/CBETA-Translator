@@ -992,6 +992,11 @@ public partial class ScholarTabView : UserControl
         if (top != null) await dlg.ShowDialog(top);
         if (!string.IsNullOrEmpty(newName) && newName != col.Name)
         {
+            if (_vm.IsCollectionNameTaken(newName, col.Id))
+            {
+                Status?.Invoke(this, $"A collection named '{newName}' already exists.");
+                return;
+            }
             col.Name = newName;
             _vm.SyncAndSave();
             _vm.RebuildTree();

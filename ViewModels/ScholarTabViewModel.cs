@@ -381,13 +381,28 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     private ScholarCollection CreateCollection()
     {
+        // Ensure unique name to prevent URL collisions
+        var baseName = "New Collection";
+        var name = baseName;
+        int i = 2;
+        while (_allCollections.Any(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase)))
+            name = $"{baseName} {i++}";
+
         return new ScholarCollection
         {
             Id = Guid.NewGuid().ToString("N"),
-            Name = "New Collection",
+            Name = name,
             CreatedUtc = DateTimeOffset.UtcNow,
             CreatedBy = _username
         };
+    }
+
+    /// <summary>Returns true if the name is already used by another collection.</summary>
+    public bool IsCollectionNameTaken(string name, string? excludeId = null)
+    {
+        return _allCollections.Any(c =>
+            string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase) &&
+            c.Id != excludeId);
     }
 
     [RelayCommand]
