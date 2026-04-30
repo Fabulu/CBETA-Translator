@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.CollectionPickerDialog"
+        Title="Choose Collection"
+        Width="320" Height="400"
+        WindowStartupLocation="CenterOwner" CanResize="False">
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+    <Button Grid.Row="0" Name="BtnNewCollection" Content="+ New Collection" Padding="12,6" Margin="0,0,0,8"/>
+    <TextBox Grid.Row="1" Name="TxtSearch" Watermark="Filter collections..." Margin="0,0,0,8"/>
+    <ListBox Grid.Row="2" Name="LstCollections" SelectionMode="Single"/>
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+      <Button Name="BtnCancel" Content="Cancel" Padding="12,6"/>
+      <Button Name="BtnOk" Content="OK" Padding="12,6"/>
+    </StackPanel>
+  </Grid>
+</Window>
