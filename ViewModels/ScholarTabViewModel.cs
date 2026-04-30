@@ -959,6 +959,8 @@ public partial class ScholarTabViewModel : ViewModelBase
         return TrySelectOwnedCollection(collectionId, passageId);
     }
 
+    public string? GetCurrentUsername() => _username;
+
     // ----- Public API -----
 
     public async Task AddPassageToCollectionAsync(string collectionId, ScholarPassage passage)
@@ -984,6 +986,8 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
 
         IsEmptyState = false;
+        RefreshPassagesList();
+        RebuildTree();
         await SaveAsync();
     }
 

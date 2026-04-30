@@ -30,6 +30,7 @@
 
         <!-- RIGHT side -->
         <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" ToolTip.Tip="More tools" Padding="8,4"/>
+        <Button DockPanel.Dock="Right" Name="BtnRename" Content="Rename" ToolTip.Tip="Rename collection (F2)" Padding="8,4" Margin="0,0,4,0"/>
         <Button DockPanel.Dock="Right" Name="BtnAddCollection" Content="+" ToolTip.Tip="New collection" Padding="8,4" Margin="0,0,4,0"/>
         <Button DockPanel.Dock="Right" Name="BtnExport" Content="Export" ToolTip.Tip="Export collection" Padding="8,4" Margin="0,0,4,0"/>
         <Button DockPanel.Dock="Right" Name="BtnShowGraph" ToolTip.Tip="Open the Research Graph for this collection"

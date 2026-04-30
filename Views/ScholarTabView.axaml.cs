@@ -237,7 +237,7 @@ public partial class ScholarTabView : UserControl
                 else if (node.Kind == TreeNodeKind.Collection && node.Tag is ScholarCollection col)
                 {
                     // Only show rename for own collections
-                    if (string.IsNullOrWhiteSpace(col.CreatedBy) || col.CreatedBy == _currentUsername)
+                    if (string.IsNullOrWhiteSpace(col.CreatedBy) || col.CreatedBy == _vm.GetCurrentUsername())
                     {
                         var renameItem = new MenuItem { Header = "Rename Collection" };
                         renameItem.Click += async (_, _) =>
@@ -271,12 +271,18 @@ public partial class ScholarTabView : UserControl
 
             tree.PointerPressed += (_, e) =>
             {
-                if (e.GetCurrentPoint(tree).Properties.IsLeftButtonPressed &&
-                    tree.SelectedItem is CollectionTreeNode node &&
-                    node.Kind == TreeNodeKind.Passage)
+                if (e.GetCurrentPoint(tree).Properties.IsLeftButtonPressed)
                 {
-                    _dragCandidate = node;
-                    _dragStartPoint = e.GetPosition(tree);
+                    if (e.Source is Control ctrl)
+                    {
+                        var tvi = ctrl as TreeViewItem ?? ctrl.FindAncestorOfType<TreeViewItem>();
+                        if (tvi?.DataContext is CollectionTreeNode node && node.Kind == TreeNodeKind.Passage)
+                        {
+                            _dragCandidate = node;
+                            _dragStartPoint = e.GetPosition(tree);
+                            e.Handled = true;
+                        }
+                    }
                 }
             };
 
@@ -465,7 +471,7 @@ public partial class ScholarTabView : UserControl
             {
                 var menu = new ContextMenu();
                 var selCol = _vm.SelectedCollection;
-                if (selCol == null || string.IsNullOrWhiteSpace(selCol.CreatedBy) || selCol.CreatedBy == _currentUsername)
+                if (selCol == null || string.IsNullOrWhiteSpace(selCol.CreatedBy) || selCol.CreatedBy == _vm.GetCurrentUsername())
                     menu.Items.Add(CreateScholarMenuItem("Rename Collection", async () => await RenameSelectedCollectionAsync()));
                 menu.Items.Add(CreateScholarMenuItem("Import Collections", () => _vm.ImportCollectionsCommand.Execute(null)));
                 menu.Items.Add(CreateScholarMenuItem("Rebuild Tree", () => _vm.RebuildTree()));
@@ -493,6 +499,11 @@ public partial class ScholarTabView : UserControl
         var btnCompare = this.FindControl<Button>("BtnCompare");
         if (btnCompare != null)
             btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
+
+        // Wire rename button
+        var btnRename = this.FindControl<Button>("BtnRename");
+        if (btnRename != null)
+            btnRename.Click += async (_, _) => await RenameSelectedCollectionAsync();
 
         // Wire collection creation buttons
         var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
@@ -531,7 +542,12 @@ public partial class ScholarTabView : UserControl
         // Keyboard shortcuts
         KeyDown += (_, e) =>
         {
-            if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift))
+            if (e.Key == Key.F2)
+            {
+                _ = RenameSelectedCollectionAsync();
+                e.Handled = true;
+            }
+            else if (e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Shift))
             {
                 if (e.Key == Key.P)
                 {
@@ -966,7 +982,7 @@ public partial class ScholarTabView : UserControl
         var col = _vm.SelectedCollection;
         if (col == null) return;
         if (col.CreatedBy != null && !string.IsNullOrWhiteSpace(col.CreatedBy) &&
-            col.CreatedBy != _currentUsername)
+            col.CreatedBy != _vm.GetCurrentUsername())
         {
             Status?.Invoke(this, "Cannot rename other users' collections.");
             return;
