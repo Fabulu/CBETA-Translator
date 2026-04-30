@@ -30,6 +30,7 @@ public partial class ResearchGraphWindow : Window
     public event EventHandler<string>? OpenMasterRequested;
     public event EventHandler<string>? DictionaryRequested;
     public event EventHandler<ScholarPassage>? AdoptPassageRequested;
+    public event Action? SaveRequested;
 
     public ResearchGraphWindow()
     {
@@ -62,6 +63,7 @@ public partial class ResearchGraphWindow : Window
                 _vm.SavedOffsetX = _canvas.CurrentOffsetX;
                 _vm.SavedOffsetY = _canvas.CurrentOffsetY;
                 _vm.SaveLayoutToCollection();
+                SaveRequested?.Invoke();
             }
         };
     }

@@ -376,6 +376,7 @@ public partial class ScholarTabView : UserControl
                         Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
                     }
                 };
+                graphWindow.SaveRequested += () => _vm.SyncAndSave();
                 graphWindow.Show();
             };
         }
@@ -956,6 +957,7 @@ public partial class ScholarTabView : UserControl
                 Status?.Invoke(this, $"Passage adopted to '{target.Name}'.");
             }
         };
+        graphWindow.SaveRequested += () => _vm.SyncAndSave();
         graphWindow.Show();
     }
 
