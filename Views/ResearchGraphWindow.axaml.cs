@@ -369,7 +369,7 @@ public partial class ResearchGraphWindow : Window
             {
                 var col = _vm?.GetCollection();
                 if (col == null) return;
-                var url = ZenUriParser.BuildShareableGraphUrl(col.Id ?? col.Name ?? "");
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "");
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
                 var status = this.FindControl<TextBlock>("TxtStatus");
@@ -983,7 +983,7 @@ public partial class ResearchGraphWindow : Window
             {
                 var col = _vm?.GetCollection();
                 if (col == null) return;
-                var url = ZenUriParser.BuildShareableGraphUrl(col.Id ?? col.Name ?? "");
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "");
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
             }));
