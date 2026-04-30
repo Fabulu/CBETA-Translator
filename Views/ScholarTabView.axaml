@@ -244,7 +244,7 @@
                         Background="#0FD4AF37"
                         BorderThickness="1" BorderBrush="#33D4AF37">
                   <Grid>
-                    <ScrollViewer MaxHeight="300">
+                    <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
                       <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
                                BorderThickness="0" Background="Transparent"/>
                     </ScrollViewer>
@@ -272,7 +272,7 @@
                 <Border CornerRadius="6" Padding="10,8"
                         Background="#0A88AAFF"
                         BorderThickness="1" BorderBrush="#2288AAFF">
-                  <ScrollViewer MaxHeight="300">
+                  <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
                     <TextBox Name="TxtEnText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
                              BorderThickness="0" Background="Transparent"/>
                   </ScrollViewer>
