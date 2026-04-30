@@ -422,6 +422,9 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         if (SelectedCollection == null) return;
         if (ConfirmAsync != null && !await ConfirmAsync("Delete Collection", $"Delete '{SelectedCollection.Name}'? This cannot be undone.")) return;
+        // Promote sub-collections to root (prevent orphans)
+        foreach (var child in _allCollections.Where(c => c.ParentCollectionId == SelectedCollection.Id))
+            child.ParentCollectionId = SelectedCollection.ParentCollectionId;
         _allCollections.Remove(SelectedCollection);
         Collections.Remove(SelectedCollection);
         SelectedCollection = Collections.FirstOrDefault();
@@ -516,6 +519,123 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedPassage = passage;
         RebuildTree();
         await SaveAsync();
+    }
+
+    /// <summary>Moves the selected passage to the first position in the collection.</summary>
+    public async Task MovePassageToTopAsync()
+    {
+        var passage = SelectedPassage;
+        var col = SelectedCollection;
+        if (passage == null || col == null) return;
+        var idx = col.Passages.IndexOf(passage);
+        if (idx <= 0) return;
+        col.Passages.RemoveAt(idx);
+        col.Passages.Insert(0, passage);
+        RefreshPassagesList();
+        SelectedPassage = passage;
+        RebuildTree();
+        await SaveAsync();
+    }
+
+    /// <summary>Moves the selected passage to the last position in the collection.</summary>
+    public async Task MovePassageToBottomAsync()
+    {
+        var passage = SelectedPassage;
+        var col = SelectedCollection;
+        if (passage == null || col == null) return;
+        var idx = col.Passages.IndexOf(passage);
+        if (idx < 0 || idx >= col.Passages.Count - 1) return;
+        col.Passages.RemoveAt(idx);
+        col.Passages.Add(passage);
+        RefreshPassagesList();
+        SelectedPassage = passage;
+        RebuildTree();
+        await SaveAsync();
+    }
+
+    /// <summary>Moves a passage from the current collection to a target collection.</summary>
+    public async Task MovePassageToCollectionAsync(ScholarPassage passage, string targetCollectionId)
+    {
+        var sourceCol = SelectedCollection;
+        var targetCol = _allCollections.FirstOrDefault(c => c.Id == targetCollectionId);
+        if (sourceCol == null || targetCol == null) return;
+        if (!sourceCol.Passages.Contains(passage)) return;
+
+        sourceCol.Passages.Remove(passage);
+        targetCol.Passages.Add(passage);
+
+        RefreshPassagesList();
+        RebuildTree();
+        await SaveAsync();
+
+        StatusMessage = $"Moved passage to '{targetCol.Name}'.";
+        StatusChanged?.Invoke(this, StatusMessage);
+    }
+
+    /// <summary>Creates a sub-collection under the specified parent.</summary>
+    public async Task CreateSubCollectionAsync(string parentId)
+    {
+        if (!await EnsureStorageContextAsync()) return;
+
+        var name = "New Sub-Collection";
+        int counter = 2;
+        while (_allCollections.Any(c => string.Equals(c.Name, name, StringComparison.OrdinalIgnoreCase)))
+            name = $"New Sub-Collection {counter++}";
+
+        var c = new ScholarCollection
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            Name = name,
+            CreatedUtc = DateTimeOffset.UtcNow,
+            CreatedBy = _username ?? "",
+            ParentCollectionId = parentId
+        };
+        _allCollections.Add(c);
+        RefreshCollectionsList();
+        RebuildTree();
+        SelectedCollection = c;
+        await SaveAsync();
+    }
+
+    /// <summary>Moves a collection under a new parent, or makes it root if newParentId is null.</summary>
+    public void MoveCollectionToParent(ScholarCollection col, string? newParentId)
+    {
+        if (newParentId == col.Id) return;
+        if (newParentId != null && IsDescendantOf(newParentId, col.Id)) return;
+
+        col.ParentCollectionId = newParentId;
+        RefreshCollectionsList();
+        RebuildTree();
+        _ = SafeFireAndForget(SaveAsync());
+    }
+
+    /// <summary>Read-only access to all collections (for picker dialogs).</summary>
+    public IReadOnlyList<ScholarCollection> AllCollections => _allCollections;
+
+    private bool IsDescendantOf(string collectionId, string ancestorId)
+    {
+        var current = _allCollections.FirstOrDefault(c => c.Id == collectionId);
+        var visited = new HashSet<string>();
+        while (current != null && visited.Add(current.Id))
+        {
+            if (current.ParentCollectionId == ancestorId) return true;
+            current = _allCollections.FirstOrDefault(c => c.Id == current.ParentCollectionId);
+        }
+        return false;
+    }
+
+    private int GetCollectionDepth(ScholarCollection col)
+    {
+        int depth = 0;
+        var current = col;
+        var visited = new HashSet<string>();
+        while (!string.IsNullOrEmpty(current.ParentCollectionId) && visited.Add(current.Id))
+        {
+            current = _allCollections.FirstOrDefault(c => c.Id == current.ParentCollectionId);
+            if (current == null) break;
+            depth++;
+        }
+        return depth;
     }
 
     [RelayCommand]
@@ -1068,7 +1188,10 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
 
         foreach (var c in source)
+        {
+            c.NestingDepth = GetCollectionDepth(c);
             Collections.Add(c);
+        }
 
         // Restore previous selection if still visible, otherwise prefer user-owned collection
         if (prev != null && Collections.Contains(prev))
@@ -1090,6 +1213,9 @@ public partial class ScholarTabViewModel : ViewModelBase
     public void RebuildTree()
     {
         CollectionTreeNodes.Clear();
+
+        // Pass 1: create all collection nodes with their passage children
+        var nodeMap = new Dictionary<string, CollectionTreeNode>();
         foreach (var collection in _allCollections)
         {
             var cNode = new CollectionTreeNode
@@ -1113,7 +1239,29 @@ public partial class ScholarTabViewModel : ViewModelBase
                     ReadingStatus = passage.ReadingStatus
                 });
             }
-            CollectionTreeNodes.Add(cNode);
+            nodeMap[collection.Id] = cNode;
+        }
+
+        // Pass 2: attach children to parents; root nodes go directly into CollectionTreeNodes
+        foreach (var collection in _allCollections)
+        {
+            var node = nodeMap[collection.Id];
+            if (!string.IsNullOrEmpty(collection.ParentCollectionId)
+                && nodeMap.TryGetValue(collection.ParentCollectionId, out var parentNode))
+            {
+                // Insert sub-collection nodes before passage nodes
+                int insertIdx = 0;
+                foreach (var existing in parentNode.Children)
+                {
+                    if (existing.Kind != TreeNodeKind.Collection) break;
+                    insertIdx++;
+                }
+                parentNode.Children.Insert(insertIdx, node);
+            }
+            else
+            {
+                CollectionTreeNodes.Add(node);
+            }
         }
     }
 

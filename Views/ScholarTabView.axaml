@@ -19,7 +19,7 @@
                   ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}">
           <ComboBox.ItemTemplate>
             <DataTemplate x:DataType="models:ScholarCollection">
-              <TextBlock Text="{Binding Name}"/>
+              <TextBlock Text="{Binding IndentedName}"/>
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
