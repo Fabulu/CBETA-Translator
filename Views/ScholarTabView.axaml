@@ -122,9 +122,8 @@
                   </DataTemplate>
                 </ListBox.ItemTemplate>
               </ListBox>
-              <Button Grid.Row="3" Content="Adopt to My Collection" Margin="8,0,8,8"
-                      HorizontalAlignment="Stretch" Padding="8,6"
-                      Command="{Binding AdoptSelectedPassageCommand}"/>
+              <Button Grid.Row="3" Name="BtnAdoptCommunity" Content="Adopt to My Collection" Margin="8,0,8,8"
+                      HorizontalAlignment="Stretch" Padding="8,6"/>
             </Grid>
           </TabItem>
         </TabControl>
