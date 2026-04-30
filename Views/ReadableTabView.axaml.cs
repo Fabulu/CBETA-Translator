@@ -1042,6 +1042,10 @@ public partial class ReadableTabView : UserControl
         var btnFind = this.FindControl<Button>("BtnFind");
         if (btnFind != null) btnFind.Click += (_, _) => OpenFindBar();
 
+        var btnSaveToCollection = this.FindControl<Button>("BtnSaveToCollection");
+        if (btnSaveToCollection != null)
+            btnSaveToCollection.Click += async (_, _) => await OnAddToScholarCollectionAsync(false);
+
         // Correction time-travel bar
         if (_correctionTimeline != null)
         {

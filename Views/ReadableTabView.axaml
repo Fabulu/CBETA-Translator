@@ -87,6 +87,12 @@
 						FontSize="11"
 						Focusable="False"
 						ToolTip.Tip="Find in text (Ctrl+F)"/>
+				<Button Name="BtnSaveToCollection"
+						Content="📥 Save to Collection"
+						Padding="6,2"
+						FontSize="11"
+						Focusable="False"
+						ToolTip.Tip="Save the current passage to your Scholar collection"/>
 			</StackPanel>
 
 			<Button Name="BtnCompareTranslations"
