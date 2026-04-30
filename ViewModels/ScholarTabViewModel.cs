@@ -1545,7 +1545,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         SelectedCommunityPassage = null;
         HasCommunityCollections = false;
         IsEmptyState = true;
-        NavigatorTabIndex = 1;
+        NavigatorTabIndex = 0;
         _root = null;
         _username = null;
         _legacyUsername = null;
@@ -1563,7 +1563,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         bool hasAnyLocal = _allCollections.Count > 0;
         IsEmptyState = !hasAnyLocal && !HasCommunityCollections;
-        NavigatorTabIndex = !hasAnyLocal && HasCommunityCollections ? 2 : 1;
+        NavigatorTabIndex = !hasAnyLocal && HasCommunityCollections ? 1 : 0;
     }
 
 
@@ -1681,7 +1681,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (collection == null)
             return false;
 
-        NavigatorTabIndex = 1;
+        NavigatorTabIndex = 0;
         SelectedCollection = collection;
 
         if (string.IsNullOrWhiteSpace(passageId))
@@ -1699,7 +1699,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (communityEntry.Collection == null)
             return false;
 
-        NavigatorTabIndex = 2;
+        NavigatorTabIndex = 1;
 
         int userIndex = _communityUsernames.FindIndex(u => string.Equals(u, communityEntry.Author, StringComparison.OrdinalIgnoreCase));
         if (userIndex >= 0)
