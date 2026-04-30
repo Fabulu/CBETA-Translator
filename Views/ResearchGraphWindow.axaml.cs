@@ -321,6 +321,18 @@ public partial class ResearchGraphWindow : Window
                     };
                     _vm.Nodes.Add(node);
                     _vm.RestoreNodeToMap(node);
+                    // Persist to backing collection data
+                    _vm.GetCollection().CollectionRefs ??= new();
+                    if (!_vm.GetCollection().CollectionRefs.Any(r => r.CollectionId == target.Id))
+                    {
+                        _vm.GetCollection().CollectionRefs.Add(new CollectionRefNode
+                        {
+                            CollectionId = target.Id,
+                            CollectionName = target.Name,
+                            IsShared = false,
+                            OwnerUsername = target.CreatedBy
+                        });
+                    }
                     _canvas?.InvalidateVisual();
                     UpdateStatusBar(); UpdateLeftPanels();
                 }
