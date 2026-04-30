@@ -872,7 +872,7 @@ public class ResearchGraphCanvasControl : Control
 
         double R = Math.Sqrt(N) * 80;
         double k = Math.Sqrt((R * R * 4) / N);
-        double alpha = 0.02;
+        double alpha = 0.005;
 
         // Gravity pulls toward FIXED viewport center (not center of mass,
         // which drifts with the nodes and can never pull them back)
@@ -902,8 +902,8 @@ public class ResearchGraphCanvasControl : Control
         foreach (var n in nodes)
         {
             if (n.IsPinned || n == _dragNode) continue;
-            n.Vx -= (n.X - cx) * 0.02;
-            n.Vy -= (n.Y - cy) * 0.02;
+            n.Vx -= (n.X - cx) * 0.006;
+            n.Vy -= (n.Y - cy) * 0.006;
         }
 
         // Edge attraction (keeps connected nodes loosely together)
@@ -935,10 +935,10 @@ public class ResearchGraphCanvasControl : Control
         {
             if (n.IsPinned || n == _dragNode) continue;
             double disp = Math.Sqrt(n.Vx * n.Vx + n.Vy * n.Vy);
-            if (disp > 0.8)
+            if (disp > 0.3)
             {
-                n.Vx = n.Vx / disp * 0.8;
-                n.Vy = n.Vy / disp * 0.8;
+                n.Vx = n.Vx / disp * 0.3;
+                n.Vy = n.Vy / disp * 0.3;
             }
             if (disp > 0.01)
             {
