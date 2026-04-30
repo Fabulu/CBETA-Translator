@@ -649,8 +649,15 @@ public class ResearchGraphCanvasControl : Control
             }
             else
             {
+                // Click on empty space — deselect all nodes
+                if (_vm != null)
+                {
+                    foreach (var n in _vm.Nodes) n.IsSelected = false;
+                    _vm.SelectedNode = null;
+                }
                 _isPanning = true;
                 _panStart = pos;
+                InvalidateVisual();
             }
         }
         e.Pointer.Capture(this);
