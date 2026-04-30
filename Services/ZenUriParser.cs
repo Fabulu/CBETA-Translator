@@ -805,9 +805,10 @@ public static class ZenUriParser
 
     public static string BuildShareableScholarUrl(string collectionId, string? passageId = null, string? user = null)
     {
+        var slug = Uri.EscapeDataString(collectionId).Replace("%20", "_");
         var url = passageId != null
-            ? $"{ShareableBase}scholar/{collectionId}/{passageId}"
-            : $"{ShareableBase}scholar/{collectionId}";
+            ? $"{ShareableBase}scholar/{slug}/{passageId}"
+            : $"{ShareableBase}scholar/{slug}";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         return url;
@@ -815,7 +816,9 @@ public static class ZenUriParser
 
     public static string BuildShareableGraphUrl(string collectionId, string? user = null)
     {
-        var url = $"{ShareableBase}scholar/{Uri.EscapeDataString(collectionId)}/graph";
+        // Use underscores instead of %20 for readable URLs (same pattern as master URLs)
+        var slug = Uri.EscapeDataString(collectionId).Replace("%20", "_");
+        var url = $"{ShareableBase}scholar/{slug}/graph";
         if (!string.IsNullOrEmpty(user))
             url += "/" + Uri.EscapeDataString(user);
         return url;
