@@ -1044,7 +1044,18 @@ public partial class ReadableTabView : UserControl
 
         var btnSaveToCollection = this.FindControl<Button>("BtnSaveToCollection");
         if (btnSaveToCollection != null)
-            btnSaveToCollection.Click += async (_, _) => await OnAddToScholarCollectionAsync(false);
+            btnSaveToCollection.Click += async (_, _) =>
+            {
+                // Try Chinese side first, then English
+                bool hasZh = !string.IsNullOrWhiteSpace(_aeOrig?.SelectedText);
+                bool hasEn = !string.IsNullOrWhiteSpace(_aeTran?.SelectedText);
+                if (hasZh)
+                    await OnAddToScholarCollectionAsync(isTranslated: false);
+                else if (hasEn)
+                    await OnAddToScholarCollectionAsync(isTranslated: true);
+                else
+                    Say("Select some Chinese or English text first, then click Save to Collection.");
+            };
 
         // Correction time-travel bar
         if (_correctionTimeline != null)
