@@ -301,7 +301,9 @@ public partial class ResearchGraphWindow : Window
                 if (_vm == null) return;
                 var others = _vm.GetAllCollections().Where(c => c.Id != _vm.GetCollection().Id).ToList();
                 if (others.Count == 0) return;
-                var dialog = new MasterPickerDialog(others.Select(c => c.Name ?? c.Id));
+                var dialog = new MasterPickerDialog(
+                    others.Select(c => c.Name ?? c.Id),
+                    searchWatermark: "Search collections...");
                 dialog.Title = "Add Collection Reference";
                 var result = await dialog.ShowDialog<string?>(this);
                 if (!string.IsNullOrEmpty(result))
