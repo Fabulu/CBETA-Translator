@@ -76,6 +76,7 @@ public sealed class ScholarCollection
     public DateTimeOffset CreatedUtc { get; set; }
     public DateTimeOffset? ModifiedUtc { get; set; }
     public string? CreatedBy { get; set; }
+    public string? ParentCollectionId { get; set; }
     public List<ScholarPassage> Passages { get; set; } = new();
     public List<PassageLink> Links { get; set; } = new();
 
@@ -86,6 +87,13 @@ public sealed class ScholarCollection
     public List<EdgeTypeDefinition> CustomEdgeTypes { get; set; } = new();
     public List<CollectionRefNode> CollectionRefs { get; set; } = new();
     public EdgeTypePreferences EdgePreferences { get; set; } = new();
+
+    // Nesting display helpers (not serialized)
+    [JsonIgnore]
+    public int NestingDepth { get; set; }
+
+    [JsonIgnore]
+    public string IndentedName => new string(' ', NestingDepth * 4) + (Name ?? "Untitled");
 
     public string StudyNotes { get; set; } = "";
     public ScholarGraphLayout GraphLayout { get; set; } = new();

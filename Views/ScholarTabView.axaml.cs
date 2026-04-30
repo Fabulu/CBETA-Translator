@@ -227,6 +227,45 @@ public partial class ScholarTabView : UserControl
 
                     menu.Items.Add(new Separator());
 
+                    // Move to Collection
+                    var moveToColItem = new MenuItem { Header = "Move to Collection..." };
+                    moveToColItem.Click += async (_, _) =>
+                    {
+                        var picker = new CollectionPickerDialog(
+                            _vm.AllCollections.Where(c => c.Id != _vm.SelectedCollection?.Id));
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top is Window parentWindow)
+                        {
+                            var result = await picker.ShowDialog<ScholarCollection?>(parentWindow);
+                            if (result != null)
+                                await _vm.MovePassageToCollectionAsync(passage, result.Id);
+                        }
+                    };
+                    menu.Items.Add(moveToColItem);
+
+                    // Move to Position
+                    var moveToPosItem = new MenuItem { Header = "Move to Position..." };
+                    moveToPosItem.Click += async (_, _) =>
+                    {
+                        var col2 = _vm.SelectedCollection;
+                        if (col2 == null) return;
+                        var currentIdx = col2.Passages.IndexOf(passage);
+                        var total = col2.Passages.Count;
+                        if (total <= 1) return;
+
+                        var dialog = new MoveToPositionDialog(currentIdx + 1, total);
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top is Window parentWindow)
+                        {
+                            var result = await dialog.ShowDialog<int?>(parentWindow);
+                            if (result is int targetPos && targetPos >= 1 && targetPos <= total)
+                                await _vm.MovePassageToIndexAsync(passage, targetPos - 1);
+                        }
+                    };
+                    menu.Items.Add(moveToPosItem);
+
+                    menu.Items.Add(new Separator());
+
                     var deleteItem = new MenuItem { Header = "Delete Passage" };
                     deleteItem.Click += (_, _) => _vm.DeletePassageCommand.Execute(null);
                     menu.Items.Add(deleteItem);
@@ -243,6 +282,42 @@ public partial class ScholarTabView : UserControl
                             await RenameSelectedCollectionAsync();
                         };
                         menu.Items.Add(renameItem);
+                    }
+
+                    // Create Sub-Collection
+                    var subColItem = new MenuItem { Header = "Create Sub-Collection" };
+                    subColItem.Click += async (_, _) =>
+                    {
+                        _vm.SelectedCollection = col;
+                        await _vm.CreateSubCollectionAsync(col.Id);
+                    };
+                    menu.Items.Add(subColItem);
+
+                    // Move Under Collection
+                    var moveUnderItem = new MenuItem { Header = "Move Under Collection..." };
+                    moveUnderItem.Click += async (_, _) =>
+                    {
+                        var picker = new CollectionPickerDialog(
+                            _vm.AllCollections.Where(c => c.Id != col.Id));
+                        var top = TopLevel.GetTopLevel(this);
+                        if (top is Window parentWindow)
+                        {
+                            var result = await picker.ShowDialog<ScholarCollection?>(parentWindow);
+                            if (result != null)
+                                _vm.MoveCollectionToParent(col, result.Id);
+                        }
+                    };
+                    menu.Items.Add(moveUnderItem);
+
+                    // Make Root (only if currently nested)
+                    if (!string.IsNullOrEmpty(col.ParentCollectionId))
+                    {
+                        var makeRootItem = new MenuItem { Header = "Make Root Collection" };
+                        makeRootItem.Click += (_, _) =>
+                        {
+                            _vm.MoveCollectionToParent(col, null);
+                        };
+                        menu.Items.Add(makeRootItem);
                     }
 
                     var exportItem = new MenuItem { Header = "Export Collection" };
@@ -429,11 +504,31 @@ public partial class ScholarTabView : UserControl
 
         var btnMoveUp = this.FindControl<Button>("BtnMoveUp");
         if (btnMoveUp != null)
-            btnMoveUp.Click += async (_, _) => await _vm.MovePassageUpCommand.ExecuteAsync(null);
+        {
+            btnMoveUp.AddHandler(Avalonia.Input.InputElement.PointerPressedEvent, async (_, e) =>
+            {
+                if (!e.GetCurrentPoint(null).Properties.IsLeftButtonPressed) return;
+                e.Handled = true;
+                if (e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+                    await _vm.MovePassageToTopAsync();
+                else
+                    await _vm.MovePassageUpCommand.ExecuteAsync(null);
+            }, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+        }
 
         var btnMoveDown = this.FindControl<Button>("BtnMoveDown");
         if (btnMoveDown != null)
-            btnMoveDown.Click += async (_, _) => await _vm.MovePassageDownCommand.ExecuteAsync(null);
+        {
+            btnMoveDown.AddHandler(Avalonia.Input.InputElement.PointerPressedEvent, async (_, e) =>
+            {
+                if (!e.GetCurrentPoint(null).Properties.IsLeftButtonPressed) return;
+                e.Handled = true;
+                if (e.KeyModifiers.HasFlag(KeyModifiers.Shift))
+                    await _vm.MovePassageToBottomAsync();
+                else
+                    await _vm.MovePassageDownCommand.ExecuteAsync(null);
+            }, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+        }
 
         var btnCompare = this.FindControl<Button>("BtnCompare");
         if (btnCompare != null)
