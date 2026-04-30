@@ -41,10 +41,7 @@ public partial class ScholarTabView : UserControl
     private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
     private CancellationTokenSource? _parallelCts;
 
-    // Tree drag-and-drop
-    private static readonly DataFormat<string> PassageDragFormat = DataFormat.CreateStringApplicationFormat("ScholarPassageId");
-    private CollectionTreeNode? _dragCandidate;
-    private Point? _dragStartPoint;
+    // Passage reorder: use ▲/▼ buttons (Avalonia TreeView DnD is unreliable)
 
     // Assistant panel
     private readonly ITranslationAssistantService _assistantService = App.Services.GetRequiredService<ITranslationAssistantService>();
@@ -266,79 +263,8 @@ public partial class ScholarTabView : UserControl
                 }
             };
 
-            // Drag-and-drop reorder for passages
-            DragDrop.SetAllowDrop(tree, true);
-
-            tree.PointerPressed += (_, e) =>
-            {
-                if (e.GetCurrentPoint(tree).Properties.IsLeftButtonPressed)
-                {
-                    if (e.Source is Control ctrl)
-                    {
-                        var tvi = ctrl as TreeViewItem ?? ctrl.FindAncestorOfType<TreeViewItem>();
-                        if (tvi?.DataContext is CollectionTreeNode node && node.Kind == TreeNodeKind.Passage)
-                        {
-                            _dragCandidate = node;
-                            _dragStartPoint = e.GetPosition(tree);
-                            e.Handled = true;
-                        }
-                    }
-                }
-            };
-
-            tree.PointerMoved += async (_, e) =>
-            {
-                if (_dragStartPoint == null || _dragCandidate == null) return;
-                var pos = e.GetPosition(tree);
-                var delta = pos - _dragStartPoint.Value;
-                if (Math.Abs(delta.X) < 5 && Math.Abs(delta.Y) < 5) return;
-
-                _dragStartPoint = null;
-                var passage = _dragCandidate.Tag as ScholarPassage;
-                if (passage == null) { _dragCandidate = null; return; }
-
-                var data = new DataTransfer();
-                data.Add(DataTransferItem.Create(PassageDragFormat, passage.Id));
-                await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Move);
-                _dragCandidate = null;
-            };
-
-            tree.AddHandler(DragDrop.DropEvent, async (_, args) =>
-            {
-                if (!args.DataTransfer.Contains(PassageDragFormat)) return;
-                var sourceId = args.DataTransfer.TryGetValue(PassageDragFormat);
-                if (string.IsNullOrEmpty(sourceId)) return;
-
-                var col = _vm.SelectedCollection;
-                if (col == null) return;
-
-                var sourcePassage = col.Passages.FirstOrDefault(p => p.Id == sourceId);
-                if (sourcePassage == null) return;
-
-                int targetIndex = col.Passages.Count;
-                // Use pointer position to find drop target (args.Source is the drag source, not drop target)
-                var pos = args.GetPosition(tree);
-                var hitResult = tree.InputHitTest(pos);
-                if (hitResult is Control hitCtrl)
-                {
-                    var tvi = hitCtrl as TreeViewItem ?? hitCtrl.FindAncestorOfType<TreeViewItem>();
-                    if (tvi?.DataContext is CollectionTreeNode targetNode &&
-                        targetNode.Kind == TreeNodeKind.Passage &&
-                        targetNode.Tag is ScholarPassage targetPassage)
-                    {
-                        targetIndex = col.Passages.IndexOf(targetPassage);
-                    }
-                }
-
-                await _vm.MovePassageToIndexAsync(sourcePassage, targetIndex);
-                Status?.Invoke(this, "Passage reordered.");
-            });
-
-            tree.PointerReleased += (_, _) =>
-            {
-                _dragCandidate = null;
-                _dragStartPoint = null;
-            };
+            // Drag-and-drop removed: Avalonia TreeView doesn't reliably support DnD.
+            // Use ▲/▼ buttons in the action bar to reorder passages.
         }
 
         // Bottom drawer toggle
@@ -526,6 +452,23 @@ public partial class ScholarTabView : UserControl
         var btnCreateFirst = this.FindControl<Button>("BtnCreateFirst");
         if (btnCreateFirst != null)
             btnCreateFirst.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
+
+        // Community adopt button — shows collection picker
+        var btnAdoptCommunity = this.FindControl<Button>("BtnAdoptCommunity");
+        if (btnAdoptCommunity != null)
+            btnAdoptCommunity.Click += async (_, _) =>
+            {
+                var passage = _vm.SelectedCommunityPassage;
+                if (passage == null) { Status?.Invoke(this, "Select a community passage first."); return; }
+                if (_vm.Collections.Count == 0) await _vm.AddCollectionCommand.ExecuteAsync(null);
+                if (_vm.Collections.Count == 0) return;
+                var picker = new CollectionPickerDialog(_vm.Collections);
+                var top = TopLevel.GetTopLevel(this) as Window;
+                var selected = top != null ? await picker.ShowDialog<ScholarCollection?>(top) : null;
+                if (selected == null) return;
+                await _vm.AdoptPassageToCollectionAsync(passage, selected);
+                Status?.Invoke(this, $"Passage adopted to '{selected.Name}'.");
+            };
 
         // Copy/Cite buttons for Chinese and English text
         WireCopyCiteButton("BtnCopyZh", "TxtZhText", () => _vm.SelectedPassage?.ZhText, "Chinese text copied.");
