@@ -1778,18 +1778,25 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private async Task HandleAddToScholarAsync(ScholarPassage passage)
     {
-        if (_scholarView == null)
+        try
         {
-            _vm.SetStatus("Scholar is unavailable.");
-            return;
+            if (_scholarView == null)
+            {
+                _vm.SetStatus("Scholar is unavailable.");
+                return;
+            }
+
+            EnsureScholarContextReady();
+
+            if (await _scholarView.TryAddPassageAsync(passage))
+                _vm.SetStatus("Passage added to Scholar collection.");
+            else
+                _vm.SetStatus("Could not add passage. " + (_scholarView.DataContext is ScholarTabViewModel svm ? svm.StatusMessage : ""));
         }
-
-        EnsureScholarContextReady();
-
-        if (await _scholarView.TryAddPassageAsync(passage))
-            _vm.SetStatus("Passage added to Scholar collection.");
-        else
-            _vm.SetStatus("Could not add passage to Scholar collection.");
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"Add to Scholar failed: {ex.Message}");
+        }
     }
     private void UnsubscribeChildViewEvents()
     {
