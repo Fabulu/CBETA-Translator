@@ -1046,15 +1046,22 @@ public partial class ReadableTabView : UserControl
         if (btnSaveToCollection != null)
             btnSaveToCollection.Click += async (_, _) =>
             {
-                // Try Chinese side first, then English
-                bool hasZh = !string.IsNullOrWhiteSpace(_aeOrig?.SelectedText);
-                bool hasEn = !string.IsNullOrWhiteSpace(_aeTran?.SelectedText);
-                if (hasZh)
-                    await OnAddToScholarCollectionAsync(isTranslated: false);
-                else if (hasEn)
-                    await OnAddToScholarCollectionAsync(isTranslated: true);
-                else
-                    Say("Select some Chinese or English text first, then click Save to Collection.");
+                try
+                {
+                    // Try Chinese side first, then English
+                    bool hasZh = !string.IsNullOrWhiteSpace(_aeOrig?.SelectedText);
+                    bool hasEn = !string.IsNullOrWhiteSpace(_aeTran?.SelectedText);
+                    if (hasZh)
+                        await OnAddToScholarCollectionAsync(isTranslated: false);
+                    else if (hasEn)
+                        await OnAddToScholarCollectionAsync(isTranslated: true);
+                    else
+                        Say("Select some Chinese or English text first, then click Save to Collection.");
+                }
+                catch (Exception ex)
+                {
+                    Say($"Save to Collection failed: {ex.Message}");
+                }
             };
 
         // Correction time-travel bar
