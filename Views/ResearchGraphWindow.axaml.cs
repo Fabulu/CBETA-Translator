@@ -728,7 +728,7 @@ public partial class ResearchGraphWindow : Window
                 {
                     case Key.Z: _vm?.Undo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); e.Handled = true; break;
                     case Key.Y: _vm?.Redo(); _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels(); e.Handled = true; break;
-                    case Key.L: ToggleLinkMode(); e.Handled = true; break;
+                    // Ctrl+L was Link Mode (removed — edges are created via node handles)
                     case Key.F: FocusSearch(); e.Handled = true; break;
                     case Key.A:
                         if (_vm != null) foreach (var n in _vm.Nodes) n.IsSelected = true;
@@ -1079,12 +1079,6 @@ public partial class ResearchGraphWindow : Window
             UpdateInspector();
             _canvas?.InvalidateVisual();
         }
-    }
-
-    private void ToggleLinkMode()
-    {
-        var btn = this.FindControl<ToggleButton>("BtnLinkMode");
-        if (btn != null) btn.IsChecked = !btn.IsChecked;
     }
 
     private void FocusSearch()

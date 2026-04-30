@@ -37,32 +37,33 @@
 
         <!-- Center: Layout controls -->
         <Button DockPanel.Dock="Left" Name="BtnRelayout" Content="Relayout" Padding="6,3" Margin="0,0,4,0" FontSize="11"
-                Background="#2A2A35" Foreground="#B8B8C8"/>
+                Background="#2A2A35" Foreground="#B8B8C8"
+                ToolTip.Tip="Re-run force layout and spread nodes"/>
         <Button DockPanel.Dock="Left" Name="BtnFitView" Content="Fit" Padding="6,3" Margin="0,0,12,0" FontSize="11"
-                ToolTip.Tip="Fit all nodes to view"/>
-        <Border DockPanel.Dock="Left" Width="1" Height="20" Background="#3A3A42" Margin="0,0,12,0"/>
-        <ToggleButton DockPanel.Dock="Left" Name="BtnLinkMode" Content="Link Mode" Padding="6,3" Margin="0,0,4,0" FontSize="11"/>
+                ToolTip.Tip="Zoom to fit all nodes in view"/>
+        <Border DockPanel.Dock="Left" Width="1" Height="20" Background="#3A3A42" Margin="0,0,8,0"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnPhysics" Content="Physics" IsChecked="False"
                       Padding="6,3" Margin="0,0,4,0" FontSize="11"
-                      ToolTip.Tip="Toggle continuous physics simulation"/>
+                      ToolTip.Tip="Subtle continuous node movement (off by default)"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnLabels" Content="Labels" IsChecked="True"
                       Padding="6,3" Margin="0,0,4,0" FontSize="11"
-                      ToolTip.Tip="Show/hide node labels"/>
+                      ToolTip.Tip="Show/hide node and edge labels"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnMinimap" Content="Minimap" IsChecked="True"
                       Padding="6,3" Margin="0,0,4,0" FontSize="11"
-                      ToolTip.Tip="Show/hide minimap overlay"/>
+                      ToolTip.Tip="Overview map in bottom-right corner"/>
         <ToggleButton DockPanel.Dock="Left" Name="BtnClusters" Content="Clusters" IsChecked="False"
-                      Padding="6,3" Margin="0,0,12,0" FontSize="11"
-                      ToolTip.Tip="Show type-based cluster backgrounds"/>
-        <Border DockPanel.Dock="Left" Width="1" Height="20" Background="#3A3A42" Margin="0,0,12,0"/>
+                      Padding="6,3" Margin="0,0,8,0" FontSize="11"
+                      ToolTip.Tip="Color backgrounds behind same-type node groups"/>
+        <Border DockPanel.Dock="Left" Width="1" Height="20" Background="#3A3A42" Margin="0,0,8,0"/>
 
         <!-- Right: Share + Search + Overflow -->
-        <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3"/>
+        <Button DockPanel.Dock="Right" Name="BtnOverflow" Content="&#x22EF;" Padding="8,3" Margin="0,0,4,0"
+                ToolTip.Tip="Export, screenshot, and more"/>
         <Button DockPanel.Dock="Right" Name="BtnShareGraph" Content="&#x1F517; Share" Padding="8,3"
-                Margin="0,0,4,0" FontSize="11"
+                Margin="0,0,8,0" FontSize="11"
                 ToolTip.Tip="Copy shareable web link for this graph"/>
-        <TextBox DockPanel.Dock="Right" Name="TxtSearch" Watermark="Search nodes..." Width="180" Margin="0,0,8,0" FontSize="11"
-                 ToolTip.Tip="Search nodes (Ctrl+F)"/>
+        <TextBox DockPanel.Dock="Right" Name="TxtSearch" Watermark="Search nodes..." Width="150" Margin="0,0,12,0" FontSize="11"
+                 ToolTip.Tip="Search nodes by name (Ctrl+F)"/>
 
         <!-- Undo/Redo -->
         <Button DockPanel.Dock="Right" Name="BtnRedo" Content="&#x21B7;" Padding="6,3" Margin="0,0,2,0" ToolTip.Tip="Redo (Ctrl+Y)"/>
