@@ -362,6 +362,20 @@ public partial class ResearchGraphWindow : Window
                 btnBack.IsVisible = _vm.CanGoBack;
             };
 
+        // Share button — copies graph web link
+        var btnShare = this.FindControl<Button>("BtnShareGraph");
+        if (btnShare != null)
+            btnShare.Click += async (_, _) =>
+            {
+                var col = _vm?.GetCollection();
+                if (col == null) return;
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Id ?? col.Name ?? "");
+                var top = TopLevel.GetTopLevel(this);
+                if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
+                var status = this.FindControl<TextBlock>("TxtStatus");
+                if (status != null) status.Text = "Graph link copied!";
+            };
+
         // Overflow menu
         var btnOverflow = this.FindControl<Button>("BtnOverflow");
         if (btnOverflow != null)
