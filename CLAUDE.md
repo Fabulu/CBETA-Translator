@@ -430,6 +430,7 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 
 | Run ID | Description | Status | Working Directory |
 |--------|-------------|--------|-------------------|
+| RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
 | RUN-20260416-1401 | Faith-in-Mind critical edition migration | Pending (waiting for curator signal) | runs/CLAUDE-RUNS/RUN-20260416-1401-faith-in-mind-migration/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
