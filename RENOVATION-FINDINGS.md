@@ -18,6 +18,7 @@ Six parallel recon agents audited every view and the full service layer. These f
 | Discoverability | Moderate-Weak: hamburger has no tooltip, "Open Root" is vague, color legend missing, "Zen texts" is cryptic jargon | **High** |
 | Guidance/Onboarding | Weak: no welcome screen, no get-started overlay, buttons lack tooltips | **High** |
 | Responsiveness | Rigid: nav panel hardcoded 320px, no auto-collapse | Low |
+
 | Theme System | Excellent: 26-brush night/light modes, but no UI toggle to switch | Medium |
 | Status Bar | Excellent feedback, but no color-coded severity (green/red/yellow) | Medium |
 | Accessibility | Basic: good contrast ratios, but no AutomationProperties, Unicode icons not screen-reader friendly | Medium |
