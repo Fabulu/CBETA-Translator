@@ -626,12 +626,7 @@ public class ResearchGraphCanvasControl : Control
         {
             if (e.ClickCount >= 2)
             {
-                if (hit.IsPinned)
-                {
-                    hit.IsPinned = false;
-                    InvalidateVisual();
-                    return;
-                }
+                // Double-click always navigates (unpin moved to right-click menu)
                 NodeDoubleClicked?.Invoke(this, hit);
                 return;
             }
