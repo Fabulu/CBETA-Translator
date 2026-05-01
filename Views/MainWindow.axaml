@@ -273,6 +273,9 @@
                                           ToolTip.Tip="Copy a zen:// link for this file to the clipboard"/>
                                 <MenuItem Name="MnuCopyRedditLink" Header="Copy Reddit Link"
                                           ToolTip.Tip="Copy a shareable HTTPS link for this file to the clipboard"/>
+                                <Separator/>
+                                <MenuItem Name="MnuAddBookToCollection" Header="Add to Collection"
+                                          ToolTip.Tip="Add this text as a book entry to a Scholar collection"/>
                             </ContextMenu>
                         </ListBox.ContextMenu>
                         <ListBox.ItemTemplate>

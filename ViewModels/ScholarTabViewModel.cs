@@ -20,6 +20,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private readonly IScholarCollectionsService _svc;
     private readonly IAppConfigService? _configService;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
+    private volatile int _saveGeneration;
     private string? _root;
     private string? _username;
     private string? _legacyUsername;
@@ -241,6 +242,17 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public string? GetRoot() => _root;
 
+    /// <summary>Sets the root path without triggering a fire-and-forget load.</summary>
+    public void SetRootOnly(string root) => _root = root;
+
+    /// <summary>Sets the username without triggering a fire-and-forget load.
+    /// Use with ReloadFromDiskAsync to avoid race conditions.</summary>
+    public void SetUsernameOnly(string? username)
+    {
+        _preferredUsername = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
+        ApplyIdentity(_preferredUsername, null);
+    }
+
     public async Task<ScholarCollection> EnsureDefaultCollectionAsync()
     {
         if (!await EnsureStorageContextAsync())
@@ -291,6 +303,16 @@ public partial class ScholarTabViewModel : ViewModelBase
         _ = SafeFireAndForget(LoadCommunityAsync());
     }
 
+    /// <summary>
+    /// Reload collections from disk. Used by secondary windows before adding
+    /// passages so they have the latest state and don't overwrite primary's data.
+    /// </summary>
+    public async Task ReloadFromDiskAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_root)) return;
+        await LoadAsync();
+    }
+
     // ----- Commands -----
 
     [RelayCommand]
@@ -299,10 +321,15 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (!await EnsureStorageContextAsync()) return;
 
         IsBusy = true;
+        int genBefore = _saveGeneration;
         try
         {
             var loaded = await LoadOwnedCollectionsAsync();
             NormalizeOwnedCollections(loaded);
+
+            // If a save completed while we were loading, the in-memory data
+            // is already correct — skip overwriting it with stale disk data.
+            if (_saveGeneration != genBefore) return;
 
             await RunOnUiAsync(() =>
             {
@@ -366,6 +393,7 @@ public partial class ScholarTabViewModel : ViewModelBase
                     StatusMessage = "Saved.";
                 }
                 StatusChanged?.Invoke(this, StatusMessage);
+                System.Threading.Interlocked.Increment(ref _saveGeneration);
             }
             catch (Exception ex)
             {
@@ -421,13 +449,17 @@ public partial class ScholarTabViewModel : ViewModelBase
     private async Task DeleteCollectionAsync()
     {
         if (SelectedCollection == null) return;
-        if (ConfirmAsync != null && !await ConfirmAsync("Delete Collection", $"Delete '{SelectedCollection.Name}'? This cannot be undone.")) return;
-        // Promote sub-collections to root (prevent orphans)
-        foreach (var child in _allCollections.Where(c => c.ParentCollectionId == SelectedCollection.Id))
-            child.ParentCollectionId = SelectedCollection.ParentCollectionId;
-        _allCollections.Remove(SelectedCollection);
-        Collections.Remove(SelectedCollection);
+        if (ConfirmAsync != null && !await ConfirmAsync("Delete Collection", $"Delete '{SelectedCollection.Name}' and all sub-collections? This cannot be undone.")) return;
+        // Recursively collect all descendant collections
+        var toDelete = new List<ScholarCollection> { SelectedCollection };
+        CollectDescendants(SelectedCollection.Id, toDelete);
+        foreach (var c in toDelete)
+        {
+            _allCollections.Remove(c);
+            Collections.Remove(c);
+        }
         SelectedCollection = Collections.FirstOrDefault();
+        RebuildTree();
         RefreshIsEmptyState();
         _ = SafeFireAndForget(SaveAsync());
     }
@@ -441,6 +473,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         Collections.Remove(c);
         if (SelectedCollection?.Id == collectionId)
             SelectedCollection = Collections.FirstOrDefault();
+        RebuildTree();
         RefreshIsEmptyState();
         await SaveAsync();
     }
@@ -467,6 +500,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
 
         SelectedPassage = Passages.FirstOrDefault();
+        RebuildTree();
         _ = SafeFireAndForget(SaveAsync());
     }
 
@@ -611,6 +645,18 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     /// <summary>Read-only access to all collections (for picker dialogs).</summary>
     public IReadOnlyList<ScholarCollection> AllCollections => _allCollections;
+
+    private void CollectDescendants(string parentId, List<ScholarCollection> result)
+    {
+        foreach (var child in _allCollections.Where(c => c.ParentCollectionId == parentId))
+        {
+            if (!result.Contains(child))
+            {
+                result.Add(child);
+                CollectDescendants(child.Id, result);
+            }
+        }
+    }
 
     private bool IsDescendantOf(string collectionId, string ancestorId)
     {

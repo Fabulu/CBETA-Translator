@@ -32,7 +32,9 @@
                 ToolTip.Tip="Add Concept (Ctrl+Shift+C)"/>
         <Button DockPanel.Dock="Left" Name="BtnAddMaster" Content="+ Master" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
         <Button DockPanel.Dock="Left" Name="BtnAddTerm" Content="+ Term" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
-        <Button DockPanel.Dock="Left" Name="BtnAddCollection" Content="+ Collection" Padding="6,3" Margin="0,0,12,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddCollection" Content="+ Collection" Padding="6,3" Margin="0,0,2,0" FontSize="11"/>
+        <Button DockPanel.Dock="Left" Name="BtnAddBook" Content="+ Text" Padding="6,3" Margin="0,0,12,0" FontSize="11"
+                ToolTip.Tip="Add a text from the corpus"/>
         <Border DockPanel.Dock="Left" Width="1" Height="20" Background="#3A3A42" Margin="0,0,12,0"/>
 
         <!-- Center: Layout controls -->

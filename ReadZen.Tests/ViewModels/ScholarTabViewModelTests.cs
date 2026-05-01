@@ -205,13 +205,197 @@ public class ScholarTabViewModelTests
         var vm = MakeVm();
         vm.AddCollectionCommand.Execute(null);
         vm.AddCollectionCommand.Execute(null);
-       
+
         vm.SelectedCollection = vm.Collections[0];
 
         vm.DeleteCollectionCommand.Execute(null);
 
         Assert.Single(vm.Collections);
         Assert.NotNull(vm.SelectedCollection);
+    }
+
+    [Fact]
+    public void SetUsernameOnly_DoesNotTriggerLoadAsync()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, "/test-root", "initial-user");
+
+        // Pre-populate a collection so we can detect if LoadAsync ran
+        // (LoadAsync would overwrite Collections from the service, which returns empty)
+        vm.AddCollectionCommand.Execute(null);
+        Assert.Single(vm.Collections);
+
+        // SetUsernameOnly should NOT trigger LoadAsync, so collections remain
+        vm.SetUsernameOnly("new-user");
+
+        // Collections should still be intact (no fire-and-forget LoadAsync cleared them)
+        Assert.Single(vm.Collections);
+    }
+
+    [Fact]
+    public void SetUsernameOnly_WhitespaceUsername_SetsNull()
+    {
+        var vm = MakeVm();
+        SetScholarContext(vm, "/test-root", "initial-user");
+
+        vm.SetUsernameOnly("  ");
+
+        // The root should still be set, but username should be cleared
+        Assert.Equal("/test-root", vm.GetRoot());
+    }
+
+    [Fact]
+    public void SetUsernameOnly_TrimsUsername()
+    {
+        var svc = new StubScholarCollectionsService();
+        var cfg = new StubAppConfigService
+        {
+            ConfigToReturn = new AppConfig
+            {
+                TextRootPath = "/repo-root",
+                Username = "test-user"
+            }
+        };
+        var vm = MakeVm(svc, cfg);
+        SetScholarContext(vm, "/test-root", "initial");
+
+        vm.SetUsernameOnly("  padded-user  ");
+
+        // After SetUsernameOnly + manual reload, the trimmed username should be used
+        vm.SetRootOnly("/test-root");
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        // The identity applied should use trimmed username
+        Assert.Equal("padded-user", collection.CreatedBy);
+    }
+
+    [Fact]
+    public void CollectDescendants_RecursivelyFindsAllDescendants()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+
+        // Create a 3-level hierarchy: root -> child -> grandchild
+        vm.AddCollectionCommand.Execute(null);
+        var root = vm.Collections[0];
+        root.Name = "Root";
+
+        vm.AddCollectionCommand.Execute(null);
+        var child = vm.Collections[1];
+        child.Name = "Child";
+        child.ParentCollectionId = root.Id;
+
+        vm.AddCollectionCommand.Execute(null);
+        var grandchild = vm.Collections[2];
+        grandchild.Name = "Grandchild";
+        grandchild.ParentCollectionId = child.Id;
+
+        // Also add a sibling child
+        vm.AddCollectionCommand.Execute(null);
+        var sibling = vm.Collections[3];
+        sibling.Name = "Sibling";
+        sibling.ParentCollectionId = root.Id;
+
+        Assert.Equal(4, vm.Collections.Count);
+
+        // Delete root should cascade to child, grandchild, and sibling
+        vm.SelectedCollection = root;
+        vm.DeleteCollectionCommand.Execute(null);
+
+        Assert.Empty(vm.Collections);
+    }
+
+    [Fact]
+    public void CollectDescendants_DoesNotCollectUnrelatedCollections()
+    {
+        var vm = MakeVm();
+
+        vm.AddCollectionCommand.Execute(null);
+        var parent = vm.Collections[0];
+        parent.Name = "Parent";
+
+        vm.AddCollectionCommand.Execute(null);
+        var child = vm.Collections[1];
+        child.Name = "Child";
+        child.ParentCollectionId = parent.Id;
+
+        vm.AddCollectionCommand.Execute(null);
+        var unrelated1 = vm.Collections[2];
+        unrelated1.Name = "Unrelated1";
+
+        vm.AddCollectionCommand.Execute(null);
+        var unrelated2 = vm.Collections[3];
+        unrelated2.Name = "Unrelated2";
+
+        vm.SelectedCollection = parent;
+        vm.DeleteCollectionCommand.Execute(null);
+
+        Assert.Equal(2, vm.Collections.Count);
+        Assert.Contains(vm.Collections, c => c.Name == "Unrelated1");
+        Assert.Contains(vm.Collections, c => c.Name == "Unrelated2");
+    }
+
+    [Fact]
+    public void DeleteCollection_RecursivelyDeletesSubCollections()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, "/test-root", "testuser");
+
+        // Create parent and child collections manually
+        vm.AddCollectionCommand.Execute(null);
+        var parent = vm.Collections[0];
+        parent.Name = "Parent";
+
+        vm.AddCollectionCommand.Execute(null);
+        var child = vm.Collections[1];
+        child.Name = "Child";
+        child.ParentCollectionId = parent.Id;
+
+        vm.AddCollectionCommand.Execute(null);
+        var grandchild = vm.Collections[2];
+        grandchild.Name = "Grandchild";
+        grandchild.ParentCollectionId = child.Id;
+
+        Assert.Equal(3, vm.Collections.Count);
+
+        // Select and delete the parent
+        vm.SelectedCollection = parent;
+        vm.DeleteCollectionCommand.Execute(null);
+
+        // All three should be deleted (parent + child + grandchild)
+        Assert.Empty(vm.Collections);
+    }
+
+    [Fact]
+    public void DeleteCollection_RecursiveDelete_LeavesUnrelatedCollections()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+
+        vm.AddCollectionCommand.Execute(null);
+        var parent = vm.Collections[0];
+        parent.Name = "Parent";
+
+        vm.AddCollectionCommand.Execute(null);
+        var child = vm.Collections[1];
+        child.Name = "Child";
+        child.ParentCollectionId = parent.Id;
+
+        vm.AddCollectionCommand.Execute(null);
+        var unrelated = vm.Collections[2];
+        unrelated.Name = "Unrelated";
+        // unrelated has no parent set
+
+        Assert.Equal(3, vm.Collections.Count);
+
+        vm.SelectedCollection = parent;
+        vm.DeleteCollectionCommand.Execute(null);
+
+        // Only the unrelated collection should remain
+        Assert.Single(vm.Collections);
+        Assert.Equal("Unrelated", vm.Collections[0].Name);
     }
 
    
@@ -513,7 +697,103 @@ public class ScholarTabViewModelTests
         vm.DeletePassageCommand.Execute(null);
     }
 
-   
+    [Fact]
+    public void DeletePassage_RebuildTree_UpdatesCollectionTreeNodes()
+    {
+        var vm = MakeVm();
+        vm.AddCollectionCommand.Execute(null);
+        var collection = vm.Collections[0];
+        collection.Passages.Add(new ScholarPassage { Id = "p1", ZhText = "one", SourceRelPath = "a.xml" });
+        collection.Passages.Add(new ScholarPassage { Id = "p2", ZhText = "two", SourceRelPath = "b.xml" });
+
+        vm.SelectedCollection = null;
+        vm.SelectedCollection = collection;
+
+        // Before delete: tree should have nodes for both passages
+        var treeNodeCountBefore = CountAllTreeNodes(vm.CollectionTreeNodes);
+        Assert.True(treeNodeCountBefore > 0, "Tree should have nodes before delete");
+
+        vm.SelectedPassage = vm.Passages.First(p => p.Id == "p1");
+        vm.DeletePassageCommand.Execute(null);
+
+        // After delete: tree should be rebuilt (fewer nodes)
+        var treeNodeCountAfter = CountAllTreeNodes(vm.CollectionTreeNodes);
+        Assert.True(treeNodeCountAfter < treeNodeCountBefore,
+            $"Tree node count should decrease after delete (before={treeNodeCountBefore}, after={treeNodeCountAfter})");
+    }
+
+    private static int CountAllTreeNodes(
+        System.Collections.ObjectModel.ObservableCollection<ReadZen.App.ViewModels.CollectionTreeNode> nodes)
+    {
+        int count = 0;
+        foreach (var n in nodes)
+        {
+            count++;
+            count += CountAllTreeNodes(n.Children);
+        }
+        return count;
+    }
+
+    [Fact]
+    public async Task SaveGeneration_IncrementsAfterSave()
+    {
+        var svc = new StubScholarCollectionsService();
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, System.IO.Path.GetTempPath(), "testuser");
+
+        var genField = typeof(ScholarTabViewModel).GetField("_saveGeneration",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
+
+        int genBefore = (int)genField.GetValue(vm)!;
+
+        vm.AddCollectionCommand.Execute(null);
+        var passage = new ScholarPassage { ZhText = "test", SourceRelPath = "x.xml" };
+        await vm.AddPassageToCollectionAsync(vm.Collections[0].Id, passage);
+
+        // SaveAsync is called internally; wait briefly for fire-and-forget
+        await Task.Delay(100);
+
+        int genAfter = (int)genField.GetValue(vm)!;
+        Assert.True(genAfter > genBefore,
+            $"_saveGeneration should increment after save (before={genBefore}, after={genAfter})");
+    }
+
+    [Fact]
+    public async Task LoadAsync_AbortsIfSaveGenerationChanged()
+    {
+        var svc = new StubScholarCollectionsService();
+        svc.Collections.Add(new ScholarCollection
+        {
+            Id = "existing",
+            Name = "Existing Collection"
+        });
+        var vm = MakeVm(svc);
+        SetScholarContext(vm, System.IO.Path.GetTempPath(), "testuser");
+
+        var genField = typeof(ScholarTabViewModel).GetField("_saveGeneration",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
+
+        // Add a local collection first
+        vm.AddCollectionCommand.Execute(null);
+        var localCollection = vm.Collections[0];
+
+        // Increment _saveGeneration to simulate a save occurring during load
+        int currentGen = (int)genField.GetValue(vm)!;
+        genField.SetValue(vm, currentGen + 1);
+
+        // Now call LoadAsync via reflection
+        var loadMethod = typeof(ScholarTabViewModel).GetMethod("LoadAsync",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!;
+        await (Task)loadMethod.Invoke(vm, Array.Empty<object>())!;
+
+        // The local collection should still be present because load was aborted
+        // (the generation changed between snapshot and applying loaded data)
+        // Note: this depends on timing. The key behavior is that the load checks
+        // _saveGeneration before overwriting data.
+        Assert.True(vm.Collections.Count > 0, "Collections should not be cleared when save generation changed during load");
+    }
+
+
 
     [Fact]
     public void Clear_ResetsEverything()

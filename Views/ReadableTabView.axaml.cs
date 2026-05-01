@@ -246,6 +246,8 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Fired when user requests adding selected text to a Scholar collection.</summary>
     public event EventHandler<ScholarPassage>? AddToScholarRequested;
+    /// <summary>Fired when user requests adding selected text to the CURRENT Scholar collection (no picker).</summary>
+    public event EventHandler<ScholarPassage>? AddToCurrentCollectionRequested;
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
 
@@ -557,6 +559,10 @@ public partial class ReadableTabView : UserControl
         addItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated);
         menu.Items.Add(addItem);
 
+        var addCurrentItem = new MenuItem { Header = "Add to Current Collection" };
+        addCurrentItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated, useCurrentCollection: true);
+        menu.Items.Add(addCurrentItem);
+
         var copyLinkItem = new MenuItem { Header = "Copy Link" };
         copyLinkItem.Click += async (_, _) => await CopyLinkToClipboardAsync(isTranslated, isReddit: false);
         menu.Items.Add(copyLinkItem);
@@ -732,7 +738,7 @@ public partial class ReadableTabView : UserControl
         Say(isReddit ? "Reddit link copied to clipboard." : "Link copied to clipboard.");
     }
 
-    private async Task OnAddToScholarCollectionAsync(bool isTranslated)
+    private async Task OnAddToScholarCollectionAsync(bool isTranslated, bool useCurrentCollection = false)
     {
         var editor = isTranslated ? _aeTran : _aeOrig;
         if (editor == null) return;
@@ -745,8 +751,48 @@ public partial class ReadableTabView : UserControl
         }
 
         var otherEditor = isTranslated ? _aeOrig : _aeTran;
-        string otherText = otherEditor?.SelectedText ?? "";
+        // Don't use the mirror selection — it's cosmetic (shows only the last
+        // mirrored lb line, not the user's intent). Start empty and let the
+        // lb extraction or segment mapping populate it from the full range.
+        string otherText = "";
 
+        // ── Step 1: Compute fromLb / toLb from the selection ──
+        // Both documents share the same lb markers. Look up lb directly
+        // in the clicked editor's document — no cross-document mapping needed.
+        string? fromLb = null;
+        string? toLb = null;
+        var lbSource = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
+        if (lbSource != null && !lbSource.IsEmpty)
+        {
+            int lbSelStart = GetSelectionStartSafe(editor);
+            int lbSelEnd = GetSelectionEndSafe(editor);
+
+            // Trim leading/trailing whitespace so a stray newline doesn't
+            // pull in the previous/next lb marker.
+            var editorText = editor.Text ?? "";
+            while (lbSelStart < lbSelEnd && lbSelStart < editorText.Length
+                   && char.IsWhiteSpace(editorText[lbSelStart]))
+                lbSelStart++;
+            while (lbSelEnd > lbSelStart && lbSelEnd - 1 < editorText.Length
+                   && char.IsWhiteSpace(editorText[lbSelEnd - 1]))
+                lbSelEnd--;
+
+            fromLb = LbHelper.FindNearestLbNValue(lbSource, lbSelStart);
+            toLb = LbHelper.FindNearestLbNValue(lbSource, Math.Max(lbSelStart, lbSelEnd - 1));
+        }
+
+        // ── Step 2: lb-based extraction is PRIMARY for the other language ──
+        // lb markers are shared between both documents, making this the most
+        // reliable cross-language mapping for multi-line selections.
+        if (string.IsNullOrWhiteSpace(otherText) && !string.IsNullOrWhiteSpace(fromLb))
+        {
+            var extractDoc = isTranslated ? _vm.RenderOrig : _vm.RenderTran;
+            var lbText = ExtractTextBetweenLbs(extractDoc, fromLb, toLb);
+            if (!string.IsNullOrWhiteSpace(lbText))
+                otherText = lbText;
+        }
+
+        // ── Step 3: Segment mapping fallback (if lb extraction failed) ──
         if (string.IsNullOrWhiteSpace(otherText) && otherEditor != null)
         {
             var srcDoc = isTranslated ? _vm.RenderTran : _vm.RenderOrig;
@@ -763,7 +809,8 @@ public partial class ReadableTabView : UserControl
                 {
                     if (seg.Start >= selEnd || seg.EndExclusive <= selStart)
                         continue;
-                    if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, seg.Start, out var dstSeg))
+                    int mapOffset = Math.Max(seg.Start, selStart);
+                    if (_selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, mapOffset, out var dstSeg))
                     {
                         int dstLen = otherEditor.Text?.Length ?? 0;
                         int s = Math.Clamp(dstSeg.Start, 0, dstLen);
@@ -778,72 +825,14 @@ public partial class ReadableTabView : UserControl
                 }
 
                 if (mappedParts.Count > 0)
-                    otherText = string.Join("\n", mappedParts);
-            }
-
-            if (string.IsNullOrWhiteSpace(otherText))
-            {
-                int caret = GetCaretOffsetSafe(editor);
-                if (caret >= 0 && !srcDoc.IsEmpty && !dstDoc.IsEmpty
-                    && _selectionSync.TryGetDestinationSegment(srcDoc, dstDoc, caret, out var dstSeg2))
                 {
-                    int len = otherEditor.Text?.Length ?? 0;
-                    int s = Math.Clamp(dstSeg2.Start, 0, len);
-                    int e = Math.Clamp(dstSeg2.EndExclusive, 0, len);
-                    if (e > s)
-                        otherText = otherEditor.Text?.Substring(s, e - s) ?? "";
+                    var candidate = string.Join("\n", mappedParts);
+                    // Sanity check: segment mapping can produce garbage via
+                    // position-based fallback. If the result is suspiciously
+                    // short relative to the selection (< 10% length), discard it.
+                    if (candidate.Length >= selectedText.Length / 10)
+                        otherText = candidate;
                 }
-            }
-        }
-
-        string? fromLb = null;
-        string? toLb = null;
-        var lbDoc = _vm.RenderOrig;
-        if (lbDoc != null && !lbDoc.IsEmpty)
-        {
-            int lbSelStart = GetSelectionStartSafe(editor);
-            int lbSelEnd = GetSelectionEndSafe(editor);
-
-            if (isTranslated && !_vm.RenderTran.IsEmpty)
-            {
-                var mappedSegments = new List<RenderSegment>();
-                foreach (var seg in _vm.RenderTran.Segments)
-                {
-                    if (seg.Start >= lbSelEnd || seg.EndExclusive <= lbSelStart)
-                        continue;
-                    if (_selectionSync.TryGetDestinationSegment(_vm.RenderTran, lbDoc, seg.Start, out var dstSeg))
-                        mappedSegments.Add(dstSeg);
-                }
-
-                if (mappedSegments.Count > 0)
-                {
-                    mappedSegments.Sort((a, b) => a.Start.CompareTo(b.Start));
-                    fromLb = LbHelper.FindNearestLbNValue(lbDoc, mappedSegments[0].Start);
-                    var lastSeg = mappedSegments[^1];
-                    toLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lastSeg.Start, lastSeg.EndExclusive - 1));
-                }
-            }
-            else
-            {
-                fromLb = LbHelper.FindNearestLbNValue(lbDoc, lbSelStart);
-                toLb = LbHelper.FindNearestLbNValue(lbDoc, Math.Max(lbSelStart, lbSelEnd - 1));
-            }
-        }
-
-        if (!string.IsNullOrWhiteSpace(fromLb))
-        {
-            var zhByLb = ExtractTextBetweenLbs(_vm.RenderOrig, fromLb, toLb);
-            if (!string.IsNullOrWhiteSpace(zhByLb))
-            {
-                if (isTranslated) otherText = zhByLb;
-                else selectedText = zhByLb;
-            }
-
-            var enByLb = ExtractTextBetweenLbs(_vm.RenderTran, fromLb, toLb);
-            if (!string.IsNullOrWhiteSpace(enByLb))
-            {
-                if (isTranslated) selectedText = enByLb;
-                else otherText = enByLb;
             }
         }
 
@@ -879,7 +868,10 @@ public partial class ReadableTabView : UserControl
             TranslationUser = GetTranslationUser?.Invoke()
         };
 
-        AddToScholarRequested?.Invoke(this, passage);
+        if (useCurrentCollection)
+            AddToCurrentCollectionRequested?.Invoke(this, passage);
+        else
+            AddToScholarRequested?.Invoke(this, passage);
         await Task.CompletedTask;
     }
 
