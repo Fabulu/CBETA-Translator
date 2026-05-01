@@ -165,10 +165,23 @@ public partial class SearchTabView : UserControl
             var addToScholarItem = new MenuItem { Header = "Add to Scholar Collection" };
             addToScholarItem.Click += (_, _) =>
             {
-                if (resultsTree.SelectedItem is not SearchResultChild child) return;
-
-                var passage = child.ToScholarPassage();
-                AddToScholarRequested?.Invoke(this, passage);
+                if (resultsTree.SelectedItem is SearchResultChild child)
+                {
+                    AddToScholarRequested?.Invoke(this, child.ToScholarPassage());
+                }
+                else if (resultsTree.SelectedItem is SearchResultGroup group && !string.IsNullOrEmpty(group.RelPath))
+                {
+                    // Add entire book/text to collection
+                    var bookPassage = new ScholarPassage
+                    {
+                        AnnotationType = "Book",
+                        SourceRelPath = group.RelPath,
+                        Summary = (group.DisplayName ?? "").Replace("\uD83D\uDCD6 ", ""),
+                    };
+                    if (!string.IsNullOrEmpty(group.ChineseTitle))
+                        bookPassage.Tags.Add("zh:" + group.ChineseTitle);
+                    AddToScholarRequested?.Invoke(this, bookPassage);
+                }
             };
 
             var copyPassageLinkItem = new MenuItem { Header = "Copy Passage Link" };

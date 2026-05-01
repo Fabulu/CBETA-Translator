@@ -63,6 +63,9 @@ public partial class ScholarTabView : UserControl
 
     public event EventHandler<string>? Status;
     public Func<string?, string>? SourceTitleResolver { get; set; }
+    /// <summary>Returns (DisplayShort, EnglishTitle, ChineseTitle) for a relPath.</summary>
+    public Func<string?, (string Short, string? En, string? Zh)>? SourceTitleDetailResolver { get; set; }
+    public IReadOnlyList<FileNavItem>? FileItems { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
     public event EventHandler<int>? DictionarySourceChanged;
@@ -371,6 +374,7 @@ public partial class ScholarTabView : UserControl
 
                 var graphWindow = new ResearchGraphWindow(
                     _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+                graphWindow.FileItems = FileItems;
                 graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
                 graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
                 graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
@@ -898,6 +902,7 @@ public partial class ScholarTabView : UserControl
         if (txtSummary != null) txtSummary.Text = _vm.PassageSummary ?? "";
         if (txtPassageNotes != null) txtPassageNotes.Text = _vm.PassageNotes ?? "";
 
+        UpdateProvenancePanel(passage);
         SetupHoverDictionary();
         RefreshLinksPanel();
         RefreshLinkedTextsPanel();
@@ -917,6 +922,8 @@ public partial class ScholarTabView : UserControl
         if (txtSourcePath != null) txtSourcePath.Text = ResolveSourceDisplay(passage);
         if (txtZhText != null) txtZhText.Text = passage?.ZhText ?? "";
         if (txtEnText != null) txtEnText.Text = passage?.EnText ?? "";
+
+        UpdateProvenancePanel(passage);
 
         // Disable editor fields for community passages (read-only)
         _vm.IsEditorEnabled = false;
@@ -1012,6 +1019,7 @@ public partial class ScholarTabView : UserControl
 
         var graphWindow = new ResearchGraphWindow(
             _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+        graphWindow.FileItems = FileItems;
         graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
         graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
         graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
@@ -2190,6 +2198,83 @@ public partial class ScholarTabView : UserControl
     {
         if (passage == null) return "";
         return ResolveSourceTitle(passage.SourceRelPath);
+    }
+
+    private void UpdateProvenancePanel(ScholarPassage? passage)
+    {
+        var panel = this.FindControl<Avalonia.Controls.Border>("ProvenancePanel");
+        if (panel == null) return;
+
+        var txtZhTitle = this.FindControl<TextBlock>("TxtProvenanceZhTitle");
+        var txtEnTitle = this.FindControl<TextBlock>("TxtProvenanceEnTitle");
+        var txtRange = this.FindControl<TextBlock>("TxtProvenanceRange");
+        var txtAdded = this.FindControl<TextBlock>("TxtProvenanceAdded");
+        var txtCreatedBy = this.FindControl<TextBlock>("TxtProvenanceCreatedBy");
+
+        if (passage == null)
+        {
+            panel.IsVisible = false;
+            return;
+        }
+        panel.IsVisible = true;
+
+        // Line range from passage metadata
+        var range = "";
+        if (!string.IsNullOrEmpty(passage.FromLb))
+        {
+            range = passage.FromLb;
+            if (!string.IsNullOrEmpty(passage.ToLb) && passage.ToLb != passage.FromLb)
+                range += " \u2013 " + passage.ToLb;
+        }
+        if (txtRange != null) { txtRange.Text = range; txtRange.IsVisible = !string.IsNullOrEmpty(range); }
+
+        // Added date
+        if (txtAdded != null)
+        {
+            var added = passage.AddedUtc != default ? passage.AddedUtc.ToString("yyyy-MM-dd") : "";
+            txtAdded.Text = added;
+            txtAdded.IsVisible = !string.IsNullOrEmpty(added);
+        }
+
+        // Created by
+        if (txtCreatedBy != null)
+        {
+            txtCreatedBy.Text = passage.CreatedBy ?? "";
+            txtCreatedBy.IsVisible = !string.IsNullOrEmpty(passage.CreatedBy);
+        }
+
+        // Resolve titles from sidebar title index (titles.jsonl)
+        string titleZh = "", titleEn = "";
+        if (!string.IsNullOrEmpty(passage.SourceRelPath) && SourceTitleDetailResolver != null)
+        {
+            try
+            {
+                var (_, en, zh) = SourceTitleDetailResolver(passage.SourceRelPath);
+                titleEn = en ?? "";
+                titleZh = zh ?? "";
+            }
+            catch { }
+        }
+        if (txtZhTitle != null) { txtZhTitle.Text = titleZh; txtZhTitle.IsVisible = !string.IsNullOrEmpty(titleZh); }
+        if (txtEnTitle != null) { txtEnTitle.Text = titleEn; txtEnTitle.IsVisible = !string.IsNullOrEmpty(titleEn); }
+
+        // Hide label rows when values are empty
+        HideProvenanceRowIfEmpty(txtZhTitle, 1);
+        HideProvenanceRowIfEmpty(txtEnTitle, 2);
+        HideProvenanceRowIfEmpty(txtRange, 3);
+        HideProvenanceRowIfEmpty(txtAdded, 4);
+        HideProvenanceRowIfEmpty(txtCreatedBy, 5);
+    }
+
+    private static void HideProvenanceRowIfEmpty(TextBlock? tb, int gridRow)
+    {
+        if (tb?.Parent is not Avalonia.Controls.Grid grid) return;
+        bool visible = tb.IsVisible;
+        foreach (var child in grid.Children)
+        {
+            if (Avalonia.Controls.Grid.GetRow(child) == gridRow)
+                child.IsVisible = visible;
+        }
     }
 
     private string ResolveSourceTitle(string? relPath)

@@ -15,7 +15,7 @@
       <DockPanel LastChildFill="False">
         <!-- LEFT side -->
         <Button DockPanel.Dock="Left" Name="BtnToggleTree" Content="&#x2630;" ToolTip.Tip="Toggle tree panel" Padding="6,4" Margin="0,0,8,0"/>
-        <ComboBox DockPanel.Dock="Left" Name="CmbCollections" MinWidth="180" Margin="0,0,8,0"
+        <ComboBox DockPanel.Dock="Left" Name="CmbCollections" MinWidth="180" MaxDropDownHeight="400" Margin="0,0,8,0"
                   ItemsSource="{Binding Collections}" SelectedItem="{Binding SelectedCollection}">
           <ComboBox.ItemTemplate>
             <DataTemplate x:DataType="models:ScholarCollection">
@@ -220,12 +220,52 @@
           <!-- PASSAGE DETAIL (shown when passage is selected) -->
           <StackPanel Name="PassageDetail" IsVisible="False" Spacing="16">
 
+            <!-- Action bar (always visible at top) -->
+            <DockPanel Margin="0,0,0,4">
+              <Button Name="BtnMoveUp" DockPanel.Dock="Left" Content="&#x25B2;" Padding="8,4"
+                      ToolTip.Tip="Move passage up (Shift+click = move to top)" FontSize="12" Margin="0,0,4,0"/>
+              <Button Name="BtnMoveDown" DockPanel.Dock="Left" Content="&#x25BC;" Padding="8,4"
+                      ToolTip.Tip="Move passage down (Shift+click = move to bottom)" FontSize="12" Margin="0,0,4,0"/>
+              <Button Name="BtnCompare" DockPanel.Dock="Left" Content="Compare" Padding="8,4"
+                      ToolTip.Tip="Select 2-4 passages (Ctrl+click in tree), then Compare"
+                      FontSize="12" Margin="0,0,4,0"/>
+              <Button Name="BtnDeletePassage" DockPanel.Dock="Right" Padding="8,4"
+                      Background="{DynamicResource ErrorBg}"
+                      Foreground="{DynamicResource ErrorFg}"
+                      BorderBrush="{DynamicResource ErrorFg}"
+                      BorderThickness="1" CornerRadius="4" FontSize="12">
+                <TextBlock Text="Delete" Foreground="{DynamicResource ErrorFg}"/>
+              </Button>
+            </DockPanel>
+
             <!-- Section 1: Summary + Core Texts -->
             <StackPanel Spacing="10">
               <TextBox Name="TxtSummary" Watermark="Summary (your paraphrase of this passage)..."
                        FontWeight="SemiBold" FontSize="15" MaxLength="120"
                        CornerRadius="4" Padding="8,6"/>
-              <TextBlock Name="TxtSourcePath" FontSize="11" Opacity="0.5" Margin="2,0,0,0"/>
+              <!-- Provenance Panel -->
+              <Border Name="ProvenancePanel" CornerRadius="6" Padding="10,8"
+                      Background="#0AFFFFFF"
+                      BorderThickness="1" BorderBrush="#1AFFFFFF">
+                <StackPanel Spacing="4">
+                  <TextBlock Text="PROVENANCE" FontSize="9" FontWeight="SemiBold"
+                             Foreground="#FFD4AF37" LetterSpacing="1.2" Opacity="0.7"/>
+                  <Grid ColumnDefinitions="90,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Source" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Name="TxtSourcePath" FontSize="11" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Chinese Title" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Name="TxtProvenanceZhTitle" FontSize="11" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="English Title" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Name="TxtProvenanceEnTitle" FontSize="11" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Line Range" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Name="TxtProvenanceRange" FontSize="11"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Added" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Name="TxtProvenanceAdded" FontSize="11"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Created By" FontSize="11" Opacity="0.5" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Name="TxtProvenanceCreatedBy" FontSize="11"/>
+                  </Grid>
+                </StackPanel>
+              </Border>
 
               <!-- Chinese Source (with hover dictionary overlay) -->
               <StackPanel Spacing="4">
@@ -246,6 +286,7 @@
                   <Grid>
                     <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
                       <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
+                               FontFamily="'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"
                                BorderThickness="0" Background="Transparent"/>
                     </ScrollViewer>
                     <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False"/>
@@ -394,23 +435,6 @@
               </Expander>
             </StackPanel>
 
-            <!-- Action bar -->
-            <DockPanel Margin="0,8,0,4">
-              <Button Name="BtnMoveUp" DockPanel.Dock="Left" Content="&#x25B2;" Padding="8,4"
-                      ToolTip.Tip="Move passage up" FontSize="12" Margin="0,0,4,0"/>
-              <Button Name="BtnMoveDown" DockPanel.Dock="Left" Content="&#x25BC;" Padding="8,4"
-                      ToolTip.Tip="Move passage down" FontSize="12" Margin="0,0,4,0"/>
-              <Button Name="BtnCompare" DockPanel.Dock="Left" Content="Compare" Padding="8,4"
-                      ToolTip.Tip="Select 2-4 passages (Ctrl+click in tree), then Compare"
-                      FontSize="12" Margin="0,0,4,0"/>
-              <Button Name="BtnDeletePassage" DockPanel.Dock="Right" Padding="12,6"
-                      Background="{DynamicResource ErrorBg}"
-                      Foreground="{DynamicResource ErrorFg}"
-                      BorderBrush="{DynamicResource ErrorFg}"
-                      BorderThickness="1" CornerRadius="6">
-                <TextBlock Text="Delete" Foreground="{DynamicResource ErrorFg}"/>
-              </Button>
-            </DockPanel>
           </StackPanel>
         </StackPanel>
       </ScrollViewer>

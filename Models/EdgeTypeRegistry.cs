@@ -133,6 +133,30 @@ public static class EdgeTypeRegistry
         new() { Id = "builds-on", DisplayName = "Builds on", Description = "Collection builds on another", AllowedFromTypes = new(){ScholarNodeType.Collection}, AllowedToTypes = new(){ScholarNodeType.Collection}, ColorHex = "#51D996", IsBuiltIn = true, IsDirectional = true },
         new() { Id = "complements-collection", DisplayName = "Complements", Description = "Collections complement each other", AllowedFromTypes = new(){ScholarNodeType.Collection}, AllowedToTypes = new(){ScholarNodeType.Collection}, ColorHex = "#59B3FF", IsBuiltIn = true, IsDirectional = false },
         new() { Id = "contrasts-with", DisplayName = "Contrasts with", Description = "Collections present contrasting views", AllowedFromTypes = new(){ScholarNodeType.Collection}, AllowedToTypes = new(){ScholarNodeType.Collection}, ColorHex = "#FF6B6B", IsBuiltIn = true, IsDirectional = false },
+
+        // Passage → Book
+        new() { Id = "excerpted-from-book", DisplayName = "Excerpted from", Description = "Passage excerpted from this book", AllowedFromTypes = new(){ScholarNodeType.Passage}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "appears-in", DisplayName = "Appears in", Description = "Passage appears in this book", AllowedFromTypes = new(){ScholarNodeType.Passage}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+
+        // Book → Passage
+        new() { Id = "book-contains", DisplayName = "Contains", Description = "Book contains this passage", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.Passage}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+
+        // Book → Concept
+        new() { Id = "book-explores", DisplayName = "Explores", Description = "Book explores this concept", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.Concept}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+
+        // Book → ZenMaster
+        new() { Id = "book-attributed-to", DisplayName = "Attributed to", Description = "Book attributed to this master", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.ZenMaster}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "book-records", DisplayName = "Records", Description = "Book records this master's teachings", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.ZenMaster}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+
+        // Book → Book
+        new() { Id = "related-book", DisplayName = "Related to", Description = "Books are related", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = false },
+        new() { Id = "commentary-on-book", DisplayName = "Commentary on", Description = "Book is a commentary on another", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#51D996", IsBuiltIn = true, IsDirectional = true },
+
+        // Book → Collection
+        new() { Id = "book-in-collection", DisplayName = "In collection", Description = "Book included in this collection", AllowedFromTypes = new(){ScholarNodeType.Book}, AllowedToTypes = new(){ScholarNodeType.Collection}, ColorHex = "#AB47BC", IsBuiltIn = true, IsDirectional = true },
+
+        // ZenMaster → Book
+        new() { Id = "master-authored-book", DisplayName = "Authored", Description = "Master authored this book", AllowedFromTypes = new(){ScholarNodeType.ZenMaster}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
     }.AsReadOnly();
 
     public static IReadOnlyList<EdgeTypeDefinition> GetValidTypes(

@@ -52,6 +52,7 @@ public partial class GraphInspectorPanel : UserControl
             ScholarNodeType.ZenMaster => new SolidColorBrush(Color.Parse("#64B5F6")),
             ScholarNodeType.TermbaseEntry => new SolidColorBrush(Color.Parse("#81C784")),
             ScholarNodeType.Collection => new SolidColorBrush(Color.Parse("#AB47BC")),
+            ScholarNodeType.Book => new SolidColorBrush(Color.Parse("#D4A574")),
             _ => new SolidColorBrush(Colors.Gray)
         };
 
@@ -71,6 +72,9 @@ public partial class GraphInspectorPanel : UserControl
                 break;
             case ScholarNodeType.Collection:
                 ShowCollection(node, content, actions);
+                break;
+            case ScholarNodeType.Book:
+                ShowBook(node, content, actions);
                 break;
         }
     }
@@ -106,6 +110,17 @@ public partial class GraphInspectorPanel : UserControl
         // Notes
         if (!string.IsNullOrWhiteSpace(passage.Notes))
             AddSection(content, "Notes", passage.Notes, maxLines: 4);
+
+        // Date and source info
+        if (passage.AddedUtc != default)
+            AddSection(content, "Added", passage.AddedUtc.ToString("yyyy-MM-dd"));
+        if (!string.IsNullOrWhiteSpace(passage.FromLb))
+        {
+            var range = passage.FromLb;
+            if (!string.IsNullOrEmpty(passage.ToLb) && passage.ToLb != passage.FromLb)
+                range += " \u2013 " + passage.ToLb;
+            AddSection(content, "Range", range);
+        }
 
         // Stats
         AddSection(content, "Connections", $"{node.Degree} edges");
@@ -153,6 +168,19 @@ public partial class GraphInspectorPanel : UserControl
     {
         var name = node.NodeId.StartsWith("master:") ? node.NodeId[7..] : node.Label;
         AddSection(content, "Zen Master", name);
+
+        if (node.SourceData is Dictionary<string, object> masterData)
+        {
+            if (masterData.TryGetValue("PassageCount", out var pc))
+                AddSection(content, "Passages", $"{pc} related");
+            if (masterData.TryGetValue("Dates", out var dates) && dates is string ds && !string.IsNullOrWhiteSpace(ds))
+                AddSection(content, "Dates", ds);
+            if (masterData.TryGetValue("School", out var school) && school is string sc && !string.IsNullOrWhiteSpace(sc))
+                AddSection(content, "School", sc);
+            if (masterData.TryGetValue("Teacher", out var teacher) && teacher is string tc && !string.IsNullOrWhiteSpace(tc))
+                AddSection(content, "Teacher", tc);
+        }
+
         AddSection(content, "Connections", $"{node.Degree} edges");
         AddButton(actions, "View Profile", () => NavigateRequested?.Invoke(this, node.NodeId));
         AddButton(actions, "Remove", () => RemoveRequested?.Invoke(this, node.NodeId));
@@ -172,6 +200,23 @@ public partial class GraphInspectorPanel : UserControl
         AddSection(content, "Collection Reference", node.Label);
         AddSection(content, "Connections", $"{node.Degree} edges");
         AddButton(actions, "Open", () => NavigateRequested?.Invoke(this, node.NodeId));
+        AddButton(actions, "Remove", () => RemoveRequested?.Invoke(this, node.NodeId));
+    }
+
+    private void ShowBook(ResearchGraphNode node, StackPanel content, StackPanel actions)
+    {
+        AddSection(content, "Text", node.Label);
+        if (!string.IsNullOrWhiteSpace(node.SecondaryLabel))
+            AddSection(content, "Source", node.SecondaryLabel);
+        var passage = node.SourceData as ScholarPassage;
+        if (passage != null)
+        {
+            var zhTag = passage.Tags.FirstOrDefault(t => t.StartsWith("zh:"));
+            if (zhTag != null)
+                AddSection(content, "Chinese Title", zhTag[3..]);
+        }
+        AddSection(content, "Connections", $"{node.Degree} edges");
+        AddButton(actions, "Open in Reader", () => NavigateRequested?.Invoke(this, node.NodeId));
         AddButton(actions, "Remove", () => RemoveRequested?.Invoke(this, node.NodeId));
     }
 

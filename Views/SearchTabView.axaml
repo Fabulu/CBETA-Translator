@@ -284,13 +284,15 @@
                                 </TreeDataTemplate>
 
                                 <DataTemplate DataType="models:SearchResultShowMoreItem">
-                                    <Button Content="{Binding RemainingCount, StringFormat='Show {0} more\u2026'}"
+                                    <Button Content="{Binding RemainingCount, StringFormat='Show {0} more…'}"
                                             HorizontalAlignment="Left"
-                                            Padding="4,2"
+                                            Padding="6,3"
                                             FontSize="11"
-                                            Foreground="{DynamicResource AccentBrush}"
-                                            Background="Transparent"
-                                            BorderThickness="0"
+                                            Foreground="{DynamicResource AccentLinkFg}"
+                                            Background="{DynamicResource PanelAltBg}"
+                                            BorderThickness="1"
+                                            BorderBrush="{DynamicResource BorderBrush}"
+                                            CornerRadius="4"
                                             Command="{Binding $parent[TreeView].((vm:SearchTabViewModel)DataContext).ShowMoreCommand}"
                                             CommandParameter="{Binding}"/>
                                 </DataTemplate>

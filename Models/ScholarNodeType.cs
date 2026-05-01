@@ -6,5 +6,6 @@ public enum ScholarNodeType
     Concept = 1,
     ZenMaster = 2,
     TermbaseEntry = 3,
-    Collection = 4
+    Collection = 4,
+    Book = 5
 }

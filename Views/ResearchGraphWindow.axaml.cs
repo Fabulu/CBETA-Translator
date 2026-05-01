@@ -22,6 +22,7 @@ public partial class ResearchGraphWindow : Window
 {
     private ResearchGraphViewModel? _vm;
     private ResearchGraphCanvasControl? _canvas;
+    public IReadOnlyList<FileNavItem>? FileItems { get; set; }
     private GraphStatisticsPanel? _statsPanel;
     private GraphLegendPanel? _legendPanel;
     private List<TermDisplayItem>? _termData;
@@ -338,6 +339,48 @@ public partial class ResearchGraphWindow : Window
                 }
             };
 
+        // + Book button
+        var btnAddBook = this.FindControl<Button>("BtnAddBook");
+        if (btnAddBook != null)
+            btnAddBook.Click += async (_, _) =>
+            {
+                if (_vm == null || FileItems == null || FileItems.Count == 0) return;
+                var picker = new BookPickerDialog(FileItems);
+                var result = await picker.ShowDialog<BookPickerDialog.BookEntry?>(this);
+                if (result == null) return;
+                // Check for duplicate
+                if (_vm.Nodes.Any(n => n.NodeType == ScholarNodeType.Book
+                    && (n.SourceData as ScholarPassage)?.SourceRelPath == result.RelPath))
+                    return;
+                var passage = new ScholarPassage
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    AnnotationType = "Book",
+                    SourceRelPath = result.RelPath,
+                    Summary = result.DisplayShort,
+                    AddedUtc = DateTimeOffset.UtcNow,
+                };
+                var zhPart = result.Subtitle;
+                if (!string.IsNullOrWhiteSpace(zhPart))
+                    passage.Tags.Add("zh:" + zhPart);
+                _vm.GetCollection().Passages.Add(passage);
+                var node = new ResearchGraphNode
+                {
+                    NodeId = passage.Id,
+                    NodeType = ScholarNodeType.Book,
+                    Label = result.DisplayShort,
+                    SecondaryLabel = result.RelPath,
+                    ColorHex = "#D4A574",
+                    SourceData = passage,
+                    X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                    Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
+                };
+                _vm.Nodes.Add(node);
+                _vm.RestoreNodeToMap(node);
+                _canvas?.InvalidateVisual();
+                UpdateStatusBar(); UpdateLeftPanels();
+            };
+
         // Wire collection switcher
         var cmbCollection = this.FindControl<ComboBox>("CmbCollection");
         if (cmbCollection != null && _vm != null)
@@ -385,7 +428,7 @@ public partial class ResearchGraphWindow : Window
             {
                 var col = _vm?.GetCollection();
                 if (col == null) return;
-                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "");
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "", col.CreatedBy);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
                 var status = this.FindControl<TextBlock>("TxtStatus");
@@ -515,6 +558,17 @@ public partial class ResearchGraphWindow : Window
                         var btnBackDblClick = this.FindControl<Button>("BtnBack");
                         if (btnBackDblClick != null) btnBackDblClick.IsVisible = _vm.CanGoBack;
                         break;
+                    case ScholarNodeType.Book:
+                        var bookPassage = node.SourceData as ScholarPassage;
+                        if (bookPassage != null && !string.IsNullOrEmpty(bookPassage.SourceRelPath))
+                        {
+                            NavigationRequested?.Invoke(this, new NavigationRequest
+                            {
+                                RelPath = bookPassage.SourceRelPath,
+                                Side = bookPassage.PreferredSide,
+                            });
+                        }
+                        break;
                 }
             }
         };
@@ -593,7 +647,7 @@ public partial class ResearchGraphWindow : Window
             var menu = new ContextMenu();
             menu.Items.Add(new MenuItem
             {
-                Header = $"Edge Info: {edge.RelationType}",
+                Header = $"Edge: {edge.Label ?? edge.RelationType}",
                 IsEnabled = false
             });
             menu.Items.Add(new Separator());
@@ -999,7 +1053,7 @@ public partial class ResearchGraphWindow : Window
             {
                 var col = _vm?.GetCollection();
                 if (col == null) return;
-                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "");
+                var url = ZenUriParser.BuildShareableGraphUrl(col.Name ?? col.Id ?? "", col.CreatedBy);
                 var top = TopLevel.GetTopLevel(this);
                 if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
             }));
@@ -1124,7 +1178,7 @@ public partial class ResearchGraphWindow : Window
         if (title != null) title.Text = node.Label;
 
         // Type badge
-        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection" };
+        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection", "Text" };
         var typeName = typeNames[(int)node.NodeType];
         content.Children.Add(new TextBlock { Text = typeName, FontSize = 11, Opacity = 0.6 });
 

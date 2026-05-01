@@ -1089,6 +1089,27 @@ private async Task LoadConfigAndAutoloadAsync()
                     _vm.SetStatus("Reddit link copied to clipboard.");
                 };
             }
+
+            var mnuAddBook = _filesList?.ContextMenu?.Items.OfType<MenuItem>()
+                .FirstOrDefault(m => m.Name == "MnuAddBookToCollection");
+            if (mnuAddBook != null)
+            {
+                mnuAddBook.Click += async (_, _) =>
+                {
+                    if (_filesList?.SelectedItem is not FileNavItem navItem) return;
+                    var bookPassage = new ScholarPassage
+                    {
+                        AnnotationType = "Book",
+                        SourceRelPath = navItem.RelPath,
+                        Summary = navItem.DisplayShort,
+                    };
+                    var tooltip = navItem.Tooltip ?? "";
+                    var parts = tooltip.Split('\n', 2);
+                    if (parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]))
+                        bookPassage.Tags.Add("zh:" + parts[1]);
+                    await HandleAddToScholarAsync(bookPassage);
+                };
+            }
         }
 
         if (_tabs != null)
@@ -1624,6 +1645,28 @@ private async Task LoadConfigAndAutoloadAsync()
 
         if (_scholarView != null)
         {
+            _scholarView.SourceTitleResolver = relPath =>
+            {
+                if (string.IsNullOrWhiteSpace(relPath)) return "";
+                var key = relPath.Replace('\\', '/').TrimStart('/');
+                if (_vm.AllItemsByRel.TryGetValue(key, out var nav))
+                    return nav.DisplayShort;
+                var fn = System.IO.Path.GetFileNameWithoutExtension(relPath);
+                return fn ?? relPath;
+            };
+            _scholarView.SourceTitleDetailResolver = relPath =>
+            {
+                if (string.IsNullOrWhiteSpace(relPath)) return ("", null, null);
+                var key = relPath.Replace('\\', '/').TrimStart('/');
+                if (!_vm.AllItemsByRel.TryGetValue(key, out var nav))
+                    return (System.IO.Path.GetFileNameWithoutExtension(relPath) ?? relPath, null, null);
+                // Tooltip is "English Title\nChinese Title" or just one line
+                var parts = (nav.Tooltip ?? "").Split('\n', 2);
+                var en = parts.Length > 0 && !string.IsNullOrWhiteSpace(parts[0]) ? parts[0] : null;
+                var zh = parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]) ? parts[1] : null;
+                return (nav.DisplayShort, en, zh);
+            };
+            _scholarView.FileItems = _vm.AllItemsByRel.Values.ToList();
             _scholarStatusHandler = (_, msg) => _vm.SetStatus(msg);
             _scholarView.Status += _scholarStatusHandler;
             _scholarView.NavigationRequested += (_, req) =>
@@ -1673,6 +1716,10 @@ private async Task LoadConfigAndAutoloadAsync()
                 await HandleAddToScholarAsync(passage);
             };
             _readableView.AddToScholarRequested += _readableAddToScholarHandler;
+            _readableView.AddToCurrentCollectionRequested += async (_, passage) =>
+            {
+                await HandleAddToCurrentCollectionAsync(passage);
+            };
         }
 
         if (_translationView != null)
@@ -1786,9 +1833,24 @@ private async Task LoadConfigAndAutoloadAsync()
                 return;
             }
 
-            EnsureScholarContextReady();
-
+            // Set up scholar context (root, username) and ensure collections
+            // are loaded from disk. For secondary windows, we await the load
+            // so we have the latest state before adding.
             var scholarVm = _scholarView.DataContext as ScholarTabViewModel;
+            if (scholarVm != null)
+            {
+                var root = _vm.TranslationRoot ?? _vm.Root ?? "";
+                var username = _vm.Config.GitHubUsername ?? _vm.Config.Username ?? "";
+                if (!string.IsNullOrWhiteSpace(root))
+                {
+                    // Use SetUsernameOnly + SetRootOnly to avoid fire-and-forget
+                    // LoadAsync race conditions. Then do ONE awaited reload.
+                    scholarVm.SetUsernameOnly(username);
+                    scholarVm.SetRootOnly(root);
+                    await scholarVm.ReloadFromDiskAsync();
+                }
+            }
+
             if (scholarVm != null && scholarVm.Collections.Count > 0)
             {
                 var picker = new CollectionPickerDialog(scholarVm.Collections);
@@ -1818,6 +1880,45 @@ private async Task LoadConfigAndAutoloadAsync()
             _vm.SetStatus($"Add to Scholar failed: {ex.Message}");
         }
     }
+
+    private async Task HandleAddToCurrentCollectionAsync(ScholarPassage passage)
+    {
+        try
+        {
+            if (_scholarView == null) { _vm.SetStatus("Scholar is unavailable."); return; }
+
+            var scholarVm = _scholarView.DataContext as ScholarTabViewModel;
+            if (scholarVm == null) { _vm.SetStatus("Scholar is unavailable."); return; }
+
+            // Ensure context is ready
+            var root = _vm.TranslationRoot ?? _vm.Root ?? "";
+            var username = _vm.Config.GitHubUsername ?? _vm.Config.Username ?? "";
+            if (!string.IsNullOrWhiteSpace(root))
+            {
+                scholarVm.SetUsernameOnly(username);
+                scholarVm.SetRootOnly(root);
+                if (scholarVm.Collections.Count == 0)
+                    await scholarVm.ReloadFromDiskAsync();
+            }
+
+            var current = scholarVm.SelectedCollection;
+            if (current == null)
+            {
+                _vm.SetStatus("No collection selected. Use 'Add to Scholar Collection...' to pick one.");
+                return;
+            }
+
+            await scholarVm.AddPassageToCollectionAsync(current.Id, passage);
+            scholarVm.RefreshPassagesList();
+            scholarVm.RebuildTree();
+            _vm.SetStatus($"Added to '{current.Name}'.");
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus($"Add to current collection failed: {ex.Message}");
+        }
+    }
+
     private void UnsubscribeChildViewEvents()
     {
         if (_readableView != null && _readableAddToScholarHandler != null)

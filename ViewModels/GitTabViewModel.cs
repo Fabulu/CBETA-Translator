@@ -2638,105 +2638,75 @@ public partial class GitTabViewModel : ViewModelBase
                     AppendLog("[info] no " + ScholarCollectionsFile + " found in origin/main (skipping scholar merge)");
                 }
 
-                // Scholar collections JSONL (per-user)
-                int communityJsonlCount = 0;
-                ProgressText = "Pulling community collection JSONL files\u2026";
-                AppendLog("[step] git checkout origin/main -- community/collections/");
-                try
+                // Helper: back up the current user's JSONL file before checkout,
+                // then restore it after, so the pull doesn't overwrite local changes.
+                async Task<int> PullCommunityDirWithPreserveAsync(
+                    string subDir, string label, string? userFile = null)
                 {
-                    var checkoutResult = await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/collections/");
-                    // checkoutResult may be null even on success (checkout writes to working tree, not stdout)
-                    var communityCollDir = ScholarCollectionsService.GetCommunityCollectionsDir(repoDir);
-                    if (Directory.Exists(communityCollDir))
+                    ProgressText = $"Pulling community {label}\u2026";
+                    AppendLog($"[step] git checkout origin/main -- community/{subDir}/");
+                    try
                     {
-                        communityJsonlCount = Directory.GetFiles(communityCollDir, "*.jsonl").Length;
-                        AppendLog($"[info] community collections: {communityJsonlCount} user JSONL file(s)");
+                        string? backupPath = null;
+                        string? userFilePath = null;
+                        if (!string.IsNullOrWhiteSpace(userFile))
+                        {
+                            userFilePath = Path.Combine(repoDir, "community", subDir, userFile);
+                            if (File.Exists(userFilePath) && new FileInfo(userFilePath).Length > 0)
+                            {
+                                backupPath = Path.Combine(tempDir, $"preserve-{subDir}-{Path.GetFileNameWithoutExtension(userFile)}");
+                                File.Copy(userFilePath, backupPath, overwrite: true);
+                                AppendLog($"[preserve] kept local {label} for {_githubLogin}");
+                            }
+                        }
+
+                        await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", $"community/{subDir}/");
+
+                        if (!string.IsNullOrWhiteSpace(backupPath) && File.Exists(backupPath)
+                            && !string.IsNullOrWhiteSpace(userFilePath))
+                        {
+                            File.Copy(backupPath, userFilePath, overwrite: true);
+                            AppendLog($"[restore] reapplied local {label} for {_githubLogin}");
+                        }
+
+                        var dir = Path.Combine(repoDir, "community", subDir);
+                        if (Directory.Exists(dir))
+                        {
+                            var count = Directory.GetFiles(dir, "*.jsonl").Length
+                                      + Directory.GetFiles(dir, "*.json").Length;
+                            AppendLog($"[info] community {label}: {count} file(s)");
+                            return count;
+                        }
+                        AppendLog($"[info] no community/{subDir}/ directory found in origin/main");
+                        return 0;
                     }
-                    else
+                    catch
                     {
-                        AppendLog("[info] no community/collections/ directory found in origin/main");
+                        AppendLog($"[info] community/{subDir}/ not found in origin/main (skipping)");
+                        return 0;
                     }
-                }
-                catch
-                {
-                    AppendLog("[info] community/collections/ not found in origin/main (skipping JSONL pull)");
                 }
 
-                // Community termbases JSONL (per-user)
-                int communityTbJsonlCount = 0;
-                ProgressText = "Pulling community termbase JSONL files\u2026";
-                AppendLog("[step] git checkout origin/main -- community/termbases/");
-                try
-                {
-                    var checkoutTbResult = await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/termbases/");
-                    var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
-                    if (Directory.Exists(communityTbDir))
-                    {
-                        communityTbJsonlCount = Directory.GetFiles(communityTbDir, "*.jsonl").Length;
-                        AppendLog($"[info] community termbases: {communityTbJsonlCount} user JSONL file(s)");
-                    }
-                    else
-                    {
-                        AppendLog("[info] no community/termbases/ directory found in origin/main");
-                    }
-                }
-                catch
-                {
-                    AppendLog("[info] community/termbases/ not found in origin/main (skipping termbase JSONL pull)");
-                }
+                var sanitizedLogin = !string.IsNullOrWhiteSpace(_githubLogin)
+                    ? AppPaths.SanitizeUsername(_githubLogin) + ".jsonl" : null;
+                var sanitizedLoginJson = !string.IsNullOrWhiteSpace(_githubLogin)
+                    ? AppPaths.SanitizeUsername(_githubLogin) + ".json" : null;
 
-                // Community reviews JSONL (per-user)
-                int communityReviewJsonlCount = 0;
-                ProgressText = "Pulling community review files\u2026";
-                AppendLog("[step] git checkout origin/main -- community/reviews/");
-                try
-                {
-                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/reviews/");
-                    var communityReviewsDir = ITranslationReviewService.GetCommunityReviewsDir(repoDir);
-                    if (Directory.Exists(communityReviewsDir))
-                    {
-                        communityReviewJsonlCount = Directory.GetFiles(communityReviewsDir, "*.jsonl").Length;
-                        AppendLog($"[info] community reviews: {communityReviewJsonlCount} user JSONL file(s)");
-                    }
-                }
-                catch { AppendLog("[info] community/reviews/ not found in origin/main"); }
+                int communityJsonlCount = await PullCommunityDirWithPreserveAsync(
+                    "collections", "collections", sanitizedLogin);
+                int communityTbJsonlCount = await PullCommunityDirWithPreserveAsync(
+                    "termbases", "termbases", sanitizedLogin);
+                int communityReviewJsonlCount = await PullCommunityDirWithPreserveAsync(
+                    "reviews", "reviews", sanitizedLogin);
 
-                // Community master dates JSONL (per-user)
-                int communityMdJsonlCount = 0;
-                ProgressText = "Pulling community master dates\u2026";
-                AppendLog("[step] git checkout origin/main -- community/master-dates/");
-                try
-                {
-                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/master-dates/");
-                    var communityMdDir = IMasterDatesService.GetCommunityMasterDatesDir(repoDir);
-                    if (Directory.Exists(communityMdDir))
-                    {
-                        communityMdJsonlCount = Directory.GetFiles(communityMdDir, "*.jsonl").Length;
-                        AppendLog($"[info] community master dates: {communityMdJsonlCount} user JSONL file(s)");
-                    }
-                }
-                catch { AppendLog("[info] community/master-dates/ not found in origin/main"); }
-
-                // Community tags
-                int communityTagJsonlCount = 0;
-                AppendLog("[step] git checkout origin/main -- community/tags/");
-                try
-                {
-                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/tags/");
-                    var communityTagsDir = DocumentTagService.GetCommunityTagsDir(repoDir);
-                    if (Directory.Exists(communityTagsDir))
-                    {
-                        communityTagJsonlCount = Directory.GetFiles(communityTagsDir, "*.jsonl").Length;
-                        AppendLog($"[info] community tags: {communityTagJsonlCount} user JSONL file(s)");
-                    }
-                }
-                catch { AppendLog("[info] community/tags/ not found in origin/main"); }
-
-                try
-                {
-                    await RunGitArgsAsync(repoDir, ct, "checkout", "origin/main", "--", "community/tag-vocabularies/");
-                }
-                catch { AppendLog("[info] community/tag-vocabularies/ not found in origin/main"); }
+                int communityMdJsonlCount = await PullCommunityDirWithPreserveAsync(
+                    "master-dates", "master dates", sanitizedLogin);
+                int communityTagJsonlCount = await PullCommunityDirWithPreserveAsync(
+                    "tags", "tags", sanitizedLogin);
+                await PullCommunityDirWithPreserveAsync(
+                    "tag-vocabularies", "tag vocabularies", sanitizedLoginJson);
+                await PullCommunityDirWithPreserveAsync(
+                    "stars", "stars", sanitizedLogin);
 
                 // Community translations (per-user)
                 int communityTransUserCount = 0;

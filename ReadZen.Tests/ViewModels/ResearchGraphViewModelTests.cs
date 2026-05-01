@@ -9,6 +9,27 @@ using Xunit;
 
 namespace ReadZen.Tests.ViewModels;
 
+public class ScholarNodeTypeTests
+{
+    [Fact]
+    public void Book_EnumValue_Is5()
+    {
+        Assert.Equal(5, (int)ScholarNodeType.Book);
+    }
+
+    [Theory]
+    [InlineData(ScholarNodeType.Passage, 0)]
+    [InlineData(ScholarNodeType.Concept, 1)]
+    [InlineData(ScholarNodeType.ZenMaster, 2)]
+    [InlineData(ScholarNodeType.TermbaseEntry, 3)]
+    [InlineData(ScholarNodeType.Collection, 4)]
+    [InlineData(ScholarNodeType.Book, 5)]
+    public void AllEnumValues_HaveExpectedIntValues(ScholarNodeType type, int expected)
+    {
+        Assert.Equal(expected, (int)type);
+    }
+}
+
 public class EdgeTypeRegistryTests
 {
     [Fact]
@@ -51,6 +72,171 @@ public class EdgeTypeRegistryTests
     {
         var def = EdgeTypeRegistry.GetById("nonexistent-type-xyz");
         Assert.Null(def);
+    }
+
+    [Fact]
+    public void GetById_WithCustomTypes_FindsCustomEdge()
+    {
+        var custom = new EdgeTypeDefinition
+        {
+            Id = "my-custom-edge",
+            DisplayName = "Custom Link",
+            Description = "User-defined edge type",
+            AllowedFromTypes = new() { ScholarNodeType.Passage },
+            AllowedToTypes = new() { ScholarNodeType.Passage },
+            ColorHex = "#FF0000",
+            IsBuiltIn = false,
+            IsDirectional = true
+        };
+
+        var result = EdgeTypeRegistry.GetById("my-custom-edge", new[] { custom });
+
+        Assert.NotNull(result);
+        Assert.Equal("Custom Link", result!.DisplayName);
+        Assert.False(result.IsBuiltIn);
+    }
+
+    [Fact]
+    public void GetById_WithCustomTypes_BuiltInStillFound()
+    {
+        var custom = new EdgeTypeDefinition
+        {
+            Id = "my-custom-edge",
+            DisplayName = "Custom",
+            IsBuiltIn = false
+        };
+
+        var result = EdgeTypeRegistry.GetById("quotes", new[] { custom });
+
+        Assert.NotNull(result);
+        Assert.Equal("Quotes", result!.DisplayName);
+        Assert.True(result.IsBuiltIn);
+    }
+
+    [Fact]
+    public void GetById_WithCustomTypes_NullCustomTypes_ReturnsBuiltIn()
+    {
+        var result = EdgeTypeRegistry.GetById("quotes", null);
+
+        Assert.NotNull(result);
+        Assert.Equal("Quotes", result!.DisplayName);
+    }
+
+    [Fact]
+    public void GetById_CustomTypeNotInBuiltIn_NullCustomTypes_ReturnsNull()
+    {
+        var result = EdgeTypeRegistry.GetById("my-custom-edge", null);
+
+        Assert.Null(result);
+    }
+
+    // --- Book-related edge type tests ---
+
+    [Fact]
+    public void GetValidTypes_PassageToBook_ReturnsBookEdgeTypes()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Passage, ScholarNodeType.Book);
+        Assert.True(types.Count >= 2, $"Expected at least 2 Passage->Book types, got {types.Count}");
+        Assert.Contains(types, t => t.Id == "excerpted-from-book");
+        Assert.Contains(types, t => t.Id == "appears-in");
+    }
+
+    [Fact]
+    public void GetValidTypes_BookToPassage_ReturnsBookContains()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Book, ScholarNodeType.Passage);
+        Assert.Contains(types, t => t.Id == "book-contains");
+    }
+
+    [Fact]
+    public void GetValidTypes_BookToConcept_ReturnsBookExplores()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Book, ScholarNodeType.Concept);
+        Assert.Contains(types, t => t.Id == "book-explores");
+    }
+
+    [Fact]
+    public void GetValidTypes_BookToZenMaster_ReturnsAttributionTypes()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Book, ScholarNodeType.ZenMaster);
+        Assert.Contains(types, t => t.Id == "book-attributed-to");
+        Assert.Contains(types, t => t.Id == "book-records");
+    }
+
+    [Fact]
+    public void GetValidTypes_BookToBook_ReturnsRelationTypes()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Book, ScholarNodeType.Book);
+        Assert.Contains(types, t => t.Id == "related-book");
+        Assert.Contains(types, t => t.Id == "commentary-on-book");
+    }
+
+    [Fact]
+    public void GetValidTypes_BookToCollection_ReturnsBookInCollection()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Book, ScholarNodeType.Collection);
+        Assert.Contains(types, t => t.Id == "book-in-collection");
+    }
+
+    [Fact]
+    public void GetValidTypes_ZenMasterToBook_ReturnsMasterAuthoredBook()
+    {
+        var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.ZenMaster, ScholarNodeType.Book);
+        Assert.Contains(types, t => t.Id == "master-authored-book");
+    }
+
+    [Fact]
+    public void BookEdgeTypes_HaveCorrectAllowedTypes()
+    {
+        var excerptedFromBook = EdgeTypeRegistry.GetById("excerpted-from-book");
+        Assert.NotNull(excerptedFromBook);
+        Assert.Contains(ScholarNodeType.Passage, excerptedFromBook!.AllowedFromTypes);
+        Assert.Contains(ScholarNodeType.Book, excerptedFromBook.AllowedToTypes);
+        Assert.True(excerptedFromBook.IsDirectional);
+
+        var bookContains = EdgeTypeRegistry.GetById("book-contains");
+        Assert.NotNull(bookContains);
+        Assert.Contains(ScholarNodeType.Book, bookContains!.AllowedFromTypes);
+        Assert.Contains(ScholarNodeType.Passage, bookContains.AllowedToTypes);
+
+        var relatedBook = EdgeTypeRegistry.GetById("related-book");
+        Assert.NotNull(relatedBook);
+        Assert.Contains(ScholarNodeType.Book, relatedBook!.AllowedFromTypes);
+        Assert.Contains(ScholarNodeType.Book, relatedBook.AllowedToTypes);
+        Assert.False(relatedBook.IsDirectional);
+    }
+
+    [Fact]
+    public void BookEdgeTypes_HaveExpectedColorHex()
+    {
+        // Most book edge types use the book-brown "#D4A574"
+        var brownBookEdgeIds = new[]
+        {
+            "excerpted-from-book", "appears-in", "book-contains", "book-explores",
+            "book-attributed-to", "book-records", "related-book",
+            "master-authored-book"
+        };
+        foreach (var id in brownBookEdgeIds)
+        {
+            var def = EdgeTypeRegistry.GetById(id);
+            Assert.NotNull(def);
+            Assert.Equal("#D4A574", def!.ColorHex);
+        }
+
+        // book-in-collection uses the collection purple
+        var bookInCollection = EdgeTypeRegistry.GetById("book-in-collection");
+        Assert.NotNull(bookInCollection);
+        Assert.Equal("#AB47BC", bookInCollection!.ColorHex);
+    }
+
+    [Fact]
+    public void CommentaryOnBook_IsDirectional()
+    {
+        var def = EdgeTypeRegistry.GetById("commentary-on-book");
+        Assert.NotNull(def);
+        Assert.True(def!.IsDirectional);
+        // Commentary uses green, not book-brown
+        Assert.Equal("#51D996", def.ColorHex);
     }
 }
 
@@ -127,6 +313,67 @@ public class ResearchGraphViewModelTests
         Assert.Equal("e1", vm.Edges[0].EdgeId);
         Assert.Equal("p0", vm.Edges[0].From.NodeId);
         Assert.Equal("p1", vm.Edges[0].To.NodeId);
+    }
+
+    [Fact]
+    public void EdgeVm_Label_UsesDisplayNameNotRelationType()
+    {
+        var collection = CreateTestCollection(passageCount: 2, conceptCount: 0);
+        collection.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e-label",
+            FromNodeId = "p0",
+            FromNodeType = ScholarNodeType.Passage,
+            ToNodeId = "p1",
+            ToNodeType = ScholarNodeType.Passage,
+            RelationType = "quotes"
+        });
+
+        var vm = CreateVm(collection);
+
+        var edgeVm = vm.Edges.First(e => e.EdgeId == "e-label");
+        // Label should be the human-readable DisplayName ("Quotes"), not the raw id ("quotes")
+        Assert.Equal("Quotes", edgeVm.Label);
+        Assert.Equal("quotes", edgeVm.RelationType);
+    }
+
+    [Fact]
+    public void EdgeVm_Label_FallsBackToRelationTypeWhenUnknown()
+    {
+        var collection = CreateTestCollection(passageCount: 2, conceptCount: 0);
+        collection.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "e-unknown",
+            FromNodeId = "p0",
+            FromNodeType = ScholarNodeType.Passage,
+            ToNodeId = "p1",
+            ToNodeType = ScholarNodeType.Passage,
+            RelationType = "unknown-relation-xyz"
+        });
+
+        var vm = CreateVm(collection);
+
+        var edgeVm = vm.Edges.First(e => e.EdgeId == "e-unknown");
+        // When EdgeTypeRegistry doesn't know the type, Label falls back to RelationType
+        Assert.Equal("unknown-relation-xyz", edgeVm.Label);
+    }
+
+    [Fact]
+    public void AddEdge_Label_UsesDisplayNameFromRegistry()
+    {
+        var collection = CreateTestCollection(passageCount: 2, conceptCount: 0);
+        var vm = CreateVm(collection);
+
+        vm.AddEdge(new ScholarGraphEdge
+        {
+            Id = "e-add-label",
+            FromNodeId = "p0",
+            ToNodeId = "p1",
+            RelationType = "comments-on"
+        });
+
+        var edgeVm = vm.Edges.First(e => e.EdgeId == "e-add-label");
+        Assert.Equal("Comments on", edgeVm.Label);
     }
 
     [Fact]
@@ -352,6 +599,121 @@ public class ResearchGraphViewModelTests
             Assert.InRange(node.X, 30, 770);
             Assert.InRange(node.Y, 30, 570);
         }
+    }
+
+    [Fact]
+    public void Constructor_BookAnnotationType_CreatesBookNode()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "book-test",
+            Name = "Book Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new()
+                {
+                    Id = "book1",
+                    ZhText = "Some book text",
+                    Summary = "The Platform Sutra",
+                    AnnotationType = "Book"
+                },
+                new()
+                {
+                    Id = "p0",
+                    ZhText = "Regular passage"
+                }
+            }
+        };
+
+        var vm = CreateVm(collection);
+
+        var bookNodes = vm.Nodes.Where(n => n.NodeType == ScholarNodeType.Book).ToList();
+        Assert.Single(bookNodes);
+        Assert.Equal("book1", bookNodes[0].NodeId);
+        Assert.Equal("The Platform Sutra", bookNodes[0].Label);
+
+        var passageNodes = vm.Nodes.Where(n => n.NodeType == ScholarNodeType.Passage).ToList();
+        Assert.Single(passageNodes);
+        Assert.Equal("p0", passageNodes[0].NodeId);
+    }
+
+    [Fact]
+    public void Constructor_BookAnnotationType_CaseInsensitive()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "book-ci",
+            Name = "Case Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new()
+                {
+                    Id = "book-lower",
+                    ZhText = "Text",
+                    AnnotationType = "book"
+                }
+            }
+        };
+
+        var vm = CreateVm(collection);
+
+        var bookNodes = vm.Nodes.Where(n => n.NodeType == ScholarNodeType.Book).ToList();
+        Assert.Single(bookNodes);
+        Assert.Equal("book-lower", bookNodes[0].NodeId);
+    }
+
+    [Fact]
+    public void Constructor_BookNode_HasBookColor()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "book-color",
+            Name = "Color Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new()
+                {
+                    Id = "b1",
+                    ZhText = "Text",
+                    AnnotationType = "Book"
+                }
+            }
+        };
+
+        var vm = CreateVm(collection);
+
+        var bookNode = vm.Nodes.First(n => n.NodeType == ScholarNodeType.Book);
+        Assert.Equal("#D4A574", bookNode.ColorHex);
+    }
+
+    [Fact]
+    public void GetVisibleNodes_ShowBooks_FiltersBookNodes()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "vis-book",
+            Name = "Visibility Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "b1", ZhText = "Book", AnnotationType = "Book" },
+                new() { Id = "p1", ZhText = "Passage" }
+            }
+        };
+
+        var vm = CreateVm(collection);
+
+        // By default ShowBooks is true
+        var visible = vm.GetVisibleNodes();
+        Assert.Contains(visible, n => n.NodeType == ScholarNodeType.Book);
+
+        vm.ShowBooks = false;
+        visible = vm.GetVisibleNodes();
+        Assert.DoesNotContain(visible, n => n.NodeType == ScholarNodeType.Book);
+        Assert.Contains(visible, n => n.NodeType == ScholarNodeType.Passage);
     }
 
     [Fact]
@@ -754,5 +1116,387 @@ public class MigrationTests
         var edge = collection.Edges[0];
         Assert.False(string.IsNullOrEmpty(edge.Id));
         Assert.Equal(8, edge.Id.Length); // Guid.NewGuid().ToString("N")[..8]
+    }
+}
+
+public class AutoEdgeTests
+{
+    private static ResearchGraphViewModel CreateVmWithMaster(
+        int passageCount = 2,
+        string masterName = "Linji",
+        int masterPassageIndex = 0)
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "auto-edge-test",
+            Name = "Auto Edge Test",
+            SchemaVersion = 2
+        };
+
+        for (int i = 0; i < passageCount; i++)
+        {
+            collection.Passages.Add(new ScholarPassage
+            {
+                Id = $"p{i}",
+                ZhText = $"Chinese text {i}",
+                EnText = $"English text {i}",
+                MasterNames = i == masterPassageIndex
+                    ? new List<string> { masterName }
+                    : new List<string>()
+            });
+        }
+
+        return new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+    }
+
+    [Fact]
+    public void AutoEdges_MasterNodeGetsAttributedToEdge()
+    {
+        var vm = CreateVmWithMaster();
+
+        var autoEdges = vm.Edges
+            .Where(e => e.RelationType == "attributed-to")
+            .ToList();
+
+        Assert.Single(autoEdges);
+        Assert.Equal("p0", autoEdges[0].From.NodeId);
+        Assert.Equal("master:Linji", autoEdges[0].To.NodeId);
+    }
+
+    [Fact]
+    public void AutoEdges_HaveIsAutoGeneratedTrue()
+    {
+        var vm = CreateVmWithMaster();
+
+        var autoEdges = vm.Edges
+            .Where(e => e.RelationType == "attributed-to")
+            .ToList();
+
+        Assert.Single(autoEdges);
+        Assert.True(autoEdges[0].IsAutoGenerated);
+    }
+
+    [Fact]
+    public void AutoEdges_MultiplePassagesSameMaster_CreatesMultipleEdges()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "multi-master",
+            Name = "Multi Master",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p1", ZhText = "B", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p2", ZhText = "C", MasterNames = new List<string>() }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        var autoEdges = vm.Edges.Where(e => e.IsAutoGenerated).ToList();
+        Assert.Equal(2, autoEdges.Count);
+        Assert.All(autoEdges, e => Assert.Equal("master:Linji", e.To.NodeId));
+        Assert.All(autoEdges, e => Assert.True(e.IsAutoGenerated));
+    }
+
+    [Fact]
+    public void AutoEdges_IncrementDegreeOnBothNodes()
+    {
+        var vm = CreateVmWithMaster();
+
+        var passageNode = vm.Nodes.First(n => n.NodeId == "p0");
+        var masterNode = vm.Nodes.First(n => n.NodeId == "master:Linji");
+
+        Assert.Equal(1, passageNode.Degree);
+        Assert.Equal(1, masterNode.Degree);
+    }
+
+    [Fact]
+    public void AutoEdges_EdgeIdStartsWithAutoPrefix()
+    {
+        var vm = CreateVmWithMaster();
+
+        var autoEdge = vm.Edges.First(e => e.IsAutoGenerated);
+        Assert.StartsWith("auto:attributed:", autoEdge.EdgeId);
+    }
+
+    [Fact]
+    public void AutoEdges_BookPassages_DoNotGetAutoEdges()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "book-no-auto",
+            Name = "Book No Auto",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new()
+                {
+                    Id = "b1",
+                    ZhText = "Book text",
+                    AnnotationType = "Book",
+                    MasterNames = new List<string> { "Linji" }
+                }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        var autoEdges = vm.Edges.Where(e => e.IsAutoGenerated).ToList();
+        Assert.Empty(autoEdges);
+    }
+
+    [Fact]
+    public void RemoveEdge_AutoGenerated_SkipsCollectionEdges()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "remove-auto",
+            Name = "Remove Auto",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p1", ZhText = "B" }
+            }
+        };
+        collection.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "manual-e1",
+            FromNodeId = "p0",
+            ToNodeId = "p1",
+            RelationType = "quotes"
+        });
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        var autoEdge = vm.Edges.First(e => e.IsAutoGenerated);
+        Assert.Single(collection.Edges);
+
+        vm.RemoveEdge(autoEdge.EdgeId);
+
+        Assert.DoesNotContain(vm.Edges, e => e.EdgeId == autoEdge.EdgeId);
+        Assert.Single(collection.Edges);
+        Assert.Equal("manual-e1", collection.Edges[0].Id);
+    }
+
+    [Fact]
+    public void RemoveEdge_ManualEdge_RemovesFromCollectionEdges()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "remove-manual",
+            Name = "Remove Manual",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A" },
+                new() { Id = "p1", ZhText = "B" }
+            }
+        };
+        collection.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "manual-e1",
+            FromNodeId = "p0",
+            ToNodeId = "p1",
+            RelationType = "quotes"
+        });
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        vm.RemoveEdge("manual-e1");
+
+        Assert.Empty(vm.Edges);
+        Assert.Empty(collection.Edges);
+    }
+}
+
+public class SuppressionTests
+{
+    [Fact]
+    public void RemoveNode_MasterNode_AddsSuppressedAutoNodeId()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "suppress-test",
+            Name = "Suppress Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p1", ZhText = "B" }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+        Assert.Contains(vm.Nodes, n => n.NodeId == "master:Linji");
+
+        vm.RemoveNode("master:Linji");
+
+        Assert.Contains("master:Linji", collection.SuppressedAutoNodeIds);
+    }
+
+    [Fact]
+    public void SuppressedMaster_DoesNotReappearAfterRebuildGraph()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "suppress-rebuild",
+            Name = "Suppress Rebuild",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+        Assert.Contains(vm.Nodes, n => n.NodeId == "master:Linji");
+
+        vm.RemoveNode("master:Linji");
+        Assert.DoesNotContain(vm.Nodes, n => n.NodeId == "master:Linji");
+
+        vm.RebuildGraph();
+
+        Assert.DoesNotContain(vm.Nodes, n => n.NodeId == "master:Linji");
+        Assert.DoesNotContain(vm.Edges, e => e.To.NodeId == "master:Linji");
+    }
+
+    [Fact]
+    public void SuppressedMaster_AutoEdgesAlsoSuppressed()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "suppress-edges",
+            Name = "Suppress Edges",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p1", ZhText = "B", MasterNames = new List<string> { "Linji" } }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+        Assert.Equal(2, vm.Edges.Count(e => e.IsAutoGenerated));
+
+        vm.RemoveNode("master:Linji");
+
+        Assert.Empty(vm.Edges.Where(e => e.IsAutoGenerated));
+    }
+
+    [Fact]
+    public void RestoreSuppressedNodes_ClearsListAndRebuilds()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "restore-test",
+            Name = "Restore Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        vm.RemoveNode("master:Linji");
+        Assert.Single(collection.SuppressedAutoNodeIds);
+        Assert.DoesNotContain(vm.Nodes, n => n.NodeId == "master:Linji");
+
+        vm.RestoreSuppressedNodes();
+
+        Assert.Empty(collection.SuppressedAutoNodeIds);
+        Assert.Contains(vm.Nodes, n => n.NodeId == "master:Linji");
+        Assert.Contains(vm.Edges, e => e.IsAutoGenerated && e.To.NodeId == "master:Linji");
+    }
+
+    [Fact]
+    public void SuppressedAutoNodeIds_IsPersistedOnScholarCollection()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "persist-test",
+            Name = "Persist Test",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        vm.RemoveNode("master:Linji");
+
+        Assert.Contains("master:Linji", collection.SuppressedAutoNodeIds);
+        Assert.IsType<HashSet<string>>(collection.SuppressedAutoNodeIds);
+
+        // Simulate creating a new VM from the same (persisted) collection
+        var vm2 = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        Assert.DoesNotContain(vm2.Nodes, n => n.NodeId == "master:Linji");
+        Assert.Empty(vm2.Edges.Where(e => e.To.NodeId == "master:Linji"));
+    }
+
+    [Fact]
+    public void RemoveNode_NonAutoNode_DoesNotAddToSuppressed()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "no-suppress",
+            Name = "No Suppress",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A" }
+            },
+            Concepts = new List<ConceptNode>
+            {
+                new() { Id = "c0", Name = "Test Concept", Description = "desc" }
+            }
+        };
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        vm.RemoveNode("c0");
+
+        Assert.Empty(collection.SuppressedAutoNodeIds);
+    }
+
+    [Fact]
+    public void RemoveNode_MasterNode_RemovesAutoEdgesWithoutTouchingCollectionEdges()
+    {
+        var collection = new ScholarCollection
+        {
+            Id = "master-remove-edges",
+            Name = "Master Remove Edges",
+            SchemaVersion = 2,
+            Passages = new List<ScholarPassage>
+            {
+                new() { Id = "p0", ZhText = "A", MasterNames = new List<string> { "Linji" } },
+                new() { Id = "p1", ZhText = "B" }
+            }
+        };
+        collection.Edges.Add(new ScholarGraphEdge
+        {
+            Id = "manual-e1",
+            FromNodeId = "p0",
+            ToNodeId = "p1",
+            RelationType = "quotes"
+        });
+
+        var vm = new ResearchGraphViewModel(collection, new List<ScholarCollection> { collection });
+
+        Assert.Equal(2, vm.Edges.Count);
+        Assert.Single(collection.Edges);
+
+        vm.RemoveNode("master:Linji");
+
+        Assert.Single(vm.Edges);
+        Assert.Equal("manual-e1", vm.Edges[0].EdgeId);
+        Assert.Single(collection.Edges);
     }
 }

@@ -135,6 +135,11 @@ public static class TeiRenderer
             int end = sb.Length;
             if (end > segStart)
                 segments.Add(new RenderSegment(currentKey, segStart, end));
+            else if (currentKey.StartsWith("lb|", StringComparison.Ordinal))
+                // Preserve zero-length lb segments — they carry position info
+                // needed by FindNearestLbNValue even when no text follows before
+                // the next structural tag (e.g., <lb/><cb:div><p>).
+                segments.Add(new RenderSegment(currentKey, segStart, segStart));
 
             currentKey = newKey;
             segStart = sb.Length;
@@ -840,12 +845,14 @@ public static class TeiRenderer
             return true;
         }
 
+        // Anchors are never structural boundaries — they mark note positions
+        // and annotation ranges. Note rendering uses anchorPosById (character
+        // offsets recorded at line ~296), not segment boundaries. Creating
+        // segments from anchors breaks selection sync by splitting lb lines.
         if (EqualsIgnoreCase(tagName, "anchor"))
         {
-            var id = Attr(attrs, AttrXmlId) ?? Attr(attrs, AttrN);
-            if (string.IsNullOrWhiteSpace(id)) return false;
-            key = MakeKey("anchor", id);
-            return true;
+            key = "";
+            return false;
         }
 
         if (EqualsIgnoreCase(tagName, "cb:juan"))

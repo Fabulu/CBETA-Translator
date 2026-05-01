@@ -47,6 +47,7 @@ public class ResearchGraphCanvasControl : Control
         [ScholarNodeType.ZenMaster] = new SolidColorBrush(Color.Parse("#64B5F6")),
         [ScholarNodeType.TermbaseEntry] = new SolidColorBrush(Color.Parse("#81C784")),
         [ScholarNodeType.Collection] = new SolidColorBrush(Color.Parse("#AB47BC")),
+        [ScholarNodeType.Book] = new SolidColorBrush(Color.Parse("#D4A574")),
     });
     private static Dictionary<ScholarNodeType, IBrush> NodeBrushes => _nodeBrushesLazy.Value;
 
@@ -244,6 +245,11 @@ public class ResearchGraphCanvasControl : Control
                         new Rect(node.X - r + 2.5, node.Y - r * 0.7 + 2.5, r * 2, r * 1.4),
                         r * 0.2, r * 0.2);
                     break;
+                case ScholarNodeType.Book:
+                    ctx.DrawRectangle(_shadowBrushOuter, null,
+                        new Rect(node.X - r * 0.6 + 2.5, node.Y - r * 0.9 + 2.5, r * 1.2, r * 1.8),
+                        r * 0.15, r * 0.15);
+                    break;
             }
         }
 
@@ -265,6 +271,10 @@ public class ResearchGraphCanvasControl : Control
             case ScholarNodeType.Collection:
                 // Square with minimal rounding
                 ctx.DrawRectangle(brush, pen, new Rect(node.X - r * 0.8, node.Y - r * 0.8, r * 1.6, r * 1.6), r * 0.1, r * 0.1);
+                break;
+            case ScholarNodeType.Book:
+                // Tall rectangle (book shape)
+                ctx.DrawRectangle(brush, pen, new Rect(node.X - r * 0.6, node.Y - r * 0.9, r * 1.2, r * 1.8), r * 0.15, r * 0.15);
                 break;
         }
 
@@ -455,13 +465,14 @@ public class ResearchGraphCanvasControl : Control
                 midX = (from.X + to.X) / 2;
                 midY = (from.Y + to.Y) / 2;
             }
+            var edgeLabelText = edge.Label ?? edge.RelationType;
             var labelColor = new SolidColorBrush(Color.FromArgb((byte)(isHovered ? 255 : 200), edgeColor.R, edgeColor.G, edgeColor.B));
             var labelFt = new FormattedText(
-                edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                edgeLabelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
                 new Typeface("Segoe UI"), 9, labelColor);
             // Shadow behind label for readability
             var bgFt = new FormattedText(
-                edge.RelationType, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                edgeLabelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
                 new Typeface("Segoe UI"), 9, _labelShadowBrush);
             ctx.DrawText(bgFt, new Point(midX - bgFt.Width / 2 + 0.8, midY - 12 + 0.8));
             ctx.DrawText(labelFt, new Point(midX - labelFt.Width / 2, midY - 12));
