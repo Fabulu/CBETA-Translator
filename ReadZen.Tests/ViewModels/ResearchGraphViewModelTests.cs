@@ -258,7 +258,7 @@ public class ResearchGraphViewModelTests
                 Id = $"p{i}",
                 ZhText = $"Chinese text {i}",
                 EnText = $"English text {i}",
-                MasterNames = i == 0 ? new List<string> { "Linji" } : new List<string>()
+                MasterNames = new List<string>()
             });
         }
 
@@ -287,7 +287,7 @@ public class ResearchGraphViewModelTests
         var collection = CreateTestCollection(passageCount: 3, conceptCount: 0);
         var vm = CreateVm(collection);
 
-        // 3 passage nodes + 1 master node (Linji from passage 0)
+        // 3 passage nodes
         var passageNodes = vm.Nodes.Where(n => n.NodeType == ScholarNodeType.Passage).ToList();
         Assert.Equal(3, passageNodes.Count);
         Assert.All(passageNodes, n => Assert.False(string.IsNullOrEmpty(n.NodeId)));

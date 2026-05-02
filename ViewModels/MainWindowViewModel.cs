@@ -432,7 +432,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<bool>? SetSaveButtonEnabled { get; set; }
     public Func<int>? GetSelectedTabIndex { get; set; }
     public Action<int>? ForceTabIndex { get; set; }
-    public Action<NavigationRequest>? NavigateInReadable { get; set; }
+    public Func<NavigationRequest, Task>? NavigateInReadable { get; set; }
 
     // Nav ListBox bridges
     public Action<List<FileNavItem>>? SetNavItemsSource { get; set; }
@@ -4069,7 +4069,8 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         await LoadPairAsync(request.RelPath);
         ForceTabIndex?.Invoke(0); // switch to Reader tab
 
-        NavigateInReadable?.Invoke(request);
+        if (NavigateInReadable != null)
+            await NavigateInReadable(request);
     }
 
     /// <summary>

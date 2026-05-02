@@ -533,14 +533,7 @@ public partial class ResearchGraphWindow : Window
                         var passage = node.SourceData as ScholarPassage
                             ?? _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
                         if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
-                        {
-                            NavigationRequested?.Invoke(this, new NavigationRequest
-                            {
-                                RelPath = passage.SourceRelPath,
-                                Side = passage.PreferredSide,
-                                MatchText = passage.ZhText?.Length > 20 ? passage.ZhText[..20] : passage.ZhText
-                            });
-                        }
+                            NavigationRequested?.Invoke(this, BuildPassageNavRequest(passage));
                         break;
                     case ScholarNodeType.ZenMaster:
                         OpenMasterRequested?.Invoke(this, node.Label);
@@ -561,13 +554,7 @@ public partial class ResearchGraphWindow : Window
                     case ScholarNodeType.Book:
                         var bookPassage = node.SourceData as ScholarPassage;
                         if (bookPassage != null && !string.IsNullOrEmpty(bookPassage.SourceRelPath))
-                        {
-                            NavigationRequested?.Invoke(this, new NavigationRequest
-                            {
-                                RelPath = bookPassage.SourceRelPath,
-                                Side = bookPassage.PreferredSide,
-                            });
-                        }
+                            NavigationRequested?.Invoke(this, BuildPassageNavRequest(bookPassage));
                         break;
                 }
             }
@@ -886,7 +873,7 @@ public partial class ResearchGraphWindow : Window
                     menu.Items.Add(CreateMenuItem("Open in Reader", () =>
                     {
                         if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
-                            NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = passage.SourceRelPath, Side = passage.PreferredSide });
+                            NavigationRequested?.Invoke(this, BuildPassageNavRequest(passage));
                     }));
                     if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
                     {
@@ -1112,6 +1099,24 @@ public partial class ResearchGraphWindow : Window
         }
         UpdateInspector();
         _canvas?.InvalidateVisual();
+    }
+
+    private static NavigationRequest BuildPassageNavRequest(ScholarPassage p)
+    {
+        var side = p.PreferredSide;
+        var text = side == SearchSide.Translated ? p.EnText : p.ZhText;
+        if (string.IsNullOrEmpty(text)) text = p.ZhText;
+        var matchText = text?.Length > 80 ? text[..80] : text;
+        return new NavigationRequest
+        {
+            RelPath = p.SourceRelPath,
+            Side = side,
+            User = side == SearchSide.Translated ? p.TranslationUser : null,
+            MatchText = matchText,
+            FromLb = p.FromLb,
+            ToLb = p.ToLb,
+            AnchorStartHint = p.StartBlockNumber
+        };
     }
 
     private async void RenameSelected()
@@ -1351,7 +1356,7 @@ public partial class ResearchGraphWindow : Window
                 openBtn.Click += (_, _) =>
                 {
                     if (passage != null && !string.IsNullOrEmpty(passage.SourceRelPath))
-                        NavigationRequested?.Invoke(this, new NavigationRequest { RelPath = passage.SourceRelPath, Side = passage.PreferredSide });
+                        NavigationRequested?.Invoke(this, BuildPassageNavRequest(passage));
                 };
                 actions.Children.Add(openBtn);
 
