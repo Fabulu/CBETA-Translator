@@ -34,7 +34,7 @@ public class ResearchGraphPolishTests
                 Id = $"p{i}",
                 ZhText = $"Chinese text {i}",
                 EnText = $"English text {i}",
-                MasterNames = i == 0 ? new List<string> { "Linji" } : new List<string>()
+                MasterNames = new List<string>()
             });
         }
 

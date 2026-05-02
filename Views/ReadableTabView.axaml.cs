@@ -1465,7 +1465,7 @@ public partial class ReadableTabView : UserControl
     {
         // Give the layout engine one full pass so the text is measured and scrollable.
         await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
-        await Task.Delay(150);
+        await Task.Delay(200);
 
         var doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
         var editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
@@ -1479,9 +1479,6 @@ public partial class ReadableTabView : UserControl
             var (lbStart, lbLength) = ResolveLbRange(doc, request.FromLb, request.ToLb);
             if (lbStart >= 0 && lbLength > 0)
             {
-                _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
-                _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
-
                 int lbDocLen = editor.Document.TextLength;
                 int lbSafeStart = Math.Clamp(lbStart, 0, Math.Max(0, lbDocLen - 1));
                 int lbSafeEnd = Math.Clamp(lbSafeStart + lbLength, 0, lbDocLen);
@@ -1502,13 +1499,7 @@ public partial class ReadableTabView : UserControl
                                          FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd) >= 0;
                 if (hasMeaningfulText)
                 {
-                    editor.TextArea.Caret.Offset = lbSafeStart;
-                    editor.TextArea.Selection = Selection.Create(editor.TextArea, lbSafeStart, lbSafeEnd);
-
-                    var lbLine = editor.Document.GetLineByOffset(lbSafeStart);
-                    editor.ScrollToLine(lbLine.LineNumber);
-
-                    _navHighlightEditor = editor;
+                    ApplyNavHighlight(editor, lbSafeStart, lbSafeEnd);
                     return;
                 }
             }
@@ -1531,10 +1522,6 @@ public partial class ReadableTabView : UserControl
         if (hit.start < 0 || hit.length <= 0)
             return;
 
-        // Suppress selection-mirror during our programmatic move
-        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
-        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
-
         int docLen = editor.Document.TextLength;
         int safeStart = Math.Clamp(hit.start, 0, Math.Max(0, docLen - 1));
         int safeEnd = Math.Clamp(safeStart + hit.length, 0, docLen);
@@ -1547,13 +1534,39 @@ public partial class ReadableTabView : UserControl
             safeEnd--;
         }
 
-        editor.TextArea.Caret.Offset = safeStart;
-        editor.TextArea.Selection = Selection.Create(editor.TextArea, safeStart, safeEnd);
-        // Caret.Offset assignment does not always scroll, so scroll explicitly too.
-        var line = editor.Document.GetLineByOffset(safeStart);
+        ApplyNavHighlight(editor, safeStart, safeEnd);
+    }
+
+    /// <summary>
+    /// Sets selection, scrolls to it, and keeps the highlight visible until
+    /// the next user click. Uses multiple scroll strategies for reliability
+    /// in secondary windows where layout may still be settling.
+    /// </summary>
+    private void ApplyNavHighlight(TextEditor editor, int start, int end)
+    {
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(IgnoreProgrammaticWindowMs + 500);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+
+        editor.TextArea.Caret.Offset = start;
+        editor.TextArea.Selection = Selection.Create(editor.TextArea, start, end);
+
+        var line = editor.Document.GetLineByOffset(start);
         editor.ScrollToLine(line.LineNumber);
-        // Keep the highlight visible until the next user click.
-        // (see OnPointerPressed_ClearNavHighlight).
+
+        // ScrollToLine can silently fail if the visual tree isn't fully
+        // measured yet (common in freshly-opened secondary windows).
+        // Post a deferred scroll at Render priority as a safety net.
+        Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                editor.TextArea.Caret.Offset = start;
+                editor.ScrollToLine(line.LineNumber);
+                editor.TextArea.Caret.BringCaretToView();
+            }
+            catch { /* editor may have been disposed */ }
+        }, DispatcherPriority.Render);
+
         _navHighlightEditor = editor;
     }
 
@@ -1624,13 +1637,16 @@ public partial class ReadableTabView : UserControl
         if (segIndex < 0)
             return (-1, 0);
 
-        int cursor = Math.Clamp(Math.Max(startSeg.Start, startSeg.EndExclusive), 0, text.Length);
+        // Start from the segment's own Start so its rendered text is included.
+        // (Anchor exclusion made lb segments span their full text range;
+        //  starting at EndExclusive would skip the segment's own content.)
+        int cursor = Math.Clamp(startSeg.Start, 0, text.Length);
 
         for (int i = segIndex + 1; i < doc.Segments.Count; i++)
         {
             var seg = doc.Segments[i];
             var lb = LbHelper.ExtractLbNValue(seg.Key);
-            if (string.IsNullOrWhiteSpace(lb) || seg.Start < cursor)
+            if (string.IsNullOrWhiteSpace(lb) || seg.Start <= cursor)
                 continue;
 
             int start = FindFirstNonWhitespace(text, cursor, seg.Start);

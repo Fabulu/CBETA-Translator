@@ -102,6 +102,7 @@ public sealed class ScholarCollection
     public ScholarGraphLayout GraphLayout { get; set; } = new();
     public Dictionary<string, string> NodeAnnotations { get; set; } = new();
     public HashSet<string> SuppressedAutoNodeIds { get; set; } = new();
+    public HashSet<string> SuppressedAutoEdgeIds { get; set; } = new();
 }
 
 public sealed class ScholarGraphLayout

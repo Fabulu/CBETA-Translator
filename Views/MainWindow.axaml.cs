@@ -217,9 +217,6 @@ public partial class MainWindow : Window
         await _windowReady.Task;
 
         await _vm.OpenAtCoreAsync(root, request);
-
-        if (_readableView != null && !string.IsNullOrEmpty(request.MatchText))
-            await _readableView.NavigateToAsync(request);
     }
 
     /// <summary>
