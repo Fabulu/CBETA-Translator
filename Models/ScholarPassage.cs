@@ -41,6 +41,9 @@ public sealed class ScholarPassage
     public int? Importance { get; set; }
     public string? AnnotationType { get; set; }
 
+    // Critical apparatus entries (null for passages without apparatus data)
+    public List<ApparatusEntry>? Apparatus { get; set; }
+
     // Display helpers (not serialized)
     [JsonIgnore]
     public string DisplayTitle =>
