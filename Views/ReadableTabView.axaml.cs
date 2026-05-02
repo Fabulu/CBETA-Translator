@@ -5047,6 +5047,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
         _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
+
+        // Pass apparatus count from the current rendered document's annotations
+        var appCount = _vm?.RenderOrig?.Annotations?.Count ?? 0;
+        _provenancePanelView?.SetApparatusCount(appCount);
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>

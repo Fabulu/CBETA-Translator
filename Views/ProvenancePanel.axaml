@@ -49,6 +49,14 @@
             <TextBlock Name="TxtWitnessCount" FontSize="11" Opacity="0.7"
                        IsVisible="False"/>
 
+            <!-- TEI witnesses from listWit -->
+            <TextBlock Name="TxtTeiWitnesses" FontSize="11" Opacity="0.7"
+                       TextWrapping="Wrap" IsVisible="False"/>
+
+            <!-- Apparatus entry count -->
+            <TextBlock Name="TxtApparatusCount" FontSize="11" Opacity="0.7"
+                       IsVisible="False"/>
+
             <!-- SHA-256 (copyable, 2I) -->
             <Border Name="PnlSha256" IsVisible="False" Margin="0,4,0,0">
                 <StackPanel Spacing="2">
