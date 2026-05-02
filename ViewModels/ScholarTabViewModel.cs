@@ -7,8 +7,10 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Text;
 using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -2044,6 +2046,156 @@ public partial class ScholarTabViewModel : ViewModelBase
             StatusMessage = "Error: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
         }
+    }
+
+    // ----- One-time migration: re-extract passage texts via TeiRenderer -----
+
+    /// <summary>
+    /// Re-renders source XML for every passage and replaces ZhText/EnText with
+    /// clean text extracted via the current TeiRenderer (which strips apparatus
+    /// lem+rdg garbage).  Returns the number of passages that were updated.
+    /// </summary>
+    public async Task<int> MigratePassageTextsAsync(string originalDir, string translatedDir)
+    {
+        int migrated = 0;
+        // Cache rendered documents per file to avoid re-parsing the same XML repeatedly
+        var origCache = new Dictionary<string, RenderedDocument?>(StringComparer.OrdinalIgnoreCase);
+        var tranCache = new Dictionary<string, RenderedDocument?>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var collection in _allCollections)
+        {
+            foreach (var passage in collection.Passages)
+            {
+                if (string.IsNullOrEmpty(passage.SourceRelPath))
+                    continue;
+                if (string.IsNullOrEmpty(passage.FromLb))
+                    continue;
+                if (passage.AnnotationType == "Book")
+                    continue;
+
+                bool changed = false;
+
+                // --- Chinese text ---
+                var origPath = Path.Combine(originalDir, passage.SourceRelPath);
+                if (!origCache.TryGetValue(origPath, out var origDoc))
+                {
+                    origDoc = RenderFileIfExists(origPath);
+                    origCache[origPath] = origDoc;
+                }
+                if (origDoc != null)
+                {
+                    var clean = ExtractTextBetweenLbs(origDoc, passage.FromLb, passage.ToLb);
+                    if (!string.IsNullOrEmpty(clean) && clean != passage.ZhText)
+                    {
+                        passage.ZhText = clean;
+                        changed = true;
+                    }
+                }
+
+                // --- English text ---
+                var tranPath = Path.Combine(translatedDir, passage.SourceRelPath);
+                if (!tranCache.TryGetValue(tranPath, out var tranDoc))
+                {
+                    tranDoc = RenderFileIfExists(tranPath);
+                    tranCache[tranPath] = tranDoc;
+                }
+                if (tranDoc != null)
+                {
+                    var clean = ExtractTextBetweenLbs(tranDoc, passage.FromLb, passage.ToLb);
+                    if (!string.IsNullOrEmpty(clean) && clean != passage.EnText)
+                    {
+                        passage.EnText = clean;
+                        changed = true;
+                    }
+                }
+
+                if (changed) migrated++;
+            }
+        }
+
+        if (migrated > 0)
+            await SaveAsync();
+
+        return migrated;
+    }
+
+    private static RenderedDocument? RenderFileIfExists(string xmlPath)
+    {
+        if (!File.Exists(xmlPath)) return null;
+        try
+        {
+            var xml = File.ReadAllText(xmlPath);
+            return TeiRenderer.Render(xml);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static bool TryFindSegmentByLb(
+        RenderedDocument doc, string nValue, out RenderSegment seg)
+    {
+        if (doc.TryGetSegmentByKey("lb|" + nValue, out seg))
+            return true;
+        foreach (var suffix in new[] { "CB", "CBETA", "T", "X", "J" })
+        {
+            if (doc.TryGetSegmentByKey("lb|" + nValue + "|" + suffix, out seg))
+                return true;
+        }
+        foreach (var s in doc.Segments)
+        {
+            if (s.Key.StartsWith("lb|", StringComparison.Ordinal))
+            {
+                var parts = s.Key.Split('|');
+                if (parts.Length >= 2 && parts[1] == nValue)
+                {
+                    seg = s;
+                    return true;
+                }
+            }
+        }
+        seg = default;
+        return false;
+    }
+
+    private static string ExtractTextBetweenLbs(RenderedDocument doc, string fromLb, string? toLb)
+    {
+        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb)) return "";
+        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) return "";
+
+        int start, end;
+        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+        {
+            start = startSeg.Start;
+            end = startSeg.EndExclusive;
+            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
+                end = endSeg.EndExclusive;
+        }
+        else
+        {
+            // Single-lb: take text from this lb to the next lb
+            start = Math.Max(startSeg.Start, startSeg.EndExclusive);
+            end = start;
+            int segIndex = doc.Segments.IndexOf(startSeg);
+            for (int i = segIndex + 1; i < doc.Segments.Count; i++)
+            {
+                var s = doc.Segments[i];
+                var lb = LbHelper.ExtractLbNValue(s.Key);
+                if (!string.IsNullOrWhiteSpace(lb) && s.Start > start)
+                {
+                    end = s.Start;
+                    break;
+                }
+            }
+            if (end <= start)
+                end = doc.Text?.Length ?? start;
+        }
+
+        var text = doc.Text ?? "";
+        start = Math.Clamp(start, 0, text.Length);
+        end = Math.Clamp(end, 0, text.Length);
+        return end > start ? text.Substring(start, end - start).Trim() : "";
     }
 }
 

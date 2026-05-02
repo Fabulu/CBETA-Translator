@@ -496,6 +496,8 @@ public partial class ScholarTabView : UserControl
                 menu.Items.Add(new Separator());
                 menu.Items.Add(CreateScholarMenuItem("Search All Collections", async () => await SearchAllCollectionsAsync()));
                 menu.Items.Add(new Separator());
+                menu.Items.Add(CreateScholarMenuItem("Re-extract Passage Texts", async () => await RunPassageTextMigrationAsync()));
+                menu.Items.Add(new Separator());
                 menu.Items.Add(CreateScholarMenuItem("Delete Collection", () => _vm.DeleteCollectionCommand.Execute(null)));
                 menu.Open(btnOverflow);
             };
@@ -1149,6 +1151,52 @@ public partial class ScholarTabView : UserControl
             await searchWindow.ShowDialog(topLevel);
         else
             searchWindow.Show();
+    }
+
+    private async Task RunPassageTextMigrationAsync()
+    {
+        var root = _vm.GetRoot();
+        if (string.IsNullOrWhiteSpace(root))
+        {
+            _vm.StatusMessage = "No Scholar root set -- open a corpus first.";
+            return;
+        }
+
+        // Confirm before running
+        if (_vm.ConfirmAsync != null)
+        {
+            bool ok = await _vm.ConfirmAsync(
+                "Re-extract Passage Texts",
+                "This will re-render the source XML for every passage and replace the stored Chinese/English text with freshly extracted text.\n\n" +
+                "This fixes passages that contain apparatus (lem/rdg) garbage from the old renderer.\n\n" +
+                "Continue?");
+            if (!ok) return;
+        }
+
+        _vm.StatusMessage = "Migrating passage texts...";
+        try
+        {
+            var parentRoot = Path.GetDirectoryName(root) ?? root;
+            var origDir = _originalDir ?? AppPaths.GetOriginalDir(parentRoot);
+            var tranDir = _translatedDir ?? AppPaths.GetTranslatedDir(parentRoot);
+
+            int count = await _vm.MigratePassageTextsAsync(origDir, tranDir);
+            _vm.StatusMessage = count > 0
+                ? $"Migration complete: {count} passage(s) updated."
+                : "Migration complete: all passages already clean (0 updated).";
+
+            // Refresh the current passage display if one is selected
+            if (_vm.SelectedPassage != null)
+            {
+                var p = _vm.SelectedPassage;
+                _vm.SelectedPassage = null;
+                _vm.SelectedPassage = p;
+            }
+        }
+        catch (Exception ex)
+        {
+            _vm.StatusMessage = $"Migration failed: {ex.Message}";
+        }
     }
 
     private static MenuItem CreateScholarMenuItem(string header, Action action)
