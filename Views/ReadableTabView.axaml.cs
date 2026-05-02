@@ -865,7 +865,8 @@ public partial class ReadableTabView : UserControl
             // Always carry the active translation user so the Scholar passage
             // remembers which translation the reader was viewing, regardless
             // of which pane was right-clicked. Community source returns null.
-            TranslationUser = GetTranslationUser?.Invoke()
+            TranslationUser = GetTranslationUser?.Invoke(),
+            Apparatus = ExtractApparatusForLbRange(_vm.RenderOrig, fromLb, toLb)
         };
 
         if (useCurrentCollection)
@@ -1163,6 +1164,10 @@ public partial class ReadableTabView : UserControl
         FindControls();
         ResolveInnerEditors();
         RewireButtons();
+
+        // Refresh apparatus count after disk reload
+        var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
+        _provenancePanelView?.SetApparatusCount(appCount);
 
         if (_aeOrig == null || _aeTran == null) return;
 
@@ -1721,6 +1726,95 @@ public partial class ReadableTabView : UserControl
         start = Math.Clamp(start, 0, text.Length);
         end = Math.Clamp(end, 0, text.Length);
         return end > start ? text.Substring(start, end - start) : "";
+    }
+
+    /// <summary>
+    /// Extracts apparatus entries from annotations in the rendered document
+    /// that fall within the lb range. Returns null if none found.
+    /// Annotation text format: "Lem: X\nRdg: Y [wit]"
+    /// </summary>
+    private static List<ApparatusEntry>? ExtractApparatusForLbRange(
+        RenderedDocument doc, string? fromLb, string? toLb)
+    {
+        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb))
+            return null;
+        if (doc.Annotations == null || doc.Annotations.Count == 0)
+            return null;
+
+        var (rangeStart, rangeLen) = ResolveLbRange(doc, fromLb, toLb);
+        if (rangeStart < 0 || rangeLen <= 0)
+            return null;
+
+        int rangeEnd = rangeStart + rangeLen;
+        List<ApparatusEntry>? result = null;
+
+        foreach (var ann in doc.Annotations)
+        {
+            if (!string.Equals(ann.Kind, "apparatus", StringComparison.OrdinalIgnoreCase))
+                continue;
+            // Annotation Start is the anchor position in rendered text;
+            // include if it falls within or at the edges of the passage range.
+            if (ann.Start < rangeStart || ann.Start > rangeEnd)
+                continue;
+
+            var entry = ParseApparatusAnnotation(ann.Text);
+            if (entry != null)
+            {
+                result ??= new List<ApparatusEntry>();
+                result.Add(entry);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Parses apparatus annotation text (format "Lem: X\nRdg: Y [wit]\nRdg: Z [wit2]")
+    /// into an ApparatusEntry with Lemma and Readings populated.
+    /// </summary>
+    private static ApparatusEntry? ParseApparatusAnnotation(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return null;
+
+        string? lemma = null;
+        var readings = new List<ApparatusReading>();
+
+        foreach (var rawLine in text.Split('\n'))
+        {
+            var line = rawLine.Trim();
+            if (line.StartsWith("Lem:", StringComparison.Ordinal))
+            {
+                lemma = line.Substring(4).Trim();
+            }
+            else if (line.StartsWith("Rdg:", StringComparison.Ordinal))
+            {
+                var rdgText = line.Substring(4).Trim();
+                string? witnessId = null;
+                // Extract witness from trailing "[wit]"
+                int bracketStart = rdgText.LastIndexOf('[');
+                int bracketEnd = rdgText.LastIndexOf(']');
+                if (bracketStart >= 0 && bracketEnd > bracketStart)
+                {
+                    witnessId = rdgText.Substring(bracketStart + 1, bracketEnd - bracketStart - 1).Trim();
+                    rdgText = rdgText.Substring(0, bracketStart).Trim();
+                }
+                readings.Add(new ApparatusReading
+                {
+                    WitnessId = witnessId,
+                    Reading = rdgText
+                });
+            }
+        }
+
+        if (lemma == null && readings.Count == 0)
+            return null;
+
+        return new ApparatusEntry
+        {
+            Lemma = lemma,
+            Readings = readings.Count > 0 ? readings : null
+        };
     }
 
     /// 2) If not found, use compact-CJK normalized matching and map back to raw offsets
@@ -2992,6 +3086,8 @@ public partial class ReadableTabView : UserControl
                 _markerColorizerTran ??= new MarkerColorizer(() =>
                     _vm.RenderTran.AnnotationMarkers != null
                         ? (IReadOnlyList<AnnotationMarkerInserter.MarkerSpan>)_vm.RenderTran.AnnotationMarkers
+                            .Where(m => m.Kind != AnnotationMarkerInserter.MarkerKind.Apparatus)
+                            .ToList()
                         : Array.Empty<AnnotationMarkerInserter.MarkerSpan>());
 
                 var list = _aeTran.TextArea.TextView.LineTransformers;
@@ -5049,7 +5145,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
 
         // Pass apparatus count from the current rendered document's annotations
-        var appCount = _vm?.RenderOrig?.Annotations?.Count ?? 0;
+        var appCount = _vm?.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
         _provenancePanelView?.SetApparatusCount(appCount);
     }
 

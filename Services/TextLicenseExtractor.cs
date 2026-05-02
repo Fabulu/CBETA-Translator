@@ -152,19 +152,17 @@ public static class TextLicenseExtractor
                 sourceEdition = biblText;
         }
 
-        // --- witnesses from listWit ---
+        // --- witnesses from listWit (search entire teiHeader, not just sourceDesc) ---
         var witnesses = new List<string>();
-        if (sourceDesc != null)
+        var listWit = header?.Descendants(Tei + "listWit").FirstOrDefault()
+                   ?? header?.Descendants("listWit").FirstOrDefault();
+        if (listWit != null)
         {
-            var listWit = sourceDesc.Element(Tei + "listWit") ?? sourceDesc.Element("listWit");
-            if (listWit != null)
+            foreach (var wit in listWit.Elements(Tei + "witness").Concat(listWit.Elements("witness")))
             {
-                foreach (var wit in listWit.Elements(Tei + "witness").Concat(listWit.Elements("witness")))
-                {
-                    var witText = wit.Value?.Trim();
-                    if (!string.IsNullOrWhiteSpace(witText))
-                        witnesses.Add(witText);
-                }
+                var witText = wit.Value?.Trim();
+                if (!string.IsNullOrWhiteSpace(witText))
+                    witnesses.Add(witText);
             }
         }
 
