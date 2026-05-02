@@ -1157,6 +1157,20 @@ public partial class ResearchGraphWindow : Window
         txt?.Focus();
     }
 
+    private static readonly Avalonia.Media.FontFamily CjkFontFamily = new("'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif");
+
+    private (string displayShort, string? titleEn, string? titleZh) ResolveSourceTitle(string? relPath)
+    {
+        if (string.IsNullOrWhiteSpace(relPath) || FileItems == null) return (relPath ?? "", null, null);
+        var key = relPath.Replace('\\', '/').TrimStart('/');
+        var item = FileItems.FirstOrDefault(f => string.Equals(f.RelPath?.Replace('\\', '/').TrimStart('/'), key, StringComparison.OrdinalIgnoreCase));
+        if (item == null) return (System.IO.Path.GetFileNameWithoutExtension(relPath) ?? relPath, null, null);
+        var parts = (item.Tooltip ?? "").Split('\n', 2);
+        var en = parts.Length > 0 && !string.IsNullOrWhiteSpace(parts[0]) ? parts[0] : null;
+        var zh = parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]) ? parts[1] : null;
+        return (item.DisplayShort, en, zh);
+    }
+
     private void UpdateInspector()
     {
         var content = this.FindControl<StackPanel>("InspectorContent");
@@ -1178,7 +1192,7 @@ public partial class ResearchGraphWindow : Window
         if (title != null) title.Text = node.Label;
 
         // Type badge
-        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection", "Text" };
+        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection", "Book" };
         var typeName = typeNames[(int)node.NodeType];
         content.Children.Add(new TextBlock { Text = typeName, FontSize = 11, Opacity = 0.6 });
 
@@ -1207,9 +1221,16 @@ public partial class ResearchGraphWindow : Window
             var passage = _vm.GetCollection()?.Passages.FirstOrDefault(p => p.Id == node.NodeId);
             if (passage != null)
             {
-                // Source file
+                // Title / provenance from FileItems
+                var (displayShort, titleEn, titleZh) = ResolveSourceTitle(passage.SourceRelPath);
+                content.Children.Add(new TextBlock { Text = $"Title: {displayShort}", FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                if (titleEn != null)
+                    content.Children.Add(new TextBlock { Text = $"English: {titleEn}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+                if (titleZh != null)
+                    content.Children.Add(new TextBlock { Text = $"Chinese: {titleZh}", FontSize = 10, Opacity = 0.6, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+                // Source path
                 if (!string.IsNullOrWhiteSpace(passage.SourceRelPath))
-                    content.Children.Add(new TextBlock { Text = $"Source: {System.IO.Path.GetFileNameWithoutExtension(passage.SourceRelPath)}", FontSize = 10, Opacity = 0.5, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                    content.Children.Add(new TextBlock { Text = $"Source: {passage.SourceRelPath}", FontSize = 10, Opacity = 0.5, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
                 // Date added
                 if (passage.AddedUtc != default)
                     content.Children.Add(new TextBlock { Text = $"Added: {passage.AddedUtc.LocalDateTime:yyyy-MM-dd}", FontSize = 10, Opacity = 0.5 });
@@ -1225,12 +1246,12 @@ public partial class ResearchGraphWindow : Window
                 // Translator
                 if (!string.IsNullOrWhiteSpace(passage.TranslationUser))
                     content.Children.Add(new TextBlock { Text = $"Translator: {passage.TranslationUser}", FontSize = 10, Opacity = 0.6 });
-                // Chinese text
+                // Chinese text (full, no truncation)
                 if (!string.IsNullOrWhiteSpace(passage.ZhText))
-                    content.Children.Add(new TextBlock { Text = passage.ZhText.Length > 200 ? passage.ZhText[..200] + "\u2026" : passage.ZhText, FontSize = 12, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
-                // English text
+                    content.Children.Add(new TextBlock { Text = passage.ZhText, FontSize = 12, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+                // English text (full, no truncation)
                 if (!string.IsNullOrWhiteSpace(passage.EnText))
-                    content.Children.Add(new TextBlock { Text = passage.EnText.Length > 200 ? passage.EnText[..200] + "\u2026" : passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+                    content.Children.Add(new TextBlock { Text = passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
             }
         }
         else if (node.NodeType == ScholarNodeType.Concept)
@@ -1294,6 +1315,26 @@ public partial class ResearchGraphWindow : Window
                     FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
                     Margin = new Avalonia.Thickness(0, 2, 0, 0)
                 });
+            }
+        }
+        else if (node.NodeType == ScholarNodeType.Book)
+        {
+            var bookPassage = node.SourceData as ScholarPassage;
+            var relPath = bookPassage?.SourceRelPath ?? node.SecondaryLabel;
+            var (displayShort, titleEn, titleZh) = ResolveSourceTitle(relPath);
+            content.Children.Add(new TextBlock { Text = $"Title: {displayShort}", FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+            if (titleEn != null)
+                content.Children.Add(new TextBlock { Text = $"English: {titleEn}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+            if (titleZh != null)
+                content.Children.Add(new TextBlock { Text = $"Chinese: {titleZh}", FontSize = 10, Opacity = 0.6, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+            if (!string.IsNullOrWhiteSpace(relPath))
+                content.Children.Add(new TextBlock { Text = $"Path: {relPath}", FontSize = 10, Opacity = 0.5, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+            if (bookPassage != null)
+            {
+                if (bookPassage.AddedUtc != default)
+                    content.Children.Add(new TextBlock { Text = $"Added: {bookPassage.AddedUtc.LocalDateTime:yyyy-MM-dd}", FontSize = 10, Opacity = 0.5 });
+                if (bookPassage.Tags?.Count > 0)
+                    content.Children.Add(new TextBlock { Text = $"Tags: {string.Join(", ", bookPassage.Tags)}", FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
             }
         }
 
