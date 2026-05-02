@@ -2090,6 +2090,17 @@ public partial class ScholarTabViewModel : ViewModelBase
                         passage.ZhText = clean;
                         changed = true;
                     }
+
+                    // --- Apparatus (from original doc annotations) ---
+                    var apparatus = ExtractApparatusForLbRange(origDoc, passage.FromLb, passage.ToLb);
+                    if (apparatus != null && apparatus.Count > 0)
+                    {
+                        if (passage.Apparatus == null || passage.Apparatus.Count != apparatus.Count)
+                        {
+                            passage.Apparatus = apparatus;
+                            changed = true;
+                        }
+                    }
                 }
 
                 // --- English text ---
@@ -2196,6 +2207,120 @@ public partial class ScholarTabViewModel : ViewModelBase
         start = Math.Clamp(start, 0, text.Length);
         end = Math.Clamp(end, 0, text.Length);
         return end > start ? text.Substring(start, end - start).Trim() : "";
+    }
+
+    /// <summary>
+    /// Extracts apparatus entries from annotations in the rendered document
+    /// that fall within the lb range. Returns null if none found.
+    /// </summary>
+    private static List<ApparatusEntry>? ExtractApparatusForLbRange(
+        RenderedDocument doc, string? fromLb, string? toLb)
+    {
+        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb))
+            return null;
+        if (doc.Annotations == null || doc.Annotations.Count == 0)
+            return null;
+
+        // Compute text range from lb markers
+        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg))
+            return null;
+
+        int rangeStart, rangeEnd;
+        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
+        {
+            rangeStart = startSeg.Start;
+            rangeEnd = startSeg.EndExclusive;
+            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
+                rangeEnd = endSeg.EndExclusive;
+        }
+        else
+        {
+            // Single-lb: from this lb to the next lb
+            rangeStart = Math.Max(startSeg.Start, startSeg.EndExclusive);
+            rangeEnd = rangeStart;
+            int segIndex = doc.Segments.IndexOf(startSeg);
+            for (int i = segIndex + 1; i < doc.Segments.Count; i++)
+            {
+                var s = doc.Segments[i];
+                var lb = LbHelper.ExtractLbNValue(s.Key);
+                if (!string.IsNullOrWhiteSpace(lb) && s.Start > rangeStart)
+                {
+                    rangeEnd = s.Start;
+                    break;
+                }
+            }
+            if (rangeEnd <= rangeStart)
+                rangeEnd = doc.Text?.Length ?? rangeStart;
+        }
+
+        if (rangeEnd <= rangeStart)
+            return null;
+
+        List<ApparatusEntry>? result = null;
+        foreach (var ann in doc.Annotations)
+        {
+            if (!string.Equals(ann.Kind, "apparatus", StringComparison.OrdinalIgnoreCase))
+                continue;
+            if (ann.Start < rangeStart || ann.Start > rangeEnd)
+                continue;
+
+            var entry = ParseApparatusAnnotation(ann.Text);
+            if (entry != null)
+            {
+                result ??= new List<ApparatusEntry>();
+                result.Add(entry);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Parses apparatus annotation text (format "Lem: X\nRdg: Y [wit]\nRdg: Z [wit2]")
+    /// into an ApparatusEntry with Lemma and Readings populated.
+    /// </summary>
+    private static ApparatusEntry? ParseApparatusAnnotation(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return null;
+
+        string? lemma = null;
+        var readings = new List<ApparatusReading>();
+
+        foreach (var rawLine in text.Split('\n'))
+        {
+            var line = rawLine.Trim();
+            if (line.StartsWith("Lem:", StringComparison.Ordinal))
+            {
+                lemma = line.Substring(4).Trim();
+            }
+            else if (line.StartsWith("Rdg:", StringComparison.Ordinal))
+            {
+                var rdgText = line.Substring(4).Trim();
+                string? witnessId = null;
+                int bracketStart = rdgText.LastIndexOf('[');
+                int bracketEnd = rdgText.LastIndexOf(']');
+                if (bracketStart >= 0 && bracketEnd > bracketStart)
+                {
+                    witnessId = rdgText.Substring(bracketStart + 1, bracketEnd - bracketStart - 1).Trim();
+                    rdgText = rdgText.Substring(0, bracketStart).Trim();
+                }
+                readings.Add(new ApparatusReading
+                {
+                    WitnessId = witnessId,
+                    Reading = rdgText
+                });
+            }
+        }
+
+        if (lemma == null && readings.Count == 0)
+            return null;
+
+        return new ApparatusEntry
+        {
+            Lemma = lemma,
+            Readings = readings.Count > 0 ? readings : null
+        };
     }
 }
 
