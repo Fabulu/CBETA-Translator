@@ -1113,6 +1113,8 @@ public sealed class SearchIndexService : ISearchIndexService
         bool inTag = false;
         bool prevSpace = true; // trim-leading
         bool sawAmp = false;
+        int appSkipDepth = 0; // when >0, skip text inside <app> (critical apparatus variants)
+        int tagStart = -1; // start of tag content (after '<')
 
         for (int i = iStart + 1; i < iEnd; i++)
         {
@@ -1120,20 +1122,47 @@ public sealed class SearchIndexService : ISearchIndexService
 
             if (inTag)
             {
-                if (ch == '>') inTag = false;
+                if (ch == '>')
+                {
+                    // Check tag name for <app> / </app>
+                    if (tagStart >= 0)
+                    {
+                        int tagContentLen = i - tagStart;
+                        if (tagContentLen >= 3)
+                        {
+                            bool isClose = xml[tagStart] == '/';
+                            int nameStart = isClose ? tagStart + 1 : tagStart;
+                            // Check if tag name starts with "app"
+                            if (i - nameStart >= 3 &&
+                                xml[nameStart] == 'a' && xml[nameStart + 1] == 'p' && xml[nameStart + 2] == 'p' &&
+                                (i - nameStart == 3 || nameStart + 3 >= i || xml[nameStart + 3] == ' ' || xml[nameStart + 3] == '>' || xml[nameStart + 3] == '/' || xml[nameStart + 3] == '\t' || xml[nameStart + 3] == '\n'))
+                            {
+                                if (isClose)
+                                    appSkipDepth = Math.Max(0, appSkipDepth - 1);
+                                else
+                                    appSkipDepth++;
+                            }
+                        }
+                    }
+                    inTag = false;
+                    tagStart = -1;
+                }
                 continue;
             }
 
             if (ch == '<')
             {
                 inTag = true;
-                if (!prevSpace)
+                tagStart = i + 1;
+                if (!prevSpace && appSkipDepth == 0)
                 {
                     sb.Append(' ');
                     prevSpace = true;
                 }
                 continue;
             }
+
+            if (appSkipDepth > 0) continue;
 
             if (ch == '\r') continue;
 

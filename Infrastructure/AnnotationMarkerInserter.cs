@@ -14,7 +14,8 @@ public static class AnnotationMarkerInserter
     {
         Normal,     // grey
         Yuanwu,      // yellow (inline commentary notes, but NOT CBETA/Taisho apparatus)
-        Community    // blue (type="community")
+        Community,   // blue (type="community")
+        Apparatus    // indian red (critical-edition textual variants)
     }
 
     // Span in FINAL rendered text that maps to an annotation index + kind
@@ -117,6 +118,10 @@ public static class AnnotationMarkerInserter
     public static MarkerKind GetMarkerKind(DocAnnotation ann)
     {
         if (ann == null) return MarkerKind.Normal;
+
+        // 0) Apparatus entries (critical-edition textual variants)
+        if ((ann.Kind ?? "").Trim().Equals("apparatus", StringComparison.OrdinalIgnoreCase))
+            return MarkerKind.Apparatus;
 
         // 1) Community always wins (your custom notes)
         if (IsCommunity(ann))

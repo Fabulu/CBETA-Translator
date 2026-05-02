@@ -3054,6 +3054,9 @@ public partial class ReadableTabView : UserControl
                     AnnotationMarkerInserter.MarkerKind.Community =>
                         Brush("NoteMarkerCommunityFg", Brushes.DodgerBlue),
 
+                    AnnotationMarkerInserter.MarkerKind.Apparatus =>
+                        Brush("NoteMarkerApparatusFg", Brushes.IndianRed),
+
                     _ =>
                         Brush("NoteMarkerNormalFg", Brushes.Gray),
                 };
@@ -3082,6 +3085,7 @@ public partial class ReadableTabView : UserControl
         {
             AnnotationMarkerInserter.MarkerKind.Yuanwu => "Footnote",
             AnnotationMarkerInserter.MarkerKind.Community => "Community Note",
+            AnnotationMarkerInserter.MarkerKind.Apparatus => "Textual Variant",
             _ => "CBETA Note"
         };
     }
