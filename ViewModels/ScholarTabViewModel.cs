@@ -2264,7 +2264,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             if (ann.Start < rangeStart || ann.Start > rangeEnd)
                 continue;
 
-            var entry = ParseApparatusAnnotation(ann.Text);
+            var entry = ApparatusAnnotationParser.Parse(ann.Text);
             if (entry != null)
             {
                 result ??= new List<ApparatusEntry>();
@@ -2273,54 +2273,6 @@ public partial class ScholarTabViewModel : ViewModelBase
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// Parses apparatus annotation text (format "Lem: X\nRdg: Y [wit]\nRdg: Z [wit2]")
-    /// into an ApparatusEntry with Lemma and Readings populated.
-    /// </summary>
-    private static ApparatusEntry? ParseApparatusAnnotation(string text)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-            return null;
-
-        string? lemma = null;
-        var readings = new List<ApparatusReading>();
-
-        foreach (var rawLine in text.Split('\n'))
-        {
-            var line = rawLine.Trim();
-            if (line.StartsWith("Lem:", StringComparison.Ordinal))
-            {
-                lemma = line.Substring(4).Trim();
-            }
-            else if (line.StartsWith("Rdg:", StringComparison.Ordinal))
-            {
-                var rdgText = line.Substring(4).Trim();
-                string? witnessId = null;
-                int bracketStart = rdgText.LastIndexOf('[');
-                int bracketEnd = rdgText.LastIndexOf(']');
-                if (bracketStart >= 0 && bracketEnd > bracketStart)
-                {
-                    witnessId = rdgText.Substring(bracketStart + 1, bracketEnd - bracketStart - 1).Trim();
-                    rdgText = rdgText.Substring(0, bracketStart).Trim();
-                }
-                readings.Add(new ApparatusReading
-                {
-                    WitnessId = witnessId,
-                    Reading = rdgText
-                });
-            }
-        }
-
-        if (lemma == null && readings.Count == 0)
-            return null;
-
-        return new ApparatusEntry
-        {
-            Lemma = lemma,
-            Readings = readings.Count > 0 ? readings : null
-        };
     }
 }
 
