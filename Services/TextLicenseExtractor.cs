@@ -152,6 +152,22 @@ public static class TextLicenseExtractor
                 sourceEdition = biblText;
         }
 
+        // --- witnesses from listWit ---
+        var witnesses = new List<string>();
+        if (sourceDesc != null)
+        {
+            var listWit = sourceDesc.Element(Tei + "listWit") ?? sourceDesc.Element("listWit");
+            if (listWit != null)
+            {
+                foreach (var wit in listWit.Elements(Tei + "witness").Concat(listWit.Elements("witness")))
+                {
+                    var witText = wit.Value?.Trim();
+                    if (!string.IsNullOrWhiteSpace(witText))
+                        witnesses.Add(witText);
+                }
+            }
+        }
+
         // --- extent ---
         string? extent = null;
         var extentEl = fileDesc?.Element(Tei + "extent") ?? fileDesc?.Element("extent");
@@ -287,7 +303,8 @@ public static class TextLicenseExtractor
             CbetaVersionDate = cbetaVersionDate,
             FileId = fileId,
             RelPath = relPath,
-            Contributors = contributors.Count > 0 ? contributors : null
+            Contributors = contributors.Count > 0 ? contributors : null,
+            Witnesses = witnesses.Count > 0 ? witnesses : null
         };
     }
 

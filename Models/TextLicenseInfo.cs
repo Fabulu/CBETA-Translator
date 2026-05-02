@@ -88,6 +88,9 @@ public sealed record TextLicenseInfo
     /// <summary>Contributors from &lt;respStmt&gt; elements (name + optional role).</summary>
     public List<string>? Contributors { get; init; }
 
+    /// <summary>Witness sigla/descriptions from &lt;listWit&gt;/&lt;witness&gt; in the teiHeader.</summary>
+    public List<string>? Witnesses { get; init; }
+
     /// <summary>Unknown-state sentinel record used when no teiHeader is present.</summary>
     public static TextLicenseInfo UnknownDefault { get; } = new()
     {

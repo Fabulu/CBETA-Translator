@@ -172,6 +172,14 @@ public partial class ProvenancePanel : UserControl
                         txtContributors.IsVisible = true;
                     }
 
+                    // TEI witnesses from listWit
+                    var txtTeiWitnesses = this.FindControl<TextBlock>("TxtTeiWitnesses");
+                    if (txtTeiWitnesses != null && license.Witnesses != null && license.Witnesses.Count > 0)
+                    {
+                        txtTeiWitnesses.Text = "Witnesses: " + string.Join("; ", license.Witnesses);
+                        txtTeiWitnesses.IsVisible = true;
+                    }
+
                     if (!string.IsNullOrWhiteSpace(license.RequiredAttribution) && btnCopy != null)
                         btnCopy.IsVisible = true;
 
@@ -320,6 +328,23 @@ public partial class ProvenancePanel : UserControl
 
         // Show copy citation
         if (btnCopy != null) btnCopy.IsVisible = true;
+    }
+
+    /// <summary>Shows the number of apparatus (annotation) entries in the rendered document.</summary>
+    public void SetApparatusCount(int count)
+    {
+        var txtApparatus = this.FindControl<TextBlock>("TxtApparatusCount");
+        if (txtApparatus == null) return;
+
+        if (count > 0)
+        {
+            txtApparatus.Text = $"{count} apparatus entr{(count != 1 ? "ies" : "y")}";
+            txtApparatus.IsVisible = true;
+        }
+        else
+        {
+            txtApparatus.IsVisible = false;
+        }
     }
 
     private string BuildCitationText()
