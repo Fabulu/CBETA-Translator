@@ -664,10 +664,10 @@ public partial class ResearchGraphWindow : Window
                     if (collEdge != null) collEdge.RelationType = edgeType.Id;
                     // Update VM edge
                     edge.RelationType = edgeType.Id;
-                    var def = EdgeTypeRegistry.GetById(edgeType.Id);
-                    edge.Label = def?.DisplayName ?? edgeType.Id;
-                    edge.IsDirectional = def?.IsDirectional ?? true;
-                    edge.ColorHex = def?.ColorHex ?? "#9E9E9E";
+                    var def = EdgeTypeRegistry.GetById(edgeType.Id, _vm!.GetCollection().CustomEdgeTypes);
+                    edge.Label = def?.DisplayName ?? edgeType.DisplayName ?? edgeType.Id;
+                    edge.IsDirectional = def?.IsDirectional ?? edgeType.IsDirectional;
+                    edge.ColorHex = def?.ColorHex ?? edgeType.ColorHex ?? "#9E9E9E";
                     _canvas.InvalidateVisual();
                     UpdateStatusBar(); UpdateLeftPanels();
                 }
@@ -714,7 +714,7 @@ public partial class ResearchGraphWindow : Window
                 if (newNote != null && collEdge != null)
                 {
                     collEdge.Note = newNote;
-                    edge.Label = string.IsNullOrEmpty(newNote) ? (EdgeTypeRegistry.GetById(edge.RelationType)?.DisplayName ?? edge.RelationType) : newNote;
+                    edge.Label = string.IsNullOrEmpty(newNote) ? (EdgeTypeRegistry.GetById(edge.RelationType, _vm!.GetCollection().CustomEdgeTypes)?.DisplayName ?? edge.RelationType) : newNote;
                     _canvas.InvalidateVisual();
                 }
             }));
