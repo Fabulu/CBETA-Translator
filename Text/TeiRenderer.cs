@@ -120,6 +120,17 @@ public static class TeiRenderer
         int teiHeaderDepth = 0;
         int backDepth = 0; // when >0, we do not render text to sb, but we still parse notes
         int muluDepth = 0; // when >0, suppress text inside <cb:mulu> (TOC metadata, duplicates <head>)
+        int appDepth = 0;  // when >0, suppress text inside <app> (critical apparatus variants)
+
+        // apparatus capture state (for <app> ... </app>)
+        bool inLemCapture = false;
+        bool inRdgCapture = false;
+        var lemSb = new StringBuilder(128);
+        var rdgList = new List<(string Text, string Wit)>(4);
+        var currentRdgSb = new StringBuilder(128);
+        string? currentRdgWit = null;
+        string? appFromId = null;
+        int appXmlStart = -1;
 
         bool lastWasNewline = false;       // for main sb
         bool noteLastWasNewline = false;   // for noteSb
@@ -156,13 +167,19 @@ public static class TeiRenderer
             if (relLt < 0)
             {
                 // trailing text
-                if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && !inNoteCapture)
+                if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && appDepth == 0 && !inNoteCapture)
                 {
                     AppendText(sb, baseToXml, s.Slice(i), absStartXmlIndex: i, ref lastWasNewline);
                     if (inHeadCapture) AppendPlainText(headSb, s.Slice(i));
                 }
                 else if (inNoteCapture)
                     AppendText(noteSb, map: null, s.Slice(i), absStartXmlIndex: i, ref noteLastWasNewline);
+                else if (appDepth > 0)
+                {
+                    var trailing = s.Slice(i);
+                    if (inRdgCapture) AppendPlainText(currentRdgSb, trailing);
+                    else if (inLemCapture) AppendPlainText(lemSb, trailing);
+                }
                 break;
             }
 
@@ -177,10 +194,15 @@ public static class TeiRenderer
                 {
                     AppendText(noteSb, map: null, rawText, absStartXmlIndex: i, ref noteLastWasNewline);
                 }
-                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
+                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && appDepth == 0)
                 {
                     AppendText(sb, baseToXml, rawText, absStartXmlIndex: i, ref lastWasNewline);
                     if (inHeadCapture) AppendPlainText(headSb, rawText);
+                }
+                else if (appDepth > 0)
+                {
+                    if (inRdgCapture) AppendPlainText(currentRdgSb, rawText);
+                    else if (inLemCapture) AppendPlainText(lemSb, rawText);
                 }
             }
 
@@ -192,10 +214,15 @@ public static class TeiRenderer
                 var tail = s.Slice(lt);
                 if (inNoteCapture)
                     AppendText(noteSb, map: null, tail, absStartXmlIndex: lt, ref noteLastWasNewline);
-                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0)
+                else if (teiHeaderDepth == 0 && backDepth == 0 && muluDepth == 0 && appDepth == 0)
                 {
                     AppendText(sb, baseToXml, tail, absStartXmlIndex: lt, ref lastWasNewline);
                     if (inHeadCapture) AppendPlainText(headSb, tail);
+                }
+                else if (appDepth > 0)
+                {
+                    if (inRdgCapture) AppendPlainText(currentRdgSb, tail);
+                    else if (inLemCapture) AppendPlainText(lemSb, tail);
                 }
                 break;
             }
@@ -217,6 +244,78 @@ public static class TeiRenderer
 
                     if (EqualsIgnoreCase(tagName, "cb:mulu"))
                         muluDepth = Math.Max(0, muluDepth - 1);
+
+                    if (EqualsIgnoreCase(tagName, "app"))
+                    {
+                        int prevAppDepth = appDepth;
+                        appDepth = Math.Max(0, appDepth - 1);
+
+                        if (prevAppDepth == 1 && appDepth == 0)
+                        {
+                            // Flush any in-progress rdg capture
+                            if (inRdgCapture)
+                            {
+                                var rdgText = currentRdgSb.ToString().Trim();
+                                rdgList.Add((rdgText.Length > 0 ? rdgText : "(empty)", currentRdgWit ?? ""));
+                                currentRdgSb.Clear();
+                                currentRdgWit = null;
+                                inRdgCapture = false;
+                            }
+                            inLemCapture = false;
+
+                            // Emit apparatus annotation
+                            if (rdgList.Count > 0)
+                            {
+                                int anchorPos = -1;
+                                if (appFromId != null && anchorPosById.TryGetValue(appFromId, out var begHit))
+                                    anchorPos = begHit.Pos;
+                                else
+                                    anchorPos = sb.Length; // fallback: annotate at current position
+
+                                var lemText = lemSb.ToString().Trim();
+                                var appSb = new StringBuilder();
+                                if (lemText.Length > 0)
+                                    appSb.Append("Lem: ").Append(lemText);
+                                foreach (var (rdgT, wit) in rdgList)
+                                {
+                                    if (appSb.Length > 0)
+                                        appSb.Append('\n');
+                                    appSb.Append("Rdg: ").Append(rdgT);
+                                    if (wit.Length > 0)
+                                        appSb.Append(" [").Append(wit).Append(']');
+                                }
+                                annotations.Add(new DocAnnotation(
+                                    start: anchorPos,
+                                    endExclusive: anchorPos,
+                                    text: appSb.ToString(),
+                                    kind: "apparatus",
+                                    xmlStart: appXmlStart,
+                                    xmlEndExclusive: afterTag));
+                            }
+
+                            // Reset
+                            lemSb.Clear();
+                            rdgList.Clear();
+                            currentRdgSb.Clear();
+                            appFromId = null;
+                            appXmlStart = -1;
+                        }
+                    }
+
+                    // Handle </lem> and </rdg> inside apparatus
+                    if (appDepth > 0)
+                    {
+                        if (EqualsIgnoreCase(tagName, "lem") && inLemCapture)
+                            inLemCapture = false;
+                        else if (EqualsIgnoreCase(tagName, "rdg") && inRdgCapture)
+                        {
+                            var rdgText = currentRdgSb.ToString().Trim();
+                            rdgList.Add((rdgText.Length > 0 ? rdgText : "(empty)", currentRdgWit ?? ""));
+                            currentRdgSb.Clear();
+                            currentRdgWit = null;
+                            inRdgCapture = false;
+                        }
+                    }
 
                     // finish note capture
                     if (EqualsIgnoreCase(tagName, "note") && inNoteCapture)
@@ -258,8 +357,10 @@ public static class TeiRenderer
                         headSb.Clear();
                     }
 
-                    // paragraph end spacing (only in main rendered part)
-                    if (teiHeaderDepth == 0 && backDepth == 0 && EqualsIgnoreCase(tagName, "p"))
+                    // paragraph / verse-group end spacing (only in main rendered part)
+                    if (teiHeaderDepth == 0 && backDepth == 0 && appDepth == 0 && EqualsIgnoreCase(tagName, "p"))
+                        EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
+                    else if (teiHeaderDepth == 0 && backDepth == 0 && appDepth == 0 && EqualsIgnoreCase(tagName, "lg"))
                         EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                 }
                 else
@@ -271,6 +372,49 @@ public static class TeiRenderer
                         backDepth++;
                     else if (EqualsIgnoreCase(tagName, "cb:mulu"))
                         muluDepth++;
+                    else if (EqualsIgnoreCase(tagName, "app"))
+                    {
+                        appDepth++;
+                        if (appDepth == 1)
+                        {
+                            // Parse from="#begXXX" to get anchor ID
+                            var fromAttr = Attr(attrs, "from");
+                            appFromId = fromAttr != null && fromAttr.Length > 1 && fromAttr[0] == '#'
+                                ? fromAttr.Substring(1)
+                                : null;
+                            appXmlStart = lt;
+                            // Clear capture buffers
+                            inLemCapture = false;
+                            inRdgCapture = false;
+                            lemSb.Clear();
+                            rdgList.Clear();
+                            currentRdgSb.Clear();
+                            currentRdgWit = null;
+                        }
+                    }
+
+                    // Handle <lem> and <rdg> start tags inside apparatus
+                    if (appDepth > 0)
+                    {
+                        if (EqualsIgnoreCase(tagName, "lem"))
+                        {
+                            inLemCapture = true;
+                            inRdgCapture = false;
+                        }
+                        else if (EqualsIgnoreCase(tagName, "rdg"))
+                        {
+                            // Flush any previous rdg
+                            if (inRdgCapture)
+                            {
+                                var rdgText = currentRdgSb.ToString().Trim();
+                                rdgList.Add((rdgText.Length > 0 ? rdgText : "(empty)", currentRdgWit ?? ""));
+                                currentRdgSb.Clear();
+                            }
+                            inRdgCapture = true;
+                            inLemCapture = false;
+                            currentRdgWit = Attr(attrs, "wit");
+                        }
+                    }
 
                     // If we're capturing a note and we hit any start-tag: treat as a soft separator
                     if (inNoteCapture)
@@ -290,7 +434,7 @@ public static class TeiRenderer
                     }
 
                     // Only do segmentation/rendering while not in teiHeader and not in back and not in note capture
-                    if (teiHeaderDepth == 0 && backDepth == 0 && !inNoteCapture)
+                    if (teiHeaderDepth == 0 && backDepth == 0 && !inNoteCapture && appDepth == 0)
                     {
                         // Segment boundary keys
                         if (TryMakeSyncKey(tagName, attrs, out var key))
@@ -305,6 +449,11 @@ public static class TeiRenderer
                             {
                                 var kind = InferNoteKindFromId(id);
                                 anchorPosById[id] = (sb.Length, kind);
+                            }
+                            // Also record "beg" anchors for apparatus <app from="#begXXX">
+                            if (!string.IsNullOrWhiteSpace(id) && id.StartsWith("beg", StringComparison.Ordinal))
+                            {
+                                anchorPosById[id] = (sb.Length, null);
                             }
                         }
 
@@ -370,6 +519,15 @@ public static class TeiRenderer
                                 headSb.Clear();
                                 headRenderedOffset = sb.Length;
                             }
+                        }
+                        else if (EqualsIgnoreCase(tagName, "caesura"))
+                        {
+                            // Ideographic space as verse caesura separator
+                            AppendText(sb, baseToXml, "\u3000".AsSpan(), absStartXmlIndex: afterTag, ref lastWasNewline);
+                        }
+                        else if (EqualsIgnoreCase(tagName, "lg"))
+                        {
+                            EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                         }
                     }
                     else

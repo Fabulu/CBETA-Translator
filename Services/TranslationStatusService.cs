@@ -155,6 +155,8 @@ public sealed class TranslationStatusService : ITranslationStatusService
 
                         if (!ignoreHere && local.Equals("mulu", StringComparison.OrdinalIgnoreCase))
                             ignoreHere = true;
+                        if (!ignoreHere && local.Equals("app", StringComparison.OrdinalIgnoreCase))
+                            ignoreHere = true;
                         if (!ignoreHere && local.Equals("note", StringComparison.OrdinalIgnoreCase))
                         {
                             var typeAttr = reader.GetAttribute("type");
