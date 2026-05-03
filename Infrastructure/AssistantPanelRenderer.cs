@@ -490,12 +490,18 @@ internal static class AssistantPanelRenderer
             {
                 if (e.ClickCount >= 2)
                 {
+                    // Use first 80 chars of source text for matching (avoids whitespace differences in full text)
+                    var matchText = captured.SourceText;
+                    if (!string.IsNullOrEmpty(matchText) && matchText.Length > 80)
+                        matchText = matchText[..80];
+
                     navigationHandler.Invoke(border, new NavigationRequest
                     {
                         RelPath = captured.RelPath,
                         Side = SearchSide.Original,
-                        MatchText = captured.SourceText,
+                        MatchText = matchText,
                         AnchorOccurrenceHint = captured.BlockNumber > 0 ? captured.BlockNumber - 1 : null,
+                        AnchorStartHint = captured.BlockNumber > 0 ? captured.BlockNumber : null,
                         AnchorTextSignal = snapshot.Segment?.ZhContextText ?? snapshot.Segment?.ZhText,
                     });
                 }
