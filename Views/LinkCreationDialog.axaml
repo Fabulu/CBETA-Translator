@@ -1,0 +1,75 @@
+<!-- Views/LinkCreationDialog.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ReadZen.App.Views.LinkCreationDialog"
+        Width="420" Height="280"
+        Background="{DynamicResource AppBg}"
+        Title="Add Link"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+	<Window.Styles>
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource SelectionFg}"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="{DynamicResource BtnBg}"/>
+			<Setter Property="Foreground" Value="{DynamicResource BtnFg}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Margin="20">
+
+		<!-- Name -->
+		<StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+			<TextBlock Text="Name"
+			           FontSize="12" FontWeight="SemiBold"
+			           Foreground="{DynamicResource TextFg}"/>
+			<TextBox Name="TxtName"
+			         Watermark="e.g. Wikipedia: Linji Yixuan"
+			         FontSize="13"/>
+		</StackPanel>
+
+		<!-- URL -->
+		<StackPanel Grid.Row="1" Spacing="4" Margin="0,0,0,12">
+			<TextBlock Text="URL"
+			           FontSize="12" FontWeight="SemiBold"
+			           Foreground="{DynamicResource TextFg}"/>
+			<TextBox Name="TxtUrl"
+			         Watermark="https://..."
+			         FontSize="13"/>
+		</StackPanel>
+
+		<!-- Description -->
+		<StackPanel Grid.Row="2" Spacing="4" Margin="0,0,0,12">
+			<TextBlock Text="Description (optional)"
+			           FontSize="12" FontWeight="SemiBold"
+			           Foreground="{DynamicResource TextFg}"/>
+			<TextBox Name="TxtDescription"
+			         Watermark="Brief note about this link..."
+			         AcceptsReturn="True"
+			         TextWrapping="Wrap"
+			         Height="50"
+			         FontSize="13"/>
+		</StackPanel>
+
+		<!-- Spacer -->
+		<Panel Grid.Row="3"/>
+
+		<!-- Buttons -->
+		<StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+			<Button Content="Cancel"
+			        Width="80" Height="32"
+			        Name="BtnCancel"/>
+			<Button Content="OK"
+			        Width="80" Height="32"
+			        Classes="primary"
+			        IsDefault="True"
+			        Name="BtnOk"/>
+		</StackPanel>
+	</Grid>
+
+</Window>

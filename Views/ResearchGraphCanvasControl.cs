@@ -44,10 +44,11 @@ public class ResearchGraphCanvasControl : Control
     {
         [ScholarNodeType.Passage] = new SolidColorBrush(Color.Parse("#6EAFF8")),
         [ScholarNodeType.Concept] = new SolidColorBrush(Color.Parse("#FF8A65")),
-        [ScholarNodeType.ZenMaster] = new SolidColorBrush(Color.Parse("#64B5F6")),
+        [ScholarNodeType.ZenMaster] = new SolidColorBrush(Color.Parse("#FFB74D")),
         [ScholarNodeType.TermbaseEntry] = new SolidColorBrush(Color.Parse("#81C784")),
         [ScholarNodeType.Collection] = new SolidColorBrush(Color.Parse("#AB47BC")),
         [ScholarNodeType.Book] = new SolidColorBrush(Color.Parse("#D4A574")),
+        [ScholarNodeType.Link] = new SolidColorBrush(Color.Parse("#78909C")),
     });
     private static Dictionary<ScholarNodeType, IBrush> NodeBrushes => _nodeBrushesLazy.Value;
 
@@ -250,6 +251,9 @@ public class ResearchGraphCanvasControl : Control
                         new Rect(node.X - r * 0.6 + 2.5, node.Y - r * 0.9 + 2.5, r * 1.2, r * 1.8),
                         r * 0.15, r * 0.15);
                     break;
+                case ScholarNodeType.Link:
+                    ctx.DrawEllipse(_shadowBrushOuter, null, shadowCenter, r + 1, r * 0.7 + 1);
+                    break;
             }
         }
 
@@ -275,6 +279,9 @@ public class ResearchGraphCanvasControl : Control
             case ScholarNodeType.Book:
                 // Tall rectangle (book shape)
                 ctx.DrawRectangle(brush, pen, new Rect(node.X - r * 0.6, node.Y - r * 0.9, r * 1.2, r * 1.8), r * 0.15, r * 0.15);
+                break;
+            case ScholarNodeType.Link:
+                ctx.DrawEllipse(brush, pen, center, r, r * 0.7);
                 break;
         }
 
@@ -540,6 +547,7 @@ public class ResearchGraphCanvasControl : Control
             ScholarNodeType.ZenMaster => 14 + Math.Min(node.Degree * 1.5, 10),
             ScholarNodeType.TermbaseEntry => 12 + Math.Min(node.Degree * 1.5, 10),
             ScholarNodeType.Collection => 14 + Math.Min(node.Degree * 2, 12),
+            ScholarNodeType.Link => 12 + Math.Min(node.Degree * 1.5, 10),
             _ => 12
         };
     }

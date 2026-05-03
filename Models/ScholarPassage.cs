@@ -106,6 +106,9 @@ public sealed class ScholarCollection
 
     /// <summary>Manually-added master names (not derived from passages).</summary>
     public List<string> ExtraMasters { get; set; } = new();
+
+    /// <summary>Web link nodes added to the graph.</summary>
+    public List<LinkNode> LinkNodes { get; set; } = new();
 }
 
 public sealed class ScholarGraphLayout

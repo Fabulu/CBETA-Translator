@@ -65,7 +65,7 @@ public partial class ScholarTabView : UserControl
     public Func<string?, string>? SourceTitleResolver { get; set; }
     /// <summary>Returns (DisplayShort, EnglishTitle, ChineseTitle) for a relPath.</summary>
     public Func<string?, (string Short, string? En, string? Zh)>? SourceTitleDetailResolver { get; set; }
-    public IReadOnlyList<FileNavItem>? FileItems { get; set; }
+    public Func<IReadOnlyList<FileNavItem>>? FileItems { get; set; }
     public Func<string, TextLicenseInfo?>? TextMetadataLookup { get; set; }
     public Func<string, (string? En, string? EnShort, string? Zh)>? TitleLookup { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;

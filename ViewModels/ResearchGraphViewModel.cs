@@ -65,6 +65,7 @@ public class ResearchGraphViewModel
     public bool ShowTerms { get; set; } = true;
     public bool ShowCollections { get; set; } = true;
     public bool ShowBooks { get; set; } = true;
+    public bool ShowLinks { get; set; } = true;
     public HashSet<string> HiddenEdgeTypes { get; } = new();
 
     // Master data lookup (set by window to resolve full names and metadata)
@@ -240,7 +241,7 @@ public class ResearchGraphViewModel
                 NodeType = ScholarNodeType.ZenMaster,
                 Label = label,
                 SecondaryLabel = record?.DatesSummary,
-                ColorHex = "#64B5F6",
+                ColorHex = "#FFB74D",
                 SourceData = sourceData
             };
             Nodes.Add(node);
@@ -261,6 +262,27 @@ public class ResearchGraphViewModel
                     Label = collRef.CollectionName ?? collRef.CollectionId,
                     SecondaryLabel = collRef.IsShared ? $"by {collRef.OwnerUsername}" : "local",
                     ColorHex = "#AB47BC"
+                };
+                Nodes.Add(node);
+                _nodeMap[nodeId] = node;
+            }
+        }
+
+        // Add link nodes
+        if (_collection.LinkNodes != null)
+        {
+            foreach (var link in _collection.LinkNodes)
+            {
+                var nodeId = $"link:{link.Id}";
+                if (_nodeMap.ContainsKey(nodeId)) continue;
+                var node = new ResearchGraphNode
+                {
+                    NodeId = nodeId,
+                    NodeType = ScholarNodeType.Link,
+                    Label = link.Name,
+                    SecondaryLabel = link.Url,
+                    ColorHex = "#78909C",
+                    SourceData = link
                 };
                 Nodes.Add(node);
                 _nodeMap[nodeId] = node;
@@ -646,7 +668,8 @@ public class ResearchGraphViewModel
             (n.NodeType == ScholarNodeType.ZenMaster && ShowMasters) ||
             (n.NodeType == ScholarNodeType.TermbaseEntry && ShowTerms) ||
             (n.NodeType == ScholarNodeType.Collection && ShowCollections) ||
-            (n.NodeType == ScholarNodeType.Book && ShowBooks)
+            (n.NodeType == ScholarNodeType.Book && ShowBooks) ||
+            (n.NodeType == ScholarNodeType.Link && ShowLinks)
         ).ToList();
     }
 

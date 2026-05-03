@@ -856,7 +856,11 @@ private async Task LoadConfigAndAutoloadAsync()
             try
             {
                 _suppressNavSelectionChanged = true;
-                if (_filesList != null) _filesList.SelectedItem = item;
+                if (_filesList != null)
+                {
+                    _filesList.SelectedItem = item;
+                    _filesList.ScrollIntoView(item);
+                }
             }
             finally { _suppressNavSelectionChanged = false; }
         };
@@ -1663,7 +1667,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 var zh = parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]) ? parts[1] : null;
                 return (nav.DisplayShort, en, zh);
             };
-            _scholarView.FileItems = _vm.AllItemsByRel.Values.ToList();
+            _scholarView.FileItems = () => _vm.AllItemsByRel.Values.ToList();
             _scholarView.TitleLookup = relPath =>
             {
                 if (string.IsNullOrWhiteSpace(relPath)) return (null, null, null);

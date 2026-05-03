@@ -22,7 +22,7 @@ public partial class ResearchGraphWindow : Window
 {
     private ResearchGraphViewModel? _vm;
     private ResearchGraphCanvasControl? _canvas;
-    public IReadOnlyList<FileNavItem>? FileItems { get; set; }
+    public Func<IReadOnlyList<FileNavItem>>? FileItems { get; set; }
     public Func<string, TextLicenseInfo?>? TextMetadataLookup { get; set; }
     public Func<string, (string? En, string? EnShort, string? Zh)>? TitleLookup { get; set; }
     private GraphStatisticsPanel? _statsPanel;
@@ -226,7 +226,7 @@ public partial class ResearchGraphWindow : Window
                     {
                         NodeId = $"master:{result}", NodeType = ScholarNodeType.ZenMaster,
                         Label = label, SecondaryLabel = record?.DatesSummary,
-                        ColorHex = "#64B5F6", SourceData = sourceData,
+                        ColorHex = "#FFB74D", SourceData = sourceData,
                         X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
                         Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
                     };
@@ -363,8 +363,9 @@ public partial class ResearchGraphWindow : Window
         if (btnAddBook != null)
             btnAddBook.Click += async (_, _) =>
             {
-                if (_vm == null || FileItems == null || FileItems.Count == 0) return;
-                var picker = new BookPickerDialog(FileItems);
+                var fileItems = FileItems?.Invoke();
+                if (_vm == null || fileItems == null || fileItems.Count == 0) return;
+                var picker = new BookPickerDialog(fileItems);
                 var result = await picker.ShowDialog<BookPickerDialog.BookEntry?>(this);
                 if (result == null) return;
                 // Check for duplicate
@@ -391,6 +392,36 @@ public partial class ResearchGraphWindow : Window
                     SecondaryLabel = result.RelPath,
                     ColorHex = "#D4A574",
                     SourceData = passage,
+                    X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
+                    Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
+                };
+                _vm.Nodes.Add(node);
+                _vm.RestoreNodeToMap(node);
+                _canvas?.InvalidateVisual();
+                UpdateStatusBar(); UpdateLeftPanels();
+            };
+
+        var btnAddLink = this.FindControl<Button>("BtnAddLink");
+        if (btnAddLink != null)
+            btnAddLink.Click += async (_, _) =>
+            {
+                if (_vm == null) return;
+                var dialog = new LinkCreationDialog();
+                var result = await dialog.ShowDialog<LinkNode?>(this);
+                if (result == null) return;
+
+                var collection = _vm.GetCollection();
+                collection.LinkNodes ??= new List<LinkNode>();
+                collection.LinkNodes.Add(result);
+
+                var node = new ResearchGraphNode
+                {
+                    NodeId = $"link:{result.Id}",
+                    NodeType = ScholarNodeType.Link,
+                    Label = result.Name,
+                    SecondaryLabel = result.Url,
+                    ColorHex = "#78909C",
+                    SourceData = result,
                     X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
                     Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
                 };
@@ -574,6 +605,13 @@ public partial class ResearchGraphWindow : Window
                         var bookPassage = node.SourceData as ScholarPassage;
                         if (bookPassage != null && !string.IsNullOrEmpty(bookPassage.SourceRelPath))
                             NavigationRequested?.Invoke(this, BuildPassageNavRequest(bookPassage));
+                        break;
+                    case ScholarNodeType.Link:
+                        if (node.SourceData is LinkNode dblLink && !string.IsNullOrEmpty(dblLink.Url))
+                        {
+                            try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(dblLink.Url) { UseShellExecute = true }); }
+                            catch { }
+                        }
                         break;
                 }
             }
@@ -761,6 +799,7 @@ public partial class ResearchGraphWindow : Window
                 _vm.ShowMasters = fp.ShowMasters;
                 _vm.ShowTerms = fp.ShowTerms;
                 _vm.ShowCollections = fp.ShowCollections;
+                _vm.ShowLinks = fp.ShowLinks;
                 _canvas?.InvalidateVisual();
             };
         }
@@ -967,6 +1006,21 @@ public partial class ResearchGraphWindow : Window
                         _canvas?.InvalidateVisual(); UpdateStatusBar(); UpdateLeftPanels();
                     }));
                     break;
+                case ScholarNodeType.Link:
+                    if (node.SourceData is LinkNode ctxLink && !string.IsNullOrEmpty(ctxLink.Url))
+                    {
+                        menu.Items.Add(CreateMenuItem("Open in Browser", () =>
+                        {
+                            try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(ctxLink.Url) { UseShellExecute = true }); }
+                            catch { }
+                        }));
+                        menu.Items.Add(CreateMenuItem("Copy URL", async () =>
+                        {
+                            var top = TopLevel.GetTopLevel(this);
+                            if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(ctxLink.Url);
+                        }));
+                    }
+                    break;
             }
 
             // Common actions for all nodes
@@ -1104,6 +1158,12 @@ public partial class ResearchGraphWindow : Window
         {
             var masterName = nodeId["master:".Length..];
             _vm.GetCollection()?.ExtraMasters?.Remove(masterName);
+        }
+        // Remove from LinkNodes if it was a link
+        if (nodeId.StartsWith("link:"))
+        {
+            var linkId = nodeId["link:".Length..];
+            _vm.GetCollection()?.LinkNodes?.RemoveAll(l => l.Id == linkId);
         }
         _vm.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
         _vm.SelectedNode = null;
@@ -1324,7 +1384,7 @@ public partial class ResearchGraphWindow : Window
         if (title != null) title.Text = node.Label;
 
         // Type badge
-        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection", "Text" };
+        var typeNames = new[] { "Passage", "Concept", "Master", "Term", "Collection", "Text", "Link" };
         var typeName = typeNames[(int)node.NodeType];
         content.Children.Add(new SelectableTextBlock { Text = typeName, FontSize = 11, Opacity = 0.6 });
 
@@ -1515,6 +1575,25 @@ public partial class ResearchGraphWindow : Window
             }
         }
 
+        else if (node.NodeType == ScholarNodeType.Link && node.SourceData is LinkNode inspLink)
+        {
+            if (!string.IsNullOrEmpty(inspLink.Url))
+            {
+                var urlBlock = new SelectableTextBlock
+                {
+                    Text = inspLink.Url, FontSize = 12,
+                    Foreground = Avalonia.Media.Brushes.CornflowerBlue,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Margin = new Avalonia.Thickness(0, 4, 0, 0)
+                };
+                content.Children.Add(urlBlock);
+            }
+            if (!string.IsNullOrEmpty(inspLink.Description))
+                content.Children.Add(new SelectableTextBlock { Text = inspLink.Description, FontSize = 11, Opacity = 0.7, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
+            if (inspLink.CreatedUtc != default)
+                content.Children.Add(new SelectableTextBlock { Text = $"Added: {inspLink.CreatedUtc.LocalDateTime:yyyy-MM-dd}", FontSize = 10, Opacity = 0.5 });
+        }
+
         // Inspector action buttons
         var actions = this.FindControl<StackPanel>("InspectorActions");
         if (actions != null)
@@ -1559,6 +1638,25 @@ public partial class ResearchGraphWindow : Window
                     if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(url);
                 };
                 actions.Children.Add(copyLinkBtn);
+            }
+
+            if (node.NodeType == ScholarNodeType.Link && node.SourceData is LinkNode actionLink && !string.IsNullOrEmpty(actionLink.Url))
+            {
+                var openBtn = new Button { Content = "Open in Browser", Padding = new Thickness(8, 4), FontSize = 11 };
+                openBtn.Click += (_, _) =>
+                {
+                    try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(actionLink.Url) { UseShellExecute = true }); }
+                    catch { }
+                };
+                actions.Children.Add(openBtn);
+
+                var copyBtn = new Button { Content = "Copy URL", Padding = new Thickness(8, 4), FontSize = 11 };
+                copyBtn.Click += async (_, _) =>
+                {
+                    var top = TopLevel.GetTopLevel(this);
+                    if (top?.Clipboard != null) await top.Clipboard.SetTextAsync(actionLink.Url);
+                };
+                actions.Children.Add(copyBtn);
             }
         }
     }
