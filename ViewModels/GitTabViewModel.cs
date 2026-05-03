@@ -2583,6 +2583,42 @@ public partial class GitTabViewModel : ViewModelBase
 
             try
             {
+                // Pre-merge backup of root-level data files
+                var backupSuffix = ".pre-merge-backup";
+                try
+                {
+                    foreach (var file in new[]
+                    {
+                        Path.Combine(repoDir, CommunityTmFile),
+                        Path.Combine(repoDir, CommunityTermbaseFile),
+                        Path.Combine(repoDir, ScholarCollectionsFile),
+                    })
+                    {
+                        if (File.Exists(file) && new FileInfo(file).Length > 0)
+                            File.Copy(file, file + backupSuffix, overwrite: true);
+                    }
+
+                    // Also back up per-user community files if login is known
+                    if (!string.IsNullOrWhiteSpace(_githubLogin))
+                    {
+                        var sanitized = AppPaths.SanitizeUsername(_githubLogin);
+                        var communityDir = Path.Combine(repoDir, "community");
+                        foreach (var file in new[]
+                        {
+                            Path.Combine(communityDir, "translations", sanitized + ".jsonl"),
+                            Path.Combine(communityDir, "termbases", sanitized + ".jsonl"),
+                            Path.Combine(communityDir, "collections", sanitized + ".jsonl"),
+                        })
+                        {
+                            if (File.Exists(file) && new FileInfo(file).Length > 0)
+                                File.Copy(file, file + backupSuffix, overwrite: true);
+                        }
+                    }
+
+                    AppendLog("[backup] Pre-merge backup of user data files created.");
+                }
+                catch (Exception ex) { AppendLog($"[warn] Pre-merge backup failed: {ex.Message}"); }
+
                 var upstreamTmTemp = Path.Combine(tempDir, CommunityTmFile);
                 var upstreamTbTemp = Path.Combine(tempDir, CommunityTermbaseFile);
 
@@ -3394,6 +3430,14 @@ public partial class GitTabViewModel : ViewModelBase
         if (Directory.Exists(xmlP5tDir))
         {
             foreach (var file in Directory.EnumerateFiles(xmlP5tDir, "*.xml", SearchOption.AllDirectories))
+                result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+        }
+
+        // Preserve markdown translations
+        var mdP5tDir = Path.Combine(repoDir, "md-p5t");
+        if (Directory.Exists(mdP5tDir))
+        {
+            foreach (var file in Directory.EnumerateFiles(mdP5tDir, "*", SearchOption.AllDirectories))
                 result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
         }
 

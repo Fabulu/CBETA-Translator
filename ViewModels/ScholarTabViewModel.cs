@@ -23,6 +23,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     private readonly IAppConfigService? _configService;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private volatile int _saveGeneration;
+    private Task? _pendingSave;
     private string? _root;
     private string? _username;
     private string? _legacyUsername;
@@ -223,6 +224,13 @@ public partial class ScholarTabViewModel : ViewModelBase
 
     public async Task SaveCurrentStateAsync()
     {
+        // Drain any pending fire-and-forget save before the final save
+        if (_pendingSave != null)
+        {
+            try { await _pendingSave; } catch { }
+            _pendingSave = null;
+        }
+
         SyncEditorFieldsToPassage();
         if (SelectedCollection != null)
             SelectedCollection.StudyNotes = StudyNotes;
@@ -460,10 +468,13 @@ public partial class ScholarTabViewModel : ViewModelBase
             _allCollections.Remove(c);
             Collections.Remove(c);
         }
+        // Mark generation immediately so any concurrent LoadAsync knows
+        // the in-memory state is newer than what's on disk.
+        System.Threading.Interlocked.Increment(ref _saveGeneration);
         SelectedCollection = Collections.FirstOrDefault();
         RebuildTree();
         RefreshIsEmptyState();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     /// <summary>Removes a collection by ID without confirmation. Used for tour sample cleanup.</summary>
@@ -503,7 +514,7 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         SelectedPassage = Passages.FirstOrDefault();
         RebuildTree();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     [RelayCommand]
@@ -642,7 +653,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         col.ParentCollectionId = newParentId;
         RefreshCollectionsList();
         RebuildTree();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     /// <summary>Read-only access to all collections (for picker dialogs).</summary>
@@ -1178,7 +1189,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         // Persist everything
         if (SelectedCollection != null)
         {
-            _ = SafeFireAndForget(SaveAsync());
+            FireSave();
         }
     }
 
@@ -1580,7 +1591,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         if (SelectedPassage != null && SelectedCollection != null)
         {
             SyncEditorFieldsToPassage();
-            _ = SafeFireAndForget(SaveAsync());
+            FireSave();
         }
     }
 
@@ -1649,7 +1660,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     public void SyncAndSave()
     {
         SyncEditorFieldsToPassage();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     public void AddTag(string tag)
@@ -1660,7 +1671,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         TagBubbles.Add(tag);
         PassageTags = string.Join(", ", TagBubbles);
         SyncEditorFieldsToPassage();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     public void RemoveTag(string tag)
@@ -1671,7 +1682,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             TagBubbles.Remove(existing);
             PassageTags = string.Join(", ", TagBubbles);
             SyncEditorFieldsToPassage();
-            _ = SafeFireAndForget(SaveAsync());
+            FireSave();
         }
     }
 
@@ -1683,7 +1694,7 @@ public partial class ScholarTabViewModel : ViewModelBase
         MasterBubbles.Add(name);
         PassageMasterNames = string.Join(", ", MasterBubbles);
         SyncEditorFieldsToPassage();
-        _ = SafeFireAndForget(SaveAsync());
+        FireSave();
     }
 
     public void RemoveMaster(string name)
@@ -1694,7 +1705,7 @@ public partial class ScholarTabViewModel : ViewModelBase
             MasterBubbles.Remove(existing);
             PassageMasterNames = string.Join(", ", MasterBubbles);
             SyncEditorFieldsToPassage();
-            _ = SafeFireAndForget(SaveAsync());
+            FireSave();
         }
     }
 
@@ -2046,6 +2057,15 @@ public partial class ScholarTabViewModel : ViewModelBase
             StatusMessage = "Error: " + ex.Message;
             StatusChanged?.Invoke(this, StatusMessage);
         }
+    }
+
+    /// <summary>
+    /// Fire-and-forget save that also tracks the pending task so it can be
+    /// drained on shutdown (see <see cref="SaveCurrentStateAsync"/>).
+    /// </summary>
+    private void FireSave()
+    {
+        _pendingSave = SafeFireAndForget(SaveAsync());
     }
 
     // ----- One-time migration: re-extract passage texts via TeiRenderer -----

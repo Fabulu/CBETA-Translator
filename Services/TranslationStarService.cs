@@ -193,7 +193,9 @@ public sealed class TranslationStarService : ITranslationStarService
 
         if (!_userStars.TryGetValue(username, out var entries) || entries.Count == 0)
         {
-            // Remove file if no stars remain
+            // Don't delete a non-empty file — count may be 0 due to load failure
+            if (File.Exists(path) && new FileInfo(path).Length > 10)
+                return;
             if (File.Exists(path))
                 File.Delete(path);
             return;
@@ -219,8 +221,12 @@ public sealed class TranslationStarService : ITranslationStarService
                 map[fileId + ":" + translator] = count;
         }
 
-        var json = JsonSerializer.Serialize(map, WriteOpts);
+        // Guard: don't overwrite non-empty file with empty data
         var path = Path.Combine(repoDir, "star-counts.json");
+        if (map.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
+        var json = JsonSerializer.Serialize(map, WriteOpts);
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
         File.Move(tmpPath, path, overwrite: true);

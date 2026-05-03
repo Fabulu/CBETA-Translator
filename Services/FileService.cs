@@ -42,12 +42,17 @@ public sealed class FileService : IFileService
         return Task.Run(() =>
         {
             var path = Path.Combine(translatedDir, relativePath);
-
             var dir = Path.GetDirectoryName(path);
             if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            File.WriteAllText(path, translatedXml ?? string.Empty, Utf8NoBom);
+            // Guard: don't overwrite existing content with empty data
+            if (string.IsNullOrWhiteSpace(translatedXml) && File.Exists(path) && new FileInfo(path).Length > 10)
+                return;
+
+            var tmpPath = path + ".tmp";
+            File.WriteAllText(tmpPath, translatedXml ?? string.Empty, Utf8NoBom);
+            File.Move(tmpPath, path, overwrite: true);
         });
     }
 
@@ -76,7 +81,13 @@ public sealed class FileService : IFileService
             if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            File.WriteAllText(path, markdownText ?? string.Empty, Utf8NoBom);
+            // Guard: don't overwrite existing content with empty data
+            if (string.IsNullOrWhiteSpace(markdownText) && File.Exists(path) && new FileInfo(path).Length > 10)
+                return;
+
+            var tmpPath = path + ".tmp";
+            File.WriteAllText(tmpPath, markdownText ?? string.Empty, Utf8NoBom);
+            File.Move(tmpPath, path, overwrite: true);
         });
     }
 

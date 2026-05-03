@@ -92,7 +92,9 @@ public sealed class ZenTextsService : IZenTextsService
             WriteIndented = true
         });
 
-        await File.WriteAllTextAsync(path, json, Utf8NoBom);
+        var tmpPath = path + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json, Utf8NoBom);
+        File.Move(tmpPath, path, overwrite: true);
     }
 
     private static string Norm(string p)
