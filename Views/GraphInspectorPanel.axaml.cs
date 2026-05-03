@@ -49,7 +49,7 @@ public partial class GraphInspectorPanel : UserControl
         {
             ScholarNodeType.Passage => new SolidColorBrush(Color.Parse("#6EAFF8")),
             ScholarNodeType.Concept => new SolidColorBrush(Color.Parse("#FF8A65")),
-            ScholarNodeType.ZenMaster => new SolidColorBrush(Color.Parse("#64B5F6")),
+            ScholarNodeType.ZenMaster => new SolidColorBrush(Color.Parse("#FFB74D")),
             ScholarNodeType.TermbaseEntry => new SolidColorBrush(Color.Parse("#81C784")),
             ScholarNodeType.Collection => new SolidColorBrush(Color.Parse("#AB47BC")),
             ScholarNodeType.Book => new SolidColorBrush(Color.Parse("#D4A574")),

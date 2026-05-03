@@ -13,6 +13,7 @@ public partial class GraphFilterPanel : UserControl
     public bool ShowMasters => ChkMasters.IsChecked == true;
     public bool ShowTerms => ChkTerms.IsChecked == true;
     public bool ShowCollections => ChkCollections.IsChecked == true;
+    public bool ShowLinks => ChkLinks.IsChecked == true;
 
     public GraphFilterPanel()
     {
@@ -23,6 +24,7 @@ public partial class GraphFilterPanel : UserControl
         ChkMasters.IsCheckedChanged += OnFilterChanged;
         ChkTerms.IsCheckedChanged += OnFilterChanged;
         ChkCollections.IsCheckedChanged += OnFilterChanged;
+        ChkLinks.IsCheckedChanged += OnFilterChanged;
         BtnShowAll.Click += OnShowAllClick;
     }
 
@@ -38,6 +40,7 @@ public partial class GraphFilterPanel : UserControl
         ChkMasters.IsChecked = true;
         ChkTerms.IsChecked = true;
         ChkCollections.IsChecked = true;
+        ChkLinks.IsChecked = true;
         FiltersChanged?.Invoke(this, EventArgs.Empty);
     }
 }

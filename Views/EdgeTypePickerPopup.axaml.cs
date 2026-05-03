@@ -100,7 +100,7 @@ public partial class EdgeTypePickerPopup : Window
     {
         [ScholarNodeType.Passage] = "#6EAFF8",
         [ScholarNodeType.Concept] = "#FF8A65",
-        [ScholarNodeType.ZenMaster] = "#64B5F6",
+        [ScholarNodeType.ZenMaster] = "#FFB74D",
         [ScholarNodeType.TermbaseEntry] = "#81C784",
         [ScholarNodeType.Collection] = "#AB47BC"
     };

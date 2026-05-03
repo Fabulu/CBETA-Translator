@@ -157,6 +157,15 @@ public static class EdgeTypeRegistry
 
         // ZenMaster → Book
         new() { Id = "master-authored-book", DisplayName = "Authored", Description = "Master authored this book", AllowedFromTypes = new(){ScholarNodeType.ZenMaster}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#D4A574", IsBuiltIn = true, IsDirectional = true },
+
+        // Link edges
+        new() { Id = "link-references-passage", DisplayName = "References", Description = "Link references this passage", AllowedFromTypes = new(){ScholarNodeType.Link}, AllowedToTypes = new(){ScholarNodeType.Passage}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "link-supports", DisplayName = "Supports", Description = "Link supports this concept", AllowedFromTypes = new(){ScholarNodeType.Link}, AllowedToTypes = new(){ScholarNodeType.Concept}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "link-about-master", DisplayName = "About", Description = "Link is about this master", AllowedFromTypes = new(){ScholarNodeType.Link}, AllowedToTypes = new(){ScholarNodeType.ZenMaster}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "link-references-book", DisplayName = "References", Description = "Link references this text", AllowedFromTypes = new(){ScholarNodeType.Link}, AllowedToTypes = new(){ScholarNodeType.Book}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "related-link", DisplayName = "Related to", Description = "Links are related", AllowedFromTypes = new(){ScholarNodeType.Link}, AllowedToTypes = new(){ScholarNodeType.Link}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = false },
+        new() { Id = "passage-references-link", DisplayName = "References Link", Description = "Passage references this link", AllowedFromTypes = new(){ScholarNodeType.Passage}, AllowedToTypes = new(){ScholarNodeType.Link}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
+        new() { Id = "concept-references-link", DisplayName = "References Link", Description = "Concept references this link", AllowedFromTypes = new(){ScholarNodeType.Concept}, AllowedToTypes = new(){ScholarNodeType.Link}, ColorHex = "#78909C", IsBuiltIn = true, IsDirectional = true },
     }.AsReadOnly();
 
     public static IReadOnlyList<EdgeTypeDefinition> GetValidTypes(

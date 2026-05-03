@@ -7,5 +7,6 @@ public enum ScholarNodeType
     ZenMaster = 2,
     TermbaseEntry = 3,
     Collection = 4,
-    Book = 5
+    Book = 5,
+    Link = 6
 }
