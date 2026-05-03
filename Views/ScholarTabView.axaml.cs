@@ -105,22 +105,7 @@ public partial class ScholarTabView : UserControl
         _scholarApprovedTmHost = this.FindControl<StackPanel>("PnlApprovedTm");
         _scholarReferenceTmHost = this.FindControl<StackPanel>("PnlRefTm");
 
-        // Re-render assistant when any sub-expander opens (AvaloniaEdit needs visual tree for text layout)
-        foreach (var expName in new[] { "ExpanderQA", "ExpanderGlossary", "ExpanderApprovedTm", "ExpanderRefTm" })
-        {
-            var exp = this.FindControl<Expander>(expName);
-            if (exp != null)
-            {
-                exp.PropertyChanged += (_, e) =>
-                {
-                    if (e.Property.Name == "IsExpanded" && exp.IsExpanded)
-                    {
-                        _lastRenderedPassageId = null;
-                        _ = RefreshAssistantAsync();
-                    }
-                };
-            }
-        }
+        // Assistant sections are always visible (no Expanders), so no expand-triggered refresh needed.
 
         _btnAddLink = this.FindControl<Button>("BtnAddLink");
         if (_btnAddLink != null)
