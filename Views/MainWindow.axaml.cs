@@ -1635,6 +1635,18 @@ private async Task LoadConfigAndAutoloadAsync()
                 try { await _vm.ReloadStarsAsync(); }
                 catch { /* non-critical — star counts stay stale until restart */ }
 
+                // Reload Scholar collections from disk so synced data appears immediately
+                try
+                {
+                    if (_scholarView != null)
+                    {
+                        var root = _vm.TranslationRoot ?? _vm.Root ?? "";
+                        if (!string.IsNullOrWhiteSpace(root))
+                            _scholarView.SetRoot(root);
+                    }
+                }
+                catch { /* non-critical — Scholar stays stale until restart */ }
+
                 // Background index rebuild — old index stays usable while building
                 if (_searchView?.ViewModel.BuildIndexCommand.CanExecute(null) == true)
                 {
