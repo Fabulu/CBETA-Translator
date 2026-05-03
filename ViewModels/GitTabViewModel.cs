@@ -3397,6 +3397,14 @@ public partial class GitTabViewModel : ViewModelBase
                 result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
         }
 
+        // Preserve ALL community data (collections, termbases, tags, stars, reviews, consensus, etc.)
+        var communityDir = Path.Combine(repoDir, "community");
+        if (Directory.Exists(communityDir))
+        {
+            foreach (var file in Directory.EnumerateFiles(communityDir, "*", SearchOption.AllDirectories))
+                result.Add(NormalizeRel(Path.GetRelativePath(repoDir, file)));
+        }
+
         return result.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
