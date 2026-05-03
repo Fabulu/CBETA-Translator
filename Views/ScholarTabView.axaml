@@ -133,7 +133,7 @@
       <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
       <!-- RIGHT: Scrollable Detail Panel -->
-      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14,16,40">
+      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14,16,56">
         <StackPanel Spacing="12" Name="DetailPanel">
 
           <!-- Loading indicator (shown during async operations) -->
@@ -421,18 +421,22 @@
                            Name="ScholarAssistantHeader"/>
                 <Border Height="1" Background="{DynamicResource BorderBrush}"/>
               </StackPanel>
-              <Expander Header="Quality Checks" IsExpanded="False" Name="ExpanderQA">
-                <StackPanel Name="PnlQualityChecks" Spacing="4"/>
-              </Expander>
-              <Expander Header="Glossary" IsExpanded="False" Name="ExpanderGlossary">
-                <StackPanel Name="PnlGlossary" Spacing="4"/>
-              </Expander>
-              <Expander Header="Approved Matches" IsExpanded="False" Name="ExpanderApprovedTm">
-                <StackPanel Name="PnlApprovedTm" Spacing="4"/>
-              </Expander>
-              <Expander Header="Reference Translations" IsExpanded="False" Name="ExpanderRefTm">
-                <StackPanel Name="PnlRefTm" Spacing="4"/>
-              </Expander>
+
+              <TextBlock Text="Quality Checks" FontWeight="SemiBold" FontSize="11"
+                         Foreground="{DynamicResource TextFg}" Opacity="0.7" Margin="0,4,0,2"/>
+              <StackPanel Name="PnlQualityChecks" Spacing="4"/>
+
+              <TextBlock Text="Glossary" FontWeight="SemiBold" FontSize="11"
+                         Foreground="{DynamicResource TextFg}" Opacity="0.7" Margin="0,8,0,2"/>
+              <StackPanel Name="PnlGlossary" Spacing="4"/>
+
+              <TextBlock Text="Approved Matches" FontWeight="SemiBold" FontSize="11"
+                         Foreground="{DynamicResource TextFg}" Opacity="0.7" Margin="0,8,0,2"/>
+              <StackPanel Name="PnlApprovedTm" Spacing="4"/>
+
+              <TextBlock Text="Reference Translations" FontWeight="SemiBold" FontSize="11"
+                         Foreground="{DynamicResource TextFg}" Opacity="0.7" Margin="0,8,0,2"/>
+              <StackPanel Name="PnlRefTm" Spacing="4"/>
             </StackPanel>
 
           </StackPanel>
