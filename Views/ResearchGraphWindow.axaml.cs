@@ -8,6 +8,8 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
+using Microsoft.Extensions.DependencyInjection;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
@@ -28,6 +30,9 @@ public partial class ResearchGraphWindow : Window
     private GraphStatisticsPanel? _statsPanel;
     private GraphLegendPanel? _legendPanel;
     private List<TermDisplayItem>? _termData;
+    private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
+    private Canvas? _dictOverlay;
+    private readonly List<Infrastructure.HoverDictionaryBehaviorTextBox> _hoverDicts = new();
 
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler<string>? OpenMasterRequested;
@@ -51,6 +56,7 @@ public partial class ResearchGraphWindow : Window
         Title = $"Research Graph \u2014 {collection.Name ?? collection.Id}";
         DataContext = _vm;
 
+        _dictOverlay = this.FindControl<Canvas>("DictOverlayCanvas");
         SetupToolbar();
         SetupCanvas();
         SetupLeftPanels();
@@ -1328,6 +1334,35 @@ public partial class ResearchGraphWindow : Window
 
     private static readonly Avalonia.Media.FontFamily CjkFontFamily = new("'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif");
 
+    private TextBox CreateCjkTextBox(string text, double fontSize = 12, double opacity = 1.0, Thickness? margin = null)
+    {
+        var tb = new TextBox
+        {
+            Text = text,
+            FontSize = fontSize,
+            FontFamily = CjkFontFamily,
+            TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+            IsReadOnly = true,
+            BorderThickness = new Thickness(0),
+            Background = Avalonia.Media.Brushes.Transparent,
+            Padding = new Thickness(0),
+            Margin = margin ?? new Thickness(0, 8, 0, 0),
+            Opacity = opacity,
+        };
+        if (_dictOverlay != null && _cedict != null)
+        {
+            var behavior = new HoverDictionaryBehaviorTextBox(tb, _cedict, null, _dictOverlay);
+            _hoverDicts.Add(behavior);
+        }
+        return tb;
+    }
+
+    private void DisposeHoverDicts()
+    {
+        foreach (var h in _hoverDicts) h.Dispose();
+        _hoverDicts.Clear();
+    }
+
     private (string? en, string? enShort, string? zh) LookupTitle(string? relPath)
     {
         if (string.IsNullOrWhiteSpace(relPath)) return (null, null, null);
@@ -1351,12 +1386,12 @@ public partial class ResearchGraphWindow : Window
 
         // Chinese title: from titles.jsonl, or fallback to TEI header
         if (!string.IsNullOrWhiteSpace(zh))
-            content.Children.Add(new SelectableTextBlock { Text = zh, FontSize = 11, Opacity = 0.7, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+            content.Children.Add(CreateCjkTextBox(zh, fontSize: 11, opacity: 0.7, margin: new Thickness(0, 2, 0, 0)));
         else if (TextMetadataLookup != null)
         {
             var info = TextMetadataLookup(relPath);
             if (info != null && !string.IsNullOrWhiteSpace(info.TitleZh))
-                content.Children.Add(new SelectableTextBlock { Text = info.TitleZh, FontSize = 11, Opacity = 0.7, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 2, 0, 0) });
+                content.Children.Add(CreateCjkTextBox(info.TitleZh, fontSize: 11, opacity: 0.7, margin: new Thickness(0, 2, 0, 0)));
         }
 
         // Author, dynasty, date from TEI header
@@ -1377,6 +1412,7 @@ public partial class ResearchGraphWindow : Window
 
     private void UpdateInspector()
     {
+        DisposeHoverDicts();
         var content = this.FindControl<StackPanel>("InspectorContent");
         var empty = this.FindControl<TextBlock>("InspectorEmpty");
         var title = this.FindControl<TextBlock>("InspectorTitle");
@@ -1444,7 +1480,7 @@ public partial class ResearchGraphWindow : Window
                     content.Children.Add(new SelectableTextBlock { Text = $"Translator: {passage.TranslationUser}", FontSize = 10, Opacity = 0.6 });
                 // Chinese text (full, no truncation)
                 if (!string.IsNullOrWhiteSpace(passage.ZhText))
-                    content.Children.Add(new SelectableTextBlock { Text = passage.ZhText, FontSize = 12, FontFamily = CjkFontFamily, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 8, 0, 0) });
+                    content.Children.Add(CreateCjkTextBox(passage.ZhText, fontSize: 12, margin: new Thickness(0, 8, 0, 0)));
                 // English text (full, no truncation)
                 if (!string.IsNullOrWhiteSpace(passage.EnText))
                     content.Children.Add(new SelectableTextBlock { Text = passage.EnText, FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap, Margin = new Avalonia.Thickness(0, 4, 0, 0) });
