@@ -1401,8 +1401,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public void SelectInNav(string relPath)
     {
         if (string.IsNullOrWhiteSpace(relPath)) return;
+        var normalized = NormalizeRel(relPath);
 
-        var match = _filteredItems.FirstOrDefault(x => string.Equals(x.RelPath, relPath, StringComparison.OrdinalIgnoreCase));
+        var match = _filteredItems.FirstOrDefault(x =>
+            string.Equals(NormalizeRel(x.RelPath), normalized, StringComparison.OrdinalIgnoreCase));
         if (match == null) return;
 
         SetNavSelectedItem?.Invoke(match);
@@ -4065,6 +4067,9 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
         }
 
         await EnsureTranslationSourceForNavigationAsync(request);
+        // Ensure the nav filter has run so _filteredItems is populated and
+        // the ListBox has items before we try to select + scroll into view.
+        await ApplyFilterSafeAsync();
         SelectInNav(request.RelPath);
         await LoadPairAsync(request.RelPath);
         ForceTabIndex?.Invoke(0); // switch to Reader tab

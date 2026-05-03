@@ -176,6 +176,7 @@
             </StackPanel>
           </ScrollViewer>
           <StackPanel Grid.Row="2" Name="InspectorActions" Orientation="Horizontal" Spacing="4" Margin="12,4"/>
+          <Canvas Grid.Row="1" Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
         </Grid>
       </Border>
     </Grid>
