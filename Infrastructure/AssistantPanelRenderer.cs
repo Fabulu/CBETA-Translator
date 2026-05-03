@@ -95,13 +95,17 @@ internal static class AssistantPanelRenderer
                 foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
                 {
                     var title = titleResolver?.Invoke(m.RelPath) ?? m.RelPath ?? "";
-                    approvedTmHost.Children.Add(WrapInBorder("#4CAF50", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver)));
+                    var border = WrapInBorder("#4CAF50", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver));
+                    WireDoubleClickNav(border, snapshot, m, navigationHandler);
+                    approvedTmHost.Children.Add(border);
                 }
             if (referenceTmHost != null)
                 foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
                 {
                     var title = titleResolver?.Invoke(m.RelPath) ?? m.RelPath ?? "";
-                    referenceTmHost.Children.Add(WrapInBorder("#42A5F5", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver)));
+                    var border = WrapInBorder("#42A5F5", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver));
+                    WireDoubleClickNav(border, snapshot, m, navigationHandler);
+                    referenceTmHost.Children.Add(border);
                 }
             if (termHost != null)
                 foreach (var t in snapshot.Terms ?? new List<TermHit>())
@@ -472,6 +476,31 @@ internal static class AssistantPanelRenderer
 
         postProcessor?.Invoke(editor);
         return editor;
+    }
+
+    private static void WireDoubleClickNav(
+        Border border, TranslationAssistantSnapshot snapshot,
+        TranslationTmMatch match, EventHandler<NavigationRequest>? navigationHandler)
+    {
+        if (string.IsNullOrWhiteSpace(match.RelPath) || navigationHandler == null) return;
+        var captured = match;
+        border.AddHandler(
+            Avalonia.Input.InputElement.PointerPressedEvent,
+            (object? _, Avalonia.Input.PointerPressedEventArgs e) =>
+            {
+                if (e.ClickCount >= 2)
+                {
+                    navigationHandler.Invoke(border, new NavigationRequest
+                    {
+                        RelPath = captured.RelPath,
+                        Side = SearchSide.Original,
+                        MatchText = captured.SourceText,
+                        AnchorOccurrenceHint = captured.BlockNumber > 0 ? captured.BlockNumber - 1 : null,
+                        AnchorTextSignal = snapshot.Segment?.ZhContextText ?? snapshot.Segment?.ZhText,
+                    });
+                }
+            },
+            Avalonia.Interactivity.RoutingStrategies.Tunnel);
     }
 
     private static Border WrapInBorder(string colorHex, Control child) => new()

@@ -133,7 +133,8 @@
       <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
       <!-- RIGHT: Scrollable Detail Panel -->
-      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14,16,56">
+      <Grid Grid.Column="2">
+      <ScrollViewer Name="DetailScroller" Padding="16,14,16,56">
         <StackPanel Spacing="12" Name="DetailPanel">
 
           <!-- Loading indicator (shown during async operations) -->
@@ -283,14 +284,11 @@
                 <Border CornerRadius="6" Padding="10,8"
                         Background="#0FD4AF37"
                         BorderThickness="1" BorderBrush="#33D4AF37">
-                  <Grid>
                     <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
                       <TextBox Name="TxtZhText" IsReadOnly="True" TextWrapping="Wrap" FontSize="14"
                                FontFamily="'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"
                                BorderThickness="0" Background="Transparent"/>
                     </ScrollViewer>
-                    <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False"/>
-                  </Grid>
                 </Border>
               </StackPanel>
 
@@ -442,6 +440,8 @@
           </StackPanel>
         </StackPanel>
       </ScrollViewer>
+      <Canvas Name="DictOverlayCanvas" IsHitTestVisible="False" ZIndex="500"/>
+      </Grid>
     </Grid>
 
     <!-- Graph drawer removed — Research Graph button opens a separate window -->
