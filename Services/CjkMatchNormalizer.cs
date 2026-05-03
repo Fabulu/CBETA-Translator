@@ -239,5 +239,11 @@ public static class CjkMatchNormalizer
         || c == '\u300E' || c == '\u300F'
         || c == '\u3010' || c == '\u3011'
         || c == '\u2014' || c == '\u2026'
-        || c == '\u00B7' || c == '\u30FB';
+        || c == '\u00B7' || c == '\u30FB'
+        // Superscript digits (annotation markers from AnnotationMarkerInserter: ⁰¹²³⁴⁵⁶⁷⁸⁹)
+        || c == '\u2070' || c == '\u00B9' || c == '\u00B2' || c == '\u00B3'
+        || (c >= '\u2074' && c <= '\u2079')
+        // Supplementary PUA surrogates (annotation icons like U+F1598).
+        // CJK Extension B uses U+D840-U+D869; PUA starts at U+DB00+.
+        || (char.IsSurrogate(c) && c >= '\uDB00');
 }
