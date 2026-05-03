@@ -1463,12 +1463,21 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public async Task NavigateToAsync(NavigationRequest request)
     {
-        // Give the layout engine one full pass so the text is measured and scrollable.
+        // Give the layout engine time to measure and render the text.
+        // Secondary windows need extra time for the visual tree to settle.
         await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
         await Task.Delay(200);
 
         var doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
         var editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
+
+        // Retry up to 3 times if editor isn't ready yet (secondary windows may be slower)
+        for (int retry = 0; retry < 3 && (doc == null || doc.IsEmpty || editor?.Document == null); retry++)
+        {
+            await Task.Delay(300);
+            doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
+            editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
+        }
 
         if (doc == null || doc.IsEmpty || editor?.Document == null)
             return;
