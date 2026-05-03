@@ -41,6 +41,7 @@ public partial class ReadableTabView : UserControl
     private AnnotatedTextEditor? _editorTranslated;
     private TextEditor? _aeOrig;
     private TextEditor? _aeTran;
+    private bool _pendingSetRendered; // True when SetRendered ran before editors were ready
 
     // Hover dictionary (orig pane only)
     private HoverDictionaryBehaviorEdit? _hoverDictOrig;
@@ -320,6 +321,13 @@ public partial class ReadableTabView : UserControl
 
             SetupHoverDictionary();
             StartSelectionTimer();
+
+            // If SetRendered ran before editors were ready, apply now
+            if (_pendingSetRendered && _aeOrig != null && _aeTran != null)
+            {
+                _pendingSetRendered = false;
+                SetRendered(_vm.RenderOrig, _vm.RenderTran);
+            }
 
             Dispatcher.UIThread.Post(() => _vm.UpdateButtonsState(), DispatcherPriority.Background);
             _vm.Log("ReadableTabView attached");
@@ -1169,7 +1177,12 @@ public partial class ReadableTabView : UserControl
         var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
         _provenancePanelView?.SetApparatusCount(appCount);
 
-        if (_aeOrig == null || _aeTran == null) return;
+        if (_aeOrig == null || _aeTran == null)
+        {
+            _pendingSetRendered = true; // Re-apply when editors become available
+            return;
+        }
+        _pendingSetRendered = false;
 
         var (origSv, origOff) = GetScrollOffsetSafe(_aeOrig);
         var (tranSv, tranOff) = GetScrollOffsetSafe(_aeTran);
