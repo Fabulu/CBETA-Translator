@@ -38,6 +38,8 @@ public class ResearchGraphCanvasControl : Control
     private double _entryProgress = 0;
     private DateTime _entryStart;
     private DispatcherTimer? _entryTimer;
+    private readonly System.Diagnostics.Stopwatch _rippleStopwatch = System.Diagnostics.Stopwatch.StartNew();
+    private DispatcherTimer? _rippleTimer;
 
     // Node type colors (lazy-initialized to avoid TypeInitializationException in tests)
     private static readonly Lazy<Dictionary<ScholarNodeType, IBrush>> _nodeBrushesLazy = new(() => new Dictionary<ScholarNodeType, IBrush>
@@ -176,6 +178,19 @@ public class ResearchGraphCanvasControl : Control
 
         if (_vm == null) return;
 
+        // Start/stop ripple animation timer for starting node
+        if (!string.IsNullOrEmpty(_vm.StartingNodeId) && _rippleTimer == null)
+        {
+            _rippleTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(33) }; // ~30fps
+            _rippleTimer.Tick += (_, _) => InvalidateVisual();
+            _rippleTimer.Start();
+        }
+        else if (string.IsNullOrEmpty(_vm.StartingNodeId) && _rippleTimer != null)
+        {
+            _rippleTimer.Stop();
+            _rippleTimer = null;
+        }
+
         // Apply zoom + pan
         using (context.PushTransform(
             Matrix.CreateScale(_zoom, _zoom) *
@@ -225,10 +240,28 @@ public class ResearchGraphCanvasControl : Control
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
 
-        // Starting node glow
+        // Starting node: 1.3x size + ripple pulse + outer ring
         bool isStartingNode = node.NodeId == _vm?.StartingNodeId;
         if (isStartingNode && !node.IsDimmed)
         {
+            r *= 1.3; // size boost
+
+            // Ripple pulse: two expanding rings that fade out
+            double time = _rippleStopwatch.Elapsed.TotalSeconds;
+            for (int i = 0; i < 2; i++)
+            {
+                double t = ((time + i * 0.75) % 1.5) / 1.5; // 0→1 over 1.5s, staggered
+                double rippleR = r + (r * 2.0 * t);
+                double rippleOpacity = 0.5 * (1.0 - t);
+                var ripplePen = new Pen(new SolidColorBrush(Color.FromArgb((byte)(rippleOpacity * 255), 255, 200, 50)), 2.5 * (1.0 - t) + 0.5);
+                ctx.DrawEllipse(null, ripplePen, center, rippleR, rippleR);
+            }
+
+            // Thin outer ring with gap (halo)
+            var haloPen = new Pen(new SolidColorBrush(Color.FromArgb(150, 255, 200, 50)), 1.5);
+            ctx.DrawEllipse(null, haloPen, center, r + 6, r + 6);
+
+            // Soft glow behind node
             ctx.DrawEllipse(StartingGlowOuter, null, center, r + 10, r + 10);
             ctx.DrawEllipse(StartingGlowInner, null, center, r + 5, r + 5);
         }
@@ -322,13 +355,17 @@ public class ResearchGraphCanvasControl : Control
         if (ShowLabels && _zoom >= 0.5 && _entryProgress > 0.3)
         {
             var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
+            if (isStartingNode) labelSize += 1; // slightly larger label for starting node
             var labelText = node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label;
             var labelY = node.Y + r + 3;
+            var typeface = isStartingNode
+                ? new Typeface("Segoe UI", FontStyle.Normal, FontWeight.Bold)
+                : new Typeface("Segoe UI");
 
             // Shadow pass: draw black text at 4 offsets (up/down/left/right) for outline effect
             var shadowFt = new FormattedText(
                 labelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                new Typeface("Segoe UI"), labelSize, _labelShadowBrush);
+                typeface, labelSize, _labelShadowBrush);
             var baseX = node.X - shadowFt.Width / 2;
             double so = 1.2; // shadow offset
             ctx.DrawText(shadowFt, new Point(baseX - so, labelY));
@@ -339,7 +376,7 @@ public class ResearchGraphCanvasControl : Control
             // Main pass: white text on top
             var mainFt = new FormattedText(
                 labelText, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                new Typeface("Segoe UI"), labelSize, Brushes.White);
+                typeface, labelSize, Brushes.White);
             ctx.DrawText(mainFt, new Point(baseX, labelY));
         }
     }
