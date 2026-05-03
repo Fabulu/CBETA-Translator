@@ -63,9 +63,15 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
         {
             IsHitTestVisible = false,
             IsVisible = false,
-            Background = Brushes.Transparent,
+            Background = new SolidColorBrush(Color.FromRgb(25, 25, 25)),
             BorderThickness = new Thickness(0),
             Padding = new Thickness(0),
+            CornerRadius = new CornerRadius(8),
+            BoxShadow = new BoxShadows(new BoxShadow
+            {
+                Blur = 12, OffsetX = 0, OffsetY = 4,
+                Color = Color.FromArgb(200, 0, 0, 0)
+            }),
         };
         _overlayHost.Children.Add(_popupBorder);
 
@@ -83,6 +89,8 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
 
         Dispatcher.UIThread.Post(() => KickoffLoadIfNeeded(), DispatcherPriority.Background);
     }
+
+    public void ForceHide() => HideTooltip();
 
     public void Dispose()
     {
@@ -602,7 +610,12 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
             Padding = new Thickness(10),
             Child = panel,
             MaxWidth = 520,
-            IsHitTestVisible = false
+            IsHitTestVisible = false,
+            BoxShadow = new BoxShadows(new BoxShadow
+            {
+                Blur = 8, OffsetX = 0, OffsetY = 2,
+                Color = Color.FromArgb(180, 0, 0, 0)
+            }),
         };
     }
 
