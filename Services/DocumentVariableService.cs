@@ -61,6 +61,11 @@ public sealed class DocumentVariableService : IDocumentVariableService
 
         Directory.CreateDirectory(root);
         var path = GetPath(root);
+
+        // Safety: never overwrite a non-empty file with empty data
+        if (vars.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         var sb = new StringBuilder();
         foreach (var v in vars)
             sb.AppendLine(JsonSerializer.Serialize(v, CompactOpts));
