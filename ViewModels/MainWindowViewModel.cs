@@ -3050,25 +3050,6 @@ public partial class MainWindowViewModel : ViewModelBase
         WindowNavigationService.OpenAndNavigate(_root, req);
     }
 
-    /// <summary>Navigate to a passage in the current window's reader tab (no new window).</summary>
-    public async Task NavigateInCurrentWindowAsync(NavigationRequest req)
-    {
-        if (_root == null || NavigateInReadable == null) return;
-
-        var requiredCorpus = InferCorpusForRelPath(req.RelPath);
-        if (requiredCorpus != CorpusKind.Unknown && requiredCorpus != ActiveCorpus
-            && _availableCorpora.Any(c => c.Kind == requiredCorpus))
-        {
-            await SwitchCorpusAsync(requiredCorpus);
-        }
-
-        await EnsureTranslationSourceForNavigationAsync(req);
-        SelectInNav(req.RelPath);
-        await LoadPairAsync(req.RelPath);
-        ForceTabIndex?.Invoke(0); // switch to Reader tab
-        await NavigateInReadable(req);
-    }
-
     // ===========================================================
     // Git helper
     // ===========================================================
