@@ -95,6 +95,18 @@ public class ResearchGraphCanvasControl : Control
     private static readonly Lazy<IPen> _searchHighlightPenLazy = new(() => new Pen(new SolidColorBrush(Color.Parse("#00E5FF")), 3));
     private static IPen _searchHighlightPen => _searchHighlightPenLazy.Value;
 
+    private static readonly Lazy<IBrush> _startingGlowOuterLazy = new(() =>
+        new SolidColorBrush(Color.FromArgb(30, 255, 200, 50)));
+    private static IBrush StartingGlowOuter => _startingGlowOuterLazy.Value;
+
+    private static readonly Lazy<IBrush> _startingGlowInnerLazy = new(() =>
+        new SolidColorBrush(Color.FromArgb(50, 255, 200, 50)));
+    private static IBrush StartingGlowInner => _startingGlowInnerLazy.Value;
+
+    private static readonly Lazy<IPen> _startingGlowPenLazy = new(() =>
+        new Pen(new SolidColorBrush(Color.FromArgb(200, 255, 180, 0)), 4));
+    private static IPen StartingGlowPen => _startingGlowPenLazy.Value;
+
     /// <summary>Whether node labels are drawn. Toggled via toolbar.</summary>
     public bool ShowLabels { get; set; } = true;
 
@@ -212,6 +224,15 @@ public class ResearchGraphCanvasControl : Control
         if (r < 0.5) return; // skip tiny nodes during animation start
         var center = new Point(node.X, node.Y);
         var brush = node.IsDimmed ? DimmedBrush : (NodeBrushes.GetValueOrDefault(node.NodeType) ?? NodeBrushes[ScholarNodeType.Passage]);
+
+        // Starting node glow
+        bool isStartingNode = node.NodeId == _vm?.StartingNodeId;
+        if (isStartingNode && !node.IsDimmed)
+        {
+            ctx.DrawEllipse(StartingGlowOuter, null, center, r + 10, r + 10);
+            ctx.DrawEllipse(StartingGlowInner, null, center, r + 5, r + 5);
+        }
+
         IPen pen;
         if (node.IsSelected)
             pen = _selectedPen;
@@ -221,6 +242,9 @@ public class ResearchGraphCanvasControl : Control
             pen = _searchHighlightPen;
         else
             pen = _defaultNodePen;
+
+        if (isStartingNode && pen == _defaultNodePen)
+            pen = StartingGlowPen;
 
         // Drop shadow (skip for dimmed nodes; limit to selected/hovered on large graphs)
         bool drawShadow = !node.IsDimmed &&

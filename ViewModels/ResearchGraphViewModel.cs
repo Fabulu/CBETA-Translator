@@ -75,6 +75,9 @@ public class ResearchGraphViewModel
     public string SearchText { get; set; } = "";
     public HashSet<string> HighlightedNodeIds { get; } = new();
 
+    /// <summary>Node ID of the starting/root node, rendered with a glow effect on the canvas.</summary>
+    public string? StartingNodeId { get; set; }
+
     // Stats
     public int NodeCount => Nodes.Count;
     public int EdgeCount => Edges.Count;
@@ -381,6 +384,11 @@ public class ResearchGraphViewModel
         // No saved positions — run force-directed layout
         if (Nodes.Count > 1) RunForceDirectedLayout(800, 600);
         ComputeStats();
+
+        // Restore starting node from collection (or default to first node)
+        StartingNodeId = _collection.StartingNodeId;
+        if (string.IsNullOrEmpty(StartingNodeId) && Nodes.Count > 0)
+            StartingNodeId = Nodes[0].NodeId;
     }
 
     public void RunForceDirectedLayout(double width, double height)
