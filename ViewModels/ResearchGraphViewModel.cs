@@ -67,6 +67,9 @@ public class ResearchGraphViewModel
     public bool ShowBooks { get; set; } = true;
     public HashSet<string> HiddenEdgeTypes { get; } = new();
 
+    // Master data lookup (set by window to resolve full names and metadata)
+    public Func<string, ZenMasterRecord?>? MasterLookup { get; set; }
+
     // Search
     public string SearchText { get; set; } = "";
     public HashSet<string> HighlightedNodeIds { get; } = new();
@@ -206,9 +209,10 @@ public class ResearchGraphViewModel
             _nodeMap[c.Id] = node;
         }
 
-        // Add master nodes (from passage MasterNames)
+        // Add master nodes (from passage MasterNames + manually-added ExtraMasters)
         var masterNames = _collection.Passages
             .SelectMany(p => p.MasterNames ?? new List<string>())
+            .Concat(_collection.ExtraMasters ?? new List<string>())
             .Distinct()
             .ToList();
         foreach (var name in masterNames)
@@ -220,17 +224,24 @@ public class ResearchGraphViewModel
                 .Where(p => p.MasterNames != null && p.MasterNames.Contains(name))
                 .Select(p => p.DisplayTitle)
                 .ToList();
+
+            var record = MasterLookup?.Invoke(name);
+            var label = record?.CanonicalName ?? name;
+            var sourceData = new Dictionary<string, object>
+            {
+                ["PassageCount"] = relatedPassages.Count,
+                ["Passages"] = relatedPassages
+            };
+            if (record != null) sourceData["MasterRecord"] = record;
+
             var node = new ResearchGraphNode
             {
                 NodeId = nodeId,
                 NodeType = ScholarNodeType.ZenMaster,
-                Label = name,
+                Label = label,
+                SecondaryLabel = record?.DatesSummary,
                 ColorHex = "#64B5F6",
-                SourceData = new Dictionary<string, object>
-                {
-                    ["PassageCount"] = relatedPassages.Count,
-                    ["Passages"] = relatedPassages
-                }
+                SourceData = sourceData
             };
             Nodes.Add(node);
             _nodeMap[nodeId] = node;

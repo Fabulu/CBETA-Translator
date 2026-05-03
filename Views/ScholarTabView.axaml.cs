@@ -66,6 +66,8 @@ public partial class ScholarTabView : UserControl
     /// <summary>Returns (DisplayShort, EnglishTitle, ChineseTitle) for a relPath.</summary>
     public Func<string?, (string Short, string? En, string? Zh)>? SourceTitleDetailResolver { get; set; }
     public IReadOnlyList<FileNavItem>? FileItems { get; set; }
+    public Func<string, TextLicenseInfo?>? TextMetadataLookup { get; set; }
+    public Func<string, (string? En, string? EnShort, string? Zh)>? TitleLookup { get; set; }
     public event EventHandler<NavigationRequest>? NavigationRequested;
     public event EventHandler? DictionaryRequested;
     public event EventHandler<int>? DictionarySourceChanged;
@@ -375,6 +377,8 @@ public partial class ScholarTabView : UserControl
                 var graphWindow = new ResearchGraphWindow(
                     _vm.SelectedCollection, _vm.Collections.ToList(), termData);
                 graphWindow.FileItems = FileItems;
+                graphWindow.TextMetadataLookup = TextMetadataLookup;
+                graphWindow.TitleLookup = TitleLookup;
                 graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
                 graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
                 graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
@@ -1022,6 +1026,7 @@ public partial class ScholarTabView : UserControl
         var graphWindow = new ResearchGraphWindow(
             _vm.SelectedCollection, _vm.Collections.ToList(), termData);
         graphWindow.FileItems = FileItems;
+        graphWindow.TextMetadataLookup = TextMetadataLookup;
         graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
         graphWindow.OpenMasterRequested += (_, name) => OpenMasterRequested?.Invoke(this, name);
         graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);

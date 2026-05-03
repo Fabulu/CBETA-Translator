@@ -164,8 +164,10 @@
               <TextBlock DockPanel.Dock="Left" Name="InspectorTitle" Text="Inspector" FontWeight="SemiBold" Foreground="#FFD700"/>
             </DockPanel>
           </Border>
-          <ScrollViewer Grid.Row="1" Padding="12">
-            <StackPanel Name="InspectorContent" Spacing="8">
+          <ScrollViewer Grid.Row="1"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Name="InspectorContent" Spacing="8" Margin="12">
               <!-- Empty state -->
               <TextBlock Name="InspectorEmpty" Text="Click a node to inspect" Opacity="0.5"
                          HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40"/>

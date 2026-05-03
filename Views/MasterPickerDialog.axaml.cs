@@ -12,7 +12,7 @@ public partial class MasterPickerDialog : Window
     private List<string> _filtered;
     public string? Result { get; private set; }
 
-    public MasterPickerDialog(IEnumerable<string> masterNames, string? searchWatermark = null)
+    public MasterPickerDialog(IEnumerable<string> masterNames, string? searchWatermark = null, string? okButtonText = null)
     {
         InitializeComponent();
         _allMasters = masterNames.OrderBy(n => n).ToList();
@@ -23,6 +23,8 @@ public partial class MasterPickerDialog : Window
         if (txt != null && !string.IsNullOrEmpty(searchWatermark))
             txt.Watermark = searchWatermark;
         var btnOk = this.FindControl<Button>("BtnOk");
+        if (btnOk != null && !string.IsNullOrEmpty(okButtonText))
+            btnOk.Content = okButtonText;
         var btnCancel = this.FindControl<Button>("BtnCancel");
 
         if (lst != null) lst.ItemsSource = _filtered;

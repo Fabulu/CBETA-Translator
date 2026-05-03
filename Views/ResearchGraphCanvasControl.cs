@@ -674,6 +674,7 @@ public class ResearchGraphCanvasControl : Control
         if (_vm == null) return null;
         double gx = (x - _offsetX) / _zoom;
         double gy = (y - _offsetY) / _zoom;
+        const double hitThreshold = 8;
         ResearchGraphEdgeVm? nearest = null;
         double minDist = double.MaxValue;
         foreach (var edge in _vm.GetVisibleEdges())
@@ -683,12 +684,51 @@ public class ResearchGraphCanvasControl : Control
             double dx = x2 - x1, dy = y2 - y1;
             double len2 = dx * dx + dy * dy;
             if (len2 < 0.01) continue;
-            double t = Math.Clamp(((gx - x1) * dx + (gy - y1) * dy) / len2, 0, 1);
-            double cx2 = x1 + t * dx, cy2 = y1 + t * dy;
-            double dist = Math.Sqrt((gx - cx2) * (gx - cx2) + (gy - cy2) * (gy - cy2));
-            if (dist <= 5 && dist < minDist) { minDist = dist; nearest = edge; }
+            double edgeLen = Math.Sqrt(len2);
+
+            double dist;
+            if (edgeLen >= 50)
+            {
+                // Curved edges: match the quadratic Bezier from DrawEdge
+                double perpX = -dy / edgeLen, perpY = dx / edgeLen;
+                double curveOffset = Math.Min(20, edgeLen * 0.12);
+                double mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+                double cpx = mx + perpX * curveOffset, cpy = my + perpY * curveOffset;
+                dist = DistToQuadBezier(gx, gy, x1, y1, cpx, cpy, x2, y2);
+            }
+            else
+            {
+                // Short straight edges: point-to-segment distance
+                double t = Math.Clamp(((gx - x1) * dx + (gy - y1) * dy) / len2, 0, 1);
+                double cx2 = x1 + t * dx, cy2 = y1 + t * dy;
+                dist = Math.Sqrt((gx - cx2) * (gx - cx2) + (gy - cy2) * (gy - cy2));
+            }
+
+            if (dist <= hitThreshold && dist < minDist) { minDist = dist; nearest = edge; }
         }
         return nearest;
+    }
+
+    /// <summary>
+    /// Approximate minimum distance from point (px,py) to a quadratic Bezier
+    /// curve defined by start (x0,y0), control (cx,cy), end (x1,y1).
+    /// Samples 16 points along the curve — accurate enough for hit-testing.
+    /// </summary>
+    private static double DistToQuadBezier(double px, double py,
+        double x0, double y0, double cx, double cy, double x1, double y1)
+    {
+        double best = double.MaxValue;
+        const int steps = 16;
+        for (int i = 0; i <= steps; i++)
+        {
+            double t = i / (double)steps;
+            double u = 1 - t;
+            double bx = u * u * x0 + 2 * u * t * cx + t * t * x1;
+            double by = u * u * y0 + 2 * u * t * cy + t * t * y1;
+            double d2 = (px - bx) * (px - bx) + (py - by) * (py - by);
+            if (d2 < best) best = d2;
+        }
+        return Math.Sqrt(best);
     }
 
     protected override void OnPointerMoved(PointerEventArgs e)
