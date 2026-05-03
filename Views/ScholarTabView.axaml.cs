@@ -955,12 +955,20 @@ public partial class ScholarTabView : UserControl
         try { _hoverDict = new HoverDictionaryBehaviorTextBox(txtZhText, _cedict, _grammar, dictCanvas); }
         catch { /* dictionary not available */ }
 
-        // Dismiss hover dict when pointer enters the English text area
-        var txtEnText = this.FindControl<TextBox>("TxtEnText");
-        if (txtEnText != null && _hoverDict != null)
+        // Dismiss hover dict when pointer moves to ANY other control in the detail panel
+        var detailScroller = this.FindControl<ScrollViewer>("DetailScroller");
+        if (detailScroller != null && _hoverDict != null)
         {
             var hd = _hoverDict;
-            txtEnText.PointerEntered += (_, _) => hd.ForceHide();
+            var zhBox = txtZhText;
+            detailScroller.AddHandler(Avalonia.Input.InputElement.PointerMovedEvent, (_, e) =>
+            {
+                if (!hd.IsVisible) return;
+                var pos = e.GetPosition(zhBox);
+                var bounds = zhBox.Bounds;
+                if (pos.X < 0 || pos.Y < 0 || pos.X > bounds.Width || pos.Y > bounds.Height)
+                    hd.ForceHide();
+            }, Avalonia.Interactivity.RoutingStrategies.Tunnel);
         }
 
         // Selection-based TM: wire ONCE (not per passage change). The handler

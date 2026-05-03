@@ -90,6 +90,7 @@ public sealed class HoverDictionaryBehaviorTextBox : IDisposable
         Dispatcher.UIThread.Post(() => KickoffLoadIfNeeded(), DispatcherPriority.Background);
     }
 
+    public bool IsVisible => _isTooltipVisible;
     public void ForceHide() => HideTooltip();
 
     public void Dispose()
