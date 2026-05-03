@@ -2232,7 +2232,8 @@ public partial class ScholarTabView : UserControl
                 titleResolver: rel => ResolveSourceTitle(rel),
                 brushResolver: GetAssistantBrush,
                 navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
-                addToScholarHandler: passage => AddPassage(passage));
+                addToScholarHandler: passage => AddPassage(passage),
+                useSimpleText: true);
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
