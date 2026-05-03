@@ -848,10 +848,7 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 _suppressNavSelectionChanged = true;
                 if (_filesList != null)
-                {
-                    _filesList.SelectedItem = null; // Clear old selection before swapping source
                     _filesList.ItemsSource = items;
-                }
             }
             finally { _suppressNavSelectionChanged = false; }
         };
