@@ -35,6 +35,7 @@ Read Zen is a full working environment for Chinese Zen study and translation acr
 | **Explore** | 301 Zen master profiles with interactive lineage graph | Desktop + Web |
 | **Translate** | Structure-aware editor with AI workflow, TM, and review | Desktop |
 | **Research** | Scholar collections, passage linking, BibTeX export | Desktop |
+| **Graph** | Knowledge graphs per collection with 7 node types and 60+ edge types | Desktop + Web |
 | **Annotate** | Qualitative coding/tagging with frequency and co-occurrence analytics | Desktop |
 | **Collaborate** | GitHub-backed sync for translations, termbases, collections, and reviews | Desktop |
 | **Provenance** | Critical edition viewer with witness comparison and editorial documentation | Desktop |
@@ -70,7 +71,7 @@ New editions are produced through the [Woodblock Edition Process](https://github
 | Preserve TEI/XML structure | Not the main focus | Core design principle - XML never silently mangled |
 | Compare source witnesses | Usually unavailable | Provenance-tracked witness comparison with apparatus |
 | Use commercially-safe editions | Mixed or unclear licensing | OpenZen: per-file CC0/CC BY-SA, separated from CBETA |
-| Build research notebooks | General annotations | Scholar collections with links, tags, and export |
+| Build research notebooks | General annotations | Scholar collections with knowledge graphs, links, tags, and export |
 | Study Zen lineage | Broad knowledge graphs | 301-master Zen-focused database with corpus search |
 | Do long-form translation work | Not the main product | Desktop workbench built for it |
 
@@ -138,12 +139,13 @@ Read Zen is a small open-source project without commercial signing certificates.
 
 ## What Read Zen Covers Now
 
-Read Zen is no longer just a reader plus translation editor. The app now has eight major work areas:
+Read Zen is no longer just a reader plus translation editor. The app now has nine major work areas:
 - `Reader`: side-by-side reading, hover dictionary, study assistant, notes, compare tools, coding/tagging, Ctrl+MouseWheel zoom, bookmarks, document outline
 - `Translate`: projection-based translation workflow with AI copy/paste, review, assistant, and source switching
 - `Search`: corpus search with typeahead (hit counts + history), post-search filtering, multi-master intersection, insights charts, command palette (Ctrl+Shift+P), and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
-- `Scholar`: collections, workspace, shared collections, passage comparison, exports, and research tooling
+- `Scholar`: collections, workspace, shared collections, passage comparison, research graph, exports, and research tooling
+- `Research Graph`: per-collection knowledge graph with 7 node types, 60+ edge types, force-directed layout, inspector panel, and double-click navigation
 - `Masters`: database of 301 Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 - `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support - driven by the `witnesses.json` delivery registry shipped with each critical edition
@@ -233,8 +235,10 @@ What it does:
 - markers legend for footnote / community-note color coding
 - version history picker (right-click translation → **Translation History**) browses and restores any prior Git version of a translation
 
+The sidebar auto-scrolls to the selected text on navigation, keeping the active passage visible.
+
 The Reader has a built-in **Study Assistant** panel that shows:
-- hover dictionary lookups (CC-CEDICT) on any Chinese text
+- hover dictionary lookups (CC-CEDICT) on any Chinese text - opaque popup with box shadow (no text bleed-through), auto-dismiss on window leave/focus loss
 - recognized termbase entries highlighted in the text
 - translation memory matches from approved and reference TM
 - context from the active translation source
@@ -341,11 +345,42 @@ What you can do there:
 - attach notes, tags, doctrinal/topic metadata, and master metadata
 - export in readable and research-friendly formats
 
-Scholar has its own **Passage Assistant** that provides termbase hits and translation memory context for any selected passage, using the same TM and termbase data as the other tabs.
+Scholar has its own **Passage Assistant** that provides termbase hits and translation memory context for any selected passage, using the same TM and termbase data as the other tabs. The assistant uses a flat layout (no dropdowns) with visible text in all sections, hover dictionary on Chinese text passages, and double-click to open any passage in the Reader with full highlighting.
 
 ![Scholar tab with collection and passage list](Screenshots/scholar-collections/scholar-collections.png)
 
 Scholar is intentionally not only for your own collections. If shared collections exist, new users can still browse and learn from them before building local collections.
+
+### Research Graph
+
+Each Scholar collection has an optional **Research Graph** - a full knowledge graph for organizing and navigating your research visually.
+
+![Research graph with multiple node types, edges, and inspector panel](Screenshots/research-graph/ResearchGraph.png)
+
+The graph supports **7 node types**, each with a unique shape and color:
+
+| Node Type | Shape | Purpose |
+|-----------|-------|---------|
+| Passage | Circle | Text passages from the corpus |
+| Concept | Hexagon | Abstract ideas and themes |
+| ZenMaster | Diamond | Masters from the 301-master database |
+| Term | Pill | Terminology entries |
+| Collection | Square | Links to other Scholar collections |
+| Book | Rectangle | Full text references |
+| Link | Oval | Web references with clickable URLs |
+
+Key features:
+- **"+ Add" dropdown** for creating any of the 7 node types
+- **60+ built-in edge types** plus custom edge types with user-defined colors
+- **Starting node** - set a prominent entry point with animated golden ripple pulse glow
+- **Right-click context menu** - rename, set starting node, focus/ego network, add note, delete
+- **Inspector panel** - rich node details with hover dictionary on Chinese text
+- **Filter panel** - toggle visibility of each node type independently
+- **Force-directed layout** with saved positions, zoom, pan, and minimap
+- **Double-click navigation** - passages open in the Reader, links open in the browser, collections navigate to their own graph
+- **Node rename persistence** for Passage and Book nodes (saves to the Summary field)
+- **ExtraMasters** - manually add zen masters not derived from passages
+- **SPA parity** - full graph rendering available on [readzen.pages.dev](https://readzen.pages.dev)
 
 ## Code Analytics
 
@@ -426,6 +461,19 @@ Important model:
 
 Read Zen tries to protect local work during updates, but this is still a Git-backed workflow. If something feels destructive, stop and inspect before proceeding.
 
+### Data Safety
+
+Starting in v7.0.0, Read Zen has comprehensive data protection across all write paths:
+
+- **Empty-data guards** on all 15 write paths across 7 services - the app refuses to overwrite valid data with empty content
+- **.backup files** created before every collection save
+- **Full community data preservation** during git sync - all `community/` data (collections, termbases, reviews, tags, TM) and `md-p5t/` markdown translations are preserved, not just translations
+- **Pre-merge backup** before community data merge operations
+- **User-data-wins merge strategy** - user translation memory, termbases, collection metadata, and stars are preserved over upstream changes
+- **Save drain on app shutdown** - all pending saves complete before the process exits
+- **Scholar collections auto-reload** after sync completes
+- **Guard against star file deletion** when the star count is empty
+
 ## Settings, Updates, and Other Windows
 
 A few support surfaces worth knowing:
@@ -490,6 +538,7 @@ What it does:
 - **Search** the full corpus - title search, full-text search via Pagefind, typeahead with master and title suggestions
 - **Browse** 301 Zen masters with biographical profiles, lineage connections, and corpus text appearances
 - **Explore** the interactive lineage graph with pan, zoom, and school color-coding
+- **View** Scholar research graphs with full node/edge rendering
 - **Look up** Chinese characters on hover (mouse) or click (touch) via the CC-CEDICT dictionary with grammar particle hints
 - **Compare** translations side by side against the original
 - **Share** any passage, search, or master profile via direct URLs
@@ -614,12 +663,12 @@ If you use Read Zen in academic work, please cite:
   title        = {Read Zen: A Desktop and Web Environment for Chinese Zen Text Study},
   year         = {2026},
   url          = {https://github.com/Fabulu/ReadZen},
-  version      = {6.0.0},
+  version      = {7.3.0},
   note         = {Desktop app (Avalonia/.NET 8) + web app (readzen.pages.dev). Supports CBETA and OpenZen corpora.}
 }
 ```
 
-Or in prose: Trunz, F. (2026). *Read Zen* (Version 6.0.0) [Computer software]. https://github.com/Fabulu/ReadZen
+Or in prose: Trunz, F. (2026). *Read Zen* (Version 7.3.0) [Computer software]. https://github.com/Fabulu/ReadZen
 
 ## Legal
 
