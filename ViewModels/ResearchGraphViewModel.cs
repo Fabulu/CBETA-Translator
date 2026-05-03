@@ -382,6 +382,8 @@ public class ResearchGraphViewModel
             if (hasPositions)
             {
                 ComputeStats();
+                // Restore starting node
+                _startingNodeId = _collection.StartingNodeId;
                 return; // Skip force layout — use saved positions
             }
         }
@@ -391,9 +393,9 @@ public class ResearchGraphViewModel
         ComputeStats();
 
         // Restore starting node from collection (or default to first node)
-        StartingNodeId = _collection.StartingNodeId;
-        if (string.IsNullOrEmpty(StartingNodeId) && Nodes.Count > 0)
-            StartingNodeId = Nodes[0].NodeId;
+        _startingNodeId = _collection.StartingNodeId;
+        if (string.IsNullOrEmpty(_startingNodeId) && Nodes.Count > 0)
+            _startingNodeId = Nodes[0].NodeId;
     }
 
     public void RunForceDirectedLayout(double width, double height)
