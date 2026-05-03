@@ -77,6 +77,16 @@ public partial class ResearchGraphWindow : Window
                 SaveRequested?.Invoke();
             }
         };
+
+        // Dismiss hover dictionary popups when mouse leaves window or window loses focus
+        PointerExited += (_, _) =>
+        {
+            foreach (var h in _hoverDicts) h.ForceHide();
+        };
+        Deactivated += (_, _) =>
+        {
+            foreach (var h in _hoverDicts) h.ForceHide();
+        };
     }
 
     private void SetupToolbar()
