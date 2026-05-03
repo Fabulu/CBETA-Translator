@@ -1471,6 +1471,14 @@ public partial class ReadableTabView : UserControl
         var doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
         var editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
 
+        // Retry up to 3 times if editor isn't ready yet (secondary windows may be slower)
+        for (int retry = 0; retry < 3 && (doc == null || doc.IsEmpty || editor?.Document == null); retry++)
+        {
+            await Task.Delay(300);
+            doc = request.Side == SearchSide.Original ? _vm.RenderOrig : _vm.RenderTran;
+            editor = request.Side == SearchSide.Original ? _aeOrig : _aeTran;
+        }
+
         if (doc == null || doc.IsEmpty || editor?.Document == null)
             return;
 
