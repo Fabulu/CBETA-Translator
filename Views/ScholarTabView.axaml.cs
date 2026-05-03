@@ -2214,6 +2214,8 @@ public partial class ScholarTabView : UserControl
             };
 
             var root = _vm.GetRoot();
+            if (string.IsNullOrWhiteSpace(root)) return; // Not initialized yet
+
             string? assistantTranslatedDir = _translatedDir;
             if (!string.IsNullOrWhiteSpace(root) && !string.IsNullOrWhiteSpace(passage.TranslationUser))
             {
@@ -2247,8 +2249,10 @@ public partial class ScholarTabView : UserControl
                 navigationHandler: (_, req) => NavigationRequested?.Invoke(this, req),
                 addToScholarHandler: passage => AddPassage(passage));
         }
+        catch (OperationCanceledException) { }
         catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"[ScholarAssistant] {ex}");
             Status?.Invoke(this, "Scholar assistant unavailable: " + ex.Message);
             UpdateTermbaseHits(null);
             AssistantPanelRenderer.RenderSnapshot(null,

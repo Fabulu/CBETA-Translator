@@ -133,7 +133,7 @@
       <GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"/>
 
       <!-- RIGHT: Scrollable Detail Panel -->
-      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14">
+      <ScrollViewer Grid.Column="2" Name="DetailScroller" Padding="16,14,16,40">
         <StackPanel Spacing="12" Name="DetailPanel">
 
           <!-- Loading indicator (shown during async operations) -->

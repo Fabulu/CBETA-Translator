@@ -250,7 +250,8 @@
                                   ItemsSource="{Binding ResultGroups}"
                                   Background="{DynamicResource ControlBg}"
                                   BorderBrush="{DynamicResource BorderBrush}"
-                                  BorderThickness="1">
+                                  BorderThickness="1"
+                                  Padding="0,0,0,32">
 
                             <TreeView.ItemContainerTheme>
                                 <ControlTheme x:DataType="models:SearchResultGroup"

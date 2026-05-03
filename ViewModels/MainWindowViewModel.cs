@@ -1629,16 +1629,17 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
-        if (autoChooseSource && !_userHasManuallySelectedSource)
-        {
-            var bestIndex = ResolveBestTranslationSourceIndex(relPath);
-            ApplyTranslationSourceIndex(bestIndex);
-        }
-
         _renderCts?.Cancel();
         _renderCts?.Dispose();
         _renderCts = new CancellationTokenSource();
         var ct = _renderCts.Token;
+
+        if (autoChooseSource && !_userHasManuallySelectedSource)
+        {
+            var bestIndex = await Task.Run(() => ResolveBestTranslationSourceIndex(relPath), ct);
+            if (ct.IsCancellationRequested) return;
+            ApplyTranslationSourceIndex(bestIndex);
+        }
 
         _currentRelPath = relPath;
         _currentSegmentContext = null;
