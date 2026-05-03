@@ -87,6 +87,14 @@ public partial class ScholarTabView : UserControl
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
 
+        // Reload from disk when another ScholarTabView instance saves data
+        ScholarDataChanged += (sender, args) =>
+        {
+            if (sender != this)
+                Task.Run(async () => await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(
+                    async () => await _vm.ReloadFromDiskAsync()));
+        };
+
         _vm.PickExportFileAsync = PickExportFileAsync;
         _vm.PickImportFileAsync = PickImportFileAsync;
         _vm.ConfirmAsync = ShowYesNoAsync;
@@ -384,6 +392,7 @@ public partial class ScholarTabView : UserControl
                 graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
                 graphWindow.AdoptPassageRequested += async (_, passage) =>
                 {
+                    await _vm.ReloadFromDiskAsync();
                     if (_vm.Collections.Count > 0)
                     {
                         var picker = new CollectionPickerDialog(_vm.Collections);
@@ -1032,6 +1041,7 @@ public partial class ScholarTabView : UserControl
         graphWindow.DictionaryRequested += (_, term) => OpenDictionaryTermRequested?.Invoke(this, term);
         graphWindow.AdoptPassageRequested += async (_, passage) =>
         {
+            await _vm.ReloadFromDiskAsync();
             if (_vm.Collections.Count > 0)
             {
                 var picker = new CollectionPickerDialog(_vm.Collections);

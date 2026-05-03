@@ -66,6 +66,8 @@ public sealed class AppConfigService : IAppConfigService
     public async Task SaveAsync(AppConfig cfg)
     {
         var json = JsonSerializer.Serialize(cfg, JsonOpts);
-        await File.WriteAllTextAsync(ConfigPath, json);
+        var tmpPath = ConfigPath + ".tmp";
+        await File.WriteAllTextAsync(tmpPath, json);
+        File.Move(tmpPath, ConfigPath, overwrite: true);
     }
 }

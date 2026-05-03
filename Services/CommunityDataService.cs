@@ -72,7 +72,9 @@ public sealed class CommunityDataService : ICommunityDataService
     /// <summary>
     /// Merge the approved TM from <paramref name="upstreamTmPath"/> into
     /// <paramref name="localRoot"/>/translation-memory.approved.jsonl.
-    /// Local entries that are newer (by WrittenUtc) win; otherwise upstream wins.
+    /// Local entries always win when the same key exists in both local and upstream,
+    /// preserving the user's translations. Upstream entries are only added when no
+    /// local entry exists for that key.
     /// Returns the number of kept rows.
     /// </summary>
     public async Task<int> MergeApprovedTmFromAsync(
@@ -90,7 +92,15 @@ public sealed class CommunityDataService : ICommunityDataService
             ? await LoadTmRowsAsync(upstreamTmPath, ct)
             : new List<TmRow>();
 
-        var merged = DedupTmRows(local.Concat(upstream));
+        // Build a set of keys present in local data
+        var localKeys = new HashSet<string>(
+            local.Select(r => MakeTmKey(r)),
+            StringComparer.Ordinal);
+
+        // Only add upstream rows whose key is NOT already in local
+        var combined = local.Concat(upstream.Where(r => !localKeys.Contains(MakeTmKey(r))));
+
+        var merged = DedupTmRows(combined);
         await WriteTmRowsAsync(localPath, merged, ct);
         return merged.Count;
     }
@@ -191,7 +201,9 @@ public sealed class CommunityDataService : ICommunityDataService
     /// <summary>
     /// Merge the termbase from <paramref name="upstreamTermbasePath"/> into
     /// <paramref name="localRoot"/>/termbase.json.
-    /// Last-write-wins by WrittenUtc.
+    /// Local entries always win when the same SourceTerm exists in both local and
+    /// upstream, preserving the user's terminology (including AlternateTargets).
+    /// Upstream entries are only added when no local entry exists for that term.
     /// Returns the number of kept entries.
     /// </summary>
     public async Task<int> MergeTermbaseFromAsync(
@@ -209,7 +221,18 @@ public sealed class CommunityDataService : ICommunityDataService
             ? await LoadTermbaseAsync(upstreamTermbasePath, ct)
             : new List<TermbaseEntry>();
 
-        var merged = DedupTermbase(local.Concat(upstream));
+        // Build a set of source terms present in local data
+        var localTerms = new HashSet<string>(
+            local.Where(e => !string.IsNullOrWhiteSpace(e.SourceTerm))
+                 .Select(e => e.SourceTerm.Trim()),
+            StringComparer.Ordinal);
+
+        // Only add upstream entries whose SourceTerm is NOT already in local
+        var combined = local.Concat(
+            upstream.Where(e => !string.IsNullOrWhiteSpace(e.SourceTerm)
+                             && !localTerms.Contains(e.SourceTerm.Trim())));
+
+        var merged = DedupTermbase(combined);
         await WriteTermbaseAsync(localPath, merged, ct);
         return merged.Count;
     }
@@ -282,8 +305,10 @@ public sealed class CommunityDataService : ICommunityDataService
 
     /// <summary>
     /// Merge upstream scholar collections into local.
-    /// Collections deduped by Id (keep newest). Passages within each collection
-    /// are unioned and deduped by Id (keep newest).
+    /// When collections share the same Id, local (user) metadata is always preserved
+    /// (StudyNotes, GraphLayout, Concepts, NodeAnnotations, Edges, etc.), while
+    /// Passages and Links are unioned from both sources and deduped.
+    /// Upstream-only collections are added as-is.
     /// Returns the number of kept collections.
     /// </summary>
     public async Task<int> MergeScholarCollectionsFromAsync(
@@ -301,36 +326,38 @@ public sealed class CommunityDataService : ICommunityDataService
             ? await LoadScholarCollectionsAsync(upstreamPath, ct)
             : new List<Models.ScholarCollection>();
 
-        // Merge: for collections with same Id, merge their passages then keep the one with newer timestamp
+        // Index local collections by Id — local is the authoritative source for metadata
         var byId = new Dictionary<string, Models.ScholarCollection>(StringComparer.Ordinal);
 
-        foreach (var c in local.Concat(upstream))
+        foreach (var c in local)
         {
             if (string.IsNullOrWhiteSpace(c.Id))
                 continue;
 
-            if (byId.TryGetValue(c.Id, out var existing))
-            {
-                // Merge passages and links from both into the winner
-                var mergedPassages = DedupPassages(existing.Passages.Concat(c.Passages));
-                var mergedLinks = DedupLinks(existing.Links.Concat(c.Links));
-                var winnerTs = GetCollectionTimestamp(c);
-                var existingTs = GetCollectionTimestamp(existing);
+            c.Passages = DedupPassages(c.Passages);
+            c.Links = DedupLinks(c.Links);
+            byId[c.Id] = c;
+        }
 
-                if (winnerTs > existingTs)
-                {
-                    c.Passages = mergedPassages;
-                    c.Links = mergedLinks;
-                    byId[c.Id] = c;
-                }
-                else
-                {
-                    existing.Passages = mergedPassages;
-                    existing.Links = mergedLinks;
-                }
+        // Merge upstream: union Passages/Links but preserve local metadata when both exist
+        foreach (var c in upstream)
+        {
+            if (string.IsNullOrWhiteSpace(c.Id))
+                continue;
+
+            if (byId.TryGetValue(c.Id, out var localCol))
+            {
+                // Union passages and links from upstream into local's collection
+                localCol.Passages = DedupPassages(localCol.Passages.Concat(c.Passages));
+                localCol.Links = DedupLinks(localCol.Links.Concat(c.Links));
+                // All other metadata (StudyNotes, GraphLayout, Concepts, NodeAnnotations,
+                // Edges, CustomEdgeTypes, CollectionRefs, EdgePreferences, ExtraMasters,
+                // SuppressedAutoNodeIds, SuppressedAutoEdgeIds, LinkNodes, Name,
+                // Description, Tags) stays from local.
             }
             else
             {
+                // Upstream-only collection — add it
                 c.Passages = DedupPassages(c.Passages);
                 c.Links = DedupLinks(c.Links);
                 byId[c.Id] = c;
