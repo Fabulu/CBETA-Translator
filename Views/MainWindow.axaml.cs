@@ -1664,6 +1664,27 @@ private async Task LoadConfigAndAutoloadAsync()
                 return (nav.DisplayShort, en, zh);
             };
             _scholarView.FileItems = _vm.AllItemsByRel.Values.ToList();
+            _scholarView.TitleLookup = relPath =>
+            {
+                if (string.IsNullOrWhiteSpace(relPath)) return (null, null, null);
+                var key = relPath.Replace('\\', '/').TrimStart('/');
+                if (_vm.AllItemsByRel.TryGetValue(key, out var item))
+                {
+                    var parts = (item.Tooltip ?? "").Split('\n', 2);
+                    var en = parts.Length > 0 && !string.IsNullOrWhiteSpace(parts[0]) ? parts[0] : null;
+                    var zh = parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]) ? parts[1] : null;
+                    return (en, item.DisplayShort, zh);
+                }
+                return (null, null, null);
+            };
+            _scholarView.TextMetadataLookup = relPath =>
+            {
+                if (string.IsNullOrWhiteSpace(relPath) || _vm.OriginalDir == null) return null;
+                var abs = System.IO.Path.Combine(_vm.OriginalDir, relPath);
+                if (!System.IO.File.Exists(abs)) return null;
+                try { return TextLicenseExtractor.Extract(System.IO.File.ReadAllText(abs), relPath); }
+                catch { return null; }
+            };
             _scholarStatusHandler = (_, msg) => _vm.SetStatus(msg);
             _scholarView.Status += _scholarStatusHandler;
             _scholarView.NavigationRequested += (_, req) =>

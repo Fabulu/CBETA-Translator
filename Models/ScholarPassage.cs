@@ -103,6 +103,9 @@ public sealed class ScholarCollection
     public Dictionary<string, string> NodeAnnotations { get; set; } = new();
     public HashSet<string> SuppressedAutoNodeIds { get; set; } = new();
     public HashSet<string> SuppressedAutoEdgeIds { get; set; } = new();
+
+    /// <summary>Manually-added master names (not derived from passages).</summary>
+    public List<string> ExtraMasters { get; set; } = new();
 }
 
 public sealed class ScholarGraphLayout
