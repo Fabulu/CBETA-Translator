@@ -1706,9 +1706,9 @@ private async Task LoadConfigAndAutoloadAsync()
             };
             _scholarStatusHandler = (_, msg) => _vm.SetStatus(msg);
             _scholarView.Status += _scholarStatusHandler;
-            _scholarView.NavigationRequested += (_, req) =>
+            _scholarView.NavigationRequested += async (_, req) =>
             {
-                _vm.HandleNavigationRequested(req);
+                await _vm.NavigateInCurrentWindowAsync(req);
             };
             _scholarView.DictionaryRequested += async (_, _) =>
             {
