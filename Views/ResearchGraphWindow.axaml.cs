@@ -1302,7 +1302,19 @@ public partial class ResearchGraphWindow : Window
         await renameWindow.ShowDialog(this);
         if (!string.IsNullOrEmpty(newLabel) && newLabel != node.Label)
         {
-            node.Label = newLabel;
+            if (node.NodeType == ScholarNodeType.Concept)
+            {
+                _vm.ExecuteCommand(new RenameConceptCommand(_vm, node.NodeId, node.Label, newLabel));
+            }
+            else if (node.NodeType == ScholarNodeType.Link && node.SourceData is LinkNode linkData)
+            {
+                linkData.Name = newLabel;
+                node.Label = newLabel;
+            }
+            else
+            {
+                node.Label = newLabel;
+            }
             UpdateInspector();
             _canvas?.InvalidateVisual();
         }
