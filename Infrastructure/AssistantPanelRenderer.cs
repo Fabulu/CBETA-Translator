@@ -494,10 +494,15 @@ internal static class AssistantPanelRenderer
                     {
                         RelPath = captured.RelPath,
                         Side = SearchSide.Original,
-                        MatchText = captured.SourceText,
+                        // Use short prefix to find position (TM SourceText may span
+                        // concatenated blocks that aren't contiguous in the document).
+                        // Pass full text as AnchorTextSignal so FindBestMatchRange can
+                        // use it for disambiguation if the prefix appears multiple times.
+                        MatchText = (captured.SourceText?.Length > 20
+                            ? captured.SourceText[..20] : captured.SourceText) ?? "",
                         AnchorOccurrenceHint = captured.BlockNumber > 0 ? captured.BlockNumber - 1 : null,
                         AnchorStartHint = captured.BlockNumber > 0 ? captured.BlockNumber : null,
-                        AnchorTextSignal = snapshot.Segment?.ZhContextText ?? snapshot.Segment?.ZhText,
+                        AnchorTextSignal = captured.SourceText,
                     });
                 }
             },
