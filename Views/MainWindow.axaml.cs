@@ -861,12 +861,14 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 _suppressNavSelectionChanged = true;
                 if (_filesList != null)
-                {
                     _filesList.SelectedItem = item;
-                    _filesList.ScrollIntoView(item);
-                }
             }
             finally { _suppressNavSelectionChanged = false; }
+            // Defer scroll so the UI thread can process the selection first
+            if (_filesList != null && item != null)
+                Avalonia.Threading.Dispatcher.UIThread.Post(
+                    () => _filesList?.ScrollIntoView(item),
+                    Avalonia.Threading.DispatcherPriority.Background);
         };
         _vm.GetNavSelectedItem = () => _filesList?.SelectedItem as FileNavItem;
         _vm.RestoreNavSearchFocus = () =>
