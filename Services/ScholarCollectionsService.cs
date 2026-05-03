@@ -51,9 +51,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
             return collections;
         }
         catch (OperationCanceledException) { throw; }
-        catch
+        catch (Exception ex)
         {
-            // Corrupted JSON should not crash the app — return empty and let user re-create
+            // Corrupted JSON should not crash the app — log and return empty.
+            // WARNING: returning empty here means the next save could wipe the file.
+            // The save guards above prevent that now.
+            System.Diagnostics.Debug.WriteLine($"[ScholarCollectionsService] Failed to load {path}: {ex.Message}");
             return new List<ScholarCollection>();
         }
     }
@@ -68,6 +71,10 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
 
         var path = GetPath(root);
         Directory.CreateDirectory(root);
+
+        // Safety: never overwrite a non-empty file with empty data
+        if (collections.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
 
         foreach (var c in collections)
         {
@@ -139,6 +146,12 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         {
             MigrateToV2(c);
         }
+
+        // Safety: never overwrite a non-empty file with empty data.
+        // If the collection list is empty but the file already has content,
+        // something went wrong during load — refuse to destroy user data.
+        if (collections.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
 
         var sb = new StringBuilder();
 
