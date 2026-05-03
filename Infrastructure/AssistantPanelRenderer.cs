@@ -490,19 +490,21 @@ internal static class AssistantPanelRenderer
             {
                 if (e.ClickCount >= 2)
                 {
+                    // TM SourceText can span concatenated blocks. Use short prefix
+                    // to find start position, short suffix to find end position.
+                    var src = captured.SourceText ?? "";
+                    var prefix = src.Length > 20 ? src[..20] : src;
+                    var suffix = src.Length > 20 ? src[^20..] : null;
+
                     navigationHandler.Invoke(border, new NavigationRequest
                     {
                         RelPath = captured.RelPath,
                         Side = SearchSide.Original,
-                        // Use short prefix to find position (TM SourceText may span
-                        // concatenated blocks that aren't contiguous in the document).
-                        // Pass full text as AnchorTextSignal so FindBestMatchRange can
-                        // use it for disambiguation if the prefix appears multiple times.
-                        MatchText = (captured.SourceText?.Length > 20
-                            ? captured.SourceText[..20] : captured.SourceText) ?? "",
+                        MatchText = prefix,
+                        RightContext = suffix, // tail of passage — used to extend highlight
                         AnchorOccurrenceHint = captured.BlockNumber > 0 ? captured.BlockNumber - 1 : null,
                         AnchorStartHint = captured.BlockNumber > 0 ? captured.BlockNumber : null,
-                        AnchorTextSignal = captured.SourceText,
+                        AnchorTextSignal = src,
                     });
                 }
             },

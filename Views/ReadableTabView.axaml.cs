@@ -1548,6 +1548,17 @@ public partial class ReadableTabView : UserControl
         int safeStart = Math.Clamp(hit.start, 0, Math.Max(0, docLen - 1));
         int safeEnd = Math.Clamp(safeStart + hit.length, 0, docLen);
 
+        // If RightContext contains a passage tail suffix, search for it after
+        // the start position to extend the highlight to cover the full passage.
+        if (!string.IsNullOrEmpty(request.RightContext) && request.RightContext.Length >= 4)
+        {
+            var tailHit = FindBestMatchRange(
+                docText, request.RightContext, null, null,
+                safeStart, null, null);
+            if (tailHit.start >= safeStart && tailHit.length > 0)
+                safeEnd = Math.Clamp(tailHit.start + tailHit.length, safeEnd, docLen);
+        }
+
         // Trim trailing newlines from selection range
         string fbDocText = editor.Document.Text ?? "";
         while (safeEnd > safeStart && safeEnd <= fbDocText.Length &&
