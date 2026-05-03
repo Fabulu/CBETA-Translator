@@ -267,13 +267,13 @@
                              BorderThickness="1">
                         <ListBox.Styles>
                             <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Background" Value="{DynamicResource SelectionBg}"/>
                             </Style>
                             <Style Selector="ListBoxItem:selected Border">
-                                <Setter Property="BorderBrush" Value="{DynamicResource SelectionBg}"/>
+                                <Setter Property="BorderBrush" Value="#FFD700"/>
+                            </Style>
+                            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#20FFFFFF"/>
                             </Style>
                         </ListBox.Styles>
                         <ListBox.ContextMenu>
