@@ -265,6 +265,17 @@
                              Background="{DynamicResource ControlBg}"
                              BorderBrush="{DynamicResource BorderBrush}"
                              BorderThickness="1">
+                        <ListBox.Styles>
+                            <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Style>
+                            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Style>
+                            <Style Selector="ListBoxItem:selected Border">
+                                <Setter Property="BorderBrush" Value="{DynamicResource SelectionBg}"/>
+                            </Style>
+                        </ListBox.Styles>
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Name="MnuLinkToPassage" Header="Link to selected passage"
@@ -283,6 +294,8 @@
                                 <Border CornerRadius="6"
                                         Padding="4"
                                         Margin="2"
+                                        BorderThickness="1.5"
+                                        BorderBrush="Transparent"
                                         Background="{Binding Status, Converter={x:Static views:NavStatusToBrushConverter.Instance}}">
                                     <TextBlock Text="{Binding DisplayShort}"
                                                ToolTip.Tip="{Binding Tooltip}"

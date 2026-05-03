@@ -76,7 +76,12 @@ public class ResearchGraphViewModel
     public HashSet<string> HighlightedNodeIds { get; } = new();
 
     /// <summary>Node ID of the starting/root node, rendered with a glow effect on the canvas.</summary>
-    public string? StartingNodeId { get; set; }
+    private string? _startingNodeId;
+    public string? StartingNodeId
+    {
+        get => _startingNodeId;
+        set { _startingNodeId = value; _collection.StartingNodeId = value; }
+    }
 
     // Stats
     public int NodeCount => Nodes.Count;
