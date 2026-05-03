@@ -70,6 +70,10 @@ public sealed class DocumentTagService : IDocumentTagService
         var path = GetVocabularyPath(root);
         Directory.CreateDirectory(root);
 
+        // Safety: never overwrite a non-empty file with empty data
+        if ((vocab.Tags == null || vocab.Tags.Count == 0) && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         var json = JsonSerializer.Serialize(vocab, WriteOpts);
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
@@ -249,6 +253,10 @@ public sealed class DocumentTagService : IDocumentTagService
 
     private static async Task WriteTagsJsonlAsync(string path, List<DocumentTag> tags, CancellationToken ct)
     {
+        // Safety: never overwrite a non-empty file with empty data
+        if (tags.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         var sb = new StringBuilder();
         foreach (var tag in tags)
         {

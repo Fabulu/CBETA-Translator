@@ -100,6 +100,10 @@ public sealed class ConsensusService
 
         var path = Path.Combine(dir, SanitizeFilename(username) + ".jsonl");
 
+        // Safety: never overwrite a non-empty file with empty data
+        if (resolutions.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         var sb = new StringBuilder();
         foreach (var r in resolutions)
             sb.AppendLine(JsonSerializer.Serialize(r, CompactOpts));

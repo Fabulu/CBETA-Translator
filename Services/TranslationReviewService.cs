@@ -258,6 +258,10 @@ public sealed class TranslationReviewService : ITranslationReviewService
             .ThenBy(e => e.BlockNumber)
             .ToList();
 
+        // Safety: never overwrite a non-empty file with empty data
+        if (userEntries.Count == 0 && File.Exists(fullPath) && new FileInfo(fullPath).Length > 10)
+            return;
+
         Directory.CreateDirectory(communityReviewsDir);
 
         var tmpPath = fullPath + ".tmp";

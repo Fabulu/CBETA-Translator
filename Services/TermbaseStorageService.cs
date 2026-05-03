@@ -93,6 +93,10 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
             .OrderBy(e => e.SourceTerm, StringComparer.Ordinal)
             .ToList();
 
+        // Safety: never overwrite a non-empty file with empty data
+        if (clean.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         var json = JsonSerializer.Serialize(clean, WriteOpts);
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
@@ -117,6 +121,10 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
         var fullDir = Path.GetFullPath(communityDir);
         if (!fullPath.StartsWith(fullDir, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Username produces a path outside the community directory.", nameof(username));
+
+        // Safety: never overwrite a non-empty file with empty data
+        if (entries.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
 
         var sb = new StringBuilder();
 
@@ -223,6 +231,10 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
             .Where(e => !string.IsNullOrWhiteSpace(e.SourceTerm))
             .OrderBy(e => e.SourceTerm, StringComparer.Ordinal)
             .ToList();
+
+        // Safety: never overwrite a non-empty file with empty data
+        if (clean.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
 
         var json = JsonSerializer.Serialize(clean, WriteOpts);
         var tmpPath = path + ".tmp";

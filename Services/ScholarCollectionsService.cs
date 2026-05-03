@@ -84,6 +84,9 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         var json = JsonSerializer.Serialize(collections, WriteOpts);
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, json, new UTF8Encoding(false), ct);
+        // Keep one backup of the previous version
+        if (File.Exists(path))
+            try { File.Copy(path, path + ".backup", overwrite: true); } catch { }
         File.Move(tmpPath, path, overwrite: true);
     }
 
@@ -162,6 +165,9 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
 
         var tmpPath = path + ".tmp";
         await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
+        // Keep one backup of the previous version
+        if (File.Exists(path))
+            try { File.Copy(path, path + ".backup", overwrite: true); } catch { }
         File.Move(tmpPath, path, overwrite: true);
     }
 
@@ -260,6 +266,10 @@ public sealed class ScholarCollectionsService : IScholarCollectionsService
         {
             MigrateToV2(c);
         }
+
+        // Safety: never overwrite a non-empty file with empty data
+        if (collections.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
 
         var sb = new StringBuilder();
         foreach (var c in collections)

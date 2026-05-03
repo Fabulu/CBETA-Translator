@@ -143,6 +143,10 @@ public sealed class CommunityDataService : ICommunityDataService
 
     private static async Task WriteTmRowsAsync(string path, List<TmRow> rows, CancellationToken ct)
     {
+        // Safety: never overwrite a non-empty file with empty data
+        if (rows.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
         var sb = new StringBuilder();
@@ -239,6 +243,10 @@ public sealed class CommunityDataService : ICommunityDataService
 
     private static async Task WriteTermbaseAsync(string path, List<TermbaseEntry> entries, CancellationToken ct)
     {
+        // Safety: never overwrite a non-empty file with empty data
+        if (entries.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
         var json = JsonSerializer.Serialize(entries, TermbaseWriteOpts);
@@ -399,6 +407,10 @@ public sealed class CommunityDataService : ICommunityDataService
 
     private static async Task WriteScholarCollectionsAsync(string path, List<Models.ScholarCollection> collections, CancellationToken ct)
     {
+        // Safety: never overwrite a non-empty file with empty data
+        if (collections.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
+            return;
+
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
         var json = JsonSerializer.Serialize(collections, TermbaseWriteOpts);
