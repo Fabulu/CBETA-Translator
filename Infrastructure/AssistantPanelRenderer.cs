@@ -77,7 +77,8 @@ internal static class AssistantPanelRenderer
         Func<string, IBrush?>? brushResolver = null,
         Action<TextEditor>? postProcessor = null,
         EventHandler<NavigationRequest>? navigationHandler = null,
-        Action<ScholarPassage>? addToScholarHandler = null)
+        Action<ScholarPassage>? addToScholarHandler = null,
+        bool useSimpleText = false)
     {
         if (approvedTmHost != null) approvedTmHost.Children.Clear();
         if (referenceTmHost != null) referenceTmHost.Children.Clear();
@@ -87,28 +88,53 @@ internal static class AssistantPanelRenderer
         if (snapshot == null)
             return;
 
-        if (approvedTmHost != null)
+        if (useSimpleText)
         {
-            foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
-                approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: true));
+            // Simple TextBox rendering for contexts where AvaloniaEdit fails (nested StackPanels)
+            if (approvedTmHost != null)
+                foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
+                {
+                    var title = titleResolver?.Invoke(m.RelPath) ?? m.RelPath ?? "";
+                    approvedTmHost.Children.Add(WrapInBorder("#4CAF50", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver)));
+                }
+            if (referenceTmHost != null)
+                foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
+                {
+                    var title = titleResolver?.Invoke(m.RelPath) ?? m.RelPath ?? "";
+                    referenceTmHost.Children.Add(WrapInBorder("#42A5F5", BuildAssistantTextBox(BuildTmEditorText(m, title), 50, 180, brushResolver)));
+                }
+            if (termHost != null)
+                foreach (var t in snapshot.Terms ?? new List<TermHit>())
+                    termHost.Children.Add(WrapInBorder("#FFA726", BuildAssistantTextBox(BuildTermEditorText(t), 40, 140, brushResolver)));
+            if (qaHost != null)
+                foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
+                    qaHost.Children.Add(WrapInBorder("#EF5350", BuildAssistantTextBox(q.Message ?? "", 30, 100, brushResolver)));
         }
-
-        if (referenceTmHost != null)
+        else
         {
-            foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
-                referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: false));
-        }
+            if (approvedTmHost != null)
+            {
+                foreach (var m in snapshot.ApprovedMatches ?? new List<TranslationTmMatch>())
+                    approvedTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: true));
+            }
 
-        if (termHost != null)
-        {
-            foreach (var t in snapshot.Terms ?? new List<TermHit>())
-                termHost.Children.Add(BuildTermEntryControl(snapshot, t, brushResolver, postProcessor, addToScholarHandler));
-        }
+            if (referenceTmHost != null)
+            {
+                foreach (var m in snapshot.ReferenceMatches ?? new List<TranslationTmMatch>())
+                    referenceTmHost.Children.Add(BuildTmEntryControl(snapshot, m, titleResolver, brushResolver, postProcessor, navigationHandler, addToScholarHandler, isApproved: false));
+            }
 
-        if (qaHost != null)
-        {
-            foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
-                qaHost.Children.Add(BuildQaEntryControl(q, brushResolver, postProcessor));
+            if (termHost != null)
+            {
+                foreach (var t in snapshot.Terms ?? new List<TermHit>())
+                    termHost.Children.Add(BuildTermEntryControl(snapshot, t, brushResolver, postProcessor, addToScholarHandler));
+            }
+
+            if (qaHost != null)
+            {
+                foreach (var q in snapshot.QaIssues ?? new List<QaIssue>())
+                    qaHost.Children.Add(BuildQaEntryControl(q, brushResolver, postProcessor));
+            }
         }
 
         AddEmptyPlaceholderIfNeeded(approvedTmHost, "No approved matches for this passage.", brushResolver);
@@ -446,6 +472,40 @@ internal static class AssistantPanelRenderer
 
         postProcessor?.Invoke(editor);
         return editor;
+    }
+
+    private static Border WrapInBorder(string colorHex, Control child) => new()
+    {
+        BorderBrush = new SolidColorBrush(Color.Parse(colorHex)),
+        BorderThickness = new Thickness(3, 0, 0, 0),
+        CornerRadius = new CornerRadius(6),
+        Padding = new Thickness(6),
+        Child = child,
+        Margin = new Thickness(0, 0, 0, 4),
+    };
+
+    /// <summary>Simple read-only TextBox alternative for contexts where AvaloniaEdit
+    /// doesn't render properly (e.g., deeply nested StackPanels in ScrollViewer).</summary>
+    public static Control BuildAssistantTextBox(
+        string text,
+        double minHeight,
+        double maxHeight,
+        Func<string, IBrush?>? brushResolver = null)
+    {
+        return new TextBox
+        {
+            IsReadOnly = true,
+            Text = text ?? "",
+            TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+            FontFamily = new FontFamily("Consolas, Menlo, 'DejaVu Sans Mono', 'Noto Sans CJK SC', 'Source Han Sans SC', monospace"),
+            FontSize = 12,
+            Background = brushResolver?.Invoke("XmlViewerBg") ?? Brushes.Black,
+            Foreground = brushResolver?.Invoke("TextFg") ?? Brushes.White,
+            BorderThickness = new Thickness(0),
+            Padding = new Thickness(4),
+            MinHeight = minHeight,
+            MaxHeight = maxHeight,
+        };
     }
 
     // ---- Text formatters (pure functions) ----
