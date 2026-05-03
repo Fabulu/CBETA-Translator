@@ -16,7 +16,7 @@
                 Background="#DFF0D8" Padding="8,4">
             <DockPanel>
                 <Button Name="BtnDismissUpdate" DockPanel.Dock="Right" Content="&#x2715;"
-                        Background="Transparent" BorderThickness="0" FontSize="12"
+                        Background="Transparent" Foreground="#3C763D" BorderThickness="0" FontSize="12"
                         Padding="4,0" Cursor="Hand"/>
                 <Button Name="BtnDownloadUpdate" DockPanel.Dock="Right" Content="Download"
                         FontSize="11" Padding="8,2" Margin="8,0" Cursor="Hand"/>
