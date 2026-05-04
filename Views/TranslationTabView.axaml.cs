@@ -474,6 +474,8 @@ public partial class TranslationTabView : UserControl
             PreferredSide = SearchSide.Translated,
             TranslationUser = GetTranslationUser?.Invoke()
         };
+        if (string.IsNullOrWhiteSpace(passage.Summary))
+            passage.Summary = passage.GenerateAutoSummary();
 
         AddToScholarRequested?.Invoke(this, passage);
     }

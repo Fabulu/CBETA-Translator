@@ -1891,8 +1891,12 @@ private async Task LoadConfigAndAutoloadAsync()
             if (scholarVm != null && scholarVm.Collections.Count > 0)
             {
                 var picker = new CollectionPickerDialog(scholarVm.Collections);
+                picker.PassageSummary = passage.Summary;
                 var selected = await picker.ShowDialog<ScholarCollection?>(this);
                 if (selected == null) return; // user cancelled
+
+                // Apply user-edited summary back to passage
+                passage.Summary = picker.PassageSummary ?? passage.Summary;
 
                 // If this is a newly created collection (not yet in VM), add it
                 if (!scholarVm.Collections.Any(c => c.Id == selected.Id))
@@ -1948,7 +1952,8 @@ private async Task LoadConfigAndAutoloadAsync()
             await scholarVm.AddPassageToCollectionAsync(current.Id, passage);
             scholarVm.RefreshPassagesList();
             scholarVm.RebuildTree();
-            _vm.SetStatus($"Added to '{current.Name}'.");
+            var summarySnippet = !string.IsNullOrWhiteSpace(passage.Summary) ? $" Summary: {passage.Summary}" : "";
+            _vm.SetStatus($"Added to '{current.Name}'.{summarySnippet}");
         }
         catch (Exception ex)
         {
@@ -2423,6 +2428,8 @@ private async Task LoadConfigAndAutoloadAsync()
                     ZhText = hit.ZhSnippet,
                     SourceRelPath = hit.SourceRelPath,
                 };
+                if (string.IsNullOrWhiteSpace(passage.Summary))
+                    passage.Summary = passage.GenerateAutoSummary();
                 _scholarView?.AddPassage(passage);
                 _vm.SetStatus("Corpus hit added to Scholar collection.");
             };

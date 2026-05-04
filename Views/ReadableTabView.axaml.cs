@@ -876,6 +876,8 @@ public partial class ReadableTabView : UserControl
             TranslationUser = GetTranslationUser?.Invoke(),
             Apparatus = ExtractApparatusForLbRange(_vm.RenderOrig, fromLb, toLb)
         };
+        if (string.IsNullOrWhiteSpace(passage.Summary))
+            passage.Summary = passage.GenerateAutoSummary();
 
         if (useCurrentCollection)
             AddToCurrentCollectionRequested?.Invoke(this, passage);
@@ -4316,6 +4318,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             Tags = string.IsNullOrWhiteSpace(tagName) ? new() : new List<string> { tagName },
             AddedUtc = DateTimeOffset.UtcNow
         };
+        if (string.IsNullOrWhiteSpace(passage.Summary))
+            passage.Summary = passage.GenerateAutoSummary();
 
         AddToScholarRequested?.Invoke(this, passage);
 

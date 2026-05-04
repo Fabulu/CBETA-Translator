@@ -68,6 +68,54 @@ public sealed class ScholarPassage
 
     [JsonIgnore]
     public bool IsSelectedForCompare { get; set; }
+
+    /// <summary>Auto-generates a summary from passage content for graph labels and list display.</summary>
+    public string GenerateAutoSummary()
+    {
+        // Priority 1: First sentence of English text
+        if (!string.IsNullOrWhiteSpace(EnText))
+        {
+            var en = EnText.Trim();
+            // Find first sentence boundary
+            var match = System.Text.RegularExpressions.Regex.Match(en, @"^(.+?[.!?])\s");
+            var sentence = match.Success ? match.Groups[1].Value.Trim() : en;
+            if (sentence.Length > 60)
+                sentence = sentence[..57].TrimEnd() + "\u2026";
+            if (sentence.Length >= 10)
+                return sentence;
+        }
+
+        // Priority 2: Master name + first Chinese phrase
+        if (MasterNames is { Count: > 0 } && !string.IsNullOrWhiteSpace(ZhText))
+        {
+            var zh = ZhText.Trim();
+            var phrase = zh.Length > 12 ? zh[..12] : zh;
+            // Break on CJK punctuation if possible
+            var lastBreak = phrase.LastIndexOfAny(new[] { '\u3002', '\uFF0C', '\uFF1B', '\u3001' });
+            if (lastBreak > 3) phrase = phrase[..lastBreak];
+            return $"{MasterNames[0]}: {phrase}";
+        }
+
+        // Priority 3: First 20 chars of Chinese text
+        if (!string.IsNullOrWhiteSpace(ZhText))
+        {
+            var zh = ZhText.Trim();
+            return zh.Length > 20 ? zh[..20] + "\u2026" : zh;
+        }
+
+        // Priority 4: English snippet
+        if (!string.IsNullOrWhiteSpace(EnText))
+        {
+            var en = EnText.Trim();
+            return en.Length > 40 ? en[..37] + "\u2026" : en;
+        }
+
+        // Priority 5: File name
+        if (!string.IsNullOrWhiteSpace(SourceRelPath))
+            return Path.GetFileNameWithoutExtension(SourceRelPath) ?? "(untitled)";
+
+        return "(untitled passage)";
+    }
 }
 
 public sealed class ScholarCollection

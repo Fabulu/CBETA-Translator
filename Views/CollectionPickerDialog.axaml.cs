@@ -12,6 +12,7 @@ public partial class CollectionPickerDialog : Window
     private readonly List<ScholarCollection> _allCollections;
     private List<ScholarCollection> _filtered;
     public ScholarCollection? Result { get; private set; }
+    public string? PassageSummary { get; set; }
 
     public CollectionPickerDialog(IEnumerable<ScholarCollection> collections)
     {
@@ -83,7 +84,13 @@ public partial class CollectionPickerDialog : Window
             if (e.Key == Key.Return) { TryConfirm(lst); e.Handled = true; }
         };
 
-        Opened += (_, _) => txt?.Focus();
+        var txtSummary = this.FindControl<TextBox>("TxtSummary");
+        Opened += (_, _) =>
+        {
+            if (txtSummary != null)
+                txtSummary.Text = PassageSummary ?? "";
+            txt?.Focus();
+        };
 
         // Pre-select first item if available
         if (lst != null && _filtered.Count > 0) lst.SelectedIndex = 0;
@@ -99,6 +106,8 @@ public partial class CollectionPickerDialog : Window
     {
         if (lst?.SelectedIndex >= 0 && lst.SelectedIndex < _filtered.Count)
         {
+            var txtSummary = this.FindControl<TextBox>("TxtSummary");
+            PassageSummary = string.IsNullOrWhiteSpace(txtSummary?.Text) ? null : txtSummary.Text.Trim();
             Result = _filtered[lst.SelectedIndex];
             Close(Result);
         }
