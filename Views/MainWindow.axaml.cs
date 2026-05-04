@@ -1895,8 +1895,8 @@ private async Task LoadConfigAndAutoloadAsync()
                 var selected = await picker.ShowDialog<ScholarCollection?>(this);
                 if (selected == null) return; // user cancelled
 
-                // Apply user-edited summary back to passage
-                passage.Summary = picker.PassageSummary ?? passage.Summary;
+                // Apply user-edited summary (null = user cleared it; DisplayTitle handles fallback)
+                passage.Summary = picker.PassageSummary;
 
                 // If this is a newly created collection (not yet in VM), add it
                 if (!scholarVm.Collections.Any(c => c.Id == selected.Id))

@@ -1156,8 +1156,12 @@ public partial class ScholarTabViewModel : ViewModelBase
         passage.AddedUtc = DateTimeOffset.UtcNow;
         passage.CreatedBy = _username;
 
-        // Auto-detect master names from passage text
+        // Auto-detect master names, then regenerate summary if masters were found
+        // (summary was generated before masters were detected at creation site)
+        var hadMasters = passage.MasterNames is { Count: > 0 };
         AutoTagMasterNames(passage);
+        if (!hadMasters && passage.MasterNames is { Count: > 0 })
+            passage.Summary = passage.GenerateAutoSummary();
 
         collection.Passages.Add(passage);
 
