@@ -23,7 +23,7 @@ public sealed class IndexCacheService : IIndexCacheService
 
     // Bump this string whenever you want to force rebuild even if cache exists.
     // (Useful when you change status logic and want to ensure the cache isn't stale.)
-    private const string CacheBuildGuid = "phase3-nav-v3-no-metadata";
+    private const string CacheBuildGuid = "phase3-nav-v4-community-fallback";
 
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
@@ -338,6 +338,25 @@ public sealed class IndexCacheService : IIndexCacheService
 
                 // IMPORTANT: this is the translated file path your app will check
                 var tranAbs = Path.Combine(translatedDir, rel);
+
+                // Fallback: if canonical translation doesn't exist, check community translations.
+                // Handles OpenZen where xml-open-t/ is empty but community/translations/{user}/ has files.
+                if (!File.Exists(tranAbs))
+                {
+                    var communityTransDir = Path.Combine(root, "community", "translations");
+                    if (Directory.Exists(communityTransDir))
+                    {
+                        foreach (var userDir in Directory.GetDirectories(communityTransDir))
+                        {
+                            var communityPath = Path.Combine(userDir, rel);
+                            if (File.Exists(communityPath))
+                            {
+                                tranAbs = communityPath;
+                                break;
+                            }
+                        }
+                    }
+                }
 
                 bool verbose =
                     i < LogFirstN ||

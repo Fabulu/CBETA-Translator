@@ -3561,6 +3561,9 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                         var candidatePath = Path.Combine(dir, _currentRelPath);
                         if (!File.Exists(candidatePath))
                             continue;
+                        // Skip users whose translation is identical to the original
+                        if (!IsMeaningfullyTranslatedPath(_currentRelPath, candidatePath))
+                            continue;
                     }
 
                     options.Add(username);
