@@ -77,7 +77,7 @@ public sealed class ScholarPassage
         {
             var en = EnText.Trim();
             // Find first sentence boundary
-            var match = System.Text.RegularExpressions.Regex.Match(en, @"^(.+?[.!?])\s");
+            var match = System.Text.RegularExpressions.Regex.Match(en, @"^(.+?[.!?])(?:\s|$)");
             var sentence = match.Success ? match.Groups[1].Value.Trim() : en;
             if (sentence.Length > 60)
                 sentence = sentence[..57].TrimEnd() + "\u2026";
@@ -86,14 +86,15 @@ public sealed class ScholarPassage
         }
 
         // Priority 2: Master name + first Chinese phrase
-        if (MasterNames is { Count: > 0 } && !string.IsNullOrWhiteSpace(ZhText))
+        var firstMaster = MasterNames?.FirstOrDefault(m => !string.IsNullOrWhiteSpace(m));
+        if (firstMaster != null && !string.IsNullOrWhiteSpace(ZhText))
         {
             var zh = ZhText.Trim();
             var phrase = zh.Length > 12 ? zh[..12] : zh;
             // Break on CJK punctuation if possible
             var lastBreak = phrase.LastIndexOfAny(new[] { '\u3002', '\uFF0C', '\uFF1B', '\u3001' });
             if (lastBreak > 3) phrase = phrase[..lastBreak];
-            return $"{MasterNames[0]}: {phrase}";
+            return $"{firstMaster}: {phrase}";
         }
 
         // Priority 3: First 20 chars of Chinese text
