@@ -1040,6 +1040,8 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         // Auto-detect and merge master names from passage text
         AutoTagMasterNames(adopted);
+        if (string.IsNullOrWhiteSpace(adopted.Summary))
+            adopted.Summary = adopted.GenerateAutoSummary();
 
         targetCollection.Passages.Add(adopted);
 

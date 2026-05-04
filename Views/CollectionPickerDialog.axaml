@@ -4,11 +4,15 @@
         Title="Choose Collection"
         Width="320" Height="400"
         WindowStartupLocation="CenterOwner" CanResize="False">
-  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="12">
+  <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="12">
     <Button Grid.Row="0" Name="BtnNewCollection" Content="+ New Collection" Padding="12,6" Margin="0,0,0,8"/>
     <TextBox Grid.Row="1" Name="TxtSearch" Watermark="Filter collections..." Margin="0,0,0,8"/>
     <ListBox Grid.Row="2" Name="LstCollections" SelectionMode="Single"/>
-    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+    <StackPanel Grid.Row="3" Spacing="4" Margin="0,8,0,0">
+      <TextBlock Text="Passage Summary (optional)" FontSize="11" Opacity="0.6"/>
+      <TextBox Name="TxtSummary" Watermark="Auto-generated if empty" FontSize="12"/>
+    </StackPanel>
+    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
       <Button Name="BtnCancel" Content="Cancel" Padding="12,6"/>
       <Button Name="BtnOk" Content="OK" Padding="12,6"/>
     </StackPanel>

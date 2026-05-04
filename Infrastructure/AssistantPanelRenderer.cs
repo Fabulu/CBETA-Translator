@@ -350,6 +350,8 @@ internal static class AssistantPanelRenderer
                     SourceRelPath = match.RelPath ?? "",
                     AddedUtc = DateTimeOffset.UtcNow
                 };
+                if (string.IsNullOrWhiteSpace(passage.Summary))
+                    passage.Summary = passage.GenerateAutoSummary();
                 addToScholarHandler(passage);
             };
             border.ContextMenu = new ContextMenu { Items = { menuItem } };
@@ -400,6 +402,8 @@ internal static class AssistantPanelRenderer
                     SourceRelPath = "",
                     AddedUtc = DateTimeOffset.UtcNow
                 };
+                if (string.IsNullOrWhiteSpace(passage.Summary))
+                    passage.Summary = passage.GenerateAutoSummary();
                 addToScholarHandler(passage);
             };
             border.ContextMenu = new ContextMenu { Items = { menuItem } };

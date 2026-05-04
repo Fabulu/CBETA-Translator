@@ -225,7 +225,7 @@ public class SearchResultChild : INotifyPropertyChanged
         string zh = Side == SearchSide.Original ? PrimarySnippetText : SecondarySnippetText;
         string en = Side == SearchSide.Translated ? PrimarySnippetText : SecondarySnippetText;
 
-        return new ScholarPassage
+        var passage = new ScholarPassage
         {
             Id = Guid.NewGuid().ToString("N"),
             SourceRelPath = RelPath,
@@ -233,6 +233,9 @@ public class SearchResultChild : INotifyPropertyChanged
             EnText = en,
             AddedUtc = DateTimeOffset.UtcNow
         };
+        if (string.IsNullOrWhiteSpace(passage.Summary))
+            passage.Summary = passage.GenerateAutoSummary();
+        return passage;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
