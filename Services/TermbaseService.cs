@@ -32,6 +32,13 @@ public sealed class TermbaseService : ITermbaseService
     private DateTime _cachedTermsLastWrite;
     private List<TermRow>? _cachedTerms;
 
+    public void InvalidateCache()
+    {
+        _cachedTermsPath = null;
+        _cachedTermsLastWrite = default;
+        _cachedTerms = null;
+    }
+
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         PropertyNameCaseInsensitive = true

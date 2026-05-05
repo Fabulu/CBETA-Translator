@@ -2071,7 +2071,7 @@ public partial class ScholarTabViewModel : ViewModelBase
     /// </summary>
     private void FireSave()
     {
-        _pendingSave = SafeFireAndForget(SaveAsync());
+        System.Threading.Interlocked.Exchange(ref _pendingSave, SafeFireAndForget(SaveAsync()));
     }
 
     // ----- One-time migration: re-extract passage texts via TeiRenderer -----

@@ -691,7 +691,7 @@ public sealed class SearchIndexService : ISearchIndexService
         GC.SuppressFinalize(this);
     }
 
-    private void InvalidateIndexCaches()
+    public void InvalidateIndexCaches()
     {
         lock (_indexCacheLock)
         {

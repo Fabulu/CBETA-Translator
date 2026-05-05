@@ -68,6 +68,7 @@ public partial class ResearchGraphWindow : Window
 
         Closing += (_, _) =>
         {
+            DisposeHoverDicts();
             if (_vm != null && _canvas != null)
             {
                 _vm.SavedZoom = _canvas.CurrentZoom;

@@ -27,6 +27,16 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
     private DateTime _referenceCacheTime;
     private List<TmRow>? _referenceCacheRows;
 
+    public void InvalidateCache()
+    {
+        _approvedCachePath = null;
+        _approvedCacheTime = default;
+        _approvedCacheRows = null;
+        _referenceCachePath = null;
+        _referenceCacheTime = default;
+        _referenceCacheRows = null;
+    }
+
     private sealed class TmRow
     {
         public string SourceText { get; set; } = "";
