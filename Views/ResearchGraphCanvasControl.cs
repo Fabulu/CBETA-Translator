@@ -1081,6 +1081,8 @@ public class ResearchGraphCanvasControl : Control
         StopPhysics();
         _entryTimer?.Stop();
         _entryTimer = null;
+        _rippleTimer?.Stop();
+        _rippleTimer = null;
         base.OnDetachedFromVisualTree(e);
     }
 

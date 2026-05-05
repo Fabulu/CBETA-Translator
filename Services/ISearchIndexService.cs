@@ -25,6 +25,7 @@ public interface ISearchIndexService : IDisposable
     string GetTextBinPath(string root);
     string GetCjk2ManifestPath(string root);
 
+    void InvalidateIndexCaches();
     void ClearBloomCache();
     void ClearVerifyTextCache();
 

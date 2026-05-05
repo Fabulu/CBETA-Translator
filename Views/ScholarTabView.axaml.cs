@@ -36,6 +36,7 @@ public partial class ScholarTabView : UserControl
     private HoverDictionaryBehaviorTextBox? _hoverDict;
     private DispatcherTimer? _scholarSelDebounce;
     private bool _scholarSelWired;
+    private EventHandler? _scholarDataChangedHandler;
 
     // Parallel passage finder
     private readonly IParallelPassageFinderService _parallelFinder = App.Services.GetRequiredService<IParallelPassageFinderService>();
@@ -88,12 +89,13 @@ public partial class ScholarTabView : UserControl
         _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
 
         // Reload from disk when another ScholarTabView instance saves data
-        ScholarDataChanged += (sender, args) =>
+        _scholarDataChangedHandler = (sender, args) =>
         {
             if (sender != this)
                 Task.Run(async () => await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(
                     async () => await _vm.ReloadFromDiskAsync()));
         };
+        ScholarDataChanged += _scholarDataChangedHandler;
 
         _vm.PickExportFileAsync = PickExportFileAsync;
         _vm.PickImportFileAsync = PickImportFileAsync;
@@ -580,6 +582,8 @@ public partial class ScholarTabView : UserControl
 
         DetachedFromVisualTree += (_, _) =>
         {
+            if (_scholarDataChangedHandler != null)
+                ScholarDataChanged -= _scholarDataChangedHandler;
             DisposeHoverDictionary();
             try { _assistantCts?.Cancel(); } catch (ObjectDisposedException) { }
             try { _assistantCts?.Dispose(); } catch (ObjectDisposedException) { }

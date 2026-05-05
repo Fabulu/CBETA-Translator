@@ -93,6 +93,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private List<FileNavItem> _allItems = new();
     private List<FileNavItem> _filteredItems = new();
     private readonly Dictionary<string, FileNavItem> _allItemsByRel = new(StringComparer.OrdinalIgnoreCase);
+    private readonly object _navItemsLock = new();
 
     public List<FileNavItem> FilteredItems => _filteredItems;
     public Dictionary<string, FileNavItem> AllItemsByRel => _allItemsByRel;
@@ -107,6 +108,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // Nav filter performance / race control
     private int _navFilterVersion;
+
+    private CancellationToken ResetRenderCts()
+    {
+        var old = _renderCts;
+        _renderCts = new CancellationTokenSource();
+        try { old?.Cancel(); } catch { }
+        try { old?.Dispose(); } catch { }
+        return _renderCts.Token;
+    }
 
     private bool _indexCacheDirty;
 
@@ -251,9 +261,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         // Cancel any in-flight render so we don't end up applying it to
         // the wrong corpus's editor state after the switch.
-        _renderCts?.Cancel();
-        _renderCts?.Dispose();
-        _renderCts = new CancellationTokenSource();
+        ResetRenderCts();
 
         _originalDir = layout.OriginalDir;
         _translatedDir = layout.TranslatedDir;
@@ -270,6 +278,10 @@ public partial class MainWindowViewModel : ViewModelBase
         _renderCache.Clear();
         _meaningfulTranslationCache.Clear();
         _licenseMetadata.Clear();
+
+        _searchIndex.InvalidateIndexCaches();
+        _searchIndex.ClearBloomCache();
+        _searchIndex.ClearVerifyTextCache();
 
         ActiveCorpus = target;
         _config.ActiveCorpus = target;
@@ -1210,7 +1222,8 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             // Only show every 500 to avoid flooding status bar over indexing messages
             if (done % 500 == 0 && done < total)
-                SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}");
+                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                    SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
         });
         var refilter = new Progress<int>(_ =>
         {
@@ -1222,6 +1235,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 var fireAndForget = ApplyFilterSafeAsync();
             });
         });
+        var statusUpdates = new System.Collections.Concurrent.ConcurrentBag<(FileNavItem item, object newStatus, long newMtime)>();
         await Task.Run(() =>
         {
             int done = 0;
@@ -1231,14 +1245,9 @@ public partial class MainWindowViewModel : ViewModelBase
                 if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
                 var best = EvaluateBestTranslationSource(it.RelPath);
                 var newStatus = best.Status;
-                if (!Equals(it.Status, newStatus))
+                if (!Equals(it.Status, newStatus) || it.TranslatedMtimeTicks != best.TranslatedMtimeTicks)
                 {
-                    it.Status = newStatus;
-                    changed = true;
-                }
-                if (it.TranslatedMtimeTicks != best.TranslatedMtimeTicks)
-                {
-                    it.TranslatedMtimeTicks = best.TranslatedMtimeTicks;
+                    statusUpdates.Add((it, newStatus, best.TranslatedMtimeTicks));
                     changed = true;
                 }
                 done++;
@@ -1263,6 +1272,20 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             var fireAndForget = ApplyFilterSafeAsync();
         });
+
+        // Apply collected status updates on UI thread
+        if (statusUpdates.Count > 0)
+        {
+            await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                foreach (var (item, newStatus, newMtime) in statusUpdates)
+                {
+                    item.Status = (TranslationStatus)newStatus;
+                    item.TranslatedMtimeTicks = newMtime;
+                }
+            });
+        }
+
         if (changed)
         {
             await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems }, _originalsRepoRoot);
@@ -1270,8 +1293,11 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     private void RebuildLookup()
     {
-        _allItemsByRel.Clear();
-        foreach (var it in _allItems) _allItemsByRel[NormalizeRel(it.RelPath)] = it;
+        lock (_navItemsLock)
+        {
+            _allItemsByRel.Clear();
+            foreach (var it in _allItems) _allItemsByRel[NormalizeRel(it.RelPath)] = it;
+        }
     }
 
     private static bool MatchesLocalText(FileNavItem it, string qLower)
@@ -1333,7 +1359,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
             string? selectedRel = (GetNavSelectedItem?.Invoke())?.RelPath ?? _currentRelPath;
 
-            var allSnapshot = _allItems.ToList();
+            List<FileNavItem> allSnapshot;
+            lock (_navItemsLock) { allSnapshot = _allItems.ToList(); }
 
             var built = await Task.Run(() =>
             {
@@ -1629,10 +1656,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
-        _renderCts?.Cancel();
-        _renderCts?.Dispose();
-        _renderCts = new CancellationTokenSource();
-        var ct = _renderCts.Token;
+        var ct = ResetRenderCts();
 
         if (autoChooseSource && !_userHasManuallySelectedSource)
         {
@@ -1753,8 +1777,9 @@ public partial class MainWindowViewModel : ViewModelBase
             var sourceName = _translationSourceIndex < _translationSourceOptions.Count
                 ? _translationSourceOptions[_translationSourceIndex] : "unknown";
             SetStatus($"Loaded: {relPath} — Source: {sourceName} (O={readableOrig.Segments.Count:n0}, T={readableTran.Segments.Count:n0}, {swRender.ElapsedMilliseconds:n0}ms)");
-            _ = RefreshProgressStatsAsync(); // Do not await; keep the UI responsive
-            _ = LoadAndPushTagsForCurrentFileAsync(); // Load tags for this file
+            var capturedRelPath = _currentRelPath;
+            _ = Task.Run(async () => { ct.ThrowIfCancellationRequested(); await RefreshProgressStatsAsync(); }, ct);
+            _ = Task.Run(async () => { ct.ThrowIfCancellationRequested(); await LoadAndPushTagsForCurrentFileAsync(); }, ct);
 
             // Rebuild the translation source dropdown for this specific file
             // so only users who actually translated THIS file appear. Must run
@@ -2666,10 +2691,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (SetReadableRendered == null) return;
         if (_currentRelPath == null || _originalDir == null || (_translatedDir == null && _activeTranslatedDir == null)) return;
 
-        _renderCts?.Cancel();
-        _renderCts?.Dispose();
-        _renderCts = new CancellationTokenSource();
-        var ct = _renderCts.Token;
+        var ct = ResetRenderCts();
 
         try
         {
@@ -3504,6 +3526,8 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
                 }
             }
 
+            if (_meaningfulTranslationCache.Count > 5000)
+                _meaningfulTranslationCache.Clear();
             _meaningfulTranslationCache[candidatePath] = new MeaningfulTranslationCacheEntry(
                 originalWriteUtc,
                 candidateWriteUtc,

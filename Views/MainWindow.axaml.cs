@@ -200,12 +200,9 @@ public partial class MainWindow : Window
                     var maxH = wa.Height / scaling;
                     if (Height > maxH + 10 || Position.Y < wa.Y / scaling)
                     {
-                        Dispatcher.UIThread.Post(() =>
-                        {
-                            Position = new Avalonia.PixelPoint(wa.X, wa.Y);
-                            Width = maxW;
-                            Height = maxH;
-                        });
+                        Position = new Avalonia.PixelPoint(wa.X, wa.Y);
+                        Width = maxW;
+                        Height = maxH;
                     }
                 }
             }
@@ -480,18 +477,19 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
             RestoreWindowState();
-            MaybeStartTour();
-        }
-        finally
-        {
-            _windowReady.TrySetResult();
 
-            // Close splash screen once the main window is ready
+            // Close splash early — window is now themed and positioned
             if (!IsSecondaryWindow && App.SplashScreen is { } splash)
             {
                 App.SplashScreen = null;
                 splash.Close();
             }
+
+            MaybeStartTour();
+        }
+        finally
+        {
+            _windowReady.TrySetResult();
         }
     }
 

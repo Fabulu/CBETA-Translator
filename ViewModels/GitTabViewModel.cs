@@ -93,6 +93,7 @@ public partial class GitTabViewModel : ViewModelBase
     private string? _lastCommunityBranch;
     private string? _username;
     private CorpusKind _activeCorpus = CorpusKind.Cbeta;
+    private bool _isSyncing;
     private CancellationTokenSource? _cts;
 
     // ----- Observable properties -----
@@ -333,19 +334,28 @@ public partial class GitTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task GetFilesAsync()
     {
-        await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+        _isSyncing = true;
+        try { await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges); }
+        finally { _isSyncing = false; }
     }
 
     [RelayCommand]
     private async Task UpdateKeepLocalAsync()
     {
-        await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+        _isSyncing = true;
+        try { await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges); }
+        finally { _isSyncing = false; }
     }
 
     [RelayCommand]
     private async Task UpdateDiscardLocalAsync()
     {
-        await GetOrUpdateFilesAsync(UpdateMode.DiscardLocalChanges);
+        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+        _isSyncing = true;
+        try { await GetOrUpdateFilesAsync(UpdateMode.DiscardLocalChanges); }
+        finally { _isSyncing = false; }
     }
 
     [RelayCommand]
@@ -407,6 +417,10 @@ public partial class GitTabViewModel : ViewModelBase
     [RelayCommand]
     private async Task SyncAsync()
     {
+        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+        _isSyncing = true;
+        try
+        {
         // Capture HEAD before sync for "What's New" summary
         string? preTransHead = null;
         try
@@ -592,6 +606,8 @@ public partial class GitTabViewModel : ViewModelBase
         ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
         StatusChanged?.Invoke(this, ProgressText);
         SyncCompleted?.Invoke(this, EventArgs.Empty);
+        }
+        finally { _isSyncing = false; }
     }
 
     [RelayCommand]
@@ -612,6 +628,8 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task GetOrUpdateFilesAsync(UpdateMode mode)
     {
+        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+
         var ct = BeginOperation();
 
         SetButtonsBusy(true);
@@ -855,6 +873,7 @@ public partial class GitTabViewModel : ViewModelBase
 
         string backupDir = CreateBackupDir();
         bool backupCreated = false;
+        bool allRestored = true;
 
         try
         {
@@ -925,8 +944,16 @@ public partial class GitTabViewModel : ViewModelBase
                     if (!string.IsNullOrWhiteSpace(dstDir))
                         Directory.CreateDirectory(dstDir);
 
-                    File.Copy(file, dst, overwrite: true);
-                    AppendLog("[restore] " + rel);
+                    try
+                    {
+                        File.Copy(file, dst, overwrite: true);
+                        AppendLog("[restore] " + rel);
+                    }
+                    catch (Exception ex)
+                    {
+                        allRestored = false;
+                        AppendLog($"[error] restore failed for {rel}: {ex.Message}");
+                    }
                 }
 
                 AppendLog("[ok] local file changes restored on top of latest repo");
@@ -938,7 +965,10 @@ public partial class GitTabViewModel : ViewModelBase
         }
         finally
         {
-            TryDeleteDirectory(backupDir);
+            if (allRestored)
+                TryDeleteDirectory(backupDir);
+            else
+                AppendLog($"[warn] Backup preserved at {backupDir} for manual recovery");
         }
     }
 
