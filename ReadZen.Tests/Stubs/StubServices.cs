@@ -138,6 +138,7 @@ public class StubSearchIndexService : ISearchIndexService
 
     public void ClearBloomCache() { }
     public void ClearVerifyTextCache() { }
+    public void InvalidateIndexCaches() { }
 
     public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(null);
     public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
