@@ -99,7 +99,7 @@ public class ScholarTabViewModelTests
         await (Task)loadMethod.Invoke(vm, Array.Empty<object>())!;
 
         Assert.Empty(vm.Collections);
-        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal(0, vm.NavigatorTabIndex);
         Assert.Null(vm.SelectedCollection);
         Assert.Null(svc.LastSaved);
     }
@@ -1591,7 +1591,7 @@ public class ScholarTabViewModelTests
 
         Assert.True(vm.HasCommunityCollections);
         Assert.False(vm.IsEmptyState);
-        Assert.Equal(2, vm.NavigatorTabIndex);
+        Assert.Equal(1, vm.NavigatorTabIndex);
         Assert.Single(vm.CommunityCollections);
         Assert.NotNull(vm.SelectedCommunityCollection);
         Assert.Equal(new List<string> { "All Users", "bob" }, vm.CommunityUsernames);
@@ -1626,7 +1626,7 @@ public class ScholarTabViewModelTests
         await vm.LoadCommunityCommand.ExecuteAsync(null);
 
         Assert.True(vm.HasCommunityCollections);
-        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal(0, vm.NavigatorTabIndex);
     }
 
    
@@ -2638,7 +2638,7 @@ public async Task LoadAsync_LoadsLegacyScholarFileAndMigratesToCanonicalGitHubId
         var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1");
 
         Assert.True(found);
-        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal(0, vm.NavigatorTabIndex);
         Assert.Equal("local-c1", vm.SelectedCollection?.Id);
         Assert.Equal("local-p1", vm.SelectedPassage?.Id);
     }
@@ -2682,7 +2682,7 @@ public async Task LoadAsync_LoadsLegacyScholarFileAndMigratesToCanonicalGitHubId
         var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1", "owner-local");
 
         Assert.True(found);
-        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal(0, vm.NavigatorTabIndex);
         Assert.Equal("local-c1", vm.SelectedCollection?.Id);
         Assert.Equal("local-p1", vm.SelectedPassage?.Id);
         Assert.Null(vm.SelectedCommunityCollection);
@@ -2716,7 +2716,7 @@ public async Task LoadAsync_LoadsLegacyScholarFileAndMigratesToCanonicalGitHubId
         var found = await vm.TryNavigateToPassageAsync("shared-c1", "shared-p1", "shared-user");
 
         Assert.True(found);
-        Assert.Equal(2, vm.NavigatorTabIndex);
+        Assert.Equal(1, vm.NavigatorTabIndex);
         Assert.Equal("shared-c1", vm.SelectedCommunityCollection?.Id);
         Assert.Equal("shared-p1", vm.SelectedCommunityPassage?.Id);
         Assert.Equal("shared-user", vm.CommunityUsernames[vm.SelectedCommunityUserIndex]);
@@ -2746,7 +2746,7 @@ public async Task LoadAsync_LoadsLegacyScholarFileAndMigratesToCanonicalGitHubId
         var found = await vm.TryNavigateToPassageAsync("local-c1", "local-p1", "shared-user");
 
         Assert.False(found);
-        Assert.Equal(1, vm.NavigatorTabIndex);
+        Assert.Equal(0, vm.NavigatorTabIndex);
         Assert.Equal("local-c1", vm.SelectedCollection?.Id);
         Assert.Equal("local-p1", vm.SelectedPassage?.Id);
         Assert.Null(vm.SelectedCommunityCollection);

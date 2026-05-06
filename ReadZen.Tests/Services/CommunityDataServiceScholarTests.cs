@@ -136,9 +136,9 @@ public class CommunityDataServiceScholarTests : IDisposable
         Assert.NotNull(merged);
         Assert.Single(merged!);
 
-        // The winner should be the upstream (newer), but passages from both should be merged
+        // Local metadata wins (user-data-wins merge strategy); passages from both are unioned
         var c = merged[0];
-        Assert.Equal("Upstream Newer Version", c.Name);
+        Assert.Equal("Local Old Version", c.Name); // Local metadata preserved
         Assert.Equal(2, c.Passages.Count); // both p1 and p2 should be present
     }
 
