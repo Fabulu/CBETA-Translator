@@ -628,7 +628,8 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task GetOrUpdateFilesAsync(UpdateMode mode)
     {
-        if (_isSyncing) { AppendLog("[skip] Sync already in progress."); return; }
+        // No _isSyncing guard here — this private method is called from
+        // already-guarded public methods (SyncAsync, GetFilesAsync, etc.)
 
         var ct = BeginOperation();
 

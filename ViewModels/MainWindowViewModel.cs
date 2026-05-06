@@ -1235,7 +1235,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 var fireAndForget = ApplyFilterSafeAsync();
             });
         });
-        var statusUpdates = new System.Collections.Concurrent.ConcurrentBag<(FileNavItem item, object newStatus, long newMtime)>();
+        var statusUpdates = new System.Collections.Concurrent.ConcurrentBag<(FileNavItem item, TranslationStatus newStatus, long newMtime)>();
         await Task.Run(() =>
         {
             int done = 0;
@@ -1280,7 +1280,7 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 foreach (var (item, newStatus, newMtime) in statusUpdates)
                 {
-                    item.Status = (TranslationStatus)newStatus;
+                    item.Status = newStatus;
                     item.TranslatedMtimeTicks = newMtime;
                 }
             });
