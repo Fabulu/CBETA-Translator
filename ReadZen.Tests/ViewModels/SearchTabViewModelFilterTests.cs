@@ -46,6 +46,7 @@ public class SearchTabViewModelFilterTests
         public string GetCjk2ManifestPath(string root) => "";
         public void ClearBloomCache() { }
         public void ClearVerifyTextCache() { }
+    public void InvalidateIndexCaches() { }
         public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(new SearchIndexManifest());
         public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
         public Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root) => Task.FromResult<SearchCjkBigramManifest?>(null);
