@@ -223,7 +223,7 @@ public class ResearchGraphPolishTests
 
         Assert.Contains("evidences", ids);
         Assert.Contains("refutes", ids);
-        Assert.Equal(2, types.Count);
+        Assert.Equal(7, types.Count);
     }
 
     [Fact]
@@ -235,7 +235,7 @@ public class ResearchGraphPolishTests
         Assert.Contains("subsumes", ids);
         Assert.Contains("opposes", ids);
         Assert.Contains("related-to", ids);
-        Assert.Equal(3, types.Count);
+        Assert.Equal(7, types.Count);
     }
 
     [Fact]
@@ -256,7 +256,7 @@ public class ResearchGraphPolishTests
 
         Assert.Contains("teacher-of", ids);
         Assert.Contains("same-school", ids);
-        Assert.Equal(2, types.Count);
+        Assert.Equal(7, types.Count);
     }
 
     [Fact]

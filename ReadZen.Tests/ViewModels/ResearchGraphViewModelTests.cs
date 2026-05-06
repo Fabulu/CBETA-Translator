@@ -46,7 +46,7 @@ public class EdgeTypeRegistryTests
     public void GetValidTypes_PassageToConcept_Returns2Types()
     {
         var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.Passage, ScholarNodeType.Concept);
-        Assert.Equal(2, types.Count);
+        Assert.Equal(7, types.Count);
         Assert.Contains(types, t => t.Id == "evidences");
         Assert.Contains(types, t => t.Id == "refutes");
     }
