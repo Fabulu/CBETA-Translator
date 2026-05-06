@@ -52,10 +52,12 @@ public class EdgeTypeRegistryTests
     }
 
     [Fact]
-    public void GetValidTypes_IncompatiblePair_ReturnsEmpty()
+    public void GetValidTypes_MasterToTerm_ReturnsMasterTermEdges()
     {
         var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.ZenMaster, ScholarNodeType.TermbaseEntry);
-        Assert.Empty(types);
+        var ids = types.Select(t => t.Id).ToHashSet();
+        Assert.Contains("coined", ids);
+        Assert.True(types.Count >= 1);
     }
 
     [Fact]

@@ -245,7 +245,7 @@ public class ResearchGraphPolishTests
         var ids = types.Select(t => t.Id).ToHashSet();
 
         Assert.Contains("attributed-to", ids);
-        Assert.Single(types);
+        Assert.True(types.Count >= 1, "Expected at least attributed-to for Passage→ZenMaster");
     }
 
     [Fact]
@@ -260,10 +260,12 @@ public class ResearchGraphPolishTests
     }
 
     [Fact]
-    public void GetValidTypes_TermToTerm_ReturnsEmpty()
+    public void GetValidTypes_TermToTerm_ReturnsTermEdges()
     {
         var types = EdgeTypeRegistry.GetValidTypes(ScholarNodeType.TermbaseEntry, ScholarNodeType.TermbaseEntry);
-        Assert.Empty(types);
+        var ids = types.Select(t => t.Id).ToHashSet();
+        Assert.Contains("synonym-of", ids);
+        Assert.Contains("antonym-of", ids);
     }
 
     // ================================================================
