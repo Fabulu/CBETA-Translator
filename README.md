@@ -1,7 +1,7 @@
 ![.NET 8](https://img.shields.io/badge/.NET-8-blue)
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
-![Tests: 1199](https://img.shields.io/badge/Tests-1199-brightgreen)
+![Tests: 1434](https://img.shields.io/badge/Tests-1434-brightgreen)
 ![Masters: 301](https://img.shields.io/badge/Zen_Masters-301-blueviolet)
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
 ![OpenZenTexts: CC0 / Commercial OK](https://img.shields.io/badge/OpenZenTexts-CC0%20%2F%20Commercial%20OK-brightgreen)
@@ -35,7 +35,7 @@ Read Zen is a full working environment for Chinese Zen study and translation acr
 | **Explore** | 301 Zen master profiles with interactive lineage graph | Desktop + Web |
 | **Translate** | Structure-aware editor with AI workflow, TM, and review | Desktop |
 | **Research** | Scholar collections, passage linking, BibTeX export | Desktop |
-| **Graph** | Knowledge graphs per collection with 7 node types and 60+ edge types | Desktop + Web |
+| **Graph** | Knowledge graphs per collection with 7 node types and 345 edge types | Desktop + Web |
 | **Annotate** | Qualitative coding/tagging with frequency and co-occurrence analytics | Desktop |
 | **Collaborate** | GitHub-backed sync for translations, termbases, collections, and reviews | Desktop |
 | **Provenance** | Critical edition viewer with witness comparison and editorial documentation | Desktop |
@@ -90,7 +90,7 @@ For publishers, translators, teachers, app developers, and practitioners who nee
 
 | | |
 |---|---|
-| **1,199 automated tests** | URI parsing, search, translation status, corpus detection, Scholar exports, witness loading, master corpus search |
+| **1,434 automated tests** | URI parsing, search, translation status, corpus detection, Scholar exports, witness loading, master corpus search |
 | **Structure-preserving editor** | Translation changes never break TEI validity - unsafe states are rejected, not silently mangled |
 | **Separate repositories** | Originals and translations in different repos; CBETA and OpenZen in different repos |
 | **Local-first work model** | All text work happens on your machine; sync is explicit and reversible |
@@ -145,7 +145,7 @@ Read Zen is no longer just a reader plus translation editor. The app now has nin
 - `Search`: corpus search with typeahead (hit counts + history), post-search filtering, multi-master intersection, insights charts, command palette (Ctrl+Shift+P), and exports
 - `Community`: text download, updates, GitHub sync, recovery actions
 - `Scholar`: collections, workspace, shared collections, passage comparison, research graph, exports, and research tooling
-- `Research Graph`: per-collection knowledge graph with 7 node types, 60+ edge types, force-directed layout, inspector panel, and double-click navigation
+- `Research Graph`: per-collection knowledge graph with 7 node types, 345 edge types, force-directed layout, inspector panel, and double-click navigation
 - `Masters`: database of 301 Zen masters with full lineage graph, corpus text appearances, biographical profiles, and 400+ reference links
 - `Provenance Browser`: source witness tables, editorial documentation, license/attribution chips, and per-file manifest data from OpenZen
 - `Witness Comparison`: per-locus witness comparison popup from any apparatus entry, showing differing readings first with copy and full-text-viewer support - driven by the `witnesses.json` delivery registry shipped with each critical edition
@@ -371,7 +371,7 @@ The graph supports **7 node types**, each with a unique shape and color:
 
 Key features:
 - **"+ Add" dropdown** for creating any of the 7 node types
-- **60+ built-in edge types** plus custom edge types with user-defined colors
+- **345 built-in edge types** plus custom edge types with user-defined colors
 - **Starting node** - set a prominent entry point with animated golden ripple pulse glow
 - **Right-click context menu** - rename, set starting node, focus/ego network, add note, delete
 - **Inspector panel** - rich node details with hover dictionary on Chinese text
@@ -631,7 +631,7 @@ Assets/Dict/cedict_ts.u8
 ```bash
 dotnet test
 ```
-**1199 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
+**1434 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
 
 ## Contributing
 
