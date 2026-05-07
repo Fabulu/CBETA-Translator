@@ -662,25 +662,51 @@ public class ZenUriParserTests
     }
 
     [Fact]
-    public void TryParseDeepLink_ScholarLink_ReturnsScholarKind()
+    public void TryParseDeepLink_ScholarLink_NewFormat_UserAndCollection()
     {
-        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col1/pass1");
+        // New format: zen://scholar/{user}/{collectionName}/{passage}
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/alice/My%20Collection/Some%20Passage");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
-        Assert.Equal("col1", result.ScholarCollectionId);
-        Assert.Equal("pass1", result.ScholarPassageId);
+        Assert.Equal("alice", result.ScholarUser);
+        Assert.Equal("My Collection", result.ScholarCollectionId);
+        Assert.Equal("Some Passage", result.ScholarPassageId);
     }
 
     [Fact]
-    public void TryParseDeepLink_ScholarLink_CollectionOnly()
+    public void TryParseDeepLink_ScholarLink_NewFormat_UserOnly()
     {
-        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col1");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/alice");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
-        Assert.Equal("col1", result.ScholarCollectionId);
-        Assert.Null(result.ScholarPassageId);
+        Assert.Equal("alice", result.ScholarUser);
+        Assert.Null(result.ScholarCollectionId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_ScholarLink_NewFormat_GraphRoute()
+    {
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/alice/My%20Collection/graph");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.ScholarGraph, result.Kind);
+        Assert.Equal("alice", result.ScholarUser);
+        Assert.Equal("My Collection", result.ScholarCollectionId);
+    }
+
+    [Fact]
+    public void TryParseDeepLink_ScholarLink_LegacyGuidFormat()
+    {
+        // Legacy: zen://scholar/{guid}/{passageId}/{user}
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/b51dac9e04dc42cb83b7733fd952ede1/pass1/bob");
+
+        Assert.NotNull(result);
+        Assert.Equal(DeepLinkKind.Scholar, result.Kind);
+        Assert.Equal("b51dac9e04dc42cb83b7733fd952ede1", result.ScholarCollectionId);
+        Assert.Equal("pass1", result.ScholarPassageId);
+        Assert.Equal("bob", result.ScholarUser);
     }
 
     [Fact]
@@ -937,13 +963,14 @@ public class ZenUriParserTests
     [Fact]
     public void BuildScholarUri_RoundTrip()
     {
-        var uri = ZenUriParser.BuildScholarUri("c1", "p1");
+        var uri = ZenUriParser.BuildScholarUri("My Collection", "Some Passage", user: "alice");
         var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
-        Assert.Equal("c1", result.ScholarCollectionId);
-        Assert.Equal("p1", result.ScholarPassageId);
+        Assert.Equal("My Collection", result.ScholarCollectionId);
+        Assert.Equal("Some Passage", result.ScholarPassageId);
+        Assert.Equal("alice", result.ScholarUser);
     }
 
     [Fact]
@@ -1054,36 +1081,39 @@ public class ZenUriParserTests
     // ==== Per-user deep links ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Scholar ====
 
     [Fact]
-    public void TryParseDeepLink_ScholarWithUser()
+    public void TryParseDeepLink_ScholarNewFormat_UserCollectionPassage()
     {
-        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col/pass/bob");
+        // New format: zen://scholar/{user}/{collection}/{passage}
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/bob/Wansong%20Bowl/Zhaozhou");
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
-        Assert.Equal("col", result.ScholarCollectionId);
-        Assert.Equal("pass", result.ScholarPassageId);
+        Assert.Equal("Wansong Bowl", result.ScholarCollectionId);
+        Assert.Equal("Zhaozhou", result.ScholarPassageId);
         Assert.Equal("bob", result.ScholarUser);
     }
 
     [Fact]
-    public void TryParseDeepLink_ScholarWithoutUser_UserIsNull()
+    public void TryParseDeepLink_ScholarNewFormat_UserAndCollection()
     {
-        var result = ZenUriParser.TryParseDeepLink("zen://scholar/col/pass");
+        var result = ZenUriParser.TryParseDeepLink("zen://scholar/bob/Wansong%20Bowl");
 
         Assert.NotNull(result);
-        Assert.Null(result.ScholarUser);
+        Assert.Equal("bob", result.ScholarUser);
+        Assert.Equal("Wansong Bowl", result.ScholarCollectionId);
+        Assert.Null(result.ScholarPassageId);
     }
 
     [Fact]
     public void BuildScholarUri_WithUser_RoundTrip()
     {
-        var uri = ZenUriParser.BuildScholarUri("c1", "p1", user: "bob");
+        var uri = ZenUriParser.BuildScholarUri("Wansong Bowl", "Zhaozhou's Bowl", user: "bob");
         var result = ZenUriParser.TryParseDeepLink(uri);
 
         Assert.NotNull(result);
         Assert.Equal(DeepLinkKind.Scholar, result.Kind);
-        Assert.Equal("c1", result.ScholarCollectionId);
-        Assert.Equal("p1", result.ScholarPassageId);
+        Assert.Equal("Wansong Bowl", result.ScholarCollectionId);
+        Assert.Equal("Zhaozhou's Bowl", result.ScholarPassageId);
         Assert.Equal("bob", result.ScholarUser);
     }
 

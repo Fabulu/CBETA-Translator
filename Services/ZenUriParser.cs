@@ -518,20 +518,49 @@ public static class ZenUriParser
                 };
 
             case "scholar":
-                // Detect graph sub-route: zen://scholar/{collectionId}/graph/{user?}
-                if (segments.Length >= 3 && segments[2].Equals("graph", StringComparison.OrdinalIgnoreCase))
+                // New canonical form: zen://scholar/{user}/{collectionName}[/graph|/{passage}]
+                // Legacy form:        zen://scholar/{collectionId}[/{passageId}][/{user}]
+                var seg1 = segments.Length >= 2 ? Uri.UnescapeDataString(segments[1]) : null;
+                var seg2 = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null;
+                var seg3 = segments.Length >= 4 ? Uri.UnescapeDataString(segments[3]) : null;
+
+                // Detect legacy: first segment is a GUID-like hex string (24+ hex chars)
+                var isLegacy = seg1 != null && System.Text.RegularExpressions.Regex.IsMatch(seg1, @"^[0-9a-fA-F]{24,}$");
+
+                if (isLegacy)
+                {
+                    // Legacy: zen://scholar/{collectionId}/graph/{user?}
+                    if (seg2 != null && seg2.Equals("graph", StringComparison.OrdinalIgnoreCase))
+                        return new DeepLinkRequest
+                        {
+                            Kind = DeepLinkKind.ScholarGraph,
+                            ScholarCollectionId = seg1,
+                            ScholarUser = seg3,
+                        };
+                    // Legacy: zen://scholar/{collectionId}[/{passageId}][/{user}]
+                    return new DeepLinkRequest
+                    {
+                        Kind = DeepLinkKind.Scholar,
+                        ScholarCollectionId = seg1,
+                        ScholarPassageId = seg2,
+                        ScholarUser = seg3,
+                    };
+                }
+
+                // New form: zen://scholar/{user}/{collectionName}[/graph|/{passage}]
+                if (seg3 != null && seg3.Equals("graph", StringComparison.OrdinalIgnoreCase))
                     return new DeepLinkRequest
                     {
                         Kind = DeepLinkKind.ScholarGraph,
-                        ScholarCollectionId = Uri.UnescapeDataString(segments[1]),
-                        ScholarUser = segments.Length >= 4 ? Uri.UnescapeDataString(segments[3]) : null,
+                        ScholarUser = seg1,
+                        ScholarCollectionId = seg2,
                     };
                 return new DeepLinkRequest
                 {
                     Kind = DeepLinkKind.Scholar,
-                    ScholarCollectionId = segments.Length >= 2 ? Uri.UnescapeDataString(segments[1]) : null,
-                    ScholarPassageId = segments.Length >= 3 ? Uri.UnescapeDataString(segments[2]) : null,
-                    ScholarUser = segments.Length >= 4 ? Uri.UnescapeDataString(segments[3]) : null,
+                    ScholarUser = seg1,
+                    ScholarCollectionId = seg2,
+                    ScholarPassageId = seg3,
                 };
 
             case "search":
@@ -635,14 +664,16 @@ public static class ZenUriParser
     public static string BuildDictUri(string term)
         => $"{Scheme}://dict/{Uri.EscapeDataString(term)}";
 
-    public static string BuildScholarUri(string collectionId, string? passageId = null, string? user = null)
+    public static string BuildScholarUri(string collectionName, string? passageSlug = null, string? user = null)
     {
-        var uri = passageId != null
-            ? $"{Scheme}://scholar/{collectionId}/{passageId}"
-            : $"{Scheme}://scholar/{collectionId}";
-        if (!string.IsNullOrEmpty(user))
-            uri += "/" + Uri.EscapeDataString(user);
-        return uri;
+        // New format: zen://scholar/{user}/{collectionName}[/{passage}]
+        if (string.IsNullOrEmpty(user))
+            return passageSlug != null
+                ? $"{Scheme}://scholar/_/{Uri.EscapeDataString(collectionName)}/{Uri.EscapeDataString(passageSlug)}"
+                : $"{Scheme}://scholar/_/{Uri.EscapeDataString(collectionName)}";
+        return passageSlug != null
+            ? $"{Scheme}://scholar/{Uri.EscapeDataString(user)}/{Uri.EscapeDataString(collectionName)}/{Uri.EscapeDataString(passageSlug)}"
+            : $"{Scheme}://scholar/{Uri.EscapeDataString(user)}/{Uri.EscapeDataString(collectionName)}";
     }
 
     public static string BuildSearchUri(
@@ -803,25 +834,22 @@ public static class ZenUriParser
     public static string BuildShareableDictUrl(string term)
         => $"{ShareableBase}dict/{Uri.EscapeDataString(term)}";
 
-    public static string BuildShareableScholarUrl(string collectionId, string? passageId = null, string? user = null)
+    public static string BuildShareableScholarUrl(string collectionName, string? passageSlug = null, string? user = null)
     {
-        var slug = Uri.EscapeDataString(collectionId).Replace("%20", "_");
-        var url = passageId != null
-            ? $"{ShareableBase}scholar/{slug}/{passageId}"
-            : $"{ShareableBase}scholar/{slug}";
-        if (!string.IsNullOrEmpty(user))
-            url += "/" + Uri.EscapeDataString(user);
-        return url;
+        // New format: readzen.pages.dev/#/scholar/{user}/{collectionName}[/{passage}]
+        var userSlug = Uri.EscapeDataString(user ?? "_");
+        var collSlug = Uri.EscapeDataString(collectionName);
+        return passageSlug != null
+            ? $"{ShareableBase}scholar/{userSlug}/{collSlug}/{Uri.EscapeDataString(passageSlug)}"
+            : $"{ShareableBase}scholar/{userSlug}/{collSlug}";
     }
 
-    public static string BuildShareableGraphUrl(string collectionId, string? user = null)
+    public static string BuildShareableGraphUrl(string collectionName, string? user = null)
     {
-        // Use underscores instead of %20 for readable URLs (same pattern as master URLs)
-        var slug = Uri.EscapeDataString(collectionId).Replace("%20", "_");
-        var url = $"{ShareableBase}scholar/{slug}/graph";
-        if (!string.IsNullOrEmpty(user))
-            url += "/" + Uri.EscapeDataString(user);
-        return url;
+        // New format: readzen.pages.dev/#/scholar/{user}/{collectionName}/graph
+        var userSlug = Uri.EscapeDataString(user ?? "_");
+        var collSlug = Uri.EscapeDataString(collectionName);
+        return $"{ShareableBase}scholar/{userSlug}/{collSlug}/graph";
     }
 
     public static string BuildShareableSearchUrl(
