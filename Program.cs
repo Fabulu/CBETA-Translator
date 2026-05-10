@@ -139,23 +139,22 @@ class Program
 internal sealed class StderrLogSink : Avalonia.Logging.ILogSink
 {
     public bool IsEnabled(Avalonia.Logging.LogEventLevel level, string area)
-        => level >= Avalonia.Logging.LogEventLevel.Warning;
+        => level >= Avalonia.Logging.LogEventLevel.Information;
 
     public void Log(Avalonia.Logging.LogEventLevel level, string area, object? source, string messageTemplate)
     {
-        Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate}");
+        try { Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate}"); Console.Error.Flush(); } catch { }
     }
 
     public void Log(Avalonia.Logging.LogEventLevel level, string area, object? source, string messageTemplate, params object?[] propertyValues)
     {
         try
         {
-            var msg = string.Format(messageTemplate.Replace("{", "{0:").Replace("}", "}"), propertyValues);
-            Console.Error.WriteLine($"[Avalonia {level}] {area}: {msg}");
+            // Don't try string.Format — Avalonia uses {PropertyName} not {0} style
+            var vals = propertyValues != null ? string.Join(", ", propertyValues) : "";
+            Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate} [{vals}]");
+            Console.Error.Flush();
         }
-        catch
-        {
-            Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate}");
-        }
+        catch { }
     }
 }
