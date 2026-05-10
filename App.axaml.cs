@@ -34,48 +34,65 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        // Global CJK font for LiveCharts2 tooltips and labels.
-        // MatchCharacter asks the OS font subsystem for any installed font that can
-        // render CJK, so it works on any platform without hard-coding family names.
-        var cjkTypeface = SKFontManager.Default.MatchCharacter('汉') ?? SKTypeface.Default;
-        LiveCharts.Configure(config => config.HasGlobalSKTypeface(cjkTypeface));
-
-        var sc = new ServiceCollection();
-        sc.AddAppServices();
-        Services = sc.BuildServiceProvider();
-
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        try
         {
-            // Show splash screen immediately while MainWindow loads
-            var splash = new Views.SplashWindow();
-            SplashScreen = splash;
-            splash.Show();
-
-            // Let the splash paint before blocking with MainWindow constructor
-            Dispatcher.UIThread.RunJobs(DispatcherPriority.Render);
-
-            // Always create and show the primary window (normal flow)
-            desktop.MainWindow = new MainWindow();
-
-            // Check for deep link after window is created
-            var startupUri = StartupArgs?.FirstOrDefault(a =>
-                ZenUriParser.TryParseDeepLink(a) != null);
-
-            Dispatcher.UIThread.Post(async () =>
+            // Global CJK font for LiveCharts2 tooltips and labels.
+            // MatchCharacter asks the OS font subsystem for any installed font that can
+            // render CJK, so it works on any platform without hard-coding family names.
+            try
             {
-                try { TryAutoRegisterProtocol(); } catch { }
-                SetupPipeListener();
+                var cjkTypeface = SKFontManager.Default.MatchCharacter('汉') ?? SKTypeface.Default;
+                LiveCharts.Configure(config => config.HasGlobalSKTypeface(cjkTypeface));
+            }
+            catch
+            {
+                // Font system unavailable (headless Linux, missing SkiaSharp native libs)
+                try { LiveCharts.Configure(config => config.HasGlobalSKTypeface(SKTypeface.Default)); } catch { }
+            }
 
-                // If launched via deep link, navigate in the primary window directly
-                if (!string.IsNullOrEmpty(startupUri))
+            var sc = new ServiceCollection();
+            sc.AddAppServices();
+            Services = sc.BuildServiceProvider();
+
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                // Show splash screen immediately while MainWindow loads
+                var splash = new Views.SplashWindow();
+                SplashScreen = splash;
+                splash.Show();
+
+                // Let the splash paint before blocking with MainWindow constructor
+                Dispatcher.UIThread.RunJobs(DispatcherPriority.Render);
+
+                // Always create and show the primary window (normal flow)
+                desktop.MainWindow = new MainWindow();
+
+                // Check for deep link after window is created
+                var startupUri = StartupArgs?.FirstOrDefault(a =>
+                    ZenUriParser.TryParseDeepLink(a) != null);
+
+                Dispatcher.UIThread.Post(async () =>
                 {
-                    try { await HandleDeepLinkInPrimaryAsync(startupUri); } catch { }
-                }
-            }, DispatcherPriority.Background);
-        }
+                    try { TryAutoRegisterProtocol(); } catch { }
+                    SetupPipeListener();
 
-        // Non-blocking update check
-        _ = CheckForUpdateAsync();
+                    // If launched via deep link, navigate in the primary window directly
+                    if (!string.IsNullOrEmpty(startupUri))
+                    {
+                        try { await HandleDeepLinkInPrimaryAsync(startupUri); } catch { }
+                    }
+                }, DispatcherPriority.Background);
+            }
+
+            // Non-blocking update check
+            _ = CheckForUpdateAsync();
+        }
+        catch (Exception ex)
+        {
+            System.Console.Error.WriteLine($"FATAL: ReadZen failed to initialize: {ex}");
+            System.Console.Error.Flush();
+            throw; // Re-throw so the app exits with the error
+        }
 
         base.OnFrameworkInitializationCompleted();
     }
