@@ -189,6 +189,7 @@ public partial class ReadableTabView : UserControl
     // Correction time-travel (CE editions)
     private CorrectionTimelineBar? _correctionTimeline;
     private Infrastructure.DriftGutterMargin? _driftGutter;
+    private Infrastructure.EvidenceGutterMargin? _evidenceGutter;
     private CharacterProvenanceFlyout? _charProvenanceFlyout;
     private CharacterVariantFlyout? _charVariantFlyout;
     private List<Services.CorrectionEntry>? _correctionEntries;
@@ -1167,6 +1168,13 @@ public partial class ReadableTabView : UserControl
         _termHitRanges = null;
         ClearStudyHoverBehaviors();
 
+        // Remove evidence gutter from Chinese pane
+        if (_evidenceGutter != null && _aeOrig?.TextArea != null)
+        {
+            _aeOrig.TextArea.LeftMargins.Remove(_evidenceGutter);
+            _evidenceGutter = null;
+        }
+
         // Drop license metadata for the previously-loaded file so the
         // context-menu items ("Copy with attribution" / "Copy source URL" /
         // "Open source page") don't operate on stale data after a root
@@ -1241,6 +1249,9 @@ public partial class ReadableTabView : UserControl
 
             SetupHoverDictionary();
             CancelMoveModeAndHideNotes();
+
+            // Attach evidence gutter to the Chinese pane (shows apparatus dots)
+            AttachEvidenceGutter();
 
             ExitPending("SetRendered");
 
@@ -5870,6 +5881,58 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     }
 
     /// <summary>
+    /// Attaches the evidence gutter margin to the Chinese text editor and populates
+    /// it with apparatus entries (variant readings, corrections, etc.) from the
+    /// current critical-edition file.
+    /// </summary>
+    private void AttachEvidenceGutter()
+    {
+        if (_aeOrig?.TextArea == null) return;
+
+        // Create and insert the gutter if not already present
+        if (_evidenceGutter == null)
+        {
+            _evidenceGutter = new Infrastructure.EvidenceGutterMargin();
+            _aeOrig.TextArea.LeftMargins.Insert(0, _evidenceGutter);
+        }
+
+        // Build evidence lines from loci map + apparatus data
+        var evidenceLines = new Dictionary<int, string>();
+        if (_lociMap != null && _vm?.RenderOrig?.Segments != null && _provenanceXmlAbsPath != null)
+        {
+            var appService = new Services.ApparatusService();
+            var apparatus = appService.TryLoad(_provenanceXmlAbsPath);
+            var appByLocus = new Dictionary<string, Models.ApparatusEntry>(StringComparer.OrdinalIgnoreCase);
+            if (apparatus?.Entries != null)
+                foreach (var e in apparatus.Entries)
+                    if (e.LocusId != null) appByLocus[e.LocusId] = e;
+
+            if (appByLocus.Count > 0)
+            {
+                foreach (var seg in _vm.RenderOrig.Segments)
+                {
+                    if (!_lociMap.TryGetValue(seg.Key, out var entry)) continue;
+                    var locusId = Services.LociMappingService.StripLocusUrn(entry.Corresp);
+                    if (locusId == null) continue;
+
+                    // Find display line for this segment
+                    var doc = _aeOrig?.Document;
+                    if (doc == null || seg.Start >= doc.TextLength) continue;
+                    int line = doc.GetLineByOffset(Math.Min(seg.Start, doc.TextLength - 1)).LineNumber - 1; // 0-based
+
+                    if (appByLocus.TryGetValue(locusId, out var appEntry))
+                    {
+                        var label = appEntry.Decision?.Replace('_', ' ') ?? "variant";
+                        evidenceLines[line] = $"{char.ToUpper(label[0])}{label[1..]} \u2014 Ctrl+click for details";
+                    }
+                }
+            }
+        }
+
+        _evidenceGutter.SetEvidenceLines(evidenceLines.Count > 0 ? evidenceLines : null);
+    }
+
+    /// <summary>
     /// Clears correction time-travel state when switching to a non-CE file.
     /// </summary>
     public void ClearCorrectionTimeline()
@@ -5884,6 +5947,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         {
             _aeTran.TextArea.LeftMargins.Remove(_driftGutter);
             _driftGutter = null;
+        }
+
+        if (_evidenceGutter != null && _aeOrig?.TextArea != null)
+        {
+            _aeOrig.TextArea.LeftMargins.Remove(_evidenceGutter);
+            _evidenceGutter = null;
         }
 
         _charProvenanceFlyout?.Detach();

@@ -140,6 +140,23 @@ public sealed class AnchorService
         return result;
     }
 
+    /// <summary>
+    /// Returns the evidence tier for a locus. Defaults to "line" if not specified.
+    /// </summary>
+    public static string GetEvidenceTier(AnchorBase? anchor)
+    {
+        if (anchor?.EvidenceTier != null) return anchor.EvidenceTier;
+        if (anchor?.CharBoxes is { Count: > 0 }) return "character";
+        if (anchor?.LocusBbox != null) return "line";
+        return "page";
+    }
+
+    /// <summary>
+    /// Returns whether character-level evidence is available for a locus.
+    /// </summary>
+    public static bool HasCharacterEvidence(AnchorBase? anchor)
+        => anchor?.CharBoxes is { Count: > 0 } || anchor?.EvidenceTier == "character";
+
     private static List<T>? ParseJsonl<T>(string path)
     {
         var result = new List<T>();
