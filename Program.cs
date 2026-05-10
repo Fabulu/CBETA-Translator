@@ -77,6 +77,9 @@ class Program
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
     {
+        // Log Avalonia internals to stderr so Linux crashes show the real cause
+        Avalonia.Logging.Logger.Sink = new StderrLogSink();
+
         var builder = AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
@@ -125,5 +128,34 @@ class Program
         }
 
         return builder;
+    }
+}
+
+/// <summary>
+/// Writes Avalonia's internal log messages (errors, warnings) to stderr.
+/// On Linux, the X11 backend logs the real crash cause before the dispatcher
+/// shuts down — but only if a sink is attached.
+/// </summary>
+internal sealed class StderrLogSink : Avalonia.Logging.ILogSink
+{
+    public bool IsEnabled(Avalonia.Logging.LogEventLevel level, string area)
+        => level >= Avalonia.Logging.LogEventLevel.Warning;
+
+    public void Log(Avalonia.Logging.LogEventLevel level, string area, object? source, string messageTemplate)
+    {
+        Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate}");
+    }
+
+    public void Log(Avalonia.Logging.LogEventLevel level, string area, object? source, string messageTemplate, params object?[] propertyValues)
+    {
+        try
+        {
+            var msg = string.Format(messageTemplate.Replace("{", "{0:").Replace("}", "}"), propertyValues);
+            Console.Error.WriteLine($"[Avalonia {level}] {area}: {msg}");
+        }
+        catch
+        {
+            Console.Error.WriteLine($"[Avalonia {level}] {area}: {messageTemplate}");
+        }
     }
 }
