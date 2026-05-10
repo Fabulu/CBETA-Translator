@@ -24,6 +24,8 @@ public sealed class AnchorBase
     [JsonPropertyName("ocr_region_ref")] public string? OcrRegionRef { get; set; }
     [JsonPropertyName("char_boxes")] public List<double[]>? CharBoxes { get; set; }
     [JsonPropertyName("notes")] public string? Notes { get; set; }
+    [JsonPropertyName("evidence_tier")] public string? EvidenceTier { get; set; }
+    [JsonPropertyName("char_coverage")] public string? CharCoverage { get; set; }
 }
 
 public sealed class AnchorEvent

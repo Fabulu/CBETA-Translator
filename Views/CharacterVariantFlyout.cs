@@ -396,6 +396,41 @@ public sealed class CharacterVariantFlyout : IDisposable
         // ── Separator ──
         stack.Children.Add(MakeSeparator(border));
 
+        // ── Evidence level message ──
+        {
+            bool hasCharBoxes = false;
+            if (_anchorBasesByLocus != null && locusId != null &&
+                _anchorBasesByLocus.TryGetValue(locusId, out var locusAnchors))
+                hasCharBoxes = locusAnchors.Any(ab => ab.CharBoxes is { Count: > 0 });
+
+            string evidenceText;
+            IBrush evidenceFg;
+            if (appEntry != null && hasCharBoxes)
+            {
+                evidenceText = "\U0001f50d Character-level evidence \u2014 click witness to zoom to exact character";
+                evidenceFg = ThemeBrush(l => l ? Color.FromRgb(30, 120, 30) : Color.FromRgb(120, 220, 120));
+            }
+            else if (appEntry != null)
+            {
+                evidenceText = "\U0001f4c4 Line-level evidence \u2014 click witness to see the full line region";
+                evidenceFg = ThemeBrush(l => l ? Color.FromRgb(180, 100, 0) : Color.FromRgb(255, 180, 80));
+            }
+            else
+            {
+                evidenceText = "No editorial intervention at this locus \u2014 click witness to view source page";
+                evidenceFg = dimFg;
+            }
+
+            stack.Children.Add(new TextBlock
+            {
+                Text = evidenceText,
+                FontSize = 10,
+                Foreground = evidenceFg,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(0, 2, 0, 4),
+            });
+        }
+
         // ── Witness buttons ──
         stack.Children.Add(new TextBlock
         {
