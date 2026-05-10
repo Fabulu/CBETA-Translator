@@ -15,6 +15,21 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        // Global exception handlers — catch crashes that happen during rendering
+        // or on background threads, so Linux users see the real error, not just
+        // "Dispatcher shut down".
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
+        {
+            Console.Error.WriteLine($"FATAL UNHANDLED: {e.ExceptionObject}");
+            Console.Error.Flush();
+        };
+
+        System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (_, e) =>
+        {
+            Console.Error.WriteLine($"UNOBSERVED TASK: {e.Exception}");
+            Console.Error.Flush();
+        };
+
         // Velopack MUST run before anything else — it intercepts --veloapp-install /
         // --veloapp-update / --veloapp-restarted command-line flags and exits the
         // process early when appropriate. Calling this on builds that weren't packaged
