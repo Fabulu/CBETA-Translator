@@ -24,27 +24,21 @@
             </DockPanel>
         </Border>
 
-        <!-- Tab control (order: Sources, Editorial Process, Apparatus, Collation, Corrections, Timeline, Edition Log, Statistics, Documents) -->
+        <!-- Tab control (order: Sources, Apparatus, Collation, Corrections, Timeline, Editorial Process, Edition Log, Statistics, Documents) -->
         <TabControl Name="TabMain" Margin="8">
 
             <!-- Sources tab -->
-            <TabItem Header="Sources">
+            <TabItem Header="Sources"
+                     ToolTip.Tip="Witnesses and source documents used in this edition">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="SourcesHost" Spacing="8" Margin="8"/>
                 </ScrollViewer>
             </TabItem>
 
-            <!-- Process tab -->
-            <TabItem Header="Editorial Process">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Name="ProcessHost" Spacing="8" Margin="8"/>
-                </ScrollViewer>
-            </TabItem>
-
             <!-- Apparatus tab -->
-            <TabItem Header="Apparatus">
+            <TabItem Header="Apparatus"
+                     ToolTip.Tip="Variant readings across witnesses at each textual locus">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="8,4">
                         <CheckBox Name="ChkLeidenView" Content="Leiden notation" FontSize="11"
@@ -60,7 +54,8 @@
             </TabItem>
 
             <!-- Collation tab -->
-            <TabItem Header="Collation">
+            <TabItem Header="Collation"
+                     ToolTip.Tip="Side-by-side witness comparison table and stemma diagram">
                 <TabControl Name="CollationSubTabs">
                     <TabItem Header="Table">
                         <Grid RowDefinitions="Auto,*">
@@ -88,7 +83,8 @@
             </TabItem>
 
             <!-- Corrections tab (CE time-travel) -->
-            <TabItem Header="Corrections" Name="TabCorrections">
+            <TabItem Header="Corrections" Name="TabCorrections"
+                     ToolTip.Tip="Step through text corrections with before/after preview">
                 <Grid RowDefinitions="Auto,Auto,*" Name="CorrectionContent" Margin="8">
                     <!-- Scrubber -->
                     <DockPanel Grid.Row="0">
@@ -130,7 +126,8 @@
             </TabItem>
 
             <!-- Timeline tab -->
-            <TabItem Header="Timeline">
+            <TabItem Header="Timeline"
+                     ToolTip.Tip="Full chronological event log of edition production">
                 <Grid RowDefinitions="Auto,Auto,*">
                     <!-- Slider + controls -->
                     <DockPanel Grid.Row="0" Margin="8,8,8,0">
@@ -151,8 +148,9 @@
                                     ToolTip.Tip="Forward 10 events" Opacity="0.7" Margin="1"/>
                             <Button Name="BtnFwd50" Content="+50" Padding="4,2" FontSize="9"
                                     ToolTip.Tip="Forward 50 events" Opacity="0.7" Margin="1"/>
-                            <ComboBox Name="CmbTimelineStage" MinWidth="130" FontSize="11"
-                                      ToolTip.Tip="Jump to stage" Margin="4,1,0,1"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" MaxWidth="400" Margin="4,1,0,1">
+                                <StackPanel Name="TimelineStageStrip" Orientation="Horizontal" Spacing="2"/>
+                            </ScrollViewer>
                             <CheckBox Name="ChkTextChangesOnly" Content="Text changes only"
                                       FontSize="11" VerticalAlignment="Center" Margin="4,1,0,1"/>
                         </WrapPanel>
@@ -201,8 +199,18 @@
                 </Grid>
             </TabItem>
 
+            <!-- Process tab -->
+            <TabItem Header="Editorial Process"
+                     ToolTip.Tip="Production methodology, OCR pipeline, and publication checks">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="ProcessHost" Spacing="8" Margin="8"/>
+                </ScrollViewer>
+            </TabItem>
+
             <!-- Edition Log tab -->
-            <TabItem Header="Edition Log">
+            <TabItem Header="Edition Log"
+                     ToolTip.Tip="Human-readable narrative of the editorial process">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="LogHost" Spacing="8" Margin="8"/>
@@ -210,7 +218,8 @@
             </TabItem>
 
             <!-- Stats tab -->
-            <TabItem Header="Statistics">
+            <TabItem Header="Statistics"
+                     ToolTip.Tip="Quantitative summary of witnesses, confidence, and coverage">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="StatsHost" Spacing="8" Margin="8"/>
@@ -218,7 +227,8 @@
             </TabItem>
 
             <!-- Documents tab -->
-            <TabItem Header="Documents">
+            <TabItem Header="Documents"
+                     ToolTip.Tip="Supporting documentation and provenance files">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="DocumentsHost" Spacing="8" Margin="8"/>

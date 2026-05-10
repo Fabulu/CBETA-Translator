@@ -11,8 +11,8 @@ namespace ReadZen.App.Text;
 /// <summary>
 /// Converts TEI/CBETA-ish XML into readable text WITH stable segment keys.
 /// Fine-grained segmentation (preferred):
-/// - Start new segment on sync-tags: lb, pb, p(xml:id), anchor, cb:juan
-/// - Render lb as newline, pb/p/head as paragraph break
+/// - Start new segment on sync-tags: lb, pb, p(xml:id), l(n), anchor, cb:juan
+/// - Render lb/l as newline, pb/p/head as paragraph break
 /// Not a full XML parser; fast tag/text scanner.
 ///
 /// Notes/annotations:
@@ -529,6 +529,11 @@ public static class TeiRenderer
                         {
                             EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
                         }
+                        else if (EqualsIgnoreCase(tagName, "l"))
+                        {
+                            // Verse line: newline before each line (except the first in a group)
+                            AppendNewline(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
+                        }
                     }
                     else
                     {
@@ -1011,6 +1016,14 @@ public static class TeiRenderer
         {
             key = "";
             return false;
+        }
+
+        if (EqualsIgnoreCase(tagName, "l"))
+        {
+            var n = Attr(attrs, AttrN);
+            if (string.IsNullOrWhiteSpace(n)) return false;
+            key = MakeKey("l", n);
+            return true;
         }
 
         if (EqualsIgnoreCase(tagName, "cb:juan"))
