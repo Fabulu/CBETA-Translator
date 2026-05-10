@@ -65,6 +65,11 @@ public partial class App : Application
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                // Prevent premature shutdown: the splash window is shown before MainWindow,
+                // and if splash.Close() fires before MainWindow.Show(), Avalonia's default
+                // OnLastWindowClose mode sees "last window closed" and shuts down.
+                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnExplicitShutdown;
+
                 // Show splash screen immediately while MainWindow loads
                 var splash = new Views.SplashWindow();
                 SplashScreen = splash;
@@ -75,6 +80,9 @@ public partial class App : Application
 
                 // Always create and show the primary window (normal flow)
                 desktop.MainWindow = new MainWindow();
+
+                // Now that MainWindow exists, restore normal shutdown behavior
+                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnMainWindowClose;
 
                 // Check for deep link after window is created
                 var startupUri = StartupArgs?.FirstOrDefault(a =>
