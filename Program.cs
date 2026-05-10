@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using System;
+using System.Linq;
+using System.Reflection;
 using ReadZen.App.Services;
 using Velopack;
 
@@ -59,8 +61,54 @@ class Program
 
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
+    {
+        var builder = AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+
+        // On Linux, configure X11 with software rendering fallback and disable
+        // DBus menu to avoid Wayland dispatcher shutdown crashes (Issue #19523).
+        // Uses reflection because Avalonia.X11 types are only available at runtime
+        // on Linux (not at compile time on Windows).
+        if (OperatingSystem.IsLinux())
+        {
+            try
+            {
+                var x11OptionsType = Type.GetType("Avalonia.X11.X11PlatformOptions, Avalonia.X11");
+                var renderModeType = Type.GetType("Avalonia.X11.X11RenderingMode, Avalonia.X11");
+                if (x11OptionsType != null && renderModeType != null)
+                {
+                    var options = Activator.CreateInstance(x11OptionsType)!;
+
+                    // RenderingMode = [Glx, Software]
+                    var glx = Enum.Parse(renderModeType, "Glx");
+                    var sw = Enum.Parse(renderModeType, "Software");
+                    var arr = Array.CreateInstance(renderModeType, 2);
+                    arr.SetValue(glx, 0);
+                    arr.SetValue(sw, 1);
+                    x11OptionsType.GetProperty("RenderingMode")?.SetValue(options, arr);
+
+                    // UseDBusMenu = false
+                    x11OptionsType.GetProperty("UseDBusMenu")?.SetValue(options, false);
+
+                    // builder.With(options) — call the generic With<T> method
+                    var withMethod = typeof(AppBuilder).GetMethods()
+                        .Where(m => m.Name == "With" && m.IsGenericMethod)
+                        .FirstOrDefault();
+                    if (withMethod != null)
+                    {
+                        var generic = withMethod.MakeGenericMethod(x11OptionsType);
+                        builder = (AppBuilder)generic.Invoke(builder, new[] { options })!;
+                    }
+                }
+            }
+            catch
+            {
+                // X11 types may not be available on some configurations — proceed without
+            }
+        }
+
+        return builder;
+    }
 }

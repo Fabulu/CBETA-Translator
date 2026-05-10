@@ -135,6 +135,8 @@ public partial class MainWindow : Window
         IsSecondaryWindow = isSecondaryWindow;
 
         InitializeComponent();
+        try
+        {
         FindControls();
         CreateViewModel();
         if (isSecondaryWindow) _vm.SuppressConfigSavesForSecondaryWindow();
@@ -207,6 +209,12 @@ public partial class MainWindow : Window
                 }
             }
         };
+        }
+        catch (Exception ex)
+        {
+            System.Console.Error.WriteLine($"FATAL: MainWindow initialization failed: {ex}");
+            // Don't re-throw — let the window show empty rather than crashing
+        }
     }
 
     public async Task OpenAtAsync(string root, NavigationRequest request)

@@ -25,9 +25,9 @@ public sealed class WitnessDownloadService
         Timeout = TimeSpan.FromMinutes(30)
     };
 
-    static WitnessDownloadService()
+    private static void EnsureCacheDir()
     {
-        Directory.CreateDirectory(CacheDir);
+        try { Directory.CreateDirectory(CacheDir); } catch { }
     }
 
     /// <summary>
@@ -35,6 +35,7 @@ public sealed class WitnessDownloadService
     /// </summary>
     public static string? GetCachedPath(string witnessId, string? pageId = null)
     {
+        EnsureCacheDir();
         // For PDFs: witness-cache/{witnessId}.pdf
         // For IIIF JPEGs: witness-cache/{witnessId}/{pageId}.jpg
         if (pageId != null)
@@ -55,6 +56,7 @@ public sealed class WitnessDownloadService
         Action<double>? progress = null,
         CancellationToken ct = default)
     {
+        EnsureCacheDir();
         var localPath = Path.Combine(CacheDir, witnessId + ".pdf");
         if (File.Exists(localPath)) return localPath;
 
@@ -92,6 +94,7 @@ public sealed class WitnessDownloadService
         Action<double>? progress = null,
         CancellationToken ct = default)
     {
+        EnsureCacheDir();
         var dir = Path.Combine(CacheDir, witnessId);
         Directory.CreateDirectory(dir);
         var localPath = Path.Combine(dir, imageFilename + ".jpg");
