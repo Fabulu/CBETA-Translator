@@ -65,6 +65,9 @@ public partial class ReadableTabViewModel : ViewModelBase
     public RenderedDocument RenderOrig { get; set; } = RenderedDocument.Empty;
     public RenderedDocument RenderTran { get; set; } = RenderedDocument.Empty;
 
+    /// <summary>Segment-key → locus mapping built from the original XML by <see cref="LociMappingService"/>.</summary>
+    public Dictionary<string, LociEntry>? LociMap { get; set; }
+
     // -------------------------
     // Current annotation state
     // -------------------------

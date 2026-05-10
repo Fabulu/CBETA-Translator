@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
@@ -1809,21 +1810,33 @@ public partial class EditionProcessDialog : Window
         WireStep("BtnFwd10", 10);
         WireStep("BtnFwd50", 50);
 
-        // Stage jump combo
-        var cmbStage = this.FindControl<ComboBox>("CmbTimelineStage");
-        if (cmbStage != null)
+        // Stage jump strip
+        var stageStrip = this.FindControl<StackPanel>("TimelineStageStrip");
+        if (stageStrip != null)
         {
             var stages = TimelineService.GetStages(_timelineEvents);
-            var items = new List<ComboBoxItem> { new() { Content = "(all stages)", Tag = (string?)null } };
-            foreach (var s in stages)
-                items.Add(new ComboBoxItem { Content = FormatStage(s), Tag = s });
-            cmbStage.ItemsSource = items;
-            cmbStage.SelectedIndex = 0;
-            cmbStage.SelectionChanged += (_, _) =>
+
+            void SelectStageButton(ToggleButton clicked)
             {
-                var selected = (cmbStage.SelectedItem as ComboBoxItem)?.Tag as string;
-                ApplyTimelineFilter(selected);
-            };
+                foreach (var child in stageStrip.Children)
+                {
+                    if (child is ToggleButton tb && tb != clicked)
+                        tb.IsChecked = false;
+                }
+                clicked.IsChecked = true;
+                ApplyTimelineFilter(clicked.Tag as string);
+            }
+
+            var allBtn = new ToggleButton { Content = "(all stages)", Tag = (string?)null, FontSize = 11, Padding = new Avalonia.Thickness(6, 2), IsChecked = true };
+            allBtn.Click += (_, _) => SelectStageButton(allBtn);
+            stageStrip.Children.Add(allBtn);
+
+            foreach (var s in stages)
+            {
+                var btn = new ToggleButton { Content = FormatStage(s), Tag = s, FontSize = 11, Padding = new Avalonia.Thickness(6, 2) };
+                btn.Click += (_, _) => SelectStageButton(btn);
+                stageStrip.Children.Add(btn);
+            }
         }
 
         // Text changes only checkbox
@@ -1832,7 +1845,7 @@ public partial class EditionProcessDialog : Window
         {
             chkText.IsCheckedChanged += (_, _) =>
             {
-                var stageTag = (this.FindControl<ComboBox>("CmbTimelineStage")?.SelectedItem as ComboBoxItem)?.Tag as string;
+                var stageTag = this.FindControl<StackPanel>("TimelineStageStrip")?.Children.OfType<ToggleButton>().FirstOrDefault(t => t.IsChecked == true)?.Tag as string;
                 ApplyTimelineFilter(stageTag);
             };
         }

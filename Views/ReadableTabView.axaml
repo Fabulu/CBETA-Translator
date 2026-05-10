@@ -20,7 +20,7 @@
 		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="FontFamily" Value="'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"/>
+			<Setter Property="FontFamily" Value="Georgia, 'Noto Serif', 'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"/>
 			<Setter Property="WordWrap" Value="True"/>
 			<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
 			<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
@@ -236,13 +236,25 @@
 								BorderBrush="{DynamicResource XmlViewerBorder}"
 								BorderThickness="1"
 								CornerRadius="6">
-							<Grid RowDefinitions="Auto,*">
+							<Grid RowDefinitions="Auto,*,Auto">
 								<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
 									<TextBlock Text="Original (read-only)" Classes="muted"/>
 								</Border>
 
 								<local:AnnotatedTextEditor Name="EditorOriginal"
 														   Grid.Row="1"/>
+
+								<!-- Footnotes panel - below Chinese text editor -->
+								<Border Name="FootnotesPanel" Grid.Row="2" IsVisible="False"
+										BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+										BorderThickness="0,1,0,0" Padding="8,4" MaxHeight="200">
+									<StackPanel Spacing="2">
+										<TextBlock Text="Apparatus Notes" FontSize="11" FontWeight="SemiBold" Opacity="0.7" Margin="0,0,0,2"/>
+										<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="170">
+											<StackPanel Name="FootnotesHost" Spacing="4"/>
+										</ScrollViewer>
+									</StackPanel>
+								</Border>
 							</Grid>
 						</Border>
 

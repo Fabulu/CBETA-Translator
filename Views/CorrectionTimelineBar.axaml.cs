@@ -9,6 +9,7 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using ReadZen.App.Services;
+using ReadZen.App.Models;
 
 namespace ReadZen.App.Views;
 
@@ -26,6 +27,8 @@ public partial class CorrectionTimelineBar : UserControl
     private TextBlock? _txtProgress;
 
     private List<CorrectionEntry> _corrections = new();
+    private List<AnchorEvent>? _anchorEvents;
+    private bool _isAnchorMode;
     private bool _suppressEvents;
 
     // Playback state
@@ -51,7 +54,10 @@ public partial class CorrectionTimelineBar : UserControl
         set
         {
             if (_slider == null) return;
-            _slider.Value = Math.Clamp(value, 0, _corrections.Count);
+            var max = _isAnchorMode
+                ? Math.Max((_anchorEvents?.Count ?? 1) - 1, 0)
+                : _corrections.Count;
+            _slider.Value = Math.Clamp(value, 0, max);
         }
     }
 
@@ -119,7 +125,12 @@ public partial class CorrectionTimelineBar : UserControl
         try
         {
             _corrections = corrections ?? new();
+            _anchorEvents = null;
+            _isAnchorMode = false;
             StopPlayback();
+
+            if (_btnPrev != null) ToolTip.SetTip(_btnPrev, "Previous correction");
+            if (_btnNext != null) ToolTip.SetTip(_btnNext, "Next correction");
 
             if (_slider != null)
             {
@@ -135,17 +146,53 @@ public partial class CorrectionTimelineBar : UserControl
         }
     }
 
+    /// <summary>
+    /// Loads anchor events and configures the slider for anchor mode.
+    /// In anchor mode each step corresponds to one AnchorEvent (no "raw OCR" step 0).
+    /// </summary>
+    public void SetAnchorEvents(List<AnchorEvent> events)
+    {
+        _suppressEvents = true;
+        try
+        {
+            _anchorEvents = events;
+            _isAnchorMode = true;
+            StopPlayback();
+
+            if (_slider != null)
+            {
+                _slider.Maximum = Math.Max(events.Count - 1, 0);
+                _slider.Value = 0;
+            }
+
+            UpdateProgressText();
+            IsVisible = events.Count > 0;
+
+            if (_btnPrev != null) ToolTip.SetTip(_btnPrev, "Previous event");
+            if (_btnNext != null) ToolTip.SetTip(_btnNext, "Next event");
+        }
+        finally
+        {
+            _suppressEvents = false;
+        }
+    }
+
     /// <summary>Clears all state and stops playback.</summary>
     public void Clear()
     {
         StopPlayback();
         _corrections = new();
+        _anchorEvents = null;
+        _isAnchorMode = false;
 
         if (_slider != null)
         {
             _slider.Maximum = 0;
             _slider.Value = 0;
         }
+
+        if (_btnPrev != null) ToolTip.SetTip(_btnPrev, "Previous correction");
+        if (_btnNext != null) ToolTip.SetTip(_btnNext, "Next correction");
 
         UpdateProgressText();
         IsVisible = false;
@@ -155,9 +202,14 @@ public partial class CorrectionTimelineBar : UserControl
 
     private void StepBy(int delta)
     {
-        if (_slider == null || _corrections.Count == 0) return;
+        if (_slider == null) return;
 
-        var next = Math.Clamp((int)_slider.Value + delta, 0, _corrections.Count);
+        var max = _isAnchorMode
+            ? Math.Max((_anchorEvents?.Count ?? 1) - 1, 0)
+            : _corrections.Count;
+        if (max == 0) return;
+
+        var next = Math.Clamp((int)_slider.Value + delta, 0, max);
         if ((int)_slider.Value == next) return;
 
         _slider.Value = next;
@@ -176,10 +228,13 @@ public partial class CorrectionTimelineBar : UserControl
 
     private void StartPlayback()
     {
-        if (_corrections.Count == 0) return;
+        var max = _isAnchorMode
+            ? Math.Max((_anchorEvents?.Count ?? 1) - 1, 0)
+            : _corrections.Count;
+        if (max == 0) return;
 
         // If at the end, wrap to the beginning
-        if (_slider != null && (int)_slider.Value >= _corrections.Count)
+        if (_slider != null && (int)_slider.Value >= max)
             _slider.Value = 0;
 
         _isPlaying = true;
@@ -199,8 +254,12 @@ public partial class CorrectionTimelineBar : UserControl
     {
         if (_slider == null) return;
 
+        var max = _isAnchorMode
+            ? Math.Max((_anchorEvents?.Count ?? 1) - 1, 0)
+            : _corrections.Count;
+
         var next = (int)_slider.Value + 1;
-        if (next > _corrections.Count)
+        if (next > max)
         {
             // Reached the end: auto-pause
             StopPlayback();
@@ -242,8 +301,22 @@ public partial class CorrectionTimelineBar : UserControl
     private void OnReturnToPresent()
     {
         StopPlayback();
-        if (_slider != null)
-            _slider.Value = _corrections.Count; // set to max (fully corrected)
+        _suppressEvents = true;
+        try
+        {
+            if (_slider != null)
+            {
+                var max = _isAnchorMode
+                    ? Math.Max((_anchorEvents?.Count ?? 1) - 1, 0)
+                    : _corrections.Count;
+                _slider.Value = max; // set to max (fully corrected / last event)
+            }
+            UpdateProgressText();
+        }
+        finally
+        {
+            _suppressEvents = false;
+        }
         ReturnToPresent?.Invoke(this, EventArgs.Empty);
     }
 
@@ -253,7 +326,25 @@ public partial class CorrectionTimelineBar : UserControl
     {
         if (_txtProgress == null) return;
         var current = _slider != null ? (int)_slider.Value : 0;
-        var total = _corrections.Count;
-        _txtProgress.Text = current == 0 ? "Raw OCR" : $"Correction {current} of {total}";
+
+        if (_isAnchorMode && _anchorEvents != null)
+        {
+            var total = _anchorEvents.Count;
+            if (total == 0)
+            {
+                _txtProgress.Text = "No events";
+                return;
+            }
+            var evt = current < _anchorEvents.Count ? _anchorEvents[current] : null;
+            var label = evt?.ChangeTypeDisplay ?? "?";
+            var locus = evt?.LocusId;
+            var display = locus != null ? $"{label} @ {locus}" : label;
+            _txtProgress.Text = $"Event {current + 1} of {total} — {display}";
+        }
+        else
+        {
+            var total = _corrections.Count;
+            _txtProgress.Text = current == 0 ? "Raw OCR" : $"Correction {current} of {total}";
+        }
     }
 }

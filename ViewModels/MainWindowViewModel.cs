@@ -337,6 +337,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // ReadableTabView bridges
     public Action<RenderedDocument, RenderedDocument>? SetReadableRendered { get; set; }
+    public Action<Dictionary<string, LociEntry>>? SetReadableLociMap { get; set; }
     public Action? ClearReadable { get; set; }
     public Action<bool>? SetReadableHoverDict { get; set; }
     public Action<string?, bool>? SetReadableZenContext { get; set; }
@@ -1526,7 +1527,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task<string?> TryReadTranslatedXmlFromDiskAsync(string relPath)
     {
-        if (_activeTranslatedDir == null && _translatedDir == null) return null;
+        if (_activeTranslatedDir == null && _translatedDir == null && _originalDir == null) return null;
 
         try
         {
@@ -1540,6 +1541,18 @@ public partial class MainWindowViewModel : ViewModelBase
             }
             // Fall back to best-source discovery
             tranAbs ??= FindTranslatedPath(relPath);
+
+            // Try companion English TEI in same directory (for critical editions)
+            if (tranAbs == null && _originalDir != null)
+            {
+                var origAbs = Path.Combine(_originalDir, relPath);
+                var origDir = Path.GetDirectoryName(origAbs);
+                var origName = Path.GetFileNameWithoutExtension(origAbs);
+                var companionEn = Path.Combine(origDir!, origName + "-en.xml");
+                if (File.Exists(companionEn))
+                    tranAbs = companionEn;
+            }
+
             if (tranAbs == null)
                 return null;
 
@@ -1600,7 +1613,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
     {
-        if (_originalDir == null || (_translatedDir == null && _activeTranslatedDir == null))
+        if (_originalDir == null)
             return Task.FromResult((RenderedDocument.Empty, RenderedDocument.Empty));
 
         var origAbs = Path.Combine(_originalDir, relPath);
@@ -1613,6 +1626,16 @@ public partial class MainWindowViewModel : ViewModelBase
                 tranAbs = activePath;
         }
         tranAbs ??= FindTranslatedPath(relPath);
+
+        // Try companion English TEI in same directory (for critical editions)
+        if (tranAbs == null || !File.Exists(tranAbs))
+        {
+            var origDir = Path.GetDirectoryName(origAbs);
+            var origName = Path.GetFileNameWithoutExtension(origAbs);
+            var companionEn = Path.Combine(origDir!, origName + "-en.xml");
+            if (File.Exists(companionEn))
+                tranAbs = companionEn;
+        }
 
         ct.ThrowIfCancellationRequested();
 
@@ -1744,6 +1767,15 @@ public partial class MainWindowViewModel : ViewModelBase
             _rawOrigXml = origXml;
             _rawTranXml = tranXml;
             _indexedDoc = indexedDoc;
+
+            // Build segment-key → locus mapping from the original XML
+            try
+            {
+                var lociMap = LociMappingService.BuildFromXml(origXml);
+                if (lociMap.Count > 0)
+                    await Dispatcher.UIThread.InvokeAsync(() => SetReadableLociMap?.Invoke(lociMap));
+            }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Loci map build failed: {ex.Message}"); }
 
             // License metadata is populated as a side-effect of BuildIndex
             // (which ran inside indexTask). The readable render that fired

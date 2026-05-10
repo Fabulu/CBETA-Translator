@@ -658,6 +658,10 @@ private async Task LoadConfigAndAutoloadAsync()
             // Populate version picker with git history for the translated file
             _ = PopulateReaderVersionPickerAsync();
         };
+        _vm.SetReadableLociMap = (map) =>
+        {
+            _readableView?.SetLociMap(map);
+        };
         _vm.ClearReadable = () =>
         {
             _readableView?.Clear();
@@ -2845,6 +2849,10 @@ private async Task LoadConfigAndAutoloadAsync()
             _readableView?.ClearCorrectionTimeline();
             return;
         }
+
+        // Try anchor-event-log first (new evented-anchor system)
+        if (_readableView.TrySetAnchorEventLog(xmlAbsPath))
+            return;
 
         try
         {

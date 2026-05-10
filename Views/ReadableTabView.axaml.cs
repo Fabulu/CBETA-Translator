@@ -117,6 +117,9 @@ public partial class ReadableTabView : UserControl
     private MarkerColorizer? _markerColorizerOrig;
     private MarkerColorizer? _markerColorizerTran;
 
+    // Segment-key → locus mapping (built from original XML by LociMappingService)
+    private Dictionary<string, LociEntry>? _lociMap;
+
     // -------------------------
     // Coding mode
     // -------------------------
@@ -187,13 +190,17 @@ public partial class ReadableTabView : UserControl
     private CorrectionTimelineBar? _correctionTimeline;
     private Infrastructure.DriftGutterMargin? _driftGutter;
     private CharacterProvenanceFlyout? _charProvenanceFlyout;
+    private CharacterVariantFlyout? _charVariantFlyout;
     private List<Services.CorrectionEntry>? _correctionEntries;
     private List<(string Locus, string Text)>? _correctionWorkingText;
     private List<Services.TranslationDiffEntry>? _translationDiffs;
     private string? _editionDir; // edition XML directory, used for resolving witness page images
+    private string? _provenanceXmlAbsPath; // current XML abs path for apparatus sidecar loading
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
     private Dictionary<string, Services.CorrectionEntry>? _latestCorrectionByLocus;
+    private List<AnchorEvent>? _anchorEvents;
+    private AnchorService? _anchorService;
     private TextBox? _txtFindInput;
     private TextBlock? _txtFindCount;
     private Button? _btnFindNext;
@@ -1130,6 +1137,8 @@ public partial class ReadableTabView : UserControl
     {
         _vm.RenderOrig = RenderedDocument.Empty;
         _vm.RenderTran = RenderedDocument.Empty;
+        _vm.LociMap = null;
+        _lociMap = null;
         _vm.IsEmptyState = true;
 
         try { UninstallMarkerColorizers(); } catch { }
@@ -1139,6 +1148,9 @@ public partial class ReadableTabView : UserControl
 
         if (_aeOrig != null) _aeOrig.Text = "";
         if (_aeTran != null) _aeTran.Text = "";
+
+        // Hide footnotes panel on clear
+        PopulateFootnotes(null);
 
         _lastOrigSelStart = _lastOrigSelEnd = -1;
         _lastTranSelStart = _lastTranSelEnd = -1;
@@ -1165,6 +1177,16 @@ public partial class ReadableTabView : UserControl
         UpdateButtonsState();
     }
 
+    /// <summary>
+    /// Receives the segment-key → locus mapping built from the original XML.
+    /// Called by the MainWindow bridge after the index task completes.
+    /// </summary>
+    public void SetLociMap(Dictionary<string, LociEntry> map)
+    {
+        _lociMap = map;
+        _vm.LociMap = map;
+    }
+
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
     {
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
@@ -1178,6 +1200,9 @@ public partial class ReadableTabView : UserControl
         // Refresh apparatus count after disk reload
         var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
         _provenancePanelView?.SetApparatusCount(appCount);
+
+        // Populate visible footnotes panel below Chinese text
+        PopulateFootnotes(_vm.RenderOrig, _provenanceXmlAbsPath);
 
         if (_aeOrig == null || _aeTran == null)
         {
@@ -1331,6 +1356,9 @@ public partial class ReadableTabView : UserControl
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
         _vm.RenderTran = RenderedDocument.Empty;
         ResolveInnerEditors();
+
+        // Populate visible footnotes panel below Chinese text
+        PopulateFootnotes(_vm.RenderOrig, _provenanceXmlAbsPath);
 
         _syncingSelection = true;
         try
@@ -1817,6 +1845,108 @@ public partial class ReadableTabView : UserControl
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Populates the footnotes panel below the Chinese text pane with apparatus entries
+    /// from the current rendered document, or from apparatus.json if no inline annotations exist.
+    /// </summary>
+    private void PopulateFootnotes(RenderedDocument? doc, string? xmlAbsPath = null)
+    {
+        var panel = this.FindControl<StackPanel>("FootnotesHost");
+        var border = this.FindControl<Border>("FootnotesPanel");
+        if (panel == null || border == null) return;
+
+        panel.Children.Clear();
+
+        var annotations = doc?.Annotations?
+            .Where(a => string.Equals(a.Kind, "apparatus", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        // If no inline apparatus annotations, try loading from apparatus.json sidecar
+        if ((annotations == null || annotations.Count == 0) && xmlAbsPath != null)
+        {
+            try
+            {
+                var apparatusService = new ReadZen.App.Services.ApparatusService();
+                var apparatus = apparatusService.TryLoad(xmlAbsPath);
+                if (apparatus?.Entries is { Count: > 0 })
+                {
+                    border.IsVisible = true;
+                    for (int i = 0; i < apparatus.Entries.Count; i++)
+                    {
+                        var entry = apparatus.Entries[i];
+                        var sp = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
+                        var numBlock = new TextBlock
+                        {
+                            Text = $"{i + 1}",
+                            FontSize = 10,
+                            VerticalAlignment = VerticalAlignment.Top,
+                            Foreground = new SolidColorBrush(Color.FromRgb(205, 92, 92)),
+                            FontWeight = FontWeight.Bold,
+                            Margin = new Thickness(0, 0, 2, 0)
+                        };
+                        var parts = new System.Text.StringBuilder();
+                        if (!string.IsNullOrWhiteSpace(entry.LocusId)) parts.Append($"[{entry.LocusId}] ");
+                        if (!string.IsNullOrWhiteSpace(entry.Decision)) parts.Append($"{entry.Decision}: ");
+                        if (!string.IsNullOrWhiteSpace(entry.Lemma)) parts.Append(entry.Lemma);
+                        if (!string.IsNullOrWhiteSpace(entry.DecisionBasis)) parts.Append($" — {entry.DecisionBasis}");
+                        var textBlock = new TextBlock
+                        {
+                            Text = parts.ToString(),
+                            FontSize = 11,
+                            TextWrapping = TextWrapping.Wrap,
+                            MaxWidth = 600,
+                            Opacity = 0.85
+                        };
+                        sp.Children.Add(numBlock);
+                        sp.Children.Add(textBlock);
+                        panel.Children.Add(sp);
+                    }
+                    return;
+                }
+            }
+            catch { /* graceful degradation */ }
+        }
+
+        if (annotations == null || annotations.Count == 0)
+        {
+            border.IsVisible = false;
+            return;
+        }
+
+        border.IsVisible = true;
+
+        for (int i = 0; i < annotations.Count; i++)
+        {
+            var ann = annotations[i];
+            var sp = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
+
+            // Superscript number
+            var numBlock = new TextBlock
+            {
+                Text = $"{i + 1}",
+                FontSize = 10,
+                VerticalAlignment = VerticalAlignment.Top,
+                Foreground = new SolidColorBrush(Color.FromRgb(205, 92, 92)), // IndianRed
+                FontWeight = FontWeight.Bold,
+                Margin = new Thickness(0, 0, 2, 0)
+            };
+
+            // Note text
+            var textBlock = new TextBlock
+            {
+                Text = ann.Text ?? "",
+                FontSize = 11,
+                TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 600,
+                Opacity = 0.85
+            };
+
+            sp.Children.Add(numBlock);
+            sp.Children.Add(textBlock);
+            panel.Children.Add(sp);
+        }
     }
 
     /// 2) If not found, use compact-CJK normalized matching and map back to raw offsets
@@ -5146,6 +5276,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// <summary>Populates provenance panel from manifest data.</summary>
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
+        _provenanceXmlAbsPath = xmlAbsPath;
         _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
 
         // Pass apparatus count from the current rendered document's annotations
@@ -5588,6 +5719,154 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 }
             }
         }
+
+        // Attach character variant flyout (works in normal reading mode, not just time-travel)
+        EnsureCharacterVariantFlyout(_provenanceXmlAbsPath);
+    }
+
+    private static int ExtractPageNumber(string locusId)
+    {
+        // T1-p031.l01 → 31, T4-p002.poem-band → 2
+        var match = System.Text.RegularExpressions.Regex.Match(locusId, @"-p(\d+)");
+        return match.Success ? int.Parse(match.Groups[1].Value) : 1;
+    }
+
+    /// <summary>
+    /// Loads anchor-event-log.jsonl for the given XML path and configures the
+    /// timeline bar in anchor mode. Returns true if anchor events were found
+    /// (so the caller can skip legacy correction-log loading).
+    /// </summary>
+    public bool TrySetAnchorEventLog(string xmlAbsPath)
+    {
+        ClearCorrectionTimeline();
+
+        _anchorService ??= new AnchorService();
+        var events = _anchorService.TryLoadEvents(xmlAbsPath);
+        if (events == null || events.Count == 0)
+            return false;
+
+        _anchorEvents = events;
+
+        // Derive edition directory from XML path for witness image resolution
+        _editionDir = System.IO.Path.GetDirectoryName(xmlAbsPath);
+
+        if (_correctionTimeline != null)
+        {
+            _correctionTimeline.SetAnchorEvents(events);
+            // SetAnchorEvents already sets IsVisible
+        }
+
+        // Set up the character variant flyout (must happen regardless of correction-log path)
+        EnsureCharacterVariantFlyout(xmlAbsPath);
+
+        return true;
+    }
+
+    /// <summary>
+    /// Creates and wires the CharacterVariantFlyout if not already attached.
+    /// Called from both SetCorrectionLog and TrySetAnchorEventLog to ensure
+    /// the flyout is available regardless of which correction path was taken.
+    /// </summary>
+    private void EnsureCharacterVariantFlyout(string? xmlAbsPath)
+    {
+        if (_aeOrig?.TextArea == null || _dictOverlayCanvas == null || _charVariantFlyout != null)
+            return;
+
+        _charVariantFlyout = new CharacterVariantFlyout(_aeOrig, _dictOverlayCanvas);
+
+        // Feed it the loci map, apparatus, anchors, and manifest
+        if (_lociMap != null)
+            _charVariantFlyout.SetLociMap(_lociMap);
+        if (_vm?.RenderOrig != null)
+            _charVariantFlyout.SetRenderedDocument(_vm.RenderOrig);
+
+        // Load apparatus and anchors from current file
+        var effectivePath = xmlAbsPath ?? _provenanceXmlAbsPath;
+        if (effectivePath != null)
+        {
+            var apparatusService = new Services.ApparatusService();
+            var apparatus = apparatusService.TryLoad(effectivePath);
+            _charVariantFlyout.SetApparatus(apparatus);
+
+            _anchorService ??= new Services.AnchorService();
+            var bases = _anchorService.TryLoadBases(effectivePath);
+            var anchorEvents = _anchorService.TryLoadEvents(effectivePath);
+            _charVariantFlyout.SetAnchors(bases, anchorEvents);
+
+            var manifestService = new Services.ManifestService();
+            var manifest = manifestService.TryLoad(effectivePath);
+            _charVariantFlyout.SetManifest(manifest);
+        }
+
+        // Wire witness viewer: download + open PdfEvidenceWindow
+        _charVariantFlyout.ViewWitnessRequested += async (witnessId, locusId, manifest) =>
+        {
+            if (manifest == null) { Say("No manifest available for witness download."); return; }
+
+            try
+            {
+                var (isIiif, url, recordId) = Services.WitnessDownloadService.ResolveWitnessSource(manifest, witnessId);
+                if (string.IsNullOrEmpty(url)) { Say($"No download URL found for witness {witnessId}."); return; }
+
+                Say($"Loading {witnessId}...");
+                string localPath;
+
+                if (isIiif && recordId != null)
+                {
+                    int pageNum = ExtractPageNumber(locusId);
+                    var filename = $"{recordId}_{pageNum:D5}";
+                    localPath = await Services.WitnessDownloadService.DownloadIiifPageAsync(
+                        witnessId, recordId, filename, p => Say($"Downloading {witnessId} page {pageNum}... {p:P0}"));
+                }
+                else
+                {
+                    var downloadUrl = url;
+                    if (url.Contains("commons.wikimedia.org/wiki/File:"))
+                    {
+                        var fileName = url.Split("File:")[^1];
+                        downloadUrl = $"https://commons.wikimedia.org/wiki/Special:Redirect/file/{fileName}";
+                    }
+                    localPath = await Services.WitnessDownloadService.DownloadCommonsPdfAsync(
+                        witnessId, downloadUrl, p => Say($"Downloading {witnessId}... {p:P0}"));
+                }
+
+                // Resolve highlight bbox from anchor data
+                double rX = -1, rY = -1, rW = 1.0, rH = 1.0;
+                if (_anchorService != null && effectivePath != null)
+                {
+                    var anchorBases = _anchorService.TryLoadBases(effectivePath);
+                    var anchor = _anchorService.GetAnchorById(anchorBases,
+                        $"{locusId}@{witnessId}");
+                    if (anchor?.LocusBbox is { Length: 4 })
+                    {
+                        rX = anchor.LocusBbox[0];
+                        rY = anchor.LocusBbox[1];
+                        rW = anchor.LocusBbox[2];
+                        rH = anchor.LocusBbox[3];
+                    }
+                }
+
+                var viewer = new PdfEvidenceWindow();
+                if (localPath.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                    localPath.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    viewer.LoadPageImageEvidence(localPath, $"{witnessId} — {locusId}");
+                }
+                else
+                {
+                    int pageNum = ExtractPageNumber(locusId);
+                    viewer.LoadEvidence(localPath, pageNum - 1, $"{witnessId} — {locusId}",
+                        rX, rY, rW, rH);
+                }
+
+                viewer.Show();
+                Say("");
+            }
+            catch (Exception ex)
+            {
+                Say($"Failed to load witness: {ex.Message}");
+            }
+        };
     }
 
     /// <summary>
@@ -5610,15 +5889,27 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _charProvenanceFlyout?.Detach();
         _charProvenanceFlyout = null;
 
+        _charVariantFlyout?.Detach();
+        _charVariantFlyout = null;
+
         _correctionEntries = null;
         _correctionWorkingText = null;
         _translationDiffs = null;
         _latestCorrectionByLocus = null;
+        _anchorEvents = null;
         _editionDir = null;
     }
 
     private void OnCorrectionStepChanged(int step)
     {
+        // ── Anchor-event mode ──
+        if (_anchorEvents != null && _anchorEvents.Count > 0)
+        {
+            OnAnchorStepChanged(step);
+            return;
+        }
+
+        // ── Legacy correction-log mode ──
         if (_correctionEntries == null || _correctionWorkingText == null || _aeOrig == null)
             return;
 
@@ -5698,6 +5989,111 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
 
         Say($"Correction {step} of {_correctionEntries.Count}");
+    }
+
+    /// <summary>
+    /// Handles a step change in anchor-event mode. Shows before/after text
+    /// for both Chinese and English, plus metadata in the status area.
+    /// </summary>
+    private void OnAnchorStepChanged(int step)
+    {
+        if (_anchorEvents == null || _aeOrig == null) return;
+        if (step < 0 || step >= _anchorEvents.Count) return;
+
+        var evt = _anchorEvents[step];
+
+        _syncingSelection = true;
+        try
+        {
+            // Build a display showing the before → after for the Chinese pane
+            var chineseSb = new System.Text.StringBuilder();
+            chineseSb.AppendLine($"── Event: {evt.EventId} ──");
+            chineseSb.AppendLine($"Locus: {evt.LocusId ?? "(none)"}");
+            chineseSb.AppendLine($"Change: {evt.ChangeTypeDisplay}");
+            // Character-level diff marking for before/after
+            var beforeText = evt.BeforeText;
+            var afterText = evt.AfterText;
+            var markedBefore = beforeText ?? "";
+            var markedAfter = afterText ?? "";
+            if (!string.IsNullOrEmpty(beforeText) && !string.IsNullOrEmpty(afterText))
+            {
+                var sbBefore = new System.Text.StringBuilder();
+                var sbAfter = new System.Text.StringBuilder();
+                for (int i = 0; i < beforeText.Length; i++)
+                {
+                    if (i < afterText.Length && beforeText[i] != afterText[i])
+                        sbBefore.Append('[').Append(beforeText[i]).Append(']');
+                    else
+                        sbBefore.Append(beforeText[i]);
+                }
+                for (int i = 0; i < afterText.Length; i++)
+                {
+                    if (i < beforeText.Length && afterText[i] != beforeText[i])
+                        sbAfter.Append('[').Append(afterText[i]).Append(']');
+                    else
+                        sbAfter.Append(afterText[i]);
+                }
+                markedBefore = sbBefore.ToString();
+                markedAfter = sbAfter.ToString();
+            }
+
+            chineseSb.AppendLine();
+            chineseSb.AppendLine("▌ BEFORE:");
+            chineseSb.AppendLine(string.IsNullOrEmpty(markedBefore) ? "(empty)" : markedBefore);
+            chineseSb.AppendLine();
+            chineseSb.AppendLine("▌ AFTER:");
+            chineseSb.AppendLine(string.IsNullOrEmpty(markedAfter) ? "(empty)" : markedAfter);
+
+            if (!string.IsNullOrEmpty(evt.Confidence))
+            {
+                chineseSb.AppendLine();
+                chineseSb.AppendLine($"Confidence: {evt.Confidence}");
+            }
+            if (!string.IsNullOrEmpty(evt.BasisNote))
+            {
+                chineseSb.AppendLine($"Basis: {evt.BasisNote}");
+            }
+            if (!string.IsNullOrEmpty(evt.ComparisonReading))
+            {
+                chineseSb.AppendLine($"Comparison: {evt.ComparisonReading}");
+            }
+
+            _aeOrig.Text = chineseSb.ToString();
+
+            // English pane: show translation before/after if available
+            if (_aeTran != null)
+            {
+                if (!string.IsNullOrEmpty(evt.TranslationBefore) || !string.IsNullOrEmpty(evt.TranslationAfter))
+                {
+                    var englishSb = new System.Text.StringBuilder();
+                    englishSb.AppendLine("▌ TRANSLATION BEFORE:");
+                    englishSb.AppendLine(evt.TranslationBefore ?? "(none)");
+                    englishSb.AppendLine();
+                    englishSb.AppendLine("▌ TRANSLATION AFTER:");
+                    englishSb.AppendLine(evt.TranslationAfter ?? "(none)");
+                    _aeTran.Text = englishSb.ToString();
+                }
+                else
+                {
+                    _aeTran.Text = "(No translation data for this event)";
+                }
+            }
+        }
+        finally
+        {
+            _syncingSelection = false;
+        }
+
+        var statusParts = new List<string>();
+        statusParts.Add($"Event {step + 1}/{_anchorEvents.Count}");
+        if (!string.IsNullOrEmpty(evt.ChangeType))
+            statusParts.Add(evt.ChangeTypeDisplay);
+        if (!string.IsNullOrEmpty(evt.Confidence))
+            statusParts.Add($"conf: {evt.Confidence}");
+        if (!string.IsNullOrEmpty(evt.WitnessId))
+            statusParts.Add($"witness: {evt.WitnessId}");
+
+        Say(string.Join(" | ", statusParts));
     }
 
     /// <summary>
