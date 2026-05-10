@@ -34,15 +34,6 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        // Capture the exact moment the dispatcher shuts down — the stack trace
-        // reveals what code triggered it (the real crash, not the symptom).
-        Avalonia.Threading.Dispatcher.UIThread.ShutdownStarted += (_, _) =>
-        {
-            Console.Error.WriteLine("=== DISPATCHER SHUTDOWN STARTED ===");
-            Console.Error.WriteLine(Environment.StackTrace);
-            Console.Error.Flush();
-        };
-
         try
         {
             // Global CJK font for LiveCharts2 tooltips and labels.

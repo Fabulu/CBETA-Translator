@@ -139,7 +139,7 @@ class Program
 internal sealed class StderrLogSink : Avalonia.Logging.ILogSink
 {
     public bool IsEnabled(Avalonia.Logging.LogEventLevel level, string area)
-        => level >= Avalonia.Logging.LogEventLevel.Information;
+        => level >= Avalonia.Logging.LogEventLevel.Error;
 
     public void Log(Avalonia.Logging.LogEventLevel level, string area, object? source, string messageTemplate)
     {
