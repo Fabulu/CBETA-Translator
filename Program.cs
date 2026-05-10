@@ -77,13 +77,13 @@ class Program
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
     {
-        // Log Avalonia internals to stderr so Linux crashes show the real cause
-        Avalonia.Logging.Logger.Sink = new StderrLogSink();
-
         var builder = AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+
+        // Set AFTER .LogToTrace() so our sink takes precedence (LogToTrace may overwrite)
+        Avalonia.Logging.Logger.Sink = new StderrLogSink();
 
         // On Linux, configure X11 with software rendering fallback and disable
         // DBus menu to avoid Wayland dispatcher shutdown crashes (Issue #19523).
