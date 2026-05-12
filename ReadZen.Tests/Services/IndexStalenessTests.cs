@@ -1,6 +1,9 @@
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
+using ReadZen.App.Models;
 using ReadZen.App.Services;
 using Xunit;
 
@@ -64,11 +67,15 @@ public class IndexStalenessTests : IDisposable
     }
 
     [Fact]
-    public async Task IsStaleAsync_ReturnsTrueWhenOneTranslatedFileNewerThanManifest()
+    public async Task IsStaleAsync_LegacyMtimePath_ReturnsTrueWhenOneTranslatedFileNewerThanManifest()
     {
+        // This test exercises the LEGACY mtime path — manifests without InputHash. After
+        // Wave 5 the hash basis is content-only, so a bare mtime bump on an otherwise
+        // unchanged file does NOT trigger a rebuild via the hash path (that's the spec).
+        // To validate the fallback we strip InputHash from the manifest after BuildAsync
+        // writes it, mimicking an upgrade from a pre-PR3 binary.
         var svc = new SearchIndexService();
 
-        // Create initial XML files
         var origFile = Path.Combine(_origDir, "test.xml");
         File.WriteAllText(origFile, "<x/>");
         File.SetLastWriteTimeUtc(origFile, DateTime.UtcNow.AddHours(-2));
@@ -77,17 +84,311 @@ public class IndexStalenessTests : IDisposable
         File.WriteAllText(tranFile, "<x/>");
         File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
 
-        // Build the index
         await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
 
-        // Now touch the translated XML file to be newer than the manifest
+        // Force the legacy mtime path: strip the hash field from the manifest JSON.
         var manifestPath = svc.GetManifestPath(_tempRoot);
+        StripInputHashFromManifest(manifestPath);
+
+        // Now touch the translated XML file to be newer than the manifest's mtime.
         var manifestTime = File.GetLastWriteTimeUtc(manifestPath);
         File.SetLastWriteTimeUtc(tranFile, manifestTime.AddSeconds(5));
 
         bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         Assert.True(stale);
+    }
+
+    // ===== SearchIndexService.IsStaleAsync hash path (PR3) =====
+
+    [Fact]
+    public async Task IsStaleAsync_SameContent_NewerMtimes_ReturnsFalse()
+    {
+        // This is the spec criterion (Wave 5 fix): `git pull` / `git checkout` that bumps
+        // file mtimes without changing file content must NOT trigger a rebuild.
+        // The hash basis is content-based (SHA256 of bytes), so identical bytes after
+        // any mtime mutation yield the same root hash.
+        var svc = new SearchIndexService();
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
+
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        // Simulate a git pull: file content unchanged, mtime bumped forward.
+        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddMinutes(5));
+
+        // Backdate the manifest too so the legacy mtime-only path WOULD flag this as stale
+        // — but the hash path overrides because file bytes are identical.
+        var manifestPath = svc.GetManifestPath(_tempRoot);
+        File.SetLastWriteTimeUtc(manifestPath, DateTime.UtcNow.AddHours(-3));
+
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.False(stale);
+    }
+
+    [Fact]
+    public async Task IsStaleAsync_DifferentHash_ReturnsTrue()
+    {
+        // Same file path/length/ticks would all need to differ to bust the hash. The cleanest
+        // way: rewrite the file with different content + size, mtime bumps naturally.
+        var svc = new SearchIndexService();
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        // Modify content (changes length -> changes hash).
+        File.WriteAllText(tranFile, "<x><different/></x>");
+
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.True(stale);
+    }
+
+    [Fact]
+    public async Task IsStaleAsync_NullHash_FallsBackToMtimeCheck()
+    {
+        // Simulate a legacy manifest: build, then strip the InputHash field on disk so the
+        // hybrid path takes the legacy (mtime) branch.
+        var svc = new SearchIndexService();
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
+
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        StripInputHashFromManifest(svc.GetManifestPath(_tempRoot));
+
+        // Now touch the XML to be NEWER than the manifest → legacy mtime path returns true.
+        var manifestPath = svc.GetManifestPath(_tempRoot);
+        var manifestTime = File.GetLastWriteTimeUtc(manifestPath);
+        File.SetLastWriteTimeUtc(tranFile, manifestTime.AddSeconds(5));
+
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.True(stale); // legacy path detected the bumped mtime
+    }
+
+    [Fact]
+    public async Task IsStaleAsync_NullHash_AllFilesOlder_ReturnsFalse()
+    {
+        var svc = new SearchIndexService();
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
+
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+        StripInputHashFromManifest(svc.GetManifestPath(_tempRoot));
+
+        // Legacy mtime path: manifest is newer than the XML (XML at -2h, manifest just written).
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.False(stale);
+    }
+
+    [Fact]
+    public async Task IsStaleAsync_NullHash_OneFileNewer_ReturnsTrue()
+    {
+        var svc = new SearchIndexService();
+
+        var tranFile = Path.Combine(_tranDir, "test.xml");
+        File.WriteAllText(tranFile, "<x/>");
+        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+        StripInputHashFromManifest(svc.GetManifestPath(_tempRoot));
+
+        // Force the file mtime past the manifest mtime.
+        var manifestPath = svc.GetManifestPath(_tempRoot);
+        File.SetLastWriteTimeUtc(tranFile, File.GetLastWriteTimeUtc(manifestPath).AddSeconds(5));
+
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.True(stale);
+    }
+
+    [Fact]
+    public async Task ComputeInputHash_OrderingDeterministic()
+    {
+        // Write the same file set twice (clean temp dir between) and confirm the helper
+        // returns identical hashes regardless of OS enumeration order.
+        var dirA = Path.Combine(_tempRoot, "A");
+        var dirB = Path.Combine(_tempRoot, "B");
+        Directory.CreateDirectory(dirA);
+        Directory.CreateDirectory(dirB);
+
+        // Identical content, identical filenames — but written in different orders so the
+        // OS enumeration may differ. The sort in ComputeInputHashAsync should equalize them.
+        var paths = new[] { "zz.xml", "aa.xml", "mm.xml" };
+        var anchorUtc = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        foreach (var p in paths)
+        {
+            File.WriteAllText(Path.Combine(dirA, p), "<x/>");
+            File.SetLastWriteTimeUtc(Path.Combine(dirA, p), anchorUtc);
+        }
+        // Write to B in reverse order to perturb OS enumeration.
+        for (int i = paths.Length - 1; i >= 0; i--)
+        {
+            File.WriteAllText(Path.Combine(dirB, paths[i]), "<x/>");
+            File.SetLastWriteTimeUtc(Path.Combine(dirB, paths[i]), anchorUtc);
+        }
+
+        // ComputeInputHashAsync namespace-prefixes the relative path with "orig" / "tran0"
+        // etc., so to get identical hashes we must pass the same dir as originalDir in both
+        // calls. Compare hash(dirA) to hash(dirB) — they share rel paths and metadata.
+        var hashA = await SearchIndexService.ComputeInputHashAsync(dirA, Array.Empty<string>(), CancellationToken.None);
+        var hashB = await SearchIndexService.ComputeInputHashAsync(dirB, Array.Empty<string>(), CancellationToken.None);
+
+        Assert.Equal(hashA, hashB);
+        Assert.Equal(64, hashA.Length); // SHA256 hex
+    }
+
+    [Fact]
+    public async Task ComputeInputHash_DetectsContentChange()
+    {
+        var dir = Path.Combine(_tempRoot, "C");
+        Directory.CreateDirectory(dir);
+        var file = Path.Combine(dir, "test.xml");
+        File.WriteAllText(file, "<x/>");
+
+        var hashBefore = await SearchIndexService.ComputeInputHashAsync(dir, Array.Empty<string>(), CancellationToken.None);
+
+        // Change file size + (naturally) mtime.
+        File.WriteAllText(file, "<x><much-larger-content/></x>");
+
+        var hashAfter = await SearchIndexService.ComputeInputHashAsync(dir, Array.Empty<string>(), CancellationToken.None);
+
+        Assert.NotEqual(hashBefore, hashAfter);
+    }
+
+    [Fact]
+    public async Task ComputeInputHash_PerfBudget_200Files_UnderOneSecond()
+    {
+        // Soft perf assertion: SPEC budget is ~500ms on a 200-file synthetic corpus.
+        // We use 1s as the test-environment-safe ceiling (CI VM, AV scan jitter).
+        var dir = Path.Combine(_tempRoot, "perf");
+        Directory.CreateDirectory(dir);
+        for (int i = 0; i < 200; i++)
+            File.WriteAllText(Path.Combine(dir, $"f{i:D4}.xml"), "<x>" + new string('a', 200) + "</x>");
+
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        var hash = await SearchIndexService.ComputeInputHashAsync(dir, Array.Empty<string>(), CancellationToken.None);
+        sw.Stop();
+
+        Assert.Equal(64, hash.Length);
+        Assert.True(sw.ElapsedMilliseconds < 1000, $"Hash compute took {sw.ElapsedMilliseconds}ms on 200 files; SPEC budget is 500ms (1s ceiling for test env).");
+    }
+
+    // ===== Gap-fill: empty corpus, malformed manifest, content collision =====
+
+    [Fact]
+    public async Task ComputeInputHash_EmptyCorpus_IsDeterministicConstant()
+    {
+        // No XML files in either directory: the hash must still be stable and
+        // identical across runs. Locks in that no `DateTime.UtcNow` or other
+        // wall-clock state seeps into the hash basis.
+        var emptyA = Path.Combine(_tempRoot, "emptyA");
+        var emptyB = Path.Combine(_tempRoot, "emptyB");
+        Directory.CreateDirectory(emptyA);
+        Directory.CreateDirectory(emptyB);
+
+        var hashA = await SearchIndexService.ComputeInputHashAsync(emptyA, Array.Empty<string>(), CancellationToken.None);
+        // Small artificial pause to surface any DateTime.UtcNow leakage in the hash.
+        await Task.Delay(50);
+        var hashB = await SearchIndexService.ComputeInputHashAsync(emptyB, Array.Empty<string>(), CancellationToken.None);
+
+        Assert.Equal(64, hashA.Length);
+        Assert.Equal(hashA, hashB); // empty-corpus hash is a constant
+    }
+
+    [Fact]
+    public async Task IsStaleAsync_EmptyManifestFile_ReturnsTrue_NoThrow()
+    {
+        // Manifest file exists but is empty (truncated mid-write, disk-full event,
+        // power loss). IsStaleAsync must NOT throw — it must return true so a rebuild
+        // runs. TryLoadAsync returns null for whitespace-only JSON; the caller treats
+        // that as "stale".
+        var svc = new SearchIndexService();
+
+        var manifestPath = svc.GetManifestPath(_tempRoot);
+        Directory.CreateDirectory(Path.GetDirectoryName(manifestPath)!);
+        File.WriteAllText(manifestPath, ""); // zero-byte manifest
+        // Bin file is also expected; create an empty placeholder so existence checks pass.
+        File.WriteAllText(svc.GetBinPath(_tempRoot), "");
+
+        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
+
+        Assert.True(stale);
+    }
+
+    [Fact]
+    public async Task ComputeInputHash_SameTupleDifferentBytes_YieldsDifferentHash()
+    {
+        // Wave 5 fix: hash basis is now content-based (per-file SHA256). Two files
+        // sharing path/length/mtime but differing in CONTENT must produce different
+        // hashes — otherwise a CBETA editorial fix (e.g., correcting a typo within
+        // an existing <lb> line, preserving file size) would silently leave the
+        // search index unrebuilt against the new content.
+        var dirA = Path.Combine(_tempRoot, "collA");
+        var dirB = Path.Combine(_tempRoot, "collB");
+        Directory.CreateDirectory(dirA);
+        Directory.CreateDirectory(dirB);
+
+        var anchorUtc = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var fileA = Path.Combine(dirA, "test.xml");
+        var fileB = Path.Combine(dirB, "test.xml");
+
+        // Same length (15 bytes), same name, same mtime — but different content bytes.
+        File.WriteAllText(fileA, "<x>AAAAAAAA</x>");
+        File.WriteAllText(fileB, "<x>BBBBBBBB</x>");
+        Assert.Equal(new FileInfo(fileA).Length, new FileInfo(fileB).Length);
+        File.SetLastWriteTimeUtc(fileA, anchorUtc);
+        File.SetLastWriteTimeUtc(fileB, anchorUtc);
+
+        var hashA = await SearchIndexService.ComputeInputHashAsync(dirA, Array.Empty<string>(), CancellationToken.None);
+        var hashB = await SearchIndexService.ComputeInputHashAsync(dirB, Array.Empty<string>(), CancellationToken.None);
+
+        // Content-hash basis: different bytes → different root hash.
+        Assert.NotEqual(hashA, hashB);
+    }
+
+    [Fact]
+    public async Task ComputeInputHash_SameContentDifferentMtime_YieldsSameHash()
+    {
+        // The headline SPEC criterion for Wave 5: a git pull / git checkout that bumps
+        // file mtimes without changing content MUST yield the same hash, so the index
+        // is not invalidated.
+        var dir = Path.Combine(_tempRoot, "samecontent");
+        Directory.CreateDirectory(dir);
+        var file = Path.Combine(dir, "test.xml");
+        File.WriteAllText(file, "<x>same bytes</x>");
+
+        File.SetLastWriteTimeUtc(file, new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+        var hashOld = await SearchIndexService.ComputeInputHashAsync(dir, Array.Empty<string>(), CancellationToken.None);
+
+        // Simulate git pull / checkout: bump mtime forward, do not touch content.
+        File.SetLastWriteTimeUtc(file, DateTime.UtcNow);
+        var hashNew = await SearchIndexService.ComputeInputHashAsync(dir, Array.Empty<string>(), CancellationToken.None);
+
+        Assert.Equal(hashOld, hashNew);
+    }
+
+    /// <summary>
+    /// Rewrites the manifest JSON on disk with <c>"InputHash": null</c> so we can exercise
+    /// the legacy (pre-PR3) code path. Simulates upgrade from old binary that didn't write
+    /// the field at all.
+    /// </summary>
+    private static void StripInputHashFromManifest(string manifestPath)
+    {
+        var json = File.ReadAllText(manifestPath);
+        // Replace any value (hex string) with null.
+        json = System.Text.RegularExpressions.Regex.Replace(
+            json, "\"InputHash\":\\s*\"[^\"]*\"", "\"InputHash\": null");
+        File.WriteAllText(manifestPath, json);
     }
 
     // ===== TranslationAssistantBuildService.IsReferenceStaleAsync =====

@@ -300,6 +300,18 @@
 
                                 <DataTemplate DataType="models:SearchResultChild">
                                     <StackPanel Orientation="Vertical" Spacing="2">
+                                        <!-- Skip-verify placeholder (PR2 hybrid path).
+                                             Top-N candidates by file size are verified for snippets;
+                                             the long tail emits IsSkippedVerify=true children with
+                                             empty Left/Match/Right. Without this row the user would
+                                             see a wall of empty entries. Click to open lets them
+                                             search inside the file directly. -->
+                                        <TextBlock IsVisible="{Binding IsSkippedVerify}"
+                                                   Text="(matched — click to open and search inside)"
+                                                   Classes="muted"
+                                                   TextWrapping="Wrap"
+                                                   FontStyle="Italic"
+                                                   FontSize="11"/>
                                         <Grid ColumnDefinitions="Auto,*"
                                               ColumnSpacing="6"
                                               IsVisible="{Binding HasPrimaryStructuredDisplay}">

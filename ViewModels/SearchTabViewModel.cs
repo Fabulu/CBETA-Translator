@@ -257,6 +257,7 @@ public partial class SearchTabViewModel : ViewModelBase
     private string _resultFilter = "";
 
     private DispatcherTimer? _resultFilterDebounce;
+    private DispatcherTimer? _streamFlushCoalescer;
 
     partial void OnResultFilterChanged(string value)
     {
@@ -445,7 +446,12 @@ public partial class SearchTabViewModel : ViewModelBase
             DisplayName = $"\u2638 Zen Master: {master.CanonicalName}  ({dates})",
             Tooltip = tooltip,
             HitsOriginal = 0,
-            HitsTranslated = 0
+            HitsTranslated = 0,
+            // Wave 5: default-expand at construction so the master card shows expanded
+            // on first paint. ApplyDefaultExpansionForNewGroupsOnly preserves user
+            // mid-stream toggles (it skips groups already in previouslyKnown), so this
+            // initialization is the sole place that needs to set the default.
+            IsExpanded = true
         };
     }
 
@@ -1027,6 +1033,9 @@ public partial class SearchTabViewModel : ViewModelBase
         try { _cts?.Dispose(); } catch { }
         _cts = null;
 
+        try { _streamFlushCoalescer?.Stop(); } catch { }
+        _streamFlushCoalescer = null;
+
         IsCancelEnabled = false;
     }
 
@@ -1592,6 +1601,48 @@ public partial class SearchTabViewModel : ViewModelBase
         }
     }
 
+    /// <summary>
+    /// Variant of <see cref="ApplyDefaultExpansion"/> that preserves the user's
+    /// <c>IsExpanded</c> toggle on groups already present pre-rebuild. Only brand-new
+    /// groups (not in <paramref name="previouslyKnown"/>) receive the default policy:
+    /// master/title-section always expanded, first full-text group expanded, others collapsed.
+    /// </summary>
+    private static void ApplyDefaultExpansionForNewGroupsOnly(
+        IEnumerable<SearchResultGroup> groups,
+        IReadOnlyDictionary<string, SearchResultGroup> previouslyKnown)
+    {
+        // If any previously-known full-text group is already expanded, treat that as
+        // "first full-text already seen" so we don't auto-expand a newly-arrived one.
+        bool firstFullTextSeen = false;
+        foreach (var kv in previouslyKnown)
+        {
+            var g = kv.Value;
+            if (g.RelPath == "__master__" || g.RelPath == "__title_section__") continue;
+            if (g.IsExpanded) { firstFullTextSeen = true; break; }
+        }
+
+        foreach (var g in groups)
+        {
+            // Master + title-section pseudo-paths: default-expand ONLY on first
+            // appearance. They're typically inserted pre-stream with IsExpanded=true
+            // by their factory (BuildMasterCardGroup / pre-stream insert site). If they
+            // appear in previouslyKnown, fall through to the preservation branch below
+            // so a user's mid-stream toggle survives the rebuild.
+            if ((g.RelPath == "__master__" || g.RelPath == "__title_section__")
+                && !previouslyKnown.ContainsKey(g.RelPath))
+            {
+                g.IsExpanded = true;
+                continue;
+            }
+
+            if (previouslyKnown.ContainsKey(g.RelPath))
+                continue; // preserve user toggle on existing groups (incl. master/title)
+
+            g.IsExpanded = !firstFullTextSeen;
+            firstFullTextSeen = true;
+        }
+    }
+
     private async Task StartSearchAsync()
     {
         if (_root == null || _originalDir == null || _translatedDirs == null || _meta == null)
@@ -1767,6 +1818,11 @@ public partial class SearchTabViewModel : ViewModelBase
                 int totalGroups = 0;
                 var localGroups = new List<SearchResultGroup>(256);
                 var pendingUiBatch = new List<SearchResultGroup>(12);
+                // PR4: track default-expansion state across streaming flushes. The first
+                // full-text group to arrive gets IsExpanded = true; subsequent ones stay collapsed.
+                // The end-of-stream rebuild preserves whatever state each group is in (so
+                // user toggles during streaming survive).
+                bool firstFullTextExpandedDuringStream = false;
 
                 var prog = new Progress<SearchIndexService.SearchProgress>(p =>
                 {
@@ -1790,10 +1846,13 @@ public partial class SearchTabViewModel : ViewModelBase
 
                 async Task FlushPendingUiBatchAsync(bool forceSummary)
                 {
-                    if (pendingUiBatch.Count == 0 && !forceSummary) return;
-
-                    var batch = pendingUiBatch.Count > 0 ? pendingUiBatch.ToArray() : Array.Empty<SearchResultGroup>();
-                    pendingUiBatch.Clear();
+                    SearchResultGroup[] batch;
+                    lock (pendingUiBatch)
+                    {
+                        if (pendingUiBatch.Count == 0 && !forceSummary) return;
+                        batch = pendingUiBatch.Count > 0 ? pendingUiBatch.ToArray() : Array.Empty<SearchResultGroup>();
+                        pendingUiBatch.Clear();
+                    }
 
                     int snapshotGroups = totalGroups;
                     int snapshotHits = totalHits;
@@ -1812,6 +1871,15 @@ public partial class SearchTabViewModel : ViewModelBase
                         for (int i = 0; i < batch.Length; i++)
                         {
                             ApplyChildrenCap(batch[i]); // 5B: cap before first render
+                            // PR4: apply default-expansion policy at insert time so the user
+                            // sees a sensible initial state and any later user toggle is
+                            // preserved by the end-of-stream rebuild.
+                            if (batch[i].RelPath != "__master__"
+                                && batch[i].RelPath != "__title_section__")
+                            {
+                                batch[i].IsExpanded = !firstFullTextExpandedDuringStream;
+                                firstFullTextExpandedDuringStream = true;
+                            }
                             ResultGroups.Add(batch[i]);
                         }
 
@@ -1824,6 +1892,34 @@ public partial class SearchTabViewModel : ViewModelBase
                     foreach (var group in batch)
                         _ = QueueDeferredEnrichmentAsync(group, originalDir, translatedDir, q, includeO, includeT, contextWidth, mySearchVer);
                 }
+
+                // Streaming-flush coalescer: defends against UI thread thrash when groups
+                // arrive faster than the dispatcher can drain (~60 ms = one frame at 16 fps).
+                // The Tick fires on the UI thread (DispatcherTimer default). The loop body
+                // below also flushes eagerly per-group; the timer is a backstop for cases
+                // where the loop runs in tight succession without yielding control.
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (mySearchVer != Volatile.Read(ref _searchRunVersion)) return;
+                    if (ct.IsCancellationRequested) return; // Cancel() raced ahead of us
+                    var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(60) };
+                    timer.Tick += async (_, _) =>
+                    {
+                        try
+                        {
+                            if (mySearchVer != Volatile.Read(ref _searchRunVersion)
+                                || ct.IsCancellationRequested)
+                            {
+                                timer.Stop();
+                                return;
+                            }
+                            await FlushPendingUiBatchAsync(forceSummary: false);
+                        }
+                        catch { /* swallow — Cancel() may dispose state mid-tick */ }
+                    };
+                    _streamFlushCoalescer = timer;
+                    timer.Start();
+                });
 
                 await foreach (var g in _svc.SearchAllAsync(
                                    root,
@@ -1868,16 +1964,33 @@ public partial class SearchTabViewModel : ViewModelBase
                         continue;
 
                     localGroups.Add(g);
-                    pendingUiBatch.Add(g);
+                    lock (pendingUiBatch) pendingUiBatch.Add(g);
                     totalGroups++;
                     totalHits += g.Children.Count;
 
-                    if (totalGroups <= 3 || pendingUiBatch.Count >= 4)
+                    // Per-iteration flush is needed for test infrastructure (the existing
+                    // ControlledSearchIndexService tests use synchronous gates that never let
+                    // the 60ms DispatcherTimer tick). In production, the per-group flush
+                    // gives instant first-paint; the 60ms timer is a backstop for bursts
+                    // that arrive faster than the dispatcher can drain. Wave 5 considered
+                    // dropping one path but kept both after the streaming tests required it.
+                    if (pendingUiBatch.Count >= 1)
                     {
                         await FlushPendingUiBatchAsync(forceSummary: false);
                         await Task.Yield();
                     }
                 }
+
+                // Stop the streaming coalescer; the end-of-stream rebuild below is the final flush.
+                try
+                {
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                    {
+                        try { _streamFlushCoalescer?.Stop(); } catch { }
+                        _streamFlushCoalescer = null;
+                    });
+                }
+                catch { /* dispatcher may be torn down on cancellation */ }
 
                 await FlushPendingUiBatchAsync(forceSummary: true);
 
@@ -1904,18 +2017,53 @@ public partial class SearchTabViewModel : ViewModelBase
                         .Where(g => g.DisplayName.StartsWith("\uD83D\uDCD6"))
                         .ToList();
 
-                    ResultGroups.Clear();
-                    // Re-insert master card at top if one was matched
+                    // ---- In-place mutation: preserve identity + IsExpanded across rebuild ----
+                    var desired = new List<SearchResultGroup>(sortedGroups.Count + 16);
                     if (_matchedMaster != null)
-                        ResultGroups.Add(BuildMasterCardGroup(_matchedMaster));
-                    // Re-insert title matches
+                    {
+                        var existingMaster = ResultGroups.FirstOrDefault(g => g.RelPath == "__master__");
+                        desired.Add(existingMaster ?? BuildMasterCardGroup(_matchedMaster));
+                    }
                     foreach (var tm in titleMatches)
-                        ResultGroups.Add(tm);
-                    // Then full-text results
-                    foreach (var group in sortedGroups)
-                        ResultGroups.Add(group);
+                        desired.Add(tm);
+                    foreach (var fg in sortedGroups)
+                        desired.Add(fg);
 
-                    ApplyDefaultExpansion(ResultGroups);
+                    var desiredKeys = new HashSet<string>(
+                        desired.Select(g => g.RelPath), StringComparer.OrdinalIgnoreCase);
+                    for (int i = ResultGroups.Count - 1; i >= 0; i--)
+                    {
+                        if (!desiredKeys.Contains(ResultGroups[i].RelPath))
+                            ResultGroups.RemoveAt(i);
+                    }
+
+                    for (int i = 0; i < desired.Count; i++)
+                    {
+                        var want = desired[i];
+                        if (i >= ResultGroups.Count)
+                        {
+                            ResultGroups.Add(want);
+                            continue;
+                        }
+                        if (!ReferenceEquals(ResultGroups[i], want))
+                        {
+                            int existingIdx = -1;
+                            for (int j = i + 1; j < ResultGroups.Count; j++)
+                            {
+                                if (ReferenceEquals(ResultGroups[j], want))
+                                {
+                                    existingIdx = j;
+                                    break;
+                                }
+                            }
+                            if (existingIdx >= 0)
+                                ResultGroups.Move(existingIdx, i);
+                            else
+                                ResultGroups.Insert(i, want);
+                        }
+                    }
+
+                    ApplyDefaultExpansionForNewGroupsOnly(ResultGroups, currentByRelPath);
 
                     SummaryText = $"Done: {sortedGroups.Count:n0} files - {totalHits:n0} hits";
                     ResultCountText = $"{ResultGroups.Count} texts \u00b7 {ResultGroups.Sum(g => g.HitsOriginal + g.HitsTranslated)} hits";
@@ -1999,9 +2147,20 @@ public partial class SearchTabViewModel : ViewModelBase
         if (group.Children == null || group.Children.Count == 0)
             return false;
 
+        // Wave 5 fix: skip-verify placeholder rows (PR2 hybrid path) have IsSkippedVerify=true
+        // and intentionally empty Left/Match/Right. They have no source bytes to re-read, and
+        // re-running enrichment would force the file open we deliberately skipped — partially
+        // negating the perf win. Treat them as terminal; the UI shows a "snippet on demand"
+        // placeholder via the IsSkippedVerify XAML binding.
+        bool allSkippedVerify = group.Children.All(c =>
+            c is SearchResultShowMoreItem || c.IsSkippedVerify);
+        if (allSkippedVerify)
+            return false;
+
         // Ignore the ShowMore sentinel when deciding whether enrichment is needed.
-        return group.Children.Any(c => c is not SearchResultShowMoreItem &&
-            (!c.HasSecondaryDisplayText || c.PrimaryIsContextOnly || c.SecondaryIsContextOnly));
+        return group.Children.Any(c => c is not SearchResultShowMoreItem
+            && !c.IsSkippedVerify
+            && (!c.HasSecondaryDisplayText || c.PrimaryIsContextOnly || c.SecondaryIsContextOnly));
     }
 
     /// <summary>

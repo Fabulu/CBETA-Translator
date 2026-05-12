@@ -32,6 +32,13 @@ public sealed class SearchIndexService : ISearchIndexService
         public int ReplaceTries { get; set; } = 18;
         public int ReplaceDelayMs { get; set; } = 80;
 
+        // PR2 (skip-verify hybrid): for 2-char pure-CJK queries, the bigram inverted index
+        // already proves contiguous adjacency, so VerifyFileAllHits is redundant for hit-count
+        // accuracy. We still want snippets for the *first N candidates* (sorted by likely-hit-count
+        // proxy = entry.LengthBytes desc), so verify is run for top N and skipped for the long tail.
+        // Set to 0 to disable the hybrid (every candidate verified, original behaviour).
+        public int SkipVerifySnippetTopN { get; set; } = 20;
+
         // If you truly need entity-decoding for search, keep this true.
         // For CBETA bodies it's often unnecessary; turning it off is faster.
         public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
@@ -90,6 +97,13 @@ public sealed class SearchIndexService : ISearchIndexService
     private MemoryMappedViewAccessor? _cachedAccessor;
     private string? _cachedBinPath;
     private DateTime _cachedBinWriteUtc;
+
+    // PR2 (skip-verify hybrid) test-observable counters. Updated atomically at end of
+    // each SearchAllAsync verify phase. Internal so ReadZen.Tests can assert on them.
+    private int _lastSearchSkippedVerifyGroups;
+    private int _lastSearchVerifiedGroups;
+    internal int LastSearchSkippedVerifyGroups => Volatile.Read(ref _lastSearchSkippedVerifyGroups);
+    internal int LastSearchVerifiedGroups => Volatile.Read(ref _lastSearchVerifiedGroups);
     private MemoryMappedFile? _cachedTextMmf;
     private string? _cachedTextBinPath;
     private DateTime _cachedTextBinWriteUtc;
@@ -106,7 +120,13 @@ public sealed class SearchIndexService : ISearchIndexService
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    private const string BuildGuid = "search-v3-bloom-compact";
+    // Bumped 2026-05-11 from "search-v3-bloom-compact" to force a one-time rebuild
+    // on existing installations whose indexes were built between 2026-05-02 (when
+    // commit 90401aa shipped a bug that silently dropped body text after any
+    // self-closing <app/> tag) and the landing of this sprint's fix. The hash-based
+    // staleness check alone cannot detect "the extractor logic changed" — only a
+    // GUID bump invalidates manifests across the board.
+    private const string BuildGuid = "search-v4-app-self-close-fix";
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
     private const int Cjk2ManifestVersion = 1;
@@ -871,6 +891,39 @@ public sealed class SearchIndexService : ISearchIndexService
         if (manifest == null)
             return true;
 
+        try
+        {
+            // Hybrid: hash path (preferred) vs. mtime fallback (legacy manifests).
+            // Manifests written by old binaries lack the InputHash field; deserialize as null
+            // and fall back to the existing mtime semantics so no forced rebuild on upgrade.
+            if (string.IsNullOrEmpty(manifest.InputHash))
+                return IsStaleByMtime(manifestPath, originalDir, translatedDirs, manifest);
+
+            // Hash-aware path: bust the cache only on real content/structure changes,
+            // ignoring spurious mtime bumps from git pull / git checkout.
+            var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, CancellationToken.None).ConfigureAwait(false);
+            if (!string.Equals(manifest.InputHash, currentHash, StringComparison.Ordinal))
+                return true;
+
+            if (manifest.Entries.Count == 0 && Directory.Exists(originalDir))
+                return true;
+
+            return false;
+        }
+        catch (IOException)
+        {
+            // Filesystem race (file deleted mid-enumeration, transient lock, etc.) — fall back
+            // to mtime check so a startup hiccup never crashes the staleness probe.
+            return IsStaleByMtime(manifestPath, originalDir, translatedDirs, manifest);
+        }
+    }
+
+    private static bool IsStaleByMtime(
+        string manifestPath,
+        string originalDir,
+        IReadOnlyList<string> translatedDirs,
+        SearchIndexManifest manifest)
+    {
         var manifestWriteUtc = File.GetLastWriteTimeUtc(manifestPath);
 
         // Only check translated dirs for changes — originals are a read-only corpus
@@ -889,6 +942,97 @@ public sealed class SearchIndexService : ISearchIndexService
             return true;
 
         return false;
+    }
+
+    /// <summary>
+    /// Content-based hash of every <c>*.xml</c> file in <paramref name="originalDir"/> and each
+    /// <paramref name="translatedDirs"/>. Each file's bytes are SHA256'd; the per-file digests are
+    /// combined with their namespace-prefixed relative paths and SHA256'd again into a root hash.
+    /// Sorted by relPath (OrdinalIgnoreCase) so enumeration order is irrelevant.
+    ///
+    /// <para>Designed to ignore filesystem operations that preserve file content (git pull, git
+    /// checkout, branch switches that bump mtime without changing bytes) and to detect every real
+    /// content edit, regardless of whether file length stayed the same. Reading every file makes
+    /// this O(corpus-bytes); expect ~100–300ms on commodity hardware for a 50–200MB corpus.</para>
+    /// </summary>
+    internal static async Task<string> ComputeInputHashAsync(
+        string originalDir,
+        IEnumerable<string> translatedDirs,
+        CancellationToken ct)
+    {
+        // Enumerate file metadata off the caller's thread — directory walks can be
+        // multi-second on cold-disk corpora.
+        return await Task.Run(() => ComputeInputHashCore(originalDir, translatedDirs, ct), ct).ConfigureAwait(false);
+    }
+
+    private static string ComputeInputHashCore(
+        string originalDir,
+        IEnumerable<string> translatedDirs,
+        CancellationToken ct)
+    {
+        // Content-hash basis. Per-file SHA256 of the file's bytes, combined with the
+        // namespace-prefixed relative path into a final SHA256 root. Mtime is NOT in
+        // the basis — that was the bug: a git pull / git checkout that bumps mtime
+        // without changing content would otherwise bust the cache and trigger a
+        // multi-minute reindex. Hashing content directly makes the check robust to
+        // any filesystem operation that preserves file bytes.
+        var rows = new List<(string rel, byte[] contentHash)>();
+
+        AppendDirRows(rows, originalDir, "orig", ct);
+        if (translatedDirs != null)
+        {
+            int i = 0;
+            foreach (var tDir in translatedDirs)
+            {
+                AppendDirRows(rows, tDir, "tran" + i, ct);
+                i++;
+            }
+        }
+
+        rows.Sort((a, b) => StringComparer.OrdinalIgnoreCase.Compare(a.rel, b.rel));
+
+        // Canonical binary form per row: <utf8(rel) length as int32 LE><utf8(rel) bytes><32-byte SHA256>.
+        // Length-prefixed paths avoid any ambiguity from special characters (newlines, pipes)
+        // in legal POSIX filenames.
+        using var stream = new MemoryStream(rows.Count * 80);
+        foreach (var (rel, contentHash) in rows)
+        {
+            var relBytes = Encoding.UTF8.GetBytes(rel);
+            stream.Write(BitConverter.GetBytes(relBytes.Length));
+            stream.Write(relBytes);
+            stream.Write(contentHash);
+        }
+        stream.Position = 0;
+        var rootBytes = System.Security.Cryptography.SHA256.HashData(stream.ToArray());
+        return Convert.ToHexString(rootBytes).ToLowerInvariant();
+    }
+
+    private static void AppendDirRows(
+        List<(string rel, byte[] contentHash)> rows,
+        string dir,
+        string namespacePrefix,
+        CancellationToken ct)
+    {
+        if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) return;
+        foreach (var f in Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
+        {
+            ct.ThrowIfCancellationRequested();
+
+            // Namespace-prefix the relative path so a file with the same relative name in
+            // originalDir and translatedDirs[0] hashes to distinct rows.
+            var rel = namespacePrefix + "/" + Path.GetRelativePath(dir, f).Replace('\\', '/');
+
+            byte[] contentHash;
+            try
+            {
+                using var fs = File.OpenRead(f);
+                contentHash = System.Security.Cryptography.SHA256.HashData(fs);
+            }
+            catch (IOException) { continue; }
+            catch (UnauthorizedAccessException) { continue; }
+
+            rows.Add((rel, contentHash));
+        }
     }
 
     public void ClearBloomCache()
@@ -1088,11 +1232,31 @@ public sealed class SearchIndexService : ISearchIndexService
         || (ch >= '\u3400' && ch <= '\u4DBF')
         || (ch >= '\uF900' && ch <= '\uFAFF');
 
+    /// <summary>
+    /// PR2 (skip-verify hybrid): returns true iff the query is exactly 2 characters
+    /// and both are indexable CJK code points. Used to gate the hybrid path where
+    /// the bigram inverted index already proves adjacency, so VerifyFileAllHits is
+    /// run only for snippet collection (top-N) and skipped for the long tail.
+    /// </summary>
+    /// <remarks>
+    /// Length is measured in <see cref="char"/> (UTF-16 code units), so a single
+    /// astral CJK Ext-B/C/... character occupies two chars (a surrogate pair) and
+    /// would *coincidentally* match Length==2 \u2014 but neither surrogate half satisfies
+    /// <see cref="IsIndexableCjk(char)"/> (which only covers BMP CJK + Ext-A + Compat),
+    /// so the predicate correctly returns false for a surrogate pair. The corpus
+    /// uses BMP CJK exclusively, so this is the practical case.
+    /// </remarks>
+    internal static bool IsTwoCharCjk(string? q)
+    {
+        if (q == null || q.Length != 2) return false;
+        return IsIndexableCjk(q[0]) && IsIndexableCjk(q[1]);
+    }
+
     // ---------------------------
     // FAST body extraction / normalization (NO REGEX)
     // ---------------------------
 
-    private static string MakeSearchableTextFromXml_Fast(string xml, bool htmlDecodeIfAmpersandPresent)
+    internal static string MakeSearchableTextFromXml_Fast(string xml, bool htmlDecodeIfAmpersandPresent)
     {
         if (string.IsNullOrEmpty(xml)) return "";
 
@@ -1131,16 +1295,27 @@ public sealed class SearchIndexService : ISearchIndexService
                         if (tagContentLen >= 3)
                         {
                             bool isClose = xml[tagStart] == '/';
+                            bool isSelfClose = i > 0 && xml[i - 1] == '/';
                             int nameStart = isClose ? tagStart + 1 : tagStart;
                             // Check if tag name starts with "app"
                             if (i - nameStart >= 3 &&
                                 xml[nameStart] == 'a' && xml[nameStart + 1] == 'p' && xml[nameStart + 2] == 'p' &&
                                 (i - nameStart == 3 || nameStart + 3 >= i || xml[nameStart + 3] == ' ' || xml[nameStart + 3] == '>' || xml[nameStart + 3] == '/' || xml[nameStart + 3] == '\t' || xml[nameStart + 3] == '\n'))
                             {
-                                if (isClose)
+                                if (isSelfClose)
+                                {
+                                    // <app/> is a no-op for skip-depth (both open and close in one tag).
+                                    // Without this guard, appSkipDepth++ would fire unbalanced and
+                                    // silently suppress all text after the self-closing apparatus anchor.
+                                }
+                                else if (isClose)
+                                {
                                     appSkipDepth = Math.Max(0, appSkipDepth - 1);
+                                }
                                 else
+                                {
                                     appSkipDepth++;
+                                }
                             }
                         }
                     }
@@ -1498,7 +1673,12 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    private async Task SaveManifestAtomicAsync(string root, SearchIndexManifest manifest, CancellationToken ct)
+    private async Task SaveManifestAtomicAsync(
+        string root,
+        SearchIndexManifest manifest,
+        string originalDir,
+        IReadOnlyList<string> translatedDirs,
+        CancellationToken ct)
     {
         manifest.RootPath = root;
         manifest.BuiltUtc = DateTime.UtcNow;
@@ -1506,6 +1686,18 @@ public sealed class SearchIndexService : ISearchIndexService
         manifest.BloomBits = BloomBits;
         manifest.BloomHashCount = BloomHashCount;
         manifest.BuildGuid = BuildGuid;
+
+        // Snapshot the input-file metadata hash so future IsStaleAsync calls take the
+        // fast hash path instead of the legacy mtime check.
+        try
+        {
+            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, ct).ConfigureAwait(false);
+        }
+        catch (IOException)
+        {
+            // Filesystem race during build — leave InputHash null; legacy mtime path will run.
+            manifest.InputHash = null;
+        }
 
         var final = GetManifestPath(root);
         var tmp = final + ".tmp";
@@ -2246,7 +2438,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
                 ReplaceFileAtomicWithRetry(tmpTextBin, finalTextBin);
-                await SaveManifestAtomicAsync(root, manifest, ct);
+                await SaveManifestAtomicAsync(root, manifest, originalDir, translatedDirs, ct);
                 await SaveTextManifestAtomicAsync(root, textManifest, ct);
 
                 // Build and save inverted index alongside bloom
@@ -3097,9 +3289,42 @@ public sealed class SearchIndexService : ISearchIndexService
         }
         swCandidate.Stop();
 
-        var candidateList = candidates.Keys
-            .OrderBy(k => k, StringComparer.OrdinalIgnoreCase)
-            .ToList();
+        // PR2 (skip-verify hybrid): for 2-char pure-CJK queries, the inverted bigram index
+        // already proves contiguous adjacency, so we only need verify for snippet collection
+        // on the top N candidates. Order candidateList by a hit-count proxy (max LengthBytes
+        // across sides per relPath, descending) so the long tail — which gets verify skipped —
+        // is the smaller files (least likely to be a user's first click).
+        //
+        // For all other queries (length != 2, non-CJK, surrogate pair) keep the existing
+        // alphabetic sort to preserve byte-identical behaviour.
+        bool hybridSkipVerifyEnabled = IsTwoCharCjk(effectiveQuery) && Options.SkipVerifySnippetTopN > 0;
+
+        List<string> candidateList;
+        if (hybridSkipVerifyEnabled)
+        {
+            // Build a per-relPath weight: max LengthBytes across sides. Bigger files plausibly
+            // have more hits; this is a fallback for "actual posting-list bigram count" which
+            // the inverted index / cjk2 prefilter do not expose at this layer (they return
+            // doc-id sets, not per-doc counts).
+            var sizeByRel = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
+            foreach (var e in entries)
+            {
+                if (!candidates.ContainsKey(e.RelPath)) continue;
+                if (!sizeByRel.TryGetValue(e.RelPath, out var existing) || e.LengthBytes > existing)
+                    sizeByRel[e.RelPath] = e.LengthBytes;
+            }
+
+            candidateList = candidates.Keys
+                .OrderByDescending(k => sizeByRel.TryGetValue(k, out var sz) ? sz : 0L)
+                .ThenBy(k => k, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+        else
+        {
+            candidateList = candidates.Keys
+                .OrderBy(k => k, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
 
         int totalDocsToVerify = 0;
         foreach (var rel in candidateList)
@@ -3109,7 +3334,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if ((mask & 2) != 0) totalDocsToVerify++;
         }
 
-        Dbg($"Verify phase PREP candidateKeys={candidateList.Count} docsToVerify={totalDocsToVerify}");
+        Dbg($"Verify phase PREP candidateKeys={candidateList.Count} docsToVerify={totalDocsToVerify} hybridSkipVerify={hybridSkipVerifyEnabled} topN={Options.SkipVerifySnippetTopN}");
 
         progress?.Report(new SearchProgress
         {
@@ -3125,6 +3350,17 @@ public sealed class SearchIndexService : ISearchIndexService
         int verifiedDocs = 0;
         int totalHits = 0;
         int emittedGroups = 0;
+        // PR2 (skip-verify hybrid): the top-N relPaths (already sorted by size desc)
+        // are the verify-snippet budget. Pre-compute as a hashset so Parallel.ForEach
+        // workers can decide deterministically (work order is non-deterministic).
+        HashSet<string>? verifyBudgetRelPaths = null;
+        if (hybridSkipVerifyEnabled)
+        {
+            int take = Math.Min(candidateList.Count, Options.SkipVerifySnippetTopN);
+            verifyBudgetRelPaths = new HashSet<string>(
+                candidateList.Take(take), StringComparer.OrdinalIgnoreCase);
+        }
+        int skippedVerifyGroups = 0;
         var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
         var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
 
@@ -3184,56 +3420,101 @@ public sealed class SearchIndexService : ISearchIndexService
                         Status = meta.status
                     };
 
+                    // PR2 (skip-verify hybrid): determine whether this row enters the
+                    // skip-verify path. The verifyBudgetRelPaths set was pre-computed from
+                    // the top-N of the (size-desc-sorted) candidateList. Using a set rather
+                    // than an atomic counter guarantees the SAME N relPaths are verified
+                    // regardless of Parallel.ForEach work-order non-determinism.
+                    bool skipVerify = hybridSkipVerifyEnabled
+                                      && verifyBudgetRelPaths != null
+                                      && !verifyBudgetRelPaths.Contains(relKey);
+
                     int hitsO = 0;
                     int hitsT = 0;
                     var originalHits = new List<SearchHit>();
                     var translatedHits = new List<SearchHit>();
 
-                    if ((mask & 1) != 0)
+                    if (skipVerify)
                     {
-                        string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
-                        entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
-                        textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
-                        originalHits = VerifyFileAllHits(
-                            root,
-                            relKey,
-                            SearchSide.Original,
-                            abs,
-                            metaOriginal?.LastWriteUtcTicks ?? 0,
-                            metaOriginal?.LengthBytes ?? 0,
-                            textOriginal,
-                            effectiveQuery,
-                            contextWidth,
-                            htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
-                        Interlocked.Increment(ref verifiedDocs);
-                        hitsO = originalHits.Count;
-                        Interlocked.Add(ref totalHits, hitsO);
+                        // Skip-verify path: the bigram inverted index already proved both bigrams
+                        // (the only one, for a 2-char query) co-occur in this doc. We emit a single
+                        // placeholder child per requested side with IsSkippedVerify=true so the UI
+                        // can render a "snippet on demand" affordance. Hit counts are sentinel "1"
+                        // (= at least one) so ordering / badges remain meaningful.
+                        if ((mask & 1) != 0)
+                        {
+                            originalHits.Add(new SearchHit { Index = 0, Left = "", Match = "", Right = "" });
+                            hitsO = 1;
+                            Interlocked.Add(ref totalHits, 1);
+                        }
+                        if ((mask & 2) != 0)
+                        {
+                            translatedHits.Add(new SearchHit { Index = 0, Left = "", Match = "", Right = "" });
+                            hitsT = 1;
+                            Interlocked.Add(ref totalHits, 1);
+                        }
+                        Interlocked.Increment(ref skippedVerifyGroups);
                     }
-
-                    if ((mask & 2) != 0)
+                    else
                     {
-                        string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
-                        entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
-                        textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
-                        translatedHits = VerifyFileAllHits(
-                            root,
-                            relKey,
-                            SearchSide.Translated,
-                            abs,
-                            metaTranslated?.LastWriteUtcTicks ?? 0,
-                            metaTranslated?.LengthBytes ?? 0,
-                            textTranslated,
-                            effectiveQuery,
-                            contextWidth,
-                            htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
-                        Interlocked.Increment(ref verifiedDocs);
-                        hitsT = translatedHits.Count;
-                        Interlocked.Add(ref totalHits, hitsT);
+                        if ((mask & 1) != 0)
+                        {
+                            string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
+                            entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
+                            textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                            originalHits = VerifyFileAllHits(
+                                root,
+                                relKey,
+                                SearchSide.Original,
+                                abs,
+                                metaOriginal?.LastWriteUtcTicks ?? 0,
+                                metaOriginal?.LengthBytes ?? 0,
+                                textOriginal,
+                                effectiveQuery,
+                                contextWidth,
+                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                            Interlocked.Increment(ref verifiedDocs);
+                            hitsO = originalHits.Count;
+                            Interlocked.Add(ref totalHits, hitsO);
+                        }
+
+                        if ((mask & 2) != 0)
+                        {
+                            string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
+                            entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
+                            textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                            translatedHits = VerifyFileAllHits(
+                                root,
+                                relKey,
+                                SearchSide.Translated,
+                                abs,
+                                metaTranslated?.LastWriteUtcTicks ?? 0,
+                                metaTranslated?.LengthBytes ?? 0,
+                                textTranslated,
+                                effectiveQuery,
+                                contextWidth,
+                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                            Interlocked.Increment(ref verifiedDocs);
+                            hitsT = translatedHits.Count;
+                            Interlocked.Add(ref totalHits, hitsT);
+                        }
                     }
 
                     group.HitsOriginal = hitsO;
                     group.HitsTranslated = hitsT;
-                    group.Children.AddRange(BuildResultChildren(relKey, originalHits, translatedHits));
+                    if (skipVerify)
+                    {
+                        // Mark each placeholder child with IsSkippedVerify=true so UI templates
+                        // can branch on it. The child's Hit is a single-position empty placeholder
+                        // (Snippet text is effectively null/empty).
+                        var placeholders = BuildResultChildren(relKey, originalHits, translatedHits);
+                        foreach (var c in placeholders) c.IsSkippedVerify = true;
+                        group.Children.AddRange(placeholders);
+                    }
+                    else
+                    {
+                        group.Children.AddRange(BuildResultChildren(relKey, originalHits, translatedHits));
+                    }
 
                     if (group.Children.Count > 0)
                     {
@@ -3264,7 +3545,9 @@ public sealed class SearchIndexService : ISearchIndexService
                 });
 
                 swVerify.Stop();
-                Dbg($"Verify phase DONE in {swVerify.ElapsedMilliseconds}ms verified={verifiedDocs}/{totalDocsToVerify} groups={emittedGroups} hits={totalHits}");
+                Dbg($"Verify phase DONE in {swVerify.ElapsedMilliseconds}ms verified={verifiedDocs}/{totalDocsToVerify} groups={emittedGroups} hits={totalHits} skippedVerifyGroups={skippedVerifyGroups}");
+                Interlocked.Exchange(ref _lastSearchSkippedVerifyGroups, skippedVerifyGroups);
+                Interlocked.Exchange(ref _lastSearchVerifiedGroups, emittedGroups - skippedVerifyGroups);
 
                 progress?.Report(new SearchProgress
                 {
