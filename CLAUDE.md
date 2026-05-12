@@ -433,7 +433,6 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
 | RUN-20260509-1059 | Faith-in-Mind CE migration | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260509-1059-faith-in-mind-migration/ |
 | RUN-20260509-1330 | Character-click witness zoom | In Progress | runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/ |
-| RUN-20260512-1754 | Faith-in-Mind commentary language filter | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260512-1754-faith-in-mind-commentary-filter/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 
