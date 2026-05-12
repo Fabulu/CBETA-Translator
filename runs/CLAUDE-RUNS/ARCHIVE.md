@@ -32,6 +32,32 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-05-12 — Archived
+
+### [RUN-20260511-0624] Search Latency Sprint (SPA→desktop backflow)
+
+**Archived:** 2026-05-12
+**Created:** 2026-05-11 06:24 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260511-0624-search-latency-sprint/`
+**Commit:** `9ffe02a`
+
+**Summary:** Ported four high-leverage findings discovered during the SPA bigram-search port back to the desktop. Five-wave pipeline: 5 recons → architect → 4 parallel implementers → reviewer + QA + test-writer trio → Wave 5 fixes. Wave 4 caught two real blockers in Wave 3's work that Wave 5 fixed: PR3's hash basis still included mtime (so `git pull` would still bust the cache — defeating the spec), and PR4's expansion helper saw master/title pseudo-paths as "previously known" by rebuild time so they never auto-expanded. Wave 5 also surfaced a cross-PR landmine — existing users' indexes were built against the buggy `<app/>` extractor and the hash-based check correctly skips rebuild on unchanged content, so PR1's fix would have been invisible without bumping `BuildGuid`.
+
+**Deliverables:**
+- `Services/SearchIndexService.cs` — `<app/>` self-close fix, content-based hash, `IsStaleAsync` hybrid + legacy fallback, skip-verify hybrid for 2-char CJK, `BuildGuid` bump to `search-v4-app-self-close-fix`
+- `Models/SearchModels.cs` — `IsSkippedVerify`, `InputHash`, Display-property suppressions
+- `ViewModels/SearchTabViewModel.cs` — streaming threshold 4→1, 60ms `DispatcherTimer` coalescer, in-place `ResultGroups` mutation, `ApplyDefaultExpansionForNewGroupsOnly`, master-card init expansion, enrichment skip
+- `Views/SearchTabView.axaml` — `IsSkippedVerify` placeholder template
+- 3 new test files (53 facts) + 8 added to `IndexStalenessTests.cs`. 1395 → 1529 (+134), 0 fail.
+
+**Notes:**
+- One sprint commit rather than 4 PR-boundary commits — `SearchIndexService.cs` was touched by 3 PRs at scattered hunks; hunk-level surgery from a non-interactive shell was unreliable. Body lists PR boundaries explicitly; can be split via `git rebase -i` if needed.
+- Deferred: PR4 H1 (default-expansion vs final-sort order — polish), per-file content-hash caching (steady-state perf), `MasterCorpusSearchService` freshness check, xxHash alternative to SHA256.
+
+**Outcome:** All 4 sprint items shipped, reviewed, tested. Cold `無門` first-paint per QA: 150–250ms (was 2–4s). `git pull` mtime bumps no longer trigger reindex when content unchanged. Existing users get one-time forced rebuild via GUID bump to recover from the `<app/>` bug.
+
+---
+
 ## 2026-04-25 — Archived (v6.0.0 marathon)
 
 ### [RUN-20260421-2127] Search Parity + Insights Overhaul (5-phase plan)
