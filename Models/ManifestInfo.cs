@@ -77,6 +77,21 @@ public sealed class ManifestInfo
     [JsonPropertyName("timeline_file")]
     public string? TimelineFile { get; set; }
 
+    [JsonPropertyName("commentary_file")]
+    public string? CommentaryFile { get; set; }
+
+    /// <summary>
+    /// Reader-facing language whitelist for the commentary panel. When set,
+    /// `CommentaryService.TryLoad(xml, manifest.CommentaryReaderLanguages)`
+    /// surfaces only entries whose `language` matches (case-insensitive,
+    /// BCP-47 prefix). When null, the reader panel stays hidden (edition
+    /// opts out of commentary surfacing — zero footprint on non-opt-in
+    /// editions). Provenance/admin call sites pass null regardless and
+    /// see every entry unfiltered.
+    /// </summary>
+    [JsonPropertyName("commentary_reader_languages")]
+    public List<string>? CommentaryReaderLanguages { get; set; }
+
     // Edition fields (critical-edition support)
 
     [JsonPropertyName("base_witness_id")]

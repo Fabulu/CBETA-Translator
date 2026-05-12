@@ -197,6 +197,7 @@ public partial class ReadableTabView : UserControl
     private List<Services.TranslationDiffEntry>? _translationDiffs;
     private string? _editionDir; // edition XML directory, used for resolving witness page images
     private string? _provenanceXmlAbsPath; // current XML abs path for apparatus sidecar loading
+    private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
     private Dictionary<string, Services.CorrectionEntry>? _latestCorrectionByLocus;
@@ -1150,8 +1151,14 @@ public partial class ReadableTabView : UserControl
         if (_aeOrig != null) _aeOrig.Text = "";
         if (_aeTran != null) _aeTran.Text = "";
 
-        // Hide footnotes panel on clear
+        // Hide footnotes + commentary panels on clear. Commentary reset is
+        // defensive — today SetProvenance always fires after Clear so the
+        // panel state is re-resolved either way, but a future call site that
+        // skips SetProvenance would leak the prior edition's commentary
+        // state without this line. Wave 5 follow-up to QA finding (2026-05-12).
         PopulateFootnotes(null);
+        _provenanceManifest = null;
+        PopulateCommentary(null, null);
 
         _lastOrigSelStart = _lastOrigSelEnd = -1;
         _lastTranSelStart = _lastTranSelEnd = -1;
@@ -1958,6 +1965,128 @@ public partial class ReadableTabView : UserControl
             sp.Children.Add(textBlock);
             panel.Children.Add(sp);
         }
+    }
+
+    /// <summary>
+    /// Populates the right-column commentary panel with Chinese-language entries
+    /// loaded from commentary.json (filtered via <c>manifest.commentary_reader_languages</c>).
+    /// Shows an empty-state placeholder when the edition opts into commentary
+    /// surfacing but has no entries matching the language whitelist (the typical
+    /// FiM-today case: 17 Japanese entries all rejected by the default-deny filter).
+    /// Hides the panel entirely when the edition does not opt in (manifest field null) —
+    /// zero visual change for non-opt-in editions.
+    /// </summary>
+    private void PopulateCommentary(string? xmlAbsPath, ManifestInfo? manifest)
+    {
+        var border = this.FindControl<Border>("CommentaryPanelBorder");
+        var host = this.FindControl<StackPanel>("CommentaryHost");
+        var emptyState = this.FindControl<TextBlock>("CommentaryEmptyState");
+
+        // Be defensive: if the control tree hasn't loaded yet (or test harness
+        // bypassed XAML wiring), do nothing rather than crash.
+        if (border == null || host == null || emptyState == null)
+            return;
+
+        var service = App.Services?.GetService<ICommentaryService>();
+        var state = CommentaryPanelStateResolver.Resolve(xmlAbsPath, manifest, service);
+
+        ApplyCommentaryPanelState(state, border, host, emptyState);
+    }
+
+    /// <summary>
+    /// Renders a <see cref="CommentaryPanelState"/> snapshot onto the supplied
+    /// Avalonia controls. Exposed as a separate static so view-level tests can
+    /// pass in test doubles for the panel border / host / empty state.
+    /// </summary>
+    internal static void ApplyCommentaryPanelState(
+        CommentaryPanelState state,
+        Border border,
+        StackPanel host,
+        TextBlock emptyState)
+    {
+        host.Children.Clear();
+
+        if (!state.PanelVisible)
+        {
+            border.IsVisible = false;
+            emptyState.IsVisible = false;
+            return;
+        }
+
+        border.IsVisible = true;
+        emptyState.IsVisible = state.EmptyStateVisible;
+
+        foreach (var entry in state.Entries)
+        {
+            host.Children.Add(BuildCommentaryEntryView(entry));
+        }
+    }
+
+    private static Border BuildCommentaryEntryView(CommentaryEntry entry)
+    {
+        var stack = new StackPanel { Spacing = 2 };
+
+        // Header: title (bold) + optional locus chip
+        var headerRow = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
+        var titleBlock = new TextBlock
+        {
+            Text = string.IsNullOrWhiteSpace(entry.Title) ? "(untitled)" : entry.Title,
+            FontWeight = FontWeight.SemiBold,
+            FontSize = 12,
+            TextWrapping = TextWrapping.Wrap,
+            MaxWidth = 320
+        };
+        headerRow.Children.Add(titleBlock);
+
+        if (!string.IsNullOrWhiteSpace(entry.LocusId))
+        {
+            var locusChip = new Border
+            {
+                CornerRadius = new CornerRadius(4),
+                Padding = new Thickness(4, 1),
+                Background = new SolidColorBrush(Color.FromRgb(60, 60, 70)),
+                VerticalAlignment = VerticalAlignment.Center,
+                Child = new TextBlock
+                {
+                    Text = entry.LocusId,
+                    FontSize = 10,
+                    Foreground = new SolidColorBrush(Color.FromRgb(230, 230, 230))
+                }
+            };
+            headerRow.Children.Add(locusChip);
+        }
+        stack.Children.Add(headerRow);
+
+        if (!string.IsNullOrWhiteSpace(entry.Body))
+        {
+            stack.Children.Add(new TextBlock
+            {
+                Text = entry.Body,
+                FontSize = 11,
+                TextWrapping = TextWrapping.Wrap,
+                Opacity = 0.9
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(entry.Source))
+        {
+            stack.Children.Add(new TextBlock
+            {
+                Text = entry.Source,
+                FontSize = 10,
+                Opacity = 0.65,
+                FontStyle = FontStyle.Italic,
+                TextWrapping = TextWrapping.Wrap
+            });
+        }
+
+        return new Border
+        {
+            BorderBrush = new SolidColorBrush(Color.FromArgb(60, 128, 128, 128)),
+            BorderThickness = new Thickness(0, 0, 0, 1),
+            Padding = new Thickness(0, 4, 0, 6),
+            Child = stack
+        };
     }
 
     /// 2) If not found, use compact-CJK normalized matching and map back to raw offsets
@@ -5288,11 +5417,17 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
         _provenanceXmlAbsPath = xmlAbsPath;
+        _provenanceManifest = manifest;
         _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
 
         // Pass apparatus count from the current rendered document's annotations
         var appCount = _vm?.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
         _provenancePanelView?.SetApparatusCount(appCount);
+
+        // Refresh the right-column commentary panel from the freshly-bound manifest.
+        // Editions without `commentary_reader_languages` in their manifest produce
+        // CommentaryPanelState.Hidden and the panel stays invisible (zero footprint).
+        PopulateCommentary(xmlAbsPath, manifest);
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>
