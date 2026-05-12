@@ -307,8 +307,8 @@
 							  ResizeBehavior="PreviousAndNext"
 							  Background="Transparent"/>
 
-				<!-- Column 2: right side panels (study + provenance) -->
-				<Grid Name="RightPanelHost" Grid.Column="2" RowDefinitions="*,*">
+				<!-- Column 2: right side panels (study + provenance + commentary) -->
+				<Grid Name="RightPanelHost" Grid.Column="2" RowDefinitions="*,*,Auto">
 					<!-- Row 0: study panel -->
 					<Border Name="StudyPanel"
 							Grid.Row="0"
@@ -398,6 +398,29 @@
 							BorderBrush="{DynamicResource XmlViewerBorder}"
 							BorderThickness="1,1,0,0">
 						<local:ProvenancePanel Name="ProvenancePanelView"/>
+					</Border>
+
+					<!-- Row 2: Chinese commentary panel (opt-in via manifest.commentary_reader_languages) -->
+					<Border Name="CommentaryPanelBorder"
+							Grid.Row="2"
+							IsVisible="False"
+							Background="{DynamicResource ControlBg}"
+							BorderBrush="{DynamicResource XmlViewerBorder}"
+							BorderThickness="1,1,0,0"
+							MaxHeight="280">
+						<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+									  VerticalScrollBarVisibility="Auto">
+							<StackPanel Spacing="6" Margin="8">
+								<TextBlock Text="Chinese Commentary" FontWeight="Bold" FontSize="14"/>
+								<TextBlock Name="CommentaryEmptyState"
+										   Text="No Chinese commentary available for this text yet."
+										   Classes="muted"
+										   FontSize="11"
+										   TextWrapping="Wrap"
+										   IsVisible="False"/>
+								<StackPanel Name="CommentaryHost" Spacing="6"/>
+							</StackPanel>
+						</ScrollViewer>
 					</Border>
 				</Grid>
 			</Grid>

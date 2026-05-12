@@ -32,6 +32,38 @@ public static class CjkMatchNormalizer
         return false;
     }
 
+    /// <summary>
+    /// True for Hiragana code points (U+3040\u2013U+309F). Used by the commentary
+    /// language classifier to discriminate Japanese prose from pure-CJK
+    /// Chinese \u2014 the script ranges are disjoint from CJK Unified.
+    /// </summary>
+    public static bool IsHiragana(char c) => c >= '\u3040' && c <= '\u309F';
+
+    /// <summary>
+    /// True for Katakana code points (U+30A0\u2013U+30FF) excluding the
+    /// middle-dot U+30FB (which appears in Chinese names and would
+    /// otherwise produce false-positive Japanese hits).
+    /// </summary>
+    public static bool IsKatakana(char c) => c >= '\u30A0' && c <= '\u30FF' && c != '\u30FB';
+
+    /// <summary>
+    /// Counts Hiragana + Katakana characters in <paramref name="text"/>.
+    /// Null- and empty-safe. Returns 0 for null/empty input.
+    /// </summary>
+    public static int CountKana(string? text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return 0;
+
+        int count = 0;
+        foreach (char c in text)
+        {
+            if (IsHiragana(c) || IsKatakana(c))
+                count++;
+        }
+        return count;
+    }
+
     public static string Normalize(string? raw) => NormalizeWithMap(raw).Normalized;
 
     public static NormalizedText NormalizeWithMap(string? raw)

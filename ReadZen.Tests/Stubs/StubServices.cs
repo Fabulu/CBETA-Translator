@@ -376,4 +376,80 @@ public class StubDocumentTagService : IDocumentTagService
     public Task WriteUserCommunityVocabularyAsync(string root, string username, TagVocabulary vocab, CancellationToken ct = default) => Task.CompletedTask;
 }
 
+// ---- ICommentaryService ----
 
+/// <summary>
+/// Stub for <see cref="ICommentaryService"/>. Returns null by default
+/// (matches "edition has no commentary surface" semantics). Tests that
+/// want canned entries set <see cref="PreloadedEntries"/>; the stub then
+/// mimics CommentaryService's allowedLanguages filter logic so view-level
+/// tests see realistic filtered output without touching disk.
+/// </summary>
+public class StubCommentaryService : ICommentaryService
+{
+    /// <summary>
+    /// Canned commentary entries returned (after filtering) whenever
+    /// <see cref="TryLoad"/> is called. Leave null to simulate "no
+    /// commentary.json present" — TryLoad will return null.
+    /// </summary>
+    public List<CommentaryEntry>? PreloadedEntries { get; set; }
+
+    /// <summary>
+    /// Canned inference tags exposed via <see cref="GetInferenceTag"/>.
+    /// Tests that exercise admin-provenance paths populate this directly;
+    /// the stub does not run the real classifier.
+    /// </summary>
+    public Dictionary<string, LanguageTag> PreloadedInferenceTags { get; } = new(StringComparer.Ordinal);
+
+    public int CallCount { get; private set; }
+    public string? LastXmlAbsPath { get; private set; }
+    public List<string>? LastAllowedLanguages { get; private set; }
+
+    public LanguageTag? GetInferenceTag(string commentaryId)
+    {
+        if (string.IsNullOrEmpty(commentaryId))
+            return null;
+        return PreloadedInferenceTags.TryGetValue(commentaryId, out var tag) ? tag : null;
+    }
+
+    public CommentaryInfo? TryLoad(string xmlAbsPath, IEnumerable<string>? allowedLanguages = null)
+    {
+        CallCount++;
+        LastXmlAbsPath = xmlAbsPath;
+        LastAllowedLanguages = allowedLanguages?.ToList();
+
+        if (PreloadedEntries == null)
+            return null;
+
+        // Mirror CommentaryService's allowlist semantics so this stub
+        // behaves consistently with the real service for view tests.
+        List<string>? whitelist = null;
+        if (allowedLanguages != null)
+        {
+            whitelist = new List<string>();
+            foreach (var tag in allowedLanguages)
+                if (!string.IsNullOrWhiteSpace(tag)) whitelist.Add(tag);
+            if (whitelist.Count == 0) whitelist = null;
+        }
+
+        if (whitelist == null)
+            return new CommentaryInfo { Entries = new List<CommentaryEntry>(PreloadedEntries) };
+
+        var filtered = new List<CommentaryEntry>();
+        foreach (var e in PreloadedEntries)
+        {
+            if (string.IsNullOrWhiteSpace(e.Language)) continue;
+            if (string.Equals(e.Language, "unknown", StringComparison.OrdinalIgnoreCase)) continue;
+            foreach (var f in whitelist)
+            {
+                if (e.Language!.Equals(f, StringComparison.OrdinalIgnoreCase) ||
+                    e.Language.StartsWith(f + "-", StringComparison.OrdinalIgnoreCase))
+                {
+                    filtered.Add(e);
+                    break;
+                }
+            }
+        }
+        return new CommentaryInfo { Entries = filtered };
+    }
+}

@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IManifestService, ManifestService>();
         services.AddSingleton<ProcessService>();
         services.AddSingleton<ApparatusService>();
+        services.AddSingleton<ICommentaryService, CommentaryService>();
         services.AddSingleton<EditionStatsService>();
         services.AddSingleton<DocumentsService>();
         services.AddSingleton<TimelineService>();
