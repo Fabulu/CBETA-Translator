@@ -234,15 +234,29 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Post-search result filter -->
+                        <!-- Post-search result filter + Load-all-snippets toolbar.
+                             PR A: the "Load all snippets" button only appears when at least
+                             one result row carries IsSkippedVerify=true (the long tail of a
+                             2-char-CJK hybrid search). Clicking promotes every placeholder
+                             to a fully-verified row with real snippet text. -->
                         <Border Grid.Row="3"
                                 IsVisible="{Binding HasResults}"
                                 Padding="0,0,0,4">
-                            <TextBox Name="TxtResultFilter"
-                                     Text="{Binding ResultFilter}"
-                                     Watermark="Filter results&#x2026;"
-                                     FontSize="11"
-                                     Padding="6,3"/>
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                                <TextBox Grid.Column="0"
+                                         Name="TxtResultFilter"
+                                         Text="{Binding ResultFilter}"
+                                         Watermark="Filter results&#x2026;"
+                                         FontSize="11"
+                                         Padding="6,3"/>
+                                <Button Grid.Column="1"
+                                        Content="Load all snippets"
+                                        Command="{Binding LoadAllSnippetsCommand}"
+                                        IsVisible="{Binding HasSkippedVerifyRows}"
+                                        Padding="8,3"
+                                        FontSize="11"
+                                        ToolTip.Tip="Fetch snippet text for the long-tail results that were left as 'click to open' placeholders. Disk-intensive; takes a few seconds for thousands of files."/>
+                            </Grid>
                         </Border>
 
                         <TreeView Grid.Row="4"

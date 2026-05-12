@@ -104,6 +104,15 @@ public sealed class SearchIndexService : ISearchIndexService
     private int _lastSearchVerifiedGroups;
     internal int LastSearchSkippedVerifyGroups => Volatile.Read(ref _lastSearchSkippedVerifyGroups);
     internal int LastSearchVerifiedGroups => Volatile.Read(ref _lastSearchVerifiedGroups);
+
+    // PR B (content-hash cache) — guards the opportunistic backfill write in IsStaleAsync
+    // against concurrent callers. 0 = idle, 1 = a backfill is in flight. CompareExchange
+    // ensures only one writer at a time; the second caller silently skips the backfill
+    // (the cache will still get populated on a subsequent call). Test-observable count
+    // of how many backfills actually fired this process — used in the concurrency test.
+    private int _contentHashBackfillFlag;
+    private int _contentHashBackfillCount;
+    internal int LastContentHashBackfillCount => Volatile.Read(ref _contentHashBackfillCount);
     private MemoryMappedFile? _cachedTextMmf;
     private string? _cachedTextBinPath;
     private DateTime _cachedTextBinWriteUtc;
@@ -901,12 +910,47 @@ public sealed class SearchIndexService : ISearchIndexService
 
             // Hash-aware path: bust the cache only on real content/structure changes,
             // ignoring spurious mtime bumps from git pull / git checkout.
-            var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, CancellationToken.None).ConfigureAwait(false);
+            //
+            // PR B: pass the manifest's existing per-file entries as a content-hash cache.
+            // For each XML file, the hash worker checks (LengthBytes, LastWriteUtcTicks)
+            // against the cached entry: cache hit → reuse stored ContentHash (no file read).
+            // Cache miss (file changed, file new, or legacy entry with null ContentHash) →
+            // fresh SHA256 + deposit into the writeBack dict for opportunistic persistence.
+            var cache = BuildContentHashCache(manifest);
+            var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
+
+            var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None).ConfigureAwait(false);
             if (!string.Equals(manifest.InputHash, currentHash, StringComparison.Ordinal))
                 return true;
 
             if (manifest.Entries.Count == 0 && Directory.Exists(originalDir))
                 return true;
+
+            // Opportunistic backfill: if any entries had null/stale ContentHash and we just
+            // computed fresh ones, patch the manifest on disk so the *next* IsStaleAsync call
+            // hits the fast cache path. Guarded behind a single-writer flag — concurrent
+            // callers skip the backfill (cache will still get populated on a later call).
+            if (writeBack.Count > 0)
+            {
+                if (Interlocked.CompareExchange(ref _contentHashBackfillFlag, 1, 0) == 0)
+                {
+                    try
+                    {
+                        ApplyContentHashWriteBack(manifest, writeBack);
+                        await SaveContentHashBackfillAsync(root, manifest, CancellationToken.None).ConfigureAwait(false);
+                        Interlocked.Increment(ref _contentHashBackfillCount);
+                    }
+                    catch
+                    {
+                        // Best-effort: a failed backfill just means next call will retry.
+                        // We don't want to crash IsStaleAsync over a write hiccup.
+                    }
+                    finally
+                    {
+                        Interlocked.Exchange(ref _contentHashBackfillFlag, 0);
+                    }
+                }
+            }
 
             return false;
         }
@@ -915,6 +959,81 @@ public sealed class SearchIndexService : ISearchIndexService
             // Filesystem race (file deleted mid-enumeration, transient lock, etc.) — fall back
             // to mtime check so a startup hiccup never crashes the staleness probe.
             return IsStaleByMtime(manifestPath, originalDir, translatedDirs, manifest);
+        }
+    }
+
+    /// <summary>
+    /// Builds the (namespaced relPath → SearchIndexEntry) lookup used by the hash worker
+    /// to skip re-hashing unchanged files. Original entries get the <c>orig/</c> prefix;
+    /// translated entries get <c>tran0/</c>. Matches the namespacing in <see cref="AppendDirRows"/>.
+    ///
+    /// <para><b>Limitation:</b> additional translated dirs (index ≥ 1) are not represented
+    /// here because the existing manifest schema only distinguishes Side, not which translated
+    /// dir the entry came from. Those files take the cache-miss path on every check — a tiny
+    /// regression on multi-dir setups, acceptable until the schema grows a NamespaceIndex
+    /// field. Most installs have a single translated dir.</para>
+    /// </summary>
+    private static IReadOnlyDictionary<string, SearchIndexEntry> BuildContentHashCache(SearchIndexManifest manifest)
+    {
+        var cache = new Dictionary<string, SearchIndexEntry>(manifest.Entries.Count, StringComparer.Ordinal);
+        foreach (var e in manifest.Entries)
+        {
+            // Convert raw RelPath to namespaced form expected by ComputeInputHashCore.
+            var ns = e.Side == SearchSide.Original ? "orig" : "tran0";
+            var rel = ns + "/" + e.RelPath.Replace('\\', '/');
+            // Last writer wins on duplicates (shouldn't happen with valid manifests).
+            cache[rel] = e;
+        }
+        return cache;
+    }
+
+    /// <summary>
+    /// Copies fresh per-file hashes from the write-back dict onto the manifest's entries.
+    /// Mirrors the namespacing logic in <see cref="BuildContentHashCache"/>.
+    /// </summary>
+    private static void ApplyContentHashWriteBack(SearchIndexManifest manifest, IReadOnlyDictionary<string, string> writeBack)
+    {
+        foreach (var e in manifest.Entries)
+        {
+            var ns = e.Side == SearchSide.Original ? "orig" : "tran0";
+            var rel = ns + "/" + e.RelPath.Replace('\\', '/');
+            if (writeBack.TryGetValue(rel, out var freshHash))
+            {
+                e.ContentHash = freshHash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Atomically writes the patched manifest (with newly-populated ContentHash fields) to
+    /// disk via the temp-file + rename pattern. Preserves the existing InputHash + BuildGuid +
+    /// Entries shape — only ContentHash fields change. Refreshes the in-memory manifest cache
+    /// on success so subsequent searches see the patched entries without re-reading.
+    /// </summary>
+    private async Task SaveContentHashBackfillAsync(string root, SearchIndexManifest manifest, CancellationToken ct)
+    {
+        var final = GetManifestPath(root);
+        var tmp = final + ".tmp";
+
+        var json = JsonSerializer.Serialize(manifest, JsonOpts);
+        await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct).ConfigureAwait(false);
+
+        ReplaceFileAtomicWithRetry(tmp, final);
+
+        try
+        {
+            var full = Path.GetFullPath(final);
+            var writeUtc = File.GetLastWriteTimeUtc(full);
+            lock (_indexCacheLock)
+            {
+                _cachedManifest = manifest;
+                _cachedManifestPath = full;
+                _cachedManifestWriteUtc = writeUtc;
+            }
+        }
+        catch
+        {
+            // harmless — cache will refresh on next load
         }
     }
 
@@ -959,15 +1078,38 @@ public sealed class SearchIndexService : ISearchIndexService
         string originalDir,
         IEnumerable<string> translatedDirs,
         CancellationToken ct)
+        => await ComputeInputHashAsync(originalDir, translatedDirs, cache: null, writeBack: null, ct).ConfigureAwait(false);
+
+    /// <summary>
+    /// Cache-aware overload: when <paramref name="cache"/> is provided (keyed by namespaced
+    /// relPath, e.g. <c>"orig/foo/bar.xml"</c>), per-file content hashes are reused without
+    /// re-reading the file as long as the on-disk <c>(LengthBytes, LastWriteUtcTicks)</c> still
+    /// match the cached entry. Cache misses (mtime / length changed, file new, or cached
+    /// <see cref="SearchIndexEntry.ContentHash"/> is null) fall back to a fresh SHA256 over the
+    /// file bytes; if <paramref name="writeBack"/> is non-null those fresh hashes are deposited
+    /// into it so the caller can persist them back to the manifest.
+    ///
+    /// <para><b>Invariant:</b> The returned root hash is byte-identical between a fully populated
+    /// cache (no file reads) and an empty cache (every file read) for the same corpus content.
+    /// The cache is purely an optimization.</para>
+    /// </summary>
+    internal static async Task<string> ComputeInputHashAsync(
+        string originalDir,
+        IEnumerable<string> translatedDirs,
+        IReadOnlyDictionary<string, SearchIndexEntry>? cache,
+        IDictionary<string, string>? writeBack,
+        CancellationToken ct)
     {
         // Enumerate file metadata off the caller's thread — directory walks can be
         // multi-second on cold-disk corpora.
-        return await Task.Run(() => ComputeInputHashCore(originalDir, translatedDirs, ct), ct).ConfigureAwait(false);
+        return await Task.Run(() => ComputeInputHashCore(originalDir, translatedDirs, cache, writeBack, ct), ct).ConfigureAwait(false);
     }
 
     private static string ComputeInputHashCore(
         string originalDir,
         IEnumerable<string> translatedDirs,
+        IReadOnlyDictionary<string, SearchIndexEntry>? cache,
+        IDictionary<string, string>? writeBack,
         CancellationToken ct)
     {
         // Content-hash basis. Per-file SHA256 of the file's bytes, combined with the
@@ -978,13 +1120,13 @@ public sealed class SearchIndexService : ISearchIndexService
         // any filesystem operation that preserves file bytes.
         var rows = new List<(string rel, byte[] contentHash)>();
 
-        AppendDirRows(rows, originalDir, "orig", ct);
+        AppendDirRows(rows, originalDir, "orig", cache, writeBack, ct);
         if (translatedDirs != null)
         {
             int i = 0;
             foreach (var tDir in translatedDirs)
             {
-                AppendDirRows(rows, tDir, "tran" + i, ct);
+                AppendDirRows(rows, tDir, "tran" + i, cache, writeBack, ct);
                 i++;
             }
         }
@@ -1011,6 +1153,8 @@ public sealed class SearchIndexService : ISearchIndexService
         List<(string rel, byte[] contentHash)> rows,
         string dir,
         string namespacePrefix,
+        IReadOnlyDictionary<string, SearchIndexEntry>? cache,
+        IDictionary<string, string>? writeBack,
         CancellationToken ct)
     {
         if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) return;
@@ -1022,6 +1166,28 @@ public sealed class SearchIndexService : ISearchIndexService
             // originalDir and translatedDirs[0] hashes to distinct rows.
             var rel = namespacePrefix + "/" + Path.GetRelativePath(dir, f).Replace('\\', '/');
 
+            // Cache lookup: only reuse the stored hash when (length, mtime) match. Any
+            // mismatch — including a legacy entry whose ContentHash is null — falls
+            // through to a fresh read+hash.
+            if (cache != null && cache.TryGetValue(rel, out var cached) && !string.IsNullOrEmpty(cached.ContentHash))
+            {
+                try
+                {
+                    var fi = new FileInfo(f);
+                    if (fi.Exists &&
+                        fi.Length == cached.LengthBytes &&
+                        fi.LastWriteTimeUtc.Ticks == cached.LastWriteUtcTicks)
+                    {
+                        // Cache hit — no file read needed.
+                        rows.Add((rel, Convert.FromHexString(cached.ContentHash)));
+                        continue;
+                    }
+                }
+                catch (IOException) { /* fall through to fresh hash */ }
+                catch (UnauthorizedAccessException) { /* fall through to fresh hash */ }
+                catch (FormatException) { /* malformed hex — re-hash */ }
+            }
+
             byte[] contentHash;
             try
             {
@@ -1032,6 +1198,13 @@ public sealed class SearchIndexService : ISearchIndexService
             catch (UnauthorizedAccessException) { continue; }
 
             rows.Add((rel, contentHash));
+
+            // Cache-miss path: capture the fresh hash for write-back so the next stale
+            // check can take the fast path. Hex-encoded to match SearchIndexEntry.ContentHash.
+            if (writeBack != null)
+            {
+                writeBack[rel] = Convert.ToHexString(contentHash).ToLowerInvariant();
+            }
         }
     }
 
@@ -1688,10 +1861,24 @@ public sealed class SearchIndexService : ISearchIndexService
         manifest.BuildGuid = BuildGuid;
 
         // Snapshot the input-file metadata hash so future IsStaleAsync calls take the
-        // fast hash path instead of the legacy mtime check.
+        // fast hash path instead of the legacy mtime check. Also collect every per-file
+        // hash via the writeBack channel and propagate onto the corresponding entry's
+        // ContentHash field — so the very first IsStaleAsync call after this manifest
+        // is written hits the cache-fast path (no re-hashing of unchanged files).
         try
         {
-            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, ct).ConfigureAwait(false);
+            var freshHashes = new Dictionary<string, string>(StringComparer.Ordinal);
+            // No cache on the build path — we want every file freshly hashed so the
+            // resulting manifest is authoritative. The writeBack populates ContentHash.
+            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache: null, writeBack: freshHashes, ct).ConfigureAwait(false);
+
+            // Stamp ContentHash onto manifest entries. Uses the same namespacing scheme
+            // (orig/, tran0/) as BuildContentHashCache so the next IsStaleAsync call
+            // finds the cache via BuildContentHashCache(manifest).
+            if (freshHashes.Count > 0)
+            {
+                ApplyContentHashWriteBack(manifest, freshHashes);
+            }
         }
         catch (IOException)
         {
@@ -3582,6 +3769,223 @@ public sealed class SearchIndexService : ISearchIndexService
         swTotal.Stop();
         Dbg($"SearchAllAsync END total={swTotal.ElapsedMilliseconds}ms");
 
+    }
+
+    /// <inheritdoc />
+    /// <remarks>
+    /// PR A (load-all-snippets): re-verifies skip-verify placeholder rows on demand.
+    ///
+    /// Implementation notes:
+    /// - Walks <paramref name="groups"/> once to collect every (relPath, sideMask) tuple
+    ///   whose group currently has at least one <see cref="SearchResultChild.IsSkippedVerify"/>=true
+    ///   child. The side mask is derived from the placeholder children themselves so we
+    ///   never re-verify sides the caller never requested.
+    /// - Runs <c>VerifyFileAllHits</c> for each tuple under <c>Parallel.ForEach</c> with
+    ///   <see cref="SearchIndexServiceOptions.MaxVerifyDegreeOfParallelism"/>.
+    /// - Returns a per-relPath dictionary of fresh children. The caller (view-model) is
+    ///   responsible for: (a) UI-thread marshalling, (b) preserving group identity, and
+    ///   (c) re-applying any UI-side children cap. The service deliberately does NOT
+    ///   mutate <see cref="SearchResultGroup"/> instances — that decoupling is required
+    ///   because <c>SearchResultGroup.Children</c> may be an <c>ObservableCollection</c>
+    ///   in the live UI (mutating from a worker thread would throw / corrupt bindings),
+    ///   and identity preservation lives one layer up (see PR4 from the prior sprint).
+    /// - Cancellation: <c>Parallel.ForEach</c>'s built-in CancellationToken support is used;
+    ///   already-completed tuples remain in the returned dictionary so the caller can apply
+    ///   partial progress. A canceled call throws <see cref="OperationCanceledException"/>.
+    /// </remarks>
+    public async Task<IReadOnlyDictionary<string, IReadOnlyList<SearchResultChild>>> LoadSnippetsForAsync(
+        string root,
+        string originalDir,
+        string translatedDir,
+        SearchIndexManifest manifest,
+        IReadOnlyList<SearchResultGroup> groups,
+        string query,
+        int contextWidth,
+        IProgress<SearchProgress>? progress = null,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
+        CancellationToken ct = default)
+    {
+        var emptyResult = new Dictionary<string, IReadOnlyList<SearchResultChild>>(StringComparer.OrdinalIgnoreCase);
+        if (groups == null || groups.Count == 0)
+            return emptyResult;
+
+        query = (query ?? "").Trim();
+        if (query.Length == 0)
+            return emptyResult;
+
+        // Mirror SearchAllAsync: CJK queries are normalized so the verify path uses the
+        // same effective query string that the original search used to detect candidates.
+        string effectiveQuery = CjkMatchNormalizer.ContainsCjk(query)
+            ? CjkMatchNormalizer.Normalize(query)
+            : query;
+        if (effectiveQuery.Length == 0)
+            return emptyResult;
+
+        // Collect promotion targets: each group keeps the union of sides we need to verify,
+        // derived from the IsSkippedVerify children themselves (so we never re-verify a side
+        // the original search didn't request — preserves include-original/include-translated
+        // selections without needing to thread them through).
+        var promote = new List<(SearchResultGroup group, int sideMask)>(groups.Count);
+        foreach (var g in groups)
+        {
+            if (g.Children == null || g.Children.Count == 0) continue;
+            int sideMask = 0;
+            foreach (var c in g.Children)
+            {
+                if (!c.IsSkippedVerify) continue;
+                if (c.Side == SearchSide.Original) sideMask |= 1;
+                else if (c.Side == SearchSide.Translated) sideMask |= 2;
+            }
+            if (sideMask != 0)
+                promote.Add((g, sideMask));
+        }
+
+        if (promote.Count == 0)
+            return emptyResult;
+
+        Dbg($"LoadSnippetsForAsync START promoting={promote.Count} q='{query}' effectiveQ='{effectiveQuery}'");
+
+        // Pre-build the entry/text-entry maps once for the whole batch (mirrors SearchAllAsync).
+        var entries = manifest?.Entries ?? new List<SearchIndexEntry>();
+        var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
+        var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
+        try
+        {
+            var textManifest = await TryLoadTextManifestAsync(root);
+            if (textManifest?.Entries != null)
+            {
+                foreach (var e in textManifest.Entries)
+                    textEntryMap[(e.RelPath, e.Side)] = e;
+            }
+        }
+        catch
+        {
+            // Sidecar is optional. Fallback path keeps verify correctness.
+        }
+
+        var result = new ConcurrentDictionary<string, IReadOnlyList<SearchResultChild>>(StringComparer.OrdinalIgnoreCase);
+        int totalToVerify = 0;
+        foreach (var (_, mask) in promote)
+        {
+            if ((mask & 1) != 0) totalToVerify++;
+            if ((mask & 2) != 0) totalToVerify++;
+        }
+
+        int verifiedDocs = 0;
+        int totalHits = 0;
+
+        progress?.Report(new SearchProgress
+        {
+            Phase = "Loading snippets...",
+            Candidates = totalToVerify,
+            TotalDocsToVerify = totalToVerify
+        });
+
+        var verifyPo = new ParallelOptions
+        {
+            CancellationToken = ct,
+            MaxDegreeOfParallelism = Math.Max(1, Options.MaxVerifyDegreeOfParallelism)
+        };
+
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+
+        await Task.Run(() =>
+        {
+            Parallel.ForEach(promote, verifyPo, item =>
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var (group, mask) = item;
+                var relKey = group.RelPath;
+
+                List<SearchHit> originalHits = new();
+                List<SearchHit> translatedHits = new();
+
+                if ((mask & 1) != 0)
+                {
+                    string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
+                    entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
+                    textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                    originalHits = VerifyFileAllHits(
+                        root,
+                        relKey,
+                        SearchSide.Original,
+                        abs,
+                        metaOriginal?.LastWriteUtcTicks ?? 0,
+                        metaOriginal?.LengthBytes ?? 0,
+                        textOriginal,
+                        effectiveQuery,
+                        contextWidth,
+                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                    Interlocked.Increment(ref verifiedDocs);
+                    Interlocked.Add(ref totalHits, originalHits.Count);
+                }
+
+                if ((mask & 2) != 0)
+                {
+                    string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
+                    entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
+                    textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                    translatedHits = VerifyFileAllHits(
+                        root,
+                        relKey,
+                        SearchSide.Translated,
+                        abs,
+                        metaTranslated?.LastWriteUtcTicks ?? 0,
+                        metaTranslated?.LengthBytes ?? 0,
+                        textTranslated,
+                        effectiveQuery,
+                        contextWidth,
+                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                    Interlocked.Increment(ref verifiedDocs);
+                    Interlocked.Add(ref totalHits, translatedHits.Count);
+                }
+
+                var realChildren = BuildResultChildren(relKey, originalHits, translatedHits);
+                // Empty hits means the verify produced no real snippets (file gone, etc.).
+                // Still report a result so caller can drop the placeholder children — but
+                // only if at least one hit was produced. If both sides return zero hits
+                // (extremely unlikely since the search index proved adjacency), keep the
+                // original placeholders unchanged by omitting from the result map.
+                if (realChildren.Count > 0)
+                    result[relKey] = realChildren;
+
+                int v = Volatile.Read(ref verifiedDocs);
+                if (v <= 10 || v % 10 == 0)
+                {
+                    int hitsNow = Volatile.Read(ref totalHits);
+                    progress?.Report(new SearchProgress
+                    {
+                        Phase = "Loading snippets...",
+                        Candidates = totalToVerify,
+                        VerifiedDocs = v,
+                        TotalDocsToVerify = totalToVerify,
+                        Groups = result.Count,
+                        TotalHits = hitsNow,
+                        VerifyMs = sw.ElapsedMilliseconds,
+                        TotalMs = sw.ElapsedMilliseconds
+                    });
+                }
+            });
+        }, ct).ConfigureAwait(false);
+
+        sw.Stop();
+        Dbg($"LoadSnippetsForAsync DONE in {sw.ElapsedMilliseconds}ms promoted={result.Count}/{promote.Count} hits={totalHits}");
+
+        progress?.Report(new SearchProgress
+        {
+            Phase = "Done",
+            Candidates = totalToVerify,
+            VerifiedDocs = verifiedDocs,
+            TotalDocsToVerify = totalToVerify,
+            Groups = result.Count,
+            TotalHits = totalHits,
+            VerifyMs = sw.ElapsedMilliseconds,
+            TotalMs = sw.ElapsedMilliseconds
+        });
+
+        return new Dictionary<string, IReadOnlyList<SearchResultChild>>(result, StringComparer.OrdinalIgnoreCase);
     }
 
     private sealed class RelSideComparer : IEqualityComparer<(string rel, SearchSide side)>

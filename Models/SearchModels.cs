@@ -343,6 +343,17 @@ public sealed class SearchIndexEntry
     public long LastWriteUtcTicks { get; set; }
     public long LengthBytes { get; set; }
 
+    /// <summary>
+    /// SHA256 hex of file bytes at last build (64 lowercase hex chars when set). Nullable
+    /// for backward compatibility: legacy manifests written before this field was added
+    /// deserialize with <c>ContentHash == null</c>. On the next <see cref="SearchIndexService.IsStaleAsync"/>
+    /// call, those entries trigger a one-time re-hash + write-back; subsequent calls hit
+    /// the per-file cache (O(stat-only) when <c>(LengthBytes, LastWriteUtcTicks)</c> match).
+    /// Purely an optimization for the per-file hash lookup — the root hash result is
+    /// byte-identical regardless of cache hits vs. misses for unchanged content.
+    /// </summary>
+    public string? ContentHash { get; set; }
+
     public long BloomOffset { get; set; }       // offset in index.bin
 }
 
