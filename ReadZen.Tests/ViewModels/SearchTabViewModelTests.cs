@@ -65,6 +65,8 @@ public class SearchTabViewModelTests
             progress?.Report(new SearchIndexService.SearchProgress { Phase = "Searching", VerifiedDocs = 1, TotalDocsToVerify = 10, Groups = 1, TotalHits = 1 });
             await FinishGate.Task.WaitAsync(ct);
         }
+        public Task<IReadOnlyDictionary<string, IReadOnlyList<SearchResultChild>>> LoadSnippetsForAsync(string root, string originalDir, string translatedDir, SearchIndexManifest manifest, IReadOnlyList<SearchResultGroup> groups, string query, int contextWidth, IProgress<SearchIndexService.SearchProgress>? progress = null, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null, CancellationToken ct = default)
+            => Task.FromResult<IReadOnlyDictionary<string, IReadOnlyList<SearchResultChild>>>(new Dictionary<string, IReadOnlyList<SearchResultChild>>());
         public void Dispose() { }
     }
 

@@ -259,6 +259,21 @@ public partial class SearchTabViewModel : ViewModelBase
     private DispatcherTimer? _resultFilterDebounce;
     private DispatcherTimer? _streamFlushCoalescer;
 
+    // PR A (load-all-snippets): true while LoadAllSnippetsAsync is in flight — keeps the
+    // CanExecute false against re-entry and shows the toolbar progress affordance.
+    [ObservableProperty]
+    private bool _isLoadingAllSnippets;
+
+    /// <summary>
+    /// PR A (load-all-snippets): true iff at least one group in <see cref="ResultGroups"/>
+    /// currently has at least one <see cref="SearchResultChild.IsSkippedVerify"/>=true child.
+    /// Drives both the visibility of the "Load all snippets" toolbar button and its
+    /// <c>CanExecute</c>. Recomputed via <see cref="RefreshHasSkippedVerifyRows"/> after
+    /// the final rebuild and after a successful load — never on a hot path.
+    /// </summary>
+    [ObservableProperty]
+    private bool _hasSkippedVerifyRows;
+
     partial void OnResultFilterChanged(string value)
     {
         if (_resultFilterDebounce == null)
@@ -781,6 +796,170 @@ public partial class SearchTabViewModel : ViewModelBase
                 IsCancelEnabled = false;
                 BuildIndexCommand.NotifyCanExecuteChanged();
             });
+        }
+    }
+
+    /// <summary>
+    /// PR A (load-all-snippets): recomputes <see cref="HasSkippedVerifyRows"/> from
+    /// the current <see cref="ResultGroups"/>. Cheap — short-circuits on first match.
+    /// Call sites: after the streaming end-of-stream rebuild, after a successful
+    /// LoadAllSnippetsAsync, and after any operation that mutates Children in-place
+    /// (e.g. <see cref="QueueDeferredEnrichmentAsync"/>).
+    /// </summary>
+    private void RefreshHasSkippedVerifyRows()
+    {
+        bool any = false;
+        foreach (var g in ResultGroups)
+        {
+            if (g.Children == null) continue;
+            for (int i = 0; i < g.Children.Count; i++)
+            {
+                if (g.Children[i].IsSkippedVerify)
+                {
+                    any = true;
+                    break;
+                }
+            }
+            if (any) break;
+        }
+        HasSkippedVerifyRows = any;
+    }
+
+    private bool CanLoadAllSnippets()
+        => HasSkippedVerifyRows && !IsLoadingAllSnippets && !IsSearching;
+
+    partial void OnHasSkippedVerifyRowsChanged(bool value)
+        => LoadAllSnippetsCommand.NotifyCanExecuteChanged();
+
+    partial void OnIsLoadingAllSnippetsChanged(bool value)
+        => LoadAllSnippetsCommand.NotifyCanExecuteChanged();
+
+    partial void OnIsSearchingChanged(bool value)
+        => LoadAllSnippetsCommand.NotifyCanExecuteChanged();
+
+    /// <summary>
+    /// PR A (load-all-snippets): promotes every <see cref="SearchResultChild.IsSkippedVerify"/>=true
+    /// row to a real verified-with-snippet row. Snapshot the affected groups, delegate the
+    /// disk-bound work to <see cref="ISearchIndexService.LoadSnippetsForAsync"/>, then apply
+    /// the returned children dictionary on the UI thread — preserving group identity (so the
+    /// user's IsExpanded toggle survives, per the PR4 invariant from the prior sprint).
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanLoadAllSnippets))]
+    private async Task LoadAllSnippetsAsync()
+    {
+        if (_root == null || _originalDir == null || _translatedDirs == null)
+            return;
+
+        string root = _root;
+        string originalDir = _originalDir;
+        string translatedDir = _translatedDirs.Count > 0 ? _translatedDirs[0] : "";
+
+        // Snapshot a CancellationToken — share the existing _cts if a search is somehow
+        // still in flight (CanExecute prevents this, but be defensive). Otherwise create
+        // a fresh source so the operation can be canceled by Cancel().
+        var cts = new CancellationTokenSource();
+        var ct = cts.Token;
+
+        // Snapshot the affected groups now; the parallel verify runs off the UI thread.
+        // We snapshot identities (the SearchResultGroup instances themselves) so the
+        // final apply step can update them in place without identity loss.
+        var skipGroups = ResultGroups
+            .Where(g => g.Children != null && g.Children.Any(c => c.IsSkippedVerify))
+            .ToList();
+        if (skipGroups.Count == 0)
+            return;
+
+        IsLoadingAllSnippets = true;
+        IsSearchProgressVisible = true;
+        IsSearchProgressIndeterminate = false;
+        SearchProgressPercent = 0;
+        ProgressText = $"Loading snippets for {skipGroups.Count:n0} files...";
+
+        try
+        {
+            var manifest = await _svc.TryLoadAsync(root);
+            if (manifest == null)
+            {
+                ProgressText = "No index.";
+                return;
+            }
+
+            string query = string.IsNullOrWhiteSpace(_lastQuery) ? Query : _lastQuery;
+            int contextWidth = _lastContextWidth > 0 ? _lastContextWidth : GetContextWidth();
+
+            var prog = new Progress<SearchIndexService.SearchProgress>(p =>
+            {
+                Dispatcher.UIThread.Post(() =>
+                {
+                    int percent = p.TotalDocsToVerify <= 0 ? 0 : (int)Math.Round((double)p.VerifiedDocs * 100 / p.TotalDocsToVerify);
+                    SearchProgressPercent = Math.Clamp(percent, 0, 100);
+                    IsSearchProgressIndeterminate = p.TotalDocsToVerify <= 0;
+                    ProgressText = p.TotalDocsToVerify > 0
+                        ? $"{p.Phase} {p.VerifiedDocs:n0}/{p.TotalDocsToVerify:n0} docs - {p.Groups:n0} files - {p.TotalHits:n0} hits"
+                        : $"{p.Phase}";
+                });
+            });
+
+            var promoted = await _svc.LoadSnippetsForAsync(
+                root,
+                originalDir,
+                translatedDir,
+                manifest,
+                skipGroups,
+                query,
+                contextWidth,
+                progress: prog,
+                additionalOriginalDirs: _additionalOriginalDirs,
+                additionalTranslatedDirs: _additionalTranslatedDirs,
+                ct: ct);
+
+            // Apply on the UI thread, preserving SearchResultGroup identity so IsExpanded
+            // survives. Each promoted relPath maps to a fresh children list — assign in
+            // place; ApplyChildrenCap re-applies the 5B "Show N more" cap.
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                if (promoted == null || promoted.Count == 0)
+                    return;
+
+                foreach (var g in ResultGroups)
+                {
+                    if (g.RelPath == null) continue;
+                    if (!promoted.TryGetValue(g.RelPath, out var fresh) || fresh == null)
+                        continue;
+
+                    // Replace via the existing setter (raises PropertyChanged so the
+                    // TreeView re-binds the children template).
+                    g.Children = new List<SearchResultChild>(fresh);
+                    g.HitsOriginal = fresh.Count(c => c.Side == SearchSide.Original);
+                    g.HitsTranslated = fresh.Count(c => c.Side == SearchSide.Translated);
+
+                    // Also update the backing _groups list (same instance is usually
+                    // shared, but if a master/title-only group was promoted somehow it
+                    // may not be — be defensive). Pull through ApplyChildrenCap to keep
+                    // the 5B cap-and-show-more affordance correct.
+                    ApplyChildrenCap(g);
+                }
+
+                RefreshHasSkippedVerifyRows();
+                ProgressText = $"Loaded snippets for {promoted.Count:n0} files.";
+                StatusChanged?.Invoke(this, $"Snippets loaded for {promoted.Count:n0} files.");
+            });
+        }
+        catch (OperationCanceledException)
+        {
+            ProgressText = "Load snippets canceled.";
+        }
+        catch (Exception ex)
+        {
+            ProgressText = "Load snippets failed: " + ex.Message;
+            StatusChanged?.Invoke(this, "Load snippets failed: " + ex.Message);
+        }
+        finally
+        {
+            IsLoadingAllSnippets = false;
+            IsSearchProgressVisible = false;
+            IsSearchProgressIndeterminate = false;
+            try { cts.Dispose(); } catch { }
         }
     }
 
@@ -1887,6 +2066,12 @@ public partial class SearchTabViewModel : ViewModelBase
 
                         if (forceSummary || batch.Length > 0)
                             SummaryText = $"Results: {snapshotGroups:n0} files - {snapshotHits:n0} hits";
+
+                        // PR A: any batched-in group might carry IsSkippedVerify children
+                        // (2-char CJK hybrid path). Refresh the flag so the toolbar button
+                        // appears as soon as the first skip-verified row streams in.
+                        if (batch.Length > 0)
+                            RefreshHasSkippedVerifyRows();
                     }, DispatcherPriority.Background);
 
                     foreach (var group in batch)
@@ -2084,6 +2269,12 @@ public partial class SearchTabViewModel : ViewModelBase
                     IsResultsLoadingVisible = false;
                     RefreshSearchPlaceholderVisibility();
                     IsExportEnabled = sortedGroups.Count > 0;
+
+                    // PR A: the final rebuild is the canonical snapshot — recompute
+                    // HasSkippedVerifyRows once here so the toolbar button is in sync
+                    // with the actual ResultGroups state (some groups may have been
+                    // dropped, others added since the streaming flushes refreshed it).
+                    RefreshHasSkippedVerifyRows();
 
                     foreach (var group in sortedGroups)
                         _ = QueueDeferredEnrichmentAsync(group, originalDir, translatedDir, q, includeO, includeT, contextWidth, mySearchVer);
