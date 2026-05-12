@@ -121,6 +121,16 @@ public class SearchResultChild : INotifyPropertyChanged
 
     public string RelPath { get; set; } = "";
     public SearchSide Side { get; set; }
+
+    /// <summary>
+    /// PR2 (skip-verify hybrid): true when this child is a placeholder emitted because
+    /// VerifyFileAllHits was deliberately skipped for the parent group (2-char CJK query
+    /// past the top-N cutoff). The UI can render a "snippet on demand" affordance.
+    /// When true, <see cref="Hit"/> carries a synthetic single-position placeholder and
+    /// all snippet text fields are empty.
+    /// </summary>
+    public bool IsSkippedVerify { get; set; }
+
     public SearchHit Hit
     {
         get => _hit;
@@ -178,17 +188,20 @@ public class SearchResultChild : INotifyPropertyChanged
     public string RightText => Hit.Right ?? "";
     public string PrimarySnippetText => Hit.SnippetText;
     public string PrimaryDisplayText => $"{SideLabel}{PrimarySnippetText}";
-    public bool HasPrimaryStructuredDisplay => !PrimaryIsContextOnly;
-    public bool HasPrimaryContextOnlyDisplay => PrimaryIsContextOnly;
+    // Skip-verify placeholder rows have empty Left/Match/Right by design; suppress all
+    // primary/secondary snippet UI so the IsSkippedVerify-aware "matched — click to open"
+    // template branch is the sole visible affordance for them.
+    public bool HasPrimaryStructuredDisplay => !PrimaryIsContextOnly && !IsSkippedVerify;
+    public bool HasPrimaryContextOnlyDisplay => PrimaryIsContextOnly && !IsSkippedVerify;
     public string SecondarySideLabel => SecondaryHit == null ? "" : (Side == SearchSide.Original ? "T: " : "O: ");
     public string SecondaryLeftText => SecondaryHit?.Left ?? "";
     public string SecondaryMatchText => SecondaryHit?.Match ?? "";
     public string SecondaryRightText => SecondaryHit?.Right ?? "";
     public string SecondarySnippetText => SecondaryHit?.SnippetText ?? "";
     public string SecondaryDisplayText => SecondaryHit == null ? "" : $"{SecondarySideLabel}{SecondarySnippetText}";
-    public bool HasSecondaryDisplayText => SecondaryHit != null;
-    public bool HasSecondaryStructuredDisplay => SecondaryHit != null && !SecondaryIsContextOnly;
-    public bool HasSecondaryContextOnlyDisplay => SecondaryHit != null && SecondaryIsContextOnly;
+    public bool HasSecondaryDisplayText => SecondaryHit != null && !IsSkippedVerify;
+    public bool HasSecondaryStructuredDisplay => SecondaryHit != null && !SecondaryIsContextOnly && !IsSkippedVerify;
+    public bool HasSecondaryContextOnlyDisplay => SecondaryHit != null && SecondaryIsContextOnly && !IsSkippedVerify;
 
     public string RowText
         => $"{SideLabel}{LeftText}[{MatchText}]{RightText}";
@@ -306,6 +319,17 @@ public sealed class SearchIndexManifest
     public int BloomBits { get; set; } = 4096;
     public int BloomHashCount { get; set; } = 4;
     public string BuildGuid { get; set; } = "search-v1-bloom-4096";
+
+    /// <summary>
+    /// Hash of input file metadata at build time. Nullable for backward compatibility:
+    /// manifests written by older binaries deserialize with <c>InputHash == null</c>, in which
+    /// case <see cref="SearchIndexService.IsStaleAsync"/> falls back to the legacy mtime check.
+    /// When non-null, this hash is compared against a freshly computed hash of
+    /// <c>(relPath, lengthBytes, lastWriteUtcTicks)</c> tuples across all input *.xml files.
+    /// Same-mtime same-length in-place rewrites will NOT be detected — that is by design and
+    /// matches the SPA's hash-cache pattern; documented as out-of-scope for this layer.
+    /// </summary>
+    public string? InputHash { get; set; } = null;
 
     public List<SearchIndexEntry> Entries { get; set; } = new();
 }
