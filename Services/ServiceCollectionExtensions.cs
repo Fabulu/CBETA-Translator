@@ -21,6 +21,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ProcessService>();
         services.AddSingleton<ApparatusService>();
         services.AddSingleton<ICommentaryService, CommentaryService>();
+        services.AddSingleton<ISegmentMapService, SegmentMapService>();
         services.AddSingleton<EditionStatsService>();
         services.AddSingleton<DocumentsService>();
         services.AddSingleton<TimelineService>();

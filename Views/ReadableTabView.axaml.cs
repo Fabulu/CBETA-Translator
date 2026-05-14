@@ -172,6 +172,11 @@ public partial class ReadableTabView : UserControl
     private List<(int Start, int Length, TermHit Hit)>? _termHitRanges;
 
     // -------------------------
+    // Semantic segment overlay
+    // -------------------------
+    private SegmentTypeTransformer? _segmentTypeTransformerOrig;
+
+    // -------------------------
     // Bookmarks + Outline
     // -------------------------
     private Button? _btnBookmarks;
@@ -1219,6 +1224,9 @@ public partial class ReadableTabView : UserControl
         // Populate visible footnotes panel below Chinese text
         PopulateFootnotes(_vm.RenderOrig, _provenanceXmlAbsPath);
 
+        // Attach semantic segment type overlay (verse/dialogue/commentary styling)
+        AttachSegmentTypeTransformers(_provenanceXmlAbsPath);
+
         if (_aeOrig == null || _aeTran == null)
         {
             _pendingSetRendered = true; // Re-apply when editors become available
@@ -1377,6 +1385,9 @@ public partial class ReadableTabView : UserControl
 
         // Populate visible footnotes panel below Chinese text
         PopulateFootnotes(_vm.RenderOrig, _provenanceXmlAbsPath);
+
+        // Attach semantic segment type overlay (verse/dialogue/commentary styling)
+        AttachSegmentTypeTransformers(_provenanceXmlAbsPath);
 
         _syncingSelection = true;
         try
@@ -1964,6 +1975,69 @@ public partial class ReadableTabView : UserControl
             sp.Children.Add(numBlock);
             sp.Children.Add(textBlock);
             panel.Children.Add(sp);
+        }
+    }
+
+    /// <summary>
+    /// Attaches a <see cref="SegmentTypeTransformer"/> to the Chinese text pane
+    /// so that semantic segment types (verse, dialogue, commentary, etc.) get
+    /// visual styling. Gracefully does nothing when no segment map exists for
+    /// the given XML file, or when the editor isn't available yet.
+    /// </summary>
+    private void AttachSegmentTypeTransformers(string? xmlAbsPath)
+    {
+        // Remove previous transformer if any
+        if (_segmentTypeTransformerOrig != null && _aeOrig != null)
+        {
+            try { _aeOrig.TextArea.TextView.LineTransformers.Remove(_segmentTypeTransformerOrig); } catch { }
+            _segmentTypeTransformerOrig = null;
+        }
+
+        if (string.IsNullOrWhiteSpace(xmlAbsPath) || _aeOrig == null || _vm.RenderOrig == null)
+            return;
+
+        try
+        {
+            var segService = App.Services?.GetService<ISegmentMapService>();
+            if (segService == null) return;
+
+            var segMap = segService.TryLoad(xmlAbsPath);
+            if (segMap == null) return;
+
+            _segmentTypeTransformerOrig = new SegmentTypeTransformer(segMap, _vm.RenderOrig.Segments);
+            _aeOrig.TextArea.TextView.LineTransformers.Add(_segmentTypeTransformerOrig);
+        }
+        catch
+        {
+            // Graceful degradation — segment styling is non-critical
+        }
+    }
+
+    /// <summary>
+    /// Returns the segment type label for the current caret position in
+    /// the Chinese text pane, or null if no segment map is loaded.
+    /// </summary>
+    private string? GetCurrentSegmentTypeLabel()
+    {
+        if (_segmentTypeTransformerOrig == null || _aeOrig == null)
+            return null;
+
+        try
+        {
+            int offset = _aeOrig.CaretOffset;
+            var info = _segmentTypeTransformerOrig.ResolveSegmentInfo(offset);
+            if (info == null) return null;
+
+            var label = info.Type ?? "unknown";
+            if (!string.IsNullOrWhiteSpace(info.SubType))
+                label += $" ({info.SubType})";
+            if (!string.IsNullOrWhiteSpace(info.Speaker))
+                label += $" — {info.Speaker}";
+            return label;
+        }
+        catch
+        {
+            return null;
         }
     }
 
