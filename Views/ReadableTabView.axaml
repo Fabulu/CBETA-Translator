@@ -142,6 +142,14 @@
 					  Margin="8,0,0,0"
 					  ToolTip.Tip="Show or hide the study panel with dictionary terms, translation memory matches, and contextual info"/>
 
+			<CheckBox Name="ChkReadingLayout"
+					  DockPanel.Dock="Right"
+					  Content="Reading"
+					  VerticalAlignment="Center"
+					  Focusable="False"
+					  Margin="8,0,0,0"
+					  ToolTip.Tip="Toggle between page layout (original line breaks) and reading layout (merged semantic segments). Requires a segment map for the current text."/>
+
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
 					  Content="Zen"

@@ -16,8 +16,10 @@ using AvaloniaEdit.Rendering;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Text;
 using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -152,6 +154,7 @@ public partial class ReadableTabView : UserControl
     private Border? _studyPanel;
     private GridSplitter? _studyPanelSplitter;
     private CheckBox? _chkStudyPanel;
+    private CheckBox? _chkReadingLayout;
     private CheckBox? _chkProvenance;
     private Border? _provenancePanelBorder;
     private Grid? _rightPanelHost;
@@ -202,6 +205,8 @@ public partial class ReadableTabView : UserControl
     private List<Services.TranslationDiffEntry>? _translationDiffs;
     private string? _editionDir; // edition XML directory, used for resolving witness page images
     private string? _provenanceXmlAbsPath; // current XML abs path for apparatus sidecar loading
+    private string? _translationXmlAbsPath; // current translation XML abs path for reading-layout re-render
+    private bool _isReadingLayout; // true = merged segments; false = per-lb (page layout)
     private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
@@ -461,6 +466,7 @@ public partial class ReadableTabView : UserControl
         _studyPanel = this.FindControl<Border>("StudyPanel");
         _studyPanelSplitter = this.FindControl<GridSplitter>("StudyPanelSplitter");
         _chkStudyPanel = this.FindControl<CheckBox>("ChkStudyPanel");
+        _chkReadingLayout = this.FindControl<CheckBox>("ChkReadingLayout");
         _chkProvenance = this.FindControl<CheckBox>("ChkProvenance");
         _provenancePanelBorder = this.FindControl<Border>("ProvenancePanelBorder");
         _rightPanelHost = this.FindControl<Grid>("RightPanelHost");
@@ -936,6 +942,11 @@ public partial class ReadableTabView : UserControl
         if (_chkStudyPanel != null)
         {
             _chkStudyPanel.IsCheckedChanged += (_, _) => UpdateStudyPanelVisibility();
+        }
+
+        if (_chkReadingLayout != null)
+        {
+            _chkReadingLayout.IsCheckedChanged += (_, _) => ToggleReadingLayout();
         }
 
         if (_chkProvenance != null)
@@ -5486,6 +5497,95 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     /// <summary>Returns the currently rendered translation document (for timeline text preview).</summary>
     public RenderedDocument? GetRenderedTranslation() => _vm?.RenderTran;
+
+    /// <summary>Stores the translation XML path for reading-layout re-render support.</summary>
+    public void SetTranslationPath(string? tranXmlAbsPath) => _translationXmlAbsPath = tranXmlAbsPath;
+
+    /// <summary>Derives the likely translation path from a source XML path by convention.</summary>
+    private static string? DeriveTranslationPath(string? origPath)
+    {
+        if (string.IsNullOrEmpty(origPath)) return null;
+        // Convention: xml-p5 → xml-p5t
+        var tranPath = origPath.Replace("xml-p5" + Path.DirectorySeparatorChar, "xml-p5t" + Path.DirectorySeparatorChar)
+                               .Replace("xml-p5/", "xml-p5t/");
+        // Also check companion -en.xml pattern (for OpenZen)
+        if (!File.Exists(tranPath))
+        {
+            var dir = Path.GetDirectoryName(origPath);
+            var nameNoExt = Path.GetFileNameWithoutExtension(origPath);
+            var companion = Path.Combine(dir ?? "", nameNoExt + "-en.xml");
+            if (File.Exists(companion)) return companion;
+        }
+        return File.Exists(tranPath) ? tranPath : null;
+    }
+
+    /// <summary>
+    /// Toggles between page layout (per-lb lines, current default) and reading layout
+    /// (merged segments, text flows within &lt;p&gt;/&lt;lg&gt; boundaries). The toggle
+    /// re-renders both panes via TeiRenderer with a suppressedLbNValues set built from
+    /// the segment map. Safe to call when no segment map exists (no-op).
+    /// </summary>
+    public void ToggleReadingLayout()
+    {
+        if (string.IsNullOrEmpty(_provenanceXmlAbsPath)) return;
+
+        _isReadingLayout = !_isReadingLayout;
+
+        // Build suppressed-lb set from the segment map (when reading mode is on)
+        HashSet<string>? suppressedLbs = null;
+        if (_isReadingLayout)
+        {
+            var segMapService = App.Services?.GetService<ISegmentMapService>();
+            var segMap = segMapService?.TryLoad(_provenanceXmlAbsPath!);
+            if (segMap?.Segments != null)
+            {
+                suppressedLbs = new HashSet<string>();
+                foreach (var seg in segMap.Segments)
+                {
+                    // Suppress all lbs EXCEPT the first in each segment's range.
+                    // The first lb's newline becomes the paragraph break between segments.
+                    if (seg.LbRange != null && seg.LbRange.Count > 1)
+                    {
+                        for (int i = 1; i < seg.LbRange.Count; i++)
+                            suppressedLbs.Add(seg.LbRange[i]);
+                    }
+                }
+            }
+
+            // No segment map → nothing to suppress → stay in page layout
+            if (suppressedLbs == null || suppressedLbs.Count == 0)
+            {
+                _isReadingLayout = false;
+                return;
+            }
+        }
+
+        // Re-render both panes
+        try
+        {
+            var origXml = File.ReadAllText(_provenanceXmlAbsPath!, System.Text.Encoding.UTF8);
+            var origDoc = TeiRenderer.Render(origXml, suppressedLbs);
+
+            var tranPath = _translationXmlAbsPath ?? DeriveTranslationPath(_provenanceXmlAbsPath);
+            RenderedDocument tranDoc;
+            if (!string.IsNullOrEmpty(tranPath) && File.Exists(tranPath))
+            {
+                var tranXml = File.ReadAllText(tranPath, System.Text.Encoding.UTF8);
+                tranDoc = TeiRenderer.Render(tranXml, suppressedLbs);
+            }
+            else
+            {
+                tranDoc = TeiRenderer.Render(origXml, suppressedLbs);
+            }
+
+            SetRendered(origDoc, tranDoc);
+        }
+        catch
+        {
+            // If re-render fails, revert to page layout silently
+            _isReadingLayout = false;
+        }
+    }
 
     /// <summary>Populates provenance panel from manifest data.</summary>
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
