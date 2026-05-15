@@ -72,7 +72,14 @@ public static class TeiRenderer
         return s.Replace("\r\n", "\n").Replace("\r", "\n");
     }
 
-    public static RenderedDocument Render(string xml)
+    /// <summary>
+    /// Renders a TEI XML string into a <see cref="RenderedDocument"/>.
+    /// When <paramref name="suppressedLbNValues"/> is provided, newlines for those
+    /// <c>&lt;lb&gt;</c> markers are suppressed (they still create segments but don't
+    /// insert <c>\n</c> into the rendered text). This enables "reading layout" where
+    /// text within a semantic segment flows as a continuous paragraph.
+    /// </summary>
+    public static RenderedDocument Render(string xml, HashSet<string>? suppressedLbNValues = null)
     {
         if (string.IsNullOrWhiteSpace(xml))
             return RenderedDocument.Empty;
@@ -502,8 +509,21 @@ public static class TeiRenderer
                         // Rendering structural breaks
                         if (EqualsIgnoreCase(tagName, "lb"))
                         {
-                            // INSERTED newline should map AFTER the <lb .../> tag.
-                            AppendNewline(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
+                            // In reading-layout mode, suppress newlines for lbs that are
+                            // interior to a semantic segment (their text flows continuously).
+                            var lbN = Attr(attrs, AttrN);
+                            bool suppress = suppressedLbNValues != null
+                                && !string.IsNullOrEmpty(lbN)
+                                && suppressedLbNValues.Contains(lbN);
+
+                            if (!suppress)
+                            {
+                                // INSERTED newline should map AFTER the <lb .../> tag.
+                                AppendNewline(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
+                            }
+                            // When suppressed: no newline, no map entry. Text flows.
+                            // The segment key is still created (above, in TryMakeSyncKey)
+                            // so selection sync and position mapping remain functional.
                         }
                         else if (EqualsIgnoreCase(tagName, "pb") ||
                                  EqualsIgnoreCase(tagName, "p") ||
