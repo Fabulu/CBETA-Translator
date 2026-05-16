@@ -72,13 +72,13 @@ function extractSegments(xml) {
     let segCounter = 0;
 
     function flushSegment() {
-        if (currentLbs.length === 0) return;
         // Clean whitespace but preserve ideographic space U+3000 (caesura in verse).
-        // Replace only ASCII whitespace runs; leave CJK spacing intact.
         const cleanText = currentText
             .replace(/[\t\n\r ]+/g, ' ')
             .trim();
-        if (cleanText.length === 0 && currentLbs.length === 0) return;
+        // Accept segments with text OR lbs (not requiring both).
+        // Bug fix: short <p> elements with text but no internal <lb> were being dropped.
+        if (currentLbs.length === 0 && cleanText.length === 0) return;
 
         segCounter++;
         segments.push({
@@ -157,10 +157,12 @@ function extractSegments(xml) {
                 continue;
             }
 
-            // Skip other structural tags (cb:juan, cb:mulu, note, anchor, etc.)
-            // but don't collect their content as segment text
-            if (/^<(note|anchor|cb:|figure|app|rdg|lem)/i.test(tag)) continue;
-            if (/^<\/(note|anchor|cb:|figure|app|rdg|lem)/i.test(tag)) continue;
+            // Skip structural/metadata tags — but NOT <cb:div> which is a content
+            // container. Bug fix: the broad `cb:` prefix match was eating <cb:div>,
+            // causing ZW/ZS canons to produce 0 segments and J-canon texts to miss
+            // their main body content (everything after the preface <cb:div>).
+            if (/^<(note|anchor|figure|app|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
+            if (/^<\/(note|anchor|figure|app|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
 
             // <caesura/> → emit ideographic space U+3000 (verse pause marker)
             if (/^<caesura/i.test(tag)) {
@@ -174,12 +176,10 @@ function extractSegments(xml) {
             if (inHead) continue;
             if (inP || inLg) {
                 currentText += tok.value;
-            } else if (currentLbs.length > 0) {
-                // Text between structural elements but after an <lb> —
-                // belongs to the current implicit segment (text directly
-                // in <body> or <cb:div> without a <p> wrapper).
-                currentText += tok.value;
             }
+            // Text outside <p>/<lg> is silently ignored.
+            // Bug fix: the previous fallback (currentLbs.length > 0) vacuumed
+            // text between </p> and the next <p>, merging separate paragraphs.
         }
     }
     flushSegment(); // flush last segment if any
@@ -362,4 +362,6 @@ function main() {
     console.log(`\nDone: ${processed} files processed.`);
 }
 
-main();
+// Export for testability; guard main() so tests can import without running.
+module.exports = { extractSegments, buildLbTextMap };
+if (require.main === module) main();
