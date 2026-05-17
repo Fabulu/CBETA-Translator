@@ -62,7 +62,7 @@ function extractSegments(xml) {
         tokens.push({ kind: 'text', value: body.slice(lastIdx) });
     }
 
-    // State machine
+    // State machine — inP covers <p>, <cell>, and <item> (all content containers)
     let inP = false, inLg = false, inHead = false;
     let headDepth = 0;
     let currentLbs = [];
@@ -112,11 +112,11 @@ function extractSegments(xml) {
                 continue;
             }
 
-            // <p> open — carry pending lbs INTO this paragraph (don't flush them
+            // <p>, <cell>, <item> open — content containers. Carry pending lbs INTO.
             // into the previous segment). In CBETA XML the <lb> often appears on
             // the same line BEFORE the <p> tag, so the lb logically belongs to
             // the paragraph that follows, not the one that precedes it.
-            if (/^<p[\s>]/i.test(tag) && !tag.startsWith('</')) {
+            if (/^<(p|cell|item)[\s>]/i.test(tag) && !tag.startsWith('</')) {
                 // Flush any TEXT from the previous context, but keep currentLbs
                 const savedLbs = [...currentLbs];
                 const savedText = currentText;
@@ -138,8 +138,8 @@ function extractSegments(xml) {
                 currentType = 'prose';
                 continue;
             }
-            // </p>
-            if (/^<\/p>/i.test(tag)) {
+            // </p>, </cell>, </item> — all content container closers
+            if (/^<\/(p|cell|item)>/i.test(tag)) {
                 flushSegment();
                 inP = false;
                 continue;
