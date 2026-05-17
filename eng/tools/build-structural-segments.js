@@ -112,13 +112,29 @@ function extractSegments(xml) {
                 continue;
             }
 
-            // <p> open
+            // <p> open — carry pending lbs INTO this paragraph (don't flush them
+            // into the previous segment). In CBETA XML the <lb> often appears on
+            // the same line BEFORE the <p> tag, so the lb logically belongs to
+            // the paragraph that follows, not the one that precedes it.
             if (/^<p[\s>]/i.test(tag) && !tag.startsWith('</')) {
-                flushSegment();
+                // Flush any TEXT from the previous context, but keep currentLbs
+                const savedLbs = [...currentLbs];
+                const savedText = currentText;
+                currentLbs = [];
+                currentText = '';
+                // Only flush if there was text outside a <p> (rare — metadata, etc.)
+                if (savedText.replace(/[\t\n\r ]+/g, '').trim().length > 0) {
+                    currentLbs = savedLbs;
+                    currentText = savedText;
+                    flushSegment();
+                }
+                // Start the new paragraph with any carried-over lbs
                 inP = true;
+                currentLbs = savedLbs.length > 0 && savedText.replace(/[\t\n\r ]+/g, '').trim().length === 0
+                    ? savedLbs : [];
+                currentText = '';
                 const idMatch = tag.match(/xml:id="([^"]+)"/);
                 currentXmlId = idMatch ? idMatch[1] : '';
-                // Detect type from style or content later
                 currentType = 'prose';
                 continue;
             }
