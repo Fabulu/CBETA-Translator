@@ -435,7 +435,7 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | RUN-20260509-1330 | Character-click witness zoom | In Progress | runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/ |
 | RUN-20260513-2240 | Haiku segmentation capability eval | READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260513-2240-haiku-segmentation-eval/ |
 | RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
-| RUN-20260516-1028 | Segment parser bug fixes (3 bugs + smoke tests) | In Progress | runs/CLAUDE-RUNS/RUN-20260516-1028-segment-parser-fixes/ |
+| RUN-20260516-1028 | Segment parser bug fixes (4 bugs, 99.5% coverage) | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260516-1028-segment-parser-fixes/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 
