@@ -6,26 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Build & Run (Windows)
 ```powershell
-# Check/install prerequisites
-.\eng\bootstrap.ps1
-.\eng\bootstrap.ps1 -InstallDotnet -InstallGit  # auto-install via winget
-
 # Build
-.\eng\build.ps1                        # Debug
-.\eng\build.ps1 -Configuration Release # Release
+dotnet build .\ReadZen.App.csproj -c Debug
+dotnet build .\ReadZen.App.csproj -c Release
 
 # Run
 dotnet run --project .\ReadZen.App.csproj -c Debug
 ```
 
+There are no build wrapper scripts: `eng/` contains only `eng/tools/` (corpus and
+segmentation scripts). `eng/bootstrap.ps1`, `eng/build.ps1`, and `eng/build.sh` do not exist.
+
 ### Build & Run (Linux/WSL)
 ```bash
-./eng/build.sh          # Debug
-./eng/build.sh Release  # Release
-make run                # via Makefile
-
-# Self-contained publish
-make publish-release
+dotnet build ReadZen.App.csproj -c Debug
+make run    # works (wraps run-readzen.sh); make clean also works
+# make build / release / publish-* are BROKEN: they call a missing ./eng/build-linux.sh
 ```
 
 ### Self-Contained Publish (cross-platform)
@@ -43,26 +39,28 @@ Run tests with `dotnet test`. The test project is `ReadZen.Tests/`.
 - **Avalonia 11** â€” cross-platform desktop UI (XAML + code-behind, MVVM-ish)
 - **AvaloniaEdit** â€” rich text editing control
 - **Avalonia Fluent Theme**
-- No NuGet packages for DI/IoC; services are instantiated and wired manually
+- **Microsoft.Extensions.DependencyInjection** (8.0.1) - ~50 services registered as singletons in `Services/ServiceCollectionExtensions.cs` (`AddAppServices`), resolved service-locator style via `App.Services`. Some views still construct services ad hoc with `new` - that is tech debt (plan item P3.2), not the pattern to copy.
+- **CommunityToolkit.Mvvm** - MVVM toolkit used by converted views (GitTabView is the reference implementation)
 
 ## Architecture
 
 The project follows a layered structure: `Views` â†’ `Services` â†’ `Models`, plus `Infrastructure` for utilities.
 
 ### Translation Pipeline (core concept)
-The pipeline is markdown-based and non-destructive:
+The pipeline is projection-based and non-destructive. There is NO markdown layer:
 1. **Source**: TEI XML in `xml-p5/**/*.xml` (original Chinese texts, never edited)
-2. **Editable**: Markdown in `md-p5t/**/*.md` (generated lazily on first open in Edit tab)
-3. **Output**: Translated TEI XML in `xml-p5t/**/*.xml` (materialized just-in-time for PDF export or Git contribution â€” never saved continuously)
+2. **In-memory index**: `IndexedTranslationService.BuildIndex(origXml, tranXml)` builds an indexed document of translation units from the source XML plus the current translated XML
+3. **Editable projection**: `RenderProjection` renders a plain-text projection per translation mode - this is what the Edit tab edits
+4. **Save**: `ApplyProjectionEdits` maps the edited projection back onto the indexed units, `BuildTranslatedXml` regenerates the full TEI document, and the result is written atomically to `xml-p5t/**/*.xml` (see `ViewModels/MainWindowViewModel.cs:2763-2775`)
 
-When a user saves in the Edit tab, only the markdown is persisted. XML is regenerated from markdown only when needed.
+The `md-p5t/` markdown pipeline described in older docs does not exist: `FileService`'s markdown methods have zero callers (dead code, scheduled for deletion in plan item P3.6). Do not build on them.
 
 ### Key Services
 | Service | Responsibility |
 |---|---|
 | `IndexedTranslationService` | Core translation logic + multi-layer caching |
 | `TeiRenderer` | Parses TEI XML â†’ `RenderedDocument` (segments + metadata) |
-| `SearchIndexService` + `BloomSearchIndexService` | Full-text indexing across the corpus |
+| `SearchIndexService` + `InvertedSearchIndex` | Full-text indexing across the corpus (bloom filters are internal to `SearchIndexService`; there is no `BloomSearchIndexService`) |
 | `GitRepoService` + `GitBinaryLocator` | Git operations; auto-discovers system Git or bundled binary |
 | `TranslationAssistantBuildService` | AI-assisted translation prompt construction |
 | `TranslationMemoryService` | Translation memory lookup and storage |
@@ -74,7 +72,7 @@ When a user saves in the Edit tab, only the markdown is persisted. XML is regene
 | View | Purpose |
 |---|---|
 | `MainWindow` | App shell with tab navigation |
-| `TranslationTabView` | Markdown translation editor (largest view, ~1800 LOC) |
+| `TranslationTabView` | Translation editor (edits the plain-text projection, not markdown) |
 | `ReadableTabView` | Side-by-side Chinese/English reader with linked selection |
 | `SearchTabView` | Full-text corpus search |
 | `GitTabView` | Git/GitHub contribution flow (no terminal needed) |
@@ -99,11 +97,8 @@ When a user saves in the Edit tab, only the markdown is persisted. XML is regene
 - The dictionary file `Assets/Dict/cedict_ts.u8` must be present in both the build output and publish output â€” the `.csproj` handles this via `CopyToOutputDirectory`
 - `InvariantGlobalization=true` is set in the project â€” do not rely on locale-sensitive string operations
 - PDF export requires a separate Rust-compiled DLL; the app works without it
-- When modifying search, both `SearchIndexService` and `BloomSearchIndexService` must stay synchronized
-
----
-
-## Agent Workflow (Popup Tent)
+- When modifying search: `SearchIndexService` maintains five sibling index artifacts that must stay in sync - bloom bin + manifest, text sidecar (`search.text.bin`), cjk2 postings, corpus frequency, and the exact-match inverted index (`search.inverted.bin`) - versioned by the build GUIDs at `Services/SearchIndexService.cs:138-143`
+- User data (config.json, indexes, translations) lives next to the exe BY DESIGN - the portable install layout is intentional; do not migrate it to `%APPDATA%` (user decision D8, 2026-07-03)
 
 ---
 
@@ -436,6 +431,8 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | RUN-20260513-2240 | Haiku segmentation capability eval | READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260513-2240-haiku-segmentation-eval/ |
 | RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
 | RUN-20260516-1028 | Segment parser bug fixes (4 bugs, 99.5% coverage) | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260516-1028-segment-parser-fixes/ |
+| RUN-20260702-2259 | Full repo audit (5 recons) + architect improvement plan | In Progress | runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/ |
+| RUN-20260703-0634 | Improvement plan execution — Phase 0 hygiene batch | In Progress | runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 
