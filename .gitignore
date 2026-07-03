@@ -95,13 +95,18 @@ appsettings.Development.json
 *.ps1~
 
 ##################################################
+# Test artifacts
+##################################################
+
+TestResults/
+*.trx
+
+##################################################
 # AI-generated assistant files
 ##################################################
 
-CLAUDE.md
+# (CLAUDE.md is tracked project documentation - do not ignore it)
+.claude/
 
-.Claude/
-
-# Claude agent run directories (local only; contents never committed)
+# Claude agent run directories (local only; ARCHIVE.md is the tracked exception)
 runs/
-!runs/.gitkeep
