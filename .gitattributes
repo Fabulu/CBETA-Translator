@@ -1,0 +1,12 @@
+# Line-ending determinism (audit R5-H1): normalize all text files to LF in the
+# repository regardless of each machine's core.autocrlf. Kills the phantom-modified
+# storms where clones with different autocrlf saw 130+ "changed" files.
+* text=auto
+
+# Data assets ship byte-exact - never line-ending converted (audit R5-H2:
+# the CC-CEDICT dictionary was being CRLF-mutated on Windows builds, ~124 KB
+# of injected \r, making Windows and CI artifacts diverge).
+Assets/Dict/cedict_ts.u8 -text
+
+# Shell scripts must stay LF to run under WSL/Linux.
+*.sh text eol=lf
