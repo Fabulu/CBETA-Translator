@@ -1,7 +1,7 @@
 ![.NET 8](https://img.shields.io/badge/.NET-8-blue)
 ![Avalonia 11](https://img.shields.io/badge/Avalonia-11-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
-![Tests: 1434](https://img.shields.io/badge/Tests-1434-brightgreen)
+![Tests: 1605](https://img.shields.io/badge/Tests-1605-brightgreen)
 ![Masters: 301](https://img.shields.io/badge/Zen_Masters-301-blueviolet)
 ![CBETA: Non-Commercial](https://img.shields.io/badge/CBETA-Non--Commercial-orange)
 ![OpenZenTexts: CC0 / Commercial OK](https://img.shields.io/badge/OpenZenTexts-CC0%20%2F%20Commercial%20OK-brightgreen)
@@ -228,6 +228,7 @@ What it does:
 - create deep links or add passages to Scholar from right-click menus
 - **"Search corpus for selection"** in the right-click context menu to search the entire corpus for highlighted text
 - find-in-text bar (`Ctrl+F`) with next/previous (`Enter` / `Shift+Enter`) and `Escape` to close
+- **Reading layout** toggle ("Reading" checkbox) switches the Chinese text between page layout (original line breaks) and a reading layout of merged semantic segments, for texts with a segment map
 - **Ctrl+MouseWheel** to zoom in/out, **Ctrl+0** to reset zoom
 - **Bookmarks** (`Ctrl+B`) to save your place in a text and jump back later
 - **Document Outline** for structured navigation within long texts
@@ -631,7 +632,7 @@ Assets/Dict/cedict_ts.u8
 ```bash
 dotnet test
 ```
-**1434 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
+**1605 automated tests** covering URI parsing, index caching, search, translation status, corpus detection, scholar exports, witness loading, master corpus search, and view model logic.
 
 ## Contributing
 
