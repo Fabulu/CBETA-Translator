@@ -426,11 +426,8 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | Run ID | Description | Status | Working Directory |
 |--------|-------------|--------|-------------------|
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
-| RUN-20260509-1059 | Faith-in-Mind CE migration | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260509-1059-faith-in-mind-migration/ |
-| RUN-20260509-1330 | Character-click witness zoom | In Progress | runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/ |
-| RUN-20260513-2240 | Haiku segmentation capability eval | READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260513-2240-haiku-segmentation-eval/ |
+| RUN-20260509-1330 | Character-click witness zoom | In Progress (QA close-out = plan item P4.1; archive after) | runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/ |
 | RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
-| RUN-20260516-1028 | Segment parser bug fixes (4 bugs, 99.5% coverage) | ✅ READY FOR REVIEW | runs/CLAUDE-RUNS/RUN-20260516-1028-segment-parser-fixes/ |
 | RUN-20260702-2259 | Full repo audit (5 recons) + architect improvement plan | In Progress | runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/ |
 | RUN-20260703-0634 | Improvement plan execution — Phase 0 hygiene batch | In Progress | runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/ |
 

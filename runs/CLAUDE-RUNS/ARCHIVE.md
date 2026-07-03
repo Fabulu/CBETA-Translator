@@ -32,6 +32,162 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-07-03 — Archived (backfill per audit RUN-20260702-2259, decisions D1/D2)
+
+Entries below reconstruct the May-2026 runs that were completed but never logged here
+("Archive" commits f857e77/3d8349c touched only CLAUDE.md). Source: run-dir material +
+git log; where SPEC/TASK_LOG were untouched templates, the narrative comes from sibling
+IMPLEMENTATION_PLAN/QA_REPORT/REVIEW docs (noted per entry).
+
+### [RUN-20260516-1028] Segment parser bug fixes (5 bugs, 100% coverage)
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-16 10:28 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260516-1028-segment-parser-fixes/`
+**Commits:** `2d32b3f` (bugs 1-3), `0cfeb5a` (bug 4), `58cbf75` (bug 5)
+
+**Summary:** Fixed five bugs in the structural segment parser `eng/tools/build-structural-segments.js`: multi-`<p>` merge (each `<p>` now its own segment), empty-text early-exit (short `<p>` without internal `<lb>` now emit), over-broad `cb:` tag skip (allowlist so `<cb:div>` children parse), lb-before-p carry-in, and table/list content in `<cell>`/`<item>`. Added module export + `require.main` guard and a test file (8 tests: fixes, caesura U+3000, head-skip, `<lg>` verse detection).
+
+**Deliverables:**
+- `eng/tools/build-structural-segments.js`
+- `eng/tools/__tests__/build-structural-segments.test.js`
+
+**Notes:** SPEC_v1.md and TASK_LOG.md are untouched init templates; the real record is IMPLEMENTATION_PLAN.md + commits. The old Active Tasks row ("4 bugs, 99.5% coverage") was stale: bug 5 landed in `58cbf75` reaching **100% segment-map coverage (4990/4990)**.
+
+**Outcome:** All 5 parser bugs fixed; 100% corpus coverage as of 2026-05-17.
+
+---
+
+### [RUN-20260514-1037] Biyan Lu juan 1-5 segment extraction (spec only)
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-14 10:37 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260514-1037-segment-biyan-j1-5/`
+
+**Summary:** Scoped extraction of structured segments from the Blue Cliff Record Chinese source `T48n2003.xml`, juans 1-5 (source lines 608-4672): unique ids, `text_zh`, placeholder `text_en`, segment type, `<lb>` count, juan number. Translation, juans 6-10, and XML repair explicitly out of scope.
+
+**Notes:** SPEC_v1.md is real; TASK_LOG.md is an untouched template and no output was recorded — the work was likely folded into the 05-14/15 semantic-segmentation commits (`376b551`/`c9a23ca`/`cb266b5`). Sibling dir `RUN-20260514-1037-j24nb137-segmentation/` is an empty stub (only an empty `subagents/`) created by init-run.ps1's minute-granularity ID collision (audit R1-F3).
+
+**Outcome:** Spec-only record; superseded by the corpus-wide structural pipeline.
+
+---
+
+### [RUN-20260513-2243] Segment-map batch pipeline design
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-13 22:43 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260513-2243-segment-map-pipeline-design/`
+
+**Summary:** Designed a 5-stage Haiku batch pipeline (extract + TEI pre-tag, ~3K-token batch requests, Anthropic Message Batches API, merge, validate) for all 4990 files. Measured corpus ~2.1 GB XML -> ~1.0 GB body -> ~163M input tokens; est. ~$122 with Batch discount, ~1-2h wall clock; incremental via manifest SHA-256.
+
+**Notes:** Design-only (SPEC_v1 complete; TASK_LOG untouched template).
+
+**Outcome:** The LLM-batch approach was reframed by RUN-20260513-2238's ARCHITECT_SYNTHESIS_v3 (structural, no-LLM Layer 1); kept as reference for a possible Layer 2.
+
+---
+
+### [RUN-20260513-2241] Segmentation test/validation strategy
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-13 22:41 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260513-2241-segmentation-test-strategy/`
+
+**Summary:** Validation strategy for 4990 segment maps: JSON Schema (14-type enum), standalone `eng/validate-segments.py` (schema/coverage/quality tiers, CI exit codes), coverage rules (no gaps/overlaps, order preserved, text within 5%), 4-tier confidence thresholds, genre-specific rules, Wumenguan 10-case/60-segment golden regression set, 6-work validation set, CI + rendering tests, quality dashboard.
+
+**Notes:** Design-only (SPEC_v1 complete; TASK_LOG "Ready for Review").
+
+**Outcome:** Companion design to the schema and pipeline runs; informs segmentation QA.
+
+---
+
+### [RUN-20260513-2240] Semantic segmentation JSONL schema + taxonomy
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-13 22:40 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260513-2240-semantic-segmentation-schema/`
+
+**Summary:** Segment-map schema design: 7 required + 7 optional fields, `segments/<collection>/<workId>.seg.jsonl` naming, 33-type taxonomy in 3 tiers (12 TEI-derivable @ confidence 1.0, 6 TEI-hinted, 15 LLM-required). Key decisions: flat type strings (grep/jq-friendly), confidence as first-class field, `speaker` separate from `type`, `parent_unit` for flat-file nesting, `tei_source` for round-tripping. ~36% of segments derivable from TEI alone.
+
+**Notes:** Design-only (SPEC_v1 complete; TASK_LOG Complete).
+
+**Outcome:** Schema fed the shipped implementation (`376b551`/`c9a23ca`/`cb266b5`).
+
+---
+
+### [RUN-20260513-2240] Haiku segmentation capability eval
+
+**Archived:** 2026-07-03 (backfill; archival ruled by decision D1)
+**Created:** 2026-05-13 22:40 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260513-2240-haiku-segmentation-eval/`
+
+**Summary:** Assessed whether Claude Haiku can segment the 4990-file CBETA corpus into semantic JSONL. Delivered corpus profile (180 MB, largest file 17.5 MB), prompt template with 9-type taxonomy + Wumenguan few-shot, failure-mode table, 3-tier validation strategy, cost estimate ~$1,100-1,300 (Haiku full corpus ~$900 + Sonnet escalation ~$200). Key insight: TEI markup provides ~70% of boundaries for free — never send raw XML.
+
+**Deliverables:**
+- `haiku-segmentation-assessment.md`
+
+**Outcome:** Conclusion superseded by ARCHITECT_SYNTHESIS_v3 (RUN-20260513-2238): Layer 1 is structural parsing without LLM. Run dir retained as the reference for a future Layer-2 semantic-labeling pass (deferred per decision D10).
+
+---
+
+### [RUN-20260512-2214] Search index polish (load-all-snippets + content-hash cache)
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-12 22:14 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260512-2214-search-index-polish/`
+**Commits:** `8f04bdf`, `3d8349c`
+
+**Summary:** Follow-up to the Search Latency Sprint. PR A: "Load all snippets" (`ISearchIndexService.LoadSnippetsForAsync`) promoting skip-verified placeholder rows to verified snippets in one action. PR B: per-file `ContentHash` cache on `SearchIndexEntry` — steady-state startup re-hash ~100-300ms -> ~5-10ms via stat-only reuse on size+mtime match, backward-compatible legacy backfill, no BuildGuid bump.
+
+**Deliverables:**
+- `Services/SearchIndexService.cs`, `Services/ISearchIndexService.cs`, `Models/SearchModels.cs`, `ViewModels/SearchTabViewModel.cs`, `Views/SearchTabView.axaml`
+- `LoadAllSnippetsTests.cs`, `HashCacheTests.cs`
+
+**Notes:** TASK_LOG.md is an untouched template; record reconstructed from SPEC_v1 + IMPLEMENTATION_PLAN + commits.
+
+**Outcome:** Shipped in `8f04bdf` (archived by `3d8349c`, which only edited CLAUDE.md).
+
+---
+
+### [RUN-20260512-1754] Faith-in-Mind commentary language filter
+
+**Archived:** 2026-07-03 (backfill)
+**Created:** 2026-05-12 17:54 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260512-1754-faith-in-mind-commentary-filter/`
+**Commits:** `4728e0f`, `bb095b3`
+
+**Summary:** Greenfield commentary infrastructure with a default-deny language filter so only positively-identified Chinese commentary reaches ordinary readers (the 17 Japanese FiM entries drop at the service boundary). Four PRs: models + `CommentaryService` (mtime cache); 3-tier `CommentaryLanguageClassifier` (Tier 4 defaults to `unknown`); right-column commentary panel with empty-state placeholder; PowerShell ingestion emitting `commentary.json`. Default-deny enforced at three independent layers (classifier/filter/view). FiM test facts 7 -> 43.
+
+**Deliverables:**
+- `Services/CommentaryService.cs`, `CommentaryLanguageClassifier.cs`, `CommentaryPanelStateResolver.cs`
+- `Models/ManifestInfo.cs` (`commentary_file`, `commentary_reader_languages`)
+- `Views/ReadableTabView.axaml(.cs)`, `eng/tools/build-faith-in-mind-commentary.ps1`
+
+**Notes:** TASK_LOG.md is an untouched template; QA_REPORT (10 scenarios), REVIEW, and TEST_GAPS are rich. Reviewer verdict: MERGE WITH FOLLOW-UP TICKETS (M1 manifest foot-gun, M2 side-map contamination, M4 whitespace-trim left as follow-ups).
+
+**Outcome:** Shipped in `4728e0f`.
+
+---
+
+### [RUN-20260509-1059] Faith-in-Mind critical edition migration
+
+**Archived:** 2026-07-03 (backfill; archival ruled by decision D1)
+**Created:** 2026-05-09 11:00 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260509-1059-faith-in-mind-migration/`
+**Commit:** `4091c1f`
+
+**Summary:** Migrated the completed Faith-in-Mind poem-first critical edition into the desktop app: `AnchorModels.cs` + `AnchorService.cs` (JSONL anchor loaders), bilingual synchronized time-travel via `CorrectionTimelineBar.SetAnchorEvents`, FootnotesPanel auto-populated from apparatus, ToggleButton stage strip replacing the `CmbTimelineStage` ComboBox. Built Chinese (71 lines) + English TEI XML and 9 OpenZen data files. Two QA rounds fixed critical issues (TeiRenderer lacked `<l>` handling; namespace bug; 3 wiring gaps). Final: build 0 errors, 1454 tests passing (1436 + 18 new).
+
+**Deliverables:**
+- `Models/AnchorModels.cs`, `Services/AnchorService.cs`
+- `EditionProcessDialog.axaml(.cs)`, `ReadableTabView.axaml(.cs)`, `CorrectionTimelineBar.axaml.cs`
+- OpenZen `ce/faith-in-mind/` data files; `PROCESS_CHANGES.md` (process guide for future editions)
+
+**Notes:** Remaining niceties (TEI schema validation — checklist 33/34 — and recording QA rounds 2-3) tracked as plan item P4.2; they do not block archival per D1.
+
+**Outcome:** Shipped in `4091c1f` (2026-05-10); process learnings captured in PROCESS_CHANGES.md.
+
+---
+
 ## 2026-05-12 — Archived
 
 ### [RUN-20260511-0624] Search Latency Sprint (SPA→desktop backflow)
