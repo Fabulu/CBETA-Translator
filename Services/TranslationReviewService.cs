@@ -177,29 +177,36 @@ public sealed class TranslationReviewService : ITranslationReviewService
 
         var path = GetApprovedTmPath(root);
 
-        await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-        await using var writer = new StreamWriter(fs, new UTF8Encoding(false));
-
-        foreach (var entry in approved)
+        // tmp + atomic move (same pattern as WriteUserReviewJsonlAsync below): writing
+        // FileMode.Create on the final path meant a crash mid-write truncated the
+        // community-shared translation-memory.approved.jsonl (audit R3-M5).
+        var tmpPath = path + ".tmp";
+        await using (var fs = new FileStream(tmpPath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+        await using (var writer = new StreamWriter(fs, new UTF8Encoding(false)))
         {
-            ct.ThrowIfCancellationRequested();
-
-            var row = new TmRow
+            foreach (var entry in approved)
             {
-                SourceText = NormalizeLine(entry.ZhText),
-                TargetText = NormalizeLine(entry.EnText),
-                RelPath = entry.RelPath,
-                ReviewStatus = "Approved",
-                Translator = string.IsNullOrWhiteSpace(entry.Reviewer) ? "User" : entry.Reviewer,
-                WrittenUtc = entry.ReviewedUtc == default ? DateTimeOffset.UtcNow : new DateTimeOffset(entry.ReviewedUtc, TimeSpan.Zero)
-            };
+                ct.ThrowIfCancellationRequested();
 
-            var json = JsonSerializer.Serialize(row, JsonOpts);
-            await writer.WriteLineAsync(json);
+                var row = new TmRow
+                {
+                    SourceText = NormalizeLine(entry.ZhText),
+                    TargetText = NormalizeLine(entry.EnText),
+                    RelPath = entry.RelPath,
+                    ReviewStatus = "Approved",
+                    Translator = string.IsNullOrWhiteSpace(entry.Reviewer) ? "User" : entry.Reviewer,
+                    WrittenUtc = entry.ReviewedUtc == default ? DateTimeOffset.UtcNow : new DateTimeOffset(entry.ReviewedUtc, TimeSpan.Zero)
+                };
+
+                var json = JsonSerializer.Serialize(row, JsonOpts);
+                await writer.WriteLineAsync(json);
+            }
+
+            await writer.FlushAsync();
+            await fs.FlushAsync(ct);
         }
 
-        await writer.FlushAsync();
-        await fs.FlushAsync(ct);
+        File.Move(tmpPath, path, overwrite: true);
 
         return approved.Count;
     }
