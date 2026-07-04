@@ -958,8 +958,7 @@ public partial class MainWindowViewModel : ViewModelBase
                         var cached = await corpusSvc.TryLoadAsync(cacheDir, ct);
                         MasterCorpusIndex? index = cached;
 
-                        var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
-                        var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                        var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
                         var catalog = await masterMgr.LoadAsync(_root);
                         MasterCatalog = catalog;
                         if (catalog.Records.Count > 0)

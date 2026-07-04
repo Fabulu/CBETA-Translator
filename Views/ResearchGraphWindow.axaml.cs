@@ -1201,7 +1201,7 @@ public partial class ResearchGraphWindow : Window
             var path = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "Data", "master-dates.json");
             if (!System.IO.File.Exists(path)) return null;
 
-            var svc = new ZenMasterManagerService(new MasterDatesService());
+            var svc = App.Services.GetRequiredService<ZenMasterManagerService>();
             var records = new List<ZenMasterRecord>();
             using var doc = System.Text.Json.JsonDocument.Parse(System.IO.File.ReadAllText(path));
             if (!doc.RootElement.TryGetProperty("masters", out var mastersEl)) return null;

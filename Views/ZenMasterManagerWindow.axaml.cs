@@ -44,7 +44,7 @@ public partial class ZenMasterManagerWindow : Window
 
         InitializeComponent();
 
-        var service = new ZenMasterManagerService(App.Services.GetRequiredService<IMasterDatesService>());
+        var service = App.Services.GetRequiredService<ZenMasterManagerService>();
         ViewModel = new ZenMasterManagerWindowViewModel(service, repoRoot, _parentRoot, _baseFilePath);
         DataContext = ViewModel;
 
