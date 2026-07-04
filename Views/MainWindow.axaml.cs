@@ -103,7 +103,7 @@ public partial class MainWindow : Window
             return;
 
         _masterCatalogRoot = root;
-        _masterMgrShared ??= new ZenMasterManagerService(App.Services.GetRequiredService<IMasterDatesService>());
+        _masterMgrShared ??= App.Services.GetRequiredService<ZenMasterManagerService>();
         var mgr = _masterMgrShared;
 
         _ = Task.Run(async () =>
@@ -1829,8 +1829,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 try
                 {
                     var svc = new MasterCorpusSearchService();
-                    var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
-                    var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                    var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
                     var catalog = await masterMgr.LoadAsync(_vm.Root);
 
                     if (txtInfo != null) txtInfo.Text = "Scanning corpus...";
@@ -1872,8 +1871,7 @@ private async Task LoadConfigAndAutoloadAsync()
             try
             {
                 // Load master count
-                var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
-                var masterMgr = new ZenMasterManagerService(masterDatesSvc);
+                var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
                 var catalog = await masterMgr.LoadAsync(_vm.Root);
                 Dispatcher.UIThread.Post(() =>
                 {

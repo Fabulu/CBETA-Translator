@@ -26,4 +26,19 @@ public class DependencyInjectionTests
         Assert.IsType<CitationService>(a);
         Assert.Same(a, b); // singleton: one shared instance, not per-resolution
     }
+
+    [Fact]
+    public void ZenMasterManagerService_IsRegistered_AsSingleton()
+    {
+        using var provider = BuildProvider();
+
+        var a = provider.GetService<ZenMasterManagerService>();
+        var b = provider.GetService<ZenMasterManagerService>();
+
+        Assert.NotNull(a);
+        // One shared instance across all callers (previously each view did
+        // `new ZenMasterManagerService(...)`, and ResearchGraphWindow even built its
+        // own MasterDatesService — a second cache universe; audit R3-M1).
+        Assert.Same(a, b);
+    }
 }
