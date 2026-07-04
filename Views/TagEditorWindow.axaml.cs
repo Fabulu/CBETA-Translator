@@ -13,6 +13,7 @@ using Avalonia.Media;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using Microsoft.Extensions.DependencyInjection;
+using ReadZen.App.Infrastructure;
 
 namespace ReadZen.App.Views;
 
@@ -77,7 +78,7 @@ public partial class TagEditorWindow : Window
 
         WireControls();
 
-        Opened += async (_, _) => await LoadAsync();
+        Opened += (_, _) => AsyncGuard.Run(async () => await LoadAsync(), "TagEditorWindow.Opened");
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
@@ -168,7 +169,7 @@ public partial class TagEditorWindow : Window
         if (btnClose != null) btnClose.Click += (_, _) => Close();
 
         var btnSave = this.FindControl<Button>("BtnSave");
-        if (btnSave != null) btnSave.Click += async (_, _) => await OnSaveAsync();
+        if (btnSave != null) btnSave.Click += (_, _) => AsyncGuard.Run(async () => await OnSaveAsync(), "TagEditorWindow.btnSave.Click");
     }
 
     // ── Load ────────────────────────────────────────────────────────────

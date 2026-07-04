@@ -488,8 +488,8 @@ public partial class TranslationTabView : UserControl
         if (_btnUndo != null) _btnUndo.Click += (_, _) => DoUndo();
         if (_btnRedo != null) _btnRedo.Click += (_, _) => DoRedo();
 
-        if (_btnCopyChunkPrompt != null) _btnCopyChunkPrompt.Click += async (_, _) => await CopyChunkWithPromptAsync();
-        if (_btnPasteByNumber != null) _btnPasteByNumber.Click += async (_, _) => await PasteByMatchingBlockNumberAsync();
+        if (_btnCopyChunkPrompt != null) _btnCopyChunkPrompt.Click += (_, _) => AsyncGuard.Run(async () => await CopyChunkWithPromptAsync(), "TranslationTabView._btnCopyChunkPrompt.Click");
+        if (_btnPasteByNumber != null) _btnPasteByNumber.Click += (_, _) => AsyncGuard.Run(async () => await PasteByMatchingBlockNumberAsync(), "TranslationTabView._btnPasteByNumber.Click");
         if (_btnNextUntranslated != null) _btnNextUntranslated.Click += (_, _) => JumpToNextUntranslated();
         if (_btnFindChineseInEn != null) _btnFindChineseInEn.Click += (_, _) => JumpToChineseInEnglishLine();
 

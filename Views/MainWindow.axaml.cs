@@ -677,6 +677,12 @@ private async Task LoadConfigAndAutoloadAsync()
 
         DataContext = _vm;
 
+        // Central sink for guarded async handler failures (audit P2.5 / R4-M2):
+        // surface them in the status bar instead of crashing the app.
+        AsyncGuard.Failed += (context, ex) =>
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                _vm.SetStatus($"Action failed ({context}): {ex.Message}"));
+
         _tourService = sp.GetRequiredService<OnboardingTourService>();
     }
 
@@ -1063,7 +1069,7 @@ private async Task LoadConfigAndAutoloadAsync()
             };
 
         if (_btnSave != null)
-            _btnSave.Click += async (_, _) => await _vm.SaveTranslatedFromTabAsync();
+            _btnSave.Click += (_, _) => AsyncGuard.Run(async () => await _vm.SaveTranslatedFromTabAsync(), "MainWindow._btnSave.Click");
 
         if (_btnMinimize != null)
             _btnMinimize.Click += (_, _) => WindowState = WindowState.Minimized;
@@ -1267,9 +1273,9 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_tourService != null)
         {
             _tourService.StepChanged += (_, step) => Dispatcher.UIThread.Post(() => ShowTourStep(step));
-            _tourService.TourCompleted += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
-            _tourService.TourSkipped += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnTourFinished);
-            _tourService.SetupPhaseCompleted += async (_, _) => await Dispatcher.UIThread.InvokeAsync(OnSetupPhaseCompleted);
+            _tourService.TourCompleted += (_, _) => AsyncGuard.Run(async () => await Dispatcher.UIThread.InvokeAsync(OnTourFinished), "MainWindow._tourService.TourCompleted");
+            _tourService.TourSkipped += (_, _) => AsyncGuard.Run(async () => await Dispatcher.UIThread.InvokeAsync(OnTourFinished), "MainWindow._tourService.TourSkipped");
+            _tourService.SetupPhaseCompleted += (_, _) => AsyncGuard.Run(async () => await Dispatcher.UIThread.InvokeAsync(OnSetupPhaseCompleted), "MainWindow._tourService.SetupPhaseCompleted");
         }
 
         // Recalculate tour spotlight on resize
@@ -1485,9 +1491,9 @@ private async Task LoadConfigAndAutoloadAsync()
                 await _vm.SaveTranslatedFromTabAsync();
                 await PromptLicenseIfNeededAsync();
             };
-            _translationView.FreshStartRequested += async (_, _) => await _vm.ResetTranslatedToUntranslatedAsync();
-            _translationView.RevertRequested += async (_, _) => await _vm.RevertTranslatedXmlFromDiskAsync();
-            _translationView.HistoryRequested += async (_, _) => await OpenTranslationHistoryAsync();
+            _translationView.FreshStartRequested += (_, _) => AsyncGuard.Run(async () => await _vm.ResetTranslatedToUntranslatedAsync(), "MainWindow._translationView.FreshStartRequested");
+            _translationView.RevertRequested += (_, _) => AsyncGuard.Run(async () => await _vm.RevertTranslatedXmlFromDiskAsync(), "MainWindow._translationView.RevertRequested");
+            _translationView.HistoryRequested += (_, _) => AsyncGuard.Run(async () => await OpenTranslationHistoryAsync(), "MainWindow._translationView.HistoryRequested");
 
             // Wire zen master lookup for AI prompt enrichment
             _translationView.FindMastersInText = text =>
@@ -1809,7 +1815,7 @@ private async Task LoadConfigAndAutoloadAsync()
         // Masters tab buttons
         var btnOpenMasters = Find<Button>("BtnOpenMasters");
         if (btnOpenMasters != null)
-            btnOpenMasters.Click += async (_, _) => await OpenZenMasterManagerWindowAsync();
+            btnOpenMasters.Click += (_, _) => AsyncGuard.Run(async () => await OpenZenMasterManagerWindowAsync(), "MainWindow.btnOpenMasters.Click");
 
         var btnBuildMasterIndex = Find<Button>("BtnBuildMasterIndex");
         if (btnBuildMasterIndex != null)
@@ -2542,7 +2548,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            win.VocabularySaved += async (_, _) => await _vm.ReloadTagVocabularyAsync();
+            win.VocabularySaved += (_, _) => AsyncGuard.Run(async () => await _vm.ReloadTagVocabularyAsync(), "MainWindow.win.VocabularySaved");
             win.Closed += (_, _) => _tagEditorWindow = null;
 
             _tagEditorWindow = win;

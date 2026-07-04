@@ -586,19 +586,19 @@ public partial class ReadableTabView : UserControl
         menu.Items.Add(new Separator());
 
         var addItem = new MenuItem { Header = "Add to Scholar Collection..." };
-        addItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated);
+        addItem.Click += (_, _) => AsyncGuard.Run(async () => await OnAddToScholarCollectionAsync(isTranslated), "ReadableTabView.addItem.Click");
         menu.Items.Add(addItem);
 
         var addCurrentItem = new MenuItem { Header = "Add to Current Collection" };
-        addCurrentItem.Click += async (_, _) => await OnAddToScholarCollectionAsync(isTranslated, useCurrentCollection: true);
+        addCurrentItem.Click += (_, _) => AsyncGuard.Run(async () => await OnAddToScholarCollectionAsync(isTranslated, useCurrentCollection: true), "ReadableTabView.addCurrentItem.Click");
         menu.Items.Add(addCurrentItem);
 
         var copyLinkItem = new MenuItem { Header = "Copy Link" };
-        copyLinkItem.Click += async (_, _) => await CopyLinkToClipboardAsync(isTranslated, isReddit: false);
+        copyLinkItem.Click += (_, _) => AsyncGuard.Run(async () => await CopyLinkToClipboardAsync(isTranslated, isReddit: false), "ReadableTabView.copyLinkItem.Click");
         menu.Items.Add(copyLinkItem);
 
         var copyRedditLink = new MenuItem { Header = "Copy Reddit Link" };
-        copyRedditLink.Click += async (_, _) => await CopyLinkToClipboardAsync(isTranslated, isReddit: true);
+        copyRedditLink.Click += (_, _) => AsyncGuard.Run(async () => await CopyLinkToClipboardAsync(isTranslated, isReddit: true), "ReadableTabView.copyRedditLink.Click");
         menu.Items.Add(copyRedditLink);
 
         if (_codingModeActive)

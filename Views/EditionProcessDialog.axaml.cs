@@ -130,11 +130,11 @@ public partial class EditionProcessDialog : Window
         // Wire copy buttons
         var btnCopyApp = this.FindControl<Button>("BtnCopyApparatus");
         if (btnCopyApp != null)
-            btnCopyApp.Click += async (_, _) => await CopyApparatusToClipboard();
+            btnCopyApp.Click += (_, _) => AsyncGuard.Run(async () => await CopyApparatusToClipboard(), "EditionProcessDialog.btnCopyApp.Click");
 
         var btnCopyColl = this.FindControl<Button>("BtnCopyCollation");
         if (btnCopyColl != null)
-            btnCopyColl.Click += async (_, _) => await CopyCollationToClipboard();
+            btnCopyColl.Click += (_, _) => AsyncGuard.Run(async () => await CopyCollationToClipboard(), "EditionProcessDialog.btnCopyColl.Click");
 
         PopulateCorrections(process, xmlAbsPath);
         PopulateForensicData();
@@ -148,7 +148,7 @@ public partial class EditionProcessDialog : Window
         // Wire export button
         var btnExport = this.FindControl<Button>("BtnExportEdition");
         if (btnExport != null)
-            btnExport.Click += async (_, _) => await OnExportEditionAsync();
+            btnExport.Click += (_, _) => AsyncGuard.Run(async () => await OnExportEditionAsync(), "EditionProcessDialog.btnExport.Click");
     }
 
     // ── Export ───────────────────────────────────────────────────────────

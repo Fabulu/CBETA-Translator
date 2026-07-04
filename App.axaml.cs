@@ -34,6 +34,24 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        // Audit P2.5 / R4-M2: async event handlers (~65 lambdas + 17 async void
+        // methods across the views) let exceptions escape into the dispatcher loop,
+        // where a single failed button click used to crash the whole app. This is
+        // the process-level backstop: log and mark handled so the failure degrades
+        // to a log entry (plus an AsyncGuard status message where handlers have been
+        // converted). New or touched handlers should still route through
+        // AsyncGuard.Run for contextual reporting — this net is not the pattern.
+        Dispatcher.UIThread.UnhandledException += (_, e) =>
+        {
+            try
+            {
+                Console.Error.WriteLine($"DISPATCHER UNHANDLED: {e.Exception}");
+                Debug.WriteLine($"[Dispatcher] Unhandled: {e.Exception}");
+            }
+            catch { }
+            e.Handled = true;
+        };
+
         try
         {
             // Global CJK font for LiveCharts2 tooltips and labels.
