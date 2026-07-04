@@ -79,6 +79,48 @@ public partial class MainWindow : Window
     // Index cache save debounce
     private DispatcherTimer? _indexCacheSaveDebounce;
 
+    // Zen master catalog: loaded ONCE in the background, then read synchronously by
+    // the study-panel and AI-prompt lookups. Replaces two lazy
+    // LoadAsync().GetAwaiter().GetResult() calls on the UI thread (audit P2.3 /
+    // R4-H3 — the deadlock-prone pattern ResearchGraphWindow.axaml.cs already warns
+    // about). Everything runs on the single Avalonia UI thread except the loader
+    // task's one benign reference assignment.
+    private ZenMasterManagerService? _masterMgrShared;
+    private ZenMasterCatalog? _masterCatalogCache;
+    private string? _masterCatalogRoot;
+
+    /// <summary>
+    /// Kicks the background load of the zen-master catalog for the current root.
+    /// Always called from the UI thread (wiring + the two lookup lambdas), so plain
+    /// fields suffice; the loader task only assigns one reference when done. Until it
+    /// completes the lookups return "no match", which beats freezing the UI thread on
+    /// disk I/O. Re-triggers when the root changes.
+    /// </summary>
+    private void EnsureMasterCatalogPreload()
+    {
+        var root = _vm.Root;
+        if (root == null || root == _masterCatalogRoot)
+            return;
+
+        _masterCatalogRoot = root;
+        _masterMgrShared ??= new ZenMasterManagerService(App.Services.GetRequiredService<IMasterDatesService>());
+        var mgr = _masterMgrShared;
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var catalog = await mgr.LoadAsync(root);
+                _masterCatalogCache = catalog;
+            }
+            catch
+            {
+                // Master bio/prompt enrichment silently unavailable for this root —
+                // same outcome the old lazy loader had on failure.
+            }
+        });
+    }
+
     // Suppress flags
     private bool _suppressNavSelectionChanged;
     private bool _suppressTabEvents;
@@ -729,20 +771,14 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
 
         // Wire zen master lookup for study panel bio section
+        EnsureMasterCatalogPreload();
         if (_readableView != null)
         {
-            var masterDatesSvc = App.Services.GetRequiredService<IMasterDatesService>();
-            var masterMgr = new ZenMasterManagerService(masterDatesSvc);
-            ZenMasterCatalog? cachedCatalog = null;
             _readableView.FindMasterByName = zhText =>
             {
-                // Lazy-load the catalog on first use (small dataset, fast)
-                if (cachedCatalog == null && _vm.Root != null)
-                {
-                    try { cachedCatalog = masterMgr.LoadAsync(_vm.Root).GetAwaiter().GetResult(); }
-                    catch { return null; }
-                }
-                return cachedCatalog != null ? masterMgr.FindMasterInText(cachedCatalog.Records, zhText) : null;
+                EnsureMasterCatalogPreload();
+                var cat = _masterCatalogCache;
+                return cat != null ? _masterMgrShared!.FindMasterInText(cat.Records, zhText) : null;
             };
         }
         _vm.SetReadableTagVocabulary = vocab => _readableView?.SetTagVocabulary(vocab);
@@ -1454,20 +1490,12 @@ private async Task LoadConfigAndAutoloadAsync()
             _translationView.HistoryRequested += async (_, _) => await OpenTranslationHistoryAsync();
 
             // Wire zen master lookup for AI prompt enrichment
+            _translationView.FindMastersInText = text =>
             {
-                var masterDatesSvc2 = App.Services.GetRequiredService<IMasterDatesService>();
-                var masterMgr2 = new ZenMasterManagerService(masterDatesSvc2);
-                ZenMasterCatalog? masterCatalog2 = null;
-                _translationView.FindMastersInText = text =>
-                {
-                    if (masterCatalog2 == null && _vm.Root != null)
-                    {
-                        try { masterCatalog2 = masterMgr2.LoadAsync(_vm.Root).GetAwaiter().GetResult(); }
-                        catch { return new(); }
-                    }
-                    return masterCatalog2 != null ? masterMgr2.FindAllMastersInText(masterCatalog2.Records, text) : new();
-                };
-            }
+                EnsureMasterCatalogPreload();
+                var cat = _masterCatalogCache;
+                return cat != null ? _masterMgrShared!.FindAllMastersInText(cat.Records, text) : new();
+            };
             _translationView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _translationView.CurrentSegmentChanged += async (_, ev) =>
