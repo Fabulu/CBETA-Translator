@@ -56,10 +56,13 @@ public sealed class GitRepoService : IGitRepoService
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
-    public async Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
+    public async Task<string[]?> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
     {
         var r = await RunGitAsync(repoDir, "status --porcelain", null, ct);
-        if (r.ExitCode != 0) return Array.Empty<string>();
+        // null (NOT empty): a failed status must be distinguishable from a clean tree —
+        // callers sit immediately upstream of reset --hard / clean -fd, and treating a
+        // broken repo as "clean" destroys local work (audit R3-M4).
+        if (r.ExitCode != 0) return null;
 
         return SplitLines(r.StdOut)
             .Select(s => s.TrimEnd())
@@ -250,9 +253,12 @@ public sealed class GitRepoService : IGitRepoService
     /// Excludes deletes and anything under .git/.
     /// Optionally filter paths via prefixes (e.g. xml-p5t/).
     /// </summary>
-    public async Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct)
+    public async Task<string[]?> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct)
     {
         var porcelain = await GetStatusPorcelainAsync(repoDir, ct);
+        // null propagates: "could not determine changes" must abort the update flow
+        // BEFORE reset --hard, or unbacked-up local edits are destroyed (R3-M4).
+        if (porcelain == null) return null;
         if (porcelain.Length == 0) return Array.Empty<string>();
 
         var prefixes = (includePrefixes ?? Array.Empty<string>())
@@ -288,23 +294,26 @@ public sealed class GitRepoService : IGitRepoService
     /// git rev-list --left-right --count origin/main...HEAD
     /// left=behind, right=ahead
     /// </summary>
-    public async Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)
+    public async Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)
     {
         var r = await RunGitAsync(repoDir, $"rev-list --left-right --count \"{upstreamRef}...HEAD\"", null, ct);
+        // null (NOT (0,0)): "in sync" was indistinguishable from "could not tell",
+        // and ahead>0 is what gates the rescue-branch creation before the destructive
+        // update — a failed check must block, not skip, that safety net (R3-M4).
         if (r.ExitCode != 0)
-            return (0, 0);
+            return null;
 
         var txt = (r.StdOut ?? "").Trim();
         if (string.IsNullOrWhiteSpace(txt))
-            return (0, 0);
+            return null;
 
         // Usually: "12\t3" or "12 3"
         var parts = txt.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length < 2)
-            return (0, 0);
+            return null;
 
-        if (!int.TryParse(parts[0], out int behind)) behind = 0;
-        if (!int.TryParse(parts[1], out int ahead)) ahead = 0;
+        if (!int.TryParse(parts[0], out int behind)) return null;
+        if (!int.TryParse(parts[1], out int ahead)) return null;
         return (behind, ahead);
     }
 
