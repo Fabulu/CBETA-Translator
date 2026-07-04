@@ -46,6 +46,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITermbaseStorageService, TermbaseStorageService>();
         services.AddSingleton<ICommunityDataService, CommunityDataService>();
         services.AddSingleton<ITranslationStarService, TranslationStarService>();
+        services.AddSingleton<ICitationService, CitationService>();
 
         services.AddSingleton<IScholarCollectionsService, ScholarCollectionsService>();
         services.AddSingleton<IDocumentTagService, DocumentTagService>();

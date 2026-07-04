@@ -24,7 +24,7 @@ public partial class SearchTabView : UserControl
 {
     private readonly SearchTabViewModel _vm;
     private readonly ICedictDictionary _cedict;
-    private readonly ICitationService _citationService = new CitationService();
+    private readonly ICitationService _citationService = App.Services.GetRequiredService<ICitationService>();
     private TextBlock? _activeHoverTextBlock;
     private CancellationTokenSource? _hoverLookupCts;
 

@@ -114,7 +114,7 @@ public partial class TranslationTabView : UserControl
     public Func<string?>? GetTranslationUser { get; set; }
 
     private TextLicenseInfo? _currentLicense;
-    private readonly ICitationService _citationService = new CitationService();
+    private readonly ICitationService _citationService = App.Services.GetRequiredService<ICitationService>();
 
     /// <summary>Set the license metadata for the currently loaded file (wired by MainWindow).</summary>
     public void SetLicense(TextLicenseInfo? license) => _currentLicense = license;
