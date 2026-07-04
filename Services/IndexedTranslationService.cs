@@ -154,7 +154,9 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         {
             OriginalXml = originalXml,
             TranslatedXml = translatedXml,
-            HasSeparateTranslatedSource = !XmlEquivalent(originalXml, translatedXml)
+            // translatedXml falls back to originalXml above, so the whitespace-empty
+            // early return below is always "no separate source".
+            HasSeparateTranslatedSource = false
         };
 
         if (string.IsNullOrWhiteSpace(originalXml))
@@ -162,6 +164,16 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         var origDoc = XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace);
         var tranDoc = XDocument.Parse(translatedXml, LoadOptions.PreserveWhitespace);
+
+        // Equivalence over the ALREADY-parsed docs (with an ordinal fast path for the
+        // ubiquitous untranslated case) — XmlEquivalent(string, string) here used to
+        // re-parse both documents, making every file open parse 4x (audit P2.4 / R2-M7).
+        result.HasSeparateTranslatedSource =
+            !string.Equals(originalXml, translatedXml, StringComparison.Ordinal)
+            && !string.Equals(
+                origDoc.ToString(SaveOptions.DisableFormatting),
+                tranDoc.ToString(SaveOptions.DisableFormatting),
+                StringComparison.Ordinal);
 
         // License extraction hook — reuses the same XDocument we just parsed,
         // no double-parse. Only fires when both the cache service and the
@@ -182,6 +194,9 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         }
 
         var tranLookup = BuildDocLookup(tranDoc);
+        // One pass over the original doc replaces a per-element quadratic path walk
+        // (audit P2.4 / R2-M7).
+        var origPaths = BuildNodePathMap(origDoc);
 
         // 1) teiHeader -> Head mode
         var header = origDoc.Root?.Element(Tei + "teiHeader");
@@ -191,10 +206,11 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             {
                 if (!IsTranslatableHeaderElement(el)) continue;
 
-                var translatedMatch = FindTranslatedMatch(el, tranLookup);
+                var translatedMatch = FindTranslatedMatch(el, origPaths[el], tranLookup);
                 AddElementAsLineUnits(
                     result,
                     origEl: el,
+                    elementNodePath: origPaths[el],
                     translatedEl: translatedMatch,
                     kind: TranslationUnitKind.Head,
                     includeInlineNotesInProjection: false);
@@ -210,7 +226,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 if (!IsTranslatableBodyElement(el)) continue;
 
                 var kind = ClassifyBodyElement(el);
-                var translatedMatch = FindTranslatedMatch(el, tranLookup);
+                var translatedMatch = FindTranslatedMatch(el, origPaths[el], tranLookup);
 
                 // In body/head mode hide inline <note>; if unit itself is <note>, show it
                 bool includeInlineNotes = kind == TranslationUnitKind.Note;
@@ -218,6 +234,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 AddElementAsLineUnits(
                     result,
                     origEl: el,
+                    elementNodePath: origPaths[el],
                     translatedEl: translatedMatch,
                     kind: kind,
                     includeInlineNotesInProjection: includeInlineNotes);
@@ -232,11 +249,12 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             {
                 if (!IsTranslatableBackElement(el)) continue;
 
-                var translatedMatch = FindTranslatedMatch(el, tranLookup);
+                var translatedMatch = FindTranslatedMatch(el, origPaths[el], tranLookup);
 
                 AddElementAsLineUnits(
                     result,
                     origEl: el,
+                    elementNodePath: origPaths[el],
                     translatedEl: translatedMatch,
                     kind: TranslationUnitKind.Note,
                     includeInlineNotesInProjection: true);
@@ -249,11 +267,11 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     private void AddElementAsLineUnits(
         IndexedTranslationDocument doc,
         XElement origEl,
+        string elementNodePath,
         XElement? translatedEl,
         TranslationUnitKind kind,
         bool includeInlineNotesInProjection)
     {
-        var elementNodePath = BuildNodePath(origEl);
         var elementXmlId = (string?)origEl.Attribute(XmlNs + "id");
         var elementStableKey = !string.IsNullOrWhiteSpace(elementXmlId)
             ? "id:" + elementXmlId!.Trim()
@@ -1311,13 +1329,15 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         var lookup = new DocLookup();
         if (doc.Root == null) return lookup;
 
+        var paths = BuildNodePathMap(doc);
+
         foreach (var el in doc.Root.DescendantsAndSelf())
         {
             var xmlId = (string?)el.Attribute(XmlNs + "id");
             if (!string.IsNullOrWhiteSpace(xmlId) && !lookup.ByXmlId.ContainsKey(xmlId))
                 lookup.ByXmlId[xmlId] = el;
 
-            var path = BuildNodePath(el);
+            var path = paths[el];
             if (!lookup.ByNodePath.ContainsKey(path))
                 lookup.ByNodePath[path] = el;
         }
@@ -1325,11 +1345,10 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         return lookup;
     }
 
-    private static XElement? FindTranslatedMatch(XElement origEl, DocLookup tranLookup)
+    private static XElement? FindTranslatedMatch(XElement origEl, string origPath, DocLookup tranLookup)
     {
         var xmlId = (string?)origEl.Attribute(XmlNs + "id");
-        var path = BuildNodePath(origEl);
-        return FindByIdentity(xmlId, path, tranLookup);
+        return FindByIdentity(xmlId, origPath, tranLookup);
     }
 
     private static XElement? FindByIdentity(string? xmlId, string nodePath, DocLookup lookup)
@@ -1525,6 +1544,11 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
     private static bool XmlEquivalent(string a, string b)
     {
+        // Ordinal fast path: byte-identical strings are trivially equivalent and skip
+        // two full XDocument parses (audit P2.4 / R2-M7).
+        if (string.Equals(a ?? "", b ?? "", StringComparison.Ordinal))
+            return true;
+
         try
         {
             var sa = XDocument.Parse(a ?? "", LoadOptions.PreserveWhitespace).ToString(SaveOptions.DisableFormatting);
@@ -1619,24 +1643,40 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
     private static string PrefixFor(XNamespace ns) => ns == TeiNs ? "tei" : ns == CbNs ? "cb" : "ns";
 
-    private static string BuildNodePath(XElement e)
+    /// <summary>
+    /// Computes the node path of EVERY element in one document-order pass.
+    /// Replaces the per-element BuildNodePath walk, which recomputed each ancestor's
+    /// sibling index by rescanning its preceding siblings — O(depth × siblings) per
+    /// element, quadratic on flat bodies with thousands of sibling elements
+    /// (audit P2.4 / R2-M7). Path strings are byte-identical to the old walk:
+    /// "prefix:localName[siblingIndex]/..." — persisted unit identities keep matching.
+    /// </summary>
+    internal static Dictionary<XElement, string> BuildNodePathMap(XDocument doc)
     {
-        var segs = new Stack<string>();
-        XElement? cur = e;
+        var map = new Dictionary<XElement, string>();
+        if (doc.Root == null) return map;
 
-        while (cur != null)
+        // Running per-(parent, name) sibling counter; document order guarantees a
+        // parent is visited (and mapped) before any of its children.
+        var siblingCounters = new Dictionary<(XElement Parent, XName Name), int>();
+
+        foreach (var el in doc.Root.DescendantsAndSelf())
         {
-            var parent = cur.Parent;
             int idx = 1;
+            var parent = el.Parent;
             if (parent != null)
-                idx = parent.Elements(cur.Name).TakeWhile(x => x != cur).Count() + 1;
+            {
+                var key = (parent, el.Name);
+                siblingCounters.TryGetValue(key, out var seen);
+                idx = seen + 1;
+                siblingCounters[key] = idx;
+            }
 
-            var prefix = PrefixFor(cur.Name.Namespace);
-            segs.Push($"{prefix}:{cur.Name.LocalName}[{idx}]");
-            cur = parent;
+            var seg = $"{PrefixFor(el.Name.Namespace)}:{el.Name.LocalName}[{idx}]";
+            map[el] = parent == null ? seg : map[parent] + "/" + seg;
         }
 
-        return string.Join("/", segs);
+        return map;
     }
 
     // ============================================================
