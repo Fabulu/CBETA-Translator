@@ -26,17 +26,25 @@ public sealed class TermbaseService : ITermbaseService
         _username = string.IsNullOrWhiteSpace(username) ? null : username.Trim();
     }
 
-    // In-memory termbase cache — avoids re-reading JSON on every block change.
-    // Auto-invalidates when the file's last-write timestamp changes.
-    private string? _cachedTermsPath;
-    private DateTime _cachedTermsLastWrite;
-    private List<TermRow>? _cachedTerms;
+    // In-memory termbase caches — avoid re-reading JSON on every block change.
+    // Auto-invalidate when the source files' last-write timestamps change.
+    // Each cache lives in ONE immutable slot swapped by reference: this singleton is
+    // hit concurrently (warmup + queries), and separate path/time/rows fields could
+    // tear into a stale mix (audit P2.6 / R3-M10; pattern matches
+    // TranslationReviewService._aggregationCache).
+    private sealed record PersonalTermsCache(string Path, DateTime LastWriteUtc, List<TermRow> Rows);
+    private PersonalTermsCache? _personalCache;
+
+    // Community termbases previously re-read EVERY community/termbases/*.jsonl from
+    // disk on every segment change (audit P2.6 / R3-M8); now cached against a
+    // (file count, newest mtime) stamp — same idea as the personal cache above.
+    private sealed record CommunityTermsCache(string Dir, int FileCount, long MaxWriteTicks, Dictionary<string, List<TermbaseEntry>> Data);
+    private CommunityTermsCache? _communityCache;
 
     public void InvalidateCache()
     {
-        _cachedTermsPath = null;
-        _cachedTermsLastWrite = default;
-        _cachedTerms = null;
+        _personalCache = null;
+        _communityCache = null;
     }
 
     private static readonly JsonSerializerOptions JsonOpts = new()
@@ -116,11 +124,12 @@ public sealed class TermbaseService : ITermbaseService
         try
         {
             var lastWrite = File.GetLastWriteTimeUtc(path);
-            if (_cachedTerms != null &&
-                string.Equals(_cachedTermsPath, path, StringComparison.OrdinalIgnoreCase) &&
-                lastWrite == _cachedTermsLastWrite)
+            var cache = _personalCache; // single read: consistent (path, time, rows) triple
+            if (cache != null &&
+                string.Equals(cache.Path, path, StringComparison.OrdinalIgnoreCase) &&
+                lastWrite == cache.LastWriteUtc)
             {
-                return _cachedTerms;
+                return cache.Rows;
             }
         }
         catch { /* fall through to disk read */ }
@@ -145,12 +154,11 @@ public sealed class TermbaseService : ITermbaseService
             return null;
         }
 
-        // Update cache
+        // Update cache (one atomic reference swap)
         try
         {
-            _cachedTermsPath = path;
-            _cachedTermsLastWrite = File.GetLastWriteTimeUtc(path);
-            _cachedTerms = rows;
+            if (rows != null)
+                _personalCache = new PersonalTermsCache(path, File.GetLastWriteTimeUtc(path), rows);
         }
         catch { /* non-critical */ }
 
@@ -182,7 +190,7 @@ public sealed class TermbaseService : ITermbaseService
         var communityDir = TermbaseStorageService.GetCommunityTermbasesDir(root);
         if (!Directory.Exists(communityDir)) return new();
 
-        var allCommunity = await _storage.LoadAllCommunityJsonlAsync(communityDir, ct).ConfigureAwait(false);
+        var allCommunity = await LoadCommunityCachedAsync(communityDir, ct).ConfigureAwait(false);
         var zh = NormalizeForMatch(ctx.ZhText);
         var results = new List<TermHit>();
 
@@ -210,6 +218,48 @@ public sealed class TermbaseService : ITermbaseService
             .Select(g => g.First())
             .OrderByDescending(t => t.SourceTerm.Length)
             .ToList();
+    }
+
+    /// <summary>
+    /// Stat-only staleness check: re-reads the community jsonl files only when a file
+    /// was added/removed or the newest last-write time moved. This method is called on
+    /// every segment change via the assistant snapshot (audit P2.6 / R3-M8).
+    /// The cached dictionary is treated as immutable — this class only iterates it.
+    /// </summary>
+    private async Task<Dictionary<string, List<TermbaseEntry>>> LoadCommunityCachedAsync(
+        string communityDir, CancellationToken ct)
+    {
+        int fileCount = 0;
+        long maxTicks = 0;
+        try
+        {
+            foreach (var f in Directory.EnumerateFiles(communityDir, "*.jsonl"))
+            {
+                fileCount++;
+                var t = File.GetLastWriteTimeUtc(f).Ticks;
+                if (t > maxTicks) maxTicks = t;
+            }
+        }
+        catch
+        {
+            // stat failed — fall back to a plain load below
+            fileCount = -1;
+        }
+
+        var cache = _communityCache; // single read: consistent slot
+        if (cache != null &&
+            fileCount >= 0 &&
+            string.Equals(cache.Dir, communityDir, StringComparison.OrdinalIgnoreCase) &&
+            cache.FileCount == fileCount &&
+            cache.MaxWriteTicks == maxTicks)
+        {
+            return cache.Data;
+        }
+
+        var data = await _storage.LoadAllCommunityJsonlAsync(communityDir, ct).ConfigureAwait(false);
+        if (fileCount >= 0)
+            _communityCache = new CommunityTermsCache(communityDir, fileCount, maxTicks, data);
+        return data;
     }
 
     public async Task<List<TermHit>> GetAllTermsAsync(string? root, CancellationToken ct = default)

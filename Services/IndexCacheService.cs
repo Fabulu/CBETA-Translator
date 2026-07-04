@@ -30,31 +30,10 @@ public sealed class IndexCacheService : IIndexCacheService
         WriteIndented = true
     };
 
-    public string GetCachePath(string root)
-        => Path.Combine(root, CacheFileName);
-
-    private static string GetDebugLogPath(string root)
-        => Path.Combine(root, "index.debug.log");
-
     private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
 
-    private static void Log(string root, string message)
-    {
-        // You said console output works — we do both.
-       // try { Console.WriteLine(message); } catch { /* ignore */ }
-       /*
-        try
-        {
-            File.AppendAllText(GetDebugLogPath(root),
-                $"[{DateTime.Now:O}] {message}{Environment.NewLine}",
-                Utf8NoBom);
-        }
-        catch
-        {
-            // ignore logging failures
-        }
-       */
-    }
+    public string GetCachePath(string root)
+        => Path.Combine(root, CacheFileName);
 
     public async Task<IndexCache?> TryLoadAsync(string root, string? originalsRepoRoot = null)
     {
@@ -255,20 +234,6 @@ public sealed class IndexCacheService : IIndexCacheService
         return dict;
     }
 
-    // Match both T047n1987A.xml and T47n1987A.xml and any similar “T*47*...n1987A...” path.
-    private static bool IsDebugTarget(string relKey, string fileName)
-    {
-        if (fileName.Equals("T047n1987A.xml", StringComparison.OrdinalIgnoreCase)) return true;
-        if (fileName.Equals("T47n1987A.xml", StringComparison.OrdinalIgnoreCase)) return true;
-
-        // broad match: contains n1987A and starts with T0 or T
-        if (relKey.IndexOf("n1987A", StringComparison.OrdinalIgnoreCase) >= 0 &&
-            relKey.StartsWith("T/", StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        return false;
-    }
-
     public TranslationStatus ComputeStatusForPairLive(
         string origAbs,
         string tranAbs,
@@ -288,32 +253,12 @@ public sealed class IndexCacheService : IIndexCacheService
     {
         return Task.Run(() =>
         {
-            // Start a fresh debug log every build
-            try
-            {
-                File.WriteAllText(GetDebugLogPath(root),
-                    $"Index build started {DateTime.Now:O}{Environment.NewLine}" +
-                    $"root={root}{Environment.NewLine}" +
-                    $"originalDir={originalDir}{Environment.NewLine}" +
-                    $"translatedDir={translatedDir}{Environment.NewLine}" +
-                    $"CacheBuildGuid={CacheBuildGuid}{Environment.NewLine}",
-                    Utf8NoBom);
-            }
-            catch { /* ignore */ }
-
-            Log(root, $"BUILD: Enumerating files under {originalDir}");
-
             var titles = LoadTitlesMap(root);
 
             var files = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories).ToList();
             int total = files.Count;
 
-            Log(root, $"BUILD: Found {total:n0} XML files");
-
             var entries = new List<FileNavItem>(capacity: total);
-
-            // Log the first N files for sanity (existence + computed translated path)
-            const int LogFirstN = 25;
 
             for (int i = 0; i < total; i++)
             {
@@ -358,26 +303,7 @@ public sealed class IndexCacheService : IIndexCacheService
                     }
                 }
 
-                bool verbose =
-                    i < LogFirstN ||
-                    IsDebugTarget(relKey, fileName);
-
-                if (verbose)
-                {
-                    Log(root, $"FILE[{i + 1}/{total}] relKey={relKey}");
-                    Log(root, $"  origAbs={origAbs}");
-                    Log(root, $"  tranAbs={tranAbs}");
-                    Log(root, $"  tranExists={File.Exists(tranAbs)}");
-                    try
-                    {
-                        Log(root, $"  origLen={new FileInfo(origAbs).Length}");
-                        if (File.Exists(tranAbs))
-                            Log(root, $"  tranLen={new FileInfo(tranAbs).Length}");
-                    }
-                    catch { /* ignore */ }
-                }
-
-                var status = _statusService.ComputeStatusForPairLive(origAbs, tranAbs, root, relKey, verbose);
+                var status = _statusService.ComputeStatusForPairLive(origAbs, tranAbs, root, relKey, verboseLog: false);
 
                 long mtimeTicks = 0;
                 if (File.Exists(tranAbs))
@@ -402,7 +328,6 @@ public sealed class IndexCacheService : IIndexCacheService
 
             entries.Sort((a, b) => string.Compare(a.RelPath, b.RelPath, StringComparison.OrdinalIgnoreCase));
 
-            Log(root, $"BUILD DONE: entries={entries.Count:n0}");
 
             return new IndexCache
             {
