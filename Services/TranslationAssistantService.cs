@@ -9,9 +9,24 @@ namespace ReadZen.App.Services;
 
 public sealed class TranslationAssistantService : ITranslationAssistantService
 {
-    private readonly TranslationMemoryService _tm = new();
-    private readonly TermbaseService _terms = new();
-    private readonly TranslationQaService _qa = new();
+    // Injected from the container (audit R3-M1). These used to be `new()`d here, so
+    // the assistant held PRIVATE TM/termbase/QA instances separate from the ones the
+    // rest of the app uses - two cache universes, and SetUsername/cache invalidation
+    // through the container never reached the assistant's copies. Sharing the
+    // registered singletons fixes that.
+    private readonly ITranslationMemoryService _tm;
+    private readonly ITermbaseService _terms;
+    private readonly ITranslationQaService _qa;
+
+    public TranslationAssistantService(
+        ITranslationMemoryService tm,
+        ITermbaseService terms,
+        ITranslationQaService qa)
+    {
+        _tm = tm;
+        _terms = terms;
+        _qa = qa;
+    }
 
     /// <summary>
     /// Sets the current username so the termbase service resolves the per-user file.

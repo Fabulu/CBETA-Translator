@@ -273,13 +273,15 @@ public class TaggingAndPerfTests
         // We verify parallelism by timing: 3 lookups each taking ~100ms
         // should complete in ~100ms if parallel, ~300ms if sequential.
         //
-        // Since TranslationAssistantService constructs its own internal services
-        // (TranslationMemoryService, TermbaseService, etc.) and these hit the
-        // file system but return empty results quickly when root is null,
-        // we test the contract differently: measure that the service runs
-        // to completion and returns a valid snapshot in reasonable time.
+        // TranslationAssistantService now takes its TM/termbase/QA dependencies via
+        // the constructor (audit P3.2). These hit the file system but return empty
+        // results quickly when root is null, so we test the contract by timing: the
+        // service runs to completion and returns a valid snapshot in reasonable time.
 
-        var svc = new App.Services.TranslationAssistantService();
+        var svc = new App.Services.TranslationAssistantService(
+            new App.Services.TranslationMemoryService(),
+            new App.Services.TermbaseService(),
+            new App.Services.TranslationQaService());
         var ctx = new CurrentSegmentContext
         {
             RelPath = "test/file.xml",
