@@ -129,13 +129,13 @@ public sealed class SearchIndexService : ISearchIndexService
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    // Bumped 2026-05-11 from "search-v3-bloom-compact" to force a one-time rebuild
-    // on existing installations whose indexes were built between 2026-05-02 (when
-    // commit 90401aa shipped a bug that silently dropped body text after any
-    // self-closing <app/> tag) and the landing of this sprint's fix. The hash-based
-    // staleness check alone cannot detect "the extractor logic changed" — only a
-    // GUID bump invalidates manifests across the board.
-    private const string BuildGuid = "search-v4-app-self-close-fix";
+    // Bumped 2026-07-04 from "search-v4-app-self-close-fix": the inverted index gained
+    // an integrity contract (v3 format: per-build IndexStamp + .paths checksum,
+    // audit P1.1). Existing v2 search.inverted.bin files are refused by the new
+    // loader, and without a bump users would silently lose the exact-match fast path
+    // until their next natural rebuild — the GUID bump forces that rebuild once.
+    // (Previous bump 2026-05-11: <app/> self-close extractor fix, commit 90401aa era.)
+    private const string BuildGuid = "search-v5-inverted-integrity";
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
     private const int Cjk2ManifestVersion = 1;
@@ -1630,17 +1630,26 @@ public sealed class SearchIndexService : ISearchIndexService
                 _cachedManifestWriteUtc = mpWriteUtc;
             }
 
-            // Try loading inverted index alongside bloom
-            if (InvertedIndex == null)
+            // Try loading inverted index alongside bloom. Only a file stamped with THIS
+            // manifest's IndexStamp may load: a stale file (rebuild failed after the
+            // manifest committed) or a torn save would otherwise be trusted as the
+            // "0% false positive" candidate source and silently drop documents from
+            // search results. Old manifests without a stamp get no inverted index
+            // until their next rebuild (bloom + verify covers them).
+            if (InvertedIndex == null && !string.IsNullOrEmpty(man.IndexStamp))
             {
                 try
                 {
                     var invPath = Path.Combine(root, "search.inverted.bin");
                     var inv = new InvertedSearchIndex();
-                    if (await inv.TryLoadAsync(invPath, CancellationToken.None))
+                    if (await inv.TryLoadAsync(invPath, man.IndexStamp, CancellationToken.None))
                     {
                         InvertedIndex = inv;
                         Dbg($"Inverted index loaded: {inv.TermCount} terms, {inv.DocCount} docs");
+                    }
+                    else if (File.Exists(invPath))
+                    {
+                        Dbg("Inverted index present but refused (stamp/checksum mismatch or old format) — using bloom + verify");
                     }
                 }
                 catch { /* inverted index is optional */ }
@@ -2376,6 +2385,10 @@ public sealed class SearchIndexService : ISearchIndexService
                     BloomBits = BloomBits,
                     BloomHashCount = BloomHashCount,
                     Version = 1,
+                    // Minted per rebuild; the inverted index saved below embeds the same
+                    // stamp, and the loader refuses any search.inverted.bin whose stamp
+                    // differs from the manifest it is loaded alongside.
+                    IndexStamp = Guid.NewGuid().ToString("N"),
                 };
                 var textManifest = new SearchTextManifest
                 {
@@ -2638,7 +2651,7 @@ public sealed class SearchIndexService : ISearchIndexService
                     sortedDocs = null; // free text strings immediately
                     invertedDocs.Clear();
                     var invertedPath = Path.Combine(root, "search.inverted.bin");
-                    await invertedIndex.SaveAsync(invertedPath, ct);
+                    await invertedIndex.SaveAsync(invertedPath, manifest.IndexStamp!, ct);
                     InvertedIndex = invertedIndex;
                     GC.Collect(2, GCCollectionMode.Aggressive, true, true);
                     Dbg($"Inverted index built: {invertedIndex.TermCount} terms, {invertedIndex.DocCount} docs");
@@ -2647,6 +2660,19 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     Dbg($"Inverted index build FAILED: {ex.Message}\n{ex.StackTrace}");
                     System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Inverted index FAILED: {ex.Message}\n{ex.StackTrace}");
+                    // The manifest above is already committed with a fresh IndexStamp,
+                    // so an inverted file from an earlier build would never load again —
+                    // delete it (and any in-memory copy) rather than leave a dead file
+                    // around. Same pattern as the CJK2 failure path below. Search stays
+                    // correct via bloom + verify.
+                    InvertedIndex = null;
+                    try
+                    {
+                        var staleInv = Path.Combine(root, "search.inverted.bin");
+                        if (File.Exists(staleInv)) File.Delete(staleInv);
+                        if (File.Exists(staleInv + ".paths")) File.Delete(staleInv + ".paths");
+                    }
+                    catch { }
                 }
 
                 // Phase C optional accelerator: compact-CJK bigram postings.

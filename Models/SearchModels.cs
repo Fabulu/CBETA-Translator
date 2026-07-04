@@ -331,6 +331,18 @@ public sealed class SearchIndexManifest
     /// </summary>
     public string? InputHash { get; set; } = null;
 
+    /// <summary>
+    /// Unique stamp minted per index rebuild and embedded into the sibling
+    /// <c>search.inverted.bin</c> header at build time. The inverted index only loads
+    /// when its embedded stamp matches this value, so a stale inverted file (e.g. its
+    /// rebuild failed after the bloom manifest was already committed) can never be
+    /// trusted as the "0% false positive" candidate source with missing documents.
+    /// Nullable for backward compatibility: manifests written by older binaries
+    /// deserialize with <c>IndexStamp == null</c>, in which case the inverted index is
+    /// not loaded at all (search falls back to bloom + verify until the next rebuild).
+    /// </summary>
+    public string? IndexStamp { get; set; } = null;
+
     public List<SearchIndexEntry> Entries { get; set; } = new();
 }
 
