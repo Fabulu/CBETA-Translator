@@ -17,6 +17,19 @@
 
 const { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } = require('fs');
 const { join, dirname, basename, relative } = require('path');
+const crypto = require('crypto');
+
+/**
+ * SHA-256 (lowercase hex) of the line-ending-normalized source XML content.
+ * Embedded as the segment map's `source_sha256` header so the desktop
+ * SegmentMapService can refuse a map whose source XML has changed underneath it
+ * (audit P3.1b). MUST stay byte-compatible with the C# TryComputeSourceHash:
+ * both normalize CRLF/CR to LF before hashing UTF-8 bytes.
+ */
+function sourceContentHash(xmlString) {
+    const normalized = xmlString.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    return crypto.createHash('sha256').update(normalized, 'utf8').digest('hex');
+}
 
 // Parse args
 const args = process.argv.slice(2);
@@ -391,7 +404,10 @@ function processFile(workId, sourceXml, transXml, outPath) {
 
     // Ensure output directory exists
     mkdirSync(dirname(outPath), { recursive: true });
-    writeFileSync(outPath, lines.join('\n') + '\n', 'utf-8');
+    // First line: metadata header carrying the source-XML hash (audit P3.1b). The
+    // desktop loader skips it and uses it to detect a stale map.
+    const header = JSON.stringify({ source_sha256: sourceContentHash(sourceXml), schema: 'seg-v1' });
+    writeFileSync(outPath, header + '\n' + lines.join('\n') + '\n', 'utf-8');
 
     const totalLbs = zhSegments.reduce((n, s) => n + s.lbIds.length, 0);
     const emptyNote = emptyLbSegments > 0 ? `, ${emptyLbSegments} empty-lb` : '';
@@ -480,5 +496,5 @@ function main() {
 }
 
 // Export for testability; guard main() so tests can import without running.
-module.exports = { extractSegments, buildLbTextMap, detectPrimaryEdition };
+module.exports = { extractSegments, buildLbTextMap, detectPrimaryEdition, sourceContentHash };
 if (require.main === module) main();

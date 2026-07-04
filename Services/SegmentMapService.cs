@@ -16,6 +16,8 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
@@ -24,7 +26,10 @@ namespace ReadZen.App.Services;
 
 public sealed class SegmentMapService : ISegmentMapService
 {
-    private readonly ConcurrentDictionary<string, (long mtimeTicks, SegmentMap? map)> _cache
+    // Cache keys on BOTH the jsonl mtime AND the source XML mtime: a stale map whose
+    // source changed underneath it (the jsonl file itself untouched) must be
+    // re-verified, so the source mtime has to participate (audit P3.1b).
+    private readonly ConcurrentDictionary<string, (long jsonlTicks, long sourceTicks, SegmentMap? map)> _cache
         = new(StringComparer.OrdinalIgnoreCase);
 
     public SegmentMap? TryLoad(string xmlAbsPath)
@@ -36,21 +41,70 @@ public sealed class SegmentMapService : ISegmentMapService
         if (jsonlPath == null || !File.Exists(jsonlPath))
             return null;
 
-        long ticks = GetMtimeTicks(jsonlPath);
+        long jsonlTicks = GetMtimeTicks(jsonlPath);
+        long sourceTicks = GetMtimeTicks(xmlAbsPath);
         string cacheKey = jsonlPath;
 
-        if (_cache.TryGetValue(cacheKey, out var entry) && entry.mtimeTicks == ticks)
+        if (_cache.TryGetValue(cacheKey, out var entry)
+            && entry.jsonlTicks == jsonlTicks
+            && entry.sourceTicks == sourceTicks)
             return entry.map;
 
+        SegmentMap? map;
         try
         {
-            var map = ParseJsonl(jsonlPath);
-            _cache[cacheKey] = (ticks, map);
-            return map;
+            map = ParseJsonl(jsonlPath);
         }
         catch
         {
-            _cache[cacheKey] = (ticks, null);
+            _cache[cacheKey] = (jsonlTicks, sourceTicks, null);
+            return null;
+        }
+
+        // Staleness contract (audit P3.1b): a map that records the source hash it was
+        // built from is refused when the current source XML no longer matches. Maps
+        // without an embedded hash (older generator) load unchanged.
+        if (map != null && IsMapStale(map, xmlAbsPath))
+            map = null;
+
+        _cache[cacheKey] = (jsonlTicks, sourceTicks, map);
+        return map;
+    }
+
+    /// <summary>
+    /// True when the map carries a source hash and the current source XML at
+    /// <paramref name="xmlAbsPath"/> no longer matches it. A map with no embedded hash
+    /// is never considered stale (backward compatibility).
+    /// </summary>
+    internal static bool IsMapStale(SegmentMap map, string xmlAbsPath)
+    {
+        if (string.IsNullOrEmpty(map.SourceSha256))
+            return false;
+
+        var current = TryComputeSourceHash(xmlAbsPath);
+        return current != null
+            && !string.Equals(current, map.SourceSha256, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    /// SHA-256 (lowercase hex) of the source XML's line-ending-normalized UTF-8
+    /// content. Must stay byte-compatible with the generator's
+    /// <c>sourceContentHash</c> in eng/tools/build-structural-segments.js — both
+    /// normalize CRLF/CR to LF before hashing so line-ending drift is not treated as
+    /// a source change. Returns null when the file cannot be read.
+    /// </summary>
+    internal static string? TryComputeSourceHash(string xmlAbsPath)
+    {
+        try
+        {
+            var text = File.ReadAllText(xmlAbsPath);
+            var normalized = text.Replace("\r\n", "\n").Replace("\r", "\n");
+            using var sha = SHA256.Create();
+            var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(normalized));
+            return Convert.ToHexString(bytes).ToLowerInvariant();
+        }
+        catch
+        {
             return null;
         }
     }
@@ -127,11 +181,27 @@ public sealed class SegmentMapService : ISegmentMapService
     {
         var segments = new List<SegmentInfo>();
         var byLbId = new Dictionary<string, SegmentInfo>(StringComparer.Ordinal);
+        string? sourceHash = null;
+        bool firstContentLine = true;
 
         foreach (var line in File.ReadLines(jsonlPath))
         {
             if (string.IsNullOrWhiteSpace(line))
                 continue;
+
+            // The optional FIRST content line is a metadata header, e.g.
+            // {"source_sha256":"...","schema":"seg-v1"} (audit P3.1b). It carries the
+            // source-XML hash and is NOT a segment.
+            if (firstContentLine)
+            {
+                firstContentLine = false;
+                var meta = TryReadMetaHeader(line);
+                if (meta != null)
+                {
+                    sourceHash = meta;
+                    continue;
+                }
+            }
 
             SegmentInfo? info;
             try
@@ -161,8 +231,33 @@ public sealed class SegmentMapService : ISegmentMapService
         }
 
         return segments.Count > 0
-            ? new SegmentMap(segments, byLbId)
+            ? new SegmentMap(segments, byLbId, sourceHash)
             : null;
+    }
+
+    /// <summary>
+    /// If <paramref name="line"/> is the metadata header (has a <c>source_sha256</c>
+    /// string and no <c>unit_id</c>), returns the hash; otherwise null (the line is a
+    /// normal segment).
+    /// </summary>
+    private static string? TryReadMetaHeader(string line)
+    {
+        try
+        {
+            using var doc = JsonDocument.Parse(line);
+            if (doc.RootElement.ValueKind == JsonValueKind.Object
+                && doc.RootElement.TryGetProperty("source_sha256", out var h)
+                && h.ValueKind == JsonValueKind.String
+                && !doc.RootElement.TryGetProperty("unit_id", out _))
+            {
+                return h.GetString();
+            }
+        }
+        catch
+        {
+            // Not JSON / not a header — treat as a normal (possibly malformed) line.
+        }
+        return null;
     }
 
     private static long GetMtimeTicks(string path)

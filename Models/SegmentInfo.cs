@@ -58,9 +58,22 @@ public sealed class SegmentMap
     /// </summary>
     public IReadOnlyDictionary<string, SegmentInfo> ByLbId { get; }
 
-    public SegmentMap(IReadOnlyList<SegmentInfo> segments, IReadOnlyDictionary<string, SegmentInfo> byLbId)
+    /// <summary>
+    /// SHA-256 (lowercase hex) of the line-ending-normalized source XML this map was
+    /// generated from, taken from the optional <c>source_sha256</c> header line of the
+    /// .segments.jsonl (audit P3.1b). Null for maps produced before the staleness
+    /// contract existed. When set, <see cref="SegmentMapService"/> refuses the map if
+    /// the current source XML no longer matches this hash.
+    /// </summary>
+    public string? SourceSha256 { get; }
+
+    public SegmentMap(
+        IReadOnlyList<SegmentInfo> segments,
+        IReadOnlyDictionary<string, SegmentInfo> byLbId,
+        string? sourceSha256 = null)
     {
         Segments = segments;
         ByLbId = byLbId;
+        SourceSha256 = sourceSha256;
     }
 }

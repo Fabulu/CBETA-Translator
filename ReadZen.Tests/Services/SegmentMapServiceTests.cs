@@ -136,6 +136,107 @@ public class SegmentMapServiceTests : IDisposable
         Assert.Equal("verse", map.ByLbId["0526c01"].Type);
     }
 
+    // ---------------------------------------------------------------
+    // P3.1b — source-hash staleness contract
+    // ---------------------------------------------------------------
+
+    [Fact]
+    public void ParseJsonl_SkipsMetaHeader_AndCapturesSourceHash()
+    {
+        WriteJsonl(
+            "{\"source_sha256\":\"abc123\",\"schema\":\"seg-v1\"}",
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose"),
+            MakeLine("seg-0002", new[] { "0001a02" }, "verse")
+        );
+
+        var map = SegmentMapService.ParseJsonl(_jsonlPath);
+
+        Assert.NotNull(map);
+        // The header is NOT a segment.
+        Assert.Equal(2, map!.Segments.Count);
+        Assert.Equal("abc123", map.SourceSha256);
+    }
+
+    [Fact]
+    public void ParseJsonl_WithoutHeader_LeavesSourceHashNull()
+    {
+        WriteJsonl(
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose")
+        );
+
+        var map = SegmentMapService.ParseJsonl(_jsonlPath);
+
+        Assert.NotNull(map);
+        Assert.Single(map!.Segments);
+        Assert.Null(map.SourceSha256);
+    }
+
+    [Fact]
+    public void TryComputeSourceHash_MatchesGeneratorParity_AndIsLineEndingIndependent()
+    {
+        // Anchors pinned identically in eng/tools/test-structural-segments.js.
+        var xmlLf = Path.Combine(_tempDir, "src-lf.xml");
+        var xmlCrLf = Path.Combine(_tempDir, "src-crlf.xml");
+        File.WriteAllText(xmlLf, "<TEI><body><p>hi</p></body></TEI>");
+        Assert.Equal(
+            "730c6fa790830ef1efbd219963d42c66be2aa49f8ba93a8f45430784b754068e",
+            SegmentMapService.TryComputeSourceHash(xmlLf));
+
+        File.WriteAllText(xmlLf, "<TEI>\n<body><p>hi</p></body>\n</TEI>");
+        File.WriteAllText(xmlCrLf, "<TEI>\r\n<body><p>hi</p></body>\r\n</TEI>");
+        var hLf = SegmentMapService.TryComputeSourceHash(xmlLf);
+        var hCrLf = SegmentMapService.TryComputeSourceHash(xmlCrLf);
+        Assert.Equal(hLf, hCrLf);
+        Assert.Equal("eb0b16976a228903ae3643e755320fa35c6b65f9b6c35ae7c2c5e582c37ec097", hLf);
+    }
+
+    [Fact]
+    public void IsMapStale_TrueWhenSourceHashMismatches()
+    {
+        var xmlPath = Path.Combine(_tempDir, "source.xml");
+        File.WriteAllText(xmlPath, "<TEI><body><p>current</p></body></TEI>");
+
+        // Map claims to have been built from DIFFERENT source content.
+        WriteJsonl(
+            "{\"source_sha256\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose")
+        );
+        var map = SegmentMapService.ParseJsonl(_jsonlPath)!;
+
+        Assert.True(SegmentMapService.IsMapStale(map, xmlPath), "mismatched source hash must be stale");
+    }
+
+    [Fact]
+    public void IsMapStale_FalseWhenSourceHashMatches()
+    {
+        var xmlPath = Path.Combine(_tempDir, "source.xml");
+        var content = "<TEI><body><p>hi</p></body></TEI>";
+        File.WriteAllText(xmlPath, content);
+
+        WriteJsonl(
+            "{\"source_sha256\":\"730c6fa790830ef1efbd219963d42c66be2aa49f8ba93a8f45430784b754068e\"}",
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose")
+        );
+        var map = SegmentMapService.ParseJsonl(_jsonlPath)!;
+
+        Assert.False(SegmentMapService.IsMapStale(map, xmlPath), "matching hash must not be stale");
+    }
+
+    [Fact]
+    public void IsMapStale_FalseWhenNoEmbeddedHash()
+    {
+        var xmlPath = Path.Combine(_tempDir, "source.xml");
+        File.WriteAllText(xmlPath, "<TEI><body><p>anything</p></body></TEI>");
+
+        WriteJsonl(
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose")  // no header line
+        );
+        var map = SegmentMapService.ParseJsonl(_jsonlPath)!;
+
+        // Backward compat: maps without an embedded hash are never stale.
+        Assert.False(SegmentMapService.IsMapStale(map, xmlPath));
+    }
+
     [Fact]
     public void TryLoad_HandlesMultipleLbRangeEntries()
     {
