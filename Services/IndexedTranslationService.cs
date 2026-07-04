@@ -118,8 +118,16 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
     // Where the dump was last written (best effort)
     public string LastBuildTranslatedXmlDebugDumpPath { get; private set; } = "";
 
-    // Turn this on to validate after each patched element (slower, but pinpoints corruption source)
+    // Validate after each patched element: pinpoints which group corrupted the XML,
+    // but costs a FULL document serialize + re-parse per group — O(groups × docSize),
+    // the dominant save cost on large texts (audit P2.1 / R2-H3). Debug builds keep
+    // it for diagnosis; release builds rely on the single final validation below,
+    // which still refuses to persist a malformed document.
+#if DEBUG
     private const bool ValidateAfterEachPatchedGroup = true;
+#else
+    private const bool ValidateAfterEachPatchedGroup = false;
+#endif
 
     // Optional license metadata cache. Injected via DI when wired through the
     // application service container; null in unit tests and standalone callers
@@ -707,7 +715,10 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
         LastBuildTranslatedXmlDebugDump = dbg.ToString();
-        LastBuildTranslatedXmlDebugDumpPath = WriteDebugDumpToCTemp(LastBuildTranslatedXmlDebugDump, "OK");
+        // Successful saves keep the dump in memory only. Writing it to %TEMP% on every
+        // save was pure I/O tax plus unbounded temp-dir litter (audit P2.1 / R2-H3);
+        // failure paths still write their dumps (with rotation).
+        LastBuildTranslatedXmlDebugDumpPath = "";
 
         return xml;
     }
@@ -1712,6 +1723,8 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         return s.Replace("\\", "\\\\").Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
     }
 
+    private const int MaxDebugDumpFiles = 20;
+
     private static string WriteDebugDumpToCTemp(string content, string suffix)
     {
         try
@@ -1724,6 +1737,20 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             var path = Path.Combine(dir, file);
 
             File.WriteAllText(path, content ?? "", new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+
+            // Rotation: the dump dir used to grow forever (audit P2.1 / R2-H3).
+            try
+            {
+                var dumps = Directory.GetFiles(dir, "xml-rebuild-debug-*.log");
+                if (dumps.Length > MaxDebugDumpFiles)
+                {
+                    Array.Sort(dumps, StringComparer.Ordinal); // timestamped names sort oldest-first
+                    for (int i = 0; i < dumps.Length - MaxDebugDumpFiles; i++)
+                        File.Delete(dumps[i]);
+                }
+            }
+            catch { /* rotation is best effort */ }
+
             return path;
         }
         catch
