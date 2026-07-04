@@ -12,13 +12,18 @@ namespace ReadZen.App.Services;
 /// Bigram inverted index for fast, exact-match candidate filtering.
 /// Replaces bloom filters with 0% false positive rate.
 ///
-/// v2 format: varint-delta encoded postings, high-DF cutoff.
-/// Typical size: ~10-20MB for 5000 CJK files (down from 173MB in v1).
+/// v3 format: varint-delta encoded postings, high-DF cutoff, plus an integrity
+/// header — a build stamp (must match <c>SearchIndexManifest.IndexStamp</c>) and a
+/// SHA-256 checksum of the sibling .paths file. The stamp stops a stale inverted
+/// index from being trusted after its rebuild failed; the checksum stops a torn
+/// save (new .paths + old .bin, both individually well-formed) from loading with a
+/// wrong docId→path mapping. v1/v2 files are refused; the BuildGuid bump that
+/// shipped with v3 forces a full rebuild, so nothing needs to read them.
 /// </summary>
 public sealed class InvertedSearchIndex
 {
     private static readonly byte[] Magic = "IIDX"u8.ToArray();
-    private const int Version = 2;
+    private const int Version = 3;
     private const double MaxDocFrequencyRatio = 0.8; // skip only truly ubiquitous bigrams (之所, 如是, etc.)
 
     private Dictionary<string, ushort[]>? _index;
@@ -46,6 +51,13 @@ public sealed class InvertedSearchIndex
         }
 
         int docCount = dedupedDocs.Count;
+        // Doc IDs are stored as ushort (postings + per-term counts). Past 65,535 the
+        // cast below would silently wrap and attribute hits to the WRONG files, so
+        // refuse loudly instead — the caller treats a build failure as "no inverted
+        // index" and search stays correct via the bloom + verify path.
+        if (docCount > ushort.MaxValue)
+            throw new InvalidOperationException(
+                $"InvertedSearchIndex supports at most {ushort.MaxValue} documents; got {docCount}.");
         int maxDf = (int)(docCount * MaxDocFrequencyRatio);
 
         _docPaths = new string[docCount];
@@ -132,23 +144,58 @@ public sealed class InvertedSearchIndex
         return result.ToArray();
     }
 
-    /// <summary>Save with varint-delta encoding. Writes directly to file.</summary>
-    public async Task SaveAsync(string path, CancellationToken ct = default)
+    /// <summary>
+    /// Save with varint-delta encoding. Both files are written to temp paths and moved
+    /// into place atomically (.paths first, then .bin); the .bin header embeds
+    /// <paramref name="buildStamp"/> and a SHA-256 of the .paths bytes, so any torn
+    /// combination of old/new files is rejected by <see cref="TryLoadAsync"/> instead
+    /// of loading with a wrong docId→path mapping.
+    /// </summary>
+    public async Task SaveAsync(string path, string buildStamp, CancellationToken ct = default)
     {
         if (_index == null || _docPaths == null) return;
+        if (string.IsNullOrEmpty(buildStamp))
+            throw new ArgumentException("A non-empty build stamp is required.", nameof(buildStamp));
 
-        await File.WriteAllLinesAsync(path + ".paths", _docPaths, Encoding.UTF8, ct);
+        var pathsFile = path + ".paths";
+        var tmpPaths = pathsFile + ".tmp";
+        var tmpBin = path + ".tmp";
+        try
+        {
+            await File.WriteAllLinesAsync(tmpPaths, _docPaths, Encoding.UTF8, ct);
+            var pathsChecksum = ComputeSha256(await File.ReadAllBytesAsync(tmpPaths, ct));
 
-        using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None, 65536);
-        using var bw = new BinaryWriter(fs, Encoding.UTF8, leaveOpen: true);
+            using (var fs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
+            using (var bw = new BinaryWriter(fs, Encoding.UTF8, leaveOpen: true))
+            {
+                WriteBody(bw, buildStamp, pathsChecksum);
+                bw.Flush();
+            }
 
-        var sorted = _index.OrderBy(kv => kv.Key, StringComparer.Ordinal).ToList();
+            File.Move(tmpPaths, pathsFile, overwrite: true);
+            File.Move(tmpBin, path, overwrite: true);
+        }
+        catch
+        {
+            try { if (File.Exists(tmpPaths)) File.Delete(tmpPaths); } catch { }
+            try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
+            throw;
+        }
+    }
+
+    private void WriteBody(BinaryWriter bw, string buildStamp, byte[] pathsChecksum)
+    {
+        var sorted = _index!.OrderBy(kv => kv.Key, StringComparer.Ordinal).ToList();
 
         // Header
         bw.Write(Magic);
         bw.Write(Version);
+        var stampBytes = Encoding.UTF8.GetBytes(buildStamp);
+        bw.Write((ushort)stampBytes.Length);
+        bw.Write(stampBytes);
+        bw.Write(pathsChecksum); // 32 bytes
         bw.Write(sorted.Count);
-        bw.Write(_docPaths.Length);
+        bw.Write(_docPaths!.Length);
 
         // Pre-compute varint-delta encoded postings to know offsets
         var encodedPostings = new List<byte[]>(sorted.Count);
@@ -172,19 +219,24 @@ public sealed class InvertedSearchIndex
         // Postings section (varint-delta encoded)
         foreach (var encoded in encodedPostings)
             bw.Write(encoded);
-
-        bw.Flush();
     }
 
-    /// <summary>Load varint-delta encoded index.</summary>
-    public async Task<bool> TryLoadAsync(string path, CancellationToken ct = default)
+    /// <summary>
+    /// Load a v3 index. Refuses (returns false, stays unloaded) when the file's
+    /// embedded build stamp differs from <paramref name="expectedBuildStamp"/> (stale
+    /// index from a failed rebuild) or when the .paths file does not match the
+    /// checksum recorded in the .bin header (torn save). Older v1/v2 files are
+    /// refused too — the BuildGuid bump that introduced v3 forces a full rebuild.
+    /// </summary>
+    public async Task<bool> TryLoadAsync(string path, string expectedBuildStamp, CancellationToken ct = default)
     {
         var pathsFile = path + ".paths";
         if (!File.Exists(path) || !File.Exists(pathsFile)) return false;
+        if (string.IsNullOrEmpty(expectedBuildStamp)) return false;
 
         try
         {
-            _docPaths = await File.ReadAllLinesAsync(pathsFile, Encoding.UTF8, ct);
+            var pathsBytes = await File.ReadAllBytesAsync(pathsFile, ct);
             var data = await File.ReadAllBytesAsync(path, ct);
             using var ms = new MemoryStream(data);
             using var br = new BinaryReader(ms, Encoding.UTF8);
@@ -193,15 +245,20 @@ public sealed class InvertedSearchIndex
             if (!magic.SequenceEqual(Magic)) return false;
 
             int version = br.ReadInt32();
-            if (version != Version)
-            {
-                // Also accept v1 for backward compat — but v1 postings are raw ushort
-                if (version == 1) return TryLoadV1(br, ms);
-                return false;
-            }
+            if (version != Version) return false;
+
+            int stampLen = br.ReadUInt16();
+            string stamp = Encoding.UTF8.GetString(br.ReadBytes(stampLen));
+            if (!string.Equals(stamp, expectedBuildStamp, StringComparison.Ordinal)) return false;
+
+            var storedChecksum = br.ReadBytes(32);
+            if (!storedChecksum.SequenceEqual(ComputeSha256(pathsBytes))) return false;
+
+            _docPaths = ReadPathLines(pathsBytes);
 
             int termCount = br.ReadInt32();
             int fileCount = br.ReadInt32();
+            if (fileCount != _docPaths.Length) { _docPaths = null; return false; }
 
             // Read dictionary
             var entries = new List<(string term, int offset, ushort count)>(termCount);
@@ -233,37 +290,29 @@ public sealed class InvertedSearchIndex
         }
     }
 
-    /// <summary>Backward compat: load v1 format (raw ushort postings, no DF cutoff).</summary>
-    private bool TryLoadV1(BinaryReader br, MemoryStream ms)
+    private static byte[] ComputeSha256(byte[] bytes)
     {
-        try
-        {
-            int termCount = br.ReadInt32();
-            int fileCount = br.ReadInt32();
-            int postingsOffset = br.ReadInt32();
+        using var sha = System.Security.Cryptography.SHA256.Create();
+        return sha.ComputeHash(bytes);
+    }
 
-            var dict = new List<(string term, int offset, ushort count)>(termCount);
-            for (int i = 0; i < termCount; i++)
-            {
-                int termLen = br.ReadUInt16();
-                string term = Encoding.UTF8.GetString(br.ReadBytes(termLen));
-                int offset = br.ReadInt32();
-                ushort count = br.ReadUInt16();
-                dict.Add((term, offset, count));
-            }
-
-            _index = new Dictionary<string, ushort[]>(termCount);
-            foreach (var (term, offset, count) in dict)
-            {
-                ms.Seek(postingsOffset + offset, SeekOrigin.Begin);
-                var postings = new ushort[count];
-                for (int i = 0; i < count; i++)
-                    postings[i] = br.ReadUInt16();
-                _index[term] = postings;
-            }
-            return true;
-        }
-        catch { return false; }
+    /// <summary>
+    /// Decode the .paths bytes with the same semantics File.ReadAllLinesAsync had
+    /// (UTF-8, optional BOM stripped, \r\n or \n separators, no trailing empty line).
+    /// Decoding from the already-read bytes keeps the checksum and the parsed content
+    /// guaranteed to come from the same file snapshot.
+    /// </summary>
+    private static string[] ReadPathLines(byte[] pathsBytes)
+    {
+        var text = Encoding.UTF8.GetString(pathsBytes);
+        if (text.Length > 0 && text[0] == '﻿') text = text[1..];
+        var lines = text.Split('\n');
+        int count = lines.Length;
+        if (count > 0 && lines[count - 1].Length == 0) count--; // trailing newline
+        var result = new string[count];
+        for (int i = 0; i < count; i++)
+            result[i] = lines[i].TrimEnd('\r');
+        return result;
     }
 
     // --- Varint delta encoding ---
