@@ -102,7 +102,7 @@ public partial class TermbaseEditorWindow : Window
             };
         }
 
-        Opened += async (_, _) => await _vm.LoadCommand.ExecuteAsync(null);
+        Opened += (_, _) => AsyncGuard.Run(async () => await _vm.LoadCommand.ExecuteAsync(null), "TermbaseEditorWindow.Opened");
     }
 
     public void ApplyLanding(string? term, string? communityUser = null)

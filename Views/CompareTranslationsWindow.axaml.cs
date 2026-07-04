@@ -129,11 +129,11 @@ public partial class CompareTranslationsWindow : Window
     {
         var menu = new ContextMenu();
         var copyLink = new MenuItem { Header = "Copy Link" };
-        copyLink.Click += async (_, _) => await CopyCompareLinkAsync(pane, editor, doc, shareable: false);
+        copyLink.Click += (_, _) => AsyncGuard.Run(async () => await CopyCompareLinkAsync(pane, editor, doc, shareable: false), "CompareTranslationsWindow.copyLink.Click");
         menu.Items.Add(copyLink);
 
         var copyReddit = new MenuItem { Header = "Copy Reddit Link" };
-        copyReddit.Click += async (_, _) => await CopyCompareLinkAsync(pane, editor, doc, shareable: true);
+        copyReddit.Click += (_, _) => AsyncGuard.Run(async () => await CopyCompareLinkAsync(pane, editor, doc, shareable: true), "CompareTranslationsWindow.copyReddit.Click");
         menu.Items.Add(copyReddit);
 
         menu.Items.Add(new Separator());

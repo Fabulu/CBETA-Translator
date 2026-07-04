@@ -11,6 +11,7 @@ using AvaloniaEdit.Editing;
 using AvaloniaEdit.Rendering;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Infrastructure;
 
 namespace ReadZen.App.Views;
 
@@ -113,7 +114,7 @@ public partial class CompareTagsWindow : Window
 
         // Wire consensus save button
         if (_btnApplyConsensus != null)
-            _btnApplyConsensus.Click += async (_, _) => await SaveConsensusResolutionsAsync();
+            _btnApplyConsensus.Click += (_, _) => AsyncGuard.Run(async () => await SaveConsensusResolutionsAsync(), "CompareTagsWindow._btnApplyConsensus.Click");
     }
 
     // ── Metrics ─────────────────────────────────────────────────────────

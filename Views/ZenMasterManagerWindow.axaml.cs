@@ -11,6 +11,7 @@ using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using ReadZen.App.Infrastructure;
 
 namespace ReadZen.App.Views;
 
@@ -86,11 +87,11 @@ public partial class ZenMasterManagerWindow : Window
 
         var btnCopyLink = this.FindControl<Button>("BtnCopyLink");
         if (btnCopyLink != null)
-            btnCopyLink.Click += async (_, _) => await CopyLinkAsync();
+            btnCopyLink.Click += (_, _) => AsyncGuard.Run(async () => await CopyLinkAsync(), "ZenMasterManagerWindow.btnCopyLink.Click");
 
         var btnEditDates = this.FindControl<Button>("BtnEditDates");
         if (btnEditDates != null)
-            btnEditDates.Click += async (_, _) => await OpenEditorAsync();
+            btnEditDates.Click += (_, _) => AsyncGuard.Run(async () => await OpenEditorAsync(), "ZenMasterManagerWindow.btnEditDates.Click");
 
         // Lineage Web tab
         var lineageGraph = this.FindControl<LineageWebControl>("LineageGraph");
@@ -220,20 +221,20 @@ public partial class ZenMasterManagerWindow : Window
         // Master list context menu
         var mnuCopyLink = this.FindControl<MenuItem>("MnuCopyMasterLink");
         if (mnuCopyLink != null)
-            mnuCopyLink.Click += async (_, _) => await CopyMasterLinkAsync(isReddit: false);
+            mnuCopyLink.Click += (_, _) => AsyncGuard.Run(async () => await CopyMasterLinkAsync(isReddit: false), "ZenMasterManagerWindow.mnuCopyLink.Click");
 
         var mnuCopyReddit = this.FindControl<MenuItem>("MnuCopyMasterRedditLink");
         if (mnuCopyReddit != null)
-            mnuCopyReddit.Click += async (_, _) => await CopyMasterLinkAsync(isReddit: true);
+            mnuCopyReddit.Click += (_, _) => AsyncGuard.Run(async () => await CopyMasterLinkAsync(isReddit: true), "ZenMasterManagerWindow.mnuCopyReddit.Click");
 
         var mnuCiteMaster = this.FindControl<MenuItem>("MnuCiteMaster");
         if (mnuCiteMaster != null)
-            mnuCiteMaster.Click += async (_, _) => await CopyMasterCitationAsync();
+            mnuCiteMaster.Click += (_, _) => AsyncGuard.Run(async () => await CopyMasterCitationAsync(), "ZenMasterManagerWindow.mnuCiteMaster.Click");
 
         // Corpus search tab
         var btnBuildIndex = this.FindControl<Button>("BtnBuildCorpusIndex");
         if (btnBuildIndex != null)
-            btnBuildIndex.Click += async (_, _) => await ViewModel.BuildCorpusIndexAsync();
+            btnBuildIndex.Click += (_, _) => AsyncGuard.Run(async () => await ViewModel.BuildCorpusIndexAsync(), "ZenMasterManagerWindow.btnBuildIndex.Click");
 
         var btnCancelScan = this.FindControl<Button>("BtnCancelCorpusScan");
         if (btnCancelScan != null)

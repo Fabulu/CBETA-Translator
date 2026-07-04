@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Infrastructure;
 
 namespace ReadZen.App.Views;
 
@@ -38,7 +39,7 @@ public partial class CodeCooccurrenceWindow : Window
 
         var btnCsv = this.FindControl<Button>("BtnExportCsv");
         if (btnCsv != null)
-            btnCsv.Click += async (_, _) => await ExportCsvAsync();
+            btnCsv.Click += (_, _) => AsyncGuard.Run(async () => await ExportCsvAsync(), "CodeCooccurrenceWindow.btnCsv.Click");
 
         var btnClose = this.FindControl<Button>("BtnClose");
         if (btnClose != null)

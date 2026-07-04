@@ -111,7 +111,7 @@ public partial class ScholarTabView : UserControl
 
         _btnAddLink = this.FindControl<Button>("BtnAddLink");
         if (_btnAddLink != null)
-            _btnAddLink.Click += async (_, _) => await ShowLinkDialogAsync();
+            _btnAddLink.Click += (_, _) => AsyncGuard.Run(async () => await ShowLinkDialogAsync(), "ScholarTabView._btnAddLink.Click");
 
         // Tree panel toggle
         var btnToggle = this.FindControl<Button>("BtnToggleTree");
@@ -538,21 +538,21 @@ public partial class ScholarTabView : UserControl
 
         var btnCompare = this.FindControl<Button>("BtnCompare");
         if (btnCompare != null)
-            btnCompare.Click += async (_, _) => await OnCompareClickedAsync();
+            btnCompare.Click += (_, _) => AsyncGuard.Run(async () => await OnCompareClickedAsync(), "ScholarTabView.btnCompare.Click");
 
         // Wire rename button
         var btnRename = this.FindControl<Button>("BtnRename");
         if (btnRename != null)
-            btnRename.Click += async (_, _) => await RenameSelectedCollectionAsync();
+            btnRename.Click += (_, _) => AsyncGuard.Run(async () => await RenameSelectedCollectionAsync(), "ScholarTabView.btnRename.Click");
 
         // Wire collection creation buttons
         var btnAddCollection = this.FindControl<Button>("BtnAddCollection");
         if (btnAddCollection != null)
-            btnAddCollection.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
+            btnAddCollection.Click += (_, _) => AsyncGuard.Run(async () => await _vm.AddCollectionCommand.ExecuteAsync(null), "ScholarTabView.btnAddCollection.Click");
 
         var btnCreateFirst = this.FindControl<Button>("BtnCreateFirst");
         if (btnCreateFirst != null)
-            btnCreateFirst.Click += async (_, _) => await _vm.AddCollectionCommand.ExecuteAsync(null);
+            btnCreateFirst.Click += (_, _) => AsyncGuard.Run(async () => await _vm.AddCollectionCommand.ExecuteAsync(null), "ScholarTabView.btnCreateFirst.Click");
 
         // Community adopt button — shows collection picker
         var btnAdoptCommunity = this.FindControl<Button>("BtnAdoptCommunity");

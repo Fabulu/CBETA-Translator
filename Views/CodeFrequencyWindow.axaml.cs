@@ -8,6 +8,7 @@ using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
+using ReadZen.App.Infrastructure;
 
 namespace ReadZen.App.Views;
 
@@ -37,7 +38,7 @@ public partial class CodeFrequencyWindow : Window
 
         var btnExport = this.FindControl<Button>("BtnExportCsv");
         if (btnExport != null)
-            btnExport.Click += async (_, _) => await ExportCsvAsync();
+            btnExport.Click += (_, _) => AsyncGuard.Run(async () => await ExportCsvAsync(), "CodeFrequencyWindow.btnExport.Click");
 
         var btnClose = this.FindControl<Button>("BtnClose");
         if (btnClose != null)
