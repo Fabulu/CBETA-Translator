@@ -164,8 +164,19 @@ public class SearchTabStreamingTests
     private static async Task WaitForAsync(Func<bool> condition, int timeoutMs = 3000)
     {
         var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMs);
-        while (!condition())
+        while (true)
         {
+            try
+            {
+                if (condition()) return;
+            }
+            catch (InvalidOperationException)
+            {
+                // Conditions enumerate ResultGroups while the streaming flush mutates
+                // it concurrently; a torn read ("Collection was modified") is not a
+                // failure, just "not settled yet" — poll again. Without this the suite
+                // failed ~1 in 5 full runs on this race.
+            }
             if (DateTime.UtcNow >= deadline)
                 throw new TimeoutException("Condition was not reached in time.");
             await Task.Delay(10);
