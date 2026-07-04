@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using ReadZen.App.Models;
 
@@ -33,27 +32,12 @@ public static class AnnotationMarkerInserter
     public static (string Text, List<RenderSegment> Segments, List<MarkerSpan> Markers)
         InsertMarkers(string text, IReadOnlyList<DocAnnotation> annotations, IReadOnlyList<RenderSegment> segments)
     {
-        var (t, s, m, _) = InsertMarkers(text, annotations, segments, baseToXmlIndexBase: null);
-        return (t, s, m);
-    }
-
-    /// <summary>
-    /// Same as InsertMarkers, but also shifts the base-to-xml index map so it matches FINAL text offsets.
-    /// This prevents click/caret -> xmlIndex drift when markers are inserted into the visible text.
-    /// </summary>
-    public static (string Text, List<RenderSegment> Segments, List<MarkerSpan> Markers, int[]? BaseToXmlIndexFinal)
-        InsertMarkers(
-            string text,
-            IReadOnlyList<DocAnnotation> annotations,
-            IReadOnlyList<RenderSegment> segments,
-            int[]? baseToXmlIndexBase)
-    {
         text ??= "";
         var anns = annotations?.ToList() ?? new List<DocAnnotation>();
         var segs = segments?.ToList() ?? new List<RenderSegment>();
 
         if (anns.Count == 0 || text.Length == 0)
-            return (text, segs, new List<MarkerSpan>(), baseToXmlIndexBase);
+            return (text, segs, new List<MarkerSpan>());
 
         // Sort by Start in BASE text coords; stable by original index
         var items = anns
@@ -106,9 +90,7 @@ public static class AnnotationMarkerInserter
         var shiftedSegs = ShiftSegments(segs, inserts);
         markers.Sort((a, b) => a.Start.CompareTo(b.Start));
 
-        int[]? baseToXmlFinal = ShiftBaseToXmlIndex(baseToXmlIndexBase, text.Length, newText.Length, inserts);
-
-        return (newText, shiftedSegs, markers, baseToXmlFinal);
+        return (newText, shiftedSegs, markers);
     }
 
     // =========================
@@ -136,147 +118,41 @@ public static class AnnotationMarkerInserter
         return MarkerKind.Normal;
     }
 
+    // These predicates used to reflect over DocAnnotation probing for members it has
+    // never had (Type/Source/Place/IsInline/...) — per annotation, per render, in the
+    // hot path (audit P2.6 / R2-L1). DocAnnotation's live signals are exactly Kind and
+    // Resp; the rewrites below preserve the reachable behavior of the old probes.
+
     private static bool IsCommunity(DocAnnotation ann)
-    {
-        var k = (ann.Kind ?? "").Trim();
-        if (k.Equals("community", StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        if (TryGetStringPropOrField(ann, "Type", out var type) &&
-            type?.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) == true)
-            return true;
-
-        if (TryGetStringPropOrField(ann, "Source", out var src) &&
-            src?.Trim().Equals("community", StringComparison.OrdinalIgnoreCase) == true)
-            return true;
-
-        return false;
-    }
+        => (ann.Kind ?? "").Trim().Equals("community", StringComparison.OrdinalIgnoreCase);
 
     private static bool IsInlineNote(DocAnnotation ann)
-    {
-        // Renderer might store TEI @place="inline" under many names.
-        // We check a small set of common ones so this works across your texts.
-        static bool EqInline(string? s)
-            => !string.IsNullOrWhiteSpace(s) && s.Trim().Equals("inline", StringComparison.OrdinalIgnoreCase);
-
-        if (TryGetStringPropOrField(ann, "Place", out var place) && EqInline(place)) return true;
-        if (TryGetStringPropOrField(ann, "NotePlace", out place) && EqInline(place)) return true;
-        if (TryGetStringPropOrField(ann, "XmlPlace", out place) && EqInline(place)) return true;
-        if (TryGetStringPropOrField(ann, "place", out place) && EqInline(place)) return true;
-
-        // Some renderers encode this into Kind
-        var k = (ann.Kind ?? "").Trim();
-        if (k.Equals("inline", StringComparison.OrdinalIgnoreCase)) return true;
-        if (k.Contains("inline", StringComparison.OrdinalIgnoreCase)) return true;
-
-        // Some renderers use bool flags
-        if (TryGetBoolPropOrField(ann, "IsInline", out var b) && b) return true;
-        if (TryGetBoolPropOrField(ann, "Inline", out b) && b) return true;
-
-        return false;
-    }
+        => (ann.Kind ?? "").Contains("inline", StringComparison.OrdinalIgnoreCase);
 
     private static bool LooksLikeEditorialApparatus(DocAnnotation ann)
     {
         // We want to KEEP these grey even if they're inline:
         // - CBETA / Taisho editorial / apparatus notes
         // - variant/orig/modification markers
-        //
-        // This stays conservative: only excludes when we see strong signals.
-        bool HasToken(string? hay, string token)
+        // Conservative: only excludes on strong signals.
+        static bool HasToken(string? hay, string token)
             => !string.IsNullOrWhiteSpace(hay) && hay.IndexOf(token, StringComparison.OrdinalIgnoreCase) >= 0;
 
-        // resp signals
-        if (TryGetStringPropOrField(ann, "Resp", out var resp) ||
-            TryGetStringPropOrField(ann, "resp", out resp) ||
-            TryGetStringPropOrField(ann, "Responsibility", out resp))
+        var resp = ann.Resp;
+        if (resp != null)
         {
             if (HasToken(resp, "cbeta")) return true;
             if (HasToken(resp, "taisho") || HasToken(resp, "taishō")) return true;
-            if (HasToken(resp, "t")) return false; // too weak, ignore
+            // Preserved quirk from the reflection version: any other resp containing
+            // a 't' vetoed the Kind checks below ("too weak, ignore").
+            if (HasToken(resp, "t")) return false;
         }
 
-        // type signals
-        if (TryGetStringPropOrField(ann, "Type", out var type) ||
-            TryGetStringPropOrField(ann, "type", out type))
-        {
-            // Your community already handled above; this is for editorial types.
-            if (HasToken(type, "orig")) return true;
-            if (HasToken(type, "mod")) return true;
-            if (HasToken(type, "variant")) return true;
-            if (HasToken(type, "apparatus")) return true;
-            if (HasToken(type, "editor")) return true;
-            if (HasToken(type, "corr")) return true;
-            if (HasToken(type, "sic")) return true;
-        }
-
-        // source signals
-        if (TryGetStringPropOrField(ann, "Source", out var src) ||
-            TryGetStringPropOrField(ann, "source", out src))
-        {
-            if (HasToken(src, "cbeta")) return true;
-            if (HasToken(src, "taisho") || HasToken(src, "taishō")) return true;
-        }
-
-        // kind sometimes carries these tags too
         var k = (ann.Kind ?? "").Trim();
         if (HasToken(k, "cbeta")) return true;
         if (HasToken(k, "taisho") || HasToken(k, "taishō")) return true;
         if (HasToken(k, "variant") || HasToken(k, "apparatus") || HasToken(k, "orig") || HasToken(k, "mod"))
             return true;
-
-        return false;
-    }
-
-    private static bool TryGetStringPropOrField(object obj, string name, out string? value)
-    {
-        value = null;
-        try
-        {
-            var t = obj.GetType();
-
-            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pi?.GetValue(obj) is string s)
-            {
-                value = s;
-                return true;
-            }
-
-            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (fi?.GetValue(obj) is string s2)
-            {
-                value = s2;
-                return true;
-            }
-        }
-        catch { }
-
-        return false;
-    }
-
-    private static bool TryGetBoolPropOrField(object obj, string name, out bool value)
-    {
-        value = false;
-        try
-        {
-            var t = obj.GetType();
-
-            var pi = t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pi != null)
-            {
-                var v = pi.GetValue(obj);
-                if (v is bool b) { value = b; return true; }
-            }
-
-            var fi = t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (fi != null)
-            {
-                var v = fi.GetValue(obj);
-                if (v is bool b) { value = b; return true; }
-            }
-        }
-        catch { }
 
         return false;
     }
@@ -342,71 +218,11 @@ public static class AnnotationMarkerInserter
         return outSegs;
     }
 
-    private static int[]? ShiftBaseToXmlIndex(int[]? baseMap, int baseTextLen, int finalTextLen, List<InsertEvent> inserts)
-    {
-        if (baseMap == null)
-            return null;
-
-        if (baseMap.Length != baseTextLen)
-        {
-            // Defensive: if mismatch, don't attempt to "fix" it into something wrong.
-            return baseMap;
-        }
-
-        if (inserts.Count == 0 || baseTextLen == 0)
-            return baseMap;
-
-        // Ensure inserts are in ascending OriginalPos
-        inserts.Sort((a, b) => a.OriginalPos.CompareTo(b.OriginalPos));
-
-        var finalMap = new int[finalTextLen];
-
-        int basePos = 0;
-        int finalPos = 0;
-        int insIdx = 0;
-
-        while (basePos < baseTextLen && finalPos < finalTextLen)
-        {
-            // Insert marker(s) at this basePos
-            while (insIdx < inserts.Count && inserts[insIdx].OriginalPos == basePos)
-            {
-                int insertedLen = Math.Max(0, inserts[insIdx].InsertedLen);
-
-                // For inserted chars, map to a nearby sensible xml index:
-                // Prefer the xml index at the insertion point; else fall back to previous.
-                int xmlIdx =
-                    (basePos < baseMap.Length) ? baseMap[basePos]
-                    : (basePos > 0 ? baseMap[basePos - 1] : 0);
-
-                for (int k = 0; k < insertedLen && finalPos < finalMap.Length; k++)
-                    finalMap[finalPos++] = xmlIdx;
-
-                insIdx++;
-            }
-
-            // Copy one real base character mapping
-            finalMap[finalPos++] = baseMap[basePos++];
-        }
-
-        // Remaining inserts at end (if any)
-        while (insIdx < inserts.Count && finalPos < finalMap.Length)
-        {
-            int insertedLen = Math.Max(0, inserts[insIdx].InsertedLen);
-            int xmlIdx = baseTextLen > 0 ? baseMap[baseTextLen - 1] : 0;
-
-            for (int k = 0; k < insertedLen && finalPos < finalMap.Length; k++)
-                finalMap[finalPos++] = xmlIdx;
-
-            insIdx++;
-        }
-
-        // Pad if needed (shouldn't happen, but safe)
-        int pad = (finalPos > 0) ? finalMap[finalPos - 1] : 0;
-        while (finalPos < finalMap.Length)
-            finalMap[finalPos++] = pad;
-
-        return finalMap;
-    }
+    // NOTE: a 4-arg InsertMarkers overload with a ShiftBaseToXmlIndex helper used to
+    // live here. It had no production caller and assumed a char-map
+    // (baseMap.Length == baseTextLen) while TeiRenderer produces POSITION maps
+    // (length + 1) — if ever wired up it would have silently returned the unshifted
+    // map. Deleted per audit P2.6 / R2-L2 rather than left as a trap.
 
     // Unicode superscript digits
     private static readonly char[] SupDigits =

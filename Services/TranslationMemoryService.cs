@@ -19,22 +19,18 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
 
     // In-memory TM file cache — avoids re-reading JSONL on every block change.
     // Auto-invalidates when the file's last-write timestamp changes.
-    private string? _approvedCachePath;
-    private DateTime _approvedCacheTime;
-    private List<TmRow>? _approvedCacheRows;
-
-    private string? _referenceCachePath;
-    private DateTime _referenceCacheTime;
-    private List<TmRow>? _referenceCacheRows;
+    // One immutable slot per trust level, swapped by reference: this singleton is hit
+    // concurrently (warmup + queries) and the previous three separate fields per slot
+    // could tear into a stale (path, time, rows) mix (audit P2.6 / R3-M10; pattern
+    // matches TranslationReviewService._aggregationCache).
+    private sealed record TmCacheSlot(string Path, DateTime WriteTimeUtc, List<TmRow> Rows);
+    private TmCacheSlot? _approvedCache;
+    private TmCacheSlot? _referenceCache;
 
     public void InvalidateCache()
     {
-        _approvedCachePath = null;
-        _approvedCacheTime = default;
-        _approvedCacheRows = null;
-        _referenceCachePath = null;
-        _referenceCacheTime = default;
-        _referenceCacheRows = null;
+        _approvedCache = null;
+        _referenceCache = null;
     }
 
     private sealed class TmRow
@@ -178,19 +174,17 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
     {
         bool isApproved = trust == TranslationResourceTrust.Approved;
 
-        // Check cache — pick the right slot based on trust level
-        string? cachedPath = isApproved ? _approvedCachePath : _referenceCachePath;
-        DateTime cachedTime = isApproved ? _approvedCacheTime : _referenceCacheTime;
-        List<TmRow>? cachedRows = isApproved ? _approvedCacheRows : _referenceCacheRows;
+        // Check cache — one volatile-ish read gives a consistent (path, time, rows) triple
+        var cache = isApproved ? _approvedCache : _referenceCache;
 
         try
         {
             var lastWrite = File.GetLastWriteTimeUtc(path);
-            if (cachedRows != null &&
-                string.Equals(cachedPath, path, StringComparison.OrdinalIgnoreCase) &&
-                lastWrite == cachedTime)
+            if (cache != null &&
+                string.Equals(cache.Path, path, StringComparison.OrdinalIgnoreCase) &&
+                lastWrite == cache.WriteTimeUtc)
             {
-                return cachedRows;
+                return cache.Rows;
             }
         }
         catch { /* fall through to disk read */ }
@@ -232,22 +226,12 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
             return rows;
         }
 
-        // Update cache
+        // Update cache (one atomic reference swap per slot)
         try
         {
-            var writeTime = File.GetLastWriteTimeUtc(path);
-            if (isApproved)
-            {
-                _approvedCachePath = path;
-                _approvedCacheTime = writeTime;
-                _approvedCacheRows = rows;
-            }
-            else
-            {
-                _referenceCachePath = path;
-                _referenceCacheTime = writeTime;
-                _referenceCacheRows = rows;
-            }
+            var slot = new TmCacheSlot(path, File.GetLastWriteTimeUtc(path), rows);
+            if (isApproved) _approvedCache = slot;
+            else _referenceCache = slot;
         }
         catch { /* non-critical */ }
 
