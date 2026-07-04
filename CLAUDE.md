@@ -83,6 +83,30 @@ The `md-p5t/` markdown pipeline described in older docs does not exist: `FileSer
 - `AnnotationMarkerInserter` / `CommunityNoteXmlEditor` â€” community footnote handling
 - `AppPaths` â€” cross-platform path resolution
 
+### UI architecture (the target, and how to move toward it)
+
+The intended shape for all views is MVVM-proper: state and logic live in a
+ViewModel, the XAML binds to it (`{Binding}` + commands), and the code-behind is
+thin (control wiring only). `GitTabView`+`GitTabViewModel` and
+`SearchTabView`+`SearchTabViewModel` are the reference implementations; copy their
+structure (bound properties, `[RelayCommand]`, `x:DataType` compiled bindings) when
+building or converting a view.
+
+Several older views are NOT there yet: `ReadableTabView` (~7 kLOC code-behind) and
+`MainWindow`/`MainWindowViewModel` (a large delegate bridge) predate the convention.
+They are migrated INCREMENTALLY, never in a big-bang rewrite (a prior renovation
+stalled and code-behind grew afterward). Two ratchets keep them moving:
+- When a feature touches a `// ====` section of `ReadableTabView`, first extract that
+  section into a bound ViewModel component (GitTabView-style), one section per PR.
+- No NEW `MainWindowViewModel` bridge delegates. New view<->VM communication uses
+  bound properties or the typed messenger (`Messages/AppMessages.cs`); a touched
+  delegate gets converted as you pass through.
+
+Async event handlers must not let exceptions reach the dispatcher: route them through
+`Infrastructure/AsyncGuard.Run(action, context)` (there is also a process-level
+`Dispatcher.UIThread.UnhandledException` backstop in `App.axaml.cs`, but that is a net,
+not the pattern).
+
 ## Code Guidelines
 
 - Keep rendering logic deterministic
@@ -428,8 +452,9 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
 | RUN-20260509-1330 | Character-click witness zoom | In Progress (QA close-out = plan item P4.1; archive after) | runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/ |
 | RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
-| RUN-20260702-2259 | Full repo audit (5 recons) + architect improvement plan | In Progress | runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/ |
-| RUN-20260703-0634 | Improvement plan execution — Phase 0 hygiene batch | In Progress | runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/ |
+| RUN-20260702-2259 | Full repo audit (5 recons) + architect improvement plan | Complete (archival candidate) | runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/ |
+| RUN-20260703-0634 | Improvement plan execution — Phases 0–2 (c3147f3..bf3e421) | Complete (archival candidate) | runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/ |
+| RUN-20260704-1141 | Improvement plan execution — Phases 3–4 (batches A–I) | In Progress | runs/CLAUDE-RUNS/RUN-20260704-1141-phase34-plan-exec/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 
