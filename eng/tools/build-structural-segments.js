@@ -31,6 +31,37 @@ const OUT_DIR = arg('out-dir') || 'C:/Programmieren/CbetaZenTranslations/segment
 const SINGLE_FILE = arg('file'); // e.g., "T48n2005"
 
 /**
+ * Detect the primary lb edition of a body by most-frequent `ed` attribute.
+ * Audit R2 §segmentation: the old code hardcoded a T|X|J|B whitelist, so ZW/C/P/U
+ * collection files (whose lbs carry ed="ZW" etc.) collected NO lbs and produced
+ * empty lb_range — silently degrading the reader's page/reading toggle. We now
+ * accept lbs of the file's own primary edition (plus lbs with no ed attribute).
+ * Returns the most frequent ed string, or null when no lb carries an ed attribute
+ * (in which case all lbs are accepted).
+ */
+function detectPrimaryEdition(body) {
+    const counts = new Map();
+    const lbRe = /<lb\b[^>]*\bed="([^"]+)"/gi;
+    let m;
+    while ((m = lbRe.exec(body)) !== null) {
+        counts.set(m[1], (counts.get(m[1]) || 0) + 1);
+    }
+    let best = null, bestN = 0;
+    for (const [ed, n] of counts) {
+        if (n > bestN) { best = ed; bestN = n; }
+    }
+    return best;
+}
+
+/** True when a start-tag `n`-value belongs to the file's primary edition. */
+function lbEditionAccepted(tag, primaryEd) {
+    const edMatch = tag.match(/\bed="([^"]+)"/);
+    if (!edMatch) return true;                 // no ed → accept (belongs to this text)
+    if (primaryEd === null) return true;       // file has no ed attrs anywhere → accept all
+    return edMatch[1] === primaryEd;           // otherwise only the primary edition
+}
+
+/**
  * Extract segments from a TEI XML string.
  * Returns array of { lbIds: string[], text: string, type: string, xmlId: string }
  * Each segment = one <p> or <lg> element's content.
@@ -42,6 +73,7 @@ function extractSegments(xml) {
     const bodyMatch = xml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
     if (!bodyMatch) return segments;
     const body = bodyMatch[1];
+    const primaryEd = detectPrimaryEdition(body);
 
     // Strategy: walk through the body tracking which <p>/<lg> we're inside.
     // Collect <lb> n-values and text per parent element.
@@ -62,8 +94,15 @@ function extractSegments(xml) {
         tokens.push({ kind: 'text', value: body.slice(lastIdx) });
     }
 
-    // State machine — inP covers <p>, <cell>, and <item> (all content containers)
-    let inP = false, inLg = false, inHead = false;
+    // State machine.
+    // pDepth counts nesting of content containers (<p>/<cell>/<item>). It replaces a
+    // boolean `inP` that a nested inner </p> cleared while still inside an outer
+    // <item>, dropping the item's tail text (audit R2-M1). A segment boundary is the
+    // OUTERMOST container open/close; nested containers flow into the same segment.
+    let pDepth = 0, inLg = false, inHead = false;
+    // Suppress <note>/<app> CONTENT: their inner text bled into text_zh, disagreeing
+    // with what TeiRenderer renders and poisoning downstream classification (R2-M1).
+    let noteAppDepth = 0;
     let headDepth = 0;
     let currentLbs = [];
     let currentText = '';
@@ -112,36 +151,52 @@ function extractSegments(xml) {
                 continue;
             }
 
-            // <p>, <cell>, <item> open — content containers. Carry pending lbs INTO.
-            // into the previous segment). In CBETA XML the <lb> often appears on
-            // the same line BEFORE the <p> tag, so the lb logically belongs to
-            // the paragraph that follows, not the one that precedes it.
-            if (/^<(p|cell|item)[\s>]/i.test(tag) && !tag.startsWith('</')) {
-                // Flush any TEXT from the previous context, but keep currentLbs
-                const savedLbs = [...currentLbs];
-                const savedText = currentText;
-                currentLbs = [];
-                currentText = '';
-                // Only flush if there was text outside a <p> (rare — metadata, etc.)
-                if (savedText.replace(/[\t\n\r ]+/g, '').trim().length > 0) {
-                    currentLbs = savedLbs;
-                    currentText = savedText;
-                    flushSegment();
-                }
-                // Start the new paragraph with any carried-over lbs
-                inP = true;
-                currentLbs = savedLbs.length > 0 && savedText.replace(/[\t\n\r ]+/g, '').trim().length === 0
-                    ? savedLbs : [];
-                currentText = '';
-                const idMatch = tag.match(/xml:id="([^"]+)"/);
-                currentXmlId = idMatch ? idMatch[1] : '';
-                currentType = 'prose';
+            // <note>/<app> — suppress their CONTENT (audit R2-M1). Track depth so
+            // nested notes and self-closing <note/>/<app/> behave; <rdg>/<lem> live
+            // inside <app> so app-depth already covers them.
+            if (/^<(note|app)[\s>]/i.test(tag) && !tag.startsWith('</')) {
+                if (!/\/>\s*$/.test(tag)) noteAppDepth++;   // ignore self-closing <note/>/<app/>
                 continue;
             }
-            // </p>, </cell>, </item> — all content container closers
+            if (/^<\/(note|app)>/i.test(tag)) {
+                noteAppDepth = Math.max(0, noteAppDepth - 1);
+                continue;
+            }
+
+            // <p>, <cell>, <item> open — content containers. Carry pending lbs INTO
+            // the new segment (in CBETA XML the <lb> often appears on the same line
+            // BEFORE the <p> tag, so it logically belongs to the paragraph that
+            // follows). Only the OUTERMOST open starts a new segment; nested opens
+            // just deepen so their text flows into the same segment.
+            if (/^<(p|cell|item)[\s>]/i.test(tag) && !tag.startsWith('</')) {
+                if (pDepth === 0) {
+                    // Flush any TEXT from the previous context, but keep currentLbs.
+                    const savedLbs = [...currentLbs];
+                    const savedText = currentText;
+                    currentLbs = [];
+                    currentText = '';
+                    // Only flush if there was text outside a <p> (rare — metadata, etc.)
+                    if (savedText.replace(/[\t\n\r ]+/g, '').trim().length > 0) {
+                        currentLbs = savedLbs;
+                        currentText = savedText;
+                        flushSegment();
+                    }
+                    // Start the new paragraph with any carried-over lbs
+                    currentLbs = savedLbs.length > 0 && savedText.replace(/[\t\n\r ]+/g, '').trim().length === 0
+                        ? savedLbs : [];
+                    currentText = '';
+                    const idMatch = tag.match(/xml:id="([^"]+)"/);
+                    currentXmlId = idMatch ? idMatch[1] : '';
+                    currentType = 'prose';
+                }
+                pDepth++;
+                continue;
+            }
+            // </p>, </cell>, </item> — content container closers. Only the OUTERMOST
+            // close flushes the segment (nested closers just un-nest).
             if (/^<\/(p|cell|item)>/i.test(tag)) {
-                flushSegment();
-                inP = false;
+                pDepth = Math.max(0, pDepth - 1);
+                if (pDepth === 0) flushSegment();
                 continue;
             }
 
@@ -161,28 +216,28 @@ function extractSegments(xml) {
                 continue;
             }
 
-            // <lb> — collect n-value
+            // <lb> — collect n-value (skip lbs inside <note>/<app>; accept only the
+            // file's primary edition, or any lb with no ed attribute).
             if (/^<lb[\s]/i.test(tag)) {
-                const nMatch = tag.match(/\bn="([^"]+)"/);
-                const edMatch = tag.match(/\bed="([^"]+)"/);
-                // Only take the primary edition (T, J, X, B, etc.)
-                const ed = edMatch ? edMatch[1] : '';
-                if (nMatch && (ed === 'T' || ed === 'X' || ed === 'J' || ed === 'B' || !edMatch)) {
-                    currentLbs.push(nMatch[1]);
+                if (noteAppDepth === 0) {
+                    const nMatch = tag.match(/\bn="([^"]+)"/);
+                    if (nMatch && lbEditionAccepted(tag, primaryEd)) {
+                        currentLbs.push(nMatch[1]);
+                    }
                 }
                 continue;
             }
 
-            // Skip structural/metadata tags — but NOT <cb:div> which is a content
-            // container. Bug fix: the broad `cb:` prefix match was eating <cb:div>,
+            // Skip remaining structural/metadata tags — but NOT <cb:div> which is a
+            // content container. (The broad `cb:` prefix match used to eat <cb:div>,
             // causing ZW/ZS canons to produce 0 segments and J-canon texts to miss
-            // their main body content (everything after the preface <cb:div>).
-            if (/^<(note|anchor|figure|app|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
-            if (/^<\/(note|anchor|figure|app|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
+            // their main body. <note>/<app> are handled above.)
+            if (/^<(anchor|figure|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
+            if (/^<\/(anchor|figure|rdg|lem|cb:mulu|cb:juan|cb:jhead|cb:tt|cb:coloph)/i.test(tag)) continue;
 
             // <caesura/> → emit ideographic space U+3000 (verse pause marker)
             if (/^<caesura/i.test(tag)) {
-                if (inP || inLg) currentText += '\u3000';
+                if ((pDepth > 0 || inLg) && noteAppDepth === 0) currentText += '　';
                 continue;
             }
 
@@ -190,7 +245,8 @@ function extractSegments(xml) {
         } else {
             // Text token
             if (inHead) continue;
-            if (inP || inLg) {
+            if (noteAppDepth > 0) continue;   // inside <note>/<app>: content suppressed
+            if (pDepth > 0 || inLg) {
                 currentText += tok.value;
             }
             // Text outside <p>/<lg> is silently ignored.
@@ -227,6 +283,7 @@ function buildLbTextMap(xml) {
     const bodyMatch = xml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
     if (!bodyMatch) return map;
     const body = bodyMatch[1];
+    const primaryEd = detectPrimaryEdition(body);
 
     // Walk tokens (same approach as extractSegments) to properly skip <head>
     const tokens = [];
@@ -245,6 +302,7 @@ function buildLbTextMap(xml) {
     let currentLb = null;
     let inHead = false;
     let headDepth = 0;
+    let noteAppDepth = 0;
 
     for (const tok of tokens) {
         if (tok.kind === 'tag') {
@@ -258,18 +316,29 @@ function buildLbTextMap(xml) {
                 if (/<\/head>/i.test(tag)) { headDepth--; if (headDepth <= 0) inHead = false; }
                 continue;
             }
-            // <lb> — track current lb
+            // <note>/<app> — suppress their content from the EN map too (parity with
+            // extractSegments; both parsers unify in P3.1c).
+            if (/^<(note|app)[\s>]/i.test(tag) && !tag.startsWith('</')) {
+                if (!/\/>\s*$/.test(tag)) noteAppDepth++;
+                continue;
+            }
+            if (/^<\/(note|app)>/i.test(tag)) {
+                noteAppDepth = Math.max(0, noteAppDepth - 1);
+                continue;
+            }
+            // <lb> — track current lb (primary edition, or no-ed lbs)
             if (/^<lb[\s]/i.test(tag)) {
-                const nMatch = tag.match(/\bn="([^"]+)"/);
-                const edMatch = tag.match(/\bed="([^"]+)"/);
-                const ed = edMatch ? edMatch[1] : '';
-                if (nMatch && (ed === 'T' || ed === 'X' || ed === 'J' || ed === 'B' || !edMatch)) {
-                    currentLb = nMatch[1];
+                if (noteAppDepth === 0) {
+                    const nMatch = tag.match(/\bn="([^"]+)"/);
+                    if (nMatch && lbEditionAccepted(tag, primaryEd)) {
+                        currentLb = nMatch[1];
+                    }
                 }
             }
         } else {
             // Text token
             if (inHead) continue;
+            if (noteAppDepth > 0) continue;
             if (currentLb) {
                 const text = tok.value.replace(/[\t\n\r ]+/g, ' ').trim();
                 if (text) {
@@ -284,6 +353,7 @@ function buildLbTextMap(xml) {
 
 /**
  * Process one file pair and write the segment JSONL.
+ * Returns { segments, emptyLbSegments } for the coverage metric.
  */
 function processFile(workId, sourceXml, transXml, outPath) {
     const zhSegments = extractSegments(sourceXml);
@@ -291,10 +361,13 @@ function processFile(workId, sourceXml, transXml, outPath) {
 
     const lines = [];
     let segIdx = 0;
+    let emptyLbSegments = 0;
 
     for (const seg of zhSegments) {
         segIdx++;
         const unitId = `${workId}_${String(segIdx).padStart(3, '0')}`;
+
+        if (seg.lbIds.length === 0) emptyLbSegments++;
 
         // Build English text by concatenating translation for each lb in the range
         const enParts = [];
@@ -321,7 +394,10 @@ function processFile(workId, sourceXml, transXml, outPath) {
     writeFileSync(outPath, lines.join('\n') + '\n', 'utf-8');
 
     const totalLbs = zhSegments.reduce((n, s) => n + s.lbIds.length, 0);
-    console.log(`  ${workId}: ${zhSegments.length} segments, ${totalLbs} lbs → ${outPath}`);
+    const emptyNote = emptyLbSegments > 0 ? `, ${emptyLbSegments} empty-lb` : '';
+    console.log(`  ${workId}: ${zhSegments.length} segments, ${totalLbs} lbs${emptyNote} → ${outPath}`);
+
+    return { segments: zhSegments.length, emptyLbSegments };
 }
 
 /**
@@ -348,6 +424,9 @@ function main() {
     walk(TRANS_DIR);
 
     let processed = 0;
+    // Coverage metric: empty lb_range means the reader page/reading toggle silently
+    // degrades for that segment (audit R2 §segmentation). Track per collection.
+    const byCollection = new Map(); // collection -> { segments, emptyLbSegments, files }
     for (const transPath of files) {
         const rel = relative(TRANS_DIR, transPath); // e.g., T/T48/T48n2005.xml
         const workId = basename(transPath, '.xml');   // e.g., T48n2005
@@ -368,16 +447,38 @@ function main() {
         try {
             const sourceXml = readFileSync(sourcePath, 'utf-8');
             const transXml = readFileSync(transPath, 'utf-8');
-            processFile(workId, sourceXml, transXml, outPath);
+            const stats = processFile(workId, sourceXml, transXml, outPath);
             processed++;
+
+            const collection = rel.split(/[\\/]/)[0] || '?';
+            const acc = byCollection.get(collection) || { segments: 0, emptyLbSegments: 0, files: 0 };
+            acc.segments += stats.segments;
+            acc.emptyLbSegments += stats.emptyLbSegments;
+            acc.files += 1;
+            byCollection.set(collection, acc);
         } catch (err) {
             console.log(`  ERROR ${workId}: ${err.message}`);
         }
     }
 
     console.log(`\nDone: ${processed} files processed.`);
+
+    // Empty-lb_range coverage metric
+    let totalSeg = 0, totalEmpty = 0;
+    for (const acc of byCollection.values()) { totalSeg += acc.segments; totalEmpty += acc.emptyLbSegments; }
+    if (totalSeg > 0) {
+        const pct = ((totalEmpty / totalSeg) * 100).toFixed(2);
+        console.log(`\nEmpty lb_range coverage: ${totalEmpty}/${totalSeg} segments (${pct}%) across ${processed} files`);
+        const cols = [...byCollection.keys()].sort();
+        for (const col of cols) {
+            const acc = byCollection.get(col);
+            const cpct = acc.segments > 0 ? ((acc.emptyLbSegments / acc.segments) * 100).toFixed(2) : '0.00';
+            const flag = acc.emptyLbSegments > 0 ? '  <-- has empty lb_range' : '';
+            console.log(`  ${col.padEnd(6)} ${acc.emptyLbSegments}/${acc.segments} (${cpct}%) in ${acc.files} files${flag}`);
+        }
+    }
 }
 
 // Export for testability; guard main() so tests can import without running.
-module.exports = { extractSegments, buildLbTextMap };
+module.exports = { extractSegments, buildLbTextMap, detectPrimaryEdition };
 if (require.main === module) main();
