@@ -2748,9 +2748,15 @@ public partial class MainWindowViewModel : ViewModelBase
     // Save/revert
     // ===========================================================
 
+    // Re-entrancy guard for the (now asynchronous) save pipeline: only one save may be
+    // in flight, and file navigation during a save is detected before the write.
+    private bool _saveInFlight;
+
     [RelayCommand]
     public async Task SaveTranslatedFromTabAsync()
     {
+        if (_saveInFlight) { SetStatus("Save already in progress."); return; }
+        _saveInFlight = true;
         try
         {
             if (_currentRelPath == null) { SetStatus("Nothing to save."); return; }
@@ -2760,16 +2766,43 @@ public partial class MainWindowViewModel : ViewModelBase
 
             var editedProjection = GetTranslationProjectionText?.Invoke() ?? "";
 
+            // Cheap text→unit mapping stays on the UI thread (same dirty-tracking
+            // semantics as before); the expensive XML rebuild moves off it.
             _indexedTranslation.ApplyProjectionEdits(_indexedDoc, _translationMode, editedProjection);
 
-            var changedBlocks = string.IsNullOrWhiteSpace(_config.Username)
-                ? null
-                : GetChangedBlockNumbers(_indexedDoc, _translationMode);
+            var doc = _indexedDoc;
+            var relPathAtStart = _currentRelPath;
+            var mode = _translationMode;
+            var username = _config.Username;
+            var annotationUser = _config.GitHubUsername ?? _config.Username ?? "User";
 
-            var builtXml = _indexedTranslation.BuildTranslatedXml(_indexedDoc, out var updatedCount);
+            // BuildTranslatedXml serializes/patches the whole document — the dominant
+            // save cost — and used to run synchronously on the UI thread, freezing the
+            // app on large texts (audit P2.1 / R2-H3). The captured doc snapshot is
+            // safe: user typing edits the projection TEXT control, not the doc; a file
+            // navigation replaces _indexedDoc with a NEW instance and is detected below.
+            var (builtXml, updatedCount) = await Task.Run(() =>
+            {
+                var changedBlocks = string.IsNullOrWhiteSpace(username)
+                    ? null
+                    : GetChangedBlockNumbers(doc, mode);
 
-            if (changedBlocks != null && changedBlocks.Count > 0)
-                builtXml = ApplyTranslatorAnnotation(builtXml, changedBlocks, _config.GitHubUsername ?? _config.Username ?? "User");
+                var xml = _indexedTranslation.BuildTranslatedXml(doc, out var updated);
+
+                if (changedBlocks != null && changedBlocks.Count > 0)
+                    xml = ApplyTranslatorAnnotation(xml, changedBlocks, annotationUser);
+
+                return (xml, updated);
+            });
+
+            if (!string.Equals(_currentRelPath, relPathAtStart, StringComparison.Ordinal))
+            {
+                // The write helpers target the CURRENT file — writing another file's
+                // XML there would corrupt it. Same outcome as navigating away with
+                // unsaved changes before this change existed.
+                SetStatus("Save aborted: you navigated to a different file while saving. Re-open the file to save it.");
+                return;
+            }
 
             var saveInfo = await AtomicWriteTranslatedXmlForCurrentAsync(builtXml);
 
@@ -2808,6 +2841,10 @@ public partial class MainWindowViewModel : ViewModelBase
         catch (Exception ex)
         {
             SetStatus("Save failed: " + ex.Message);
+        }
+        finally
+        {
+            _saveInFlight = false;
         }
     }
 
