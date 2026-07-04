@@ -5,7 +5,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { extractSegments, detectPrimaryEdition } = require('./build-structural-segments.js');
+const { extractSegments, detectPrimaryEdition, sourceContentHash } = require('./build-structural-segments.js');
 
 test('consecutive <p> elements produce separate segments', () => {
     const xml = `<TEI><body>
@@ -191,4 +191,20 @@ test('lbs with no ed attribute are always collected', () => {
     </body></TEI>`;
     const segs = extractSegments(xml);
     assert.deepStrictEqual(segs[0].lbIds, ['001a']);
+});
+
+// ---------------------------------------------------------------
+// P3.1b — source content hash (staleness contract; C#/JS parity)
+// ---------------------------------------------------------------
+
+test('sourceContentHash is line-ending independent and matches the C# anchor', () => {
+    // These hex anchors are pinned identically in the C# SegmentMapServiceTests so
+    // the generator and the desktop loader agree byte-for-byte.
+    assert.equal(
+        sourceContentHash('<TEI><body><p>hi</p></body></TEI>'),
+        '730c6fa790830ef1efbd219963d42c66be2aa49f8ba93a8f45430784b754068e');
+    const crlf = sourceContentHash('<TEI>\r\n<body><p>hi</p></body>\r\n</TEI>');
+    const lf = sourceContentHash('<TEI>\n<body><p>hi</p></body>\n</TEI>');
+    assert.equal(crlf, lf, 'CRLF and LF must hash identically');
+    assert.equal(crlf, 'eb0b16976a228903ae3643e755320fa35c6b65f9b6c35ae7c2c5e582c37ec097');
 });
