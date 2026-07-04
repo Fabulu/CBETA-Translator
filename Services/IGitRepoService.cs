@@ -70,6 +70,13 @@ public interface IGitRepoService
 
     Task<GitOpResult> PushSetUpstreamAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct);
 
+    /// <summary>
+    /// Push with OAuth-token auth supplied per-invocation (env-based http.extraheader).
+    /// The token never appears in argv and is never written into .git/config —
+    /// remote URLs stay clean (audit P1.5 / R3-H3).
+    /// </summary>
+    Task<GitOpResult> PushSetUpstreamWithTokenAsync(string repoDir, string remoteName, string branchName, string accessToken, IProgress<string> progress, CancellationToken ct);
+
     Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct);
     Task<GitOpResult> EnsureCredentialHelperAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
     Task<GitOpResult> EnsureLineEndingConfigAsync(string repoDir, IProgress<string> progress, CancellationToken ct);

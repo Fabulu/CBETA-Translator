@@ -3216,17 +3216,6 @@ public partial class GitTabViewModel : ViewModelBase
         }
     }
 
-    private static string BuildTokenizedGitRemoteUrl(string cleanRemoteUrl, string githubAccessToken)
-    {
-        var uri = new Uri(cleanRemoteUrl);
-        var builder = new UriBuilder(uri)
-        {
-            UserName = "x-access-token",
-            Password = githubAccessToken
-        };
-        return builder.Uri.ToString();
-    }
-
     private async Task<GitOpResult> PushBranchUsingConfiguredAuthAsync(
         string repoDir,
         string remoteName,
@@ -3241,20 +3230,16 @@ public partial class GitTabViewModel : ViewModelBase
             return await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
         }
 
-        var remoteUrlForPush = BuildTokenizedGitRemoteUrl(remoteUrlClean, _githubAccessToken!);
-        var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlForPush, prog, ct);
+        // Keep the remote URL clean and pass the token per-invocation instead of the
+        // old set-tokenized-url / push / restore dance — a crash mid-push used to
+        // leave the token persisted in .git/config (audit P1.5 / R3-H3; the scrub
+        // helper stays for cleaning up remotes written by older versions).
+        var rem = await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
         if (!rem.Success)
             return rem;
 
-        try
-        {
-            prog.Report("[auth] using OAuth token for git push");
-            return await _git.PushSetUpstreamAsync(repoDir, remoteName, branchName, prog, ct);
-        }
-        finally
-        {
-            await _git.EnsureRemoteUrlAsync(repoDir, remoteName, remoteUrlClean, prog, ct);
-        }
+        prog.Report("[auth] using OAuth token for git push");
+        return await _git.PushSetUpstreamWithTokenAsync(repoDir, remoteName, branchName, _githubAccessToken!, prog, ct);
     }
     private async Task ScrubTokenizedForkRemoteIfAny(string repoDir, IProgress<string> prog, CancellationToken ct)
     {
