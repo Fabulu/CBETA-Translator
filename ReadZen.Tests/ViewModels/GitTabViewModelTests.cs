@@ -506,10 +506,10 @@ public class GitTabViewModelTests
     private sealed class RecordingGitRepoService : StubGitRepoService
     {
         public List<string> StagedPaths { get; } = new();
-        public override Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
+        public override Task<string[]?> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
         {
             var full = Path.Combine(repoDir, "community", "translations", "Fabulu", "T", "T48", "T48n2005.xml");
-            return Task.FromResult(File.Exists(full)
+            return Task.FromResult<string[]?>(File.Exists(full)
                 ? new[] { "?? community/translations/" }
                 : Array.Empty<string>());
         }

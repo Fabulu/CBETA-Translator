@@ -502,7 +502,9 @@ public partial class GitTabViewModel : ViewModelBase
                 else
                 {
                     var selectedRepoRel = NormalizeRel(Path.GetRelativePath(transDir, savedAbsPath));
-                    var status = await _git.GetStatusPorcelainAsync(transDir, ct);
+                    var status = await _git.GetStatusPorcelainAsync(transDir, ct)
+                        ?? throw new InvalidOperationException(
+                            "git status failed — cannot determine translation changes; PR step aborted.");
                     var hasSelectedFileChanges = status.Any(line =>
                         line.Contains(selectedRepoRel, StringComparison.OrdinalIgnoreCase));
 
@@ -700,9 +702,18 @@ public partial class GitTabViewModel : ViewModelBase
                 }
 
                 var ab = await _git.GetAheadBehindAsync(translationDir, "origin/main", ct);
-                AppendLog($"[git] translations ahead/behind vs origin/main: ahead={ab.ahead}, behind={ab.behind}");
+                if (ab == null)
+                {
+                    // ahead>0 is what triggers the rescue branch below; proceeding with an
+                    // unknown sync state would skip that safety net right before reset --hard.
+                    ProgressText = "Update blocked (sync state unknown).";
+                    AppendLog("[error] could not determine ahead/behind vs origin/main; update blocked to protect local commits");
+                    StatusChanged?.Invoke(this, "Update blocked (sync state unknown).");
+                    return;
+                }
+                AppendLog($"[git] translations ahead/behind vs origin/main: ahead={ab.Value.ahead}, behind={ab.Value.behind}");
 
-                if (ab.ahead > 0)
+                if (ab.Value.ahead > 0)
                 {
                     string rescueBranch = "rescue/local-" + DateTime.Now.ToString("yyyyMMdd-HHmmss");
                     AppendLog("[safety] local commits detected in translations. Creating rescue branch: " + rescueBranch);
@@ -865,7 +876,9 @@ public partial class GitTabViewModel : ViewModelBase
 
     private async Task DoUpdateKeepLocalAsync(string repoDir, IProgress<string> prog, CancellationToken ct)
     {
-        var changedPaths = await _git.GetChangedPathsForBackupAsync(repoDir, includePrefixes: null, ct);
+        var changedPaths = await _git.GetChangedPathsForBackupAsync(repoDir, includePrefixes: null, ct)
+            ?? throw new InvalidOperationException(
+                "git status failed — update aborted BEFORE reset --hard to protect your local changes.");
         changedPaths = changedPaths
             .Concat(GetAlwaysPreservedUpdatePaths(repoDir))
             .Distinct(StringComparer.OrdinalIgnoreCase)
@@ -1208,6 +1221,12 @@ public partial class GitTabViewModel : ViewModelBase
             await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            if (status == null)
+            {
+                ProgressText = "Could not read git status.";
+                AppendLog("[error] git status failed; aborting instead of assuming no changes");
+                return;
+            }
 
             bool targetMentioned = status.Any(l =>
                 l.EndsWith(" " + repoRel, StringComparison.OrdinalIgnoreCase) ||
@@ -1763,6 +1782,12 @@ public partial class GitTabViewModel : ViewModelBase
 
             // --- Check git status for community changes authored by this share ---
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            if (status == null)
+            {
+                ProgressText = "Could not read git status.";
+                AppendLog("[error] git status failed; aborting share instead of assuming no changes");
+                return;
+            }
             var trackedSharePaths = GetTrackedCommunitySharePaths(repoDir);
             var changedFiles = new List<string>();
             var postShareFingerprints = CaptureCommunityShareFingerprints(repoDir);
@@ -2072,6 +2097,12 @@ public partial class GitTabViewModel : ViewModelBase
             await _git.EnsureUserIdentityAsync(repoDir, _username, prog, ct);
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            if (status == null)
+            {
+                ProgressText = "Could not read git status.";
+                AppendLog("[error] git status failed; aborting instead of assuming no changes");
+                return;
+            }
 
             var communityFiles = new List<string>();
             if (hasTm && status.Any(l => l.Contains(CommunityTmFile, StringComparison.OrdinalIgnoreCase)))
@@ -2412,6 +2443,12 @@ public partial class GitTabViewModel : ViewModelBase
             }
 
             var status = await _git.GetStatusPorcelainAsync(repoDir, ct);
+            if (status == null)
+            {
+                ProgressText = "Could not read git status.";
+                AppendLog("[error] git status failed; aborting instead of assuming no changes");
+                return;
+            }
             bool hasChanges = status.Any(l =>
                 l.Contains(jsonlRelPath, StringComparison.OrdinalIgnoreCase) ||
                 l.Contains("community/collections/", StringComparison.OrdinalIgnoreCase));

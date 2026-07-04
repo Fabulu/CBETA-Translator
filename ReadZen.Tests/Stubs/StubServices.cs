@@ -58,7 +58,7 @@ public class StubGitRepoService : IGitRepoService
     public Task<bool> CheckGitAvailableAsync(CancellationToken ct) => Task.FromResult(true);
     public Task<GitOpResult> CloneAsync(string repoUrl, string targetDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
-    public virtual Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
+    public virtual Task<string[]?> GetStatusPorcelainAsync(string repoDir, CancellationToken ct) => Task.FromResult<string[]?>(Array.Empty<string>());
     public Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct) => Task.FromResult("main");
     public Task EnsureUserIdentityAsync(string repoDir, string? username, IProgress<string> progress, CancellationToken ct) => Task.CompletedTask;
     public virtual Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
@@ -77,8 +77,8 @@ public class StubGitRepoService : IGitRepoService
     public Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureCredentialHelperAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureLineEndingConfigAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
-    public Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct) => Task.FromResult(Array.Empty<string>());
-    public Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct) => Task.FromResult((0, 0));
+    public virtual Task<string[]?> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct) => Task.FromResult<string[]?>(Array.Empty<string>());
+    public virtual Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct) => Task.FromResult<(int behind, int ahead)?>((0, 0));
     public Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<List<GitCommitEntry>> GetFileLogAsync(string repoDir, string relPath, int maxCount = 50, CancellationToken ct = default) => Task.FromResult(new List<GitCommitEntry>());
     public Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default) => Task.FromResult<string?>(null);

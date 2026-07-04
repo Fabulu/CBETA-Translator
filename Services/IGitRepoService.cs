@@ -19,8 +19,10 @@ public interface IGitRepoService
 
     /// <summary>
     /// Returns git status porcelain output (raw lines). Includes untracked.
+    /// Returns <c>null</c> when status could NOT be determined (git failed) — callers
+    /// MUST treat null as "unknown" and block destructive operations, never as "clean".
     /// </summary>
-    Task<string[]> GetStatusPorcelainAsync(string repoDir, CancellationToken ct);
+    Task<string[]?> GetStatusPorcelainAsync(string repoDir, CancellationToken ct);
 
     Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct);
 
@@ -71,8 +73,19 @@ public interface IGitRepoService
     Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct);
     Task<GitOpResult> EnsureCredentialHelperAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
     Task<GitOpResult> EnsureLineEndingConfigAsync(string repoDir, IProgress<string> progress, CancellationToken ct);
-    Task<string[]> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct);
-    Task<(int behind, int ahead)> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct);
+    /// <summary>
+    /// Repo-relative paths to preserve before a destructive update. Returns <c>null</c>
+    /// when git status failed — the update flow MUST abort before reset --hard rather
+    /// than proceed with an empty backup list.
+    /// </summary>
+    Task<string[]?> GetChangedPathsForBackupAsync(string repoDir, string[]? includePrefixes, CancellationToken ct);
+
+    /// <summary>
+    /// Behind/ahead counts vs an upstream ref. Returns <c>null</c> when the counts could
+    /// NOT be determined — callers MUST treat null as "unknown" (ahead&gt;0 gates the
+    /// rescue-branch safety net before destructive updates), never as "in sync".
+    /// </summary>
+    Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct);
     Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct);
 
     // ── History browsing (read-only) ──────────────────────────────────
