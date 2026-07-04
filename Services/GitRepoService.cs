@@ -25,40 +25,45 @@ public sealed class GitRepoService : IGitRepoService
 
     public void TryCancelRunningProcess()
     {
+        // Snapshot, then clear only if it is still the same handle: nulling the field
+        // directly could clobber a DIFFERENT command that started after the snapshot
+        // (audit R3-M3).
+        var running = _running;
         try
         {
-            if (_running != null && !_running.HasExited)
-                _running.Kill(entireProcessTree: true);
+            if (running != null && !running.HasExited)
+                running.Kill(entireProcessTree: true);
         }
         catch { }
         finally
         {
-            _running = null;
+            if (running != null)
+                Interlocked.CompareExchange(ref _running, null, running);
         }
     }
 
     public async Task<bool> CheckGitAvailableAsync(CancellationToken ct)
     {
-        var r = await RunGitAsync(null, "--version", null, ct);
+        var r = await RunGitAsync(null, new[] { "--version" }, null, ct);
         return r.ExitCode == 0;
     }
 
     public async Task<GitOpResult> CloneAsync(string repoUrl, string targetDir, IProgress<string> progress, CancellationToken ct)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(targetDir) ?? targetDir);
-        var r = await RunGitAsync(null, $"clone --progress \"{repoUrl}\" \"{targetDir}\"", progress, ct);
+        var r = await RunGitAsync(null, new[] { "clone", "--progress", repoUrl, targetDir }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> FetchAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, "fetch --all --prune", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "fetch", "--all", "--prune" }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<string[]?> GetStatusPorcelainAsync(string repoDir, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, "status --porcelain", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "status", "--porcelain" }, null, ct);
         // null (NOT empty): a failed status must be distinguishable from a clean tree —
         // callers sit immediately upstream of reset --hard / clean -fd, and treating a
         // broken repo as "clean" destroys local work (audit R3-M4).
@@ -72,7 +77,7 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<string> GetCurrentBranchAsync(string repoDir, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, "rev-parse --abbrev-ref HEAD", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "rev-parse", "--abbrev-ref", "HEAD" }, null, ct);
         var s = (r.StdOut ?? "").Trim();
         return (r.ExitCode != 0 || string.IsNullOrWhiteSpace(s)) ? "HEAD" : s;
     }
@@ -99,13 +104,13 @@ public sealed class GitRepoService : IGitRepoService
         if (string.IsNullOrWhiteSpace(name))
         {
             progress.Report($"[git] setting local user.name = {desiredName}");
-            await RunGitAsync(repoDir, $"config user.name \"{EscapeCommitMessage(desiredName)}\"", progress, ct);
+            await RunGitAsync(repoDir, new[] { "config", "user.name", desiredName }, progress, ct);
         }
 
         if (string.IsNullOrWhiteSpace(email))
         {
             progress.Report($"[git] setting local user.email = {desiredEmail}");
-            await RunGitAsync(repoDir, $"config user.email \"{EscapeCommitMessage(desiredEmail)}\"", progress, ct);
+            await RunGitAsync(repoDir, new[] { "config", "user.email", desiredEmail }, progress, ct);
         }
     }
 
@@ -124,7 +129,7 @@ public sealed class GitRepoService : IGitRepoService
         try
         {
             // If already set locally, keep it.
-            var existing = await RunGitAsync(repoDir, "config --local --get credential.helper", null, ct);
+            var existing = await RunGitAsync(repoDir, new[] { "config", "--local", "--get", "credential.helper" }, null, ct);
             var helper = (existing.StdOut ?? "").Trim();
 
             if (!string.IsNullOrWhiteSpace(helper))
@@ -135,7 +140,7 @@ public sealed class GitRepoService : IGitRepoService
 
             // Prefer manager-core, fallback to manager for older variants.
             progress.Report("[git] setting local credential.helper = manager-core");
-            var r1 = await RunGitAsync(repoDir, "config --local credential.helper manager-core", progress, ct);
+            var r1 = await RunGitAsync(repoDir, new[] { "config", "--local", "credential.helper", "manager-core" }, progress, ct);
             if (r1.ExitCode == 0)
             {
                 progress.Report("[git] credential.helper set to manager-core");
@@ -143,7 +148,7 @@ public sealed class GitRepoService : IGitRepoService
             }
 
             progress.Report("[git] manager-core failed, trying manager");
-            var r2 = await RunGitAsync(repoDir, "config --local credential.helper manager", progress, ct);
+            var r2 = await RunGitAsync(repoDir, new[] { "config", "--local", "credential.helper", "manager" }, progress, ct);
             if (r2.ExitCode == 0)
             {
                 progress.Report("[git] credential.helper set to manager");
@@ -165,10 +170,10 @@ public sealed class GitRepoService : IGitRepoService
     {
         try
         {
-            var r1 = await RunGitAsync(repoDir, "config --local core.autocrlf false", progress, ct);
+            var r1 = await RunGitAsync(repoDir, new[] { "config", "--local", "core.autocrlf", "false" }, progress, ct);
             if (r1.ExitCode != 0) return new GitOpResult(false, r1.AllText);
 
-            var r2 = await RunGitAsync(repoDir, "config --local core.eol lf", progress, ct);
+            var r2 = await RunGitAsync(repoDir, new[] { "config", "--local", "core.eol", "lf" }, progress, ct);
             if (r2.ExitCode != 0) return new GitOpResult(false, r2.AllText);
 
             progress.Report("[git] line endings configured (local): autocrlf=false, eol=lf");
@@ -182,64 +187,64 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> StagePathAsync(string repoDir, string relPath, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"add -- \"{relPath}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "add", "--", relPath }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> StashKeepIndexAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"stash push -u -k -m \"{message}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "stash", "push", "-u", "-k", "-m", message }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> StashAllAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
     {
         // Stash EVERYTHING (including staged), include untracked.
-        var r = await RunGitAsync(repoDir, $"stash push -u -m \"{message}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "stash", "push", "-u", "-m", message }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> SwitchCreateBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"switch -c \"{branchName}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "switch", "-c", branchName }, progress, ct);
         if (r.ExitCode == 0) return new GitOpResult(true);
 
-        var r2 = await RunGitAsync(repoDir, $"checkout -b \"{branchName}\"", progress, ct);
+        var r2 = await RunGitAsync(repoDir, new[] { "checkout", "-b", branchName }, progress, ct);
         return r2.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r2.AllText);
     }
 
     public async Task<GitOpResult> CommitAsync(string repoDir, string message, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"commit -m \"{EscapeCommitMessage(message)}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "commit", "-m", message }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> SwitchBranchAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"switch \"{branchName}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "switch", branchName }, progress, ct);
         if (r.ExitCode == 0) return new GitOpResult(true);
 
-        var r2 = await RunGitAsync(repoDir, $"checkout \"{branchName}\"", progress, ct);
+        var r2 = await RunGitAsync(repoDir, new[] { "checkout", branchName }, progress, ct);
         return r2.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r2.AllText);
     }
 
     public async Task<GitOpResult> StashPopAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, "stash pop", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "stash", "pop" }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> HardResetToRemoteMainAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct)
     {
         // Example: reset --hard origin/main
-        var r = await RunGitAsync(repoDir, $"reset --hard \"{remoteName}/{branchName}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "reset", "--hard", $"{remoteName}/{branchName}" }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> CleanUntrackedAsync(string repoDir, IProgress<string> progress, CancellationToken ct)
     {
         // Remove untracked files/dirs to guarantee a clean tree after reset
-        var r = await RunGitAsync(repoDir, "clean -fd", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "clean", "-fd" }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
@@ -296,7 +301,7 @@ public sealed class GitRepoService : IGitRepoService
     /// </summary>
     public async Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"rev-list --left-right --count \"{upstreamRef}...HEAD\"", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "rev-list", "--left-right", "--count", $"{upstreamRef}...HEAD" }, null, ct);
         // null (NOT (0,0)): "in sync" was indistinguishable from "could not tell",
         // and ahead>0 is what gates the rescue-branch creation before the destructive
         // update — a failed check must block, not skip, that safety net (R3-M4).
@@ -323,14 +328,14 @@ public sealed class GitRepoService : IGitRepoService
     /// </summary>
     public async Task<GitOpResult> CreateBranchAtHeadAsync(string repoDir, string branchName, IProgress<string> progress, CancellationToken ct)
     {
-        var check = await RunGitAsync(repoDir, $"show-ref --verify --quiet \"refs/heads/{branchName}\"", null, ct);
+        var check = await RunGitAsync(repoDir, new[] { "show-ref", "--verify", "--quiet", $"refs/heads/{branchName}" }, null, ct);
         if (check.ExitCode == 0)
         {
             progress.Report("[git] rescue branch already exists: " + branchName);
             return new GitOpResult(true);
         }
 
-        var r = await RunGitAsync(repoDir, $"branch \"{branchName}\" HEAD", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "branch", branchName, "HEAD" }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
@@ -340,7 +345,7 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<string?> GetRemoteUrlAsync(string repoDir, string remoteName, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"remote get-url \"{remoteName}\"", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "remote", "get-url", remoteName }, null, ct);
         if (r.ExitCode != 0) return null;
         var s = (r.StdOut ?? "").Trim();
         return string.IsNullOrWhiteSpace(s) ? null : s;
@@ -348,26 +353,26 @@ public sealed class GitRepoService : IGitRepoService
 
     public async Task<GitOpResult> RemoveRemoteAsync(string repoDir, string remoteName, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"remote remove \"{remoteName}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "remote", "remove", remoteName }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
     public async Task<GitOpResult> EnsureRemoteUrlAsync(string repoDir, string remoteName, string cleanRemoteUrl, IProgress<string> progress, CancellationToken ct)
     {
-        var check = await RunGitAsync(repoDir, $"remote get-url \"{remoteName}\"", null, ct);
+        var check = await RunGitAsync(repoDir, new[] { "remote", "get-url", remoteName }, null, ct);
         if (check.ExitCode == 0)
         {
-            var rSet = await RunGitAsync(repoDir, $"remote set-url \"{remoteName}\" \"{cleanRemoteUrl}\"", progress, ct);
+            var rSet = await RunGitAsync(repoDir, new[] { "remote", "set-url", remoteName, cleanRemoteUrl }, progress, ct);
             return rSet.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, rSet.AllText);
         }
 
-        var rAdd = await RunGitAsync(repoDir, $"remote add \"{remoteName}\" \"{cleanRemoteUrl}\"", progress, ct);
+        var rAdd = await RunGitAsync(repoDir, new[] { "remote", "add", remoteName, cleanRemoteUrl }, progress, ct);
         return rAdd.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, rAdd.AllText);
     }
 
     public async Task<GitOpResult> PushSetUpstreamAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"push -u \"{remoteName}\" \"{branchName}\"", progress, ct);
+        var r = await RunGitAsync(repoDir, new[] { "push", "-u", remoteName, branchName }, progress, ct);
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
@@ -419,17 +424,9 @@ public sealed class GitRepoService : IGitRepoService
     // Helpers
     // -------------------------
 
-    private static string EscapeCommitMessage(string s)
-    {
-        s ??= "";
-        s = s.Replace("\r", " ").Replace("\n", " ");
-        s = s.Replace("\"", "'");
-        return s.Trim();
-    }
-
     private async Task<string> GetConfigAsync(string repoDir, string key, CancellationToken ct)
     {
-        var r = await RunGitAsync(repoDir, $"config --get {key}", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "config", "--get", key }, null, ct);
         if (r.ExitCode != 0) return "";
         return (r.StdOut ?? "").Trim();
     }
@@ -557,7 +554,7 @@ public sealed class GitRepoService : IGitRepoService
         return candidates;
     }
 
-    private async Task<RunResult> RunGitAsync(string? repoDir, string args, IProgress<string>? progress, CancellationToken ct)
+    private async Task<RunResult> RunGitAsync(string? repoDir, IReadOnlyList<string> args, IProgress<string>? progress, CancellationToken ct)
     {
         // We only fallback when the executable fails to START (missing file / broken bundled git / DLL load issue).
         // If git starts and exits non-zero (auth error, bad repo, etc.), we do not retry random candidates.
@@ -595,7 +592,7 @@ public sealed class GitRepoService : IGitRepoService
     private async Task<GitLaunchAttemptResult> TryRunGitWithExecutableAsync(
         string gitExe,
         string? repoDir,
-        string args,
+        IReadOnlyList<string> args,
         IProgress<string>? progress,
         CancellationToken ct)
     {
@@ -617,10 +614,13 @@ public sealed class GitRepoService : IGitRepoService
         }
         catch { }
 
+        // ArgumentList (not Arguments): each value is passed as its own argument with
+        // correct per-platform quoting, so branch names / paths / messages containing
+        // quotes or trailing backslashes can neither break parsing nor smuggle extra
+        // git options (audit R3-M2).
         var psi = new ProcessStartInfo
         {
             FileName = gitExe,
-            Arguments = args,
             WorkingDirectory = string.IsNullOrWhiteSpace(repoDir) ? Environment.CurrentDirectory : repoDir,
             UseShellExecute = false,
             RedirectStandardOutput = true,
@@ -629,6 +629,9 @@ public sealed class GitRepoService : IGitRepoService
             StandardOutputEncoding = Encoding.UTF8,
             StandardErrorEncoding = Encoding.UTF8,
         };
+
+        foreach (var a in args)
+            psi.ArgumentList.Add(a);
 
         // Make bundled Portable Git fully usable (helpers + DLLs on PATH).
         // Safe to call always; it should no-op when not using bundled git.
@@ -744,7 +747,10 @@ public sealed class GitRepoService : IGitRepoService
             }
             catch { }
 
-            _running = null;
+            // Ownership check: only clear the shared handle if it is still OURS.
+            // An unconditional null here could erase a command that started after
+            // this one, leaving TryCancelRunningProcess unable to kill it (R3-M3).
+            Interlocked.CompareExchange(ref _running, null, p);
             p.Dispose();
         }
     }
@@ -757,7 +763,7 @@ public sealed class GitRepoService : IGitRepoService
         // Use pipe separator that won't appear in commit messages
         var format = "%H|%aI|%an|%s";
         var normalizedPath = relPath.Replace('\\', '/');
-        var r = await RunGitAsync(repoDir, $"log --follow --format=\"{format}\" -n {maxCount} -- \"{normalizedPath}\"", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "log", "--follow", $"--format={format}", "-n", maxCount.ToString(System.Globalization.CultureInfo.InvariantCulture), "--", normalizedPath }, null, ct);
         if (r.ExitCode != 0 || string.IsNullOrWhiteSpace(r.StdOut))
             return entries;
 
@@ -782,7 +788,7 @@ public sealed class GitRepoService : IGitRepoService
     public async Task<string?> GetFileAtCommitAsync(string repoDir, string commitHash, string relPath, CancellationToken ct = default)
     {
         var normalizedPath = relPath.Replace('\\', '/');
-        var r = await RunGitAsync(repoDir, $"show {commitHash}:\"{normalizedPath}\"", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "show", $"{commitHash}:{normalizedPath}" }, null, ct);
         if (r.ExitCode != 0)
             return null;
         return r.StdOut;
@@ -791,19 +797,19 @@ public sealed class GitRepoService : IGitRepoService
     public async Task<string> GetFileDiffAsync(string repoDir, string commitHashA, string commitHashB, string relPath, CancellationToken ct = default)
     {
         var normalizedPath = relPath.Replace('\\', '/');
-        var r = await RunGitAsync(repoDir, $"diff {commitHashA} {commitHashB} -- \"{normalizedPath}\"", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "diff", commitHashA, commitHashB, "--", normalizedPath }, null, ct);
         return r.StdOut ?? "";
     }
 
     public async Task<string?> GetHeadShaAsync(string repoDir, CancellationToken ct = default)
     {
-        var r = await RunGitAsync(repoDir, "rev-parse HEAD", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "rev-parse", "HEAD" }, null, ct);
         return r.ExitCode == 0 ? r.StdOut.Trim() : null;
     }
 
     public async Task<string> GetDiffStatAsync(string repoDir, string commitA, string commitB, CancellationToken ct = default)
     {
-        var r = await RunGitAsync(repoDir, $"diff --stat {commitA} {commitB}", null, ct);
+        var r = await RunGitAsync(repoDir, new[] { "diff", "--stat", commitA, commitB }, null, ct);
         return r.StdOut ?? "";
     }
 }
