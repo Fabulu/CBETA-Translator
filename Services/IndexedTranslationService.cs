@@ -433,6 +433,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         int skippedNoDirtyGroups = 0;
         int skippedTargetMissingGroups = 0;
+        int skippedTargetMismatchGroups = 0;
         int skippedUnsafeGroups = 0;
 
         int groupIx = 0;
@@ -479,6 +480,21 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 continue;
             }
 
+            // Write-back guard (audit R2-M5): xml:id/nodePath identity can pair the
+            // wrong element when the translated document no longer corresponds to the
+            // indexed snapshot — ReplaceNodes would then silently overwrite content
+            // that never belonged to this group. Verify the target still holds the
+            // text this group's projection was derived from before touching it.
+            if (!VerifyPatchTarget(target, tranDoc, orderedLines, first.Kind, out var mismatchReason))
+            {
+                skippedTargetMismatchGroups++;
+                dbg.AppendLine($"SKIP: Target verification failed — {mismatchReason}");
+                dbg.AppendLine($"TargetBefore(inner): {Trunc(SerializeInnerXml(target), 700)}");
+                DumpGroupLines(dbg, orderedLines, includeSegments: true);
+                dbg.AppendLine();
+                continue;
+            }
+
             dbg.AppendLine($"TargetFound: <{target.Name}>");
             dbg.AppendLine($"TargetBefore(inner): {Trunc(SerializeInnerXml(target), 700)}");
             DumpGroupLines(dbg, orderedLines, includeSegments: true);
@@ -519,6 +535,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                             dbg.AppendLine($"  Updated groups: {updatedCount}");
                             dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
                             dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+                            dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
                             dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
                             LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -549,6 +566,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                         dbg.AppendLine($"  Updated groups: {updatedCount}");
                         dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
                         dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+                        dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
                         dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
                         LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -575,6 +593,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 dbg.AppendLine($"  Updated groups: {updatedCount}");
                 dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
                 dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+                dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
                 dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
                 LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -620,6 +639,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             dbg.AppendLine($"  Updated groups: {updatedCount}");
             dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
             dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+            dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
             dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
             LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -651,6 +671,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             dbg.AppendLine($"  Updated groups: {updatedCount}");
             dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
             dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+            dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
             dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
             LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -682,6 +703,7 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         dbg.AppendLine($"  Updated groups: {updatedCount}");
         dbg.AppendLine($"  Skipped no-dirty groups: {skippedNoDirtyGroups}");
         dbg.AppendLine($"  Skipped target-missing groups: {skippedTargetMissingGroups}");
+        dbg.AppendLine($"  Skipped target-mismatch groups: {skippedTargetMismatchGroups}");
         dbg.AppendLine($"  Skipped unsafe groups: {skippedUnsafeGroups}");
 
         LastBuildTranslatedXmlDebugDump = dbg.ToString();
@@ -1308,6 +1330,68 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             return byPath;
 
         return null;
+    }
+
+    /// <summary>
+    /// Write-back guard (audit R2-M5). A group may only patch an element whose CURRENT
+    /// visible text is what the group's projection was derived from: the remembered EN
+    /// baseline, or the original ZH (untranslated copy). Anything else means the
+    /// identity lookup paired the wrong element — e.g. the target was detached by an
+    /// earlier group's rebuild, or the translated snapshot was refreshed and its
+    /// structure drifted — and ReplaceNodes would destroy content that never belonged
+    /// to this group. The comparison recomputes the projection over the live element
+    /// with the same segment rules used at index time, so notes/apparatus/gaiji
+    /// handling cannot produce false mismatches.
+    /// </summary>
+    private bool VerifyPatchTarget(
+        XElement target,
+        XDocument tranDoc,
+        List<TranslationUnit> orderedLines,
+        TranslationUnitKind kind,
+        out string reason)
+    {
+        if (!ReferenceEquals(target.Document, tranDoc))
+        {
+            reason = "target element is no longer attached to the translated document " +
+                     "(it was detached by an earlier group's rebuild); patching it would be silently lost";
+            return false;
+        }
+
+        var expectedBaseline = StripAllWhitespace(string.Concat(
+            orderedLines.Select(u => u.EnBaseline.Length > 0 ? u.EnBaseline : u.Zh)));
+        var expectedZh = StripAllWhitespace(string.Concat(orderedLines.Select(u => u.Zh)));
+
+        if (expectedBaseline.Length == 0 && expectedZh.Length == 0)
+        {
+            reason = "";
+            return true; // nothing to verify against (structure-only group)
+        }
+
+        var currentSegments = new List<TranslationSegment>();
+        BuildSegmentsFromElement(target, currentSegments,
+            includeInlineNotesInProjection: kind == TranslationUnitKind.Note);
+        var current = StripAllWhitespace(string.Concat(BuildVisibleLines(currentSegments)));
+
+        if (current == expectedBaseline || current == expectedZh)
+        {
+            reason = "";
+            return true;
+        }
+
+        reason =
+            $"the matched element's current text corresponds to neither this group's EN baseline nor its ZH. " +
+            $"Current: \"{Trunc(current, 120)}\" | ExpectedBaseline: \"{Trunc(expectedBaseline, 120)}\" | ExpectedZh: \"{Trunc(expectedZh, 120)}\"";
+        return false;
+    }
+
+    private static string StripAllWhitespace(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return "";
+        var sb = new StringBuilder(s.Length);
+        foreach (var ch in s)
+            if (!char.IsWhiteSpace(ch))
+                sb.Append(ch);
+        return sb.ToString();
     }
 
     // ============================================================
