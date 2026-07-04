@@ -938,8 +938,10 @@ private async Task LoadConfigAndAutoloadAsync()
             // 4C: restore persisted search history into the search view model
             if (config.SearchHistory.Count > 0)
                 _searchView?.ViewModel.LoadHistory(config.SearchHistory);
-            // 2E: apply preferred citation style from config
-            CitationService.DefaultStyleIndex = config.PreferredCitationStyleIndex;
+            // 2E: apply preferred citation style from config. (Previously wrote the
+            // dead CitationService.DefaultStyleIndex static; now seeds the cache the
+            // citation menus actually read, so the configured style applies eagerly.)
+            CitationMenuHelper.SetPreferredStyle(config.PreferredCitationStyle);
         };
 
         // Index cache save debounce

@@ -19,24 +19,11 @@ namespace ReadZen.App.Services;
 
 public sealed class CitationService : ICitationService
 {
-    /// <summary>
-    /// Default citation style index, matching <see cref="CitationStyle"/> ordinal.
-    /// Set from AppConfig.PreferredCitationStyleIndex on startup.
-    /// Default 3 = Chicago.
-    /// </summary>
-    public static int DefaultStyleIndex { get; set; } = 3;
-
-    /// <summary>
-    /// Get the preferred <see cref="CitationStyle"/> from the static default index.
-    /// Falls back to <see cref="CitationStyle.Chicago"/> if the index is out of range.
-    /// </summary>
-    public static CitationStyle GetPreferredStyle()
-    {
-        var values = Enum.GetValues<CitationStyle>();
-        if (DefaultStyleIndex >= 0 && DefaultStyleIndex < values.Length)
-            return values[DefaultStyleIndex];
-        return CitationStyle.Chicago;
-    }
+    // NOTE (audit P3.2 / R3-M1): a mutable public static `DefaultStyleIndex` plus a
+    // static `GetPreferredStyle()` used to live here. They were dead — the only writer
+    // (MainWindow's config-loaded handler) wrote to state nothing read, and the real
+    // preferred-style resolution goes through CitationMenuHelper reading AppConfig
+    // directly. Removed so this DI-registered service carries no ambient global state.
 
     public string Generate(CitationMetadata m, CitationStyle style)
     {

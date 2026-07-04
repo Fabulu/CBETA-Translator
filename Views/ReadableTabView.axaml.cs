@@ -50,7 +50,7 @@ public partial class ReadableTabView : UserControl
     private Canvas? _dictOverlayCanvas;
     private readonly ICedictDictionary _cedict = App.Services.GetRequiredService<ICedictDictionary>();
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
-    private readonly ICitationService _citationService = new CitationService();
+    private readonly ICitationService _citationService = App.Services.GetRequiredService<ICitationService>();
 
     // -------------------------
     // Selection mirroring
