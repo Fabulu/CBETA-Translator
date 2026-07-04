@@ -207,6 +207,8 @@ public partial class ReadableTabView : UserControl
     private string? _provenanceXmlAbsPath; // current XML abs path for apparatus sidecar loading
     private string? _translationXmlAbsPath; // current translation XML abs path for reading-layout re-render
     private bool _isReadingLayout; // true = merged segments; false = per-lb (page layout)
+    private bool _suppressReadingLayoutEvent; // guards programmatic checkbox sync
+    private int _readingLayoutRenderSeq;      // drops stale async re-renders
     private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
@@ -946,7 +948,12 @@ public partial class ReadableTabView : UserControl
 
         if (_chkReadingLayout != null)
         {
-            _chkReadingLayout.IsCheckedChanged += (_, _) => ToggleReadingLayout();
+            _chkReadingLayout.IsCheckedChanged += async (_, _) =>
+            {
+                if (_suppressReadingLayoutEvent) return; // programmatic sync, not the user
+                try { await ToggleReadingLayoutAsync(); }
+                catch { /* ToggleReadingLayoutAsync handles its own failures */ }
+            };
         }
 
         if (_chkProvenance != null)
@@ -5521,75 +5528,124 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     /// <summary>
     /// Toggles between page layout (per-lb lines, current default) and reading layout
-    /// (merged segments, text flows within &lt;p&gt;/&lt;lg&gt; boundaries). The toggle
-    /// re-renders both panes via TeiRenderer with a suppressedLbNValues set built from
-    /// the segment map. Safe to call when no segment map exists (no-op).
+    /// (merged segments, text flows within &lt;p&gt;/&lt;lg&gt; boundaries), re-rendering
+    /// both panes with a suppressedLbNValues set built from the segment map.
+    /// Lifecycle rules (audit P2.2 / R2-M3): file reads + renders run off the UI
+    /// thread; <c>_isReadingLayout</c> only flips after a successful render; the
+    /// checkbox is synced back on every outcome (no map, failure, superseded); a
+    /// sequence token drops stale completions when the user re-toggles or navigates.
     /// </summary>
-    public void ToggleReadingLayout()
+    public async Task ToggleReadingLayoutAsync()
     {
-        if (string.IsNullOrEmpty(_provenanceXmlAbsPath)) return;
-
-        _isReadingLayout = !_isReadingLayout;
-
-        // Build suppressed-lb set from the segment map (when reading mode is on)
-        HashSet<string>? suppressedLbs = null;
-        if (_isReadingLayout)
+        if (string.IsNullOrEmpty(_provenanceXmlAbsPath))
         {
-            var segMapService = App.Services?.GetService<ISegmentMapService>();
-            var segMap = segMapService?.TryLoad(_provenanceXmlAbsPath!);
-            if (segMap?.Segments != null)
-            {
-                suppressedLbs = new HashSet<string>();
-                foreach (var seg in segMap.Segments)
-                {
-                    // Suppress all lbs EXCEPT the first in each segment's range.
-                    // The first lb's newline becomes the paragraph break between segments.
-                    if (seg.LbRange != null && seg.LbRange.Count > 1)
-                    {
-                        for (int i = 1; i < seg.LbRange.Count; i++)
-                            suppressedLbs.Add(seg.LbRange[i]);
-                    }
-                }
-            }
-
-            // No segment map → nothing to suppress → stay in page layout
-            if (suppressedLbs == null || suppressedLbs.Count == 0)
-            {
-                _isReadingLayout = false;
-                return;
-            }
+            _isReadingLayout = false;
+            SetReadingLayoutCheckbox(false);
+            return;
         }
 
-        // Re-render both panes
+        bool target = !_isReadingLayout;
+        int seq = ++_readingLayoutRenderSeq;
+        var xmlPath = _provenanceXmlAbsPath!;
+        var tranPathHint = _translationXmlAbsPath;
+        var segMapService = App.Services?.GetService<ISegmentMapService>();
+
         try
         {
-            var origXml = File.ReadAllText(_provenanceXmlAbsPath!, System.Text.Encoding.UTF8);
-            var origDoc = TeiRenderer.Render(origXml, suppressedLbs);
-
-            var tranPath = _translationXmlAbsPath ?? DeriveTranslationPath(_provenanceXmlAbsPath);
-            RenderedDocument tranDoc;
-            if (!string.IsNullOrEmpty(tranPath) && File.Exists(tranPath))
+            var (origDoc, tranDoc) = await Task.Run(() =>
             {
-                var tranXml = File.ReadAllText(tranPath, System.Text.Encoding.UTF8);
-                tranDoc = TeiRenderer.Render(tranXml, suppressedLbs);
-            }
-            else
+                HashSet<string>? suppressedLbs = null;
+                if (target)
+                {
+                    var segMap = segMapService?.TryLoad(xmlPath);
+                    if (segMap?.Segments != null)
+                    {
+                        suppressedLbs = new HashSet<string>();
+                        foreach (var seg in segMap.Segments)
+                        {
+                            // Suppress all lbs EXCEPT the first in each segment's range.
+                            // The first lb's newline becomes the paragraph break between segments.
+                            if (seg.LbRange != null && seg.LbRange.Count > 1)
+                            {
+                                for (int i = 1; i < seg.LbRange.Count; i++)
+                                    suppressedLbs.Add(seg.LbRange[i]);
+                            }
+                        }
+                    }
+
+                    // No segment map → nothing to suppress → reading layout unavailable
+                    if (suppressedLbs == null || suppressedLbs.Count == 0)
+                        return ((RenderedDocument?)null, (RenderedDocument?)null);
+                }
+
+                var origXml = File.ReadAllText(xmlPath, System.Text.Encoding.UTF8);
+                var orig = TeiRenderer.Render(origXml, suppressedLbs);
+
+                var tranPath = tranPathHint ?? DeriveTranslationPath(xmlPath);
+                RenderedDocument tran;
+                if (!string.IsNullOrEmpty(tranPath) && File.Exists(tranPath))
+                {
+                    var tranXml = File.ReadAllText(tranPath, System.Text.Encoding.UTF8);
+                    tran = TeiRenderer.Render(tranXml, suppressedLbs);
+                }
+                else
+                {
+                    tran = TeiRenderer.Render(origXml, suppressedLbs);
+                }
+
+                return ((RenderedDocument?)orig, (RenderedDocument?)tran);
+            });
+
+            // A newer toggle or a file navigation superseded this render — drop it.
+            if (seq != _readingLayoutRenderSeq)
+                return;
+
+            if (origDoc == null)
             {
-                tranDoc = TeiRenderer.Render(origXml, suppressedLbs);
+                _isReadingLayout = false;
+                SetReadingLayoutCheckbox(false);
+                return;
             }
 
-            SetRendered(origDoc, tranDoc);
+            _isReadingLayout = target;
+            SetReadingLayoutCheckbox(target);
+            SetRendered(origDoc, tranDoc!);
         }
         catch
         {
-            // If re-render fails, revert to page layout silently
-            _isReadingLayout = false;
+            // Re-render failed: revert to page layout AND un-lie the checkbox
+            // (the old code left it checked while showing page layout).
+            if (seq == _readingLayoutRenderSeq)
+            {
+                _isReadingLayout = false;
+                SetReadingLayoutCheckbox(false);
+            }
         }
+    }
+
+    /// <summary>Sets the checkbox without re-entering the toggle handler.</summary>
+    private void SetReadingLayoutCheckbox(bool value)
+    {
+        if (_chkReadingLayout == null || _chkReadingLayout.IsChecked == value) return;
+        _suppressReadingLayoutEvent = true;
+        try { _chkReadingLayout.IsChecked = value; }
+        finally { _suppressReadingLayoutEvent = false; }
     }
 
     /// <summary>Populates provenance panel from manifest data.</summary>
     public void SetProvenance(ManifestInfo? manifest, TextLicenseInfo? license, CorpusKind corpus, string? xmlAbsPath = null)
     {
+        // Reading layout is per-file: a newly navigated file is rendered in page
+        // layout, so carrying the flag over made the checkbox lie about the visible
+        // state (audit P2.2 / R2-M3). Reset on path change and invalidate any
+        // in-flight re-render for the previous file.
+        if (!string.Equals(_provenanceXmlAbsPath, xmlAbsPath, StringComparison.OrdinalIgnoreCase))
+        {
+            _readingLayoutRenderSeq++;
+            _isReadingLayout = false;
+            SetReadingLayoutCheckbox(false);
+        }
+
         _provenanceXmlAbsPath = xmlAbsPath;
         _provenanceManifest = manifest;
         _provenancePanelView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
