@@ -376,6 +376,25 @@ public sealed class GitRepoService : IGitRepoService
         return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
     }
 
+    public async Task<GitOpResult> PushSetUpstreamWithTokenAsync(string repoDir, string remoteName, string branchName, string accessToken, IProgress<string> progress, CancellationToken ct)
+    {
+        // The token travels via git's environment-config mechanism (GIT_CONFIG_*) as an
+        // http.extraheader — it never appears in argv, never gets written into
+        // .git/config as a tokenized remote URL, and vanishes with the process
+        // (audit P1.5 / R3-H3: ScrubTokenizedForkRemoteIfAny existed because a crash
+        // between "set tokenized url" and "restore clean url" left the token on disk).
+        var basic = Convert.ToBase64String(Encoding.UTF8.GetBytes("x-access-token:" + accessToken));
+        var env = new Dictionary<string, string>
+        {
+            ["GIT_CONFIG_COUNT"] = "1",
+            ["GIT_CONFIG_KEY_0"] = "http.extraheader",
+            ["GIT_CONFIG_VALUE_0"] = "Authorization: Basic " + basic,
+        };
+
+        var r = await RunGitAsync(repoDir, new[] { "push", "-u", remoteName, branchName }, progress, ct, env);
+        return r.ExitCode == 0 ? new GitOpResult(true) : new GitOpResult(false, r.AllText);
+    }
+
     public async Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct)
     {
         try
@@ -554,7 +573,7 @@ public sealed class GitRepoService : IGitRepoService
         return candidates;
     }
 
-    private async Task<RunResult> RunGitAsync(string? repoDir, IReadOnlyList<string> args, IProgress<string>? progress, CancellationToken ct)
+    private async Task<RunResult> RunGitAsync(string? repoDir, IReadOnlyList<string> args, IProgress<string>? progress, CancellationToken ct, IReadOnlyDictionary<string, string>? extraEnv = null)
     {
         // We only fallback when the executable fails to START (missing file / broken bundled git / DLL load issue).
         // If git starts and exits non-zero (auth error, bad repo, etc.), we do not retry random candidates.
@@ -564,7 +583,7 @@ public sealed class GitRepoService : IGitRepoService
         {
             ct.ThrowIfCancellationRequested();
 
-            var attempt = await TryRunGitWithExecutableAsync(candidate, repoDir, args, progress, ct);
+            var attempt = await TryRunGitWithExecutableAsync(candidate, repoDir, args, progress, ct, extraEnv);
 
             if (attempt.Started)
                 return attempt.Result;
@@ -594,7 +613,8 @@ public sealed class GitRepoService : IGitRepoService
         string? repoDir,
         IReadOnlyList<string> args,
         IProgress<string>? progress,
-        CancellationToken ct)
+        CancellationToken ct,
+        IReadOnlyDictionary<string, string>? extraEnv = null)
     {
         bool usedBundled = false;
 
@@ -649,6 +669,10 @@ public sealed class GitRepoService : IGitRepoService
         {
             psi.Environment["GIT_TERMINAL_PROMPT"] = "0";
             psi.Environment["GCM_INTERACTIVE"] = "Always";
+
+            if (extraEnv != null)
+                foreach (var (k, v) in extraEnv)
+                    psi.Environment[k] = v;
         }
         catch
         {

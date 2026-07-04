@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
@@ -21,8 +22,14 @@ public sealed class AppConfigService : IAppConfigService
 
     public AppConfigService()
     {
-        // "Hacked is fine": config.json next to the exe
+        // Portable layout by design (user decision D8): config.json next to the exe
         ConfigPath = Path.Combine(AppContext.BaseDirectory, "config.json");
+    }
+
+    /// <summary>Test seam: point the service at a temp config file.</summary>
+    internal AppConfigService(string configPath)
+    {
+        ConfigPath = configPath;
     }
 
     public async Task<AppConfig?> TryLoadAsync()
@@ -55,6 +62,24 @@ public sealed class AppConfigService : IAppConfigService
                 cfg.Version = 5;
             }
 
+            // OAuth token at-rest protection (audit P1.5 / R3-H3). In-memory config
+            // always carries the plaintext; only the file is protected.
+            if (!string.IsNullOrEmpty(cfg.GitHubAccessToken))
+            {
+                if (TokenProtector.IsProtected(cfg.GitHubAccessToken))
+                {
+                    // Null result (different user/machine, corrupt blob) drops the
+                    // token; the user simply re-authenticates.
+                    cfg.GitHubAccessToken = TokenProtector.TryUnprotect(cfg.GitHubAccessToken);
+                }
+                else if (OperatingSystem.IsWindows())
+                {
+                    // One-time migration: legacy plaintext token found on disk —
+                    // rewrite the file immediately with the protected form.
+                    await SaveAsync(cfg);
+                }
+            }
+
             return cfg;
         }
         catch
@@ -65,7 +90,17 @@ public sealed class AppConfigService : IAppConfigService
 
     public async Task SaveAsync(AppConfig cfg)
     {
-        var json = JsonSerializer.Serialize(cfg, JsonOpts);
+        // Never write the OAuth token to disk in plaintext (audit P1.5 / R3-H3).
+        // Protect a serialization-only copy so the caller's live config keeps the
+        // plaintext it works with in memory.
+        var toWrite = cfg;
+        if (!string.IsNullOrEmpty(cfg.GitHubAccessToken) && !TokenProtector.IsProtected(cfg.GitHubAccessToken))
+        {
+            toWrite = JsonSerializer.Deserialize<AppConfig>(JsonSerializer.Serialize(cfg, JsonOpts), JsonOpts)!;
+            toWrite.GitHubAccessToken = TokenProtector.Protect(cfg.GitHubAccessToken!);
+        }
+
+        var json = JsonSerializer.Serialize(toWrite, JsonOpts);
         var tmpPath = ConfigPath + ".tmp";
         await File.WriteAllTextAsync(tmpPath, json);
         File.Move(tmpPath, ConfigPath, overwrite: true);

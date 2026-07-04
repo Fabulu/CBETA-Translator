@@ -74,6 +74,7 @@ public class StubGitRepoService : IGitRepoService
     public Task<GitOpResult> RemoveRemoteAsync(string repoDir, string remoteName, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureRemoteUrlAsync(string repoDir, string remoteName, string cleanRemoteUrl, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> PushSetUpstreamAsync(string repoDir, string remoteName, string branchName, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
+    public Task<GitOpResult> PushSetUpstreamWithTokenAsync(string repoDir, string remoteName, string branchName, string accessToken, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureLocalExcludeAsync(string repoDir, string[] patterns, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureCredentialHelperAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));
     public Task<GitOpResult> EnsureLineEndingConfigAsync(string repoDir, IProgress<string> progress, CancellationToken ct) => Task.FromResult(new GitOpResult(true));

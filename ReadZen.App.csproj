@@ -45,6 +45,8 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc3.3" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<!-- DPAPI protection for the persisted GitHub OAuth token (audit P1.5 / R3-H3) -->
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
 		<PackageReference Include="Avalonia" Version="11.3.11" />
 		<PackageReference Include="Avalonia.AvaloniaEdit" Version="11.4.1" />
 		<PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
