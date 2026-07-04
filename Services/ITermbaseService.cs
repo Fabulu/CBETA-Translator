@@ -7,6 +7,9 @@ namespace ReadZen.App.Services;
 
 public interface ITermbaseService
 {
+    /// <summary>Sets the current username so lookups resolve the per-user termbase file.</summary>
+    void SetUsername(string? username);
+
     Task<List<TermHit>> FindTermsAsync(
         CurrentSegmentContext ctx,
         string? root,

@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using ReadZen.App.Services;
 using Xunit;
@@ -40,5 +41,27 @@ public class DependencyInjectionTests
         // `new ZenMasterManagerService(...)`, and ResearchGraphWindow even built its
         // own MasterDatesService — a second cache universe; audit R3-M1).
         Assert.Same(a, b);
+    }
+
+    [Fact]
+    public void TranslationAssistantService_UsesContainerTmTermbaseQa_NotPrivateCopies()
+    {
+        using var provider = BuildProvider();
+
+        var assistant = provider.GetRequiredService<ITranslationAssistantService>();
+        var tm = provider.GetRequiredService<ITranslationMemoryService>();
+        var terms = provider.GetRequiredService<ITermbaseService>();
+        var qa = provider.GetRequiredService<ITranslationQaService>();
+
+        // White-box: the assistant must hold the CONTAINER's singletons, not private
+        // `new()` copies (audit R3-M1) — otherwise SetUsername / cache invalidation
+        // routed through the container never reaches the assistant's copies.
+        var type = assistant.GetType();
+        object? Field(string name) =>
+            type.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(assistant);
+
+        Assert.Same(tm, Field("_tm"));
+        Assert.Same(terms, Field("_terms"));
+        Assert.Same(qa, Field("_qa"));
     }
 }
