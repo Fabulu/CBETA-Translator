@@ -111,6 +111,9 @@ public static class TeiRenderer
 
         // note capture state (for <note> ... </note>)
         bool inNoteCapture = false;
+        // Notes can nest (<note>..<note>..</note>tail</note>); the capture must end at
+        // the OUTER close tag or the outer note's tail leaks into the rendered text.
+        int noteNestDepth = 0;
         var noteSb = new StringBuilder(256);
 
         int noteAnchorPos = -1;     // in base rendered text (sb)
@@ -213,6 +216,24 @@ public static class TeiRenderer
                 }
             }
 
+            // XML comments and CDATA sections may legally contain '>' — the naive
+            // first-'>' scan below would end the "tag" early and emit the remainder
+            // as visible text, silently shifting every later position-map offset
+            // (audit R2-M4). Skip them wholesale; unterminated ones eat to EOF.
+            var fromLt = s.Slice(lt);
+            if (fromLt.StartsWith("<!--".AsSpan(), StringComparison.Ordinal))
+            {
+                int relEnd = s.Slice(lt + 4).IndexOf("-->".AsSpan(), StringComparison.Ordinal);
+                i = relEnd < 0 ? s.Length : lt + 4 + relEnd + 3;
+                continue;
+            }
+            if (fromLt.StartsWith("<![CDATA[".AsSpan(), StringComparison.Ordinal))
+            {
+                int relEnd = s.Slice(lt + 9).IndexOf("]]>".AsSpan(), StringComparison.Ordinal);
+                i = relEnd < 0 ? s.Length : lt + 9 + relEnd + 3;
+                continue;
+            }
+
             // find end of tag
             int relGt = s.Slice(lt).IndexOf('>');
             if (relGt < 0)
@@ -238,7 +259,7 @@ public static class TeiRenderer
             int afterTag = gt + 1; // IMPORTANT: where insertions should map (logical "after this tag")
             var tagSpan = s.Slice(lt, gt - lt + 1);
 
-            if (TryParseTag(tagSpan, out var isEndTag, out var tagName, out var attrs))
+            if (TryParseTag(tagSpan, out var isEndTag, out var isSelfClosing, out var tagName, out var attrs))
             {
                 if (isEndTag)
                 {
@@ -325,7 +346,13 @@ public static class TeiRenderer
                     }
 
                     // finish note capture
-                    if (EqualsIgnoreCase(tagName, "note") && inNoteCapture)
+                    if (EqualsIgnoreCase(tagName, "note") && inNoteCapture && noteNestDepth > 0)
+                    {
+                        // Close of a nested note INSIDE the captured one — the outer
+                        // capture continues (its tail text still belongs to the note).
+                        noteNestDepth--;
+                    }
+                    else if (EqualsIgnoreCase(tagName, "note") && inNoteCapture)
                     {
                         inNoteCapture = false;
 
@@ -372,14 +399,24 @@ public static class TeiRenderer
                 }
                 else
                 {
-                    // entering blocks
+                    // entering blocks — a self-closing container (<app/>, <teiHeader/>,
+                    // <note/>, <head/>, <lem/>, <rdg/>) has NO content: entering its
+                    // "until the close tag" state would swallow or suppress unrelated
+                    // following text, because that close tag never comes (audit R2-H2;
+                    // same bug family as the <app/> self-close search extractor fix).
                     if (EqualsIgnoreCase(tagName, "teiHeader"))
-                        teiHeaderDepth++;
+                    {
+                        if (!isSelfClosing) teiHeaderDepth++;
+                    }
                     else if (EqualsIgnoreCase(tagName, "back"))
-                        backDepth++;
+                    {
+                        if (!isSelfClosing) backDepth++;
+                    }
                     else if (EqualsIgnoreCase(tagName, "cb:mulu"))
-                        muluDepth++;
-                    else if (EqualsIgnoreCase(tagName, "app"))
+                    {
+                        if (!isSelfClosing) muluDepth++;
+                    }
+                    else if (EqualsIgnoreCase(tagName, "app") && !isSelfClosing)
                     {
                         appDepth++;
                         if (appDepth == 1)
@@ -405,7 +442,8 @@ public static class TeiRenderer
                     {
                         if (EqualsIgnoreCase(tagName, "lem"))
                         {
-                            inLemCapture = true;
+                            // <lem/> is an empty lemma — never open a capture for it.
+                            inLemCapture = !isSelfClosing;
                             inRdgCapture = false;
                         }
                         else if (EqualsIgnoreCase(tagName, "rdg"))
@@ -417,15 +455,32 @@ public static class TeiRenderer
                                 rdgList.Add((rdgText.Length > 0 ? rdgText : "(empty)", currentRdgWit ?? ""));
                                 currentRdgSb.Clear();
                             }
-                            inRdgCapture = true;
                             inLemCapture = false;
-                            currentRdgWit = Attr(attrs, "wit");
+                            if (isSelfClosing)
+                            {
+                                // <rdg wit="..."/> is a complete omission reading —
+                                // record it now; leaving the capture open would swallow
+                                // any loose text inside <app> into this reading.
+                                rdgList.Add(("(empty)", Attr(attrs, "wit") ?? ""));
+                                inRdgCapture = false;
+                                currentRdgWit = null;
+                            }
+                            else
+                            {
+                                inRdgCapture = true;
+                                currentRdgWit = Attr(attrs, "wit");
+                            }
                         }
                     }
 
                     // If we're capturing a note and we hit any start-tag: treat as a soft separator
                     if (inNoteCapture)
                     {
+                        // A nested <note> belongs to the captured note's content; count
+                        // it so its close tag doesn't end the outer capture early.
+                        if (EqualsIgnoreCase(tagName, "note") && !isSelfClosing)
+                            noteNestDepth++;
+
                         if (EqualsIgnoreCase(tagName, "lb") ||
                             EqualsIgnoreCase(tagName, "p") ||
                             EqualsIgnoreCase(tagName, "head") ||
@@ -482,9 +537,10 @@ public static class TeiRenderer
                             {
                                 // invisible metadata for reader
                             }
-                            else if (isInline || isCommunity)
+                            else if ((isInline || isCommunity) && !isSelfClosing)
                             {
                                 inNoteCapture = true;
+                                noteNestDepth = 0;
                                 noteSb.Clear();
                                 noteLastWasNewline = false;
 
@@ -532,8 +588,10 @@ public static class TeiRenderer
                             // INSERTED paragraph break should map AFTER the tag that caused it.
                             EnsureParagraphBreak(sb, baseToXml, xmlIndexForInserted: afterTag, ref lastWasNewline);
 
-                            // Start heading capture when <head> opens
-                            if (EqualsIgnoreCase(tagName, "head"))
+                            // Start heading capture when <head> opens. A self-closing
+                            // <head/> has no content — capturing would let a stray
+                            // </head> later fabricate a heading out of body text.
+                            if (EqualsIgnoreCase(tagName, "head") && !isSelfClosing)
                             {
                                 inHeadCapture = true;
                                 headSb.Clear();
@@ -565,9 +623,10 @@ public static class TeiRenderer
                             {
                                 var targetId = target.Substring(1);
 
-                                if (targetId.StartsWith("nkr_note_", StringComparison.Ordinal))
+                                if (targetId.StartsWith("nkr_note_", StringComparison.Ordinal) && !isSelfClosing)
                                 {
                                     inNoteCapture = true;
+                                    noteNestDepth = 0;
                                     noteSb.Clear();
                                     noteLastWasNewline = false;
 
@@ -635,9 +694,10 @@ public static class TeiRenderer
     // Fast tag parsing (no regex, minimal allocations)
     // ------------------------------------------------------------
 
-    private static bool TryParseTag(ReadOnlySpan<char> tag, out bool isEndTag, out ReadOnlySpan<char> tagName, out ReadOnlySpan<char> attrs)
+    private static bool TryParseTag(ReadOnlySpan<char> tag, out bool isEndTag, out bool isSelfClosing, out ReadOnlySpan<char> tagName, out ReadOnlySpan<char> attrs)
     {
         isEndTag = false;
+        isSelfClosing = false;
         tagName = default;
         attrs = default;
 
@@ -685,9 +745,14 @@ public static class TeiRenderer
 
         int attrEnd = tag.Length - 1; // index of '>'
         int q = attrEnd - 1;
-        while (q > attrStart && char.IsWhiteSpace(tag[q])) q--;
-        if (!isEndTag && q > attrStart && tag[q] == '/')
+        while (q >= attrStart && char.IsWhiteSpace(tag[q])) q--;
+        // q >= attrStart (not >): a no-attribute self-closing tag like <note/> has the
+        // '/' exactly at attrStart, and it must count as self-closing, not as attrs.
+        if (!isEndTag && q >= attrStart && tag[q] == '/')
+        {
+            isSelfClosing = true;
             attrEnd = q;
+        }
 
         attrs = tag.Slice(attrStart, attrEnd - attrStart);
         return true;
