@@ -139,4 +139,58 @@ public class SettingsWindowViewModelTests
 
         Assert.Contains("ShowUsernameError", changed);
     }
+
+    // ---------------------------------------------------------------
+    // Regression: Apply() must PRESERVE fields the dialog does not edit.
+    // The old hand-written copy list silently reset citation style, panels,
+    // window geometry, search history, corpus, ... on every settings save.
+    // ---------------------------------------------------------------
+
+    [Fact]
+    public void Apply_PreservesFieldsTheDialogDoesNotEdit()
+    {
+        var cfg = MakeConfig();
+        cfg.EnableStudyPanel = true;
+        cfg.EnableProvenancePanel = true;
+        cfg.PreferredCitationStyle = CitationStyle.Apa;
+        cfg.PreferredCitationStyleIndex = 2;
+        cfg.EditorFontSize = 18.5;
+        cfg.HasRegisteredProtocolHandler = true;
+        cfg.SearchHistory.Add("previous search");
+        cfg.EnableBilingualScrollSync = false;
+
+        var vm = new SettingsWindowViewModel(cfg);
+        vm.ApplyCommand.Execute(null);
+
+        var r = vm.Result;
+        Assert.NotNull(r);
+        Assert.True(r!.EnableStudyPanel);
+        Assert.True(r.EnableProvenancePanel);
+        Assert.Equal(CitationStyle.Apa, r.PreferredCitationStyle);
+        Assert.Equal(2, r.PreferredCitationStyleIndex);
+        Assert.Equal(18.5, r.EditorFontSize);
+        Assert.True(r.HasRegisteredProtocolHandler);
+        Assert.Contains("previous search", r.SearchHistory);
+        // Dialog-edited field round-trips from the constructor-loaded value:
+        Assert.False(r.EnableBilingualScrollSync);
+    }
+
+    [Fact]
+    public void Apply_EditedFieldsStillWin()
+    {
+        var cfg = MakeConfig(isDark: true, hoverDict: true);
+        cfg.EnableBilingualScrollSync = true;
+
+        var vm = new SettingsWindowViewModel(cfg);
+        vm.IsDarkTheme = false;
+        vm.EnableHoverDictionary = false;
+        vm.EnableBilingualScrollSync = false;
+        vm.ApplyCommand.Execute(null);
+
+        var r = vm.Result;
+        Assert.NotNull(r);
+        Assert.False(r!.IsDarkTheme);
+        Assert.False(r.EnableHoverDictionary);
+        Assert.False(r.EnableBilingualScrollSync);
+    }
 }

@@ -91,6 +91,12 @@
 				          VerticalAlignment="Top"
 				          IsChecked="{Binding EnableHoverDictionary}"/>
 
+				<!-- Bilingual scroll sync checkbox -->
+				<CheckBox Content="Sync bilingual scrolling in reader"
+				          VerticalAlignment="Top"
+				          ToolTip.Tip="Scrolling one reader pane keeps the other aligned on the same passage. Turn off for independent scrolling."
+				          IsChecked="{Binding EnableBilingualScrollSync}"/>
+
 				<!-- Divider -->
 				<Border Height="1"
 				        Background="{DynamicResource BorderBrush}"

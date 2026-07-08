@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using CommunityToolkit.Mvvm.Messaging;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -333,6 +334,13 @@ public partial class ReadableTabView : UserControl
         FindControls();
         WireEvents();
         WireVmEvents();
+
+        // Config-driven toggles arrive via the typed messenger (ratchet-preferred
+        // channel; no new MainWindowViewModel bridge delegate). Weak registration —
+        // no unsubscribe needed for the view's lifetime.
+        WeakReferenceMessenger.Default
+            .Register<ReadableTabView, ReadZen.App.Messages.SettingsAppliedMessage>(
+                this, static (view, msg) => view.SetScrollSyncEnabled(msg.Config.EnableBilingualScrollSync));
 
         AttachedToVisualTree += (_, _) =>
         {
@@ -3210,6 +3218,21 @@ public partial class ReadableTabView : UserControl
     private DispatcherTimer? _scrollSyncDebounce;
     private bool _scrollSyncSourceIsOrig;
 
+    /// <summary>Config-controlled (AppConfig.EnableBilingualScrollSync via SettingsAppliedMessage).</summary>
+    private bool _scrollSyncEnabled = true;
+
+    // USER-INTENT GATE: the panes also scroll programmatically — find-bar next/prev,
+    // search-tab navigation, cross-pane selection sync (CenterByCaret), bookmark and
+    // reading-progress jumps. Those must NOT drag the peer pane along, so sync only
+    // fires when the source pane saw direct user scrolling (wheel / pointer drag /
+    // nav keys) shortly before the ScrollChanged.
+    private DateTime _scrollIntentOrig = DateTime.MinValue;
+    private DateTime _scrollIntentTran = DateTime.MinValue;
+    private static readonly TimeSpan ScrollIntentWindow = TimeSpan.FromMilliseconds(600);
+
+    /// <summary>Applies the config toggle (called from the SettingsAppliedMessage registration).</summary>
+    internal void SetScrollSyncEnabled(bool enabled) => _scrollSyncEnabled = enabled;
+
     private void HookScrollSync()
     {
         // ResolveInnerEditors runs more than once; only hook the first time both
@@ -3225,13 +3248,53 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
+        HookScrollIntent(_editorOriginal, isOrig: true);
+        HookScrollIntent(_editorTranslated, isOrig: false);
+
         _scrollSvOrig.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: true);
         _scrollSvTran.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: false);
     }
 
+    private void HookScrollIntent(Control? paneHost, bool isOrig)
+    {
+        if (paneHost == null) return;
+        void Stamp()
+        {
+            if (isOrig) _scrollIntentOrig = DateTime.UtcNow;
+            else _scrollIntentTran = DateTime.UtcNow;
+        }
+
+        paneHost.AddHandler(InputElement.PointerWheelChangedEvent, (_, _) => Stamp(),
+            RoutingStrategies.Tunnel, handledEventsToo: true);
+        paneHost.AddHandler(InputElement.PointerPressedEvent, (_, _) => Stamp(),
+            RoutingStrategies.Tunnel, handledEventsToo: true);
+        // Scrollbar thumb drags outlive the press: keep stamping while a button is held.
+        paneHost.AddHandler(InputElement.PointerMovedEvent, (object? s, PointerEventArgs e) =>
+        {
+            var props = e.GetCurrentPoint(paneHost).Properties;
+            if (props.IsLeftButtonPressed || props.IsMiddleButtonPressed) Stamp();
+        }, RoutingStrategies.Tunnel, handledEventsToo: true);
+        paneHost.AddHandler(InputElement.KeyDownEvent, (object? s, KeyEventArgs e) =>
+        {
+            switch (e.Key)
+            {
+                case Key.PageUp: case Key.PageDown: case Key.Up: case Key.Down:
+                case Key.Home: case Key.End: case Key.Space:
+                    Stamp();
+                    break;
+            }
+        }, RoutingStrategies.Tunnel, handledEventsToo: true);
+    }
+
     private void OnPaneScrolled(bool sourceIsOrig)
     {
+        if (!_scrollSyncEnabled) return;
         if (_scrollSyncSuppress) return;
+
+        // Programmatic scrolls (find bar, search navigation, selection sync,
+        // bookmarks, progress restore) never stamp intent — ignore them.
+        var intent = sourceIsOrig ? _scrollIntentOrig : _scrollIntentTran;
+        if (DateTime.UtcNow - intent > ScrollIntentWindow) return;
 
         _scrollSyncSourceIsOrig = sourceIsOrig;
         _scrollSyncDebounce ??= CreateScrollSyncTimer();

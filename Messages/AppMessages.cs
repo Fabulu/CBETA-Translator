@@ -3,6 +3,11 @@ namespace ReadZen.App.Messages;
 // Status updates
 public sealed record StatusMessage(string Text);
 
+// Settings: broadcast after the config changes (startup load + settings dialog apply).
+// First live messenger usage per the CLAUDE.md UI-architecture ratchet - views
+// register for this instead of adding MainWindowViewModel bridge delegates.
+public sealed record SettingsAppliedMessage(Models.AppConfig Config);
+
 // File navigation
 public sealed record FileSelectedMessage(string RelPath);
 public sealed record RootLoadedMessage(string Root, string OriginalDir, string TranslatedDir);
