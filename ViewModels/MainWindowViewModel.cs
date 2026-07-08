@@ -953,7 +953,9 @@ public partial class MainWindowViewModel : ViewModelBase
                     {
                         var corpusSvc = new MasterCorpusSearchService();
                         var cacheDir = MasterCorpusSearchService.GetCacheDir(_root);
-                        var cached = await corpusSvc.TryLoadAsync(cacheDir, ct);
+                        // Freshness check makes a corpus change (or a legacy unstamped
+                        // cache) come back null → the auto-build below refreshes it.
+                        var cached = await corpusSvc.TryLoadAsync(cacheDir, ct, parentRootForFreshness: _root);
                         MasterCorpusIndex? index = cached;
 
                         var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();

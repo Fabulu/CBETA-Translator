@@ -17,6 +17,15 @@ public sealed class MasterCorpusIndex
     [JsonPropertyName("corpus")]
     public string? Corpus { get; set; }
 
+    /// <summary>
+    /// Stat-stamp of the corpus at build time ("files=N;maxTicks=T" across all
+    /// discovered corpus dirs). TryLoadAsync compares it against the live corpus to
+    /// refuse stale caches (audit P4.6). Null in caches from older builds — treated
+    /// as stale when a freshness check is requested.
+    /// </summary>
+    [JsonPropertyName("corpus_stamp")]
+    public string? CorpusStamp { get; set; }
+
     [JsonPropertyName("file_count")]
     public int FileCount { get; set; }
 

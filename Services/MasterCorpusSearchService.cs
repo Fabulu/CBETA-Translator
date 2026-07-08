@@ -35,10 +35,12 @@ public sealed class MasterCorpusSearchService
 
     // Manual primary-text overrides: the concept-name filter cannot detect these
     // because the TEI <author> field and body text don't contain the full compound
-    // name. Key is canonical master name → set of RelPath prefixes.
+    // name. Key is canonical master name → set of /-normalized RelPath prefixes
+    // (matched against relKey, NOT the platform-separator relPath — the old
+    // backslash prefix silently never matched on Linux/macOS; audit R3-L5).
     private static readonly Dictionary<string, HashSet<string>> ManualPrimary = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["Wumen Huikai"] = new(StringComparer.OrdinalIgnoreCase) { @"T\T48\T48n2005" },
+        ["Wumen Huikai"] = new(StringComparer.OrdinalIgnoreCase) { "T/T48/T48n2005" },
     };
 
     private static readonly JsonSerializerOptions JsonOpts = new()
@@ -113,6 +115,34 @@ public sealed class MasterCorpusSearchService
     }
 
     /// <summary>
+    /// Stat-stamp over all discovered corpus dirs: xml file count + newest write time.
+    /// Cheap (stat-only) staleness signal for the cached index — same pattern as the
+    /// termbase community cache (audit P4.6). Null when no corpus dirs exist.
+    /// </summary>
+    public static string? ComputeCorpusStamp(string parentRoot)
+    {
+        var corpusDirs = DiscoverCorpusDirs(parentRoot);
+        if (corpusDirs.Count == 0) return null;
+
+        int files = 0;
+        long maxTicks = 0;
+        foreach (var (_, dir) in corpusDirs)
+        {
+            try
+            {
+                foreach (var f in Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
+                {
+                    files++;
+                    var t = File.GetLastWriteTimeUtc(f).Ticks;
+                    if (t > maxTicks) maxTicks = t;
+                }
+            }
+            catch { /* unreadable dir → reflected by lower count; stamp still differs */ }
+        }
+        return $"files={files};maxTicks={maxTicks}";
+    }
+
+    /// <summary>
     /// Builds a combined index across all discovered corpora.
     /// </summary>
     public async Task<MasterCorpusIndex> BuildFullIndexAsync(
@@ -128,6 +158,7 @@ public sealed class MasterCorpusSearchService
         {
             BuiltUtc = DateTime.UtcNow.ToString("o"),
             Corpus = string.Join("+", corpusDirs.Select(c => c.Label)),
+            CorpusStamp = ComputeCorpusStamp(parentRoot),
         };
 
         int totalFiles = 0;
@@ -269,8 +300,9 @@ public sealed class MasterCorpusSearchService
                             && authorField.Contains(chineseName, StringComparison.Ordinal);
 
                         // Manual override bypasses concept-name disambiguation
+                        // (relKey is /-normalized; the prefixes are too)
                         bool isManualOverride = ManualPrimary.TryGetValue(canonicalName, out var manualPaths)
-                            && manualPaths.Any(p => relPath.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+                            && manualPaths.Any(p => relKey.StartsWith(p, StringComparison.OrdinalIgnoreCase));
 
                         if (ConceptNames.Contains(chineseName) && !foundInAuthorField && !isManualOverride)
                         {
@@ -548,8 +580,15 @@ public sealed class MasterCorpusSearchService
         return dict;
     }
 
-    /// <summary>Loads the cached index, or null if not available.</summary>
-    public async Task<MasterCorpusIndex?> TryLoadAsync(string cacheDir, CancellationToken ct = default)
+    /// <summary>
+    /// Loads the cached index, or null if not available. When
+    /// <paramref name="parentRootForFreshness"/> is given, the cache is also refused
+    /// as stale unless its recorded corpus stamp matches the live corpus (caches from
+    /// older builds carry no stamp and are treated as stale) — audit P4.6: the index
+    /// previously never noticed corpus changes.
+    /// </summary>
+    public async Task<MasterCorpusIndex?> TryLoadAsync(
+        string cacheDir, CancellationToken ct = default, string? parentRootForFreshness = null)
     {
         var path = Path.Combine(cacheDir, CacheFileName);
         if (!File.Exists(path)) return null;
@@ -557,7 +596,17 @@ public sealed class MasterCorpusSearchService
         try
         {
             var json = await File.ReadAllTextAsync(path, Encoding.UTF8, ct);
-            return JsonSerializer.Deserialize<MasterCorpusIndex>(json, JsonOpts);
+            var index = JsonSerializer.Deserialize<MasterCorpusIndex>(json, JsonOpts);
+            if (index == null) return null;
+
+            if (parentRootForFreshness != null)
+            {
+                var live = ComputeCorpusStamp(parentRootForFreshness);
+                if (live != null && index.CorpusStamp != live)
+                    return null; // stale (or unstamped legacy cache) → caller rebuilds
+            }
+
+            return index;
         }
         catch { return null; }
     }
