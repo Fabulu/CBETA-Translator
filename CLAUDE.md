@@ -451,8 +451,6 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 |--------|-------------|--------|-------------------|
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
 | RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
-| RUN-20260702-2259 | Full repo audit (5 recons) + architect improvement plan | Complete (archival candidate) | runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/ |
-| RUN-20260703-0634 | Improvement plan execution — Phases 0–2 (c3147f3..bf3e421) | Complete (archival candidate) | runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/ |
 | RUN-20260704-1141 | Improvement plan execution — Phases 3–4 (batches A–I) | In Progress | runs/CLAUDE-RUNS/RUN-20260704-1141-phase34-plan-exec/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
