@@ -12,6 +12,12 @@ namespace ReadZen.App.Models
 
         public bool EnableHoverDictionary { get; set; } = true;
 
+        /// <summary>
+        /// Bilingual scroll sync in the reader: scrolling one pane keeps the other
+        /// aligned on the shared segment grid (P4.3a). Off = panes scroll independently.
+        /// </summary>
+        public bool EnableBilingualScrollSync { get; set; } = true;
+
         public string? Username { get; set; }
 
         public string? GitHubAccessToken { get; set; }

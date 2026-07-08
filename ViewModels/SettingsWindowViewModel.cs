@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using ReadZen.App.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,6 +13,9 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _enableHoverDictionary;
+
+    [ObservableProperty]
+    private bool _enableBilingualScrollSync;
 
     [ObservableProperty]
     private string _username = string.Empty;
@@ -45,6 +49,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
         _template = config;
         _isDarkTheme = config.IsDarkTheme;
         _enableHoverDictionary = config.EnableHoverDictionary;
+        _enableBilingualScrollSync = config.EnableBilingualScrollSync;
         _enableConcordance = config.EnableConcordance;
         _tmMaxResults = config.TmMaxResults;
         _username = config.Username ?? string.Empty;
@@ -60,22 +65,22 @@ public partial class SettingsWindowViewModel : ViewModelBase
             return;
         }
 
-        Result = new AppConfig
-        {
-            TextRootPath = _template.TextRootPath,
-            LastSelectedRelPath = _template.LastSelectedRelPath,
-            IsDarkTheme = IsDarkTheme,
-            ZenOnly = _template.ZenOnly,
-            EnableHoverDictionary = EnableHoverDictionary,
-            EnableConcordance = EnableConcordance,
-            TmMaxResults = Math.Clamp(TmMaxResults, 4, 20),
-            Username = name,
-            GitHubAccessToken = _template.GitHubAccessToken,
-            GitHubUsername = _template.GitHubUsername,
-            HasCompletedOnboarding = RestartTourRequested ? false : _template.HasCompletedOnboarding,
-            Version = _template.Version
-        };
+        // Clone the template and override ONLY the fields this dialog edits. The
+        // previous hand-written field list silently RESET every unlisted AppConfig
+        // field (citation style, study/provenance panels, window geometry, search
+        // history, corpus, ...) to defaults on every settings save — cloning makes
+        // field preservation hold by construction for future AppConfig additions.
+        var result = JsonSerializer.Deserialize<AppConfig>(JsonSerializer.Serialize(_template))!;
+        result.IsDarkTheme = IsDarkTheme;
+        result.EnableHoverDictionary = EnableHoverDictionary;
+        result.EnableBilingualScrollSync = EnableBilingualScrollSync;
+        result.EnableConcordance = EnableConcordance;
+        result.TmMaxResults = Math.Clamp(TmMaxResults, 4, 20);
+        result.Username = name;
+        if (RestartTourRequested)
+            result.HasCompletedOnboarding = false;
 
+        Result = result;
         CloseRequested?.Invoke(Result);
     }
 

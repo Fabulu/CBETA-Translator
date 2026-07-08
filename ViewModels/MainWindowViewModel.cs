@@ -25,6 +25,7 @@ using ReadZen.App.Text;
 using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ReadZen.App.ViewModels;
 
@@ -1094,6 +1095,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void ApplySettingsToChildViews()
     {
+        // Messenger broadcast (the ratchet-preferred channel; the delegates below are
+        // legacy bridges that convert as they are touched).
+        try { WeakReferenceMessenger.Default.Send(new Messages.SettingsAppliedMessage(_config)); } catch { }
+
         try { SetTranslationHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
         try { SetReadableStudyPanelVisible?.Invoke(_config.EnableStudyPanel); } catch { }
