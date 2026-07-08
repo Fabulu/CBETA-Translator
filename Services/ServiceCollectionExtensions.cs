@@ -9,7 +9,6 @@ public static class ServiceCollectionExtensions
         // Register all services as singletons
         services.AddSingleton<IAppConfigService, AppConfigService>();
         services.AddSingleton<ICedictDictionary, CedictDictionaryService>();
-        services.AddSingleton<IFileService, FileService>();
         services.AddSingleton<IGitRepoService, GitRepoService>();
         services.AddSingleton<IGitHubApiService, GitHubApiService>();
         services.AddSingleton<IGitHubAuthService, GitHubAuthService>();
