@@ -29,16 +29,6 @@ public sealed class TranslationReviewService : ITranslationReviewService
 
     private Dictionary<string, SegmentReviewAggregation>? _aggregationCache;
 
-    private sealed class TmRow
-    {
-        public string SourceText { get; set; } = "";
-        public string TargetText { get; set; } = "";
-        public string RelPath { get; set; } = "";
-        public string ReviewStatus { get; set; } = "";
-        public string Translator { get; set; } = "";
-        public DateTimeOffset? WrittenUtc { get; set; }
-    }
-
     public static string GetLedgerPath(string root)
         => Path.Combine(root, "translation-review.jsonl");
 

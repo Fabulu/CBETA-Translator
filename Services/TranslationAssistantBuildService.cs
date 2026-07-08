@@ -19,16 +19,6 @@ public sealed class TranslationAssistantBuildService : ITranslationAssistantBuil
 
     private readonly IndexedTranslationService _indexedTranslation = new();
 
-    private sealed class TmRow
-    {
-        public string SourceText { get; set; } = "";
-        public string TargetText { get; set; } = "";
-        public string RelPath { get; set; } = "";
-        public string ReviewStatus { get; set; } = "";
-        public string Translator { get; set; } = "";
-        public DateTimeOffset? WrittenUtc { get; set; }
-    }
-
     public Task<bool> IsReferenceStaleAsync(string root, string translatedDir)
     {
         var refPath = Path.Combine(root, "translation-memory.reference.jsonl");
