@@ -531,6 +531,7 @@ public partial class ReadableTabView : UserControl
         }
         ApplyEditorFontSize();
         SubscribeReadingProgress();
+        HookScrollSync();
     }
 
     private void RebuildContextMenus()
@@ -3193,6 +3194,117 @@ public partial class ReadableTabView : UserControl
             sv.Offset = new Vector(offset.X, y);
         }
         catch { }
+    }
+
+    // =========================
+    // Bilingual scroll sync (P4.3a)
+    // =========================
+    // Scrolling one pane keeps the peer pane aligned on the shared segment grid
+    // (lb-based keys; mapping logic lives in Infrastructure/BilingualScrollMapper —
+    // this section is only the AvaloniaEdit adapter). Debounced like the other
+    // interaction timers; a suppress flag stops the panes from ping-ponging.
+
+    private ScrollViewer? _scrollSvOrig;
+    private ScrollViewer? _scrollSvTran;
+    private bool _scrollSyncSuppress;
+    private DispatcherTimer? _scrollSyncDebounce;
+    private bool _scrollSyncSourceIsOrig;
+
+    private void HookScrollSync()
+    {
+        // ResolveInnerEditors runs more than once; only hook the first time both
+        // scroll viewers materialize (same idempotence guard as the transformers).
+        if (_scrollSvOrig != null && _scrollSvTran != null) return;
+
+        _scrollSvOrig = _aeOrig?.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        _scrollSvTran = _aeTran?.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        if (_scrollSvOrig == null || _scrollSvTran == null)
+        {
+            _scrollSvOrig = null;
+            _scrollSvTran = null; // retry on the next resolve pass
+            return;
+        }
+
+        _scrollSvOrig.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: true);
+        _scrollSvTran.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: false);
+    }
+
+    private void OnPaneScrolled(bool sourceIsOrig)
+    {
+        if (_scrollSyncSuppress) return;
+
+        _scrollSyncSourceIsOrig = sourceIsOrig;
+        _scrollSyncDebounce ??= CreateScrollSyncTimer();
+        _scrollSyncDebounce.Stop();
+        _scrollSyncDebounce.Start();
+    }
+
+    private DispatcherTimer CreateScrollSyncTimer()
+    {
+        var t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(80) };
+        t.Tick += (_, _) =>
+        {
+            t.Stop();
+            try { SyncPeerPaneScroll(_scrollSyncSourceIsOrig); }
+            catch { /* scroll sync is best-effort polish; never break the reader */ }
+        };
+        return t;
+    }
+
+    private void SyncPeerPaneScroll(bool sourceIsOrig)
+    {
+        var srcEd = sourceIsOrig ? _aeOrig : _aeTran;
+        var dstEd = sourceIsOrig ? _aeTran : _aeOrig;
+        var dstSv = sourceIsOrig ? _scrollSvTran : _scrollSvOrig;
+        var srcDoc = sourceIsOrig ? _vm.RenderOrig : _vm.RenderTran;
+        var dstDoc = sourceIsOrig ? _vm.RenderTran : _vm.RenderOrig;
+        if (srcEd == null || dstEd == null || dstSv == null) return;
+        if (srcDoc.IsEmpty || dstDoc.IsEmpty) return;
+
+        // Top visible character offset in the source pane: the first materialized
+        // visual line (house pattern — same primitives as CenterByCaret).
+        var srcView = srcEd.TextArea?.TextView;
+        if (srcView == null) return;
+        srcView.EnsureVisualLines();
+        var firstVisual = srcView.VisualLines.FirstOrDefault();
+        if (firstVisual == null) return;
+        int srcOffset = firstVisual.FirstDocumentLine.Offset;
+
+        var mapped = BilingualScrollMapper.MapOffset(srcDoc, dstDoc, srcOffset);
+        if (mapped == null) return;
+
+        var dstLine = dstEd.Document?.GetLineByOffset(Math.Clamp(mapped.Value, 0, dstEd.Document.TextLength));
+        if (dstLine == null) return;
+
+        _scrollSyncSuppress = true;
+        try
+        {
+            dstEd.ScrollTo(dstLine.LineNumber, 0);
+            var dstView = dstEd.TextArea?.TextView;
+            if (dstView != null)
+            {
+                dstView.EnsureVisualLines();
+                double absoluteY;
+                try { absoluteY = dstView.GetVisualTopByDocumentLine(dstLine.LineNumber); }
+                catch { absoluteY = double.NaN; }
+
+                if (!double.IsNaN(absoluteY))
+                {
+                    double viewportH = dstSv.Viewport.Height;
+                    double extentH = dstSv.Extent.Height;
+                    double maxY = (!double.IsNaN(extentH) && extentH > viewportH) ? extentH - viewportH : 0;
+                    // Top-align the mapped line (the source offset was the TOP visible line).
+                    double desiredY = Math.Clamp(absoluteY, 0, Math.Max(0, maxY));
+                    dstSv.Offset = new Vector(dstSv.Offset.X, desiredY);
+                }
+            }
+        }
+        finally
+        {
+            // Clear AFTER the layout-driven ScrollChanged from our own mutation has
+            // had a chance to fire (it arrives via the dispatcher queue).
+            Dispatcher.UIThread.Post(() => _scrollSyncSuppress = false, DispatcherPriority.Background);
+        }
     }
 
     private static void CenterByCaret(TextEditor ed, int caretOffset)
