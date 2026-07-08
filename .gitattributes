@@ -10,3 +10,7 @@ Assets/Dict/cedict_ts.u8 -text
 
 # Shell scripts must stay LF to run under WSL/Linux.
 *.sh text eol=lf
+
+# Segment-parser parity fixtures + goldens must stay byte-exact (one fixture is
+# deliberately CRLF; goldens are compared byte-for-byte against the C# port).
+ReadZen.Tests/TestData/segparity/** -text
