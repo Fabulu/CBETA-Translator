@@ -34,6 +34,37 @@ Completed runs are logged here (newest first). Working directories remain in
 
 ## 2026-07-08 — Archived
 
+### [RUN-20260703-0634] Improvement plan execution — Phases 0–2
+
+**Archived:** 2026-07-08 (user-approved)
+**Created:** 2026-07-03 06:34 +02:00
+**Completed:** 2026-07-04
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260703-0634-plan-exec-phase0/`
+**Commits:** `c3147f3..bf3e421` (21 commits)
+
+**Summary:** Executed Phases 0–2 of the audit plan. Phase 0 (8 items): CLAUDE.md docs truth pass, `.gitattributes` + renormalize (killed the 137-file CRLF phantom storm), untracked the name-bearing `.trx` files, GC'd 37 agent worktrees (~11 GB) + 45 merged branches, relocated stray agent outputs, ARCHIVE.md backfill (9 May-run entries) + Active-Tasks reconciliation, README refresh, stash resolution. Phase 1 (7 items): inverted-index integrity contract (v3 stamp+checksum, BuildGuid → `search-v5-inverted-integrity`), TeiRenderer scanner hardening (self-closing/nested notes, comments/CDATA), write-back target verification guard, git failure surfacing before destructive flows, DPAPI token protection + clean-URL pushes, atomic approved-TM writes, ArgumentList git args + `_running` ownership. Phase 2 (6 items): save path off the UI thread (+validation demotion, dump rotation), reading-layout toggle lifecycle, catalog preload (killed two UI-thread `GetResult()` sites), BuildIndex single-pass node paths + parse dedup, AsyncGuard + global dispatcher net, small perf nits. Also fixed the 1-in-5 flaky streaming test and the UserPromptSubmit hook hang (blocking `run-hook.ps1` wrapper removed from hook chain). Suite 1605 → 1644.
+
+**Deliverables:** the 21 commits; `PHASE3-4_HANDOFF.md` (execution spec for the remaining phases); docstring_validation.md (3 milestones, 0 discrepancies).
+
+**Outcome:** Phases 0–2 complete and user-accepted; Phases 3–4 continued in RUN-20260704-1141.
+
+---
+
+### [RUN-20260702-2259] Full repo audit (5 recons) + architect improvement plan
+
+**Archived:** 2026-07-08 (user-approved)
+**Created:** 2026-07-02 23:00 +02:00
+**Completed:** 2026-07-03 (decisions recorded)
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260702-2259-full-repo-audit-plan/`
+
+**Summary:** Five parallel recon agents audited the whole repository (run-notes/project state, core pipeline, services, UI/ViewModels, tests/build hygiene), consolidated into ARCHITECT_PLAN.md: a phased improvement plan (Phase 0 hygiene → Phase 1 correctness/data-safety → Phase 2 perf/UX → Phase 3 architecture paydown → Phase 4 features) with 8 cross-cutting themes and 11 user decisions. The user ruled on D1–D11 on 2026-07-03 (binding table in SPEC_v2.md); NEXT_AGENT_HANDOFF.md packaged the plan for execution. Headline findings: CLAUDE.md described a nonexistent markdown pipeline; the search inverted index could silently drift; TeiRenderer capture-state bugs corrupted the position map; plaintext OAuth token; 11 GB of worktree debris.
+
+**Deliverables:** 5 subagents/*/FINDINGS.md, ARCHITECT_PLAN.md, SPEC_v2.md (D1–D11), NEXT_AGENT_HANDOFF.md.
+
+**Outcome:** Fully executed: Phases 0–2 by RUN-20260703-0634, Phases 3–4 by RUN-20260704-1141. Deferred by ruling: P1.8 CI (D9), P4.5 Haiku Layer-2 (D10), D11 backlog.
+
+---
+
 ### [RUN-20260509-1330] Character-click witness zoom
 
 **Archived:** 2026-07-08 (QA close-out per audit plan item P4.1; archival pre-approved by decision D1)
