@@ -1,9 +1,6 @@
 using System.Linq;
 using ReadZen.App.Services;
 using Xunit;
-// Two TranslationUnitKind enums exist (a legacy global-namespace one in
-// Models/TranslationUnit.cs and the live one in Services); pin the live one.
-using UnitKind = ReadZen.App.Services.TranslationUnitKind;
 
 namespace ReadZen.Tests.Services;
 
@@ -38,7 +35,7 @@ public class IndexedTranslationWriteBackGuardTests
         var orig = Wrap("<p>甲乙丙丁</p>");
 
         var doc = svc.BuildIndex(orig, orig);
-        var unit = doc.Units.Single(u => u.Kind == UnitKind.Body);
+        var unit = doc.Units.Single(u => u.Kind == TranslationUnitKind.Body);
         unit.En = "HELLO";
         unit.IsDirty = true;
 
@@ -56,14 +53,14 @@ public class IndexedTranslationWriteBackGuardTests
 
         // First save produces a translated document...
         var doc1 = svc.BuildIndex(orig, orig);
-        var u1 = doc1.Units.Single(u => u.Kind == UnitKind.Body);
+        var u1 = doc1.Units.Single(u => u.Kind == TranslationUnitKind.Body);
         u1.En = "HELLO";
         u1.IsDirty = true;
         var translated = svc.BuildTranslatedXml(doc1, out _);
 
         // ...and a second edit session against it must still be able to save.
         var doc2 = svc.BuildIndex(orig, translated);
-        var u2 = doc2.Units.Single(u => u.Kind == UnitKind.Body);
+        var u2 = doc2.Units.Single(u => u.Kind == TranslationUnitKind.Body);
         Assert.Equal("HELLO", u2.EnBaseline);
         u2.En = "WORLD";
         u2.IsDirty = true;
@@ -87,7 +84,7 @@ public class IndexedTranslationWriteBackGuardTests
         var orig = Wrap("<p>甲乙丙丁</p>");
 
         var doc = svc.BuildIndex(orig, orig);
-        var unit = doc.Units.Single(u => u.Kind == UnitKind.Body);
+        var unit = doc.Units.Single(u => u.Kind == TranslationUnitKind.Body);
         unit.En = "MY-EDIT";
         unit.IsDirty = true;
 
@@ -117,8 +114,8 @@ public class IndexedTranslationWriteBackGuardTests
         var orig = Wrap("<p>甲乙丙丁<note place=\"inline\">注文</note></p>");
 
         var doc = svc.BuildIndex(orig, orig);
-        var bodyUnit = doc.Units.Single(u => u.Kind == UnitKind.Body);
-        var noteUnit = doc.Units.Single(u => u.Kind == UnitKind.Note);
+        var bodyUnit = doc.Units.Single(u => u.Kind == TranslationUnitKind.Body);
+        var noteUnit = doc.Units.Single(u => u.Kind == TranslationUnitKind.Note);
 
         bodyUnit.En = "BODY-EN";
         bodyUnit.IsDirty = true;
