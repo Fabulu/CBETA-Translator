@@ -8,17 +8,16 @@ using Xunit;
 namespace ReadZen.Tests.Services;
 
 /// <summary>
-/// Parity tests for the C# port of the segment-map generator (audit P3.1c / D5).
-/// The goldens under TestData/segparity were produced by running the JS generator
-/// (eng/tools/build-structural-segments.js) end-to-end on the committed fixtures;
-/// the C# <see cref="StructuralSegmentParser.BuildJsonl"/> must reproduce them
-/// byte-for-byte (same segmentation, same JSON key order and escaping, same
-/// source_sha256 header, LF endings).
-///
-/// Regenerating goldens after a deliberate JS change:
-///   stage fixtures as src/FX/*.xml + tran/FX/*.xml, run the JS with
-///   --source-dir/--trans-dir/--out-dir, copy out/FX/*.segments.jsonl over the
-///   *.golden.jsonl files (see the P3.1c commit message for the exact commands).
+/// Format-contract tests for the segment-map generator (audit P3.1c / D5).
+/// The goldens under TestData/segparity were produced by the now-RETIRED JS
+/// generator (eng/tools/build-structural-segments.js, deleted in P3.1c 2/2) running
+/// end-to-end on the committed fixtures; before retirement the C# port was verified
+/// byte-identical against a fresh JS run over all 4,990 corpus files (zero
+/// divergence — see RUN-20260704-1141 TASK_LOG, 2026-07-08). The goldens are
+/// therefore FROZEN: they pin the on-disk jsonl format (segmentation, JSON key
+/// order, JSON.stringify-style escaping, source_sha256 header, LF endings) that the
+/// 4,990 committed corpus maps use. A deliberate format change requires
+/// regenerating both the goldens AND the corpus maps together.
 /// </summary>
 [Trait("Domain", "Segmentation")]
 public class StructuralSegmentParserParityTests
@@ -81,85 +80,47 @@ public class StructuralSegmentParserParityTests
         Assert.Equal("\\n\\r\\t\\b\\f\\u0001", StructuralSegmentParser.JsEscape("\n\r\t\b\f"));
     }
 
+    // NOTE: an env-gated full-corpus sweep (fresh JS run vs BuildJsonl over all 4,990
+    // files) lived here during the port; it PASSED with zero divergence on 2026-07-08
+    // and was removed together with the JS generator it invoked (P3.1c 2/2).
+
     /// <summary>
-    /// Full-corpus parity sweep: runs the JS generator ONCE over the real corpus
-    /// (source-dir = trans-dir = xml-p5, matching how the 4,990 committed maps were
-    /// produced) and compares every produced jsonl against the C# port. Opt-in
-    /// (slow, needs node + the local corpus): set RZ_SEGPARITY_SWEEP=1.
-    /// Inert in normal gates.
+    /// End-to-end run of the C# batch generator over the committed fixtures: the
+    /// files it writes must equal the frozen goldens byte-for-byte (exercises the
+    /// directory walk + file I/O around BuildJsonl, i.e. the retired JS main()).
     /// </summary>
     [Fact]
-    public void FullCorpusSweep_WhenExplicitlyEnabled()
+    public void GenerateAll_OverFixtures_WritesGoldenBytes()
     {
-        if (Environment.GetEnvironmentVariable("RZ_SEGPARITY_SWEEP") != "1")
-            return; // opt-in only
-
-        var sourceDir = Environment.GetEnvironmentVariable("RZ_SEGPARITY_SRC") ?? @"C:/Programmieren/CbetaZenTexts/xml-p5";
-        var transDir = Environment.GetEnvironmentVariable("RZ_SEGPARITY_TRAN") ?? sourceDir;
-        if (!Directory.Exists(sourceDir) || !Directory.Exists(transDir))
-            return; // corpus not on this machine
-
-        var outDir = Path.Combine(Path.GetTempPath(), "rz-segparity-" + Guid.NewGuid().ToString("N")[..8]);
+        var stage = Path.Combine(Path.GetTempPath(), "rz-seggen-" + Guid.NewGuid().ToString("N")[..8]);
         try
         {
-            // One bulk JS run over the whole corpus.
-            var repoRoot = FindRepoRoot();
-            var psi = new System.Diagnostics.ProcessStartInfo("node")
+            foreach (var sub in new[] { "src/FX", "tran/FX" })
+                Directory.CreateDirectory(Path.Combine(stage, sub));
+            foreach (var stem in new[] { "fx1-t-kitchen-sink", "fx2-zw-edition", "fx3-noed-crlf" })
             {
-                WorkingDirectory = repoRoot,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-            };
-            psi.ArgumentList.Add(Path.Combine(repoRoot, "eng", "tools", "build-structural-segments.js"));
-            psi.ArgumentList.Add("--source-dir"); psi.ArgumentList.Add(sourceDir);
-            psi.ArgumentList.Add("--trans-dir"); psi.ArgumentList.Add(transDir);
-            psi.ArgumentList.Add("--out-dir"); psi.ArgumentList.Add(outDir);
-
-            using (var p = System.Diagnostics.Process.Start(psi)!)
-            {
-                p.StandardOutput.ReadToEnd(); // drain to avoid pipe-full deadlock
-                p.StandardError.ReadToEnd();
-                Assert.True(p.WaitForExit(30 * 60_000), "JS generator did not finish in 30 min");
-                Assert.Equal(0, p.ExitCode);
+                File.Copy(Path.Combine(DataDir, stem + ".src.xml"), Path.Combine(stage, "src", "FX", stem + ".xml"));
+                File.Copy(Path.Combine(DataDir, stem + ".tran.xml"), Path.Combine(stage, "tran", "FX", stem + ".xml"));
             }
 
-            var failures = new List<string>();
-            int compared = 0;
+            using var log = new StringWriter();
+            var stats = SegmentMapGenerator.GenerateAll(
+                Path.Combine(stage, "src"), Path.Combine(stage, "tran"), Path.Combine(stage, "out"),
+                singleFile: null, log);
 
-            foreach (var jsOut in Directory.EnumerateFiles(outDir, "*.segments.jsonl", SearchOption.AllDirectories))
+            Assert.Equal(3, stats.Processed);
+            foreach (var stem in new[] { "fx1-t-kitchen-sink", "fx2-zw-edition", "fx3-noed-crlf" })
             {
-                var rel = Path.GetRelativePath(outDir, jsOut);
-                var xmlRel = rel.Substring(0, rel.Length - ".segments.jsonl".Length) + ".xml";
-                var sourcePath = Path.Combine(sourceDir, xmlRel);
-                var transPath = Path.Combine(transDir, xmlRel);
-                if (!File.Exists(sourcePath) || !File.Exists(transPath)) continue;
-
-                var workId = Path.GetFileNameWithoutExtension(xmlRel);
-                var expected = File.ReadAllText(jsOut);
-                var actual = StructuralSegmentParser.BuildJsonl(
-                    workId, File.ReadAllText(sourcePath), File.ReadAllText(transPath));
-                compared++;
-
-                if (expected != actual)
-                    failures.Add(xmlRel);
+                var written = File.ReadAllBytes(Path.Combine(stage, "out", "FX", stem + ".segments.jsonl"));
+                var golden = File.ReadAllBytes(Path.Combine(DataDir, stem + ".golden.jsonl"));
+                Assert.True(golden.AsSpan().SequenceEqual(written), $"{stem}: generator output differs from golden");
             }
-
-            Assert.True(compared > 0, "sweep enabled but nothing compared — corpus paths wrong?");
-            Assert.True(failures.Count == 0,
-                $"C#/JS divergence in {failures.Count}/{compared} files: {string.Join(", ", failures.GetRange(0, Math.Min(10, failures.Count)))}");
+            // The coverage metric is printed (fx1 has empty-lb segments).
+            Assert.Contains("Empty lb_range coverage:", log.ToString());
         }
         finally
         {
-            try { Directory.Delete(outDir, recursive: true); } catch { }
+            try { Directory.Delete(stage, recursive: true); } catch { }
         }
-    }
-
-    private static string FindRepoRoot()
-    {
-        var dir = AppContext.BaseDirectory;
-        while (dir != null && !File.Exists(Path.Combine(dir, "ReadZen.App.csproj")))
-            dir = Path.GetDirectoryName(dir);
-        return dir ?? throw new InvalidOperationException("repo root not found");
     }
 }

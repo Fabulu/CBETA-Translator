@@ -15,6 +15,15 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        // Headless tool mode: regenerate segment maps and exit (the C# replacement
+        // for the retired eng/tools/build-structural-segments.js — audit P3.1c 2/2).
+        // Must run before Velopack/single-instance/Avalonia: no UI, no side effects.
+        if (args.Length > 0 && args[0] == "--build-segments")
+        {
+            Environment.Exit(SegmentMapGenerator.Run(args, Console.Out));
+            return;
+        }
+
         // Global exception handlers — catch crashes that happen during rendering
         // or on background threads, so Linux users see the real error, not just
         // "Dispatcher shut down".
