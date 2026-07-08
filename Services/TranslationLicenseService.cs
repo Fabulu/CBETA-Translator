@@ -182,11 +182,5 @@ public sealed class TranslationLicenseService
     private static string NormalizeRel(string rel) => rel.Replace('\\', '/');
 
     private static string SanitizeFilename(string name)
-    {
-        var invalid = Path.GetInvalidFileNameChars();
-        var sb = new StringBuilder(name.Length);
-        foreach (var c in name)
-            sb.Append(Array.IndexOf(invalid, c) >= 0 ? '_' : c);
-        return sb.ToString();
-    }
+        => ReadZen.App.Infrastructure.FileNameSanitizer.Lenient(name);
 }
