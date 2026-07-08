@@ -49,19 +49,16 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Publish (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          dotnet restore "${{ env.PROJECT_FILE }}"
-          dotnet publish "${{ env.PROJECT_FILE }}" `
-            -c Release -r "${{ matrix.rid }}" --self-contained true `
-            /p:PublishSingleFile=true `
-            /p:IncludeNativeLibrariesForSelfExtract=true `
-            /p:DebugType=None /p:DebugSymbols=false
+      # Single source of truth for the release version: the git tag, stripped of
+      # its leading 'v'. Every later step reads env.RELEASE_VERSION instead of
+      # re-deriving it (the old per-step derivations could drift — audit R5-M3).
+      - name: Derive release version from tag
+        shell: bash
+        run: echo "RELEASE_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
 
-      - name: Publish (Linux/macOS)
-        if: runner.os != 'Windows'
+      # One publish configuration for all platforms (bash is available on the
+      # Windows runners too; the pwsh/bash twins had to be kept in sync by hand).
+      - name: Publish
         shell: bash
         run: |
           dotnet restore "${{ env.PROJECT_FILE }}"
@@ -254,16 +251,13 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $tag = "${{ github.ref_name }}"
-          # Strip leading 'v' from the tag for SemVer compliance
-          $ver = $tag.TrimStart('v')
           $pub = "bin\Release\${{ env.TFM }}\${{ matrix.rid }}\publish"
           $veloOut = "dist\velopack"
           New-Item -ItemType Directory -Force $veloOut | Out-Null
 
           & vpk pack `
             --packId Fabulu.ReadZen `
-            --packVersion $ver `
+            --packVersion "${{ env.RELEASE_VERSION }}" `
             --packDir "$pub" `
             --mainExe ReadZen.App.exe `
             --outputDir "$veloOut"
@@ -277,15 +271,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TAG="${GITHUB_REF_NAME}"
-          VER="${TAG#v}"
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
           VELO_OUT="dist/velopack"
           mkdir -p "$VELO_OUT"
 
           vpk pack \
             --packId Fabulu.ReadZen \
-            --packVersion "$VER" \
+            --packVersion "${{ env.RELEASE_VERSION }}" \
             --packDir "$PUB" \
             --mainExe ReadZen.App \
             --outputDir "$VELO_OUT"
@@ -293,13 +285,16 @@ jobs:
           ls -la "$VELO_OUT"
           cp "$VELO_OUT"/* dist/
 
+      # continue-on-error (NOT an inline `|| echo` swallow): a Velopack failure now
+      # shows as a failed step in the run UI — the zip artifact still ships because
+      # the job continues, but the missing installer is visible instead of silent
+      # (audit R5-M3; the old `|| echo/|| true` tails hid real pack failures).
       - name: Velopack pack (macOS .pkg)
         if: runner.os == 'macOS'
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          TAG="${GITHUB_REF_NAME}"
-          VER="${TAG#v}"
           PUB="bin/Release/${{ env.TFM }}/${{ matrix.rid }}/publish"
           VELO_OUT="dist/velopack"
           mkdir -p "$VELO_OUT"
@@ -308,14 +303,14 @@ jobs:
           # (see docs/VELOPACK_SETUP.md for when/why to add $99/yr Apple Dev).
           vpk pack \
             --packId Fabulu.ReadZen \
-            --packVersion "$VER" \
+            --packVersion "${{ env.RELEASE_VERSION }}" \
             --packDir "$PUB" \
             --mainExe ReadZen.App \
             --outputDir "$VELO_OUT" \
-            --noSignatureValidation || echo "Velopack macOS pack failed — non-fatal; zip still ships."
+            --noSignatureValidation
 
-          ls -la "$VELO_OUT" || true
-          cp -f "$VELO_OUT"/* dist/ 2>/dev/null || true
+          ls -la "$VELO_OUT"
+          cp -f "$VELO_OUT"/* dist/
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
