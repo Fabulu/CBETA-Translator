@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:cb="http://www.cbeta.org/ns/1.0">
+<teiHeader><fileDesc><titleStmt><title>Fixture 1</title></titleStmt></fileDesc></teiHeader>
+<text><body>
+<head>第一章 標題不入段</head>
+<lb n="0001a01" ed="T"/><p xml:id="p1">趙州和尚因僧問狗子還有佛性也無州云無<note>注文不入</note>尾文</p>
+<lb n="0001a02" ed="T"/><p xml:id="p2">師云好雪片片不落別處僧問如何<app><lem>甲本</lem><rdg wit="乙">乙本</rdg></app>續文</p>
+<p xml:id="p3">無門曰參須實參悟須實悟</p>
+<lb n="0001a03" ed="T"/><lb n="0001a04" ed="X"/><p xml:id="p4">前有帶入行首乙版行不收</p>
+<lg xml:id="v1"><l><lb n="0001a05" ed="T"/>春有百花秋有月<caesura/>夏有涼風冬有雪</l></lg>
+<p xml:id="p5"><item>條目<p>內嵌段</p>條目尾文</item></p>
+<p xml:id="p6">自閉注前<note place="inline"/>自閉注後</p>
+<cb:div type="w"><p xml:id="p7">容器內段落</p></cb:div>
+</body></text></TEI>
