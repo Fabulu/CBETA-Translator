@@ -70,6 +70,8 @@
 					<!-- Toggles -->
 					<CheckBox Name="ChkWrap" Content="Wrap" IsChecked="True" ToolTip.Tip="Toggle line wrapping" Padding="4,2"/>
 					<CheckBox Name="ChkAssistantVisible" Content="Assistant" IsChecked="True" ToolTip.Tip="Show or hide the translation assistant pane" Padding="4,2"/>
+					<CheckBox Name="ChkMergedView" Content="Merged" IsChecked="False" Padding="4,2"
+							  ToolTip.Tip="Read-only merged view: lines grouped into semantic segments (requires a segment map for this text). Toggle off to edit."/>
 				</WrapPanel>
 
 				<!-- Row 1: compact info line -->

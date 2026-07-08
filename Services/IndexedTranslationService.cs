@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
 
@@ -383,6 +384,77 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             sb.AppendLine($"EN: {u.En}");
             sb.AppendLine();
         }
+
+        return sb.ToString();
+    }
+
+    // ============================================================
+    // MERGED READING PREVIEW (P4.3b — read-only)
+    // ============================================================
+
+    /// <summary>
+    /// Groups consecutive units by the segment their trailing lb maps to; units whose
+    /// lb is missing/unknown continue the running group ("unsegmented" until the first
+    /// mapped lb). Grouping is line-granular by each unit's TRAILING lb — for the
+    /// paragraph-scale segments the maps contain, that is the intended reading view.
+    /// </summary>
+    public string RenderMergedPreview(IndexedTranslationDocument doc, TranslationEditMode mode, SegmentMap segmentMap)
+    {
+        if (doc == null) throw new ArgumentNullException(nameof(doc));
+        if (segmentMap == null) throw new ArgumentNullException(nameof(segmentMap));
+
+        var wantedKind = mode switch
+        {
+            TranslationEditMode.Head => TranslationUnitKind.Head,
+            TranslationEditMode.Notes => TranslationUnitKind.Note,
+            _ => TranslationUnitKind.Body
+        };
+
+        var sb = new StringBuilder();
+        sb.AppendLine("# MERGED READING VIEW (read-only)");
+        sb.AppendLine("# Lines are grouped by the semantic segment map. Toggle Merged off to edit.");
+        sb.AppendLine();
+
+        SegmentInfo? currentSeg = null;
+        var zh = new StringBuilder();
+        var en = new List<string>();
+        bool any = false;
+        int segNo = 0;
+
+        void Flush()
+        {
+            if (!any) return;
+            segNo++;
+            sb.Append("<seg ").Append(segNo).Append(" | ").Append(currentSeg?.Type ?? "unsegmented").AppendLine(">");
+            sb.Append("ZH: ").AppendLine(zh.ToString());
+            sb.Append("EN: ").AppendLine(string.Join(" ", en));
+            sb.AppendLine();
+            zh.Clear();
+            en.Clear();
+            any = false;
+        }
+
+        foreach (var u in doc.Units)
+        {
+            if (u.Kind != wantedKind) continue;
+
+            var lbN = TranslationUnit.GetLbNValueForUnit(u);
+            SegmentInfo? seg = null;
+            if (lbN != null)
+                segmentMap.ByLbId.TryGetValue(lbN, out seg);
+
+            if (seg != null && !ReferenceEquals(seg, currentSeg))
+            {
+                Flush();
+                currentSeg = seg;
+            }
+
+            zh.Append(u.Zh);
+            if (!string.IsNullOrWhiteSpace(u.En))
+                en.Add(u.En.Trim());
+            any = true;
+        }
+        Flush();
 
         return sb.ToString();
     }
