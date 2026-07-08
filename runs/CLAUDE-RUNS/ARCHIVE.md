@@ -32,6 +32,23 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-07-08 — Archived
+
+### [RUN-20260509-1330] Character-click witness zoom
+
+**Archived:** 2026-07-08 (QA close-out per audit plan item P4.1; archival pre-approved by decision D1)
+**Created:** 2026-05-09 13:30 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260509-1330-character-click-witness-zoom/`
+**Commit:** `4091c1f` (2026-05-10, with the FiM migration)
+
+**Summary:** Ctrl+click on a character in the reader opens a witness-zoom flyout (CharacterVariantFlyout) showing the woodblock witness image region for that locus. Built on `Services/LociMappingService` + `Models/WitnessLocusMap` (page/coordinate mapping), a `LociMap` property on ReadableTabViewModel, a `SetReadableLociMap` bridge, and IIIF page download (full-page 2.5MB, lazy + batch option). Faith-in-Mind only in this iteration. Five implementation waves completed 2026-05-09; the run then stalled at "waiting for QA + test writer".
+
+**Close-out (2026-07-08):** the test-writer item had landed (`LociMappingServiceTests`); QA run recorded in TASK_LOG — LociMapping + WitnessText + WitnessEvidenceViewer suites 27/27, full suite 1663/1663, Release build clean. Manual UI exercise not re-performed headlessly; the 2026-05-09 log records the feature working.
+
+**Outcome:** Shipped in `4091c1f`. Optional follow-up (separate approval): extend to wumenguan-1632.
+
+---
+
 ## 2026-07-03 — Archived (backfill per audit RUN-20260702-2259, decisions D1/D2)
 
 Entries below reconstruct the May-2026 runs that were completed but never logged here
@@ -183,6 +200,7 @@ IMPLEMENTATION_PLAN/QA_REPORT/REVIEW docs (noted per entry).
 - OpenZen `ce/faith-in-mind/` data files; `PROCESS_CHANGES.md` (process guide for future editions)
 
 **Notes:** Remaining niceties (TEI schema validation — checklist 33/34 — and recording QA rounds 2-3) tracked as plan item P4.2; they do not block archival per D1.
+*P4.2 close-out addendum (2026-07-08):* both edition files verified strictly well-formed TEI (root + P5 namespace). Full RelaxNG validation against tei_all remains outstanding for lack of offline RNG tooling — residual item only if strict schema conformance is ever required. Details in the run dir's TASK_LOG.
 
 **Outcome:** Shipped in `4091c1f` (2026-05-10); process learnings captured in PROCESS_CHANGES.md.
 
