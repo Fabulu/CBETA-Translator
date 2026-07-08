@@ -177,19 +177,6 @@ public class StubSearchIndexService : ISearchIndexService
     public void Dispose() { }
 }
 
-// ---- IFileService ----
-
-public class StubFileService : IFileService
-{
-    public Task<List<string>> EnumerateXmlRelativePathsAsync(string originalDir) => Task.FromResult(new List<string>());
-    public Task<(string OriginalXml, string TranslatedXml)> ReadPairAsync(string originalDir, string translatedDir, string relativePath) => Task.FromResult(("", ""));
-    public Task<(string OriginalXml, string MarkdownText)> ReadOriginalAndMarkdownAsync(string originalDir, string markdownDir, string relativePath) => Task.FromResult(("", ""));
-    public Task WriteTranslatedAsync(string translatedDir, string relativePath, string translatedXml) => Task.CompletedTask;
-    public Task WriteMarkdownAsync(string markdownDir, string relativePath, string markdownText) => Task.CompletedTask;
-    public Task<string?> ReadOriginalAsync(string originalDir, string relPath) => Task.FromResult<string?>(null);
-    public Task<string?> ReadTranslatedAsync(string translatedDir, string relPath) => Task.FromResult<string?>(null);
-}
-
 // ---- IAppConfigService ----
 
 public class StubAppConfigService : IAppConfigService

@@ -658,7 +658,6 @@ private async Task LoadConfigAndAutoloadAsync()
     {
         var sp = App.Services;
         _vm = new MainWindowViewModel(
-            sp.GetRequiredService<IFileService>(),
             sp.GetRequiredService<IAppConfigService>(),
             sp.GetRequiredService<IIndexCacheService>(),
             sp.GetRequiredService<IRenderedDocumentCacheService>(),

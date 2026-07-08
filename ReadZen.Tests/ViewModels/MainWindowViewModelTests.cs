@@ -15,7 +15,6 @@ public class MainWindowViewModelTests
     private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null)
     {
         return new MainWindowViewModel(
-            new StubFileService(),
             new StubAppConfigService(),
             new StubIndexCacheService(),
             new StubRenderedDocumentCacheService(),
@@ -713,7 +712,6 @@ public class MainWindowViewModelTests
             ConfigToReturn = new AppConfig { IsDarkTheme = true }
         };
         var vm = new MainWindowViewModel(
-            new StubFileService(),
             configService,
             new StubIndexCacheService(),
             new StubRenderedDocumentCacheService(),
@@ -823,7 +821,6 @@ public class MainWindowViewModelTests
     {
         var assistant = new StubTranslationAssistantService();
         var vm = new MainWindowViewModel(
-            new StubFileService(),
             new StubAppConfigService(),
             new StubIndexCacheService(),
             new StubRenderedDocumentCacheService(),

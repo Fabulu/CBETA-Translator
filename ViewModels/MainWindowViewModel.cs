@@ -35,7 +35,6 @@ public partial class MainWindowViewModel : ViewModelBase
     private const string AppTitleBase = "Read Zen";
 
     // ---- Services (injected) ----
-    private readonly IFileService _fileService;
     private readonly IAppConfigService _configService;
     private readonly IIndexCacheService _indexCacheService;
     private readonly IRenderedDocumentCacheService _renderCache;
@@ -461,7 +460,6 @@ public partial class MainWindowViewModel : ViewModelBase
     // ===========================================================
 
     public MainWindowViewModel(
-        IFileService fileService,
         IAppConfigService configService,
         IIndexCacheService indexCacheService,
         IRenderedDocumentCacheService renderCache,
@@ -476,7 +474,6 @@ public partial class MainWindowViewModel : ViewModelBase
         ILicenseMetadataService licenseMetadata,
         IManifestService manifestService)
     {
-        _fileService = fileService;
         _configService = configService;
         _indexCacheService = indexCacheService;
         _renderCache = renderCache;

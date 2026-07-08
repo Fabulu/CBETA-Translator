@@ -53,7 +53,7 @@ The pipeline is projection-based and non-destructive. There is NO markdown layer
 3. **Editable projection**: `RenderProjection` renders a plain-text projection per translation mode - this is what the Edit tab edits
 4. **Save**: `ApplyProjectionEdits` maps the edited projection back onto the indexed units, `BuildTranslatedXml` regenerates the full TEI document, and the result is written atomically to `xml-p5t/**/*.xml` (see `ViewModels/MainWindowViewModel.cs:2763-2775`)
 
-The `md-p5t/` markdown pipeline described in older docs does not exist: `FileService`'s markdown methods have zero callers (dead code, scheduled for deletion in plan item P3.6). Do not build on them.
+The `md-p5t/` markdown pipeline described in older docs does not exist (its dead `FileService` was deleted in plan item P3.6). Do not reintroduce a markdown layer.
 
 ### Key Services
 | Service | Responsibility |
