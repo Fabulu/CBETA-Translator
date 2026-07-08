@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -52,6 +55,53 @@ public partial class TranslationTabViewModel : ViewModelBase
     // Projection text (maintained in parallel with editor)
     // -------------------------
     public string CurrentProjection { get; set; } = "";
+
+    // -------------------------
+    // Merged reading view (P4.3b — read-only preview over the segment map)
+    // -------------------------
+
+    /// <summary>True while the editor shows the read-only merged preview.</summary>
+    [ObservableProperty]
+    private bool _isMergedView;
+
+    // Test seam: the defaults (null) resolve from App.Services on demand.
+    private ISegmentMapService? _segmentMapsOverride;
+    private IIndexedTranslationService? _indexedTranslationOverride;
+    internal void SetMergedPreviewServices(ISegmentMapService segmentMaps, IIndexedTranslationService indexedTranslation)
+    {
+        _segmentMapsOverride = segmentMaps;
+        _indexedTranslationOverride = indexedTranslation;
+    }
+
+    /// <summary>
+    /// Builds the merged read-only preview for the current file, or null when it is
+    /// unavailable (no file, no segment map, services missing). Self-sufficient by
+    /// design: rebuilding a throwaway index off the UI thread avoids adding another
+    /// MainWindow bridge delegate (CLAUDE.md UI-architecture ratchet); the files
+    /// involved are the small translated set, so the rebuild is milliseconds.
+    /// </summary>
+    public async Task<string?> BuildMergedPreviewAsync()
+    {
+        var orig = _origPath;
+        var tran = _tranPath;
+        if (string.IsNullOrEmpty(orig) || !File.Exists(orig)) return null;
+
+        var segMaps = _segmentMapsOverride ?? App.Services?.GetService<ISegmentMapService>();
+        var indexed = _indexedTranslationOverride ?? App.Services?.GetService<IIndexedTranslationService>();
+        if (segMaps == null || indexed == null) return null;
+
+        var mode = CurrentMode;
+        return await Task.Run(() =>
+        {
+            var map = segMaps.TryLoad(orig);
+            if (map == null) return null;
+
+            var origXml = File.ReadAllText(orig);
+            string? tranXml = !string.IsNullOrEmpty(tran) && File.Exists(tran) ? File.ReadAllText(tran) : null;
+            var doc = indexed.BuildIndex(origXml, tranXml);
+            return indexed.RenderMergedPreview(doc, mode, map);
+        });
+    }
 
     // -------------------------
     // Assistant state

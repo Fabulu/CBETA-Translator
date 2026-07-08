@@ -36,6 +36,8 @@ public partial class TranslationTabView : UserControl
     private Button? _btnCopyChunkPrompt, _btnPasteByNumber, _btnNextUntranslated, _btnFindChineseInEn, _btnSave, _btnFreshStart, _btnRevert;
     private Button? _btnApproveSegment, _btnNeedsWorkSegment, _btnRejectSegment, _btnNextUnapproved;
     private CheckBox? _chkWrap;
+    private CheckBox? _chkMergedView;
+    private bool _suppressMergedViewEvent;
     private ComboBox? _cmbChunkSize;
     private ComboBox? _cmbTranslationSource;
     private Button? _btnStarTranslation;
@@ -180,6 +182,7 @@ public partial class TranslationTabView : UserControl
         _btnStarTranslation = this.FindControl<Button>("BtnStarTranslation");
         _chkWrap = this.FindControl<CheckBox>("ChkWrap");
         _chkAssistantVisible = this.FindControl<CheckBox>("ChkAssistantVisible");
+        _chkMergedView = this.FindControl<CheckBox>("ChkMergedView");
 
         _txtModeInfo = this.FindControl<TextBlock>("TxtModeInfo");
         _txtQuickInfo = this.FindControl<TextBlock>("TxtQuickInfo");
@@ -534,6 +537,16 @@ public partial class TranslationTabView : UserControl
             _chkAssistantVisible.IsCheckedChanged += (_, _) => UpdateAssistantVisibility();
         }
 
+        if (_chkMergedView != null)
+        {
+            _chkMergedView.IsCheckedChanged += (_, _) =>
+            {
+                if (_suppressMergedViewEvent) return;
+                AsyncGuard.Run(() => ToggleMergedViewAsync(_chkMergedView.IsChecked == true),
+                    "TranslationTabView.ChkMergedView");
+            };
+        }
+
         if (_cmbTranslationSource != null)
         {
             _cmbTranslationSource.SelectionChanged += (_, _) =>
@@ -597,13 +610,70 @@ public partial class TranslationTabView : UserControl
         }
     }
 
+    /// <summary>
+    /// The REAL editable projection. While the merged read-only preview is shown,
+    /// the editor holds preview text — the user's projection (with any pre-toggle
+    /// typing) was stashed in the VM, so saves triggered during merged view still
+    /// operate on valid projection text, never on the preview.
+    /// </summary>
     public string GetCurrentProjectionText()
-        => _editor?.Text ?? _vm.CurrentProjection;
+        => _vm.IsMergedView ? _vm.CurrentProjection : (_editor?.Text ?? _vm.CurrentProjection);
+
+    // =========================
+    // Merged reading view (P4.3b)
+    // =========================
+
+    private async Task ToggleMergedViewAsync(bool wantMerged)
+    {
+        if (_editor == null || _chkMergedView == null) return;
+
+        if (wantMerged)
+        {
+            var preview = await _vm.BuildMergedPreviewAsync();
+            if (preview == null)
+            {
+                // No segment map (or no file): stay editable and un-lie the checkbox.
+                _suppressMergedViewEvent = true;
+                try { _chkMergedView.IsChecked = false; }
+                finally { _suppressMergedViewEvent = false; }
+                Status?.Invoke(this, "Merged view unavailable: no segment map for this text.");
+                return;
+            }
+
+            // Stash the user's projection (including unsaved typing) BEFORE swapping.
+            _vm.CurrentProjection = _editor.Text ?? "";
+            _vm.IsMergedView = true;
+            _editor.Text = preview;
+            _editor.IsReadOnly = true;
+        }
+        else
+        {
+            _vm.IsMergedView = false;
+            _editor.IsReadOnly = false;
+            _editor.Text = _vm.CurrentProjection;
+        }
+    }
 
     public void SetCurrentFilePaths(string originalPath, string translatedPath)
     {
+        ExitMergedViewIfActive(); // merged preview is per-file
         _vm.SetCurrentFilePaths(originalPath, translatedPath);
         UpdateModeInfo();
+    }
+
+    /// <summary>Leaves the merged preview (state, editor, checkbox) without re-entering the toggle handler.</summary>
+    private void ExitMergedViewIfActive()
+    {
+        if (!_vm.IsMergedView) return;
+
+        _vm.IsMergedView = false;
+        if (_editor != null) _editor.IsReadOnly = false;
+        if (_chkMergedView != null)
+        {
+            _suppressMergedViewEvent = true;
+            try { _chkMergedView.IsChecked = false; }
+            finally { _suppressMergedViewEvent = false; }
+        }
     }
 
     public void SetHoverDictionaryEnabled(bool enabled)
@@ -2322,6 +2392,10 @@ STRICT RULES:
 
     public void SetModeProjection(TranslationEditMode mode, string projectionText)
     {
+        // Fresh projection (file switch / post-save refresh) supersedes any merged
+        // preview: drop back to the editable view so state and checkbox stay honest.
+        ExitMergedViewIfActive();
+
         _vm.SetModeProjectionState(mode, projectionText);
 
         if (_editor != null)
