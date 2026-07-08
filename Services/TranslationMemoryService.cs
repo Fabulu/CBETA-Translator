@@ -33,17 +33,6 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         _referenceCache = null;
     }
 
-    private sealed class TmRow
-    {
-        public string SourceText { get; set; } = "";
-        public string TargetText { get; set; } = "";
-        public string RelPath { get; set; } = "";
-        public int BlockNumber { get; set; }
-        public string ReviewStatus { get; set; } = "";
-        public string Translator { get; set; } = "";
-        public DateTimeOffset? WrittenUtc { get; set; }
-    }
-
     public Task<List<TranslationTmMatch>> FindApprovedMatchesAsync(
         CurrentSegmentContext ctx,
         string? root,
@@ -139,7 +128,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
                 SourceText = x.Row.SourceText,
                 TargetText = x.Row.TargetText,
                 RelPath = x.Row.RelPath,
-                BlockNumber = x.Row.BlockNumber,
+                BlockNumber = x.Row.BlockNumber ?? 0,
                 ReviewStatus = x.Row.ReviewStatus,
                 Translator = x.Row.Translator,
                 Trust = trust,

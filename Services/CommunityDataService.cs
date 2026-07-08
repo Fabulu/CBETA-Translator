@@ -34,17 +34,6 @@ public sealed class CommunityDataService : ICommunityDataService
     };
 
     // Shared TmRow shape across all three TM services — must match their serialized fields.
-    private sealed class TmRow
-    {
-        public string SourceText { get; set; } = "";
-        public string TargetText { get; set; } = "";
-        public string RelPath { get; set; } = "";
-        public int BlockNumber { get; set; }
-        public string ReviewStatus { get; set; } = "";
-        public string Translator { get; set; } = "";
-        public DateTimeOffset? WrittenUtc { get; set; }
-    }
-
     // -----------------------------------------------------------------------
     // Approved TM
     // -----------------------------------------------------------------------
@@ -163,6 +152,9 @@ public sealed class CommunityDataService : ICommunityDataService
         foreach (var row in rows)
         {
             ct.ThrowIfCancellationRequested();
+            // Historical format: this writer always emitted "BlockNumber":0 for rows
+            // that carry none (the shared TmRow omits null) - keep the bytes stable.
+            row.BlockNumber ??= 0;
             sb.AppendLine(JsonSerializer.Serialize(row, WriteOpts));
         }
 
