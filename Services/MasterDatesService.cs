@@ -209,14 +209,5 @@ public sealed class MasterDatesService : IMasterDatesService
         c >= '\uF900' && c <= '\uFAFF';
 
     private static string SanitizeFilename(string name)
-    {
-        var invalid = Path.GetInvalidFileNameChars();
-        var sb = new StringBuilder(name.Length);
-        foreach (var ch in name)
-        {
-            if (Array.IndexOf(invalid, ch) < 0 && ch != '.' && ch != ' ')
-                sb.Append(ch);
-        }
-        return sb.Length > 0 ? sb.ToString() : "unknown";
-    }
+        => ReadZen.App.Infrastructure.FileNameSanitizer.Strict(name);
 }

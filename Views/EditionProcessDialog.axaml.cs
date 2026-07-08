@@ -258,13 +258,7 @@ public partial class EditionProcessDialog : Window
     }
 
     private static string SanitizeFileName(string name)
-    {
-        var invalid = Path.GetInvalidFileNameChars();
-        var sb = new StringBuilder(name.Length);
-        foreach (var c in name)
-            sb.Append(Array.IndexOf(invalid, c) >= 0 ? '_' : c);
-        return sb.ToString();
-    }
+        => ReadZen.App.Infrastructure.FileNameSanitizer.Lenient(name);
 
     // ── Sources tab ──────────────────────────────────────────────────────
 
