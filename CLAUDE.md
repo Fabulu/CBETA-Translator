@@ -450,10 +450,8 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | Run ID | Description | Status | Working Directory |
 |--------|-------------|--------|-------------------|
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
-| RUN-20260513-2238 | Semantic segmentation pipeline (corpus-wide) | In Progress | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
-| RUN-20260704-1141 | Improvement plan execution — Phases 3–4 (batches A–I) | In Progress | runs/CLAUDE-RUNS/RUN-20260704-1141-phase34-plan-exec/ |
-| RUN-20260708-2120 | SPA search parity (v3 index, orchestrated) | In Progress | runs/CLAUDE-RUNS/RUN-20260708-2120-spa-search-parity/ |
-| RUN-20260708-2206 | Desktop incremental reindex (queued behind SPA parity) | In Progress | runs/CLAUDE-RUNS/RUN-20260708-2206-desktop-incremental-reindex/ |
+| RUN-20260513-2238 | Segmentation: Layer-1 shipped/deployed; Layer-2 deferred (D10) | Deferred (Layer-2) | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
+| RUN-20260709-2219 | Desktop state audit (10 recons) + fix batches | In Progress | runs/CLAUDE-RUNS/RUN-20260709-2219-desktop-state-audit/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 
