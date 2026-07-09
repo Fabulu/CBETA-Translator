@@ -90,6 +90,51 @@ public sealed class TokenProtectionTests : IDisposable
     }
 
     [Fact]
+    public async Task TryLoadAsync_CorruptConfig_BacksUpAndWarns_NotSilentReset()
+    {
+        // A truncated / corrupt config.json (e.g. crash mid-write).
+        await File.WriteAllTextAsync(ConfigPath, "{\"Version\":5,\"GitHubAccessToken\":\"ghp_zzz");
+
+        var svc = new AppConfigService(ConfigPath);
+        var loaded = await svc.TryLoadAsync();
+
+        // Load falls back to defaults (null) instead of throwing...
+        Assert.Null(loaded);
+        // ...but the bad file is preserved for recovery, and a notice is surfaced.
+        Assert.True(File.Exists(svc.CorruptBackupPath));
+        Assert.Contains("ghp_zzz", await File.ReadAllTextAsync(svc.CorruptBackupPath));
+        Assert.NotNull(svc.LoadWarning);
+        Assert.Contains(svc.CorruptBackupPath, svc.LoadWarning!);
+    }
+
+    [Fact]
+    public async Task TryLoadAsync_MissingFile_NoWarning_NoBackup()
+    {
+        var svc = new AppConfigService(ConfigPath);
+        var loaded = await svc.TryLoadAsync();
+
+        Assert.Null(loaded);
+        Assert.Null(svc.LoadWarning);
+        Assert.False(File.Exists(svc.CorruptBackupPath));
+    }
+
+    [Fact]
+    public async Task TryLoadAsync_ValidConfig_ClearsWarning()
+    {
+        // First a corrupt load sets the warning...
+        await File.WriteAllTextAsync(ConfigPath, "{not valid json");
+        var svc = new AppConfigService(ConfigPath);
+        Assert.Null(await svc.TryLoadAsync());
+        Assert.NotNull(svc.LoadWarning);
+
+        // ...then a subsequent valid load must clear it.
+        await File.WriteAllTextAsync(ConfigPath, "{\"Version\":5}");
+        var loaded = await svc.TryLoadAsync();
+        Assert.NotNull(loaded);
+        Assert.Null(svc.LoadWarning);
+    }
+
+    [Fact]
     public async Task TryLoadAsync_LegacyPlaintextConfig_IsMigratedOnDisk()
     {
         if (!OperatingSystem.IsWindows()) return;
@@ -108,5 +153,23 @@ public sealed class TokenProtectionTests : IDisposable
         var onDisk = await File.ReadAllTextAsync(ConfigPath);
         Assert.DoesNotContain("ghp_legacy_on_disk", onDisk);
         Assert.Contains("dpapi:v1:", onDisk);
+    }
+
+    [Fact]
+    public async Task IAppConfigService_ExposesLoadWarning_ToConsumers()
+    {
+        // The corrupt-config notice was inert dead code because LoadWarning /
+        // CorruptBackupPath lived only on the concrete class — every production
+        // load site goes through IAppConfigService, so a corrupt config silently
+        // reset all settings. The startup consumer now reads the warning through
+        // the interface; exercise that exact access shape here.
+        await File.WriteAllTextAsync(ConfigPath, "{not valid json");
+        IAppConfigService svc = new AppConfigService(ConfigPath);
+
+        var loaded = await svc.TryLoadAsync();
+
+        Assert.Null(loaded);
+        Assert.False(string.IsNullOrEmpty(svc.LoadWarning));
+        Assert.Contains(svc.CorruptBackupPath, svc.LoadWarning!);
     }
 }

@@ -179,6 +179,19 @@ public partial class ReadableTabView : UserControl
     // Semantic segment overlay
     // -------------------------
     private SegmentTypeTransformer? _segmentTypeTransformerOrig;
+    private SegmentTypeTransformer? _segmentTypeTransformerTran;
+
+    /// <summary>
+    /// True while the editors show a reconstructed historical (time-travel) view of
+    /// a correction/anchor timeline rather than the live present render. This — not
+    /// the timeline bar's visibility — is what must gate reading-layout re-renders:
+    /// the bar stays visible for the whole lifetime of a CE document (including at
+    /// present view), so keying the gate on it permanently blocked merged-flow
+    /// toggling on those documents (audit R2 reader finding). Set when reconstructed
+    /// text is swapped in (OnCorrectionStepChanged/OnAnchorStepChanged), cleared on
+    /// Return to Present and when the timeline is cleared on navigation.
+    /// </summary>
+    private bool _viewingHistorical;
 
     // -------------------------
     // Bookmarks + Outline
@@ -189,6 +202,7 @@ public partial class ReadableTabView : UserControl
     private Button? _btnOutline;
     private StackPanel? _outlineList;
     private readonly BookmarkService _bookmarkService = App.Services.GetRequiredService<BookmarkService>();
+    private readonly ReaderStateService _readerStateService = App.Services.GetRequiredService<ReaderStateService>();
 
     // -------------------------
     // Find bar (Ctrl+F)
@@ -1442,6 +1456,10 @@ public partial class ReadableTabView : UserControl
         ResolveInnerEditors();
         if (_aeTran == null) return;
 
+        // The translation-pane segment transformer was built against the PRESENT
+        // rendered translation's offsets; a historical/diff swap invalidates them.
+        DetachSegmentTypeTransformerTran();
+
         _syncingSelection = true;
         try
         {
@@ -1698,6 +1716,31 @@ public partial class ReadableTabView : UserControl
     /// Looks up segments by key "lb|{fromLb}" and optionally "lb|{toLb}".
     /// Returns (start, length) in rendered text coordinates, or (-1, 0) if not found.
     /// </summary>
+    /// <summary>
+    /// Resolves the line-break n-value (and its rendered start offset) for the segment
+    /// at or before <paramref name="offset"/>. Returns (null, 0) when no lb segment
+    /// covers the offset. Used to re-anchor bookmarks so they survive re-rendering.
+    /// </summary>
+    private static (string? lb, int segStart) ResolveLbAtOffset(RenderedDocument? doc, int offset)
+    {
+        if (doc?.Segments == null || doc.Segments.Count == 0)
+            return (null, 0);
+
+        string? bestLb = null;
+        int bestStart = 0;
+        foreach (var seg in doc.Segments)
+        {
+            if (seg.Start > offset) break; // segments are in ascending Start order
+            var lb = LbHelper.ExtractLbNValue(seg.Key);
+            if (lb != null)
+            {
+                bestLb = lb;
+                bestStart = seg.Start;
+            }
+        }
+        return (bestLb, bestStart);
+    }
+
     private static (int start, int length) ResolveLbRange(
         RenderedDocument doc, string fromLb, string? toLb)
     {
@@ -2013,12 +2056,9 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     private void AttachSegmentTypeTransformers(string? xmlAbsPath)
     {
-        // Remove previous transformer if any
-        if (_segmentTypeTransformerOrig != null && _aeOrig != null)
-        {
-            try { _aeOrig.TextArea.TextView.LineTransformers.Remove(_segmentTypeTransformerOrig); } catch { }
-            _segmentTypeTransformerOrig = null;
-        }
+        // Remove previous transformers if any (remove-before-add idempotence).
+        DetachSegmentTypeTransformerOrig();
+        DetachSegmentTypeTransformerTran();
 
         if (string.IsNullOrWhiteSpace(xmlAbsPath) || _aeOrig == null || _vm.RenderOrig == null)
             return;
@@ -2033,11 +2073,38 @@ public partial class ReadableTabView : UserControl
 
             _segmentTypeTransformerOrig = new SegmentTypeTransformer(segMap, _vm.RenderOrig.Segments);
             _aeOrig.TextArea.TextView.LineTransformers.Add(_segmentTypeTransformerOrig);
+
+            // Twin transformer on the translation pane so segment styling is symmetric
+            // (SPA parity). Guard on a non-empty translation render; the translation's
+            // rendered segments carry the same lb keys, so the same segment map maps.
+            if (_aeTran != null && _vm.RenderTran != null && !_vm.RenderTran.IsEmpty)
+            {
+                _segmentTypeTransformerTran = new SegmentTypeTransformer(segMap, _vm.RenderTran.Segments);
+                _aeTran.TextArea.TextView.LineTransformers.Add(_segmentTypeTransformerTran);
+            }
         }
         catch
         {
             // Graceful degradation — segment styling is non-critical
         }
+    }
+
+    private void DetachSegmentTypeTransformerOrig()
+    {
+        if (_segmentTypeTransformerOrig != null && _aeOrig != null)
+        {
+            try { _aeOrig.TextArea.TextView.LineTransformers.Remove(_segmentTypeTransformerOrig); } catch { }
+        }
+        _segmentTypeTransformerOrig = null;
+    }
+
+    private void DetachSegmentTypeTransformerTran()
+    {
+        if (_segmentTypeTransformerTran != null && _aeTran != null)
+        {
+            try { _aeTran.TextArea.TextView.LineTransformers.Remove(_segmentTypeTransformerTran); } catch { }
+        }
+        _segmentTypeTransformerTran = null;
     }
 
     /// <summary>
@@ -5710,7 +5777,32 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// checkbox is synced back on every outcome (no map, failure, superseded); a
     /// sequence token drops stale completions when the user re-toggles or navigates.
     /// </summary>
-    public async Task ToggleReadingLayoutAsync()
+    public Task ToggleReadingLayoutAsync()
+    {
+        var next = _isReadingLayout ? ReadingLayoutMode.Page : ReadingLayoutMode.MergedFlow;
+        return ApplyReadingLayoutAsync(next);
+    }
+
+    /// <summary>
+    /// True when reading-layout changes must be suppressed: a correction time-travel
+    /// view is active (re-rendering would clobber the reconstructed historical text)
+    /// or a pending refresh is in flight. Both are HARD gates (audit R2.2 top-risk 1).
+    /// The time-travel condition keys on <see cref="_viewingHistorical"/> — set only
+    /// while reconstructed text is displayed — NOT the timeline bar's visibility,
+    /// which is true for the whole lifetime of a CE document even at present view.
+    /// </summary>
+    private bool IsReadingLayoutGated()
+        => (_vm?.PendingRefresh ?? false) || _viewingHistorical;
+
+    /// <summary>
+    /// Applies a specific reading layout mode, re-rendering both panes off the UI
+    /// thread with a suppressedLbNValues set built by
+    /// <see cref="ReadingLayoutSuppressionBuilder"/> (verse/dharani line breaks are
+    /// preserved). <c>_isReadingLayout</c> only flips after a successful render; a
+    /// sequence token drops stale completions; the achieved mode is persisted via
+    /// <see cref="ReaderStateService"/> so it survives navigation.
+    /// </summary>
+    public async Task ApplyReadingLayoutAsync(ReadingLayoutMode mode, bool userInitiated = true)
     {
         if (string.IsNullOrEmpty(_provenanceXmlAbsPath))
         {
@@ -5719,7 +5811,15 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             return;
         }
 
-        bool target = !_isReadingLayout;
+        // HARD GATE: never fight time-travel or a pending refresh. Re-sync the
+        // checkbox to the true current state (the user may have just clicked it).
+        if (IsReadingLayoutGated())
+        {
+            SetReadingLayoutCheckbox(_isReadingLayout);
+            return;
+        }
+
+        bool target = mode == ReadingLayoutMode.MergedFlow;
         int seq = ++_readingLayoutRenderSeq;
         var xmlPath = _provenanceXmlAbsPath!;
         var tranPathHint = _translationXmlAbsPath;
@@ -5733,23 +5833,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 if (target)
                 {
                     var segMap = segMapService?.TryLoad(xmlPath);
-                    if (segMap?.Segments != null)
-                    {
-                        suppressedLbs = new HashSet<string>();
-                        foreach (var seg in segMap.Segments)
-                        {
-                            // Suppress all lbs EXCEPT the first in each segment's range.
-                            // The first lb's newline becomes the paragraph break between segments.
-                            if (seg.LbRange != null && seg.LbRange.Count > 1)
-                            {
-                                for (int i = 1; i < seg.LbRange.Count; i++)
-                                    suppressedLbs.Add(seg.LbRange[i]);
-                            }
-                        }
-                    }
+                    suppressedLbs = ReadingLayoutSuppressionBuilder.Build(segMap);
 
-                    // No segment map → nothing to suppress → reading layout unavailable
-                    if (suppressedLbs == null || suppressedLbs.Count == 0)
+                    // No segment map → nothing to suppress → merged flow unavailable
+                    if (suppressedLbs.Count == 0)
                         return ((RenderedDocument?)null, (RenderedDocument?)null);
                 }
 
@@ -5775,16 +5862,31 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             if (seq != _readingLayoutRenderSeq)
                 return;
 
+            // Gate may have opened (time-travel entered) while rendering — bail.
+            if (IsReadingLayoutGated())
+            {
+                SetReadingLayoutCheckbox(_isReadingLayout);
+                return;
+            }
+
             if (origDoc == null)
             {
+                // Merged flow requested but unavailable (no segment map). Stay on page.
                 _isReadingLayout = false;
                 SetReadingLayoutCheckbox(false);
+                // Only overwrite the stored mode with Page on an explicit user toggle.
+                // A non-user-initiated sticky reapply that fails on a transient
+                // segment-map miss must NOT erase the user's persisted MergedFlow
+                // preference (audit R2 reader finding).
+                if (userInitiated)
+                    PersistLayoutMode(ReadingLayoutMode.Page);
                 return;
             }
 
             _isReadingLayout = target;
             SetReadingLayoutCheckbox(target);
             SetRendered(origDoc, tranDoc!);
+            PersistLayoutMode(target ? ReadingLayoutMode.MergedFlow : ReadingLayoutMode.Page);
         }
         catch
         {
@@ -5796,6 +5898,64 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 SetReadingLayoutCheckbox(false);
             }
         }
+    }
+
+    /// <summary>
+    /// The key under which reader state is persisted for the current file. Prefers
+    /// the corpus-relative path (as bookmarks do) so persisted layout/resume state
+    /// survives moving or renaming the portable install directory; falls back to the
+    /// absolute XML path only when no relative path is available (audit R2 reader
+    /// finding — ReaderState is documented as relPath-keyed).
+    /// </summary>
+    private string? ReaderStateKey()
+        => !string.IsNullOrWhiteSpace(_vm?.CurrentRelPathForZen)
+            ? _vm!.CurrentRelPathForZen
+            : _provenanceXmlAbsPath;
+
+    /// <summary>Persists the achieved reading layout mode for the current file (best-effort).</summary>
+    private void PersistLayoutMode(ReadingLayoutMode mode)
+    {
+        var key = ReaderStateKey();
+        if (string.IsNullOrEmpty(key)) return;
+        try { _readerStateService.SetLayoutMode(key, mode); } catch { }
+    }
+
+    /// <summary>
+    /// Re-applies the persisted reading layout for the current file after a
+    /// navigation settles (sticky merged flow, audit R2.2). Scheduled at Background
+    /// priority so it runs AFTER the synchronous SetRendered/SetProvenance work of
+    /// the navigation; seq- and gate-guarded so a stale or time-travel reapply is a
+    /// graceful no-op that degrades to page layout.
+    /// </summary>
+    private void MaybeReapplyPersistedLayout()
+    {
+        // Absolute path is the file-identity guard for the deferred post; the
+        // relative path is the persistence key (see ReaderStateKey).
+        var absKey = _provenanceXmlAbsPath;
+        if (string.IsNullOrEmpty(absKey)) return;
+        if (IsReadingLayoutGated()) return;
+
+        var stateKey = ReaderStateKey();
+        if (string.IsNullOrEmpty(stateKey)) return;
+
+        ReadingLayoutMode persisted;
+        try { persisted = _readerStateService.GetLayoutMode(stateKey); }
+        catch { return; }
+
+        if (persisted != ReadingLayoutMode.MergedFlow) return; // page is the default baseline
+        if (_isReadingLayout) return;                          // already merged
+
+        int seqAtSchedule = _readingLayoutRenderSeq;
+        Dispatcher.UIThread.Post(() =>
+        {
+            // A newer navigation/toggle bumped the seq — abandon this reapply.
+            if (seqAtSchedule != _readingLayoutRenderSeq) return;
+            if (IsReadingLayoutGated()) return;
+            if (!string.Equals(_provenanceXmlAbsPath, absKey, StringComparison.OrdinalIgnoreCase)) return;
+            // Not user-initiated: a transient failure must not overwrite the stored mode.
+            AsyncGuard.Run(() => ApplyReadingLayoutAsync(ReadingLayoutMode.MergedFlow, userInitiated: false),
+                "ReadableTabView.MaybeReapplyPersistedLayout");
+        }, DispatcherPriority.Background);
     }
 
     /// <summary>Sets the checkbox without re-entering the toggle handler.</summary>
@@ -5833,6 +5993,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // Editions without `commentary_reader_languages` in their manifest produce
         // CommentaryPanelState.Hidden and the panel stays invisible (zero footprint).
         PopulateCommentary(xmlAbsPath, manifest);
+
+        // Sticky reading layout: re-apply this file's persisted merged-flow mode
+        // after the navigation settles (page layout is the baseline just rendered).
+        MaybeReapplyPersistedLayout();
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>
@@ -6507,6 +6671,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _latestCorrectionByLocus = null;
         _anchorEvents = null;
         _editionDir = null;
+        // Navigating away from (or reloading) a timeline document leaves any
+        // historical view — reopen the reading-layout gate.
+        _viewingHistorical = false;
     }
 
     private void OnCorrectionStepChanged(int step)
@@ -6521,6 +6688,15 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // ── Legacy correction-log mode ──
         if (_correctionEntries == null || _correctionWorkingText == null || _aeOrig == null)
             return;
+
+        // Entering (or scrubbing within) a reconstructed historical view. Gate
+        // reading-layout re-renders and detach the semantic segment transformers:
+        // their offsets are built against the present render, so leaving them
+        // attached paints the historical text with the wrong segment coloring
+        // (audit R2 reader finding). They are re-attached on Return to Present.
+        _viewingHistorical = true;
+        DetachSegmentTypeTransformerOrig();
+        DetachSegmentTypeTransformerTran();
 
         string? highlightLocus = null;
         List<(string Locus, string Text)>? reconstructedLines = null;
@@ -6608,6 +6784,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (_anchorEvents == null || _aeOrig == null) return;
         if (step < 0 || step >= _anchorEvents.Count) return;
+
+        // Reconstructed historical view: gate reading-layout re-renders and detach
+        // the present-render segment transformers (see OnCorrectionStepChanged).
+        _viewingHistorical = true;
+        DetachSegmentTypeTransformerOrig();
+        DetachSegmentTypeTransformerTran();
 
         var evt = _anchorEvents[step];
 
@@ -6724,6 +6906,17 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         {
             _syncingSelection = false;
         }
+
+        // Present render restored: leave historical mode so the gate reopens, and
+        // re-attach the semantic segment transformers (their offsets are valid again
+        // now that the present render text is back in the editors).
+        _viewingHistorical = false;
+        AttachSegmentTypeTransformers(_provenanceXmlAbsPath);
+
+        // Time-travel hard-gated reading-layout changes; restore the file's persisted
+        // merged-flow mode now that the historical view is dismissed (no-op if merged
+        // is already active or no merged mode is persisted).
+        MaybeReapplyPersistedLayout();
 
         Say("Returned to present");
     }
@@ -6937,6 +7130,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         var relPath = _vm.CurrentRelPathForZen;
         if (string.IsNullOrWhiteSpace(relPath)) return;
 
+        bool onTran = _aeTran != null;
         var editor = _aeTran ?? _aeOrig;
         if (editor == null) return;
 
@@ -6956,12 +7150,20 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
         catch { }
 
+        // Re-anchor to the underlying lb so the bookmark survives re-rendering and
+        // page↔merged-flow layout changes. DisplayOffset stays as a legacy fallback.
+        var anchorDoc = onTran ? _vm.RenderTran : _vm.RenderOrig;
+        var (lbAnchor, lbStart) = ResolveLbAtOffset(anchorDoc, offset);
+
         var bookmark = new Bookmark
         {
             RelPath = relPath,
             DisplayOffset = offset,
             Label = label,
-            CreatedUtc = DateTime.UtcNow
+            CreatedUtc = DateTime.UtcNow,
+            LbAnchor = lbAnchor,
+            Side = lbAnchor != null ? (onTran ? "tran" : "orig") : null,
+            IntraLineOffset = lbAnchor != null ? Math.Max(0, offset - lbStart) : (int?)null
         };
 
         _bookmarkService.Add(bookmark);
@@ -7061,12 +7263,30 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void NavigateToBookmark(Bookmark bm)
     {
-        var editor = _aeTran ?? _aeOrig;
+        // Prefer the pane the bookmark was captured from; fall back to whichever exists.
+        var editor = bm.Side == "orig" ? (_aeOrig ?? _aeTran) : (_aeTran ?? _aeOrig);
         if (editor == null) return;
 
         int docLen = editor.Document?.TextLength ?? 0;
-        int offset = Math.Clamp(bm.DisplayOffset, 0, docLen);
 
+        // Preferred path: re-anchor via the lb so the position survives re-rendering /
+        // layout changes. ResolveLbRange maps the lb to a rendered span in the CURRENT
+        // document; add the captured intra-line offset back on top.
+        if (!string.IsNullOrEmpty(bm.LbAnchor))
+        {
+            var doc = editor == _aeOrig ? _vm.RenderOrig : _vm.RenderTran;
+            var (lbStart, lbLen) = ResolveLbRange(doc, bm.LbAnchor!, null);
+            if (lbStart >= 0)
+            {
+                int intra = bm.IntraLineOffset ?? 0;
+                int target = Math.Clamp(lbStart + Math.Max(0, intra), 0, docLen);
+                CenterByCaret(editor, target);
+                return;
+            }
+        }
+
+        // Legacy fallback: raw display offset.
+        int offset = Math.Clamp(bm.DisplayOffset, 0, docLen);
         CenterByCaret(editor, offset);
     }
 

@@ -76,7 +76,12 @@ public partial class GitTabView : UserControl
             _vm.SyncCommand.Execute(null);
     }
 
-    public Task TriggerInitialDownloadAsync() => _vm.StartInitialDownloadAsync();
+    /// <summary>
+    /// Starts the onboarding corpus download. Returns <c>true</c> only when the
+    /// download completed successfully; <c>false</c> on cancel or failure so the
+    /// caller (the onboarding tour) can offer a Retry action.
+    /// </summary>
+    public Task<bool> TriggerInitialDownloadAsync() => _vm.StartInitialDownloadAsync();
 
     public void SetCurrentRepoRoot(string? rootPath) => _vm.SetCurrentRepoRoot(rootPath);
     public void SetSelectedRelPath(string? relPath) => _vm.SetSelectedRelPath(relPath);

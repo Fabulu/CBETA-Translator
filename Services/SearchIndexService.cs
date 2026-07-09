@@ -125,6 +125,14 @@ public sealed class SearchIndexService : ISearchIndexService
     internal int LastBuildXmlReadCount => Volatile.Read(ref _lastBuildXmlReadCount);
     internal int LastBuildFallbackCount => Volatile.Read(ref _lastBuildFallbackCount);
 
+    // PERF (E) test-observable: 1 when the last public BuildOrUpdateAsync call's incremental
+    // attempt bailed on the >20% delta guard (IncrementalFullRebuildDeltaThreshold) and was
+    // completed as a clean full rebuild; 0 otherwise. Reset per public call — NOT per core
+    // run — so it survives the full-rebuild retry that the guard triggers. Distinct from
+    // _lastBuildFallbackCount (the S5 fault-retry path), which stays 0 on a guard trip.
+    private int _lastBuildDeltaGuardTripped;
+    internal int LastBuildDeltaGuardTripped => Volatile.Read(ref _lastBuildDeltaGuardTripped);
+
     // INC-3A test-observable: 1 when the last BuildOrUpdateCoreAsync run produced the
     // corpusfreq artifact via the algebraic delta (old counts - removed/changed old
     // texts + added/changed new texts), 0 when the full text.bin recount ran (fresh
@@ -169,6 +177,12 @@ public sealed class SearchIndexService : ISearchIndexService
     // full rebuild that ships stamped siblings. Do NOT bump again this project.
     // (Previous bump 2026-07-04: inverted index integrity contract, audit P1.1.)
     private const string BuildGuid = "search-v6-stamped-siblings";
+    // PERF (E): an incremental build whose changed+removed set exceeds this fraction of
+    // the corpus abandons the incremental path and runs a clean full rebuild instead —
+    // near a wholesale change the per-entry incremental overhead (old-artifact reads,
+    // gram-set transpose, algebraic freq delta) buys little over recomputing once. Checked
+    // BEFORE any artifact is written, so no BuildGuid bump and no on-disk format change.
+    private const double IncrementalFullRebuildDeltaThreshold = 0.20;
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
     private const int Cjk2ManifestVersion = 1;
@@ -2357,6 +2371,7 @@ public sealed class SearchIndexService : ISearchIndexService
             try
             {
                 Interlocked.Exchange(ref _lastBuildFallbackCount, 0);
+                Interlocked.Exchange(ref _lastBuildDeltaGuardTripped, 0);
 
                 // SINGLE FALLBACK (S5): any exception thrown while incremental sourcing
                 // was enabled (except cancellation) => delete stray family tmp files and
@@ -2375,6 +2390,17 @@ public sealed class SearchIndexService : ISearchIndexService
                     {
                         throw;
                     }
+                    catch (IncrementalDeltaGuardException gex)
+                    {
+                        // PERF (E): NOT a failure. The incremental attempt deliberately
+                        // bailed because the changed+removed delta exceeded the threshold
+                        // (before any artifact was written). Run the clean full rebuild
+                        // below WITHOUT counting an S5 fallback — that path stays reserved
+                        // for genuine incremental-code faults.
+                        Dbg($"Incremental skipped — {gex.Message} Running clean full rebuild.");
+                        Interlocked.Exchange(ref _lastBuildDeltaGuardTripped, 1);
+                        DeleteStrayFamilyTmpFiles(root);
+                    }
                     catch (Exception ex)
                     {
                         Dbg($"Incremental index update FAILED — retrying as full rebuild: {ex.Message}\n{ex.StackTrace}");
@@ -2392,6 +2418,24 @@ public sealed class SearchIndexService : ISearchIndexService
                 _indexIoGate.Release();
             }
         }, ct);
+    }
+
+    /// <summary>
+    /// PERF (E) signal, not an error: the incremental attempt found the changed+removed
+    /// delta exceeds <see cref="IncrementalFullRebuildDeltaThreshold"/> of the corpus, so it
+    /// bailed BEFORE writing any artifact to let the public wrapper run a clean full rebuild.
+    /// Carries no S5 fallback-failure semantics (that path is reserved for genuine faults).
+    /// </summary>
+    private sealed class IncrementalDeltaGuardException : Exception
+    {
+        public int DeltaCount { get; }
+        public int CorpusSize { get; }
+        public IncrementalDeltaGuardException(int deltaCount, int corpusSize)
+            : base($"Incremental delta {deltaCount}/{corpusSize} exceeds full-rebuild threshold.")
+        {
+            DeltaCount = deltaCount;
+            CorpusSize = corpusSize;
+        }
     }
 
     /// <summary>Best-effort cleanup of half-written family artifacts before the fallback full rebuild.</summary>
@@ -2756,6 +2800,53 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     if (origFiles.ContainsKey(rel)) total++;
                     if (tranFiles.ContainsKey(rel)) total++;
+                }
+
+                // ── PERF (E): >20% delta guard ──
+                // Only meaningful when there IS a prior index to be incremental against.
+                // Classify each present (rel, side) with the SAME (mtime, size) stat test
+                // Phase 1 uses (minus the block read-back — the guard is a heuristic, so a
+                // rare read-back miss just routes that one entry through the normal per-entry
+                // recompute) and count removed old entries. If changed+added+removed exceeds
+                // the threshold, bail HERE — before the gramsets sidecar is loaded, before
+                // any tmp file is written — and let the public wrapper run a clean full
+                // rebuild. Never wrong, only ever a speed choice.
+                if (allowIncremental && oldMan != null)
+                {
+                    bool StatUnchanged(string rel, SearchSide side, FileInfo fi)
+                    {
+                        long ticks = fi.LastWriteTimeUtc.Ticks;
+                        long len = fi.Length;
+                        return oldMap.TryGetValue((rel, side), out var om)
+                            && om.LastWriteUtcTicks == ticks && om.LengthBytes == len && om.BloomOffset >= 0
+                            && oldTextMap.TryGetValue((rel, side), out var ot)
+                            && ot.LastWriteUtcTicks == ticks && ot.LengthBytes == len
+                            && ot.TextOffset >= 0 && ot.TextLengthBytes > 0;
+                    }
+
+                    int changedOrAdded = 0;
+                    foreach (var rel in allRel)
+                    {
+                        if (origFiles.TryGetValue(rel, out var o) && !StatUnchanged(rel, SearchSide.Original, o.fi)) changedOrAdded++;
+                        if (tranFiles.TryGetValue(rel, out var t) && !StatUnchanged(rel, SearchSide.Translated, t.fi)) changedOrAdded++;
+                    }
+                    int removed = 0;
+                    foreach (var key in oldMap.Keys)
+                    {
+                        bool present = key.side == SearchSide.Original
+                            ? origFiles.ContainsKey(key.rel)
+                            : tranFiles.ContainsKey(key.rel);
+                        if (!present) removed++;
+                    }
+                    int denom = Math.Max(1, Math.Max(total, oldMap.Count));
+                    if (changedOrAdded + removed > IncrementalFullRebuildDeltaThreshold * denom)
+                    {
+                        // The tmp-write try/finally that normally disposes these old handles
+                        // is never entered on this early-bail path — release them here.
+                        try { oldFs?.Dispose(); } catch { }
+                        try { oldTextHandle?.Dispose(); } catch { }
+                        throw new IncrementalDeltaGuardException(changedOrAdded + removed, denom);
+                    }
                 }
 
                 var manifest = new SearchIndexManifest
@@ -3206,7 +3297,12 @@ public sealed class SearchIndexService : ISearchIndexService
                     var invertedPath = Path.Combine(root, "search.inverted.bin");
                     await invertedIndex.SaveAsync(invertedPath, manifest.IndexStamp!, ct);
                     InvertedIndex = invertedIndex;
-                    GC.Collect(2, GCCollectionMode.Aggressive, true, true);
+                    // PERF (F): softened from GC.Collect(2, Aggressive, blocking:true, compacting:true).
+                    // The aggressive blocking+compacting Gen2/LOH collect fired at builder heap peak
+                    // and suspended the UI thread mid-build (D1 perf#3 / D2 jank#1, ranked #1).
+                    // A non-blocking, non-compacting Optimized collect lets the runtime reclaim the
+                    // now-freed gram-set / doc references without stalling foreground threads.
+                    GC.Collect(2, GCCollectionMode.Optimized, blocking: false, compacting: false);
                     Dbg($"Inverted index built: {invertedIndex.TermCount} terms, {invertedIndex.DocCount} docs");
                 }
                 catch (Exception ex)

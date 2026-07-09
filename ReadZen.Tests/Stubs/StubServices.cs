@@ -184,6 +184,8 @@ public class StubAppConfigService : IAppConfigService
     public string ConfigPath => "test-config.json";
     public int NavStatusFilterIndex { get; set; }
     public AppConfig? ConfigToReturn { get; set; }
+    public string CorruptBackupPath => "test-config.json.corrupt";
+    public string? LoadWarning { get; set; }
 
     public Task<AppConfig?> TryLoadAsync() => Task.FromResult(ConfigToReturn);
     public Task SaveAsync(AppConfig cfg) => Task.CompletedTask;
