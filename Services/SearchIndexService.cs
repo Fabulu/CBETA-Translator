@@ -39,6 +39,21 @@ public sealed class SearchIndexService : ISearchIndexService
         // Set to 0 to disable the hybrid (every candidate verified, original behaviour).
         public int SkipVerifySnippetTopN { get; set; } = 20;
 
+        // Instant search (v4 tf). When true, any query whose bigrams resolve through the
+        // inverted index RANKS candidates by index tf (highest-frequency docs verified
+        // first). The skip-verify hybrid (verify + snippet only the top-N; the long tail
+        // shows a tf count + loads snippets on demand) is engaged ONLY for single-bigram
+        // (2-char CJK) queries, where the inverted index proves the query is contiguous so
+        // the exact tf equals the match count. Multi-bigram phrases are still tf-ranked but
+        // every candidate is VERIFIED — the index proves bigram co-occurrence, not phrase
+        // adjacency, so emitting an unverified tail would surface scattered-bigram false
+        // positives. When false, behaviour is unchanged from v6: only 2-char-CJK queries
+        // use the hybrid, everything else eagerly verifies. Default FALSE at the service
+        // layer so existing service-level tests keep their eager semantics; the app turns
+        // it ON via AppConfig.InstantSearch (default true), pushed onto this option by
+        // SearchTabViewModel.
+        public bool InstantSearch { get; set; } = false;
+
         // If you truly need entity-decoding for search, keep this true.
         // For CBETA bodies it's often unnecessary; turning it off is faster.
         public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
@@ -169,14 +184,15 @@ public sealed class SearchIndexService : ISearchIndexService
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    // Bumped 2026-07-08 from "search-v5-inverted-integrity": the cjk2 and corpusfreq
-    // sibling manifests gained IndexStamp integrity binding (D3 item 5). Existing
-    // unstamped siblings are refused by the new consumers (cjk2 prefilter and
-    // corpusfreq loader), and without a bump users would silently lose those
-    // accelerators until their next natural rebuild — the GUID bump forces the ONE
-    // full rebuild that ships stamped siblings. Do NOT bump again this project.
-    // (Previous bump 2026-07-04: inverted index integrity contract, audit P1.1.)
-    private const string BuildGuid = "search-v6-stamped-siblings";
+    // Bumped 2026-07-10 from "search-v6-stamped-siblings" (AUTHORIZED, instant-search
+    // sprint): the inverted index gained per-posting term frequency (format v3 → v4).
+    // The v4 loader refuses v3 files, and without a bump the old stampless-of-tf inverted
+    // index would be refused on stamp match yet leave search on the bloom+verify path
+    // until the next natural rebuild — the GUID bump forces the ONE full rebuild that
+    // writes tf-carrying postings. Do NOT bump again lightly.
+    // (Previous bump 2026-07-08: cjk2 + corpusfreq IndexStamp binding, D3 item 5.
+    //  Previous bump 2026-07-04: inverted index integrity contract, audit P1.1.)
+    private const string BuildGuid = "search-v7-postings-tf";
     // PERF (E): an incremental build whose changed+removed set exceeds this fraction of
     // the corpus abandons the incremental path and runs a clean full rebuild instead —
     // near a wholesale change the per-entry incremental overhead (old-artifact reads,
@@ -2881,7 +2897,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 // INC-4A: inverted-index documents are (relPath, UNCUT gram set) pairs now —
                 // the high-DF cutoff is applied INSIDE InvertedSearchIndex.Build on every
                 // save, so terms cut by a previous build resurrect when the corpus shrinks.
-                var invertedDocs = new List<(string relPath, uint[] gramSet)>();
+                var invertedDocs = new List<(string relPath, uint[] gramSet, int[] gramCounts)>();
 
                 // ── INC-4A: gramsets sidecar (6th artifact, pure accelerator) ──
                 // Loaded once per build when incremental sourcing is enabled; a null result
@@ -2899,6 +2915,12 @@ public sealed class SearchIndexService : ISearchIndexService
                 // both families after the commit sequence.
                 var invGramsByEntry = new uint[total][];
                 var cjk2GramsByEntry = new uint[total][];
+                // v4 tf: per-entry inverted-alphabet gram counts, aligned with
+                // invGramsByEntry[i]. Not cached in the (format-frozen) gramsets sidecar,
+                // so ALWAYS derived from the entry's materialized searchable text — cheap
+                // (the text is already decoded in Phase 1) and deterministic, so the
+                // inverted index stays byte-identical between full and incremental builds.
+                var invGramCountsByEntry = new int[total][];
 
                 // INC-2A (D3 item 1): per-file content hashes for the InputHash computation
                 // in SaveManifestAtomicAsync, keyed by the exact AppendDirRows walk-key
@@ -3048,6 +3070,7 @@ public sealed class SearchIndexService : ISearchIndexService
                             // of the XML.
                             uint[]? invGrams = null;
                             uint[]? cjk2Grams = null;
+                            int[]? invCounts = null;
                             if (unchanged && gramSets != null && gramSets.TryGet(relKey, side, out var gsRow))
                             {
                                 bool gsHit = gsRow.ContentHash != null && carriedHash != null
@@ -3061,12 +3084,37 @@ public sealed class SearchIndexService : ISearchIndexService
                             }
                             if (invGrams == null || cjk2Grams == null)
                             {
-                                invGrams = InvertedSearchIndex.ComputeGramSet(searchable);
+                                // Fresh compute: grams + tf counts together (one text pass
+                                // for both alphabets' work). This is the ONLY site that
+                                // increments the gram-compute counter (sidecar MISS/changed).
+                                (invGrams, invCounts) = InvertedSearchIndex.ComputeGramSetAndCounts(searchable);
                                 cjk2Grams = GramSetCodec.ComputeCjk2GramSet(searchable);
                                 Interlocked.Increment(ref _lastBuildGramComputeCount);
                             }
+                            if (invCounts == null)
+                            {
+                                // Sidecar HIT: the gram SET is cached but tf is not (the
+                                // sidecar format is frozen), so derive counts from the same
+                                // searchable text the set was cached for.
+                                //
+                                // PERF CAVEAT (INC-4A limitation): this is a full O(text) scan
+                                // plus a per-doc dictionary — the SAME cost class the sidecar
+                                // exists to skip. On the inverted alphabet the accelerator now
+                                // only saves the SET derivation, not this tf derivation, so an
+                                // incremental rebuild still pays a linear scan per unchanged
+                                // entry. Removing this cost requires version-bumping the gramsets
+                                // sidecar to persist the aligned counts (its own format guard
+                                // makes that a safe, isolated accelerator change).
+                                //
+                                // The LastBuildGramComputeCount canary deliberately does NOT
+                                // count this site — it measures gram-SET recomputes only, so the
+                                // sidecar-reuse tests keep asserting set reuse. Be aware they do
+                                // NOT prove this tf scan was avoided.
+                                invCounts = InvertedSearchIndex.ComputeGramCounts(searchable, invGrams);
+                            }
                             invGramsByEntry[i] = invGrams;
                             cjk2GramsByEntry[i] = cjk2Grams;
+                            invGramCountsByEntry[i] = invCounts;
 
                             computed[i] = new ComputedEntry
                             {
@@ -3196,9 +3244,11 @@ public sealed class SearchIndexService : ISearchIndexService
                                 outTextFs.Write(tb, 0, tb.Length);
                             int textLenBytes = tb.Length;
 
-                            // Entry-order (orig then tran per rel) feed of UNCUT gram sets;
-                            // keep-first dedup + winner flips are replayed inside Build.
-                            invertedDocs.Add((entry.RelKey, invGramsByEntry[i]));
+                            // Entry-order (orig then tran per rel) feed of UNCUT gram sets +
+                            // aligned tf counts; keep-first dedup + winner flips are replayed
+                            // inside Build (grams and counts are added together, so the kept
+                            // entry's set and its tf stay paired).
+                            invertedDocs.Add((entry.RelKey, invGramsByEntry[i], invGramCountsByEntry[i] ?? Array.Empty<int>()));
 
                             // INC-3A: corpusfreq ADD pass — added/changed entries contribute
                             // their NEW searchable text. Unchanged entries (CopiedBloom)
@@ -4027,15 +4077,19 @@ public sealed class SearchIndexService : ISearchIndexService
         var candidates = new ConcurrentDictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         var swCandidate = System.Diagnostics.Stopwatch.StartNew();
         bool usedInvertedIndex = false;
+        // v4 tf (instant search): per-relPath query term frequency read from the inverted
+        // index. Populated only on the inverted fast path; null otherwise (bloom/brute).
+        Dictionary<string, long>? tfByRel = null;
 
         // Fast path: inverted index (0% false positives, sub-millisecond)
         if (InvertedIndex?.IsLoaded == true && effectiveQuery.Length >= 2)
         {
-            var invertedHits = InvertedIndex.Search(effectiveQuery);
+            var invertedHits = InvertedIndex.SearchWithTf(effectiveQuery);
             if (invertedHits != null && invertedHits.Length > 0)
             {
                 int sideMask = (includeOriginal ? 1 : 0) | (includeTranslated ? 2 : 0);
-                foreach (var docId in invertedHits)
+                tfByRel = new Dictionary<string, long>(invertedHits.Length, StringComparer.OrdinalIgnoreCase);
+                foreach (var (docId, tf) in invertedHits)
                 {
                     var relPath = InvertedIndex.GetRelPath(docId);
                     if (relPath == null) continue;
@@ -4044,6 +4098,10 @@ public sealed class SearchIndexService : ISearchIndexService
                     // The inverted index doesn't track sides per doc — apply the requested side mask.
                     // The verification loop will check each side individually against actual file content.
                     candidates.AddOrUpdate(relPath, _ => sideMask, (_, v) => v | sideMask);
+                    // One docId per relPath (Build dedups keep-first), so a plain set is safe;
+                    // keep the max defensively if a relPath ever appears twice.
+                    if (!tfByRel.TryGetValue(relPath, out var existing) || tf > existing)
+                        tfByRel[relPath] = tf;
                 }
 
                 usedInvertedIndex = true;
@@ -4202,18 +4260,44 @@ public sealed class SearchIndexService : ISearchIndexService
         }
         swCandidate.Stop();
 
-        // PR2 (skip-verify hybrid): for 2-char pure-CJK queries, the inverted bigram index
-        // already proves contiguous adjacency, so we only need verify for snippet collection
-        // on the top N candidates. Order candidateList by a hit-count proxy (max LengthBytes
-        // across sides per relPath, descending) so the long tail — which gets verify skipped —
-        // is the smaller files (least likely to be a user's first click).
+        // Skip-verify hybrid. Emitting a candidate WITHOUT verifying it is only sound when
+        // the inverted index has proven the query is contiguous in the document. That holds
+        // for a SINGLE-BIGRAM query (a 2-char CJK term): bigram co-occurrence == adjacency.
+        // For a MULTI-BIGRAM phrase the index proves only that the constituent bigrams each
+        // occur somewhere in the doc, NOT that they form the contiguous phrase — a doc with
+        // 無門 and 門關 in unrelated places matches the intersection yet contains zero 無門關.
+        // So skip-verify (emit without confirming) must be restricted to single-bigram
+        // queries; multi-bigram instant queries still tf-RANK the candidates but verify
+        // every one (correctness over the tail-latency win).
         //
-        // For all other queries (length != 2, non-CJK, surrogate pair) keep the existing
-        // alphabetic sort to preserve byte-identical behaviour.
-        bool hybridSkipVerifyEnabled = IsTwoCharCjk(effectiveQuery) && Options.SkipVerifySnippetTopN > 0;
+        // Two ways to engage skip-verify:
+        //  • instant single-bigram (v4 tf, Options.InstantSearch, 2-char CJK) — candidates
+        //    rank by index tf (desc); the skipped tail shows the exact tf count.
+        //  • legacy 2-char hybrid — exactly-2-char pure-CJK queries, even with instant off.
+        //    Candidates rank by a size proxy (unchanged v6 behaviour, byte-identical).
+        //
+        // Instant tf-RANKING (independent of skip-verify) applies to ANY query resolved
+        // through the inverted index, so multi-bigram instant queries still verify the
+        // highest-tf docs first.
+        bool instantTfRanking = Options.InstantSearch && usedInvertedIndex && tfByRel != null;
+        // Adjacency is only proven by the inverted index for a single bigram (2-char CJK).
+        bool singleBigramQuery = IsTwoCharCjk(effectiveQuery);
+        bool instantSkipVerify = instantTfRanking && singleBigramQuery
+                                 && Options.SkipVerifySnippetTopN > 0;
+        bool twoCharSkipVerify = singleBigramQuery && Options.SkipVerifySnippetTopN > 0;
+        bool hybridSkipVerifyEnabled = instantSkipVerify || twoCharSkipVerify;
 
         List<string> candidateList;
-        if (hybridSkipVerifyEnabled)
+        if (instantTfRanking)
+        {
+            // Rank by index tf desc: the highest-frequency docs are the ones a user is
+            // most likely to open first, so they get the eager verify + real snippets.
+            candidateList = candidates.Keys
+                .OrderByDescending(k => tfByRel!.TryGetValue(k, out var t) ? t : 0L)
+                .ThenBy(k => k, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+        else if (hybridSkipVerifyEnabled)
         {
             // Build a per-relPath weight: max LengthBytes across sides. Bigger files plausibly
             // have more hits; this is a fallback for "actual posting-list bigram count" which
@@ -4349,22 +4433,37 @@ public sealed class SearchIndexService : ISearchIndexService
 
                     if (skipVerify)
                     {
-                        // Skip-verify path: the bigram inverted index already proved both bigrams
-                        // (the only one, for a 2-char query) co-occur in this doc. We emit a single
-                        // placeholder child per requested side with IsSkippedVerify=true so the UI
-                        // can render a "snippet on demand" affordance. Hit counts are sentinel "1"
-                        // (= at least one) so ordering / badges remain meaningful.
+                        // Skip-verify path: reached only for single-bigram (2-char CJK) queries,
+                        // where the inverted index has proven the query is contiguous in this doc.
+                        // We emit a single placeholder child per requested side with
+                        // IsSkippedVerify=true so the UI can render a "snippet on demand" affordance.
+                        // The hit count is the exact index tf when available (instant mode); otherwise
+                        // the sentinel "1" (= at least one, unverified).
+                        //
+                        // The inverted index stores ONE doc per relPath (Build dedups keep-first,
+                        // original-then-translated), so tf measured only ONE side's text. Attribute
+                        // that count to a single requested side (original first, matching keep-first)
+                        // and keep the honest "at least one" sentinel for the other requested side,
+                        // rather than showing a precise-looking tf for a side the index never measured.
+                        int skipCount = 1;
+                        if (instantSkipVerify && tfByRel != null &&
+                            tfByRel.TryGetValue(relKey, out var qtf) && qtf > 0)
+                            skipCount = (int)Math.Min(qtf, int.MaxValue);
+                        bool tfClaimed = false;
                         if ((mask & 1) != 0)
                         {
                             originalHits.Add(new SearchHit { Index = 0, Left = "", Match = "", Right = "" });
-                            hitsO = 1;
-                            Interlocked.Add(ref totalHits, 1);
+                            hitsO = skipCount;
+                            tfClaimed = true;
+                            Interlocked.Add(ref totalHits, hitsO);
                         }
                         if ((mask & 2) != 0)
                         {
                             translatedHits.Add(new SearchHit { Index = 0, Left = "", Match = "", Right = "" });
-                            hitsT = 1;
-                            Interlocked.Add(ref totalHits, 1);
+                            // If original already claimed the tf, the translated side is genuinely
+                            // unmeasured here — use the sentinel rather than the wrong side's count.
+                            hitsT = tfClaimed ? 1 : skipCount;
+                            Interlocked.Add(ref totalHits, hitsT);
                         }
                         Interlocked.Increment(ref skippedVerifyGroups);
                     }

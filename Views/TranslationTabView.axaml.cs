@@ -12,6 +12,7 @@ using AvaloniaEdit;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
 using AvaloniaEdit.Rendering;
+using CommunityToolkit.Mvvm.Messaging;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -145,6 +146,13 @@ public partial class TranslationTabView : UserControl
         UpdateModeInfo();
         ApplyHoverDictionarySetting();
         SetCurrentReviewState(null, null, null, null);
+
+        // Config-driven hover-dictionary toggle arrives via the typed messenger
+        // (ratchet-folded replacement for MainWindowViewModel.SetTranslationHoverDict).
+        // Weak registration — no unsubscribe needed for the view's lifetime.
+        WeakReferenceMessenger.Default
+            .Register<TranslationTabView, ReadZen.App.Messages.SettingsAppliedMessage>(
+                this, static (view, msg) => { try { view.SetHoverDictionaryEnabled(msg.Config.EnableHoverDictionary); } catch { /* isolate from sibling recipients */ } });
 
         DetachedFromVisualTree += (_, _) =>
         {

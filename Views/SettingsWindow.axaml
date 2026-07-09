@@ -97,6 +97,12 @@
 				          ToolTip.Tip="Scrolling one reader pane keeps the other aligned on the same passage. Turn off for independent scrolling."
 				          IsChecked="{Binding EnableBilingualScrollSync}"/>
 
+				<!-- Instant search checkbox -->
+				<CheckBox Content="Instant search (rank by frequency, load snippets on demand)"
+				          VerticalAlignment="Top"
+				          ToolTip.Tip="When on, full-text search ranks results by how often the term occurs (read straight from the index) and loads snippets for the top results first — the rest load on demand, so results appear instantly. Turn off to verify every result up front for exact counts and full snippets."
+				          IsChecked="{Binding InstantSearch}"/>
+
 				<!-- Divider -->
 				<Border Height="1"
 				        Background="{DynamicResource BorderBrush}"

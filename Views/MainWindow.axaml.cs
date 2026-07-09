@@ -746,34 +746,15 @@ private async Task LoadConfigAndAutoloadAsync()
             _readableView?.SetProvenance(manifest, license, corpus, xmlAbsPath);
             DiscoverAndSetCorrectionLog(xmlAbsPath);
         };
-        _vm.SetReadableProvenancePanelVisible = visible =>
-            _readableView?.SetProvenancePanelVisible(visible);
-        _vm.SetReadableHoverDict = enabled =>
-        {
-            try
-            {
-                var m = _readableView?.GetType().GetMethod("SetHoverDictionaryEnabled");
-                m?.Invoke(_readableView, new object[] { enabled });
-            }
-            catch { }
-        };
+        // SetReadableProvenancePanelVisible / SetReadableHoverDict folded into
+        // ReadableTabView's SettingsAppliedMessage handler (MVVM ratchet).
         _vm.SetReadableZenContext = (rel, isZen) => _readableView?.SetZenContext(rel, isZen);
         _vm.UpdateReadableTermHighlights = (hits, zh, hint, anchor) =>
             _readableView?.UpdateTermbaseHighlights(hits, zh, preferredOccurrenceHint: hint, anchorTextSignal: anchor);
         _vm.UpdateReadableTmSharedHighlights = (approved, reference, zh, hint, anchor) =>
             _readableView?.UpdateTmSharedHighlights(approved, reference, zh, preferredOccurrenceHint: hint, anchorTextSignal: anchor);
-        _vm.SetReadableDefaultResp = resp =>
-        {
-            if (_readableView != null) _readableView.DefaultResp = resp;
-        };
-        _vm.SetReadableTagCompareIdentity = username =>
-        {
-            if (_readableView != null) _readableView.CurrentTagCompareIdentity = username;
-        };
-        _vm.SetReadableTagUsername = username =>
-        {
-            if (_readableView != null) _readableView.CurrentTagUsername = username;
-        };
+        // SetReadableDefaultResp / SetReadableTagCompareIdentity / SetReadableTagUsername
+        // folded into ReadableTabView's SettingsAppliedMessage handler (MVVM ratchet).
         _vm.SetReadableStudySnapshot = snapshot => _readableView?.SetStudyPanelSnapshot(snapshot);
         _vm.AppendReaderConcordance = hits =>
         {
@@ -782,7 +763,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 brushResolver: key => _readableView?.TryFindResource(key, out var obj) == true && obj is IBrush b ? b : null,
                 navigationHandler: (_, req) => _vm.HandleNavigationRequested(req));
         };
-        _vm.SetReadableStudyPanelVisible = visible => _readableView?.SetStudyPanelVisible(visible);
+        // SetReadableStudyPanelVisible folded into ReadableTabView's SettingsAppliedMessage handler (MVVM ratchet).
 
         // Wire zen master lookup for study panel bio section
         EnsureMasterCatalogPreload();
@@ -805,7 +786,7 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetTranslationModeProjection = (mode, text) => _translationView?.SetModeProjection(mode, text);
         _vm.GetTranslationProjectionText = () => _translationView?.GetCurrentProjectionText() ?? "";
         _vm.ClearTranslation = () => _translationView?.Clear();
-        _vm.SetTranslationHoverDict = enabled => _translationView?.SetHoverDictionaryEnabled(enabled);
+        // SetTranslationHoverDict folded into TranslationTabView's SettingsAppliedMessage handler (MVVM ratchet).
         _vm.SetAssistantLoading = isLoading =>
         {
             Avalonia.Threading.Dispatcher.UIThread.Post(() =>
@@ -862,8 +843,7 @@ private async Task LoadConfigAndAutoloadAsync()
         // GitTabView bridges
         _vm.SetGitRepoRoot = root => _gitView?.SetCurrentRepoRoot(root);
         _vm.SetGitSelectedRelPath = rel => _gitView?.SetSelectedRelPath(rel);
-        _vm.SetGitUsername = user => _gitView?.SetUsername(user);
-        _vm.LoadGitPersistedAuth = (token, login) => _gitView?.LoadPersistedAuth(token, login);
+        // SetGitUsername / LoadGitPersistedAuth folded into GitTabView's SettingsAppliedMessage handler (MVVM ratchet).
         // Seed the Git tab with the current corpus immediately so the very
         // first sync after launch dispatches to the right repo. The
         // PropertyChanged handler above keeps it in sync on later changes,

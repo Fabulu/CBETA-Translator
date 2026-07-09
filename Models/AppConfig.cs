@@ -64,6 +64,19 @@ namespace ReadZen.App.Models
         public bool EnableConcordance { get; set; }
 
         /// <summary>
+        /// When true (default), full-text search uses the "instant" path: candidates
+        /// are ranked by per-document term frequency read straight from the inverted
+        /// index. For a 2-char/single-bigram query the hit count is shown from that tf
+        /// (exact — the index proves the term is contiguous) and KWIC snippets are
+        /// verified lazily for only the top-ranked results (the long tail loads on
+        /// demand). Longer phrases are still tf-ranked but every candidate is verified,
+        /// because the index proves only that the bigrams co-occur, not that they form
+        /// the contiguous phrase. When false, every candidate is eagerly verified against
+        /// document text for exact counts and full snippets. Default ON for responsiveness.
+        /// </summary>
+        public bool InstantSearch { get; set; } = true;
+
+        /// <summary>
         /// Maximum TM matches shown per assistant refresh. Default 8. Range 4–20.
         /// Higher = more comprehensive but more scrolling in the assistant panel.
         /// </summary>

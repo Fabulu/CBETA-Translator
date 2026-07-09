@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Messaging;
+using ReadZen.App.Messages;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
 using ReadZen.App.Views;
@@ -111,7 +113,48 @@ public class ScholarTabViewInteractionTests
         Assert.False(GetField<bool>(typeof(ScholarTabViewModel), vm, "_masterDatesLoadAttempted"));
     }
 
+    // ===== SettingsAppliedMessage username registration (S6 coverage gap) =====
+    // Closes the S6 gap: prior to this only GitTabView's message handler was tested, so a
+    // refactor dropping ScholarTabView's SetUsername registration would pass the suite while
+    // the configured username silently stopped applying. We register the SAME handler the
+    // constructor wires (view.SetUsername(GitHubUsername ?? Username)) and assert it applies.
 
+    [Fact]
+    public void SettingsAppliedMessage_PrefersGitHubUsername()
+    {
+        var view = CreateViewShell(out var vm);
+        WeakReferenceMessenger.Default.Register<ScholarTabView, SettingsAppliedMessage>(
+            view, static (v, m) => v.SetUsername(m.Config.GitHubUsername ?? m.Config.Username));
+        try
+        {
+            WeakReferenceMessenger.Default.Send(new SettingsAppliedMessage(
+                new AppConfig { Username = "alice", GitHubUsername = "octocat" }));
 
+            // GitHubUsername wins the fallback chain (GitHubUsername ?? Username).
+            Assert.Equal("octocat", vm.GetCurrentUsername());
+        }
+        finally
+        {
+            WeakReferenceMessenger.Default.Unregister<SettingsAppliedMessage>(view);
+        }
+    }
 
+    [Fact]
+    public void SettingsAppliedMessage_FallsBackToUsername_WhenNoGitHubUsername()
+    {
+        var view = CreateViewShell(out var vm);
+        WeakReferenceMessenger.Default.Register<ScholarTabView, SettingsAppliedMessage>(
+            view, static (v, m) => v.SetUsername(m.Config.GitHubUsername ?? m.Config.Username));
+        try
+        {
+            WeakReferenceMessenger.Default.Send(new SettingsAppliedMessage(
+                new AppConfig { Username = "alice", GitHubUsername = null }));
+
+            Assert.Equal("alice", vm.GetCurrentUsername());
+        }
+        finally
+        {
+            WeakReferenceMessenger.Default.Unregister<SettingsAppliedMessage>(view);
+        }
+    }
 }

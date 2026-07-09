@@ -30,6 +30,9 @@ public partial class SettingsWindowViewModel : ViewModelBase
     private bool _enableConcordance;
 
     [ObservableProperty]
+    private bool _instantSearch;
+
+    [ObservableProperty]
     private int _tmMaxResults;
 
     private readonly AppConfig _template;
@@ -51,6 +54,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
         _enableHoverDictionary = config.EnableHoverDictionary;
         _enableBilingualScrollSync = config.EnableBilingualScrollSync;
         _enableConcordance = config.EnableConcordance;
+        _instantSearch = config.InstantSearch;
         _tmMaxResults = config.TmMaxResults;
         _username = config.Username ?? string.Empty;
     }
@@ -75,6 +79,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
         result.EnableHoverDictionary = EnableHoverDictionary;
         result.EnableBilingualScrollSync = EnableBilingualScrollSync;
         result.EnableConcordance = EnableConcordance;
+        result.InstantSearch = InstantSearch;
         result.TmMaxResults = Math.Clamp(TmMaxResults, 4, 20);
         result.Username = name;
         if (RestartTourRequested)
