@@ -2805,7 +2805,7 @@ public partial class MainWindowViewModel : ViewModelBase
             // app on large texts (audit P2.1 / R2-H3). The captured doc snapshot is
             // safe: user typing edits the projection TEXT control, not the doc; a file
             // navigation replaces _indexedDoc with a NEW instance and is detected below.
-            var (builtXml, updatedCount) = await Task.Run(() =>
+            var (builtXml, updatedCount, skippedUnsafe) = await Task.Run(() =>
             {
                 var changedBlocks = string.IsNullOrWhiteSpace(username)
                     ? null
@@ -2813,10 +2813,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 var xml = _indexedTranslation.BuildTranslatedXml(doc, out var updated);
 
+                // Captured inside the worker so a concurrent build can't overwrite it before
+                // we read it. Non-zero => some paragraphs could not be saved automatically
+                // (unsafe markup, or a target that drifted/detached — review finding 4).
+                var skipped = _indexedTranslation.LastBuildSkippedDirtyGroupCount;
+
                 if (changedBlocks != null && changedBlocks.Count > 0)
                     xml = ApplyTranslatorAnnotation(xml, changedBlocks, annotationUser);
 
-                return (xml, updated);
+                return (xml, updated, skipped);
             });
 
             if (!string.Equals(_currentRelPath, relPathAtStart, StringComparison.Ordinal))
@@ -2841,14 +2846,33 @@ public partial class MainWindowViewModel : ViewModelBase
             }
             catch { }
 
-            _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
-            var freshProjection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
-            SetTranslationProjection(_translationMode, freshProjection);
+            if (skippedUnsafe > 0)
+            {
+                // Some paragraphs could NOT be written (unsafe markup / drifted target). Their
+                // units kept IsDirty and their edited EN inside `doc` (== _indexedDoc); the
+                // patched units were already cleared by BuildTranslatedXml. Rebuilding the index
+                // from the freshly written file and replacing the editor text would ERASE the
+                // user's typed-but-unwritten translation for those paragraphs (round-2 review
+                // finding 1). Instead, keep the current editor text and the dirty flag so the
+                // unsaved edits survive in the editor alongside the warning below.
+                _dirty = true;
+                // Re-baseline to the CURRENT editor text so external-change detection has a sane
+                // reference; _dirty stays true explicitly because unwritten edits remain.
+                _baselineTranSha1 = Sha1Hex(editedProjection);
+                _lastSeenTranSha1 = _baselineTranSha1;
+                UpdateWindowTitle();
+            }
+            else
+            {
+                _indexedDoc = _indexedTranslation.BuildIndex(_rawOrigXml, _rawTranXml);
+                var freshProjection = _indexedTranslation.RenderProjection(_indexedDoc, _translationMode);
+                SetTranslationProjection(_translationMode, freshProjection);
 
-            _baselineTranSha1 = Sha1Hex(freshProjection);
-            _lastSeenTranSha1 = _baselineTranSha1;
-            _dirty = false;
-            UpdateWindowTitle();
+                _baselineTranSha1 = Sha1Hex(freshProjection);
+                _lastSeenTranSha1 = _baselineTranSha1;
+                _dirty = false;
+                UpdateWindowTitle();
+            }
 
             try { await RefreshReadableFromDiskOnlyAsync(); }
             catch (Exception refreshEx)
@@ -2860,7 +2884,10 @@ public partial class MainWindowViewModel : ViewModelBase
             var backupMsg = saveInfo.BackupCreated ? " backup=yes" : " backup=no";
             var sourceName = _translationSourceIndex < _translationSourceOptions.Count
                 ? _translationSourceOptions[_translationSourceIndex] : "active source";
-            SetStatus($"Saved ({updatedCount:n0} units updated) to {sourceName}.{backupMsg}");
+            var skippedMsg = skippedUnsafe > 0
+                ? $" WARNING: {skippedUnsafe:n0} paragraph(s) could NOT be saved automatically and were left unchanged to protect their XML structure (e.g. inline markup spanning a line break, or a translation target that changed on disk). Your edits to them were NOT written and remain in the editor as unsaved changes."
+                : "";
+            SetStatus($"Saved ({updatedCount:n0} units updated) to {sourceName}.{backupMsg}{skippedMsg}");
         }
         catch (Exception ex)
         {
