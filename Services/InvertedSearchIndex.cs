@@ -39,15 +39,76 @@ public sealed class InvertedSearchIndex
         || (ch >= '\u3400' && ch <= '\u4DBF')
         || (ch >= '\uF900' && ch <= '\uFAFF');
 
+    /// <summary>
+    /// Compute a document's indexable bigram set from its raw searchable text: every
+    /// adjacent code-unit pair where BOTH chars pass <see cref="IsIndexable"/>, packed
+    /// as <c>((uint)c0 &lt;&lt; 16) | c1</c>, unique, sorted ascending. This is the ONLY
+    /// producer of inverted-index gram sets — callers (e.g. the gram-sets sidecar) must
+    /// use it rather than re-implement the filter, so cached sets can never drift from
+    /// what <see cref="Build(IReadOnlyList{ValueTuple{string, string}})"/> would compute.
+    /// </summary>
+    public static uint[] ComputeGramSet(string searchableText)
+    {
+        var set = new HashSet<uint>();
+        for (int i = 0; i < searchableText.Length - 1; i++)
+        {
+            char c0 = searchableText[i], c1 = searchableText[i + 1];
+            if (!IsIndexable(c0) || !IsIndexable(c1)) continue;
+            set.Add(((uint)c0 << 16) | c1);
+        }
+        var grams = new uint[set.Count];
+        set.CopyTo(grams);
+        Array.Sort(grams);
+        return grams;
+    }
+
     public void Build(IReadOnlyList<(string relPath, string searchableText)> documents)
+    {
+        // Deduplicate by relPath BEFORE computing gram sets — keep first occurrence
+        // only, and never spend work on dropped duplicates. The gram-set overload
+        // below re-checks dedup, which is a no-op on this already-unique list.
+        var seenPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var keptIndices = new List<int>(documents.Count);
+        for (int i = 0; i < documents.Count; i++)
+        {
+            if (seenPaths.Add(documents[i].relPath))
+                keptIndices.Add(i);
+        }
+
+        // Refuse an oversized corpus BEFORE the full-corpus bigram scan: the loud
+        // ushort-cap refusal must stay instant (the gram-set overload re-checks it,
+        // but by then every gram set would already have been computed).
+        if (keptIndices.Count > ushort.MaxValue)
+            throw new InvalidOperationException(
+                $"InvertedSearchIndex supports at most {ushort.MaxValue} documents; got {keptIndices.Count}.");
+
+        var dedupedDocs = new List<(string relPath, uint[] gramSet)>(keptIndices.Count);
+        foreach (int i in keptIndices)
+        {
+            var (relPath, text) = documents[i];
+            dedupedDocs.Add((relPath, ComputeGramSet(text)));
+        }
+        Build(dedupedDocs);
+    }
+
+    /// <summary>
+    /// Build from precomputed per-document gram sets (as produced by
+    /// <see cref="ComputeGramSet"/>: packed bigrams, unique, sorted ascending —
+    /// callers must honor that precondition). Semantics are identical to the text
+    /// overload: keep-FIRST dedup by relPath (OrdinalIgnoreCase), loud refusal past
+    /// the ushort docId cap, and the high-DF cutoff applied here at build time from
+    /// the UNCUT input sets — so cached sets must never be pre-cut, and terms cut by
+    /// a previous build resurrect when the corpus shrinks below the threshold.
+    /// </summary>
+    public void Build(IReadOnlyList<(string relPath, uint[] gramSet)> documents)
     {
         // Deduplicate by relPath — keep first occurrence only
         var seenPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var dedupedDocs = new List<(string relPath, string text)>();
-        foreach (var (relPath, text) in documents)
+        var dedupedDocs = new List<(string relPath, uint[] gramSet)>();
+        foreach (var (relPath, gramSet) in documents)
         {
             if (seenPaths.Add(relPath))
-                dedupedDocs.Add((relPath, text));
+                dedupedDocs.Add((relPath, gramSet));
         }
 
         int docCount = dedupedDocs.Count;
@@ -61,29 +122,21 @@ public sealed class InvertedSearchIndex
         int maxDf = (int)(docCount * MaxDocFrequencyRatio);
 
         _docPaths = new string[docCount];
-        var tempIndex = new Dictionary<long, List<ushort>>(16384);
-        var seen = new HashSet<long>(); // reused per doc
+        var tempIndex = new Dictionary<uint, List<ushort>>(16384);
 
         for (int docId = 0; docId < docCount; docId++)
         {
-            var (relPath, text) = dedupedDocs[docId];
+            var (relPath, gramSet) = dedupedDocs[docId];
             _docPaths[docId] = relPath;
 
-            seen.Clear();
-            for (int i = 0; i < text.Length - 1; i++)
+            foreach (var key in gramSet)
             {
-                char c0 = text[i], c1 = text[i + 1];
-                if (!IsIndexable(c0) || !IsIndexable(c1)) continue;
-
-                long key = ((long)c0 << 16) | c1;
-                if (!seen.Add(key)) continue;
-
                 if (!tempIndex.TryGetValue(key, out var list))
                 {
                     list = new List<ushort>();
                     tempIndex[key] = list;
                 }
-                list.Add((ushort)docId);
+                list.Add((ushort)docId); // docIds appended in doc order → ascending
             }
         }
 
