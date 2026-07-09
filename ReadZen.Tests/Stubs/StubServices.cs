@@ -225,6 +225,8 @@ public class StubIndexedTranslationService : IIndexedTranslationService
 {
     public string LastBuildTranslatedXmlDebugDump => "";
     public string LastBuildTranslatedXmlDebugDumpPath => "";
+    public int LastBuildSkippedUnsafeGroupCount => 0;
+    public int LastBuildSkippedDirtyGroupCount => 0;
     public IndexedTranslationDocument BuildIndex(string originalXml, string? translatedXml, string? originalAbsPath = null) => new();
     public string RenderProjection(IndexedTranslationDocument doc, TranslationEditMode mode) => "";
     public string RenderMergedPreview(IndexedTranslationDocument doc, TranslationEditMode mode, SegmentMap segmentMap) => "";

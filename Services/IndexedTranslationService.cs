@@ -56,6 +56,13 @@ public sealed class TranslationSegment
 
     // Visible contribution for preserved inline elements (e.g. <g>𡎖</g>) when safe
     public string VisibleText { get; set; } = "";
+
+    // Sentinel: this line contains an inline wrapper element (e.g. <hi>) that STRADDLES a
+    // descendant <lb/>. The flat line-based rebuild cannot re-wrap text that the <lb/> split
+    // across projection lines, so patching the group would silently drop the wrapper and its
+    // attributes (audit F2). When set, CanPatchGroupSafely refuses the whole element group so
+    // the original XML structure is preserved verbatim rather than corrupted.
+    public bool PreventsPatch { get; set; }
 }
 
 public sealed class TranslationUnit
@@ -118,6 +125,20 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
     // Where the dump was last written (best effort)
     public string LastBuildTranslatedXmlDebugDumpPath { get; private set; } = "";
+
+    // How many dirty element groups the last BuildTranslatedXml refused to patch because
+    // they could not be round-tripped safely (e.g. an inline wrapper straddling an <lb/>,
+    // audit F2). Their source XML is preserved verbatim rather than corrupted, and their
+    // edits are NOT persisted. Callers surface this so the user is warned loudly instead of
+    // the loss happening silently.
+    public int LastBuildSkippedUnsafeGroupCount { get; private set; }
+
+    // How many dirty element groups the last BuildTranslatedXml did NOT write back for ANY
+    // reason — the sum of unsafe (PreventsPatch), target-missing, and target-mismatch skips.
+    // Each of these dropped a user edit, so callers surface this total as a save warning
+    // (round-2 review finding 4: the unsafe-only counter left mismatch/missing skips silent).
+    // LastBuildSkippedUnsafeGroupCount remains the PreventsPatch-only subset.
+    public int LastBuildSkippedDirtyGroupCount { get; private set; }
 
     // Validate after each patched element: pinpoints which group corrupted the XML,
     // but costs a FULL document serialize + re-parse per group — O(groups × docSize),
@@ -511,6 +532,8 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         LastBuildTranslatedXmlDebugDump = "";
         LastBuildTranslatedXmlDebugDumpPath = "";
+        LastBuildSkippedUnsafeGroupCount = 0;
+        LastBuildSkippedDirtyGroupCount = 0;
 
         var dbg = new StringBuilder(32_000);
         dbg.AppendLine("=== BuildTranslatedXml Debug ===");
@@ -524,6 +547,11 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         var tranLookup = BuildDocLookup(tranDoc);
 
         updatedCount = 0;
+
+        // Units whose element group was actually patched into the output. Only these have
+        // their dirty flag/baseline cleared below; a skipped group's edits were NOT written,
+        // so clearing them would silently "forget" the loss (audit F2 fail-loud).
+        var patchedUnits = new HashSet<TranslationUnit>();
 
         var groups = doc.Units.GroupBy(u => u.ElementStableKey).ToList();
         dbg.AppendLine($"Element groups total: {groups.Count}");
@@ -611,6 +639,8 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             {
                 target.ReplaceNodes(rebuiltNodes);
                 updatedCount++;
+                foreach (var u in orderedLines)
+                    patchedUnits.Add(u);
 
                 dbg.AppendLine($"TargetAfter(inner): {Trunc(SerializeInnerXml(target), 700)}");
 
@@ -787,9 +817,18 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         doc.TranslatedXml = xml;
         doc.HasSeparateTranslatedSource = !XmlEquivalent(doc.OriginalXml, doc.TranslatedXml);
 
+        LastBuildSkippedUnsafeGroupCount = skippedUnsafeGroups;
+        // Every dirty group we could not write (unsafe/missing/mismatch) dropped a user edit;
+        // surface the total so mismatch/missing skips are not silently swallowed (review finding 4).
+        LastBuildSkippedDirtyGroupCount =
+            skippedUnsafeGroups + skippedTargetMissingGroups + skippedTargetMismatchGroups;
+
         foreach (var u in doc.Units)
         {
-            if (u.IsDirty)
+            // Only clear dirty state for units whose group was actually written. Units in a
+            // skipped (unsafe / mismatched / missing-target) group keep their dirty flag so the
+            // edit is not silently "saved" when it never reached the file (audit F2 fail-loud).
+            if (u.IsDirty && patchedUnits.Contains(u))
             {
                 u.EnBaseline = u.En;
                 u.IsDirty = false;
@@ -841,9 +880,40 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         foreach (var line in lines.OrderBy(l => l.LineNumber))
         {
-            // If EN blank, keep original ZH for safe write-back.
-            string lineText = string.IsNullOrWhiteSpace(line.En) ? line.Zh : line.En;
-            lineText = SanitizeXmlText(lineText);
+            // A line the user did NOT translate (blank EN) is written back verbatim: we
+            // reproduce the ORIGINAL node sequence in place. This keeps every preserved
+            // element at its exact position — a mid-run <pb/>/<milestone/> stays BETWEEN its
+            // two text runs (audit F3) instead of drifting to the line end, and a visible
+            // inline wrapper (<hi>/<term>/...) survives untouched (audit F1, untranslated case).
+            if (string.IsNullOrWhiteSpace(line.En))
+            {
+                foreach (var seg in line.LineSegments)
+                {
+                    if (seg.Kind == TranslationSegmentKind.Text)
+                    {
+                        if (!string.IsNullOrEmpty(seg.Text))
+                            output.Add(new XText(SanitizeXmlText(seg.Text)));
+                    }
+                    else if (seg.Kind == TranslationSegmentKind.PreservedElement && seg.ElementTemplate != null)
+                    {
+                        // Faithful clone (keeps <g> glyph content etc.) — the source text is
+                        // being preserved unchanged, so nothing needs purging.
+                        output.Add(new XElement(seg.ElementTemplate));
+                    }
+                }
+
+                if (line.TrailingLbTemplate != null)
+                    output.Add(new XElement(line.TrailingLbTemplate));
+
+                continue;
+            }
+
+            // A translated line: the English text REPLACES all of this line's source text, so
+            // visible inline wrappers (<hi>/<term>/<foreign>/...) are subsumed by the translation
+            // and dropped (audit F1 — previously this whole group was flagged "unsafe" and the
+            // edit was silently discarded). Only structural/hidden preserved elements
+            // (<pb/>, <anchor/>, <note>, <g>, ...) are re-emitted.
+            string lineText = SanitizeXmlText(line.En);
 
             bool emittedLineText = false;
 
@@ -866,10 +936,13 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 if (seg.ElementTemplate == null)
                     continue;
 
-                bool visiblePreserved = !seg.HideInProjection && !string.IsNullOrEmpty(seg.VisibleText);
+                // Visible inline wrapper: its Chinese text is part of what the translation
+                // replaced, so drop the wrapper rather than emitting stray source text.
+                // NOTE is excluded (see IsDroppableVisibleWrapper): a footnote is not subsumed
+                // source text, so it is re-emitted below instead of being deleted.
+                bool visiblePreserved = IsDroppableVisibleWrapper(seg);
                 if (visiblePreserved)
-                    throw new InvalidOperationException(
-                        $"Unsafe rebuild: visible preserved inline element <{seg.ElementName}> exists in line-based patch template.");
+                    continue;
 
                 if (!seg.MoveToLineEnd)
                     output.Add(ClonePreservedElementForTranslated(seg));
@@ -884,10 +957,9 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
                 if (!seg.MoveToLineEnd) continue;
                 if (seg.ElementTemplate == null) continue;
 
-                bool visiblePreserved = !seg.HideInProjection && !string.IsNullOrEmpty(seg.VisibleText);
+                bool visiblePreserved = IsDroppableVisibleWrapper(seg);
                 if (visiblePreserved)
-                    throw new InvalidOperationException(
-                        $"Unsafe rebuild: visible preserved inline element <{seg.ElementName}> exists in line-end patch template.");
+                    continue;
 
                 output.Add(ClonePreservedElementForTranslated(seg));
             }
@@ -898,6 +970,17 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
 
         return output;
     }
+
+    // A visible inline wrapper whose source text is subsumed by the English translation and can
+    // therefore be dropped on a translated line (audit F1: <hi>/<term>/<foreign>/<q>/<zi>/...).
+    // <note> is DELIBERATELY EXCLUDED: a note is a footnote, not subsumed source text. Dropping
+    // a visible <note> (Notes mode) would delete the element, its attributes (resp/n/type), and
+    // any nested <note> that is its own translation unit — a markup-deletion class the pre-F1
+    // code refused (round-2 review finding). Notes are re-emitted at line end like hidden notes.
+    private static bool IsDroppableVisibleWrapper(TranslationSegment seg)
+        => !seg.HideInProjection
+           && !string.IsNullOrEmpty(seg.VisibleText)
+           && !string.Equals(seg.ElementName, "note", StringComparison.Ordinal);
 
     private static XElement ClonePreservedElementForTranslated(TranslationSegment seg)
     {
@@ -923,16 +1006,14 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
         {
             foreach (var seg in line.LineSegments)
             {
-                if (seg.Kind == TranslationSegmentKind.PreservedElement)
+                if (seg.Kind == TranslationSegmentKind.PreservedElement && seg.PreventsPatch)
                 {
                     var name = seg.ElementName ?? "";
-
-                    bool visiblePreserved = !seg.HideInProjection && !string.IsNullOrEmpty(seg.VisibleText);
-                    if (visiblePreserved)
-                    {
-                        reason = $"Visible preserved inline element <{name}> cannot be round-tripped by line-based rebuild.";
-                        return false;
-                    }
+                    reason =
+                        $"Inline wrapper <{name}> straddles a line break (<lb/>); the line-based rebuild " +
+                        "cannot re-wrap text split across projection lines without dropping the wrapper, " +
+                        "so this group is left unchanged to preserve its source structure.";
+                    return false;
                 }
             }
         }
@@ -1114,6 +1195,24 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             // Wrapper with nested lb => recurse into children so line splits stay correct.
             if (xe.Descendants().Any(d => d.Name.LocalName == "lb"))
             {
+                // The wrapper (<hi>/<term>/...) straddles the <lb/>, so recursing re-attributes
+                // its text to the parent group and the wrapper element + attributes are lost on
+                // rebuild (audit F2). We still recurse so the inner text stays visible/editable in
+                // the projection, but we drop a hidden sentinel first so CanPatchGroupSafely refuses
+                // to patch this group — preserving the original structure instead of silently
+                // deleting the wrapper. (A full round-trip would require re-wrapping text split
+                // across projection lines, a change the flat line model can't make safely.)
+                target.Add(new TranslationSegment
+                {
+                    Kind = TranslationSegmentKind.PreservedElement,
+                    ElementName = ln,
+                    LineIndex = line,
+                    HideInProjection = true,
+                    MoveToLineEnd = false,
+                    VisibleText = "",
+                    PreventsPatch = true
+                });
+
                 BuildSegmentsRecursive(xe.Nodes(), target, ref line, includeInlineNotesInProjection);
                 continue;
             }
@@ -1199,7 +1298,8 @@ public sealed class IndexedTranslationService : IIndexedTranslationService
             LineIndex = s.LineIndex,
             HideInProjection = s.HideInProjection,
             MoveToLineEnd = s.MoveToLineEnd,
-            VisibleText = s.VisibleText
+            VisibleText = s.VisibleText,
+            PreventsPatch = s.PreventsPatch
         };
     }
 
