@@ -56,6 +56,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<PdfEvidenceService>();
         services.AddSingleton<AppUpdateService>();
         services.AddSingleton<BookmarkService>();
+        services.AddSingleton<ReaderStateService>();
         return services;
     }
 }

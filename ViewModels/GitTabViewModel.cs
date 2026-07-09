@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using Microsoft.Extensions.DependencyInjection;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -84,6 +85,7 @@ public partial class GitTabViewModel : ViewModelBase
     private readonly IMasterDatesService _masterDatesSvc;
     private readonly IDocumentTagService _tagService;
     private readonly ITranslationStarService _starService;
+    private readonly TranslationLicenseService _licenseService;
 
     private string? _baseDestFolder;
     private string? _currentRepoRoot;
@@ -148,7 +150,8 @@ public partial class GitTabViewModel : ViewModelBase
         ITranslationReviewService translationReview,
         IMasterDatesService masterDatesSvc,
         IDocumentTagService tagService,
-        ITranslationStarService starService)
+        ITranslationStarService starService,
+        TranslationLicenseService? licenseService = null)
     {
         _git = git;
         _auth = auth;
@@ -160,6 +163,13 @@ public partial class GitTabViewModel : ViewModelBase
         _masterDatesSvc = masterDatesSvc;
         _tagService = tagService;
         _starService = starService;
+        // Share the DI-registered singleton so the license cache stays in sync with
+        // MainWindow instead of drifting in a private `new` instance. The optional
+        // param keeps the existing `new GitTabViewModel(...)` call sites compiling;
+        // it falls back to the container (or a fresh instance under tests).
+        _licenseService = licenseService
+            ?? App.Services?.GetService<TranslationLicenseService>()
+            ?? new TranslationLicenseService();
 
         _baseDestFolder = GetDefaultBaseFolder();
         UpdateDestLabel();
@@ -248,14 +258,23 @@ public partial class GitTabViewModel : ViewModelBase
         TryRestoreLastBranchFromDisk();
     }
 
-    public async Task StartInitialDownloadAsync()
+    /// <summary>
+    /// Onboarding entry point: pick a folder and clone the corpus. Returns
+    /// <c>true</c> only when the download completed successfully; returns
+    /// <c>false</c> on cancel or any failure (the failure is also reported via
+    /// <see cref="StatusChanged"/>). The onboarding tour uses the bool to decide
+    /// whether to unlock the tooltip and offer a Retry action — this method must
+    /// never rely on exceptions escaping, because the underlying clone/update flow
+    /// swallows them internally.
+    /// </summary>
+    public async Task<bool> StartInitialDownloadAsync()
     {
         try
         {
             if (PickFolderAsync == null)
             {
                 ProgressText = "Folder picker not available.";
-                return;
+                return false;
             }
 
             var pickedPath = await PickFolderAsync();
@@ -263,7 +282,7 @@ public partial class GitTabViewModel : ViewModelBase
             {
                 ProgressText = "Canceled.";
                 StatusChanged?.Invoke(this, "Canceled.");
-                return;
+                return false;
             }
 
             var resolvedParent = TryResolveParentRootFromAnyFolder(pickedPath);
@@ -283,12 +302,13 @@ public partial class GitTabViewModel : ViewModelBase
             TryRestoreLastBranchFromDisk();
             StatusChanged?.Invoke(this, "Location updated.");
 
-            await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
+            return await GetOrUpdateFilesAsync(UpdateMode.KeepLocalChanges);
         }
         catch (Exception ex)
         {
             ProgressText = "Initial download failed: " + ex.Message;
             StatusChanged?.Invoke(this, "Initial download failed: " + ex.Message);
+            return false;
         }
     }
 
@@ -529,9 +549,8 @@ public partial class GitTabViewModel : ViewModelBase
                         // Log translation license info
                         try
                         {
-                            var licSvc = new Services.TranslationLicenseService();
-                            await licSvc.LoadUserLicensesAsync(transDir, _githubLogin!, ct);
-                            var lic = licSvc.GetLicense(_selectedRelPath);
+                            await _licenseService.LoadUserLicensesAsync(transDir, _githubLogin!, ct);
+                            var lic = _licenseService.GetLicense(_selectedRelPath);
                             if (lic?.License != null)
                             {
                                 var opt = Models.LicenseCatalog.Find(lic.License);
@@ -634,7 +653,15 @@ public partial class GitTabViewModel : ViewModelBase
 
     // ----- Private: Clone / Update -----
 
-    private async Task GetOrUpdateFilesAsync(UpdateMode mode)
+    /// <summary>
+    /// Runs the clone/update flow. Returns <c>true</c> only when the operation
+    /// completed successfully (repos cloned/updated); returns <c>false</c> for
+    /// every failure, cancel, or blocked path. The bool is the authoritative
+    /// success signal because this method swallows failures internally (reporting
+    /// them via <see cref="StatusChanged"/>) rather than throwing — callers such as
+    /// the onboarding tour rely on the return value to detect a failed download.
+    /// </summary>
+    private async Task<bool> GetOrUpdateFilesAsync(UpdateMode mode)
     {
         // No _isSyncing guard here — this private method is called from
         // already-guarded public methods (SyncAsync, GetFilesAsync, etc.)
@@ -663,7 +690,7 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog("[error] git not found");
                 AppendLog("[hint] If using bundled Portable Git, make sure the PortableGit folder is included beside the app.");
                 StatusChanged?.Invoke(this, "Git not found.");
-                return;
+                return false;
             }
 
             var prog = new Progress<string>(line => Dispatcher.UIThread.Post(() => AppendLog(line)));
@@ -686,7 +713,7 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Fetch originals failed.";
                     AppendLog("[error] " + (fetchOrig.Error ?? "unknown error"));
                     StatusChanged?.Invoke(this, "Fetch originals failed.");
-                    return;
+                    return false;
                 }
 
                 // Originals: always hard-reset (no user data)
@@ -704,7 +731,7 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Fetch translations failed.";
                     AppendLog("[error] " + (fetchTrans.Error ?? "unknown error"));
                     StatusChanged?.Invoke(this, "Fetch translations failed.");
-                    return;
+                    return false;
                 }
 
                 var ab = await _git.GetAheadBehindAsync(translationDir, "origin/main", ct);
@@ -715,7 +742,7 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Update blocked (sync state unknown).";
                     AppendLog("[error] could not determine ahead/behind vs origin/main; update blocked to protect local commits");
                     StatusChanged?.Invoke(this, "Update blocked (sync state unknown).");
-                    return;
+                    return false;
                 }
                 AppendLog($"[git] translations ahead/behind vs origin/main: ahead={ab.Value.ahead}, behind={ab.Value.behind}");
 
@@ -731,7 +758,7 @@ public partial class GitTabViewModel : ViewModelBase
                         AppendLog("[error] " + (rescue.Error ?? "unknown error"));
                         AppendLog("[hint] Translations repo has local commits. Create/push a PR first, or fix branch state manually.");
                         StatusChanged?.Invoke(this, "Update blocked (rescue branch failed).");
-                        return;
+                        return false;
                     }
 
                     AppendLog("[safety] rescue branch saved: " + rescueBranch);
@@ -745,7 +772,7 @@ public partial class GitTabViewModel : ViewModelBase
                     {
                         ProgressText = "Canceled.";
                         AppendLog("[cancel] user canceled discard update");
-                        return;
+                        return false;
                     }
 
                     await DoUpdateDiscardLocalAsync(translationDir, prog, ct);
@@ -773,7 +800,7 @@ public partial class GitTabViewModel : ViewModelBase
                 // Corpus-changed trigger (update success). Failure/cancel paths above
                 // all return before this point and must never send.
                 WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(parentDir));
-                return;
+                return true;
             }
 
             // Missing repos -> CLONE
@@ -789,7 +816,7 @@ public partial class GitTabViewModel : ViewModelBase
                     AppendLog("[error] originals target folder exists and is not a git repo");
                     AppendLog("Pick a different location or delete that folder.");
                     StatusChanged?.Invoke(this, "Originals folder exists but is not a Git repo.");
-                    return;
+                    return false;
                 }
 
                 ProgressText = "Cloning originals (this may take several minutes)\u2026";
@@ -808,7 +835,7 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Clone originals failed.";
                     AppendLog("[error] " + (cloneOrig.Error ?? "unknown error"));
                     StatusChanged?.Invoke(this, "Clone originals failed.");
-                    return;
+                    return false;
                 }
 
                 await _git.EnsureLocalExcludeAsync(originalsDir, LocalIgnorePatterns, prog, ct);
@@ -826,7 +853,7 @@ public partial class GitTabViewModel : ViewModelBase
                     AppendLog("[error] translations target folder exists and is not a git repo");
                     AppendLog("Pick a different location or delete that folder.");
                     StatusChanged?.Invoke(this, "Translations folder exists but is not a Git repo.");
-                    return;
+                    return false;
                 }
 
                 ProgressText = "Cloning translations (2/2)\u2026";
@@ -838,7 +865,7 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Clone translations failed.";
                     AppendLog("[error] " + (cloneTrans.Error ?? "unknown error"));
                     StatusChanged?.Invoke(this, "Clone translations failed.");
-                    return;
+                    return false;
                 }
 
                 await _git.EnsureLocalExcludeAsync(translationDir, LocalIgnorePatterns, prog, ct);
@@ -866,18 +893,21 @@ public partial class GitTabViewModel : ViewModelBase
             StatusChanged?.Invoke(this, "Repos cloned (CBETA + OpenZenTexts).");
             // Corpus-changed trigger (clone success).
             WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(parentDir));
+            return true;
         }
         catch (OperationCanceledException)
         {
             ProgressText = "Canceled.";
             AppendLog("[cancel] canceled");
             StatusChanged?.Invoke(this, "Canceled.");
+            return false;
         }
         catch (Exception ex)
         {
             ProgressText = "Failed: " + ex.Message;
             AppendLog("[error] " + ex);
             StatusChanged?.Invoke(this, "Failed: " + ex.Message);
+            return false;
         }
         finally
         {

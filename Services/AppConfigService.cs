@@ -19,6 +19,17 @@ public sealed class AppConfigService : IAppConfigService
 
     public int NavStatusFilterIndex { get; set; } = 0; // 0=All,1=Green,2=Yellow,3=Red
 
+    /// <summary>Path of the backup written when a corrupt config.json is detected.</summary>
+    public string CorruptBackupPath => ConfigPath + ".corrupt";
+
+    /// <summary>
+    /// One-time notice set by <see cref="TryLoadAsync"/> when config.json fails to
+    /// parse: the bad file is preserved at <see cref="CorruptBackupPath"/> and this
+    /// message describes the recovery so the load does not silently reset every
+    /// setting (including the stored OAuth token). Null when the last load was clean.
+    /// </summary>
+    public string? LoadWarning { get; private set; }
+
 
     public AppConfigService()
     {
@@ -34,18 +45,49 @@ public sealed class AppConfigService : IAppConfigService
 
     public async Task<AppConfig?> TryLoadAsync()
     {
+        LoadWarning = null;
+
+        // Read phase: an IO failure (file locked/unreadable) must leave the file
+        // intact — do NOT treat it as corruption and do NOT overwrite anything.
+        string json;
         try
         {
             if (!File.Exists(ConfigPath))
                 return null;
 
-            var json = await File.ReadAllTextAsync(ConfigPath);
-            if (string.IsNullOrWhiteSpace(json))
-                return null;
+            json = await File.ReadAllTextAsync(ConfigPath);
+        }
+        catch
+        {
+            return null;
+        }
 
-            var cfg = JsonSerializer.Deserialize<AppConfig>(json, JsonOpts);
-            if (cfg == null) return null;
+        if (string.IsNullOrWhiteSpace(json))
+            return null;
 
+        // Parse phase: a non-empty file that fails to deserialize is corrupt.
+        // Previously the catch silently returned null, resetting ALL settings
+        // (including the stored OAuth token) with zero feedback. Instead, preserve
+        // the bad file so the user can recover it, and surface a one-time notice.
+        AppConfig? cfg;
+        try
+        {
+            cfg = JsonSerializer.Deserialize<AppConfig>(json, JsonOpts);
+        }
+        catch (Exception ex)
+        {
+            BackupCorruptConfig(ex.Message);
+            return null;
+        }
+
+        if (cfg == null)
+        {
+            BackupCorruptConfig("config.json deserialized to null");
+            return null;
+        }
+
+        try
+        {
             // v3 -> v4 migration: existing configs don't carry ActiveCorpus.
             // Assume CBETA (the original corpus) and bump version.
             if (cfg.Version < 4)
@@ -84,8 +126,28 @@ public sealed class AppConfigService : IAppConfigService
         }
         catch
         {
-            return null;
+            // Migration / token-protection step failed (e.g. transient IO on the
+            // one-time re-save). The config already parsed cleanly, so return it
+            // rather than discarding every setting.
+            return cfg;
         }
+    }
+
+    private void BackupCorruptConfig(string reason)
+    {
+        try
+        {
+            if (File.Exists(ConfigPath))
+                File.Copy(ConfigPath, CorruptBackupPath, overwrite: true);
+        }
+        catch
+        {
+            // Best-effort preservation; never let backup failure crash startup.
+        }
+
+        LoadWarning =
+            $"config.json could not be read ({reason}). Your previous settings were " +
+            $"kept at {CorruptBackupPath} and defaults are being used for this session.";
     }
 
     public async Task SaveAsync(AppConfig cfg)

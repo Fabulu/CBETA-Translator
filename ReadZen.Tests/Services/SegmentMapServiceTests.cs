@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using Xunit;
@@ -81,23 +82,48 @@ public class SegmentMapServiceTests : IDisposable
     }
 
     [Fact]
-    public void TryLoad_CachesByMtime()
+    public void TryLoad_ReturnsCachedInstance_UntilJsonlMtimeChanges()
     {
-        WriteJsonl(
-            MakeLine("seg-0001", new[] { "0001a01" }, "prose")
-        );
+        // Build a repo layout that AppPaths discovery + ResolveJsonlPath recognize:
+        //   <parent>/orig/xml-p5/T/T47/T47n1987A.xml        (source XML)
+        //   <parent>/trans/xml-p5t/                          (marks the translations repo)
+        //   <parent>/trans/segments/T/T47/T47n1987A.segments.jsonl
+        var xmlDir = Path.Combine(_tempDir, "orig", "xml-p5", "T", "T47");
+        Directory.CreateDirectory(xmlDir);
+        Directory.CreateDirectory(Path.Combine(_tempDir, "trans", "xml-p5t"));
+        var segDir = Path.Combine(_tempDir, "trans", "segments", "T", "T47");
+        Directory.CreateDirectory(segDir);
+
+        var xmlPath = Path.Combine(xmlDir, "T47n1987A.xml");
+        File.WriteAllText(xmlPath, "<TEI><body><p>hi</p></body></TEI>");
+
+        var segPath = Path.Combine(segDir, "T47n1987A.segments.jsonl");
+        File.WriteAllText(segPath, MakeLine("seg-0001", new[] { "0001a01" }, "prose"));
+        AppPaths.InvalidateDiscoveryCache(_tempDir);
 
         var service = new SegmentMapService();
-        // Use ParseJsonl directly since TryLoad requires AppPaths discovery
-        var map1 = SegmentMapService.ParseJsonl(_jsonlPath);
-        var map2 = SegmentMapService.ParseJsonl(_jsonlPath);
 
-        // Both should succeed — the service re-parses since ParseJsonl is static.
-        // The mtime cache is tested indirectly: calling TryLoad twice returns
-        // the cached instance. We test the parsing path here.
-        Assert.NotNull(map1);
-        Assert.NotNull(map2);
-        Assert.Equal(map1!.Segments.Count, map2!.Segments.Count);
+        var first = service.TryLoad(xmlPath);
+        Assert.NotNull(first);
+        Assert.Single(first!.Segments);
+
+        // Second call with no filesystem change must return the SAME cached
+        // instance — this is the mtime cache actually short-circuiting a re-parse.
+        var second = service.TryLoad(xmlPath);
+        Assert.Same(first, second);
+
+        // Rewrite the jsonl with different content and bump its mtime. The cache
+        // key includes the jsonl mtime, so TryLoad must re-parse and reflect the
+        // new content rather than serving the stale cached instance.
+        File.WriteAllText(segPath, string.Join("\n",
+            MakeLine("seg-0001", new[] { "0001a01" }, "prose"),
+            MakeLine("seg-0002", new[] { "0001a02" }, "verse")));
+        File.SetLastWriteTimeUtc(segPath, DateTime.UtcNow.AddMinutes(1));
+
+        var third = service.TryLoad(xmlPath);
+        Assert.NotNull(third);
+        Assert.NotSame(first, third);           // cache was invalidated by the mtime bump
+        Assert.Equal(2, third!.Segments.Count);  // and the fresh content is reflected
     }
 
     [Fact]

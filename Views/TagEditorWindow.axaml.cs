@@ -741,7 +741,7 @@ public partial class TagEditorWindow : Window
         _dragCandidate = _tagTree?.SelectedItem as TagTreeNode;
     }
 
-    private async void OnTreePointerMoved(object? sender, PointerEventArgs e)
+    private void OnTreePointerMoved(object? sender, PointerEventArgs e)
     {
         if (_dragStartPoint == null || _dragCandidate == null) return;
 
@@ -750,11 +750,23 @@ public partial class TagEditorWindow : Window
         if (Math.Abs(delta.X) < 5 && Math.Abs(delta.Y) < 5) return;
 
         _dragStartPoint = null;
+        var candidate = _dragCandidate;
         var data = new DataTransfer();
-        data.Add(DataTransferItem.Create(TagIdDataFormat, _dragCandidate.Tag.Id));
+        data.Add(DataTransferItem.Create(TagIdDataFormat, candidate.Tag.Id));
 
-        await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Copy);
-        _dragCandidate = null;
+        AsyncGuard.Run(async () =>
+        {
+            try
+            {
+                await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Copy);
+            }
+            finally
+            {
+                // Always clear drag state — a throw mid-drag must not leave a
+                // stale candidate that corrupts the next drag gesture.
+                _dragCandidate = null;
+            }
+        }, "TagEditorWindow.OnTreePointerMoved");
     }
 
     // ── Helpers ─────────────────────────────────────────────────────────

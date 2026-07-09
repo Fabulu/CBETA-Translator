@@ -18,4 +18,21 @@ public sealed class Bookmark
 
     /// <summary>When the bookmark was created (UTC).</summary>
     public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+
+    /// <summary>
+    /// The line-break n-value (e.g. "0526c25") the bookmark was anchored to, when known.
+    /// Preferred over <see cref="DisplayOffset"/> for navigation because it survives
+    /// re-rendering and layout changes (page ↔ merged flow). Null for legacy
+    /// offset-only bookmarks created before lb re-anchoring existed.
+    /// </summary>
+    public string? LbAnchor { get; set; }
+
+    /// <summary>Which pane the anchor was captured from: "orig" or "tran". Null for legacy bookmarks.</summary>
+    public string? Side { get; set; }
+
+    /// <summary>
+    /// Character offset of the caret within the anchored lb line, so navigation can
+    /// refine position beyond the line start. Null for legacy offset-only bookmarks.
+    /// </summary>
+    public int? IntraLineOffset { get; set; }
 }

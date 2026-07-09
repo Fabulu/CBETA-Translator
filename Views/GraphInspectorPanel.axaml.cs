@@ -160,7 +160,6 @@ public partial class GraphInspectorPanel : UserControl
             AddSection(content, "Related Concepts", $"{connectedConcepts} connections");
 
         // Actions
-        AddButton(actions, "Rename", () => { /* TODO */ });
         AddButton(actions, "Remove", () => RemoveRequested?.Invoke(this, node.NodeId));
     }
 

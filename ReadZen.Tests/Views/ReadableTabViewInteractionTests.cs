@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
+using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 using ReadZen.App.Views;
 using Xunit;
@@ -233,6 +235,82 @@ public class ReadableTabViewInteractionTests
 
         Assert.True(ok);
         Assert.Null(GetField<string?>(view, "_selectedTagUser"));
+    }
+
+    // ---- Reading-layout gate: keys on historical-view state, not timeline visibility ----
+
+    [Fact]
+    public async Task IsReadingLayoutGated_VisibleTimelineAtPresent_NotGated()
+    {
+        // Regression: the timeline bar is visible for the whole lifetime of a CE
+        // document (including present view), so gating on its visibility permanently
+        // blocked merged-flow toggling. The gate now keys on _viewingHistorical.
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out var vm);
+            vm.PendingRefresh = false;
+            var bar = new CorrectionTimelineBar { IsVisible = true };
+            SetField(view, "_correctionTimeline", bar);
+            SetField(view, "_viewingHistorical", false);
+
+            Assert.False((bool)InvokePrivate(view, "IsReadingLayoutGated")!);
+        });
+    }
+
+    [Fact]
+    public async Task IsReadingLayoutGated_ViewingHistorical_Gated()
+    {
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out var vm);
+            vm.PendingRefresh = false;
+            SetField(view, "_viewingHistorical", true);
+
+            Assert.True((bool)InvokePrivate(view, "IsReadingLayoutGated")!);
+        });
+    }
+
+    [Fact]
+    public async Task IsReadingLayoutGated_PendingRefresh_Gated()
+    {
+        await Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            var view = CreateViewShell(out var vm);
+            vm.PendingRefresh = true;
+            SetField(view, "_viewingHistorical", false);
+
+            Assert.True((bool)InvokePrivate(view, "IsReadingLayoutGated")!);
+        });
+    }
+
+    // ---- Reader-state persistence is keyed by corpus-relative path, not absolute ----
+
+    [Fact]
+    public void PersistLayoutMode_KeysOnRelativePath_NotAbsolute()
+    {
+        // Regression: persisting by absolute path orphaned all layout/resume state
+        // when the portable install directory moved. Persistence now prefers relPath.
+        var view = CreateViewShell(out var vm);
+        var tmp = Path.Combine(Path.GetTempPath(), "readzen-readerstate-" + Guid.NewGuid().ToString("N") + ".json");
+        var svc = new ReaderStateService(tmp);
+        SetField(view, "_readerStateService", svc);
+        vm.CurrentRelPathForZen = "T01/test.xml";
+        SetField(view, "_provenanceXmlAbsPath", @"C:\portable\install\CbetaZenTexts\xml-p5\T01\test.xml");
+
+        try
+        {
+            InvokePrivate(view, "PersistLayoutMode", ReadingLayoutMode.MergedFlow);
+
+            // Stored under the relative key...
+            Assert.Equal(ReadingLayoutMode.MergedFlow, svc.GetLayoutMode("T01/test.xml"));
+            // ...NOT the machine-specific absolute path.
+            Assert.Equal(ReadingLayoutMode.Page,
+                svc.GetLayoutMode(@"C:\portable\install\CbetaZenTexts\xml-p5\T01\test.xml"));
+        }
+        finally
+        {
+            try { File.Delete(tmp); } catch { }
+        }
     }
 }
 

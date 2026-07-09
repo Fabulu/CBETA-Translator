@@ -526,6 +526,15 @@ private async Task LoadConfigAndAutoloadAsync()
         try
         {
             await _vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(IsSecondaryWindow);
+
+            // Surface a corrupt-config recovery notice (audit R3): TryLoadAsync backs
+            // up the unreadable config.json and sets LoadWarning, but nothing showed
+            // it, so a corrupt config silently reset every setting. The config service
+            // is a DI singleton, so this is the same instance the VM just loaded.
+            var cfgSvc = App.Services?.GetService<IAppConfigService>();
+            if (!string.IsNullOrEmpty(cfgSvc?.LoadWarning))
+                _vm.SetStatus(cfgSvc.LoadWarning!, StatusSeverity.Warning);
+
             RestoreWindowState();
 
             // Close splash early — window is now themed and positioned
@@ -2077,11 +2086,12 @@ private async Task LoadConfigAndAutoloadAsync()
         }
     }
 
-    private async void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void FilesList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (_suppressNavSelectionChanged) return;
         if (_filesList?.SelectedItem is not FileNavItem item) return;
-        await _vm.OnFileSelectedAsync(item);
+        AsyncGuard.Run(async () => await _vm.OnFileSelectedAsync(item),
+            "MainWindow.FilesList_SelectionChanged");
     }
 
     // ===========================================================
@@ -2132,10 +2142,11 @@ private async Task LoadConfigAndAutoloadAsync()
         _indexCacheSaveDebounce.Start();
     }
 
-    private async void IndexCacheSaveDebounce_Tick(object? sender, EventArgs e)
+    private void IndexCacheSaveDebounce_Tick(object? sender, EventArgs e)
     {
         _indexCacheSaveDebounce?.Stop();
-        await _vm.SaveIndexCacheIfDirtyAsync();
+        AsyncGuard.Run(async () => await _vm.SaveIndexCacheIfDirtyAsync(),
+            "MainWindow.IndexCacheSaveDebounce_Tick");
     }
 
     // ===========================================================
@@ -2819,7 +2830,10 @@ private async Task LoadConfigAndAutoloadAsync()
 
     // ── Translation Licensing ─────────────────────────────────────────
 
-    private readonly TranslationLicenseService _licenseService = new();
+    // Resolve the DI-registered singleton (not a private `new`) so the license
+    // cache is shared with GitTabViewModel instead of drifting apart.
+    private readonly TranslationLicenseService _licenseService =
+        App.Services.GetRequiredService<TranslationLicenseService>();
     private bool _licenseServiceLoaded;
 
     private async Task PromptLicenseIfNeededAsync()
@@ -3786,10 +3800,48 @@ private async Task LoadConfigAndAutoloadAsync()
                     });
                 }
 
+                // A failed onboarding clone must not strand the user on the frozen
+                // "Downloading Texts…" tooltip with no action. Unlock the tooltip
+                // (offer Retry, re-enable Back, drop the mandatory lock) and surface
+                // the error in the status bar.
+                void ShowDownloadFailed(string reason)
+                {
+                    _vm.SetStatus($"Download failed: {reason}", StatusSeverity.Error);
+                    _tourTooltip?.Update(
+                        "Download Failed",
+                        "The text download did not complete: " + reason +
+                        "\n\nCheck your internet connection and disk space, then use the button below to try again. You can also go back.",
+                        _tourService?.CurrentIndex ?? 2,
+                        _tourService?.Steps.Count ?? 1,
+                        canGoBack: true,
+                        actionButtonLabel: "Retry Download",
+                        canSkipWait: false,
+                        isMandatory: false);
+                }
+
                 _gitView.Status += OnStatus;
                 try
                 {
-                    await _gitView.TriggerInitialDownloadAsync();
+                    // The clone/update flow swallows failures internally and reports
+                    // them via Status; it does NOT throw. Detect failure by the
+                    // returned success flag rather than a (never-raised) exception.
+                    var ok = await _gitView.TriggerInitialDownloadAsync();
+                    if (!ok)
+                    {
+                        // The last Status line (piped into StatusText by OnStatus)
+                        // carries the concrete failure reason, e.g. "Clone originals
+                        // failed." Fall back to a generic message if it is empty.
+                        var reason = string.IsNullOrWhiteSpace(_vm.StatusText)
+                            ? "the download did not complete"
+                            : _vm.StatusText;
+                        ShowDownloadFailed(reason);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Backstop for a truly unexpected throw escaping the VM.
+                    System.Diagnostics.Debug.WriteLine($"[Tour] initial download failed: {ex}");
+                    ShowDownloadFailed(ex.Message);
                 }
                 finally
                 {

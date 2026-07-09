@@ -898,7 +898,8 @@ public partial class ResearchGraphWindow : Window
         return item;
     }
 
-    private async void OnAddConcept(object? sender, RoutedEventArgs? e)
+    private void OnAddConcept(object? sender, RoutedEventArgs? e)
+        => AsyncGuard.Run(async () =>
     {
         if (_vm == null) return;
         var dialog = new ConceptCreationDialog();
@@ -911,9 +912,10 @@ public partial class ResearchGraphWindow : Window
             UpdateLeftPanels();
             _canvas?.InvalidateVisual();
         }
-    }
+    }, "ResearchGraphWindow.OnAddConcept");
 
-    private async void OnAddMaster()
+    private void OnAddMaster()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm == null) return;
         var masterNames = new List<string>();
@@ -974,9 +976,10 @@ public partial class ResearchGraphWindow : Window
             _canvas?.InvalidateVisual();
             UpdateStatusBar(); UpdateLeftPanels();
         }
-    }
+    }, "ResearchGraphWindow.OnAddMaster");
 
-    private async void OnAddTerm()
+    private void OnAddTerm()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm == null) return;
 
@@ -1039,9 +1042,10 @@ public partial class ResearchGraphWindow : Window
             _canvas?.InvalidateVisual();
             UpdateStatusBar(); UpdateLeftPanels();
         }
-    }
+    }, "ResearchGraphWindow.OnAddTerm");
 
-    private async void OnAddCollectionRef()
+    private void OnAddCollectionRef()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm == null) return;
         var others = _vm.GetAllCollections().Where(c => c.Id != _vm.GetCollection().Id).ToList();
@@ -1081,9 +1085,10 @@ public partial class ResearchGraphWindow : Window
             _canvas?.InvalidateVisual();
             UpdateStatusBar(); UpdateLeftPanels();
         }
-    }
+    }, "ResearchGraphWindow.OnAddCollectionRef");
 
-    private async void OnAddBook()
+    private void OnAddBook()
+        => AsyncGuard.Run(async () =>
     {
         var fileItems = FileItems?.Invoke();
         if (_vm == null || fileItems == null || fileItems.Count == 0) return;
@@ -1120,9 +1125,10 @@ public partial class ResearchGraphWindow : Window
         _vm.RestoreNodeToMap(node);
         _canvas?.InvalidateVisual();
         UpdateStatusBar(); UpdateLeftPanels();
-    }
+    }, "ResearchGraphWindow.OnAddBook");
 
-    private async void OnAddLink()
+    private void OnAddLink()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm == null) return;
         var dialog = new LinkCreationDialog();
@@ -1148,7 +1154,7 @@ public partial class ResearchGraphWindow : Window
         _vm.RestoreNodeToMap(node);
         _canvas?.InvalidateVisual();
         UpdateStatusBar(); UpdateLeftPanels();
-    }
+    }, "ResearchGraphWindow.OnAddLink");
 
     private void DeleteSelected()
     {
@@ -1277,7 +1283,8 @@ public partial class ResearchGraphWindow : Window
         };
     }
 
-    private async void RenameSelected()
+    private void RenameSelected()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm?.SelectedNode == null) return;
         var node = _vm.SelectedNode;
@@ -1336,7 +1343,7 @@ public partial class ResearchGraphWindow : Window
             UpdateInspector();
             _canvas?.InvalidateVisual();
         }
-    }
+    }, "ResearchGraphWindow.RenameSelected");
 
     private void FocusSearch()
     {
@@ -1737,7 +1744,8 @@ public partial class ResearchGraphWindow : Window
         overlay.IsVisible = _vm == null || _vm.Nodes.Count == 0;
     }
 
-    private async void OnAddPassageFromEmpty()
+    private void OnAddPassageFromEmpty()
+        => AsyncGuard.Run(async () =>
     {
         if (_vm?.GetCollection() == null) return;
         var dialog = new PassagePickerDialog(_vm.GetCollection().Passages);
@@ -1757,7 +1765,7 @@ public partial class ResearchGraphWindow : Window
             _canvas?.InvalidateVisual();
             UpdateStatusBar(); UpdateEmptyState(); UpdateLeftPanels();
         }
-    }
+    }, "ResearchGraphWindow.OnAddPassageFromEmpty");
 
     private void UpdateStatusBar()
     {

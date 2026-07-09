@@ -1015,7 +1015,10 @@ public partial class ScholarTabView : UserControl
     }
 
     /// <summary>Opens the Research Graph window for the currently selected collection. Called by deep links.</summary>
-    public async void OpenGraphForCurrentCollection()
+    public void OpenGraphForCurrentCollection()
+        => AsyncGuard.Run(OpenGraphForCurrentCollectionAsync, "ScholarTabView.OpenGraphForCurrentCollection");
+
+    private async Task OpenGraphForCurrentCollectionAsync()
     {
         if (_vm.SelectedCollection == null) return;
 

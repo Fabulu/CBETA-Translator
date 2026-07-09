@@ -689,6 +689,113 @@ public class GitTabViewModelTests
         }
     }
 
+    // ---- StartInitialDownloadAsync success signal (onboarding-tour Retry detection) ----
+    //
+    // The onboarding tour tooltip stays locked until this returns; a failed clone must
+    // be signalled by the RETURN VALUE, not an exception (the clone/update flow swallows
+    // failures internally and reports via StatusChanged). These pin the bool contract.
+
+    private static object? GetPrivateObject(GitTabViewModel vm, string fieldName)
+    {
+        var field = typeof(GitTabViewModel).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+        return field?.GetValue(vm);
+    }
+
+    [Fact]
+    public async Task StartInitialDownloadAsync_NoFolderPicker_ReturnsFalse()
+    {
+        var vm = MakeVm();
+        // PickFolderAsync left null.
+        Assert.False(await vm.StartInitialDownloadAsync());
+    }
+
+    [Fact]
+    public async Task StartInitialDownloadAsync_PickerCanceled_ReturnsFalse()
+    {
+        var vm = MakeVm();
+        vm.PickFolderAsync = () => Task.FromResult<string?>(null);
+        Assert.False(await vm.StartInitialDownloadAsync());
+    }
+
+    [Fact]
+    public async Task StartInitialDownloadAsync_DownloadFails_ReturnsFalse()
+    {
+        // GetAheadBehindAsync == null drives the "Update blocked (sync state unknown)"
+        // failure path. Before the fix this returned void, so the tour could never tell
+        // a failed clone from a successful one and stranded the user on a locked tooltip.
+        var vm = new GitTabViewModel(
+            new NullAheadBehindGitRepoService(),
+            new StubGitHubAuthService(),
+            new StubGitHubApiService(),
+            new StubCommunityDataService(),
+            new StubScholarCollectionsService(),
+            new StubTermbaseStorageService(),
+            new StubTranslationReviewService(),
+            new StubMasterDatesService(),
+            new StubDocumentTagService(),
+            new StubTranslationStarService());
+        var parentDir = CreateTwoRepoParent();
+        try
+        {
+            vm.PickFolderAsync = () => Task.FromResult<string?>(parentDir);
+            Assert.False(await vm.StartInitialDownloadAsync());
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    [Fact]
+    public async Task StartInitialDownloadAsync_Success_ReturnsTrue()
+    {
+        // Two existing repos + all-succeeding stubs drive the UPDATE-success path.
+        var vm = MakeVm();
+        var parentDir = CreateTwoRepoParent();
+        try
+        {
+            vm.PickFolderAsync = () => Task.FromResult<string?>(parentDir);
+            Assert.True(await vm.StartInitialDownloadAsync());
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    // ---- Shared license-service injection (MainWindow <-> GitTabViewModel cache) ----
+
+    [Fact]
+    public void Constructor_InjectedLicenseService_IsHeld()
+    {
+        // The optional param lets MainWindow share its DI singleton so the license
+        // cache stays in sync instead of drifting in a private `new` instance.
+        var shared = new TranslationLicenseService();
+        var vm = new GitTabViewModel(
+            new StubGitRepoService(),
+            new StubGitHubAuthService(),
+            new StubGitHubApiService(),
+            new StubCommunityDataService(),
+            new StubScholarCollectionsService(),
+            new StubTermbaseStorageService(),
+            new StubTranslationReviewService(),
+            new StubMasterDatesService(),
+            new StubDocumentTagService(),
+            new StubTranslationStarService(),
+            shared);
+
+        Assert.Same(shared, GetPrivateObject(vm, "_licenseService"));
+    }
+
+    [Fact]
+    public void Constructor_NullLicenseService_FallsBackWithoutThrowing()
+    {
+        // App.Services is null under tests; the fallback chain must still yield a
+        // non-null instance rather than throwing at construction.
+        var vm = MakeVm();
+        Assert.NotNull(GetPrivateObject(vm, "_licenseService"));
+    }
+
     private sealed class NullAheadBehindGitRepoService : StubGitRepoService
     {
         public override Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)

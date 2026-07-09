@@ -220,6 +220,17 @@ public sealed class SegmentTypeTransformer : DocumentColorizingTransformer
                 });
                 break;
 
+            case "byline":
+                ChangeLinePart(lineStart, lineEnd, el =>
+                {
+                    el.TextRunProperties.SetForegroundBrush(BylineBrush);
+                    el.TextRunProperties.SetTypeface(new Typeface(
+                        el.TextRunProperties.Typeface.FontFamily,
+                        FontStyle.Italic,
+                        el.TextRunProperties.Typeface.Weight));
+                });
+                break;
+
             // prose, fascicle_marker, table_of_contents, apparatus, unknown
             // → no visual change (default rendering)
         }
@@ -232,4 +243,5 @@ public sealed class SegmentTypeTransformer : DocumentColorizingTransformer
     private static readonly IBrush CommentaryBrush = new SolidColorBrush(Color.FromRgb(160, 160, 160)); // gray
     private static readonly IBrush DharaniBrush = new SolidColorBrush(Color.FromRgb(186, 85, 211)); // medium orchid
     private static readonly IBrush MutedBrush = new SolidColorBrush(Color.FromRgb(140, 140, 140)); // dim gray
+    private static readonly IBrush BylineBrush = new SolidColorBrush(Color.FromRgb(112, 128, 144)); // slate gray
 }
