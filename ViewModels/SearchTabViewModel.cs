@@ -10,6 +10,7 @@ using ReadZen.App.Models;
 using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
@@ -34,10 +35,58 @@ public partial class SearchTabViewModel : ViewModelBase
     private readonly ISearchIndexService _svc;
     private readonly ISearchExportService _exportSvc;
 
-    public SearchTabViewModel(ISearchIndexService searchIndexService, ISearchExportService? searchExportService = null)
+    public SearchTabViewModel(
+        ISearchIndexService searchIndexService,
+        ISearchExportService? searchExportService = null,
+        IMessenger? messenger = null)
     {
         _svc = searchIndexService ?? throw new ArgumentNullException(nameof(searchIndexService));
         _exportSvc = searchExportService ?? new SearchExportService();
+        // Push the current (default-on) instant-search preference onto the service so the
+        // query path honours it from the first search. Config load / settings apply then
+        // override it via the SettingsAppliedMessage subscription below.
+        ApplyInstantSearchToService();
+
+        // MVVM ratchet: apply config-driven search prefs from the typed messenger, matching
+        // the pattern GitTabView/ScholarTabView use for their config-driven state. The shell
+        // broadcasts SettingsAppliedMessage both on startup config load
+        // (MainWindowViewModel.LoadConfigApplyThemeAndMaybeAutoloadAsync) and on Settings ▸
+        // Apply, so the persisted AppConfig.InstantSearch reaches Options.InstantSearch
+        // instead of the ctor default overriding it. Weak registration — no unsubscribe
+        // needed for the VM's lifetime. The messenger is injectable so tests can isolate
+        // from the process-wide default; production passes null → WeakReferenceMessenger.Default.
+        (messenger ?? WeakReferenceMessenger.Default)
+            .Register<SearchTabViewModel, Messages.SettingsAppliedMessage>(
+                this, static (vm, msg) => vm.InstantSearch = msg.Config.InstantSearch);
+    }
+
+    private bool _instantSearch = true;
+
+    /// <summary>
+    /// Instant search preference (default ON). When set it is pushed onto the search
+    /// service options so <c>SearchAllAsync</c> ranks by index tf and lazily loads
+    /// snippets for single-bigram queries. Wired from <c>AppConfig.InstantSearch</c> via
+    /// the <c>SettingsAppliedMessage</c> subscription registered in the constructor, which
+    /// fires on both startup config load and Settings ▸ Apply.
+    /// </summary>
+    public bool InstantSearch
+    {
+        get => _instantSearch;
+        set
+        {
+            if (_instantSearch == value) return;
+            _instantSearch = value;
+            ApplyInstantSearchToService();
+            OnPropertyChanged();
+        }
+    }
+
+    private void ApplyInstantSearchToService()
+    {
+        // Options lives on the concrete service; the interface exposes it too, but test
+        // fakes return a throwaway instance per get, so the set is harmlessly discarded
+        // there and only takes effect on the real SearchIndexService.
+        try { _svc.Options.InstantSearch = _instantSearch; } catch { }
     }
 
     private string? _root;

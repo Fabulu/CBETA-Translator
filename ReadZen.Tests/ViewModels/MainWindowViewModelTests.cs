@@ -7,6 +7,7 @@ using ReadZen.App.Messages;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
+using ReadZen.App.Views;
 using ReadZen.Tests.Stubs;
 using Xunit;
 
@@ -664,35 +665,26 @@ public class MainWindowViewModelTests
         }
     }
 
+    // The tag-compare-identity / tag-username derivation formerly pushed by the
+    // MainWindowViewModel bridge delegates (SetReadableTagCompareIdentity /
+    // SetReadableTagUsername) now lives in ReadableTabView.DeriveTagIdentity, which
+    // its SettingsAppliedMessage handler applies. These guard that the folded
+    // expression still prefers the GitHub login and falls back to Username.
     [Fact]
-    public void ApplySettingsToChildViews_PrefersGitHubLoginForReadableTagCompareIdentity()
+    public void ReadableTagIdentity_PrefersGitHubLogin()
     {
-        var vm = MakeVm();
-        string? compareIdentity = null;
-        string? tagUsername = null;
-
-        vm.SetReadableTagCompareIdentity = value => compareIdentity = value;
-        vm.SetReadableTagUsername = value => tagUsername = value;
-        vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
-
-        vm.ApplySettingsToChildViews();
+        var (compareIdentity, tagUsername) = ReadableTabView.DeriveTagIdentity(
+            new AppConfig { Username = "Alice", GitHubUsername = "octocat" });
 
         Assert.Equal("octocat", compareIdentity);
         Assert.Equal("Alice", tagUsername);
     }
 
     [Fact]
-    public void ApplySettingsToChildViews_FallsBackToUsernameForReadableTagCompareIdentity()
+    public void ReadableTagIdentity_FallsBackToUsername()
     {
-        var vm = MakeVm();
-        string? compareIdentity = null;
-        string? tagUsername = null;
-
-        vm.SetReadableTagCompareIdentity = value => compareIdentity = value;
-        vm.SetReadableTagUsername = value => tagUsername = value;
-        vm.UpdateConfig(new AppConfig { Username = "Alice", GitHubUsername = null });
-
-        vm.ApplySettingsToChildViews();
+        var (compareIdentity, tagUsername) = ReadableTabView.DeriveTagIdentity(
+            new AppConfig { Username = "Alice", GitHubUsername = null });
 
         Assert.Equal("Alice", compareIdentity);
         Assert.Equal("Alice", tagUsername);

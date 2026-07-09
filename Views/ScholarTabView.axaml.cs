@@ -16,6 +16,7 @@ using Avalonia.Layout;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using CommunityToolkit.Mvvm.Messaging;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
@@ -87,6 +88,16 @@ public partial class ScholarTabView : UserControl
 
         _vm.StatusChanged += (_, msg) => Status?.Invoke(this, msg);
         _vm.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
+
+        // Config-driven username arrives via the typed messenger (ratchet-folded
+        // replacement for MainWindowViewModel.SetScholarUsername, which pushed
+        // GitHubUsername ?? Username). Weak registration — no unsubscribe needed
+        // for the view's lifetime. NOTE: SetScholarAssistantUsername is NOT folded
+        // here — its value derives from the active translation source, not AppConfig,
+        // so it stays a bridge delegate.
+        WeakReferenceMessenger.Default
+            .Register<ScholarTabView, ReadZen.App.Messages.SettingsAppliedMessage>(
+                this, static (view, msg) => view.SetUsername(msg.Config.GitHubUsername ?? msg.Config.Username));
 
         // Reload from disk when another ScholarTabView instance saves data
         _scholarDataChangedHandler = (sender, args) =>

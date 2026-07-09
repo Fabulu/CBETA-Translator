@@ -354,7 +354,7 @@ public partial class ReadableTabView : UserControl
         // no unsubscribe needed for the view's lifetime.
         WeakReferenceMessenger.Default
             .Register<ReadableTabView, ReadZen.App.Messages.SettingsAppliedMessage>(
-                this, static (view, msg) => view.SetScrollSyncEnabled(msg.Config.EnableBilingualScrollSync));
+                this, static (view, msg) => view.OnSettingsApplied(msg.Config));
 
         AttachedToVisualTree += (_, _) =>
         {
@@ -3299,6 +3299,48 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Applies the config toggle (called from the SettingsAppliedMessage registration).</summary>
     internal void SetScrollSyncEnabled(bool enabled) => _scrollSyncEnabled = enabled;
+
+    /// <summary>
+    /// Applies all config-driven reader settings from a <see cref="ReadZen.App.Messages.SettingsAppliedMessage"/>.
+    /// This is the ratchet-folded replacement for the former MainWindowViewModel
+    /// bridge delegates (SetReadableHoverDict, SetReadableStudyPanelVisible,
+    /// SetReadableProvenancePanelVisible, SetReadableDefaultResp,
+    /// SetReadableTagCompareIdentity, SetReadableTagUsername). Each line mirrors the
+    /// exact value the old fan-out pushed in ApplySettingsToChildViews.
+    /// </summary>
+    private void OnSettingsApplied(AppConfig config)
+    {
+        // Contain any setter failure inside this view: WeakReferenceMessenger.Send
+        // propagates a handler throw and would abort delivery to the OTHER registered
+        // views, so one bad setting must not silently stop settings elsewhere. This
+        // preserves the resilience the old per-delegate try/catch fan-out had.
+        try
+        {
+            SetScrollSyncEnabled(config.EnableBilingualScrollSync);
+            SetHoverDictionaryEnabled(config.EnableHoverDictionary);
+            SetStudyPanelVisible(config.EnableStudyPanel);
+            SetProvenancePanelVisible(config.EnableProvenancePanel);
+            DefaultResp = config.Username ?? "";
+            var (compareIdentity, tagUsername) = DeriveTagIdentity(config);
+            CurrentTagCompareIdentity = compareIdentity;
+            CurrentTagUsername = tagUsername;
+        }
+        catch { /* one view's settings failure must not abort messenger delivery to others */ }
+    }
+
+    /// <summary>
+    /// Recomputes the tag-comparison identity and tag username from AppConfig,
+    /// mirroring MainWindowViewModel's old fan-out expressions
+    /// (<c>GitHubUsername ?? GetCurrentTagUsername() ?? ""</c> and
+    /// <c>GetCurrentTagUsername()</c>, where GetCurrentTagUsername trims a blank
+    /// Username to null). Static + pure so it is unit-testable without a UI.
+    /// </summary>
+    public static (string CompareIdentity, string? TagUsername) DeriveTagIdentity(AppConfig config)
+    {
+        var tagUsername = string.IsNullOrWhiteSpace(config.Username) ? null : config.Username.Trim();
+        var compareIdentity = config.GitHubUsername ?? tagUsername ?? "";
+        return (compareIdentity, tagUsername);
+    }
 
     private void HookScrollSync()
     {

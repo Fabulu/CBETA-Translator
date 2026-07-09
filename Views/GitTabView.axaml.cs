@@ -8,6 +8,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using CommunityToolkit.Mvvm.Messaging;
+using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,7 +66,33 @@ public partial class GitTabView : UserControl
         _vm.EnsureTranslatedForSelectedRequested += relPath =>
             EnsureTranslatedForSelectedRequested?.Invoke(relPath) ?? Task.FromResult<string?>(null);
 
+        // Config-driven identity (username + persisted GitHub auth) arrives via the
+        // typed messenger (ratchet-folded replacement for MainWindowViewModel's
+        // SetGitUsername and LoadGitPersistedAuth bridge delegates). Weak
+        // registration — no unsubscribe needed for the view's lifetime.
+        WeakReferenceMessenger.Default
+            .Register<GitTabView, ReadZen.App.Messages.SettingsAppliedMessage>(
+                this, static (view, msg) => view.OnSettingsApplied(msg.Config));
+
         AttachedToVisualTree += (_, _) => _vm.OnAttachedToVisualTree();
+    }
+
+    /// <summary>
+    /// Applies config-driven identity from a <see cref="ReadZen.App.Messages.SettingsAppliedMessage"/>,
+    /// mirroring the old MainWindowViewModel fan-out
+    /// (<c>SetGitUsername(Username)</c> + <c>LoadGitPersistedAuth(GitHubAccessToken, GitHubUsername)</c>).
+    /// </summary>
+    public void OnSettingsApplied(AppConfig config)
+    {
+        // Contain failures so one view's settings throw can't abort messenger
+        // delivery to the other registered views (WeakReferenceMessenger.Send
+        // propagates handler exceptions).
+        try
+        {
+            SetUsername(config.Username);
+            LoadPersistedAuth(config.GitHubAccessToken, config.GitHubUsername);
+        }
+        catch { /* isolate from sibling recipients */ }
     }
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);

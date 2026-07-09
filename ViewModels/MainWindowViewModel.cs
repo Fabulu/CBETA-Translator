@@ -339,15 +339,14 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<RenderedDocument, RenderedDocument>? SetReadableRendered { get; set; }
     public Action<Dictionary<string, LociEntry>>? SetReadableLociMap { get; set; }
     public Action? ClearReadable { get; set; }
-    public Action<bool>? SetReadableHoverDict { get; set; }
+    // SetReadableHoverDict folded into ReadableTabView's SettingsAppliedMessage handler (ratchet).
     public Action<string?, bool>? SetReadableZenContext { get; set; }
     public Action<IReadOnlyList<TermHit>?, string?, int?, string?>? UpdateReadableTermHighlights { get; set; }
     public Action<IReadOnlyList<TranslationTmMatch>?, IReadOnlyList<TranslationTmMatch>?, string?, int?, string?>? UpdateReadableTmSharedHighlights { get; set; }
-    public Action<string>? SetReadableDefaultResp { get; set; }
-    public Action<string>? SetReadableTagCompareIdentity { get; set; }
-    public Action<string?>? SetReadableTagUsername { get; set; }
+    // SetReadableDefaultResp / SetReadableTagCompareIdentity / SetReadableTagUsername
+    // folded into ReadableTabView's SettingsAppliedMessage handler (ratchet).
     public Action<TranslationAssistantSnapshot?>? SetReadableStudySnapshot { get; set; }
-    public Action<bool>? SetReadableStudyPanelVisible { get; set; }
+    // SetReadableStudyPanelVisible folded into ReadableTabView's SettingsAppliedMessage handler (ratchet).
 
     // Top-bar license chip. Fired whenever the active file's license metadata
     // becomes known — once from the readable-render bridge (cache path), and
@@ -358,7 +357,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // Provenance panel bridge
     public Action<ManifestInfo?, TextLicenseInfo?, CorpusKind, string?>? SetCurrentFileProvenance { get; set; }
-    public Action<bool>? SetReadableProvenancePanelVisible { get; set; }
+    // SetReadableProvenancePanelVisible folded into ReadableTabView's SettingsAppliedMessage handler (ratchet).
 
     // ReadableTabView coding mode bridges
     public Action<TagVocabulary?>? SetReadableTagVocabulary { get; set; }
@@ -378,7 +377,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<TranslationEditMode, string>? SetTranslationModeProjection { get; set; }
     public Func<string>? GetTranslationProjectionText { get; set; }
     public Action? ClearTranslation { get; set; }
-    public Action<bool>? SetTranslationHoverDict { get; set; }
+    // SetTranslationHoverDict folded into TranslationTabView's SettingsAppliedMessage handler (ratchet).
     public Action<bool>? SetAssistantLoading { get; set; }
     public Action<TranslationAssistantSnapshot?>? SetAssistantSnapshot { get; set; }
 
@@ -418,8 +417,7 @@ public partial class MainWindowViewModel : ViewModelBase
     // GitTabView bridges
     public Action<string?>? SetGitRepoRoot { get; set; }
     public Action<string?>? SetGitSelectedRelPath { get; set; }
-    public Action<string?>? SetGitUsername { get; set; }
-    public Action<string?, string?>? LoadGitPersistedAuth { get; set; }
+    // SetGitUsername / LoadGitPersistedAuth folded into GitTabView's SettingsAppliedMessage handler (ratchet).
 
     // ScholarTabView bridges
     public Action<string>? SetScholarRoot { get; set; }
@@ -1118,20 +1116,16 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void ApplySettingsToChildViews()
     {
-        // Messenger broadcast (the ratchet-preferred channel; the delegates below are
-        // legacy bridges that convert as they are touched).
+        // Messenger broadcast (the ratchet-preferred channel). This is now the sole
+        // fan-out channel for the pure config-driven view state: TranslationTabView,
+        // ReadableTabView, GitTabView and ScholarTabView each register for it and
+        // apply the same settings the old bridge delegates pushed (MVVM ratchet).
         try { WeakReferenceMessenger.Default.Send(new Messages.SettingsAppliedMessage(_config)); } catch { }
 
-        try { SetTranslationHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
-        try { SetReadableHoverDict?.Invoke(_config.EnableHoverDictionary); } catch { }
-        try { SetReadableStudyPanelVisible?.Invoke(_config.EnableStudyPanel); } catch { }
-        try { SetReadableProvenancePanelVisible?.Invoke(_config.EnableProvenancePanel); } catch { }
-        try { SetReadableDefaultResp?.Invoke(_config.Username ?? ""); } catch { }
-        try { SetReadableTagCompareIdentity?.Invoke(_config.GitHubUsername ?? GetCurrentTagUsername() ?? ""); } catch { }
-        try { SetReadableTagUsername?.Invoke(GetCurrentTagUsername()); } catch { }
-        try { SetGitUsername?.Invoke(_config.Username); } catch { }
-        try { LoadGitPersistedAuth?.Invoke(_config.GitHubAccessToken, _config.GitHubUsername); } catch { }
-        try { SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username); } catch { }
+        // SetScholarAssistantUsername stays a delegate: its value is derived from
+        // the ACTIVE TRANSLATION SOURCE (GetActiveDictionaryUser), not from
+        // AppConfig, so the config-only message cannot carry it (see the
+        // index>=2 assertion in the ScholarAssistant fan-out test).
         try { SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser()); } catch { }
         try { _translationAssistant.SetUsername(GetActiveDictionaryUser()); } catch { }
     }

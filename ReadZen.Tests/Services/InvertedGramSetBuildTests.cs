@@ -79,12 +79,14 @@ public sealed class InvertedGramSetBuildTests : IDisposable
     [Fact]
     public async Task TextBuild_OutputMatchesPreRefactorGoldenBytes()
     {
-        // SHA-256 of search.inverted.bin produced by the PRE-refactor Build over
-        // GoldenDocs() with stamp "golden-stamp", with the 32-byte .paths checksum
-        // zeroed (it hashes platform-dependent newlines; everything else in the file
-        // is deterministic). Captured 2026-07-08 from commit 58cbf75. A mismatch
-        // means the refactor changed the on-disk output for identical inputs.
-        const string goldenSha256 = "642a93f0947b018d1f27bc2745e4fc779199f0dda8f6cd99defc7c19bbd27302";
+        // SHA-256 of the v4 search.inverted.bin produced by Build over GoldenDocs() with
+        // stamp "golden-stamp", with the 32-byte .paths checksum zeroed (it hashes
+        // platform-dependent newlines; everything else in the file is deterministic).
+        // Recaptured 2026-07-10 for the v4 (per-posting tf) format — every GoldenDocs
+        // bigram occurs exactly once, so all tf values are 1 (one extra byte per posting)
+        // and the version int is 4. A mismatch means the on-disk output changed for
+        // identical inputs. (Pre-v4 golden was 642a93f0…bbd27302, format v3.)
+        const string goldenSha256 = "b869050d62ecb7542a6bf00ac7895b26e488ae5badecce7cd1e6216f78d1869c";
 
         var idx = new InvertedSearchIndex();
         idx.Build(GoldenDocs());
