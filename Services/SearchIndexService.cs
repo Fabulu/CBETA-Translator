@@ -113,6 +113,38 @@ public sealed class SearchIndexService : ISearchIndexService
     private int _contentHashBackfillFlag;
     private int _contentHashBackfillCount;
     internal int LastContentHashBackfillCount => Volatile.Read(ref _contentHashBackfillCount);
+
+    // INC-2A test-observable build counters. _lastBuildXmlReadCount is reset at the start
+    // of every BuildOrUpdateCoreAsync run and incremented once per XML file actually read
+    // in Phase 1 — the incremental skip-read tests assert it equals the changed/added
+    // entry count (O(delta) XML reads). _lastBuildFallbackCount is reset per public
+    // BuildOrUpdateAsync call and incremented when the incremental attempt failed and the
+    // build was retried as a full rebuild inside the same gate acquisition.
+    private int _lastBuildXmlReadCount;
+    private int _lastBuildFallbackCount;
+    internal int LastBuildXmlReadCount => Volatile.Read(ref _lastBuildXmlReadCount);
+    internal int LastBuildFallbackCount => Volatile.Read(ref _lastBuildFallbackCount);
+
+    // INC-3A test-observable: 1 when the last BuildOrUpdateCoreAsync run produced the
+    // corpusfreq artifact via the algebraic delta (old counts - removed/changed old
+    // texts + added/changed new texts), 0 when the full text.bin recount ran (fresh
+    // build, delta preconditions unmet, or an inconsistency fallback). Reset per core run.
+    private int _lastBuildFreqDeltaApplied;
+    internal int LastBuildFreqDeltaApplied => Volatile.Read(ref _lastBuildFreqDeltaApplied);
+
+    // INC-4A test-observable: number of entries whose gram sets (inverted + cjk2
+    // alphabets) were COMPUTED from text during the last BuildOrUpdateCoreAsync run,
+    // rather than read from the gramsets sidecar. On a warm sidecar an N-entry delta
+    // computes exactly N; a full/fallback build computes every entry. Reset per core run.
+    private int _lastBuildGramComputeCount;
+    internal int LastBuildGramComputeCount => Volatile.Read(ref _lastBuildGramComputeCount);
+
+    /// <summary>
+    /// Test instrumentation ONLY: invoked at the top of the incremental build path
+    /// (never on the full path) so tests can inject a fault and prove the
+    /// retry-as-full-rebuild fallback produces a complete, equivalent artifact family.
+    /// </summary>
+    internal Action? TestOnlyIncrementalFault;
     private MemoryMappedFile? _cachedTextMmf;
     private string? _cachedTextBinPath;
     private DateTime _cachedTextBinWriteUtc;
@@ -129,13 +161,14 @@ public sealed class SearchIndexService : ISearchIndexService
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    // Bumped 2026-07-04 from "search-v4-app-self-close-fix": the inverted index gained
-    // an integrity contract (v3 format: per-build IndexStamp + .paths checksum,
-    // audit P1.1). Existing v2 search.inverted.bin files are refused by the new
-    // loader, and without a bump users would silently lose the exact-match fast path
-    // until their next natural rebuild — the GUID bump forces that rebuild once.
-    // (Previous bump 2026-05-11: <app/> self-close extractor fix, commit 90401aa era.)
-    private const string BuildGuid = "search-v5-inverted-integrity";
+    // Bumped 2026-07-08 from "search-v5-inverted-integrity": the cjk2 and corpusfreq
+    // sibling manifests gained IndexStamp integrity binding (D3 item 5). Existing
+    // unstamped siblings are refused by the new consumers (cjk2 prefilter and
+    // corpusfreq loader), and without a bump users would silently lose those
+    // accelerators until their next natural rebuild — the GUID bump forces the ONE
+    // full rebuild that ships stamped siblings. Do NOT bump again this project.
+    // (Previous bump 2026-07-04: inverted index integrity contract, audit P1.1.)
+    private const string BuildGuid = "search-v6-stamped-siblings";
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
     private const int Cjk2ManifestVersion = 1;
@@ -160,13 +193,17 @@ public sealed class SearchIndexService : ISearchIndexService
         public long Ticks;
         public long LenBytes;
         public ulong[]? Bits;           // null when CopiedBloom = true
-        public byte[]? TextBytes;       // null when CopiedText = true
+        public byte[] TextBytes;        // always populated: fresh extraction bytes, or the
+                                        // validated old text.bin block for unchanged entries
         public string SearchableText;   // always populated (needed for inverted index)
         public bool CopiedBloom;
-        public bool CopiedText;
         public long OldBloomOffset;     // valid only when CopiedBloom = true
-        public long OldTextOffset;      // valid only when CopiedText = true
-        public int OldTextLen;          // valid only when CopiedText = true
+        public string? ContentHash;     // lowercase-hex SHA256 of the raw XML bytes: fresh for
+                                        // changed/added entries, carried from the old manifest
+                                        // for unchanged entries (null on legacy carry-forward)
+        public string? WalkKey;         // AppendDirRows walk key ("orig/..." / "tran{i}/...")
+                                        // when the file is physically under originalDir or
+                                        // translatedDirs[i]; null for additional-dir files
     }
 
     // ==========================================================
@@ -1655,10 +1692,11 @@ public sealed class SearchIndexService : ISearchIndexService
                 catch { /* inverted index is optional */ }
             }
 
-            // Try loading corpus frequency index alongside bloom
+            // Try loading corpus frequency index alongside bloom. Only an artifact
+            // stamped with THIS manifest's IndexStamp may load (same-build binding).
             if (CorpusCharFreqs == null)
             {
-                try { await TryLoadCorpusFrequenciesAsync(root); }
+                try { await TryLoadCorpusFrequenciesAsync(root, man.IndexStamp); }
                 catch { /* corpus freq index is optional */ }
             }
 
@@ -1670,13 +1708,23 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    /// <summary>Loads the corpus frequency index from disk. Returns true on success.</summary>
-    public async Task<bool> TryLoadCorpusFrequenciesAsync(string root)
+    /// <summary>
+    /// Loads the corpus frequency index from disk. Returns true on success.
+    /// <paramref name="expectedStamp"/> is the loaded main manifest's IndexStamp; the
+    /// artifact is refused (props left null) when either stamp is null (legacy file or
+    /// legacy main manifest) or the stamps differ (Ordinal) — a crash between the main
+    /// manifest commit and the corpusfreq save must not leave a previous build's
+    /// frequencies silently trusted for ranking.
+    /// </summary>
+    public async Task<bool> TryLoadCorpusFrequenciesAsync(string root, string? expectedStamp)
     {
         var manifestPath = Path.Combine(root, "search.corpusfreq.manifest.json");
         var binPath = Path.Combine(root, "search.corpusfreq.bin");
 
         if (!File.Exists(manifestPath) || !File.Exists(binPath))
+            return false;
+
+        if (string.IsNullOrEmpty(expectedStamp))
             return false;
 
         try
@@ -1687,6 +1735,12 @@ public sealed class SearchIndexService : ISearchIndexService
             var freqManifest = JsonSerializer.Deserialize<CorpusFreqManifest>(json, JsonOpts);
             if (freqManifest == null || freqManifest.Version != 1) return false;
             if (!string.Equals(freqManifest.BuildGuid, CorpusFreqBuildGuid, StringComparison.Ordinal)) return false;
+            if (freqManifest.IndexStamp == null ||
+                !string.Equals(freqManifest.IndexStamp, expectedStamp, StringComparison.Ordinal))
+            {
+                Dbg("Corpus freq index refused: IndexStamp missing or mismatched (stale sibling)");
+                return false;
+            }
 
             var bytes = await File.ReadAllBytesAsync(binPath);
             using var ms = new MemoryStream(bytes);
@@ -1855,11 +1909,29 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    /// <summary>
+    /// Same-build usability gate for the cjk2 postings manifest. EntryIds are positional
+    /// into the main manifest's entry list, so a cjk2 file from a different build (e.g.
+    /// left behind by a crash between the main manifest commit and the cjk2 save) would
+    /// silently map grams to the WRONG files. Usable only when the entry counts match
+    /// AND the cjk2 IndexStamp is non-null and Ordinal-equal to the main manifest's
+    /// IndexStamp (null = legacy unstamped file, refused). Internal for test access.
+    /// </summary>
+    internal static bool IsCjk2Usable(SearchCjkBigramManifest cjk2, SearchIndexManifest manifest)
+    {
+        if (cjk2 == null || manifest == null) return false;
+        int entryCount = manifest.Entries?.Count ?? 0;
+        return cjk2.EntryCount == entryCount &&
+               cjk2.IndexStamp != null &&
+               string.Equals(cjk2.IndexStamp, manifest.IndexStamp, StringComparison.Ordinal);
+    }
+
     private async Task SaveManifestAtomicAsync(
         string root,
         SearchIndexManifest manifest,
         string originalDir,
         IReadOnlyList<string> translatedDirs,
+        IReadOnlyDictionary<string, SearchIndexEntry>? contentHashCache,
         CancellationToken ct)
     {
         manifest.RootPath = root;
@@ -1877,9 +1949,18 @@ public sealed class SearchIndexService : ISearchIndexService
         try
         {
             var freshHashes = new Dictionary<string, string>(StringComparer.Ordinal);
-            // No cache on the build path — we want every file freshly hashed so the
-            // resulting manifest is authoritative. The writeBack populates ContentHash.
-            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache: null, writeBack: freshHashes, ct).ConfigureAwait(false);
+            // INC-2A (D3 item 1): the build path no longer re-reads the whole corpus here.
+            // Phase 1 already SHA256'd the raw bytes of every file it read (all files on a
+            // full rebuild; only changed/added files on an incremental update, with
+            // unchanged files' hashes carried forward from the old manifest), and the
+            // caller passes those hashes in as `contentHashCache` keyed by the exact
+            // AppendDirRows walk-key scheme. The walk below therefore stat-hits everywhere
+            // and the resulting root hash is value-identical to a cache:null computation
+            // (per-file digests are the same SHA256 of the same raw bytes). Walk-time
+            // cache misses (file changed since the scan, legacy null hash, shadowed
+            // multi-dir files) fall back to a fresh read+hash; the writeBack channel plus
+            // ApplyContentHashWriteBack remain the safety net that patches those entries.
+            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache: contentHashCache, writeBack: freshHashes, ct).ConfigureAwait(false);
 
             // Stamp ContentHash onto manifest entries. Uses the same namespacing scheme
             // (orig/, tran0/) as BuildContentHashCache so the next IsStaleAsync call
@@ -2156,41 +2237,41 @@ public sealed class SearchIndexService : ISearchIndexService
         return list;
     }
 
-    private static IEnumerable<string> EnumerateUniqueCompactBigrams(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-            yield break;
-
-        string compact = CjkMatchNormalizer.Normalize(text);
-        if (compact.Length < 2)
-            yield break;
-
-        var seen = new HashSet<string>(StringComparer.Ordinal);
-        for (int i = 0; i + 2 <= compact.Length; i++)
-        {
-            string gram = compact.Substring(i, 2);
-            if (!seen.Add(gram)) continue;
-            yield return gram;
-        }
-    }
-
-    private SearchCjkBigramManifest BuildCjk2ManifestFromTextSidecar(
+    /// <summary>
+    /// INC-5A: builds the cjk2 postings manifest by TRANSPOSING the per-entry cjk2
+    /// gram sets already assembled in Phase 1 (sidecar-cached for unchanged entries,
+    /// <see cref="GramSetCodec.ComputeCjk2GramSet"/> fresh for changed/added ones) —
+    /// this replaced a full re-scan of search.text.bin. Used by BOTH the incremental
+    /// and full build paths; the output reproduces the old scan exactly:
+    ///   - entries are visited in manifest Id order 0..N-1;
+    ///   - an entry contributes grams ONLY if its NEW text-manifest row exists with
+    ///     TextLengthBytes &gt; 0 — the ROW is the gate, not the gram array: an entry
+    ///     whose in-memory text is non-empty but whose text-block write recorded no
+    ///     bytes contributes nothing, exactly as the old scan would have found no
+    ///     bytes to read;
+    ///   - EntryCount counts ALL manifest entries, skipped/empty ones included;
+    ///   - gram strings come from <see cref="GramSetCodec.UnpackGram"/>, identical to
+    ///     the old Substring production including ill-formed surrogate-half pairs, so
+    ///     System.Text.Json escaping matches byte-for-byte;
+    ///   - postings are ordered by gram (packed-uint ascending == 2-char string
+    ///     Ordinal ascending: both compare the high code unit first, then the low)
+    ///     with ascending EntryIds. Format and Cjk2BuildGuid are UNCHANGED.
+    /// Memory note: only UNIQUE grams materialize as strings (dictionary-size
+    /// bounded) — a large win over the old per-candidate Substring storm.
+    /// </summary>
+    private static SearchCjkBigramManifest BuildCjk2ManifestFromGramSets(
         string root,
         SearchIndexManifest indexManifest,
         SearchTextManifest textManifest,
+        uint[][] cjk2GramsByEntry,
         CancellationToken ct)
     {
-        string textBinPath = GetTextBinPath(root);
-        if (!File.Exists(textBinPath))
-            throw new FileNotFoundException("search.text.bin not found for cjk2 postings build.", textBinPath);
-
         var textById = new Dictionary<int, SearchTextEntry>();
         foreach (var t in textManifest.Entries)
             textById[t.Id] = t;
 
-        var postings = new Dictionary<string, List<int>>(StringComparer.Ordinal);
+        var postings = new Dictionary<uint, List<int>>();
 
-        using var fs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         foreach (var e in indexManifest.Entries)
         {
             ct.ThrowIfCancellationRequested();
@@ -2202,25 +2283,17 @@ public sealed class SearchIndexService : ISearchIndexService
             if (textEntry.TextOffset < 0)
                 continue;
 
-            fs.Seek(textEntry.TextOffset, SeekOrigin.Begin);
-            var bytes = new byte[textEntry.TextLengthBytes];
-            int read = 0;
-            while (read < bytes.Length)
-            {
-                int r = fs.Read(bytes, read, bytes.Length - read);
-                if (r <= 0) break;
-                read += r;
-            }
-            if (read != bytes.Length)
-                continue;
+            if (e.Id < 0 || e.Id >= cjk2GramsByEntry.Length)
+                throw new InvalidOperationException(
+                    $"cjk2 transpose: entry Id {e.Id} outside the gram-set array (length {cjk2GramsByEntry.Length}).");
 
-            string searchable = Utf8NoBom.GetString(bytes);
-            foreach (var gram in EnumerateUniqueCompactBigrams(searchable))
+            var grams = cjk2GramsByEntry[e.Id] ?? Array.Empty<uint>();
+            foreach (var g in grams)
             {
-                if (!postings.TryGetValue(gram, out var ids))
+                if (!postings.TryGetValue(g, out var ids))
                 {
                     ids = new List<int>();
-                    postings[gram] = ids;
+                    postings[g] = ids;
                 }
                 ids.Add(e.Id);
             }
@@ -2233,15 +2306,19 @@ public sealed class SearchIndexService : ISearchIndexService
             BuildGuid = Cjk2BuildGuid,
             Version = Cjk2ManifestVersion,
             GramSize = 2,
-            EntryCount = indexManifest.Entries.Count
+            EntryCount = indexManifest.Entries.Count,
+            // Bind this artifact to the exact build family it belongs to: EntryIds are
+            // positional into indexManifest.Entries, so consumers refuse any cjk2
+            // manifest whose stamp differs from the main manifest they loaded.
+            IndexStamp = indexManifest.IndexStamp
         };
 
-        foreach (var kv in postings.OrderBy(k => k.Key, StringComparer.Ordinal))
+        foreach (var kv in postings.OrderBy(k => k.Key))
         {
-            kv.Value.Sort();
+            kv.Value.Sort(); // ascending by construction (Id-order feed); kept for parity
             manifest.Postings.Add(new SearchCjkBigramPosting
             {
-                Gram = kv.Key,
+                Gram = GramSetCodec.UnpackGram(kv.Key),
                 EntryIds = kv.Value
             });
         }
@@ -2279,6 +2356,272 @@ public sealed class SearchIndexService : ISearchIndexService
             await _indexIoGate.WaitAsync(ct);
             try
             {
+                Interlocked.Exchange(ref _lastBuildFallbackCount, 0);
+
+                // SINGLE FALLBACK (S5): any exception thrown while incremental sourcing
+                // was enabled (except cancellation) => delete stray family tmp files and
+                // retry ONCE with incremental sourcing disabled (full compute), inside
+                // the SAME gate acquisition. Failures on the full path propagate exactly
+                // as before.
+                if (!forceRebuild)
+                {
+                    try
+                    {
+                        await BuildOrUpdateCoreAsync(root, originalDir, translatedDirs,
+                            allowIncremental: true, additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
+                        return;
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        Dbg($"Incremental index update FAILED — retrying as full rebuild: {ex.Message}\n{ex.StackTrace}");
+                        System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Incremental update failed, retrying as full rebuild: {ex.Message}");
+                        Interlocked.Increment(ref _lastBuildFallbackCount);
+                        DeleteStrayFamilyTmpFiles(root);
+                    }
+                }
+
+                await BuildOrUpdateCoreAsync(root, originalDir, translatedDirs,
+                    allowIncremental: false, additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
+            }
+            finally
+            {
+                _indexIoGate.Release();
+            }
+        }, ct);
+    }
+
+    /// <summary>Best-effort cleanup of half-written family artifacts before the fallback full rebuild.</summary>
+    private static void DeleteStrayFamilyTmpFiles(string root)
+    {
+        try
+        {
+            foreach (var tmp in Directory.EnumerateFiles(root, "search.*.tmp", SearchOption.TopDirectoryOnly))
+            {
+                try { File.Delete(tmp); } catch { }
+            }
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Decodes raw XML bytes with the same semantics as <c>File.ReadAllText(path, Utf8NoBom)</c>
+    /// (StreamReader with BOM detection enabled). INC-2A hashing rule: the raw bytes are read
+    /// ONCE, SHA256'd as-is, and only then decoded — never hash a re-encode of a decoded string.
+    /// </summary>
+    private static string DecodeXmlBytes(byte[] raw)
+    {
+        using var ms = new MemoryStream(raw, writable: false);
+        using var sr = new StreamReader(ms, Utf8NoBom, detectEncodingFromByteOrderMarks: true);
+        return sr.ReadToEnd();
+    }
+
+    /// <summary>
+    /// Reads one old text.bin block via <see cref="RandomAccess"/> (per-call offsets, safe for
+    /// the Phase-1 <c>Parallel.For</c> without a shared-stream lock). Returns null on ANY
+    /// anomaly (short read, IO error) so the caller reclassifies the entry as changed and
+    /// re-extracts from XML instead of committing a bogus block.
+    /// </summary>
+    private static byte[]? TryReadOldTextBlock(Microsoft.Win32.SafeHandles.SafeFileHandle handle, long offset, int length)
+    {
+        if (offset < 0 || length <= 0) return null;
+        try
+        {
+            var buf = new byte[length];
+            int read = 0;
+            while (read < length)
+            {
+                int r = RandomAccess.Read(handle, buf.AsSpan(read, length - read), offset + read);
+                if (r <= 0) return null;
+                read += r;
+            }
+            return buf;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// INC-3A (D3 item 4): the corpus-frequency counting loop, extracted verbatim from the
+    /// full-recount pass so the full path and the algebraic delta share ONE implementation.
+    /// Counts every <see cref="IsIndexableCjk"/> code unit of <paramref name="text"/> with
+    /// multiplicity into <paramref name="charFreqs"/>, and every adjacent CJK pair into
+    /// <paramref name="bigramFreqs"/> (any non-CJK char resets the pair chain, exactly like
+    /// the original <c>hasPrev</c> logic), each scaled by <paramref name="sign"/> (+1 add,
+    /// -1 subtract); <paramref name="totalChars"/> moves by <paramref name="sign"/> per
+    /// counted char. Keys reaching zero are NOT pruned here — the delta merge prunes (or
+    /// detects negatives) when combining. Internal for test access (unit-tested against a
+    /// literal reimplementation of the original loop).
+    /// </summary>
+    internal static void CountCorpusFreqs(
+        string text,
+        Dictionary<string, int> charFreqs,
+        Dictionary<string, int> bigramFreqs,
+        int sign,
+        ref long totalChars)
+    {
+        char prev = '\0';
+        bool hasPrev = false;
+        for (int ci = 0; ci < text.Length; ci++)
+        {
+            char ch = text[ci];
+            if (!IsIndexableCjk(ch)) { hasPrev = false; continue; }
+
+            var ck = ch.ToString();
+            charFreqs[ck] = charFreqs.TryGetValue(ck, out var cv) ? cv + sign : sign;
+            totalChars += sign;
+
+            if (hasPrev)
+            {
+                var bk = string.Concat(prev, ch);
+                bigramFreqs[bk] = bigramFreqs.TryGetValue(bk, out var bv) ? bv + sign : sign;
+            }
+            prev = ch;
+            hasPrev = true;
+        }
+    }
+
+    /// <summary>
+    /// INC-3A: loads the OLD corpusfreq manifest+bin into LOCAL maps for the algebraic
+    /// delta (never the instance <see cref="CorpusCharFreqs"/> props — those must not be
+    /// mutated mid-build). Returns null unless the artifact loads cleanly AND its
+    /// IndexStamp is non-null and Ordinal-equal to <paramref name="expectedOldStamp"/>
+    /// (the OLD main manifest's stamp, captured before the new stamp is minted) — a stale
+    /// or legacy corpusfreq must never seed the delta.
+    /// </summary>
+    private static async Task<(Dictionary<string, int> charFreqs, Dictionary<string, int> bigramFreqs, long totalChars)?>
+        TryLoadOldCorpusFreqForDeltaAsync(string root, string? expectedOldStamp, CancellationToken ct)
+    {
+        if (string.IsNullOrEmpty(expectedOldStamp))
+            return null;
+
+        var manifestPath = Path.Combine(root, "search.corpusfreq.manifest.json");
+        var binPath = Path.Combine(root, "search.corpusfreq.bin");
+        if (!File.Exists(manifestPath) || !File.Exists(binPath))
+            return null;
+
+        try
+        {
+            var json = await File.ReadAllTextAsync(manifestPath, Utf8NoBom, ct);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+
+            var freqManifest = JsonSerializer.Deserialize<CorpusFreqManifest>(json, JsonOpts);
+            if (freqManifest == null || freqManifest.Version != 1) return null;
+            if (!string.Equals(freqManifest.BuildGuid, CorpusFreqBuildGuid, StringComparison.Ordinal)) return null;
+            if (freqManifest.IndexStamp == null ||
+                !string.Equals(freqManifest.IndexStamp, expectedOldStamp, StringComparison.Ordinal))
+            {
+                Dbg("Corpus freq delta refused: old corpusfreq IndexStamp missing or mismatched with old main manifest");
+                return null;
+            }
+
+            var bytes = await File.ReadAllBytesAsync(binPath, ct);
+            using var ms = new MemoryStream(bytes);
+            using var br = new BinaryReader(ms, Utf8NoBom, leaveOpen: false);
+
+            byte m0 = br.ReadByte(), m1 = br.ReadByte(), m2 = br.ReadByte(), m3 = br.ReadByte();
+            if (m0 != (byte)'C' || m1 != (byte)'F' || m2 != (byte)'0' || m3 != (byte)'1')
+                return null;
+
+            int charCount = br.ReadInt32();
+            int bigramCount = br.ReadInt32();
+            long totalChars = br.ReadInt64();
+            if (charCount < 0 || bigramCount < 0 || totalChars < 0) return null;
+
+            var charFreqs = new Dictionary<string, int>(charCount);
+            for (int i = 0; i < charCount; i++)
+            {
+                char ch = br.ReadChar();
+                charFreqs[ch.ToString()] = br.ReadInt32();
+            }
+
+            var bigramFreqs = new Dictionary<string, int>(bigramCount);
+            for (int i = 0; i < bigramCount; i++)
+            {
+                char c1 = br.ReadChar();
+                char c2 = br.ReadChar();
+                bigramFreqs[string.Concat(c1, c2)] = br.ReadInt32();
+            }
+
+            return (charFreqs, bigramFreqs, totalChars);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Dbg($"Corpus freq delta: old artifact load failed ({ex.Message}) — full recount");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// INC-3A: reads one OLD text.bin block and accumulates SUBTRACT counts into the delta
+    /// maps. A 0-length old block is a legitimately empty extraction (nothing to subtract).
+    /// Returns false on any anomaly (bad row bounds, short/failed read) so the caller
+    /// discards the whole delta and runs the full recount.
+    /// </summary>
+    private static bool TrySubtractOldTextCounts(
+        SearchTextEntry oldRow,
+        Microsoft.Win32.SafeHandles.SafeFileHandle oldTextHandle,
+        Dictionary<string, int> deltaChars,
+        Dictionary<string, int> deltaBigrams,
+        ref long deltaTotal)
+    {
+        if (oldRow.TextLengthBytes == 0) return true;
+        if (oldRow.TextLengthBytes < 0 || oldRow.TextOffset < 0) return false;
+
+        var bytes = TryReadOldTextBlock(oldTextHandle, oldRow.TextOffset, oldRow.TextLengthBytes);
+        if (bytes == null) return false;
+
+        // Old blocks were written Utf8NoBom, so plain GetString (no BOM handling).
+        CountCorpusFreqs(Utf8NoBom.GetString(bytes), deltaChars, deltaBigrams, -1, ref deltaTotal);
+        return true;
+    }
+
+    /// <summary>
+    /// INC-3A: merges an algebraic count delta into <paramref name="baseMap"/> (the OLD
+    /// artifact's counts — a build-local copy, mutated in place). Keys landing exactly at
+    /// 0 are PRUNED (a from-scratch rebuild would not contain them); ANY key landing
+    /// negative (or overflowing int) means the delta disagrees with the old artifact —
+    /// returns false so the caller discards the delta and runs the full recount.
+    /// </summary>
+    private static bool TryApplyCorpusFreqDelta(Dictionary<string, int> baseMap, Dictionary<string, int> delta)
+    {
+        foreach (var kv in delta)
+        {
+            long next = (long)(baseMap.TryGetValue(kv.Key, out var cur) ? cur : 0) + kv.Value;
+            if (next < 0 || next > int.MaxValue) return false;
+            if (next == 0) baseMap.Remove(kv.Key);
+            else baseMap[kv.Key] = (int)next;
+        }
+        return true;
+    }
+
+    private async Task BuildOrUpdateCoreAsync(
+        string root,
+        string originalDir,
+        IReadOnlyList<string> translatedDirs,
+        bool allowIncremental,
+        IReadOnlyList<string>? additionalOriginalDirs,
+        IReadOnlyList<string>? additionalTranslatedDirs,
+        IProgress<(int done, int total, string phase)>? progress,
+        CancellationToken ct)
+    {
+            // NOTE: body indentation is preserved from the pre-INC-2A BuildOrUpdateAsync
+            // pipeline (this method is that pipeline, extracted so the public wrapper can
+            // retry it once with allowIncremental:false). Keeps the refactor diff reviewable.
+            {
+                Interlocked.Exchange(ref _lastBuildXmlReadCount, 0);
+                Interlocked.Exchange(ref _lastBuildFreqDeltaApplied, 0);
+                Interlocked.Exchange(ref _lastBuildGramComputeCount, 0);
+
                 // Make sure stale mmap/manifest caches don't point at files being replaced
                 InvalidateIndexCaches();
 
@@ -2287,42 +2630,78 @@ public sealed class SearchIndexService : ISearchIndexService
                 string oldBinPath = GetBinPath(root);
                 string oldTextBinPath = GetTextBinPath(root);
 
-                if (!forceRebuild)
+                if (allowIncremental)
                 {
                     oldMan = await TryLoadAsync(root);
                     oldTextMan = await TryLoadTextManifestAsync(root);
+
+                    // Test instrumentation: simulate a bug in incremental-only code so the
+                    // retry-as-full fallback can be proven end-to-end. Never fires in production.
+                    TestOnlyIncrementalFault?.Invoke();
                 }
 
                 FileStream? oldFs = null;
-                if (!forceRebuild && oldMan != null && File.Exists(oldBinPath))
+                if (allowIncremental && oldMan != null && File.Exists(oldBinPath))
                 {
                     try { oldFs = new FileStream(oldBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
                     catch { oldFs = null; }
                 }
-                FileStream? oldTextFs = null;
-                if (!forceRebuild && oldTextMan != null && File.Exists(oldTextBinPath))
+                // Old text.bin is opened as a SafeFileHandle (not a FileStream) because
+                // Phase 1 reads blocks from it CONCURRENTLY: RandomAccess.Read takes an
+                // explicit per-call offset, so no shared seek position exists to race on.
+                Microsoft.Win32.SafeHandles.SafeFileHandle? oldTextHandle = null;
+                if (allowIncremental && oldTextMan != null && File.Exists(oldTextBinPath))
                 {
-                    try { oldTextFs = new FileStream(oldTextBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
-                    catch { oldTextFs = null; }
+                    try { oldTextHandle = File.OpenHandle(oldTextBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
+                    catch { oldTextHandle = null; }
                 }
 
                 var oldMap = new Dictionary<(string rel, SearchSide side), SearchIndexEntry>(new RelSideComparer());
-                if (!forceRebuild && oldMan != null)
+                if (allowIncremental && oldMan != null)
                 {
                     foreach (var e in oldMan.Entries)
                         oldMap[(e.RelPath, e.Side)] = e;
                 }
                 var oldTextMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
-                if (!forceRebuild && oldTextMan != null)
+                if (allowIncremental && oldTextMan != null)
                 {
                     foreach (var e in oldTextMan.Entries)
                         oldTextMap[(e.RelPath, e.Side)] = e;
                 }
 
+                // ── INC-3A (D3 item 4): corpus-frequency algebraic delta ──
+                // new = old − counts(changed/removed OLD text blocks) + counts(added/changed
+                // NEW searchable texts). Active only when the OLD corpusfreq artifact loads
+                // cleanly AND its IndexStamp equals the OLD main manifest's IndexStamp
+                // (captured here, before the new stamp is minted below). Any precondition
+                // miss or later inconsistency simply falls back to the existing full
+                // recount over the new text.bin — never a full index rebuild.
+                (Dictionary<string, int> charFreqs, Dictionary<string, int> bigramFreqs, long totalChars)? oldFreq = null;
+                Dictionary<string, int>? freqDeltaChars = null;
+                Dictionary<string, int>? freqDeltaBigrams = null;
+                long freqDeltaTotal = 0;
+                bool freqDeltaActive = false;
+                if (allowIncremental && oldMan != null && oldTextMan != null &&
+                    oldFs != null && oldTextHandle != null)
+                {
+                    oldFreq = await TryLoadOldCorpusFreqForDeltaAsync(root, oldMan.IndexStamp, ct);
+                    if (oldFreq != null)
+                    {
+                        freqDeltaActive = true;
+                        freqDeltaChars = new Dictionary<string, int>(1024);
+                        freqDeltaBigrams = new Dictionary<string, int>(4096);
+                    }
+                }
+
                 progress?.Report((0, 0, "Scanning filesystem..."));
 
+                // Each scan row carries the AppendDirRows walk key ("orig/rel", "tran{i}/rel")
+                // when the file is physically under originalDir / translatedDirs[i]; files from
+                // additional dirs get null (they are indexed but excluded from InputHash — the
+                // walk never visits them, preserving the existing InputHash scope).
                 var origFiles = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories)
-                    .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f)))
+                    .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f),
+                                  walkKey: (string?)("orig/" + Path.GetRelativePath(originalDir, f).Replace('\\', '/'))))
                     .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
 
                 // Scan additional original dirs (e.g., OpenZen alongside CBETA)
@@ -2335,20 +2714,22 @@ public sealed class SearchIndexService : ISearchIndexService
                         {
                             var rel = NormalizeRelKey(Path.GetRelativePath(addDir, f));
                             if (!origFiles.ContainsKey(rel))
-                                origFiles[rel] = (rel, f, new FileInfo(f));
+                                origFiles[rel] = (rel, f, new FileInfo(f), null);
                         }
                     }
                 }
 
-                var tranFiles = new Dictionary<string, (string rel, string abs, FileInfo fi)>(StringComparer.OrdinalIgnoreCase);
-                foreach (var tDir in translatedDirs)
+                var tranFiles = new Dictionary<string, (string rel, string abs, FileInfo fi, string? walkKey)>(StringComparer.OrdinalIgnoreCase);
+                for (int tIdx = 0; tIdx < translatedDirs.Count; tIdx++)
                 {
+                    var tDir = translatedDirs[tIdx];
                     if (!Directory.Exists(tDir)) continue;
                     foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
                     {
                         var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
                         if (!tranFiles.ContainsKey(rel))
-                            tranFiles[rel] = (rel, f, new FileInfo(f));
+                            tranFiles[rel] = (rel, f, new FileInfo(f),
+                                "tran" + tIdx + "/" + Path.GetRelativePath(tDir, f).Replace('\\', '/'));
                     }
                 }
                 // Scan additional translated dirs (e.g., OpenZen translations)
@@ -2361,7 +2742,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         {
                             var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
                             if (!tranFiles.ContainsKey(rel))
-                                tranFiles[rel] = (rel, f, new FileInfo(f));
+                                tranFiles[rel] = (rel, f, new FileInfo(f), null);
                         }
                     }
                 }
@@ -2406,7 +2787,41 @@ public sealed class SearchIndexService : ISearchIndexService
                 try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
                 try { if (File.Exists(tmpTextBin)) File.Delete(tmpTextBin); } catch { }
 
-                var invertedDocs = new List<(string relPath, string text)>();
+                // INC-4A: inverted-index documents are (relPath, UNCUT gram set) pairs now —
+                // the high-DF cutoff is applied INSIDE InvertedSearchIndex.Build on every
+                // save, so terms cut by a previous build resurrect when the corpus shrinks.
+                var invertedDocs = new List<(string relPath, uint[] gramSet)>();
+
+                // ── INC-4A: gramsets sidecar (6th artifact, pure accelerator) ──
+                // Loaded once per build when incremental sourcing is enabled; a null result
+                // (missing/corrupt/mismatched sidecar) just means every entry's gram sets
+                // are computed fresh — never a full rebuild, never a failure. On the full
+                // path (forceRebuild / fallback) the sidecar is IGNORED entirely.
+                LoadedGramSets? gramSets = allowIncremental
+                    ? await GramSetsStore.TryLoadAsync(root, ct)
+                    : null;
+
+                // Per-entry gram sets for BOTH alphabets, aligned with the final manifest
+                // entry order (the Phase-1 work-item order IS the Phase-2 entry order; the
+                // work list has exactly `total` items by construction). Kept past Phase 2:
+                // the inverted build transposes the inv sets, and the sidecar save persists
+                // both families after the commit sequence.
+                var invGramsByEntry = new uint[total][];
+                var cjk2GramsByEntry = new uint[total][];
+
+                // INC-2A (D3 item 1): per-file content hashes for the InputHash computation
+                // in SaveManifestAtomicAsync, keyed by the exact AppendDirRows walk-key
+                // scheme. Seeded from the old manifest (existing BuildContentHashCache
+                // helper), then overlaid in Phase 2 with this build's per-entry hashes
+                // (fresh SHA256 for changed/added, carried-forward for unchanged) at the
+                // scan-time (LengthBytes, LastWriteUtcTicks) — so the walk stat-hits
+                // everywhere instead of re-reading the whole corpus a second time.
+                var inputHashCache = new Dictionary<string, SearchIndexEntry>(StringComparer.Ordinal);
+                if (allowIncremental && oldMan != null)
+                {
+                    foreach (var kv in BuildContentHashCache(oldMan))
+                        inputHashCache[kv.Key] = kv.Value;
+                }
 
                 try
                 {
@@ -2430,38 +2845,20 @@ public sealed class SearchIndexService : ISearchIndexService
                                 dst.Write(buf);
                             }
                         }
-                        static bool CopyTextBlock(FileStream src, long srcOffset, int len, Stream dst)
-                        {
-                            if (len < 0 || srcOffset < 0) return false;
-                            if (len == 0) return true;
-
-                            src.Seek(srcOffset, SeekOrigin.Begin);
-                            var buf = new byte[64 * 1024];
-                            int remaining = len;
-                            while (remaining > 0)
-                            {
-                                int want = Math.Min(buf.Length, remaining);
-                                int read = src.Read(buf, 0, want);
-                                if (read <= 0) return false;
-                                dst.Write(buf, 0, read);
-                                remaining -= read;
-                            }
-                            return true;
-                        }
 
                         // ── Build flat work list (preserves deterministic ordering) ──
-                        var workItems = new List<(string relKey, SearchSide side, string absPath, FileInfo fi)>(total);
+                        var workItems = new List<(string relKey, SearchSide side, string absPath, FileInfo fi, string? walkKey)>(total);
                         foreach (var relKey in allRel)
                         {
                             if (origFiles.TryGetValue(relKey, out var o))
-                                workItems.Add((relKey, SearchSide.Original, o.abs, o.fi));
+                                workItems.Add((relKey, SearchSide.Original, o.abs, o.fi, o.walkKey));
                             if (tranFiles.TryGetValue(relKey, out var t))
-                                workItems.Add((relKey, SearchSide.Translated, t.abs, t.fi));
+                                workItems.Add((relKey, SearchSide.Translated, t.abs, t.fi, t.walkKey));
                         }
 
                         // ── Phase 1: Parallel compute (CPU+IO bound) ──
                         var buildSw = System.Diagnostics.Stopwatch.StartNew();
-                        progress?.Report((0, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
+                        progress?.Report((0, total, allowIncremental ? "Updating index..." : "Rebuilding index..."));
 
                         var computed = new ComputedEntry[workItems.Count];
                         bool htmlDecode = Options.HtmlDecodeIfAmpersandPresent;
@@ -2473,57 +2870,112 @@ public sealed class SearchIndexService : ISearchIndexService
                             CancellationToken = ct
                         }, i =>
                         {
-                            var (relKey, side, absPath, fi) = workItems[i];
+                            var (relKey, side, absPath, fi, walkKey) = workItems[i];
                             long ticks = fi.LastWriteTimeUtc.Ticks;
                             long lenBytes = fi.Length;
 
-                            bool copiedBloom = false;
-                            bool copiedText = false;
+                            // ── Delta classification (S5) ──
+                            // UNCHANGED iff the old MAIN manifest entry stat-matches
+                            // (LastWriteUtcTicks, LengthBytes — same criterion as the old bloom
+                            // skip) AND the old text-manifest row stat-matches with
+                            // TextLengthBytes > 0 (a 0-length old block is a MISS: it may be a
+                            // legitimately empty extraction, but re-extracting is cheap and this
+                            // kills the sticky-zero bug where a failed text copy became
+                            // permanent) AND the old block actually reads back in full.
+                            // Everything else — adds, stat mismatch, text row missing/empty,
+                            // old artifacts unloadable, block read failure — is CHANGED and
+                            // gets a full per-entry recompute from the XML.
+                            bool unchanged = false;
                             long oldBloomOffset = -1;
-                            long oldTextOffset = -1;
-                            int oldTextLen = 0;
+                            byte[]? oldTextBytes = null;
+                            string? carriedHash = null;
 
-                            if (!forceRebuild &&
+                            if (allowIncremental && oldFs != null && oldTextHandle != null &&
                                 oldMap.TryGetValue((relKey, side), out var old) &&
                                 old.LastWriteUtcTicks == ticks &&
                                 old.LengthBytes == lenBytes &&
-                                old.BloomOffset >= 0)
-                            {
-                                copiedBloom = true;
-                                oldBloomOffset = old.BloomOffset;
-                            }
-
-                            if (!forceRebuild &&
+                                old.BloomOffset >= 0 &&
                                 oldTextMap.TryGetValue((relKey, side), out var oldText) &&
                                 oldText.LastWriteUtcTicks == ticks &&
                                 oldText.LengthBytes == lenBytes &&
                                 oldText.TextOffset >= 0 &&
-                                oldText.TextLengthBytes >= 0)
+                                oldText.TextLengthBytes > 0)
                             {
-                                copiedText = true;
-                                oldTextOffset = oldText.TextOffset;
-                                oldTextLen = oldText.TextLengthBytes;
+                                oldTextBytes = TryReadOldTextBlock(oldTextHandle, oldText.TextOffset, oldText.TextLengthBytes);
+                                if (oldTextBytes != null)
+                                {
+                                    unchanged = true;
+                                    oldBloomOffset = old.BloomOffset;
+                                    carriedHash = old.ContentHash; // may be null (legacy manifest)
+                                }
                             }
 
-                            // Always read XML and extract searchable text — needed for inverted index
-                            string xml = File.ReadAllText(absPath, Utf8NoBom);
-                            string searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecode);
-
+                            string searchable;
                             ulong[]? bits = null;
-                            byte[]? textBytes = null;
+                            byte[] textBytes;
+                            string? contentHash;
 
-                            if (!copiedBloom)
+                            if (unchanged)
                             {
+                                // Skip-read (D3 item 3): the XML is NOT touched. SearchableText is
+                                // sourced from the old text.bin block (blocks were written
+                                // Utf8NoBom, so plain GetString — no BOM handling), the bloom
+                                // block is byte-copied in Phase 2, and the text block is
+                                // rewritten from these validated bytes.
+                                searchable = Utf8NoBom.GetString(oldTextBytes!);
+                                textBytes = oldTextBytes!;
+                                contentHash = carriedHash;
+                            }
+                            else
+                            {
+                                // Changed/added: read the raw bytes ONCE, SHA256 them as-is
+                                // (feeds InputHash without a second corpus read), then decode
+                                // and extract.
+                                byte[] raw = File.ReadAllBytes(absPath);
+                                Interlocked.Increment(ref _lastBuildXmlReadCount);
+                                contentHash = Convert.ToHexString(
+                                    System.Security.Cryptography.SHA256.HashData(raw)).ToLowerInvariant();
+                                string xml = DecodeXmlBytes(raw);
+                                searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecode);
+
                                 bits = new ulong[BloomUlongs];
                                 BuildBloomFromText(bits, searchable);
-                            }
 
-                            if (!copiedText)
-                            {
                                 textBytes = string.IsNullOrEmpty(searchable)
                                     ? Array.Empty<byte>()
                                     : Utf8NoBom.GetBytes(searchable);
                             }
+
+                            // ── INC-4A: gram sets for both alphabets ──
+                            // Changed/added entries ALWAYS compute (the sidecar is never
+                            // consulted across a content change). Unchanged entries consult
+                            // the sidecar under the S4 per-entry HIT rule: ContentHash
+                            // equality (Ordinal) when both hashes are non-null, otherwise
+                            // (ticks, len) equality against the current scan. A miss
+                            // recomputes from the entry's SearchableText — already
+                            // materialized from the old text.bin block, never a re-read
+                            // of the XML.
+                            uint[]? invGrams = null;
+                            uint[]? cjk2Grams = null;
+                            if (unchanged && gramSets != null && gramSets.TryGet(relKey, side, out var gsRow))
+                            {
+                                bool gsHit = gsRow.ContentHash != null && carriedHash != null
+                                    ? string.Equals(gsRow.ContentHash, carriedHash, StringComparison.Ordinal)
+                                    : gsRow.LastWriteUtcTicks == ticks && gsRow.LengthBytes == lenBytes;
+                                if (gsHit)
+                                {
+                                    invGrams = gramSets.ReadInvGrams(gsRow);
+                                    cjk2Grams = gramSets.ReadCjk2Grams(gsRow);
+                                }
+                            }
+                            if (invGrams == null || cjk2Grams == null)
+                            {
+                                invGrams = InvertedSearchIndex.ComputeGramSet(searchable);
+                                cjk2Grams = GramSetCodec.ComputeCjk2GramSet(searchable);
+                                Interlocked.Increment(ref _lastBuildGramComputeCount);
+                            }
+                            invGramsByEntry[i] = invGrams;
+                            cjk2GramsByEntry[i] = cjk2Grams;
 
                             computed[i] = new ComputedEntry
                             {
@@ -2534,11 +2986,10 @@ public sealed class SearchIndexService : ISearchIndexService
                                 SearchableText = searchable,
                                 Bits = bits,
                                 TextBytes = textBytes,
-                                CopiedBloom = copiedBloom,
-                                CopiedText = copiedText,
+                                CopiedBloom = unchanged,
                                 OldBloomOffset = oldBloomOffset,
-                                OldTextOffset = oldTextOffset,
-                                OldTextLen = oldTextLen
+                                ContentHash = contentHash,
+                                WalkKey = walkKey
                             };
 
                             // Phase 1 progress (thread-safe)
@@ -2550,6 +3001,81 @@ public sealed class SearchIndexService : ISearchIndexService
                         var phase1Ms = buildSw.ElapsedMilliseconds;
                         Dbg($"Index build Phase 1 (parallel compute) done in {phase1Ms} ms for {workItems.Count} items");
 
+                        // ── INC-3A: corpusfreq SUBTRACT pass (changed + removed old texts) ──
+                        // Must run HERE: the old text.bin handle is still open (disposed
+                        // right after this using block, before the bin swap) and the
+                        // Phase-1 classification (computed[i].CopiedBloom) is still intact
+                        // (Phase 2 clears the slots). Unchanged entries need no counting
+                        // at all — their old text block IS their new text block, net zero.
+                        // Note: the delta iterates ENTRIES (rel, side), not rels — both
+                        // sides of a rel contribute CJK counts independently.
+                        if (freqDeltaActive)
+                        {
+                            bool ok = true;
+
+                            // Changed entries (recomputed in Phase 1) that existed in the
+                            // old corpus: subtract their OLD text counts. Entries the old
+                            // text manifest never knew are pure ADDs — nothing to subtract —
+                            // unless the old MAIN manifest knew them (inconsistent old
+                            // artifact pair: fall back to the full recount).
+                            for (int wi = 0; wi < workItems.Count && ok; wi++)
+                            {
+                                if (computed[wi].CopiedBloom) continue;
+                                ct.ThrowIfCancellationRequested();
+                                var key = (workItems[wi].relKey, workItems[wi].side);
+                                if (!oldTextMap.TryGetValue(key, out var oldTextRow))
+                                {
+                                    if (oldMap.ContainsKey(key)) ok = false;
+                                    continue;
+                                }
+                                ok = TrySubtractOldTextCounts(oldTextRow, oldTextHandle!,
+                                    freqDeltaChars!, freqDeltaBigrams!, ref freqDeltaTotal);
+                            }
+
+                            // Removed entries: in the old text manifest, absent from the
+                            // new scan.
+                            if (ok)
+                            {
+                                var newKeys = new HashSet<(string rel, SearchSide side)>(new RelSideComparer());
+                                foreach (var w in workItems)
+                                    newKeys.Add((w.relKey, w.side));
+
+                                foreach (var oldTextRow in oldTextMan!.Entries)
+                                {
+                                    if (newKeys.Contains((oldTextRow.RelPath, oldTextRow.Side))) continue;
+                                    ct.ThrowIfCancellationRequested();
+                                    if (!TrySubtractOldTextCounts(oldTextRow, oldTextHandle!,
+                                        freqDeltaChars!, freqDeltaBigrams!, ref freqDeltaTotal))
+                                    {
+                                        ok = false;
+                                        break;
+                                    }
+                                }
+
+                                // A removed entry the old MAIN manifest knew but the old
+                                // text manifest did not cannot be subtracted — the old
+                                // artifact pair is inconsistent, full recount.
+                                if (ok)
+                                {
+                                    foreach (var e in oldMan!.Entries)
+                                    {
+                                        if (!newKeys.Contains((e.RelPath, e.Side)) &&
+                                            !oldTextMap.ContainsKey((e.RelPath, e.Side)))
+                                        {
+                                            ok = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (!ok)
+                            {
+                                freqDeltaActive = false;
+                                Dbg("Corpus freq delta disabled: old text rows missing/unreadable for changed or removed entries — full recount");
+                            }
+                        }
+
                         // ── Phase 2: Sequential write (maintains exact byte ordering) ──
                         for (int i = 0; i < computed.Length; i++)
                         {
@@ -2558,7 +3084,6 @@ public sealed class SearchIndexService : ISearchIndexService
 
                             long entryBloomOffset = bloomOffset;
                             long entryTextOffset = textOffset;
-                            int textLenBytes;
 
                             if (entry.CopiedBloom && oldFs != null)
                             {
@@ -2569,20 +3094,29 @@ public sealed class SearchIndexService : ISearchIndexService
                                 WriteBloom(outFs, entry.Bits);
                             }
 
-                            if (entry.CopiedText && oldTextFs != null)
-                            {
-                                bool ok = CopyTextBlock(oldTextFs, entry.OldTextOffset, entry.OldTextLen, outTextFs);
-                                textLenBytes = ok ? entry.OldTextLen : 0;
-                            }
-                            else
-                            {
-                                var tb = entry.TextBytes ?? Array.Empty<byte>();
-                                if (tb.Length > 0)
-                                    outTextFs.Write(tb, 0, tb.Length);
-                                textLenBytes = tb.Length;
-                            }
+                            // Text blocks are always written from the in-memory bytes: fresh
+                            // extraction bytes for changed entries, or the old block bytes
+                            // already read AND validated in Phase 1 for unchanged entries.
+                            // (A Phase-1 read failure reclassified the entry as changed, so
+                            // there is no mid-write failure mode that could record a bogus
+                            // 0-length block — the sticky-zero bug is gone.)
+                            var tb = entry.TextBytes ?? Array.Empty<byte>();
+                            if (tb.Length > 0)
+                                outTextFs.Write(tb, 0, tb.Length);
+                            int textLenBytes = tb.Length;
 
-                            invertedDocs.Add((entry.RelKey, entry.SearchableText));
+                            // Entry-order (orig then tran per rel) feed of UNCUT gram sets;
+                            // keep-first dedup + winner flips are replayed inside Build.
+                            invertedDocs.Add((entry.RelKey, invGramsByEntry[i]));
+
+                            // INC-3A: corpusfreq ADD pass — added/changed entries contribute
+                            // their NEW searchable text. Unchanged entries (CopiedBloom)
+                            // are net-zero and skipped.
+                            if (freqDeltaActive && !entry.CopiedBloom)
+                            {
+                                CountCorpusFreqs(entry.SearchableText,
+                                    freqDeltaChars!, freqDeltaBigrams!, +1, ref freqDeltaTotal);
+                            }
 
                             manifest.Entries.Add(new SearchIndexEntry
                             {
@@ -2591,7 +3125,11 @@ public sealed class SearchIndexService : ISearchIndexService
                                 Side = entry.Side,
                                 LastWriteUtcTicks = entry.Ticks,
                                 LengthBytes = entry.LenBytes,
-                                BloomOffset = entryBloomOffset
+                                BloomOffset = entryBloomOffset,
+                                // Carry-forward for unchanged entries, fresh Phase-1 hash for
+                                // changed/added ones. Null (legacy carry) is patched by the
+                                // ApplyContentHashWriteBack safety net during the manifest save.
+                                ContentHash = entry.ContentHash
                             });
 
                             textManifest.Entries.Add(new SearchTextEntry
@@ -2605,12 +3143,24 @@ public sealed class SearchIndexService : ISearchIndexService
                                 TextLengthBytes = textLenBytes
                             });
 
+                            if (entry.WalkKey != null && !string.IsNullOrEmpty(entry.ContentHash))
+                            {
+                                inputHashCache[entry.WalkKey] = new SearchIndexEntry
+                                {
+                                    RelPath = entry.RelKey,
+                                    Side = entry.Side,
+                                    LastWriteUtcTicks = entry.Ticks,
+                                    LengthBytes = entry.LenBytes,
+                                    ContentHash = entry.ContentHash
+                                };
+                            }
+
                             bloomOffset += BloomBytes;
                             textOffset += textLenBytes;
                             done++;
 
                             if (done % 200 == 0 || done == total)
-                                progress?.Report((done, total, forceRebuild ? "Rebuilding index..." : "Updating index..."));
+                                progress?.Report((done, total, allowIncremental ? "Updating index..." : "Rebuilding index..."));
 
                             // Release large buffers eagerly to reduce peak memory.
                             // Must clear array slot (struct copy), not local variable.
@@ -2633,12 +3183,12 @@ public sealed class SearchIndexService : ISearchIndexService
                 finally
                 {
                     try { oldFs?.Dispose(); } catch { }
-                    try { oldTextFs?.Dispose(); } catch { }
+                    try { oldTextHandle?.Dispose(); } catch { }
                 }
 
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
                 ReplaceFileAtomicWithRetry(tmpTextBin, finalTextBin);
-                await SaveManifestAtomicAsync(root, manifest, originalDir, translatedDirs, ct);
+                await SaveManifestAtomicAsync(root, manifest, originalDir, translatedDirs, inputHashCache, ct);
                 await SaveTextManifestAtomicAsync(root, textManifest, ct);
 
                 // Build and save inverted index alongside bloom
@@ -2647,8 +3197,11 @@ public sealed class SearchIndexService : ISearchIndexService
                     var invertedIndex = new InvertedSearchIndex();
                     var sortedDocs = invertedDocs.OrderBy(d => d.relPath, StringComparer.OrdinalIgnoreCase).ToList();
                     Dbg($"Inverted index: building from {sortedDocs.Count} docs...");
-                    invertedIndex.Build(sortedDocs.Select(d => (d.relPath, d.text)).ToList());
-                    sortedDocs = null; // free text strings immediately
+                    // INC-4A: gram-set Build overload — same stable sort, same keep-FIRST
+                    // dedup, same ushort docId cap refusal, DF cutoff applied fresh inside
+                    // Build from the uncut sets.
+                    invertedIndex.Build(sortedDocs);
+                    sortedDocs = null; // free gram-set references immediately
                     invertedDocs.Clear();
                     var invertedPath = Path.Combine(root, "search.inverted.bin");
                     await invertedIndex.SaveAsync(invertedPath, manifest.IndexStamp!, ct);
@@ -2677,9 +3230,11 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 // Phase C optional accelerator: compact-CJK bigram postings.
                 // If this build fails, search still works via bloom + verify fallback.
+                // INC-5A: transposed from the Phase-1 per-entry gram sets — no code
+                // path reads search.text.bin for the cjk2 build anymore.
                 try
                 {
-                    var cjk2Manifest = BuildCjk2ManifestFromTextSidecar(root, manifest, textManifest, ct);
+                    var cjk2Manifest = BuildCjk2ManifestFromGramSets(root, manifest, textManifest, cjk2GramsByEntry, ct);
                     await SaveCjk2ManifestAtomicAsync(root, cjk2Manifest, ct);
                 }
                 catch (Exception ex)
@@ -2697,47 +3252,59 @@ public sealed class SearchIndexService : ISearchIndexService
                 try
                 {
                     progress?.Report((total, total, "Building frequency index..."));
-                    var corpusCharFreqs = new Dictionary<string, int>(32768);
-                    var corpusBigramFreqs = new Dictionary<string, int>(65536);
+                    Dictionary<string, int>? corpusCharFreqs = null;
+                    Dictionary<string, int>? corpusBigramFreqs = null;
                     long corpusTotalChars = 0;
 
-                    var textBinPath = Path.Combine(root, "search.text.bin");
-                    if (File.Exists(textBinPath) && textManifest.Entries.Count > 0)
+                    // INC-3A: apply the algebraic delta to the OLD counts (build-local
+                    // copies, never the instance props). Keys reaching exactly 0 are
+                    // pruned; any key going negative (or a negative total) means the
+                    // delta disagrees with the old artifact — discard it and run the
+                    // full recount below.
+                    if (freqDeltaActive && oldFreq != null)
                     {
-                        using var textFs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.Read, 65536);
-                        foreach (var te in textManifest.Entries)
+                        long deltaTotalChars = oldFreq.Value.totalChars + freqDeltaTotal;
+                        if (deltaTotalChars >= 0 &&
+                            TryApplyCorpusFreqDelta(oldFreq.Value.charFreqs, freqDeltaChars!) &&
+                            TryApplyCorpusFreqDelta(oldFreq.Value.bigramFreqs, freqDeltaBigrams!))
                         {
-                            if (te.TextLengthBytes <= 0) continue;
-                            ct.ThrowIfCancellationRequested();
-                            textFs.Seek(te.TextOffset, SeekOrigin.Begin);
-                            var buf = new byte[te.TextLengthBytes];
-                            int read = 0;
-                            while (read < buf.Length)
+                            corpusCharFreqs = oldFreq.Value.charFreqs;
+                            corpusBigramFreqs = oldFreq.Value.bigramFreqs;
+                            corpusTotalChars = deltaTotalChars;
+                            Interlocked.Exchange(ref _lastBuildFreqDeltaApplied, 1);
+                            Dbg("Corpus freq index: algebraic delta applied (full text.bin recount skipped)");
+                        }
+                        else
+                        {
+                            Dbg("Corpus freq delta inconsistent (count went negative) — falling back to full recount");
+                        }
+                    }
+
+                    if (corpusCharFreqs == null || corpusBigramFreqs == null)
+                    {
+                        corpusCharFreqs = new Dictionary<string, int>(32768);
+                        corpusBigramFreqs = new Dictionary<string, int>(65536);
+                        corpusTotalChars = 0;
+
+                        var textBinPath = Path.Combine(root, "search.text.bin");
+                        if (File.Exists(textBinPath) && textManifest.Entries.Count > 0)
+                        {
+                            using var textFs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.Read, 65536);
+                            foreach (var te in textManifest.Entries)
                             {
-                                int n = textFs.Read(buf, read, buf.Length - read);
-                                if (n == 0) break;
-                                read += n;
-                            }
-                            var searchable = Utf8NoBom.GetString(buf, 0, read);
-
-                            char prev = '\0';
-                            bool hasPrev = false;
-                            for (int ci = 0; ci < searchable.Length; ci++)
-                            {
-                                char ch = searchable[ci];
-                                if (!IsIndexableCjk(ch)) { hasPrev = false; continue; }
-
-                                var ck = ch.ToString();
-                                corpusCharFreqs[ck] = corpusCharFreqs.TryGetValue(ck, out var cv) ? cv + 1 : 1;
-                                corpusTotalChars++;
-
-                                if (hasPrev)
+                                if (te.TextLengthBytes <= 0) continue;
+                                ct.ThrowIfCancellationRequested();
+                                textFs.Seek(te.TextOffset, SeekOrigin.Begin);
+                                var buf = new byte[te.TextLengthBytes];
+                                int read = 0;
+                                while (read < buf.Length)
                                 {
-                                    var bk = string.Concat(prev, ch);
-                                    corpusBigramFreqs[bk] = corpusBigramFreqs.TryGetValue(bk, out var bv) ? bv + 1 : 1;
+                                    int n = textFs.Read(buf, read, buf.Length - read);
+                                    if (n == 0) break;
+                                    read += n;
                                 }
-                                prev = ch;
-                                hasPrev = true;
+                                var searchable = Utf8NoBom.GetString(buf, 0, read);
+                                CountCorpusFreqs(searchable, corpusCharFreqs, corpusBigramFreqs, +1, ref corpusTotalChars);
                             }
                         }
                     }
@@ -2751,7 +3318,10 @@ public sealed class SearchIndexService : ISearchIndexService
                         BuiltUtc = DateTime.UtcNow,
                         TotalCharacters = corpusTotalChars,
                         UniqueCharacters = corpusCharFreqs.Count,
-                        UniqueBigrams = corpusBigramFreqs.Count
+                        UniqueBigrams = corpusBigramFreqs.Count,
+                        // Same-build binding: the loader refuses a corpusfreq artifact
+                        // whose stamp differs from the main manifest's IndexStamp.
+                        IndexStamp = manifest.IndexStamp
                     };
 
                     var freqManifestFinal = Path.Combine(root, "search.corpusfreq.manifest.json");
@@ -2798,13 +3368,43 @@ public sealed class SearchIndexService : ISearchIndexService
                 // Warm mmap cache after rebuild so next search click is faster
                 try { _ = GetOrCreateMappedAccessor(finalBin); } catch { }
 
+                // ── INC-4A: persist the gramsets sidecar — strictly AFTER the entire
+                // family commit sequence (including the mmap warm). Saved on FULL builds
+                // too (that is what warms the cache for the next delta). Best-effort: a
+                // failure here is logged and swallowed, because the build already
+                // succeeded and losing the sidecar only costs speed, never correctness.
+                try
+                {
+                    var sidecarRows = new List<(GramSetsEntry meta, uint[] invGrams, uint[] cjk2Grams)>(manifest.Entries.Count);
+                    for (int i = 0; i < manifest.Entries.Count; i++)
+                    {
+                        var me = manifest.Entries[i];
+                        sidecarRows.Add((new GramSetsEntry
+                        {
+                            RelPath = me.RelPath,
+                            Side = me.Side,
+                            // May be null (additional-dir entries or legacy carry-forward);
+                            // the per-entry HIT rule then falls back to (ticks, len).
+                            ContentHash = me.ContentHash,
+                            LastWriteUtcTicks = me.LastWriteUtcTicks,
+                            LengthBytes = me.LengthBytes,
+                        }, invGramsByEntry[i] ?? Array.Empty<uint>(), cjk2GramsByEntry[i] ?? Array.Empty<uint>()));
+                    }
+                    await GramSetsStore.SaveAsync(root, manifest.IndexStamp, sidecarRows, ct);
+                    Dbg($"Gramsets sidecar saved: {sidecarRows.Count} entries ({LastBuildGramComputeCount} computed this run)");
+                }
+                catch (OperationCanceledException)
+                {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Dbg($"Gramsets sidecar save FAILED (accelerator only, build unaffected): {ex.Message}");
+                    System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Gramsets sidecar save failed: {ex.Message}");
+                }
+
                 progress?.Report((total, total, "Done"));
             }
-            finally
-            {
-                _indexIoGate.Release();
-            }
-        }, ct);
     }
 
     // ---------------------------
@@ -3261,8 +3861,12 @@ public sealed class SearchIndexService : ISearchIndexService
             try
             {
                 var cjk2 = await TryLoadCjk2ManifestAsync(root);
+                if (cjk2 != null && !IsCjk2Usable(cjk2, manifest))
+                {
+                    Dbg("CJK2 prefilter refused: IndexStamp/EntryCount mismatch with main manifest (stale sibling) — full scan");
+                    cjk2 = null;
+                }
                 if (cjk2 != null &&
-                    cjk2.EntryCount == entries.Count &&
                     cjk2.Postings != null)
                 {
                     var postingMap = new Dictionary<string, List<int>>(StringComparer.Ordinal);

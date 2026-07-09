@@ -3,7 +3,9 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
 using ReadZen.App.Infrastructure;
+using ReadZen.App.Messages;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
 using ReadZen.Tests.Stubs;
@@ -502,6 +504,196 @@ public class GitTabViewModelTests
         }
     }
 
+
+    // ---- CorpusFilesChangedMessage sends (git success points) ----
+    //
+    // Four send sites exist in GitTabViewModel: update-success, clone-success,
+    // sync-completion, and panic-success. The first three are driven below through
+    // the stub IGitRepoService. The PANIC SUCCESS send site cannot be driven through
+    // stubs: PanicButtonAsync shells out via the STATIC RunGitAsync helper (a real
+    // `git stash push/drop` process), which no stub intercepts, so its success point
+    // is unreachable without a real git repo + real git mutations (both forbidden in
+    // tests). Its send code is identical in shape to the three covered sites; the
+    // panic tests below cover the no-send-on-failure contract instead.
+
+    private sealed class CorpusMessageRecorder
+    {
+        public List<CorpusFilesChangedMessage> Received { get; } = new();
+    }
+
+    private static IDisposable RecordCorpusMessages(out CorpusMessageRecorder recorder)
+    {
+        var r = new CorpusMessageRecorder();
+        WeakReferenceMessenger.Default.Register<CorpusMessageRecorder, CorpusFilesChangedMessage>(
+            r, static (rec, msg) => rec.Received.Add(msg));
+        recorder = r;
+        // Always unregister in finally/dispose: tests run sequentially, but a leaked
+        // recorder would keep receiving sends from later tests and poison their counts.
+        return new Unregisterer(r);
+    }
+
+    private sealed class Unregisterer : IDisposable
+    {
+        private readonly CorpusMessageRecorder _r;
+        public Unregisterer(CorpusMessageRecorder r) => _r = r;
+        public void Dispose() => WeakReferenceMessenger.Default.Unregister<CorpusFilesChangedMessage>(_r);
+    }
+
+    /// <summary>
+    /// Creates the two-repo parent layout GetOrUpdateFilesAsync's UPDATE branch needs:
+    /// CbetaZenTexts (xml-p5 + .git) and CbetaZenTranslations (xml-p5t + .git).
+    /// </summary>
+    private static string CreateTwoRepoParent()
+    {
+        var parentDir = Path.Combine(Path.GetTempPath(), "readzen-corpusmsg-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(Path.Combine(parentDir, AppPaths.DefaultOriginalRepoFolderName, "xml-p5"));
+        Directory.CreateDirectory(Path.Combine(parentDir, AppPaths.DefaultOriginalRepoFolderName, ".git"));
+        Directory.CreateDirectory(Path.Combine(parentDir, AppPaths.DefaultTranslationRepoFolderName, "xml-p5t"));
+        Directory.CreateDirectory(Path.Combine(parentDir, AppPaths.DefaultTranslationRepoFolderName, ".git"));
+        AppPaths.InvalidateDiscoveryCache(parentDir);
+        return parentDir;
+    }
+
+    private static void CleanupParent(string parentDir)
+    {
+        AppPaths.InvalidateDiscoveryCache(parentDir);
+        try { Directory.Delete(parentDir, true); } catch { }
+    }
+
+    [Fact]
+    public async Task UpdateSuccess_SendsExactlyOneCorpusFilesChangedMessage()
+    {
+        var vm = MakeVm();
+        var parentDir = CreateTwoRepoParent();
+        using var _ = RecordCorpusMessages(out var recorder);
+        try
+        {
+            vm.SetCurrentRepoRoot(parentDir);
+
+            await vm.GetFilesCommand.ExecuteAsync(null);
+
+            Assert.Single(recorder.Received);
+            Assert.Equal(Path.GetFullPath(parentDir), Path.GetFullPath(recorder.Received[0].RepoRoot),
+                StringComparer.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    [Fact]
+    public async Task UpdateBlocked_UnknownSyncState_SendsNoCorpusFilesChangedMessage()
+    {
+        // GetAheadBehindAsync returning null hits the "Update blocked (sync state
+        // unknown)" early return — a driven failure path that must never send.
+        var vm = new GitTabViewModel(
+            new NullAheadBehindGitRepoService(),
+            new StubGitHubAuthService(),
+            new StubGitHubApiService(),
+            new StubCommunityDataService(),
+            new StubScholarCollectionsService(),
+            new StubTermbaseStorageService(),
+            new StubTranslationReviewService(),
+            new StubMasterDatesService(),
+            new StubDocumentTagService(),
+            new StubTranslationStarService());
+        var parentDir = CreateTwoRepoParent();
+        using var _ = RecordCorpusMessages(out var recorder);
+        try
+        {
+            vm.SetCurrentRepoRoot(parentDir);
+
+            await vm.GetFilesCommand.ExecuteAsync(null);
+
+            Assert.Empty(recorder.Received);
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    [Fact]
+    public async Task CloneSuccess_SendsExactlyOneCorpusFilesChangedMessage()
+    {
+        // Empty parent dir -> the CLONE branch runs; the stub CloneAsync succeeds
+        // without creating anything, reaching the clone-success point.
+        var vm = MakeVm();
+        var parentDir = Path.Combine(Path.GetTempPath(), "readzen-corpusmsg-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(parentDir);
+        AppPaths.InvalidateDiscoveryCache(parentDir);
+        using var _ = RecordCorpusMessages(out var recorder);
+        try
+        {
+            vm.SetCurrentRepoRoot(parentDir);
+
+            await vm.GetFilesCommand.ExecuteAsync(null);
+
+            Assert.Single(recorder.Received);
+            Assert.Equal(Path.GetFullPath(parentDir), Path.GetFullPath(recorder.Received[0].RepoRoot),
+                StringComparer.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    [Fact]
+    public async Task SyncCompletion_SendsUpdateAndFinalCorpusFilesChangedMessages()
+    {
+        // A full sync legitimately sends TWICE: once from the embedded update phase
+        // (GetOrUpdateFilesAsync success) and once as the last word of SyncAsync.
+        // The mid-sync send is superseded by QueueAutoIndexBuild's CTS cancel+requeue
+        // on the receiver side — that supersession is the designed debounce.
+        var vm = MakeVm();
+        var parentDir = CreateTwoRepoParent();
+        using var _ = RecordCorpusMessages(out var recorder);
+        try
+        {
+            vm.SetCurrentRepoRoot(parentDir);
+
+            await vm.SyncCommand.ExecuteAsync(null);
+
+            Assert.Equal(2, recorder.Received.Count);
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    [Fact]
+    public async Task PanicWithoutRepo_SendsNoCorpusFilesChangedMessage()
+    {
+        // Panic's repo-not-ready early return must not send. (The panic SUCCESS
+        // send site is not stub-drivable — see the note at the top of this section.)
+        var vm = MakeVm();
+        var parentDir = Path.Combine(Path.GetTempPath(), "readzen-corpusmsg-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(parentDir);
+        AppPaths.InvalidateDiscoveryCache(parentDir);
+        using var _ = RecordCorpusMessages(out var recorder);
+        try
+        {
+            vm.SetCurrentRepoRoot(parentDir);
+            vm.ConfirmAsync = (_, _, _, _) => Task.FromResult(true);
+
+            await vm.PanicResetCommand.ExecuteAsync(null);
+
+            Assert.Empty(recorder.Received);
+        }
+        finally
+        {
+            CleanupParent(parentDir);
+        }
+    }
+
+    private sealed class NullAheadBehindGitRepoService : StubGitRepoService
+    {
+        public override Task<(int behind, int ahead)?> GetAheadBehindAsync(string repoDir, string upstreamRef, CancellationToken ct)
+            => Task.FromResult<(int behind, int ahead)?>(null);
+    }
 
     private sealed class RecordingGitRepoService : StubGitRepoService
     {

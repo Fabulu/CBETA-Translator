@@ -15,6 +15,7 @@ using ReadZen.App.Models;
 using ReadZen.App.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ReadZen.App.ViewModels;
 
@@ -608,6 +609,11 @@ public partial class GitTabViewModel : ViewModelBase
         ProgressText = shareError == null ? "Sync complete." : "Sync complete (share had errors, see log).";
         StatusChanged?.Invoke(this, ProgressText);
         SyncCompleted?.Invoke(this, EventArgs.Empty);
+        // Corpus-changed trigger: the LAST word after all sync phases (update +
+        // community merge + PR step). The mid-sync send inside GetOrUpdateFilesAsync
+        // gets superseded by this one via QueueAutoIndexBuild's CTS cancel+requeue -
+        // that supersession IS the designed debounce.
+        WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(GetTargetRepoDir()));
         }
         finally { _isSyncing = false; }
     }
@@ -764,6 +770,9 @@ public partial class GitTabViewModel : ViewModelBase
                 StatusChanged?.Invoke(this, mode == UpdateMode.KeepLocalChanges
                     ? "Repos updated (kept local changes)."
                     : "Repos updated (discarded local changes).");
+                // Corpus-changed trigger (update success). Failure/cancel paths above
+                // all return before this point and must never send.
+                WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(parentDir));
                 return;
             }
 
@@ -855,6 +864,8 @@ public partial class GitTabViewModel : ViewModelBase
             AppPaths.InvalidateDiscoveryCache(parentDir);
             RootCloned?.Invoke(this, parentDir);
             StatusChanged?.Invoke(this, "Repos cloned (CBETA + OpenZenTexts).");
+            // Corpus-changed trigger (clone success).
+            WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(parentDir));
         }
         catch (OperationCanceledException)
         {
@@ -1127,6 +1138,10 @@ public partial class GitTabViewModel : ViewModelBase
             ProgressText = "Repo cleaned. You're safe now.";
             AppendLog("[ok] panic complete: local uncommitted changes erased");
             StatusChanged?.Invoke(this, "Panic complete: repo cleaned.");
+            // Corpus-changed trigger (panic success): the stash push+drop just erased
+            // local edits, so on-disk texts changed and the search index may be stale.
+            // Before this, the panic path had no reindex trigger at all.
+            WeakReferenceMessenger.Default.Send(new Messages.CorpusFilesChangedMessage(GetTargetRepoDir()));
         }
         catch (OperationCanceledException)
         {

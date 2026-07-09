@@ -34,3 +34,9 @@ public sealed record ZenFlagChangedMessage(string RelPath, bool IsZen);
 public sealed record TermsSavedMessage;
 public sealed record BuildReferenceTmMessage;
 public sealed record ManageTermsMessage;
+
+// Git / corpus
+// Broadcast after a git sync/clone/update/panic-reset finishes successfully;
+// MainWindowViewModel queues the IsStaleAsync-gated, debounced auto index build -
+// no MWVM bridge delegate per the ratchet.
+public sealed record CorpusFilesChangedMessage(string RepoRoot);

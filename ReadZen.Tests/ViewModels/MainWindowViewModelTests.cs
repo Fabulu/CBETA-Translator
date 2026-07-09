@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using CommunityToolkit.Mvvm.Messaging;
 using ReadZen.App.Infrastructure;
+using ReadZen.App.Messages;
 using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
@@ -84,6 +86,64 @@ public class MainWindowViewModelTests
         vm.SetStatus("Loading...");
 
         Assert.Equal("Loading...", vm.StatusText);
+    }
+
+    // ---- CorpusFilesChangedMessage receiver (git -> reindex trigger) ----
+
+    [Fact]
+    public void CorpusFilesChangedMessage_QueuesAutoIndexBuild()
+    {
+        // The VM registers weakly in its constructor. AutoIndexQueuedCount increments
+        // BEFORE the null-root early return, so receipt is observable without corpus
+        // directories, and QueueAutoIndexBuild must not throw with all roots null.
+        var vm = MakeVm();
+        Assert.Equal(0, vm.AutoIndexQueuedCount);
+
+        WeakReferenceMessenger.Default.Send(new CorpusFilesChangedMessage(@"C:\nowhere\test-root"));
+
+        Assert.Equal(1, vm.AutoIndexQueuedCount);
+    }
+
+    [Fact]
+    public void CorpusFilesChangedMessage_EachSendQueuesAgain_NoAutoIndexingGuard()
+    {
+        // A git success means the corpus changed, so an in-flight build is stale by
+        // definition — every send must queue (CTS supersession is the debounce),
+        // unlike the _isAutoIndexing-guarded search-save path.
+        var vm = MakeVm();
+
+        WeakReferenceMessenger.Default.Send(new CorpusFilesChangedMessage(@"C:\nowhere\a"));
+        WeakReferenceMessenger.Default.Send(new CorpusFilesChangedMessage(@"C:\nowhere\b"));
+
+        Assert.Equal(2, vm.AutoIndexQueuedCount);
+    }
+
+    private sealed class SettingsMessageRecorder
+    {
+        public int Count;
+        public AppConfig? LastConfig;
+    }
+
+    [Fact]
+    public void ApplySettingsToChildViews_StillBroadcastsSettingsAppliedMessage()
+    {
+        // Regression guard: adding the CorpusFilesChangedMessage registration must
+        // not disturb the existing SettingsAppliedMessage broadcast round-trip.
+        var vm = MakeVm();
+        var recorder = new SettingsMessageRecorder();
+        WeakReferenceMessenger.Default.Register<SettingsMessageRecorder, SettingsAppliedMessage>(
+            recorder, static (r, m) => { r.Count++; r.LastConfig = m.Config; });
+        try
+        {
+            vm.ApplySettingsToChildViews();
+
+            Assert.Equal(1, recorder.Count);
+            Assert.NotNull(recorder.LastConfig);
+        }
+        finally
+        {
+            WeakReferenceMessenger.Default.Unregister<SettingsAppliedMessage>(recorder);
+        }
     }
 
 

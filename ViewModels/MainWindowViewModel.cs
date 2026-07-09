@@ -488,6 +488,18 @@ public partial class MainWindowViewModel : ViewModelBase
         _gitService = gitService;
         _licenseMetadata = licenseMetadata;
         _manifestService = manifestService;
+
+        // Corpus-changed trigger (git sync/clone/update/panic success): queue the
+        // staleness-gated, debounced auto index build. Weak registration on the typed
+        // messenger per the ratchet - no new MWVM bridge delegate. Intentionally NOT
+        // guarded by _isAutoIndexing: a git success means the corpus changed, so any
+        // in-flight auto build is stale by definition; QueueAutoIndexBuild's own CTS
+        // cancel, 3s delay, and IsStaleAsync gate provide supersession, debounce, and
+        // no-op cheapness. Known non-blocking gap: a SearchTab manual build's own CTS
+        // is not cancelled by this trigger; the two serialize under the index IO gate
+        // and the second pass is a cheap incremental no-op.
+        WeakReferenceMessenger.Default.Register<MainWindowViewModel, Messages.CorpusFilesChangedMessage>(
+            this, static (vm, _) => vm.QueueAutoIndexBuild());
     }
 
     /// <summary>Inject the star service after construction (optional dependency).</summary>
@@ -851,8 +863,17 @@ public partial class MainWindowViewModel : ViewModelBase
         QueueAutoIndexBuild();
     }
 
+    /// <summary>
+    /// Test seam (via InternalsVisibleTo): counts QueueAutoIndexBuild invocations.
+    /// Incremented BEFORE the null-root early return so tests without corpus
+    /// directories can still observe CorpusFilesChangedMessage receipt.
+    /// </summary>
+    internal int AutoIndexQueuedCount;
+
     private void QueueAutoIndexBuild()
     {
+        AutoIndexQueuedCount++;
+
         if (_translationRoot == null || _originalDir == null || _translatedDir == null)
         {
             System.Diagnostics.Debug.WriteLine($"[QueueAutoIndexBuild] SKIPPED: translationRoot={_translationRoot}, originalDir={_originalDir}, translatedDir={_translatedDir}");

@@ -1695,12 +1695,13 @@ private async Task LoadConfigAndAutoloadAsync()
                 }
                 catch { /* non-critical — Scholar stays stale until restart */ }
 
-                // Background index rebuild — old index stays usable while building
-                if (_searchView?.ViewModel.BuildIndexCommand.CanExecute(null) == true)
-                {
-                    ShowToast("Updating search index in background...", 4000);
-                    _searchView.ViewModel.BuildIndexCommand.Execute(null);
-                }
+                // The legacy direct BuildIndexCommand execution that lived here was
+                // removed: it had no staleness gate, silently no-oped when a build was
+                // already running, and would double-build now that GitTabViewModel
+                // broadcasts CorpusFilesChangedMessage -> MainWindowViewModel's
+                // QueueAutoIndexBuild (IsStaleAsync-gated, debounced, supersedes any
+                // in-flight auto build via CTS, and posts its own
+                // "Auto-updating search index..." status).
             };
         }
 
