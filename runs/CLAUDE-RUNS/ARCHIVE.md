@@ -32,6 +32,46 @@ Completed runs are logged here (newest first). Working directories remain in
 ---
 ```
 
+## 2026-07-09 — Archived (user-approved)
+
+### [RUN-20260708-2120] SPA search parity (v3 index) + reader overhaul
+
+**Archived:** 2026-07-09 (user-approved; core deployed live)
+**Created:** 2026-07-08 21:20 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260708-2120-spa-search-parity/`
+
+**Summary:** Multi-agent orchestration brought ZenLinkPage search to desktop parity — a v3 shard format carrying per-doc term frequencies so ranking never downloads text shards (無門 went from ~347 MB / 727 text fetches / ~5 s to 236 KB / 0 text fetches / 25 ms), a parallel 4,096-shard unigram set (single-char queries cost one ~3 KB fetch), mixed-script matching, sorted latin results, and graceful v2 fallback. Suite 413 → 471. Deployed live to readzen.pages.dev (12,532 files, production-verified version 3, 5,014 docs, 17,082 unigrams). A large committed+deployed reading-experience tail followed: merged/flow/blocks/interleaved bilingual layouts (merged-flow default), per-line deep links, quiet resume, search-as-you-type, PWA + 禪 favicon, lines-per-page, plus ~a dozen user-found bug fixes (RELEASES_URL crash, KWIC side routing, ragged id column, row-drift, dropdown contrast, heading/verse/byline swallowing). Also produced the D3 partial-reindex design and 3 SPA-idea recons.
+
+**Outcome:** LIVE. Residual: Haiku Layer-2 (D10, user-deferred).
+
+---
+
+### [RUN-20260708-2206] Desktop incremental reindex
+
+**Archived:** 2026-07-09 (user-approved)
+**Created:** 2026-07-08 22:06 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260708-2206-desktop-incremental-reindex/`
+**Commit:** `1bd1c59`
+
+**Summary:** "Incremental compute, atomic full commit" — a small corpus delta (git pull touching a few texts) reindexes in seconds instead of O(corpus)×3–5. New gramsets sidecar (per-doc uncut bigram sets, content-hash keyed, torn-pair-proof pairing token), IndexStamp extended to the cjk2 + corpusfreq artifacts (closed a crash-window wrong-results hole), single-pass InputHash, Phase-1 skip-read from the old text sidecar, corpusfreq algebraic delta, and a git-sync→reindex trigger via the typed messenger. Both positional-Id spaces derive fresh each build; DF cutoff applied at save from uncut sets. Master BuildGuid bumped once → `search-v6-stamped-siblings`. 6 waves, every wave gated on the full suite; Fable-reviewed (fixed a torn-sidecar critical); QA-certified 1799/1799 with an equivalence invariant (incremental == full rebuild across adds/removals/mid-corpus changes). Orchestrated via RUN-20260708-2206 workflow.
+
+**Outcome:** Committed + pushed (`2859e5d`). Residual (recorded): the ">20% delta → full rebuild" heuristic was deliberately not built (tiny follow-up, queued in RUN-20260709-2219).
+
+---
+
+### [RUN-20260704-1141] Improvement plan execution — Phases 3–4 (batches A–I)
+
+**Archived:** 2026-07-09 (user-approved)
+**Created:** 2026-07-04 11:41 +02:00
+**Working Directory:** `runs/CLAUDE-RUNS/RUN-20260704-1141-phase34-plan-exec/`
+**Commits:** `98ea356..819a80b` (suite 1605 → 1692)
+
+**Summary:** Executed Phases 3–4 of the 2026-07-02 audit plan. P3.1 (JS→C# segment-parser port with full-corpus byte-parity then JS retirement, `--build-segments` CLI); P3.3 UI-architecture truth pass; P3.6 dead-code consolidation (FileService, Wave-7 shells, legacy TranslationUnit deleted; TmRow ×4 and SanitizeFilename ×9 unified behind compat tests; CJK-classifier dedup consciously deferred with evidence); P3.8 release-workflow reconciliation; P4.1 witness-zoom + P4.2 Faith-in-Mind close-outs; P4.3 bilingual scroll sync + merged read-only view; P4.6 master-corpus freshness + Windows-path fix; P4.4 SPA segment-map consumption. Deferred by ruling: P1.8 CI (D9), P4.5 Haiku (D10), D11 backlog.
+
+**Outcome:** Complete; only the never-ending P3.4/P3.5 MVVM ratchets remain (tracked via RUN-20260709-2219). All committed.
+
+---
+
 ## 2026-07-08 — Archived
 
 ### [RUN-20260703-0634] Improvement plan execution — Phases 0–2
