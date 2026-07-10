@@ -24,6 +24,17 @@ class Program
             return;
         }
 
+        // Headless tool mode: full-rebuild a shippable search index for a corpus into an
+        // output dir, then exit (S7 bundled prebuilt index). CI runs this to stage the
+        // artifacts into Assets/PrebuiltIndex before publish; the app then seeds them into a
+        // virgin user index root on first run. Must run before Velopack/single-instance/
+        // Avalonia: no UI, no side effects beyond the output dir.
+        if (args.Length > 0 && args[0] == "--build-search-index")
+        {
+            Environment.Exit(SearchIndexService.RunHeadlessBuild(args, Console.Out));
+            return;
+        }
+
         // Global exception handlers — catch crashes that happen during rendering
         // or on background threads, so Linux users see the real error, not just
         // "Dispatcher shut down".

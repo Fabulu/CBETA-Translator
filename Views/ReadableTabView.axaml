@@ -142,13 +142,16 @@
 					  Margin="8,0,0,0"
 					  ToolTip.Tip="Show or hide the study panel with dictionary terms, translation memory matches, and contextual info"/>
 
-			<CheckBox Name="ChkReadingLayout"
+			<ComboBox Name="CmbReadingLayout"
 					  DockPanel.Dock="Right"
-					  Content="Reading"
+					  SelectedIndex="{Binding Reading.LayoutModeIndex, Mode=TwoWay}"
 					  VerticalAlignment="Center"
-					  Focusable="False"
+					  MinWidth="118"
 					  Margin="8,0,0,0"
-					  ToolTip.Tip="Toggle between page layout (original line breaks) and reading layout (merged semantic segments). Requires a segment map for the current text."/>
+					  ToolTip.Tip="Switch between page layout (original line breaks) and merged reading flow (semantic segments). Merged flow requires a segment map for the current text.">
+				<ComboBoxItem>Page layout</ComboBoxItem>
+				<ComboBoxItem>Merged flow</ComboBoxItem>
+			</ComboBox>
 
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
@@ -194,14 +197,38 @@
 				<Button.Flyout>
 					<Flyout Placement="BottomEdgeAlignedLeft">
 						<StackPanel Width="280" MaxHeight="360">
-							<Button Name="BtnAddBookmark" Content="+ Bookmark here"
+							<Button Content="+ Bookmark here"
+							        Command="{Binding Reading.AddBookmarkCommand}"
 							        HorizontalAlignment="Stretch" Padding="8,6"
 							        FontSize="11" Margin="4"/>
 							<Separator Margin="0,2"/>
+							<TextBlock Text="No bookmarks yet."
+							           FontSize="11" Opacity="0.6" Margin="4"
+							           IsVisible="{Binding !Reading.HasBookmarks}"/>
 							<ScrollViewer MaxHeight="300"
 							              VerticalScrollBarVisibility="Auto"
 							              HorizontalScrollBarVisibility="Disabled">
-								<StackPanel Name="BookmarkList" Spacing="2" Margin="4"/>
+								<ItemsControl ItemsSource="{Binding Reading.Bookmarks}" Margin="4">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate x:DataType="vm:ReadableBookmarkItem">
+											<DockPanel Margin="2">
+												<Button DockPanel.Dock="Right" Content="&#x2715;"
+												        Command="{Binding RemoveCommand}"
+												        FontSize="10" Padding="4,1"
+												        Background="Transparent" BorderThickness="0"
+												        Cursor="Hand" VerticalAlignment="Center"/>
+												<Button Content="{Binding DisplayLabel}"
+												        Command="{Binding NavigateCommand}"
+												        FontSize="11" Padding="6,3"
+												        Background="Transparent" BorderThickness="0"
+												        Cursor="Hand"
+												        Opacity="{Binding LabelOpacity}"
+												        HorizontalAlignment="Stretch"
+												        HorizontalContentAlignment="Left"/>
+											</DockPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
 							</ScrollViewer>
 						</StackPanel>
 					</Flyout>
@@ -225,7 +252,8 @@
 				</Button.Flyout>
 			</Button>
 
-			<TextBlock Name="TxtReadingProgress" Text=""
+			<TextBlock Name="TxtReadingProgress"
+			           Text="{Binding Reading.ReadingProgressText}"
 			           FontSize="11" Opacity="0.6"
 			           VerticalAlignment="Center"
 			           Margin="12,0,0,0"/>

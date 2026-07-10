@@ -349,4 +349,23 @@ public partial class AppPaths
     {
         return Path.Combine(translationsRepoRoot, "community", "translations", SanitizeUsername(username));
     }
+
+    /// <summary>
+    /// Resolves the exe-adjacent prebuilt search-index bundle directory
+    /// (Assets/PrebuiltIndex), or null when it does not ship in this build.
+    /// CI stages the actual search.* artifacts here before publish (see the csproj
+    /// Content include, mirroring the cedict pattern); a raw source build has only the
+    /// placeholder README, so the seed path is a no-op there. Tries both casings for
+    /// case-sensitive filesystems, matching <see cref="GetCedictPath"/>.
+    /// </summary>
+    public static string? GetPrebuiltIndexDir()
+    {
+        var lower = System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "prebuiltindex");
+        if (Directory.Exists(lower)) return lower;
+
+        var upper = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Assets", "PrebuiltIndex");
+        if (Directory.Exists(upper)) return upper;
+
+        return null;
+    }
 }

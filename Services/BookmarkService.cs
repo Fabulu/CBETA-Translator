@@ -24,8 +24,14 @@ public sealed class BookmarkService
     private bool _loaded;
 
     public BookmarkService()
+        : this(Path.Combine(AppContext.BaseDirectory, "bookmarks.json"))
     {
-        _filePath = Path.Combine(AppContext.BaseDirectory, "bookmarks.json");
+    }
+
+    /// <summary>Test seam: allows pointing the sidecar at an arbitrary path.</summary>
+    internal BookmarkService(string filePath)
+    {
+        _filePath = filePath;
     }
 
     /// <summary>Ensures bookmarks are loaded from disk (idempotent).</summary>

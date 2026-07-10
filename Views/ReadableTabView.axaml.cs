@@ -969,15 +969,18 @@ public partial class ReadableTabView : UserControl
             _chkStudyPanel.IsCheckedChanged += (_, _) => UpdateStudyPanelVisibility();
         }
 
-        if (_chkReadingLayout != null)
+        // Reading-surface sub-VM intents (R2.1 MVVM extraction). The Layout ComboBox is
+        // two-way bound to Reading.LayoutModeIndex; a user pick raises this event and the
+        // view stays the layout authority (gated/seq-guarded re-render + persist).
+        _vm.Reading.LayoutModeChangeRequested += (_, mode) =>
         {
-            _chkReadingLayout.IsCheckedChanged += async (_, _) =>
-            {
-                if (_suppressReadingLayoutEvent) return; // programmatic sync, not the user
-                try { await ToggleReadingLayoutAsync(); }
-                catch { /* ToggleReadingLayoutAsync handles its own failures */ }
-            };
-        }
+            if (_suppressReadingLayoutEvent) return; // programmatic echo, not the user
+            // Route through AsyncGuard so a failure in ApplyReadingLayoutAsync's synchronous
+            // prologue surfaces via AsyncGuard.Failed → status bar (CLAUDE.md convention),
+            // rather than being swallowed by a bare catch.
+            AsyncGuard.Run(() => ApplyReadingLayoutAsync(mode), "ReadableTabView.LayoutModeChangeRequested");
+        };
+        _vm.Reading.AddBookmarkRequested += (_, _) => AddBookmarkFromCaret();
 
         if (_chkProvenance != null)
         {
@@ -1250,6 +1253,7 @@ public partial class ReadableTabView : UserControl
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
     {
+        _readableRenderGen++; // mark that docs for this navigation were swapped in
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
         _vm.RenderTran = tran ?? RenderedDocument.Empty;
         _vm.IsEmptyState = false;
@@ -1420,6 +1424,7 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public void SetRenderedOriginalOnly(RenderedDocument orig)
     {
+        _readableRenderGen++; // docs swapped (timeline historical view)
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
         _vm.RenderTran = RenderedDocument.Empty;
         ResolveInnerEditors();
@@ -1448,6 +1453,7 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public void SetRenderedTranslationOnly(RenderedDocument tran, bool showDiff = true)
     {
+        _readableRenderGen++; // translated pane docs swapped (timeline historical view)
         // Capture the current text before swapping (for diff computation)
         if (_currentTextForDiff == null && _aeTran != null)
             _currentTextForDiff = _aeTran.Text;
@@ -3360,8 +3366,8 @@ public partial class ReadableTabView : UserControl
         HookScrollIntent(_editorOriginal, isOrig: true);
         HookScrollIntent(_editorTranslated, isOrig: false);
 
-        _scrollSvOrig.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: true);
-        _scrollSvTran.ScrollChanged += (_, _) => OnPaneScrolled(sourceIsOrig: false);
+        _scrollSvOrig.ScrollChanged += (_, _) => { OnPaneScrolled(sourceIsOrig: true); ScheduleResumeCapture(sourceIsOrig: true); };
+        _scrollSvTran.ScrollChanged += (_, _) => { OnPaneScrolled(sourceIsOrig: false); ScheduleResumeCapture(sourceIsOrig: false); };
     }
 
     private void HookScrollIntent(Control? paneHost, bool isOrig)
@@ -3477,6 +3483,262 @@ public partial class ReadableTabView : UserControl
             // had a chance to fire (it arrives via the dispatcher queue).
             Dispatcher.UIThread.Post(() => _scrollSyncSuppress = false, DispatcherPriority.Background);
         }
+    }
+
+    // =========================
+    // Quiet resume-to-position (R3.1)
+    // =========================
+    // On genuine user scrolling (debounced) capture the top-visible source lb per
+    // file; on the next load of that file restore it top-aligned, no highlight, as
+    // the SINGLE position-restore owner. Restore is gated exactly like the sticky
+    // layout re-apply (time-travel / pending-refresh) and defers until the async
+    // merged-flow re-apply settles, so it never fights SetRendered's own restore.
+
+    private DispatcherTimer? _resumeCaptureDebounce;
+    private bool _resumeCaptureSourceIsOrig;
+    private string? _resumeCaptureKey;
+    private const int ResumeCaptureDebounceMs = 450;
+
+    /// <summary>
+    /// Pure guard: a debounced resume capture may only write if the reader is still on the
+    /// same file it was scheduled for. A navigation to another file between schedule and tick
+    /// would otherwise clobber the new file's persisted anchor with a stale offset. Extracted
+    /// for headless tests.
+    /// </summary>
+    internal static bool ResumeCaptureKeyStillValid(string? scheduledKey, string? liveKey)
+        => !string.IsNullOrEmpty(scheduledKey)
+           && string.Equals(scheduledKey, liveKey, StringComparison.Ordinal);
+
+    // Monotonic counter bumped each time SetRendered* swaps new docs into the panes. Compared
+    // against the value captured at the previous SetProvenance to tell whether the readable
+    // render for the current navigation actually completed (see SetProvenance).
+    private int _readableRenderGen;
+    private int _lastProvenanceRenderGen;
+
+    /// <summary>
+    /// Pure guard: the readable render for the current navigation completed iff a SetRendered*
+    /// call bumped the render generation since the previous file's provenance was set. When it
+    /// did not (render failed, panes still hold the previous file's docs), a resume restore
+    /// must be skipped so the stale view isn't scrolled to the new file's unrelated lb.
+    /// Extracted for headless tests.
+    /// </summary>
+    internal static bool ReadableRenderCompletedForNav(int renderGen, int lastProvenanceRenderGen)
+        => renderGen != lastProvenanceRenderGen;
+
+    private DispatcherTimer? _resumeRestoreTimer;
+    private string? _resumeRestoreAbsKey;
+    private string? _resumeRestoreLb;
+    private string? _resumeRestoreSide;
+    private int _resumeRestoreTicks;
+    private const int ResumeRestorePollMs = 80;
+    private const int ResumeRestoreMaxTicks = 20; // ~1.6s budget for the layout to settle
+
+    /// <summary>
+    /// Pure decision for whether a resume restore must keep waiting: the panes are not
+    /// yet loaded, a hard gate is up (time-travel / pending refresh), or the file's
+    /// persisted merged-flow re-apply has not completed. Extracted for headless tests.
+    /// </summary>
+    internal static bool ResumeRestoreShouldWait(bool gated, bool docsLoaded, bool persistedMerged, bool isReadingLayout)
+        => !docsLoaded || gated || (persistedMerged && !isReadingLayout);
+
+    private void ScheduleResumeCapture(bool sourceIsOrig)
+    {
+        // Only capture on real user scrolling (same intent gate as scroll-sync);
+        // programmatic scrolls (restore, find bar, selection sync, bookmarks) never
+        // stamp intent and so must not overwrite the resume anchor.
+        var intent = sourceIsOrig ? _scrollIntentOrig : _scrollIntentTran;
+        if (DateTime.UtcNow - intent > ScrollIntentWindow) return;
+        // Never capture from a reconstructed/transient (time-travel) or in-flux view.
+        if (IsReadingLayoutGated()) return;
+
+        _resumeCaptureSourceIsOrig = sourceIsOrig;
+        // Snapshot the file identity at schedule time; the tick aborts if the reader has
+        // since navigated away (see CaptureResumeAnchor).
+        _resumeCaptureKey = ReaderStateKey();
+        _resumeCaptureDebounce ??= CreateResumeCaptureTimer();
+        _resumeCaptureDebounce.Stop();
+        _resumeCaptureDebounce.Start();
+    }
+
+    private DispatcherTimer CreateResumeCaptureTimer()
+    {
+        var t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ResumeCaptureDebounceMs) };
+        t.Tick += (_, _) =>
+        {
+            t.Stop();
+            try { CaptureResumeAnchor(_resumeCaptureSourceIsOrig); }
+            catch { /* resume capture is best-effort convenience; never break the reader */ }
+        };
+        return t;
+    }
+
+    private void CaptureResumeAnchor(bool sourceIsOrig)
+    {
+        if (IsReadingLayoutGated()) return;
+        var key = ReaderStateKey();
+        if (string.IsNullOrEmpty(key)) return;
+        // A navigation happened between schedule and tick: the live key no longer matches
+        // the file this capture was scheduled for. Writing now would overwrite the newly
+        // opened file's anchor with a stale offset — abort.
+        if (!ResumeCaptureKeyStillValid(_resumeCaptureKey, key)) return;
+
+        var ed = sourceIsOrig ? _aeOrig : _aeTran;
+        var doc = sourceIsOrig ? _vm.RenderOrig : _vm.RenderTran;
+        if (ed == null || doc.IsEmpty) return;
+
+        var lb = TopVisibleLb(ed, doc);
+        if (string.IsNullOrEmpty(lb)) return;
+
+        try { _readerStateService.SetResumeAnchor(key, lb, sourceIsOrig ? "orig" : "tran"); } catch { }
+    }
+
+    /// <summary>The lb n-value of the top-visible line in a pane, or null when unknown.</summary>
+    private static string? TopVisibleLb(TextEditor ed, RenderedDocument doc)
+    {
+        var view = ed.TextArea?.TextView;
+        if (view == null) return null;
+        view.EnsureVisualLines();
+        var firstVisual = view.VisualLines.FirstOrDefault();
+        if (firstVisual == null) return null;
+        int offset = firstVisual.FirstDocumentLine.Offset;
+        var (lb, _) = ResolveLbAtOffset(doc, offset);
+        return lb;
+    }
+
+    /// <summary>
+    /// Arms a quiet resume restore for the freshly-navigated file (called from the tail
+    /// of <see cref="SetProvenance"/> on a path change). A single polling timer waits out
+    /// the gates and the async sticky-layout re-apply, then top-aligns both panes to the
+    /// stored lb. This is the ONLY position writer on load besides SetRendered's own
+    /// pre-swap restore, which it deliberately runs after and overrides.
+    /// </summary>
+    private void ScheduleResumeRestore()
+    {
+        var absKey = _provenanceXmlAbsPath;
+        if (string.IsNullOrEmpty(absKey)) return;
+
+        var stateKey = ReaderStateKey();
+        if (string.IsNullOrEmpty(stateKey)) return;
+
+        ResumeAnchor? anchor;
+        try { anchor = _readerStateService.GetResumeAnchor(stateKey); }
+        catch { return; }
+        if (anchor == null || string.IsNullOrEmpty(anchor.Lb)) return;
+
+        _resumeRestoreAbsKey = absKey;
+        _resumeRestoreLb = anchor.Lb;
+        _resumeRestoreSide = anchor.Side;
+        _resumeRestoreTicks = 0;
+
+        _resumeRestoreTimer ??= CreateResumeRestoreTimer();
+        _resumeRestoreTimer.Stop();
+        _resumeRestoreTimer.Start();
+    }
+
+    private DispatcherTimer CreateResumeRestoreTimer()
+    {
+        var t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ResumeRestorePollMs) };
+        t.Tick += (_, _) =>
+        {
+            try { ResumeRestoreTick(); }
+            catch { _resumeRestoreTimer?.Stop(); }
+        };
+        return t;
+    }
+
+    private void ResumeRestoreTick()
+    {
+        var absKey = _resumeRestoreAbsKey;
+        // Superseded by a newer navigation, or nothing pending → stop.
+        if (string.IsNullOrEmpty(absKey) ||
+            !string.Equals(_provenanceXmlAbsPath, absKey, StringComparison.OrdinalIgnoreCase))
+        {
+            _resumeRestoreTimer?.Stop();
+            return;
+        }
+
+        bool docsLoaded = _aeOrig != null && _aeTran != null &&
+                          !(_vm.RenderOrig.IsEmpty && _vm.RenderTran.IsEmpty);
+        bool persistedMerged;
+        try { persistedMerged = _readerStateService.GetLayoutMode(ReaderStateKey() ?? absKey) == ReadingLayoutMode.MergedFlow; }
+        catch { persistedMerged = false; }
+
+        if (ResumeRestoreShouldWait(IsReadingLayoutGated(), docsLoaded, persistedMerged, _isReadingLayout))
+        {
+            if (++_resumeRestoreTicks < ResumeRestoreMaxTicks)
+                return;
+
+            // Timed out waiting for the sticky merged re-apply to settle (e.g. the file
+            // has no segment map, so merged flow never materialises). Fall through to a
+            // best-effort restore on the current layout when the panes are usable;
+            // otherwise give up quietly.
+            if (IsReadingLayoutGated() || !docsLoaded)
+            {
+                _resumeRestoreTimer?.Stop();
+                _resumeRestoreAbsKey = null;
+                return;
+            }
+        }
+
+        _resumeRestoreTimer?.Stop();
+        var lb = _resumeRestoreLb;
+        _resumeRestoreAbsKey = null;
+        if (!string.IsNullOrEmpty(lb))
+            RestoreResumeToLb(lb!, _resumeRestoreSide);
+    }
+
+    private void RestoreResumeToLb(string lb, string? side)
+    {
+        if (IsReadingLayoutGated()) return;
+
+        // Restore BOTH panes to the shared source lb so the bilingual view stays
+        // aligned. Programmatic (no intent stamp) + inside the suppress windows so
+        // scroll-sync, selection-mirror and resume-capture stay quiet.
+        ArmProgrammaticScrollSuppression();
+        ScrollPaneToLbTop(_aeOrig, _vm.RenderOrig, lb);
+        ScrollPaneToLbTop(_aeTran, _vm.RenderTran, lb);
+        _ = side; // side is advisory; both panes are aligned to the same lb.
+    }
+
+    private void ArmProgrammaticScrollSuppression()
+    {
+        _scrollSyncSuppress = true;
+        _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
+        _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        // Release the sync guard after our own layout-driven ScrollChanged has fired.
+        Dispatcher.UIThread.Post(() => _scrollSyncSuppress = false, DispatcherPriority.Background);
+    }
+
+    /// <summary>Top-aligns a pane on the given lb without moving the caret or selection.</summary>
+    private static void ScrollPaneToLbTop(TextEditor? ed, RenderedDocument doc, string lb)
+    {
+        if (ed?.Document == null || doc.IsEmpty) return;
+
+        var (start, _) = ResolveLbRange(doc, lb, null);
+        if (start < 0) return;
+
+        var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        if (sv == null) return;
+
+        var docLine = ed.Document.GetLineByOffset(Math.Clamp(start, 0, ed.Document.TextLength));
+        if (docLine == null) return;
+
+        ed.ScrollTo(docLine.LineNumber, 0);
+        var view = ed.TextArea?.TextView;
+        if (view == null) return;
+        view.EnsureVisualLines();
+
+        double absoluteY;
+        try { absoluteY = view.GetVisualTopByDocumentLine(docLine.LineNumber); }
+        catch { return; }
+        if (double.IsNaN(absoluteY)) return;
+
+        double viewportH = sv.Viewport.Height;
+        double extentH = sv.Extent.Height;
+        double maxY = (!double.IsNaN(extentH) && !double.IsNaN(viewportH) && extentH > viewportH) ? extentH - viewportH : 0;
+        double desiredY = Math.Clamp(absoluteY, 0, Math.Max(0, maxY));
+        sv.Offset = new Vector(sv.Offset.X, desiredY);
     }
 
     private static void CenterByCaret(TextEditor ed, int caretOffset)
@@ -6000,12 +6262,16 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }, DispatcherPriority.Background);
     }
 
-    /// <summary>Sets the checkbox without re-entering the toggle handler.</summary>
+    /// <summary>
+    /// Echoes the achieved reading-layout mode to the toolbar Layout ComboBox (via the
+    /// Reading VM) without re-entering the change handler. Named for the former checkbox;
+    /// all the gated/seq-guarded call sites in <see cref="ApplyReadingLayoutAsync"/> keep
+    /// working unchanged (R2.1 ComboBox swap).
+    /// </summary>
     private void SetReadingLayoutCheckbox(bool value)
     {
-        if (_chkReadingLayout == null || _chkReadingLayout.IsChecked == value) return;
         _suppressReadingLayoutEvent = true;
-        try { _chkReadingLayout.IsChecked = value; }
+        try { _vm.Reading.SetLayoutModeQuietly(value ? ReadingLayoutMode.MergedFlow : ReadingLayoutMode.Page); }
         finally { _suppressReadingLayoutEvent = false; }
     }
 
@@ -6016,12 +6282,26 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // layout, so carrying the flag over made the checkbox lie about the visible
         // state (audit P2.2 / R2-M3). Reset on path change and invalidate any
         // in-flight re-render for the previous file.
-        if (!string.Equals(_provenanceXmlAbsPath, xmlAbsPath, StringComparison.OrdinalIgnoreCase))
+        bool pathChanged = !string.Equals(_provenanceXmlAbsPath, xmlAbsPath, StringComparison.OrdinalIgnoreCase);
+        if (pathChanged)
         {
             _readingLayoutRenderSeq++;
             _isReadingLayout = false;
             SetReadingLayoutCheckbox(false);
+            // A navigation supersedes any resume restore still pending for the old file.
+            _resumeRestoreTimer?.Stop();
+            _resumeRestoreAbsKey = null;
+            // ...and any resume CAPTURE debounced for the old file: letting it tick after the
+            // swap would re-read the live key/doc and clobber the new file's stored anchor.
+            _resumeCaptureDebounce?.Stop();
         }
+
+        // Whether the readable render for THIS navigation actually completed: SetRendered
+        // (which bumps _readableRenderGen) runs before this on a successful load, so an
+        // unchanged gen since the previous file's provenance means the render failed and the
+        // panes still hold the previous file's docs — arming a restore would scroll that
+        // stale view to this file's (unrelated) lb.
+        bool readableRenderCompleted = ReadableRenderCompletedForNav(_readableRenderGen, _lastProvenanceRenderGen);
 
         _provenanceXmlAbsPath = xmlAbsPath;
         _provenanceManifest = manifest;
@@ -6039,6 +6319,15 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // Sticky reading layout: re-apply this file's persisted merged-flow mode
         // after the navigation settles (page layout is the baseline just rendered).
         MaybeReapplyPersistedLayout();
+
+        // Quiet resume-to-position: restore the last top-visible lb once the layout
+        // above has settled (single owner; only on a real file change, and only when the
+        // readable render for this file actually landed — otherwise the panes hold the
+        // previous file's docs and a restore would jump that stale view).
+        if (pathChanged && readableRenderCompleted)
+            ScheduleResumeRestore();
+
+        _lastProvenanceRenderGen = _readableRenderGen;
     }
 
     /// <summary>Called by host when a new study snapshot is ready.</summary>
@@ -7167,7 +7456,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     // Bookmarks
     // =========================
 
-    private void BtnAddBookmark_Click(object? sender, RoutedEventArgs e)
+    private void BtnAddBookmark_Click(object? sender, RoutedEventArgs e) => AddBookmarkFromCaret();
+
+    /// <summary>
+    /// Captures a bookmark at the current caret (translated pane preferred), re-anchored
+    /// to the underlying lb. Invoked by the toolbar Add command, the legacy button, and
+    /// the Ctrl+B shortcut. Editor-access intent for <see cref="ReadableReadingViewModel"/>.
+    /// </summary>
+    private void AddBookmarkFromCaret()
     {
         var relPath = _vm.CurrentRelPathForZen;
         if (string.IsNullOrWhiteSpace(relPath)) return;
@@ -7213,94 +7509,57 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         Say("Bookmark added.");
     }
 
-    /// <summary>Rebuilds the bookmark flyout list for the current file and all cross-file bookmarks.</summary>
+    /// <summary>
+    /// Rebuilds the bookmark rows bound to the flyout ItemsControl (R2.1). Each row's
+    /// Navigate/Remove commands route back through the code-behind adapters below, which
+    /// own editor access; the VM only holds the display collection.
+    /// </summary>
     public void RefreshBookmarkList()
     {
-        if (_bookmarkList == null) return;
-        _bookmarkList.Children.Clear();
-
         var relPath = _vm.CurrentRelPathForZen;
-        var allBookmarks = _bookmarkService.All();
+        var items = new List<ReadableBookmarkItem>();
 
-        if (allBookmarks.Count == 0)
-        {
-            _bookmarkList.Children.Add(new TextBlock
-            {
-                Text = "No bookmarks yet.",
-                FontSize = 11,
-                Opacity = 0.6,
-                Margin = new Thickness(4)
-            });
-            return;
-        }
-
-        foreach (var bm in allBookmarks)
+        foreach (var bm in _bookmarkService.All())
         {
             bool sameFile = string.Equals(bm.RelPath, relPath, StringComparison.OrdinalIgnoreCase);
-
-            var row = new DockPanel { Margin = new Thickness(2) };
-
-            // Delete button
-            var captured = bm;
-            var btnDel = new Button
-            {
-                Content = "\u2715",
-                FontSize = 10,
-                Padding = new Thickness(4, 1),
-                Background = Brushes.Transparent,
-                BorderThickness = new Thickness(0),
-                Cursor = new Cursor(StandardCursorType.Hand),
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            btnDel.Click += (_, _) =>
-            {
-                _bookmarkService.Remove(captured);
-                RefreshBookmarkList();
-            };
-            DockPanel.SetDock(btnDel, Dock.Right);
-            row.Children.Add(btnDel);
-
-            // Navigate button (label)
             var labelText = sameFile
                 ? (string.IsNullOrWhiteSpace(bm.Label) ? $"Offset {bm.DisplayOffset}" : bm.Label)
                 : $"[{System.IO.Path.GetFileNameWithoutExtension(bm.RelPath)}] {bm.Label}";
 
-            var btnNav = new Button
-            {
-                Content = labelText,
-                FontSize = 11,
-                Padding = new Thickness(6, 3),
-                Background = Brushes.Transparent,
-                BorderThickness = new Thickness(0),
-                Cursor = new Cursor(StandardCursorType.Hand),
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Left,
-                FontWeight = sameFile ? FontWeight.Normal : FontWeight.Light,
-                Opacity = sameFile ? 1.0 : 0.8
-            };
-            btnNav.Click += (_, _) =>
-            {
-                if (sameFile)
-                {
-                    NavigateToBookmark(captured);
-                }
-                else
-                {
-                    // Cross-file: fire navigation event
-                    NavigationRequested?.Invoke(this, new NavigationRequest
-                    {
-                        RelPath = captured.RelPath,
-                        AnchorStartHint = captured.DisplayOffset
-                    });
-                }
-
-                // Close the flyout
-                if (_btnBookmarks?.Flyout is { } fly) fly.Hide();
-            };
-            row.Children.Add(btnNav);
-
-            _bookmarkList.Children.Add(row);
+            items.Add(new ReadableBookmarkItem(
+                bm, labelText, sameFile,
+                navigate: NavigateToBookmarkItem,
+                remove: RemoveBookmarkItem));
         }
+
+        _vm.Reading.SetBookmarks(items);
+    }
+
+    /// <summary>Adapter: navigate to a bookmark row (same-file lb re-anchor, else cross-file event).</summary>
+    private void NavigateToBookmarkItem(ReadableBookmarkItem item)
+    {
+        var bm = item.Model;
+        if (item.SameFile)
+        {
+            NavigateToBookmark(bm);
+        }
+        else
+        {
+            NavigationRequested?.Invoke(this, new NavigationRequest
+            {
+                RelPath = bm.RelPath,
+                AnchorStartHint = bm.DisplayOffset
+            });
+        }
+
+        if (_btnBookmarks?.Flyout is { } fly) fly.Hide();
+    }
+
+    /// <summary>Adapter: remove a bookmark row and rebuild the list.</summary>
+    private void RemoveBookmarkItem(ReadableBookmarkItem item)
+    {
+        _bookmarkService.Remove(item.Model);
+        RefreshBookmarkList();
     }
 
     private void NavigateToBookmark(Bookmark bm)
@@ -7455,17 +7714,17 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     private void OnCaretPositionChanged_ReadingProgress(object? sender, EventArgs e)
     {
         var editor = _aeTran ?? _aeOrig;
-        if (editor?.Document == null || _txtReadingProgress == null) return;
+        if (editor?.Document == null) return;
         int line = editor.TextArea.Caret.Line;
         int total = editor.Document.LineCount;
         int pct = total > 0 ? (int)Math.Round(100.0 * line / total) : 0;
-        _txtReadingProgress.Text = $"Line {line}/{total} ({pct}%)";
+        _vm.Reading.ReadingProgressText = $"Line {line}/{total} ({pct}%)";
     }
 
     private void ResetReadingProgress()
     {
         _readingProgressSubscribed = false;
-        if (_txtReadingProgress != null) _txtReadingProgress.Text = "";
+        _vm.Reading.ReadingProgressText = "";
     }
 
     /// <summary>
