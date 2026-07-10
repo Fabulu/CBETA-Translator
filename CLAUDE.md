@@ -452,7 +452,7 @@ blowing context â€” use `head -n 50` on the output file, **never read the f
 | RUN-20260430-0612 | Evidence Web + Attestation Layer | Deferred | runs/CLAUDE-RUNS/RUN-20260430-0612-evidence-web-and-attestation/ |
 | RUN-20260513-2238 | Segmentation: Layer-1 shipped/deployed; Layer-2 deferred (D10) | Deferred (Layer-2) | runs/CLAUDE-RUNS/RUN-20260513-2238-semantic-segmentation-pipeline/ |
 | RUN-20260709-2219 | Desktop state audit (10 recons) + fix batches | Complete — pending archive approval | runs/CLAUDE-RUNS/RUN-20260709-2219-desktop-state-audit/ |
-| RUN-20260710-0605 | Desktop reader → SPA parity (5-wave plan) | Planning — awaiting sign-off | runs/CLAUDE-RUNS/RUN-20260710-0605-reader-spa-parity/ |
+| RUN-20260710-0605 | Desktop reader → SPA parity (Wave A committed; row-grid unify) | In Progress | runs/CLAUDE-RUNS/RUN-20260710-0605-reader-spa-parity/ |
 
 <!-- Active task rows are maintained dynamically during work. -->
 

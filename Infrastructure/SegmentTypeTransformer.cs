@@ -188,6 +188,9 @@ public sealed class SegmentTypeTransformer : DocumentColorizingTransformer
                 ChangeLinePart(lineStart, lineEnd, el =>
                 {
                     el.TextRunProperties.SetForegroundBrush(CommentaryBrush);
+                    // Faint gray wash sets commentary apart from prose without shouting.
+                    // Uses the run-level background ceiling of a colorizing transformer.
+                    el.TextRunProperties.SetBackgroundBrush(CommentaryBgBrush);
                 });
                 break;
 
@@ -241,6 +244,7 @@ public sealed class SegmentTypeTransformer : DocumentColorizingTransformer
     private static readonly IBrush VerseBrush = new SolidColorBrush(Color.FromRgb(218, 165, 32));  // goldenrod
     private static readonly IBrush DialogueBrush = new SolidColorBrush(Color.FromRgb(100, 149, 237)); // cornflower blue
     private static readonly IBrush CommentaryBrush = new SolidColorBrush(Color.FromRgb(160, 160, 160)); // gray
+    private static readonly IBrush CommentaryBgBrush = new SolidColorBrush(Color.FromArgb(20, 160, 160, 160)); // faint gray wash
     private static readonly IBrush DharaniBrush = new SolidColorBrush(Color.FromRgb(186, 85, 211)); // medium orchid
     private static readonly IBrush MutedBrush = new SolidColorBrush(Color.FromRgb(140, 140, 140)); // dim gray
     private static readonly IBrush BylineBrush = new SolidColorBrush(Color.FromRgb(112, 128, 144)); // slate gray
