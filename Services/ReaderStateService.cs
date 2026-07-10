@@ -86,9 +86,14 @@ public sealed class ReaderStateService
         return doc;
     }
 
-    /// <summary>Returns the persisted layout mode for a file, or <see cref="ReadingLayoutMode.Page"/> when none.</summary>
+    /// <summary>
+    /// Returns the persisted layout mode for a file, or <see cref="ReadingLayoutMode.MergedFlow"/>
+    /// when none (A2: MergedFlow is the SPA-parity default preference). Page remains the RUNTIME
+    /// fallback for map-less files — the view degrades merged→page in
+    /// <c>ApplyReadingLayoutAsync</c> without clobbering this stored preference.
+    /// </summary>
     public ReadingLayoutMode GetLayoutMode(string relPath)
-        => Get(relPath)?.LayoutMode ?? ReadingLayoutMode.Page;
+        => Get(relPath)?.LayoutMode ?? ReadingLayoutMode.MergedFlow;
 
     /// <summary>Persists the layout mode for a file.</summary>
     public void SetLayoutMode(string relPath, ReadingLayoutMode mode)

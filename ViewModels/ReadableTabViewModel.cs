@@ -13,7 +13,7 @@ public partial class ReadableTabViewModel : ViewModelBase
     /// <summary>
     /// Reading-surface sub-VM (layout mode + bookmarks + reading progress), extracted
     /// toward the GitTabView MVVM shape (audit ratchet R2.1). Bound from the toolbar
-    /// (<c>Reading.LayoutModeIndex</c>, <c>Reading.Bookmarks</c>, <c>Reading.ReadingProgressText</c>).
+    /// (<c>Reading.SelectedLayoutOption</c>, <c>Reading.Bookmarks</c>, <c>Reading.ReadingProgressText</c>).
     /// </summary>
     public ReadableReadingViewModel Reading { get; } = new();
 

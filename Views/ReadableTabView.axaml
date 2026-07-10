@@ -144,14 +144,53 @@
 
 			<ComboBox Name="CmbReadingLayout"
 					  DockPanel.Dock="Right"
-					  SelectedIndex="{Binding Reading.LayoutModeIndex, Mode=TwoWay}"
+					  ItemsSource="{Binding Reading.LayoutModeOptions}"
+					  SelectedItem="{Binding Reading.SelectedLayoutOption, Mode=TwoWay}"
 					  VerticalAlignment="Center"
 					  MinWidth="118"
 					  Margin="8,0,0,0"
-					  ToolTip.Tip="Switch between page layout (original line breaks) and merged reading flow (semantic segments). Merged flow requires a segment map for the current text.">
-				<ComboBoxItem>Page layout</ComboBoxItem>
-				<ComboBoxItem>Merged flow</ComboBoxItem>
+					  ToolTip.Tip="Switch reading layout. Two-pane modes show original and translation side by side; single-column modes stack them. Merged flow requires a segment map for the current text.">
+				<ComboBox.Styles>
+					<!-- Group-header rows are non-selectable captions. -->
+					<Style Selector="ComboBoxItem" x:DataType="vm:LayoutOption">
+						<Setter Property="IsEnabled" Value="{Binding !IsHeader}"/>
+					</Style>
+				</ComboBox.Styles>
+				<ComboBox.ItemTemplate>
+					<DataTemplate x:DataType="vm:LayoutOption">
+						<Panel>
+							<TextBlock Text="{Binding Label}"
+									   IsVisible="{Binding IsHeader}"
+									   FontSize="10" FontWeight="SemiBold"
+									   Opacity="0.55" Margin="0,2,0,0"/>
+							<TextBlock Text="{Binding Label}"
+									   IsVisible="{Binding !IsHeader}"
+									   FontSize="12" Margin="8,0,0,0"/>
+						</Panel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
 			</ComboBox>
+
+			<ComboBox Name="CmbReadingView"
+					  DockPanel.Dock="Right"
+					  SelectedIndex="{Binding Reading.ViewModeIndex, Mode=TwoWay}"
+					  VerticalAlignment="Center"
+					  MinWidth="72"
+					  Margin="8,0,0,0"
+					  ToolTip.Tip="Choose which language pane(s) to show: Chinese only, both, or English only.">
+				<ComboBoxItem>中 ZH</ComboBoxItem>
+				<ComboBoxItem>Both</ComboBoxItem>
+				<ComboBoxItem>EN</ComboBoxItem>
+			</ComboBox>
+
+			<CheckBox Name="ChkShowLineIds"
+					  DockPanel.Dock="Right"
+					  Content="Line IDs"
+					  IsChecked="{Binding Reading.ShowLineIds, Mode=TwoWay}"
+					  VerticalAlignment="Center"
+					  Focusable="False"
+					  Margin="8,0,0,0"
+					  ToolTip.Tip="Show line-break (lb) ids. Used by the single-column reading modes."/>
 
 			<CheckBox Name="ChkZenText"
 					  DockPanel.Dock="Right"
@@ -294,7 +333,8 @@
 							</Grid>
 						</Border>
 
-						<GridSplitter Grid.Column="1"
+						<GridSplitter Name="PaneSplitter"
+									  Grid.Column="1"
 									  Width="6"
 									  Background="{DynamicResource SplitterBrush}"
 									  ResizeDirection="Columns"

@@ -221,8 +221,13 @@ public partial class ReadableTabView : UserControl
     private string? _editionDir; // edition XML directory, used for resolving witness page images
     private string? _provenanceXmlAbsPath; // current XML abs path for apparatus sidecar loading
     private string? _translationXmlAbsPath; // current translation XML abs path for reading-layout re-render
-    private bool _isReadingLayout; // true = merged segments; false = per-lb (page layout)
-    private bool _suppressReadingLayoutEvent; // guards programmatic checkbox sync
+    // A6: the reader's layout mode of record (replaces the old _isReadingLayout bool so
+    // >2 modes are representable). Only flips after a successful render. Page is the
+    // baseline; every other mode is a "non-page rendered view". NOTE: this holds the
+    // USER-SELECTED mode, which may render via a fallback surface (e.g. AlignedLines
+    // currently renders as page) — never infer the visible surface from it.
+    private ReadingLayoutMode _currentLayoutMode = ReadingLayoutMode.Page;
+    private bool _suppressReadingLayoutEvent; // guards programmatic selector sync
     private int _readingLayoutRenderSeq;      // drops stale async re-renders
     private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
@@ -970,7 +975,7 @@ public partial class ReadableTabView : UserControl
         }
 
         // Reading-surface sub-VM intents (R2.1 MVVM extraction). The Layout ComboBox is
-        // two-way bound to Reading.LayoutModeIndex; a user pick raises this event and the
+        // item-bound to Reading.SelectedLayoutOption; a user pick raises this event and the
         // view stays the layout authority (gated/seq-guarded re-render + persist).
         _vm.Reading.LayoutModeChangeRequested += (_, mode) =>
         {
@@ -980,6 +985,12 @@ public partial class ReadableTabView : UserControl
             // rather than being swallowed by a bare catch.
             AsyncGuard.Run(() => ApplyReadingLayoutAsync(mode), "ReadableTabView.LayoutModeChangeRequested");
         };
+        // View mode (ZH/Both/EN): Wave A collapses/expands the two-pane columns. Wave C
+        // rebuilds single-column projections with side filtering.
+        _vm.Reading.ViewModeChangeRequested += (_, viewMode) => ApplyViewMode(viewMode);
+        // Line-id toggle: no-op for two-pane modes in Wave A (Wave C consumes it for
+        // single-column projections). Must never throw.
+        _vm.Reading.ShowLineIdsChangeRequested += (_, _) => { /* Wave C: rebuild projection */ };
         _vm.Reading.AddBookmarkRequested += (_, _) => AddBookmarkFromCaret();
 
         if (_chkProvenance != null)
@@ -3534,12 +3545,27 @@ public partial class ReadableTabView : UserControl
     private const int ResumeRestoreMaxTicks = 20; // ~1.6s budget for the layout to settle
 
     /// <summary>
+    /// True once the post-navigation sticky reading-layout re-apply has SETTLED for the
+    /// current file: either it achieved the persisted mode, degraded to page (no map), or
+    /// there was nothing to re-apply. The resume restore waits on this so it always
+    /// restores against the FINAL surface, for every mode — not just MergedFlow. Reset to
+    /// false on each path change (SetProvenance) before the re-apply is scheduled.
+    /// </summary>
+    private bool _stickyReapplyResolved = true;
+
+    /// <summary>
     /// Pure decision for whether a resume restore must keep waiting: the panes are not
     /// yet loaded, a hard gate is up (time-travel / pending refresh), or the file's
-    /// persisted merged-flow re-apply has not completed. Extracted for headless tests.
+    /// sticky reading-layout re-apply has not yet SETTLED (achieved the persisted mode
+    /// OR degraded back to page on a no-map file). Waiting on a single "settled" signal
+    /// generalises correctly to all seven modes; the old <c>persistedMerged &amp;&amp;
+    /// !isReadingLayout</c> form only covered MergedFlow and both mis-restored a stored
+    /// non-Page mode against the initial page render AND hung 1.6s on every map-less doc
+    /// once the default flipped to MergedFlow (Wave A review finding 1). Extracted for
+    /// headless tests.
     /// </summary>
-    internal static bool ResumeRestoreShouldWait(bool gated, bool docsLoaded, bool persistedMerged, bool isReadingLayout)
-        => !docsLoaded || gated || (persistedMerged && !isReadingLayout);
+    internal static bool ResumeRestoreShouldWait(bool gated, bool docsLoaded, bool stickyReapplyResolved)
+        => !docsLoaded || gated || !stickyReapplyResolved;
 
     private void ScheduleResumeCapture(bool sourceIsOrig)
     {
@@ -3659,11 +3685,8 @@ public partial class ReadableTabView : UserControl
 
         bool docsLoaded = _aeOrig != null && _aeTran != null &&
                           !(_vm.RenderOrig.IsEmpty && _vm.RenderTran.IsEmpty);
-        bool persistedMerged;
-        try { persistedMerged = _readerStateService.GetLayoutMode(ReaderStateKey() ?? absKey) == ReadingLayoutMode.MergedFlow; }
-        catch { persistedMerged = false; }
 
-        if (ResumeRestoreShouldWait(IsReadingLayoutGated(), docsLoaded, persistedMerged, _isReadingLayout))
+        if (ResumeRestoreShouldWait(IsReadingLayoutGated(), docsLoaded, _stickyReapplyResolved))
         {
             if (++_resumeRestoreTicks < ResumeRestoreMaxTicks)
                 return;
@@ -6073,21 +6096,6 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     }
 
     /// <summary>
-    /// Toggles between page layout (per-lb lines, current default) and reading layout
-    /// (merged segments, text flows within &lt;p&gt;/&lt;lg&gt; boundaries), re-rendering
-    /// both panes with a suppressedLbNValues set built from the segment map.
-    /// Lifecycle rules (audit P2.2 / R2-M3): file reads + renders run off the UI
-    /// thread; <c>_isReadingLayout</c> only flips after a successful render; the
-    /// checkbox is synced back on every outcome (no map, failure, superseded); a
-    /// sequence token drops stale completions when the user re-toggles or navigates.
-    /// </summary>
-    public Task ToggleReadingLayoutAsync()
-    {
-        var next = _isReadingLayout ? ReadingLayoutMode.Page : ReadingLayoutMode.MergedFlow;
-        return ApplyReadingLayoutAsync(next);
-    }
-
-    /// <summary>
     /// True when reading-layout changes must be suppressed: a correction time-travel
     /// view is active (re-rendering would clobber the reconstructed historical text)
     /// or a pending refresh is in flight. Both are HARD gates (audit R2.2 top-risk 1).
@@ -6102,7 +6110,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// Applies a specific reading layout mode, re-rendering both panes off the UI
     /// thread with a suppressedLbNValues set built by
     /// <see cref="ReadingLayoutSuppressionBuilder"/> (verse/dharani line breaks are
-    /// preserved). <c>_isReadingLayout</c> only flips after a successful render; a
+    /// preserved). <c>_currentLayoutMode</c> only advances after a successful render; a
     /// sequence token drops stale completions; the achieved mode is persisted via
     /// <see cref="ReaderStateService"/> so it survives navigation.
     /// </summary>
@@ -6110,20 +6118,25 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (string.IsNullOrEmpty(_provenanceXmlAbsPath))
         {
-            _isReadingLayout = false;
-            SetReadingLayoutCheckbox(false);
+            _currentLayoutMode = ReadingLayoutMode.Page;
+            SetReadingLayoutSelector(ReadingLayoutMode.Page);
             return;
         }
 
         // HARD GATE: never fight time-travel or a pending refresh. Re-sync the
-        // checkbox to the true current state (the user may have just clicked it).
+        // selector to the true current mode (the user may have just changed it).
         if (IsReadingLayoutGated())
         {
-            SetReadingLayoutCheckbox(_isReadingLayout);
+            SetReadingLayoutSelector(_currentLayoutMode);
             return;
         }
 
-        bool target = mode == ReadingLayoutMode.MergedFlow;
+        // Wave A fallback ladder: map the requested mode to one of the two implemented
+        // render strategies. PageTwoPane renders unsuppressed lbs; everything else
+        // renders the merged (suppressed-lb) two-pane surface. Waves B/C add real
+        // rendering for SyncedPanes / Interleaved / MergedStacked / Aligned*.
+        var strategy = RenderStrategyFor(mode);
+        bool needsSuppression = strategy != RenderStrategy.PageTwoPane;
         int seq = ++_readingLayoutRenderSeq;
         var xmlPath = _provenanceXmlAbsPath!;
         var tranPathHint = _translationXmlAbsPath;
@@ -6134,12 +6147,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             var (origDoc, tranDoc) = await Task.Run(() =>
             {
                 HashSet<string>? suppressedLbs = null;
-                if (target)
+                if (needsSuppression)
                 {
                     var segMap = segMapService?.TryLoad(xmlPath);
                     suppressedLbs = ReadingLayoutSuppressionBuilder.Build(segMap);
 
-                    // No segment map → nothing to suppress → merged flow unavailable
+                    // No segment map → nothing to suppress → merged surface unavailable
                     if (suppressedLbs.Count == 0)
                         return ((RenderedDocument?)null, (RenderedDocument?)null);
                 }
@@ -6169,38 +6182,109 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             // Gate may have opened (time-travel entered) while rendering — bail.
             if (IsReadingLayoutGated())
             {
-                SetReadingLayoutCheckbox(_isReadingLayout);
+                SetReadingLayoutSelector(_currentLayoutMode);
                 return;
             }
 
             if (origDoc == null)
             {
-                // Merged flow requested but unavailable (no segment map). Stay on page.
-                _isReadingLayout = false;
-                SetReadingLayoutCheckbox(false);
-                // Only overwrite the stored mode with Page on an explicit user toggle.
+                // Merged surface requested but unavailable (no segment map). Degrade to
+                // page — the RUNTIME no-map fallback (A2), NOT a preference change.
+                _currentLayoutMode = ReadingLayoutMode.Page;
+                SetReadingLayoutSelector(ReadingLayoutMode.Page);
+                // Only overwrite the stored mode with Page on an explicit user action.
                 // A non-user-initiated sticky reapply that fails on a transient
-                // segment-map miss must NOT erase the user's persisted MergedFlow
-                // preference (audit R2 reader finding).
+                // segment-map miss must NOT erase the user's persisted preference
+                // (audit R2 reader finding).
                 if (userInitiated)
                     PersistLayoutMode(ReadingLayoutMode.Page);
                 return;
             }
 
-            _isReadingLayout = target;
-            SetReadingLayoutCheckbox(target);
+            // Record/echo/persist the USER-SELECTED mode (not the fallback strategy) so
+            // the selector stays on what the user picked.
+            _currentLayoutMode = mode;
+            SetReadingLayoutSelector(mode);
             SetRendered(origDoc, tranDoc!);
-            PersistLayoutMode(target ? ReadingLayoutMode.MergedFlow : ReadingLayoutMode.Page);
+            PersistLayoutMode(mode);
         }
         catch
         {
-            // Re-render failed: revert to page layout AND un-lie the checkbox
-            // (the old code left it checked while showing page layout).
+            // Re-render failed: revert to page layout AND un-lie the selector
+            // (the old code left it on the requested mode while showing page layout).
             if (seq == _readingLayoutRenderSeq)
             {
-                _isReadingLayout = false;
-                SetReadingLayoutCheckbox(false);
+                _currentLayoutMode = ReadingLayoutMode.Page;
+                SetReadingLayoutSelector(ReadingLayoutMode.Page);
             }
+        }
+    }
+
+    /// <summary>The two render surfaces Wave A can actually produce (plus the Wave C stub).</summary>
+    private enum RenderStrategy
+    {
+        /// <summary>Per-lb page layout (unsuppressed line breaks).</summary>
+        PageTwoPane,
+        /// <summary>Merged two-pane surface (suppressed non-leading line breaks).</summary>
+        MergedTwoPane,
+        /// <summary>Single-column projection — reserved for Wave C (not yet produced).</summary>
+        SingleColumnProjection
+    }
+
+    /// <summary>
+    /// Wave A fallback ladder: maps a requested <see cref="ReadingLayoutMode"/> to a
+    /// currently-implemented render strategy. Page/Aligned* → page; MergedFlow/SyncedPanes/
+    /// Interleaved/MergedStacked → merged two-pane. Waves B/C replace the placeholder rows
+    /// (SyncedPanes styling; single-column Interleaved/MergedStacked; aligned surfaces) and
+    /// will begin returning <see cref="RenderStrategy.SingleColumnProjection"/>.
+    /// </summary>
+    private static RenderStrategy RenderStrategyFor(ReadingLayoutMode mode) => mode switch
+    {
+        ReadingLayoutMode.Page => RenderStrategy.PageTwoPane,
+        ReadingLayoutMode.AlignedLines => RenderStrategy.PageTwoPane,   // Wave C → page for now
+        ReadingLayoutMode.AlignedBlocks => RenderStrategy.PageTwoPane,  // Wave C → page for now
+        ReadingLayoutMode.MergedFlow => RenderStrategy.MergedTwoPane,
+        ReadingLayoutMode.SyncedPanes => RenderStrategy.MergedTwoPane,  // Wave B → merged for now
+        ReadingLayoutMode.Interleaved => RenderStrategy.MergedTwoPane,  // Wave C → merged for now
+        ReadingLayoutMode.MergedStacked => RenderStrategy.MergedTwoPane,// Wave C → merged for now
+        _ => RenderStrategy.PageTwoPane
+    };
+
+    /// <summary>
+    /// Applies the ZH/Both/EN view mode by collapsing/expanding the two-pane columns
+    /// (Wave A). Both = 1*/Auto/2*; ZH = original only; EN = translation only. Wave C
+    /// rebuilds single-column projections with side filtering instead.
+    /// </summary>
+    private void ApplyViewMode(ReaderViewMode mode)
+    {
+        var grid = this.FindControl<Grid>("TwoPaneGrid");
+        if (grid == null || grid.ColumnDefinitions.Count < 3) return;
+
+        // Hide the drag-splitter whenever a pane is collapsed: its fixed 6px child would
+        // otherwise overhang the zero-width column and, being draggable, could reopen the
+        // hidden pane out of sync with the view toggle (Wave A review finding 3).
+        var splitter = this.FindControl<GridSplitter>("PaneSplitter");
+
+        switch (mode)
+        {
+            case ReaderViewMode.Zh:
+                grid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                grid.ColumnDefinitions[1].Width = new GridLength(0);
+                grid.ColumnDefinitions[2].Width = new GridLength(0);
+                if (splitter != null) splitter.IsVisible = false;
+                break;
+            case ReaderViewMode.En:
+                grid.ColumnDefinitions[0].Width = new GridLength(0);
+                grid.ColumnDefinitions[1].Width = new GridLength(0);
+                grid.ColumnDefinitions[2].Width = new GridLength(1, GridUnitType.Star);
+                if (splitter != null) splitter.IsVisible = false;
+                break;
+            default: // Both
+                grid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                grid.ColumnDefinitions[1].Width = GridLength.Auto;
+                grid.ColumnDefinitions[2].Width = new GridLength(2, GridUnitType.Star);
+                if (splitter != null) splitter.IsVisible = true;
+                break;
         }
     }
 
@@ -6235,43 +6319,54 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         // Absolute path is the file-identity guard for the deferred post; the
         // relative path is the persistence key (see ReaderStateKey).
+        // Any path that will NOT schedule a re-apply must mark the sticky re-apply
+        // resolved so the pending resume restore stops waiting (the current page surface
+        // is final for this file). Only the scheduled-reapply path leaves it unresolved
+        // until the async render settles.
         var absKey = _provenanceXmlAbsPath;
-        if (string.IsNullOrEmpty(absKey)) return;
-        if (IsReadingLayoutGated()) return;
+        if (string.IsNullOrEmpty(absKey)) { _stickyReapplyResolved = true; return; }
+        if (IsReadingLayoutGated()) { _stickyReapplyResolved = true; return; }
 
         var stateKey = ReaderStateKey();
-        if (string.IsNullOrEmpty(stateKey)) return;
+        if (string.IsNullOrEmpty(stateKey)) { _stickyReapplyResolved = true; return; }
 
         ReadingLayoutMode persisted;
         try { persisted = _readerStateService.GetLayoutMode(stateKey); }
-        catch { return; }
+        catch { _stickyReapplyResolved = true; return; }
 
-        if (persisted != ReadingLayoutMode.MergedFlow) return; // page is the default baseline
-        if (_isReadingLayout) return;                          // already merged
+        if (persisted == ReadingLayoutMode.Page) { _stickyReapplyResolved = true; return; } // page is the just-rendered baseline
+        if (_currentLayoutMode == persisted) { _stickyReapplyResolved = true; return; }     // already achieved the stored mode
 
         int seqAtSchedule = _readingLayoutRenderSeq;
         Dispatcher.UIThread.Post(() =>
         {
-            // A newer navigation/toggle bumped the seq — abandon this reapply.
+            // Superseded by a newer navigation/toggle — that newer nav reset the resolve
+            // flag and owns the re-apply; do not touch it here.
             if (seqAtSchedule != _readingLayoutRenderSeq) return;
-            if (IsReadingLayoutGated()) return;
             if (!string.Equals(_provenanceXmlAbsPath, absKey, StringComparison.OrdinalIgnoreCase)) return;
+            // Gate came up between schedule and post: nothing will re-render, so the page
+            // surface is final — release the resume waiter.
+            if (IsReadingLayoutGated()) { _stickyReapplyResolved = true; return; }
             // Not user-initiated: a transient failure must not overwrite the stored mode.
-            AsyncGuard.Run(() => ApplyReadingLayoutAsync(ReadingLayoutMode.MergedFlow, userInitiated: false),
-                "ReadableTabView.MaybeReapplyPersistedLayout");
+            // Mark resolved once the render settles (achieved OR degraded to page) so the
+            // resume restore lands on the final surface for every mode, not just Merged.
+            AsyncGuard.Run(async () =>
+            {
+                try { await ApplyReadingLayoutAsync(persisted, userInitiated: false); }
+                finally { _stickyReapplyResolved = true; }
+            }, "ReadableTabView.MaybeReapplyPersistedLayout");
         }, DispatcherPriority.Background);
     }
 
     /// <summary>
     /// Echoes the achieved reading-layout mode to the toolbar Layout ComboBox (via the
-    /// Reading VM) without re-entering the change handler. Named for the former checkbox;
-    /// all the gated/seq-guarded call sites in <see cref="ApplyReadingLayoutAsync"/> keep
-    /// working unchanged (R2.1 ComboBox swap).
+    /// Reading VM) without re-entering the change handler. Mode-typed (A5) so the full
+    /// mode set — not just Page/MergedFlow — round-trips back to the selector.
     /// </summary>
-    private void SetReadingLayoutCheckbox(bool value)
+    private void SetReadingLayoutSelector(ReadingLayoutMode mode)
     {
         _suppressReadingLayoutEvent = true;
-        try { _vm.Reading.SetLayoutModeQuietly(value ? ReadingLayoutMode.MergedFlow : ReadingLayoutMode.Page); }
+        try { _vm.Reading.SetLayoutModeQuietly(mode); }
         finally { _suppressReadingLayoutEvent = false; }
     }
 
@@ -6286,8 +6381,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (pathChanged)
         {
             _readingLayoutRenderSeq++;
-            _isReadingLayout = false;
-            SetReadingLayoutCheckbox(false);
+            _currentLayoutMode = ReadingLayoutMode.Page;
+            SetReadingLayoutSelector(ReadingLayoutMode.Page);
+            // The sticky re-apply for THIS file has not settled yet; the resume restore
+            // must wait for it (MaybeReapplyPersistedLayout flips this back to true when
+            // it finishes, or immediately when there is nothing to re-apply).
+            _stickyReapplyResolved = false;
             // A navigation supersedes any resume restore still pending for the old file.
             _resumeRestoreTimer?.Stop();
             _resumeRestoreAbsKey = null;
