@@ -442,6 +442,5 @@ public sealed class CommunityDataService : ICommunityDataService
     // Helpers
     // -----------------------------------------------------------------------
 
-    private static string NormalizeRel(string? p)
-        => (p ?? "").Replace('\\', '/').TrimStart('/');
+    private static string NormalizeRel(string? p) => ReadZen.App.Infrastructure.RelPath.Normalize(p);
 }

@@ -2026,23 +2026,7 @@ STRICT RULES:
         return false;
     }
 
-    private static bool ContainsChineseChar(string? s)
-    {
-        if (string.IsNullOrEmpty(s))
-            return false;
-
-        foreach (char ch in s)
-        {
-            if ((ch >= '\u3400' && ch <= '\u4DBF') ||
-                (ch >= '\u4E00' && ch <= '\u9FFF') ||
-                (ch >= '\uF900' && ch <= '\uFAFF'))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    private static bool ContainsChineseChar(string? s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 
     private sealed class ProjectionBlockInfo
     {
@@ -2300,9 +2284,7 @@ STRICT RULES:
         var sb = new System.Text.StringBuilder(text.Length);
         foreach (var c in text)
         {
-            if (c >= '\u4E00' && c <= '\u9FFF' ||
-                c >= '\u3400' && c <= '\u4DBF' ||
-                c >= '\uF900' && c <= '\uFAFF')
+            if (ReadZen.App.Infrastructure.CjkText.IsIdeograph(c))
                 sb.Append(c);
         }
         return sb.ToString();

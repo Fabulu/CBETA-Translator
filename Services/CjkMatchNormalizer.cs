@@ -21,6 +21,9 @@ public static class CjkMatchNormalizer
         public int[] RawIndexByNormalizedIndex { get; init; } = Array.Empty<int>();
     }
 
+    // Intentionally NOT routed to CjkText.IsIdeograph: this is the SHARED MATCH
+    // POLICY range (CJK Unified U+4E00-9FFF only). Widening it would change which
+    // characters normalize/match across search - a deliberate, narrower set.
     public static bool ContainsCjk(string? s)
     {
         if (string.IsNullOrEmpty(s))

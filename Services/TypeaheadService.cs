@@ -41,7 +41,8 @@ public sealed class TypeaheadService
                 }
                 else if (tooltip.Length > 0)
                 {
-                    // Check if tooltip is mostly CJK
+                    // Check if tooltip is mostly CJK. Intentionally NOT routed to
+                    // CjkText.IsIdeograph: open-ended (>= U+4E00), no upper bound.
                     bool isCjk = tooltip.Length > 0 && tooltip[0] >= '\u4E00';
                     if (isCjk) zhTitle = tooltip;
                     else enTitle = tooltip;

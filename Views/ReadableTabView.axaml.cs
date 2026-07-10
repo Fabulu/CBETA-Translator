@@ -6512,12 +6512,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
     }
 
-    private static bool IsCjkChar(char c)
-    {
-        return (c >= '\u4E00' && c <= '\u9FFF')   // CJK Unified
-            || (c >= '\u3400' && c <= '\u4DBF')   // CJK Extension A
-            || (c >= '\uF900' && c <= '\uFAFF');  // CJK Compat
-    }
+    private static bool IsCjkChar(char c) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(c);
 
     private IBrush? GetResourceBrush(string key)
     {
@@ -6544,7 +6539,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             int cjkCount = 0;
             foreach (var c in sel)
             {
-                if (c >= '\u4E00' && c <= '\u9FFF' || c >= '\u3400' && c <= '\u4DBF' || c >= '\uF900' && c <= '\uFAFF')
+                if (ReadZen.App.Infrastructure.CjkText.IsIdeograph(c))
                     cjkCount++;
             }
             if (cjkCount >= 2)
@@ -7364,16 +7359,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
     }
 
-    private static bool ContainsCjkFind(string s)
-    {
-        foreach (char c in s)
-        {
-            if (c >= 0x4E00 && c <= 0x9FFF) return true;  // CJK Unified
-            if (c >= 0x3400 && c <= 0x4DBF) return true;  // CJK Extension A
-            if (c >= 0xF900 && c <= 0xFAFF) return true;  // CJK Compatibility
-        }
-        return false;
-    }
+    private static bool ContainsCjkFind(string s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 
     private void UpdateFindHighlightRanges()
     {

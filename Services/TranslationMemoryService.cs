@@ -267,10 +267,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         return false;
     }
 
-    private static string NormalizeRel(string? p)
-    {
-        return (p ?? "").Replace('\\', '/').TrimStart('/');
-    }
+    private static string NormalizeRel(string? p) => ReadZen.App.Infrastructure.RelPath.Normalize(p);
 
     private static double CombineSingleAndContextScores(double singleScore, double contextScore)
     {
@@ -405,12 +402,7 @@ public sealed class TranslationMemoryService : ITranslationMemoryService
         return result;
     }
 
-    private static bool IsChineseChar(char ch)
-    {
-        return (ch >= '\u3400' && ch <= '\u4DBF')
-            || (ch >= '\u4E00' && ch <= '\u9FFF')
-            || (ch >= '\uF900' && ch <= '\uFAFF');
-    }
+    private static bool IsChineseChar(char ch) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(ch);
 
     private static int LongestCommonSubstringLength(string a, string b)
     {

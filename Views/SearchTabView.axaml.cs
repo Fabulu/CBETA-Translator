@@ -392,6 +392,9 @@ public partial class SearchTabView : UserControl
         return isPrimaryMatch || isSecondaryMatch ? textBlock : null;
     }
 
+    // Intentionally NOT routed to CjkText.IsIdeograph: this uses a CONTIGUOUS
+    // U+3400-9FFF span (includes the Yijing gap U+4DC0-4DFF, excludes Compatibility
+    // U+F900-FAFF) - a deliberately different set matched by TryLookupSearchSegment.
     private static bool ContainsCjk(string text)
         => text.Any(ch => ch >= 0x3400 && ch <= 0x9fff);
 

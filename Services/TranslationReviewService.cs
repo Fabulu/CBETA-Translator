@@ -395,23 +395,11 @@ public sealed class TranslationReviewService : ITranslationReviewService
         return true;
     }
 
-    private static string NormalizeRel(string? p)
-        => (p ?? "").Replace('\\', '/').TrimStart('/').Trim();
+    // Same key transform as RelPath.Normalize, plus a trailing .Trim() this
+    // service has always applied (pinned by RelPathTests review-variant cases).
+    private static string NormalizeRel(string? p) => ReadZen.App.Infrastructure.RelPath.Normalize(p).Trim();
 
-    private static string NormalizeLine(string? s)
-    {
-        if (string.IsNullOrWhiteSpace(s))
-            return "";
-
-        s = s.Normalize(NormalizationForm.FormKC);
-        s = s.Replace("\u3000", " ");
-        s = s.Replace("\r", " ").Replace("\n", " ").Replace("\t", " ");
-
-        while (s.Contains("  ", StringComparison.Ordinal))
-            s = s.Replace("  ", " ");
-
-        return s.Trim();
-    }
+    private static string NormalizeLine(string? s) => ReadZen.App.Infrastructure.TranslationTextNormalizer.NormalizeLine(s);
 
     private static string Hash(string s)
     {
@@ -420,21 +408,5 @@ public sealed class TranslationReviewService : ITranslationReviewService
         return Convert.ToHexString(bytes);
     }
 
-    private static bool ContainsChineseChar(string? s)
-    {
-        if (string.IsNullOrEmpty(s))
-            return false;
-
-        foreach (char ch in s)
-        {
-            if ((ch >= '\u3400' && ch <= '\u4DBF') ||
-                (ch >= '\u4E00' && ch <= '\u9FFF') ||
-                (ch >= '\uF900' && ch <= '\uFAFF'))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    private static bool ContainsChineseChar(string? s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 }

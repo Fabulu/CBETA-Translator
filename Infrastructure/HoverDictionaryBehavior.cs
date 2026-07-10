@@ -668,12 +668,5 @@ public sealed class HoverDictionaryBehavior : IDisposable
     private static bool IsInsideBounds(Rect b, Point p)
         => p.X >= 0 && p.Y >= 0 && p.X < b.Width && p.Y < b.Height;
 
-    private static bool IsCjk(char c)
-    {
-        // char is a 16-bit UTF-16 code unit, so supplementary-plane ranges
-        // (>= U+20000) are unreachable here and are handled elsewhere via surrogate pairs.
-        return (c >= 0x4E00 && c <= 0x9FFF)
-            || (c >= 0x3400 && c <= 0x4DBF)
-            || (c >= 0xF900 && c <= 0xFAFF);
-    }
+    private static bool IsCjk(char c) => CjkText.IsIdeograph(c);
 }
