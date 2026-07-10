@@ -299,12 +299,14 @@ public class ReadableTabViewInteractionTests
 
         try
         {
-            InvokePrivate(view, "PersistLayoutMode", ReadingLayoutMode.MergedFlow);
+            // Use a mode distinct from the default (MergedFlow, post A2 flip) so the
+            // absolute-key lookup returning the default is unambiguously "not stored here".
+            InvokePrivate(view, "PersistLayoutMode", ReadingLayoutMode.SyncedPanes);
 
             // Stored under the relative key...
-            Assert.Equal(ReadingLayoutMode.MergedFlow, svc.GetLayoutMode("T01/test.xml"));
-            // ...NOT the machine-specific absolute path.
-            Assert.Equal(ReadingLayoutMode.Page,
+            Assert.Equal(ReadingLayoutMode.SyncedPanes, svc.GetLayoutMode("T01/test.xml"));
+            // ...NOT the machine-specific absolute path (unknown key → default MergedFlow).
+            Assert.Equal(ReadingLayoutMode.MergedFlow,
                 svc.GetLayoutMode(@"C:\portable\install\CbetaZenTexts\xml-p5\T01\test.xml"));
         }
         finally

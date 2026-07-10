@@ -1,8 +1,9 @@
 // ReadableReadingViewModelTests — the reading-surface sub-VM extracted in R2.1:
-// layout-mode <-> index sync, the request/echo split, and the bookmark collection +
-// per-row commands.
+// layout-mode <-> selected-option sync, the request/echo split, the view-mode / line-id
+// intents (Wave A), and the bookmark collection + per-row commands.
 
 using System.Collections.Generic;
+using System.Linq;
 using ReadZen.App.Models;
 using ReadZen.App.ViewModels;
 using Xunit;
@@ -12,45 +13,69 @@ namespace ReadZen.Tests.ViewModels;
 [Trait("Domain", "Reader")]
 public class ReadableReadingViewModelTests
 {
-    // ---- Layout mode <-> index ----
+    // ---- Layout mode default + selected-option ----
 
     [Fact]
-    public void LayoutModeIndex_MirrorsEnum()
+    public void LayoutMode_DefaultsToMergedFlow()
     {
+        // A2 default-flip: MergedFlow is the SPA-parity default preference (was Page).
         var vm = new ReadableReadingViewModel();
-        Assert.Equal(0, vm.LayoutModeIndex);
-
-        vm.LayoutMode = ReadingLayoutMode.MergedFlow;
-        Assert.Equal(1, vm.LayoutModeIndex);
+        Assert.Equal(ReadingLayoutMode.MergedFlow, vm.LayoutMode);
     }
 
     [Fact]
-    public void SettingLayoutModeIndex_UpdatesEnum_AndRaisesRequest()
+    public void SelectedLayoutOption_MirrorsLayoutMode()
+    {
+        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };
+        Assert.NotNull(vm.SelectedLayoutOption);
+        Assert.Equal(ReadingLayoutMode.Page, vm.SelectedLayoutOption!.Mode);
+        Assert.False(vm.SelectedLayoutOption.IsHeader);
+
+        vm.LayoutMode = ReadingLayoutMode.Interleaved;
+        Assert.Equal(ReadingLayoutMode.Interleaved, vm.SelectedLayoutOption!.Mode);
+    }
+
+    [Fact]
+    public void SettingSelectedLayoutOption_UpdatesMode_AndRaisesRequest()
     {
         var vm = new ReadableReadingViewModel();
         var requested = new List<ReadingLayoutMode>();
         vm.LayoutModeChangeRequested += (_, m) => requested.Add(m);
 
-        vm.LayoutModeIndex = 1;
+        vm.SelectedLayoutOption = vm.LayoutModeOptions.First(o => o.Mode == ReadingLayoutMode.SyncedPanes && !o.IsHeader);
 
-        Assert.Equal(ReadingLayoutMode.MergedFlow, vm.LayoutMode);
-        Assert.Equal(new[] { ReadingLayoutMode.MergedFlow }, requested);
+        Assert.Equal(ReadingLayoutMode.SyncedPanes, vm.LayoutMode);
+        Assert.Equal(new[] { ReadingLayoutMode.SyncedPanes }, requested);
     }
 
     [Fact]
-    public void LayoutModeIndex_OutOfRange_ClampsToPage()
+    public void SettingSelectedLayoutOption_ToHeader_IsIgnored()
     {
-        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.MergedFlow };
+        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };
+        bool raised = false;
+        vm.LayoutModeChangeRequested += (_, _) => raised = true;
 
-        vm.LayoutModeIndex = 5; // anything but 1 means page
+        vm.SelectedLayoutOption = vm.LayoutModeOptions.First(o => o.IsHeader);
 
-        Assert.Equal(ReadingLayoutMode.Page, vm.LayoutMode);
+        Assert.Equal(ReadingLayoutMode.Page, vm.LayoutMode); // unchanged
+        Assert.False(raised);
+    }
+
+    [Fact]
+    public void LayoutModeOptions_HasTwoHeaders_AndAllSevenModes()
+    {
+        var vm = new ReadableReadingViewModel();
+        Assert.Equal(2, vm.LayoutModeOptions.Count(o => o.IsHeader));
+        var modes = vm.LayoutModeOptions.Where(o => !o.IsHeader).Select(o => o.Mode).ToList();
+        Assert.Equal(7, modes.Count);
+        Assert.Contains(ReadingLayoutMode.Page, modes);
+        Assert.Contains(ReadingLayoutMode.MergedStacked, modes);
     }
 
     [Fact]
     public void OnLayoutModeChanged_RaisesRequest()
     {
-        var vm = new ReadableReadingViewModel();
+        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };
         ReadingLayoutMode? got = null;
         vm.LayoutModeChangeRequested += (_, m) => got = m;
 
@@ -62,27 +87,91 @@ public class ReadableReadingViewModelTests
     [Fact]
     public void SetLayoutModeQuietly_DoesNotRaiseRequest()
     {
-        var vm = new ReadableReadingViewModel();
+        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };
         bool raised = false;
         vm.LayoutModeChangeRequested += (_, _) => raised = true;
 
         vm.SetLayoutModeQuietly(ReadingLayoutMode.MergedFlow);
 
         Assert.Equal(ReadingLayoutMode.MergedFlow, vm.LayoutMode);
-        Assert.Equal(1, vm.LayoutModeIndex);
         Assert.False(raised);
     }
 
     [Fact]
     public void SetLayoutModeQuietly_NoOpWhenUnchanged()
     {
-        var vm = new ReadableReadingViewModel();
+        var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };
         int changes = 0;
         vm.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(vm.LayoutMode)) changes++; };
 
         vm.SetLayoutModeQuietly(ReadingLayoutMode.Page); // already Page
 
         Assert.Equal(0, changes);
+    }
+
+    // ---- View mode (ZH / Both / EN) ----
+
+    [Fact]
+    public void ViewModeIndex_DefaultsToBoth()
+    {
+        var vm = new ReadableReadingViewModel();
+        Assert.Equal(1, vm.ViewModeIndex);
+    }
+
+    [Theory]
+    [InlineData(0, ReaderViewMode.Zh)]
+    [InlineData(1, ReaderViewMode.Both)]
+    [InlineData(2, ReaderViewMode.En)]
+    public void SettingViewModeIndex_RaisesRequestWithMappedMode(int index, ReaderViewMode expected)
+    {
+        var vm = new ReadableReadingViewModel();
+        vm.SetViewModeQuietly((index + 1) % 3); // start from a different index so the set is a real change
+        ReaderViewMode? got = null;
+        vm.ViewModeChangeRequested += (_, m) => got = m;
+
+        vm.ViewModeIndex = index;
+
+        Assert.Equal(expected, got);
+    }
+
+    [Fact]
+    public void SetViewModeQuietly_DoesNotRaiseRequest()
+    {
+        var vm = new ReadableReadingViewModel();
+        bool raised = false;
+        vm.ViewModeChangeRequested += (_, _) => raised = true;
+
+        vm.SetViewModeQuietly(2);
+
+        Assert.Equal(2, vm.ViewModeIndex);
+        Assert.False(raised);
+    }
+
+    // ---- Line-id toggle ----
+
+    [Fact]
+    public void ShowLineIds_RaisesRequest()
+    {
+        var vm = new ReadableReadingViewModel();
+        bool? got = null;
+        vm.ShowLineIdsChangeRequested += (_, v) => got = v;
+
+        vm.ShowLineIds = true;
+
+        Assert.True(got);
+    }
+
+    [Fact]
+    public void SetShowLineIdsQuietly_DoesNotRaiseRequest()
+    {
+        var vm = new ReadableReadingViewModel();
+        bool raised = false;
+        vm.ShowLineIdsChangeRequested += (_, _) => raised = true;
+
+        vm.SetShowLineIdsQuietly(true);
+
+        Assert.True(vm.ShowLineIds);
+        Assert.False(raised);
     }
 
     // ---- Reading progress ----
