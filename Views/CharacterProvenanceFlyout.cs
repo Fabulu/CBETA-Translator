@@ -490,12 +490,7 @@ public sealed class CharacterProvenanceFlyout : IDisposable
 
     // ==================== Utility ====================
 
-    private static bool IsCjk(char c)
-    {
-        return (c >= 0x4E00 && c <= 0x9FFF)
-            || (c >= 0x3400 && c <= 0x4DBF)
-            || (c >= 0xF900 && c <= 0xFAFF);
-    }
+    private static bool IsCjk(char c) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(c);
 
     private static bool IsLightTheme()
     {

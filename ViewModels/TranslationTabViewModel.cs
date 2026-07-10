@@ -435,23 +435,7 @@ public partial class TranslationTabViewModel : ViewModelBase
         return false;
     }
 
-    public static bool ContainsChineseChar(string? s)
-    {
-        if (string.IsNullOrEmpty(s))
-            return false;
-
-        foreach (char ch in s)
-        {
-            if ((ch >= '\u3400' && ch <= '\u4DBF') ||
-                (ch >= '\u4E00' && ch <= '\u9FFF') ||
-                (ch >= '\uF900' && ch <= '\uFAFF'))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    public static bool ContainsChineseChar(string? s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 
     public static void ValidateEnglish(string en, int blockNumber)
     {

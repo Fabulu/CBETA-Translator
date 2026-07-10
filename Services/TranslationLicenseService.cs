@@ -179,6 +179,8 @@ public sealed class TranslationLicenseService
         return result;
     }
 
+    // Intentionally NOT routed to RelPath.Normalize: this variant is Replace-only
+    // (no null guard, no TrimStart) and must preserve leading slashes in cache keys.
     private static string NormalizeRel(string rel) => rel.Replace('\\', '/');
 
     private static string SanitizeFilename(string name)

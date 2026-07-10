@@ -1002,7 +1002,7 @@ public partial class ScholarTabView : UserControl
                 int cjkCount = 0;
                 foreach (var c in sel)
                 {
-                    if (c >= '\u4E00' && c <= '\u9FFF' || c >= '\u3400' && c <= '\u4DBF' || c >= '\uF900' && c <= '\uFAFF')
+                    if (ReadZen.App.Infrastructure.CjkText.IsIdeograph(c))
                         cjkCount++;
                 }
                 if (cjkCount >= 2)

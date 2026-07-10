@@ -201,12 +201,9 @@ public sealed class MasterDatesService : IMasterDatesService
         return false;
     }
 
-    internal static bool ContainsCjk(string s) => s.Any(c => IsCjk(c));
+    internal static bool ContainsCjk(string s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 
-    private static bool IsCjk(char c) =>
-        c >= '\u4E00' && c <= '\u9FFF' ||
-        c >= '\u3400' && c <= '\u4DBF' ||
-        c >= '\uF900' && c <= '\uFAFF';
+    private static bool IsCjk(char c) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(c);
 
     private static string SanitizeFilename(string name)
         => ReadZen.App.Infrastructure.FileNameSanitizer.Strict(name);

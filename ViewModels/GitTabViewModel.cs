@@ -3401,8 +3401,7 @@ public partial class GitTabViewModel : ViewModelBase
     private string GetUsernameForDefaults()
         => string.IsNullOrWhiteSpace(_username) ? "User" : _username!.Trim();
 
-    private static string NormalizeRel(string p)
-        => (p ?? "").Replace('\\', '/').TrimStart('/');
+    private static string NormalizeRel(string p) => ReadZen.App.Infrastructure.RelPath.Normalize(p);
 
     private static string NormalizePorcelainPath(string line)
     {

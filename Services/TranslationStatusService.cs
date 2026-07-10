@@ -13,10 +13,6 @@ namespace ReadZen.App.Services;
 /// </summary>
 public sealed class TranslationStatusService : ITranslationStatusService
 {
-    private static readonly Regex CjkRegex = new Regex(
-        @"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]",
-        RegexOptions.Compiled);
-
     /// <summary>
     /// Matches any Latin/ASCII letter — evidence that English translation
     /// content exists in a text node (as opposed to pure CJK or whitespace/
@@ -208,7 +204,7 @@ public sealed class TranslationStatusService : ITranslationStatusService
                         var text = reader.Value;
                         if (string.IsNullOrEmpty(text)) break;
 
-                        if (CjkRegex.IsMatch(text))
+                        if (ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(text))
                             foundCjk = true;
 
                         // Non-CJK = Latin/ASCII letters (English translation content).

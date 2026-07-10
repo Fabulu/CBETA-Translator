@@ -45,10 +45,9 @@ public sealed class InvertedSearchIndex
     public bool IsLoaded => _index != null;
 
     /// <summary>Only CJK ideographs are worth indexing.</summary>
-    private static bool IsIndexable(char ch)
-        => (ch >= '\u4E00' && ch <= '\u9FFF')
-        || (ch >= '\u3400' && ch <= '\u4DBF')
-        || (ch >= '\uF900' && ch <= '\uFAFF');
+    // Canonical 3-range CJK set; routed to CjkText (pinned by CjkTextTests over
+    // the full BMP) so the GUID-versioned inverted index cannot silently drift.
+    private static bool IsIndexable(char ch) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(ch);
 
     /// <summary>
     /// Compute a document's indexable bigram set from its raw searchable text: every

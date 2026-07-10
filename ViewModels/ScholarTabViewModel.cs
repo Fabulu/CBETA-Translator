@@ -2029,6 +2029,8 @@ public partial class ScholarTabViewModel : ViewModelBase
         return found.ToList();
     }
 
+    // Intentionally NOT routed to CjkText.IsIdeograph: this copy checks only
+    // CJK Unified (U+4E00-9FFF), excluding Ext A and Compatibility on purpose.
     private static bool ContainsChinese(string s)
     {
         foreach (var c in s)

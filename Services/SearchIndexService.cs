@@ -776,10 +776,10 @@ public sealed class SearchIndexService : ISearchIndexService
         return IsCjk(ch) || char.IsLetter(ch);
     }
 
-    private static bool IsCjk(char ch)
-        => (ch >= '\u3400' && ch <= '\u4DBF')
-        || (ch >= '\u4E00' && ch <= '\u9FFF')
-        || (ch >= '\uF900' && ch <= '\uFAFF');
+    // Canonical 3-range CJK set (U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF).
+    // Routed to the shared classifier; CjkTextTests pins it to the historical
+    // set over the full BMP so the GUID-versioned search artifacts cannot drift.
+    private static bool IsCjk(char ch) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(ch);
 
     public void Dispose()
     {
@@ -927,8 +927,7 @@ public sealed class SearchIndexService : ISearchIndexService
         throw new IOException($"Failed to replace '{final}' after {tries} attempts.", last);
     }
 
-    private static string NormalizeRelKey(string p)
-        => (p ?? "").Replace('\\', '/').TrimStart('/');
+    private static string NormalizeRelKey(string p) => ReadZen.App.Infrastructure.RelPath.Normalize(p);
 
     /// <summary>Resolve a RelPath to an absolute filesystem path, trying primary dir first then additionals.</summary>
     private static string ResolveAbsPath(string primaryDir, IReadOnlyList<string>? additionalDirs, string relKey)
@@ -1729,10 +1728,7 @@ public sealed class SearchIndexService : ISearchIndexService
     // ---------------------------
 
     /// <summary>Returns true if the character is in a CJK range suitable for indexing.</summary>
-    internal static bool IsIndexableCjk(char ch)
-        => (ch >= '\u4E00' && ch <= '\u9FFF')
-        || (ch >= '\u3400' && ch <= '\u4DBF')
-        || (ch >= '\uF900' && ch <= '\uFAFF');
+    internal static bool IsIndexableCjk(char ch) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(ch);
 
     /// <summary>
     /// PR2 (skip-verify hybrid): returns true iff the query is exactly 2 characters

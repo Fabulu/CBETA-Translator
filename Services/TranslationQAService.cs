@@ -108,8 +108,5 @@ public sealed class TranslationQaService : ITranslationQaService
     private static string StripSpaces(string s)
         => s.Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("\n", "");
 
-    private static bool ContainsCjk(string s)
-        => s.Any(c => (c >= '\u3400' && c <= '\u4DBF')
-                   || (c >= '\u4E00' && c <= '\u9FFF')
-                   || (c >= '\uF900' && c <= '\uFAFF'));
+    private static bool ContainsCjk(string s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 }
