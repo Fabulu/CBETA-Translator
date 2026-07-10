@@ -88,6 +88,17 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
+		<!--
+		S7 bundled prebuilt search index. Ships the Assets/PrebuiltIndex DIRECTORY next to
+		the exe (mirrors the cedict pattern above). In a source build this carries only the
+		placeholder README; CI populates the real search.* artifacts here before publish
+		(the *.bin/manifest bundle is .gitignored, never committed — like data/search on the
+		SPA). On first run SearchIndexService seeds this into a virgin user index root.
+		-->
+		<Content Include="Assets\PrebuiltIndex\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup>
 
 

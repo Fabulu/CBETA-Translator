@@ -56,6 +56,58 @@ jobs:
         shell: bash
         run: echo "RELEASE_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
 
+      # ───────────────────────────────────────────────────────────────
+      # S7: stage the bundled prebuilt search index BEFORE publish, so the
+      # csproj `<Content Include="Assets\PrebuiltIndex\**\*">` copies it into
+      # the publish output. The app seeds it into a virgin user index root on
+      # first run (SearchIndexService.TrySeedFromBundle).
+      #
+      # UNVALIDATED: this has never been exercised by a real CI run. It is gated
+      # on two repo variables holding the corpus repo URLs; when they are unset
+      # the step is skipped and releases behave exactly as before (no bundle →
+      # first run does a cold full build). Runs the headless `--build-search-index`
+      # mode, which exits before Avalonia/Velopack init and is therefore safe on a
+      # display-less runner (every OS in the matrix). NOTE: this clones + indexes on
+      # every matrix leg (4x per release); if that proves too slow, hoist it into a
+      # single upstream job that uploads Assets/PrebuiltIndex as an artifact the
+      # build jobs download.
+      # ───────────────────────────────────────────────────────────────
+      - name: Generate bundled search index (Assets/PrebuiltIndex)
+        if: ${{ vars.PREBUILT_INDEX_TEXTS_REPO != '' && vars.PREBUILT_INDEX_TRANS_REPO != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CORPUS_DIR="$RUNNER_TEMP/prebuilt-corpus"
+          rm -rf "$CORPUS_DIR"
+          mkdir -p "$CORPUS_DIR"
+
+          echo "Cloning corpus repos (shallow) ..."
+          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" "$CORPUS_DIR/texts"
+          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" "$CORPUS_DIR/trans"
+
+          # Resolve the CBETA layout inside each clone (xml-p5 / xml-p5t).
+          SRC="$CORPUS_DIR/texts/xml-p5"
+          TRN="$CORPUS_DIR/trans/xml-p5t"
+          if [ ! -d "$SRC" ]; then echo "::error::source dir $SRC not found in texts repo"; exit 1; fi
+          if [ ! -d "$TRN" ]; then echo "::error::trans dir $TRN not found in trans repo"; exit 1; fi
+
+          OUT="Assets/PrebuiltIndex"
+          mkdir -p "$OUT"
+
+          echo "Building bundled search index into $OUT ..."
+          dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -- \
+            --build-search-index \
+            --source-dir "$SRC" \
+            --trans-dir  "$TRN" \
+            --out-dir    "$OUT"
+
+          if [ ! -f "$OUT/search.index.bin" ]; then
+            echo "::error::--build-search-index did not produce search.index.bin"; exit 1
+          fi
+          echo "Staged bundled index:"
+          ls -la "$OUT"
+
       # One publish configuration for all platforms (bash is available on the
       # Windows runners too; the pwsh/bash twins had to be kept in sync by hand).
       - name: Publish

@@ -954,8 +954,240 @@ public sealed class SearchIndexService : ISearchIndexService
     public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
     public string GetCjk2ManifestPath(string root) => Path.Combine(root, Cjk2ManifestFileName);
 
+    // ==========================================================
+    // S7: BUNDLED PREBUILT INDEX — seed-from-bundle on first run
+    // ==========================================================
+    // A release ships a prebuilt copy of the index family next to the exe
+    // (Assets/PrebuiltIndex, produced by CI via --build-search-index). On a virgin
+    // index root the seed copies that family in ONCE so first run skips the cold
+    // full build; the normal IsStaleAsync + incremental catch-up then reindexes only
+    // the files that drifted since the bundle was cut. Nothing here bumps a BuildGuid
+    // or changes an on-disk format — it is pure file plumbing.
+
+    /// <summary>Exposes the current bloom/inverted-family BuildGuid so the seed decision
+    /// (and its tests) can reject a bundle cut for an older index format.</summary>
+    internal static string CurrentSearchBuildGuid => BuildGuid;
+
+    /// <summary>Outcome of <see cref="EvaluateBundleSeed"/>: whether a prebuilt bundle
+    /// should be adopted into a user index root, and if not, why.</summary>
+    internal enum BundleSeedDecision
+    {
+        /// <summary>Virgin index root + a usable current-BuildGuid bundle → copy it in.</summary>
+        Seed,
+        /// <summary>A real user index already exists — never clobber it with the bundle.</summary>
+        SkipUserIndexPresent,
+        /// <summary>No bundle dir, or it lacks the core manifest/bin pair.</summary>
+        SkipNoBundle,
+        /// <summary>Bundle present but cut for a different (stale) BuildGuid — ignore it.</summary>
+        SkipBundleGuidMismatch,
+    }
+
+    /// <summary>
+    /// Pure decision (no filesystem mutation): should the prebuilt <paramref name="bundleDir"/>
+    /// be seeded into <paramref name="indexRoot"/>? Guards, in order: (1) never overwrite an
+    /// existing user index (search.index.bin present); (2) the bundle must carry the core
+    /// manifest+bin pair; (3) the bundle manifest must stamp the CURRENT BuildGuid, else its
+    /// format is stale relative to this binary and a normal full build should run instead.
+    /// </summary>
+    internal static BundleSeedDecision EvaluateBundleSeed(string indexRoot, string bundleDir)
+    {
+        // Guard 1: a real user index owns all future updates via the incremental path.
+        if (File.Exists(Path.Combine(indexRoot, BinFileName)))
+            return BundleSeedDecision.SkipUserIndexPresent;
+
+        // Guard 2: the bundle must ship at least the core bloom manifest + bin.
+        if (string.IsNullOrEmpty(bundleDir))
+            return BundleSeedDecision.SkipNoBundle;
+        var bundleManifest = Path.Combine(bundleDir, ManifestFileName);
+        var bundleBin = Path.Combine(bundleDir, BinFileName);
+        if (!File.Exists(bundleManifest) || !File.Exists(bundleBin))
+            return BundleSeedDecision.SkipNoBundle;
+
+        // Guard 3: format compatibility is proven by the BuildGuid stamp, not the bytes.
+        var guid = TryReadBundleBuildGuid(bundleManifest);
+        if (!string.Equals(guid, BuildGuid, StringComparison.Ordinal))
+            return BundleSeedDecision.SkipBundleGuidMismatch;
+
+        return BundleSeedDecision.Seed;
+    }
+
+    private static string? TryReadBundleBuildGuid(string manifestPath)
+    {
+        try
+        {
+            var json = File.ReadAllText(manifestPath, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            return man?.BuildGuid;
+        }
+        catch { return null; }
+    }
+
+    /// <summary>
+    /// Adopts the prebuilt bundle into <paramref name="indexRoot"/> when
+    /// <see cref="EvaluateBundleSeed"/> says <see cref="BundleSeedDecision.Seed"/>. Copies the
+    /// whole <c>search.*</c> family (5 artifacts + their manifests + the gramsets sidecar) and
+    /// re-homes the absolute RootPath the three path-bound manifests embed so the loaders accept
+    /// them at the new root. Best-effort and all-or-nothing: any failure rolls back the partial
+    /// copy so a clean full build runs instead. Returns true only when files were actually seeded.
+    /// </summary>
+    internal static bool TrySeedFromBundle(string indexRoot, string bundleDir, out BundleSeedDecision decision, TextWriter? log = null)
+    {
+        decision = EvaluateBundleSeed(indexRoot, bundleDir);
+        if (decision != BundleSeedDecision.Seed)
+            return false;
+
+        var copied = new List<string>();
+        try
+        {
+            Directory.CreateDirectory(indexRoot);
+
+            // Copy the entire search.* family. Globbing keeps this correct if the family
+            // grows a future artifact; half-written CI .tmp scratch files are excluded.
+            foreach (var src in Directory.EnumerateFiles(bundleDir, "search.*", SearchOption.TopDirectoryOnly))
+            {
+                var name = Path.GetFileName(src);
+                if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase)) continue;
+                var dst = Path.Combine(indexRoot, name);
+                File.Copy(src, dst, overwrite: true);
+                copied.Add(dst);
+            }
+
+            // Re-home the absolute RootPath the three path-bound manifests embed. Without
+            // this, TryLoad{,Text,Cjk2}ManifestAsync reject a manifest whose RootPath != the
+            // load root and the freshly seeded index would be silently ignored (full rebuild
+            // anyway). IndexStamp — which binds the inverted/corpusfreq/cjk2/gramsets siblings
+            // to this build — is left untouched, so the family stays internally consistent.
+            RehomeManifestRootPath(Path.Combine(indexRoot, ManifestFileName), indexRoot);
+            RehomeManifestRootPath(Path.Combine(indexRoot, TextManifestFileName), indexRoot);
+            RehomeManifestRootPath(Path.Combine(indexRoot, Cjk2ManifestFileName), indexRoot);
+            // The gramsets sidecar (6th artifact) also embeds RootPath and GramSetsStore
+            // .TryLoadAsync rejects it unless full-path-equal to the load root; without this
+            // re-home the seeded sidecar is dead weight and every entry's gram sets are
+            // recomputed on the first incremental catch-up.
+            RehomeManifestRootPath(Path.Combine(indexRoot, GramSetsStore.ManifestFileName), indexRoot);
+
+            log?.WriteLine($"Seeded search index from bundle: {copied.Count} files -> {indexRoot}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            log?.WriteLine($"Bundle seed failed ({ex.Message}); rolling back so a full build runs.");
+            foreach (var f in copied)
+            {
+                try { File.Delete(f); } catch { }
+            }
+            decision = BundleSeedDecision.SkipNoBundle;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Rewrites ONLY the <c>RootPath</c> field of a seeded manifest to the new index root,
+    /// preserving every other field byte-for-byte (JsonNode edit, not a model round-trip, so
+    /// no default-value drift). No-op when the manifest is absent or unparseable.
+    /// </summary>
+    private static void RehomeManifestRootPath(string manifestPath, string indexRoot)
+    {
+        if (!File.Exists(manifestPath)) return;
+        var json = File.ReadAllText(manifestPath, Utf8NoBom);
+        if (string.IsNullOrWhiteSpace(json)) return;
+        var node = System.Text.Json.Nodes.JsonNode.Parse(json);
+        if (node == null) return;
+        node["RootPath"] = indexRoot;
+        // Temp-file + rename (matching this file's atomic-write pattern) so a crash mid-write
+        // never leaves a truncated manifest at the index root, which would force a full cold
+        // build on the next start — exactly the cost the bundle seed was meant to avoid.
+        var tmp = manifestPath + ".tmp";
+        File.WriteAllText(tmp, node.ToJsonString(JsonOpts), Utf8NoBom);
+        File.Move(tmp, manifestPath, overwrite: true);
+    }
+
+    /// <summary>Best-effort startup hook: seed from the exe-adjacent prebuilt bundle before a
+    /// staleness check. No-op when a user index exists or no valid bundle ships. Swallows all
+    /// faults — a seed hiccup must never break the staleness probe.</summary>
+    private void TrySeedBundleBestEffort(string root)
+    {
+        try
+        {
+            var bundleDir = ReadZen.App.Infrastructure.AppPaths.GetPrebuiltIndexDir();
+            if (string.IsNullOrEmpty(bundleDir)) return;
+            TrySeedFromBundle(root, bundleDir, out _, null);
+        }
+        catch { /* seeding is an optimization, never a hard dependency */ }
+    }
+
+    /// <summary>
+    /// Headless CLI entry (Program.Main, <c>--build-search-index</c>): full-rebuild a shippable
+    /// search index for a corpus into an output dir. Mirrors the <c>--build-segments</c> tool.
+    /// Exit codes: 0 = success, 1 = bad args / missing dirs, 2 = build threw, 3 = build produced
+    /// no bin. This is what CI runs to generate the bundle staged into Assets/PrebuiltIndex.
+    /// </summary>
+    public static int RunHeadlessBuild(string[] args, TextWriter log)
+    {
+        string? Arg(string name)
+        {
+            var i = Array.IndexOf(args, "--" + name);
+            return i >= 0 && i + 1 < args.Length ? args[i + 1] : null;
+        }
+
+        var sourceDir = Arg("source-dir");
+        var transDir = Arg("trans-dir");
+        var outDir = Arg("out-dir");
+
+        if (sourceDir == null || transDir == null || outDir == null)
+        {
+            log.WriteLine("usage: --build-search-index --source-dir <xml-p5 dir> --trans-dir <xml-p5t dir> --out-dir <index dir>");
+            return 1;
+        }
+        if (!Directory.Exists(sourceDir) || !Directory.Exists(transDir))
+        {
+            log.WriteLine("error: --source-dir or --trans-dir does not exist");
+            return 1;
+        }
+
+        try
+        {
+            Directory.CreateDirectory(outDir);
+            var svc = new SearchIndexService();
+            var progress = new Progress<(int done, int total, string phase)>(t =>
+                log.WriteLine($"  {t.phase}: {t.done}/{t.total}"));
+
+            log.WriteLine("Building bundled search index (forceRebuild) ...");
+            log.WriteLine($"  Source: {sourceDir}");
+            log.WriteLine($"  Trans:  {transDir}");
+            log.WriteLine($"  Out:    {outDir}");
+
+            svc.BuildOrUpdateAsync(outDir, sourceDir, new[] { transDir },
+                    forceRebuild: true, progress: progress)
+               .GetAwaiter().GetResult();
+
+            var bin = Path.Combine(outDir, BinFileName);
+            if (!File.Exists(bin))
+            {
+                log.WriteLine("error: build completed but search.index.bin was not produced");
+                return 3;
+            }
+
+            log.WriteLine($"OK: bundled search index written to {outDir}");
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLine($"error: index build failed: {ex}");
+            return 2;
+        }
+    }
+
     public async Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs)
     {
+        // S7: one-time seed-from-bundle before evaluating staleness. On a virgin index root
+        // this adopts the exe-adjacent prebuilt index; the staleness check below then decides
+        // whether the corpus has drifted past the bundle (→ cheap incremental catch-up) or
+        // matches it (→ not stale, no build). No-op when a user index exists or no valid
+        // current-BuildGuid bundle ships next to the exe (e.g. every unit-test host).
+        TrySeedBundleBestEffort(root);
+
         var manifestPath = GetManifestPath(root);
         if (!File.Exists(manifestPath))
             return true;
@@ -985,8 +1217,11 @@ public sealed class SearchIndexService : ISearchIndexService
             // fresh SHA256 + deposit into the writeBack dict for opportunistic persistence.
             var cache = BuildContentHashCache(manifest);
             var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
+            // Fresh on-disk stat stamps for every cache-miss file, so a seeded manifest's
+            // CI-machine ticks get healed to local values during the backfill below.
+            var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
 
-            var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None).ConfigureAwait(false);
+            var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None, stampWriteBack).ConfigureAwait(false);
             if (!string.Equals(manifest.InputHash, currentHash, StringComparison.Ordinal))
                 return true;
 
@@ -1003,7 +1238,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     try
                     {
-                        ApplyContentHashWriteBack(manifest, writeBack);
+                        ApplyContentHashWriteBack(manifest, writeBack, stampWriteBack);
                         await SaveContentHashBackfillAsync(root, manifest, CancellationToken.None).ConfigureAwait(false);
                         Interlocked.Increment(ref _contentHashBackfillCount);
                     }
@@ -1058,7 +1293,10 @@ public sealed class SearchIndexService : ISearchIndexService
     /// Copies fresh per-file hashes from the write-back dict onto the manifest's entries.
     /// Mirrors the namespacing logic in <see cref="BuildContentHashCache"/>.
     /// </summary>
-    private static void ApplyContentHashWriteBack(SearchIndexManifest manifest, IReadOnlyDictionary<string, string> writeBack)
+    private static void ApplyContentHashWriteBack(
+        SearchIndexManifest manifest,
+        IReadOnlyDictionary<string, string> writeBack,
+        IReadOnlyDictionary<string, (long Ticks, long Length)>? stampWriteBack = null)
     {
         foreach (var e in manifest.Entries)
         {
@@ -1067,6 +1305,14 @@ public sealed class SearchIndexService : ISearchIndexService
             if (writeBack.TryGetValue(rel, out var freshHash))
             {
                 e.ContentHash = freshHash;
+            }
+            // Refresh the stat stamps too, so a seeded manifest (whose entries carry the CI
+            // machine's ticks) heals after the first probe instead of re-reading + re-hashing
+            // the whole corpus on every subsequent staleness check.
+            if (stampWriteBack != null && stampWriteBack.TryGetValue(rel, out var stamp))
+            {
+                e.LastWriteUtcTicks = stamp.Ticks;
+                e.LengthBytes = stamp.Length;
             }
         }
     }
@@ -1165,11 +1411,12 @@ public sealed class SearchIndexService : ISearchIndexService
         IEnumerable<string> translatedDirs,
         IReadOnlyDictionary<string, SearchIndexEntry>? cache,
         IDictionary<string, string>? writeBack,
-        CancellationToken ct)
+        CancellationToken ct,
+        IDictionary<string, (long Ticks, long Length)>? stampWriteBack = null)
     {
         // Enumerate file metadata off the caller's thread — directory walks can be
         // multi-second on cold-disk corpora.
-        return await Task.Run(() => ComputeInputHashCore(originalDir, translatedDirs, cache, writeBack, ct), ct).ConfigureAwait(false);
+        return await Task.Run(() => ComputeInputHashCore(originalDir, translatedDirs, cache, writeBack, stampWriteBack, ct), ct).ConfigureAwait(false);
     }
 
     private static string ComputeInputHashCore(
@@ -1177,6 +1424,7 @@ public sealed class SearchIndexService : ISearchIndexService
         IEnumerable<string> translatedDirs,
         IReadOnlyDictionary<string, SearchIndexEntry>? cache,
         IDictionary<string, string>? writeBack,
+        IDictionary<string, (long Ticks, long Length)>? stampWriteBack,
         CancellationToken ct)
     {
         // Content-hash basis. Per-file SHA256 of the file's bytes, combined with the
@@ -1187,13 +1435,13 @@ public sealed class SearchIndexService : ISearchIndexService
         // any filesystem operation that preserves file bytes.
         var rows = new List<(string rel, byte[] contentHash)>();
 
-        AppendDirRows(rows, originalDir, "orig", cache, writeBack, ct);
+        AppendDirRows(rows, originalDir, "orig", cache, writeBack, stampWriteBack, ct);
         if (translatedDirs != null)
         {
             int i = 0;
             foreach (var tDir in translatedDirs)
             {
-                AppendDirRows(rows, tDir, "tran" + i, cache, writeBack, ct);
+                AppendDirRows(rows, tDir, "tran" + i, cache, writeBack, stampWriteBack, ct);
                 i++;
             }
         }
@@ -1222,6 +1470,7 @@ public sealed class SearchIndexService : ISearchIndexService
         string namespacePrefix,
         IReadOnlyDictionary<string, SearchIndexEntry>? cache,
         IDictionary<string, string>? writeBack,
+        IDictionary<string, (long Ticks, long Length)>? stampWriteBack,
         CancellationToken ct)
     {
         if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) return;
@@ -1256,9 +1505,11 @@ public sealed class SearchIndexService : ISearchIndexService
             }
 
             byte[] contentHash;
+            long lengthBytes;
             try
             {
                 using var fs = File.OpenRead(f);
+                lengthBytes = fs.Length;
                 contentHash = System.Security.Cryptography.SHA256.HashData(fs);
             }
             catch (IOException) { continue; }
@@ -1271,6 +1522,17 @@ public sealed class SearchIndexService : ISearchIndexService
             if (writeBack != null)
             {
                 writeBack[rel] = Convert.ToHexString(contentHash).ToLowerInvariant();
+            }
+
+            // Also capture the on-disk (mtime ticks, length) so a caller backfilling a
+            // seeded manifest can heal the stat cache: seeded entries carry the CI build
+            // machine's ticks, which never match the local clone, so every file misses the
+            // stat check on every probe until these local stamps are written back.
+            if (stampWriteBack != null)
+            {
+                long ticks = 0;
+                try { ticks = File.GetLastWriteTimeUtc(f).Ticks; } catch { /* leave 0; a 0 stamp just re-misses, never wrong */ }
+                stampWriteBack[rel] = (ticks, lengthBytes);
             }
         }
     }
