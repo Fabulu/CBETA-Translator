@@ -123,11 +123,12 @@ public sealed class InvertedGramSetBuildTests : IDisposable
     // ---- (b) DF cutoff boundary: kept at exactly maxDf, dropped at maxDf + 1 ----
 
     [Fact]
-    public async Task DfCutoffBoundary_BothOverloadsAgree()
+    public async Task BothBuildOverloads_ProduceIdenticalFullCoverageIndex()
     {
-        // 10 docs → maxDf = (int)(10 * 0.8) = 8. "無門" in exactly 8 docs (kept:
-        // count > maxDf is false), "祖師" in 9 docs (dropped). Comma separators keep
-        // the fixture grams from forming cross-boundary bigrams.
+        // FULL coverage (MaxDocFrequencyRatio = 1.0, no DF cut): every term is indexed
+        // regardless of doc frequency. "無門" in 8 of 10 docs, "祖師" in 9 of 10 — BOTH must be
+        // fully present, and the two Build overloads (raw text vs. precomputed gram set) must
+        // agree exactly. Comma separators keep the fixture grams from forming cross-boundary bigrams.
         var docs = new List<(string relPath, string searchableText)>();
         for (int i = 0; i < 10; i++)
         {
@@ -142,14 +143,15 @@ public sealed class InvertedGramSetBuildTests : IDisposable
             .Select(d => (d.relPath, InvertedSearchIndex.ComputeGramSet(d.searchableText)))
             .ToList());
 
-        var expectedKept = Enumerable.Range(0, 8).Select(i => (ushort)i).ToArray();
+        var expectedWumen = Enumerable.Range(0, 8).Select(i => (ushort)i).ToArray();
+        var expectedZushi = Enumerable.Range(0, 9).Select(i => (ushort)i).ToArray();
         foreach (var idx in new[] { textIdx, gramIdx })
         {
-            Assert.Equal(expectedKept, idx.Search("無門")); // exactly maxDf docs → kept
-            Assert.Empty(idx.Search("祖師")!);              // maxDf + 1 docs → cut
+            Assert.Equal(expectedWumen, idx.Search("無門")); // 8 docs — all indexed
+            Assert.Equal(expectedZushi, idx.Search("祖師")); // 9 docs — no cut, all indexed
         }
 
-        // And the cutoff decision is identical on disk, not just via Search.
+        // And the build is byte-identical on disk across the two overloads.
         var textBin = Path.Combine(_dir, "df-text.bin");
         var gramBin = Path.Combine(_dir, "df-gram.bin");
         await textIdx.SaveAsync(textBin, "stamp-df");
