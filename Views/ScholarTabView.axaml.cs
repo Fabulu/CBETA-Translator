@@ -1999,8 +1999,10 @@ public partial class ScholarTabView : UserControl
             var origDir = _originalDir ?? Infrastructure.AppPaths.GetOriginalDir(parentRoot);
             var tranDir = _translatedDir ?? Infrastructure.AppPaths.GetTranslatedDir(parentRoot);
 
+            // The parallel finder reads the app-owned search index (not the corpus repo).
+            var indexRoot = Infrastructure.AppPaths.GetSearchIndexRoot(origDir);
             var results = await _parallelFinder.FindParallelsAsync(
-                passage.ZhText, root, origDir, tranDir, ct);
+                passage.ZhText, indexRoot, origDir, tranDir, ct);
 
             if (ct.IsCancellationRequested) return;
 

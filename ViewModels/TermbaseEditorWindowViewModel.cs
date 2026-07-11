@@ -497,7 +497,9 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
 
         try
         {
-            var manifest = await _searchIndex.TryLoadAsync(_root);
+            // Corpus-usage reads the app-owned search index (not the translations repo).
+            var indexRoot = ReadZen.App.Infrastructure.AppPaths.GetSearchIndexRoot(_originalDir);
+            var manifest = await _searchIndex.TryLoadAsync(indexRoot);
             if (manifest == null)
             {
                 CorpusStatusText = "No search index found. Build one from the Search tab first.";
@@ -507,7 +509,7 @@ public partial class TermbaseEditorWindowViewModel : ViewModelBase
             var hits = new List<CorpusUsageHit>();
 
             await foreach (var group in _searchIndex.SearchAllAsync(
-                _root, _originalDir, _translatedDir, manifest,
+                indexRoot, _originalDir, _translatedDir, manifest,
                 term,
                 includeOriginal: true,
                 includeTranslated: false,
