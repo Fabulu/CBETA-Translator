@@ -19,8 +19,8 @@ namespace ReadZen.Tests.Search;
 ///     strictly mid-corpus and shift every later positional Id (manifest Id,
 ///     inverted docId);
 ///   - the common gram 無門 (<see cref="CommonGram"/>) appears in EVERY winner doc
-///     (the side the inverted index keeps after keep-first dedup), i.e. &gt;80% doc
-///     frequency, which arms the 0.8 MaxDocFrequencyRatio cutoff;
+///     (the side the inverted index keeps after keep-first dedup), i.e. a near-ubiquitous
+///     (&gt;80% doc frequency) term — indexed fully now that coverage is 1.0 (no DF cut);
 ///   - every file additionally carries a unique rare bigram
 ///     (<see cref="UniqueOrigGram"/> / <see cref="UniqueTranGram"/>) for semantic
 ///     backstop assertions;
@@ -31,7 +31,7 @@ namespace ReadZen.Tests.Search;
 /// </summary>
 public sealed class IndexFixtureCorpus : IDisposable
 {
-    /// <summary>無門 — present in every winner doc, so it exceeds the 0.8 DF cutoff.</summary>
+    /// <summary>無門 — present in every winner doc (near-ubiquitous; indexed fully at 1.0 coverage).</summary>
     public const string CommonGram = "無門";
 
     public string Root { get; }
@@ -119,7 +119,7 @@ public sealed class IndexFixtureCorpus : IDisposable
     /// <summary>
     /// Fraction of winner docs (orig side when present, tran side otherwise — the
     /// inverted index keep-first dedup semantics) whose text contains
-    /// <see cref="CommonGram"/>. Must exceed 0.8 to arm the DF cutoff.
+    /// <see cref="CommonGram"/>. Kept &gt;0.8 so the gram is a genuinely near-ubiquitous term.
     /// </summary>
     public double CommonGramWinnerDocFraction()
     {
@@ -238,7 +238,7 @@ public sealed class IndexFixtureCorpus : IDisposable
     private static string BuildTranBody(string uniqueGram, string rel, int i)
     {
         // Translated side carries CJK too: the common gram (so tran-only winner docs
-        // still arm the DF cutoff) plus its own unique rare gram.
+        // stay near-ubiquitous) plus its own unique rare gram.
         return "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\"><text><body><p>" +
                $"Case {rel} of the gateless barrier {CommonGram}{uniqueGram}中. " +
                new string('x', 10 + i) +

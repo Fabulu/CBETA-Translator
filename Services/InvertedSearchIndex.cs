@@ -12,8 +12,9 @@ namespace ReadZen.App.Services;
 /// Bigram inverted index for fast, exact-match candidate filtering.
 /// Replaces bloom filters with 0% false positive rate.
 ///
-/// v4 format: per-posting (docId-gap varint, term-frequency varint) pairs, high-DF
-/// cutoff, plus an integrity header — a build stamp (must match
+/// v4 format: per-posting (docId-gap varint, term-frequency varint) pairs, FULL CJK-bigram
+/// coverage (no high-DF cut — see <see cref="MaxDocFrequencyRatio"/>), plus an integrity
+/// header — a build stamp (must match
 /// <c>SearchIndexManifest.IndexStamp</c>) and a SHA-256 checksum of the sibling
 /// .paths file. The stamp stops a stale inverted index from being trusted after its
 /// rebuild failed; the checksum stops a torn save (new .paths + old .bin, both
@@ -25,13 +26,23 @@ namespace ReadZen.App.Services;
 /// occurs in that document, so ranking and hit-counts can come from the index without
 /// scanning document text. tf is written as a second varint after each docId gap and
 /// is always ≥ 1 (a posting exists only when the bigram occurred). The docId ushort
-/// cap and high-DF cutoff are unchanged.
+/// cap is unchanged; the high-DF cut was removed 2026-07-11 (ratio → 1.0) so desktop
+/// matches the SPA's full coverage.
 /// </summary>
 public sealed class InvertedSearchIndex
 {
     private static readonly byte[] Magic = "IIDX"u8.ToArray();
     private const int Version = 4;
-    private const double MaxDocFrequencyRatio = 0.8; // skip only truly ubiquitous bigrams (之所, 如是, etc.)
+    // FULL coverage (1.0): index EVERY CJK bigram, including ubiquitous ones (之所, 如是, …).
+    // The old 0.8 cut was a WEB-transfer optimization — on the SPA a near-universal bigram
+    // is a fat downloadable shard that matches everything, so it was dropped there. On the
+    // DESKTOP the whole index is a local file: a big posting list is a cheap read, and the
+    // query intersects rarest-bigram-first so the giant list never bounds a multi-bigram
+    // phrase. Dropping the cut lets common-phrase CJK queries (如是我聞, …) use the instant
+    // inverted path instead of falling to the slower bloom sweep. At 1.0, maxDf == docCount
+    // and the guard below never fires (a posting list can't exceed docCount). The SPA already
+    // ships at full coverage (no DF cut), so this brings desktop to parity.
+    private const double MaxDocFrequencyRatio = 1.0;
 
     // Per-term postings, split into two parallel, docId-ascending arrays: _index holds
     // the docIds (the read path for the docId-only Search stays byte-for-byte the old

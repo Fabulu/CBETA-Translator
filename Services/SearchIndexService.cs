@@ -173,15 +173,16 @@ public sealed class SearchIndexService : ISearchIndexService
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
     private const int BloomHashCount = 5; // optional: 4 is okay too
-    // Bumped 2026-07-10 from "search-v6-stamped-siblings" (AUTHORIZED, instant-search
-    // sprint): the inverted index gained per-posting term frequency (format v3 → v4).
-    // The v4 loader refuses v3 files, and without a bump the old stampless-of-tf inverted
-    // index would be refused on stamp match yet leave search on the bloom+verify path
-    // until the next natural rebuild — the GUID bump forces the ONE full rebuild that
-    // writes tf-carrying postings. Do NOT bump again lightly.
-    // (Previous bump 2026-07-08: cjk2 + corpusfreq IndexStamp binding, D3 item 5.
+    // Bumped 2026-07-11 from "search-v7-postings-tf" (AUTHORIZED): the inverted index DF cut
+    // was raised 0.8 → 1.0 (full CJK-bigram coverage — see InvertedSearchIndex.MaxDocFrequencyRatio).
+    // The on-disk FORMAT is unchanged (still v4), so a format check alone wouldn't rebuild; the
+    // GUID bump forces the ONE full rebuild that writes the now-uncut postings, so existing
+    // 80%-coverage indexes are refreshed and common-phrase CJK queries get the instant path
+    // instead of the bloom fallback. Do NOT bump again lightly.
+    // (Previous bump 2026-07-10: inverted tf postings v3 → v4, instant-search sprint.
+    //  Previous bump 2026-07-08: cjk2 + corpusfreq IndexStamp binding, D3 item 5.
     //  Previous bump 2026-07-04: inverted index integrity contract, audit P1.1.)
-    private const string BuildGuid = "search-v7-postings-tf";
+    private const string BuildGuid = "search-v8-full-df";
     // PERF (E): an incremental build whose changed+removed set exceeds this fraction of
     // the corpus abandons the incremental path and runs a clean full rebuild instead —
     // near a wholesale change the per-entry incremental overhead (old-artifact reads,

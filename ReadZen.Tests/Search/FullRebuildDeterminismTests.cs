@@ -72,7 +72,7 @@ public class FullRebuildDeterminismTests
                  && StringComparer.OrdinalIgnoreCase.Compare(gap, "T/T01/d0020.xml") < 0,
             $"gap rel '{gap}' must sort strictly between b0010 and d0020");
 
-        // Common gram in >80% of winner docs (arms the 0.8 DF cutoff).
+        // Fixture sanity: the common gram is genuinely near-ubiquitous (>80% of winner docs).
         var fraction = fx.CommonGramWinnerDocFraction();
         Assert.True(fraction > 0.8, $"common gram winner-doc fraction {fraction:F2} must exceed 0.8");
 
@@ -173,10 +173,10 @@ public class FullRebuildDeterminismTests
         Assert.DoesNotContain(a.MainManifest.Entries, e => string.Equals(e.RelPath, removeRel, StringComparison.OrdinalIgnoreCase));
     }
 
-    // ===== DF-cutoff arming: the fixture's common gram really is cut at 0.8 =====
+    // ===== Full coverage: the ubiquitous common gram is indexed (no DF cut) =====
 
     [Fact]
-    public async Task DfCutoff_Armed_CommonGramCut_RareGramResolvesToItsRel()
+    public async Task FullCoverage_CommonGramIndexed_RareGramResolvesToItsRel()
     {
         using var fx = new IndexFixtureCorpus();
         var svc = new SearchIndexService();
@@ -190,13 +190,13 @@ public class FullRebuildDeterminismTests
         Assert.True(await inv.TryLoadAsync(Path.Combine(fx.Root, "search.inverted.bin"), manifest.IndexStamp!),
             "inverted index must load against the freshly built manifest stamp");
 
-        // The common gram is in 100% of winner docs — above the 0.8 DF cutoff — so its
-        // postings were dropped at save time; the index reports zero candidates for it.
+        // The common gram is in 100% of winner docs. At full coverage (no DF cut) it is
+        // INDEXED, so the index reports its winner-doc candidates rather than dropping them.
         var common = inv.Search(IndexFixtureCorpus.CommonGram);
         Assert.NotNull(common);
-        Assert.Empty(common!);
+        Assert.NotEmpty(common!);
 
-        // A per-file rare gram survives the cutoff and resolves to exactly its rel.
+        // A per-file rare gram resolves to exactly its rel.
         var rel = fx.BothSidesRels[0];
         var hits = inv.Search(fx.UniqueOrigGram(rel));
         Assert.NotNull(hits);

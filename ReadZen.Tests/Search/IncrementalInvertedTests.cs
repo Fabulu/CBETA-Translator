@@ -11,15 +11,14 @@ using Xunit;
 namespace ReadZen.Tests.Search;
 
 /// <summary>
-/// INC-4A: the gramsets sidecar (6th artifact) wired into the build — the inverted
-/// index is built from cached + fresh UNCUT gram sets (transpose path), the high-DF
-/// cutoff is applied at save time inside <c>InvertedSearchIndex.Build</c>, and the
-/// sidecar is persisted best-effort after the family commit.
+/// INC-4A: the gramsets sidecar wired into the build — the inverted index is built from
+/// cached + fresh gram sets (transpose path), and the sidecar is persisted best-effort
+/// after the family commit. (The high-DF cut was removed 2026-07-11: coverage is now 1.0,
+/// so every term is indexed regardless of doc frequency.)
 ///
 /// Proven here:
-///   - DF resurrection: a term cut by a previous build (&gt;80% doc frequency) comes
-///     BACK with correct postings when the corpus shrinks below the threshold —
-///     possible only because cached gram sets are stored uncut;
+///   - full coverage across removals: a near-ubiquitous term stays fully indexed and an
+///     incremental rebuild matches a from-scratch full build as the corpus shrinks;
 ///   - cache-lost / corrupted sidecar: the build stays correct and equivalent, never
 ///     crashes, never falls back to a full rebuild, and re-creates the sidecar;
 ///   - staleness safety: the sidecar is never trusted across a content change;
@@ -108,16 +107,16 @@ public class IncrementalInvertedTests
             "</p></body></text></TEI>");
     }
 
-    // ============ (a) DF-cutoff resurrection ============
+    // ============ (a) Full coverage across removals (incremental == full) ============
 
     [Fact]
-    public async Task DfCutoff_TermCutAtBaseline_ResurrectsAfterRemovals_EquivalentToFull()
+    public async Task CommonGram_FullyIndexed_IncrementalEqualsFullAfterRemovals()
     {
         using var fx = new IndexFixtureCorpus();
 
-        // Baseline arithmetic: the 20 fixture winner docs ALL contain 無門. Adding 4
-        // orig-only docs WITHOUT it gives 24 docs, 20 of them with the gram:
-        // maxDf = (int)(24 * 0.8) = 19, and 20 > 19 → the term is CUT at baseline.
+        // The 20 fixture winner docs ALL contain 無門. Adding 4 orig-only docs WITHOUT it
+        // gives 24 docs, 20 with the gram. At full coverage (no DF cut) the gram is INDEXED
+        // regardless of how ubiquitous it is.
         for (int k = 0; k < 4; k++)
             WriteNoCommonGramOrig(fx, $"T/T48/z0{k}00.xml");
 
@@ -126,13 +125,12 @@ public class IncrementalInvertedTests
 
         var baseline = ArtifactFamilyAssert.SnapshotFamily(fx.Root);
         var baselineInv = await LoadInvertedAsync(fx.Root, baseline.MainManifest.IndexStamp);
-        var cutHits = baselineInv.Search(IndexFixtureCorpus.CommonGram);
-        Assert.NotNull(cutHits);
-        Assert.Empty(cutHits!); // absent term ⇒ zero results: the cutoff dropped it
+        var baselineHits = baselineInv.Search(IndexFixtureCorpus.CommonGram);
+        Assert.NotNull(baselineHits);
+        Assert.NotEmpty(baselineHits!); // ubiquitous term is indexed, not dropped
 
-        // Delta: REMOVE 4 rels that contain the gram → 20 docs, 16 with the gram:
-        // maxDf = (int)(20 * 0.8) = 16, and 16 <= 16 → the term must RESURRECT.
-        // Resurrection is only possible because the sidecar caches UNCUT gram sets.
+        // Delta: REMOVE 4 rels that contain the gram → 20 docs, 16 with the gram. The gram
+        // stays fully indexed, and an incremental rebuild must match a from-scratch full build.
         for (int k = 0; k < 4; k++)
             fx.RemoveFile(fx.BothSidesRels[0]);
 
