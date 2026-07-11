@@ -936,7 +936,7 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
 
         // Termbase editor
-        _vm.OpenTermbaseEditorRequested = (root, username, landingTerm, landingUser) => _ = OpenTermbaseEditorWindowAsync(root, username, landingTerm, landingUser);
+        _vm.OpenTermbaseEditorRequested = (root, origDir, transDir, username, landingTerm, landingUser) => _ = OpenTermbaseEditorWindowAsync(root, origDir, transDir, username, landingTerm, landingUser);
 
         // Wire assistant title resolver
         _vm.SetAssistantTitleResolver?.Invoke(rel => _vm.ResolveAssistantTitle(rel));
@@ -2416,7 +2416,7 @@ private async Task LoadConfigAndAutoloadAsync()
     // Termbase editor window
     // ===========================================================
 
-    private async Task OpenTermbaseEditorWindowAsync(string root, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
+    private async Task OpenTermbaseEditorWindowAsync(string root, string origDir, string transDir, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
         if (BlockIfTourActive()) return;
         try
@@ -2445,7 +2445,7 @@ private async Task LoadConfigAndAutoloadAsync()
                 await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
             }
 
-            var win = new TermbaseEditorWindow(root, username, landingTerm, landingCommunityUser)
+            var win = new TermbaseEditorWindow(root, origDir, transDir, username, landingTerm, landingCommunityUser)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };

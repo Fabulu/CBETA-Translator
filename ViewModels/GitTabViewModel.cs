@@ -62,14 +62,27 @@ public partial class GitTabViewModel : ViewModelBase
     private const string CommunityTermbaseFile = "termbase.json";
     private const string ScholarCollectionsFile = "scholar-collections.json";
 
+    // Search-index artifacts are now written to an app-owned dir next to the exe
+    // (AppPaths.GetSearchIndexRoot), NOT into a corpus repo. But EXISTING installs built
+    // the index INTO the translations repo before that fix, so these patterns stay — and
+    // must cover EVERY sibling (current + retired cjk2) — so a user's leftover in-repo index
+    // files never get committed. Covers .bin/.manifest.json/.paths for all families.
     private static readonly string[] LocalIgnorePatterns =
     {
         "index.cache.json",
         "search.index.manifest.json",
+        "search.index.bin",
         "search.text.manifest.json",
         "search.text.bin",
-        "search.cjk2.manifest.json",
-        "search.index.bin",
+        "search.corpusfreq.manifest.json",
+        "search.corpusfreq.bin",
+        "search.inverted.bin",
+        "search.inverted.bin.paths",
+        "search.gramsets.manifest.json",
+        "search.gramsets.bin",
+        "search.cjk2.manifest.json", // retired artifact — old installs may still have it
+        "search.cjk2.bin",
+        "search.*.tmp", // atomic-write staging left by a crashed pre-migration build (review m3)
         "index.debug.log",
         "*.log",
         "xml-p5t-cache"

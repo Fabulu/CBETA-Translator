@@ -368,4 +368,32 @@ public partial class AppPaths
 
         return null;
     }
+
+    /// <summary>
+    /// App-owned search-index directory for a corpus, next to the exe (portable layout,
+    /// user decision D8). The full-text index is a large DERIVED artifact and must NEVER
+    /// live inside a corpus/translations git repo: the index files run to hundreds of MB /
+    /// GB and would pollute the repo (and risk being committed). This keeps the index OUTPUT
+    /// here while the corpus INPUT dirs stay in their repos.
+    ///
+    /// Keyed by the corpus's ORIGINAL-texts dir — the one identifier EVERY index consumer
+    /// already has in hand (the auto-indexer, the search tab, concordance, parallel-passage
+    /// finder, the termbase corpus tab). Keying on that (rather than an enum threaded through
+    /// every window) guarantees they all resolve to the SAME dir, and gives per-corpus
+    /// persistence so switching the active corpus doesn't clobber another corpus's index.
+    /// The folder is named after the corpus repo folder (parent of the xml dir) for
+    /// readability, e.g. <c>&lt;exe&gt;/index/CbetaZenTexts/</c>. Created on demand.
+    /// </summary>
+    public static string GetSearchIndexRoot(string? corpusOriginalDir)
+    {
+        var trimmed = (corpusOriginalDir ?? "").TrimEnd('/', '\\');
+        var parent = System.IO.Path.GetDirectoryName(trimmed);
+        var label = System.IO.Path.GetFileName(string.IsNullOrEmpty(parent) ? trimmed : parent);
+        if (string.IsNullOrWhiteSpace(label)) label = "corpus";
+        var dir = System.IO.Path.Combine(System.AppContext.BaseDirectory, "index", label);
+        // Best-effort create: a read-only exe dir must not throw into the UI thread (review m2).
+        // If it fails, the missing dir simply reads as "no index" and the build will surface it.
+        try { Directory.CreateDirectory(dir); } catch { }
+        return dir;
+    }
 }

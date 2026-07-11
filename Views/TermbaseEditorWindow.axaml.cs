@@ -13,7 +13,9 @@ namespace ReadZen.App.Views;
 
 public partial class TermbaseEditorWindow : Window
 {
-    public TermbaseEditorWindow() : this(string.Empty, null)
+    // Parameterless ctor for the XAML/designer loader only; real opens go through the
+    // (root, origDir, transDir, …) overload from MainWindow.
+    public TermbaseEditorWindow() : this(string.Empty, string.Empty, string.Empty)
     {
     }
 
@@ -36,7 +38,7 @@ public partial class TermbaseEditorWindow : Window
     /// </summary>
     public event EventHandler<CorpusUsageHit>? AddToScholarRequested;
 
-    public TermbaseEditorWindow(string root, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
+    public TermbaseEditorWindow(string root, string origDir, string transDir, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
         InitializeComponent();
 
@@ -46,12 +48,11 @@ public partial class TermbaseEditorWindow : Window
         _vm.ConfigureLanding(landingTerm, landingCommunityUser);
         DataContext = _vm;
 
-        // Provide search context for corpus usage tab
+        // Provide search context for the corpus-usage tab using the ACTIVE corpus's dirs
+        // passed in from the main window. Do NOT re-derive via GetOriginalDir(parentRoot):
+        // in a multi-corpus install that returns the FIRST-discovered corpus, so the tab
+        // would key its search on the wrong corpus's index (review M1).
         var searchIndex = App.Services.GetRequiredService<ISearchIndexService>();
-        // root is the translation repo root; AppPaths.Get*Dir expects the parent folder.
-        var parentRoot = Path.GetDirectoryName(root) ?? root;
-        var origDir = AppPaths.GetOriginalDir(parentRoot);
-        var transDir = AppPaths.GetTranslatedDir(parentRoot);
         _vm.SetSearchContext(searchIndex, origDir, transDir);
 
         _vm.CloseRequested = () => Close();

@@ -886,6 +886,10 @@ public partial class MainWindowViewModel : ViewModelBase
         var root = _translationRoot;
         var origDir = _originalDir;
         var tranDir = _translatedDir; // Primary community xml-p5t/ — also used for TM reference build
+        // Search index OUTPUT root: app-owned dir next to the exe, NOT the translations repo
+        // (the index is a large derived artifact — it must not pollute / risk committing to
+        // the corpus repo). The corpus INPUT dirs (origDir/tranDirs) still point at the repos.
+        var indexRoot = AppPaths.GetSearchIndexRoot(origDir);
 
         // Collect ALL translation dirs for multi-dir indexing
         var tranDirs = BuildAllTranslatedDirs();
@@ -915,7 +919,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 await Task.Delay(3000, ct);
 
                 // Search index
-                bool searchStale = await _searchIndex.IsStaleAsync(root, origDir, tranDirs);
+                bool searchStale = await _searchIndex.IsStaleAsync(indexRoot, origDir, tranDirs);
                 if (searchStale && !ct.IsCancellationRequested)
                 {
                     Dispatcher.UIThread.Post(() => SetStatus("Auto-updating search index..."));
@@ -929,7 +933,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     var addTransDirsAuto = _availableCorpora
                         .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
                         .Select(c => c.TranslatedDir).ToList();
-                    await _searchIndex.BuildOrUpdateAsync(root, origDir, tranDirs,
+                    await _searchIndex.BuildOrUpdateAsync(indexRoot, origDir, tranDirs,
                         forceRebuild: false,
                         additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,
                         additionalTranslatedDirs: addTransDirsAuto.Count > 0 ? addTransDirsAuto : null,
@@ -942,7 +946,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 // After search index is built/updated, warm it up
                 try
                 {
-                    var manifest = await _searchIndex.TryLoadAsync(root);
+                    var manifest = await _searchIndex.TryLoadAsync(indexRoot);
                     if (manifest != null)
                         System.Diagnostics.Debug.WriteLine("[MainWindowViewModel] Search index warmed up on startup");
                 }
@@ -1176,7 +1180,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
                 .Select(c => c.TranslatedDir).ToList();
 
-            SetSearchContext?.Invoke((_translationRoot ?? _root)!, _originalDir!, BuildAllTranslatedDirs(),
+            SetSearchContext?.Invoke(AppPaths.GetSearchIndexRoot(_originalDir), _originalDir!, BuildAllTranslatedDirs(),
                 relKey =>
                 {
                     _allItemsByRel.TryGetValue(NormalizeRel(relKey), out var it);
@@ -2052,14 +2056,16 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var manifest = await _searchIndex.TryLoadAsync(_translationRoot);
+            // Concordance reads the same app-owned search index (not the translations repo).
+            var indexRoot = AppPaths.GetSearchIndexRoot(_originalDir);
+            var manifest = await _searchIndex.TryLoadAsync(indexRoot);
             if (manifest == null || ct.IsCancellationRequested) return;
 
             var hits = new List<ConcordanceHit>();
             int maxHits = 5;
 
             await foreach (var group in _searchIndex.SearchAllAsync(
-                _translationRoot, _originalDir!, GetActiveTranslatedDir() ?? _originalDir!,
+                indexRoot, _originalDir!, GetActiveTranslatedDir() ?? _originalDir!,
                 manifest, zhText,
                 includeOriginal: true, includeTranslated: false,
                 fileMeta: rel =>
@@ -3413,14 +3419,17 @@ public Task OpenTermbaseEditorAsync(string? term, string? communityUser = null)
         communityUser = activeDictionaryUser;
     }
 
-    OpenTermbaseEditorRequested?.Invoke(_translationRoot, localEditorUsername, term, communityUser);
+    // Pass the ACTIVE corpus's original/translated dirs so the corpus-usage tab keys its
+    // search on the active corpus's index (not the first-discovered one — review M1).
+    OpenTermbaseEditorRequested?.Invoke(_translationRoot, _originalDir ?? "", _translatedDir ?? "",
+        localEditorUsername, term, communityUser);
     return Task.CompletedTask;
 }
 
 /// <summary>
 /// Event for code-behind to handle termbase editor window creation.
 /// </summary>
-public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { get; set; }
+public Action<string, string, string, string?, string?, string?>? OpenTermbaseEditorRequested { get; set; }
 
     // ===========================================================
     // TranslationTabView projection helpers
@@ -4072,7 +4081,8 @@ public Action<string, string?, string?, string?>? OpenTermbaseEditorRequested { 
             return;
 
         var allTranslatedDirs = BuildAllTranslatedDirs();
-        var indexRoot = _translationRoot ?? _root;
+        // Search index OUTPUT root: app-owned dir next to the exe (not the translations repo).
+        var indexRoot = AppPaths.GetSearchIndexRoot(_originalDir);
         SetSearchRootContext?.Invoke(indexRoot, _originalDir, allTranslatedDirs);
         var addOrigDirs2 = _availableCorpora
             .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
