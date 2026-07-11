@@ -357,6 +357,13 @@
 
 					</Grid>
 
+					<!-- Wave C row-grid reading surface: shown INSTEAD of TwoPaneGrid for
+					     grid modes (AlignedLines in C1). Under the shared DictOverlayCanvas,
+					     above the two-pane content. -->
+					<local:RowGridSurface Name="RowGridSurface" IsVisible="False"
+										  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Stretch"/>
+
 					<!-- Empty state overlay -->
 					<Border Name="ReadableEmptyState" IsVisible="True"
 							IsHitTestVisible="True"
