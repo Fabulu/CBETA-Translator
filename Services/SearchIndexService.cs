@@ -57,13 +57,6 @@ public sealed class SearchIndexService : ISearchIndexService
         // If you truly need entity-decoding for search, keep this true.
         // For CBETA bodies it's often unnecessary; turning it off is faster.
         public bool HtmlDecodeIfAmpersandPresent { get; set; } = true;
-
-        // Phase C (optional): compact-CJK bigram postings prefilter.
-        // Guarded so behavior can be toggled without schema churn.
-        public bool EnableCjkBigramPrefilter { get; set; } = true;
-        public int CjkBigramPrefilterMinQueryLength { get; set; } = 2;
-        public int CjkBigramPrefilterMaxQueryLength { get; set; } = 4;
-        public double CjkBigramPrefilterMaxPassRatio { get; set; } = 0.85;
     }
 
     public SearchIndexServiceOptions Options { get; } = new();
@@ -104,9 +97,6 @@ public sealed class SearchIndexService : ISearchIndexService
     private SearchTextManifest? _cachedTextManifest;
     private string? _cachedTextManifestPath;
     private DateTime _cachedTextManifestWriteUtc;
-    private SearchCjkBigramManifest? _cachedCjk2Manifest;
-    private string? _cachedCjk2ManifestPath;
-    private DateTime _cachedCjk2ManifestWriteUtc;
 
     private MemoryMappedFile? _cachedMmf;
     private MemoryMappedViewAccessor? _cachedAccessor;
@@ -155,8 +145,8 @@ public sealed class SearchIndexService : ISearchIndexService
     private int _lastBuildFreqDeltaApplied;
     internal int LastBuildFreqDeltaApplied => Volatile.Read(ref _lastBuildFreqDeltaApplied);
 
-    // INC-4A test-observable: number of entries whose gram sets (inverted + cjk2
-    // alphabets) were COMPUTED from text during the last BuildOrUpdateCoreAsync run,
+    // INC-4A test-observable: number of entries whose inverted-alphabet gram sets
+    // were COMPUTED from text during the last BuildOrUpdateCoreAsync run,
     // rather than read from the gramsets sidecar. On a warm sidecar an N-entry delta
     // computes exactly N; a full/fallback build computes every entry. Reset per core run.
     private int _lastBuildGramComputeCount;
@@ -178,7 +168,6 @@ public sealed class SearchIndexService : ISearchIndexService
     // If this sidecar is missing/corrupt/mismatched, search verify falls back to XML parse.
     private const string TextManifestFileName = "search.text.manifest.json";
     private const string TextBinFileName = "search.text.bin";
-    private const string Cjk2ManifestFileName = "search.cjk2.manifest.json";
 
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
@@ -201,8 +190,6 @@ public sealed class SearchIndexService : ISearchIndexService
     private const double IncrementalFullRebuildDeltaThreshold = 0.20;
     private const int TextManifestVersion = 1;
     private const string TextBuildGuid = "search-v1-text-sidecar";
-    private const int Cjk2ManifestVersion = 1;
-    private const string Cjk2BuildGuid = "search-v1-cjk2-postings";
     private const string CorpusFreqBuildGuid = "search-v1-corpusfreq";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
@@ -797,9 +784,6 @@ public sealed class SearchIndexService : ISearchIndexService
             _cachedTextManifest = null;
             _cachedTextManifestPath = null;
             _cachedTextManifestWriteUtc = default;
-            _cachedCjk2Manifest = null;
-            _cachedCjk2ManifestPath = null;
-            _cachedCjk2ManifestWriteUtc = default;
 
             try { _cachedAccessor?.Dispose(); } catch { }
             try { _cachedMmf?.Dispose(); } catch { }
@@ -951,7 +935,6 @@ public sealed class SearchIndexService : ISearchIndexService
     public string GetBinPath(string root) => Path.Combine(root, BinFileName);
     public string GetTextManifestPath(string root) => Path.Combine(root, TextManifestFileName);
     public string GetTextBinPath(string root) => Path.Combine(root, TextBinFileName);
-    public string GetCjk2ManifestPath(string root) => Path.Combine(root, Cjk2ManifestFileName);
 
     // ==========================================================
     // S7: BUNDLED PREBUILT INDEX — seed-from-bundle on first run
@@ -1052,15 +1035,14 @@ public sealed class SearchIndexService : ISearchIndexService
                 copied.Add(dst);
             }
 
-            // Re-home the absolute RootPath the three path-bound manifests embed. Without
-            // this, TryLoad{,Text,Cjk2}ManifestAsync reject a manifest whose RootPath != the
+            // Re-home the absolute RootPath the two path-bound manifests embed. Without
+            // this, TryLoad{,Text}ManifestAsync reject a manifest whose RootPath != the
             // load root and the freshly seeded index would be silently ignored (full rebuild
-            // anyway). IndexStamp — which binds the inverted/corpusfreq/cjk2/gramsets siblings
+            // anyway). IndexStamp — which binds the inverted/corpusfreq/gramsets siblings
             // to this build — is left untouched, so the family stays internally consistent.
             RehomeManifestRootPath(Path.Combine(indexRoot, ManifestFileName), indexRoot);
             RehomeManifestRootPath(Path.Combine(indexRoot, TextManifestFileName), indexRoot);
-            RehomeManifestRootPath(Path.Combine(indexRoot, Cjk2ManifestFileName), indexRoot);
-            // The gramsets sidecar (6th artifact) also embeds RootPath and GramSetsStore
+            // The gramsets sidecar also embeds RootPath and GramSetsStore
             // .TryLoadAsync rejects it unless full-path-equal to the load root; without this
             // re-home the seeded sidecar is dead weight and every entry's gram sets are
             // recomputed on the first incremental catch-up.
@@ -2133,87 +2115,6 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    public async Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root)
-    {
-        try
-        {
-            var mp = GetCjk2ManifestPath(root);
-            if (!File.Exists(mp))
-                return null;
-
-            var mpFull = Path.GetFullPath(mp);
-            var mpWriteUtc = File.GetLastWriteTimeUtc(mpFull);
-
-            lock (_indexCacheLock)
-            {
-                if (_cachedCjk2Manifest != null &&
-                    string.Equals(_cachedCjk2ManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
-                    _cachedCjk2ManifestWriteUtc == mpWriteUtc)
-                {
-                    return _cachedCjk2Manifest;
-                }
-            }
-
-            var json = await File.ReadAllTextAsync(mp, Utf8NoBom);
-            if (string.IsNullOrWhiteSpace(json))
-                return null;
-
-            var man = JsonSerializer.Deserialize<SearchCjkBigramManifest>(json, JsonOpts);
-            if (man == null) return null;
-
-            if (!string.Equals(Path.GetFullPath(man.RootPath), Path.GetFullPath(root), StringComparison.OrdinalIgnoreCase))
-                return null;
-            if (man.Version != Cjk2ManifestVersion) return null;
-            if (!string.Equals(man.BuildGuid, Cjk2BuildGuid, StringComparison.Ordinal)) return null;
-            if (man.GramSize != 2) return null;
-            if (man.Postings == null) return null;
-            if (man.EntryCount < 0) return null;
-
-            foreach (var p in man.Postings)
-            {
-                if (p == null) return null;
-                if (string.IsNullOrEmpty(p.Gram) || p.Gram.Length != 2) return null;
-                if (p.EntryIds == null) return null;
-
-                for (int i = 0; i < p.EntryIds.Count; i++)
-                {
-                    int id = p.EntryIds[i];
-                    if (id < 0 || id >= man.EntryCount) return null;
-                }
-            }
-
-            lock (_indexCacheLock)
-            {
-                _cachedCjk2Manifest = man;
-                _cachedCjk2ManifestPath = mpFull;
-                _cachedCjk2ManifestWriteUtc = mpWriteUtc;
-            }
-
-            return man;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    /// <summary>
-    /// Same-build usability gate for the cjk2 postings manifest. EntryIds are positional
-    /// into the main manifest's entry list, so a cjk2 file from a different build (e.g.
-    /// left behind by a crash between the main manifest commit and the cjk2 save) would
-    /// silently map grams to the WRONG files. Usable only when the entry counts match
-    /// AND the cjk2 IndexStamp is non-null and Ordinal-equal to the main manifest's
-    /// IndexStamp (null = legacy unstamped file, refused). Internal for test access.
-    /// </summary>
-    internal static bool IsCjk2Usable(SearchCjkBigramManifest cjk2, SearchIndexManifest manifest)
-    {
-        if (cjk2 == null || manifest == null) return false;
-        int entryCount = manifest.Entries?.Count ?? 0;
-        return cjk2.EntryCount == entryCount &&
-               cjk2.IndexStamp != null &&
-               string.Equals(cjk2.IndexStamp, manifest.IndexStamp, StringComparison.Ordinal);
-    }
-
     private async Task SaveManifestAtomicAsync(
         string root,
         SearchIndexManifest manifest,
@@ -2314,38 +2215,6 @@ public sealed class SearchIndexService : ISearchIndexService
                 _cachedTextManifest = manifest;
                 _cachedTextManifestPath = full;
                 _cachedTextManifestWriteUtc = writeUtc;
-            }
-        }
-        catch
-        {
-            // harmless
-        }
-    }
-
-    private async Task SaveCjk2ManifestAtomicAsync(string root, SearchCjkBigramManifest manifest, CancellationToken ct)
-    {
-        manifest.RootPath = root;
-        manifest.BuiltUtc = DateTime.UtcNow;
-        manifest.Version = Cjk2ManifestVersion;
-        manifest.BuildGuid = Cjk2BuildGuid;
-
-        var final = GetCjk2ManifestPath(root);
-        var tmp = final + ".tmp";
-
-        var json = JsonSerializer.Serialize(manifest, JsonOpts);
-        await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct);
-
-        ReplaceFileAtomicWithRetry(tmp, final);
-
-        try
-        {
-            var full = Path.GetFullPath(final);
-            var writeUtc = File.GetLastWriteTimeUtc(full);
-            lock (_indexCacheLock)
-            {
-                _cachedCjk2Manifest = manifest;
-                _cachedCjk2ManifestPath = full;
-                _cachedCjk2ManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -2510,109 +2379,6 @@ public sealed class SearchIndexService : ISearchIndexService
         return grams;
     }
 
-    private static List<string> MakeCompactQueryBigrams(string q)
-    {
-        var list = new List<string>();
-        if (string.IsNullOrEmpty(q) || q.Length < 2) return list;
-
-        var seen = new HashSet<string>(StringComparer.Ordinal);
-        for (int i = 0; i + 2 <= q.Length; i++)
-        {
-            string g = q.Substring(i, 2);
-            if (!seen.Add(g)) continue;
-            list.Add(g);
-        }
-        return list;
-    }
-
-    /// <summary>
-    /// INC-5A: builds the cjk2 postings manifest by TRANSPOSING the per-entry cjk2
-    /// gram sets already assembled in Phase 1 (sidecar-cached for unchanged entries,
-    /// <see cref="GramSetCodec.ComputeCjk2GramSet"/> fresh for changed/added ones) —
-    /// this replaced a full re-scan of search.text.bin. Used by BOTH the incremental
-    /// and full build paths; the output reproduces the old scan exactly:
-    ///   - entries are visited in manifest Id order 0..N-1;
-    ///   - an entry contributes grams ONLY if its NEW text-manifest row exists with
-    ///     TextLengthBytes &gt; 0 — the ROW is the gate, not the gram array: an entry
-    ///     whose in-memory text is non-empty but whose text-block write recorded no
-    ///     bytes contributes nothing, exactly as the old scan would have found no
-    ///     bytes to read;
-    ///   - EntryCount counts ALL manifest entries, skipped/empty ones included;
-    ///   - gram strings come from <see cref="GramSetCodec.UnpackGram"/>, identical to
-    ///     the old Substring production including ill-formed surrogate-half pairs, so
-    ///     System.Text.Json escaping matches byte-for-byte;
-    ///   - postings are ordered by gram (packed-uint ascending == 2-char string
-    ///     Ordinal ascending: both compare the high code unit first, then the low)
-    ///     with ascending EntryIds. Format and Cjk2BuildGuid are UNCHANGED.
-    /// Memory note: only UNIQUE grams materialize as strings (dictionary-size
-    /// bounded) — a large win over the old per-candidate Substring storm.
-    /// </summary>
-    private static SearchCjkBigramManifest BuildCjk2ManifestFromGramSets(
-        string root,
-        SearchIndexManifest indexManifest,
-        SearchTextManifest textManifest,
-        uint[][] cjk2GramsByEntry,
-        CancellationToken ct)
-    {
-        var textById = new Dictionary<int, SearchTextEntry>();
-        foreach (var t in textManifest.Entries)
-            textById[t.Id] = t;
-
-        var postings = new Dictionary<uint, List<int>>();
-
-        foreach (var e in indexManifest.Entries)
-        {
-            ct.ThrowIfCancellationRequested();
-
-            if (!textById.TryGetValue(e.Id, out var textEntry))
-                continue;
-            if (textEntry.TextLengthBytes <= 0)
-                continue;
-            if (textEntry.TextOffset < 0)
-                continue;
-
-            if (e.Id < 0 || e.Id >= cjk2GramsByEntry.Length)
-                throw new InvalidOperationException(
-                    $"cjk2 transpose: entry Id {e.Id} outside the gram-set array (length {cjk2GramsByEntry.Length}).");
-
-            var grams = cjk2GramsByEntry[e.Id] ?? Array.Empty<uint>();
-            foreach (var g in grams)
-            {
-                if (!postings.TryGetValue(g, out var ids))
-                {
-                    ids = new List<int>();
-                    postings[g] = ids;
-                }
-                ids.Add(e.Id);
-            }
-        }
-
-        var manifest = new SearchCjkBigramManifest
-        {
-            RootPath = root,
-            BuiltUtc = DateTime.UtcNow,
-            BuildGuid = Cjk2BuildGuid,
-            Version = Cjk2ManifestVersion,
-            GramSize = 2,
-            EntryCount = indexManifest.Entries.Count,
-            // Bind this artifact to the exact build family it belongs to: EntryIds are
-            // positional into indexManifest.Entries, so consumers refuse any cjk2
-            // manifest whose stamp differs from the main manifest they loaded.
-            IndexStamp = indexManifest.IndexStamp
-        };
-
-        foreach (var kv in postings.OrderBy(k => k.Key))
-        {
-            kv.Value.Sort(); // ascending by construction (Id-order feed); kept for parity
-            manifest.Postings.Add(new SearchCjkBigramPosting
-            {
-                Gram = GramSetCodec.UnpackGram(kv.Key),
-                EntryIds = kv.Value
-            });
-        }
-
-        return manifest;
-    }
 
     // ---------------------------
     // Build / Update Index (incremental)
@@ -3166,13 +2932,12 @@ public sealed class SearchIndexService : ISearchIndexService
                     ? await GramSetsStore.TryLoadAsync(root, ct)
                     : null;
 
-                // Per-entry gram sets for BOTH alphabets, aligned with the final manifest
+                // Per-entry inverted-alphabet gram sets, aligned with the final manifest
                 // entry order (the Phase-1 work-item order IS the Phase-2 entry order; the
                 // work list has exactly `total` items by construction). Kept past Phase 2:
                 // the inverted build transposes the inv sets, and the sidecar save persists
-                // both families after the commit sequence.
+                // them after the commit sequence.
                 var invGramsByEntry = new uint[total][];
-                var cjk2GramsByEntry = new uint[total][];
                 // v4 tf: per-entry inverted-alphabet gram counts, aligned with
                 // invGramsByEntry[i]. Not cached in the (format-frozen) gramsets sidecar,
                 // so ALWAYS derived from the entry's materialized searchable text — cheap
@@ -3327,7 +3092,6 @@ public sealed class SearchIndexService : ISearchIndexService
                             // materialized from the old text.bin block, never a re-read
                             // of the XML.
                             uint[]? invGrams = null;
-                            uint[]? cjk2Grams = null;
                             int[]? invCounts = null;
                             if (unchanged && gramSets != null && gramSets.TryGet(relKey, side, out var gsRow))
                             {
@@ -3337,16 +3101,14 @@ public sealed class SearchIndexService : ISearchIndexService
                                 if (gsHit)
                                 {
                                     invGrams = gramSets.ReadInvGrams(gsRow);
-                                    cjk2Grams = gramSets.ReadCjk2Grams(gsRow);
                                 }
                             }
-                            if (invGrams == null || cjk2Grams == null)
+                            if (invGrams == null)
                             {
-                                // Fresh compute: grams + tf counts together (one text pass
-                                // for both alphabets' work). This is the ONLY site that
-                                // increments the gram-compute counter (sidecar MISS/changed).
+                                // Fresh compute: grams + tf counts together (one text pass).
+                                // This is the ONLY site that increments the gram-compute
+                                // counter (sidecar MISS/changed).
                                 (invGrams, invCounts) = InvertedSearchIndex.ComputeGramSetAndCounts(searchable);
-                                cjk2Grams = GramSetCodec.ComputeCjk2GramSet(searchable);
                                 Interlocked.Increment(ref _lastBuildGramComputeCount);
                             }
                             if (invCounts == null)
@@ -3371,7 +3133,6 @@ public sealed class SearchIndexService : ISearchIndexService
                                 invCounts = InvertedSearchIndex.ComputeGramCounts(searchable, invGrams);
                             }
                             invGramsByEntry[i] = invGrams;
-                            cjk2GramsByEntry[i] = cjk2Grams;
                             invGramCountsByEntry[i] = invCounts;
 
                             computed[i] = new ComputedEntry
@@ -3620,8 +3381,7 @@ public sealed class SearchIndexService : ISearchIndexService
                     // The manifest above is already committed with a fresh IndexStamp,
                     // so an inverted file from an earlier build would never load again —
                     // delete it (and any in-memory copy) rather than leave a dead file
-                    // around. Same pattern as the CJK2 failure path below. Search stays
-                    // correct via bloom + verify.
+                    // around. Search stays correct via bloom + verify.
                     InvertedIndex = null;
                     try
                     {
@@ -3632,25 +3392,18 @@ public sealed class SearchIndexService : ISearchIndexService
                     catch { }
                 }
 
-                // Phase C optional accelerator: compact-CJK bigram postings.
-                // If this build fails, search still works via bloom + verify fallback.
-                // INC-5A: transposed from the Phase-1 per-entry gram sets — no code
-                // path reads search.text.bin for the cjk2 build anymore.
+                // CJK2 postings artifact was retired (superseded by the tf-carrying
+                // inverted index; the bloom fallback runs a full sweep without cjk2
+                // narrowing). Best-effort delete any stale search.cjk2.* left by an
+                // older build so it does not linger next to the live family.
                 try
                 {
-                    var cjk2Manifest = BuildCjk2ManifestFromGramSets(root, manifest, textManifest, cjk2GramsByEntry, ct);
-                    await SaveCjk2ManifestAtomicAsync(root, cjk2Manifest, ct);
+                    var staleCjk2Manifest = Path.Combine(root, "search.cjk2.manifest.json");
+                    if (File.Exists(staleCjk2Manifest)) File.Delete(staleCjk2Manifest);
+                    var staleCjk2Bin = Path.Combine(root, "search.cjk2.bin");
+                    if (File.Exists(staleCjk2Bin)) File.Delete(staleCjk2Bin);
                 }
-                catch (Exception ex)
-                {
-                    Dbg($"CJK2 postings build skipped: {ex.Message}");
-                    try
-                    {
-                        var oldCjk2 = GetCjk2ManifestPath(root);
-                        if (File.Exists(oldCjk2)) File.Delete(oldCjk2);
-                    }
-                    catch { }
-                }
+                catch { }
 
                 // Build corpus frequency index from text.bin (sequential pass, no parallel alloc)
                 try
@@ -3779,7 +3532,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 // succeeded and losing the sidecar only costs speed, never correctness.
                 try
                 {
-                    var sidecarRows = new List<(GramSetsEntry meta, uint[] invGrams, uint[] cjk2Grams)>(manifest.Entries.Count);
+                    var sidecarRows = new List<(GramSetsEntry meta, uint[] invGrams)>(manifest.Entries.Count);
                     for (int i = 0; i < manifest.Entries.Count; i++)
                     {
                         var me = manifest.Entries[i];
@@ -3792,7 +3545,7 @@ public sealed class SearchIndexService : ISearchIndexService
                             ContentHash = me.ContentHash,
                             LastWriteUtcTicks = me.LastWriteUtcTicks,
                             LengthBytes = me.LengthBytes,
-                        }, invGramsByEntry[i] ?? Array.Empty<uint>(), cjk2GramsByEntry[i] ?? Array.Empty<uint>()));
+                        }, invGramsByEntry[i] ?? Array.Empty<uint>()));
                     }
                     await GramSetsStore.SaveAsync(root, manifest.IndexStamp, sidecarRows, ct);
                     Dbg($"Gramsets sidecar saved: {sidecarRows.Count} entries ({LastBuildGramComputeCount} computed this run)");
@@ -4253,78 +4006,6 @@ public sealed class SearchIndexService : ISearchIndexService
 
         bool useBloom = effectiveQuery.Length >= 2;
         var grams = MakeQueryGrams(effectiveQuery);
-        HashSet<int>? cjk2PrefilterIds = null;
-        bool useCjk2Prefilter =
-            Options.EnableCjkBigramPrefilter &&
-            CjkMatchNormalizer.ContainsCjk(query) &&
-            effectiveQuery.Length >= Math.Max(2, Options.CjkBigramPrefilterMinQueryLength) &&
-            effectiveQuery.Length <= Math.Max(2, Options.CjkBigramPrefilterMaxQueryLength);
-
-        if (useCjk2Prefilter)
-        {
-            try
-            {
-                var cjk2 = await TryLoadCjk2ManifestAsync(root);
-                if (cjk2 != null && !IsCjk2Usable(cjk2, manifest))
-                {
-                    Dbg("CJK2 prefilter refused: IndexStamp/EntryCount mismatch with main manifest (stale sibling) — full scan");
-                    cjk2 = null;
-                }
-                if (cjk2 != null &&
-                    cjk2.Postings != null)
-                {
-                    var postingMap = new Dictionary<string, List<int>>(StringComparer.Ordinal);
-                    foreach (var p in cjk2.Postings)
-                    {
-                        if (p == null || string.IsNullOrEmpty(p.Gram) || p.EntryIds == null) continue;
-                        postingMap[p.Gram] = p.EntryIds;
-                    }
-
-                    var qBigrams = MakeCompactQueryBigrams(effectiveQuery);
-                    if (qBigrams.Count > 0)
-                    {
-                        HashSet<int>? intersect = null;
-                        bool impossible = false;
-
-                        foreach (var g in qBigrams)
-                        {
-                            if (!postingMap.TryGetValue(g, out var ids) || ids.Count == 0)
-                            {
-                                impossible = true;
-                                break;
-                            }
-
-                            if (intersect == null) intersect = new HashSet<int>(ids);
-                            else intersect.IntersectWith(ids);
-
-                            if (intersect.Count == 0)
-                            {
-                                impossible = true;
-                                break;
-                            }
-                        }
-
-                        cjk2PrefilterIds = impossible ? new HashSet<int>() : (intersect ?? new HashSet<int>());
-                        Dbg($"CJK2 prefilter {(cjk2PrefilterIds.Count == 0 ? "EMPTY" : "ACTIVE")} qBigrams={qBigrams.Count} passIds={cjk2PrefilterIds.Count}");
-
-                        int entryCount = entries.Count;
-                        if (cjk2PrefilterIds.Count > 0 && entryCount > 0)
-                        {
-                            double passRatio = (double)cjk2PrefilterIds.Count / entryCount;
-                            if (passRatio > Math.Clamp(Options.CjkBigramPrefilterMaxPassRatio, 0.01, 1.0))
-                            {
-                                Dbg($"CJK2 prefilter disabled (passRatio={passRatio:0.###} too broad).");
-                                cjk2PrefilterIds = null;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Dbg($"CJK2 prefilter unavailable: {ex.Message}");
-            }
-        }
 
         bool sideAllowed(SearchSide s)
             => (s == SearchSide.Original && includeOriginal) ||
@@ -4406,10 +4087,6 @@ public sealed class SearchIndexService : ISearchIndexService
                     {
                         Dbg($"Candidate phase bloom: bin missing '{binFull}'");
                     }
-                    else if (cjk2PrefilterIds != null && cjk2PrefilterIds.Count == 0)
-                    {
-                        Dbg("Candidate phase bloom skipped by empty CJK2 prefilter set.");
-                    }
                     else
                     {
                         var swBloom = System.Diagnostics.Stopwatch.StartNew();
@@ -4448,7 +4125,6 @@ public sealed class SearchIndexService : ISearchIndexService
                                 if (!sideAllowed(e.Side)) return local;
                                 if (e.LastWriteUtcTicks == 0 || e.LengthBytes == 0) return local;
                                 if (relPathFilter != null && !relPathFilter(e.RelPath)) return local;
-                                if (cjk2PrefilterIds != null && !cjk2PrefilterIds.Contains(e.Id)) return local;
 
                                 try
                                 {
@@ -4559,8 +4235,8 @@ public sealed class SearchIndexService : ISearchIndexService
         {
             // Build a per-relPath weight: max LengthBytes across sides. Bigger files plausibly
             // have more hits; this is a fallback for "actual posting-list bigram count" which
-            // the inverted index / cjk2 prefilter do not expose at this layer (they return
-            // doc-id sets, not per-doc counts).
+            // the inverted index does not expose at this layer (it returns doc-id sets,
+            // not per-doc counts).
             var sizeByRel = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
             foreach (var e in entries)
             {

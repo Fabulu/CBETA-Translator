@@ -121,7 +121,7 @@ not the pattern).
 - The dictionary file `Assets/Dict/cedict_ts.u8` must be present in both the build output and publish output â€” the `.csproj` handles this via `CopyToOutputDirectory`
 - `InvariantGlobalization=true` is set in the project â€” do not rely on locale-sensitive string operations
 - PDF export requires a separate Rust-compiled DLL; the app works without it
-- When modifying search: `SearchIndexService` maintains five sibling index artifacts that must stay in sync - bloom bin + manifest, text sidecar (`search.text.bin`), cjk2 postings, corpus frequency, and the exact-match inverted index (`search.inverted.bin`) - versioned by the build GUIDs at `Services/SearchIndexService.cs:138-143`
+- When modifying search: `SearchIndexService` maintains four sibling index artifacts that must stay in sync - bloom bin + manifest, text sidecar (`search.text.bin`), corpus frequency, and the exact-match inverted index (`search.inverted.bin`) - versioned by the build GUIDs near the top of `Services/SearchIndexService.cs`. (The cjk2 postings artifact was retired: the tf-carrying inverted index fully supersedes it, and the bloom fallback runs a full sweep without cjk2 narrowing.) The gramsets sidecar (`search.gramsets.*`) is a build-time incremental cache (now inverted-alphabet gram sets only), not a query-path artifact - losing it costs only rebuild speed.
 - User data (config.json, indexes, translations) lives next to the exe BY DESIGN - the portable install layout is intentional; do not migrate it to `%APPDATA%` (user decision D8, 2026-07-03)
 
 ---

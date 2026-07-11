@@ -21,8 +21,8 @@ namespace ReadZen.Tests.Search;
 ///
 /// Design constraints honored here:
 ///   - JSON manifest comparisons are explicit field ALLOWLISTS (never "everything
-///     except X"), so new fields (e.g. the IndexStamp INC-1A adds to the cjk2 and
-///     corpusfreq manifests) can never break the harness;
+///     except X"), so new fields (e.g. the IndexStamp INC-1A adds to the
+///     corpusfreq manifest) can never break the harness;
 ///   - sibling stamps are read via <see cref="JsonDocument"/>, not DTO properties, so
 ///     this file compiles regardless of INC-1A's merge state;
 ///   - the corpusfreq bin is parsed and compared AS MAPS, never bytes (dictionary
@@ -35,20 +35,18 @@ public static class ArtifactFamilyAssert
     private const string IndexBinName = "search.index.bin";
     private const string TextManifestName = "search.text.manifest.json";
     private const string TextBinName = "search.text.bin";
-    private const string Cjk2ManifestName = "search.cjk2.manifest.json";
     private const string FreqManifestName = "search.corpusfreq.manifest.json";
     private const string FreqBinName = "search.corpusfreq.bin";
     private const string InvertedBinName = "search.inverted.bin";
     private const string InvertedPathsName = "search.inverted.bin.paths";
 
-    /// <summary>In-memory snapshot of all 9 artifact-family files under a root.</summary>
+    /// <summary>In-memory snapshot of all 8 artifact-family files under a root.</summary>
     public sealed class FamilySnapshot
     {
         public required SearchIndexManifest MainManifest { get; init; }
         public required byte[] IndexBin { get; init; }
         public required SearchTextManifest TextManifest { get; init; }
         public required byte[] TextBin { get; init; }
-        public required SearchCjkBigramManifest Cjk2Manifest { get; init; }
         public required CorpusFreqManifest FreqManifest { get; init; }
         public required Dictionary<char, int> FreqChars { get; init; }
         public required Dictionary<(char c0, char c1), int> FreqBigrams { get; init; }
@@ -57,12 +55,11 @@ public static class ArtifactFamilyAssert
         public required byte[] InvertedPaths { get; init; }
     }
 
-    /// <summary>Reads all 9 family files into memory. Every file must exist.</summary>
+    /// <summary>Reads all 8 family files into memory. Every file must exist.</summary>
     public static FamilySnapshot SnapshotFamily(string root)
     {
         var main = DeserializeRequired<SearchIndexManifest>(Path.Combine(root, MainManifestName));
         var text = DeserializeRequired<SearchTextManifest>(Path.Combine(root, TextManifestName));
-        var cjk2 = DeserializeRequired<SearchCjkBigramManifest>(Path.Combine(root, Cjk2ManifestName));
         var freq = DeserializeRequired<CorpusFreqManifest>(Path.Combine(root, FreqManifestName));
 
         var freqBin = ReadRequired(Path.Combine(root, FreqBinName));
@@ -74,7 +71,6 @@ public static class ArtifactFamilyAssert
             IndexBin = ReadRequired(Path.Combine(root, IndexBinName)),
             TextManifest = text,
             TextBin = ReadRequired(Path.Combine(root, TextBinName)),
-            Cjk2Manifest = cjk2,
             FreqManifest = freq,
             FreqChars = freqChars,
             FreqBigrams = freqBigrams,
@@ -94,7 +90,6 @@ public static class ArtifactFamilyAssert
         AssertBytesEqual(a.IndexBin, b.IndexBin, "search.index.bin");
         AssertTextManifestEquivalent(a.TextManifest, b.TextManifest);
         AssertBytesEqual(a.TextBin, b.TextBin, "search.text.bin");
-        AssertCjk2ManifestEquivalent(a.Cjk2Manifest, b.Cjk2Manifest);
         AssertFreqManifestEquivalent(a.FreqManifest, b.FreqManifest);
         AssertFreqMapsEqual(a, b);
         AssertBytesEqual(a.InvertedPaths, b.InvertedPaths, "search.inverted.bin.paths");
@@ -103,8 +98,8 @@ public static class ArtifactFamilyAssert
 
     /// <summary>
     /// Cross-family stamp consistency for a single committed build: the main manifest
-    /// IndexStamp is non-null, the inverted index loads against it, and — IF the cjk2 /
-    /// corpusfreq manifests carry an "IndexStamp" JSON property (they will once INC-1A
+    /// IndexStamp is non-null, the inverted index loads against it, and — IF the
+    /// corpusfreq manifest carries an "IndexStamp" JSON property (it will once INC-1A
     /// lands; unconditional presence is INC-1A's own test's job) — it matches.
     /// </summary>
     public static async Task AssertFamilyStampsAsync(string root)
@@ -122,7 +117,6 @@ public static class ArtifactFamilyAssert
         bool loaded = await inv.TryLoadAsync(Path.Combine(root, InvertedBinName), stamp!);
         Assert.True(loaded, "search.inverted.bin must load against the main manifest IndexStamp");
 
-        AssertSiblingStampMatchesIfPresent(Path.Combine(root, Cjk2ManifestName), stamp!, "cjk2 manifest");
         AssertSiblingStampMatchesIfPresent(Path.Combine(root, FreqManifestName), stamp!, "corpusfreq manifest");
     }
 
@@ -178,28 +172,6 @@ public static class ArtifactFamilyAssert
             Assert.True(ea.LengthBytes == eb.LengthBytes, $"{ctx}: LengthBytes {ea.LengthBytes} != {eb.LengthBytes}");
             Assert.True(ea.TextOffset == eb.TextOffset, $"{ctx}: TextOffset {ea.TextOffset} != {eb.TextOffset}");
             Assert.True(ea.TextLengthBytes == eb.TextLengthBytes, $"{ctx}: TextLengthBytes {ea.TextLengthBytes} != {eb.TextLengthBytes}");
-        }
-    }
-
-    private static void AssertCjk2ManifestEquivalent(SearchCjkBigramManifest a, SearchCjkBigramManifest b)
-    {
-        // Allowlist: Version, RootPath, BuildGuid, GramSize, EntryCount, Postings in
-        // order (Gram + EntryIds sequence-equal). Ignored: BuiltUtc, IndexStamp.
-        Assert.Equal(a.Version, b.Version);
-        Assert.Equal(a.RootPath, b.RootPath);
-        Assert.Equal(a.BuildGuid, b.BuildGuid);
-        Assert.Equal(a.GramSize, b.GramSize);
-        Assert.Equal(a.EntryCount, b.EntryCount);
-
-        Assert.Equal(a.Postings.Count, b.Postings.Count);
-        for (int i = 0; i < a.Postings.Count; i++)
-        {
-            var pa = a.Postings[i];
-            var pb = b.Postings[i];
-            string ctx = $"cjk2 posting {i} ('{pa.Gram}')";
-            Assert.True(string.Equals(pa.Gram, pb.Gram, StringComparison.Ordinal), $"{ctx}: Gram '{pa.Gram}' != '{pb.Gram}'");
-            Assert.True(pa.EntryIds.SequenceEqual(pb.EntryIds),
-                $"{ctx}: EntryIds differ ([{string.Join(",", pa.EntryIds)}] vs [{string.Join(",", pb.EntryIds)}])");
         }
     }
 

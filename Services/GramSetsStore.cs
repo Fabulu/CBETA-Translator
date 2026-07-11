@@ -12,11 +12,10 @@ namespace ReadZen.App.Services;
 
 /// <summary>
 /// Reader/writer for the gramsets sidecar (search.gramsets.manifest.json +
-/// search.gramsets.bin), the 6th index artifact. The sidecar caches, per
-/// (RelPath, Side) entry, two sorted unique packed-uint bigram arrays:
+/// search.gramsets.bin), a build-time incremental cache. The sidecar caches, per
+/// (RelPath, Side) entry, one sorted unique packed-uint bigram array:
 /// the inverted-index alphabet (produced by <c>InvertedSearchIndex.ComputeGramSet</c> —
-/// NOT reimplemented here) and the cjk2 compact alphabet
-/// (<see cref="GramSetCodec.ComputeCjk2GramSet"/>).
+/// NOT reimplemented here).
 ///
 /// Bin format: 4-byte magic "GSB1", then a 16-byte pairing token (fresh per save,
 /// mirrored as <c>GramSetsManifest.BinPairingToken</c>), then back-to-back
@@ -34,7 +33,12 @@ public static class GramSetsStore
 {
     public const string ManifestFileName = "search.gramsets.manifest.json";
     public const string BinFileName = "search.gramsets.bin";
-    public const string BuildGuid = "search-v1-gramsets";
+    // Bumped 2026-07-11 from "search-v1-gramsets": the cjk2 gram column was removed
+    // from the sidecar format (bin now holds only the inverted-alphabet gram array per
+    // entry, manifest rows drop Cjk2Offset/Cjk2Count). The bump makes the v1 loader
+    // reject old two-column sidecars so they are rebuilt (incremental catch-up handles
+    // it; a stale sidecar only costs speed, never correctness).
+    public const string BuildGuid = "search-v2-gramsets-invonly";
 
     // Bin magic "GSB1".
     private static readonly byte[] Magic = { (byte)'G', (byte)'S', (byte)'B', (byte)'1' };
@@ -50,15 +54,14 @@ public static class GramSetsStore
 
     /// <summary>
     /// Writes the sidecar family: bin first, then manifest, each via tmp +
-    /// File.Move(overwrite: true). Fills each meta's InvOffset/InvCount/
-    /// Cjk2Offset/Cjk2Count in place as the bin is written. Gram arrays are
-    /// expected sorted ascending and unique (the codecs guarantee this).
-    /// On any exception both tmps are deleted and the exception rethrown.
+    /// File.Move(overwrite: true). Fills each meta's InvOffset/InvCount in place as the
+    /// bin is written. Gram arrays are expected sorted ascending and unique (the codec
+    /// guarantees this). On any exception both tmps are deleted and the exception rethrown.
     /// </summary>
     public static async Task SaveAsync(
         string root,
         string? indexStamp,
-        IReadOnlyList<(GramSetsEntry meta, uint[] invGrams, uint[] cjk2Grams)> entries,
+        IReadOnlyList<(GramSetsEntry meta, uint[] invGrams)> entries,
         CancellationToken ct)
     {
         string binFinal = GetBinPath(root);
@@ -80,7 +83,7 @@ public static class GramSetsStore
                 await fs.WriteAsync(pairingToken, ct).ConfigureAwait(false);
                 long pos = Magic.Length + PairingTokenLength;
 
-                foreach (var (meta, invGrams, cjk2Grams) in entries)
+                foreach (var (meta, invGrams) in entries)
                 {
                     ct.ThrowIfCancellationRequested();
 
@@ -88,11 +91,6 @@ public static class GramSetsStore
                     meta.InvCount = invGrams.Length;
                     await WriteUIntArrayLeAsync(fs, invGrams, ct).ConfigureAwait(false);
                     pos += 4L * invGrams.Length;
-
-                    meta.Cjk2Offset = pos;
-                    meta.Cjk2Count = cjk2Grams.Length;
-                    await WriteUIntArrayLeAsync(fs, cjk2Grams, ct).ConfigureAwait(false);
-                    pos += 4L * cjk2Grams.Length;
                 }
 
                 await fs.FlushAsync(ct).ConfigureAwait(false);
@@ -112,7 +110,7 @@ public static class GramSetsStore
                 IndexStamp = indexStamp,
                 BinPairingToken = Convert.ToHexString(pairingToken),
             };
-            foreach (var (meta, _, _) in entries)
+            foreach (var (meta, _) in entries)
                 manifest.Entries.Add(meta);
 
             string json = JsonSerializer.Serialize(manifest, JsonOpts);
@@ -191,8 +189,6 @@ public static class GramSetsStore
                 if (e == null || e.RelPath == null)
                     return null;
                 if (!AreBoundsValid(e.InvOffset, e.InvCount, binLen))
-                    return null;
-                if (!AreBoundsValid(e.Cjk2Offset, e.Cjk2Count, binLen))
                     return null;
                 // Duplicate (RelPath, Side) => anomaly => whole sidecar absent.
                 if (!byKey.TryAdd((e.RelPath, e.Side), e))
@@ -282,8 +278,6 @@ public sealed class LoadedGramSets
 
     public uint[] ReadInvGrams(GramSetsEntry e) => ReadArray(e.InvOffset, e.InvCount);
 
-    public uint[] ReadCjk2Grams(GramSetsEntry e) => ReadArray(e.Cjk2Offset, e.Cjk2Count);
-
     private uint[] ReadArray(long offset, int count)
     {
         if (count == 0)
@@ -295,44 +289,6 @@ public sealed class LoadedGramSets
         var result = new uint[count];
         for (int i = 0; i < count; i++)
             result[i] = BinaryPrimitives.ReadUInt32LittleEndian(_bin.AsSpan(start + i * 4, 4));
-        return result;
-    }
-}
-
-/// <summary>
-/// Packing/unpacking for cached bigram sets, plus the cjk2-alphabet gram-set
-/// computation. The inverted-index alphabet is intentionally NOT implemented here —
-/// it is owned by <c>InvertedSearchIndex.ComputeGramSet</c> (the IsIndexable filter
-/// must never be duplicated).
-/// </summary>
-public static class GramSetCodec
-{
-    /// <summary>Packs two UTF-16 code units into one uint: high 16 bits = first char.</summary>
-    public static uint PackGram(char c0, char c1) => ((uint)c0 << 16) | c1;
-
-    /// <summary>Unpacks a packed gram back to its 2-char string form.</summary>
-    public static string UnpackGram(uint g)
-        => string.Concat((char)(g >> 16), (char)(g & 0xFFFF));
-
-    /// <summary>
-    /// Computes the cjk2-alphabet gram set of <paramref name="searchableText"/>:
-    /// compact = <see cref="CjkMatchNormalizer.Normalize"/>(text), then EVERY adjacent
-    /// code-unit pair of compact — NO indexability filter (Latin bigrams and
-    /// surrogate-half pairs included) — unique, packed, sorted ascending.
-    /// </summary>
-    public static uint[] ComputeCjk2GramSet(string searchableText)
-    {
-        string compact = CjkMatchNormalizer.Normalize(searchableText);
-        if (compact.Length < 2)
-            return Array.Empty<uint>();
-
-        var set = new HashSet<uint>();
-        for (int i = 0; i + 1 < compact.Length; i++)
-            set.Add(PackGram(compact[i], compact[i + 1]));
-
-        var result = new uint[set.Count];
-        set.CopyTo(result);
-        Array.Sort(result);
         return result;
     }
 }

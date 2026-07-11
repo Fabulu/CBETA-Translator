@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace ReadZen.App.Models;
 
-// Sixth index artifact (gramsets sidecar): a PURE ACCELERATOR cache of per-entry
-// bigram ("gram") sets used by the incremental inverted/cjk2 rebuild paths.
+// Build-time incremental cache (gramsets sidecar): a PURE ACCELERATOR cache of
+// per-entry inverted-alphabet bigram ("gram") sets used by the incremental inverted
+// rebuild path.
 // Losing or corrupting this sidecar only costs speed, never correctness, and never
 // triggers a full rebuild by itself — any anomaly makes the loader treat the whole
 // sidecar as absent and the build recomputes gram sets from text.
@@ -17,7 +18,7 @@ public sealed class GramSetsManifest
 {
     public int Version { get; set; } = 1;
 
-    /// <summary>Expected value: <c>"search-v1-gramsets"</c> (see GramSetsStore.BuildGuid).</summary>
+    /// <summary>Expected value: <c>"search-v2-gramsets-invonly"</c> (see GramSetsStore.BuildGuid).</summary>
     public string BuildGuid { get; set; } = "";
 
     public string? RootPath { get; set; }
@@ -59,10 +60,4 @@ public sealed class GramSetsEntry
 
     /// <summary>Element count (uint32s) of the inverted-alphabet gram array.</summary>
     public int InvCount { get; set; }
-
-    /// <summary>Absolute byte offset of this entry's cjk2-alphabet gram array in search.gramsets.bin.</summary>
-    public long Cjk2Offset { get; set; }
-
-    /// <summary>Element count (uint32s) of the cjk2-alphabet gram array.</summary>
-    public int Cjk2Count { get; set; }
 }

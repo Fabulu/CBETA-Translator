@@ -12,10 +12,9 @@ using Xunit;
 namespace ReadZen.Tests.Services;
 
 /// <summary>
-/// INC-3B: gramsets sidecar store (search.gramsets.bin + manifest) and the cjk2
-/// gram codec. The sidecar is a pure accelerator: every corruption/mismatch mode
-/// must make TryLoadAsync return null (never throw), and the codec must be
-/// provably equivalent to the Normalize + adjacent-substring reference.
+/// INC-3B: gramsets sidecar store (search.gramsets.bin + manifest). The sidecar is a
+/// pure accelerator caching the inverted-alphabet gram set per entry: every
+/// corruption/mismatch mode must make TryLoadAsync return null (never throw).
 /// </summary>
 [Trait("Domain", "SearchSprint")]
 public sealed class GramSetsStoreTests : IDisposable
@@ -50,26 +49,22 @@ public sealed class GramSetsStoreTests : IDisposable
         return arr;
     }
 
-    private static List<(GramSetsEntry meta, uint[] invGrams, uint[] cjk2Grams)> SampleEntries()
+    private static List<(GramSetsEntry meta, uint[] invGrams)> SampleEntries()
     {
         // Assorted shapes: empty arrays, small arrays, a large-ish array, boundary values.
         var large = new uint[5000];
         for (int i = 0; i < large.Length; i++)
             large[i] = (uint)(i * 977 + 13); // strictly ascending, unique
 
-        return new List<(GramSetsEntry, uint[], uint[])>
+        return new List<(GramSetsEntry, uint[])>
         {
             (Meta("orig/T47/T47n2005.xml", SearchSide.Original, hash: new string('a', 64), ticks: 111, len: 222),
-                SortedUnique(0u, 1u, 0x4E00_4E01u, 0xFFFF_FFFEu, 0xFFFF_FFFFu),
-                SortedUnique(7u, 0x0041_0042u)),
+                SortedUnique(0u, 1u, 0x4E00_4E01u, 0xFFFF_FFFEu, 0xFFFF_FFFFu)),
             (Meta("orig/T47/T47n2005.xml", SearchSide.Translated, hash: null, ticks: 333, len: 444),
-                Array.Empty<uint>(),
-                SortedUnique(42u)),
-            (Meta("tran/X99/X99n0001.xml", SearchSide.Original, hash: new string('b', 64), ticks: 555, len: 666),
-                large,
                 Array.Empty<uint>()),
+            (Meta("tran/X99/X99n0001.xml", SearchSide.Original, hash: new string('b', 64), ticks: 555, len: 666),
+                large),
             (Meta("z/empty-both.xml", SearchSide.Translated),
-                Array.Empty<uint>(),
                 Array.Empty<uint>()),
         };
     }
@@ -86,11 +81,11 @@ public sealed class GramSetsStoreTests : IDisposable
         Assert.NotNull(loaded);
 
         Assert.Equal(1, loaded!.Manifest.Version);
-        Assert.Equal("search-v1-gramsets", loaded.Manifest.BuildGuid);
+        Assert.Equal("search-v2-gramsets-invonly", loaded.Manifest.BuildGuid);
         Assert.Equal("stamp-abc", loaded.Manifest.IndexStamp);
         Assert.Equal(entries.Count, loaded.Manifest.Entries.Count);
 
-        foreach (var (meta, invGrams, cjk2Grams) in entries)
+        foreach (var (meta, invGrams) in entries)
         {
             Assert.True(loaded.TryGet(meta.RelPath, meta.Side, out var got));
             Assert.Equal(meta.RelPath, got.RelPath);
@@ -99,10 +94,8 @@ public sealed class GramSetsStoreTests : IDisposable
             Assert.Equal(meta.LastWriteUtcTicks, got.LastWriteUtcTicks);
             Assert.Equal(meta.LengthBytes, got.LengthBytes);
             Assert.Equal(invGrams.Length, got.InvCount);
-            Assert.Equal(cjk2Grams.Length, got.Cjk2Count);
 
             Assert.Equal(invGrams, loaded.ReadInvGrams(got));
-            Assert.Equal(cjk2Grams, loaded.ReadCjk2Grams(got));
         }
     }
 
@@ -127,12 +120,10 @@ public sealed class GramSetsStoreTests : IDisposable
         await GramSetsStore.SaveAsync(_dir, null, entries, CancellationToken.None);
 
         long expected = 4 + 16; // after "GSB1" magic + the 16-byte per-save pairing token
-        foreach (var (meta, invGrams, cjk2Grams) in entries)
+        foreach (var (meta, invGrams) in entries)
         {
             Assert.Equal(expected, meta.InvOffset);
             expected += 4L * invGrams.Length;
-            Assert.Equal(expected, meta.Cjk2Offset);
-            expected += 4L * cjk2Grams.Length;
         }
 
         var bin = await File.ReadAllBytesAsync(GramSetsStore.GetBinPath(_dir));
@@ -247,8 +238,8 @@ public sealed class GramSetsStoreTests : IDisposable
         // offset + 4*count would overflow naive int/long arithmetic into "valid" range.
         await PatchManifestAsync(m =>
         {
-            m.Entries[0].Cjk2Offset = long.MaxValue - 2;
-            m.Entries[0].Cjk2Count = 4;
+            m.Entries[0].InvOffset = long.MaxValue - 2;
+            m.Entries[0].InvCount = 4;
         });
         Assert.Null(await GramSetsStore.TryLoadAsync(_dir, CancellationToken.None));
 
@@ -303,73 +294,6 @@ public sealed class GramSetsStoreTests : IDisposable
         }
 
         Assert.Empty(Directory.GetFiles(_dir, "*.tmp"));
-    }
-
-    // ------------------------------------------------------------ (d) codec equivalence
-
-    public static IEnumerable<object[]> CodecSamples()
-    {
-        // CJK with stripped editorial punctuation.
-        yield return new object[] { "無門關、心即是佛。趙州狗子！【公案】祖師西來意" };
-        // Latin (English translation text) — cjk2 alphabet has NO filter, Latin bigrams included.
-        yield return new object[] { "The gateless gate of Chan practice." };
-        // Ideographic space U+3000 (mapped to ' ' then stripped) + superscript annotation digits.
-        yield return new object[] { "僧　問¹趙州²³雲⁴門⁵" };
-        // CJK Extension B surrogate pairs (U+20000, U+2000B survive normalization; pairs
-        // of surrogate halves must round-trip through the packed-uint alphabet).
-        yield return new object[] { "𠀀無𠀋門𠀀" };
-        // Mixed everything, plus middle dot and ellipsis (stripped).
-        yield return new object[] { "趙州·雲門…Zhaozhou (趙州) said:　No！" };
-        // Degenerate: empty and single-char-after-normalize.
-        yield return new object[] { "" };
-        yield return new object[] { "、。！ 佛" };
-    }
-
-    [Theory]
-    [MemberData(nameof(CodecSamples))]
-    public void ComputeCjk2GramSet_MatchesNormalizeSubstringReference(string sample)
-    {
-        var grams = GramSetCodec.ComputeCjk2GramSet(sample);
-
-        // Independent reference: unique 2-char (code-unit) substrings of Normalize(sample).
-        string compact = CjkMatchNormalizer.Normalize(sample);
-        var expected = new HashSet<string>(StringComparer.Ordinal);
-        for (int i = 0; i + 1 < compact.Length; i++)
-            expected.Add(compact.Substring(i, 2));
-
-        var unpacked = grams.Select(GramSetCodec.UnpackGram).ToHashSet(StringComparer.Ordinal);
-        Assert.Equal(expected, unpacked);
-
-        // Sorted ascending + unique.
-        for (int i = 1; i < grams.Length; i++)
-            Assert.True(grams[i - 1] < grams[i],
-                $"grams must be strictly ascending; violated at {i} ({grams[i - 1]} !< {grams[i]})");
-    }
-
-    [Fact]
-    public void ComputeCjk2GramSet_StrippedPunctuationJoinsNeighbors()
-    {
-        // "佛、心" normalizes to "佛心" => the gram spans the stripped punctuation.
-        var grams = GramSetCodec.ComputeCjk2GramSet("佛、心");
-        Assert.Equal(new[] { GramSetCodec.PackGram('佛', '心') }, grams);
-    }
-
-    // ------------------------------------------------------------ (e) pack round-trip
-
-    [Theory]
-    [InlineData(' ', ' ')]
-    [InlineData('A', 'b')]
-    [InlineData('無', '門')]
-    [InlineData('\uD840', '\uDC00')] // surrogate halves (Ext-B pair)
-    [InlineData('\uDC00', '\uD840')] // reversed halves (pair boundary gram)
-    [InlineData('￿', '￿')]
-    public void UnpackGram_RoundTripsPackGram(char c0, char c1)
-    {
-        uint packed = GramSetCodec.PackGram(c0, c1);
-        string s = GramSetCodec.UnpackGram(packed);
-        Assert.Equal(2, s.Length);
-        Assert.Equal(c0, s[0]);
-        Assert.Equal(c1, s[1]);
     }
 
     // ------------------------------------------------------------------------ helpers

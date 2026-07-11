@@ -20,11 +20,11 @@ namespace ReadZen.Tests.Search;
 [Trait("Domain", "SearchSprint")]
 public class GramSetsStoreTests
 {
-    private static List<(GramSetsEntry meta, uint[] invGrams, uint[] cjk2Grams)> MakeEntries(
-        params (string rel, SearchSide side, uint[] inv, uint[] cjk2)[] rows)
+    private static List<(GramSetsEntry meta, uint[] invGrams)> MakeEntries(
+        params (string rel, SearchSide side, uint[] inv)[] rows)
     {
-        var list = new List<(GramSetsEntry, uint[], uint[])>(rows.Length);
-        foreach (var (rel, side, inv, cjk2) in rows)
+        var list = new List<(GramSetsEntry, uint[])>(rows.Length);
+        foreach (var (rel, side, inv) in rows)
         {
             list.Add((new GramSetsEntry
             {
@@ -33,7 +33,7 @@ public class GramSetsStoreTests
                 ContentHash = "hash-" + rel + "-" + side, // constant across saves: per-entry identity HITS
                 LastWriteUtcTicks = 1234567890L,
                 LengthBytes = 42,
-            }, inv, cjk2));
+            }, inv));
         }
         return list;
     }
@@ -46,7 +46,7 @@ public class GramSetsStoreTests
         {
             // ── Save A: small arrays. ──
             var entriesA = MakeEntries(
-                ("T/T01/a.xml", SearchSide.Original, new uint[] { 1, 2, 3 }, new uint[] { 10, 11 }));
+                ("T/T01/a.xml", SearchSide.Original, new uint[] { 1, 2, 3 }));
             await GramSetsStore.SaveAsync(root, "stamp-A", entriesA, default);
 
             var loadedA = await GramSetsStore.TryLoadAsync(root, default);
@@ -63,12 +63,12 @@ public class GramSetsStoreTests
             // would HIT), but LARGER arrays plus an extra entry, so bin_B is strictly
             // longer than bin_A and manifest_A's offsets all stay in bounds. ──
             var entriesB = MakeEntries(
-                ("T/T01/a.xml", SearchSide.Original, new uint[] { 100, 101, 102, 103, 104 }, new uint[] { 110, 111, 112 }),
-                ("T/T02/b.xml", SearchSide.Translated, new uint[] { 200, 201 }, new uint[] { 210 }));
+                ("T/T01/a.xml", SearchSide.Original, new uint[] { 100, 101, 102, 103, 104 }),
+                ("T/T02/b.xml", SearchSide.Translated, new uint[] { 200, 201 }));
             await GramSetsStore.SaveAsync(root, "stamp-B", entriesB, default);
             Assert.NotNull(await GramSetsStore.TryLoadAsync(root, default)); // intact pair B loads
 
-            long binALength = 4 + 16 + 4L * (3 + 2);
+            long binALength = 4 + 16 + 4L * 3;
             Assert.True(new FileInfo(GramSetsStore.GetBinPath(root)).Length > binALength,
                 "test premise: bin_B must be larger than bin_A so manifest_A's bounds pass");
 
@@ -91,7 +91,7 @@ public class GramSetsStoreTests
         try
         {
             var entries = MakeEntries(
-                ("T/T01/a.xml", SearchSide.Original, new uint[] { 7, 8 }, new uint[] { 9 }));
+                ("T/T01/a.xml", SearchSide.Original, new uint[] { 7, 8 }));
             await GramSetsStore.SaveAsync(root, "some-old-family-stamp", entries, default);
 
             // An intact pair from ANY previous build loads — the pairing token binds
@@ -100,7 +100,6 @@ public class GramSetsStoreTests
             Assert.NotNull(loaded);
             Assert.True(loaded!.TryGet("T/T01/a.xml", SearchSide.Original, out var e));
             Assert.Equal(new uint[] { 7, 8 }, loaded.ReadInvGrams(e));
-            Assert.Equal(new uint[] { 9 }, loaded.ReadCjk2Grams(e));
         }
         finally
         {

@@ -23,7 +23,6 @@ public interface ISearchIndexService : IDisposable
     string GetBinPath(string root);
     string GetTextManifestPath(string root);
     string GetTextBinPath(string root);
-    string GetCjk2ManifestPath(string root);
 
     void InvalidateIndexCaches();
     void ClearBloomCache();
@@ -31,7 +30,6 @@ public interface ISearchIndexService : IDisposable
 
     Task<SearchIndexManifest?> TryLoadAsync(string root);
     Task<SearchTextManifest?> TryLoadTextManifestAsync(string root);
-    Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root);
 
     Task BuildAsync(
         string root,

@@ -135,7 +135,6 @@ public class StubSearchIndexService : ISearchIndexService
     public string GetBinPath(string root) => "";
     public string GetTextManifestPath(string root) => "";
     public string GetTextBinPath(string root) => "";
-    public string GetCjk2ManifestPath(string root) => "";
 
     public void ClearBloomCache() { }
     public void ClearVerifyTextCache() { }
@@ -143,7 +142,6 @@ public class StubSearchIndexService : ISearchIndexService
 
     public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(null);
     public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
-    public Task<SearchCjkBigramManifest?> TryLoadCjk2ManifestAsync(string root) => Task.FromResult<SearchCjkBigramManifest?>(null);
 
     public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
 
