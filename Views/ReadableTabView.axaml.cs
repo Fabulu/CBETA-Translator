@@ -229,6 +229,22 @@ public partial class ReadableTabView : UserControl
     private ReadingLayoutMode _currentLayoutMode = ReadingLayoutMode.Page;
     private bool _suppressReadingLayoutEvent; // guards programmatic selector sync
     private int _readingLayoutRenderSeq;      // drops stale async re-renders
+
+    // Wave C: which reading surface is currently visible. The two-editor surface (the two
+    // AvaloniaEdit panes) is the default; the RowGrid surface (a virtualized ListBox) is
+    // shown for grid modes (AlignedLines in C1). Feature entry points that read/write the
+    // AvaloniaEdit panes must NO-OP while the grid is active (they'd operate on the hidden,
+    // stale editors) — see IsGridSurfaceActive().
+    private enum ActiveSurface { TwoEditor, RowGrid }
+    private ActiveSurface _activeSurface = ActiveSurface.TwoEditor;
+    private RowGridSurface? _rowGridSurface;
+    private System.Collections.Generic.IReadOnlyDictionary<string, int>? _rowGridLbToRow;
+
+    /// <summary>True while the RowGrid surface is the visible reading surface. Feature entry
+    /// points guard on this to avoid operating on the hidden two-editor panes. NOT folded
+    /// into <see cref="IsReadingLayoutGated"/> — that gate BLOCKS reading-layout renders, and
+    /// the grid IS a reading-layout render.</summary>
+    private bool IsGridSurfaceActive() => _activeSurface == ActiveSurface.RowGrid;
     private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
     // scan on every slider tick during time-travel playback.
@@ -798,6 +814,14 @@ public partial class ReadableTabView : UserControl
 
     private async Task OnAddToScholarCollectionAsync(bool isTranslated, bool useCurrentCollection = false)
     {
+        // On the grid surface the editors hold the PREVIOUS surface's text+selection; saving
+        // would persist the wrong quotation/lb-range (review M-5). Grid selection capture is C3.
+        if (IsGridSurfaceActive())
+        {
+            Say("Switch to a two-pane layout to save a passage to your collection.");
+            return;
+        }
+
         var editor = isTranslated ? _aeTran : _aeOrig;
         if (editor == null) return;
 
@@ -988,9 +1012,15 @@ public partial class ReadableTabView : UserControl
         // View mode (ZH/Both/EN): Wave A collapses/expands the two-pane columns. Wave C
         // rebuilds single-column projections with side filtering.
         _vm.Reading.ViewModeChangeRequested += (_, viewMode) => ApplyViewMode(viewMode);
-        // Line-id toggle: no-op for two-pane modes in Wave A (Wave C consumes it for
-        // single-column projections). Must never throw.
-        _vm.Reading.ShowLineIdsChangeRequested += (_, _) => { /* Wave C: rebuild projection */ };
+        // Line-id toggle: a no-op for the two-editor surface (no id column), but the row grid
+        // consumes showLineIds at build time — so rebuild the grid when it's showing (review
+        // MINOR-D), else toggling line-ids while the grid is up would do nothing. Never throws.
+        _vm.Reading.ShowLineIdsChangeRequested += (_, _) =>
+        {
+            if (IsGridSurfaceActive())
+                AsyncGuard.Run(() => ApplyReadingLayoutAsync(_currentLayoutMode),
+                    "ReadableTabView.ShowLineIdsChangeRequested");
+        };
         _vm.Reading.AddBookmarkRequested += (_, _) => AddBookmarkFromCaret();
 
         if (_chkProvenance != null)
@@ -1197,6 +1227,10 @@ public partial class ReadableTabView : UserControl
     // =========================
     public void Clear()
     {
+        // Tear down the grid surface too, else _activeSurface stays RowGrid with stale rows
+        // behind the empty-state overlay and every feature guard stays engaged (review MINOR-C).
+        RestoreTwoEditorSurface();
+
         _vm.RenderOrig = RenderedDocument.Empty;
         _vm.RenderTran = RenderedDocument.Empty;
         _vm.LociMap = null;
@@ -1264,6 +1298,10 @@ public partial class ReadableTabView : UserControl
 
     public void SetRendered(RenderedDocument orig, RenderedDocument tran)
     {
+        // Two-editor render: if the RowGrid surface was showing, restore the two panes so
+        // the two-editor surface behaves byte-identically to before Wave C.
+        RestoreTwoEditorSurface();
+
         _readableRenderGen++; // mark that docs for this navigation were swapped in
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
         _vm.RenderTran = tran ?? RenderedDocument.Empty;
@@ -1435,6 +1473,9 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public void SetRenderedOriginalOnly(RenderedDocument orig)
     {
+        // Historical/version render writes the two editors — restore that surface if the grid
+        // was showing, so the historical text isn't written into hidden panes (review M-3).
+        RestoreTwoEditorSurface();
         _readableRenderGen++; // docs swapped (timeline historical view)
         _vm.RenderOrig = orig ?? RenderedDocument.Empty;
         _vm.RenderTran = RenderedDocument.Empty;
@@ -1464,6 +1505,9 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public void SetRenderedTranslationOnly(RenderedDocument tran, bool showDiff = true)
     {
+        // Historical/diff render writes the translated editor — restore that surface if the
+        // grid was showing (review M-3).
+        RestoreTwoEditorSurface();
         _readableRenderGen++; // translated pane docs swapped (timeline historical view)
         // Capture the current text before swapping (for diff computation)
         if (_currentTextForDiff == null && _aeTran != null)
@@ -1597,6 +1641,8 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public async Task NavigateToAsync(NavigationRequest request)
     {
+        if (IsGridSurfaceActive()) return; // C2/C3: implement nav-highlight on grid (LbToRow → ScrollIntoView)
+
         // Give the layout engine time to measure and render the text.
         // Secondary windows need extra time for the visual tree to settle.
         await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
@@ -2506,6 +2552,13 @@ public partial class ReadableTabView : UserControl
     {
         try
         {
+            // The note anchors to the hidden editor's caret while the grid shows — meaningless
+            // and it would trigger a same-file re-render that ejects the grid (review M-4). C3.
+            if (IsGridSurfaceActive())
+            {
+                Say("Switch to a two-pane layout to add a community note.");
+                return;
+            }
             if (_vm.PendingRefresh) return;
             if (_aeTran == null) ResolveInnerEditors();
             await TryAddCommunityNoteAtSelectionOrCaretAsync();
@@ -2978,6 +3031,8 @@ public partial class ReadableTabView : UserControl
 
     private void PollSelectionChanges()
     {
+        // Pending-refresh timeout recovery must run on BOTH surfaces (review m-8), so the grid
+        // guard sits BELOW it — otherwise a stuck PendingRefresh could freeze layout switching.
         if (_vm.PendingRefresh)
         {
             if ((DateTime.UtcNow - _vm.PendingSinceUtc).TotalMilliseconds > ReadableTabViewModel.PendingTimeoutMs)
@@ -2987,6 +3042,8 @@ public partial class ReadableTabView : UserControl
             }
             return;
         }
+
+        if (IsGridSurfaceActive()) return; // C2/C3: selection-mirror is moot on the single-grid surface
 
         if (DateTime.UtcNow <= _suppressPollingUntilUtc) return;
         if (_syncingSelection) return;
@@ -3064,6 +3121,7 @@ public partial class ReadableTabView : UserControl
 
     private void RequestMirrorFromUserAction(bool sourceIsTranslated)
     {
+        if (IsGridSurfaceActive()) return; // C2/C3: selection-mirror is moot on the single-grid surface
         if (_vm.PendingRefresh) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
         if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
@@ -3157,6 +3215,8 @@ public partial class ReadableTabView : UserControl
     // =========================
     private void SetupHoverDictionary()
     {
+        if (IsGridSurfaceActive()) return; // C2: implement HoverDictionaryBehaviorRow on grid cells
+
         _hoverDictOrig?.Dispose();
         _hoverDictOrig = null;
 
@@ -3414,6 +3474,7 @@ public partial class ReadableTabView : UserControl
 
     private void OnPaneScrolled(bool sourceIsOrig)
     {
+        if (IsGridSurfaceActive()) return; // C2/C3: scroll-sync is moot on the single-grid surface
         if (!_scrollSyncEnabled) return;
         if (_scrollSyncSuppress) return;
 
@@ -3569,6 +3630,8 @@ public partial class ReadableTabView : UserControl
 
     private void ScheduleResumeCapture(bool sourceIsOrig)
     {
+        if (IsGridSurfaceActive()) return; // C3: capture the grid's top-visible row via LbToRow
+
         // Only capture on real user scrolling (same intent gate as scroll-sync);
         // programmatic scrolls (restore, find bar, selection sync, bookmarks) never
         // stamp intent and so must not overwrite the resume anchor.
@@ -3674,6 +3737,15 @@ public partial class ReadableTabView : UserControl
 
     private void ResumeRestoreTick()
     {
+        // C3: implement resume-restore on the grid (LbToRow → ScrollIntoView). For C1 the grid
+        // owns its own scroll; stop the pending restore cleanly so navigation never stalls.
+        if (IsGridSurfaceActive())
+        {
+            _resumeRestoreTimer?.Stop();
+            _resumeRestoreAbsKey = null;
+            return;
+        }
+
         var absKey = _resumeRestoreAbsKey;
         // Superseded by a newer navigation, or nothing pending → stop.
         if (string.IsNullOrEmpty(absKey) ||
@@ -3712,6 +3784,7 @@ public partial class ReadableTabView : UserControl
 
     private void RestoreResumeToLb(string lb, string? side)
     {
+        if (IsGridSurfaceActive()) return; // C3: restore the grid's scroll via LbToRow[lb]
         if (IsReadingLayoutGated()) return;
 
         // Restore BOTH panes to the shared source lb so the bilingual view stays
@@ -4813,6 +4886,16 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void SetCodingModeActive(bool active)
     {
+        // Coding/tagging operates on the two editors' selection; it's meaningless — and its
+        // GetActiveCodingEditorAndDoc falls back to the hidden _aeOrig without a focus check —
+        // while the grid shows (review MINOR-F). Refuse to enter it on the grid surface.
+        if (active && IsGridSurfaceActive())
+        {
+            Say("Switch to a two-pane layout to use coding mode.");
+            if (_btnCodingMode != null) _btnCodingMode.IsChecked = false;
+            return;
+        }
+
         _codingModeActive = active;
 
         if (_codeBarPanel != null)
@@ -6001,12 +6084,15 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             UpdateTermbaseHighlights(_vm.LastStudySnapshot.Terms, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
             UpdateTmSharedHighlights(_vm.LastStudySnapshot.ApprovedMatches, _vm.LastStudySnapshot.ReferenceMatches, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
         }
-        else if (!_vm.RenderOrig.IsEmpty)
+        else if (!_vm.RenderOrig.IsEmpty && !IsGridSurfaceActive())
         {
+            // DeriveReaderSegmentContext reads the editor caret, which is stale on the grid
+            // surface (review m-5). Grid-driven study context is C2/C3.
             DeriveReaderSegmentContext();
         }
 
-        UpdateStudyDictionary();
+        if (!IsGridSurfaceActive())
+            UpdateStudyDictionary();
     }
 
     private void UpdateProvenancePanelVisibility()
@@ -6142,6 +6228,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         var tranPathHint = _translationXmlAbsPath;
         var segMapService = App.Services?.GetService<ISegmentMapService>();
 
+        // Wave C: grid-surface modes render into the RowGrid ListBox instead of the two
+        // editors. AlignedLines pairs ZH/EN by lb (no suppression, no segment map needed).
+        if (strategy == RenderStrategy.RowGrid)
+        {
+            await ApplyRowGridLayoutAsync(mode, seq, xmlPath, tranPathHint, segMapService);
+            return;
+        }
+
         try
         {
             var (origDoc, tranDoc) = await Task.Run(() =>
@@ -6201,11 +6295,13 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 return;
             }
 
-            // Record/echo/persist the USER-SELECTED mode (not the fallback strategy) so
-            // the selector stays on what the user picked.
+            // Render FIRST: SetRendered → RestoreTwoEditorSurface reconciles the mode to Page
+            // when tearing down the grid (review M-4). So set the USER-SELECTED mode AFTER the
+            // render, or that reconcile would clobber it back to Page on a grid→non-Page switch
+            // (review MAJOR-1). PersistLayoutMode last so the stored preference is the real mode.
+            SetRendered(origDoc, tranDoc!);
             _currentLayoutMode = mode;
             SetReadingLayoutSelector(mode);
-            SetRendered(origDoc, tranDoc!);
             PersistLayoutMode(mode);
         }
         catch
@@ -6220,6 +6316,146 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
     }
 
+    /// <summary>
+    /// Renders a grid-surface reading mode (Wave C). Renders the original + translation
+    /// UNSUPPRESSED off the UI thread, builds a <see cref="RowGridModel"/>, then swaps the
+    /// RowGrid surface in on the UI thread — mirroring the seq/gate guards of the two-editor
+    /// path. AlignedLines needs no segment map; the map is loaded best-effort for parity with
+    /// later grid modes and passed through (unused by AlignedLines).
+    /// </summary>
+    private async Task ApplyRowGridLayoutAsync(
+        ReadingLayoutMode mode, int seq, string xmlPath, string? tranPathHint, ISegmentMapService? segMapService)
+    {
+        _ = segMapService; // AlignedLines pairs purely by lb; later grid modes (Blocks/Stacked) will use it.
+        // Capture UI-thread state before going off-thread.
+        bool showLineIds = _vm.Reading.ShowLineIds;
+        var view = (ReaderViewMode)_vm.Reading.ViewModeIndex;
+        try
+        {
+            var (origDoc, tranDoc, model) = await Task.Run(() =>
+            {
+                var origXml = File.ReadAllText(xmlPath, System.Text.Encoding.UTF8);
+                var orig = TeiRenderer.Render(origXml, null); // grid pairs by lb: no suppression
+
+                var tranPath = tranPathHint ?? DeriveTranslationPath(xmlPath);
+                RenderedDocument tran;
+                if (!string.IsNullOrEmpty(tranPath) && File.Exists(tranPath))
+                {
+                    var tranXml = File.ReadAllText(tranPath, System.Text.Encoding.UTF8);
+                    tran = TeiRenderer.Render(tranXml, null);
+                }
+                else
+                {
+                    tran = TeiRenderer.Render(origXml, null);
+                }
+
+                // AlignedLines needs no segment map → skip the TryLoad I/O (review m-9).
+                var built = RowGridBuilder.Build(orig, tran, null, mode, view, showLineIds);
+                return (orig, tran, built);
+            });
+
+            // A newer toggle or navigation superseded this render — drop it.
+            if (seq != _readingLayoutRenderSeq)
+                return;
+
+            // Gate may have opened (time-travel entered) while rendering — bail.
+            if (IsReadingLayoutGated())
+            {
+                SetReadingLayoutSelector(_currentLayoutMode);
+                return;
+            }
+
+            _currentLayoutMode = mode;
+            SetReadingLayoutSelector(mode);
+            SetRenderedRowGrid(origDoc, tranDoc, model);
+            PersistLayoutMode(mode);
+        }
+        catch
+        {
+            // Re-render failed: revert to page layout AND un-lie the selector.
+            if (seq == _readingLayoutRenderSeq)
+            {
+                _currentLayoutMode = ReadingLayoutMode.Page;
+                SetReadingLayoutSelector(ReadingLayoutMode.Page);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Swaps the RowGrid surface in as the visible reading surface. Keeps the VM's
+    /// RenderOrig/RenderTran populated (apparatus count / study / export still read them),
+    /// bumps <see cref="_readableRenderGen"/> for the resume/sticky-reapply bookkeeping (parity
+    /// with <see cref="SetRendered"/>), and flips <see cref="_activeSurface"/> so feature entry
+    /// points guard themselves off the hidden editors.
+    /// </summary>
+    private void SetRenderedRowGrid(RenderedDocument orig, RenderedDocument tran, RowGridModel model)
+    {
+        var surface = _rowGridSurface ??= this.FindControl<RowGridSurface>("RowGridSurface");
+        if (surface == null)
+        {
+            // Defensive: the grid control is missing from the visual tree. Do NOT hide the two
+            // panes (that would blank the reader) — stay on the two-editor surface (review m-6).
+            _activeSurface = ActiveSurface.TwoEditor;
+            return;
+        }
+
+        _readableRenderGen++; // this navigation's docs were swapped in (parity with SetRendered)
+        _vm.RenderOrig = orig ?? RenderedDocument.Empty;
+        _vm.RenderTran = tran ?? RenderedDocument.Empty;
+        _vm.IsEmptyState = false;
+
+        surface.ReaderFontSize = _editorFontSize;
+        surface.ItemsSource = model.Rows;
+        surface.IsVisible = true;
+        var twoPane = this.FindControl<Grid>("TwoPaneGrid");
+        if (twoPane != null) twoPane.IsVisible = false;
+
+        // Close two-editor-only chrome that would otherwise linger over the grid (review m-7):
+        // the notes panel (with its armed Move button) and the find bar (stale count, dead nav).
+        CancelMoveModeAndHideNotes();
+        if (_findBar != null) _findBar.IsVisible = false;
+
+        _rowGridLbToRow = model.LbToRow;
+        _activeSurface = ActiveSurface.RowGrid;
+
+        // Apparatus count parity with SetRendered (the provenance panel reads it).
+        var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
+        _provenancePanelView?.SetApparatusCount(appCount);
+    }
+
+    /// <summary>
+    /// Restores the two-editor surface (hides the RowGrid, shows TwoPaneGrid, clears grid
+    /// state, flips <see cref="_activeSurface"/> back to TwoEditor). Called at the top of the
+    /// two-editor <see cref="SetRendered"/> path so switching to a Page/Merged strategy leaves
+    /// the two-editor surface byte-identical to today.
+    /// </summary>
+    private void RestoreTwoEditorSurface()
+    {
+        bool wasGrid = _activeSurface == ActiveSurface.RowGrid;
+
+        var surface = _rowGridSurface ??= this.FindControl<RowGridSurface>("RowGridSurface");
+        if (surface != null)
+        {
+            surface.IsVisible = false;
+            surface.ItemsSource = null;
+        }
+        var twoPane = this.FindControl<Grid>("TwoPaneGrid");
+        if (twoPane != null) twoPane.IsVisible = true;
+        _rowGridLbToRow = null;
+        _activeSurface = ActiveSurface.TwoEditor;
+
+        // A two-editor render (navigation, same-file re-render, time-travel, version history)
+        // is tearing the grid down. Reconcile the mode-of-record + selector to Page so they
+        // stop claiming a grid mode while the two panes show (review finding M-4). We do NOT
+        // persist Page — the user's stored grid preference survives and re-applies on the
+        // next navigation via MaybeReapplyPersistedLayout.
+        if (wasGrid && _currentLayoutMode != ReadingLayoutMode.Page)
+        {
+            _currentLayoutMode = ReadingLayoutMode.Page;
+            SetReadingLayoutSelector(ReadingLayoutMode.Page);
+        }
+    }
+
     /// <summary>The two render surfaces Wave A can actually produce (plus the Wave C stub).</summary>
     private enum RenderStrategy
     {
@@ -6227,8 +6463,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         PageTwoPane,
         /// <summary>Merged two-pane surface (suppressed non-leading line breaks).</summary>
         MergedTwoPane,
-        /// <summary>Single-column projection — reserved for Wave C (not yet produced).</summary>
-        SingleColumnProjection
+        /// <summary>Row-grid reading surface (virtualized ListBox of RowVm rows). Wave C.</summary>
+        RowGrid
     }
 
     /// <summary>
@@ -6236,12 +6472,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// currently-implemented render strategy. Page/Aligned* → page; MergedFlow/SyncedPanes/
     /// Interleaved/MergedStacked → merged two-pane. Waves B/C replace the placeholder rows
     /// (SyncedPanes styling; single-column Interleaved/MergedStacked; aligned surfaces) and
-    /// will begin returning <see cref="RenderStrategy.SingleColumnProjection"/>.
+    /// route the implemented ones to <see cref="RenderStrategy.RowGrid"/>.
     /// </summary>
     private static RenderStrategy RenderStrategyFor(ReadingLayoutMode mode) => mode switch
     {
         ReadingLayoutMode.Page => RenderStrategy.PageTwoPane,
-        ReadingLayoutMode.AlignedLines => RenderStrategy.PageTwoPane,   // Wave C → page for now
+        ReadingLayoutMode.AlignedLines => RenderStrategy.RowGrid,       // Wave C1 → row grid
         ReadingLayoutMode.AlignedBlocks => RenderStrategy.PageTwoPane,  // Wave C → page for now
         ReadingLayoutMode.MergedFlow => RenderStrategy.MergedTwoPane,
         ReadingLayoutMode.SyncedPanes => RenderStrategy.MergedTwoPane,  // Wave B → merged for now
@@ -7103,6 +7339,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void OnCorrectionStepChanged(int step)
     {
+        // Time-travel writes reconstructed text into the two editors — restore that surface if
+        // the grid was showing so history isn't written into hidden panes (review M-2).
+        RestoreTwoEditorSurface();
+
         // ── Anchor-event mode ──
         if (_anchorEvents != null && _anchorEvents.Count > 0)
         {
@@ -7209,6 +7449,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (_anchorEvents == null || _aeOrig == null) return;
         if (step < 0 || step >= _anchorEvents.Count) return;
+
+        // Time-travel writes the two editors — restore that surface if the grid was showing
+        // (review M-2). Idempotent when called via OnCorrectionStepChanged.
+        RestoreTwoEditorSurface();
 
         // Reconstructed historical view: gate reading-layout re-renders and detach
         // the present-render segment transformers (see OnCorrectionStepChanged).
@@ -7318,6 +7562,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// </summary>
     private void OnReturnToPresent()
     {
+        // Return-to-present writes the two editors — ensure that surface is showing (review M-2).
+        RestoreTwoEditorSurface();
         _syncingSelection = true;
         try
         {
@@ -7388,6 +7634,11 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void OpenFindBar()
     {
+        if (IsGridSurfaceActive())
+        {
+            Say("Find isn't available in this layout yet — switch to a two-pane layout.");
+            return; // C2: implement find on grid (search RowVm text → Hspan)
+        }
         if (_findBar == null || _txtFindInput == null) return;
         _findBar.IsVisible = true;
         _txtFindInput.Focus();
@@ -7404,6 +7655,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void OnFindTextChanged()
     {
+        if (IsGridSurfaceActive()) return; // C2: implement find on grid (search RowVm text → Hspan)
         var query = _txtFindInput?.Text;
         if (string.IsNullOrEmpty(query))
         {
@@ -7484,6 +7736,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void FindNext()
     {
+        if (IsGridSurfaceActive()) return; // C2: implement find on grid
         if (_findMatches.Count == 0) return;
         _findCurrentIndex = (_findCurrentIndex + 1) % _findMatches.Count;
         UpdateFindHighlightRanges();
@@ -7493,6 +7746,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void FindPrev()
     {
+        if (IsGridSurfaceActive()) return; // C2: implement find on grid
         if (_findMatches.Count == 0) return;
         _findCurrentIndex = (_findCurrentIndex - 1 + _findMatches.Count) % _findMatches.Count;
         UpdateFindHighlightRanges();
@@ -7550,6 +7804,11 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// </summary>
     private void AddBookmarkFromCaret()
     {
+        if (IsGridSurfaceActive())
+        {
+            Say("Bookmarking isn't available in this layout yet — switch to a two-pane layout.");
+            return; // C3: capture bookmark from the grid's current row (row.Lb)
+        }
         var relPath = _vm.CurrentRelPathForZen;
         if (string.IsNullOrWhiteSpace(relPath)) return;
 
@@ -7649,6 +7908,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void NavigateToBookmark(Bookmark bm)
     {
+        if (IsGridSurfaceActive())
+        {
+            Say("Switch to a two-pane layout to jump to a bookmark.");
+            return; // C3: jump to bookmark on grid via LbToRow[bm.Lb]
+        }
+
         // Prefer the pane the bookmark was captured from; fall back to whichever exists.
         var editor = bm.Side == "orig" ? (_aeOrig ?? _aeTran) : (_aeTran ?? _aeOrig);
         if (editor == null) return;
@@ -7735,6 +8000,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void NavigateToHeading(HeadingInfo heading, bool fromOriginal = false)
     {
+        // The outline scrolls a hidden editor while the grid shows — no visible effect (review
+        // m-3). Grid outline nav (LbToRow → ScrollIntoView) is C3.
+        if (IsGridSurfaceActive())
+        {
+            Say("Switch to a two-pane layout to jump via the outline.");
+            return;
+        }
+
         // Navigate in the matching editor (original if headings came from original doc)
         var editor = fromOriginal ? (_aeOrig ?? _aeTran) : (_aeTran ?? _aeOrig);
         if (editor == null) return;
@@ -7759,6 +8032,9 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (_aeOrig != null) _aeOrig.FontSize = _editorFontSize;
         if (_aeTran != null) _aeTran.FontSize = _editorFontSize;
+        // Fan the same zoom into the RowGrid cells so Ctrl+/-/wheel zoom scales both surfaces.
+        var surface = _rowGridSurface ??= this.FindControl<RowGridSurface>("RowGridSurface");
+        if (surface != null) surface.ReaderFontSize = _editorFontSize;
     }
 
     private void ZoomIn()
