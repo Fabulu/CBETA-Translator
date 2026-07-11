@@ -925,7 +925,9 @@ public class MainWindowViewModelTests
             string? seenUsername = null;
             string? seenTerm = null;
             string? seenCommunityUser = null;
-            vm.OpenTermbaseEditorRequested = (r, username, term, communityUser) =>
+            // Signature is now (root, origDir, transDir, username, term, communityUser);
+            // this test only asserts root/username/term/communityUser, so discard the dirs.
+            vm.OpenTermbaseEditorRequested = (r, _, _, username, term, communityUser) =>
             {
                 seenRoot = r;
                 seenUsername = username;
