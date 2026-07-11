@@ -392,38 +392,6 @@ public sealed class SearchTextEntry
     public int TextLengthBytes { get; set; }
 }
 
-// Optional Phase C artifact: compact-CJK 2-gram postings for short-query prefiltering.
-// Search must remain correct when this is missing or invalid (fallback to bloom+verify path).
-public sealed class SearchCjkBigramManifest
-{
-    public int Version { get; set; } = 1;
-    public string RootPath { get; set; } = "";
-    public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;
-    public string BuildGuid { get; set; } = "search-v1-cjk2-postings";
-    public int GramSize { get; set; } = 2;
-    public int EntryCount { get; set; }
-
-    /// <summary>
-    /// IndexStamp of the main <see cref="SearchIndexManifest"/> from the SAME build this
-    /// cjk2 manifest was saved with. EntryIds are positional (index into the main
-    /// manifest's entry list), so a cjk2 manifest from a previous build silently maps
-    /// grams to the WRONG files once entries shift. Consumers only use this manifest
-    /// when the stamp is non-null and Ordinal-equal to the loaded main manifest's
-    /// IndexStamp. Nullable for backward compatibility: legacy files deserialize with
-    /// <c>IndexStamp == null</c> and are refused (search degrades to the
-    /// non-prefiltered scan; results stay correct).
-    /// </summary>
-    public string? IndexStamp { get; set; }
-
-    public List<SearchCjkBigramPosting> Postings { get; set; } = new();
-}
-
-public sealed class SearchCjkBigramPosting
-{
-    public string Gram { get; set; } = "";
-    public List<int> EntryIds { get; set; } = new();
-}
-
 /// <summary>
 /// Represents one master currently active in the multi-master intersection filter.
 /// </summary>

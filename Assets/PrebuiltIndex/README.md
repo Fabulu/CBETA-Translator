@@ -19,7 +19,6 @@ which produces the full index artifact family:
 
 - `search.index.bin` + `search.index.manifest.json` (bloom)
 - `search.text.bin` + `search.text.manifest.json` (searchable-text sidecar)
-- `search.cjk2.manifest.json` (CJK bigram postings)
 - `search.corpusfreq.bin` + `search.corpusfreq.manifest.json` (corpus frequencies)
 - `search.inverted.bin` (exact-match inverted index, v4 tf postings)
 - `search.gramsets.bin` + `search.gramsets.manifest.json` (gram-set sidecar)

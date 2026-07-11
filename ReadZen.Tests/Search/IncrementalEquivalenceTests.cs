@@ -15,8 +15,8 @@ namespace ReadZen.Tests.Search;
 /// The EQUIVALENCE INVARIANT (S6, non-negotiable): <c>BuildOrUpdateAsync(forceRebuild:
 /// false)</c> over a corpus delta must produce artifacts equivalent to a from-scratch
 /// full rebuild of the same corpus state — identical modulo BuiltUtc / IndexStamp.
-/// Positional-Id renumbering is the highest-severity risk: manifest Ids, cjk2 EntryIds
-/// and inverted docIds must renumber consistently on every add/remove, which is why
+/// Positional-Id renumbering is the highest-severity risk: manifest Ids and inverted
+/// docIds must renumber consistently on every add/remove, which is why
 /// every case here runs the full <see cref="ArtifactFamilyAssert"/> comparison plus
 /// semantic backstops against the freshly written incremental artifacts.
 ///
@@ -65,14 +65,6 @@ public class IncrementalEquivalenceTests
 
         ArtifactFamilyAssert.AssertEquivalent(incremental, full);
 
-        // INC-5A: beyond the DTO allowlist compare, the cjk2 manifests must be
-        // byte-equal under canonical serialization (IndexStamp nulled, BuiltUtc
-        // zeroed, same WriteIndented=true options) — proves the transpose's
-        // gram-string production is identical to the full path's, escaping included.
-        Assert.Equal(
-            Cjk2Canonical.Serialize(full.Cjk2Manifest),
-            Cjk2Canonical.Serialize(incremental.Cjk2Manifest));
-
         // Both builds minted their own stamps — proves the comparison passed via the
         // allowlists, not via accidentally shared per-build values.
         Assert.False(string.Equals(incremental.MainManifest.IndexStamp, full.MainManifest.IndexStamp, StringComparison.Ordinal),
@@ -107,23 +99,6 @@ public class IncrementalEquivalenceTests
             $"gram '{gram}' resolved to '{match}', expected '{expectedRel}'");
     }
 
-    /// <summary>
-    /// Semantic backstop: a cjk2 gram unique to one (rel, side) entry must map to that
-    /// entry's NEW positional Id in the same snapshot's main manifest.
-    /// </summary>
-    private static void AssertCjk2GramMapsToEntry(
-        ArtifactFamilyAssert.FamilySnapshot snap, string gram, string expectedRel, SearchSide expectedSide)
-    {
-        var posting = snap.Cjk2Manifest.Postings.FirstOrDefault(p => string.Equals(p.Gram, gram, StringComparison.Ordinal));
-        Assert.True(posting != null, $"cjk2 posting for gram '{gram}' missing");
-        var id = Assert.Single(posting!.EntryIds);
-        var entry = snap.MainManifest.Entries.FirstOrDefault(e => e.Id == id);
-        Assert.True(entry != null, $"cjk2 EntryId {id} has no matching main manifest entry");
-        Assert.Equal(expectedSide, entry!.Side);
-        Assert.True(string.Equals(expectedRel, entry.RelPath, StringComparison.OrdinalIgnoreCase),
-            $"cjk2 gram '{gram}' mapped to '{entry.RelPath}'/{entry.Side}, expected '{expectedRel}'/{expectedSide}");
-    }
-
     // ============ (1) add-only, mid sort order (positional Id shift) ============
 
     [Fact]
@@ -143,8 +118,8 @@ public class IncrementalEquivalenceTests
         {
             // Query hitting the ADDED file resolves to the correct relPath.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(added), added);
-            // A cjk2 gram unique to a SHIFTED file maps to its NEW manifest Id.
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueOrigGram(shifted), shifted, SearchSide.Original);
+            // A SHIFTED file still resolves to its NEW positional Id via the inverted index.
+            await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(shifted), shifted);
         });
     }
 
@@ -167,7 +142,6 @@ public class IncrementalEquivalenceTests
                 e => string.Equals(e.RelPath, removed, StringComparison.OrdinalIgnoreCase));
             // A file sorted after the removal point still resolves to its correct relPath.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(afterRemoval), afterRemoval);
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueOrigGram(afterRemoval), afterRemoval, SearchSide.Original);
         });
     }
 
@@ -208,10 +182,10 @@ public class IncrementalEquivalenceTests
 
         await RunIncrementalVsFullAsync(fx, svc, async snap =>
         {
-            // Winner doc for the rel is still the ORIGINAL side.
+            // Winner doc for the rel is still the ORIGINAL side. The tran-side content
+            // change is proven equivalent to a full rebuild by the family comparison
+            // (text bin + inverted bin) in RunIncrementalVsFullAsync.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(rel), rel);
-            // The tran-side entry picked up the new content in cjk2 (new unique pair <U+6900 U+6901>).
-            AssertCjk2GramMapsToEntry(snap, "椀椁", rel, SearchSide.Translated);
         });
     }
 
@@ -243,7 +217,6 @@ public class IncrementalEquivalenceTests
         {
             // A: the new orig side is present, and is the inverted winner for the rel.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, newOrigGram, flipToOrig);
-            AssertCjk2GramMapsToEntry(snap, newOrigGram, flipToOrig, SearchSide.Original);
 
             // B: the tran side is now the winner doc for its rel.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueTranGram(flipToTran), flipToTran);
@@ -284,9 +257,8 @@ public class IncrementalEquivalenceTests
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(changed), changed);
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueOrigGram(shifted), shifted);
 
-            // cjk2 grams unique to shifted files map to their NEW manifest Ids.
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueOrigGram(shifted), shifted, SearchSide.Original);
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueTranGram(shifted), shifted, SearchSide.Translated);
+            // The shifted tran side is proven to renumber consistently by the full-family
+            // equivalence comparison (inverted bin + .paths) in RunIncrementalVsFullAsync.
         });
     }
 
@@ -324,7 +296,7 @@ public class IncrementalEquivalenceTests
         File.Delete(fx.OrigPath(flipToTran));
 
         // An untouched rel sorted after BOTH the add and the removal point, so its
-        // positional Ids (manifest Id, cjk2 EntryId, inverted docId) definitely shifted.
+        // positional Ids (manifest Id, inverted docId) definitely shifted.
         var shifted = fx.BothSidesRels.Last(r =>
             !string.Equals(r, added, StringComparison.OrdinalIgnoreCase) &&
             !string.Equals(r, changed, StringComparison.OrdinalIgnoreCase) &&
@@ -348,14 +320,13 @@ public class IncrementalEquivalenceTests
 
             // Flip A: the new orig side is the inverted winner for its rel.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, newOrigGram, flipToOrig);
-            AssertCjk2GramMapsToEntry(snap, newOrigGram, flipToOrig, SearchSide.Original);
 
             // Flip B: the tran side is now the winner doc for its rel.
             await AssertInvertedResolvesAsync(fx.Root, snap.MainManifest.IndexStamp, fx.UniqueTranGram(flipToTran), flipToTran);
 
-            // cjk2 grams unique to the shifted file map to its NEW manifest Ids.
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueOrigGram(shifted), shifted, SearchSide.Original);
-            AssertCjk2GramMapsToEntry(snap, fx.UniqueTranGram(shifted), shifted, SearchSide.Translated);
+            // The shifted file resolves to its NEW positional Id (asserted above);
+            // consistent renumbering of BOTH sides is enforced by the full-family
+            // equivalence compare (inverted bin + .paths) in RunIncrementalVsFullAsync.
         });
     }
 

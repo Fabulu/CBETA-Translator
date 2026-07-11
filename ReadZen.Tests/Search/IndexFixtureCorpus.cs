@@ -17,14 +17,14 @@ namespace ReadZen.Tests.Search;
 ///   - file names leave deliberate sort gaps (b0010, d0020, f0030, h0040, ...) so
 ///     <see cref="AddFileMidCorpus"/> can insert names (c0015, g0035, ...) that sort
 ///     strictly mid-corpus and shift every later positional Id (manifest Id,
-///     cjk2 EntryId, inverted docId);
+///     inverted docId);
 ///   - the common gram 無門 (<see cref="CommonGram"/>) appears in EVERY winner doc
 ///     (the side the inverted index keeps after keep-first dedup), i.e. &gt;80% doc
 ///     frequency, which arms the 0.8 MaxDocFrequencyRatio cutoff;
 ///   - every file additionally carries a unique rare bigram
 ///     (<see cref="UniqueOrigGram"/> / <see cref="UniqueTranGram"/>) for semantic
 ///     backstop assertions;
-///   - translated sides carry CJK text too (so tran entries contribute cjk2 grams).
+///   - translated sides carry CJK text too (so tran entries contribute inverted grams).
 ///
 /// Never touches the real corpora — everything lives under a fresh
 /// <c>%TEMP%/readzen-eqharness-XXXXXXXX</c> directory removed on Dispose.
