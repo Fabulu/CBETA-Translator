@@ -43,7 +43,7 @@ def public_feedback_hard_pass(result: dict) -> bool:
         and isinstance(payload, dict)
         and payload.get("flagged") == 0
     )
-PACKET_GENERATOR_VERSION = 4
+PACKET_GENERATOR_VERSION = 5
 
 
 def command(arguments: list[str]) -> dict:

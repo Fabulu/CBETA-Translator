@@ -322,13 +322,15 @@ def packet_input_sha256(entry: dict) -> str:
         "SourceTerm": entry.get("SourceTerm"),
         "Occurrences": [
             {
+                "Sense": sense_index,
+                "Occurrence": occurrence_index,
                 "RelPath": occurrence.get("RelPath"),
                 "FromLb": occurrence.get("FromLb"),
                 "Kwic": occurrence.get("Kwic"),
                 "MasterName": occurrence.get("MasterName"),
             }
-            for sense in entry.get("Senses") or []
-            for occurrence in sense.get("Occurrences") or []
+            for sense_index, sense in enumerate(entry.get("Senses") or [], 1)
+            for occurrence_index, occurrence in enumerate(sense.get("Occurrences") or [], 1)
         ],
     }
     rendered = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
@@ -362,12 +364,43 @@ def main() -> int:
                     "currentMasterName": occurrence.get("MasterName"),
                 })
                 order += 1
+    # Reuse complete-case packets whose evidence fingerprint has not changed.
+    # Earlier versions wrote the fingerprint but rebuilt every XML unit anyway,
+    # so a prose-only repair paid the full attribution cost again.  Reuse is
+    # deliberately entry-atomic: one changed occurrence invalidates that entry,
+    # while byte-identical evidence for other entries remains safe to carry.
+    cached_by_entry = {}
+    cached_hashes = {}
+    if args.output and args.output.exists():
+        try:
+            prior = json.loads(args.output.read_text(encoding="utf-8-sig"))
+            cached_hashes = prior.get("inputPacketSha256") or {}
+            for row in prior.get("packets") or []:
+                cached_by_entry.setdefault(row.get("entryId"), []).append(row)
+        except (OSError, UnicodeError, json.JSONDecodeError, TypeError):
+            cached_by_entry = {}
+            cached_hashes = {}
+    reusable_ids = {
+        entry_id for entry_id, digest in input_hashes.items()
+        if cached_hashes.get(entry_id) == digest and cached_by_entry.get(entry_id)
+    }
+    cached_lookup = {
+        (row.get("entryId"), row.get("sense"), row.get("occurrence")): row
+        for entry_id in reusable_ids for row in cached_by_entry[entry_id]
+    }
+
     # zc's raw-position index intentionally holds one source at a time. Entry
     # order alternates sources and used to rebuild multi-megabyte XML maps over
     # and over. Process one source contiguously, then restore reader-facing
     # entry/occurrence order. Evidence and packet contents are unchanged.
     completed = []
     for item in sorted(pending, key=lambda row: (row["RelPath"], row["_order"])):
+        cache_key = (item.get("entryId"), item.get("sense"), item.get("occurrence"))
+        cached = cached_lookup.get(cache_key)
+        if cached is not None:
+            # Copy so an in-memory update cannot mutate the loaded prior report.
+            completed.append((item["_order"], dict(cached)))
+            continue
         row = packet(item["RelPath"], item["FromLb"], item["Kwic"])
         row.update({key: value for key, value in item.items() if not key.startswith("_") and key not in {"RelPath", "FromLb", "Kwic"}})
         row["turnProofCandidates"] = turn_proof_candidates(row.get("caseText") or "", item.get("sourceTerm") or "")
@@ -377,18 +410,35 @@ def main() -> int:
         completed.append((item["_order"], row))
     rows = [row for _, row in sorted(completed)]
     payload = {
-        "generatorVersion": 4,
+        "generatorVersion": 5,
         "inputPacketSha256": input_hashes,
         "entries": len({row["entryId"] for row in rows}),
         "occurrences": len(rows),
         "tierACandidates": sum(row.get("tier", "").startswith("A") for row in rows),
         "reviewRequired": sum(not row.get("tier", "").startswith("A") for row in rows),
+        "cache": {
+            "reusedEntries": len(reusable_ids),
+            "reusedOccurrences": sum(row.get("entryId") in reusable_ids for row in rows),
+            "rebuiltEntries": len({row["entryId"] for row in rows} - reusable_ids),
+            "rebuiltOccurrences": sum(row.get("entryId") not in reusable_ids for row in rows),
+        },
         "packets": rows,
     }
     rendered = json.dumps(payload, ensure_ascii=False, indent=2)
     if args.output:
-        args.output.write_text(rendered + "\n", encoding="utf-8")
-        print(json.dumps({k: payload[k] for k in ("entries", "occurrences", "tierACandidates", "reviewRequired")}, indent=2))
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        fd, temporary = tempfile.mkstemp(prefix=args.output.name + ".", suffix=".tmp", dir=args.output.parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                handle.write(rendered + "\n")
+                handle.flush()
+                os.fsync(handle.fileno())
+            os.replace(temporary, args.output)
+        finally:
+            if os.path.exists(temporary):
+                os.unlink(temporary)
+        print(json.dumps({**{k: payload[k] for k in ("entries", "occurrences", "tierACandidates", "reviewRequired")},
+                          "cache": payload["cache"]}, indent=2))
         print(f"report: {args.output}")
     else:
         print(rendered)

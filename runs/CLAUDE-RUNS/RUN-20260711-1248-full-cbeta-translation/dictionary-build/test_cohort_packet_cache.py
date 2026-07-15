@@ -31,6 +31,11 @@ class CohortPacketCacheTests(unittest.TestCase):
         before = packet_input_sha256(entry)
         entry["Senses"][0]["Explanation"] = "repaired prose"
         self.assertEqual(before, packet_input_sha256(entry))
+        occurrence = entry["Senses"][0]["Occurrences"].pop()
+        entry["Senses"].append({"Explanation": "second sense", "Occurrences": [occurrence]})
+        self.assertNotEqual(before, packet_input_sha256(entry))
+        entry["Senses"].pop()
+        entry["Senses"][0]["Occurrences"].append(occurrence)
         entry["Senses"][0]["Occurrences"][0]["MasterName"] = "Mazu Daoyi"
         self.assertNotEqual(before, packet_input_sha256(entry))
 

@@ -212,6 +212,11 @@ invalidates the cache; full entry SHA-256 remains separately recorded by the coh
 - Regression test proves a prose-only edit preserves the packet fingerprint while an actor change invalidates it.
 - This directly targets repair waves, where prose changes were repeatedly paying the 12.5-second 59-case packet cost
   despite unchanged corpus evidence.
+- Version 5 also reuses unchanged entries *inside* a partially changed stable cohort packet. A three-entry/17-case
+  production benchmark measured 2.96 s cold and 0.34 s warm (8.7×); 17/17 packets were reused. Cache coordinates
+  include sense and occurrence indexes, so moving evidence between senses invalidates reuse. Writes are atomic.
+- Operational requirement: keep one stable attribution-packet output path per cohort. Renaming the output for every
+  revision deliberately forfeits this per-entry cache.
 
 ## 13. Reject the “referent or formula” prose template before review
 
