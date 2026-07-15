@@ -187,3 +187,15 @@ unchanged; no semantic decision is automated.
   verification (about 60% less wall time than serial execution would require).
 - The attribution and depth audits remain the longest individual mechanical phases. They now overlap instead of
   blocking each other, so optimizing either one further cannot weaken or bypass the other.
+
+## 11. Two-entry semantic canary before bulk authoring
+
+Implementation rule: a new 100-entry construction lane may not scale past its first two entries until a different
+reader has checked every complete case, the English-first definition, every translated quotation, sense boundaries,
+and exact actors. Composite-green mechanics alone do not release the remaining 98.
+
+Production trigger: the f005 A canary passed 9/9 exact KWICs and every composite mechanical audit, but independent
+reading found that the explanation quoted Baishui's answer `應真無比` (“a worthy one without peer”) while the stored
+KWIC stopped before that answer. Catching this after two entries costs one widened occurrence; catching the same
+template habit after 100 entries would create another review-and-repair wave. The canary therefore optimizes the
+dominant cost—semantic rework—rather than just validator runtime.
