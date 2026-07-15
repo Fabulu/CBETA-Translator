@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-rereview",
+  "reviewer": "root-coordinator",
+  "generatedUtc": "2026-07-15T15:08:00Z",
+  "wave": "f004",
+  "lane": "A",
+  "ordinals": [918, 920, 924, 925],
+  "entriesReviewed": 4,
+  "occurrencesReadInFullCase": 26,
+  "exactKwics": "26/26",
+  "exactFullSpans": "26/26",
+  "keep": 3,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 918,
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "reviewedEntrySha256": "10c80bc5326702eb966d5909107c46b0cf028a11c697b927ca53de74be774f10",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The new Hongjue Min witness is a real deployed case and all spans are exact, but occurrences 2 and 5 remain one-token 扇子 KWICs. Their notes claim the Yanguan rhinoceros-fan case without storing that deployment. Replace both bare tokens with complete deployed witnesses or full bounded case spans; contained-only tokens cannot carry the explanation."
+    },
+    {
+      "ordinal": 920,
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "reviewedEntrySha256": "37cc3ace3ce9b40654052e89d936671cc53e2ab77ef42f54731fc03eedb5b355",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "The entry now states the defining sandals-on-head action, names Koho Kennichi and Mengshan Deyi as respondents where the headword is asked by others, and preserves Nanquan and Zhaozhou as case figures. All five complete spans and notes are exact."
+    },
+    {
+      "ordinal": 924,
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "reviewedEntrySha256": "0b91ebc33f5d1bfd9393c47b2b48dc3d49492ad34023d6419600a17a27012cfa",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven witnesses now deploy the patriarchal seal in direct address, questions, or answers; named respondents and record owners agree with the source passages, including Mingjue Cong. The authority/transmission gloss is corpus-grounded and every span verifies."
+    },
+    {
+      "ordinal": 925,
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "reviewedEntrySha256": "f3e72ffe735ea99ef58530cea7c4dc43f0fb52ee0eec25adcc44411d7712f1e1",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The entry correctly splits the named thinker from the titled book. Five master deployments cite Mencius as a person, while the two book witnesses explicitly concern its seven chapters or reading it among learned texts. All actors, notes, and exact spans agree."
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promotionPerformed": false,
+    "mergePerformed": false,
+    "siteTouched": false,
+    "authorReviewerSeparated": true
+  }
+}

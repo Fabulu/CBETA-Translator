@@ -17,6 +17,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 FRESH = HERE / "fresh-build"
+APPROVED = FRESH / "approved-snapshots"
 
 
 def load(path: Path) -> dict:
@@ -31,6 +32,39 @@ def atomic_json(path: Path, value: dict) -> None:
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def atomic_bytes(path: Path, value: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_bytes(value)
+    os.replace(tmp, path)
+
+
+def snapshot_keep(entry_id: str, expected: str, entry_path: Path) -> dict:
+    """Retain the exact independently approved bytes for cheap stale-write recovery."""
+    directory = APPROVED / entry_id / expected
+    approved_entry = directory / "entry.v2.json"
+    if approved_entry.exists() and digest(approved_entry) != expected:
+        raise SystemExit(f"corrupt approved snapshot: {approved_entry}")
+    atomic_bytes(approved_entry, entry_path.read_bytes())
+    worksheet = entry_path.parent / "evidence.draft.json"
+    worksheet_sha = None
+    if worksheet.exists():
+        worksheet_sha = digest(worksheet)
+        atomic_bytes(directory / "evidence.draft.json", worksheet.read_bytes())
+    receipt = {
+        "entryId": entry_id,
+        "entrySha256": expected,
+        "worksheetSha256": worksheet_sha,
+        "createdUtc": datetime.now(timezone.utc).isoformat(),
+    }
+    atomic_json(directory / "receipt.json", receipt)
+    return {
+        "entry": str(approved_entry.relative_to(HERE)),
+        "worksheet": str((directory / "evidence.draft.json").relative_to(HERE)) if worksheet_sha else None,
+        "receipt": str((directory / "receipt.json").relative_to(HERE)),
+    }
 
 
 def ensure_lane_ledger(wave: str, lane_name: str, lane_path: Path) -> None:
@@ -181,6 +215,7 @@ def main() -> int:
         tmp.write_text(("done" if verdict == "KEEP" else "pending") + "\n", encoding="utf-8")
         os.replace(tmp, status_path)
         if verdict == "KEEP":
+            root["entries"][entry_id]["approvedSnapshot"] = snapshot_keep(entry_id, expected, entry_path)
             promoted += 1
         else:
             demoted += int(bool(prior and prior.get("verdict") == "KEEP"))

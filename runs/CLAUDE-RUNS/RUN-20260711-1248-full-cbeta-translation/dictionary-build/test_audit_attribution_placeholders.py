@@ -16,6 +16,9 @@ class PlaceholderActorTest(unittest.TestCase):
         self.assertIsNotNone(DUPLICATED_NOTE_PREFIX_RE.search(
             "Foyan Qingyuan: Foyan Qingyuan: Record of Foyan says..."
         ))
+        self.assertIsNotNone(DUPLICATED_NOTE_PREFIX_RE.search(
+            "Source text (古尊宿語錄). Xuansha Shibei: Xuansha Shibei: addresses the assembly."
+        ))
         self.assertIsNone(DUPLICATED_NOTE_PREFIX_RE.search(
             "Foyan Qingyuan: Record of Foyan says..."
         ))

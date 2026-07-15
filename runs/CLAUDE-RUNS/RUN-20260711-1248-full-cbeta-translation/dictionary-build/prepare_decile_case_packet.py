@@ -24,9 +24,17 @@ import zc
 HERE = Path(__file__).resolve().parent
 FRESH = HERE / "fresh-build"
 MANIFEST = FRESH / "waves" / "f004.json"
-VERSION = 1
+VERSION = 2
 SPEECH = re.compile(r"(?:僧問|問[:：]|師(?:云|曰)|云[:：]|曰[:：]|道[:：]|舉.+(?:云|曰)|頌曰|偈曰)")
 PARATEXT = re.compile(r"(?:目錄|序$|題辭|卷第|No\.\s*\d|序品|敘$)")
+ACTOR_STATUSES = ["identified-non-master", "reviewed-unnamed", "narrated", "impersonal"]
+CLOSED_ROLES = [
+    "utterer", "respondent", "questioner", "interlocutor", "addressee",
+    "section-subject", "record-owner", "person-described", "person-discussed",
+    "commentator", "later-raiser", "later-quoter", "teacher", "student",
+    "compiler", "verse-author", "case-figure",
+]
+DIFFERENT_THING_DECISIONS = ["same-referent", "different-referent", "unresolved"]
 
 
 def load(path: Path) -> dict:
@@ -53,6 +61,25 @@ def evidence_rows(entry: dict):
 def worksheet_row(worksheet: dict, si: int, key: str, oi: int) -> dict:
     senses = (worksheet.get("Entry") or {}).get("Senses") or []
     return senses[si - 1][key][oi - 1]
+
+
+def build_source_groups(packet_entries: list[dict]) -> list[dict]:
+    """Provide a source-first reading order without duplicating case payloads."""
+    grouped: dict[str, dict] = {}
+    for entry in packet_entries:
+        for case in entry["cases"]:
+            group = grouped.setdefault(case["RelPath"], {
+                "RelPath": case["RelPath"], "sourceTitle": case["sourceTitle"],
+                "workId": case["workId"], "caseRefs": [],
+            })
+            group["caseRefs"].append({
+                "ordinal": entry["ordinal"], "id": entry["id"], "term": entry["term"],
+                "sense": case["sense"], "kind": case["kind"], "index": case["index"],
+                "FromLb": case["FromLb"], "ToLb": case["ToLb"],
+            })
+    for group in grouped.values():
+        group["caseRefs"].sort(key=lambda row: (row["FromLb"] or "", row["ordinal"], row["index"]))
+    return sorted(grouped.values(), key=lambda group: group["RelPath"])
 
 
 def main() -> int:
@@ -145,6 +172,12 @@ def main() -> int:
         "inputHashes": hashes, "finalHashes": final_hashes,
         "spanRefreshApplied": ns.refresh_spans, "spanChanges": span_changes,
         "entries": packet_entries,
+        "sourceGroups": build_source_groups(packet_entries),
+        "closedVocabularies": {
+            "actorStatuses": ACTOR_STATUSES,
+            "contextMasterRoles": CLOSED_ROLES,
+            "differentThingDecisions": DIFFERENT_THING_DECISIONS,
+        },
         "elapsedSeconds": round(time.perf_counter() - started, 3),
     }
     atomic(output, payload)

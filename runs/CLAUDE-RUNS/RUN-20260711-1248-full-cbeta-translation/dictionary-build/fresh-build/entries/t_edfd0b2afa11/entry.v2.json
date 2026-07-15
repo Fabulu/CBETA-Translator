@@ -2,8 +2,8 @@
   "Id": "t_edfd0b2afa11",
   "SourceTerm": "接物利生",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
-  "CreatedBy": "Codex f004 lane C reviewer6 findings repair author",
-  "WrittenUtc": "2026-07-15T18:00:00Z",
+  "CreatedBy": "Codex f004 lane C root-review findings repair author",
+  "WrittenUtc": "2026-07-15T18:20:00Z",
   "Senses": [
     {
       "SenseKey": null,
@@ -30,7 +30,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (古尊宿語錄). Xuansha Shibei: Xuansha Shibei addresses the assembly that masters everywhere speak of receiving people and benefiting living beings, then poses the three-disabled-person test.",
+          "AttributionNote": "Source text (古尊宿語錄). Xuansha Shibei addresses the assembly that masters everywhere speak of receiving people and benefiting living beings, then poses the three-disabled-person test.",
           "Curated": true,
           "MasterName": "Xuansha Shibei"
         },
@@ -90,8 +90,15 @@
           "FromLb": "0532b09",
           "ToLb": "0532b17",
           "Kwic": "甚麼？時華林覺為首座，師為典座。林曰：不可喚作木𣔻也。丈乃問師，師踢倒淨瓶便出去。丈笑曰：第一座輸却山子也。師遂往焉。是山峭絕，敻無人烟，虎狼縱橫，莫敢往來。師拾橡栗充食者五七年。一日，念道在接物利生，獨居非是。乃出至山口，語虎狼曰：我若於此山有緣，汝等各自散去。若其無緣，我充爾腹。言訖，蟲虎四散，師乃回庵。未幾，嬾安上座同數僧從百丈所來輔佐曰：某與和尚作典座，俟眾至五百乃解務。於是人稍稍",
-          "ContextMasters": [],
-          "AttributionNote": "Source text (指月錄): the record narrator bears the exact headword wording after the full case was read. Exact-turn canary: the clause was checked against the adjacent question, answer, quotation, and narrative frames.",
+          "ContextMasters": [
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (指月錄). The record narrator reports Guishan Lingyou reflecting that the Way lies in receiving people and benefiting living beings and that solitary residence is not right; Guishan is the person described, not the utterer of a quoted turn.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
@@ -105,9 +112,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The stored complete context assigns the exact written headword to this question or narrative frame; no nearby person is promoted to utterer without an explicit cue.",
-            "ReviewedBy": "Codex f004 lane C checkpoint author",
-            "ReviewedUtc": "2026-07-15T14:06:41.045212+00:00",
+            "GrammarEvidence": "In the Guishan Lingyou biography, 一日念道在接物利生獨居非是 is third-person narrative: the biographer reports Guishan reflecting that the Way lies in receiving people and benefiting living beings and that solitary residence is not right.",
+            "ReviewedBy": "Codex f004 lane C root-review findings repair author",
+            "ReviewedUtc": "2026-07-15T18:20:00Z",
             "AuthoredVoiceRiskReviewed": true
           },
           "Curated": true
@@ -125,7 +132,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (費隱禪師語錄). Feiyin Tongrong: Feiyin Tongrong says that his receiving people and benefiting living beings would be surplus talk if the visiting lay people had already seen through it.",
+          "AttributionNote": "Source text (費隱禪師語錄). Feiyin Tongrong says that his receiving people and benefiting living beings would be surplus talk if the visiting lay people had already seen through it.",
           "Curated": true,
           "MasterName": "Feiyin Tongrong"
         },
@@ -142,7 +149,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (空谷道澄禪師語錄). Konggu Daocheng: Konggu Daocheng says this is the time to raise the ancestral way, establish the lineage style, spread the teaching, receive people, and benefit living beings.",
+          "AttributionNote": "Source text (空谷道澄禪師語錄). Konggu Daocheng says this is the time to raise the ancestral way, establish the lineage style, spread the teaching, receive people, and benefit living beings.",
           "Curated": true,
           "MasterName": "Konggu Daocheng"
         },
@@ -159,7 +166,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (天隱和尚語錄). Tianyin Yuanxiu: Tianyin Yuanxiu describes Wuzhu Daoren becoming a nun, spreading the teaching, receiving people, and benefiting living beings.",
+          "AttributionNote": "Source text (天隱和尚語錄). Tianyin Yuanxiu describes Wuzhu Daoren becoming a nun, spreading the teaching, receiving people, and benefiting living beings.",
           "Curated": true,
           "MasterName": "Tianyin Yuanxiu"
         }

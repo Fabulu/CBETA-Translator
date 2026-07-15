@@ -33,7 +33,7 @@ PLACEHOLDER_ACTOR_RE = re.compile(
     r"|\b(?:the\s+)?verse\s+voice\b",
     re.IGNORECASE,
 )
-DUPLICATED_NOTE_PREFIX_RE = re.compile(r"^\s*([^:\n]{1,100}):\s*\1:")
+DUPLICATED_NOTE_PREFIX_RE = re.compile(r"(?:^|[.!?]\s+)([^:.\n]{1,100}):\s*\1:")
 sys.path.insert(0, str(HERE))
 import zc  # noqa: E402
 

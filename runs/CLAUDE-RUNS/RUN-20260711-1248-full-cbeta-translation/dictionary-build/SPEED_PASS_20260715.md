@@ -57,3 +57,19 @@ repeated whole-dictionary scans while preserving the same final artifacts and th
 Independent review twice found duplicated opening sentences introduced by repair/compile helpers. The public
 feedback auditor now hard-fails a consecutively duplicated first sentence, with regression tests. This moves
 the defect from expensive semantic rereview to the author's cheap pre-review pass.
+
+## Pass 6: immutable approved snapshots
+
+A broad checkpoint helper mutated 17 independently accepted entries and forced 92 full cases back through
+review. Promotion now stores exact approved entry and worksheet bytes under the reviewed SHA and records the
+snapshot in the root verdict. `restore_root_approved.py` can restore an accidentally changed current KEEP in
+seconds; it cannot restore a verdict that a later independent REVISE has superseded. This preserves semantic
+review while eliminating repeat work caused solely by out-of-scope mass writes.
+
+## Pass 7: source-first reading order
+
+Shared case packets now include `sourceGroups`: references are grouped by `RelPath` and physical line order,
+with the exact title and independent work ID emitted once per source. Closed actor-role, status, and
+different-referent vocabularies travel in the same packet. The ordinary entry-first view remains intact and
+final output is unchanged; authors can read one source container continuously instead of repeatedly switching
+books, while still deciding every utterer from the complete case.

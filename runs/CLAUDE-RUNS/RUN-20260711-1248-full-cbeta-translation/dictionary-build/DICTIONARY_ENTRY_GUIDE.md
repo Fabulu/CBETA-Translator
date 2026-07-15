@@ -791,6 +791,11 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       lands, but regenerate root/index/shards once after the concurrently reviewed round is settled (or at an
       explicitly requested checkpoint), not after every two- or three-entry partial result. Before reporting the
       accepted count, `publish_fresh_checkpoint.py` must still prove root, merged file, index, and shards agree.
+      **Every KEEP retains its exact approved bytes:** promotion writes an immutable entry/worksheet snapshot
+      keyed by the reviewed SHA. If a later broad helper mutates an unrelated KEEP, compare against the current
+      root verdict and restore those bytes with `restore_root_approved.py`; never spend another semantic review
+      merely to reconstruct a hash already independently approved. A legitimate REVISE supersedes the KEEP and
+      is therefore ineligible for restoration.
       **Positive calibration:** read `PROSE_HYGIENE_PASS.md`. The accepted `鳥道` entry is the benchmark
       for ordinary pictured scene, corpus-earned Chan bend, counterexample discipline, honest unresolved
       buckets, searchability, and different-referent splitting. The accepted `和尚` entry is the benchmark
