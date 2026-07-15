@@ -1,0 +1,46 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact entries; all 42 stored occurrences read in their complete source units (the prepared manifest total); roster-only identity gaps treated as deferred/non-blocking",
+  "rows": [
+    {
+      "id": "t_d35dc9e3723e",
+      "term": "無念",
+      "verdict": "KEEP",
+      "reviewedSha256": "3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f",
+      "finding": "All eleven occurrences across both senses read in their complete doctrinal, interview, title, biography, and dialogue units. Huineng’s explicit boundaries support functioning without fixation rather than blankness; Shenhui and Nanyue remain distinct corroborating speakers. The proper-name sense is forced by title/name/dialogue syntax, and Tao Shikui, Zhanran, Huangbo Wunian Shenyou, and the compiler are correctly separated. No semantic or turn-attribution defect remains; unresolved roster expansion is deferred.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d4673502b2d2",
+      "term": "未審",
+      "verdict": "REVISE",
+      "reviewedSha256": "d210b6bfebbafaac1652709d0e5f2b76c26b95f4785e9d3e5ad56485423eb432",
+      "finding": "All eight complete question turns read. The polite question-opening gloss is correct, and the Foyan row is properly assigned to the unnamed monk. Six other rows remain generic compiler narration even though the complete exchanges identify the actual visitor, lecturer, named lay participant, or monk who says 未審; one is even stored as a named master without showing why that master owns the question. Apply turn-level questioner attribution and retain the respondent context rather than actorless narration.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d801848213ab",
+      "term": "發願",
+      "verdict": "REVISE",
+      "reviewedSha256": "26cfd29527f716dc90dff19f467efceffc4ef8c2fdaed4e11a7bb3cc04ee4bbd",
+      "finding": "All six complete vow, documentary, and hall-address units read. Layman Cai, Wuyi, Mingjue, and the Huanglong biography are substantially sound. The two remaining documentary rows use generic compiler narration while the full unit identifies the person or bodhisattva who forms the vow; those action performers are absent from ContextMasters. Preserve narrator-owned MasterName null but name the vow-maker where the text does.",
+      "selfReview": false
+    },
+    {
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "verdict": "REVISE",
+      "reviewedSha256": "ed4742aa71d72c889f5f4bb2aa623249f7c81712eec75f74b17a39173aec7854",
+      "finding": "All seven complete cases and addresses read. The literal implement and Chan case-object synthesis is supported. The Yanguan rhinoceros-fan rows, however, contain multiple exact tokens across narrator, attendant, Yanguan, and later raiser voices but assign each sprawling KWIC to only Shimen or Yanguan. Recut to one token/voice and preserve Shimen/Touzi as later raisers where applicable. The Yunmen-fan quotations otherwise correctly retain later speakers and Yunmen as case figure.",
+      "selfReview": false
+    },
+    {
+      "id": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "verdict": "REVISE",
+      "reviewedSha256": "a569947a316def73a346acbe4e818b034a3fc1c8c49bf6bc7352d842304fb339",
+      "finding": "All ten complete cases, biography, direct speech, and teaching-seat actions read. The walking-stick/teaching-seat-implement explanation is strong and correctly distinguishes spoken headword from narrator-owned manipulation. Several narrator rows nevertheless omit the named staff-holder despite explicit local context, especially the two anthology cases with empty ContextMasters; the 合喫拄杖 comment does not identify its actual comment voice; and the final KWIC combines Baichi’s present staff action with a quoted Baoshou staff action while retaining only Baichi. Recover each performer/commentator and recut mixed-token evidence. Roster-only matters are deferred.",
+      "selfReview": false
+    }
+  ]
+}

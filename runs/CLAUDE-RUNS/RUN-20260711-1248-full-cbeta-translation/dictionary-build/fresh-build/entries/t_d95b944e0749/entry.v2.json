@@ -72,17 +72,33 @@
           "FromLb": "0243c22",
           "ToLb": "0243c22",
           "Kwic": "透網金鱗，因甚猶還滯水？",
-          "MasterName": "unnamed questioning monk",
           "ContextMasters": [
             {
-              "MasterName": "unnamed questioning monk",
+              "MasterName": "Wuyi Yuanlai",
               "Roles": [
-                "utterer"
+                "respondent"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "In the source record (無異元來禪師廣錄), Source text (無異元來禪師廣錄); unnamed questioning monk owns the exact evidence clause after complete-case review."
+          "AttributionNote": "無異元來禪師廣錄: an unnamed monk asks why a golden-scaled fish that passed through the net still lingers in water.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking why the golden-scaled fish still lingers in water",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "僧問 introduces the headword; 師云 introduces Wuyi Yuanlai’s answer.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237649+00:00"
+          }
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -107,10 +123,10 @@
           "ToLb": "0507a10",
           "Kwic": "畊畔千年寺，接物還他今古同滿室芝蘭垂手得，寒梅香散白雲中。寶華因僧問：透網金鱗因甚還滯水？師曰：是它家常茶飯。曰：取飽便是。師曰：怎奈沒頭浸却何！三",
           "Curated": true,
-          "AttributionNote": "In the source record (宗鑑法林), (宗鑑法林): the unnamed monk asking Baohua why a golden-scaled fish beyond the net still lingers in water utters the exact headword-bearing question; the named respondent speaks only after it.",
+          "AttributionNote": "宗鑑法林: an unnamed monk asks Baohua Chaozong Tongren why the golden-scaled fish still lingers in water.",
           "ContextMasters": [
             {
-              "MasterName": "Baohua Chaotong Ren",
+              "MasterName": "Baohua Chaozong Tongren",
               "Roles": [
                 "respondent"
               ]
@@ -118,9 +134,10 @@
           ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "the unnamed monk asking Baohua why a golden-scaled fish beyond the net still lingers in water",
-            "ActorRole": "questioner",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk questioning Baohua Chaozong Tongren",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "寶華因僧問 introduces the question; 師曰 begins Baohua’s answer.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -129,9 +146,8 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete exchange places the headword before 師曰/師云 in the interlocutor’s marked question; the named master owns only the reply.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:46:51.512972+00:00"
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237652+00:00"
           }
         },
         {
@@ -142,9 +158,10 @@
           "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "verse-author",
-            "ActorLabel": "the unidentified verse author responsible for the headword-bearing clause at C/C078/C078n1720.xml",
+            "Kind": "anonymous verse author",
+            "ActorLabel": "the unnamed linked-verse author",
             "ActorRole": "verse-author",
+            "GrammarEvidence": "The headword occurs inside an unsigned linked verse, not a dialogue turn.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -153,12 +170,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete passage presents 透網金鱗 in a verse, but supplies no verse-author name.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237655+00:00"
           },
           "ContextMasters": [],
-          "AttributionNote": "In the source record (禪宗頌古聯珠通集), (禪宗頌古聯珠通集): the unidentified verse author in (禪宗頌古聯珠通集) owns the exact headword-bearing verse. Actor: the unidentified verse author responsible for the headword-bearing clause at C/C078/C078n1720.xml."
+          "AttributionNote": "禪宗頌古聯珠通集: an unnamed verse author calls it a lively golden-scaled fish that has passed through the net."
         }
       ],
       "SourceTexts": [
@@ -182,5 +198,18 @@
       "ClaimAnchors": [],
       "Explanation": "A golden-scaled fish that has passed through the net figures an exceptional adept no longer caught by ordinary devices. The phrase is anchored in Sansheng’s public question to Xuefeng: “What does the golden-scaled fish through the net feed on?” (透網金鱗未審以何為食); Xuefeng replies that he will tell him after he comes out of the net. Yuanwu’s prose supplies the corpus’s direct definition: “only with an eye at the crown is one called a golden-scaled fish through the net” (頂門有眼方謂之透網金鱗). The image then becomes an appraisal of monks: Baowen Hongyin hails a patch-robed monastic as “excellent—a patch-robed monk, a golden-scaled fish through the net” (俊哉衲子，透網金鱗), while later interviews ask why such a fish is still held up by water."
     }
-  ]
+  ],
+  "DraftEvidence": {
+    "IndependentRosterRereview096105": {
+      "ReviewedUtc": "2026-07-15T23:16:54.645508+00:00",
+      "Decision": "semantic attribution accepted; roster-only identities deferred",
+      "DeferredNames": [
+        "Baiyan Fu",
+        "Baohua Chaozong Tongren",
+        "Baowen Hongyin"
+      ],
+      "RemovedInvalidMasterLinks": [],
+      "Rule": "Do not guess or demote a real master because roster integration is incomplete. Noncanonical RelatedMasters links are removed; exact occurrence identities remain explicit pending roster integration."
+    }
+  }
 }

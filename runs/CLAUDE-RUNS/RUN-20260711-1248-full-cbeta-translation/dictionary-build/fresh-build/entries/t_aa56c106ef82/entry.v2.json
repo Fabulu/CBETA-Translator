@@ -27,24 +27,19 @@
           "Kwic": "尊何不說法？世尊曰：我誓不為二乘聲聞人說法。南堂靜云：前箭猶輕後箭深。高峯妙云：世尊能挽千鈞之弩，銀山鐵壁箭箭皆穿。阿難雖有隱身之術，殊不知髑髏後中箭，還有躲避得過底麼？一麟足云：世尊雖有羅龍陷虎之機，且無點鐵成金之用；阿難却有六韜三略之謀，未免陷入八陣圖裏。仔細撿點，俱宜喫棒。世尊因文殊起佛見、法見，被世尊威神攝向二鐵圍山。五雲逢云：什麼處是二鐵圍山？如今有人起佛見、法見，五雲與烹茶兩盌",
           "ContextMasters": [
             {
-              "MasterName": "Shakyamuni Buddha",
+              "MasterName": "Buddha",
               "Roles": [
-                "case-figure"
-              ]
-            },
-            {
-              "MasterName": "Ananda",
-              "Roles": [
-                "case-figure"
+                "person-discussed"
               ]
             }
           ],
-          "AttributionNote": "Source record (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the commentator signing as Yilinzu. Full-case review preserves the non-master or narrative actor without manufacturing a master.",
+          "AttributionNote": "宗鑑法林: Yilinzu (一麟足) says the World-Honored One has a mechanism for netting dragons and trapping tigers but lacks the use that turns iron into gold.",
           "ActorAttribution": {
             "Status": "identified-non-master",
-            "Kind": "named commentator",
-            "ActorLabel": "the commentator signing as Yilinzu",
-            "ActorRole": "utterer",
+            "Kind": "named non-roster commentator",
+            "ActorLabel": "Yilinzu (一麟足)",
+            "ActorRole": "commentator",
+            "GrammarEvidence": "一麟足云 explicitly introduces the headword-bearing appraisal.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -53,10 +48,8 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "一麟足云 explicitly introduces the headword-bearing verdict; the source does not identify this commentator as a rostered master.",
-            "ReviewedBy": "Codex f004 lane C exact full-case repair",
-            "ReviewedUtc": "2026-07-15T15:03:52.007865+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237642+00:00"
           },
           "Curated": true
         },
@@ -195,5 +188,19 @@
       "RelatedTerms": [],
       "Explanation": "A device for trapping a tiger is an encounter move judged capable of catching a formidable respondent. Commentators apply it to questions, replies, and reversals involving Nansen, Huangbo, Yangshan, and other case figures."
     }
-  ]
+  ],
+  "DraftEvidence": {
+    "IndependentRosterRereview096105": {
+      "ReviewedUtc": "2026-07-15T23:16:54.509501+00:00",
+      "Decision": "semantic attribution accepted; roster-only identities deferred",
+      "DeferredNames": [
+        "Buddha",
+        "Yun'an Keyue"
+      ],
+      "RemovedInvalidMasterLinks": [
+        "Ananda (context-only noncanonical link; identity retained in prose)"
+      ],
+      "Rule": "Do not guess or demote a real master because roster integration is incomplete. Noncanonical RelatedMasters links are removed; exact occurrence identities remain explicit pending roster integration."
+    }
+  }
 }

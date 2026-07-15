@@ -389,21 +389,19 @@
     },
     "t_af92172da506": {
       "term": "只如",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight complete discourse turns read. The six named masters, unnamed Dahui questioner, and Layman Zhang Fen each own the connective in their actual turn. The entry correctly treats it as an ordinary grammatical pivot with a recurrent Chan dialogue job rather than manufacturing polysemy from different questions.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-021030-f002-laneA.json",
       "supersedes": {
-        "term": "只如",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553",
-        "finding": "KEEP: the specified semantic or attribution defect is repaired at this hash; the term-specific definition and stored evidence retain their prior sense analysis, attribution diagnostics are clean, and no new semantic or reader-facing regression was found.",
-        "sourceReview": "fresh-build/waves/f002-laneA-301-350-independent-semantic-keep-consolidated.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_af92172da506/d1aaa2bc2a27b2ec64c1755e5d49bb8b59bd67f53690fd710d572f8b80fce553/receipt.json"
       }
     },
     "t_44d14cd3a935": {
@@ -564,21 +562,19 @@
     },
     "t_68835cda6c3f": {
       "term": "正令",
-      "verdict": "REVISE",
-      "reviewedSha256": "79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "8093159d15e8346e38e17cafd4a275da9fcfce6390c214ee0bd914e71bfadac9",
+      "finding": "All seven complete turns read. The first and last questions correctly belong to unnamed monks with Fenyang and Sanzu as respondents; the five middle speakers directly own their uses. Exercise and criticism of the authoritative command remain one referent.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-1-3-057065-f002-laneA.json",
       "supersedes": {
-        "term": "正令",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2",
-        "finding": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
-        "sourceReview": "fresh-build/waves/f002-laneA-301-350-independent-semantic-keep-consolidated.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_68835cda6c3f/79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_68835cda6c3f/79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_68835cda6c3f/79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_68835cda6c3f/8093159d15e8346e38e17cafd4a275da9fcfce6390c214ee0bd914e71bfadac9/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_68835cda6c3f/8093159d15e8346e38e17cafd4a275da9fcfce6390c214ee0bd914e71bfadac9/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_68835cda6c3f/8093159d15e8346e38e17cafd4a275da9fcfce6390c214ee0bd914e71bfadac9/receipt.json"
       }
     },
     "t_aab4ca02ec21": {
@@ -1852,21 +1848,19 @@
     },
     "t_5f6e8c98ffe7": {
       "term": "情知",
-      "verdict": "REVISE",
-      "reviewedSha256": "fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "aa651fa0401458a53187f091cdd0064cb8e15e8ede3eb9321f875c3be6914adf",
+      "finding": "All seven complete turns read. Direct named speakers hold; Baizhang Le is correctly identified as a non-roster commentator; the Langting token belongs to the unnamed monk’s compact reply. The shared prior-expectation/recognition grammar is supported and does not invent a special faculty.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-1-3-057065-f002-laneB.json",
       "supersedes": {
-        "term": "情知",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6",
-        "finding": "KEEP: the repaired prose names the stored actors, and Baichi Yuan’s added interview uses the same prior-recognition formula before commentary; recognition and expectation remain one grammatical function.",
-        "sourceReview": "fresh-build/waves/f002-laneB-451-500-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/aa651fa0401458a53187f091cdd0064cb8e15e8ede3eb9321f875c3be6914adf/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/aa651fa0401458a53187f091cdd0064cb8e15e8ede3eb9321f875c3be6914adf/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_5f6e8c98ffe7/aa651fa0401458a53187f091cdd0064cb8e15e8ede3eb9321f875c3be6914adf/receipt.json"
       }
     },
     "t_d065698c14a8": {
@@ -2118,21 +2112,19 @@
     },
     "t_a326343ab7c3": {
       "term": "日日是好日",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All six complete exchanges and addresses read. Yunmen owns the original answer and its later explicit quotation; named later speakers own their verses; the two intervening uses are correctly assigned to unnamed monks with respondents retained. The explanation accurately presents a quoted, tested, contradicted, and expanded public answer without mystically redefining good.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-021030-f002-laneB.json",
       "supersedes": {
-        "term": "日日是好日",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0",
-        "finding": "KEEP at this hash: 6 exact occurrences across 6 independent works, with 0 explicit claim anchors. Full-case actor/action assignments agree with the zero-failure attribution audit; aliases stay within the preferred target, stored claims remain source-visible, and the depth rows add distinct deployments rather than file-count padding. The evidence does not expose a second incompatible referent under #0g.",
-        "sourceReview": "fresh-build/waves/f002-laneB-401-450-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_a326343ab7c3/f0e54ef72edbeaa1a56561511f56e182c2078a55dd9a9b53c6e15186307894c0/receipt.json"
       }
     },
     "t_e6b94cf3dbc3": {
@@ -3106,21 +3098,19 @@
     },
     "t_64b296f04e9b": {
       "term": "將錯就錯",
-      "verdict": "REVISE",
-      "reviewedSha256": "419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f",
-      "finding": "Current attribution ground truth records 2 hard failure(s): anonymous_monk_question_assigned_to_master, named_master_missing_structured_link.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "5123032901956532aca6ce4024ab90a108f04bf58afcea119d5202bebdca7b9b",
+      "finding": "All seven complete units read. Every named speaker owns the phrase, including its warning, prohibition, appraisal, and case-comment uses. Those different stances concern the same observable act of proceeding by means of an existing error and do not warrant a sense split.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-1-3-057065-f002-laneC.json",
       "supersedes": {
-        "term": "將錯就錯",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f",
-        "finding": "KEEP — At this exact hash, the referent and different-thing split are distinguishable, the ordinary scene and attested Chan deployment are stated without a universal hidden interpretation, selected evidence supports the claims, and actor ownership is sufficiently specific.",
-        "sourceReview": "fresh-build/waves/f002-laneC-551-600-independent-semantic-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_64b296f04e9b/419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_64b296f04e9b/419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_64b296f04e9b/419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_64b296f04e9b/5123032901956532aca6ce4024ab90a108f04bf58afcea119d5202bebdca7b9b/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_64b296f04e9b/5123032901956532aca6ce4024ab90a108f04bf58afcea119d5202bebdca7b9b/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_64b296f04e9b/5123032901956532aca6ce4024ab90a108f04bf58afcea119d5202bebdca7b9b/receipt.json"
       }
     },
     "t_16bbc5599cd2": {
@@ -3156,21 +3146,19 @@
     },
     "t_f3488daf27fd": {
       "term": "較些子",
-      "verdict": "REVISE",
-      "reviewedSha256": "3042aeaab1f8be3fe4057eb77ab78c24cbab8a90bb80c91c2d69264924fe230d",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "4250f79ab78325c49523ba89def48c89069eb016fcc8d9886a68f5748a3a26c7",
+      "finding": "All complete comparisons and comments read. Songan Zheng is correctly recovered from 嵩菴正云; speakers own the comparative phrase in their actual turns. Remaining named identities, including Sudhana context, are roster-only deferrals.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-106115-f002-laneA.json",
       "supersedes": {
-        "term": "較些子",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "3042aeaab1f8be3fe4057eb77ab78c24cbab8a90bb80c91c2d69264924fe230d",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_f3488daf27fd/3042aeaab1f8be3fe4057eb77ab78c24cbab8a90bb80c91c2d69264924fe230d/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_f3488daf27fd/3042aeaab1f8be3fe4057eb77ab78c24cbab8a90bb80c91c2d69264924fe230d/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_f3488daf27fd/3042aeaab1f8be3fe4057eb77ab78c24cbab8a90bb80c91c2d69264924fe230d/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_f3488daf27fd/4250f79ab78325c49523ba89def48c89069eb016fcc8d9886a68f5748a3a26c7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_f3488daf27fd/4250f79ab78325c49523ba89def48c89069eb016fcc8d9886a68f5748a3a26c7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_f3488daf27fd/4250f79ab78325c49523ba89def48c89069eb016fcc8d9886a68f5748a3a26c7/receipt.json"
       }
     },
     "t_3414320aa87c": {
@@ -3187,21 +3175,19 @@
     },
     "t_8482770fe735": {
       "term": "象王",
-      "verdict": "REVISE",
-      "reviewedSha256": "f1d88937c14bf49bd502f98d472622a7d12a288ef393bced9113d1be8c865473",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641",
+      "finding": "All eight occurrences and four anchors reread. The revised synthesis correctly stops treating every elephant-king deployment as Changlu Timing’s personal conduct, and the four family anchors remain clearly separated from headword occurrences. No semantic or turn-attribution defect remains. Changlu Timing and Tieguanshu are unresolved roster identities, explicitly deferred as non-blocking to the roster-expansion owner.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after882-f002-laneA.json",
       "supersedes": {
-        "term": "象王",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "f1d88937c14bf49bd502f98d472622a7d12a288ef393bced9113d1be8c865473",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_8482770fe735/f1d88937c14bf49bd502f98d472622a7d12a288ef393bced9113d1be8c865473/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_8482770fe735/f1d88937c14bf49bd502f98d472622a7d12a288ef393bced9113d1be8c865473/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_8482770fe735/f1d88937c14bf49bd502f98d472622a7d12a288ef393bced9113d1be8c865473/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_8482770fe735/5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_8482770fe735/5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_8482770fe735/5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641/receipt.json"
       }
     },
     "t_d055e572dc64": {
@@ -3351,21 +3337,19 @@
     },
     "t_757827b8d4cb": {
       "term": "喪身失命",
-      "verdict": "REVISE",
-      "reviewedSha256": "797e9922ae48ad61a5a13c21c98ed8fd8d846e8b15aff476c0539581d31dd87c",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "c28d00a27abb21c61b1df39d38f88656b1c25fdf3e2b3ff380b9cc5c4ce63bee",
+      "finding": "All eight complete cases read. Each named speaker owns the phrase, including Gaofeng rather than the surrounding compiler in the final collected commentary. The idiom’s complete-loss verdict and its deployment across distinct dangerous interview situations are explicit; the entry correctly declines to decide what the losses metaphysically signify.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-next-f002-laneA.json",
       "supersedes": {
-        "term": "喪身失命",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "797e9922ae48ad61a5a13c21c98ed8fd8d846e8b15aff476c0539581d31dd87c",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_757827b8d4cb/797e9922ae48ad61a5a13c21c98ed8fd8d846e8b15aff476c0539581d31dd87c/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_757827b8d4cb/797e9922ae48ad61a5a13c21c98ed8fd8d846e8b15aff476c0539581d31dd87c/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_757827b8d4cb/797e9922ae48ad61a5a13c21c98ed8fd8d846e8b15aff476c0539581d31dd87c/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_757827b8d4cb/c28d00a27abb21c61b1df39d38f88656b1c25fdf3e2b3ff380b9cc5c4ce63bee/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_757827b8d4cb/c28d00a27abb21c61b1df39d38f88656b1c25fdf3e2b3ff380b9cc5c4ce63bee/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_757827b8d4cb/c28d00a27abb21c61b1df39d38f88656b1c25fdf3e2b3ff380b9cc5c4ce63bee/receipt.json"
       }
     },
     "t_897ae83b4a57": {
@@ -3401,21 +3385,19 @@
     },
     "t_f41961e0e5be": {
       "term": "牧牛",
-      "verdict": "REVISE",
-      "reviewedSha256": "e61e98f9d57f709481c35372cffc81900ac16c130905ed9507272c3581fdc089",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "bda1f7eca9021d0830d79ec25de31d0b1fa31469bd66352651334de09ff8e16f",
+      "finding": "All complete interview, verse, preface, and ox-herding-title uses read across both senses. The lay preface author is responsibly reviewed-unnamed, and literal cattle-herding is kept distinct from the named/illustrated herding sequence. Remaining RelatedMasters and speaker warnings are roster-only deferrals.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-106115-f002-laneA.json",
       "supersedes": {
-        "term": "牧牛",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "e61e98f9d57f709481c35372cffc81900ac16c130905ed9507272c3581fdc089",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_f41961e0e5be/e61e98f9d57f709481c35372cffc81900ac16c130905ed9507272c3581fdc089/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_f41961e0e5be/e61e98f9d57f709481c35372cffc81900ac16c130905ed9507272c3581fdc089/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_f41961e0e5be/e61e98f9d57f709481c35372cffc81900ac16c130905ed9507272c3581fdc089/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_f41961e0e5be/bda1f7eca9021d0830d79ec25de31d0b1fa31469bd66352651334de09ff8e16f/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_f41961e0e5be/bda1f7eca9021d0830d79ec25de31d0b1fa31469bd66352651334de09ff8e16f/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_f41961e0e5be/bda1f7eca9021d0830d79ec25de31d0b1fa31469bd66352651334de09ff8e16f/receipt.json"
       }
     },
     "t_58099932161b": {
@@ -3444,21 +3426,19 @@
     },
     "t_eedf4100b3d7": {
       "term": "師子吼",
-      "verdict": "REVISE",
-      "reviewedSha256": "49d5e29aac1766504b888083065730ca985e72c1c2248367675095d023a08edc",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "68daed4b9b7f94d75312765a61f2a3cf2c9104ed696811ccd9097290526c91f5",
+      "finding": "All seven complete definitions, demands, appraisals, and questions read. The two unnamed monk questions now retain Shoushan and Guizong as respondents; all named direct speakers own their uses. The lion/jackal contrast is explicitly supplied by the corpus and supports the restrained forceful-teaching gloss.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-bigrepair-f002-laneA.json",
       "supersedes": {
-        "term": "師子吼",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "49d5e29aac1766504b888083065730ca985e72c1c2248367675095d023a08edc",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_eedf4100b3d7/49d5e29aac1766504b888083065730ca985e72c1c2248367675095d023a08edc/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_eedf4100b3d7/49d5e29aac1766504b888083065730ca985e72c1c2248367675095d023a08edc/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_eedf4100b3d7/49d5e29aac1766504b888083065730ca985e72c1c2248367675095d023a08edc/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_eedf4100b3d7/68daed4b9b7f94d75312765a61f2a3cf2c9104ed696811ccd9097290526c91f5/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_eedf4100b3d7/68daed4b9b7f94d75312765a61f2a3cf2c9104ed696811ccd9097290526c91f5/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_eedf4100b3d7/68daed4b9b7f94d75312765a61f2a3cf2c9104ed696811ccd9097290526c91f5/receipt.json"
       }
     },
     "t_d2892b1eaae0": {
@@ -3602,21 +3582,19 @@
     },
     "t_fb331b159983": {
       "term": "死蛇",
-      "verdict": "REVISE",
-      "reviewedSha256": "047f770a23eb411257878bfc70cf0c90c168f2affe3529cc20f077206dcac8f1",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "bfece7c137b9ce6ac781bed4491e21b6f85583b4b6979cca32cdea9cf3a8c4ab",
+      "finding": "All complete cases and comments read. Falin Yin and Yuwang Guang are correctly recovered from explicit section markers; the dead-snake object and encounter comparison remain one coherent deployment family. Remaining named identities are roster-only deferrals.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-106115-f002-laneA.json",
       "supersedes": {
-        "term": "死蛇",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "047f770a23eb411257878bfc70cf0c90c168f2affe3529cc20f077206dcac8f1",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_fb331b159983/047f770a23eb411257878bfc70cf0c90c168f2affe3529cc20f077206dcac8f1/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_fb331b159983/047f770a23eb411257878bfc70cf0c90c168f2affe3529cc20f077206dcac8f1/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_fb331b159983/047f770a23eb411257878bfc70cf0c90c168f2affe3529cc20f077206dcac8f1/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_fb331b159983/bfece7c137b9ce6ac781bed4491e21b6f85583b4b6979cca32cdea9cf3a8c4ab/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_fb331b159983/bfece7c137b9ce6ac781bed4491e21b6f85583b4b6979cca32cdea9cf3a8c4ab/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_fb331b159983/bfece7c137b9ce6ac781bed4491e21b6f85583b4b6979cca32cdea9cf3a8c4ab/receipt.json"
       }
     },
     "t_1e3e02536ca2": {
@@ -3681,40 +3659,36 @@
     },
     "t_586bc9a3f0a8": {
       "term": "懸崖撒手",
-      "verdict": "REVISE",
-      "reviewedSha256": "f174f572af1a8d1b62200f733fe6030be6cfc53cd8c35be464e0e62398e85e03",
-      "finding": "Current attribution ground truth records 2 hard failure(s): anonymous_monk_question_assigned_to_master, reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "e2c2a1dcc4ba18d200f63faa5fd38420c4b3d1f6708ccbe941237e607643753f",
+      "finding": "All seven complete cases read. Two unnamed monks own their questions, named respondents are retained, four direct speakers hold, and Yuanwu is correctly restored as quoted utterer in the Dahui biography. Danger, relinquishment, death, and revival are all explicitly present without interpretive over-resolution.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-1-3-057065-f002-laneA.json",
       "supersedes": {
-        "term": "懸崖撒手",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "f174f572af1a8d1b62200f733fe6030be6cfc53cd8c35be464e0e62398e85e03",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_586bc9a3f0a8/f174f572af1a8d1b62200f733fe6030be6cfc53cd8c35be464e0e62398e85e03/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_586bc9a3f0a8/f174f572af1a8d1b62200f733fe6030be6cfc53cd8c35be464e0e62398e85e03/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_586bc9a3f0a8/f174f572af1a8d1b62200f733fe6030be6cfc53cd8c35be464e0e62398e85e03/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_586bc9a3f0a8/e2c2a1dcc4ba18d200f63faa5fd38420c4b3d1f6708ccbe941237e607643753f/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_586bc9a3f0a8/e2c2a1dcc4ba18d200f63faa5fd38420c4b3d1f6708ccbe941237e607643753f/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_586bc9a3f0a8/e2c2a1dcc4ba18d200f63faa5fd38420c4b3d1f6708ccbe941237e607643753f/receipt.json"
       }
     },
     "t_ec1241360056": {
       "term": "無孔鐵鎚",
-      "verdict": "REVISE",
-      "reviewedSha256": "860f5e3c495f05142d981eb244af825f8e7631f90d098e5e004e43ab4502ba1a",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "bd6b22a8538392ed426527baf8b8c4c28b4b5f69dd406f3923a070c63ba41e3d",
+      "finding": "All complete occurrences across the two different-thing senses and relevant anchors read. Xuedou’s compiled comment is recovered and direct/quoted voices are coherent. Remaining Huguo, Shimen, and Guanghui identity warnings are roster-only and explicitly deferred.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-106115-f002-laneA.json",
       "supersedes": {
-        "term": "無孔鐵鎚",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "860f5e3c495f05142d981eb244af825f8e7631f90d098e5e004e43ab4502ba1a",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_ec1241360056/860f5e3c495f05142d981eb244af825f8e7631f90d098e5e004e43ab4502ba1a/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_ec1241360056/860f5e3c495f05142d981eb244af825f8e7631f90d098e5e004e43ab4502ba1a/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_ec1241360056/860f5e3c495f05142d981eb244af825f8e7631f90d098e5e004e43ab4502ba1a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_ec1241360056/bd6b22a8538392ed426527baf8b8c4c28b4b5f69dd406f3923a070c63ba41e3d/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_ec1241360056/bd6b22a8538392ed426527baf8b8c4c28b4b5f69dd406f3923a070c63ba41e3d/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_ec1241360056/bd6b22a8538392ed426527baf8b8c4c28b4b5f69dd406f3923a070c63ba41e3d/receipt.json"
       }
     },
     "t_114bbd284d1c": {
@@ -3767,21 +3741,19 @@
     },
     "t_5369e90b59b3": {
       "term": "百丈野狐",
-      "verdict": "REVISE",
-      "reviewedSha256": "42db6804cafdddb5a3e59e2c4c2fb2f3d02621455c7b8f940930b2a595d33ede",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "7815325070c719418b6e0315ca7adac059efd7309b23af2e6521762f6e39c7da",
+      "finding": "All seven complete units read. Narrator-owned headings correctly keep MasterName null while retaining the master who raises, verses, or comments on the case; Wuzu and Chongjue directly own their utterances. The explanation reports the documentary causality turns without adjudicating them and accurately treats the phrase as a stable named-case label.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-next-f002-laneA.json",
       "supersedes": {
-        "term": "百丈野狐",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "42db6804cafdddb5a3e59e2c4c2fb2f3d02621455c7b8f940930b2a595d33ede",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_5369e90b59b3/42db6804cafdddb5a3e59e2c4c2fb2f3d02621455c7b8f940930b2a595d33ede/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_5369e90b59b3/42db6804cafdddb5a3e59e2c4c2fb2f3d02621455c7b8f940930b2a595d33ede/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_5369e90b59b3/42db6804cafdddb5a3e59e2c4c2fb2f3d02621455c7b8f940930b2a595d33ede/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_5369e90b59b3/7815325070c719418b6e0315ca7adac059efd7309b23af2e6521762f6e39c7da/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_5369e90b59b3/7815325070c719418b6e0315ca7adac059efd7309b23af2e6521762f6e39c7da/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_5369e90b59b3/7815325070c719418b6e0315ca7adac059efd7309b23af2e6521762f6e39c7da/receipt.json"
       }
     },
     "t_fac9b9afebf6": {
@@ -3841,21 +3813,19 @@
     },
     "t_b8c3ecb60618": {
       "term": "啐啄同時",
-      "verdict": "REVISE",
-      "reviewedSha256": "a4dbe3c77974eb30a3182d527ad7b0f9ea48e8ebcee0cb9f164a104aefc1f9ac",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "409d50658d549ab647999d0bcedff83f015f58a9187fd97af34c2b9c17fab308",
+      "finding": "All complete units read. Yuanwu’s commentary and the explicitly introduced Baiyun comment are correctly owned; direct speakers and quoted case layers remain distinct. Chick and hen acting in matched timing is explicitly defined and consistently deployed, so one sense is justified.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-7-9-096105-f002-laneA.json",
       "supersedes": {
-        "term": "啐啄同時",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "a4dbe3c77974eb30a3182d527ad7b0f9ea48e8ebcee0cb9f164a104aefc1f9ac",
-        "finding": "KEEP — At this exact hash, the entry distinguishes the referent and attested Chan deployment, splits only different things, supports its prose from stored exact rows, and identifies the headword-bearing actor rather than transferring a question to its respondent.",
-        "sourceReview": "fresh-build/waves/f002-laneA-351-400-independent-semantic-latest-standard-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_b8c3ecb60618/a4dbe3c77974eb30a3182d527ad7b0f9ea48e8ebcee0cb9f164a104aefc1f9ac/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_b8c3ecb60618/a4dbe3c77974eb30a3182d527ad7b0f9ea48e8ebcee0cb9f164a104aefc1f9ac/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_b8c3ecb60618/a4dbe3c77974eb30a3182d527ad7b0f9ea48e8ebcee0cb9f164a104aefc1f9ac/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_b8c3ecb60618/409d50658d549ab647999d0bcedff83f015f58a9187fd97af34c2b9c17fab308/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_b8c3ecb60618/409d50658d549ab647999d0bcedff83f015f58a9187fd97af34c2b9c17fab308/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_b8c3ecb60618/409d50658d549ab647999d0bcedff83f015f58a9187fd97af34c2b9c17fab308/receipt.json"
       }
     },
     "t_19f9e99d5304": {

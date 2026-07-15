@@ -1,0 +1,313 @@
+{
+  "generatedUtc": "2026-07-15T23:08:12.177332+00:00",
+  "elapsedSeconds": 10.322,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_8482770fe735",
+      "term": "象王",
+      "path": "fresh-build/entries/t_8482770fe735/entry.v2.json",
+      "sha256": "5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641"
+    },
+    {
+      "id": "t_8beda961c75a",
+      "term": "陶淵明",
+      "path": "fresh-build/entries/t_8beda961c75a/entry.v2.json",
+      "sha256": "a4ce46fbdbdb5563595fd80ca06a8ed463faaa2e6fadee731b6ed632a02e48c2"
+    },
+    {
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "path": "fresh-build/entries/t_a66ef543d2ea/entry.v2.json",
+      "sha256": "3f2125d85925365312e3114f1b69bd3a8939bff6efc68a25cc20045e6a3311ac"
+    },
+    {
+      "id": "t_a7f67b4983d9",
+      "term": "日用",
+      "path": "fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+      "sha256": "33d7bde2d588226b3f3c5d74048a1ef66865005c5628ed15ba3b90f2cc8c5808"
+    },
+    {
+      "id": "t_a9f422b3b249",
+      "term": "生緣",
+      "path": "fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+      "sha256": "e2200400ba404da8a40fff30eee33bb275bc692f2927f585241fc7a85e346514"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 38,
+    "occurrenceVerified": 34,
+    "claimAnchorVerified": 4,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_8482770fe735/entry.v2.json",
+        "id": "t_8482770fe735",
+        "term": "象王",
+        "verified": 12,
+        "occurrenceVerified": 8,
+        "claimAnchorVerified": 4,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_8beda961c75a/entry.v2.json",
+        "id": "t_8beda961c75a",
+        "term": "陶淵明",
+        "verified": 5,
+        "occurrenceVerified": 5,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_a66ef543d2ea/entry.v2.json",
+        "id": "t_a66ef543d2ea",
+        "term": "善財",
+        "verified": 7,
+        "occurrenceVerified": 7,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+        "id": "t_a7f67b4983d9",
+        "term": "日用",
+        "verified": 6,
+        "occurrenceVerified": 6,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+        "id": "t_a9f422b3b249",
+        "term": "生緣",
+        "verified": 8,
+        "occurrenceVerified": 8,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.211,
+    "attribution": 2.26,
+    "publicFeedback": 0.66,
+    "depthSense": 1.317,
+    "countClaims": 2.033,
+    "workSourceValidation": 0.528,
+    "corpusBaseline": 0.506,
+    "frozenHistoricalTerms": 0.855,
+    "attributionPackets": 7.733
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 2.26,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 7,
+        "occurrences": 34,
+        "named_occurrences": 25,
+        "deferred_non_roster": 12,
+        "noncanonical_master_name": 5,
+        "context_master_links": 28,
+        "deferred_non_roster_context": 13,
+        "noncanonical_context_master_name": 5,
+        "attribution_notes": 38,
+        "actor_reviewed_unnamed": 6,
+        "claim_anchors": 4,
+        "actor_narrated": 6,
+        "chinese_strings": 15,
+        "anchored_chinese": 13,
+        "pending_roster_master": 7,
+        "pending_roster_context_master": 8,
+        "actor_identified_non_master": 1,
+        "dangling_chinese": 2
+      },
+      "hardFailures": 12,
+      "failures": [
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json",
+          "detail": "象王 s1 o1: 'Changlu Timing' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json",
+          "detail": "象王 s1 o1 c1: 'Changlu Timing' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json",
+          "detail": "象王 s1 o7: 'Tieguanshu' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json",
+          "detail": "象王 s1 o7 c1: 'Tieguanshu' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json",
+          "detail": "陶淵明 s1 o1: 'Baofang Jin' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json",
+          "detail": "陶淵明 s1 o1 c1: 'Baofang Jin' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json",
+          "detail": "陶淵明 s1 o3: 'Shengfa Fa' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json",
+          "detail": "陶淵明 s1 o3 c1: 'Shengfa Fa' is not roster names[0]"
+        },
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+          "detail": "日用 s1: 今日用處"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1 o6: 'Jinsu Rong' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1 o6 c1: 'Jinsu Rong' is not roster names[0]"
+        },
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1: 戀生緣"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 7,\n    \"occurrences\": 34,\n    \"named_occurrences\": 25,\n    \"deferred_non_roster\": 12,\n    \"noncanonical_master_name\": 5,\n    \"context_master_links\": 28,\n    \"deferred_non_roster_context\": 13,\n    \"noncanonical_context_master_name\": 5,\n    \"attribution_notes\": 38,\n    \"actor_reviewed_unnamed\": 6,\n    \"claim_anchors\": 4,\n    \"actor_narrated\": 6,\n    \"chinese_strings\": 15,\n    \"anchored_chinese\": 13,\n    \"pending_roster_master\": 7,\n    \"pending_roster_context_master\": 8,\n    \"actor_identified_non_master\": 1,\n    \"dangling_chinese\": 2\n  },\n  \"hardFailures\": 12,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json\",\n      \"detail\": \"象王 s1 o1: 'Changlu Timing' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json\",\n      \"detail\": \"象王 s1 o1 c1: 'Changlu Timing' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json\",\n      \"detail\": \"象王 s1 o7: 'Tieguanshu' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8482770fe735/entry.v2.json\",\n      \"detail\": \"象王 s1 o7 c1: 'Tieguanshu' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json\",\n      \"detail\": \"陶淵明 s1 o1: 'Baofang Jin' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json\",\n      \"detail\": \"陶淵明 s1 o1 c1: 'Baofang Jin' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json\",\n      \"detail\": \"陶淵明 s1 o3: 'Shengfa Fa' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8beda961c75a/entry.v2.json\",\n      \"detail\": \"陶淵明 s1 o3 c1: 'Shengfa Fa' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a7f67b4983d9/entry.v2.json\",\n      \"detail\": \"日用 s1: 今日用處\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1 o6: 'Jinsu Rong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1 o6 c1: 'Jinsu Rong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1: 戀生緣\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.66,
+    "payload": {
+      "entries": 5,
+      "passing": 3,
+      "flagged": 2,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 2,
+        "search-alias-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 5,\n  \"passing\": 3,\n  \"flagged\": 2,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 2,\n    \"search-alias-review\": 1\n  }\n}\nreport: /tmp/tmpnaza_k6h.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 1.317,
+    "payload": {
+      "audited": 5,
+      "hardFailed": 5,
+      "reviewFlagged": 3,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_8482770fe735",
+        "t_8beda961c75a",
+        "t_a66ef543d2ea",
+        "t_a7f67b4983d9",
+        "t_a9f422b3b249"
+      ]
+    },
+    "output": "{\n  \"audited\": 5,\n  \"hardFailed\": 5,\n  \"reviewFlagged\": 3,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_8482770fe735\",\n    \"t_8beda961c75a\",\n    \"t_a66ef543d2ea\",\n    \"t_a7f67b4983d9\",\n    \"t_a9f422b3b249\"\n  ]\n}\nreport: /tmp/tmprnar76qx-depth.json\n",
+    "report": "/tmp/tmprnar76qx-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.033,
+    "payload": {
+      "entryCount": 5,
+      "claimCount": 2,
+      "candidatePhraseCount": 1,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 2,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 5,\n  \"claimCount\": 2,\n  \"candidatePhraseCount\": 1,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 2,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.528,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 7,
+        "multiSourceSenses": 5
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 7,\n    \"multiSourceSenses\": 5\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.506,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.855,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 7.733,
+    "payload": {
+      "entries": 5,
+      "occurrences": 34,
+      "tierACandidates": 0,
+      "reviewRequired": 34,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 5,
+        "rebuiltOccurrences": 34
+      }
+    },
+    "output": "{\n  \"entries\": 5,\n  \"occurrences\": 34,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 34,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 5,\n    \"rebuiltOccurrences\": 34\n  }\n}\nreport: maintenance/attribution-read-adjudication/cohorts-7-9-gate-086-095-revise5-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "maintenance/attribution-read-adjudication/cohorts-7-9-gate-086-095-revise5-attribution-packets.json",
+    "generatorVersion": 6,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_8482770fe735",
+    "t_8beda961c75a",
+    "t_a66ef543d2ea",
+    "t_a7f67b4983d9",
+    "t_a9f422b3b249"
+  ],
+  "strictRosterScopeIds": [
+    "t_8482770fe735",
+    "t_8beda961c75a",
+    "t_a66ef543d2ea",
+    "t_a7f67b4983d9",
+    "t_a9f422b3b249"
+  ]
+}

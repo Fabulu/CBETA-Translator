@@ -28,7 +28,7 @@
           "ToLb": "0431b09",
           "Kwic": "問：如何是大通智勝佛？",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): an unnamed interlocutor owns the exact headword-bearing question.",
+          "AttributionNote": "The unnamed monk owns the quoted question; the enclosing section’s named master is respondent, and Great Penetrating Supreme Wisdom Buddha is the invoked case figure rather than the utterer.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
@@ -54,7 +54,7 @@
           "ToLb": "0048a22",
           "Kwic": "問：大通智勝佛，十刼坐道場。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): an unnamed interlocutor owns the exact headword-bearing question.",
+          "AttributionNote": "The unnamed monk owns the quoted question; the enclosing section’s named master is respondent, and Great Penetrating Supreme Wisdom Buddha is the invoked case figure rather than the utterer.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
@@ -80,7 +80,7 @@
           "ToLb": "0460a17",
           "Kwic": "問：大通智勝佛，十劫座道場，佛法不現前，不得成佛道。",
           "Curated": true,
-          "AttributionNote": "Source text (天聖廣燈錄): an unnamed interlocutor owns the exact headword-bearing question.",
+          "AttributionNote": "The unnamed monk owns the quoted question; the enclosing section’s named master is respondent, and Great Penetrating Supreme Wisdom Buddha is the invoked case figure rather than the utterer.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
@@ -104,15 +104,15 @@
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0050b16",
           "ToLb": "0050b17",
-          "Kwic": "如何是大通智勝佛。",
+          "Kwic": "如何是大通智勝佛？",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元): the compiler preserves the exact headword-bearing narration or formula.",
+          "AttributionNote": "Full-unit reading: The clause is the old case’s question “What is Great Penetrating Supreme Wisdom Buddha?”, not a compiler assertion.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 大通智勝佛-bearing event",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "quoted question",
+            "ActorLabel": "the quoted-case questioner",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -121,10 +121,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 大通智勝佛 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:32:50.316120+00:00"
-          }
+            "GrammarEvidence": "The clause is the old case’s question “What is Great Penetrating Supreme Wisdom Buddha?”, not a compiler assertion.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
@@ -165,15 +167,15 @@
           "RelPath": "L/L155/L155n1643.xml",
           "FromLb": "0161b05",
           "ToLb": "0161b10",
-          "Kwic": "晚參大通智勝佛十劫坐道場佛法不見歬不能成佛道瓮裏何曾𧺆卻鼈廣𬱃屠兒放下屠刀云我是千佛一數不是性燥漢大集會上有魔王語佛云瞿曇我待一切眾生成佛盡眾生界空無有眾生名字我乃發菩提心捏目生華作麼三箇漢既未",
+          "Kwic": "晚參：大通智勝佛，十劫坐道場。",
           "Curated": true,
-          "AttributionNote": "Source text (弘覺忞禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
+          "AttributionNote": "Full-unit reading: 晚參 heads the local record owner’s direct address using the ten-kalpa formula; the Buddha is invoked, not the speaker.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 大通智勝佛-bearing event",
-            "ActorRole": "compiler",
+            "Status": "named-unrostered",
+            "Kind": "evening address",
+            "ActorLabel": "the named evening-address master",
+            "ActorRole": "utterer",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -182,10 +184,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 大通智勝佛 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:32:50.316120+00:00"
-          }
+            "GrammarEvidence": "晚參 heads the local record owner’s direct address using the ten-kalpa formula; the Buddha is invoked, not the speaker.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],

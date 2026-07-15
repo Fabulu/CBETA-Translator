@@ -1,0 +1,86 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact author-complete entries and cohorts-4-6 v6 full-case packets; every occurrence read in its complete source unit; roster-only gaps deferred/non-blocking",
+  "rows": [
+    {
+      "id": "t_dfd1dbffe9f2",
+      "term": "即心即佛",
+      "verdict": "KEEP",
+      "reviewedSha256": "12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e",
+      "finding": "All ten complete cases read. Named and unnamed questioners, respondents, original speakers, later quoters, and later raisers are coherently separated. The positive formula remains one saying under sharply different public deployments; neither the negative formulas nor any answer is imported as its definition.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e1306236ba46",
+      "term": "一句子",
+      "verdict": "REVISE",
+      "reviewedSha256": "7987aa92ae3c7429a377271c977b4d202c52b1554cf33794431ced442e118c8d",
+      "finding": "All seven complete units read. Huangbo’s repaired direct utterance is correct, but five other rows remain generic compiler narration even where the text explicitly quotes a named master saying 我有一句子 or introduces a named address/verse. The bounded-phrase sense holds; recover those actual direct speakers and contextual record owners rather than leaving first-person speech actorless.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e27ceae1c5ee",
+      "term": "言下有省",
+      "verdict": "REVISE",
+      "reviewedSha256": "44b08754e8b92d3a18f68af76f6445612b439e98de0a3e297b8d90e85b04e57d",
+      "finding": "All six complete biographies read. The Daoxin/Sengcan row is repaired correctly, but the other five narrator-owned awakening reports still have empty ContextMasters despite each full biography naming the person who gains insight and the immediately preceding speaker. MasterName should remain null, but the changed listener and triggering speaker must be represented for every event.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e4d6ebff1bb2",
+      "term": "如何是佛",
+      "verdict": "KEEP",
+      "reviewedSha256": "89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d",
+      "finding": "All eight complete public questions read. Each headword belongs to its named or reviewed-unnamed questioner and every named respondent is retained. The question remains stable across divergent answers, none of which is smuggled into the definition.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e4dba349ae51",
+      "term": "禪板",
+      "verdict": "KEEP",
+      "reviewedSha256": "b378d944f62ef24ec0461530706a7107151e5b1cae52280e1524d1ea989da299",
+      "finding": "All six complete encounter/address units read. The repaired Pinjixiang row correctly treats the board strikes as narrator-owned monk actions and retains the respondent. Direct speaker and quoted-case layers in the remaining rows are coherent, including the Cuiwei board case and Huangbo inheritance instruction. No semantic split beyond the concrete hall implement is needed.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e5259ce8bbf5",
+      "term": "垂示",
+      "verdict": "KEEP",
+      "reviewedSha256": "4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439",
+      "finding": "All seven complete rubric, contents, chamber-address, and interview units read. Editorial and grammatical packages are correctly kept within one referent; named direct speakers, unnamed requesters, respondents, and Yuanwu/Yunmen collection context are accurately distinguished.",
+      "selfReview": false
+    },
+    {
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "verdict": "KEEP",
+      "reviewedSha256": "40d074761f62cbd705d96986b56869b0d7c118cdd42bec9a3a5e82c45933ff19",
+      "finding": "All nine complete biographies, questions, and room encounters read. Narrator-owned spatial uses retain named occupants/hosts, direct speakers own their turns, and the Vimalakirti comparisons do not turn the actual abbot’s room into an inner abstraction.",
+      "selfReview": false
+    },
+    {
+      "id": "t_ecac19a083df",
+      "term": "奪人不奪境",
+      "verdict": "REVISE",
+      "reviewedSha256": "f5452345a0bf34306a5ffb1a21dc820eaa47fa5bfecfd5a2ba794abccdf568f6",
+      "finding": "All seven complete Four-Selections units read. The Jiuxian occurrence is repaired, but rows 2 and 4 still assign the inherited monk’s 如何是奪人不奪境 question to Linji or Fengxue rather than the questioner, and row 5 illegally stores the literal label “an unnamed questioning monk” as MasterName and ContextMaster. Reassign question tokens to reviewed-unnamed monks and retain the named masters only as respondents; the category sense itself holds.",
+      "selfReview": false
+    },
+    {
+      "id": "t_ee57d3ff5e43",
+      "term": "當機",
+      "verdict": "REVISE",
+      "reviewedSha256": "22fa2521e5bb26409a183c77fe286ed05b2cdea29bc468a27837823f19ca7e50",
+      "finding": "All nine complete addresses and questions read. Most direct/commentarial uses are sound and roster-only follow-up remains deferred. In the final Hanyue case, however, 覿面當機 occurs inside the unnamed monk’s question after 問, while Hanyue answers afterward; MasterName=Hanyue therefore violates utterer-of-headword. Set the monk as reviewed-unnamed actor and Hanyue as respondent.",
+      "selfReview": false
+    },
+    {
+      "id": "t_eedf4100b3d7",
+      "term": "師子吼",
+      "verdict": "KEEP",
+      "reviewedSha256": "68daed4b9b7f94d75312765a61f2a3cf2c9104ed696811ccd9097290526c91f5",
+      "finding": "All seven complete definitions, demands, appraisals, and questions read. The two unnamed monk questions now retain Shoushan and Guizong as respondents; all named direct speakers own their uses. The lion/jackal contrast is explicitly supplied by the corpus and supports the restrained forceful-teaching gloss.",
+      "selfReview": false
+    }
+  ]
+}

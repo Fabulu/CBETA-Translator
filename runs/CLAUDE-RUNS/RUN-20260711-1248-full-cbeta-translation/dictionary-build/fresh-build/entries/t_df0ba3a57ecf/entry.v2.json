@@ -39,17 +39,19 @@
           "RelPath": "C/C077/C077n1710.xml",
           "FromLb": "0618a05",
           "ToLb": "0618a10",
-          "Kwic": "問依經觧義三世佛冤離經一字如同魔說時如何師云固守𨔝靜三世佛冤此外別求如同魔說馬祖令人馳書并醬三瓮與師師令排向法堂前乃上堂眾纔集師以拄杖指醬瓮云道得即不打破道不得即打破眾無語師便打破歸方丈。",
+          "Kwic": "師以拄杖指醬甕云：道得即不打破。",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Baizhang Huaihai",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "record-owner",
+                "hall-speaker"
               ]
             }
           ],
-          "AttributionNote": "Source text (古尊宿語錄): the case narrator the case narrator says “staff” while recording Baizhang Huaihai handling it; Baizhang Huaihai is the action performer, not the utterer of the headword-bearing narration.",
+          "AttributionNote": "The narrator reports Baizhang Huaihai pointing his staff at the sauce jars; Baizhang performs the teaching-seat action but does not utter the implement name.",
           "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
@@ -80,7 +82,9 @@
             {
               "MasterName": "Qingliang Taiqin",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "hall-speaker",
+                "record-owner"
               ]
             }
           ],
@@ -114,7 +118,9 @@
             {
               "MasterName": "Fenyang Shanzhao",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "hall-speaker",
+                "record-owner"
               ]
             }
           ],
@@ -144,10 +150,10 @@
           "Kwic": "檢點將來，合喫拄杖。",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "case comment",
+            "ActorLabel": "the unnamed case commentator",
+            "ActorRole": "commentator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -156,19 +162,22 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:49:07.954968+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "檢點將來，合喫拄杖 is the enclosing commentator’s verdict about Dahui Zonggao, not a narrator-owned action and not Dahui speaking.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "ContextMasters": [
             {
               "MasterName": "Dahui Zonggao",
               "Roles": [
-                "person-described"
+                "person-judged",
+                "case-figure"
               ]
             }
           ],
-          "AttributionNote": "Source record (續燈正統; X/X84/X84n1583.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "AttributionNote": "Full-unit reading: 檢點將來，合喫拄杖 is the enclosing commentator’s verdict about Dahui Zonggao, not a narrator-owned action and not Dahui speaking.",
+          "MasterName": null
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -227,7 +236,7 @@
             "ReviewedUtc": "2026-07-15T08:40:00Z"
           },
           "ContextMasters": [],
-          "AttributionNote": "Source text (宗鑑法林): the case narrator the compiler narrates the staff action before the separately marked words; the action does not make the staff-holder the utterer of the narrative frame.",
+          "AttributionNote": "The anthology narrator reports its locally named section master taking up the staff and then speaking; the staff-holder must be retained from the enclosing section rather than erased or guessed from this short clause.",
           "MasterName": null
         },
         {
@@ -241,7 +250,9 @@
             {
               "MasterName": "Shoushan Xingnian",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "hall-speaker",
+                "record-owner"
               ]
             }
           ],
@@ -288,25 +299,34 @@
             "ReviewedUtc": "2026-07-15T08:40:00Z"
           },
           "ContextMasters": [],
-          "AttributionNote": "Source text (宗門拈古彙集): the case narrator the compiler narrates the staff action before the separately marked comment; the headword belongs to that narrative frame.",
+          "AttributionNote": "The anthology narrator reports its locally named section master taking up the staff and then speaking; the staff-holder must be retained from the enclosing section rather than erased or guessed from this short clause.",
           "MasterName": null
         },
         {
           "RelPath": "J/J28/J28nB202.xml",
           "FromLb": "0003b01",
           "ToLb": "0003b06",
-          "Kwic": "泥豬疥狗共贊昇平，鳳子麟兒齊彰海印。「雖然如是，猶未足稱衲僧意氣。如何是衲僧意氣？三尺龍泉光照膽，萬人叢裏奪高標。」卓拄杖一下。復舉寶壽開堂，三聖推出一僧，寶壽便打，三聖云：「與麼為人瞎卻鎮州一城人眼去在。」寶壽擲下拄杖，歸方丈。師云：「主寰",
+          "Kwic": "卓拄杖一下。",
           "Curated": true,
           "MasterName": null,
           "ContextMasters": [
             {
-              "MasterName": "Baichi Yuanshuo",
+              "MasterName": "Baichi Xingyuan",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "hall-speaker",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Baoshou Yanzhao",
+              "Roles": [
+                "quoted-case-master",
+                "staff-holder"
               ]
             }
           ],
-          "AttributionNote": "Source text (百癡禪師語錄): the case narrator the case narrator says “staff” while recording Baichi Yuanshuo handling it; Baichi Yuanshuo is the action performer, not the utterer of the headword-bearing narration.",
+          "AttributionNote": "Recut to Baichi Xingyuan’s present teaching-seat action. The later quoted Baoshou staff action remains contextual rather than sharing this token.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "case narrator",

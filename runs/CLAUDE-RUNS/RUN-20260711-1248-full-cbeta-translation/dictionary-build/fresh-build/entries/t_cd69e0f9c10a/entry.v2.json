@@ -79,35 +79,65 @@
           "RelPath": "X/X81/X81n1568.xml",
           "FromLb": "0001c11",
           "ToLb": "0001c14",
-          "Kwic": "：洪鐘纔擊，大眾雲臻，請師如是。師曰：大眾會何似汝會？問：如何是古佛家風？師曰：甚麼處看不足？問：十二時中，如何行履即得與道相應？師",
+          "Kwic": "問：如何是古佛家風？師曰：甚麼處看不足？",
           "Curated": true,
-          "MasterName": "Fayan Wenyi",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Fayan Wenyi. Source text (五燈嚴統(第10卷-第25卷)).",
+          "MasterName": null,
+          "AttributionNote": "Full-unit reading: 問 introduces an unnamed monk’s 古佛家風 question; Fayan answers after 師曰.",
           "ContextMasters": [
             {
               "MasterName": "Fayan Wenyi",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "question turn",
+            "ActorLabel": "the unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "問 introduces an unnamed monk’s 古佛家風 question; Fayan answers after 師曰.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0028a03",
           "ToLb": "0028a08",
-          "Kwic": "No.1565五燈會元卷第一七佛七佛古佛應世。緜歷無窮。不可以周知而悉數也。近故譚賢劫有千如來。暨于釋迦",
+          "Kwic": "七佛古佛應世，緜歷無窮。",
           "Curated": true,
-          "MasterName": "Dahui Zonggao",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Dahui Zonggao. Source text (五燈會元).",
-          "ContextMasters": [
-            {
-              "MasterName": "Dahui Zonggao",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
+          "MasterName": null,
+          "AttributionNote": "Full-unit reading: 七佛古佛應世 is the work’s opening bibliographic or historical prose, not Dahui Zonggao speaking.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "bibliographic prose",
+            "ActorLabel": "the bibliographic compiler",
+            "ActorRole": "none",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "七佛古佛應世 is the work’s opening bibliographic or historical prose, not Dahui Zonggao speaking.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -130,18 +160,44 @@
           "RelPath": "X/X66/X66n1297.xml",
           "FromLb": "0281c17",
           "ToLb": "0281c19",
-          "Kwic": "先奇云：世尊門裏出身不得，文殊身裏出門不得。世尊偕阿難行次，見一古佛塔，世尊便作禮。阿難問：甚麼人塔？世尊曰：過去諸佛塔。曰：過去諸",
+          "Kwic": "世尊偕阿難行次，見一古佛塔，世尊便作禮。",
           "Curated": true,
-          "MasterName": "Shakyamuni Buddha",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Shakyamuni Buddha. Source text (宗鑑法林).",
+          "MasterName": null,
+          "AttributionNote": "Full-unit reading: The narrator reports Shakyamuni seeing and bowing to an ancient Buddha’s stupa; Shakyamuni speaks only afterward about past buddhas.",
           "ContextMasters": [
             {
               "MasterName": "Shakyamuni Buddha",
               "Roles": [
-                "utterer"
+                "action-performer",
+                "case-teacher"
+              ]
+            },
+            {
+              "MasterName": "Ananda",
+              "Roles": [
+                "questioner",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "quoted case narration",
+            "ActorLabel": "the quoted-case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The narrator reports Shakyamuni seeing and bowing to an ancient Buddha’s stupa; Shakyamuni speaks only afterward about past buddhas.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -164,18 +220,44 @@
           "RelPath": "X/X66/X66n1296.xml",
           "FromLb": "0010b04",
           "ToLb": "0010b07",
-          "Kwic": "散花讚嘆，且道有利害無利害？具眼者試撿別看。世尊偕阿難行次，見一古佛塔，世尊便作禮。阿難問：此是甚麼人塔？世尊曰：過去諸佛塔。阿難曰",
+          "Kwic": "世尊偕阿難行次，見一古佛塔，世尊便作禮。",
           "Curated": true,
-          "MasterName": "Shakyamuni Buddha",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Shakyamuni Buddha. Source text (宗門拈古彙集).",
+          "MasterName": null,
+          "AttributionNote": "Full-unit reading: The narrator reports Shakyamuni seeing and bowing to an ancient Buddha’s stupa; Shakyamuni speaks only afterward about past buddhas.",
           "ContextMasters": [
             {
               "MasterName": "Shakyamuni Buddha",
               "Roles": [
-                "utterer"
+                "action-performer",
+                "case-teacher"
+              ]
+            },
+            {
+              "MasterName": "Ananda",
+              "Roles": [
+                "questioner",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "quoted case narration",
+            "ActorLabel": "the quoted-case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The narrator reports Shakyamuni seeing and bowing to an ancient Buddha’s stupa; Shakyamuni speaks only afterward about past buddhas.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         }
       ],
       "ClaimAnchors": [],

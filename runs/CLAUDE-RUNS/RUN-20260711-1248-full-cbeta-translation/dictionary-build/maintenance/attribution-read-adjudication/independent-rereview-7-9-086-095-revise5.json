@@ -1,0 +1,46 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact revise5 entries; all 34 occurrences and 4 claim anchors reread in their complete source units; revise5 final gate checked after semantic reading",
+  "rows": [
+    {
+      "id": "t_8482770fe735",
+      "term": "象王",
+      "verdict": "KEEP",
+      "reviewedSha256": "5f6efe1584fdcf687e3b3ef12601ff8e71d298f4bd2329c45d9495e47b9a2641",
+      "finding": "All eight occurrences and four anchors reread. The revised synthesis correctly stops treating every elephant-king deployment as Changlu Timing’s personal conduct, and the four family anchors remain clearly separated from headword occurrences. No semantic or turn-attribution defect remains. Changlu Timing and Tieguanshu are unresolved roster identities, explicitly deferred as non-blocking to the roster-expansion owner.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8beda961c75a",
+      "term": "陶淵明",
+      "verdict": "KEEP",
+      "reviewedSha256": "a4ce46fbdbdb5563595fd80ca06a8ed463faaa2e6fadee731b6ed632a02e48c2",
+      "finding": "All five direct-address occurrences reread. The Chan-deployed pre-Chan poet synthesis is grounded in the selected speeches, and each headword occurrence belongs to its direct speaker. No semantic or turn-attribution defect remains. Baofang Jin and Shengfa Fa are unresolved roster identities, explicitly deferred as non-blocking to the roster-expansion owner.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "verdict": "KEEP",
+      "reviewedSha256": "3f2125d85925365312e3114f1b69bd3a8939bff6efc68a25cc20045e6a3311ac",
+      "finding": "All seven complete units reread. Direct master speech, unnamed hall-address owner, lamp narration, and Qian Qianyi’s authored voice remain correctly separated. The invalid RelatedMasters strings have been removed or canonicalized; no remaining attribution or semantic defect appears. The figure is defined by Chan deployment rather than outside biography.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a7f67b4983d9",
+      "term": "日用",
+      "verdict": "REVISE",
+      "reviewedSha256": "33d7bde2d588226b3f3c5d74048a1ef66865005c5628ed15ba3b90f2cc8c5808",
+      "finding": "All six retained occurrences reread. The false 今日用處 boundary occurrence was correctly removed and the daily-functioning synthesis now rests on actual 日用 tokens. However the explanation still prints the excluded Chinese string 今日用處 without an anchor, producing a dangling-Chinese hard failure under the quote rule. Paraphrase the excluded collision in English or anchor it explicitly as rejected/collision evidence.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a9f422b3b249",
+      "term": "生緣",
+      "verdict": "REVISE",
+      "reviewedSha256": "e2200400ba404da8a40fff30eee33bb275bc692f2927f585241fc7a85e346514",
+      "finding": "All eight occurrences across the newly explicit three senses reread. Splitting worldly/life-binding ties from place of origin and generative condition correctly addresses the earlier under-split. Jinsu Rong remains noncanonical in MasterName and ContextMasters, and the gate still reports 戀生緣 as dangling despite its new third-sense occurrence; repair the canonical identity and quote-anchor linkage without recollapsing the senses.",
+      "selfReview": false
+    }
+  ]
+}

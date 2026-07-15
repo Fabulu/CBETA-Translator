@@ -1,0 +1,217 @@
+{
+  "generatedUtc": "2026-07-15T23:14:00.094785+00:00",
+  "elapsedSeconds": 10.16,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_a7f67b4983d9",
+      "term": "日用",
+      "path": "fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+      "sha256": "64927dce2bc65073f40bc6ea00609dab374f874cd43144b089707b64733aca69"
+    },
+    {
+      "id": "t_a9f422b3b249",
+      "term": "生緣",
+      "path": "fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+      "sha256": "8d3b1dbb0d9e0d2c8002fdbc347a18bc9c1b3886b243a6cfd1ea9a7b69ef2626"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 14,
+    "occurrenceVerified": 14,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+        "id": "t_a7f67b4983d9",
+        "term": "日用",
+        "verified": 6,
+        "occurrenceVerified": 6,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+        "id": "t_a9f422b3b249",
+        "term": "生緣",
+        "verified": 8,
+        "occurrenceVerified": 8,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.143,
+    "attribution": 2.76,
+    "publicFeedback": 0.889,
+    "depthSense": 1.571,
+    "countClaims": 0.86,
+    "workSourceValidation": 0.789,
+    "corpusBaseline": 0.776,
+    "frozenHistoricalTerms": 1.155,
+    "attributionPackets": 7.182
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 2.76,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 4,
+        "occurrences": 14,
+        "named_occurrences": 10,
+        "context_master_links": 11,
+        "attribution_notes": 14,
+        "deferred_non_roster": 3,
+        "pending_roster_master": 2,
+        "deferred_non_roster_context": 3,
+        "pending_roster_context_master": 2,
+        "actor_narrated": 1,
+        "actor_reviewed_unnamed": 3,
+        "chinese_strings": 8,
+        "dangling_chinese": 2,
+        "anchored_chinese": 6,
+        "noncanonical_master_name": 1,
+        "noncanonical_context_master_name": 1
+      },
+      "hardFailures": 4,
+      "failures": [
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a7f67b4983d9/entry.v2.json",
+          "detail": "日用 s1: 今日用處"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1 o6: 'Jinsu Rong' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1 o6 c1: 'Jinsu Rong' is not roster names[0]"
+        },
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json",
+          "detail": "生緣 s1: 戀生緣"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 4,\n    \"occurrences\": 14,\n    \"named_occurrences\": 10,\n    \"context_master_links\": 11,\n    \"attribution_notes\": 14,\n    \"deferred_non_roster\": 3,\n    \"pending_roster_master\": 2,\n    \"deferred_non_roster_context\": 3,\n    \"pending_roster_context_master\": 2,\n    \"actor_narrated\": 1,\n    \"actor_reviewed_unnamed\": 3,\n    \"chinese_strings\": 8,\n    \"dangling_chinese\": 2,\n    \"anchored_chinese\": 6,\n    \"noncanonical_master_name\": 1,\n    \"noncanonical_context_master_name\": 1\n  },\n  \"hardFailures\": 4,\n  \"failures\": [\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a7f67b4983d9/entry.v2.json\",\n      \"detail\": \"日用 s1: 今日用處\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1 o6: 'Jinsu Rong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1 o6 c1: 'Jinsu Rong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a9f422b3b249/entry.v2.json\",\n      \"detail\": \"生緣 s1: 戀生緣\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.889,
+    "payload": {
+      "entries": 2,
+      "passing": 1,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1,
+        "search-alias-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 1,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1,\n    \"search-alias-review\": 1\n  }\n}\nreport: /tmp/tmpr2a9jh1c.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 1.571,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 2,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_a7f67b4983d9",
+        "t_a9f422b3b249"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 2,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_a7f67b4983d9\",\n    \"t_a9f422b3b249\"\n  ]\n}\nreport: /tmp/tmp4jhwl2e5-depth.json\n",
+    "report": "/tmp/tmp4jhwl2e5-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.86,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.789,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 4,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 4,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.776,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.155,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 7.182,
+    "payload": {
+      "entries": 2,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 2,
+        "rebuiltOccurrences": 14
+      }
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 2,\n    \"rebuiltOccurrences\": 14\n  }\n}\nreport: maintenance/attribution-read-adjudication/cohorts-7-9-gate-086-095-rereview-cleanup-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "maintenance/attribution-read-adjudication/cohorts-7-9-gate-086-095-rereview-cleanup-attribution-packets.json",
+    "generatorVersion": 6,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_a7f67b4983d9",
+    "t_a9f422b3b249"
+  ],
+  "strictRosterScopeIds": [
+    "t_a7f67b4983d9",
+    "t_a9f422b3b249"
+  ]
+}

@@ -40,16 +40,25 @@
           "ToLb": "0101b20",
           "Kwic": "如何是一喝如探竿影草。師曰，驗得你骨出。",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); unnamed questioning monk owns the exact evidence clause after complete-case review.",
-          "ContextMasters": [
-            {
-              "MasterName": "unnamed questioning monk",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "MasterName": "unnamed questioning monk"
+          "AttributionNote": "費隱禪師語錄: an unnamed monk asks what a shout like probing pole and shadowing grass is.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about the shout as probing pole and shadowing grass",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問 introduces the headword-bearing question; the following master turn answers it.",
+            "ReviewedBy": "Codex independent 106-115 revise4",
+            "ReviewedUtc": "2026-07-15T23:17:53.074332+00:00"
+          }
         },
         {
           "RelPath": "J/J26/J26nB178.xml",
@@ -134,25 +143,16 @@
           "ToLb": "0056a20",
           "Kwic": "。卓一下曰：妙喜世界百雜碎，且道不動如來即今在甚麼處？若人識得，可謂不動步而登妙覺。若也未識，向諸人眉毛眼睫裏涅槃去也。又卓一下。上堂，拈起拄杖曰：智海拄杖，或作金剛王寶劍，或作踞地獅子，或作探竿影草，或不作拄杖用。諸人還相委悉麼？若也委悉去，如龍得水，似虎靠山，出沒卷舒，縱橫應用。如未相委，大似日中逃影。普融平禪師，上堂：山僧不會佛法，為人總沒來由，或時半開半合、或時全放全收，還如萬人叢",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "compiler",
-            "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X64/X64n1260.xml",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete passage presents 探竿影草 in compiler narration rather than a marked speech turn.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
-          },
-          "ContextMasters": [],
-          "AttributionNote": "In the source record (列祖提綱錄), (列祖提綱錄): the compiler-narrator of (列祖提綱錄) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X64/X64n1260.xml."
+          "ContextMasters": [
+            {
+              "MasterName": "Dagui Zhe",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "列祖提綱錄: Dagui Zhe raises the staff and says Zhihai’s staff may act as probing pole and shadowing grass.",
+          "MasterName": "Dagui Zhe"
         }
       ],
       "SourceTexts": [

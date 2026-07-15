@@ -42,23 +42,23 @@
           "RelPath": "C/C077/C077n1710.xml",
           "FromLb": "0679b14",
           "ToLb": "0679b17",
-          "Kwic": "舉塩官和尚喚侍者將犀牛扇子來者云扇子破也官云扇子既破還我犀牛兒來者無語代云欄下",
+          "Kwic": "鹽官喚侍者：將犀牛扇子來。",
           "Curated": true,
-          "MasterName": "Shimen Yuncong",
-          "AttributionNote": "Source text (古尊宿語錄). Shimen Yuncong raises Yanguan Qi’an’s rhinoceros-fan exchange in his own recorded instruction.",
+          "MasterName": "Yanguan Qi'an",
+          "AttributionNote": "Recut to Yanguan Qi’an’s single quoted request; Shimen Yuncong raises or supplies a later response outside this token.",
           "ContextMasters": [
-            {
-              "MasterName": "Shimen Yuncong",
-              "Roles": [
-                "utterer",
-                "record-owner",
-                "later-raiser"
-              ]
-            },
             {
               "MasterName": "Yanguan Qi'an",
               "Roles": [
-                "case-figure"
+                "quoted-utterer",
+                "case-teacher"
+              ]
+            },
+            {
+              "MasterName": "Shimen Yuncong",
+              "Roles": [
+                "later-raiser",
+                "commentator"
               ]
             }
           ],
@@ -119,22 +119,22 @@
           "RelPath": "C/C078/C078n1720.xml",
           "FromLb": "0676a05",
           "ToLb": "0676a08",
-          "Kwic": "杭州塩官齊安國師一日喚侍者曰將犀牛扇子來者曰破也師曰扇子既破還我犀牛兒來者無對投子代云不辭將出𢙢頭角不全",
+          "Kwic": "師曰：將犀牛扇子來。",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集). Exact headword actor: Yanguan Qi'an. The complete case and its turn boundaries were read before attribution.",
+          "AttributionNote": "Recut to Yanguan Qi’an’s single quoted request; Touzi Datong raises or supplies a later response outside this token.",
           "ContextMasters": [
             {
               "MasterName": "Yanguan Qi'an",
               "Roles": [
-                "utterer",
-                "questioner",
-                "case-figure"
+                "quoted-utterer",
+                "case-teacher"
               ]
             },
             {
               "MasterName": "Touzi Datong",
               "Roles": [
-                "later-raiser"
+                "later-raiser",
+                "commentator"
               ]
             }
           ],

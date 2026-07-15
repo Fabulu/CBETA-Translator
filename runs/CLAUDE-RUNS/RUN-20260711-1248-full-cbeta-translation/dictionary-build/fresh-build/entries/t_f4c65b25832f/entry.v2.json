@@ -40,20 +40,27 @@
           "ToLb": "0032b09",
           "Kwic": "問：「殺生是大戒，為甚麼南泉斬貓、歸宗斬蛇？」師云：「汝實恁麼問麼？」云：「是。」師云：「汝當懺悔去。」",
           "Curated": true,
-          "AttributionNote": "In the source record (密雲禪師語錄), Source text (密雲禪師語錄); the unnamed monk asking the precept question owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "密雲禪師語錄: an unnamed monk asks why Nanquan cut the cat and Guizong cut the snake if killing is a major precept.",
           "ContextMasters": [
             {
               "MasterName": "Miyun Yuanwu",
               "Roles": [
                 "respondent"
               ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "person-discussed"
+              ]
             }
           ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "the unnamed monk asking the precept question",
-            "ActorRole": "questioner",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking why Nanquan cut the cat despite the precept against killing",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "問 introduces the headword-bearing objection; 師云 begins Miyun Yuanwu’s answer.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -62,9 +69,8 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The initial 問 frame assigns the headword-bearing precept question to an unnamed monk; each following 師云 assigns only the replies to Miyun Yuanwu.",
-            "ReviewedBy": "Codex f002 A351-400 rereview3 repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex personal full-read 106-115",
+            "ReviewedUtc": "2026-07-15T23:12:58.123632+00:00"
           }
         },
         {
@@ -144,7 +150,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "compiler",
-            "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at J/J26/J26nB188.xml",
+            "ActorLabel": "the unnamed compiler-narrator responsible for the headword-bearing clause at J/J26/J26nB188.xml",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",

@@ -1,0 +1,86 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact entries; every stored occurrence read in its complete exchange, address, biography, regulation, occasion heading, preface, or quoted-case unit; prior checkpoint consulted only after independent reading",
+  "rows": [
+    {
+      "id": "t_b8d2633b12ef",
+      "term": "敗闕",
+      "verdict": "KEEP",
+      "reviewedSha256": "015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08",
+      "finding": "All eight complete exchanges and comments read. The three monk-owned questions are correctly separated from their respondents, and every named speaker directly owns the verdict or comment. The entry keeps failure attached to the cited exchange and does not invent one universal defect; count claims and constructions are internally consistent.",
+      "selfReview": false
+    },
+    {
+      "id": "t_bbee6625a4d5",
+      "term": "赤肉團上",
+      "verdict": "REVISE",
+      "reviewedSha256": "4132a2a8aa1ac9c7e00df020a54e27318e7853070a7ebf3fb820cee409aacc0c",
+      "finding": "All six complete units read. The bodily-site gloss and Linji/Nanyuan formula distinction hold. Occurrence 3, however, contains two exact tokens with different utterers: Nanyuan first says 赤肉團上壁立千仞 and the monk then repeats it in a question. Assigning the entire KWIC only to Nanyuan violates one-token/one-voice review. Recut or store two separately attributed occurrences.",
+      "selfReview": false
+    },
+    {
+      "id": "t_c051d6f277af",
+      "term": "佛誕",
+      "verdict": "REVISE",
+      "reviewedSha256": "634be8381fe4a5887b045118f23c41732ec3191794cccfc192d59eda1421b7bc",
+      "finding": "All eight complete occasion/preface units read. The birthday-versus-bathing distinction and editorial-label analysis are sound, but most headings leave the named sermon or verse performer entirely absent from ContextMasters, even when the enclosing section identifies the master. The signed preface voice also remains generic rather than named. Keep MasterName null for editorial labels, but recover each event’s master/author context.",
+      "selfReview": false
+    },
+    {
+      "id": "t_c8f127c46d44",
+      "term": "無對",
+      "verdict": "REVISE",
+      "reviewedSha256": "048edaba730c8d4431200160ba7c9db6f3cd95bdaeef01ee220d2030471523e2",
+      "finding": "All eight complete narrated failures read. The no-reply gloss is correct and MasterName should remain null, but six Kasyapa rows omit Kasyapa as the named non-answering case figure; the 志真 row uses an unresolved Chinese title rather than a canonical contextual identity. A public non-answer must name the named participant who failed to answer even though the narrator owns the words.",
+      "selfReview": false
+    },
+    {
+      "id": "t_cb44465faa59",
+      "term": "侍者",
+      "verdict": "REVISE",
+      "reviewedSha256": "9ef5f032990e1d2b0a5f1d662f2e52563c9b508cc3e3c32c5381f34c3828fd96",
+      "finding": "All ten complete cases, biography, and regulation units read. The office definition holds, but attribution/context remains uneven. The regulations preface is identifiable authored voice rather than a generic compiler; the Lia’an row embeds headword-bearing quoted case narration and should retain Lia’an as later raiser rather than utterer; several narrated actions name a master and an attendant’s role but retain only an adjacent case figure or no event participant. Rebuild the narration/quoted-layer context without inventing names for genuinely unnamed attendants.",
+      "selfReview": false
+    },
+    {
+      "id": "t_ccc39a4559bf",
+      "term": "僧正",
+      "verdict": "REVISE",
+      "reviewedSha256": "2eb132dc9e37637eeb8b3ae13d197c3cd05f22a685b2bbd16f547f50a4e27982",
+      "finding": "All six complete appointment, invitation, petition, and biography units read. The clerical-office sense and boundary exclusion are sound. Generic compiler labels, however, leave named office holders, patrons, addressees, or enclosing masters unrepresented in most rows; row 2 records the office-holder speaking to Fuchuan but models only an actorless compiler label. Recover named contextual people and use reviewed-unnamed office-holder where the person truly remains unnamed.",
+      "selfReview": false
+    },
+    {
+      "id": "t_cd69e0f9c10a",
+      "term": "古佛",
+      "verdict": "REVISE",
+      "reviewedSha256": "78ed93a1510074a98d9054df68a926fd66d5dbce82dd928c7053206304ab861b",
+      "finding": "All eight complete questions, addresses, and ancient-tower cases read. Several actor assignments violate utterer-of-headword: the 古佛家風 token is asked by an unnamed monk, not Fayan; 古佛塔 is narrator-owned in the Shakyamuni walking cases, not directly uttered by Shakyamuni; and the bibliographic 古佛應世 passage is not Dahui direct speech. Reassign questioner/narrator layers while keeping respondents and Shakyamuni contextual.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d1ca36839312",
+      "term": "全提正令",
+      "verdict": "REVISE",
+      "reviewedSha256": "770ef2c960e0572508025459a73e5b3fe202627b6f9d718d52b088429f5a4fe6",
+      "finding": "All six complete addresses/preface units read. The directive-authority synthesis is supported and the last two named speakers are sound. The first four are not generic actorless compiler statements: their enclosing headings or authored units identify speakers, questioners, or record owners that must be recovered. One row is explicitly a question and cannot remain compiler-owned.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d1e06fd225fa",
+      "term": "入室",
+      "verdict": "REVISE",
+      "reviewedSha256": "be157aa5113f2c027c74083e7a59aa93c65d36864aa01f2be8fd5e5b32e3af9c",
+      "finding": "All nine complete units across both senses read. The institutional-interview versus ordinary-room-entry split is correct. Six interview rows and both spatial biographies nevertheless remain generic compiler narration with empty ContextMasters even where the entrant, questioner, teacher, dying subject, or scripture-fetcher is named in the full unit. Preserve narrator-owned MasterName null but populate the named action performers and participants; do not let an actorless schema erase who entered.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d2c3f40d45c6",
+      "term": "大通智勝佛",
+      "verdict": "REVISE",
+      "reviewedSha256": "1504eb0a362a199a807c5803ae9eb634c55bc96c19de5c14e53be817774270eb",
+      "finding": "All six complete questions and evening-address units read. The pre-Chan Buddha is appropriately defined by Zen deployment of the ten-kalpa case. The first three and fifth rows are monk-owned questions but only the fifth retains its respondent; row 4 is also a quoted/narrated question rather than generic compiler assertion, and the final 晚參 is an identifiable direct address. Recover questioners, respondents, and address owner while retaining the Buddha as invoked case figure rather than MasterName.",
+      "selfReview": false
+    }
+  ]
+}

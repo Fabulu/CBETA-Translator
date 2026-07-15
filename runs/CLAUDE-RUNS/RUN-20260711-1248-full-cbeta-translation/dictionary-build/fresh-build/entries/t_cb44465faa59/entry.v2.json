@@ -97,11 +97,12 @@
             {
               "MasterName": "Nengren Jian",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "case-teacher"
               ]
             }
           ],
-          "AttributionNote": "Source text (宗門拈古彙集): the case narrator the case narrator says “attendant” while recording an action or question involving Nengren Jian; the person acting or answering is retained in context, not substituted for the utterer.",
+          "AttributionNote": "The narrator labels the attendant whom Nengren Jian turns toward and addresses; the attendant remains unnamed.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "case narrator",
@@ -127,10 +128,10 @@
           "Kwic": "，而尚以未身行之為愧。壬辰夏，首眾雙徑小座湯有位次高下之爭，諸方往往廢而不舉。愚以西堂一出，首座再出，都寺三出，後堂四出，藏主、維那、知客、侍者隨職為位，請於雲峰伯父力行焉，訖事無敢譁者。元貞乙未，備員永嘉、天寧。大德庚子，補番易。永福乙巳，主廬山東林。皆行之無易，庶幾人情為折中。然",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
+            "Status": "named-unrostered",
+            "Kind": "authored regulations preface",
+            "ActorLabel": "Yixian, the signed regulations-preface author",
+            "ActorRole": "author",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -139,12 +140,14 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A catalogue-replacement repair",
-            "GrammarEvidence": "The selected clause is continuous documentary or expository prose without a direct-speech frame assigning the headword to a different speaker.",
-            "ReviewedUtc": "2026-07-15T06:16:04.303136+00:00"
+            "GrammarEvidence": "Yixian enumerates the attendant among offices in his signed procedural preface; no attendant speaks.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "ContextMasters": [],
-          "AttributionNote": "Source record (禪林備用清規; X/X63/X63n1250.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "AttributionNote": "Full-unit reading: Yixian enumerates the attendant among offices in his signed procedural preface; no attendant speaks.",
+          "MasterName": null
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -153,13 +156,12 @@
           "Kwic": "：吾欲一見石塔，以行速不及也。師起立曰：只這是磚浮圖耶？坡曰：有縫奈何？師曰：若無縫，爭解容得法界螻蟻？及坡鎮維揚，師遣侍者投牒解院，歸西湖舊隱。坡與僚佐同至石塔，擊鼓集眾，袖中出疏，使晁無咎讀之。其詞曰：戒公長老，開不二門，施無盡藏。念西湖之久別",
           "Curated": true,
           "ContextMasters": [],
-          "AttributionNote": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml): the biographical compiler supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master.",
+          "AttributionNote": "Full-unit reading: The biography reports that the named master Jie sent an unnamed attendant with a document; the attendant is an action participant, not an utterer.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "compiler narration",
-            "ActorLabel": "the biographical compiler",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "the narrative records the master's attendant carrying a document",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographer",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -168,33 +170,56 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex round2 depth repair",
-            "ReviewedUtc": "2026-07-15T07:47:39.552127+00:00"
-          }
+            "GrammarEvidence": "The biography reports that the named master Jie sent an unnamed attendant with a document; the attendant is an action participant, not an utterer.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X71/X71n1414.xml",
           "FromLb": "0295c05",
           "ToLb": "0295c11",
-          "Kwic": "？復舉：洞山冬夜喫菓子次，山云：有一物，上拄天，下拄地，過在動用中。動用中收不得，過在什麼處？泰首座云：過在動用中。山喚侍者掇退菓卓，師云：大阿橫按，凜凜神威；寶鑑當臺，澄澄光采。只如掇退菓卓又作麼生？雲自帝鄉去，水歸江漢流。小參。真宗絕眹，妙道虗",
+          "Kwic": "山喚侍者掇退菓卓。",
           "Curated": true,
-          "MasterName": "Lia'an Qingyu",
+          "MasterName": null,
           "ContextMasters": [
-            {
-              "MasterName": "Lia'an Qingyu",
-              "Roles": [
-                "utterer",
-                "later-quoter"
-              ]
-            },
             {
               "MasterName": "Dongshan Liangjie",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "case-teacher"
+              ]
+            },
+            {
+              "MasterName": "Lia'an Qingyu",
+              "Roles": [
+                "later-raiser",
+                "commentator",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source text (了菴清欲禪師語錄): Lia'an Qingyu utters the headword while publicly quoting Dongshan's fruit-table case; Dongshan Liangjie is the quoted action performer, not the utterer of Lia'an's containing turn."
+          "AttributionNote": "Full-unit reading: Inside Lia’an Qingyu’s later raising, the old-case narrator reports Dongshan Liangjie calling his unnamed attendant to remove the fruit table.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "quoted case narration",
+            "ActorLabel": "the quoted Dongshan-case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Inside Lia’an Qingyu’s later raising, the old-case narrator reports Dongshan Liangjie calling his unnamed attendant to remove the fruit table.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X84/X84n1580.xml",
@@ -206,17 +231,17 @@
             {
               "MasterName": "Jingqing Daofu",
               "Roles": [
-                "case-figure"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source text (教外別傳): the case narrator the case narrator says “attendant” while recording an action or question involving Jingqing Daofu; the person acting or answering is retained in context, not substituted for the utterer.",
+          "AttributionNote": "Full-unit reading: The narrator labels Jingqing Daofu’s unnamed attendant, who asks the following marked question.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "case narrator",
+            "Kind": "case narration",
             "ActorLabel": "the case narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword occurs in narration of an action, event, or mentioned figure rather than in the following quoted words.",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -225,8 +250,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 A651-700 six-row complete-case repair",
-            "ReviewedUtc": "2026-07-15T08:40:00Z"
+            "GrammarEvidence": "The narrator labels Jingqing Daofu’s unnamed attendant, who asks the following marked question.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "MasterName": null
         },
@@ -240,17 +267,18 @@
             {
               "MasterName": "Touzi Datong",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈會元): the case narrator the case narrator says “attendant” while recording an action or question involving Touzi Datong; the person acting or answering is retained in context, not substituted for the utterer.",
+          "AttributionNote": "Full-unit reading: The narrator labels Touzi Datong’s unnamed attendant, who asks where the cicada went.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "case narrator",
+            "Kind": "case narration",
             "ActorLabel": "the case narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword occurs in narration of an action, event, or mentioned figure rather than in the following quoted words.",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -259,8 +287,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 A651-700 six-row complete-case repair",
-            "ReviewedUtc": "2026-07-15T08:40:00Z"
+            "GrammarEvidence": "The narrator labels Touzi Datong’s unnamed attendant, who asks where the cicada went.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "MasterName": null
         },
@@ -274,17 +304,17 @@
             {
               "MasterName": "Baizhang Huaihai",
               "Roles": [
-                "case-figure"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source text (遠菴僼禪師語錄): the case narrator the case narrator says “attendant” while recording an action or question involving Baizhang Huaihai; the person acting or answering is retained in context, not substituted for the utterer.",
+          "AttributionNote": "Full-unit reading: The narrator labels Baizhang Huaihai’s unnamed attendant, who asks about the monk who left.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "case narrator",
+            "Kind": "case narration",
             "ActorLabel": "the case narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword occurs in narration of an action, event, or mentioned figure rather than in the following quoted words.",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -293,8 +323,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 A651-700 six-row complete-case repair",
-            "ReviewedUtc": "2026-07-15T08:40:00Z"
+            "GrammarEvidence": "The narrator labels Baizhang Huaihai’s unnamed attendant, who asks about the monk who left.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "MasterName": null
         },
@@ -308,17 +340,17 @@
             {
               "MasterName": "Qinshan Wensui",
               "Roles": [
-                "case-figure"
+                "instructor",
+                "case-teacher"
               ]
             }
           ],
-          "AttributionNote": "Source text (祖堂集): the case narrator the case narrator says “attendant” while recording an action or question involving Qinshan Wensui; the person acting or answering is retained in context, not substituted for the utterer.",
+          "AttributionNote": "Full-unit reading: The narrator reports Qinshan Wensui instructing an unnamed attendant to ask another master.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "case narrator",
+            "Kind": "case narration",
             "ActorLabel": "the case narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword occurs in narration of an action, event, or mentioned figure rather than in the following quoted words.",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -327,8 +359,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 A651-700 six-row complete-case repair",
-            "ReviewedUtc": "2026-07-15T08:40:00Z"
+            "GrammarEvidence": "The narrator reports Qinshan Wensui instructing an unnamed attendant to ask another master.",
+            "ReviewedBy": "Codex reviewer-REVISE full-unit repair",
+            "ReviewedUtc": "2026-07-16T11:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
           },
           "MasterName": null
         }

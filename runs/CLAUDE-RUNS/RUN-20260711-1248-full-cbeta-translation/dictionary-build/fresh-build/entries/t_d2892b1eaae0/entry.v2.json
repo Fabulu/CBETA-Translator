@@ -29,16 +29,38 @@
           "ToLb": "0042c23",
           "Kwic": "其年十二月九日夜。天大雨雪。光堅立不動。遲明積雪過膝。祖憫而問曰。汝久立雪中。當求何事。",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈會元), Source text (五燈會元); Bodhidharma owns the exact evidence clause after complete-case review.",
-          "MasterName": "Bodhidharma",
+          "AttributionNote": "五燈會元: the unnamed compiler narrates Huike standing motionless in snow; Bodhidharma then questions him.",
           "ContextMasters": [
             {
               "MasterName": "Bodhidharma",
               "Roles": [
-                "utterer"
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "person-discussed"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the unnamed compiler of Wudeng Huiyuan",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword is in biography before Bodhidharma asks Huike what he seeks.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237569+00:00"
+          }
         },
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -46,16 +68,38 @@
           "ToLb": "0644b24",
           "Kwic": "有神光法師，立雪斷臂，堅求諸佛要道，師為易名慧可。",
           "Curated": true,
-          "AttributionNote": "In the source record (建中靖國續燈錄), Source text (建中靖國續燈錄); Huike owns the exact evidence clause after complete-case review.",
-          "MasterName": "Huike",
+          "AttributionNote": "建中靖國續燈錄: the unnamed compiler narrates that Shenguang stood in snow and severed his arm before being renamed Huike.",
           "ContextMasters": [
             {
               "MasterName": "Huike",
               "Roles": [
-                "utterer"
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "person-discussed"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the unnamed compiler of Jianzhong Jingguo Xudeng Lu",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword is in the biographical clause 有神光法師立雪斷臂, not in quoted speech.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237613+00:00"
+          }
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -97,16 +141,38 @@
           "ToLb": "0006c19",
           "Kwic": "問：二祖立雪齊腰，意旨如何？師曰：三年逢一閏。曰：為甚麼付法傳衣？師曰：村酒足人酤。",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); unnamed questioning monk owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "五燈全書(第34卷-第120卷): 五燈全書: an unnamed monk asks why the Second Patriarch stood waist-deep in snow; Fohui Faquan answers.",
           "ContextMasters": [
             {
-              "MasterName": "unnamed questioning monk",
+              "MasterName": "Fohui Faquan",
               "Roles": [
-                "utterer"
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "person-discussed"
               ]
             }
           ],
-          "MasterName": "unnamed questioning monk"
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about the Second Patriarch standing in snow",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "問 introduces the headword-bearing question; 師曰 begins the response.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237619+00:00"
+          }
         },
         {
           "RelPath": "D/D48/D48n8939.xml",
@@ -116,9 +182,10 @@
           "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "verse-author",
-            "ActorLabel": "the unidentified verse author responsible for the headword-bearing clause at D/D48/D48n8939.xml",
-            "ActorRole": "verse-author",
+            "Kind": "preface author",
+            "ActorLabel": "the unnamed the unresolved author of the Cizhao chanshi Fengyan ji preface",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "The headword occurs in the prose preface headed 慈照禪師鳳巖集并序; the surviving packet does not yield a roster-identifiable name.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -127,12 +194,18 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete passage presents 立雪 in a verse, but supplies no verse-author name.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
+            "ReviewedBy": "Codex personal full-read 096-105",
+            "ReviewedUtc": "2026-07-15T23:04:49.237623+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "In the source record (古尊宿語錄), (古尊宿語錄): the unidentified verse author in (古尊宿語錄) owns the exact headword-bearing verse. Actor: the unidentified verse author responsible for the headword-bearing clause at D/D48/D48n8939.xml."
+          "ContextMasters": [
+            {
+              "MasterName": "Cizhao",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "古尊宿語錄: the unresolved preface author says Cizhao received the ancestral seal by standing in snow."
         }
       ],
       "SourceTexts": [
@@ -219,5 +292,20 @@
       "ClaimAnchors": [],
       "Explanation": "This separate sense denotes to stand in snow, not Huike's standing in the snow. The physical action of standing in snow, apart from Huike's named event. Zisheng Shengqin answers a question about proceeding within the four deportments with “a heron stands in the snow” (鷺鶿立雪). Danxia Zichun's verse separately compares a heron standing in snow with the bright moon and reed flowers. In these passages the subject is a heron and the phrase denotes its visible posture, not Huike's lineage encounter."
     }
-  ]
+  ],
+  "DraftEvidence": {
+    "IndependentRosterRereview096105": {
+      "ReviewedUtc": "2026-07-15T23:16:54.576127+00:00",
+      "Decision": "semantic attribution accepted; roster-only identities deferred",
+      "DeferredNames": [
+        "Bailu Xianduan",
+        "Cizhao",
+        "Fohui Faquan",
+        "Shuwei Tongxuan",
+        "Zisheng Shengqin"
+      ],
+      "RemovedInvalidMasterLinks": [],
+      "Rule": "Do not guess or demote a real master because roster integration is incomplete. Noncanonical RelatedMasters links are removed; exact occurrence identities remain explicit pending roster integration."
+    }
+  }
 }

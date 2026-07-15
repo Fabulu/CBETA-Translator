@@ -20,7 +20,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "8 independent witnesses delimit this sense.",
+      "Note": "6 genuine occurrences delimit this sense.",
       "Occurrences": [
         {
           "RelPath": "T/T47/T47n1998A.xml",
@@ -50,23 +50,6 @@
           "ContextMasters": [
             {
               "MasterName": "Yangshan Xingwei",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0646a12",
-          "ToLb": "0646a17",
-          "Kwic": "來者皆悉被罵如麻谷用處苦如黃蘗近皆不得如石鞏用處向箭頭上覓人來者皆惧如山僧今日用處真正成壞翫美神變入一切境隨處無事境不能換但有來求者我即便出看渠渠不識我我便",
-          "Curated": true,
-          "MasterName": "Linji Yixuan",
-          "AttributionNote": "Source record (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: Linji Yixuan. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
-          "ContextMasters": [
-            {
-              "MasterName": "Linji Yixuan",
               "Roles": [
                 "utterer"
               ]
@@ -158,60 +141,24 @@
               ]
             }
           ]
-        },
-        {
-          "RelPath": "B/B25/B25n0145.xml",
-          "FromLb": "0687b07",
-          "ToLb": "0687b08",
-          "Kwic": "今臣先師明本痛禪學之弊無如今日用救其弊以身先之。",
-          "Curated": true,
-          "AttributionNote": "天目中峰廣錄: Shandamidi petitions that Zhongfeng Mingben’s collected writings be entered into the canon and says his teacher used himself first to remedy the defects of contemporary learning.",
-          "ContextMasters": [
-            {
-              "MasterName": "Zhongfeng Mingben",
-              "Roles": [
-                "person-discussed"
-              ]
-            }
-          ],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "named petition author",
-            "ActorLabel": "Shandamidi",
-            "ActorRole": "utterer",
-            "GrammarEvidence": "The memorial closes with 善達密的理上表, identifying its author.",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex personal full-read 086-095",
-            "ReviewedUtc": "2026-07-15T22:54:54.863753+00:00"
-          }
         }
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
         "T/T47/T47n1998A.xml",
         "X/X82/X82n1571.xml",
-        "C/C077/C077n1710.xml",
         "X/X83/X83n1578.xml",
         "M/M59/M59n1540.xml",
         "X/X81/X81n1568.xml",
-        "J/J38/J38nB406.xml",
-        "B/B25/B25n0145.xml"
+        "J/J38/J38nB406.xml"
       ],
       "RelatedMasters": [
         "Dahui Zonggao",
         "Jifei Ruyi",
-        "Linji Yixuan",
         "Yangshan Xingwei"
       ],
       "RelatedTerms": [],
-      "Explanation": "Daily functioning is what occurs in the ordinary course of the day and in the activities repeatedly carried out there. Speakers ask what the daily matter is, say it cannot be hidden, and locate disputed understanding amid work, perception, and recurring affairs rather than outside them.",
+      "Explanation": "Daily functioning is what occurs in the ordinary course of the day and in activities repeatedly carried out there. Speakers say it cannot be hidden, ask what the daily matter is, and locate it amid recurring work, perception, doubt, and dust-and-toil rather than outside them.",
       "DraftEvidence": {
         "ExactUttererRepairAudit": {
           "Decision": "full-case-reread-complete",

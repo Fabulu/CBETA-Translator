@@ -641,21 +641,19 @@
     },
     "t_b8d2633b12ef": {
       "term": "敗闕",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight complete exchanges and comments read. The three monk-owned questions are correctly separated from their respondents, and every named speaker directly owns the verdict or comment. The entry keeps failure attached to the cited exchange and does not invent one universal defect; count claims and constructions are internally consistent.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after882-f001-laneC.json",
       "supersedes": {
-        "term": "敗闕",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneC-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_b8d2633b12ef/015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_b8d2633b12ef/015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_b8d2633b12ef/015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_b8d2633b12ef/015b7f37b285d558ec32a37752adbad574ae82adf58499878c88e42b3462cf08/receipt.json"
       }
     },
     "t_4c9320095ba1": {
@@ -986,21 +984,19 @@
     },
     "t_d35dc9e3723e": {
       "term": "無念",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eleven occurrences across both senses read in their complete doctrinal, interview, title, biography, and dialogue units. Huineng’s explicit boundaries support functioning without fixation rather than blankness; Shenhui and Nanyue remain distinct corroborating speakers. The proper-name sense is forced by title/name/dialogue syntax, and Tao Shikui, Zhanran, Huangbo Wunian Shenyou, and the compiler are correctly separated. No semantic or turn-attribution defect remains; unresolved roster expansion is deferred.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-041045-f001-laneA.json",
       "supersedes": {
-        "term": "無念",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f",
-        "finding": "All eleven passages support the exact actors and narrative distinctions. Huineng's several direct definitions and explicit rejection of blankness, the Dunhuang recension, Shenhui's answer, and later quotation establish the no-thought term; title, style-name, biography, and dialogue grammar independently establish Master Wunian Shenyou as a different person-referent. The two senses are sharply distinguishable.",
-        "sourceReview": "fresh-build/waves/f001-laneA-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_d35dc9e3723e/3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_d35dc9e3723e/3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_d35dc9e3723e/3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_d35dc9e3723e/3d101d7cff6b481c1bdf443da0c1a562e22be83e4680f53b022a9dc9609b342f/receipt.json"
       }
     },
     "t_2738431562e6": {
@@ -1053,21 +1049,19 @@
     },
     "t_e4d6ebff1bb2": {
       "term": "如何是佛",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight complete public questions read. Each headword belongs to its named or reviewed-unnamed questioner and every named respondent is retained. The question remains stable across divergent answers, none of which is smuggled into the definition.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-bigrepair-f001-laneA.json",
       "supersedes": {
-        "term": "如何是佛",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d",
-        "finding": "Every retained respondent is now named after full-case review: Mazu Daoyi, Xuefeng Yicun, Baizhang Huaihai, Guyin Yuncong, Tianyi Yihuai, Dongshan Shouchu, and Zhu'an Shigui. Question ownership remains with Damei or the reviewed-unnamed monk. The revised opening names the answerers, keeps the public question stable, and does not promote any answer into its definition.",
-        "sourceReview": "fresh-build/waves/f001-laneA-postrepair-independent-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_e4d6ebff1bb2/89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_e4d6ebff1bb2/89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_e4d6ebff1bb2/89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_e4d6ebff1bb2/89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d/receipt.json"
       }
     },
     "t_f6dadadcbef5": {
@@ -1634,21 +1628,19 @@
     },
     "t_4f7bd98ad40f": {
       "term": "上堂",
-      "verdict": "REVISE",
-      "reviewedSha256": "0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "0b0573e7de28f1497d302a6b6cc3d7857f728912e2494c05b333ddfcf0175bc3",
+      "finding": "All thirteen complete units read. Direct authored claim, textual headings, regulations, requests, biography, delegated whisk-holding, and Linji’s narrated event are now separated correctly. Named masters who perform the formal address remain contextual rather than being falsely made utterers of editorial headings. The physical ascent and institutional address are one event in the evidence, not two different things.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-1-3-057065-f001-laneA.json",
       "supersedes": {
-        "term": "上堂",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf",
-        "finding": "All three residual actor outcomes are corrected after full-case reading. X72n1437:0577a14 is compiler narration with Yongjue Yuanxian person-described; X64n1260:0001a17 is Jiexian's authored utterance; T47n1985:0496b14 is compiler narration with Linji Yixuan person-described and speech beginning only after 云. The merged prose still defines the formal teaching-hall address without reviving a physical-action pseudo-sense.",
-        "sourceReview": "fresh-build/waves/f001-laneA-final-independent-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_4f7bd98ad40f/0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_4f7bd98ad40f/0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_4f7bd98ad40f/0b0573e7de28f1497d302a6b6cc3d7857f728912e2494c05b333ddfcf0175bc3/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_4f7bd98ad40f/0b0573e7de28f1497d302a6b6cc3d7857f728912e2494c05b333ddfcf0175bc3/receipt.json"
       }
     },
     "t_8ece09f6b91a": {
@@ -2338,21 +2330,19 @@
     },
     "t_dfd1dbffe9f2": {
       "term": "即心即佛",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All ten complete cases read. Named and unnamed questioners, respondents, original speakers, later quoters, and later raisers are coherently separated. The positive formula remains one saying under sharply different public deployments; neither the negative formulas nor any answer is imported as its definition.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-bigrepair-f001-laneB.json",
       "supersedes": {
-        "term": "即心即佛",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e",
-        "finding": "Explanation, question, quotation, defense, rejection, and contrast with 'not mind, not buddha' are deployments and stances toward one identity formula. Speaker-specific uses do not change the lexical statement into different referents.",
-        "sourceReview": "fresh-build/waves/f001-laneB-001-050-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_dfd1dbffe9f2/12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_dfd1dbffe9f2/12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_dfd1dbffe9f2/12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_dfd1dbffe9f2/12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e/receipt.json"
       }
     },
     "t_644a3152952c": {
@@ -2429,21 +2419,19 @@
     },
     "t_9a7a00ea0cd1": {
       "term": "一歸何處",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d",
-      "finding": "Current attribution ground truth records 1 hard failure(s): anonymous_monk_question_assigned_to_master.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All seven occurrences read. The unnamed monks own the question in the Zhaozhou, Wenshu, and Baizhang cases; named respondents and later raisers are retained. Gaofeng, Lanan, Zhuquan, and Zhongfeng directly own their deployments. The explanation accurately supplies the antecedent from the fixed complete formula and treats divergent answers as deployments of one stable question, not as definitions smuggled into it.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-011020-f001-laneB.json",
       "supersedes": {
-        "term": "一歸何處",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d",
-        "finding": "All witnesses preserve one destination question whose antecedent is supplied by the first clause. Different answer histories, chamber use, hall use, and later repetition do not change what the question asks.",
-        "sourceReview": "fresh-build/waves/f001-laneB-001-050-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_9a7a00ea0cd1/0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_9a7a00ea0cd1/0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_9a7a00ea0cd1/0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_9a7a00ea0cd1/0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d/receipt.json"
       }
     },
     "t_8c870cb5e69d": {
@@ -2484,21 +2472,19 @@
     },
     "t_e5259ce8bbf5": {
       "term": "垂示",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All seven complete rubric, contents, chamber-address, and interview units read. Editorial and grammatical packages are correctly kept within one referent; named direct speakers, unnamed requesters, respondents, and Yuanwu/Yunmen collection context are accurately distinguished.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-bigrepair-f001-laneB.json",
       "supersedes": {
-        "term": "垂示",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439",
-        "finding": "A requested/delivered indication, printed case-preface pointer, chamber heading, and catalogued indication are interpersonal, grammatical, and editorial packages of the same indicatory address. Restoring a noun-versus-verb or printed-versus-spoken split would recreate the prohibited paraphrase defect.",
-        "sourceReview": "fresh-build/waves/f001-laneB-001-050-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_e5259ce8bbf5/4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_e5259ce8bbf5/4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_e5259ce8bbf5/4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_e5259ce8bbf5/4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439/receipt.json"
       }
     },
     "t_5e59b126e608": {
@@ -3392,40 +3378,36 @@
     },
     "t_8650004bb9d7": {
       "term": "兼中至",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight occurrences read in their complete rank-formulation or interview units. Dongshan and Caoshan own the definitional/verse wording; the three later question occurrences correctly belong to unnamed monks with Fenyang, Feiyin, and Sanyi retained as respondents; Juelang directly owns his terminological comparison. The explanation correctly preserves the 偏中至/兼中至 naming conflict without multiplying referents or silently normalizing the fourth-rank label.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-011020-f001-laneA.json",
       "supersedes": {
-        "term": "兼中至",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneA-076-079-independent-semantic-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_8650004bb9d7/7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9/receipt.json"
       }
     },
     "t_acccac1051a4": {
       "term": "衲僧",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All nine complete units read. Each question token belongs to the unnamed monk and each named respondent is retained; direct Yuanwu, Xinghua, and Dai’an speech is correctly owned. The explanation is unusually strong: it distinguishes the patched-robed participant from the compound tests applied to that participant without inventing an inner-state definition.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-021030-f001-laneB.json",
       "supersedes": {
-        "term": "衲僧",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96",
-        "finding": "One patch-robed-monk role correctly covers individual, collective, possessive, and compound uses. All four public-question rows put the headword on unnamed questioners and retain the masters as respondents. Eye, conduct, house, own affair, and manner are distinct deployments, not separate people or padded duplicates.",
-        "sourceReview": "fresh-build/waves/f001-laneB-081-100-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_acccac1051a4/fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96/receipt.json"
       }
     },
     "t_5d84cccab8df": {
@@ -3734,21 +3716,19 @@
     },
     "t_937f63a4fb51": {
       "term": "目前",
-      "verdict": "REVISE",
-      "reviewedSha256": "f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "2dbe69969544d23212eb2c8f667e5609bd05258a3c8a38c93a8f4cc94de3fc9d",
+      "finding": "All previously read complete source units reread against the repaired exact entry. Fayan and Manjusri are restored as direct/quoted utterers, while the immediate-presence contrast remains bounded by the witnesses.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-bigrepair-f001-laneA.json",
       "supersedes": {
-        "term": "目前",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneA-101-110-independent-semantic-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_937f63a4fb51/f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_937f63a4fb51/f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_937f63a4fb51/f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_937f63a4fb51/2dbe69969544d23212eb2c8f667e5609bd05258a3c8a38c93a8f4cc94de3fc9d/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_937f63a4fb51/2dbe69969544d23212eb2c8f667e5609bd05258a3c8a38c93a8f4cc94de3fc9d/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_937f63a4fb51/2dbe69969544d23212eb2c8f667e5609bd05258a3c8a38c93a8f4cc94de3fc9d/receipt.json"
       }
     },
     "t_87cc840b8f33": {
@@ -4272,21 +4252,19 @@
     },
     "t_91d84c849fc7": {
       "term": "保任",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight occurrences across both senses read. The custody/continued-maintenance questions are correctly owned by their named or unnamed questioners, with respondents retained; Deshan and Yongjue directly own their contrary statements. Damei’s 為汝保任此事 is genuinely an assurance/vouching act rather than continued custody, supporting the second sense. The sense split is for different things, not merely different grammar or readings.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-011020-f001-laneB.json",
       "supersedes": {
-        "term": "保任",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4",
-        "finding": "Continued guarding/maintenance and vouching for something are distinct acts. Changqing Da'an is correctly the questioner to Baizhang, not Guishan; the full case explicitly identifies Da'an and only later narrates his Guishan residence. Furong/Guizong and Dahui/Xin'an roles are also exact. The opening preserves conflicting answers, including rejection of maintenance, without splitting by master.",
-        "sourceReview": "fresh-build/waves/f001-laneB-final-eight-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_91d84c849fc7/b83c4587a46cd59b1c6f3293b6450be29a671671cb75c4f5ae4b883ce3e3b6a4/receipt.json"
       }
     },
     "t_412d9358cc70": {

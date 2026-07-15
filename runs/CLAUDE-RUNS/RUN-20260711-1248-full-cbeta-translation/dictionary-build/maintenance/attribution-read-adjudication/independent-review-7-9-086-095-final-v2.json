@@ -1,0 +1,86 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact repaired entries and final-v2 packets; every occurrence read in its complete source unit; final gate consulted after semantic reading",
+  "rows": [
+    {
+      "id": "t_72fd192e30c4",
+      "term": "鉗鎚",
+      "verdict": "KEEP",
+      "reviewedSha256": "56acef33a57a4957e53edb7b1c789939eca38eff28badcef6ec5c984a2bf9a1f",
+      "finding": "All seven complete units read. Named masters own direct addresses; the two prefaces are treated as authored non-master or reviewed-unnamed voice rather than misassigned to their subjects. Every witness deploys hammer-and-tongs as forceful shaping/testing language, and the metaphorical Chan gloss is supported without inventing a separate literal-object sense from unattested evidence.",
+      "selfReview": false
+    },
+    {
+      "id": "t_745dde2c8711",
+      "term": "三脚驢",
+      "verdict": "KEEP",
+      "reviewedSha256": "65c9de379f475bcf197866e5047ca33b691649c6da52a5b00128895a2fe01193",
+      "finding": "All ten complete units read. Direct sermon and verse authors, the unnamed Dahui questioner, and the anonymous Zongjian Falin verse voice are correctly distinguished. Duplicate recensions retain the same utterer, and the explanation accurately treats Yangqi’s impossible donkey as a public case/lineage image rather than a biographical animal.",
+      "selfReview": false
+    },
+    {
+      "id": "t_757827b8d4cb",
+      "term": "喪身失命",
+      "verdict": "KEEP",
+      "reviewedSha256": "c28d00a27abb21c61b1df39d38f88656b1c25fdf3e2b3ff380b9cc5c4ce63bee",
+      "finding": "All eight complete cases read. Each named speaker owns the phrase, including Gaofeng rather than the surrounding compiler in the final collected commentary. The idiom’s complete-loss verdict and its deployment across distinct dangerous interview situations are explicit; the entry correctly declines to decide what the losses metaphysically signify.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8482770fe735",
+      "term": "象王",
+      "verdict": "REVISE",
+      "reviewedSha256": "bf244cfe2c21d2be08e70b0f032ed02f9ba41549da212f27d1b4f41c5748e7fc",
+      "finding": "All eight occurrences and four claim anchors read. Actor correction for the unnamed Yinyuan interlocutor is sound, but the entry still fails the final roster gate: Changlu Timing and Tieguanshu are noncanonical MasterName/ContextMasters values. The prose also overstates repeated deployment as Changlu Timing’s own conduct when only one selected occurrence is his direct backward-look utterance; other elephant-king rows belong to different speakers or generic stock pairing. Canonicalize and narrow the synthesis to the actual distribution.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8beda961c75a",
+      "term": "陶淵明",
+      "verdict": "REVISE",
+      "reviewedSha256": "a4ce46fbdbdb5563595fd80ca06a8ed463faaa2e6fadee731b6ed632a02e48c2",
+      "finding": "All five complete addresses read. The figure’s wine/chrysanthemum/return-home deployment and pre-Chan-figure treatment are well grounded, and each selected token is direct speech. The entry cannot pass final form because Baofang Jin and Shengfa Fa are noncanonical roster names in both MasterName and ContextMasters; resolve them to names[0] or explicitly non-roster actors without changing the semantic account.",
+      "selfReview": false
+    },
+    {
+      "id": "t_97e211e4846e",
+      "term": "鐵橛子",
+      "verdict": "KEEP",
+      "reviewedSha256": "ed6f4f1da0468c6426ed33917e625de9d585d528fc12bbf91d403b7e70e8652e",
+      "finding": "All six complete units read. Five named masters directly own their comparisons; Bao Tan is correctly identified as the biographical commentator rather than the master being described. Fixed hardness and absence of support are visible in the empty-space, Shouchang, terse-saying, sitter, and encounter comparisons, supporting one coherent image.",
+      "selfReview": false
+    },
+    {
+      "id": "t_9d60d7613392",
+      "term": "一言半句",
+      "verdict": "KEEP",
+      "reviewedSha256": "e0d232bbbca36786299e9e6674a02001bee240d14ede1a12a9f29a24f94ee338",
+      "finding": "All six complete units read. The five masters own their direct discussions and Hui Ming is correctly retained as signed preface author. The small verbal opening gloss follows the sources’ explicit entry-path, immediate-recognition, and implement-force comparisons; it does not confuse noun/verb grammar with a second sense.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "verdict": "REVISE",
+      "reviewedSha256": "623fc6d82267bc0b25880e8ef8b662ff8f98fe7cef019f1f29468fdc0a57ec2c",
+      "finding": "All seven complete units read. Direct authored speech, unnamed hall-address owner, lamp narration, and Qian Qianyi’s authored prose are substantially separated, and the Chan-deployment definition is sound. Final form still fails because two Chinese-title strings remain in RelatedMasters instead of roster-canonical names; these must be canonicalized or removed from the master-link field without erasing the contextual figures.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a7f67b4983d9",
+      "term": "日用",
+      "verdict": "REVISE",
+      "reviewedSha256": "b64e09aed3778b216b761cd75787d41dac4fc357dd905626e605fca72eab712f",
+      "finding": "All eight source units read. The repaired Dahui discourse and Shandamidi memorial authorship are correct, but occurrence 3 is a false lexical hit across the boundary 今日用處: its KWIC does not use 日用 as the headword, so it cannot evidence daily functioning. The anonymous verse row and bare question also need their complete-unit speaker/respondent context represented. Remove/replace the boundary collision, re-anchor depth, and then retest the synthesis.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a9f422b3b249",
+      "term": "生緣",
+      "verdict": "REVISE",
+      "reviewedSha256": "96f42cb6cafce8abb137e88c869e5c40ae829f4e598af9db601a1481889bd385",
+      "finding": "All eight occurrences across both senses read. The origin-question and generative-condition split is real, and most speaker turns are correct. The entry still fails final roster form because Jinsu Rong is noncanonical. More importantly, the anonymous verse line 白頭猶自戀生緣 uses 生緣 for life/worldly ties or circumstances, not clearly a birthplace question or a condition by which all things arise; it exposes a possible third sense and cannot remain folded into the first without adjudication.",
+      "selfReview": false
+    }
+  ]
+}

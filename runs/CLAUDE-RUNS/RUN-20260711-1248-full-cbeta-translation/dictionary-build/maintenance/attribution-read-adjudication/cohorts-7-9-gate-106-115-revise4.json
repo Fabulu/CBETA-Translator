@@ -1,0 +1,322 @@
+{
+  "generatedUtc": "2026-07-15T23:18:04.625763+00:00",
+  "elapsedSeconds": 11.192,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_f56016646d8f",
+      "term": "吐舌",
+      "path": "fresh-build/entries/t_f56016646d8f/entry.v2.json",
+      "sha256": "94067c8c22aa0be520a698b4d0a1074112021cb07b3b1f8c83e07c2404967957"
+    },
+    {
+      "id": "t_f4c65b25832f",
+      "term": "斬貓",
+      "path": "fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+      "sha256": "a64ef07d26afb088c8093e0d35631ea412799f38c52bfe2f4cd5f8bdb851759a"
+    },
+    {
+      "id": "t_f7c3da035832",
+      "term": "金剛王寶劍",
+      "path": "fresh-build/entries/t_f7c3da035832/entry.v2.json",
+      "sha256": "017ae26fc53a25770ccd821959d90efca58c9a18d28db445d73bf99ecd54a5ae"
+    },
+    {
+      "id": "t_fac9b9afebf6",
+      "term": "探竿影草",
+      "path": "fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+      "sha256": "5a68d5a71e3bda9bc89ee7854db460da2e34c02dcb688032c3458fd27ee88238"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 31,
+    "occurrenceVerified": 29,
+    "claimAnchorVerified": 2,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_f56016646d8f/entry.v2.json",
+        "id": "t_f56016646d8f",
+        "term": "吐舌",
+        "verified": 9,
+        "occurrenceVerified": 8,
+        "claimAnchorVerified": 1,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+        "id": "t_f4c65b25832f",
+        "term": "斬貓",
+        "verified": 8,
+        "occurrenceVerified": 7,
+        "claimAnchorVerified": 1,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_f7c3da035832/entry.v2.json",
+        "id": "t_f7c3da035832",
+        "term": "金剛王寶劍",
+        "verified": 7,
+        "occurrenceVerified": 7,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+        "id": "t_fac9b9afebf6",
+        "term": "探竿影草",
+        "verified": 7,
+        "occurrenceVerified": 7,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.355,
+    "attribution": 2.605,
+    "publicFeedback": 0.639,
+    "depthSense": 1.507,
+    "countClaims": 2.401,
+    "workSourceValidation": 0.447,
+    "corpusBaseline": 0.439,
+    "frozenHistoricalTerms": 1.022,
+    "attributionPackets": 8.083
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 2.605,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "occurrences": 29,
+        "named_occurrences": 22,
+        "context_master_links": 27,
+        "attribution_notes": 31,
+        "actor_reviewed_unnamed": 7,
+        "deferred_non_roster": 9,
+        "pending_roster_master": 3,
+        "deferred_non_roster_context": 10,
+        "pending_roster_context_master": 4,
+        "noncanonical_master_name": 6,
+        "noncanonical_context_master_name": 6,
+        "note_missing_speaker": 3,
+        "claim_anchors": 2,
+        "chinese_strings": 11,
+        "anchored_chinese": 11,
+        "actor_narrated": 2,
+        "named_master_missing_structured_link": 1,
+        "note_missing_source": 1
+      },
+      "hardFailures": 17,
+      "failures": [
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+          "detail": "斬貓 s1 o4: 'Guangfu Weishang' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+          "detail": "斬貓 s1 o4 c1: 'Guangfu Weishang' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+          "detail": "斬貓 s1 o7: In the source record (入就瑞白禪師語錄), (入就瑞白禪師語錄): the compiler-narrator of (入就瑞白禪師語錄) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at J/J26/J26nB188.xml."
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+          "detail": "斬貓 s1 a8: 'Hu Anguo' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json",
+          "detail": "斬貓 s1 o8 c1: 'Hu Anguo' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json",
+          "detail": "吐舌 s1 o3: In the Continuation of the Lamp Record (續傳燈錄), the visitor identified only as Nian in the Ciming exchange performs the action (年吐舌) and then says “truly a dragon-elephant”; Ciming Chuyuan is the respondent marked (師)."
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json",
+          "detail": "吐舌 s1 o4: 'Dongshan Huiyuan' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json",
+          "detail": "吐舌 s1 o4 c1: 'Dongshan Huiyuan' is not roster names[0]"
+        },
+        {
+          "kind": "named_master_missing_structured_link",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json",
+          "detail": "金剛王寶劍 s1 o3: Feiyin Tongrong appears in attribution prose but not in MasterName or ContextMasters"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json",
+          "detail": "金剛王寶劍 s1 o4: 'Dagui Zhe' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json",
+          "detail": "金剛王寶劍 s1 o4 c1: 'Dagui Zhe' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json",
+          "detail": "金剛王寶劍 s1 o7: In the source record (續燈正統), (續燈正統): the compiler-narrator of (續燈正統) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X84/X84n1583.xml."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+          "detail": "探竿影草 s1 o2 expected '五燈全書(第34卷-第120卷)': 費隱禪師語錄: an unnamed monk asks what a shout like probing pole and shadowing grass is."
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+          "detail": "探竿影草 s1 o4: 'Sanfeng Hanyue Fazang' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+          "detail": "探竿影草 s1 o4 c1: 'Sanfeng Hanyue Fazang' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+          "detail": "探竿影草 s1 o7: 'Dagui Zhe' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json",
+          "detail": "探竿影草 s1 o7 c1: 'Dagui Zhe' is not roster names[0]"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"occurrences\": 29,\n    \"named_occurrences\": 22,\n    \"context_master_links\": 27,\n    \"attribution_notes\": 31,\n    \"actor_reviewed_unnamed\": 7,\n    \"deferred_non_roster\": 9,\n    \"pending_roster_master\": 3,\n    \"deferred_non_roster_context\": 10,\n    \"pending_roster_context_master\": 4,\n    \"noncanonical_master_name\": 6,\n    \"noncanonical_context_master_name\": 6,\n    \"note_missing_speaker\": 3,\n    \"claim_anchors\": 2,\n    \"chinese_strings\": 11,\n    \"anchored_chinese\": 11,\n    \"actor_narrated\": 2,\n    \"named_master_missing_structured_link\": 1,\n    \"note_missing_source\": 1\n  },\n  \"hardFailures\": 17,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json\",\n      \"detail\": \"斬貓 s1 o4: 'Guangfu Weishang' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json\",\n      \"detail\": \"斬貓 s1 o4 c1: 'Guangfu Weishang' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json\",\n      \"detail\": \"斬貓 s1 o7: In the source record (入就瑞白禪師語錄), (入就瑞白禪師語錄): the compiler-narrator of (入就瑞白禪師語錄) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at J/J26/J26nB188.xml.\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json\",\n      \"detail\": \"斬貓 s1 a8: 'Hu Anguo' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f4c65b25832f/entry.v2.json\",\n      \"detail\": \"斬貓 s1 o8 c1: 'Hu Anguo' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json\",\n      \"detail\": \"吐舌 s1 o3: In the Continuation of the Lamp Record (續傳燈錄), the visitor identified only as Nian in the Ciming exchange performs the action (年吐舌) and then says “truly a dragon-elephant”; Ciming Chuyuan is the respondent marked (師).\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json\",\n      \"detail\": \"吐舌 s1 o4: 'Dongshan Huiyuan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f56016646d8f/entry.v2.json\",\n      \"detail\": \"吐舌 s1 o4 c1: 'Dongshan Huiyuan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"named_master_missing_structured_link\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json\",\n      \"detail\": \"金剛王寶劍 s1 o3: Feiyin Tongrong appears in attribution prose but not in MasterName or ContextMasters\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json\",\n      \"detail\": \"金剛王寶劍 s1 o4: 'Dagui Zhe' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json\",\n      \"detail\": \"金剛王寶劍 s1 o4 c1: 'Dagui Zhe' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7c3da035832/entry.v2.json\",\n      \"detail\": \"金剛王寶劍 s1 o7: In the source record (續燈正統), (續燈正統): the compiler-narrator of (續燈正統) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X84/X84n1583.xml.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json\",\n      \"detail\": \"探竿影草 s1 o2 expected '五燈全書(第34卷-第120卷)': 費隱禪師語錄: an unnamed monk asks what a shout like probing pole and shadowing grass is.\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json\",\n      \"detail\": \"探竿影草 s1 o4: 'Sanfeng Hanyue Fazang' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json\",\n      \"detail\": \"探竿影草 s1 o4 c1: 'Sanfeng Hanyue Fazang' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json\",\n      \"detail\": \"探竿影草 s1 o7: 'Dagui Zhe' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fac9b9afebf6/entry.v2.json\",\n      \"detail\": \"探竿影草 s1 o7 c1: 'Dagui Zhe' is not roster names[0]\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.639,
+    "payload": {
+      "entries": 4,
+      "passing": 1,
+      "flagged": 3,
+      "flagsByKind": {
+        "display-modifier-review": 1,
+        "modifier-relation-review": 1,
+        "public-feedback-ledger-missing": 3
+      }
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 1,\n  \"flagged\": 3,\n  \"flagsByKind\": {\n    \"display-modifier-review\": 1,\n    \"modifier-relation-review\": 1,\n    \"public-feedback-ledger-missing\": 3\n  }\n}\nreport: /tmp/tmp9a2tm9jw.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 1.507,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 3,
+      "reviewFlagged": 1,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_f4c65b25832f",
+        "t_f56016646d8f",
+        "t_f7c3da035832",
+        "t_fac9b9afebf6"
+      ]
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 3,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_f4c65b25832f\",\n    \"t_f56016646d8f\",\n    \"t_f7c3da035832\",\n    \"t_fac9b9afebf6\"\n  ]\n}\nreport: /tmp/tmp5ah6g5t5-depth.json\n",
+    "report": "/tmp/tmp5ah6g5t5-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.401,
+    "payload": {
+      "entryCount": 4,
+      "claimCount": 1,
+      "candidatePhraseCount": 1,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 1,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 4,\n  \"claimCount\": 1,\n  \"candidatePhraseCount\": 1,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 1,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.447,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.439,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.022,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 8.083,
+    "payload": {
+      "entries": 4,
+      "occurrences": 29,
+      "tierACandidates": 0,
+      "reviewRequired": 29,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 4,
+        "rebuiltOccurrences": 29
+      }
+    },
+    "output": "{\n  \"entries\": 4,\n  \"occurrences\": 29,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 29,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 4,\n    \"rebuiltOccurrences\": 29\n  }\n}\nreport: maintenance/attribution-read-adjudication/cohorts-7-9-gate-106-115-revise4-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "maintenance/attribution-read-adjudication/cohorts-7-9-gate-106-115-revise4-attribution-packets.json",
+    "generatorVersion": 6,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_f56016646d8f",
+    "t_f4c65b25832f",
+    "t_f7c3da035832",
+    "t_fac9b9afebf6"
+  ],
+  "strictRosterScopeIds": [
+    "t_f56016646d8f",
+    "t_f4c65b25832f",
+    "t_f7c3da035832",
+    "t_fac9b9afebf6"
+  ]
+}

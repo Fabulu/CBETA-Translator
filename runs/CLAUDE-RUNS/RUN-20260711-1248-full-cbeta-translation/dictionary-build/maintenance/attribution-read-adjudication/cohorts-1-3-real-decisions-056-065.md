@@ -67,3 +67,63 @@ later raiser, while the quoted case narrator reports Wangming's bow. Structured 
 Wangming, Shakyamuni, Mahakasyapa, Cishou and Yulin in their actual performer, recipient, teacher,
 respondent or raiser roles. Two sprawling KWICs were recut. The opening now identifies who bows,
 to whom, and where the act falls in the public sequence.
+
+## 61. 情知 (`t_5f6e8c98ffe7`)
+
+Old hash: `fbe6e0aefae97375d79b83ce4c5952826ee4348db9439f70ad046462f56239e6`
+
+New hash: `aa651fa0401458a53187f091cdd0064cb8e15e8ede3eb9321f875c3be6914adf`
+
+All seven cases were read. O3 is Baizhang Le's explicitly introduced comment, not Jingfu; he is
+named but not yet rostered. O4 is an unnamed monk's compact reply to Langting, not a master name.
+The other five direct speakers hold. O7's long KWIC was recut. The opening now presents the shared
+grammar of prior expectation or recognition without inventing a faculty of “feeling-knowledge.”
+
+## 62. 將錯就錯 (`t_64b296f04e9b`)
+
+Old hash: `419450e41fd6ec8cf6ccf6d1bea0f7e8a111a69c50dc9de25d05c8f6c6aae58f`
+
+New hash: `5123032901956532aca6ce4024ab90a108f04bf58afcea119d5202bebdca7b9b`
+
+All seven complete cases were read. Every named direct speaker holds. Sanshan Denglai's repeated
+public-test sequence and Guting Shanjian's doubled formulation were recut to one occurrence each.
+The definition now states the observable act first and preserves the corpus's differing stances:
+warning, case comment, prohibition, and interview verdict apply to the same act and do not warrant
+a sense split.
+
+## 63. 正令 (`t_68835cda6c3f`)
+
+Old hash: `79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2`
+
+New hash: `8093159d15e8346e38e17cafd4a275da9fcfce6390c214ee0bd914e71bfadac9`
+
+All seven complete cases were read. The first and seventh occurrences are questions uttered by
+unnamed monks; Fenyang Shanzhao and Sanzu Chonghui are respondents, not utterers. The other five
+named speakers hold. Every sprawling passage was recut around the actual occurrence. Duplicate
+opening prose and malformed stock-count placeholders were removed; the revised explanation keeps
+exercise and criticism of the authoritative command within one sense.
+
+## 64. 莊主 (`t_708bab84a958`)
+
+Old hash: `9d7e965f59200f1eb8f6b622689b9c6bb89ccb1cd2dce1bec2fc15c1bcbaff67`
+
+New hash: `e71054afea4a2cc7f1b7a59d4fc898d401b73cd8e9e17f75f0f5fbd420e295ec`
+
+All six complete units were read. The headword appears as an editorial dedication, a monastic-code
+office label, case narration, an ancient master's direct instruction, and biographical
+identification. The two Nanquan passages now name Nanquan only as case figure, not utterer; the
+Longya Zhicai biography records him as office holder; the genuinely unnamed ancient master remains
+reviewed-unnamed rather than guessed. All KWICs were recut. Institutional office and holder remain
+one role, not two senses.
+
+## 65. 木人舞 (`t_7114caf4b0ec`)
+
+Old hash: `09e800fd1b260e3aa429df7e9569e3026f83320937211152a9943e39d9fbc3cb`
+
+New hash: `de5db482bdbf4a844ed65735931b811544077f80045445553e1e91253b21b138`
+
+All five complete units were read. Ruibai Mingxue, Yezhu Fusheng, and Yunsou Zhu remain direct
+speakers. The Linquan occurrence is inside a verse introduced by 頌曰; Linquan comments only after
+it and is now a later commentator rather than the utterer. The parallel anonymous verse remains
+reviewed-unnamed. Every long KWIC was recut, and the prose now states the impossible animation
+before enumerating its attested dances and companions.

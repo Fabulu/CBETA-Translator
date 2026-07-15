@@ -57,16 +57,25 @@
           "ToLb": "0119a23",
           "Kwic": "如何是一喝如金剛王寶劍？」師云：「分身兩段。",
           "Curated": true,
-          "AttributionNote": "In the source record (費隱禪師語錄), Source text (費隱禪師語錄); the unnamed questioning monk owns the exact evidence clause after complete-case review.",
-          "ContextMasters": [
-            {
-              "MasterName": "the unnamed questioning monk",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "MasterName": "the unnamed questioning monk"
+          "AttributionNote": "費隱禪師語錄: an unnamed monk asks what a shout like the Diamond King’s precious sword is.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about the shout like the Diamond King’s precious sword",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問 introduces the headword-bearing question; 師云 begins Feiyin Tongrong’s answer.",
+            "ReviewedBy": "Codex independent 106-115 revise4",
+            "ReviewedUtc": "2026-07-15T23:17:53.007130+00:00"
+          }
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -128,7 +137,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "compiler",
-            "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X84/X84n1583.xml",
+            "ActorLabel": "the unnamed compiler-narrator responsible for the headword-bearing clause at X/X84/X84n1583.xml",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",

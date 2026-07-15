@@ -107,17 +107,16 @@
           "ToLb": "0207c08",
           "Kwic": "』舜老夫云：『鎮州蘿蔔大，青州布衫重，要會箇中意，雞向五更啼。",
           "Curated": true,
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "named verse voice",
-            "ActorLabel": "Old Man Shun",
-            "ActorRole": "questioner",
-            "GrammarEvidence": "The question marker assigns the exact headword-bearing question to this monk.",
-            "ReviewedBy": "Codex f002 B401-450 full-case review",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
-          },
-          "AttributionNote": "Source text (千巖和尚語錄). Old Man Shun owns the exact clause in the complete case."
+          "ContextMasters": [
+            {
+              "MasterName": "Yunju Shun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "千巖和尚語錄: the address explicitly quotes Yunju Shun (舜老夫云) saying “Zhenzhou’s radish is big; Qingzhou’s cloth shirt is heavy.”",
+          "MasterName": "Yunju Shun"
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -158,5 +157,21 @@
       "ClaimAnchors": [],
       "Explanation": "The expression denotes the Qingzhou cloth shirt in these Chan records. Its wording is a cloth shirt from Qingzhou. In the Chan record it is Zhaozhou's stock answer to the question, \"the ten thousand things return to one; where does the one return?\": \"I made a cloth shirt in Qingzhou; it weighs seven pounds.\" Later records call this the \"Qingzhou cloth-shirt case\" (青州布衫話), quote the seven-pound formula, ask whether the assembly has finished or taken off its Qingzhou shirt, and compare it with the patched robe actually worn by those present. The shirt is therefore not merely a place-name garment in this corpus: it is the named object and shorthand of Zhaozhou's recorded answer. The texts provide no additional gloss for the answer, and neither does this entry."
     }
-  ]
+  ],
+  "DraftEvidence": {
+    "IndependentRosterRereview096105": {
+      "ReviewedUtc": "2026-07-15T23:16:54.544223+00:00",
+      "Decision": "semantic attribution accepted; roster-only identities deferred",
+      "DeferredNames": [
+        "Baoen Cheng",
+        "Dagui Zhengzhang",
+        "Langting Jingting",
+        "Tian'an Sheng",
+        "Yuanji Yancen",
+        "Yunju Shun"
+      ],
+      "RemovedInvalidMasterLinks": [],
+      "Rule": "Do not guess or demote a real master because roster integration is incomplete. Noncanonical RelatedMasters links are removed; exact occurrence identities remain explicit pending roster integration."
+    }
+  }
 }

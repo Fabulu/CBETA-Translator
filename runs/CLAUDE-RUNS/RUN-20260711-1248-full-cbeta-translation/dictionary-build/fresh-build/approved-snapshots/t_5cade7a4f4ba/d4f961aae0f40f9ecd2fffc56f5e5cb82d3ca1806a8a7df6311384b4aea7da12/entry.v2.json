@@ -1,0 +1,387 @@
+{
+  "Id": "t_5cade7a4f4ba",
+  "SourceTerm": "作禮",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane B evidence-first",
+  "WrittenUtc": "2026-07-15T05:17:37.216644+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "pay respect",
+      "AlternateTargets": [
+        "make a formal bow"
+      ],
+      "SearchAliases": [
+        "pay respects",
+        "make obeisance",
+        "bow formally",
+        "prostrate"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "8 independent witnesses delimit this sense.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0013b05",
+          "ToLb": "0013b06",
+          "Kwic": "須臾罔明從地湧出作禮世尊，世尊勑罔明出女人定。",
+          "Curated": true,
+          "AttributionNote": "The case narrator says Wangming emerges, pays respect to Shakyamuni, and is then commanded to bring the woman out of absorption.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wangming Bodhisattva",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The case narrator says Wangming emerges, pays respect to Shakyamuni, and is then commanded to bring the woman out of absorption.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0027a15",
+          "ToLb": "0027a15",
+          "Kwic": "僧作禮，師彈指三下。",
+          "Curated": true,
+          "AttributionNote": "僧作禮 is a stage direction reporting the unnamed monk's bow after Cishou's answer; neither participant utters the headword.",
+          "ContextMasters": [
+            {
+              "MasterName": "Cishou Huaishen",
+              "Roles": [
+                "respondent",
+                "record-owner",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧作禮 is a stage direction reporting the unnamed monk's bow after Cishou's answer; neither participant utters the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "P/P154/P154n1519.xml",
+          "FromLb": "0470a07",
+          "ToLb": "0470b01",
+          "Kwic": "世尊般涅槃日迦葉尊者最後而至世尊乃於槨中露雙趺示之迦葉作禮請如來以三昧火而自闍維即時金棺從七寶牀升舉遶拘尸羅城七帀却還本處化火光三昧而自焚之。",
+          "Curated": true,
+          "AttributionNote": "The nirvana-case narrator reports Mahakasyapa paying respect before requesting cremation.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mahakasyapa",
+              "Roles": [
+                "action-performer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The nirvana-case narrator reports Mahakasyapa paying respect before requesting cremation.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X80/X80n1568.xml",
+          "FromLb": "0582b08",
+          "ToLb": "0582b09",
+          "Kwic": "須臾，罔明大士從地涌出，作禮世尊。",
+          "Curated": true,
+          "AttributionNote": "The parallel case narrator reports Wangming paying respect to Shakyamuni before the command.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wangming Bodhisattva",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The parallel case narrator reports Wangming paying respect to Shakyamuni before the command.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0029b09",
+          "ToLb": "0029b09",
+          "Kwic": "須臾，罔明大士從地涌出，作禮世尊",
+          "Curated": true,
+          "AttributionNote": "The parallel case narrator reports Wangming paying respect to Shakyamuni before the command.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wangming Bodhisattva",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The parallel case narrator reports Wangming paying respect to Shakyamuni before the command.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0407a06",
+          "ToLb": "0407a06",
+          "Kwic": "世尊嘗於阿難行次，見一古佛塔，世尊便作禮。",
+          "Curated": true,
+          "AttributionNote": "The case narrator reports Shakyamuni seeing an ancient buddha's stupa and paying respect to it.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "action-performer",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The case narrator reports Shakyamuni seeing an ancient buddha's stupa and paying respect to it.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0489b20",
+          "ToLb": "0490a04",
+          "Kwic": "罔明大士從地涌出，作禮世尊；世尊敕罔明出女人定",
+          "Curated": true,
+          "MasterName": null,
+          "AttributionNote": "Yulin raises the old case; inside the quotation its narrator reports Wangming paying respect to Shakyamuni. Yulin comments afterward.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wangming Bodhisattva",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            },
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "later-raiser",
+                "record-owner",
+                "commentator"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Yulin raises the old case; inside the quotation its narrator reports Wangming paying respect to Shakyamuni. Yulin comments afterward.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0277a06",
+          "ToLb": "0277a07",
+          "Kwic": "作禮而去。",
+          "Curated": true,
+          "AttributionNote": "The case narrator reports the unnamed outsider paying respect and leaving after praising Shakyamuni's silence.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "recipient",
+                "case-teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The case narrator reports the unnamed outsider paying respect and leaving after praising Shakyamuni's silence.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X79/X79n1557.xml",
+        "X/X82/X82n1571.xml",
+        "P/P154/P154n1519.xml",
+        "X/X80/X80n1568.xml",
+        "X/X80/X80n1565.xml",
+        "X/X83/X83n1578.xml",
+        "B/B27/B27n0152.xml",
+        "X/X66/X66n1297.xml"
+      ],
+      "RelatedMasters": [
+        "Juelang Daosheng"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "To pay respect is to perform a formal bodily salutation before a person, image, or memorial. The records narrate Wangming bowing to Shakyamuni before receiving a command, Mahakasyapa bowing before requesting the Buddha's cremation, Shakyamuni himself bowing to an ancient buddha's stupa, an unnamed monk bowing after a reply, and an outsider bowing before leaving an exchange. Chan preserves who bows, to whom, and at what turn; the action is public and timed, not an inferred inward attitude.",
+      "DraftEvidence": {
+        "ExactUttererRepairAudit": {
+          "Decision": "full-case-reread-complete",
+          "Rule": "MasterName is only the utterer of the headword; narrators, non-master actors, and context masters remain separately represented.",
+          "OccurrenceActorStates": {
+            "named": 1,
+            "narrated": 7,
+            "identified-non-master": 0,
+            "reviewed-unnamed": 0,
+            "impersonal": 0
+          },
+          "RosterCanonicalizations": [],
+          "IndependentReview": "fresh-build/waves/f003-laneB-701-750-independent-exact-review.json"
+        }
+      }
+    }
+  ]
+}
