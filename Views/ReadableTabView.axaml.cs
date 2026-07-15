@@ -3358,24 +3358,19 @@ public partial class ReadableTabView : UserControl
 
     private ScrollViewer? _scrollSvOrig;
     private ScrollViewer? _scrollSvTran;
-    private bool _scrollSyncSuppress;
     private DispatcherTimer? _scrollSyncDebounce;
-    private bool _scrollSyncSourceIsOrig;
 
-    /// <summary>Config-controlled (AppConfig.EnableBilingualScrollSync via SettingsAppliedMessage).</summary>
-    private bool _scrollSyncEnabled = true;
-
-    // USER-INTENT GATE: the panes also scroll programmatically — find-bar next/prev,
-    // search-tab navigation, cross-pane selection sync (CenterByCaret), bookmark and
-    // reading-progress jumps. Those must NOT drag the peer pane along, so sync only
-    // fires when the source pane saw direct user scrolling (wheel / pointer drag /
-    // nav keys) shortly before the ScrollChanged.
-    private DateTime _scrollIntentOrig = DateTime.MinValue;
-    private DateTime _scrollIntentTran = DateTime.MinValue;
-    private static readonly TimeSpan ScrollIntentWindow = TimeSpan.FromMilliseconds(600);
+    // State + decision logic now live in a bound VM component (MVVM ratchet): which pane
+    // leads, config/mode enablement, the ping-pong suppress guard, the user-intent window,
+    // and the shared-line-id lead/follow mapping. This view keeps only the AvaloniaEdit
+    // wiring. The USER-INTENT GATE (the panes also scroll programmatically — find-bar
+    // next/prev, search-tab navigation, cross-pane selection sync, bookmark and
+    // reading-progress jumps — which must NOT drag the peer along) is enforced by
+    // ScrollSync.HasRecentIntent / ShouldSync.
+    private BilingualScrollSyncViewModel ScrollSync => _vm.Reading.ScrollSync;
 
     /// <summary>Applies the config toggle (called from the SettingsAppliedMessage registration).</summary>
-    internal void SetScrollSyncEnabled(bool enabled) => _scrollSyncEnabled = enabled;
+    internal void SetScrollSyncEnabled(bool enabled) => ScrollSync.ConfigEnabled = enabled;
 
     /// <summary>
     /// Applies all config-driven reader settings from a <see cref="ReadZen.App.Messages.SettingsAppliedMessage"/>.
@@ -3444,11 +3439,7 @@ public partial class ReadableTabView : UserControl
     private void HookScrollIntent(Control? paneHost, bool isOrig)
     {
         if (paneHost == null) return;
-        void Stamp()
-        {
-            if (isOrig) _scrollIntentOrig = DateTime.UtcNow;
-            else _scrollIntentTran = DateTime.UtcNow;
-        }
+        void Stamp() => ScrollSync.StampIntent(isOrig, DateTime.UtcNow);
 
         paneHost.AddHandler(InputElement.PointerWheelChangedEvent, (_, _) => Stamp(),
             RoutingStrategies.Tunnel, handledEventsToo: true);
@@ -3474,16 +3465,13 @@ public partial class ReadableTabView : UserControl
 
     private void OnPaneScrolled(bool sourceIsOrig)
     {
-        if (IsGridSurfaceActive()) return; // C2/C3: scroll-sync is moot on the single-grid surface
-        if (!_scrollSyncEnabled) return;
-        if (_scrollSyncSuppress) return;
+        // Enablement (config OR SyncedPanes mode), the single-grid-surface guard, the
+        // ping-pong suppress guard, and the user-intent window are all decided by the VM.
+        // Programmatic scrolls (find bar, search navigation, selection sync, bookmarks,
+        // progress restore) never stamp intent, so they never pass this gate.
+        if (!ScrollSync.ShouldSync(sourceIsOrig, IsGridSurfaceActive(), DateTime.UtcNow)) return;
 
-        // Programmatic scrolls (find bar, search navigation, selection sync,
-        // bookmarks, progress restore) never stamp intent — ignore them.
-        var intent = sourceIsOrig ? _scrollIntentOrig : _scrollIntentTran;
-        if (DateTime.UtcNow - intent > ScrollIntentWindow) return;
-
-        _scrollSyncSourceIsOrig = sourceIsOrig;
+        ScrollSync.SourceIsOrig = sourceIsOrig;
         _scrollSyncDebounce ??= CreateScrollSyncTimer();
         _scrollSyncDebounce.Stop();
         _scrollSyncDebounce.Start();
@@ -3495,7 +3483,7 @@ public partial class ReadableTabView : UserControl
         t.Tick += (_, _) =>
         {
             t.Stop();
-            try { SyncPeerPaneScroll(_scrollSyncSourceIsOrig); }
+            try { SyncPeerPaneScroll(ScrollSync.SourceIsOrig); }
             catch { /* scroll sync is best-effort polish; never break the reader */ }
         };
         return t;
@@ -3506,10 +3494,7 @@ public partial class ReadableTabView : UserControl
         var srcEd = sourceIsOrig ? _aeOrig : _aeTran;
         var dstEd = sourceIsOrig ? _aeTran : _aeOrig;
         var dstSv = sourceIsOrig ? _scrollSvTran : _scrollSvOrig;
-        var srcDoc = sourceIsOrig ? _vm.RenderOrig : _vm.RenderTran;
-        var dstDoc = sourceIsOrig ? _vm.RenderTran : _vm.RenderOrig;
         if (srcEd == null || dstEd == null || dstSv == null) return;
-        if (srcDoc.IsEmpty || dstDoc.IsEmpty) return;
 
         // Top visible character offset in the source pane: the first materialized
         // visual line (house pattern — same primitives as CenterByCaret).
@@ -3520,13 +3505,15 @@ public partial class ReadableTabView : UserControl
         if (firstVisual == null) return;
         int srcOffset = firstVisual.FirstDocumentLine.Offset;
 
-        var mapped = BilingualScrollMapper.MapOffset(srcDoc, dstDoc, srcOffset);
+        // Shared-line-id lead → follow mapping lives in the VM (it orients ZH/EN by
+        // sourceIsOrig and returns null when the follower has no counterpart segment).
+        var mapped = ScrollSync.MapLeadToFollow(sourceIsOrig, _vm.RenderOrig, _vm.RenderTran, srcOffset);
         if (mapped == null) return;
 
         var dstLine = dstEd.Document?.GetLineByOffset(Math.Clamp(mapped.Value, 0, dstEd.Document.TextLength));
         if (dstLine == null) return;
 
-        _scrollSyncSuppress = true;
+        ScrollSync.Suppressed = true;
         try
         {
             dstEd.ScrollTo(dstLine.LineNumber, 0);
@@ -3553,7 +3540,7 @@ public partial class ReadableTabView : UserControl
         {
             // Clear AFTER the layout-driven ScrollChanged from our own mutation has
             // had a chance to fire (it arrives via the dispatcher queue).
-            Dispatcher.UIThread.Post(() => _scrollSyncSuppress = false, DispatcherPriority.Background);
+            Dispatcher.UIThread.Post(() => ScrollSync.Suppressed = false, DispatcherPriority.Background);
         }
     }
 
@@ -3635,8 +3622,7 @@ public partial class ReadableTabView : UserControl
         // Only capture on real user scrolling (same intent gate as scroll-sync);
         // programmatic scrolls (restore, find bar, selection sync, bookmarks) never
         // stamp intent and so must not overwrite the resume anchor.
-        var intent = sourceIsOrig ? _scrollIntentOrig : _scrollIntentTran;
-        if (DateTime.UtcNow - intent > ScrollIntentWindow) return;
+        if (!ScrollSync.HasRecentIntent(sourceIsOrig, DateTime.UtcNow)) return;
         // Never capture from a reconstructed/transient (time-travel) or in-flux view.
         if (IsReadingLayoutGated()) return;
 
@@ -3798,12 +3784,12 @@ public partial class ReadableTabView : UserControl
 
     private void ArmProgrammaticScrollSuppression()
     {
-        _scrollSyncSuppress = true;
+        ScrollSync.Suppressed = true;
         _suppressPollingUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
         _suppressMirrorUntilUtc = DateTime.UtcNow.AddMilliseconds(LongSuppressMs);
         _ignoreProgrammaticUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
         // Release the sync guard after our own layout-driven ScrollChanged has fired.
-        Dispatcher.UIThread.Post(() => _scrollSyncSuppress = false, DispatcherPriority.Background);
+        Dispatcher.UIThread.Post(() => ScrollSync.Suppressed = false, DispatcherPriority.Background);
     }
 
     /// <summary>Top-aligns a pane on the given lb without moving the caret or selection.</summary>
@@ -6217,12 +6203,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             return;
         }
 
-        // Wave A fallback ladder: map the requested mode to one of the two implemented
-        // render strategies. PageTwoPane renders unsuppressed lbs; everything else
-        // renders the merged (suppressed-lb) two-pane surface. Waves B/C add real
-        // rendering for SyncedPanes / Interleaved / MergedStacked / Aligned*.
+        // Map the requested mode to a render strategy. Only MergedTwoPane heals lines into
+        // paragraphs (suppressed non-leading lbs); PageTwoPane AND SyncedTwoPane both render
+        // the UNSUPPRESSED per-line surface into the two editors — SyncedPanes differs from
+        // Page only in that scroll-sync is its defining, always-on behavior (via ScrollSync).
         var strategy = RenderStrategyFor(mode);
-        bool needsSuppression = strategy != RenderStrategy.PageTwoPane;
+        bool needsSuppression = strategy == RenderStrategy.MergedTwoPane;
         int seq = ++_readingLayoutRenderSeq;
         var xmlPath = _provenanceXmlAbsPath!;
         var tranPathHint = _translationXmlAbsPath;
@@ -6232,7 +6218,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // editors. AlignedLines pairs ZH/EN by lb (no suppression, no segment map needed).
         if (strategy == RenderStrategy.RowGrid)
         {
-            await ApplyRowGridLayoutAsync(mode, seq, xmlPath, tranPathHint, segMapService);
+            await ApplyRowGridLayoutAsync(mode, seq, xmlPath, tranPathHint, segMapService, userInitiated);
             return;
         }
 
@@ -6282,16 +6268,29 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
             if (origDoc == null)
             {
-                // Merged surface requested but unavailable (no segment map). Degrade to
-                // page — the RUNTIME no-map fallback (A2), NOT a preference change.
-                _currentLayoutMode = ReadingLayoutMode.Page;
-                SetReadingLayoutSelector(ReadingLayoutMode.Page);
-                // Only overwrite the stored mode with Page on an explicit user action.
-                // A non-user-initiated sticky reapply that fails on a transient
-                // segment-map miss must NOT erase the user's persisted preference
-                // (audit R2 reader finding).
+                // Merged surface requested but unavailable (no segment map for this text).
+                // Don't just relabel to Page and leave the current surface up — that looked
+                // like a dead ComboBox snap-back, and a stale AlignedLines grid would linger
+                // because RestoreTwoEditorSurface never ran (FINDINGS §3, symptom 2a).
                 if (userInitiated)
-                    PersistLayoutMode(ReadingLayoutMode.Page);
+                {
+                    // Explicit user choice: actually RE-RENDER as Page. Re-invoking the Page
+                    // strategy runs SetRendered → RestoreTwoEditorSurface (tearing down any grid
+                    // surface) and echoes + persists Page exactly as the Page success path does,
+                    // so there is no double-persist and the ComboBox lands on Page. Page never
+                    // needs suppression, so this cannot re-enter this degrade branch (no loop).
+                    await ApplyReadingLayoutAsync(ReadingLayoutMode.Page, userInitiated: true);
+                    Say("Merged layout needs a segment map — not available for this text.");
+                }
+                else
+                {
+                    // Non-user-initiated sticky reapply after navigation: the freshly-navigated
+                    // Page surface is already showing, so no re-render is needed. Reconcile the
+                    // mode-of-record + selector to Page but do NOT persist — a transient
+                    // segment-map miss must not erase the user's persisted preference (audit R2).
+                    _currentLayoutMode = ReadingLayoutMode.Page;
+                    SetReadingLayoutSelector(ReadingLayoutMode.Page);
+                }
                 return;
             }
 
@@ -6320,20 +6319,36 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// Renders a grid-surface reading mode (Wave C). Renders the original + translation
     /// UNSUPPRESSED off the UI thread, builds a <see cref="RowGridModel"/>, then swaps the
     /// RowGrid surface in on the UI thread — mirroring the seq/gate guards of the two-editor
-    /// path. AlignedLines needs no segment map; the map is loaded best-effort for parity with
-    /// later grid modes and passed through (unused by AlignedLines).
+    /// path. AlignedLines/Interleaved pair purely by lb and need no segment map.
+    /// <see cref="ReadingLayoutMode.MergedStacked"/> and <see cref="ReadingLayoutMode.AlignedBlocks"/>
+    /// DO need a segment map: it is loaded here (off-thread) and, when absent/empty, the mode
+    /// DOWNGRADES to its map-free analog BEFORE rendering (SPA §5: merged-stacked→interleaved,
+    /// blocks→aligned-lines) rather than blanking — the analog needs no map.
     /// </summary>
     private async Task ApplyRowGridLayoutAsync(
-        ReadingLayoutMode mode, int seq, string xmlPath, string? tranPathHint, ISegmentMapService? segMapService)
+        ReadingLayoutMode mode, int seq, string xmlPath, string? tranPathHint, ISegmentMapService? segMapService,
+        bool userInitiated)
     {
-        _ = segMapService; // AlignedLines pairs purely by lb; later grid modes (Blocks/Stacked) will use it.
+        // Only map-grouped grid modes need the segment map; AlignedLines/Interleaved skip the I/O.
+        bool needsMap = mode is ReadingLayoutMode.MergedStacked or ReadingLayoutMode.AlignedBlocks;
         // Capture UI-thread state before going off-thread.
         bool showLineIds = _vm.Reading.ShowLineIds;
         var view = (ReaderViewMode)_vm.Reading.ViewModeIndex;
         try
         {
-            var (origDoc, tranDoc, model) = await Task.Run(() =>
+            var (origDoc, tranDoc, model, mapMissing) =
+                await Task.Run<(RenderedDocument?, RenderedDocument?, RowGridModel?, bool)>(() =>
             {
+                // Load the segment map for merged modes; empty/missing → signal a downgrade and
+                // render NOTHING here (the caller re-invokes Interleaved before anything shows).
+                SegmentMap? segMap = null;
+                if (needsMap)
+                {
+                    segMap = segMapService?.TryLoad(xmlPath);
+                    if (segMap?.Segments == null || segMap.Segments.Count == 0)
+                        return (null, null, null, true);
+                }
+
                 var origXml = File.ReadAllText(xmlPath, System.Text.Encoding.UTF8);
                 var orig = TeiRenderer.Render(origXml, null); // grid pairs by lb: no suppression
 
@@ -6349,9 +6364,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                     tran = TeiRenderer.Render(origXml, null);
                 }
 
-                // AlignedLines needs no segment map → skip the TryLoad I/O (review m-9).
-                var built = RowGridBuilder.Build(orig, tran, null, mode, view, showLineIds);
-                return (orig, tran, built);
+                // AlignedLines/Interleaved pass a null segMap (they pair by lb); MergedStacked
+                // groups by the loaded map's units.
+                var built = RowGridBuilder.Build(orig, tran, segMap, mode, view, showLineIds);
+                return (orig, tran, built, false);
             });
 
             // A newer toggle or navigation superseded this render — drop it.
@@ -6365,9 +6381,59 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 return;
             }
 
+            // No segment map for a map-grouped grid mode → downgrade to its MAP-FREE analog
+            // BEFORE rendering (SPA §5: merged-stacked→interleaved; blocks→lines). The analog
+            // needs no map, so this cannot re-enter this branch (no loop). AlignedBlocks is
+            // two-column, so its analog is AlignedLines (NOT Interleaved). Never blank the surface.
+            if (mapMissing)
+            {
+                bool isBlocks = mode == ReadingLayoutMode.AlignedBlocks;
+                var fallback = isBlocks ? ReadingLayoutMode.AlignedLines : ReadingLayoutMode.Interleaved;
+                if (userInitiated)
+                {
+                    // Explicit choice: render + persist the fallback (mirrors the Page degrade in
+                    // ApplyReadingLayoutAsync — the fallback becomes the stored preference).
+                    await ApplyReadingLayoutAsync(fallback, userInitiated: true);
+                    Say(isBlocks
+                        ? "Aligned-blocks layout needs a segment map — showing aligned lines instead."
+                        : "Merged-stacked layout needs a segment map — showing interleaved instead.");
+                }
+                else
+                {
+                    // Sticky reapply after navigation: render the fallback but KEEP the stored
+                    // map-grouped preference — a transient per-text map miss must not erase the
+                    // user's choice (the recursive call persists the fallback; re-persist mode).
+                    await ApplyReadingLayoutAsync(fallback, userInitiated: false);
+                    PersistLayoutMode(mode);
+                }
+                return;
+            }
+
+            // Zero rows (e.g. a document with no lb n-value keys → BuildAlignedLines yields
+            // nothing) would bind an EMPTY grid and blank the reader (FINDINGS §3, symptom 2b).
+            // Fall back to a Page render instead of showing an empty aligned-lines surface.
+            if (model!.Rows.Count == 0)
+            {
+                if (userInitiated)
+                {
+                    // SetRendered (inside the Page strategy) runs RestoreTwoEditorSurface, so any
+                    // grid surface still up is torn down; Page also echoes + persists itself.
+                    await ApplyReadingLayoutAsync(ReadingLayoutMode.Page, userInitiated: true);
+                    Say("This text can't be shown in this layout.");
+                }
+                else
+                {
+                    // Sticky reapply: nav already left a Page surface up — reconcile to Page
+                    // without persisting (don't clobber the user's stored grid preference).
+                    _currentLayoutMode = ReadingLayoutMode.Page;
+                    SetReadingLayoutSelector(ReadingLayoutMode.Page);
+                }
+                return;
+            }
+
             _currentLayoutMode = mode;
             SetReadingLayoutSelector(mode);
-            SetRenderedRowGrid(origDoc, tranDoc, model);
+            SetRenderedRowGrid(origDoc!, tranDoc!, model);
             PersistLayoutMode(mode);
         }
         catch
@@ -6456,43 +6522,68 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
     }
 
-    /// <summary>The two render surfaces Wave A can actually produce (plus the Wave C stub).</summary>
+    /// <summary>The render surfaces the reader can produce.</summary>
     private enum RenderStrategy
     {
         /// <summary>Per-lb page layout (unsuppressed line breaks).</summary>
         PageTwoPane,
         /// <summary>Merged two-pane surface (suppressed non-leading line breaks).</summary>
         MergedTwoPane,
+        /// <summary>
+        /// Per-line two-pane surface with always-on viewport scroll-sync by shared line id
+        /// (the SPA "flow" mode). Same UNSUPPRESSED per-line density as <see cref="PageTwoPane"/>
+        /// — NOT paragraph-healed like <see cref="MergedTwoPane"/>, NOT row-height-locked like
+        /// the AlignedLines row grid — but the sync is the mode's defining feature (engaged via
+        /// <see cref="BilingualScrollSyncViewModel.ModeForcesSync"/>, independent of the config toggle).
+        /// </summary>
+        SyncedTwoPane,
         /// <summary>Row-grid reading surface (virtualized ListBox of RowVm rows). Wave C.</summary>
         RowGrid
     }
 
     /// <summary>
-    /// Wave A fallback ladder: maps a requested <see cref="ReadingLayoutMode"/> to a
-    /// currently-implemented render strategy. Page/Aligned* → page; MergedFlow/SyncedPanes/
-    /// Interleaved/MergedStacked → merged two-pane. Waves B/C replace the placeholder rows
-    /// (SyncedPanes styling; single-column Interleaved/MergedStacked; aligned surfaces) and
-    /// route the implemented ones to <see cref="RenderStrategy.RowGrid"/>.
+    /// Maps a requested <see cref="ReadingLayoutMode"/> to its render strategy. Page → page;
+    /// MergedFlow → paragraph-healed merged two-pane; SyncedPanes → per-line synced two-pane
+    /// (its own strategy — NOT aliased to MergedFlow); AlignedLines/AlignedBlocks/Interleaved/
+    /// MergedStacked → row grid.
     /// </summary>
     private static RenderStrategy RenderStrategyFor(ReadingLayoutMode mode) => mode switch
     {
         ReadingLayoutMode.Page => RenderStrategy.PageTwoPane,
         ReadingLayoutMode.AlignedLines => RenderStrategy.RowGrid,       // Wave C1 → row grid
-        ReadingLayoutMode.AlignedBlocks => RenderStrategy.PageTwoPane,  // Wave C → page for now
+        ReadingLayoutMode.AlignedBlocks => RenderStrategy.RowGrid,      // Wave C → two-column block-aligned row grid
         ReadingLayoutMode.MergedFlow => RenderStrategy.MergedTwoPane,
-        ReadingLayoutMode.SyncedPanes => RenderStrategy.MergedTwoPane,  // Wave B → merged for now
-        ReadingLayoutMode.Interleaved => RenderStrategy.MergedTwoPane,  // Wave C → merged for now
-        ReadingLayoutMode.MergedStacked => RenderStrategy.MergedTwoPane,// Wave C → merged for now
+        ReadingLayoutMode.SyncedPanes => RenderStrategy.SyncedTwoPane,  // per-line, viewport scroll-synced by shared line id
+        ReadingLayoutMode.Interleaved => RenderStrategy.RowGrid,        // Wave C → single-column row grid
+        ReadingLayoutMode.MergedStacked => RenderStrategy.RowGrid,      // Wave C → single-column merged-stacked grid
         _ => RenderStrategy.PageTwoPane
     };
 
+    /// <summary>True for the TWO-COLUMN grid modes whose ZH|EN row surface honors the ZH/Both/EN
+    /// view filter by collapsing a column. Single-column grid modes (Interleaved/MergedStacked)
+    /// suppress the toggle (SPA passage.js:499) and are deliberately excluded.</summary>
+    private static bool IsTwoColumnGridMode(ReadingLayoutMode mode)
+        => mode is ReadingLayoutMode.AlignedLines or ReadingLayoutMode.AlignedBlocks;
+
     /// <summary>
-    /// Applies the ZH/Both/EN view mode by collapsing/expanding the two-pane columns
-    /// (Wave A). Both = 1*/Auto/2*; ZH = original only; EN = translation only. Wave C
-    /// rebuilds single-column projections with side filtering instead.
+    /// Applies the ZH/Both/EN view mode. On the two-editor surface this collapses/expands the
+    /// two-pane columns (Wave A): Both = 1*/Auto/2*; ZH = original only; EN = translation only.
+    /// On the row-grid surface the filter is baked INTO the built rows (RowGridBuilder reads the
+    /// view), so a two-column grid mode (AlignedLines/AlignedBlocks) REBUILDS to re-filter; the
+    /// rebuild re-reads <see cref="ReadableReadingViewModel.ViewModeIndex"/> and preserves the
+    /// seq-token/gate/persistence path. Single-column grid modes ignore the view — leave them.
     /// </summary>
     private void ApplyViewMode(ReaderViewMode mode)
     {
+        // Row-grid surface: the column collapse lives in the RowVm getters, so re-run the layout
+        // apply for the current two-column grid mode (it re-reads the new view and rebuilds).
+        if (_activeSurface == ActiveSurface.RowGrid)
+        {
+            if (IsTwoColumnGridMode(_currentLayoutMode))
+                _ = ApplyReadingLayoutAsync(_currentLayoutMode, userInitiated: false);
+            return;
+        }
+
         var grid = this.FindControl<Grid>("TwoPaneGrid");
         if (grid == null || grid.ColumnDefinitions.Count < 3) return;
 

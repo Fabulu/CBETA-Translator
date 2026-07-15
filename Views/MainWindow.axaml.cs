@@ -713,9 +713,13 @@ private async Task LoadConfigAndAutoloadAsync()
         };
 
         // ReadableTabView bridges
-        _vm.SetReadableRendered = (ro, rt) =>
+        _vm.SetReadableRendered = (ro, rt, tranPath) =>
         {
             _readableView?.SetRendered(ro, rt);
+            // Hand the reader the nav-resolved translation path so a later layout-mode
+            // switch re-renders English from the SAME source (or clears the hint for
+            // untranslated works) instead of re-deriving it by convention (PR-2 sym1).
+            _readableView?.SetTranslationPath(tranPath);
             // Push the active file's license to BOTH the reader (for the
             // right-click context menu) and the top-bar chip (for display).
             var license = _vm.GetLicenseForCurrentFile();

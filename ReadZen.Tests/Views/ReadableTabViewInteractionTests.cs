@@ -285,6 +285,27 @@ public class ReadableTabViewInteractionTests
 
     // ---- Reader-state persistence is keyed by corpus-relative path, not absolute ----
 
+    // ---- SyncedPanes is its own render strategy, no longer aliased to MergedFlow ----
+
+    [Fact]
+    public void RenderStrategyFor_SyncedPanes_DiffersFromMergedFlow()
+    {
+        var method = typeof(ReadableTabView).GetMethod("RenderStrategyFor", BindingFlags.Static | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Missing RenderStrategyFor");
+
+        var syncedStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.SyncedPanes })!;
+        var mergedStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.MergedFlow })!;
+        var pageStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.Page })!;
+
+        // SyncedPanes must render distinctly from MergedFlow (the alias bug) ...
+        Assert.NotEqual(mergedStrategy, syncedStrategy);
+        // ... via its own strategy value (per-line synced two-pane), not Page's or Merged's.
+        Assert.Equal("SyncedTwoPane", syncedStrategy.ToString());
+        Assert.Equal("MergedTwoPane", mergedStrategy.ToString());
+        Assert.Equal("PageTwoPane", pageStrategy.ToString());
+        Assert.NotEqual(pageStrategy, syncedStrategy);
+    }
+
     [Fact]
     public void PersistLayoutMode_KeysOnRelativePath_NotAbsolute()
     {

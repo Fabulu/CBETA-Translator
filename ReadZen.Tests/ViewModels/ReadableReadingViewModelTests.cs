@@ -98,6 +98,22 @@ public class ReadableReadingViewModelTests
     }
 
     [Fact]
+    public void LayoutMode_PropagatesToScrollSyncComponent()
+    {
+        // The extracted scroll-sync component keys its always-on-sync decision off the achieved
+        // layout mode; the reading VM must keep it in step for both user changes and quiet echoes.
+        var vm = new ReadableReadingViewModel();
+
+        vm.LayoutMode = ReadingLayoutMode.SyncedPanes;
+        Assert.Equal(ReadingLayoutMode.SyncedPanes, vm.ScrollSync.LayoutMode);
+        Assert.True(vm.ScrollSync.ModeForcesSync);
+
+        vm.SetLayoutModeQuietly(ReadingLayoutMode.Page); // the view's achieved-mode echo path
+        Assert.Equal(ReadingLayoutMode.Page, vm.ScrollSync.LayoutMode);
+        Assert.False(vm.ScrollSync.ModeForcesSync);
+    }
+
+    [Fact]
     public void SetLayoutModeQuietly_NoOpWhenUnchanged()
     {
         var vm = new ReadableReadingViewModel { LayoutMode = ReadingLayoutMode.Page };

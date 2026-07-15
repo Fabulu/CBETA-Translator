@@ -87,11 +87,22 @@ public partial class ReadableReadingViewModel : ObservableObject
 
     private bool _suppressLayoutRequest;
 
+    /// <summary>
+    /// The cross-pane scroll-sync state/logic component (MVVM ratchet: extracted from the
+    /// reader code-behind's "Bilingual scroll sync" section). Its LayoutMode is kept in step
+    /// with this VM's <see cref="LayoutMode"/> so <see cref="ReadingLayoutMode.SyncedPanes"/>
+    /// can engage always-on sync.
+    /// </summary>
+    public BilingualScrollSyncViewModel ScrollSync { get; } = new();
+
     /// <summary>Raised when the user picks a different layout in the ComboBox.</summary>
     public event EventHandler<ReadingLayoutMode>? LayoutModeChangeRequested;
 
     partial void OnLayoutModeChanged(ReadingLayoutMode value)
     {
+        // Keep the sync component's mode in step for BOTH user changes and quiet echoes of
+        // the view's achieved mode (this runs before the suppress-guard early-out below).
+        ScrollSync.LayoutMode = value;
         if (_suppressLayoutRequest) return;
         LayoutModeChangeRequested?.Invoke(this, value);
     }
