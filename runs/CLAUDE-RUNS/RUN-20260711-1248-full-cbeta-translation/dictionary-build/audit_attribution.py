@@ -53,6 +53,7 @@ ATTRIBUTION_RUNGS = [
     "parallel-passage",
 ]
 ACTOR_STATUSES = {"identified-non-master", "reviewed-unnamed", "narrated", "impersonal"}
+EXPLICIT_MASTER_TURN = re.compile(r"師(?:云|曰|道|問|答|謂|乃|拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
 CLOSED_ROLES = {
     "utterer", "respondent", "questioner", "interlocutor", "addressee",
     "section-subject", "record-owner", "person-described", "person-discussed",
@@ -295,6 +296,23 @@ def main() -> int:
                         fail("missing_grammar_evidence", entry, f"{term} s{si} o{oi}")
                 else:
                     fail("unresolved_actor", entry, f"{term} s{si} o{oi} {occ.get('RelPath')}:{occ.get('FromLb')}")
+
+                kwic_text = str(occ.get("Kwic") or "")
+                headword_clauses = [
+                    clause for clause in re.split(r"[。！？；\n]", kwic_text)
+                    if term and term in clause
+                ]
+                explicit_turns = sorted({
+                    match.group(0)
+                    for clause in headword_clauses
+                    for match in EXPLICIT_MASTER_TURN.finditer(clause)
+                })
+                if explicit_turns and not master:
+                    fail(
+                        "explicit_master_turn_left_anonymous",
+                        entry,
+                        f"{term} s{si} o{oi}: {explicit_turns}; read the complete case and name the exact master",
+                    )
 
                 context_masters = occ.get("ContextMasters") or []
                 if not isinstance(context_masters, list):

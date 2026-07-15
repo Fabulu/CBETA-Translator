@@ -237,3 +237,14 @@ Nearby independent occurrences remain allowed.
 
 Production trigger: independent review found two overlapping `戒和尚` witnesses from one passage after mechanical
 depth had passed. The new check moves that finding ahead of semantic review. The accepted f005 canary remains green.
+
+## 15. Explicit `師` turns cannot be serialized as anonymous narration
+
+Implementation: the attribution audit now examines the punctuation-bounded clause containing the headword. If that
+clause explicitly says `師云`, `師曰`, `師道`, `師問`, `師答`, or an explicit master action such as `師拈`, `師舉`,
+`師下座`, or `師歸方丈`, a null `MasterName` hard-fails. The complete case must be read and the exact master named;
+the detector does not guess which master.
+
+Production trigger: two full repair rounds continued to serialize explicit `師云`/`師拈拂子` turns as narrator or
+unnamed actor despite green aggregate attribution counts. This guard converts the visible grammatical contradiction
+into an author-side failure. Regression tests and the accepted f005 canary pass.
